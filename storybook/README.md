@@ -1195,6 +1195,22 @@ Listening remains pending.
 **Capture gap:** No game or audio audition opened. Separate app `builds/Prototype-52/Drain Damage.app` and archive
 `builds/history/Prototype-52.zip` preserve this audio iteration for later running-build capture after permission.
 
+## 053 — Swarms with substance and forward swoops — October 16, 2026
+
+**Build:** Prototype 53 / 0.53.0.
+
+Septic Air Force now uses a 48-pixel contact radius instead of 16, covering most of the visible fly mass.
+The same shared bounds apply to shots and scenery. The Hallowed Widow maintains its heading through a V-shaped
+attack, climbing forward to its original altitude rather than retracing the dive. It flies straight during cooldown;
+obstacles still stop unsafe movement.
+
+**Validation:** macOS export/signing, nine Python tests, and four packaged suites pass: durable flyer, sewer swarm,
+integrated opening, and opening death/warmup. Tests cover both flight directions, altitude recovery, contact bounds,
+seeded swarm paths, and existing level behavior. Environment/editor-settings and shutdown warnings remain.
+
+**Capture gap:** No game window opened. Visual playtest and actual screenshots await permission. The separate
+`builds/Prototype-53/Drain Damage.app` and `builds/history/Prototype-53.zip` preserve this iteration.
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

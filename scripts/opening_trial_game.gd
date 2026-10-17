@@ -286,8 +286,10 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 	var visible := actor_rect(actor).position.x >= camera_x and actor_rect(actor).end.x <= camera_x+960
 	match actor.attack_state:
 		"approach", "cooldown":
-			if actor.attack_state == "cooldown" and actor.attack_clock < stats.recovery_cooldown_seconds: return
-			if visible and absf(actor.feet.x-player.x) <= stats.aggro_distance_pixels:
+			if actor.attack_state == "cooldown" and actor.attack_clock < stats.recovery_cooldown_seconds:
+				move_flyer_clear(actor,actor.feet+Vector2(actor.facing*float(stats.speed_pixels_per_second)*delta,0))
+				return
+			if visible and (player.x+PLAYER_SIZE.x*0.5-actor.feet.x)*actor.facing > 0 and absf(actor.feet.x-player.x) <= stats.aggro_distance_pixels:
 				var token := "contact-"+str(actor.event_id)
 				if not actor.contact_live:
 					actor.contact_live = trial_state.begin_pattern(token,actor.event_id)
@@ -298,9 +300,10 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 				# Aim is captured once, before the warning. Moving away remains a valid dodge.
 				actor.attack_target = player+PLAYER_SIZE*0.5
 				actor.attack_target.y = minf(actor.attack_target.y,440-event_size("aggressive_flyer").end.y-1)
-				actor.facing = signf(actor.attack_target.x-actor.feet.x)
+				# Keep the flight heading throughout the committed V-shaped attack.
+				actor.attack_direction = actor.facing
 			else:
-				move_flyer_clear(actor,actor.feet+Vector2(-float(stats.speed_pixels_per_second)*delta,0))
+				move_flyer_clear(actor,actor.feet+Vector2(actor.facing*float(stats.speed_pixels_per_second)*delta,0))
 		"windup":
 			if not visible:
 				actor.attack_state = "cooldown"
@@ -315,9 +318,12 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 				actor.attack_state = "recover"
 				actor.attack_clock = 0.0
 				actor.recovery_origin = actor.feet
+				var forward_distance := maxf(absf(actor.feet.x-actor.attack_origin.x),
+					float(stats.speed_pixels_per_second)*float(stats.recovery_seconds))
+				actor.recovery_target = Vector2(actor.feet.x+actor.attack_direction*forward_distance,actor.attack_origin.y)
 		"recover":
 			var t := clampf(actor.attack_clock/float(stats.recovery_seconds),0,1)
-			move_flyer_clear(actor,actor.recovery_origin.lerp(actor.attack_origin,t))
+			move_flyer_clear(actor,actor.recovery_origin.lerp(actor.recovery_target,t))
 			if t >= 1:
 				actor.attack_state = "cooldown"
 				actor.attack_clock = 0.0

@@ -1509,7 +1509,7 @@
           0.7
         ],
         "hover_pause_probability": 0.25,
-        "contact_radius_pixels": 16,
+        "contact_radius_pixels": 48,
         "boundary_steering_margin_pixels": 48,
         "obstacle_lookahead_seconds": 1.0,
         "algorithm": "Retain heading. At timed updates add bounded random angular offset, then steer smoothly with speed/turn/acceleration limits. Slow to hover and accelerate out; do not instantaneously reset velocity.",
@@ -1556,7 +1556,7 @@
           32,
           32
         ],
-        "scale_rule": "Each256x256 source window maps to64x64 destination; anchor32,32. Fixed scale0.25. Living footprint40\u201350.5px; peripheral flies decorative outside16px contact core.",
+        "scale_rule": "Runtime256x256 source windows map to128x128 display, centered64,64; scale0.5.48px circular contact envelope covers bulk living flies; sparse outer stragglers excluded. Legacy64canvas coordinates remain asset registration units.",
         "animations": {
           "hover": {
             "loop": true,
@@ -3538,7 +3538,7 @@
           "speed_pixels_per_second": 100,
           "contact_damage_player": 1,
           "entry_warning_seconds": 0.8,
-          "path": "Proximity-triggered0.65s wingbeat warning locks hero position;0.8s committed dive,1s return and1.2s cooldown. Expanded-body scenery sweep aborts blocked dives. No target tracking during attack.",
+          "path": "Straight flight in facing direction. Nearby hero ahead triggers0.65s warning locking aim,0.8s committed dive,1s forward climb to original altitude, then1.2s forward-flight cooldown. V-shaped path never retraces origin. Scenery sweeps prevent penetration.",
           "retirement": "Exit offscreen and retire without kill credit; trial completion must not require chasing it off map.",
           "render_scale": 2.0,
           "balance_rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",

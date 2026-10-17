@@ -3,7 +3,7 @@
   "name": "Septic Air Force",
   "name_status": "Working name selected by Sean on 2026-10-16",
   "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
-  "implementation_status": "Integrated in Prototype 39 / 0.39.0; packaged mechanics tests passed, live visual review pending",
+  "implementation_status": "Expanded48px contact envelope implemented in source; packaged build and playtest pending",
   "backstory": {
     "status": "draft",
     "text": "The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
@@ -46,7 +46,7 @@
       128,
       128
     ],
-    "runtime_scale_note": "Prototype40 doubles displayed width/height around the same center, including death frames. Source crops remain unchanged; contact core remains16px radius."
+    "runtime_scale_note": "128x128 display;48px radius covers89.9\u201399.8% alpha-weighted living fly ink across20frames, measured by Art. Contact, shots and obstacle clearance share radius."
   },
   "marketing": {
     "status": "Not requested for current sprite mockup; pending future production",
@@ -75,7 +75,7 @@
       0.7
     ],
     "hover_pause_probability": 0.25,
-    "contact_radius_pixels": 16,
+    "contact_radius_pixels": 48,
     "boundary_steering_margin_pixels": 48,
     "obstacle_lookahead_seconds": 1.0,
     "algorithm": "Retain heading. At timed updates add bounded random angular offset, then steer smoothly with speed/turn/acceleration limits. Slow to hover and accelerate out; do not instantaneously reset velocity.",

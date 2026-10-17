@@ -19,7 +19,7 @@
       "death"
     ],
     "status": "Revision2 source mockup available; runtime validation required",
-    "contract": "One swarm entity and one shared anchor/scale across all frames. Suggested visual footprint 40\u201348 logical pixels and circular contact radius16px; dimensions provisional pending Art. Peripheral flies outside contact core are decorative. Choose dominant movement axis for diagonal travel; no extra diagonal sheet required. Death loop must not repeat.",
+    "contract": "One swarm entity and anchor;128x128 runtime display,48px circular contact envelope covering most living flies. Same radius for shots/contact/scenery. Death never contacts and does not loop.",
     "animation_source": "assets/bestiary/sewer-flies/animation-v2.json"
   },
   "proposed_health": {
@@ -90,7 +90,7 @@
       0.7
     ],
     "hover_pause_probability": 0.25,
-    "contact_radius_pixels": 16,
+    "contact_radius_pixels": 48,
     "boundary_steering_margin_pixels": 48,
     "obstacle_lookahead_seconds": 1.0,
     "algorithm": "Retain heading. At timed updates add bounded random angular offset, then steer smoothly with speed/turn/acceleration limits. Slow to hover and accelerate out; do not instantaneously reset velocity.",

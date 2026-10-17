@@ -68,8 +68,9 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 16, 2026 · Current build: Prototype 52 / 0.52.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 16, 2026 · Current build: Prototype 53 / 0.53.0 · Primary target: Apple Silicon macOS</p>
 <p>October 16: Prototype 50 rebuilt on request at builds/Drain Damage.app; signing and packaged opening-wreckage/warmup regression check passed. No game window opened.</p>
+<p><strong>Prototype 53 — swarm contact and Widow flight:</strong> Septic Air Force contact radius now matches most of its visible mass (48 pixels). The Widow climbs forward to its original altitude after a dive, maintaining heading and straight flight between attacks. Scenery collision remains enforced. Four packaged suites and nine Python tests pass; visual review and screenshots await permission.</p>
 <p><strong>Prototype 52 — hero death flush:</strong> Audio’s three-second toilet flush plays once when Tony or
 Sean enters the dying state, including the final life. It replaces the short lethal-hit tone and does not play for
 ordinary hits, Flushfiend defeats or the dispenser gag. Manual pause suspends it; the automatic death popup and
@@ -164,7 +165,7 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
 <p><strong>Persistent visible aiming — integrated in Prototype 33:</strong> Sixteen Art-authored holds cover both heroes, with mirrored left variants. The runtime renderer and muzzle now use the same pose independently of firing. Provisional static holds replace the older walk/fire frames; locomotion/recoil animation and live visual approval remain open.</p>
 <p><strong>Septic Air Force — sewer-fly swarm:</strong> October 16: Sean selected <em>Septic Air Force</em> as the working swarm name. Revised aviation-themed lore is drafted; Gnatastrophe is saved as a possible future boss name only; <a href="handoffs/sewer-fly-story.json">editorial handoff</a> ready.  Tight, slow random swarm with no pursuit; contact harms heroes and monsters. Asymmetric swarm revision2 includes hover, four movement directions and death source frames for review. Prototype 39 integrates initial 12 HP tuning with corrected v3 slicing; live animation readability and balance remain pending. <a href="bestiary/sewer-flies/preview.html">Preview</a>.</p>
 <p class="meta">Repository baseline: curated Prototype 52 source is organized into subsystem commits, with Git LFS for retained binary assets. Obsolete publication drafts and rejected artwork remain local; the game version is unchanged.</p>
-<p class="meta">Magazine publishing: GitHub Pages workflow renders the stable current PDF into a mobile-friendly HTML reader with an original PDF download. Local reader validation passed; first deployment awaits the initial repository push. Subsequent updates publish after the generated PDF is committed and pushed to main.</p>
+<p class="meta">Magazine publishing: GitHub Pages workflow renders the stable current PDF into a mobile-friendly HTML reader with an original PDF download. The initial GitHub Pages deployment succeeded and the public reader is live. Subsequent updates publish after the generated PDF is committed and pushed to main.</p>
 </header>
 <div class="summary">
 <article><strong>Working foundation</strong><span>Keyboard + real Xbox controller playtested</span></article>

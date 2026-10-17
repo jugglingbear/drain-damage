@@ -14,14 +14,14 @@ func run_checks() -> void:
 	for person in game.Crew.EMPLOYEES:
 		game.employee = person
 		game.reset_game()
-		game.player = Vector2(850,394)
+		game.player = Vector2(950,394)
 		game.camera_x = 600
 		var event := {"id":"opening-09","role":"aggressive_flyer","warning_seconds":0.8}
 		game.trial_state.advance(15)
 		assert(game.trial_state.reserve(event.id))
 		game.trial_state.advance(1.1)
 		assert(game.trial_state.activate(event.id))
-		game.create_actor(event,Vector2(940,250))
+		game.create_actor(event,Vector2(1000,250))
 		var actor: Dictionary = game.actors[0]
 		actor.active = true
 		assert(actor.hp == 180 and actor.max_hp == 180)
@@ -42,7 +42,8 @@ func run_checks() -> void:
 		assert(actor.feet.y > origin.y+100, "Dive must reach the hero's lane")
 		for tick in range(120): game.step_flyer(actor,1.0/120)
 		assert(actor.attack_state == "cooldown")
-		assert(actor.feet.is_equal_approx(origin))
+		assert(is_equal_approx(actor.feet.y,origin.y))
+		assert(actor.feet.x < target.x, "Recovery must continue forward rather than retrace the dive")
 		actor.feet = Vector2(1400,250)
 		assert(not game.move_flyer_clear(actor,Vector2(1400,410)))
 		assert(game.actor_rect(actor).end.y <= 320, "Expanded body must not dive through a deck")
@@ -56,8 +57,35 @@ func run_checks() -> void:
 			assert(actor.hp == maxf(0,180-(hit+1)*game.weapon.damage))
 			if hit < required-1: assert(actor.hp > 0)
 		assert(actor.hp == 0)
+	check_v_directions(game)
 	game.actors.clear()
 	game.queue_free()
 	await process_frame
 	print("PASS: doubled flyer bounds,180HP,15/10 hits,single Widow,proximity warning/committed swoop/recovery and deck collision")
 	quit()
+
+func check_v_directions(game: Node) -> void:
+	for direction in [-1,1]:
+		game.reset_game()
+		game.camera_x = 600
+		game.player = Vector2(950,394)
+		game.create_actor({"id":"opening-09","role":"aggressive_flyer","warning_seconds":0.8},
+			Vector2(1000 if direction < 0 else 900,250))
+		var actor: Dictionary = game.actors[0]
+		actor.facing = direction
+		actor.contact_live = true
+		game.step_flyer(actor,1.0/120)
+		assert(actor.attack_state == "windup")
+		var target: Vector2 = actor.attack_target
+		var previous: Vector2 = actor.feet
+		for tick in range(310):
+			game.step_flyer(actor,1.0/120)
+			assert((actor.feet.x-previous.x)*direction >= -0.001,"V attack reversed horizontal direction")
+			assert(actor.facing == direction)
+			previous = actor.feet
+		assert(actor.attack_state == "cooldown")
+		assert(is_equal_approx(actor.feet.y,250))
+		assert((actor.feet.x-target.x)*direction > 0,"Climb must finish beyond dive point")
+		var x: float = actor.feet.x
+		game.step_flyer(actor,0.1)
+		assert((actor.feet.x-x)*direction > 0,"Straight flight must continue during cooldown")

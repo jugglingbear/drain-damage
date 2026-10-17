@@ -11,6 +11,10 @@ func run_checks() -> void:
 	var swarm = game.swarms
 	assert(swarm.actors.size() == 2)
 	assert(swarm.texture != null)
+	assert(swarm.definition.movement.contact_radius_pixels == 48)
+	var contact_fixture := {"pos":Vector2(100,100)}
+	assert(swarm.overlaps(contact_fixture,Rect2(145,95,10,10)))
+	assert(not swarm.overlaps(contact_fixture,Rect2(149,95,10,10)))
 	for animation: Dictionary in swarm.definition.animation.animations.values():
 		for frame: Dictionary in animation.frames:
 			var rect: Array = frame.source_rect
@@ -26,22 +30,22 @@ func run_checks() -> void:
 	game.step_encounters(0)
 	assert(game.encounter_triggered[1])
 	game.reset_game()
-	var region := Rect2(0,0,260,220)
+	var region := Rect2(0,0,320,300)
 	var paths := 0
 	for seed_value in range(20):
-		var a: Dictionary = swarm.spawn(Vector2(40,40),region,seed_value)
-		var b: Dictionary = swarm.spawn(Vector2(40,40),region,seed_value)
+		var a: Dictionary = swarm.spawn(Vector2(60,60),region,seed_value)
+		var b: Dictionary = swarm.spawn(Vector2(60,60),region,seed_value)
 		for tick in range(7200):
 			# Door opens midway, presenting changed geometry without changing the RNG stream.
 			var solids: Array[Rect2] = [Rect2(120,80,30,140 if tick < 3600 else 40)]
 			swarm.step_motion(a,1.0/120,solids)
 			swarm.step_motion(b,1.0/120,solids)
 			assert(a.pos == b.pos and a.animation == b.animation)
-			assert(region.grow(-16).has_point(a.pos))
-			assert(not solids[0].grow(16).has_point(a.pos), str([seed_value,tick,a.pos,a.velocity,solids]))
+			assert(region.grow(-48).has_point(a.pos))
+			assert(not solids[0].grow(48).has_point(a.pos), str([seed_value,tick,a.pos,a.velocity,solids]))
 			assert(a.velocity.length() <= 35.01)
 		paths += 1
-	var trapped: Dictionary = swarm.spawn(Vector2(50,50),Rect2(0,0,100,100),1)
+	var trapped: Dictionary = swarm.spawn(Vector2(50,50),Rect2(0,0,300,300),1)
 	var walls: Array[Rect2] = [Rect2(25,0,5,100),Rect2(70,0,5,100),Rect2(0,25,100,5),Rect2(0,70,100,5)]
 	for tick in range(240): swarm.step_motion(trapped,1.0/120,walls)
 	assert(trapped.blocked)
