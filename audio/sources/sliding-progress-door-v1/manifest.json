@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "cues": [
+    {
+      "cue_id": "door-latch",
+      "path": "assets/audio/sfx/sliding-progress-door-v1/latch.wav",
+      "duration_seconds": 0.12,
+      "peak_dbfs": -15,
+      "gain_db": -3,
+      "loop": false,
+      "rms_dbfs": -28.92,
+      "sha256": "9238f2f3f859d756ffe3107eee3fe89731aee00231afb8bc3f010bd7554788fa",
+      "seed": 16200
+    },
+    {
+      "cue_id": "door-motor-slide",
+      "path": "assets/audio/sfx/sliding-progress-door-v1/motor-slide.wav",
+      "duration_seconds": 0.9,
+      "peak_dbfs": -18,
+      "gain_db": -3,
+      "loop": false,
+      "rms_dbfs": -26.21,
+      "sha256": "e4122bee7d54b5b6436560ab97627fb78ea5b50759cc380032ed5c575a1254f1",
+      "seed": 16201
+    },
+    {
+      "cue_id": "door-end-stop",
+      "path": "assets/audio/sfx/sliding-progress-door-v1/end-stop.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -15,
+      "gain_db": -3,
+      "loop": false,
+      "rms_dbfs": -30.32,
+      "sha256": "149060505adb49fe972c28450c5bbc795983c1fd6b8dc435cd8d36fb81ab67e3",
+      "seed": 16202
+    }
+  ],
+  "format": {
+    "sample_rate": 44100,
+    "channels": 1,
+    "pcm_bits": 16
+  },
+  "brief": "Brief latch, restrained motor/metal movement over 0.9s downward slide, separate end clunk.",
+  "provenance": "Original deterministic synthesis; no recordings, samples, voice or external assets.",
+  "rights": "Project-generated audio; no third-party sample license obligations introduced.",
+  "generator": "audio/sources/sliding-progress-door-v1/generate.py",
+  "generator_sha256": "e80c66bf9a519b8efb2b8db90c1490ad787e282b9bf8349e771c728c463394d9",
+  "status": "Technical candidate delivery; subjective listening and runtime integration pending"
+}

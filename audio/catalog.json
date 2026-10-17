@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "tracks": [
+    {
+      "id": "it-takes-a-hero",
+      "assignment": "opening_screen",
+      "metadata": "audio/sources/it-takes-a-hero/track.json",
+      "runtime": "assets/audio/music/it-takes-a-hero-v1.ogg"
+    },
+    {
+      "id": "hallow-quest",
+      "assignment": "first_level",
+      "metadata": "audio/sources/hallow-quest/track.json",
+      "runtime": "assets/audio/music/hallow-quest-16-bit-v1.ogg"
+    },
+    {
+      "id": "clogfather-backpressure",
+      "assignment": "clogfather_boss",
+      "metadata": "audio/sources/clogfather-v1/manifest.json",
+      "runtime": "assets/audio/music/clogfather-backpressure-v1.ogg",
+      "status": "delivered_not_gameplay_integrated"
+    }
+  ],
+  "previous_title": {
+    "metadata": "audio/title-music.json",
+    "status": "superseded_selection_preserved"
+  },
+  "runtime_status": "Integrated in Prototype 16 / 0.16.0; headless verified; subjective listening pending"
+}

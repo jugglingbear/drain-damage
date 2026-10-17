@@ -1,0 +1,64 @@
+{
+  "candidates": [
+    {
+      "id": "pipe-tap",
+      "pack": "kenney-rpg-audio.zip",
+      "member": "Audio/metalPot2.ogg",
+      "file": "audio/sources/menu-navigation-candidates-v1/pipe-tap.wav",
+      "preview": "audio/sources/menu-navigation-candidates-v1/pipe-tap-preview.mp3",
+      "processing": "asetrate=44100*0.8,aresample=44100,silenceremove=start_periods=1:start_duration=0:start_threshold=-45dB,atrim=duration=0.28,afade=t=in:d=0.003,afade=t=out:st=0.23500000000000004:d=0.045; PCM peak normalized to -15dBFS",
+      "duration_seconds": 0.28,
+      "license": "CC0-1.0",
+      "author": "Kenney",
+      "status": "unselected_preserved",
+      "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+      "id": "valve-click",
+      "pack": "kenney-rpg-audio.zip",
+      "member": "Audio/metalClick.ogg",
+      "file": "audio/sources/menu-navigation-candidates-v1/valve-click.wav",
+      "preview": "audio/sources/menu-navigation-candidates-v1/valve-click-preview.mp3",
+      "processing": "asetrate=44100*1.0,aresample=44100,silenceremove=start_periods=1:start_duration=0:start_threshold=-45dB,atrim=duration=0.16,afade=t=in:d=0.003,afade=t=out:st=0.115:d=0.045; PCM peak normalized to -15dBFS",
+      "duration_seconds": 0.16,
+      "license": "CC0-1.0",
+      "author": "Kenney",
+      "status": "unselected_preserved",
+      "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+      "id": "wrench-clink",
+      "pack": "kenney-impact-sounds.zip",
+      "member": "Audio/impactMetal_light_000.ogg",
+      "file": "audio/sources/menu-navigation-candidates-v1/wrench-clink.wav",
+      "preview": "audio/sources/menu-navigation-candidates-v1/wrench-clink-preview.mp3",
+      "processing": "asetrate=44100*0.85,aresample=44100,silenceremove=start_periods=1:start_duration=0:start_threshold=-45dB,atrim=duration=0.24,afade=t=in:d=0.003,afade=t=out:st=0.195:d=0.045; PCM peak normalized to -15dBFS",
+      "duration_seconds": 0.24,
+      "license": "CC0-1.0",
+      "author": "Kenney",
+      "status": "selected_by_user",
+      "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+      "id": "latch",
+      "pack": "kenney-rpg-audio.zip",
+      "member": "Audio/metalLatch.ogg",
+      "file": "audio/sources/menu-navigation-candidates-v1/latch.wav",
+      "preview": "audio/sources/menu-navigation-candidates-v1/latch-preview.mp3",
+      "processing": "asetrate=44100*1.0,aresample=44100,silenceremove=start_periods=1:start_duration=0:start_threshold=-45dB,atrim=duration=0.22,afade=t=in:d=0.003,afade=t=out:st=0.175:d=0.045; PCM peak normalized to -15dBFS",
+      "duration_seconds": 0.22,
+      "license": "CC0-1.0",
+      "author": "Kenney",
+      "status": "unselected_preserved",
+      "source": "https://kenney.nl/assets/rpg-audio"
+    }
+  ],
+  "note": "Plumbing-themed adaptations of metal foley; labels describe proposed use.",
+  "selection": {
+    "id": "wrench-clink",
+    "date": "2026-10-16",
+    "runtime": "assets/audio/sfx/menu-navigation-v1/wrench-clink.wav",
+    "sha256": "718bed01a9fa2d0d36541b313f39e6f3f5e757174328756a25918eb9bdbe2dde",
+    "integration_status": "ready_for_engineering"
+  }
+}

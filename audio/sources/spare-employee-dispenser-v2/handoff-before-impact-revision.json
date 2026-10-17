@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "status": "Ready for Engineering integration; synthetic first-pass cues, listening approval pending",
+  "manifest": "audio/sources/spare-employee-dispenser-v1/manifest.json",
+  "reference_audio": "audio/sources/spare-employee-dispenser-v1/sequence-reference-5.5s.wav",
+  "source_generator": "audio/sources/spare-employee-dispenser-v1/generate.py",
+  "event_mapping": {
+    "scan": [
+      "scan-whirr"
+    ],
+    "grab": [
+      "grab-servo"
+    ],
+    "compress": [
+      "compression-squeak"
+    ],
+    "throw": [
+      "flick-whoosh"
+    ],
+    "impact": [
+      "screen-splat"
+    ],
+    "slide": [
+      "screen-slide"
+    ],
+    "vend": [
+      "vending-motor"
+    ],
+    "emerge": [
+      "vending-clunk"
+    ],
+    "stamp": [
+      "checkpoint-stamp"
+    ],
+    "release": [
+      "release-confirm"
+    ]
+  },
+  "timing_contract": {
+    "full_sequence_target_seconds": 5.5,
+    "control_lock_hard_ceiling_seconds": 7,
+    "trigger_policy": "Animation events trigger cues; times are reference only. Never await audio end.",
+    "skip_policy": "Cancel ALL queued sequence cues and stop active sequence-owned voices on skip/restart/exit. Optional 30ms fade must not delay control. Do not emit release confirmation on skip.",
+    "concurrency": "Separate one-shot voices allow slide and vending to overlap; no individual cue loops.",
+    "respawn": [
+      {
+        "event_id": "vend",
+        "at_seconds": 0
+      },
+      {
+        "event_id": "emerge",
+        "at_seconds": 1.25
+      },
+      {
+        "event_id": "release",
+        "at_seconds": 1.55
+      }
+    ],
+    "respawn_control_target_seconds": 2,
+    "full_health": "stamp only; no release cue or destruction cues; control lock <=0.5s.",
+    "mix": "Start each cue at -3dB player gain; rendered peaks -12dBFS. Respect SFX mute and music mix. No loudness claim until in-game listening. Reference WAV is for audition only."
+  },
+  "coordination": "Exact Engineering event IDs. Release confirmation may overlap resumed play by 0.30s; never hold control for this tail. Existing 5.5s preview is illustrative: it places clunk at 3.4s and confirmation at 5.12s; runtime uses actual emerge/release animation events.",
+  "remaining": [
+    "Subjective listening/mix and perceived cartoon character",
+    "Animation synchronization in runtime",
+    "Engineering integration, mute/skip tests, export, build and storybook"
+  ],
+  "roadmap_note": "10 short original synthesized dispenser cues and a 5.5-second reference delivered; not integrated or listening-approved. No voice line. Not a new playable build.",
+  "cues": [
+    {
+      "cue_id": "scan-whirr",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/scan-whirr.wav",
+      "duration_seconds": 0.38,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "bc8989be0666fcf23e8aeb9d0da652ee79e473eb03f281c731bff442847602d7",
+      "loop": false
+    },
+    {
+      "cue_id": "grab-servo",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/grab-servo.wav",
+      "duration_seconds": 0.3,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "f1c8d564fa0f5923eaf5b6f399eca959ff49c673658b41ac4d53ca8d314df9de",
+      "loop": false
+    },
+    {
+      "cue_id": "compression-squeak",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/compression-squeak.wav",
+      "duration_seconds": 0.72,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "154f19aacb71b5765d3b756bc975e224b9bd3cff1fe4ba1ca3f86e3fb3820022",
+      "loop": false
+    },
+    {
+      "cue_id": "flick-whoosh",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/flick-whoosh.wav",
+      "duration_seconds": 0.32,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "a3b38f3513e638841fc442900f222b28e915c0cf01ba960dacd0c1075c83a4ad",
+      "loop": false
+    },
+    {
+      "cue_id": "screen-splat",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/screen-splat.wav",
+      "duration_seconds": 0.3,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "21ad54b726893ac4da2c04f98c36ac7f464f1e07c32546f85a50357e347a8ec0",
+      "loop": false
+    },
+    {
+      "cue_id": "screen-slide",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/screen-slide.wav",
+      "duration_seconds": 0.72,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "ffe22ca75ea68e153915af64f52a90fb561a4e8b46e8ad8a7e7e0e2f05072002",
+      "loop": false
+    },
+    {
+      "cue_id": "vending-motor",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/vending-motor.wav",
+      "duration_seconds": 1.25,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "d25367f9d9c0455d40dd944eb201ad1211733f1201deada009211d0c133d9d31",
+      "loop": false
+    },
+    {
+      "cue_id": "vending-clunk",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/vending-clunk.wav",
+      "duration_seconds": 0.2,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "9158457bec9285f90f2fdb3b0dfd02bc260e2a330e2254e8eb73fbf931f34587",
+      "loop": false
+    },
+    {
+      "cue_id": "release-confirm",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/release-confirm.wav",
+      "duration_seconds": 0.3,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "6ec03655e95ad3501109a9c39f2870245f7b8db92eb456bb0e9a29ca08c36622",
+      "loop": false
+    },
+    {
+      "cue_id": "checkpoint-stamp",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/checkpoint-stamp.wav",
+      "duration_seconds": 0.22,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "sha256": "a228170baf11149e846393c2f1e729a4287578a9b5e9f3c2e32d520c5f3d6208",
+      "loop": false
+    }
+  ],
+  "engineering_contract": "handoffs/spare-employee-dispenser-engineering.json",
+  "provenance": {
+    "method": "Original procedural synthesis in adjacent generate.py. No recordings, samples or voice models.",
+    "rights": "Project-generated audio; no third-party sample licenses or attribution requirements introduced.",
+    "generator": "audio/sources/spare-employee-dispenser-v1/generate.py",
+    "generator_sha256": "4c0da915be8b23c30f5abe13d8c6caa1e355b31ae5825d9945c7645a5799bef9",
+    "third_party_samples": false
+  }
+}

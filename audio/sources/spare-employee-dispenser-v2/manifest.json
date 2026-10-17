@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "date": "2026-10-16",
+  "cues": [
+    {
+      "cue_id": "screen-splat",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v2/screen-splat.wav",
+      "duration_seconds": 0.34,
+      "gain_db": -3,
+      "peak_dbfs": -12,
+      "loop": false,
+      "sha256": "861661f412a004163d988e4b50e1d4918248c5794d50129fa853c0ec7a2dd74c"
+    },
+    {
+      "cue_id": "screen-slide",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v2/screen-slide.wav",
+      "duration_seconds": 0.56,
+      "gain_db": -3,
+      "peak_dbfs": -15,
+      "loop": false,
+      "sha256": "013fa14b540be42a6485f201c3881bdc93ef1351641bc123bcc9020edfad9115"
+    }
+  ],
+  "brief": "Wet cartoon SPLAT, then short slide for X-eyed hero and fading blood trail.",
+  "provenance": "Original synthesis; no recordings, samples, voice models or external assets.",
+  "rights": "Project-generated audio; no third-party sample license requirements introduced.",
+  "generator": "audio/sources/spare-employee-dispenser-v2/generate.py",
+  "generator_sha256": "813b02e93870f6dedda6e853713fd65b76d868ed1b376bd3e483dba79ea0b4a5",
+  "seeds": {
+    "screen-splat": 16101,
+    "screen-slide": 16102
+  },
+  "status": "Candidate audio; technical checks only, not listening approved"
+}

@@ -1,0 +1,342 @@
+extends Node2D
+## Original cartridge-style opening; the game world is created only after Start.
+
+const ART = preload("res://assets/title/service-call-v1.png")
+const Crew = preload("res://scripts/crew.gd")
+const Portraits = preload("res://scripts/dialogue.gd")
+const Controls = preload("res://scripts/controls_screen.gd")
+const GAME = preload("res://scripts/game.gd")
+const MINT := Color("93ffd2")
+const GOLD := Color("ffe18d")
+const GLYPHS := {
+	"A": [14,17,17,31,17,17,17], "B": [30,17,17,30,17,17,30],
+	"C": [15,16,16,16,16,16,15], "D": [30,17,17,17,17,17,30],
+	"E": [31,16,16,30,16,16,31], "F": [31,16,16,30,16,16,16],
+	"G": [15,16,16,23,17,17,15], "H": [17,17,17,31,17,17,17],
+	"I": [31,4,4,4,4,4,31], "J": [7,2,2,2,18,18,12],
+	"K": [17,18,20,24,20,18,17], "L": [16,16,16,16,16,16,31],
+	"M": [17,27,21,21,17,17,17], "N": [17,25,21,19,17,17,17],
+	"O": [14,17,17,17,17,17,14], "P": [30,17,17,30,16,16,16],
+	"Q": [14,17,17,17,21,18,13], "R": [30,17,17,30,20,18,17],
+	"S": [15,16,16,14,1,1,30], "T": [31,4,4,4,4,4,4],
+	"U": [17,17,17,17,17,17,14], "V": [17,17,17,17,17,10,4],
+	"W": [17,17,17,21,21,27,17], "X": [17,17,10,4,10,17,17],
+	"Y": [17,17,10,4,4,4,4], "Z": [31,1,2,4,8,16,31],
+}
+var menu_index := 0
+var showing_controls := false
+var controls_page := 0
+var show_enemy_health_bars := false
+var selecting := false
+var selected := 1
+var selection_guard := 0.0
+var stick_latched := false
+var game: Node2D
+var clock := 0.0
+var muted := false
+var starting := false
+var music: AudioStreamPlayer
+
+func _ready() -> void:
+	if not Crew.Data.load_data():
+		get_tree().quit(1)
+		return
+	if "--verify-combat-data" in OS.get_cmdline_user_args():
+		for id in Crew.Data.bundle.monsters:
+			var spec: Dictionary = Crew.Data.monster(id).damage_art
+			if load("res://" + spec.image) == null:
+				push_error("Export missing damage texture: " + spec.image)
+				get_tree().quit(1)
+				return
+		print("PASS: exported combat bundle, six weapon records, two monster records, both imported atlases")
+		get_tree().quit()
+		return
+	show_enemy_health_bars = Crew.Data.bundle.visual_policy.ordinary_enemy_bars_default
+	if "--agent-test" in OS.get_cmdline_user_args():
+		# Explicitly override the saved maximized mode only for agent-operated launches.
+		get_window().mode = Window.MODE_WINDOWED
+		get_window().size = Vector2i(960, 540)
+		get_window().position = Vector2i(80, 80)
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	music = AudioStreamPlayer.new()
+	music.stream = make_sting()
+	music.volume_db = -14.0
+	add_child(music)
+	music.play()
+
+func _exit_tree() -> void:
+	if music != null: music.stop()
+
+func _process(delta: float) -> void:
+	clock += delta
+	selection_guard = maxf(0, selection_guard - delta)
+	queue_redraw()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if game != null or starting:
+		return
+	if showing_controls:
+		handle_controls(event)
+		get_viewport().set_input_as_handled()
+		return
+	if not selecting and handle_menu(event):
+		get_viewport().set_input_as_handled()
+		return
+	if selecting and handle_selection(event):
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode in [KEY_ENTER, KEY_KP_ENTER, KEY_SPACE]:
+			request_start()
+		elif event.physical_keycode == KEY_M:
+			toggle_sound()
+		elif event.physical_keycode == KEY_ESCAPE:
+			get_tree().quit()
+	elif event is InputEventJoypadButton and event.pressed:
+		if event.button_index in [JOY_BUTTON_A, JOY_BUTTON_START]:
+			request_start()
+		elif event.button_index == JOY_BUTTON_Y:
+			toggle_sound()
+
+func handle_menu(event: InputEvent) -> bool:
+	var direction := 0
+	var confirm := false
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode in [KEY_UP, KEY_W]: direction = -1
+		if event.physical_keycode in [KEY_DOWN, KEY_S]: direction = 1
+		confirm = event.physical_keycode in [KEY_ENTER, KEY_KP_ENTER, KEY_SPACE]
+	elif event is InputEventJoypadButton and event.pressed:
+		if event.button_index == JOY_BUTTON_DPAD_UP: direction = -1
+		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction = 1
+		confirm = event.button_index in [JOY_BUTTON_A, JOY_BUTTON_START]
+	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_Y:
+		if absf(event.axis_value) < 0.25: stick_latched = false
+		elif absf(event.axis_value) > 0.6 and not stick_latched:
+			direction = int(signf(event.axis_value))
+			stick_latched = true
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		for index in range(3):
+			if Rect2(54, 300 + index * 58, 355, 46).has_point(get_global_mouse_position()):
+				menu_index = index
+				confirm = true
+	if direction != 0:
+		menu_index = posmod(menu_index + direction, 3)
+		return true
+	if confirm:
+		match menu_index:
+			0: request_start()
+			1: showing_controls = true
+			2: get_tree().quit()
+		return true
+	return false
+
+func handle_controls(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode == KEY_ESCAPE: showing_controls = false
+		if event.physical_keycode == KEY_H: show_enemy_health_bars = not show_enemy_health_bars
+		if event.physical_keycode in [KEY_LEFT, KEY_A]: controls_page = 0
+		if event.physical_keycode in [KEY_RIGHT, KEY_D]: controls_page = 1
+		if event.physical_keycode == KEY_M: toggle_sound()
+	elif event is InputEventJoypadButton and event.pressed:
+		if event.button_index == JOY_BUTTON_B: showing_controls = false
+		if event.button_index == JOY_BUTTON_BACK: show_enemy_health_bars = not show_enemy_health_bars
+		if event.button_index == JOY_BUTTON_DPAD_LEFT: controls_page = 0
+		if event.button_index == JOY_BUTTON_DPAD_RIGHT: controls_page = 1
+		if event.button_index == JOY_BUTTON_Y: toggle_sound()
+	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_X:
+		if event.axis_value < -0.6: controls_page = 0
+		if event.axis_value > 0.6: controls_page = 1
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var point := get_global_mouse_position()
+		for index in range(2):
+			if Rect2(290 + index * 210, 18, 195, 40).has_point(point): controls_page = index
+		if Rect2(827, 18, 110, 40).has_point(point): showing_controls = false
+		if Rect2(455, 65, 475, 33).has_point(point): show_enemy_health_bars = not show_enemy_health_bars
+
+func handle_selection(event: InputEvent) -> bool:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode in [KEY_A, KEY_LEFT, KEY_D, KEY_RIGHT]:
+			selected = 0 if event.physical_keycode in [KEY_A, KEY_LEFT] else 1
+			return true
+		if event.physical_keycode == KEY_ESCAPE:
+			selecting = false
+			return true
+	elif event is InputEventJoypadButton and event.pressed:
+		if event.button_index in [JOY_BUTTON_DPAD_LEFT, JOY_BUTTON_DPAD_RIGHT]:
+			selected = 0 if event.button_index == JOY_BUTTON_DPAD_LEFT else 1
+			return true
+		if event.button_index == JOY_BUTTON_B:
+			selecting = false
+			return true
+	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_X:
+		if absf(event.axis_value) < 0.25:
+			stick_latched = false
+		elif absf(event.axis_value) > 0.6 and not stick_latched:
+			selected = 0 if event.axis_value < 0 else 1
+			stick_latched = true
+		return true
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var point := get_global_mouse_position()
+		if Rect2(28, 473, 100, 35).has_point(point):
+			selecting = false
+			return true
+		for index in range(2):
+			if Rect2(35 + index * 455, 166, 435, 291).has_point(point):
+				selected = index
+				return true
+		if Rect2(280, 472, 400, 42).has_point(point):
+			request_start()
+		return true
+	return false
+
+func draw_selection() -> void:
+	draw_rect(Rect2(0, 0, 960, 540), Color("0d1526"))
+	for y in range(0, 540, 24):
+		draw_line(Vector2(0, y), Vector2(960, y), Color("15233a"))
+	Crew.draw_boss(self, Rect2(38, 21, 105, 113), clock)
+	caption("S.U.M.P. / COMPANY OWNER", Vector2(169, 43), 16, MINT)
+	caption("Supervisory Utility Management Processor", Vector2(169, 66), 12, Color("a0b5bf"))
+	caption("SELECT AN EMPLOYEE", Vector2(169, 105), 30, GOLD)
+	caption("I own the company. You own the consequences. Clock in, meatbags.", Vector2(169, 132), 16, Color("d9e5e6"))
+	for index in range(2):
+		var person: Dictionary = Crew.EMPLOYEES[index]
+		var x := 35.0 + index * 455
+		var accent := MINT if index == 0 else GOLD
+		var chosen := selected == index
+		draw_rect(Rect2(x, 166, 435, 291), Color("1d3040") if chosen else Color("111e30"))
+		draw_rect(Rect2(x, 166, 435, 291), accent if chosen else Color("354459"), false, 3 if chosen else 1)
+		caption(("> " if chosen else "  ") + person.name, Vector2(x + 17, 195), 21, accent)
+		var atlas: Texture2D = Portraits.TONY if index == 0 else Portraits.SEAN
+		var cell := Vector2(atlas.get_width(), atlas.get_height()) / 2
+		var source := Rect2(Vector2.ZERO if index == 0 else Vector2(0, cell.y), cell)
+		draw_texture_rect_region(atlas, Rect2(x + 5, 210, 205, 205), source)
+		caption(person.role, Vector2(x + 17, 440), 14, accent)
+		caption(person.weapon, Vector2(x + 213, 238), 17, accent)
+		caption("LIGHT HITS" if person.id == "tony" else "HEAVY HITS", Vector2(x + 213, 276), 15, Color.WHITE)
+		caption("FIRE EVERY  %.2fs" % Crew.Data.weapon(person.weapon_id, person.id).attack_interval_seconds, Vector2(x + 213, 301), 15, Color.WHITE)
+		caption(person.strength, Vector2(x + 213, 338), 12, MINT)
+		caption(person.weakness, Vector2(x + 213, 360), 12, Color("eab3b4"))
+		draw_multiline_string(ThemeDB.fallback_font, Vector2(x + 213, 394), person.quote,
+			HORIZONTAL_ALIGNMENT_LEFT, 208, 11, -1, Color("a0b5bf"))
+	draw_rect(Rect2(280, 472, 400, 36), Color("29494b"))
+	caption("CLOCK IN", Vector2(331, 496), 17, MINT)
+	caption("BACK", Vector2(40, 500), 16, MINT)
+
+func toggle_sound() -> void:
+	muted = not muted
+	music.volume_db = -80.0 if muted else -14.0
+	if not muted and not music.playing:
+		music.play()
+
+func request_start() -> void:
+	if starting or game != null:
+		return
+	if not selecting:
+		selecting = true
+		selection_guard = 0.3
+		get_viewport().set_input_as_handled()
+		return
+	if selection_guard > 0:
+		return
+	starting = true
+	get_viewport().set_input_as_handled()
+	call_deferred("start_game")
+
+func start_game() -> void:
+	music.stop()
+	game = GAME.new()
+	game.employee = Crew.EMPLOYEES[selected]
+	game.show_enemy_health_bars = show_enemy_health_bars
+	game.title_requested.connect(return_to_title, CONNECT_DEFERRED)
+	add_child(game)
+	game.dialogue.release_guard = 0.4
+	set_process(false)
+	# Hide only this node's drawing; hiding the parent would also hide the gameplay child.
+	queue_redraw()
+	starting = false
+
+func return_to_title() -> void:
+	if game == null:
+		return
+	remove_child(game)
+	game.queue_free()
+	game = null
+	clock = 0
+	selecting = false
+	showing_controls = false
+	menu_index = 0
+	stick_latched = false
+	set_process(true)
+	if not muted:
+		music.play()
+	queue_redraw()
+
+func pixel_text(text: String, origin: Vector2, scale: int, color: Color) -> void:
+	for character_index in range(text.length()):
+		var rows: Array = GLYPHS.get(text[character_index], [])
+		for row in range(rows.size()):
+			for column in range(5):
+				if rows[row] & (1 << (4 - column)):
+					draw_rect(Rect2(origin + Vector2(character_index * 6 + column, row) * scale,
+						Vector2.ONE * scale), color)
+
+func logo_line(text: String, origin: Vector2, scale: int, color: Color) -> void:
+	pixel_text(text, origin + Vector2(4, 6), scale, Color("140b27"))
+	pixel_text(text, origin + Vector2(2, 3), scale, Color("9b3f61"))
+	pixel_text(text, origin, scale, color)
+
+func caption(text: String, point: Vector2, size: int, color: Color) -> void:
+	draw_string(ThemeDB.fallback_font, point, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
+
+func _draw() -> void:
+	if game != null:
+		return
+	if showing_controls:
+		Controls.draw(self, controls_page, muted, show_enemy_health_bars)
+		return
+	if selecting:
+		draw_selection()
+		return
+	draw_texture_rect(ART, Rect2(0, 0, 960, 540), false)
+	# Restrained sparkle and scanlines evoke a CRT without flashing the screen.
+	for index in range(18):
+		var x := fmod(index * 79.0 + clock * (3 + index % 3), 450)
+		var y := fmod(index * 43.0, 310)
+		draw_rect(Rect2(x, y, 2, 2), Color(0.7, 0.9, 1, 0.25 + sin(clock + index) * 0.15))
+	for y in range(0, 540, 3):
+		draw_line(Vector2(0, y), Vector2(960, y), Color(0, 0, 0, 0.08))
+	draw_rect(Rect2(20, 20, 920, 500), Color("775578"), false, 2)
+	logo_line("GLOBAL", Vector2(56, 82), 5, MINT)
+	logo_line("PLUMBING", Vector2(54, 132), 8, GOLD)
+	logo_line("INITIATIVE", Vector2(57, 202), 5, Color("f1b27c"))
+	for index in range(3):
+		var y := 310 + index * 58
+		if menu_index == index:
+			draw_rect(Rect2(54, y - 10, 355, 46), Color("172038"))
+			caption(">", Vector2(68, y + 22), 26, MINT)
+		pixel_text(["START", "CONTROLS", "QUIT"][index], Vector2(102, y), 4,
+			GOLD if menu_index == index else Color("a7c3c8"))
+
+func make_sting() -> AudioStreamWAV:
+	# Original short arpeggio, not a transcription of an existing game melody.
+	const RATE := 22050
+	const BEAT := 0.15
+	var notes := [48, 55, 60, 64, 67, 64, 62, 67, 60, 64, 67, 72, 71, 67, 64, 60]
+	var data := PackedByteArray()
+	var count := int((notes.size() * BEAT + 0.45) * RATE)
+	data.resize(count * 2)
+	for index in range(count):
+		var time := float(index) / RATE
+		var note_index := mini(int(time / BEAT), notes.size() - 1)
+		var frequency := 440.0 * pow(2.0, (notes[note_index] - 69) / 12.0)
+		var envelope := minf(fmod(time, BEAT) * 150, 1.0) * maxf(0, 1.0 - fmod(time, BEAT) / BEAT)
+		var lead := 1.0 if fmod(time * frequency, 1.0) < 0.25 else -0.33
+		var bass := 2.0 * absf(2.0 * fmod(time * 130.81, 1.0) - 1.0) - 1.0
+		var fade := clampf((notes.size() * BEAT + 0.3 - time) / 0.3, 0, 1)
+		var sample := int((lead * envelope * 0.4 + bass * 0.15) * fade * 24000)
+		data.encode_s16(index * 2, sample)
+	var stream := AudioStreamWAV.new()
+	stream.format = AudioStreamWAV.FORMAT_16_BITS
+	stream.mix_rate = RATE
+	stream.data = data
+	return stream
