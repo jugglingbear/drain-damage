@@ -1,4 +1,6 @@
 extends Node2D
+
+const BuildVersion = preload("res://scripts/build_version.gd")
 ## Plumbing action prototype with pixel world art and illustrated dialogue.
 
 signal title_requested
@@ -921,6 +923,7 @@ func draw_hud() -> void:
 	for index in range(employee.max_health):
 		box(684 + index * 18, 17, 12, 13, Color("ef9270") if index < health else Color("344552"))
 	draw_progress()
+	BuildVersion.draw(self)
 
 func draw_progress() -> void:
 	label_at("CLEARED  %d / 30" % kills, Vector2(800, 30), 16, MINT)

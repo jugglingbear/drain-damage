@@ -276,3 +276,57 @@ Source illustrations use the built-in image-generation tool; source web artwork 
 Two optional sewer-fly swarms drift through the first level without chasing. Each has 12 HP; contact can hurt
 plumbers and ordinary monsters. They are not required for doors to open, and stay defeated across checkpoint recovery.
 Their initial movement and contact balance still need visual playtesting.
+
+## Version and release handoff
+
+`application/config/version` in `project.godot` is the canonical `X.Y.Z` version. The main title and gameplay show
+it as a small white-on-dark badge at the lower right, inside a 16-pixel inset. Controls and employee selection omit
+it; dialogue, death, pause, and dispenser overlays can cover it. The current layout targets the 960×540 logical
+canvas. Device-specific mobile safe areas remain untested.
+
+`make build` synchronizes both macOS export version fields before exporting. After changing the project version,
+run `python3 tools/sync_project_version.py`; use `--check` to reject drift. Direct editor exports must follow that
+step too. Packaged validation compares the displayed project version with the app bundle metadata.
+
+For a future explicit release request, the release-coordination chat collects readiness from Marketing (current
+lore magazine), Bestiary / Art, Game Mechanics, Audio (level music, weapons, intended dialogue sound), and
+Storyboarding (plot implementation, names, and backgrounds). Engineering integrates approved deliveries, records
+remaining gaps, builds the supported targets, and verifies the packages. A normal prototype build is not a release
+request and does not authorize a full platform release or release-binary upload.
+
+### Platform readiness
+
+- **macOS:** matching Godot export template, Apple Silicon support, codesign, and ZIP or DMG packaging.
+  Local exports and headless checks pass. Ad-hoc signing only; fresh-machine installation and Gatekeeper review
+  remain. Public distribution needs a signing/notarization decision.
+- **Windows:** matching export template, x86_64 preset, EXE/PCK ZIP, and optional signing. No preset or Windows
+  runtime test yet. Verify controls, audio, installation, and antivirus behavior on Windows.
+- **Linux:** matching template, chosen x86_64/ARM64 preset, executable permissions, and archive. No preset or Linux
+  runtime test yet. Validate the target distribution, graphics, input, and audio.
+- **Android:** Android template, SDK/JDK, ARM64 preset, private signing key, and APK. No mobile build yet.
+  APK sideload instructions and actual Android device testing are required.
+- **iOS:** iOS template, macOS/Xcode, ARM64 export, Apple team/provisioning/signing. No mobile build yet.
+  Choose Xcode development install, Ad Hoc, or TestFlight; device registration and account limits apply.
+
+For mobile readiness, assess touch controls, alternative screen layouts, aspect ratios, cutouts/safe areas,
+orientation, suspend/resume, audio interruptions, controller reconnects, performance, memory, and battery use.
+Successful export is not evidence that a platform has been played or tested.
+
+### Release packages and Git LFS
+
+Continue using ignored `builds/Prototype-NN/` and `builds/history/` for everyday local builds. For an explicitly
+requested release, prepare `dist/vX.Y.Z/<platform>-<architecture>/` with packaged binaries, installation notes,
+checksums, source commit, tool/template versions, signing status, and actual test evidence. Keep the source folder
+and uncompressed app bundles out of `dist`; package the Mac app as ZIP or DMG to preserve its metadata.
+
+Release binaries must be tracked through Git LFS and pushed to the public repository when Sean requests a release.
+GitHub Release downloads may supplement that storage, not replace it. Verify `git check-attr filter` for every
+package, run `git lfs fsck`, and verify remote download hashes after pushing. Never include signing keys, credentials,
+provisioning profiles, or private references. Existing ignore rules still exclude tools, local builds, and secrets.
+
+Git LFS is installed and asset uploads to origin succeeded on October 16, 2026. Account quota remaining has not
+been verified. Before releasing, check the owner's billing usage and budget: GitHub Free/Pro currently include
+10 GiB each of LFS storage and download bandwidth; their per-file cap is 2 GB. Every changed binary version consumes
+its full size, and downloads consume bandwidth. Do not enable paid overages without authorization. See
+[GitHub LFS billing](https://docs.github.com/en/billing/concepts/product-billing/git-lfs) and
+[LFS file limits](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).

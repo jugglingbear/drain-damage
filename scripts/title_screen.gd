@@ -1,4 +1,6 @@
 extends Node2D
+
+const BuildVersion = preload("res://scripts/build_version.gd")
 ## Illustrated Drain Damage opening; gameplay is created only after Start.
 
 const MusicDirector = preload("res://scripts/music_director.gd")
@@ -372,3 +374,4 @@ func _draw() -> void:
 		var baseline := hit_area.position + Vector2(52, 32)
 		caption(MENU_LABELS[index], baseline + Vector2(1, 2), 27, Color("080e15"))
 		caption(MENU_LABELS[index], baseline, 27, Color("fff6d5") if chosen else Color("dce5e7"))
+	BuildVersion.draw(self)

@@ -1211,6 +1211,23 @@ seeded swarm paths, and existing level behavior. Environment/editor-settings and
 **Capture gap:** No game window opened. Visual playtest and actual screenshots await permission. The separate
 `builds/Prototype-53/Drain Damage.app` and `builds/history/Prototype-53.zip` preserve this iteration.
 
+## 054 — Know which build is running — October 16, 2026
+
+**Build:** Prototype 54 / 0.54.0.
+
+The title and gameplay now show a small white-on-dark version badge at the lower right, inset 16 pixels.
+Controls and selection omit it; gameplay overlays may cover it. The canonical project version drives the label,
+and the Makefile synchronizes macOS bundle versions before export. Future release handoffs, platform blockers,
+installation/testing evidence, and requested LFS package storage are documented in the project README.
+
+**Validation:** Eleven Python tests and four packaged suites pass: version badge, integrated opening, durable flyer,
+and sewer swarm. Version tests cover synchronization/drift rejection, matching title/game text, text fit, and
+HUD/menu clearance. The initial safe-inset check caught an eight-pixel bottom margin; it was corrected to 16 and
+retested. The exported app reports 0.54.0. Existing environment and shutdown warnings remain.
+
+**Capture gap:** No game opened. Actual visual review and screenshots await permission; the separate app and
+`builds/history/Prototype-54.zip` retain this iteration. No release binaries were pushed.
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

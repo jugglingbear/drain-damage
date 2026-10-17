@@ -39,6 +39,7 @@ build-macos: check combat-data ## Export and ad-hoc sign the standalone Mac app
 	@test "$(HOST_OS)" = Darwin || { printf '❌ Mac packaging requires macOS.\n' >&2; exit 1; }
 	@test -f .tools/macos.zip || { printf '❌ Missing Godot export template: .tools/macos.zip\n' >&2; exit 1; }
 	@command -v codesign >/dev/null 2>&1 || { printf '❌ codesign is required.\n' >&2; exit 1; }
+	@python3 tools/sync_project_version.py
 	@printf '📦 Importing assets and exporting macOS…\n'
 	@mkdir -p builds
 	@"$(GODOT)" --headless --path . --editor --import
