@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drain Damage — The road to a real game</title>
+<style>
+:root { color-scheme: dark; --bg:#101c2a; --panel:#192b3b; --line:#334957; --text:#eef4ed;
+  --muted:#b3c3cb; --mint:#7ce4bc; --gold:#ffcf70; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,sans-serif; }
+a { color:var(--mint); text-underline-offset:4px; }
+a:hover { color:white; }
+.wrap { max-width:1140px; margin:auto; padding:40px 28px 70px; }
+.kicker { font:700 12px/1.5 ui-monospace,monospace; letter-spacing:2px; color:var(--mint); }
+header { padding:24px 0 32px; border-bottom:1px solid var(--line); }
+h1 { font-size:clamp(38px,6vw,68px); line-height:1.05; letter-spacing:-2px; margin:20px 0; max-width:850px; }
+.intro { font-size:20px; max-width:780px; color:var(--muted); }
+.meta { font-size:13px; color:var(--muted); }
+.summary { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:26px 0; }
+.summary article { border-left:3px solid var(--mint); padding:12px 18px; background:var(--panel); }
+.summary strong { display:block; font-size:21px; }
+.summary span { font-size:14px; color:var(--muted); }
+figure { margin:28px 0; }
+figure img { width:100%; max-width:740px; display:block; border:1px solid var(--line); border-radius:12px; }
+figcaption { color:var(--muted); font-size:13px; margin-top:8px; }
+nav { display:flex; flex-wrap:wrap; gap:8px; margin:28px 0 10px; }
+button { font:inherit; font-size:14px; color:var(--text); background:var(--panel); border:1px solid var(--line);
+  border-radius:30px; padding:8px 18px; cursor:pointer; }
+button[aria-pressed="true"] { color:var(--bg); background:var(--mint); border-color:var(--mint); }
+button:focus-visible, a:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+.phase { margin:22px 0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
+.phase-head { display:flex; gap:22px; padding:26px; border-bottom:1px solid var(--line); }
+.number { font:700 28px ui-monospace,monospace; color:var(--mint); min-width:45px; padding-top:6px; }
+h2 { font-size:27px; line-height:1.2; margin:8px 0; letter-spacing:-.5px; }
+.phase-head p { margin:0; color:var(--muted); font-size:14px; }
+.badge { text-transform:uppercase; font-size:11px; letter-spacing:1.5px; color:var(--muted); font-weight:750; }
+.done { color:var(--mint); } .next { color:var(--gold); } .research { color:#b6b2ff; }
+.tasks { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; }
+.tasks li { padding:20px 26px; border-bottom:1px solid var(--line); }
+h3 { margin:0 0 6px; font-size:17px; }
+.tasks p { margin:0; color:var(--muted); font-size:15px; }
+.gate { padding:18px 26px; margin:0; font-size:14px; color:var(--gold); }
+.notes { padding:26px; border:1px solid var(--line); border-radius:14px; margin-top:26px; }
+.notes p, .notes li { color:var(--muted); }
+.notes h2 { font-size:23px; }
+footer { margin-top:32px; color:var(--muted); font-size:13px; }
+[hidden] { display:none !important; }
+@media(max-width:650px) { .wrap { padding:20px 16px 45px; } .summary,.tasks { grid-template-columns:1fr; }
+  .phase-head { padding:20px; gap:12px; } h2 { font-size:24px; } .tasks li { padding:18px 20px; } }
+@media print { :root { color-scheme:light; --bg:white; --panel:white; --text:#172432; --muted:#354653;
+  --line:#bcc6cc; --mint:#146047; --gold:#77520c; } nav,.filter-note { display:none; }
+  .phase[hidden] { display:block !important; } .phase-head,.tasks li { break-inside:avoid; }
+  .wrap { padding:0; } h1 { font-size:40px; } a { color:#146047; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+<div class="kicker">DRAIN DAMAGE / DEVELOPMENT ROADMAP</div>
+<h1>From three angry toilets<br>to a real adventure.</h1>
+<p>Build delivery policy: integrated game changes receive a new build and a readiness update with the version,
+changes and remaining testing gaps. Builds may wait for related agent deliveries; pending work will be stated explicitly.
+Opening the game still requires Sean’s permission.</p>
+<p><strong>Platform palette revision:</strong> Beige foreground platforms rejected in playtest. <a href="assets/world/opening-trial/moss-platform-scene-mockup-v1.png">Oxidized moss-green scene mockup</a> applies consistent readable landing edges to small plinths and large pump platforms. Integrated across all 20 raised surfaces in Prototype 49; live contrast review pending.</p>
+<p><strong>Marketing hero portraits:</strong> Hyperrealistic Tony and Sean portraits derived only from illustrated designs replace the crew-profile references in editable magazine source. <a href="handoffs/hero-hyperreal-marketing-portraits.json">Art handoff</a>. Published PDF regeneration pending; game assets unchanged.</p>
+<p><strong>Weapon roster art:</strong> <a href="weapons/roster-mockup/weapon-roster-v1.png">Labeled sprite-sheet mockup</a> covers six catalog weapons and seven concepts, with melee/short-range/long-range labels and playable/catalog/idea status. Proposed ranges remain provisional; no new weapons implemented. <a href="weapons/roster-mockup/roster-v1.json">Roster notes</a>.</p>
+<p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
+<p class="intro">A solo plumbing action game starring Sean and Tony.
+Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
+<p class="meta">Updated October 16, 2026 · Current build: Prototype 52 / 0.52.0 · Primary target: Apple Silicon macOS</p>
+<p>October 16: Prototype 50 rebuilt on request at builds/Drain Damage.app; signing and packaged opening-wreckage/warmup regression check passed. No game window opened.</p>
+<p><strong>Prototype 52 — hero death flush:</strong> Audio’s three-second toilet flush plays once when Tony or
+Sean enters the dying state, including the final life. It replaces the short lethal-hit tone and does not play for
+ordinary hits, Flushfiend defeats or the dispenser gag. Manual pause suspends it; the automatic death popup and
+respawn let it finish naturally. Title/new-run/shutdown stop it. Gameplay timing does not wait on audio. Export/signing, nine Python tests and six packaged suites pass; listening and running screenshots remain pending. Separate build under builds/Prototype-52.</p>
+<p><strong>Prototype 51 — one midpoint checkpoint, one spare:</strong> The first level now has one checkpoint at
+x4650, roughly 49% along the route on clear floor. Its cabinet holds one selected-hero clone in the left bay. Full-health
+check-in leaves stock available; the first replacement consumes it. Later checkpoint respawns arrive beside the empty
+cabinet without repeated vending or refilling. Empty stock persists through death/revisit and resets on a new run.
+Three lives remain unchanged. Export/signing, nine Python tests and eight packaged suites pass; actual composition and screenshots await permission.
+The separate app under builds/Prototype-51 preserves earlier apps and running playtests.</p>
+<p><strong>Prototype 50 — opening wreckage and first-appearance hitch:</strong> Defeated opening Flushfiends now
+use the same persistent animated wreckage as later enemies, rather than disappearing after 0.6 seconds. Death sound
+and kill credit occur once. The damage atlas is prepared before gameplay and shared across runs; first drawing no
+longer scans every image pixel. A headless cold measurement was about 237 ms versus 0.003 ms cached. This removes a
+measured source of stalls; live confirmation of the reported early jump hitch remains pending. Export/signing, nine Python tests and nine packaged suites pass.
+The app is separate under builds/Prototype-50; no running playtest is interrupted.</p>
+<p><strong>Prototype 49 — swooping Widow and readable platforms:</strong> The 180-HP enlarged Widow warns for
+0.65 seconds, commits to its captured target, and recovers after its dive; scenery stops its expanded body.
+All 20 raised surfaces across four families now use Art’s moss-green frames and lighter treads without geometry
+changes. Clone look-direction rendering preserves the feet anchor instead of shifting Sean sideways. Both endings
+now have nine reciprocal turns; held-input tests retain every radio response. The old missing reply was not reproduced.
+Export/signing, nine Python tests and ten packaged suites pass. Optional lunge-pose registration and live visual review remain
+pending. Build 49 is delivered separately under builds/Prototype-49 to preserve the active family playtest’s app.</p>
+<p><strong>Prototype 48 — glass-front employee stock:</strong> Art’s new cabinet, glass and lower hatch layers
+replace the old dispenser facade. Two sleeping copies of the selected hero occupy separate clipped compartments;
+the existing checkpoint, hand, impact and emergence sequence remains intact. BJ’s dialogue role label now matches
+his established title. Widow shared lore is synchronized with approved copy, without reproduction mechanics.
+The audit confirms the full-route wastewater cutaway and server-rack BJ were already integrated. Export/signing, nine Python tests and six packaged suites pass; live composition and screenshots await permission. Marketing portraits remain outside the game.</p>
+<p><strong>Prototype 47 — open-route crowds and tougher flying spiders:</strong> Kill-count shutters are removed
+from the first level. Four finite later waves contain 8, 10, 10 and 8 Flushfiends; entries remain offscreen, spaced and
+bounded to eight live threats, reduced to six with a large flying spider. Checkpoints and physical scenery remain;
+bypassed enemies do not grant kills. The temporary exit no longer requires clearing ordinary enemies. The playable
+Clogfather is still pending. Hallowed Widow is twice its previous linear size with matching body targeting, 180 HP
+and a fixed four-second hover before continuing its flight. First-level weapons take 15 Tony hits or 10 Sean hits.
+Flushfiend lethal hits now use the supplied ceramic-style shatter, including environmental defeats; ordinary hits
+retain their feedback. Four bounded audio voices honor pause, mute and cleanup. Export/signing, nine Python tests and nine packaged suites pass;
+human crowd balance, enlarged-art readability and listening review remain pending. No game window opened.</p>
+<p><strong>Prototype 46 — wrench-clink navigation:</strong> Sean’s selected 0.24-second Kenney CC0 cue plays
+once when directional keyboard, D-pad or stick navigation changes the main-menu focus, employee or controls page.
+Ineffective directions, key echoes and repeated held D-pad/stick input stay silent. One voice prevents stacking;
+gameplay and exit stop it. Existing SFX/Master mute is honored independently of the music toggle. Packaged navigation,
+selection, controls and music checks pass; listening/mix review remains pending. No game window opened.</p>
+<p><strong>Prototype 45 — the faster opening is part of level one:</strong> Start now enters the continuous
+9,600-pixel first level. The separate Opening Trial menu, timer cutoff and results popup are removed. The first two rooms
+use sewer platforms and mixed enemy roles, with spatial entry triggers and safety checks; play continues into the later
+rooms, checkpoints, shutters and exit without a reset. Starter weapons retain the faster profile throughout the level.
+Art’s ivory frames and lighter steel pipe surfaces make solid plinths and deck tops stand apart from the dark wall.
+Tony’s stationary horizontal shots now target the Flushfiend’s visible 43-pixel body rather than its shorter movement
+collider. Both facings, both heroes and moving targets have regression coverage; high shots still miss.
+Nine Python tests and ten packaged suites pass, including continuous 30-second movement, single projectile travel,
+checkpoint recovery and later completion conditions. This is not a full survival-balance signoff. Live composition and
+human pacing review remain pending; the game was not opened. Screenshots supplied for Prototype 44 are preserved.</p>
+<p><strong>Prototype 44 — archived experiment, superseded:</strong> The isolated twenty-second opening helped
+expose spawn scheduling and collision issues, but its timed stop misunderstood Sean’s intent. Prototype 45 embeds the
+opening into the first level instead. The <a href="design/first-call-action/report.html">original design report</a>
+and prior build remain preserved; their separate-trial instructions are historical. Pickups, the playable Clogfather,
+and expansion of the new encounter roles through later rooms remain planned. Only one Clogfather may appear at a time.</p>
+<p><strong>Prototype 40 — larger fly swarms:</strong> Swarm artwork is twice as wide and tall (128×128 display canvas), including death animation; center registration and contact core stay unchanged. Optional health bars move above the enlarged art. Includes the approved BJ completion-line revision with neutral portrait. Export/signing and packaged swarm/completion checks pass; visual review and screenshots await permission.</p>
+<p><strong>Run-cycle revision — deferred after Art review:</strong> Art rejected the replacement eight-frame
+candidates because leg identity, loop continuity and arm registration remain unresolved. Prototype 45 still
+retains the existing six-frame animations; the foot-wiggle defect is not claimed fixed. No user decision is needed to
+keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">review decision</a> and
+<a href="previews/hero-run-cycle-v4.html">unapproved candidate preview</a>.</p>
+<p><strong>October 16 art correction:</strong> Sean’s dispenser sheet now matches his recovered original photo with a fuller gray chin beard and distinct soul patch; the tiny-tuft revision is superseded. <a href="assets/world/spare-employee-dispenser/manifest-v4.json">Revised art manifest</a> is integrated in Prototype 41; <a href="handoffs/sean-facial-hair-audit.json">other Sean sprite sheets updated</a>: six revised sheets have the fuller gray beard and soul patch; Prototype 41 uses the revised runtime manifests and legacy sheet. Current dialogue portraits pass this check. Runtime visual review remains pending.</p>
+<p><strong>Dispenser impact art revision:</strong> Tony and Sean now have versioned X-eye impact/slide poses and separate blood trails. <a href="assets/world/spare-employee-dispenser/manifest-v4.json">Art manifest v4</a> preserves the existing screen anchor and timing; Prototype 41 integrates the slide/fade; live visual review remains pending.</p>
+<p><strong>Prototype 41 — Spare Employee Dispenser:</strong> Integrated replacement for tape checkpoints, with Art’s machine and both hero sequences. Injured check-in scans, compresses and throws the hero into a bloody X-eyed screen splat/slide; the trail fades while an intact replacement emerges, looks around and shrugs. Full sequence targets 5.5 seconds with a 7-second watchdog, full-health stamp 0.4 seconds, checkpoint respawn 1.9 seconds. Combat freezes, progress and lives are preserved, and release/skip/menu/restart clear effects and sequence audio. Later uses are skippable with held-input protection. Sean’s corrected gameplay beard and soul patch are also integrated. Export/signing and packaged dispenser, animation, checkpoint, dialogue and input checks pass. Tony’s full-route bot completes in 134.2 seconds; Sean still exhausts lives in section four. Actual visual choreography and sound mix remain unreviewed.</p>
+<p><strong>Prototype 39 — sewer swarms:</strong> Two optional first-level swarms use seeded, smooth non-hunting flight, obstacle avoidance, short hovers and actual-velocity animation. Twelve HP, shared 1.5-second target cooldowns, incidental damage to plumbers and ordinary monsters, finite death, checkpoint persistence and fresh-run reset. Art supplied corrected v3 slicing of the v2 sheet. Twenty seeded one-minute corner/door simulations pass; Tony completes the automated route, while Sean still exhausts lives in section four. Export/signing and packaged mechanics checks pass. Live visual review remains pending; Sean’s full-route bot failure is unresolved. Name/lore remain proposals.</p>
+<p><strong>Prototype 42 — pause and mechanical feedback:</strong> B closes ordinary pause and resumes the current job, independent of button focus; A confirms the selected button. Death/Game Over remain separate. Door latch/motor/end-stop cues now follow actual gate transitions, pause/freeze and cleanup. Dispenser throws choose one random safe impact point with full-body bounds and HUD clearance, reused by the splat and slide. Export/signing and six packaged regression suites pass. Live visual/audio review remains pending.</p>
+<p><strong>Prototype 38 — sliding service doors:</strong> Cleared encounters lower their shutters into the floor over 0.9 seconds. Visible panels and collision stay aligned; pause freezes movement, checkpoint recovery preserves progress, and a fresh run restores closed doors. Existing encounter requirements remain unchanged. Running shots now collide using their visible thickness against enemies and walls, preserving barrel alignment, damage and range. Packaged door, running-shot, aiming, animation, death and checkpoint checks pass; screenshots await permission.</p>
+<p><strong>Prototype 37 — BJ death popup:</strong> Twelve approved messages select matching emotional portraits. Each death keeps one random message without immediate repeats; Continue preserves checkpoint progress while lives remain, and Retry starts fresh at Game Over. Held-input protection prevents accidental dismissal. Packaged popup, hero lifecycle, opening and pause-menu checks pass; screenshots await permission.</p>
+<p><strong>Prototype 36 — company name:</strong> Mainframe Plumbing &amp; Supply is the working employer name in employee selection, the opening introduction, Controls and entrance signage. Drain Damage remains the game title; Discharge Quarterly remains the magazine. Historical art and provenance are preserved. Game-over candidate lines remain unselected and unimplemented.</p>
+<p><strong>Prototype 35 — moving plumbers and three lives:</strong> Body animation is independent of aim/fire: six run frames per hero, takeoff/rise/apex/fall/landing poses, stationary hurt and nonlooping death. Grounded diagonal-down aiming is supported; only straight down requires a jump. The HUD shows one selected-hero head per remaining life. Death consumes one of three total lives, falls to a surface and respawns at the checkpoint; zero lives opens Game Over with Retry and Return to Main Menu. Runtime checks cover 240 animation combinations, life transitions and input safety. Tony completes the automated full route; the Sean bot runs out of lives, so Sean difficulty remains an open playtest issue. Art stride/shoulder polish and live visual review/screenshots remain pending.</p>
+<p><strong>Prototype 34 — employee checklists:</strong> Each hero’s three traits now appear on separate checked-box lines. A shared list renderer handles Tony, Sean and future profiles, with wrapped rows and spacing below the biography. Checkbox availability, paper bounds and both employee selection routes pass headless checks. Live screenshot capture awaits permission.</p>
+<p><strong>Prototype 33 — held aim and fairer turns:</strong> Art’s layered standing/airborne holds now follow continuous aim, including downward airborne directions, without requiring a shot. Projectiles use the matching mirrored muzzle; walls block barrel-through-wall shots. Pause provides selectable Resume and Return to Main Menu buttons for keyboard, controller and mouse. Flushfiends brake and stop for one second before reversing, then accelerate. Headless regressions and full-level bot runs pass for both heroes; live visual review/screenshots remain pending. Walking/recoil animation cycles and final pose refinement remain unfinished.</p>
+<p><strong>Prototype 32 — revised opening:</strong> Storyboarding’s seven-line introduction is integrated with explicit emotional tones and wrapped text. Both employee routes, fresh-run triggering, skip/input guards and unchanged completion scenes pass headless checks. Live screenshots await permission. Persistent visible aiming remains unfinished.</p>
+<p><strong>Prototype 31 — employee snapshots:</strong> Selection portraits share Art’s taped instant-photo frame, muted backdrop, live first-name caption and common tilt. Reusable for future hero entries; dialogue portraits unchanged. Layout bounds and selection regressions checked headlessly; live review/screenshots pending permission.</p>
+<p><strong>Prototype 30 — illustrated punch clock:</strong> Art’s worn teal mechanical clock and paper timecard replace the code-drawn panel. The CLOCK IN label and click target align with the brass button; keyboard/controller confirmation and Tony default selection are retained. Headless checks and export verified; live screenshots pending permission.</p>
+<p><strong>Prototype 29 — current branding cleanup:</strong> HUD and current build/help text use Drain Damage. Service signage and employee paperwork use neutral wording while the employer name is undecided. Export is now builds/Drain Damage.app. Historical archives, screenshots and stable bundle identity remain intact. Art audited the current title, controls, portraits, sprites, clipboard and scenery and found no old branding baked into those images. Headless checks and export are verified; fresh screenshots await permission.</p>
+<p><strong>October 15 MacBook playtest refresh:</strong> All six agents consulted; no additional approved runtime assets or mechanics were waiting. Prototype 28 was rebuilt and its packaged aiming, entrances, controller controls, music, dialogue and full-route completion checked. Modular character art remains a provisional mockup. Screenshots and live playtest await launch permission. <a href="handoffs/playtest-build-2026-10-15.json">Build verification record</a>.</p>
+<p><strong>Expanded first-level route — integrated in Prototype 27:</strong> Six zones span 9,600 logical pixels with 30 finite Flushfiends, a four-enemy/warning cap, three tape checkpoints, 17 grounded machinery props and visible encounter shutters. Both player and enemy movement respect solid sides/tops; projectiles use the same geometry. Reinforcements use 1.25-second harmless warnings and safe visible placement, with forward spawns preferred. The final encounter is a finite 3+2 toilet-wave fallback. Clogfather, hazards, portal and new zone background variants remain deferred; the intended boss mission is not claimed complete. Scripted full-route runs finish with Tony in 93.75s and Sean in 139.73s, including bot respawns; these are not human pacing measurements and do not validate the 4–6 minute target. Approved small-preview screenshots now cover selection and the service entry. Tony defaults to 1/2, Clock In is clear, and pipe-bundle surfaces and pursuing enemies were visually checked. Later machinery, shutters and finale remain pending live review; preview closed.</p>
+<p><strong>Friend playtest package:</strong> Prototype 26 is available as <a href="builds/share/Drain-Damage-0.26.0-macOS.zip">a shareable macOS ZIP</a> with the standalone app and setup guide. Universal arm64/x86_64 binary; declared minimum macOS 13 on Apple Silicon and 11 on Intel. Intel hardware and first launch on another Mac remain untested. Ad-hoc signed, not Developer ID signed or notarized; Apple’s per-app approval steps are included. This packages the same build, with no gameplay changes.</p>
+<p><strong>Engineering validation:</strong> Headless checks cover both-character traversal, actual persistent enemy pursuit across props in both directions, gate camping, finite counts, warning cancellation, checkpoint/reset, descent shooting, menus and approved dialogue. Full-route scripted runs use real movement and weapons rather than forced kills. Existing shutdown object-leak warnings remain. Final layout and metrics are in <a href="handoffs/first-call-integration.json">the integration handoff</a>. The earlier Prototype 26 friend ZIP remains an explicitly older build.</p>
+<p>Prototype 26 integrates persistent toilet pursuit after detection, without a home leash or distance timeout. Patrol bounds apply only before aggro; surviving enemies retain pursuit across checkpoint respawn. Canonical weapon tuning is live: Tony damage 6, range 320; Sean damage 24, range 480. Firing intervals remain 0.15s and 1.0s. A 40-HP toilet takes seven Tony hits or two Sean hits. Headless checks cover pursuit, hit counts, swept collision and range caps. Boss timing remains pending retuning; no new boss encounter is implemented.</p>
+<p>Prototype 25 replaces basement completion dialogue with the two approved seven-line routes. The other plumber is labeled radio support; BJ dispatches another address as narrative setup only. Existing victory, skip, retry and title behavior is retained. No new level is implied. Headless validation and export are checked; screenshots remain pending permission.</p>
+<p>October 15: replacement <a href="assets/selection/punch-clock-v1.png">industrial punch-clock artwork</a> delivered, with an analog dial, timecard slot and brass button matching the clipboard. <a href="assets/selection/punch-clock.json">Crop, live-label placement and click-target handoff</a> saved. Integrated in Prototype 30 and included in Prototype 31; menu-size visual review remains pending permission.</p>
+<p>Prototype 24 moves Clock In to a separate code-drawn punch-clock panel beside the clipboard, with a clear button and matching click target. Tony (1/2) is selected on launch and every time employee selection opens. Packaged selection regression checks cover the default and non-overlapping button bounds. Live visual review and fresh screenshots await permission.</p>
+<p><strong>Art workflow:</strong> Whenever new artwork is needed, Engineering asks Bestiary / Art for help, supplies layout and runtime requirements, and integrates the delivered assets.</p>
+<p><strong>Art direction:</strong> Salvage Special replaces the rejected cheese direction. Original concepts and approvals remain preserved. Delivered: the Storyboarding employee-file selection redesign and initial relative movement/health tuning; visual review and balance playtesting remain pending. Tony’s approved biography is recorded in <a href="assets/selection/approved-copy.json">selection copy</a>: “A fourth-generation plumber with decades of experience installing, building, and keeping essential systems running.” This supersedes the earlier fixing-pipes biography; other requested selection details remain unchanged.</p>
+<p>Prototype 19 adds the approved seven-line Billy-Joe introduction after character selection, once per fresh run. Shared scene and emotional portraits for either hero; visible binding-aware Skip, typewriter advance, frozen action, and held-input protection. Death, checkpoint respawn, and retry do not replay it. This is story dialogue, not a tutorial. Brief skippable discovery scenes between levels are approved direction; future scripts/locations remain undecided. In-game visual review and new screenshots await permission.</p>
+<p>Prototype 18 integrates the current Drain Damage title/menu artwork and all 30 Tony, Sean, and BJ emotional portraits. Every completion dialogue line selects a named emotion; character selection shares the same atlas lookup. New gameplay enemies, weapon sheets, and marketing-only art are not presented as completed runtime features. Headless validation is complete; visual review and storybook captures await permission.</p>
+<p>October 14 approved capture follow-up: small preview and Prototype 16 title/basement screenshots saved in the storybook; test windows closed. Damage/death poses captured. Widow alignment remains provisional; brief hit flashes still need motion review.</p>
+<p><strong>Persistent visible aiming — integrated in Prototype 33:</strong> Sixteen Art-authored holds cover both heroes, with mirrored left variants. The runtime renderer and muzzle now use the same pose independently of firing. Provisional static holds replace the older walk/fire frames; locomotion/recoil animation and live visual approval remain open.</p>
+<p><strong>Septic Air Force — sewer-fly swarm:</strong> October 16: Sean selected <em>Septic Air Force</em> as the working swarm name. Revised aviation-themed lore is drafted; Gnatastrophe is saved as a possible future boss name only; <a href="handoffs/sewer-fly-story.json">editorial handoff</a> ready.  Tight, slow random swarm with no pursuit; contact harms heroes and monsters. Asymmetric swarm revision2 includes hover, four movement directions and death source frames for review. Prototype 39 integrates initial 12 HP tuning with corrected v3 slicing; live animation readability and balance remain pending. <a href="bestiary/sewer-flies/preview.html">Preview</a>.</p>
+<p class="meta">Repository baseline: curated Prototype 52 source is organized into subsystem commits, with Git LFS for retained binary assets. Obsolete publication drafts and rejected artwork remain local; the game version is unchanged.</p>
+</header>
+<div class="summary">
+<article><strong>Working foundation</strong><span>Keyboard + real Xbox controller playtested</span></article>
+<article><strong>Now: choose your employee</strong><span>Tony’s fast pressure gun or Sean’s heavy plunger; BJ owns Mainframe Plumbing &amp; Supply</span></article>
+<article><strong>Mobile: investigate</strong><span>Android APK + iOS development install</span></article>
+</div>
+<figure>
+<img src="storybook/012-clean-title-and-controls/01-title.jpg" alt="Prototype 12: simplified title with Start, Controls, and Quit">
+<figcaption>Simplified title and dedicated illustrated Controls (Prototype 12). Every delivered game iteration keeps its own screenshots in the
+<a href="storybook/storybook.html">development storybook</a>.</figcaption>
+</figure>
+<nav aria-label="Filter roadmap">
+<button type="button" data-filter="all" aria-pressed="true">Everything</button>
+<button type="button" data-filter="next" aria-pressed="false">Up next</button>
+<button type="button" data-filter="research" aria-pressed="false">Mobile research</button>
+<button type="button" data-filter="planned" aria-pressed="false">Planned</button>
+<button type="button" data-filter="done" aria-pressed="false">Delivered</button>
+<button type="button" data-filter="ideas" aria-pressed="false">Ideas</button>
+</nav>
+<p class="meta">Playtest convention: a large game window means Sean’s playtest; a small window means agent-only testing. Normal launches stay large.</p>
+<p class="meta filter-note" id="filter-status" role="status">Showing all 8 milestones.</p>
+<section class="phase" data-status="done" id="phase-00">
+      <div class="phase-head"><span class="number">00</span><div>
+      <span class="badge done">done</span><h2>The first working wrench</h2><p>Playable foundation · delivered</p></div></div>
+      <ul class="tasks"><li><h3>Standalone Mac prototype</h3><p>Apple Silicon app with an original basement test room, synthesized sound, and a victory screen.</p></li><li><h3>Movement and combat</h3><p>Run, variable-height jump, reachable ledges, plunger fire, five health points, and forgiving retries.</p></li><li><h3>Keyboard + Xbox controller</h3><p>Enter/Return fire added. Sean confirmed the physical Xbox controller works brilliantly in-game.</p></li><li><h3>Development storybook</h3><p>Iterations 01 through 14 (13 capture pending) shown in a captioned picture gallery, with original screenshots and milestone notes preserved.</p></li></ul><p class="gate">Done means: the app launches, the controls work, and a player can finish the test room.</p></section>
+<section class="phase" data-status="next" id="phase-01">
+      <div class="phase-head"><span class="number">01</span><div>
+      <span class="badge next">next</span><h2>A basement worth exploring</h2><p>Next: Storyboarding handoff for the expanded corporate-HQ basement</p></div></div>
+      <ul class="tasks"><li><h3>Scrolling level + camera</h3><p>Delivered: a freely scrolling route with camera tracking, immediate gameplay without a tutorial, and faster roaming toilets. Playtest pacing and readability.</p></li><li><h3>Reusable game pieces</h3><p>Art rendering is now separate from gameplay. Continue separating player, enemies, and interface as the level grows.</p></li><li><h3>Checkpoint + recovery</h3><p>Delivered: plumber’s tape replaces the first-aid cabinet, refills health, and becomes the respawn point (Prototype 08). Verify recovery feels forgiving in playtests.</p></li><li><h3>Readable route</h3><p>Tutorial scrapped in Prototype 12. Design for gaming veterans. Expand the route and monster encounters from a Storyboarding plan: room flow, acid drips, checkpoint placement, optional character dialogue, and the Clogfather finale. Expansion is planned, not implemented.</p></li></ul><p class="gate">Done means: Sean can traverse a scrolling route, activate a checkpoint, and recover there after defeat.</p></section>
+<section class="phase" data-status="next" id="phase-03">
+      <div class="phase-head"><span class="number">03</span><div>
+      <span class="badge next">in progress</span><h2>Give the crew a face</h2><p>Brought forward before the first mission · initial world-art pass delivered in Prototype 06; sprite-size/alignment fix in Prototype 07</p></div></div>
+      <ul class="tasks"><li><h3>Tony + Sean character sheets</h3><p>October 15: reusable <a href="assets/selection/employee-photo-frame.json">taped instant-photo treatment</a> delivered for Tony, Sean and future heroes. Existing portraits sit inside an aged frame with tape, a faded backdrop and live first-name caption; <a href="previews/employee-photo-treatment-v1.png">two-hero preview</a> checked. Runtime integration and final menu-size review remain pending. October 14 selection art: a <a href="assets/selection/clipboard-stack-v2.png">single clipboard with stacked blank sheets</a> is delivered, with <a href="assets/selection/clipboard-stack.json">portrait/text safe regions, dimensions and exact prompts</a>. Runtime profile switching and selection layout remain Engineering work; no animation or running-build validation is claimed. Sean’s <a href="assets/portraits/sean-expressions-v4.png">current ten-expression dialogue sheet</a> now has a completely bare bald scalp, with sunglasses removed from every portrait. Earlier versions remain preserved; integrated in Prototype 18, with visual review pending. Tony’s current ten-expression dialogue sheet now uses a navy button-front work shirt with rolled sleeves, without overalls. <a href="assets/portraits/tony-expressions-v3.png">Updated portraits</a> and <a href="assets/portraits/tony-work-shirt-v1.json">exact edit prompt</a> are preserved. Prototype 18 uses the new dialogue/selection clothing; title art and movement sprites retain their earlier clothing. October 14 expanded emotions: Tony, Sean and BJ each now have ten dialogue portrait expressions: neutral, happy, amused, sad, worried, afraid, surprised, angry, skeptical and embarrassed. <a href="assets/portraits/emotions-v1.json">Current atlas paths, dimensions, expression indices and exact prompts</a> are recorded. New 5×2 source sheets preserve earlier versions; Prototype 18 migrates dialogue and selection to the 5×2 sheets, with semantic emotional tones on every current dialogue line. Thirty atlas cells and both employee endings pass headless checks; in-game visual validation remains pending. October 14: approved slimmer Sean proportions now appear in the magazine cover, four dialogue portraits, and Drain Damage title artwork. <a href="assets/sean-proportions-v3.json">Versioned art and exact prompts</a> are preserved. Gameplay sprites are unchanged. Prototype 18 exports the updated title and portrait assets; fresh running-game screenshots remain pending permission. Delivered: illustrated dialogue portraits with four expressions each and plumber work clothes. Delivered: animated Sean sprite with a fully bald head and chin-only beard; toilet enemy atlas. Prototype 10 adds Tony’s animated in-world sprite and a code-drawn robot owner portrait.</p></li><li><h3>Bestiary artwork</h3><p><a href="bestiary/bestiary.html">Living bestiary gallery</a> delivered: names, descriptions, single hyperrealistic marketing portraits, sprite links, and implementation status for both creatures. Marketing originals are 1254 × 1254 PNGs. Named creature folders include monster.json metadata. October 14 Storyboarding histories for Flushfiend, The Hallowed Widow, and The Clogfather are now recorded as drafts, not approved canon. Flushfiends may appear anywhere; their smart-toilet origin remains proposed. Wings and halo have no confirmed supernatural explanation. Flushfiend (toilet monster): named creature folder and metadata updated; four-pose atlas integrated. The Hallowed Widow (flying spider): revised six-pose source atlas created October 13, 2026, with white feathered wings and a halo over its dark body, fangs, and red eyes. Includes four wingbeat poses, forward flight, and hurt recoil. Earlier designs are preserved. Atlas alignment, animation validation, attacks, and flying gameplay remain pending. <a href="assets/bestiary/flying-spider-atlas-v2.png">View flying spider atlas</a>; <a href="assets/bestiary/flying-spider-animation-v2.json">animation plan and generation prompt</a>; <a href="assets/bestiary/catalog.json">bestiary inventory</a>. This artwork is not yet a playable enemy in Prototype 12.</p></li><li><h3>Persistent pursuit and shorter weapon range</h3><p>October 14 playtest correction: remove Flushfiend spawn-point chase bounds and latch proximity aggro until death/despawn or restart; keep ordinary patrol bounds before detection. Canonical pursuit metadata added. Tony pressure gun: 6 damage every 0.15s, 320-pixel range (one-third of the 960-pixel viewport). Sean heavy plunger: 24 damage every 1.00s, 480-pixel range (half viewport), taking two hits against a 40-HP toilet. Metadata and hit-count comparisons updated; Engineering runtime integration, regression checks and export pending. Clogfather remains 720 HP provisionally but now needs 30 Sean hits; re-evaluate boss timing before implementation.</p></li><li><h3>Directional aiming and enemy entrances</h3><p>Prototype 28 mechanics integrated: weapon-specific grounded and airborne aiming, normalized diagonal travel and swept collision now pass headless checks. Space/controller A jumps; W/Up aims. Flushfiends enter entirely beyond the camera, walk immediately, and retain proximity-latched pursuit. Trigger state and defeated enemies survive checkpoint respawn; full restart resets them. Both heroes complete the updated route in automated runs. Current hero sprites still hold weapons horizontally. Modular character/weapon art has been recommended to Art for the larger roster (see the <a href="handoffs/modular-weapon-art-recommendation.json">Engineering proposal</a>); directional presentation remains unfinished. Exported mechanics build; live review and screenshots pending permission.</p></li><li><h3>Visible aim without firing</h3><p>Approved playtest correction: held weapon and arm pose must follow valid aim input continuously, including between shots and after releasing fire. Recoil ending must not reset diagonal aim. Prototype 35 preserves horizontal fallback when aim input is released, permits grounded diagonal-down aim, and reserves straight-down aim for the air. Runtime integration and headless checks are complete; live review remains pending.</p></li><li><h3>Combat metadata and weapon art</h3><p>Assigned initial balance: Flushfiend 40 HP (opening), The Hallowed Widow 80 HP (later basement). Each monster now has numeric health and continuous-bar metadata, hidden by default for ordinary enemies. Future creature rules are in assets/bestiary/balance-policy.json. <a href="weapons/catalog.json">Six exclusive weapon specifications</a> now record damage, attack timing, reach, projectile speed and travel limits, area effects, and art assignments. Bestiary delivered nine-cell pixel-art source sheets for all six weapons: held tools, inventory icons, attacks, relevant projectiles, and impacts. <a href="weapons/game-art.html">Weapon source-art previews</a> link to exact prompts and animation manifests. Grip/muzzle alignment, alpha cleanup, slicing, character attachment, runtime integration, and playtest validation remain pending. Marketing delivered six hyperrealistic product portraits on October 13, 2026: <a href="weapons/pipe-wrench/marketing/portrait-v1.png">pipe wrench</a>, <a href="weapons/drain-snake/marketing/portrait-v1.png">drain snake</a>, <a href="weapons/pressure-gun/marketing/portrait-v1.png">pressure gun</a>, <a href="weapons/demolition-hammer/marketing/portrait-v1.png">demolition hammer</a>, <a href="weapons/heavy-plunger-launcher/marketing/portrait-v1.png">heavy plunger launcher</a>, and <a href="weapons/pipe-bomb-launcher/marketing/portrait-v1.png">pipe-bomb launcher</a>. All are original 1254 × 1254 PNGs; each weapon’s marketing-art.json preserves dimensions, exact prompts, provenance, and completion status. Marketing art is excluded from Godot imports and does not imply runtime support. Prototype 14 consumes canonical pressure-gun and heavy-plunger stats and Flushfiend HP. All six weapon records validate and export, but melee, pipe-bomb mechanics, loadout UI, and new weapon artwork remain pending. Widow HP is preview-only.</p></li><li><h3>Enemy health visuals</h3><p>Approved October 13: continuous numeric HP; ordinary enemy bars hidden by default; optional Show enemy health bars; continuous boss bars plus damage visuals; exact HP/damage readouts in development only. Six stages: healthy (75–100%, excluding 75), mild (50–75%, excluding 50), moderate (25–50%, excluding 25), severe (10–25%, excluding 10), near death (0–10%, excluding 0), dead (0%). Delivered source artwork: 24-frame damage atlases for Flushfiend and The Hallowed Widow, covering all six states and four-frame death sequences. <a href="bestiary/damage-states.html">Asset previews and exact rules</a>. Every hit must remain visible between thresholds, including Tony’s light attacks. Prototype 14: continuous HP, exact threshold selection, per-hit flash/particles, measured Flushfiend row crops, shared scale, and nonlooping death integrated. Ordinary bars default off; Controls offers H/View/click to toggle. Damage preview and exported gameplay checked in a small window with Sean’s permission; screenshots saved in storybook/014-metadata-and-damage/. Widow wing gutters/anchors remain provisional and flight gameplay is absent. Further playtest readability and transition polish remain.</p></li><li><h3>Animation + feedback</h3><p>Delivered: Sean idle/run/jump/fire/hurt poses and toilet walk/hop/hit poses. Prototype 07 enlarges Sean by 44% and isolates overlapping atlas frames to remove the jump-pose offset. Refine transitions, defeat animation, impacts, splashes, and restrained screen shake.</p></li><li><h3>Basement art direction</h3><p>Delivered: detailed pixel basement backdrop, parallax, drips, metal platforms, new toilet sprites, and unique area signs. Refine foreground props and visual consistency.</p></li><li><h3>Sound + music</h3><p>Prototype 16 integrates Sean’s selections: “It Takes A Hero” for title/selection and “Hallow Quest” (16-bit) for the basement, both by Zane Little Music (CC0). Full source files, hashes, and license provenance remain in audio/. One music voice fades out before switching; title repeats after its complete ending and the level uses its authored loop. Session music mute applies throughout; pause suspends playback, restart continues level music, return restores title music, and dialogue ducks the level track. Headless lifecycle and export checks complete. Subjective listening and screenshots await permission; Prototype 15 and the earlier Face The Facts cue remain preserved. Boss music, voice work, and volume settings remain planned. October 16: ten original synthesized Spare Employee Dispenser sound-effect candidates and a 5.5-second timing reference are delivered in <a href="handoffs/spare-employee-dispenser-audio.json">the audio handoff</a>. The audio handoff now matches all ten Engineering event IDs with paths, gains, durations and short-path timing. Prototype 41 integrates event-driven synchronization; listening review remains pending. Dispenser audio revision v2 adds a layered 0.34-second wet cartoon impact and quieter 0.56-second slide for the approved blood/X-eye gag. Earlier audio is preserved; Prototype 41 integrates revised cues, with listening review pending. October 16: progress-door latch, 0.9-second motor/slide and separate end-stop audio delivered with original synthesis provenance in <a href="handoffs/sliding-progress-door-audio.json">the door audio handoff</a>. Integrated in Prototype 42; packaged lifecycle checks pass and listening review remains pending. Prototype 43 integrates a quiet two-second swarm buzz with proximity fades, one bounded aggregate voice, pause/mute and death/exit cleanup. Export/signing and packaged buzz, pause, door and dispenser checks pass; listening review is pending. Four CC0 plumbing-themed menu-navigation auditions are preserved; Sean selected wrench clink. See <a href="handoffs/fly-buzz-and-menu-audio.json">buzz and menu audio handoff</a>. The selected wrench clink is integrated in Prototype 46; other auditions remain unused. October 16: <a href="handoffs/clogfather-audio.json">Clogfather audio delivery</a> adds twelve original pressure/fire/splat/groan/feedback cues and “Backpressure,” a new 51.2-second, 150-BPM retro boss composition, informed by Storyboarding. Source/provenance preserved. Engineering audio support and listening review pending; actual boss-event integration awaits the playable encounter. No boss gameplay or new build is claimed by this asset delivery. October 16: Sean selected wrench clink for directional pre-game navigation. The exact auditioned 0.24-second CC0 cue from assets/audio/sfx/menu-navigation-v1/ is integrated in Prototype 46; listening review pending. October 16: Flushfiend ceramic-style death shatter delivered from CC0 fracture/crunch sources; replaces the low lethal-hit tone in Prototype 47. Provenance and exact recipe in handoffs/flushfiend-death-audio.json. Packaged runtime checks pass; listening pending. October 16: three-second CC0 player-death toilet flush delivered in handoffs/player-death-flush-audio.json; once per hero death, distinct from enemy defeat and dispenser. Integrated in Prototype 52; packaged lifecycle checks pass, listening review pending.</p></li></ul><p class="gate">Done means: a coherent original visual and sound style replaces placeholders without harming gameplay readability.</p></section>
+<section class="phase" data-status="planned" id="phase-02">
+      <div class="phase-head"><span class="number">02</span><div>
+      <span class="badge planned">planned</span><h2>First Call: The Basement From Hell</h2><p>First complete mission · follows character-selection and weapon-balance playtesting</p></div></div>
+      <ul class="tasks"><li><h3>Billy-Joe assigns the job</h3><p>October 14: Sean selected the weathered beige server rack with green CRT face (concept B). <a href="marketing/billy-joe/server-room-v1.png">Server-room key art</a> now shows large BJ side lettering. <a href="marketing/billy-joe/server-room-v1.json">Exact prompt and image dimensions</a> are preserved. Earlier concepts remain archived. Four <a href="assets/portraits/bj-expressions-v1.png">dialogue portraits</a> now show confident/helpful, skeptical, alarmed and sheepish expressions in a transparent 2×2 atlas. <a href="assets/portraits/bj-expressions-v1.json">Expression indices, dimensions and exact prompt</a> are saved. Runtime portrait integration, movement sprites and magazine replacement remain pending. Approved story direction: Billy-Joe (BJ) is a fallible plumbing-sector AI controlling US plumbing companies and distribution warehouses in an AI-run world. An antagonistic takeover eventually pits Tony and Sean against him; exact force, mechanism, and fate remain TODO. Server-room growth remains a proposal. Tony is kind, patient, wise, and mildly arachnophobic; Sean grows more useful. Update runtime naming separately; restrained dialogue jokes support original absurd plumbing action.</p></li><li><h3>Sludge creature + plumbing hazard</h3><p>Add an enemy with a different attack pattern and a clearly signaled leaking-pipe hazard.</p></li><li><h3>The Clogfather</h3><p>Giant fatberg appearance locked October 14. <a href="bestiary/clogfather/combat-design.json">Proposed encounter mechanics</a>: rooted body with moving pipe mouths, 720 HP, three phases, telegraphed sludge volleys, warned ceiling acid, occasional single Flushfiend, and five-second weak-point openings. Only one hazard pattern runs at a time; optional valves interrupt windups. Approved boss HUD: boss name above a wide continuous bar fixed at the top of the screen, visible throughout the encounter and independent of the ordinary-enemy toggle. Actual HP drains immediately with a brief damage trail; no phase refills. Boss fill is green above 50% HP, yellow above 25% through 50%, and red at 25% or below; zero HP shows an empty track. Color follows actual HP immediately, independently of attack phases. Boss HUD runtime implementation is pending. Bestiary delivered named metadata, draft lore, a hyperrealistic portrait, six body-action poses, modular pipe/sludge/core pieces, four low weak-point poses, six static HP-stage poses, and an eight-phase portal source loop on October 14. <a href="bestiary/clogfather/art-preview.html">Boss and portal playback previews</a> are source-art tests, not validated gameplay. Canonical design HP is provisionally 720; numeric tuning, arena reachability, player-damage scale, alpha/anchor cleanup, damage-matched compositing, additional hazard effects, and runtime implementation remain pending. Boss defeat may reveal a portal as a proposed story beat; cause and destination remain unresolved. No new playable boss or build is claimed.</p></li><li><h3>Mission loop</h3><p>Arrival → exploration → checkpoint → boss → restored plumbing → job complete. Target 3–5 minutes.</p></li></ul><p class="gate">Done means: the mission can be completed from start to finish and retried without confusing or punishing resets.</p></section>
+<section class="phase" data-status="next" id="phase-04">
+      <div class="phase-head"><span class="number">04</span><div>
+      <span class="badge next">in progress</span><h2>Make it comfortable to play</h2><p>Opening and employee selection brought forward · Prototype 10 delivered; selection and Tony gameplay visually checked</p></div></div>
+      <ul class="tasks"><li><h3>Two employees, one robot owner</h3><p>Implemented in Prototype 10: confident fourth-generation plumber Tony and idiot apprentice Sean. Prototype 14 now reads pressure-gun damage 6 / interval 0.15s and heavy-plunger damage 40 / interval 1.00s from canonical JSON. Prototype 23: Tony has 4 contact-hit health and speed 270; Sean has 5 and speed 235. Sprites, weapons, projectiles, and firing sounds differ. Agreed next mechanics direction (October 13): Tony is quicker with less health and rapid, low-damage attacks; Sean is stronger with more health and slow, heavy attacks. Proposed starting balance, not implemented: Tony 75 HP and 270 movement speed; Sean 100 HP and 235 movement speed. The requested reciprocal 25% health differences conflict mathematically: 75/100 makes Tony 25% lower and Sean 33⅓% higher; 80/100 makes Sean 25% higher and Tony 20% lower. Prototype 23 uses a provisional 4/5 contact-hit ratio; final balance remains open. Agreed weapon rule: each plumber has an exclusive arsenal; Tony cannot equip Sean’s weapons and Sean cannot equip Tony’s. Proposed assignments and balance (damage / seconds between attacks): Tony — pipe wrench (melee, 12 / 0.30), drain snake (melee, 8 / 0.25), pressure gun (ranged, 6 / 0.15); Sean — demolition hammer (melee, 60 / 1.50), heavy plunger launcher (ranged, 24 / 1.00; revised October 14), pipe-bomb launcher (ranged, 60 / 2.00). These replace the earlier shared-tool proposal. Canonical ownership checks now reject another employee’s weapons and unsupported mechanics explicitly. Melee, loadout selection, and pipe-bomb gameplay are not implemented. BJ (Billy-Joe) replaces S.U.M.P. as the robot company owner in current selection, dialogue, and victory text. Playtest weapon fairness and character selection; no companion AI or co-op in this iteration.</p></li><li><h3>Menus + settings</h3><p>Delivered: original illustrated title screen, animated pixel lettering, keyboard/controller Start, title-sound toggle, and return to title from pause. Prototype 10 adds Tony/Sean selection using keyboard, stick, D-pad, or mouse. Prototype 13 uses first names only (Tony and Sean) in selection and dialogue. Screenshots pending permission for visual capture. Prototype 12 simplifies the title to Start / Controls / Quit and adds original keyboard/gamepad diagrams. Button hints live in Controls, with the approved exception of a visible dialogue Skip hint. Tutorial code is removed. Prototype 19 adds only the approved skippable story introduction. Prototype 11 softens Tony’s selection line to “Fourth-generation plumber. Limitless experience.” Still planned: saved settings, audio levels, and input remapping.</p></li><li><h3>Accessibility + difficulty</h3><p>Readable text, reduced motion options, clear non-color cues, generous checkpoints, and adjustable challenge.</p></li><li><h3>Progress + stability</h3><p>Save settings and mission progress; test focus loss, controller reconnects, restart, and fullscreen transitions.</p></li><li><h3>Playtest the whole job</h3><p>Record confusing spots, input feel, boss fairness, crashes, and frame pacing. Add regression checks for real bugs.</p></li></ul><p class="gate">Done means: a new player can launch, understand, finish, and return to the game without developer help.</p></section>
+<section class="phase" data-status="research" id="phase-M">
+      <div class="phase-head"><span class="number">M</span><div>
+      <span class="badge research">research</span><h2>Take the job on the road</h2><p>Requested by Sean · Android + iOS feasibility</p></div></div>
+      <ul class="tasks"><li><h3>Inventory devices and tools</h3><p>Record actual Android/iPhone/iPad models, OS versions, available SDKs, Xcode, and Apple account options.</p></li><li><h3>Android: a sideloaded APK</h3><p>Set up the matching Godot export templates, Java and Android SDK. Sign an APK and install on a real device; no store launch required.</p></li><li><h3>iOS: an Xcode development build</h3><p>Export on the Mac, configure signing, and run on Sean’s iPhone/iPad. Investigate Personal Team limits before choosing a paid route.</p></li><li><h3>Touch + controller experiment</h3><p>Prototype landscape touch movement, jump, and fire. Test simultaneous touches and Bluetooth controller input on each OS.</p></li><li><h3>Phone-sized usability</h3><p>Check notches/safe areas, aspect ratios, readable text, pause/resume, audio interruptions, heat, battery use, and frame pacing.</p></li><li><h3>Write the feasibility verdict</h3><p>For each platform: install steps, signing/renewal friction, test results, blockers, estimated effort, and go/defer recommendation.</p></li></ul><p class="gate">Done means: a real-device prototype runs on each target, or a concrete blocker is documented. Mobile release is not yet committed.</p></section>
+<section class="phase" data-status="planned" id="phase-05">
+      <div class="phase-head"><span class="number">05</span><div>
+      <span class="badge planned">planned</span><h2>Deliver the Mac game</h2><p>Release preparation · after playtesting</p></div></div>
+      <ul class="tasks"><li><h3>Reproducible build + backup</h3><p>Delivered: self-documenting Makefile with verified macOS build/signing, build-all for currently supported exports, and local-source run commands. Android, iOS, and Windows build targets report pending setup. Still needed: version control and backup, repeatable tests, and release notes.</p></li><li><h3>App polish + packaging</h3><p>Original icon, credits, license notices, clean install, and a DMG if useful. Verify on another Apple Silicon Mac.</p></li><li><h3>Distribution readiness</h3><p>Plan Developer ID signing and notarization for sharing. Decide whether this stays private, becomes freeware, or is sold.</p></li><li><h3>Rights and permissions</h3><p>Confirm likeness/photo permissions, track asset licenses, review naming and any legal clearance needed before release.</p></li></ul><p class="gate">Done means: a tested, documented Mac build can be installed and played outside the development machine.</p></section>
+<p><strong>Sewer swarm integration — October 16:</strong> Research and canonical movement/contact metadata ready. Use slow, smooth correlated wandering inside authored flight areas, early obstacle steering and optional short hovers; no pursuit. Two sparse first-level placements requested, with 12 HP as initial tuning and shared contact cooldowns. <a href="handoffs/sewer-fly-movement-research.json">Research sources and rationale</a>; <a href="handoffs/sewer-fly-mechanics.json">integration handoff</a>. Prototype 39 is built; packaged mechanics checks pass. Visual validation and Sean’s full-route bot completion remain pending. Storyboarding is assigned a memorable identity/backstory, followed by Marketing’s magazine entry; tiny guns remain an optional creative idea, not an approved ranged attack.</p>
+<section class="phase" data-status="ideas" id="phase-ideas">
+<div class="phase-head"><span class="number">+</span><div>
+<span class="badge ideas">ideas</span><h2>Ideas for future discussion</h2>
+<p>Collected notes · optional, not promised · no implementation scheduled</p></div></div>
+<ul class="tasks">
+<li><h3>Achievements</h3><p>Add achievements. Categories, rewards, tracking, save persistence, and platform support remain open.</p></li>
+<li><h3>Bosses lurking in layered scenery</h3><p>Use multilayer backgrounds so bosses can lurk between scenery layers, partially concealed before their encounter. Decide whether sightings are atmosphere only or foreshadow attacks.</p></li>
+<li><h3>Crunchable critters and boss reactions</h3><p>Tiny cockroaches or spiders are crushed underfoot with a crunching sound. Optionally, killing enough provokes a boss roar or scream. Counts, reset rules, sound frequency, and any combat consequences remain undecided.</p></li>
+<li><h3>Creepier art direction</h3><p>Consider Little Nightmares as a mood reference for a creepier atmosphere, while deciding how it fits the existing plumbing comedy. No art replacement is approved. <a href="design-ideas.json">Original atmosphere and progression notes</a>.</p></li>
+<li><h3>Tony’s weapons and special attacks</h3><ul>
+<li><strong>Kinetic air ram</strong>: A blast of air damages an enemy and pushes it away.</li>
+<li><strong>Toilet auger</strong>: Medium-range whip-like attack; Tony references Castlevania for attack feel.</li>
+<li><strong>Plunger water-wave special</strong>: Plant the plunger on the ground and struggle against a large clog, then unleash a full-screen wave of water that damages or kills enemies.</li>
+<li><strong>Soldering B-tank and torch</strong>: A flamethrower-style weapon.</li>
+<li><strong>Three-foot pipe wrench</strong>: A large melee weapon swung like a sword.</li>
+<li><strong>Drain-machine cable special</strong>: Tony pulls out a drain machine and launches its cable across the screen. Powerful, strictly linear attack at his current elevation.</li>
+</ul><p>Also consider Contra-style floating weapon pickups. Decide regular weapons versus temporary pickups versus specials, exclusive character ownership, damage/range/cooldowns, and overlap with the existing wrench and drain snake. Tony suggested the drain-machine special for himself; the plunger wave’s owner remains unconfirmed. Full-screen specials do not change current starter-weapon ranges. <a href="weapons/tony-ideas.json">Full weapon discussion notes</a>.</p></li>
+<li><h3>Possible monsters and troublesome clients</h3><p>Bloody tampon, Sewer flies, Poop, Automaton made of pipes, Angry &quot;Karen&quot; clients, Rattlesnakes, Raptors with a glowing red aura, An angry drunk in a hotdog costume, Rat monster (design undecided), Alligator monster (design undecided). These are brainstorming concepts, not confirmed roster entries; names, lore, artwork, and mechanics remain open. <a href="bestiary/monster-ideas.json">Bestiary idea notes</a>.</p></li>
+<li><h3>Hero art experiments and earlier mockup notes</h3><p>Required hero sprite coverage includes jumping/falling while aiming straight down and down-left/down-right, with proper grips and leg/muzzle clearance. These airborne poses remain pending beyond the standing mockup. Agreed follow-up: once the modular design is approved, establish a versioned hero sprite and animation standard for Tony, Sean and future heroes, with reusable templates, layer/anchor rules, animation coverage and validation criteria. Current mockup dimensions and fitting shortcuts are not a frozen production standard. October 15 mockup revision 3: corrected Sean’s backward rear-hand grip in the up-right pose; reassembled preview checked, approval pending. October 15 mockup revision 2: corrected oversized arms and raised aiming angles after Sean’s review. <a href="previews/modular-aim-contact-sheet.png">Revised contact sheet</a>; arm scale now stays fixed, with separate upward and diagonal poses. Head overlap and production grip cleanup remain; user approval pending. October 15: Sean approved a small modular-art mockup with Tony/pressure gun and Sean/heavy plunger. Six standing compositions now have an <a href="previews/modular-aim.html">interactive layer preview</a>, with mirrored left, layer toggles and grip/muzzle overlays. Source bounds, exclusive weapons, and identical body registration pass automated checks. The <a href="previews/modular-aim-contact-sheet.png">static contact sheet</a> has now been visually reviewed: body reuse and separate weapons demonstrate the approach, but upward poses obscure faces and arm/grip proportions need authored refinement. Next gate: refine those poses and recheck contact, occlusion and consistent pixel scale before animation or gameplay integration. Interactive browser review remains blocked by local-file policy; this is not production approval. Gameplay replacement and broader animation remain deferred. <a href="handoffs/modular-aim-prototype-contract.json">Prototype asset contract</a>. October 15: Art and Engineering recommend <a href="weapons/rendering-strategy.json">layered hero and weapon sprites</a> for the expanding arsenal: reusable locomotion, directional grip poses, separate weapons and hand overlays; bespoke poses for exceptional attacks. Initial modular standing assets are delivered for the two existing exclusive weapons; production assets and gameplay integration remain pending. </p></li>
+<li><h3>More places and personalities</h3><p>A luxury high-rise, a haunted restroom, and snooty fictional customers who underestimate the trades.</p></li>
+<li><h3>Public mobile release</h3><p>Revisit store submission, ratings, policies, and distribution only after the feasibility track succeeds.</p></li>
+</ul><p class="gate">Choose future scope through discussion and playtesting. These notes do not change approved work or add implementation commitments. Multiplayer and a large campaign remain outside the current plan.</p>
+</section>
+<section class="notes" aria-labelledby="marketing-notes">
+<h2 id="marketing-notes">Retro box concepts · historical first pass</h2>
+<p>Branding audit October 15, 2026: these original box mockups are archival and contain superseded branding.
+They are not current promotional material. Future packaging must use Drain Damage for the game and neutral
+Mainframe Plumbing &amp; Supply as the employer’s working name, selected October 15. Original images and exact prompts remain unchanged.</p>
+<p>Delivered October 13, 2026: three provisional front-and-back packaging samples based on Prototype 11:
+<a href="marketing/box-concepts-v1/01-yellow-arcade.png">Yellow arcade</a>,
+<a href="marketing/box-concepts-v1/02-gold-service.png">Gold service</a>, and
+<a href="marketing/box-concepts-v1/03-midnight-service.png">Midnight service</a>.</p>
+<p>Built-in image generation uses existing character art and storybook screenshots as inputs. Screenshot panels are
+generated interpretations, not untouched captures. Story copy, artwork, and decorative packaging marks are provisional.
+Revise after storyline and gameplay development; insert original captures directly for final production packaging.
+Exact prompts and source references are preserved in <a href="marketing/box-concepts-v1/prompts.json">the prompt archive</a>.
+This marketing pass does not change the playable build or add a game iteration.</p>
+</section>
+<section class="notes" aria-labelledby="wastewater-cutaway-notes">
+<h2 id="wastewater-cutaway-notes">First-level wastewater pipe cutaway</h2>
+<p>Prototype 44 integrates Art’s wastewater cutaway beneath the floor throughout the existing first level.
+Water and non-flushable debris flow right; water becomes lower and slower while lodged waste grows denser with world
+position. The terminal section beginning at x8570 is completely blocked and motionless. Backtracking preserves the
+spatial progression; pausing freezes animation. The short opening trial retains the early pipe profile rather than
+compressing the whole clog progression into twenty seconds. This is scenery only, with no new damage or collision.
+Bundled asset, clipping, motion, backtracking and terminal checks pass; composed live review remains pending.
+<a href="handoffs/wastewater-cutaway-art.json">Art delivery</a> and
+<a href="handoffs/wastewater-cutaway-level-design.json">placement/progression contract</a>.</p>
+</section>
+<section class="notes" aria-labelledby="monster-manual-notes">
+<h2 id="monster-manual-notes">Discharge Quarterly · magazine-style bestiary</h2>
+<p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v20.pdf">edition 20</a> incorporates Art's new
+hyperreal Tony and Sean portraits on page 2. Crew page rendered and visually checked; eight-page text comparison
+confirms only the edition number changed. Earlier editions preserved. Magazine-only update.</p>
+<p>October 16, 2026: Sean authorized regeneration; <a href="marketing/magazine/discharge-quarterly-v19.pdf">edition 19</a>
+now integrates the saved editorial feedback, Storyboarding's dispenser feature, Art's glass-front machines and
+Tony's Clogfather reaction. The approved fake advertisement remains. Tentative preview and development-history
+captions are removed. All eight pages rendered and visually checked; full text reviewed. Earlier editions preserved.
+This delivery completes the magazine revisions previously listed below as pending.</p>
+<p>October 16, 2026: removed the earlier-version screenshot caption from the pending magazine source.
+Editorial guidance now keeps development history and image provenance out of reader-facing captions and in internal
+records. PDF regeneration remains on hold.</p>
+<p>October 16, 2026: pending Clogfather page revision preserves the first description, removes the repeated
+introduction and redundant idle inset, and requests a Tony horror-reaction cutout from Art. A prominent TODO marks
+the missing artwork in the editable source. PDF regeneration remains on hold.</p>
+<p>October 16, 2026: pending magazine edits remove tentative preview-artwork and encounter-idea captions.
+Explicit editorial TODOs must be large, bold and conspicuous. PDF regeneration remains on hold.</p>
+<p>October 16, 2026: pending magazine copy now uses Sean’s requested Hallowed Widow wording: “one sprouted wings and apparently started breeding.” PDF regeneration remains on hold.</p>
+<p>October 16, 2026: Art has been asked to revise the Spare Employee Dispenser as a rusty glass-front vending
+machine stocked with sleeping copies of the current hero, including sleeping Tony and Sean sprites and separate
+stocked variants. Storyboarding has been asked to revise all dispenser feature and advertisement copy with subtle
+corporate implications. Deliveries pending; magazine regeneration remains on hold until Sean requests it.</p>
+<p>October 16, 2026: pending editorial revisions replace the dispenser's explicit procedure description with
+unsettling corporate euphemisms and remove fourth-wall-breaking details. Source copy updated; edition 18 remains
+the published PDF. Regeneration is on hold at Sean's request while further feedback is collected.</p>
+<p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v18.pdf">edition 18</a> applies the new
+AGENTS.md writing-style guidance throughout the magazine, replacing repetitive fragment-style headlines and captions
+with more natural copy. The eight-page layout, approved lore and artwork remain intact. Full text reviewed and all
+eight pages rendered and visually checked; earlier editions preserved.</p>
+<p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v17.pdf">edition 17</a> redesigns the magazine
+from 17 pages to eight around Sean's Nintendo Power and GamePro references. Bright display type, compact columns,
+paired crew profiles and grouped creature blurbs replace the repeated dossier layout. Four creatures share a
+spread; one curated action gallery replaces complete sheets. Existing Art dispenser images illustrate the preview
+and company advertisement. Source JSON remains editable; previous editions and artwork are preserved. All eight
+pages were rendered and visually reviewed, including corrected crop boundaries and aspect ratios. No game changes.</p>
+<p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v16.pdf">edition 16</a> completes a full
+reader-first editorial pass. Development terminology, technical art explanations, build identifiers and production
+notes are removed from reader-facing text, contents, captions, footers and credits. Plain-English preview labels
+retain honest qualifications. Approved profiles and lore, Septic Air Force and the dispenser feature remain intact.
+The no-jargon rule is saved in editable-source guidance and the magazine README. All 17 pages rendered and visually
+checked; full extracted text and metadata audited. Earlier editions remain preserved.</p>
+<p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v15.pdf">edition 15</a> adds a half-page
+Spare Employee Dispenser feature on page 16: “Please Collect Your Replacement.” The approved checkpoint gag is
+presented as a feature preview, with injured replacement, healthy check-in and dispense-only return described.
+Art and implementation are in progress; no gameplay or new artwork is claimed. Text-led layout uses the canonical
+editable source and preserves all earlier editions. Art was consulted for future reuse of its delivered assets.</p>
+<p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v14.pdf">edition 14</a> replaces the rejected
+Drain Brains name with Sean's selected working name, Septic Air Force, in the contents and page 12. Aviation-themed
+history remains explicitly draft. Preview notes now reflect Prototype 39 integration with live visual review pending;
+the image remains labeled a source-art sheet, not gameplay. All 17 pages rendered and checked. Editable JSON and
+previous editions are preserved; no new artwork or game changes.</p>
+<p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v13.pdf">edition 13</a> adds
+Drain Brains on page 12 as a clearly labeled proposed name and draft field anecdote, with the existing full swarm
+sprite-sheet mockup labeled source art. First-level integration is authorized but runtime remains pending at
+publication. All 17 pages were rendered and visually checked. The completed trade-editor revision removes future
+plot disclosures and boss solutions. <a href="marketing/magazine/magazine.json">Canonical editable JSON</a> now owns
+all magazine text and layouts; <a href="marketing/magazine/README.md">editing instructions</a> accompany the renderer.
+Earlier PDFs and source artwork remain preserved. No playable build changes are included.</p>
+<p>BJ correction October 15, 2026: the
+<a href="marketing/magazine/discharge-quarterly-v11.pdf">eleventh edition</a> uses the selected beige server-rack
+portrait with green CRT face, confirmed by Bestiary / Art. Both rejected porcelain-and-pipes PNGs were deleted
+at Sean's request. Earlier PDFs and historical generation records remain preserved.</p>
+<p>Back-cover revision October 15, 2026: the
+<a href="marketing/magazine/discharge-quarterly-v10.pdf">tenth edition</a> replaces the repeated spider portrait
+with a Mainframe Plumbing &amp; Supply employee notice styled as an in-universe trade-magazine advertisement.
+The spider dossier remains in its own section. Earlier editions and source artwork are preserved.</p>
+<p>Employer naming update October 15, 2026: the
+<a href="marketing/magazine/discharge-quarterly-v9.pdf">ninth edition</a> uses Mainframe Plumbing &amp; Supply
+as BJ's working company name in the briefing, character entries and credits. Drain Damage and Discharge Quarterly
+remain the game and magazine titles. No acronym or unselected game-over line was added; prior editions are preserved.</p>
+<p>Branding audit October 15, 2026: the current eighth edition and its generator use Drain Damage and
+Discharge Quarterly in publication copy and PDF metadata. Old branding visible inside historical Prototype 12
+screenshots is preserved as an archival record. Earlier editions, source snapshots and provenance are unchanged.</p>
+<p>October 14: <a href="marketing/magazine/discharge-quarterly-v8.pdf">eighth edition</a> applies Sean’s approved proportion adjustment to the cover and player portrait. Cover and player page rendered and visually checked. Earlier editions remain preserved. BJ art is liked; a last-page or back-cover placement is a suggestion, not a committed layout change.</p>
+<p>Storage update October 14, 2026: magazine editions, source layout and supporting assets now live in
+<code>marketing/magazine/</code>. Future magazine generation uses this directory. Original bestiary creature
+assets remain in their existing locations; archived PDFs are unchanged.</p>
+<p>Expanded October 14, 2026: the sixteen-page
+<a href="marketing/magazine/discharge-quarterly-v7.pdf">seventh edition</a> places Billy-Joe after Tony and Sean and before
+the monsters, using Bestiary / Art's new proposed porcelain-and-brass AI portrait. Complete player atlases replace
+isolated pose samples. Flushfiend and Hallowed Widow receive full damage-sheet pages. The Clogfather now has a
+portrait dossier and complete body, damage, parts and weak-point sheets with clearly provisional combat notes.
+It is the only named boss currently registered; BJ's eventual hostile role is included without inventing a boss
+form or takeover mechanism. Previous editions are preserved.</p>
+<p>Masthead selected October 14, 2026:
+<a href="marketing/magazine/discharge-quarterly-v6.pdf">Discharge Quarterly, sixth edition</a> replaces The Backflow.
+Its subtitle is “The Official Journal of the Plumbing, Heating &amp; Creature Containment Association”.
+Drain Damage remains the game title. A small inside credit identifies the association as fictional and disclaims
+real PHCC affiliation or endorsement. Previous editions are preserved.</p>
+<p>Publication naming update October 14, 2026:
+<a href="marketing/magazine/the-backflow-v5.pdf">The Backflow, fifth edition</a> uses the provisional magazine masthead
+alongside Drain Damage game branding. The magazine name is not final; further options are being explored.
+The approved Widow paragraph and Tony's quote are retained. Tony and Sean's personal backstories remain TODO.
+Previous editions are preserved.</p>
+<p>Branding revision October 14, 2026: the ten-page
+<a href="marketing/magazine/drain-damage-monster-manual-v4.pdf">fourth edition</a> uses the selected game title,
+Drain Damage. The publication name remains undecided. The Hallowed Widow history now uses the approved
+paragraph with its revised heaven sentence; Tony's quote is retained. Player backstories remain TODO.
+Earlier editions and artwork are preserved.</p>
+<p>Expanded October 14, 2026: the ten-page
+<a href="marketing/magazine/gpi-monster-manual-v3.pdf">third edition</a> opens its entries with Tony and Sean, each with
+an established portrait, sprite poses, and a prominent backstory TODO awaiting Storyboarding. The new illustrated
+cover shows both plumbers fighting a horde of Flushfiends and Hallowed Widows together, with no bosses.
+Earlier editions and the original cover artwork are preserved; the exact cover prompt is recorded in
+<code>marketing/magazine/guide-assets-v3/provenance.json</code>.</p>
+<p>Revised October 14, 2026: the eight-page
+<a href="marketing/magazine/gpi-monster-manual-v2.pdf">second edition</a> incorporates Storyboarding's Billy-Joe setup,
+revised draft creature histories, Tony's proposed spider quote, and the confirmed giant-fatberg identity of the
+Clogfather. Portal and takeover details remain proposals or unresolved. Game and publication names remain working
+titles. Combat screenshots and balance notes are explicitly archived Prototype 12 material. The first edition and
+original artwork are preserved.</p>
+<p>Delivered October 13, 2026: an eight-page
+<a href="marketing/magazine/gpi-monster-manual-v1.pdf">illustrated art and strategy PDF</a> covering Flushfiend and
+The Hallowed Widow, with hyperrealistic portraits, sprite studies, descriptions, and Storyboarding draft histories.
+New original Prototype 12 captures show the Flushfiend encounter. The Widow attack panels are labeled generated
+concept illustrations; the creature is not integrated. A future-boss briefing covers the unimplemented Clogfather.</p>
+<p>Remaining: receive Tony and Sean's backstories from Storyboarding, approve creature histories,
+replace Widow concept panels with real captures after integration, and
+refresh tactics as balance changes. The PDF is optimized for screen reading; print production remains a separate pass.
+Source layout and image provenance are preserved in <code>marketing/magazine/</code>. No gameplay changes in this delivery.</p>
+</section>
+<section class="notes" aria-labelledby="mobile-notes">
+<h2 id="mobile-notes">Mobile install options: what we know so far</h2>
+<ul>
+<li><strong>Already cross-platform:</strong> our Godot/GDScript project can target macOS, Android, and iOS.
+<a href="https://docs.godotengine.org/en/stable/tutorials/export/index.html">Godot export documentation</a>.</li>
+<li><strong>Reuse the game:</strong> gameplay, levels, artwork, and most code should carry over; a language rewrite
+is not required to investigate mobile versions.</li>
+<li><strong>Mobile work:</strong> add touch controls, adapt layouts and safe areas, and test controller input,
+performance, audio, and app suspension on real devices.</li>
+<li><strong>Separate packages:</strong> produce an Android APK and an iOS development build with the necessary
+platform tools and signing. Neither mobile version has been validated yet.</li>
+<li><strong>Kotlin comparison:</strong> Kotlin Multiplatform and Compose can share code and UI across these platforms;
+our current recommendation is to keep Godot for this action game. No migration is planned.
+<a href="https://kotlinlang.org/docs/multiplatform/faq.html">Kotlin Multiplatform FAQ</a>.</li>
+</ul>
+<p><strong>Android:</strong> investigate a signed APK installed directly on a test device, using developer deployment
+or the device’s permitted local-install flow. Confirm the actual OS, device and regional requirements when testing.
+Godot provides an Android export path requiring Java and Android SDK setup.
+<a href="https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_android.html">Godot Android export guide</a>.</p>
+<p><strong>iOS:</strong> the initial equivalent is a development build installed from Xcode on the Mac.
+Godot exports an Xcode project; public App Store publication is not required for this test.
+<a href="https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html">Godot iOS export guide</a>.</p>
+<p>A free Apple Account can use an Xcode Personal Team for personal-device testing, with limitations including
+seven-day provisioning profiles that require rebuilding/reinstalling after expiry. Evaluate paid-program development,
+ad hoc distribution or TestFlight only if we need broader testing.
+<a href="https://developer.apple.com/help/account/basics/about-your-developer-account">Apple account and testing limits</a>.</p>
+<p><strong>Research gate:</strong> verify these paths with our installed Godot/Xcode versions and actual devices.
+A successful export alone does not prove that touch controls, performance, or signing are practical.</p>
+</section>
+<section class="notes" aria-labelledby="working-rules">
+<h2 id="working-rules">How we keep this manageable</h2>
+<ul>
+<li>Ask Sean and wait for permission before opening or foregrounding the game for a playtest or inspection.
+Keep agent checks headless/background; ask first if a visual test would interrupt him. Approved playtests use a large window.</li>
+<li>Keep Mac playable throughout. Mobile research can start early; full ports follow evidence.</li>
+<li>Preserve the satisfying jump and forgiving retries. Let playtesting drive changes.</li>
+<li>Archive screenshots and notes for every delivered game build. Keep earlier chapters intact.</li>
+<li>Use original or licensed assets and document their sources.</li>
+<li>Agree on the next small milestone before expanding the game. No calendar deadlines are committed here.</li>
+</ul>
+</section>
+<footer>This is the project’s editable roadmap, not a completion percentage or a promise of every idea.
+Filters only change this view; milestone status is maintained in this HTML file. No external scripts, fonts, or tracking.</footer>
+</main>
+<script>
+const filters = document.querySelectorAll('[data-filter]');
+const phases = document.querySelectorAll('.phase');
+filters.forEach(button => button.addEventListener('click', () => {
+  const selected = button.dataset.filter;
+  let visible = 0;
+  filters.forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+  phases.forEach(phase => {
+    phase.hidden = selected !== 'all' && phase.dataset.status !== selected;
+    if (!phase.hidden) visible += 1;
+  });
+  document.getElementById('filter-status').textContent =
+    `Showing ${visible} ${visible === 1 ? 'milestone' : 'milestones'}${selected === 'all' ? ' across all tracks' : ''}.`;
+}));
+</script>
+<p>October 16 editorial update: replace the earlier swarm name in the next magazine revision with Septic Air Force. Revised draft lore is in the <a href="handoffs/sewer-fly-story.json">Storyboarding handoff</a>; publication update pending.</p>
+<p><strong>October 16 — opening cinematic:</strong> Sean requested a skippable visual story introduction, inspired by the dramatic opening he described in Contra III. Narrative beats, length, placement relative to character selection and the existing introduction, and production remain undecided. Notes are recorded in <a href="design/first-level-narrative.md">the first-level narrative brief</a>; no cinematic assets or runtime implementation are claimed.</p>
+<section><h2>First-level visual concepts — October 16</h2><p>Three original concept illustrations cover the busier basement opening, supported pump catwalks and Clogfather finale. <a href="handoffs/level-one-redesign-art.json">Art handoff and geometry caveats</a>. Proposed visuals only; exact reachable layout follows Level Design coordinates. No runtime changes or gameplay screenshots are claimed.</p></section>
+<section><h2>Dispenser glass-front art — October 16</h2><p>Delivered separate Tony-stocked and Sean-stocked vending-machine illustrations, each showing two sleeping clones, plus reusable sleeping sprite frames. <a href="handoffs/spare-employee-dispenser-glass-front-art.json">Artwork handoff</a>. Art-only revision; gameplay and magazine integration are pending, and magazine PDF generation remains on hold.</p></section>
+<section><h2>Tony magazine reaction art — October 16</h2><p>Transparent Tony horror cutout delivered for the Clogfather page, looking up/right toward the existing portrait. <a href="handoffs/tony-clogfather-reaction-art.json">Marketing handoff</a>. Magazine placement and PDF regeneration remain on hold; no gameplay change.</p></section>
+</body>
+</html>
