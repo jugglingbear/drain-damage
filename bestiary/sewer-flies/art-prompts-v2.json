@@ -1,0 +1,10 @@
+{
+  "tool": "Built-in imagegen",
+  "date": "2026-10-15",
+  "prompt": "Use case: precise-object-edit. Edit this sewer fly swarm sprite sheet ONLY to make the swarm formations a little more asymmetric and organic. Preserve individual tiny fly design, pixel art palette and size, exact1024x1536 canvas,4columns x6rows of256x256 cells, row order hover/up/down/left/right/death, transparent background. Living swarms should remain tight but have lopsided irregular silhouettes: a denser off-center knot, uneven spacing, small notches and a few nearby trailing flies rather than evenly distributed round circles or symmetrical diamonds. Subtle organic asymmetry, not huge scattered clouds. Around25 tiny flies per living frame, stable overall center anchor and comparable150–180px footprint. Maintain coherent four-frame wingbeat/internal motion per row; irregular shape gently changes, no whole swarm jumping around. Keep directional orientation of movement rows. Death row still progressively breaks apart into fewer falling flies, with uneven trajectories. Keep every sprite within its original cell with transparent gutters. No new labels, borders, glow, smoke, background, giant fly or central face. True transparency outside bugs. Preserve all other design choices.",
+  "reference_images": [
+    "assets/bestiary/sewer-flies/swarm-mockup-v1.png"
+  ],
+  "output": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+  "status": "Asymmetric swarm mockup; not runtime validated"
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "creature_id": "clogfather",
+  "image": "assets/bestiary/the-clogfather/damage-atlas-v1.png",
+  "status": "Source-art HP poses; provisional preview coordinates, not validated runtime animation",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "nominal_cell_width": 512,
+    "nominal_cell_height": 512
+  },
+  "states": [
+    {
+      "id": "healthy",
+      "min_exclusive": 0.75,
+      "max_inclusive": 1.0,
+      "frames": [
+        0
+      ]
+    },
+    {
+      "id": "mild",
+      "min_exclusive": 0.5,
+      "max_inclusive": 0.75,
+      "frames": [
+        1
+      ]
+    },
+    {
+      "id": "moderate",
+      "min_exclusive": 0.25,
+      "max_inclusive": 0.5,
+      "frames": [
+        2
+      ]
+    },
+    {
+      "id": "severe",
+      "min_exclusive": 0.1,
+      "max_inclusive": 0.25,
+      "frames": [
+        3
+      ]
+    },
+    {
+      "id": "near_death",
+      "min_exclusive": 0.0,
+      "max_inclusive": 0.1,
+      "frames": [
+        4
+      ]
+    },
+    {
+      "id": "dead",
+      "equals": 0.0,
+      "frames": [
+        5
+      ]
+    }
+  ],
+  "death": {
+    "frames": [
+      5
+    ],
+    "loop": false,
+    "suggested_fps": 1,
+    "hold_final_frame": true
+  },
+  "living_loop": {
+    "columns": [
+      0
+    ],
+    "suggested_fps": 1
+  },
+  "runtime_preparation": {
+    "status": "Provisional source-preview regions only; no in-engine validation",
+    "alpha_cutoff": 0.2,
+    "reference_body_height_pixels": 380,
+    "frames": [
+      {
+        "region": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "anchor": [
+          256,
+          475
+        ]
+      },
+      {
+        "region": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "anchor": [
+          256,
+          475
+        ]
+      },
+      {
+        "region": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "anchor": [
+          256,
+          475
+        ]
+      },
+      {
+        "region": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "anchor": [
+          256,
+          435
+        ]
+      },
+      {
+        "region": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "anchor": [
+          256,
+          435
+        ]
+      },
+      {
+        "region": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "anchor": [
+          256,
+          435
+        ]
+      }
+    ],
+    "source_preserved": true
+  },
+  "notes": [
+    "A single pose per HP state is not a finished animation.",
+    "Do not treat phase thresholds (two-thirds/one-third) as damage thresholds.",
+    "Moving pipes and attack poses still need damage-matched compositing.",
+    "Eye glow only while alive; dead pose is inert.",
+    "Refine alpha, gutters, base registration and final size before boss integration."
+  ]
+}

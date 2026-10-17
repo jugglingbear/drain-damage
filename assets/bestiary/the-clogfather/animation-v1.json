@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "creature_id": "clogfather",
+  "status": "Source artwork with proposed sequences; not runtime animation",
+  "combat_design": "bestiary/clogfather/combat-design.json",
+  "atlases": [
+    {
+      "id": "body",
+      "image": "assets/bestiary/the-clogfather/body-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 3,
+      "rows": 2,
+      "frame_roles": [
+        "idle",
+        "swell_windup",
+        "sludge_discharge",
+        "recovery_concept",
+        "hurt",
+        "collapsed"
+      ],
+      "anchor": "rooted base midpoint",
+      "anchor_status": "Unmeasured; consistent-scale registration required"
+    },
+    {
+      "id": "parts",
+      "image": "assets/bestiary/the-clogfather/parts-atlas-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 3,
+      "rows": 3,
+      "frame_roles": [
+        "pipe_relaxed",
+        "pipe_swell",
+        "pipe_discharge",
+        "sludge_glob_a",
+        "sludge_glob_b",
+        "sludge_impact",
+        "core_bright",
+        "core_dim",
+        "debris"
+      ],
+      "anchor": "pipe attachment at right; effect center as applicable",
+      "anchor_status": "Unmeasured; consistent-scale registration required"
+    },
+    {
+      "id": "weak-point",
+      "image": "assets/bestiary/the-clogfather/weak-point-atlas-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "frame_roles": [
+        "closed",
+        "opening",
+        "open_bright",
+        "open_dim"
+      ],
+      "anchor": "pipe attachment at right; effect center as applicable",
+      "anchor_status": "Unmeasured; consistent-scale registration required"
+    }
+  ],
+  "sequences": {
+    "sludge_tell": {
+      "atlas": "parts",
+      "frames": [
+        0,
+        1
+      ],
+      "duration_source": "patterns.sludge_volley.telegraph_seconds"
+    },
+    "sludge_discharge": {
+      "atlas": "parts",
+      "frames": [
+        2
+      ],
+      "loop": false
+    },
+    "projectile": {
+      "atlas": "parts",
+      "frames": [
+        3,
+        4
+      ],
+      "suggested_fps": 8,
+      "loop": true
+    },
+    "weak_point_open": {
+      "atlas": "weak-point",
+      "frames": [
+        0,
+        1,
+        2
+      ],
+      "loop": false
+    },
+    "weak_point_hold": {
+      "atlas": "weak-point",
+      "frames": [
+        2,
+        3
+      ],
+      "suggested_fps": 4,
+      "loop": true
+    },
+    "weak_point_close": {
+      "atlas": "weak-point",
+      "frames": [
+        2,
+        1,
+        0
+      ],
+      "loop": false
+    },
+    "collapse_concept": {
+      "atlas": "body",
+      "frames": [
+        4,
+        5
+      ],
+      "loop": false
+    }
+  },
+  "integration_notes": [
+    "Low weak-point pipe overrides the high torso core from the first body concept; high core is not a required target.",
+    "Do not duplicate baked-in pipes when adding modular pipe extensions; isolate a clean body layer first.",
+    "Match telegraphs and five-second openings to combat-design.json, not preview playback speed.",
+    "Clear hazards before recovery; decorative pipe motion must not create new damage zones.",
+    "Death overrides every attack and emits a defeat event only after nonlooping collapse.",
+    "Portal reveal is a separate optional story listener, not a combat destination."
+  ],
+  "remaining_art": [
+    "Acid warning/drop/puddle, summon warning, optional valve ready/spent, closed-hit deflection",
+    "In-between collapse frames and damage-matched attacks",
+    "Alpha cleanup, frame anchors and in-engine validation"
+  ]
+}

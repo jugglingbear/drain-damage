@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "approved_date": "2026-10-13",
+  "status": "Approved direction; health/UI implementation pending",
+  "hp_model": "Continuous numeric internal HP; visual stages do not quantize HP or damage.",
+  "fraction": "Clamp current_hp / max_hp to [0, 1]; max_hp must be positive.",
+  "states": [
+    {
+      "id": "healthy",
+      "min_exclusive": 0.75,
+      "max_inclusive": 1.0
+    },
+    {
+      "id": "mild",
+      "min_exclusive": 0.5,
+      "max_inclusive": 0.75
+    },
+    {
+      "id": "moderate",
+      "min_exclusive": 0.25,
+      "max_inclusive": 0.5
+    },
+    {
+      "id": "severe",
+      "min_exclusive": 0.1,
+      "max_inclusive": 0.25
+    },
+    {
+      "id": "near_death",
+      "min_exclusive": 0.0,
+      "max_inclusive": 0.1
+    },
+    {
+      "id": "dead",
+      "equals": 0.0
+    }
+  ],
+  "ordinary_enemy_bars_default": false,
+  "boss_bar": "Named continuous health bar fixed at top center of screen, independent of ordinary enemy bar visibility",
+  "optional_setting": "Show enemy health bars",
+  "exact_hp_and_damage_readouts": "Development only",
+  "hit_feedback": {
+    "status": "Integration specification, not implemented by this artwork delivery",
+    "trigger": "Every successful damage event, even when the stage does not change",
+    "suggested_flash_seconds": 0.06,
+    "behavior": "Brief pale warm sprite flash plus local impact particles; preserve current damage row. Restart on each hit.",
+    "flushfiend": "Use same-row hit recoil frame briefly; do not reset to healthy artwork.",
+    "widow": "Keep current wingbeat frame and damaged feather/halo silhouette during flash.",
+    "rapid_fire": "Ensure flash ends before the next normal Tony shot; do not require crossing a threshold."
+  },
+  "boss_hud": {
+    "approved_date": "2026-10-14",
+    "requirement_status": "Named top-of-screen boss bar approved; dimensions and animation timings are initial tuning",
+    "implementation_status": "Reusable HUD and headless preview implemented; no playable boss encounter; visual review pending",
+    "anchor": "screen_top_center",
+    "name_source": "monster.name",
+    "name_position": "centered above bar",
+    "width_fraction": 0.8,
+    "reference_viewport_pixels": [
+      960,
+      540
+    ],
+    "reference_bar_height_pixels": 20,
+    "layout": "Reserve a top HUD band; keep player HUD and telegraphed arena hazards clear; respect viewport safe margins.",
+    "visible_during": "Entire active boss encounter, including closed/invulnerable phases",
+    "ordinary_enemy_toggle_applies": false,
+    "fill": "Clamp current_hp / max_hp to [0, 1], draining right to left; no artificial slow drain or refill between phases.",
+    "damage_feedback": {
+      "actual_fill": "Update immediately on damage",
+      "trailing_damage_fill": "Brief contrasting trail only",
+      "trail_delay_seconds": 0.15,
+      "trail_catchup_seconds": 0.35
+    },
+    "style": "Heavy industrial frame, dark empty track, green/yellow/red health fill; readable boss name and visible accumulated empty space.",
+    "numbers": "Exact HP and damage remain development-only by default",
+    "death": "Reach empty immediately at zero HP; retain name and empty bar for one second, then fade out.",
+    "reset": "Hide on leaving encounter; reset fill and trail from boss HP on retry.",
+    "fill_colors": {
+      "source": "Clamped actual current_hp / max_hp, independent of trailing damage fill and attack phases",
+      "transition": "Switch immediately at thresholds; no flashing",
+      "bands": [
+        {
+          "id": "green",
+          "min_exclusive": 0.5,
+          "max_inclusive": 1.0,
+          "hex": "#58D68D"
+        },
+        {
+          "id": "yellow",
+          "min_exclusive": 0.25,
+          "max_inclusive": 0.5,
+          "hex": "#F4D35E"
+        },
+        {
+          "id": "red",
+          "min_exclusive": 0.0,
+          "max_inclusive": 0.25,
+          "hex": "#EF5350"
+        }
+      ],
+      "zero_hp": "No colored fill; retain empty track during death hold",
+      "accessibility": "Remaining bar length always communicates health independently of color"
+    },
+    "top_margin_pixels": 12,
+    "reserved_band_pixels": 80,
+    "death_hold_seconds": 1.0,
+    "death_fade_seconds": 0.35
+  }
+}

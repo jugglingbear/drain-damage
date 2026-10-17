@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "drain-snake",
+  "name": "Drain Snake",
+  "owner": "tony",
+  "exclusive": true,
+  "balance_version": "initial-2026-10-13",
+  "status": "Initial design balance; not consumed by runtime",
+  "type": "melee",
+  "introduction": {
+    "stage": "later_basement",
+    "status": "Proposed progression placement"
+  },
+  "damage": 8,
+  "attack_interval_seconds": 0.25,
+  "attack_timing": "Interval is start-to-start and includes windup and recovery; damage occurs once per target per attack.",
+  "windup_seconds": 0.06,
+  "melee_reach_pixels": 140,
+  "projectile": null,
+  "targeting": {
+    "shape": "narrow thrust",
+    "max_targets_per_attack": 3,
+    "null_target_limit_means": "All enemies within attack area"
+  },
+  "explosion": null,
+  "knockback": {
+    "strength": "light",
+    "status": "Magnitude pending physics playtest"
+  },
+  "ammunition": {
+    "mode": "unlimited",
+    "reload_seconds": 0
+  },
+  "art": {
+    "brief": "Coiled flexible cable with a small steel auger; narrow extending thrust.",
+    "game_manifest": "weapons/drain-snake/game-art.json",
+    "marketing_manifest": "weapons/drain-snake/marketing-art.json"
+  }
+}

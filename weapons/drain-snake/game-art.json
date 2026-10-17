@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "weapon_id": "drain-snake",
+  "assigned_to": "Bestiary",
+  "status": "Nine source-art cells delivered; runtime slicing, anchors, alpha cleanup, and integration pending",
+  "style": "Chunky SNES-inspired pixel art with navy outlines",
+  "path_base": "project root",
+  "source_brief": "Coiled flexible cable with a small steel auger; narrow extending thrust.",
+  "mechanics_source": "weapons/drain-snake/weapon.json",
+  "assets": [
+    {
+      "path": "assets/weapons/drain-snake/atlas-v1.png",
+      "kind": "source_atlas",
+      "width": 1536,
+      "height": 1024,
+      "columns": 3,
+      "rows": 3,
+      "frames": [
+        {
+          "index": 0,
+          "role": "inventory_icon",
+          "nominal_region_px": [
+            0,
+            0,
+            512,
+            341
+          ],
+          "anchor": {
+            "semantic": "visual center",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 1,
+          "role": "held_ready",
+          "nominal_region_px": [
+            512,
+            0,
+            512,
+            341
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 2,
+          "role": "windup",
+          "nominal_region_px": [
+            1024,
+            0,
+            512,
+            341
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 3,
+          "role": "strike",
+          "nominal_region_px": [
+            0,
+            341,
+            512,
+            342
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 4,
+          "role": "retraction",
+          "nominal_region_px": [
+            512,
+            341,
+            512,
+            342
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 5,
+          "role": "cable_tip_extension",
+          "nominal_region_px": [
+            1024,
+            341,
+            512,
+            342
+          ],
+          "anchor": {
+            "semantic": "effect origin",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 6,
+          "role": "impact_onset",
+          "nominal_region_px": [
+            0,
+            683,
+            512,
+            341
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 7,
+          "role": "impact_peak",
+          "nominal_region_px": [
+            512,
+            683,
+            512,
+            341
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 8,
+          "role": "impact_dissipate",
+          "nominal_region_px": [
+            1024,
+            683,
+            512,
+            341
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        }
+      ]
+    }
+  ],
+  "preserved_previous_assets": [],
+  "prompts": [
+    {
+      "tool": "Built-in image_gen",
+      "output": "assets/weapons/drain-snake/atlas-v1.png",
+      "prompt": "Use case: stylized-concept. Original retro SNES pixel-art DRAIN SNAKE weapon atlas for Tony. A coiled flexible steel plumbing cable in compact teal circular hand reel with brass crank, short teal grip, small steel spiral auger tip. This is melee tool: a narrow extending cable thrust, never a launched projectile. Exactly 3 columns x 3 rows, equal square cells, generous transparent gutters, no character or hands. Row1 col1 inventory icon coiled reel and visible auger; col2 held ready reel with short cable aimed RIGHT; col3 windup reel with cable slightly coiled back. Row2 col1 thrust: reel on left with cable extending straight RIGHT to auger tip, entire tool fits cell; col2 retraction: same reel and cable half retracted; col3 isolated short straight silver cable segment with steel auger tip for modular extension, no reel. Row3 col1 tiny white-cyan contact spark; col2 larger narrow white-cyan impact burst; col3 dissipating small white-cyan particles. Keep reel and grip same scale and same local anchor across held poses, allow cable to extend without scaling tool. Crisp chunky pixel clusters, strong dark navy outlines, silver teal brass palette. Genuine transparent zero-alpha background and opaque sprites. No text labels grid haze shadows or extra objects. All nine items entirely inside cells with at least 12 percent margin."
+    }
+  ],
+  "animation_spec": {
+    "status": "Proposed sequence; time from weapon.json, not generation spacing",
+    "idle": {
+      "frames": [
+        1
+      ],
+      "loop": true
+    },
+    "attack": {
+      "frames": [
+        2,
+        3,
+        4,
+        1
+      ],
+      "loop": false,
+      "timing": "Use windup_seconds and attack_interval_seconds in mechanics_source; damage event is separate."
+    },
+    "impact": {
+      "frames": [
+        6,
+        7,
+        8
+      ],
+      "loop": false,
+      "suggested_frame_seconds": 0.04
+    },
+    "projectile": null
+  },
+  "validation": {
+    "runtime_ready": false,
+    "visual_review": "Weapon, icon, attack/projectile and impact subjects present",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_percent": 76.91
+  },
+  "integration_notes": [
+    "Source sheet is visually reviewed, not a validated runtime atlas.",
+    "Generated sprites can cross nominal cell edges; inspect and isolate regions before import.",
+    "Measure per-frame grip pivots and muzzle sockets; preserve one weapon scale across held poses.",
+    "Do not fit every frame to its opaque bounds; that changes tool scale and grip alignment.",
+    "Existing character sheets include baked-in weapons. Clean hand/body layers are needed before attaching these tools.",
+    "Mirror held sprites for left-facing play; effects should use their contact or muzzle origin.",
+    "Visual effects do not define collision, damage, reach, travel distance, or blast radius.",
+    "Clean alpha fringes and validate readable icons and effects at gameplay size.",
+    "Cable remains attached: extend/retract it as a melee thrust. Do not spawn frame 5 as a projectile."
+  ]
+}

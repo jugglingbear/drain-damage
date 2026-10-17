@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drain Damage — Damage sprite source previews</title>
+<style>
+:root { color-scheme:dark; }
+body { margin:0; background:#101c2a; color:#eef4ed; font:16px/1.6 system-ui,sans-serif; }
+main { max-width:1200px; margin:auto; padding:32px 24px; }
+a { color:#8ae4bf; } h1 { font-size:clamp(30px,5vw,52px); line-height:1.1; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+img { width:100%; height:auto; display:block; background:#263843; border:1px solid #537080; }
+table { border-collapse:collapse; margin:24px 0; width:100%; }
+th,td { text-align:left; padding:8px 12px; border-bottom:1px solid #456; }
+.notice { border-left:4px solid #ffce75; padding:12px 20px; background:#192b3b; }
+@media(max-width:700px) { .grid { grid-template-columns:1fr; } main { padding:24px 16px; } }
+</style>
+</head>
+<body><main>
+<a href="bestiary.html">Back to the bestiary</a>
+<h1>Wear, tear, and terminal failure.</h1>
+<p class="notice">Asset previews, not game screenshots. All six damage stages are drawn for both cataloged creatures.
+These 1024 × 1536 source atlases need alpha cleanup, measured frame anchors, and in-game animation validation.</p>
+<table>
+<caption>Rows run top to bottom in both atlases. HP percentages are continuous, not discrete hit counts.</caption>
+<thead><tr><th>Row</th><th>State</th><th>Remaining HP</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Healthy</td><td>75% &lt; HP ≤ 100%</td></tr>
+<tr><td>2</td><td>Mild damage</td><td>50% &lt; HP ≤ 75%</td></tr>
+<tr><td>3</td><td>Moderate damage</td><td>25% &lt; HP ≤ 50%</td></tr>
+<tr><td>4</td><td>Severe damage</td><td>10% &lt; HP ≤ 25%</td></tr>
+<tr><td>5</td><td>Near death</td><td>0% &lt; HP ≤ 10%</td></tr>
+<tr><td>6</td><td>Dead</td><td>HP = 0%</td></tr>
+</tbody></table>
+<div class="grid">
+<section><h2>Flushfiend</h2>
+<p>Living columns: walk A, walk B, hop, hit recoil. Cracks become missing porcelain and stronger leaks.
+The bottom row is a four-frame collapse, splash, and settling rubble sequence.</p>
+<a href="../assets/bestiary/damage/flushfiend-damage-v1.png">
+<img src="../assets/bestiary/damage/flushfiend-damage-v1.png" width="1024" height="1536"
+alt="Flushfiend source atlas: six rows of increasingly broken porcelain, ending in rubble and water"></a>
+<p><a href="../assets/bestiary/damage/flushfiend-damage.json">Frame mapping and preparation notes</a></p></section>
+<section><h2>The Hallowed Widow</h2>
+<p>Living columns: raised wings, spread, downstroke, recovery. Feather loss and halo breakage increase with damage.
+Red eyes persist until death; the bottom row collapses into curled legs, white feathers, and halo fragments.</p>
+<a href="../assets/bestiary/damage/hallowed-widow-damage-v3.png">
+<img src="../assets/bestiary/damage/hallowed-widow-damage-v3.png" width="1024" height="1536"
+alt="Hallowed Widow source atlas: six rows of tattered white wings and damaged halos, ending with a collapsed spider"></a>
+<p><a href="../assets/bestiary/damage/the-hallowed-widow-damage.json">Frame mapping and preparation notes</a></p></section>
+</div>
+<h2>Every hit should register</h2>
+<p>Persistent damage stages do not replace immediate feedback. Every successful hit should briefly flash the current
+sprite and show an impact, even between thresholds. Flushfiend has a recoil pose in each living row.
+The Widow should retain its damaged wingbeat during the flash. Timing and small-scale readability still need engine validation.</p>
+<p>Approved direction: ordinary enemy bars hidden by default; optional “Show enemy health bars”; continuous boss bars
+plus damage visuals; exact HP and damage readouts for development only. These UI changes are not implemented here.</p>
+<p><a href="../assets/bestiary/damage/health-visuals.json">HP rules and hit-feedback specification</a> ·
+<a href="../assets/bestiary/damage/prompts-v1.json">Exact built-in imagegen prompts and revision provenance</a></p>
+</main></body></html>

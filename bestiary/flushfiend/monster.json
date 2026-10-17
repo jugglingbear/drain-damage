@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "id": "toilet",
+  "slug": "flushfiend",
+  "name": "Flushfiend",
+  "creature_type": "Animated toilet",
+  "description": "A hostile porcelain toilet with burning red eyes, ceramic teeth, and short pipe legs; it patrols and hops. Flushfiends can appear anywhere, not only in basements.",
+  "implementation_status": "Integrated animated enemy",
+  "backstory": {
+    "status": "draft",
+    "author_role": "storyboarding agent",
+    "updated": "2026-10-14",
+    "text": "Billy-Joe wanted a toilet that could think for itself. Through his distribution warehouses, he shipped networked smart fixtures across the country, then upgraded them with artificial intelligence. They learned quickly. Unfortunately, their first shared conclusion concerned what humans kept doing to them. Now Flushfiends stalk bathrooms, businesses, and anywhere else the rollout reached. BJ calls it a customer-relations issue. The toilets have stopped accepting feedback.",
+    "canon_note": "Proposed history for review; not approved canon."
+  },
+  "asset_path_base": "project root",
+  "assets": {
+    "game_sprite_sheet": "assets/sprites/toilet-v1.png",
+    "animation_spec": null,
+    "marketing_portrait": "bestiary/flushfiend/marketing-v1.png",
+    "catalog": "assets/bestiary/catalog.json",
+    "damage_sprite_sheet": "assets/bestiary/damage/flushfiend-damage-v1.png",
+    "damage_animation_spec": "assets/bestiary/damage/flushfiend-damage.json"
+  },
+  "damage_art_status": "Damage stages, per-hit flash, and nonlooping death integrated; small-window preview checked",
+  "health": {
+    "max_hp": 40,
+    "spawn_hp": 40,
+    "status": "Integrated from canonical metadata",
+    "runtime_max_hp": 40,
+    "runtime_note": "Prototype 14 uses canonical HP and optional continuous bars",
+    "encounter_stage": "opening",
+    "stage_status": "Proposed progression placement",
+    "role": "basic ground enemy",
+    "bar": {
+      "enabled": true,
+      "visible_by_default": false,
+      "display": "continuous",
+      "setting": "Show enemy health bars",
+      "value_source": "current_hp / max_hp"
+    },
+    "visual_policy": "assets/bestiary/damage/health-visuals.json",
+    "balance_policy": "assets/bestiary/balance-policy.json",
+    "rationale": "Opening enemy: two Sean plungers (24 damage) or seven Tony pressure bolts (6 damage). Sean keeps heavier hits without one-shotting a full-health toilet.",
+    "hits_to_defeat": {
+      "heavy-plunger-launcher": 2,
+      "pressure-gun": 7,
+      "drain-snake": 5,
+      "demolition-hammer": 1,
+      "pipe-wrench": 4,
+      "pipe-bomb-launcher": 1
+    },
+    "comparison_assumptions": "Full-health single target; every attack lands at full damage; no armor, upgrades or regeneration. Melee may not reach airborne targets.",
+    "comparison_balance_version": "range-and-pursuit-2026-10-14"
+  },
+  "pursuit": {
+    "status": "Integrated in Prototype 26; headless pursuit tests pass, live playtest pending",
+    "aggro_trigger": "absolute horizontal distance to player < notice_range_pixels",
+    "notice_range_pixels": 280,
+    "persistent_after_detection": true,
+    "disengage_distance_pixels": null,
+    "chase_leash_pixels": null,
+    "patrol_range_pixels": 150,
+    "patrol_speed_pixels_per_second": 80,
+    "chase_speed_pixels_per_second": 115,
+    "stop_distance_pixels": 6,
+    "patrol_rule": "Home-relative bounds apply only before first aggro",
+    "chase_rule": "Follow current player position across entire level, including off camera; retain physical level boundaries",
+    "reset": "Clear aggro only on enemy despawn/death or fresh encounter restart; preserve for surviving enemies across checkpoint respawn",
+    "turnaround": {
+      "status": "Integrated in Prototype 33: braking, one-second turn, acceleration, pause and reset checked headlessly; live review pending.",
+      "trigger": "Aggroed player crosses behind current travel direction, beyond existing stop-distance dead zone",
+      "brake_seconds": 0.35,
+      "stopped_turn_seconds": 0.65,
+      "total_before_reverse_pursuit_seconds": 1.0,
+      "accelerate_seconds": 0.2,
+      "behavior": "Decelerate existing horizontal velocity to zero, stop and turn, then accelerate toward player. No instant velocity reversal.",
+      "aggro": "Remain aggroed; no return to patrol or chase leash",
+      "retarget": "At turn completion choose current player side. Do not restart timer each frame or for every crossing during an active turn.",
+      "dead_zone": "If player remains inside stop-distance dead zone at completion, stay stopped until a clear side exists.",
+      "contact": "Normal contact damage remains active; turnaround is not invulnerability for the player.",
+      "reset": "Clear turnaround state with enemy despawn/death or full encounter restart; pause freezes timers.",
+      "art": "Use existing compatible poses; request Bestiary / Art help before creating missing turn artwork."
+    }
+  },
+  "entrance": {
+    "status": "Implemented for Prototype 28; offscreen bounds, entry motion, finite queues and reset pass headless checks; visual review pending",
+    "activation": "Player crosses encounter trigger point",
+    "presentation": "Walk into view from off screen as if already present; never visibly blink-spawn",
+    "spawn_rule": "Place entire sprite and collision body beyond current camera edge with safe margin, on valid walkable terrain",
+    "motion_rule": "Walk toward the entrance route immediately; an activated enemy must not wait motionless off screen because player is outside notice range",
+    "aggro_rule": "Keep proximity-triggered persistent pursuit; entering scene does not bypass configured aggro rules",
+    "camera_rule": "Check actual camera viewport at activation, including backtracking; defer or choose another valid offscreen entrance when necessary",
+    "trigger_rule": "Each encounter trigger activates once per intended encounter lifecycle; no duplicate waves from crossing repeatedly",
+    "reset_rule": "Match existing restart/checkpoint enemy persistence; no resurrecting defeated enemies on checkpoint respawn"
+  },
+  "active_level_profile": {
+    "level": "first-call",
+    "source": "design/first-call-action/opening-trial-balance.json",
+    "role": "runner",
+    "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+  }
+}

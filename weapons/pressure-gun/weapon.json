@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "pressure-gun",
+  "name": "Pressure Gun",
+  "owner": "tony",
+  "exclusive": true,
+  "balance_version": "range-and-pursuit-2026-10-14",
+  "status": "Integrated in Prototype 26; packaged headless checks pass; live balance playtest pending",
+  "type": "ranged",
+  "introduction": {
+    "stage": "opening",
+    "status": "Proposed progression placement"
+  },
+  "damage": 6,
+  "attack_interval_seconds": 0.15,
+  "attack_timing": "Interval is start-to-start and includes windup and recovery; damage occurs once per target per attack.",
+  "windup_seconds": 0.0,
+  "melee_reach_pixels": null,
+  "projectile": {
+    "speed_pixels_per_second": 760,
+    "max_travel_distance_pixels": 320,
+    "distance_measure": "Cumulative path length from muzzle; expire at limit",
+    "trajectory": "straight",
+    "gravity_pixels_per_second_squared": 0,
+    "launch_angle_degrees_above_horizontal": 0,
+    "on_enemy_or_solid_collision": "apply damage to enemy if present, then despawn",
+    "on_max_distance": "despawn"
+  },
+  "targeting": {
+    "shape": "single projectile",
+    "max_targets_per_attack": 1,
+    "null_target_limit_means": "All enemies within attack area"
+  },
+  "explosion": null,
+  "knockback": {
+    "strength": "light",
+    "status": "Magnitude pending physics playtest"
+  },
+  "ammunition": {
+    "mode": "unlimited",
+    "reload_seconds": 0
+  },
+  "art": {
+    "brief": "Compact brass-and-teal water gun with pressure gauge; crisp blue water bolts.",
+    "game_manifest": "weapons/pressure-gun/game-art.json",
+    "marketing_manifest": "weapons/pressure-gun/marketing-art.json"
+  },
+  "range_design": {
+    "reference_viewport_width_pixels": 960,
+    "viewport_fraction": 0.3333333333333333,
+    "measurement": "Logical world pixels traveled from muzzle; independent of window size and camera scrolling",
+    "intent": "Short ranged: beyond all current Tony melee reaches, less than half screen"
+  },
+  "aiming": {
+    "status": "Implemented in Prototype 28; headless checks pass. Directional hero presentation pending modular art; current hero pose remains horizontal.",
+    "mode": "eight_way",
+    "grounded_directions": [
+      "left",
+      "right",
+      "up",
+      "up_left",
+      "up_right",
+      "down_left",
+      "down_right"
+    ],
+    "airborne_directions": [
+      "left",
+      "right",
+      "up",
+      "up_left",
+      "up_right",
+      "down",
+      "down_left",
+      "down_right"
+    ],
+    "no_direction_input": "Fire horizontally in current facing direction",
+    "down_fire": "Down-left and down-right allowed grounded or airborne; straight down only while airborne.",
+    "grounded_down_input": "Down plus left/right aims diagonally down on ground; only straight down requires airborne state. Down alone on ground falls back to horizontal facing.",
+    "vector_rule": "Normalize diagonal direction so projectile speed and cumulative travel range match cardinal shots",
+    "range_rule": "Keep existing max_travel_distance_pixels in every direction",
+    "input_note": "Preserve keyboard and controller support. Resolve existing up-to-jump binding conflict so aiming up does not unintentionally jump.",
+    "art_note": "Directional held-weapon/hero poses require Bestiary / Art collaboration before new artwork is created",
+    "visual_aim": {
+      "status": "Approved correction; Engineering integration pending",
+      "independent_of_fire": true,
+      "rule": "Continuously display current valid aim direction while aiming, whether idle, moving, airborne, firing or between shots.",
+      "release_fire": "Keep the aimed pose while directional input remains held; never reset orientation merely because firing/recoil animation ends.",
+      "release_aim": "Use existing no_direction_input horizontal-facing fallback when directional input is released; no new aim-lock behavior.",
+      "alignment": "Held weapon, arm pose and projectile muzzle direction must share current aim; firing adds recoil/flash without controlling aim orientation.",
+      "restrictions": "Only straight-down aim is airborne-only. Landing preserves downward diagonal aim; grounded straight-down falls back horizontally."
+    },
+    "movement_animation_requirement": "Use locomotion animation independently of held aim. Every valid aim must preserve moving legs while running and appropriate takeoff/rise/apex/fall/landing poses while jumping.",
+    "direction_revision_status": "Grounded downward diagonals and locomotion audit approved; Engineering integration pending"
+  },
+  "active_level_profile": {
+    "level": "first-call",
+    "since_build": "Prototype45",
+    "source": "design/first-call-action/opening-trial-balance.json",
+    "entry": "weapons.pressure-gun",
+    "note": "Default first-level playtest uses this faster balance; top-level values retain the original baseline for comparison."
+  }
+}

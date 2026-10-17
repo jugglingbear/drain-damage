@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "id": "clogfather-encounter",
+  "name": "The Clogfather",
+  "updated": "2026-10-14",
+  "status": "Proposed encounter mechanics; no runtime implementation or playtest validation",
+  "scope": "First mission boss; rooted giant fatberg with moving pipe mouths and extensions.",
+  "canonical_metadata_note": "Bestiary owns monster.json and artwork. This encounter proposal is not registered as a playable creature. Promote accepted HP into monster.json.health before runtime integration; runtime must not read duplicate health values from this proposal.",
+  "story_boundaries": [
+    "Giant fatberg appearance is locked; mechanics and numeric tuning here are proposals.",
+    "Billy-Joe (BJ) is the AI; preserve selected playable plumber and separate support dialogue.",
+    "Post-boss portal is a proposed story beat. Destination, cause and connection to BJ remain unresolved.",
+    "No combat mechanic establishes proposed Flushfiend origins as canon."
+  ],
+  "health_proposal": {
+    "max_hp": 720,
+    "spawn_hp": 720,
+    "runtime_max_hp": null,
+    "encounter_stage": "first_mission_finale",
+    "role": "stationary boss",
+    "bar": {
+      "enabled": true,
+      "visible_by_default": true,
+      "display": "continuous",
+      "presentation_policy": "assets/bestiary/damage/health-visuals.json#boss_hud",
+      "placement": "screen_top_center",
+      "show_name": true
+    },
+    "visual_policy": "assets/bestiary/damage/health-visuals.json",
+    "balance_policy": "assets/bestiary/balance-policy.json",
+    "rationale": "720 HP now requires 30 Sean plungers or 120 Tony pressure bolts. Sustained DPS is 24 versus 40; boss window/fight duration needs rebalancing after the starter-weapon nerf.",
+    "hits_to_defeat": {
+      "heavy-plunger-launcher": 30,
+      "pressure-gun": 120,
+      "drain-snake": 90,
+      "demolition-hammer": 12,
+      "pipe-wrench": 60,
+      "pipe-bomb-launcher": 12
+    },
+    "comparison_assumptions": "Full damage against exposed weak point, no armor/upgrades/regeneration; all hits land. Counts do not include travel time, windup or overkill on summoned enemies.",
+    "fight_duration_target_seconds": [
+      40,
+      75
+    ],
+    "duration_status": "Unvalidated target; reassess after Sean damage drops to 24 and starting weapon ranges become 320/480 pixels.",
+    "comparison_balance_version": "range-and-pursuit-2026-10-14"
+  },
+  "arena": {
+    "viewport_reference_pixels": [
+      960,
+      540
+    ],
+    "layout": "Fixed camera, rooted body at right edge, flat continuous combat floor; no pits or required moving platforms.",
+    "proposed_clear_floor_width_pixels": 640,
+    "weak_point": "Low forward pipe mouth extends into the arena at standing projectile height during recovery.",
+    "weak_point_maximum_distance_from_main_firing_lane_pixels": 280,
+    "melee_approach": "Expose within 60 pixels of a safe standing position; body contact damage disabled throughout recovery.",
+    "minimum_safe_corridor_width_pixels": 180,
+    "reachability_rule": "Each hazard plan must leave a reachable connected safe corridor from current player position using the slower plumber. Validate travel time including acceleration and collision width; skip unsafe attacks.",
+    "support_character": "Off combat floor; does not attack, block projectiles, trigger hazards or become a required target."
+  },
+  "damage_to_player": {
+    "legacy_prototype_profile": {
+      "damage_per_hit": 1,
+      "player_max_hp_reference": 5,
+      "invulnerability_seconds": 1.5
+    },
+    "future_numeric_profile": {
+      "sludge_damage": 15,
+      "acid_damage": 15,
+      "body_contact_damage": 20,
+      "status": "Proposed for 75/100 or 80/100 player health; blocked on final player health and full damage-scale migration"
+    },
+    "rule": "Use one explicit damage scale per build. Never apply 15/20 damage to current 5-HP players. Do not scale damage as a fraction of each hero max HP, which would erase Sean endurance advantage.",
+    "contact_rule": "Moving decorative pipes do not damage. Root body has a clearly marked collision boundary; contact can hurt only outside recovery.",
+    "damage_events": "One hit per collision event; shared invulnerability across boss, acid and summons prevents stacked damage."
+  },
+  "weak_point": {
+    "closed_damage_multiplier": 0,
+    "open_damage_multiplier": 1,
+    "recovery_seconds": 5.0,
+    "approach_grace_seconds": 0.8,
+    "recovery_timer_starts": "After hazards are harmless and approach grace expires; mouth is already visible/open during grace.",
+    "opening_cue": "Pipe uncoils and valve shutters spread; distinct release sound and shape change, not color alone.",
+    "closing_warning_seconds": 0.75,
+    "closed_hit_feedback": "Distinct harmless deflection splash; no false damage flash or boss HP change.",
+    "collision": "Exposed weak-point collider overrides body shell so shots and melee can hit it.",
+    "damage_deduplication": "At most one boss damage application per attack/projectile/explosion, even when several pipe colliders overlap.",
+    "phase_transition": "Queue threshold changes until current recovery ends; never truncate a promised window. Lethal damage starts death immediately."
+  },
+  "patterns": {
+    "sludge_volley": {
+      "telegraph_seconds": 0.9,
+      "cue": "Selected pipe inflates, rattles and aims; show the firing lane.",
+      "projectile_speed_pixels_per_second": 210,
+      "shot_spacing_seconds": 0.45,
+      "projectile_max_lifetime_seconds": 2.5,
+      "aim": "Ground-height lane at windup start; no homing and no retargeting during volley.",
+      "counterplay": "Jump over the separated low shots or remain in reserved safe corridor; no overhead shots in the same volley.",
+      "finish": "Wait until every projectile is gone, then approach grace and recovery."
+    },
+    "ceiling_acid": {
+      "telegraph_seconds": 1.2,
+      "cue": "Ceiling drips plus outlined floor stripes and hissing sound; warning footprint includes full splash radius.",
+      "locked_warning_positions": true,
+      "max_total_marked_floor_fraction": 0.35,
+      "minimum_safe_corridor_width_pixels": 180,
+      "fall_duration_seconds": 0.6,
+      "puddle_duration_seconds": 0.8,
+      "counterplay": "Walk out of marked columns; chosen corridor must be reachable before impact.",
+      "finish": "Clear every falling drop and puddle before approach grace and recovery."
+    },
+    "summon_flushfiend": {
+      "creature_id": "toilet",
+      "health_source": "bestiary/flushfiend/monster.json#health",
+      "count": 1,
+      "max_live_summons": 1,
+      "telegraph_seconds": 1.2,
+      "minimum_spawn_distance_from_player_pixels": 180,
+      "cue": "A side pipe shakes; mark the exit before spawning.",
+      "counterplay": "Boss pauses attacks while the player clears the add; never spawn into a blocked escape route.",
+      "finish": "After add death, cancel its contact damage immediately and begin approach grace plus recovery.",
+      "fallback": "If no safe spawn location exists, skip summon and enter recovery."
+    }
+  },
+  "phases": [
+    {
+      "id": "one",
+      "hp_fraction_min_exclusive": 0.6666666666666666,
+      "hp_fraction_max_inclusive": 1,
+      "loop": [
+        "sludge_volley",
+        "ceiling_acid"
+      ],
+      "sludge_shots": 3,
+      "acid_columns": 2
+    },
+    {
+      "id": "two",
+      "hp_fraction_min_exclusive": 0.3333333333333333,
+      "hp_fraction_max_inclusive": 0.6666666666666666,
+      "loop": [
+        "sludge_volley",
+        "ceiling_acid",
+        "summon_flushfiend"
+      ],
+      "sludge_shots": 4,
+      "acid_columns": 2
+    },
+    {
+      "id": "three",
+      "hp_fraction_min_exclusive": 0,
+      "hp_fraction_max_inclusive": 0.3333333333333333,
+      "loop": [
+        "ceiling_acid",
+        "sludge_volley",
+        "summon_flushfiend"
+      ],
+      "sludge_shots": 4,
+      "acid_columns": 3
+    }
+  ],
+  "scheduler": {
+    "sequence": [
+      "pattern telegraph",
+      "single active pattern",
+      "hazard clear",
+      "approach grace",
+      "five-second recovery",
+      "next pattern"
+    ],
+    "one_pattern_at_a_time": true,
+    "cooldown_between_patterns_seconds": 0.5,
+    "rules": [
+      "No sludge during acid or live summons.",
+      "Never shorten telegraphs in later phases.",
+      "Later phases add coverage, not simultaneous unavoidable hazards.",
+      "Start each phase at the first item of its loop; phase advancement occurs after recovery.",
+      "At HP zero cancel queued patterns, hazards, summons and contact damage before starting death animation."
+    ]
+  },
+  "optional_valves": {
+    "status": "Optional prototype experiment; fight must remain beatable without valves",
+    "count": 2,
+    "interaction": "Explicit interact action at valve, not weapon hit; bind through normal input settings.",
+    "hold_seconds": 0.4,
+    "shared_uses_per_phase": 1,
+    "availability": "Only during a telegraph with a safely reachable valve; never while recovery is already open.",
+    "effect": "Interrupt telegraph, consume the shared phase charge, and enter normal approach grace plus five-second recovery.",
+    "restrictions": "No chaining, no damage multiplier, no health cost, no mandatory character swap or support action.",
+    "readability": "Mechanical latch and pressure gauge show ready/spent state; both valves share the same charge."
+  },
+  "defeat_and_retry": {
+    "defeat": "Clear danger immediately, play nonlooping collapse, leave harmless fatberg wreckage, then emit boss_defeated.",
+    "portal": "Optional story listener may reveal portal after collapse; no portal destination or cause encoded in combat.",
+    "checkpoint": "Before arena, full selected-character health on retry; restore boss HP, phase, valves, timers and adds.",
+    "dialogue": "Opening banter skippable and omitted automatically on repeated attempts; gameplay hazards paused during dialogue."
+  },
+  "art_requirements": [
+    "Rooted fatberg body and independently moving pipe mouths/extensions.",
+    "Six existing health states; phase tells separate from HP damage-stage appearance.",
+    "Sludge windup, firing, acid warning, summon warning, weak-point opening/closing, stagger and nonlooping collapse.",
+    "Sludge projectile, acid drop/puddle, telegraph footprints, valve ready/spent and weak-point hit effect.",
+    "Shared anchors and collision-readable silhouettes; no frame-by-frame body rescaling."
+  ],
+  "acceptance_checks": [
+    "Both starting ranged weapons can defeat the boss without unlocks, valves or support-character actions.",
+    "Exact health-state boundaries follow shared policy; phase thresholds tested at 480 and 240 HP.",
+    "At least one connected safe corridor is reachable with current 235-pixel/second movement and collision geometry.",
+    "Five-second recovery survives phase transitions; death overrides everything immediately.",
+    "No damage is applied twice through body/weak-point collider overlap or splash.",
+    "Acid targeting freezes when warning starts; later patterns cannot occupy the promised safe corridor.",
+    "Melee-only future loadouts can reach the weak point without contact damage during recovery.",
+    "Pause, retry and death clear timers, hazards and summon state; optional valves cannot be spammed.",
+    "Test both legacy and future damage scales separately; reject mismatched player-health configuration.",
+    "Measure completion time with both plumbers before accepting 720 HP and the 40\u201375-second target."
+  ]
+}

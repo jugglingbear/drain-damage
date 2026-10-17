@@ -1,0 +1,185 @@
+{
+  "date": "2026-10-16",
+  "status": "Labeled concept overview; not runtime sprite atlas or mechanics approval",
+  "image": "weapons/roster-mockup/weapon-roster-v1.png",
+  "entries": [
+    {
+      "id": "pipe-wrench",
+      "name": "Pipe Wrench",
+      "range_category": "melee",
+      "range_pixels": 60,
+      "status": "catalog design; not playable",
+      "owner": "tony",
+      "source": "weapons/pipe-wrench/weapon.json"
+    },
+    {
+      "id": "drain-snake",
+      "name": "Drain Snake",
+      "range_category": "melee",
+      "range_pixels": 140,
+      "status": "catalog design; not playable",
+      "owner": "tony",
+      "source": "weapons/drain-snake/weapon.json"
+    },
+    {
+      "id": "pressure-gun",
+      "name": "Pressure Gun",
+      "range_category": "short-range",
+      "range_pixels": 320,
+      "status": "playable starter",
+      "owner": "tony",
+      "source": "weapons/pressure-gun/weapon.json"
+    },
+    {
+      "id": "demolition-hammer",
+      "name": "Demolition Hammer",
+      "range_category": "melee",
+      "range_pixels": 75,
+      "status": "catalog design; not playable",
+      "owner": "sean",
+      "source": "weapons/demolition-hammer/weapon.json"
+    },
+    {
+      "id": "heavy-plunger-launcher",
+      "name": "Heavy Plunger Launcher",
+      "range_category": "short-range",
+      "range_pixels": 480,
+      "status": "playable starter",
+      "owner": "sean",
+      "source": "weapons/heavy-plunger-launcher/weapon.json"
+    },
+    {
+      "id": "pipe-bomb-launcher",
+      "name": "Pipe-Bomb Launcher",
+      "range_category": "long-range",
+      "range_pixels": 500,
+      "status": "catalog design; not playable",
+      "owner": "sean",
+      "source": "weapons/pipe-bomb-launcher/weapon.json"
+    },
+    {
+      "id": "kinetic-air-ram",
+      "name": "Kinetic air ram",
+      "range_category": "short-range",
+      "range_status": "provisional visual classification; no balance approval",
+      "status": "idea only",
+      "owner": null,
+      "source": "weapons/tony-ideas.json",
+      "notes": {
+        "id": "kinetic-air-ram",
+        "name": "Kinetic air ram",
+        "working_nickname": "Ass blaster",
+        "concept": "A blast of air damages an enemy and pushes it away.",
+        "visual_reference": "Screenshot shows a cylindrical metal hand-operated drain air ram with pistol grip and black rubber nozzle.",
+        "owner": null
+      }
+    },
+    {
+      "id": "toilet-auger",
+      "name": "Toilet auger",
+      "range_category": "melee",
+      "range_status": "provisional visual classification; no balance approval",
+      "status": "idea only",
+      "owner": null,
+      "source": "weapons/tony-ideas.json",
+      "notes": {
+        "id": "toilet-auger",
+        "name": "Toilet auger",
+        "concept": "Medium-range whip-like attack; Tony references Castlevania for attack feel.",
+        "relationship_to_existing_weapons": "May overlap with the proposed drain snake; decide whether to revise that weapon or make a distinct tool.",
+        "owner": null
+      }
+    },
+    {
+      "id": "plunger-water-wave",
+      "name": "Plunger water-wave special",
+      "range_category": "long-range",
+      "range_status": "provisional visual classification; no balance approval",
+      "status": "idea only",
+      "owner": null,
+      "source": "weapons/tony-ideas.json",
+      "notes": {
+        "id": "plunger-water-wave",
+        "name": "Plunger water-wave special",
+        "concept": "Plant the plunger on the ground and struggle against a large clog, then unleash a full-screen wave of water that damages or kills enemies.",
+        "owner": null,
+        "ownership_note": "Tony addresses Sean as your character; likely intended for Sean, but confirm later."
+      }
+    },
+    {
+      "id": "soldering-torch",
+      "name": "Soldering B-tank and torch",
+      "range_category": "short-range",
+      "range_status": "provisional visual classification; no balance approval",
+      "status": "idea only",
+      "owner": null,
+      "source": "weapons/tony-ideas.json",
+      "notes": {
+        "id": "soldering-torch",
+        "name": "Soldering B-tank and torch",
+        "concept": "A flamethrower-style weapon.",
+        "owner": null
+      }
+    },
+    {
+      "id": "three-foot-pipe-wrench",
+      "name": "Three-foot pipe wrench",
+      "range_category": "melee",
+      "range_status": "provisional visual classification; no balance approval",
+      "status": "idea only",
+      "owner": null,
+      "source": "weapons/tony-ideas.json",
+      "notes": {
+        "id": "three-foot-pipe-wrench",
+        "name": "Three-foot pipe wrench",
+        "concept": "A large melee weapon swung like a sword.",
+        "relationship_to_existing_weapons": "May overlap with the existing pipe-wrench concept; size and character ownership remain open.",
+        "owner": null
+      }
+    },
+    {
+      "id": "drain-machine-special",
+      "name": "Drain-machine cable special",
+      "range_category": "long-range",
+      "range_status": "provisional visual classification; no balance approval",
+      "status": "idea only",
+      "owner": "tony",
+      "source": "weapons/tony-ideas.json",
+      "notes": {
+        "id": "drain-machine-special",
+        "name": "Drain-machine cable special",
+        "reference_equipment": "Spartan 1065, named by Tony; reference only, not a final in-game brand or name",
+        "concept": "Tony pulls out a drain machine and launches its cable across the screen. Powerful, strictly linear attack at his current elevation.",
+        "owner": "tony",
+        "ownership_status": "Suggested by Tony; not implementation approval"
+      }
+    },
+    {
+      "id": "pressure-fan",
+      "name": "Pressure Fan",
+      "range_category": "short-range",
+      "range_pixels_proposed": 280,
+      "status": "idea only; temporary pickup proposal",
+      "owner": "tony",
+      "source": "handoffs/first-level-run-and-gun-balance.json#pickups.first_pair"
+    }
+  ],
+  "range_notes": [
+    "Melee includes extended physical cable reach.",
+    "Both starters remain short-range; plunger reaches half of the960px logical screen.",
+    "Pipe-Bomb Launcher labeled long-range relative to this roster; current design travel limit500px is only slightly beyond plunger480px.",
+    "Wave and drain-machine concepts are screen-wide specials, not ordinary ranged weapons.",
+    "Kinetic Air Ram also has working nickname Ass blaster; pickup proposal is the same concept, not an extra weapon.",
+    "Toilet auger/drain snake and giant/standard wrench remain separate proposals until design resolves overlap."
+  ],
+  "counts": {
+    "catalog": 6,
+    "ideas": 7,
+    "total": 13
+  },
+  "dimensions": [
+    1086,
+    1448
+  ],
+  "validation": "All13 named weapons/concepts and range/status labels visually inspected; mockup only."
+}

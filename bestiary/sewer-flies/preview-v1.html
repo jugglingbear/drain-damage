@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sewer Flies — animation mockup</title>
+<style>
+body{background:#101c24;color:#eee8d8;font:17px system-ui;margin:32px auto;max-width:1100px;padding:20px}
+button,select{font:inherit;padding:8px;margin:8px;background:#243a43;color:white;border:1px solid #8ae4bf}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+article{background:#21313a;padding:16px;border-radius:12px}canvas{width:256px;height:256px;image-rendering:pixelated}
+a{color:#8ae4bf}p{line-height:1.5}small{color:#bbc9ca}
+</style>
+<h1>Sewer Flies</h1>
+<p>Sprite-sheet mockup: a compact swarm that wanders slowly without chasing.
+Contact harms heroes and monsters. This preview is not gameplay.</p>
+<button id="pause">Pause</button><button id="replay">Replay death</button>
+<label>Display scale <select id="scale"><option value="4">4× inspection</option><option value="1">1× proposed game size</option></select></label>
+<div class="grid" id="grid"></div>
+<p>Rows: hover, up, down, left, right, death. Four frames per row. Movement rows animate in place;
+the game would move the swarm separately. Death plays once and disappears.</p>
+<p>Proposed size: 64×64 canvas containing roughly a 40–48 pixel swarm. Mechanics proposal: 12HP,
+two Tony shots or one Sean plunger. Damage and movement tuning remain proposals.</p>
+<p><a href="../../assets/bestiary/sewer-flies/swarm-mockup-v1.png">Original sprite sheet</a> ·
+<a href="../../handoffs/sewer-fly-mechanics.json">Mechanics proposal</a> ·
+<a href="art-prompts-v1.json">Exact generation prompt</a></p>
+<small>Generated with built-in imagegen. Frame continuity, contact-core readability and game integration await review.</small>
+<script>
+const names=['Hover','Moving up','Moving down','Moving left','Moving right','Death'];
+const canvases=names.map(name=>{
+ const card=document.createElement('article');const title=document.createElement('h2');title.textContent=name;
+ const canvas=document.createElement('canvas');canvas.width=64;canvas.height=64;canvas.setAttribute('aria-label',name+' animation mockup');
+ card.append(title,canvas);document.querySelector('#grid').append(card);return canvas;
+});
+const sheet=new Image();sheet.src='../../assets/bestiary/sewer-flies/swarm-mockup-v1.png';
+let elapsed=0,deathTime=0,last=0,paused=false;
+document.querySelector('#pause').onclick=event=>{paused=!paused;event.target.textContent=paused?'Resume':'Pause';};
+document.querySelector('#replay').onclick=()=>{deathTime=0;};
+document.querySelector('#scale').onchange=event=>{canvases.forEach(c=>{c.style.width=c.style.height=(64*Number(event.target.value))+'px';});};
+function draw(now){
+ const dt=last?Math.min((now-last)/1000,.1):0;last=now;
+ if(!paused){elapsed+=dt;deathTime+=dt;}
+ canvases.forEach((canvas,row)=>{
+  const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,64,64);
+  if(row===5&&deathTime>=.64)return;
+  const frame=row===5?Math.floor(deathTime/.16):Math.floor(elapsed/.12)%4;
+  ctx.drawImage(sheet,frame*256,row*256,256,256,0,0,64,64);
+ });requestAnimationFrame(draw);
+}
+sheet.onload=()=>requestAnimationFrame(draw);
+sheet.onerror=()=>{document.querySelector('#grid').textContent='Sprite sheet could not be loaded.';};
+</script>
+</html>

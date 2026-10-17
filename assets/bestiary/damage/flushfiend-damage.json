@@ -1,0 +1,437 @@
+{
+  "schema_version": 1,
+  "creature_id": "toilet",
+  "status": "All six damage states drawn as source artwork; not validated runtime animation or integrated gameplay",
+  "image": "assets/bestiary/damage/flushfiend-damage-v1.png",
+  "dimensions": {
+    "width": 1024,
+    "height": 1536
+  },
+  "layout": {
+    "columns": 4,
+    "rows": 6,
+    "nominal_cell_width": 256,
+    "nominal_cell_height": 256
+  },
+  "health_policy": "assets/bestiary/damage/health-visuals.json",
+  "prompts": "assets/bestiary/damage/prompts-v1.json",
+  "living_columns": [
+    "walk_a",
+    "walk_b",
+    "hop",
+    "hit_recoil"
+  ],
+  "states": [
+    {
+      "id": "healthy",
+      "min_exclusive": 0.75,
+      "max_inclusive": 1.0,
+      "row": 0,
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cue": "Intact porcelain"
+    },
+    {
+      "id": "mild",
+      "min_exclusive": 0.5,
+      "max_inclusive": 0.75,
+      "row": 1,
+      "frames": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cue": "Tank crack and small leak"
+    },
+    {
+      "id": "moderate",
+      "min_exclusive": 0.25,
+      "max_inclusive": 0.5,
+      "row": 2,
+      "frames": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "cue": "Branching cracks and rim chips"
+    },
+    {
+      "id": "severe",
+      "min_exclusive": 0.1,
+      "max_inclusive": 0.25,
+      "row": 3,
+      "frames": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "cue": "Missing tank corner and heavy leaks"
+    },
+    {
+      "id": "near_death",
+      "min_exclusive": 0.0,
+      "max_inclusive": 0.1,
+      "row": 4,
+      "frames": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "cue": "Broken bowl, tilted tank, weak eyes"
+    },
+    {
+      "id": "dead",
+      "equals": 0.0,
+      "row": 5,
+      "frames": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "cue": "Shattering porcelain, final splash, rubble"
+    }
+  ],
+  "death": {
+    "frames": [
+      20,
+      21,
+      22,
+      23
+    ],
+    "loop": false,
+    "suggested_fps": 8,
+    "hold_final_frame": true
+  },
+  "alignment": {
+    "validated": false,
+    "anchor": "Ground contact midpoint",
+    "instructions": "Use one shared body scale. Measure per-frame anchor offsets before integration; do not fit each opaque bounding box independently."
+  },
+  "validation": {
+    "visual_review": "Six rows and four columns present; cumulative damage and death silhouettes reviewed",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_percent": 41.95,
+    "remaining": [
+      "Clean translucent fringes",
+      "Validate cell gutters and anchors",
+      "Check damage readability at actual gameplay size",
+      "Validate animation timing and hit feedback in engine"
+    ]
+  },
+  "living_loop": {
+    "columns": [
+      0,
+      1
+    ],
+    "suggested_fps": 8
+  },
+  "runtime_preparation": {
+    "alpha_cutoff": 0.8,
+    "reference_body_height_pixels": 195,
+    "frames": [
+      {
+        "region": [
+          0,
+          0,
+          256,
+          235
+        ],
+        "anchor": [
+          143,
+          218
+        ]
+      },
+      {
+        "region": [
+          256,
+          0,
+          256,
+          235
+        ],
+        "anchor": [
+          139,
+          218
+        ]
+      },
+      {
+        "region": [
+          512,
+          0,
+          256,
+          235
+        ],
+        "anchor": [
+          138,
+          218
+        ]
+      },
+      {
+        "region": [
+          768,
+          0,
+          256,
+          235
+        ],
+        "anchor": [
+          144,
+          218
+        ]
+      },
+      {
+        "region": [
+          0,
+          235,
+          256,
+          235
+        ],
+        "anchor": [
+          143,
+          215
+        ]
+      },
+      {
+        "region": [
+          256,
+          235,
+          256,
+          235
+        ],
+        "anchor": [
+          139,
+          215
+        ]
+      },
+      {
+        "region": [
+          512,
+          235,
+          256,
+          235
+        ],
+        "anchor": [
+          138,
+          215
+        ]
+      },
+      {
+        "region": [
+          768,
+          235,
+          256,
+          235
+        ],
+        "anchor": [
+          144,
+          215
+        ]
+      },
+      {
+        "region": [
+          0,
+          470,
+          256,
+          240
+        ],
+        "anchor": [
+          143,
+          222
+        ]
+      },
+      {
+        "region": [
+          256,
+          470,
+          256,
+          240
+        ],
+        "anchor": [
+          139,
+          222
+        ]
+      },
+      {
+        "region": [
+          512,
+          470,
+          256,
+          240
+        ],
+        "anchor": [
+          138,
+          222
+        ]
+      },
+      {
+        "region": [
+          768,
+          470,
+          256,
+          240
+        ],
+        "anchor": [
+          144,
+          222
+        ]
+      },
+      {
+        "region": [
+          0,
+          710,
+          256,
+          250
+        ],
+        "anchor": [
+          143,
+          235
+        ]
+      },
+      {
+        "region": [
+          256,
+          710,
+          256,
+          250
+        ],
+        "anchor": [
+          139,
+          235
+        ]
+      },
+      {
+        "region": [
+          512,
+          710,
+          256,
+          250
+        ],
+        "anchor": [
+          138,
+          235
+        ]
+      },
+      {
+        "region": [
+          768,
+          710,
+          256,
+          250
+        ],
+        "anchor": [
+          144,
+          235
+        ]
+      },
+      {
+        "region": [
+          0,
+          960,
+          256,
+          255
+        ],
+        "anchor": [
+          143,
+          242
+        ]
+      },
+      {
+        "region": [
+          256,
+          960,
+          256,
+          255
+        ],
+        "anchor": [
+          139,
+          242
+        ]
+      },
+      {
+        "region": [
+          512,
+          960,
+          256,
+          255
+        ],
+        "anchor": [
+          138,
+          242
+        ]
+      },
+      {
+        "region": [
+          768,
+          960,
+          256,
+          255
+        ],
+        "anchor": [
+          144,
+          242
+        ]
+      },
+      {
+        "region": [
+          0,
+          1215,
+          256,
+          321
+        ],
+        "anchor": [
+          143,
+          290
+        ]
+      },
+      {
+        "region": [
+          256,
+          1215,
+          256,
+          321
+        ],
+        "anchor": [
+          139,
+          290
+        ]
+      },
+      {
+        "region": [
+          512,
+          1215,
+          256,
+          321
+        ],
+        "anchor": [
+          138,
+          290
+        ]
+      },
+      {
+        "region": [
+          768,
+          1215,
+          256,
+          321
+        ],
+        "anchor": [
+          144,
+          290
+        ]
+      }
+    ],
+    "status": "Integrated; visual preview checked",
+    "method": "Shared scale; measured row ground anchors",
+    "source_preserved": true
+  }
+}

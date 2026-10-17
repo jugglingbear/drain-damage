@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "weapon_id": "pressure-gun",
+  "assigned_to": "Bestiary",
+  "status": "Nine source-art cells delivered; runtime slicing, anchors, alpha cleanup, and integration pending",
+  "style": "Chunky SNES-inspired pixel art with navy outlines",
+  "path_base": "project root",
+  "source_brief": "Compact brass-and-teal water gun with pressure gauge; crisp blue water bolts.",
+  "mechanics_source": "weapons/pressure-gun/weapon.json",
+  "assets": [
+    {
+      "path": "assets/weapons/pressure-gun/atlas-v2.png",
+      "kind": "source_atlas",
+      "width": 1254,
+      "height": 1254,
+      "columns": 3,
+      "rows": 3,
+      "frames": [
+        {
+          "index": 0,
+          "role": "inventory_icon",
+          "nominal_region_px": [
+            0,
+            0,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "visual center",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 1,
+          "role": "held_ready",
+          "nominal_region_px": [
+            418,
+            0,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 2,
+          "role": "fire_recoil",
+          "nominal_region_px": [
+            836,
+            0,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 3,
+          "role": "recovered",
+          "nominal_region_px": [
+            0,
+            418,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 4,
+          "role": "projectile_a",
+          "nominal_region_px": [
+            418,
+            418,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "projectile center",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 5,
+          "role": "projectile_b",
+          "nominal_region_px": [
+            836,
+            418,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "projectile center",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 6,
+          "role": "impact_onset",
+          "nominal_region_px": [
+            0,
+            836,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 7,
+          "role": "impact_peak",
+          "nominal_region_px": [
+            418,
+            836,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 8,
+          "role": "impact_dissipate",
+          "nominal_region_px": [
+            836,
+            836,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        }
+      ]
+    }
+  ],
+  "preserved_previous_assets": [
+    "assets/weapons/pressure-gun/atlas-v1.png"
+  ],
+  "prompts": [
+    {
+      "tool": "Built-in image_gen",
+      "output": "assets/weapons/pressure-gun/atlas-v1.png",
+      "prompt": "Use case: stylized-concept. Create original game-ready source pixel-art weapon atlas for Tony's PRESSURE GUN in a SNES-inspired side scrolling plumbing action game. Design matches existing character weapon: compact silver industrial washer barrel, dark teal pistol grip and housing, narrow brass nozzle, small brass fittings. Not a real firearm, no bullets. Crisp chunky pixels, dark navy outlines, limited silver/teal/brass palette, cyan water. EXACTLY 3 columns by 3 rows, equal square cells, transparent 1536x1536 canvas, generous gutters, all art wholly contained. No character, hands, text, labels or borders. Row1 col1 inventory icon of complete gun diagonally, col2 held ready gun horizontally aimed RIGHT, col3 gun firing/recoil horizontally RIGHT with short separate-at-tip cyan water pulse. Row2 col1 gun recovered horizontal RIGHT same grip anchor and same scale as ready, col2 isolated compact cyan water-bolt projectile elongated RIGHT, col3 second frame same water bolt with slightly changed droplets. Row3 col1 small cyan water impact splash onset, col2 larger radial water impact burst, col3 dissipating droplets. Gun grip anchor in horizontal tool cells at same relative position; projectile cells same centerline; impact cells centered at exact center. Keep weapon shape identical across poses, effect scales appropriate for gun. GENUINE transparent alpha zero background, opaque sprite interiors. No gray haze, gradients behind sprites or ground shadow. This is an asset sheet, not a marketing illustration."
+    },
+    {
+      "tool": "Built-in image_gen",
+      "output": "assets/weapons/pressure-gun/atlas-v2.png",
+      "prompt": "Use case: precise-object-edit. Edit only the four pressure-gun sprites in this 3x3 atlas: ADD a small round cream-faced pressure GAUGE with brass rim and dark needle on top of each gun, and change the silver main barrel sleeve to warm BRASS. Preserve teal grip/housing, brass nozzle, exact sprite poses, positions, scales, cyan water projectiles and impacts unchanged. Keep all nine cells, transparent background and chunky pixel style. No text numbers labels. Ensure the gauge is clearly visible but compact. Preserve transparency."
+    }
+  ],
+  "animation_spec": {
+    "status": "Proposed sequence; time from weapon.json, not generation spacing",
+    "idle": {
+      "frames": [
+        1
+      ],
+      "loop": true
+    },
+    "attack": {
+      "frames": [
+        2,
+        3,
+        1
+      ],
+      "loop": false,
+      "timing": "Use windup_seconds and attack_interval_seconds in mechanics_source; damage event is separate."
+    },
+    "impact": {
+      "frames": [
+        6,
+        7,
+        8
+      ],
+      "loop": false,
+      "suggested_frame_seconds": 0.04
+    },
+    "projectile": {
+      "frames": [
+        4,
+        5
+      ],
+      "loop": true,
+      "suggested_fps": 12,
+      "motion": "Use trajectory, speed, gravity and expiration from mechanics_source."
+    }
+  },
+  "validation": {
+    "runtime_ready": false,
+    "visual_review": "Weapon, icon, attack/projectile and impact subjects present",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_percent": 78.83
+  },
+  "integration_notes": [
+    "Source sheet is visually reviewed, not a validated runtime atlas.",
+    "Generated sprites can cross nominal cell edges; inspect and isolate regions before import.",
+    "Measure per-frame grip pivots and muzzle sockets; preserve one weapon scale across held poses.",
+    "Do not fit every frame to its opaque bounds; that changes tool scale and grip alignment.",
+    "Existing character sheets include baked-in weapons. Clean hand/body layers are needed before attaching these tools.",
+    "Mirror held sprites for left-facing play; effects should use their contact or muzzle origin.",
+    "Visual effects do not define collision, damage, reach, travel distance, or blast radius.",
+    "Clean alpha fringes and validate readable icons and effects at gameplay size.",
+    "Fire pose includes muzzle effect; prevent duplicate effect/projectile rendering at release."
+  ]
+}

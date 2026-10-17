@@ -1,0 +1,62 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-10-13",
+  "prompt": "Use case: identity-preserve. Edit reference spider into a FLYING SPIDER game animation sprite atlas. Reference image is the approved creature identity and chunky pixel-art style. Preserve charcoal-teal hairy abdomen, clustered glowing coral eyes, ivory curved fangs, eight bristly jointed spider legs, dark navy outlines. ADD one pair of enormous creepy membranous bat-like wings attached to thorax, teal-gray membranes with readable finger struts. Wings are additional appendages, not replacement legs. Create exactly SIX full-body poses in a precise 3-column by 2-row equal-cell grid, landscape canvas 1536x1024. Each cell 512x512. All face LEFT in consistent three-quarter side view, same body scale and body center at each cell center. Row 1 left to right: flight cycle A wings high raised, B wings outstretched horizontal, C wings downstroke lowered. Row 2 left to right: flight cycle D wings recovering half raised, forward flight leaning slightly into travel with legs tucked and wings raised, hurt airborne recoil with legs curled and wings half folded. First four poses form a looping wingbeat. Clearly different wing angles. Legs hang curled under body while flying. Maintain identical creature proportions, eye pattern and wing design. Every creature including all wing tips entirely inside its own cell with at least 8% transparent margin; no overlap. Crisp chunky SNES-style pixel clusters, limited palette, no soft halos or glow outside silhouette. GENUINE transparent empty background, no background scene, no shadows, no text, no labels, no cell outlines. No gore. Production sprite source sheet.",
+  "image": "assets/bestiary/flying-spider-atlas-v1.png",
+  "status": "Animation source artwork; alignment and slicing need refinement before runtime use",
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "order": "row-major, zero-based"
+  },
+  "frames": [
+    "wings raised",
+    "wings spread",
+    "downstroke",
+    "recovery",
+    "forward flight",
+    "hurt recoil"
+  ],
+  "suggested_animations": {
+    "hover": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "movement": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "fps": 10,
+      "loop": true
+    },
+    "forward_flight_pose": {
+      "frames": [
+        4
+      ],
+      "loop": false
+    },
+    "hurt": {
+      "frames": [
+        5
+      ],
+      "loop": false
+    }
+  },
+  "integration_notes": [
+    "Preserve the body anchor and scale across frames; do not independently fit each wing silhouette to a fixed height.",
+    "Generated poses do not fit a strict equal-cell grid perfectly. Refine wing gutters and frame alignment before slicing.",
+    "Mirror horizontally for right-facing travel.",
+    "Forward flight and hurt are single poses, not complete animation cycles.",
+    "Review alpha fringes against the basement background at gameplay size.",
+    "Flight behavior, collision, attack and defeat animations are not implemented."
+  ]
+}

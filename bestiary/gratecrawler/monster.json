@@ -1,0 +1,67 @@
+{
+  "id": "gratecrawler",
+  "name": "Gratecrawler",
+  "name_status": "Proposed working name, not user-approved canon",
+  "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.",
+  "implementation_status": "Integrated continuous first-level opening; Prototype45 checks in progress",
+  "backstory": {
+    "status": "pending",
+    "text": ""
+  },
+  "health": {
+    "max_hp": 24,
+    "spawn_hp": 24,
+    "runtime_max_hp": 24,
+    "encounter_stage": "First-level sewer opening",
+    "role": "floor emerger",
+    "bar": {
+      "enabled": true,
+      "visible_by_default": false,
+      "display": "continuous"
+    },
+    "rationale": "Uses approved trial HP tier; validates pressure and emergence without retuning full level.",
+    "trial_hits_to_defeat": {
+      "tony_pressure_12": 2,
+      "sean_plunger_18": 2
+    },
+    "canonical_weapon_comparisons": {
+      "pressure-gun": 4,
+      "heavy-plunger-launcher": 1,
+      "pipe-wrench": 2,
+      "drain-snake": 3,
+      "demolition-hammer": 1,
+      "pipe-bomb-launcher": 1
+    },
+    "comparison_note": "Full damage/no armor/all hits land. Misses add shots; windup and range reduce practical DPS. Single-target comparisons do not count area collateral. Trial overrides apply only to starter weapons.",
+    "hits_to_defeat": {
+      "pressure-gun": 4,
+      "heavy-plunger-launcher": 1,
+      "pipe-wrench": 2,
+      "drain-snake": 3,
+      "demolition-hammer": 1,
+      "pipe-bomb-launcher": 1
+    },
+    "runtime_scope": "Continuous first-level opening"
+  },
+  "game_art": {
+    "image": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "animation": "assets/bestiary/opening-trial/manifest-v1.json",
+    "prompt": "assets/bestiary/opening-trial/prompts-v1.json"
+  },
+  "marketing": {
+    "status": "pending; no hyperrealistic portrait generated for provisional design",
+    "image": null
+  },
+  "runtime_support": "hud_preview_only",
+  "runtime_support_note": "Canonical damage-state atlas pending; opening trial uses separate role manifest and balance overrides.",
+  "active_level_profile": {
+    "level": "first-call",
+    "source": "design/first-call-action/opening-trial-balance.json",
+    "role": "emerger",
+    "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+  }
+}

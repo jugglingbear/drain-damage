@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "spider",
+  "slug": "the-hallowed-widow",
+  "name": "The Hallowed Widow",
+  "creature_type": "Winged spider",
+  "description": "White angel wings and a golden halo disguise a dark, bristling flying spider with red eyes and ivory fangs.",
+  "implementation_status": "Proximity swoop integrated in build49; packaged checks pass, visual review pending",
+  "backstory": {
+    "status": "approved",
+    "author_role": "storyboarding agent",
+    "updated": "2026-10-16",
+    "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo\u2014every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
+    "canon_note": "User-selected magazine prose synchronized by Storyboarding review. Breeding is narrative wording, not a reproduction mechanic."
+  },
+  "asset_path_base": "project root",
+  "assets": {
+    "game_sprite_sheet": "assets/bestiary/flying-spider-atlas-v2.png",
+    "animation_spec": "assets/bestiary/flying-spider-animation-v2.json",
+    "marketing_portrait": "bestiary/the-hallowed-widow/marketing-v1.png",
+    "catalog": "assets/bestiary/catalog.json",
+    "damage_sprite_sheet": "assets/bestiary/damage/hallowed-widow-damage-v3.png",
+    "damage_animation_spec": "assets/bestiary/damage/the-hallowed-widow-damage.json"
+  },
+  "damage_art_status": "Flight/hurt/death integrated; composed live-to-death visual review pending",
+  "health": {
+    "max_hp": 180,
+    "spawn_hp": 180,
+    "status": "Proximity swoop integrated in build49; packaged checks pass, visual review pending",
+    "runtime_max_hp": 180,
+    "runtime_note": "First-level profile:180HP, twice previous linear display size; replaces36HP opening variant.",
+    "encounter_stage": "first_level",
+    "stage_status": "User requested durable opening hazard",
+    "role": "mobile aerial threat",
+    "bar": {
+      "enabled": true,
+      "visible_by_default": false,
+      "display": "continuous",
+      "setting": "Show enemy health bars",
+      "value_source": "current_hp / max_hp"
+    },
+    "visual_policy": "assets/bestiary/damage/health-visuals.json",
+    "balance_policy": "assets/bestiary/balance-policy.json",
+    "rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",
+    "hits_to_defeat": {
+      "heavy-plunger-launcher": 8,
+      "pressure-gun": 30,
+      "drain-snake": 23,
+      "demolition-hammer": 3,
+      "pipe-wrench": 15,
+      "pipe-bomb-launcher": 3
+    },
+    "comparison_assumptions": "Base weapon catalog damage; first-level overrides compared separately. Full-health hits, no armor; melee may not reach flight.",
+    "comparison_balance_version": "durable-widow-2026-10-16",
+    "first_level_hits_to_defeat": {
+      "pressure-gun": 15,
+      "heavy-plunger-launcher": 10
+    }
+  },
+  "proposed_quote": {
+    "speaker": "Tony",
+    "status": "draft",
+    "text": "I was hoping spiders went somewhere else when they died."
+  },
+  "first_level_runtime": {
+    "profile_source": "design/first-call-action/opening-trial-balance.json#roles/flyer",
+    "render_scale": 2,
+    "contact_damage_player": 1,
+    "aggro_distance_pixels": 400,
+    "attack_warning_seconds": 0.65,
+    "swoop_seconds": 0.8,
+    "recovery_seconds": 1,
+    "recovery_cooldown_seconds": 1.2
+  }
+}

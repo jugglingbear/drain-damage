@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "demolition-hammer",
+  "name": "Demolition Hammer",
+  "owner": "sean",
+  "exclusive": true,
+  "balance_version": "initial-2026-10-13",
+  "status": "Initial design balance; not consumed by runtime",
+  "type": "melee",
+  "introduction": {
+    "stage": "opening",
+    "status": "Proposed progression placement"
+  },
+  "damage": 60,
+  "attack_interval_seconds": 1.5,
+  "attack_timing": "Interval is start-to-start and includes windup and recovery; damage occurs once per target per attack.",
+  "windup_seconds": 0.3,
+  "melee_reach_pixels": 75,
+  "projectile": null,
+  "targeting": {
+    "shape": "sweep",
+    "max_targets_per_attack": null,
+    "null_target_limit_means": "All enemies within attack area"
+  },
+  "explosion": null,
+  "knockback": {
+    "strength": "strong",
+    "status": "Magnitude pending physics playtest"
+  },
+  "ammunition": {
+    "mode": "unlimited",
+    "reload_seconds": 0
+  },
+  "art": {
+    "brief": "Oversized steel hammer with orange grip; weighty overhead slam.",
+    "game_manifest": "weapons/demolition-hammer/game-art.json",
+    "marketing_manifest": "weapons/demolition-hammer/marketing-art.json"
+  }
+}

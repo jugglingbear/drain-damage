@@ -1,0 +1,97 @@
+{
+  "updated": "2026-10-15",
+  "status": "Sean approved the approach and small mockup. Six standing compositions delivered; production migration pending.",
+  "recommendation": "Hybrid layered sprites",
+  "consulted_thread": "Engineering",
+  "layers": [
+    "Weapon-free hero body and lower-body locomotion.",
+    "Authored torso, arms and hands by aim direction and grip family.",
+    "Separate weapon with grip, support-hand and muzzle anchors.",
+    "Optional foreground hand overlay and direction-specific layer ordering.",
+    "Separate projectiles and effects."
+  ],
+  "grip_families_proposed": [
+    "one-handed",
+    "two-handed",
+    "heavy",
+    "melee"
+  ],
+  "exceptions": "Bespoke combined poses for unusual specials or melee attacks when shared poses cannot work.",
+  "rationale": [
+    "New weapons reuse hero locomotion and suitable grip poses instead of requiring complete hero sheets.",
+    "Authored directional poses preserve pixel appearance and natural hand placement.",
+    "A modest layer renderer avoids requiring a full skeletal animation system."
+  ],
+  "migration": [
+    "Preserve current full-body sheets as temporary runtime fallback; weapons are baked into them.",
+    "Agree fixed canvas, scale, coordinate origin, anchors and layer ordering before generating modular art.",
+    "Prototype Tony with the pressure gun and Sean with the heavy plunger launcher; preserve exclusive ownership.",
+    "Check idle, running, airborne aim, mirrored directions, recoil, grip alignment and muzzle placement.",
+    "Expand to other weapons only after the prototype passes visual and runtime validation."
+  ],
+  "pending_contract": [
+    "Production arm/grip refinement",
+    "Consistent pixel density",
+    "Locomotion and recoil timing",
+    "Remaining aim directions",
+    "Additional grip-family assignments"
+  ],
+  "scope": "Two-hero, three-direction static modular prototype; no gameplay replacement.",
+  "prototype_manifest": "assets/prototypes/modular-aim/manifest.json",
+  "prototype_preview": "previews/modular-aim.html",
+  "prototype_contact_sheet": "previews/modular-aim-contact-sheet.png",
+  "hero_standardization_plan": {
+    "status": "Agreed next step after visual design approval; production standard not yet frozen.",
+    "applies_to": [
+      "Tony",
+      "Sean",
+      "All future playable heroes"
+    ],
+    "principle": "Shared asset and animation contract with hero-specific appearance, proportions and weapon permissions.",
+    "approval_gate": "Approve corrected grip anatomy, consistent limb scale and readable aiming poses before standardizing.",
+    "deliverables": [
+      "Versioned hero asset schema and starter folder/manifest template.",
+      "Shared canvas, pixel density, registration and anchor coordinate conventions; explicit per-hero proportions.",
+      "Layer roles and per-direction draw order, left/right hand anatomy, grip families and weapon attachment rules.",
+      "Required animation-state and aiming-direction matrix, including allowed reuse and exceptional custom attacks.",
+      "Frame timing, shared locomotion phase, recoil synchronization and transitions between states.",
+      "Naming, atlas layout, transparent gutters, source prompts, versioning and fallback rules.",
+      "Reference poses and review checklist for hand contact, stable scale, silhouette, mirroring and muzzle alignment.",
+      "Validation with Tony and Sean before using the template for additional heroes."
+    ],
+    "constraints": [
+      "Do not copy prototype arm-fitting shortcuts or unapproved numeric dimensions into a final standard.",
+      "Keep gameplay weapon ownership and aim permissions separate from art availability.",
+      "Preserve approved hero identity and clothing; shared conventions do not require identical bodies.",
+      "Art defines visual requirements with Engineering defining and validating runtime requirements."
+    ],
+    "required_airborne_aiming": {
+      "status": "Required production coverage; not yet delivered in the standing mockup.",
+      "directions": [
+        "down",
+        "down_left",
+        "down_right"
+      ],
+      "poses": [
+        "Airborne jump/fall body with knees and feet clear of the weapon.",
+        "Correct downward arm and hand grips with matching muzzle anchors."
+      ],
+      "validation": [
+        "Check jumping and falling transitions, both facings, hand contact and muzzle clearance.",
+        "Use permitted directions from each weapon; artwork does not enable disallowed firing."
+      ],
+      "applies_to": [
+        "Tony",
+        "Sean",
+        "Future heroes whose weapons permit downward airborne fire"
+      ]
+    }
+  },
+  "runtime_integration": {
+    "build": "Prototype 35 / 0.35.0",
+    "manifest": "assets/sprites/hero-animation-v2/manifest.json",
+    "behavior": "Body phase/frame advances independently of aim/fire. Frame attachment offsets move arms, weapons and muzzle together. Grounded diagonals permitted; straight down airborne only.",
+    "validation": "240 hero/phase/aim/fire combinations, six run frames, source bounds and mirrored muzzle checks pass headlessly.",
+    "remaining": "Live visual review, generated stride/shoulder polish and dedicated recoil animation."
+  }
+}

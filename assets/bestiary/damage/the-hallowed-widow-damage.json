@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "creature_id": "spider",
+  "status": "All six damage states drawn as source artwork; not validated runtime animation or integrated gameplay",
+  "image": "assets/bestiary/damage/hallowed-widow-damage-v3.png",
+  "dimensions": {
+    "width": 1024,
+    "height": 1536
+  },
+  "layout": {
+    "columns": 4,
+    "rows": 6,
+    "nominal_cell_width": 256,
+    "nominal_cell_height": 256
+  },
+  "health_policy": "assets/bestiary/damage/health-visuals.json",
+  "prompts": "assets/bestiary/damage/prompts-v1.json",
+  "living_columns": [
+    "wings_raised",
+    "wings_spread",
+    "downstroke",
+    "recovery"
+  ],
+  "states": [
+    {
+      "id": "healthy",
+      "min_exclusive": 0.75,
+      "max_inclusive": 1.0,
+      "row": 0,
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cue": "Full feathers and intact halo"
+    },
+    {
+      "id": "mild",
+      "min_exclusive": 0.5,
+      "max_inclusive": 0.75,
+      "row": 1,
+      "frames": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "cue": "Loose feathers and ragged tips"
+    },
+    {
+      "id": "moderate",
+      "min_exclusive": 0.25,
+      "max_inclusive": 0.5,
+      "row": 2,
+      "frames": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "cue": "Feather gaps and cracked halo"
+    },
+    {
+      "id": "severe",
+      "min_exclusive": 0.1,
+      "max_inclusive": 0.25,
+      "row": 3,
+      "frames": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "cue": "Frayed wings and broken halo"
+    },
+    {
+      "id": "near_death",
+      "min_exclusive": 0.0,
+      "max_inclusive": 0.1,
+      "row": 4,
+      "frames": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "cue": "Tattered wings, failing posture, dim red eyes"
+    },
+    {
+      "id": "dead",
+      "equals": 0.0,
+      "row": 5,
+      "frames": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "cue": "Dark eyes, collapsed wings, halo debris"
+    }
+  ],
+  "death": {
+    "frames": [
+      20,
+      21,
+      22,
+      23
+    ],
+    "loop": false,
+    "suggested_fps": 8,
+    "hold_final_frame": true
+  },
+  "alignment": {
+    "validated": false,
+    "anchor": "Thorax center",
+    "instructions": "Use one shared body scale. Measure per-frame anchor offsets before integration; do not fit each opaque bounding box independently."
+  },
+  "validation": {
+    "visual_review": "Six rows and four columns present; cumulative damage and death silhouettes reviewed",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_percent": 46.64,
+    "remaining": [
+      "Clean translucent fringes",
+      "Validate cell gutters and anchors",
+      "Check damage readability at actual gameplay size",
+      "Validate animation timing and hit feedback in engine"
+    ]
+  },
+  "living_loop": {
+    "columns": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "suggested_fps": 8
+  },
+  "notes": [
+    "Recovery wing angle is close to downstroke; review loop smoothness.",
+    "Forward-flight and hurt poses in the older atlas are not damage-matched; use this wingbeat with per-hit feedback until those variants are authored."
+  ],
+  "runtime_preparation": {
+    "alpha_cutoff": 0.8,
+    "reference_body_height_pixels": 200,
+    "frames": [
+      {
+        "region": [
+          0,
+          0,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          256,
+          0,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          512,
+          0,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          768,
+          0,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          0,
+          256,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          512,
+          256,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          768,
+          256,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          0,
+          512,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          256,
+          512,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          512,
+          512,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          768,
+          512,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          0,
+          768,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          256,
+          768,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          512,
+          768,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          768,
+          768,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          0,
+          1024,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          256,
+          1024,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          512,
+          1024,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          768,
+          1024,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          184
+        ]
+      },
+      {
+        "region": [
+          0,
+          1280,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          214
+        ]
+      },
+      {
+        "region": [
+          256,
+          1280,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          214
+        ]
+      },
+      {
+        "region": [
+          512,
+          1280,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          214
+        ]
+      },
+      {
+        "region": [
+          768,
+          1280,
+          256,
+          256
+        ],
+        "anchor": [
+          128,
+          214
+        ]
+      }
+    ],
+    "status": "Preview only; flight gameplay absent; wing gutters and thorax anchors remain provisional",
+    "method": "Shared scale; provisional thorax-center anchors",
+    "source_preserved": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-13",
+  "status": "Initial design balance; requires runtime integration and playtesting",
+  "source_of_truth": "Each bestiary/<creature>/monster.json health object; catalog health summaries mirror it.",
+  "hp_model": "Numeric HP independent of health-bar visibility and sprite damage stages; clamp current HP to [0, max_hp].",
+  "health_visual_policy": "assets/bestiary/damage/health-visuals.json",
+  "weapons_catalog": "weapons/catalog.json",
+  "new_monster_requirements": [
+    "Assign positive max_hp and spawn_hp, encounter stage and role, bar policy, and balance rationale before considering metadata complete.",
+    "Compare hits to defeat against both characters available weapons, including overkill, accuracy, attack windup, and area damage.",
+    "Keep ordinary enemy bars hidden by default and available through the visibility setting; boss bars visible by default.",
+    "Record runtime HP separately until integration; never imply design values are running.",
+    "Use stronger variants as separate explicit balance profiles; do not silently scale existing enemies with player progress."
+  ],
+  "suggested_hp_bands": [
+    {
+      "stage": "opening",
+      "role": "basic",
+      "min_hp": 30,
+      "max_hp": 40
+    },
+    {
+      "stage": "later_basement",
+      "role": "mobile threat",
+      "min_hp": 60,
+      "max_hp": 80
+    },
+    {
+      "stage": "later_basement",
+      "role": "elite",
+      "min_hp": 100,
+      "max_hp": 160
+    },
+    {
+      "stage": "mission_finale",
+      "role": "boss",
+      "min_hp": 600,
+      "max_hp": 900
+    }
+  ],
+  "band_note": "Guidelines, not automatic scaling or assigned stats for unregistered monsters. Boss values require attack-window and phase testing."
+}

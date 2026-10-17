@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "pipe-bomb-launcher",
+  "name": "Pipe-Bomb Launcher",
+  "owner": "sean",
+  "exclusive": true,
+  "balance_version": "initial-2026-10-13",
+  "status": "Initial design balance; not consumed by runtime",
+  "type": "ranged",
+  "introduction": {
+    "stage": "later_basement",
+    "status": "Proposed progression placement"
+  },
+  "damage": 60,
+  "attack_interval_seconds": 2.0,
+  "attack_timing": "Interval is start-to-start and includes windup and recovery; damage occurs once per target per attack.",
+  "windup_seconds": 0.0,
+  "melee_reach_pixels": null,
+  "projectile": {
+    "speed_pixels_per_second": 420,
+    "max_travel_distance_pixels": 500,
+    "distance_measure": "Cumulative path length from muzzle; expire at limit",
+    "trajectory": "ballistic",
+    "gravity_pixels_per_second_squared": 700,
+    "launch_angle_degrees_above_horizontal": 35,
+    "on_enemy_or_solid_collision": "detonate",
+    "on_max_distance": "detonate"
+  },
+  "targeting": {
+    "shape": "radial explosion",
+    "max_targets_per_attack": null,
+    "null_target_limit_means": "All enemies within attack area"
+  },
+  "explosion": {
+    "radius_pixels": 90,
+    "damage_falloff": false,
+    "direct_hit_additional_damage": 0,
+    "self_damage": false
+  },
+  "knockback": {
+    "strength": "strong",
+    "status": "Magnitude pending physics playtest"
+  },
+  "ammunition": {
+    "mode": "unlimited",
+    "reload_seconds": 0
+  },
+  "art": {
+    "brief": "Exaggerated fictional industrial launcher; chunky capped cartoon projectiles and splashy blast. No construction details.",
+    "game_manifest": "weapons/pipe-bomb-launcher/game-art.json",
+    "marketing_manifest": "weapons/pipe-bomb-launcher/marketing-art.json"
+  }
+}

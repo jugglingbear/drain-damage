@@ -1,0 +1,868 @@
+{
+  "date": "2026-10-16",
+  "status": "Trial source art candidate; bounds/alpha edges checked, composed runtime pending",
+  "prompts": "assets/bestiary/opening-trial/prompts-v1.json",
+  "roles": {
+    "sputtervalve": {
+      "status": "Provisional trial design; runtime visual review pending",
+      "canvas": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        80
+      ],
+      "facing": "left; mirror around anchor for right",
+      "frames": [
+        {
+          "id": 0,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            9.950000000000003,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 1,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            9.950000000000003,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 2,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            9.950000000000003,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 3,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            9.950000000000003,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 4,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            14.75,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 5,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            14.75,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 6,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            14.75,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 7,
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            19.200000000000003,
+            13.850000000000009,
+            57.599999999999994,
+            76.8
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        }
+      ],
+      "states": {
+        "idle": {
+          "frames": [
+            0,
+            1
+          ],
+          "durations": [
+            0.3,
+            0.3
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            2
+          ],
+          "durations": [
+            0.65
+          ],
+          "loop": false
+        },
+        "fire": {
+          "frames": [
+            3
+          ],
+          "durations": [
+            0.1
+          ],
+          "loop": false
+        },
+        "recover": {
+          "frames": [
+            4
+          ],
+          "durations": [
+            0.25
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            5
+          ],
+          "durations": [
+            0.12
+          ],
+          "loop": false
+        },
+        "death": {
+          "frames": [
+            6,
+            7
+          ],
+          "durations": [
+            0.18,
+            0.3
+          ],
+          "loop": false
+        }
+      },
+      "proposed_hitbox_relative_to_anchor": [
+        -20,
+        -42,
+        40,
+        42
+      ],
+      "hitbox_status": "Art sizing proposal for Mechanics/Engineering confirmation, not applied runtime",
+      "notes": "Use shared source scale and per-frame source foot registration. Never fit each opaque bbox independently. Death is finite; remove hitbox immediately and fade final pose.",
+      "muzzle_relative_to_anchor": [
+        -22,
+        -25
+      ]
+    },
+    "gratecrawler": {
+      "status": "Provisional trial design; runtime visual review pending",
+      "canvas": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        80
+      ],
+      "facing": "left; mirror around anchor for right",
+      "frames": [
+        {
+          "id": 0,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            23.04,
+            15.39,
+            49.92,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 1,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            23.04,
+            15.39,
+            49.92,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 2,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            23.04,
+            16.82,
+            49.92,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 3,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            23.04,
+            16.82,
+            49.92,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 4,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            23.04,
+            21.239999999999995,
+            49.92,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 5,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            23.04,
+            21.11,
+            49.92,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 6,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            768,
+            512,
+            362,
+            512
+          ],
+          "destination": [
+            23.04,
+            21.239999999999995,
+            47.06,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "id": 7,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "source_rect": [
+            1130,
+            512,
+            406,
+            512
+          ],
+          "destination": [
+            20.18,
+            18.64,
+            52.78,
+            66.56
+          ],
+          "anchor": [
+            48,
+            80
+          ],
+          "duration_seconds": 0.12
+        }
+      ],
+      "states": {
+        "emerge": {
+          "frames": [
+            0,
+            1
+          ],
+          "durations": [
+            0.175,
+            0.175
+          ],
+          "loop": false
+        },
+        "settle": {
+          "frames": [
+            2
+          ],
+          "durations": [
+            0.3
+          ],
+          "loop": false
+        },
+        "idle": {
+          "frames": [
+            2
+          ],
+          "durations": [
+            0.3
+          ],
+          "loop": true
+        },
+        "patrol": {
+          "frames": [
+            3,
+            4,
+            5,
+            4
+          ],
+          "durations": [
+            0.12,
+            0.12,
+            0.12,
+            0.12
+          ],
+          "loop": true
+        },
+        "hurt": {
+          "frames": [
+            6
+          ],
+          "durations": [
+            0.12
+          ],
+          "loop": false
+        },
+        "death": {
+          "frames": [
+            7
+          ],
+          "durations": [
+            0.35
+          ],
+          "loop": false
+        }
+      },
+      "proposed_hitbox_relative_to_anchor": [
+        -17,
+        -40,
+        34,
+        40
+      ],
+      "hitbox_status": "Art sizing proposal for Mechanics/Engineering confirmation, not applied runtime",
+      "notes": "Use shared source scale and per-frame source foot registration. Never fit each opaque bbox independently. Death is finite; remove hitbox immediately and fade final pose. Grate drawn separately. Warning0.8s precedes emerge0.35s then settle0.3s; all harmless until safety recheck."
+    },
+    "hallowed-widow-trial": {
+      "status": "Existing identity reused provisionally for trial fly-through; canonical lore/behavior unchanged",
+      "canvas": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "facing": "left; mirror for right",
+      "frames": [
+        {
+          "id": 0,
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "source_rect": [
+            0,
+            0,
+            480,
+            512
+          ],
+          "destination": [
+            18.599999999999998,
+            -2.4000000000000057,
+            67.2,
+            71.68
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.1
+        },
+        {
+          "id": 1,
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "source_rect": [
+            480,
+            0,
+            560,
+            512
+          ],
+          "destination": [
+            8.799999999999997,
+            -2.4000000000000057,
+            78.4,
+            71.68
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.1
+        },
+        {
+          "id": 2,
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "source_rect": [
+            1040,
+            0,
+            496,
+            512
+          ],
+          "destination": [
+            17.199999999999996,
+            -2.4000000000000057,
+            69.44000000000001,
+            71.68
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.1
+        },
+        {
+          "id": 3,
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "source_rect": [
+            0,
+            512,
+            500,
+            512
+          ],
+          "destination": [
+            18.599999999999998,
+            -2.4000000000000057,
+            70.0,
+            71.68
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.1
+        },
+        {
+          "id": 4,
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "source_rect": [
+            1040,
+            512,
+            496,
+            512
+          ],
+          "destination": [
+            17.199999999999996,
+            1.7999999999999972,
+            69.44000000000001,
+            71.68
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.1
+        },
+        {
+          "id": 5,
+          "path": "assets/bestiary/damage/hallowed-widow-damage-v3.png",
+          "source_rect": [
+            0,
+            1280,
+            256,
+            256
+          ],
+          "destination": [
+            16,
+            0,
+            64,
+            64
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "id": 6,
+          "path": "assets/bestiary/damage/hallowed-widow-damage-v3.png",
+          "source_rect": [
+            512,
+            1280,
+            256,
+            256
+          ],
+          "destination": [
+            16,
+            0,
+            64,
+            64
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "id": 7,
+          "path": "assets/bestiary/damage/hallowed-widow-damage-v3.png",
+          "source_rect": [
+            768,
+            1280,
+            256,
+            256
+          ],
+          "destination": [
+            16,
+            0,
+            64,
+            64
+          ],
+          "anchor": [
+            48,
+            48
+          ],
+          "duration_seconds": 0.16
+        }
+      ],
+      "states": {
+        "flight": {
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "durations": [
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ],
+          "loop": true
+        },
+        "hurt": {
+          "frames": [
+            4
+          ],
+          "durations": [
+            0.12
+          ],
+          "loop": false
+        },
+        "death": {
+          "frames": [
+            5,
+            6,
+            7
+          ],
+          "durations": [
+            0.16,
+            0.16,
+            0.24
+          ],
+          "loop": false
+        }
+      },
+      "proposed_hitbox_relative_to_anchor": [
+        -15,
+        -12,
+        30,
+        24
+      ],
+      "hitbox_status": "Body core only; wings/halo decorative. Mechanics/Engineering confirmation pending.",
+      "notes": "Measured nonuniform crops avoid wingtip clipping. Fixed0.14living scale and0.25death scale match body size approximately; visual live-to-death registration review pending. No attack frames needed for non-shooting authored arc. Retire on offscreen exit without kill credit."
+    }
+  },
+  "validation": [
+    {
+      "role": "sputtervalve",
+      "frame": 0,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "sputtervalve",
+      "frame": 1,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "sputtervalve",
+      "frame": 2,
+      "edge_alpha_max": 7
+    },
+    {
+      "role": "sputtervalve",
+      "frame": 3,
+      "edge_alpha_max": 7
+    },
+    {
+      "role": "sputtervalve",
+      "frame": 4,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "sputtervalve",
+      "frame": 5,
+      "edge_alpha_max": 3
+    },
+    {
+      "role": "sputtervalve",
+      "frame": 6,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "sputtervalve",
+      "frame": 7,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 0,
+      "edge_alpha_max": 0
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 1,
+      "edge_alpha_max": 0
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 2,
+      "edge_alpha_max": 1
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 3,
+      "edge_alpha_max": 1
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 4,
+      "edge_alpha_max": 1
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 5,
+      "edge_alpha_max": 0
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 6,
+      "edge_alpha_max": 1
+    },
+    {
+      "role": "gratecrawler",
+      "frame": 7,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 0,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 1,
+      "edge_alpha_max": 3
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 2,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 3,
+      "edge_alpha_max": 1
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 4,
+      "edge_alpha_max": 0
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 5,
+      "edge_alpha_max": 1
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 6,
+      "edge_alpha_max": 2
+    },
+    {
+      "role": "hallowed-widow-trial",
+      "frame": 7,
+      "edge_alpha_max": 2
+    }
+  ],
+  "timing_authority": "design/first-call-action/opening-trial-balance.json",
+  "canonical_override": "Apply only in trial; never silently rewrite canonical monster behaviors or health."
+}

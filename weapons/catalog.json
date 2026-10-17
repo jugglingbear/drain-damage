@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-14",
+  "status": "Starting weapon range/damage revised; Engineering integration pending. Other mechanics retain prior status.",
+  "path_base": "project root",
+  "units": {
+    "damage": "HP",
+    "distance": "Godot logical world pixels",
+    "time": "seconds"
+  },
+  "equipment_policy": "Each weapon is exclusive to its owner; one melee slot and one ranged slot proposed.",
+  "balance_policy": "assets/bestiary/balance-policy.json",
+  "weapons": [
+    {
+      "id": "pipe-wrench",
+      "owner": "tony",
+      "metadata": "weapons/pipe-wrench/weapon.json"
+    },
+    {
+      "id": "drain-snake",
+      "owner": "tony",
+      "metadata": "weapons/drain-snake/weapon.json"
+    },
+    {
+      "id": "pressure-gun",
+      "owner": "tony",
+      "metadata": "weapons/pressure-gun/weapon.json"
+    },
+    {
+      "id": "demolition-hammer",
+      "owner": "sean",
+      "metadata": "weapons/demolition-hammer/weapon.json"
+    },
+    {
+      "id": "heavy-plunger-launcher",
+      "owner": "sean",
+      "metadata": "weapons/heavy-plunger-launcher/weapon.json"
+    },
+    {
+      "id": "pipe-bomb-launcher",
+      "owner": "sean",
+      "metadata": "weapons/pipe-bomb-launcher/weapon.json"
+    }
+  ]
+}

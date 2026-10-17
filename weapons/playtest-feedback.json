@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "source": "Sean: feedback from last night playtest",
+      "status": "Prototype 28 mechanics integrated and headless-tested; directional hero art and live review pending",
+      "directional_fire": "Heroes aim left/right/up/diagonally; airborne down+fire shoots straight down, unless weapon prohibits direction.",
+      "weapon_policy": "Each weapon must explicitly declare aiming permissions. Starting ranged weapons permit eight-way airborne aiming; do not assume every melee/special supports it.",
+      "flushfiend_entrances": "Trigger offscreen walk-ins rather than visible blink-spawns.",
+      "canonical_paths": [
+        "weapons/pressure-gun/weapon.json#aiming",
+        "weapons/heavy-plunger-launcher/weapon.json#aiming",
+        "bestiary/flushfiend/monster.json#entrance"
+      ]
+    },
+    {
+      "source": "Sean: weapon snaps forward between diagonal shots",
+      "status": "Approved correction; Engineering integration pending",
+      "requirement": "Show aim continuously without firing; releasing fire while holding direction must preserve visible aim. Keep existing horizontal fallback when aim input is released.",
+      "canonical_paths": [
+        "weapons/pressure-gun/weapon.json#aiming.visual_aim",
+        "weapons/heavy-plunger-launcher/weapon.json#aiming.visual_aim"
+      ]
+    },
+    {
+      "source": "Sean: visible aiming still broken; pause menu needs main-menu option",
+      "status": "Engineering asked to prioritize implementation, verification and fresh export",
+      "requirements": [
+        "Verify and fix visible aiming without firing for both heroes; prior handoff is not confirmed delivered.",
+        "Add visible selectable Return to Main Menu in pause, supporting keyboard/controller and mouse; existing shortcut alone is insufficient."
+      ],
+      "delivery_owner": "Engineering; owns runtime/build/roadmap updates during integration"
+    },
+    {
+      "source": "Sean: Flushfiends reverse instantly when jumped over",
+      "status": "Approved correction; Engineering integration pending",
+      "requirement": "Brake, stop and turn for approximately one second before reverse pursuit; retain persistent aggro.",
+      "canonical_path": "bestiary/flushfiend/monster.json#pursuit.turnaround",
+      "delivery_owner": "Engineering; runtime/build/roadmap"
+    },
+    {
+      "source": "Sean: running horizontal plunger shots pass over Flushfiends; standing shots hit",
+      "status": "Fixed and exported in Prototype 38; packaged tests passed; live playtest pending",
+      "requirement": "On level ground, Sean horizontal shots must connect with reachable Flushfiends consistently across every running frame and both facing directions, as they do while idle.",
+      "suspected_cause": "Run body attachment offsets affect both rendered weapon and muzzle in scripts/hero_aim_art.gd.selected_pose; measure against enemy hitbox before choosing fix.",
+      "acceptance": "Regression checks for idle and every run frame, left/right, enemy hop phases, muzzle alignment, solid occlusion and existing range. Keep visible barrel and projectile origin aligned; do not disguise issue by changing weapon damage or arbitrary oversized hitboxes.",
+      "confirmed_cause": "Run muzzle rises above enemy centerline collision bounds; visible projectile thickness was ignored.",
+      "fix": "Sweep the rendered transverse half-width (Sean 7 px, Tony 2 px) against enemies and solids. Art approved preserving existing sprite registration. No muzzle shift, damage or range change.",
+      "validation": "504 frame/facing/distance/hop geometry cases, 24 real combat hits, existing aiming/range/animation tests pass. High airborne targets can legitimately clear horizontal fire."
+    }
+  ]
+}

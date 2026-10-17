@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Clogfather &amp; portal — source-art preview</title>
+<style>
+:root { color-scheme:dark; } body { background:#101c2a; color:#eef4ed; font:16px/1.6 system-ui; margin:0; }
+main { max-width:1050px; padding:32px 24px; margin:auto; } a { color:#91e4bf; }
+canvas { display:block; max-width:100%; height:auto; background:#192b3b; border:1px solid #456; margin:20px 0; }
+button,select { font:inherit; padding:8px 12px; margin:4px; } .notice { border-left:4px solid #ffc970; padding:12px 20px; }
+img { max-width:100%; height:auto; } h1 { line-height:1.1; font-size:42px; }
+</style></head><body><main><a href="../bestiary.html">Back to bestiary</a>
+<h1>The clog. And what lies behind it.</h1>
+<p class="notice">Source-art playback only, not a running-game capture or validated runtime animation.
+Nominal cell cuts expose alignment issues for review. The portal’s cause and destination remain unresolved.</p>
+<label for="sequence">Preview sequence</label>
+<select id="sequence">
+<option value="portal">Portal — eight-phase loop proposal</option>
+<option value="pipe">Pipe mouth — windup / discharge</option>
+<option value="weak">Low weak point — opening / pulse / closing</option>
+<option value="body">Body action poses — presentation cycle, not timed combat</option>
+<option value="damage">Six HP states — comparison, not an animation</option>
+</select>
+<button id="play" type="button">Play source preview</button>
+<button id="step" type="button">Next frame</button>
+<canvas id="preview" width="640" height="480" aria-label="Selected source-art frame"></canvas>
+<p id="status" role="status">Loading source image…</p>
+<p>Playback starts paused. Body action and HP-state sequences are comparison views; they do not represent approved timing.
+The pipe/root attachments need measured anchors; the first body concept’s high core is superseded by the low weak-point pipe.
+A clean body layer is still needed to avoid drawing baked-in and modular pipes twice.</p>
+<h2>Preserved source sheets</h2>
+<ul>
+<li><a href="../../assets/bestiary/the-clogfather/body-atlas-v1.png">Six body action poses</a></li>
+<li><a href="../../assets/bestiary/the-clogfather/parts-atlas-v1.png">Nine moving parts and effects</a></li>
+<li><a href="../../assets/bestiary/the-clogfather/weak-point-atlas-v1.png">Four low weak-point mouth poses</a></li>
+<li><a href="../../assets/bestiary/the-clogfather/damage-atlas-v1.png">Six static HP-stage poses</a></li>
+<li><a href="../../assets/world/portal/loop-atlas-v1.png">Eight portal phases</a></li>
+<li><a href="../../assets/world/portal/animation-v1.json">Portal animation and story boundaries</a></li>
+<li><a href="../../assets/bestiary/the-clogfather/animation-v1.json">Boss animation plan and remaining work</a></li>
+<li><a href="art-prompts-v1.json">Exact imagegen prompts</a></li>
+</ul>
+<p>Still needed: seamless portal registration, alpha cleanup, damage-matched actions, collapse in-betweens,
+acid and summon warnings/effects, optional valve states, gameplay-sized validation, and encounter implementation.</p>
+<script>
+const sequences = {
+  portal: { file: '../../assets/world/portal/loop-atlas-v1.png', columns: 4, rows: 2,
+    frames: [0,1,2,3,4,5,6,7], fps: 6 },
+  pipe: { file: '../../assets/bestiary/the-clogfather/parts-atlas-v1.png', columns: 3, rows: 3,
+    frames: [0,1,1,2,0], fps: 3 },
+  weak: { file: '../../assets/bestiary/the-clogfather/weak-point-atlas-v1.png', columns: 2, rows: 2,
+    frames: [0,1,2,3,2,3,2,1,0], fps: 4 },
+  body: { file: '../../assets/bestiary/the-clogfather/body-atlas-v1.png', columns: 3, rows: 2,
+    frames: [0,1,2,3,4,5], fps: 1 },
+  damage: { file: '../../assets/bestiary/the-clogfather/damage-atlas-v1.png', columns: 3, rows: 2,
+    frames: [0,1,2,3,4,5], fps: 1 }
+};
+const canvas = document.getElementById('preview');
+const context = canvas.getContext('2d');
+const select = document.getElementById('sequence');
+const button = document.getElementById('play');
+const status = document.getElementById('status');
+let sequence, source, frame = 0, timer = null;
+function draw() {
+  if (!source || !source.complete || !source.naturalWidth) return;
+  const index = sequence.frames[frame];
+  const width = source.naturalWidth / sequence.columns;
+  const height = source.naturalHeight / sequence.rows;
+  const scale = Math.min(600 / width, 440 / height);
+  context.clearRect(0, 0, 640, 480);
+  context.imageSmoothingEnabled = false;
+  context.drawImage(source, (index % sequence.columns) * width,
+    Math.floor(index / sequence.columns) * height, width, height,
+    (640 - width * scale) / 2, (480 - height * scale) / 2, width * scale, height * scale);
+  status.textContent = `Source cell ${index + 1} · ${source.naturalWidth} × ${source.naturalHeight} pixels · Unvalidated preview`;
+}
+function stop() { clearInterval(timer); timer = null; button.textContent = 'Play source preview'; }
+function next() { frame = (frame + 1) % sequence.frames.length; draw(); }
+function load() {
+  stop(); frame = 0; sequence = sequences[select.value];
+  source = new Image(); source.onload = draw;
+  source.onerror = () => { status.textContent = 'Source image could not be loaded.'; };
+  source.src = sequence.file;
+}
+select.addEventListener('change', load);
+button.addEventListener('click', () => {
+  if (timer) { stop(); return; }
+  timer = setInterval(next, 1000 / sequence.fps); button.textContent = 'Pause';
+});
+document.getElementById('step').addEventListener('click', () => { stop(); next(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+load();
+</script></main></body></html>

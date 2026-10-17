@@ -1,0 +1,63 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-10-13",
+  "prompt": "Use case: identity-preserve. Edit the supplied six-pose flying spider pixel-art sprite sheet. Change ONLY the bat wings to large WHITE FEATHERED ANGEL WINGS and add one thin pale golden elliptical HALO floating just above each spider's head. Keep the creature creepy: preserve the dark charcoal-teal hairy spider body, eight jointed bristly legs, ivory curved fangs, and clustered glowing RED eyes, original proportions and chunky retro pixel-art style. Do not make its face friendly. White wings have distinct layered flight feathers with pale cool gray pixel shading, no leathery membranes. Preserve six poses and their ordering: top row wings raised, spread, downstroke; bottom row recovery, forward flight, hurt recoil. Preserve 3 columns and 2 rows on a 1536x1024 landscape canvas. Each entire creature including wing tips and halo must fit within its own equal 512x512 cell with clear transparent gutters; uniform body scale and consistent anchor. Halo follows head in every pose, clearly separate from wings. Genuine transparent background, no atmospheric haze or backdrop, no ground shadow, no text, no labels, no grid. Keep all six complete creatures, no cropping. This is a versioned animation source sheet.",
+  "image": "assets/bestiary/flying-spider-atlas-v2.png",
+  "status": "Animation source artwork; alignment and slicing need refinement before runtime use",
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "order": "row-major, zero-based"
+  },
+  "frames": [
+    "wings raised",
+    "wings spread",
+    "downstroke",
+    "recovery",
+    "forward flight",
+    "hurt recoil"
+  ],
+  "suggested_animations": {
+    "hover": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "movement": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "fps": 10,
+      "loop": true
+    },
+    "forward_flight_pose": {
+      "frames": [
+        4
+      ],
+      "loop": false
+    },
+    "hurt": {
+      "frames": [
+        5
+      ],
+      "loop": false
+    }
+  },
+  "integration_notes": [
+    "Preserve the body anchor and scale across frames; do not independently fit each wing silhouette to a fixed height.",
+    "Generated poses do not fit a strict equal-cell grid perfectly. Refine wing gutters and frame alignment before slicing.",
+    "Mirror horizontally for right-facing travel.",
+    "Forward flight and hurt are single poses, not complete animation cycles.",
+    "Review alpha fringes against the basement background at gameplay size.",
+    "Flight behavior, collision, attack and defeat animations are not implemented."
+  ],
+  "design": "White feathered wings and golden halo; dark spider body, ivory fangs, and red eyes preserved."
+}

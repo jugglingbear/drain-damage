@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "weapon_id": "heavy-plunger-launcher",
+  "assigned_to": "Bestiary",
+  "status": "Nine source-art cells delivered; runtime slicing, anchors, alpha cleanup, and integration pending",
+  "style": "Chunky SNES-inspired pixel art with navy outlines",
+  "path_base": "project root",
+  "source_brief": "Bulky orange-and-steel launcher firing a red rubber plunger on a short shaft.",
+  "mechanics_source": "weapons/heavy-plunger-launcher/weapon.json",
+  "assets": [
+    {
+      "path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+      "kind": "source_atlas",
+      "width": 1254,
+      "height": 1254,
+      "columns": 3,
+      "rows": 3,
+      "frames": [
+        {
+          "index": 0,
+          "role": "inventory_icon",
+          "nominal_region_px": [
+            0,
+            0,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "visual center",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 1,
+          "role": "held_ready",
+          "nominal_region_px": [
+            418,
+            0,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 2,
+          "role": "fire_recoil",
+          "nominal_region_px": [
+            836,
+            0,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 3,
+          "role": "recovered",
+          "nominal_region_px": [
+            0,
+            418,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "grip pivot",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 4,
+          "role": "projectile_a",
+          "nominal_region_px": [
+            418,
+            418,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "projectile center",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 5,
+          "role": "projectile_b",
+          "nominal_region_px": [
+            836,
+            418,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "projectile center",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 6,
+          "role": "impact_onset",
+          "nominal_region_px": [
+            0,
+            836,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 7,
+          "role": "impact_peak",
+          "nominal_region_px": [
+            418,
+            836,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        },
+        {
+          "index": 8,
+          "role": "impact_dissipate",
+          "nominal_region_px": [
+            836,
+            836,
+            418,
+            418
+          ],
+          "anchor": {
+            "semantic": "impact contact point",
+            "position_px": null,
+            "status": "Must be measured after final slicing"
+          }
+        }
+      ]
+    }
+  ],
+  "preserved_previous_assets": [],
+  "prompts": [
+    {
+      "tool": "Built-in image_gen",
+      "output": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+      "prompt": "Use case: stylized-concept. Original chunky SNES pixel-art HEAVY PLUNGER LAUNCHER weapon source atlas exclusive to Sean. Bulky ORANGE and STEEL industrial launcher, sturdy dark rear pistol grip and forward support grip, broad silver barrel firing RED RUBBER PLUNGER on short wooden shaft, recognizable plumbing comedy design. Exactly 3 columns x 3 rows equal cells on transparent square canvas, all items face RIGHT, wide gutters and 12 percent margin. No character hands or text. Row1: diagonal inventory icon complete loaded launcher with red rubber cup at muzzle; held-ready horizontal loaded launcher; firing recoil launcher with plunger just exiting muzzle and short white compressed-air puff. Row2: recovered launcher horizontal showing open barrel ready to cycle, same silhouette and grip anchor; isolated red cup plunger projectile flying right cup foremost and short shaft trailing left; second projectile frame with rubber cup slightly flexed, same size and centerline. Row3: small red rubber compression impact with white contact star; expanded white impact burst with curved red rubber squish accent; fading white puffs. Same weapon proportions and scale in all held frames. Genuine transparent alpha, opaque crisp pixel interiors, dark navy outline, orange silver red palette. No haze, backdrop, labels, grid, UI, realistic firearm detail or loose bullets. All nine sprites fully inside cells."
+    }
+  ],
+  "animation_spec": {
+    "status": "Proposed sequence; time from weapon.json, not generation spacing",
+    "idle": {
+      "frames": [
+        1
+      ],
+      "loop": true
+    },
+    "attack": {
+      "frames": [
+        2,
+        3,
+        1
+      ],
+      "loop": false,
+      "timing": "Use windup_seconds and attack_interval_seconds in mechanics_source; damage event is separate."
+    },
+    "impact": {
+      "frames": [
+        6,
+        7,
+        8
+      ],
+      "loop": false,
+      "suggested_frame_seconds": 0.04
+    },
+    "projectile": {
+      "frames": [
+        4,
+        5
+      ],
+      "loop": true,
+      "suggested_fps": 12,
+      "motion": "Use trajectory, speed, gravity and expiration from mechanics_source."
+    }
+  },
+  "validation": {
+    "runtime_ready": false,
+    "visual_review": "Weapon, icon, attack/projectile and impact subjects present",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_percent": 70.02
+  },
+  "integration_notes": [
+    "Source sheet is visually reviewed, not a validated runtime atlas.",
+    "Generated sprites can cross nominal cell edges; inspect and isolate regions before import.",
+    "Measure per-frame grip pivots and muzzle sockets; preserve one weapon scale across held poses.",
+    "Do not fit every frame to its opaque bounds; that changes tool scale and grip alignment.",
+    "Existing character sheets include baked-in weapons. Clean hand/body layers are needed before attaching these tools.",
+    "Mirror held sprites for left-facing play; effects should use their contact or muzzle origin.",
+    "Visual effects do not define collision, damage, reach, travel distance, or blast radius.",
+    "Clean alpha fringes and validate readable icons and effects at gameplay size.",
+    "Fire pose includes muzzle effect; prevent duplicate effect/projectile rendering at release."
+  ]
+}

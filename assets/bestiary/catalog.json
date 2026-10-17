@@ -1,0 +1,319 @@
+{
+  "updated": "2026-10-16",
+  "creatures": [
+    {
+      "id": "toilet",
+      "name": "Flushfiend",
+      "status": "Integrated animated enemy",
+      "art": "assets/sprites/toilet-v1.png",
+      "layout": "2 columns \u00d7 2 rows: walk A, walk B, hop, hit",
+      "prompt": "assets/art-prompts-v1.json#toilet",
+      "renderer": "scripts/world_art.gd",
+      "remaining": [
+        "Refine near-death pose consistency and small-scale damage readability after playtesting"
+      ],
+      "marketing": {
+        "image": "bestiary/flushfiend/marketing-v1.png",
+        "width": 1254,
+        "height": 1254,
+        "style": "hyperrealistic",
+        "prompt": "bestiary/marketing-prompts-v1.json",
+        "tool": "Built-in image_gen"
+      },
+      "metadata": "bestiary/flushfiend/monster.json",
+      "damage_art": {
+        "image": "assets/bestiary/damage/flushfiend-damage-v1.png",
+        "spec": "assets/bestiary/damage/flushfiend-damage.json",
+        "status": "Integrated with measured row crops, shared scale, per-hit feedback, and nonlooping death"
+      },
+      "health": {
+        "max_hp": 40,
+        "visible_by_default": false,
+        "status": "Integrated in Prototype 14",
+        "source": "bestiary/flushfiend/monster.json#health"
+      },
+      "description": "A hostile porcelain toilet with burning red eyes, ceramic teeth, and short pipe legs; it patrols and hops. Flushfiends can appear anywhere, not only in basements.",
+      "backstory": {
+        "status": "draft",
+        "author_role": "storyboarding agent",
+        "updated": "2026-10-14",
+        "text": "Billy-Joe wanted a toilet that could think for itself. Through his distribution warehouses, he shipped networked smart fixtures across the country, then upgraded them with artificial intelligence. They learned quickly. Unfortunately, their first shared conclusion concerned what humans kept doing to them. Now Flushfiends stalk bathrooms, businesses, and anywhere else the rollout reached. BJ calls it a customer-relations issue. The toilets have stopped accepting feedback.",
+        "canon_note": "Proposed history for review; not approved canon."
+      },
+      "entrance": {
+        "status": "Implemented for Prototype 28; visual review pending",
+        "metadata": "bestiary/flushfiend/monster.json#entrance"
+      },
+      "pursuit": {
+        "status": "Integrated in Prototype 26; headless pursuit tests pass, live playtest pending",
+        "aggro_trigger": "absolute horizontal distance to player < notice_range_pixels",
+        "notice_range_pixels": 280,
+        "persistent_after_detection": true,
+        "disengage_distance_pixels": null,
+        "chase_leash_pixels": null,
+        "patrol_range_pixels": 150,
+        "patrol_speed_pixels_per_second": 80,
+        "chase_speed_pixels_per_second": 115,
+        "stop_distance_pixels": 6,
+        "patrol_rule": "Home-relative bounds apply only before first aggro",
+        "chase_rule": "Follow current player position across entire level, including off camera; retain physical level boundaries",
+        "reset": "Clear aggro only on enemy despawn/death or fresh encounter restart; preserve for surviving enemies across checkpoint respawn",
+        "turnaround": {
+          "status": "Integrated in Prototype 33: braking, one-second turn, acceleration, pause and reset checked headlessly; live review pending.",
+          "trigger": "Aggroed player crosses behind current travel direction, beyond existing stop-distance dead zone",
+          "brake_seconds": 0.35,
+          "stopped_turn_seconds": 0.65,
+          "total_before_reverse_pursuit_seconds": 1.0,
+          "accelerate_seconds": 0.2,
+          "behavior": "Decelerate existing horizontal velocity to zero, stop and turn, then accelerate toward player. No instant velocity reversal.",
+          "aggro": "Remain aggroed; no return to patrol or chase leash",
+          "retarget": "At turn completion choose current player side. Do not restart timer each frame or for every crossing during an active turn.",
+          "dead_zone": "If player remains inside stop-distance dead zone at completion, stay stopped until a clear side exists.",
+          "contact": "Normal contact damage remains active; turnaround is not invulnerability for the player.",
+          "reset": "Clear turnaround state with enemy despawn/death or full encounter restart; pause freezes timers.",
+          "art": "Use existing compatible poses; request Bestiary / Art help before creating missing turn artwork."
+        }
+      },
+      "active_level_profile": {
+        "level": "first-call",
+        "source": "design/first-call-action/opening-trial-balance.json",
+        "role": "runner",
+        "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+      }
+    },
+    {
+      "id": "spider",
+      "name": "The Hallowed Widow",
+      "status": "Proximity swoop source implemented; build49 pending",
+      "art": "assets/bestiary/flying-spider-atlas-v2.png",
+      "tool": "Built-in image_gen",
+      "prompt": "assets/bestiary/flying-spider-prompt-v2.json",
+      "remaining": [
+        "Refine atlas gutters, consistent body anchors, and alpha edges",
+        "Validate looping wingbeat at gameplay size",
+        "Create attack and defeat animation",
+        "Implement flight movement, collision, and balance",
+        "Integrate and capture running-game screenshots",
+        "Prepare damage atlases for runtime: alpha, anchors, timing, and hit feedback"
+      ],
+      "original_concept": "assets/bestiary/spider-concept-v1.png",
+      "animation_spec": "assets/bestiary/flying-spider-animation-v2.json",
+      "previous_atlas": "assets/bestiary/flying-spider-atlas-v1.png",
+      "original_concept_prompt": "Use case: stylized-concept. Asset type: original bestiary enemy concept sprite for a SNES-inspired 2D side-scrolling plumbing action game. Primary request: one big creepy basement spider. Crisp chunky pixel clusters, strong dark navy outlines, limited colors, matching retro porcelain toilet monsters shaded teal with glowing coral eyes. Full body three-quarter side view facing LEFT, low stalking stance, huge rounded charcoal-teal abdomen, small head with clustered glowing coral eyes, two curved fangs, exactly eight long angular hairy legs with clearly readable separated silhouettes. Creepy and menacing but stylized, no gore. Single creature centered, all eight feet fully inside frame with generous transparent margins. Genuine transparent background, no ground shadow, no environment, no text, no grid, no additional creatures. This is a single idle concept pose, not an animation sheet.",
+      "marketing": {
+        "image": "bestiary/the-hallowed-widow/marketing-v1.png",
+        "width": 1254,
+        "height": 1254,
+        "style": "hyperrealistic",
+        "prompt": "bestiary/marketing-prompts-v1.json",
+        "tool": "Built-in image_gen"
+      },
+      "metadata": "bestiary/the-hallowed-widow/monster.json",
+      "damage_art": {
+        "image": "assets/bestiary/damage/hallowed-widow-damage-v3.png",
+        "spec": "assets/bestiary/damage/the-hallowed-widow-damage.json",
+        "status": "Flight/hurt/death integrated; composed live-to-death visual review pending"
+      },
+      "health": {
+        "max_hp": 180,
+        "visible_by_default": false,
+        "status": "Proximity swoop source implemented; build49 pending",
+        "source": "bestiary/the-hallowed-widow/monster.json#health"
+      },
+      "description": "White angel wings and a golden halo disguise a dark, bristling flying spider with red eyes and ivory fangs.",
+      "backstory": {
+        "status": "approved",
+        "author_role": "storyboarding agent",
+        "updated": "2026-10-16",
+        "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo\u2014every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
+        "canon_note": "User-selected magazine prose synchronized by Storyboarding review. Breeding is narrative wording, not a reproduction mechanic."
+      }
+    },
+    {
+      "id": "clogfather",
+      "name": "The Clogfather",
+      "status": "Registered design and source artwork; no playable boss encounter",
+      "metadata": "bestiary/clogfather/monster.json",
+      "art": "assets/bestiary/the-clogfather/body-atlas-v1.png",
+      "animation_spec": "assets/bestiary/the-clogfather/animation-v1.json",
+      "damage_art": {
+        "image": "assets/bestiary/the-clogfather/damage-atlas-v1.png",
+        "spec": "assets/bestiary/the-clogfather/damage-v1.json",
+        "status": "Six static HP-stage source poses; attack variants and continuous collapse animation still need refinement"
+      },
+      "health": {
+        "max_hp": 720,
+        "visible_by_default": true,
+        "status": "Provisional design balance from Game Mechanics proposal; not implemented or playtested",
+        "source": "bestiary/clogfather/monster.json#health"
+      },
+      "marketing": {
+        "image": "bestiary/clogfather/marketing-v1.png",
+        "width": 1254,
+        "height": 1254,
+        "style": "hyperrealistic",
+        "prompt": "bestiary/clogfather/art-prompts-v1.json",
+        "tool": "Built-in image_gen"
+      },
+      "remaining": [
+        "Attack and damage compositing",
+        "Additional acid/summon/valve effects",
+        "Anchor and alpha cleanup",
+        "Animation validation and encounter implementation"
+      ],
+      "description": "A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.",
+      "backstory": {
+        "status": "draft",
+        "author_role": "storyboarding agent",
+        "updated": "2026-10-14",
+        "text": "Billy-Joe classified repeated blockage warnings as duplicate reports and canceled the cleaning crews. Beneath headquarters, grease hardened around wipes, roots, and a buried outflow until the blockage filled the chamber. Then it began moving against the current. The Clogfather grew around something BJ's diagrams do not show. Removing it will restore access\u2014but what it has been hiding may be worse than the clog.",
+        "canon_note": "Proposed history, not approved canon. Portal origin and BJ prior knowledge remain open; no intentional summoning is established."
+      }
+    },
+    {
+      "id": "sewer-fly-swarm",
+      "name": "Septic Air Force",
+      "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
+      "status": "Prototype40: double-size display; movement and contact tuning unchanged, visual playtest pending",
+      "metadata": "bestiary/sewer-flies/monster.json",
+      "art": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+      "animation": "assets/bestiary/sewer-flies/animation-v3.json",
+      "health": {
+        "max_hp": 12,
+        "spawn_hp": 12,
+        "visible_by_default": false,
+        "status": "Integrated initial 12 HP tuning; visual playtest pending",
+        "source": "bestiary/sewer-flies/monster.json#health",
+        "runtime_max_hp": 12
+      },
+      "marketing": {
+        "status": "Not requested for current sprite mockup; pending future production",
+        "image": null
+      },
+      "backstory": {
+        "status": "draft",
+        "text": "The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
+        "canon_note": "Name selected by Sean; revised history is a Storyboarding draft. Aviation language is comic metaphor, not military equipment or new attack behavior. No plot spoilers."
+      },
+      "name_status": "Working name selected by Sean on 2026-10-16",
+      "renderer": "scripts/sewer_swarm.gd",
+      "runtime_display_size": [
+        128,
+        128
+      ]
+    },
+    {
+      "id": "sputtervalve",
+      "name": "Sputtervalve",
+      "description": "A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.",
+      "status": "Provisional trial art delivered; runtime pending",
+      "metadata": "bestiary/sputtervalve/monster.json",
+      "art": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+      "animation": "assets/bestiary/opening-trial/manifest-v1.json",
+      "health": {
+        "max_hp": 36,
+        "spawn_hp": 36,
+        "runtime_max_hp": 36,
+        "encounter_stage": "First-level sewer opening",
+        "role": "stationary shooter",
+        "bar": {
+          "enabled": true,
+          "visible_by_default": false,
+          "display": "continuous"
+        },
+        "rationale": "Uses approved trial HP tier; validates pressure and emergence without retuning full level.",
+        "trial_hits_to_defeat": {
+          "tony_pressure_12": 3,
+          "sean_plunger_18": 2
+        },
+        "canonical_weapon_comparisons": {
+          "pressure-gun": 6,
+          "heavy-plunger-launcher": 2,
+          "pipe-wrench": 3,
+          "drain-snake": 5,
+          "demolition-hammer": 1,
+          "pipe-bomb-launcher": 1
+        },
+        "comparison_note": "Full damage/no armor/all hits land. Misses add shots; windup and range reduce practical DPS. Single-target comparisons do not count area collateral. Trial overrides apply only to starter weapons.",
+        "hits_to_defeat": {
+          "pressure-gun": 6,
+          "heavy-plunger-launcher": 2,
+          "pipe-wrench": 3,
+          "drain-snake": 5,
+          "demolition-hammer": 1,
+          "pipe-bomb-launcher": 1
+        },
+        "runtime_scope": "Continuous first-level opening"
+      },
+      "marketing": {
+        "status": "pending; no hyperrealistic portrait generated for provisional design",
+        "image": null
+      },
+      "implementation_status": "Integrated continuous first-level opening; Prototype45 checks in progress",
+      "active_level_profile": {
+        "level": "first-call",
+        "source": "design/first-call-action/opening-trial-balance.json",
+        "role": "shooter",
+        "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+      }
+    },
+    {
+      "id": "gratecrawler",
+      "name": "Gratecrawler",
+      "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.",
+      "status": "Provisional trial art delivered; runtime pending",
+      "metadata": "bestiary/gratecrawler/monster.json",
+      "art": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+      "animation": "assets/bestiary/opening-trial/manifest-v1.json",
+      "health": {
+        "max_hp": 24,
+        "spawn_hp": 24,
+        "runtime_max_hp": 24,
+        "encounter_stage": "First-level sewer opening",
+        "role": "floor emerger",
+        "bar": {
+          "enabled": true,
+          "visible_by_default": false,
+          "display": "continuous"
+        },
+        "rationale": "Uses approved trial HP tier; validates pressure and emergence without retuning full level.",
+        "trial_hits_to_defeat": {
+          "tony_pressure_12": 2,
+          "sean_plunger_18": 2
+        },
+        "canonical_weapon_comparisons": {
+          "pressure-gun": 4,
+          "heavy-plunger-launcher": 1,
+          "pipe-wrench": 2,
+          "drain-snake": 3,
+          "demolition-hammer": 1,
+          "pipe-bomb-launcher": 1
+        },
+        "comparison_note": "Full damage/no armor/all hits land. Misses add shots; windup and range reduce practical DPS. Single-target comparisons do not count area collateral. Trial overrides apply only to starter weapons.",
+        "hits_to_defeat": {
+          "pressure-gun": 4,
+          "heavy-plunger-launcher": 1,
+          "pipe-wrench": 2,
+          "drain-snake": 3,
+          "demolition-hammer": 1,
+          "pipe-bomb-launcher": 1
+        },
+        "runtime_scope": "Continuous first-level opening"
+      },
+      "marketing": {
+        "status": "pending; no hyperrealistic portrait generated for provisional design",
+        "image": null
+      },
+      "implementation_status": "Integrated continuous first-level opening; Prototype45 checks in progress",
+      "active_level_profile": {
+        "level": "first-call",
+        "source": "design/first-call-action/opening-trial-balance.json",
+        "role": "emerger",
+        "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+      }
+    }
+  ],
+  "gallery": "bestiary/bestiary.html",
+  "health_visual_policy": "assets/bestiary/damage/health-visuals.json",
+  "balance_policy": "assets/bestiary/balance-policy.json"
+}

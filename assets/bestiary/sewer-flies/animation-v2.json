@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "status": "Source mockup; frame bounds checked, runtime and temporal continuity not validated",
+  "image": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "grid": [
+    4,
+    6
+  ],
+  "logical_canvas": [
+    64,
+    64
+  ],
+  "anchor": [
+    32,
+    32
+  ],
+  "scale_rule": "Entire256px source cell maps to64px logical canvas. Fixed center/scale; never normalize each frame by opaque bounds. Living cloud roughly40\u201348px.",
+  "animations": {
+    "hover": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_up": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_down": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_left": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            768,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            768,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            768,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            768,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_right": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            1024,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            1024,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            1024,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            1024,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "death": {
+      "loop": false,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            1280,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "source_rect": [
+            256,
+            1280,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "source_rect": [
+            512,
+            1280,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "source_rect": [
+            768,
+            1280,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        }
+      ]
+    }
+  },
+  "death_rule": "Disable contact at zero HP; play once then remove entity. Preview replay is for inspection only.",
+  "movement_rule": "World position changes separately; dominant velocity axis selects row, never targets player. Hover does not mean wingbeats stop.",
+  "limitations": [
+    "Generated frame continuity and small-scale readability need review.",
+    "Direction poses are subtle; no pursuit or attack animation implied.",
+    "Death ends with a few specks; runtime removes entity after last frame.",
+    "No six-stage damage art or marketing portrait commissioned in this mockup."
+  ],
+  "revision": 2,
+  "art_change": "Less symmetric formations with uneven density and nearby stragglers; existing grid, anchor and timing retained."
+}

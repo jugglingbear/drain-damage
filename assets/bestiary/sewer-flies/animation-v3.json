@@ -1,0 +1,410 @@
+{
+  "schema_version": 1,
+  "status": "Corrected source slicing validated; gameplay visual review pending",
+  "image": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "grid": [
+    4,
+    6
+  ],
+  "logical_canvas": [
+    64,
+    64
+  ],
+  "anchor": [
+    32,
+    32
+  ],
+  "scale_rule": "Each256x256 source window maps to64x64 destination; anchor32,32. Fixed scale0.25. Living footprint40\u201350.5px; peripheral flies decorative outside16px contact core.",
+  "animations": {
+    "hover": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            0,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_up": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            256,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_down": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            512,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_left": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            760,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            760,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            760,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            760,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "move_right": {
+      "loop": true,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            1000,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            256,
+            1000,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            512,
+            1000,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        },
+        {
+          "source_rect": [
+            768,
+            1000,
+            256,
+            256
+          ],
+          "duration_seconds": 0.12
+        }
+      ]
+    },
+    "death": {
+      "loop": false,
+      "frames": [
+        {
+          "source_rect": [
+            0,
+            1240,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "source_rect": [
+            256,
+            1240,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "source_rect": [
+            512,
+            1240,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        },
+        {
+          "source_rect": [
+            768,
+            1240,
+            256,
+            256
+          ],
+          "duration_seconds": 0.16
+        }
+      ]
+    }
+  },
+  "death_rule": "Disable contact at zero HP; play once then remove entity. Preview replay is for inspection only.",
+  "movement_rule": "World position changes separately; dominant velocity axis selects row, never targets player. Hover does not mean wingbeats stop.",
+  "limitations": [
+    "Generated frame continuity and small-scale readability need review.",
+    "Direction poses are subtle; no pursuit or attack animation implied.",
+    "Death ends with a few specks; runtime removes entity after last frame.",
+    "No six-stage damage art or marketing portrait commissioned in this mockup."
+  ],
+  "revision": 3,
+  "art_change": "Less symmetric formations with uneven density and nearby stragglers; existing grid, anchor and timing retained.",
+  "date": "2026-10-16",
+  "layout": "Four columns with explicitly measured row windows; use frame source_rect, never infer uniform row spacing.",
+  "validation": {
+    "source_bounds": "pass24frames",
+    "cell_edges": "pass: maximum alpha3/255, no substantial fly pixels clipped",
+    "checks": [
+      {
+        "state": "hover",
+        "frame": 0,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "hover",
+        "frame": 1,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "hover",
+        "frame": 2,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "hover",
+        "frame": 3,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_up",
+        "frame": 0,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_up",
+        "frame": 1,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_up",
+        "frame": 2,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_up",
+        "frame": 3,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_down",
+        "frame": 0,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_down",
+        "frame": 1,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_down",
+        "frame": 2,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_down",
+        "frame": 3,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_left",
+        "frame": 0,
+        "maximum_border_alpha": 2
+      },
+      {
+        "state": "move_left",
+        "frame": 1,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_left",
+        "frame": 2,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_left",
+        "frame": 3,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_right",
+        "frame": 0,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_right",
+        "frame": 1,
+        "maximum_border_alpha": 3
+      },
+      {
+        "state": "move_right",
+        "frame": 2,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "move_right",
+        "frame": 3,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "death",
+        "frame": 0,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "death",
+        "frame": 1,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "death",
+        "frame": 2,
+        "maximum_border_alpha": 1
+      },
+      {
+        "state": "death",
+        "frame": 3,
+        "maximum_border_alpha": 0
+      }
+    ],
+    "runtime_visual_review": "pending",
+    "normalization": "PNG unchanged; nonuniform row origins avoid resampling/repainting. All crops square."
+  }
+}

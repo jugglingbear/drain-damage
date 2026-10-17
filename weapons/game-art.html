@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drain Damage — Weapon sprite source art</title><style>
+:root { color-scheme:dark; } body { background:#101c2a; color:#edf4ed; font:16px/1.6 system-ui; margin:0; }
+main { max-width:1200px; margin:auto; padding:32px 24px; } a { color:#8ae4bf; }
+h1 { font-size:clamp(32px,5vw,56px); line-height:1.1; } .grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+article { padding:22px; background:#192b3b; border:1px solid #456; border-radius:12px; }
+img { display:block; width:100%; height:auto; background:#263c4c; } p { color:#bdccd1; }
+.notice { padding:16px; border-left:4px solid #ffd078; }
+@media(max-width:750px) { .grid { grid-template-columns:1fr; } }
+</style></head><body><main><a href="../roadmap.html">Development roadmap</a>
+<h1>Tools of the trade.</h1>
+<p>Six exclusive weapons · Pixel-art source sheets · October 13, 2026</p>
+<p class="notice">Asset previews, not gameplay screenshots. Each sheet includes an inventory icon, held-tool poses,
+attack artwork, and impact effects. Ranged weapons include projectiles; melee tools include a sweep or cable extension.
+Slicing, grip and muzzle alignment, alpha cleanup, character attachment, and runtime validation remain pending.</p>
+<div class="grid"><article><h2>Pipe Wrench</h2>
+<p>Tony only · Compact teal-handled wrench; quick horizontal sweep.</p>
+<a href="../assets/weapons/pipe-wrench/atlas-v1.png"><img src="../assets/weapons/pipe-wrench/atlas-v1.png" alt="Pipe Wrench nine-cell source sprite sheet"
+width="1254" height="1254"></a>
+<p>1254 × 1254 pixels. Row-major cells: inventory icon, held ready, windup, strike, follow through, sweep effect, impact onset, impact peak, impact dissipate.</p>
+<p><a href="pipe-wrench/game-art.json">Animation specification, anchors and exact prompts</a> ·
+<a href="pipe-wrench/weapon.json">Weapon design metadata</a></p></article>
+<article><h2>Drain Snake</h2>
+<p>Tony only · Coiled flexible cable with a small steel auger; narrow extending thrust.</p>
+<a href="../assets/weapons/drain-snake/atlas-v1.png"><img src="../assets/weapons/drain-snake/atlas-v1.png" alt="Drain Snake nine-cell source sprite sheet"
+width="1536" height="1024"></a>
+<p>1536 × 1024 pixels. Row-major cells: inventory icon, held ready, windup, strike, retraction, cable tip extension, impact onset, impact peak, impact dissipate.</p>
+<p><a href="drain-snake/game-art.json">Animation specification, anchors and exact prompts</a> ·
+<a href="drain-snake/weapon.json">Weapon design metadata</a></p></article>
+<article><h2>Pressure Gun</h2>
+<p>Tony only · Compact brass-and-teal water gun with pressure gauge; crisp blue water bolts.</p>
+<a href="../assets/weapons/pressure-gun/atlas-v2.png"><img src="../assets/weapons/pressure-gun/atlas-v2.png" alt="Pressure Gun nine-cell source sprite sheet"
+width="1254" height="1254"></a>
+<p>1254 × 1254 pixels. Row-major cells: inventory icon, held ready, fire recoil, recovered, projectile a, projectile b, impact onset, impact peak, impact dissipate.</p>
+<p><a href="pressure-gun/game-art.json">Animation specification, anchors and exact prompts</a> ·
+<a href="pressure-gun/weapon.json">Weapon design metadata</a></p></article>
+<article><h2>Demolition Hammer</h2>
+<p>Sean only · Oversized steel hammer with orange grip; weighty overhead slam.</p>
+<a href="../assets/weapons/demolition-hammer/atlas-v1.png"><img src="../assets/weapons/demolition-hammer/atlas-v1.png" alt="Demolition Hammer nine-cell source sprite sheet"
+width="1254" height="1254"></a>
+<p>1254 × 1254 pixels. Row-major cells: inventory icon, held ready, windup, strike, follow through, sweep effect, impact onset, impact peak, impact dissipate.</p>
+<p><a href="demolition-hammer/game-art.json">Animation specification, anchors and exact prompts</a> ·
+<a href="demolition-hammer/weapon.json">Weapon design metadata</a></p></article>
+<article><h2>Heavy Plunger Launcher</h2>
+<p>Sean only · Bulky orange-and-steel launcher firing a red rubber plunger on a short shaft.</p>
+<a href="../assets/weapons/heavy-plunger-launcher/atlas-v1.png"><img src="../assets/weapons/heavy-plunger-launcher/atlas-v1.png" alt="Heavy Plunger Launcher nine-cell source sprite sheet"
+width="1254" height="1254"></a>
+<p>1254 × 1254 pixels. Row-major cells: inventory icon, held ready, fire recoil, recovered, projectile a, projectile b, impact onset, impact peak, impact dissipate.</p>
+<p><a href="heavy-plunger-launcher/game-art.json">Animation specification, anchors and exact prompts</a> ·
+<a href="heavy-plunger-launcher/weapon.json">Weapon design metadata</a></p></article>
+<article><h2>Pipe-Bomb Launcher</h2>
+<p>Sean only · Exaggerated fictional industrial launcher; chunky capped cartoon projectiles and splashy blast. No construction details.</p>
+<a href="../assets/weapons/pipe-bomb-launcher/atlas-v1.png"><img src="../assets/weapons/pipe-bomb-launcher/atlas-v1.png" alt="Pipe-Bomb Launcher nine-cell source sprite sheet"
+width="1254" height="1254"></a>
+<p>1254 × 1254 pixels. Row-major cells: inventory icon, held ready, fire recoil, recovered, projectile a, projectile b, impact onset, impact peak, impact dissipate.</p>
+<p><a href="pipe-bomb-launcher/game-art.json">Animation specification, anchors and exact prompts</a> ·
+<a href="pipe-bomb-launcher/weapon.json">Weapon design metadata</a></p></article></div>
+<p>All artwork generated with built-in imagegen. Exact prompts and original revisions are preserved in the manifests.
+Marketing portraits are managed separately. These assets do not change the running game.</p>
+</main></body></html>
