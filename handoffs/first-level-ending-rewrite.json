@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "status": "Integrated in Prototype 49; packaged route and held-input checks pass; live review pending",
+  "scope": "Current first-level exit, both routes. No boss or portal outcome assumed.",
+  "routes": {
+    "tony": [
+      {
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "I’m at the exit. Sean, you still on the radio?",
+        "radio": false
+      },
+      {
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Yeah. I was trying not to distract you. Are you coming out?",
+        "radio": true
+      },
+      {
+        "who": "tony",
+        "emotion": "happy",
+        "text": "On my way, buddy. Thanks for staying with me.",
+        "radio": false
+      },
+      {
+        "who": "bj",
+        "emotion": "neutral",
+        "text": "Before you leave, I have another service call.",
+        "radio": false
+      },
+      {
+        "who": "tony",
+        "emotion": "skeptical",
+        "text": "Does the customer know what’s happening down here?",
+        "radio": false
+      },
+      {
+        "who": "bj",
+        "emotion": "neutral",
+        "text": "The customer reported a toilet moving across the bathroom.",
+        "radio": false
+      },
+      {
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Can we tell them to shut the door?",
+        "radio": true
+      },
+      {
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "Good thinking. BJ, tell them to stay out. We’ll call when we’re on our way.",
+        "radio": false
+      },
+      {
+        "who": "bj",
+        "emotion": "neutral",
+        "text": "I’ll mark you as available.",
+        "radio": false
+      }
+    ],
+    "sean": [
+      {
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Tony, I found the exit. Please tell me you’re outside.",
+        "radio": false
+      },
+      {
+        "who": "tony",
+        "emotion": "happy",
+        "text": "I’m here, buddy. Come on out. We’ll check you over.",
+        "radio": true
+      },
+      {
+        "who": "sean",
+        "emotion": "neutral",
+        "text": "I thought plumbing would involve fewer teeth.",
+        "radio": false
+      },
+      {
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "It usually does. You did well to get through that.",
+        "radio": true
+      },
+      {
+        "who": "bj",
+        "emotion": "neutral",
+        "text": "There’s another customer waiting. Their toilet has moved into the hallway.",
+        "radio": false
+      },
+      {
+        "who": "sean",
+        "emotion": "surprised",
+        "text": "Can’t we wait for it to leave the building?",
+        "radio": false
+      },
+      {
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "Someone could get hurt. BJ, tell them to keep clear. Give us a minute.",
+        "radio": true
+      },
+      {
+        "who": "sean",
+        "emotion": "worried",
+        "text": "You’ll stay on the radio?",
+        "radio": false
+      },
+      {
+        "who": "tony",
+        "emotion": "happy",
+        "text": "Of course I will.",
+        "radio": true
+      }
+    ]
+  },
+  "sequencing": {
+    "trigger": "Existing completion once at exit; use selected hero ID.",
+    "radio": "Only nonselected plumber has radio=true. BJ retains existing presentation.",
+    "advance": "Every entry is a separate turn in stored order. Never filter out support-radio lines.",
+    "guards": "Preserve typewriter advance, skip, input-release guard and victory flow.",
+    "reported_missing_reply": "Current source already includes Sean response as Tony route entry 2. Report may reflect skipped input or stale build; validate actual renderer/advance path, not only replacement text.",
+    "tone": "Tony warm and protective; Sean participates rather than merely receiving advice; BJ prioritizes assigning work.",
+    "new_dispatch_detail": "Another mobile toilet is a contained dispatch report, not a locked second-level location or new mechanic.",
+    "health": "No line claims the active hero is uninjured.",
+    "remaining_enemies": "No all-clear or repaired-plumbing claim."
+  },
+  "validation_required": [
+    "Both routes contain all three speakers and retain correct portrait emotion.",
+    "Tony route question gets Sean immediate reply before BJ interruption.",
+    "Sean route final question gets Tony reply.",
+    "Held advance or gameplay input cannot silently skip support turn.",
+    "Confirm exit scene in actual packaged build, preserving playtest permission."
+  ],
+  "integration_owner": "Engineering; do not overwrite opening or selected death lines.",
+  "checks": [
+    "Both route data speaker/emotion/radio checks passed.",
+    "Existing headless tests/dialogue.gd printed PASS; environment log-write and macOS certificate warnings occurred.",
+    "No live visual verification while playtest is active."
+  ]
+}

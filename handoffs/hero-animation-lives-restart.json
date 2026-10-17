@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "Integrated and packaged checks verified in Prototype 35 / 0.35.0; live visual review and Sean difficulty remain open.",
+  "owners": {
+    "runtime": "Engineering",
+    "art": "Bestiary / Art"
+  },
+  "aiming": "All eight directions airborne; all except straight down grounded. Aim visible without firing.",
+  "animation_audit": {
+    "heroes": [
+      "tony",
+      "sean"
+    ],
+    "scope": "All hero sprite sheets, manifests and runtime paths, including legacy and modular aiming, supported current weapons and future unsupported assets labeled honestly.",
+    "matrix": [
+      "idle",
+      "run_left",
+      "run_right",
+      "takeoff",
+      "rising",
+      "apex",
+      "falling",
+      "landing",
+      "hurt",
+      "death"
+    ],
+    "cross_product": "Both heroes \u00d7 each valid aim direction \u00d7 locomotion state \u00d7 firing/not firing; also transitions and facing mirrors.",
+    "acceptance": [
+      "No running movement with frozen legs for any valid aim.",
+      "Jump poses respond to vertical phase and landing; no standing body floating through jumps.",
+      "Weapon/arms stay registered to moving body; muzzle tracks pose.",
+      "Recoil never suppresses locomotion or persistent aim.",
+      "Audit records missing assets versus renderer bugs, with honest readiness status."
+    ]
+  },
+  "lives": {
+    "starting_lives": 3,
+    "meaning": "Three total lives including current life, not three spare retries",
+    "hud": "One selected-hero head icon per remaining life",
+    "death": "At zero health enter nonlooping death animation, disable player control/firing, consume exactly one life, prevent repeat damage/decrements.",
+    "respawn": "If lives remain, respawn at active checkpoint or entrance with full selected-hero health and usual protection; preserve established enemy/checkpoint persistence.",
+    "game_over": "At zero lives show Game Over with deliberate Retry and Return to Main Menu. Retry starts a fresh run with three lives.",
+    "art": "Distinct Tony and Sean head icons and death animations; grounded and airborne death must settle believably rather than freeze in midair.",
+    "status": "Three lives and hero-head HUD explicitly requested; lifecycle details are initial implementation defaults."
+  },
+  "developer_restart": {
+    "remove": [
+      "Controller Y standalone restart",
+      "Keyboard R standalone restart"
+    ],
+    "controller": "Hold left trigger and right trigger, then press Start; rising Start edge only, requires release before another activation.",
+    "input_guard": "Chord takes precedence over pause; consumed input must not fire a shot, toggle pause or leak into restarted run. No activation while typing/dialogue/menu interaction.",
+    "keyboard": "No replacement keyboard shortcut requested; remove R and retain non-player-facing development tooling.",
+    "documentation": "Do not list secret restart in player Controls, prompts, tutorials or user-facing roadmap; technical handoff/tests may document it."
+  },
+  "delivery": "Engineering owns runtime/build/roadmap. Preserve shared edits; no game launch/foreground without permission; capture actual storybook after permitted visual validation.",
+  "runtime": {
+    "renderer": "scripts/hero_aim_art.gd",
+    "art_manifest": "assets/sprites/hero-animation-v2/manifest.json",
+    "tests": [
+      "tests/hero_animation.gd",
+      "tests/hero_lifecycle.gd",
+      "tests/developer_restart.gd"
+    ],
+    "coverage": "240 phase/aim/fire cases; six run frames; mirrored muzzles; lifecycle/input tests pass.",
+    "full_route": "Tony passes; Sean bot exhausts three lives. Difficulty and human playtest remain open.",
+    "visual": "Static Art preview reviewed; live game not launched. Stride and shoulder polish remain."
+  }
+}

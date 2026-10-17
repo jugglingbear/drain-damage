@@ -1,0 +1,249 @@
+{
+  "date": "2026-10-16",
+  "status": "Corrected manifest delivered; all24 full perimeter/source-bound checks pass",
+  "image": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "corrected_frames": {
+    "hover": [
+      {
+        "source_rect": [
+          0,
+          0,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          256,
+          0,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          512,
+          0,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          768,
+          0,
+          256,
+          256
+        ]
+      }
+    ],
+    "move_up": [
+      {
+        "source_rect": [
+          0,
+          256,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          256,
+          256,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          512,
+          256,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          768,
+          256,
+          256,
+          256
+        ]
+      }
+    ],
+    "move_down": [
+      {
+        "source_rect": [
+          0,
+          512,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          256,
+          512,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          512,
+          512,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          768,
+          512,
+          256,
+          256
+        ]
+      }
+    ],
+    "move_left": [
+      {
+        "source_rect": [
+          0,
+          760,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          256,
+          760,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          512,
+          760,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          768,
+          760,
+          256,
+          256
+        ]
+      }
+    ],
+    "move_right": [
+      {
+        "source_rect": [
+          0,
+          1000,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          256,
+          1000,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          512,
+          1000,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          768,
+          1000,
+          256,
+          256
+        ]
+      }
+    ],
+    "death": [
+      {
+        "source_rect": [
+          0,
+          1240,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          256,
+          1240,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          512,
+          1240,
+          256,
+          256
+        ]
+      },
+      {
+        "source_rect": [
+          768,
+          1240,
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "rendering": {
+    "canvas": [
+      64,
+      64
+    ],
+    "anchor": [
+      32,
+      32
+    ],
+    "scale": 0.25,
+    "filter": "nearest",
+    "rule": "Fixed256px crops to64px destination; no opaque-bound autoscaling."
+  },
+  "findings": [
+    "Original row_index*256 slicing clips flies in move_left/move_right/death and leaks adjacent row pixels.",
+    "Corrected row windows have top/bottom alpha at most3/255; original substantial boundary alpha reached250/255.",
+    "Living footprint approximately40\u201350.5px, not strict40\u201348px.",
+    "Hover center sits lower within source cell than movement centers; temporal/world registration review remains necessary.",
+    "16px radius is central contact core only: outer flies remain decorative; do not claim every visible fly damages targets."
+  ],
+  "approval": "Approve corrected crop windows for source slicing only. Full animation and contact readability not visually validated.",
+  "ownership": "No runtime manifest, code, build or roadmap changed.",
+  "limitations": "Very faint alpha fringe remains. No foreground game or runtime visual test performed.",
+  "delivery_manifest": "assets/bestiary/sewer-flies/animation-v3.json",
+  "delivery_image": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+  "validated_frames": 24,
+  "alpha_verification": {
+    "status": "Suitable for standard straight-alpha runtime compositing; no opaque background square",
+    "method": "RGBA values inspected and original PNG composited using alpha over contrasting blue and cream backgrounds",
+    "preview": "previews/sewer-flies-alpha-check-v2.png",
+    "findings": "Smoky colors are largely hidden RGB behind zero/near-zero alpha. No broad smoky rectangle visible in composite; small soft fringes around fly edges remain.",
+    "runtime": "Preserve PNG alpha, standard alpha blend, nearest filtering; do not flatten RGB or render as opaque. Continue using animation-v3.json crops.",
+    "game_validation": "Offline composite only; actual Godot import/render remains Engineering verification."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "status": "Integrated in Prototype 47 / 0.47.0; packaged checks pass; listening pending",
+  "cue_id": "flushfiend-death-shatter",
+  "runtime": "assets/audio/sfx/flushfiend-shatter-v1/porcelain-break.wav",
+  "duration_seconds": 0.75,
+  "peak_dbfs": -12,
+  "gain_db": -3,
+  "format": "44100 Hz mono PCM16",
+  "loop": false,
+  "sha256": "fb36d36e31ab4310847447de55ebe2f58b1a40ce0cf5ca5b870184b33e0afb40",
+  "source_page": "https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx",
+  "download_url": "https://opengameart.org/sites/default/files/sfx_breaking_and_falling.zip",
+  "author": "rubberduck",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "original_pack": "audio/sources/flushfiend-shatter-v1/original-pack.zip",
+  "original_pack_sha256": "e6ee04d91c5f4d30cfda1260d2c9d1faf96fda36319287215fbd07bcb1a80451",
+  "members": [
+    "bfh1_glass_breaking_02.ogg",
+    "bfh1_rock_breaking_01.ogg"
+  ],
+  "processing": "Glass: highpass350 lowpass7500 gain0.8; rock: highpass180 lowpass3200 gain0.35; sum without normalization; strip initial silence below -45dB; pad/trim0.75s; fade-in2ms; fade-out last150ms; convert mono PCM16/44100; normalize PCM peak to -12dBFS.",
+  "description": "Ceramic-style shatter designed from glass fracture and stone crunch, not a recording of porcelain.",
+  "integration": "Trigger exactly once on Flushfiend lethal damage. Replace 90Hz hit tone on lethal hit only; keep ordinary-hit feedback. Honor SFX mute and pause; stop on restart/menu. Cap overlapping death voices. No sound on merely despawning or restoring checkpoint state.",
+  "validation": "Packaged lethal/nonlethal and environmental kills, four-voice limit, pause/mute/reset/exit checks pass; integrated opening runner death triggers once. No subjective listening."
+}

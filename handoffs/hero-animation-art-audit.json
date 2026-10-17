@@ -1,0 +1,1960 @@
+{
+  "status": "Authored source and measured integration candidate delivered; full visual audit not complete",
+  "date": "2026-10-15",
+  "runtime_owner": "Engineering",
+  "contract": {
+    "canvas": [
+      128,
+      128
+    ],
+    "registration": [
+      64,
+      104
+    ],
+    "standing_height": 72,
+    "source": "Existing modular runtime contract; source crop rectangles measured after generation",
+    "composition": "Replace body layer with actual authored locomotion frames; translate arm/weapon layers and their anchors together by per-frame shoulder offset. Do not normalize each frame to its opaque bounding box.",
+    "death": "Separate complete unarmed nonlooping sequence; airborne collapse waits for ground contact before ground impact and settle.",
+    "hud": "Selected-hero head, transparent source crop; suggested 20x20 logical pixels, Engineering owns placement."
+  },
+  "findings": [
+    {
+      "path": "scripts/hero_aim_art.gd",
+      "issue": "draw selects static standing/airborne body independent of movement, vertical phase, hurt or death. No frame clock."
+    },
+    {
+      "path": "assets/sprites/modular-aim-v1/runtime-manifest.json",
+      "issue": "16 static holds, not animation. No grounded diagonal down. Existing grip and muzzle geometry reusable."
+    },
+    {
+      "path": "assets/sprites/tony-v1.png",
+      "issue": "Legacy baked-weapon animation incompatible with modular holds; superseded wardrobe includes overalls."
+    },
+    {
+      "path": "assets/sprites/sean-v2.png",
+      "issue": "Legacy baked-weapon animation cannot provide separate body motion across all aim angles."
+    },
+    {
+      "path": "scripts/modular_hero.gd",
+      "issue": "No such file in current checkout; actual renderer hero_aim_art.gd inspected."
+    }
+  ],
+  "coverage_pending": [
+    "Full movement/aim/fire matrix visual validation",
+    "Mirrored grip and muzzle review",
+    "Run cadence/alternating foot silhouette polish",
+    "Sean shoulder socket alignment on rising pose",
+    "Raised aim face occlusion",
+    "Death transition timing and ground contact validation",
+    "HUD head crop readability at24px"
+  ],
+  "runtime_validation": "Prototype 35: packaged 240 phase/aim/fire combinations, six-frame run progression, mirrored muzzle/attachment, death stage and life icon resource checks pass. This is not full visual validation.",
+  "delivery": {
+    "manifest": "assets/sprites/hero-animation-v2/manifest.json",
+    "preview": "previews/hero-animation-v2.png",
+    "prompts": [
+      "assets/sprites/hero-animation-v2/prompts.json",
+      "assets/sprites/hero-animation-v2/transparency-prompts.json"
+    ],
+    "body_frames_per_hero": 12,
+    "death_frames_per_hero": 4,
+    "head_icons": "Measured source head crops in manifest; maximum24x24",
+    "additional_aim": "standing down_right per hero; mirror for down_left"
+  },
+  "coverage_matrix": [
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "idle",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "run",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "takeoff",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "down",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "rising",
+      "direction": "down",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "down",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "apex",
+      "direction": "down",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "down",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "falling",
+      "direction": "down",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "landing",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "tony",
+      "state": "hurt",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "idle",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "run",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "takeoff",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "down",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "rising",
+      "direction": "down",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "down",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "apex",
+      "direction": "down",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "down",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "falling",
+      "direction": "down",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "landing",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "up_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "up_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "up",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "up",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "up_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "up_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "down_right",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "down_right",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "down_left",
+      "firing": false,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    },
+    {
+      "hero": "sean",
+      "state": "hurt",
+      "direction": "down_left",
+      "firing": true,
+      "art": "candidate supplied",
+      "runtime_visual_validation": "pending"
+    }
+  ],
+  "notes": "Original source PNGs preserved. Genuine authored leg/body poses supplied, not translated static holds. Single frames per jump phase, not interpolated jump cycles. No recoil bitmap cycle supplied.",
+  "engineering_notes": {
+    "source_alpha_check": "All animated pose muzzle points sampled clear of opaque body; grounded death frames settle within2.2 logical pixels of registration baseline.",
+    "game_launch": "None; screenshot permission not requested or assumed.",
+    "remaining": "Live visual matrix, stride cadence/shoulder polish. Sean full-route bot exhausts three lives; human difficulty evaluation pending."
+  }
+}

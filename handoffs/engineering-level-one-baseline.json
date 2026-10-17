@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-14",
+  "owner": "Engineering",
+  "baseline": "Prototype 26 / 0.26.0",
+  "status": "Runtime inspected; expansion awaits Level Design specification. No runtime or roadmap edits made.",
+  "movement": {
+    "coordinates": "Logical pixels; 960x540 viewport; player position is collision top-left.",
+    "tony": {
+      "speed": 270,
+      "contact_hit_health": 4
+    },
+    "sean": {
+      "speed": 235,
+      "contact_hit_health": 5
+    },
+    "collision_size": [
+      26,
+      46
+    ],
+    "visual_character_height": 72,
+    "gravity": 1250,
+    "jump_velocity": -465,
+    "acceleration": 1900,
+    "coyote_seconds": 0.11,
+    "jump_buffer_seconds": 0.14,
+    "release_jump_velocity_cap": -170,
+    "ideal_continuous_full_jump": {
+      "rise": 86.49,
+      "apex_seconds": 0.372,
+      "same_height_airtime": 0.744,
+      "tony_full_speed_distance": 200.88,
+      "sean_full_speed_distance": 174.84
+    },
+    "caveat": "Analytic estimates, not a collision simulation. Discrete physics, acceleration and edge overlap alter reach. Design for slower Sean and validate both routes.",
+    "recommended_geometry": "Required rises 45-65px; comfortable same-height gaps <=100-120px; landing surfaces >=100px. No mandatory max-range jumps. Higher scenery needs stepping surfaces."
+  },
+  "architecture": {
+    "runtime": "scripts/game.gd owns procedural Node2D movement, collision, combat, camera, checkpoints and victory; no tilemap/navigation system.",
+    "current_width": 2400,
+    "floor_y": 440,
+    "platforms": [
+      [
+        215,
+        375,
+        145,
+        16
+      ],
+      [
+        405,
+        320,
+        150,
+        16
+      ],
+      [
+        1150,
+        375,
+        145,
+        16
+      ],
+      [
+        1320,
+        320,
+        150,
+        16
+      ]
+    ],
+    "platform_collision": "One-way tops for player; no side/ceiling collision. Platforms block projectile sweeps. Flat floor always catches player: no pits/fall deaths.",
+    "spawn_x": [
+      680,
+      1370,
+      2150
+    ],
+    "checkpoint_trigger_x": 1580,
+    "checkpoint_respawn": [
+      1600,
+      394
+    ],
+    "completion": "player.x >=2300 and enemies empty; HUD denominator hardcoded 3. Must replace with authored encounter totals and explicit exit condition.",
+    "camera": "Horizontal only, target player.x-320, speed400; world bounds 0..width-960.",
+    "presentation": "scripts/world_art.gd draws background and sprites independently from collision. New scenery/platform art goes to Bestiary / Art.",
+    "suggested_refactor": "One validated level-data definition for world bounds, solid/surface rectangles, prop art placement, enemy spawns, checkpoints and exit. Keep art top surfaces aligned with collision."
+  },
+  "enemies": {
+    "playable": "Flushfiend/toilet only; 40HP, floor-bound sine bounce, contact damage; persistent aggro within horizontal280, patrol80, chase115, stop6.",
+    "constraints": "No platform traversal, gravity/pathfinding, height-aware detection, projectile attacks or real flying enemy AI. All enemies currently updated off-camera; persistent pursuit may accumulate a horde. Current movement cannot respect physical scenery side walls.",
+    "widow": "Damage atlas/80HP metadata available; flight behavior is not implemented. Requires explicit scope and movement integration; do not claim ready to place as a distinct enemy.",
+    "clogfather": "720HP metadata/HUD preview only; no boss gameplay. Its 30 Sean-hit timing needs retuning before encounter implementation."
+  },
+  "weapons": {
+    "tony": {
+      "damage": 6,
+      "interval": 0.15,
+      "range": 320,
+      "toilet_hits": 7
+    },
+    "sean": {
+      "damage": 24,
+      "interval": 1,
+      "range": 480,
+      "toilet_hits": 2
+    },
+    "notes": "Horizontal muzzle-path range, swept collision; no vertical aiming, melee or explosives implemented."
+  },
+  "proposed_encounter_budget": {
+    "not_approved": true,
+    "width_pixels": [
+      6000,
+      8000
+    ],
+    "sections": [
+      5,
+      6
+    ],
+    "total_toilets": [
+      18,
+      24
+    ],
+    "simultaneous_pressure": "Usually 2-3 active threats, brief peaks4; space encounters to prevent unintended persistent-chase stacks.",
+    "checkpoint_count": [
+      2,
+      3
+    ],
+    "duration_target_minutes": [
+      5,
+      8
+    ],
+    "duration_caveat": "Target only. Walking 6000-8000px takes roughly26-34s for Sean; meaningful combat, optional routes and scenery must earn duration. Do not pad solely with corridor length.",
+    "first_delivery": "Build an authored route with current toilet enemy; reserve new monster encounters until their behavior is implemented and verified."
+  },
+  "reset_rules": "Death fully heals and teleports to latest checkpoint; defeated enemies remain dead, surviving enemies retain aggro. Restart recreates encounter and clears checkpoint/aggro. Design safe respawn recovery.",
+  "handoff_needed": [
+    "Section boundaries and route map",
+    "Prop placement and collision surfaces in logical pixels",
+    "Enemy IDs, spawn positions and intended active encounter budget",
+    "Checkpoint locations and healing rules",
+    "Exit/completion criteria",
+    "Required versus optional new mechanics/monster types",
+    "Story beats and dialogue triggers coordinated with Storyboarding"
+  ],
+  "engineering_validation": [
+    "Both characters traverse required paths",
+    "Large-delta landing and projectile collision",
+    "Scenery collision matches visible surfaces",
+    "Persistent pursuit and off-camera encounter accumulation",
+    "Checkpoint safety, retry and win conditions",
+    "Dynamic HUD totals",
+    "Controller/keyboard selection and dialogue regressions",
+    "Headless packaged build, archived version, roadmap after aligned spec",
+    "Actual storybook capture only with permission; preserve build and record gap otherwise"
+  ]
+}

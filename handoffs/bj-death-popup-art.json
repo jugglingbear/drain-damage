@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "status": "Art approves Engineering existing dark-panel style reuse; ready for runtime integration",
+  "background": {
+    "path": "assets/selection/clipboard-stack-v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "destination_960x540": [
+      120,
+      30,
+      720,
+      480
+    ],
+    "provenance": "assets/selection/clipboard-stack.json",
+    "preserve_aspect": true
+  },
+  "portrait": {
+    "path": "assets/portraits/bj-expressions-v2.png",
+    "provider": "Portraits.expression(\"bj\", selected_quip.emotion)",
+    "destination": [
+      225,
+      147,
+      110,
+      110
+    ],
+    "placement": "Upper-left corner of paper content, below clip",
+    "expressions": [
+      "neutral",
+      "skeptical",
+      "worried",
+      "happy",
+      "surprised"
+    ],
+    "new_expressions_required": false
+  },
+  "live_regions": {
+    "title": [
+      350,
+      147,
+      350,
+      40
+    ],
+    "quip": [
+      350,
+      200,
+      350,
+      115
+    ],
+    "life_status": [
+      225,
+      325,
+      475,
+      25
+    ],
+    "primary_choice": [
+      225,
+      365,
+      225,
+      40
+    ],
+    "return_to_title": [
+      470,
+      365,
+      240,
+      40
+    ]
+  },
+  "typography": {
+    "title_size": 28,
+    "quip_size": 20,
+    "choice_size": 17,
+    "text_color": "#263634",
+    "note": "Wrap quips within region; measure longest approved line and choices with runtime font. Never clip or truncate approved copy."
+  },
+  "behavior_boundary": "Engineering selects one approved quip and emotion per death; live title/choices reflect remaining lives. Art does not define or replace approved copy or lifecycle.",
+  "branding": {
+    "game": "Drain Damage",
+    "employer": "Mainframe Plumbing & Supply",
+    "employer_status": "working name; no company lettering needed on popup"
+  },
+  "validation": {
+    "background": "Existing source artwork visually inspected; clean central paper suitable for text",
+    "geometry": "Approved Engineering rectangles fit660x360 panel and do not overlap.",
+    "runtime": "pending Engineering integration and text-fit checks",
+    "longest_quip_fit": "pending exact-copy/runtime font measurement"
+  },
+  "new_bitmap_required": false,
+  "originals": "No original artwork, prompts, or screenshots modified.",
+  "previous_clipboard_proposal": "Optional alternative only; use approved dark panel below for current implementation.",
+  "approved_runtime_layout": {
+    "canvas": [
+      960,
+      540
+    ],
+    "panel": [
+      150,
+      110,
+      660,
+      360
+    ],
+    "portrait": "Existing BJ semantic expression, preserve aspect, no decorative frame needed.",
+    "title": [
+      350,
+      125,
+      425,
+      42
+    ],
+    "quip": [
+      350,
+      175,
+      425,
+      130
+    ],
+    "primary_button": [
+      245,
+      330,
+      470,
+      44
+    ],
+    "secondary_button": [
+      245,
+      384,
+      470,
+      44
+    ],
+    "quip_font_size": 21,
+    "title_font_size": 28,
+    "style": "Reuse existing dark menu panel, cream/white text, mint focus accent and established button treatment. This is explicit Art approval to reuse existing UI styling, not a request for new code-drawn illustration.",
+    "layout_notes": [
+      "Panel contains all listed rectangles; buttons have10px gap and42px bottom margin.",
+      "Wrap complete approved quip; runtime must measure longest line at21px and check130px height.",
+      "Keep portrait clear of text; use reserved title region, never place title over portrait.",
+      "Use active selection/focus styling and existing readable contrast."
+    ]
+  },
+  "engineering_validation": {
+    "build": "Prototype 37 / 0.37.0",
+    "status": "Integrated and packaged headless checks passed",
+    "checks": [
+      "All twelve quips fit approved text area",
+      "Semantic portraits resolve",
+      "Both heroes, stable random selection and no immediate repeat",
+      "Held-input guard, checkpoint continuation, fresh Retry and Main Menu"
+    ],
+    "visual_review": "Pending permission; no game window opened"
+  }
+}

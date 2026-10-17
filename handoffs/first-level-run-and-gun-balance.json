@@ -1,0 +1,472 @@
+{
+  "schema_version": 1,
+  "status": "Planning recommendation only; no user approval of numerical options and no canonical/runtime edits",
+  "request": "Busier Contra III-inspired first level; ordinary enemies mostly1\u20133 hits; improve Sean responsiveness; unique defaults/exclusive pickups; required Clogfather finale.",
+  "sources": [
+    {
+      "title": "Konami: Contra Operation Galuga official game page",
+      "url": "https://www.konami.com/games/contra/og/asia/en/",
+      "observations": "Distinct weapon patterns include spread, flame, homing, laser and bombs; stacking and consuming weapons create further variation. Named enemy roles and large bosses are separate threats.",
+      "inference": "Identity can come from coverage, range and special behavior, not only slow cadence. This does not provide numeric budgets for our game."
+    },
+    {
+      "title": "Konami/WayForward announcement",
+      "url": "https://www.konami.com/games/us/en/topics/2268/",
+      "observations": "Confirms returning weapon categories with stacking and Overload options.",
+      "inference": "A pickup ecosystem is a better long-term variety axis than making one hero intrinsically wait a second after every shot."
+    }
+  ],
+  "research_limit": "Primary official run-and-gun material supports qualitative design, not exact Contra III damage/cadence/density. Candidate numbers are ours. Supplied screenshot descriptions came through Level Design; no frame-by-frame screenshot analysis claimed.",
+  "baseline": {
+    "profiles": "current below",
+    "hero_stats": {
+      "tony": {
+        "health": 4,
+        "move_speed": 270
+      },
+      "sean": {
+        "health": 5,
+        "move_speed": 235
+      }
+    },
+    "enemy_hp": {
+      "flushfiend": 40,
+      "hallowed_widow": 80,
+      "sewer_swarm": 12,
+      "clogfather": 720
+    },
+    "diagnosis": "Sean cooldown is1s, not2\u20133s. At240px a two-hit40HP toilet takes1.462s before misses; one extra miss adds1s. Tony needs7 hits and1.216s. Measure input/shot timestamps, wall occlusion and missed muzzle alignments before attributing all perceived delay to cadence."
+  },
+  "profiles": {
+    "current": {
+      "tony": {
+        "damage": 6,
+        "interval": 0.15,
+        "speed": 760,
+        "range": 320,
+        "dps": 40.0,
+        "miss_recovery_seconds": 0.15,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 2,
+            "seconds": 0.466
+          },
+          "24": {
+            "hits": 4,
+            "seconds": 0.766
+          },
+          "36": {
+            "hits": 6,
+            "seconds": 1.066
+          },
+          "40": {
+            "hits": 7,
+            "seconds": 1.216
+          },
+          "80": {
+            "hits": 14,
+            "seconds": 2.266
+          },
+          "720": {
+            "hits": 120,
+            "seconds": 18.166
+          }
+        }
+      },
+      "sean": {
+        "damage": 24,
+        "interval": 1.0,
+        "speed": 520,
+        "range": 480,
+        "dps": 24.0,
+        "miss_recovery_seconds": 1.0,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 1,
+            "seconds": 0.462
+          },
+          "24": {
+            "hits": 1,
+            "seconds": 0.462
+          },
+          "36": {
+            "hits": 2,
+            "seconds": 1.462
+          },
+          "40": {
+            "hits": 2,
+            "seconds": 1.462
+          },
+          "80": {
+            "hits": 4,
+            "seconds": 3.462
+          },
+          "720": {
+            "hits": 30,
+            "seconds": 29.462
+          }
+        }
+      }
+    },
+    "A_recommended": {
+      "tony": {
+        "damage": 12,
+        "interval": 0.16,
+        "speed": 760,
+        "range": 320,
+        "dps": 75.0,
+        "miss_recovery_seconds": 0.16,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 1,
+            "seconds": 0.316
+          },
+          "24": {
+            "hits": 2,
+            "seconds": 0.476
+          },
+          "36": {
+            "hits": 3,
+            "seconds": 0.636
+          },
+          "40": {
+            "hits": 4,
+            "seconds": 0.796
+          },
+          "80": {
+            "hits": 7,
+            "seconds": 1.276
+          },
+          "720": {
+            "hits": 60,
+            "seconds": 9.756
+          }
+        }
+      },
+      "sean": {
+        "damage": 18,
+        "interval": 0.24,
+        "speed": 520,
+        "range": 480,
+        "dps": 75.0,
+        "miss_recovery_seconds": 0.24,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 1,
+            "seconds": 0.462
+          },
+          "24": {
+            "hits": 2,
+            "seconds": 0.702
+          },
+          "36": {
+            "hits": 2,
+            "seconds": 0.702
+          },
+          "40": {
+            "hits": 3,
+            "seconds": 0.942
+          },
+          "80": {
+            "hits": 5,
+            "seconds": 1.422
+          },
+          "720": {
+            "hits": 40,
+            "seconds": 9.822
+          }
+        }
+      }
+    },
+    "B_equal_cadence": {
+      "tony": {
+        "damage": 12,
+        "interval": 0.18,
+        "speed": 760,
+        "range": 320,
+        "dps": 66.667,
+        "miss_recovery_seconds": 0.18,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 1,
+            "seconds": 0.316
+          },
+          "24": {
+            "hits": 2,
+            "seconds": 0.496
+          },
+          "36": {
+            "hits": 3,
+            "seconds": 0.676
+          },
+          "40": {
+            "hits": 4,
+            "seconds": 0.856
+          },
+          "80": {
+            "hits": 7,
+            "seconds": 1.396
+          },
+          "720": {
+            "hits": 60,
+            "seconds": 10.936
+          }
+        }
+      },
+      "sean": {
+        "damage": 12,
+        "interval": 0.18,
+        "speed": 520,
+        "range": 480,
+        "dps": 66.667,
+        "miss_recovery_seconds": 0.18,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 1,
+            "seconds": 0.462
+          },
+          "24": {
+            "hits": 2,
+            "seconds": 0.642
+          },
+          "36": {
+            "hits": 3,
+            "seconds": 0.822
+          },
+          "40": {
+            "hits": 4,
+            "seconds": 1.002
+          },
+          "80": {
+            "hits": 7,
+            "seconds": 1.542
+          },
+          "720": {
+            "hits": 60,
+            "seconds": 11.082
+          }
+        }
+      }
+    },
+    "C_heavier_contrast": {
+      "tony": {
+        "damage": 12,
+        "interval": 0.2,
+        "speed": 760,
+        "range": 320,
+        "dps": 60.0,
+        "miss_recovery_seconds": 0.2,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 1,
+            "seconds": 0.316
+          },
+          "24": {
+            "hits": 2,
+            "seconds": 0.516
+          },
+          "36": {
+            "hits": 3,
+            "seconds": 0.716
+          },
+          "40": {
+            "hits": 4,
+            "seconds": 0.916
+          },
+          "80": {
+            "hits": 7,
+            "seconds": 1.516
+          },
+          "720": {
+            "hits": 60,
+            "seconds": 12.116
+          }
+        }
+      },
+      "sean": {
+        "damage": 21,
+        "interval": 0.35,
+        "speed": 520,
+        "range": 480,
+        "dps": 60.0,
+        "miss_recovery_seconds": 0.35,
+        "ttk_at_240px": {
+          "12": {
+            "hits": 1,
+            "seconds": 0.462
+          },
+          "24": {
+            "hits": 2,
+            "seconds": 0.812
+          },
+          "36": {
+            "hits": 2,
+            "seconds": 0.812
+          },
+          "40": {
+            "hits": 2,
+            "seconds": 0.812
+          },
+          "80": {
+            "hits": 4,
+            "seconds": 1.512
+          },
+          "720": {
+            "hits": 35,
+            "seconds": 12.362
+          }
+        }
+      }
+    }
+  },
+  "recommended": "A: Tony12damage/0.16s and Sean18/0.24s, both75DPS. Sean remains heavier/slower but only0.24s miss penalty instead of1s. Keep current320/480 ranges, movement, health and3 lives for first comparison; tune one axis at a time.",
+  "alternatives": {
+    "B": "Both12/0.18s: removes firing-cadence tax entirely, identity from art/range/projectile behavior and exclusive pickups. Sean extraHP/range may dominate; compare mobility advantage carefully. Requires revising original heavier-hit role.",
+    "C": "Tony12/0.20s and Sean21/0.35s: both60DPS, stronger contrast but Sean still less forgiving when crossfire demands corrections. Use only if A feels too similar."
+  },
+  "candidate_enemy_hp": [
+    {
+      "role": "tiny swarm/light runner",
+      "hp": 12,
+      "A_hits_tony": 1,
+      "A_hits_sean": 1,
+      "note": "Swarm already12; one-shot Tony is proposed change via damage increase."
+    },
+    {
+      "role": "ordinary Flushfiend or runner",
+      "hp": 24,
+      "A_hits_tony": 2,
+      "A_hits_sean": 2,
+      "note": "Preserves previous request against one-shotting full-health toilets."
+    },
+    {
+      "role": "elevated shooter/pop-up robot/Hallowed Widow ordinary variant",
+      "hp": 36,
+      "A_hits_tony": 3,
+      "A_hits_sean": 2,
+      "note": "Robot/shooter roles are design concepts, not confirmed monsters. Widow80->36 requires explicit approval."
+    },
+    {
+      "role": "clearly marked occasional elite",
+      "hp": 72,
+      "A_hits_tony": 6,
+      "A_hits_sean": 4,
+      "note": "Exception; at most one in a busy screen, never classify ordinary fodder as elite merely to retain oldHP."
+    }
+  ],
+  "ttk_definition": "Immediate first trigger, held fire, target stationary240px away on clear shot line, all hits land at full damage, no armor/windup. TTK=(ceil(HP/damage)-1)*interval+distance/projectile_speed. Extra miss adds interval; first-shot travel remains real. Animation/projectile delay must be measured separately.",
+  "boss": {
+    "required": "Clogfather remains mandatory first-level finale, never1\u20133-hit fodder.",
+    "current720_A": "60Tony hits/40Sean hits;9.6s sustained exposure approximation vs current18s Tony/30s Sean. Five-second windows may make boss too short if HP unchanged.",
+    "candidate_for_A": 1080,
+    "candidate_hits": {
+      "tony": 90,
+      "sean": 60
+    },
+    "candidate_exposure_seconds": 14.4,
+    "target_fight_seconds": [
+      40,
+      60
+    ],
+    "rule": "1080 is a proposed accompanying retune, not approved. Measure travel/reposition/window uptime. Keep telegraphs and guaranteed recovery; never pad with long invulnerability simply to hit duration. Both defaults must win without pickups."
+  },
+  "density_budget": {
+    "status": "Initial proposed per960x540 combat viewport, not Contra measurements or engine limits.",
+    "intro": {
+      "visible_hostiles_max": 3,
+      "active_shooters_max": 1,
+      "hostile_projectiles_max": 3
+    },
+    "normal_busy": {
+      "visible_hostiles_max": 6,
+      "active_shooters_max": 2,
+      "hostile_projectiles_max": 8
+    },
+    "brief_peak": {
+      "visible_hostiles_max": 8,
+      "active_shooters_max": 3,
+      "hostile_projectiles_max": 12,
+      "max_seconds": 5
+    },
+    "composition": "Normal:3ground runners +1air obstacle +2elevated shooters. Not all actors attack simultaneously. Count swarms as a contact threat, not each decorative fly.",
+    "cadence": "Use6\u201310s action beats with2\u20133s easing/traversal between; cap queue sizes, no continuous infinite replacement flood.",
+    "entry": "Left/right runners walk from offscreen. A newly revealed shooter/popup gets>=0.6s visible telegraph; no offscreen aimed fire. First overlapping projectile arrivals stagger>=0.3s.",
+    "bullet_tuning": {
+      "speed_pixels_per_second": [
+        140,
+        180
+      ],
+      "radius_pixels": [
+        4,
+        6
+      ],
+      "minimum_clear_lane_width_pixels": 96
+    },
+    "fairness": "Reserve a reachable dodge lane using slower235px/s hero and real collision geometry. No simultaneous rear runner and opposing bullet trap. Tiered shooter platforms need visible physical support and approachable lines within starter ranges. Pickup route cannot require taking damage.",
+    "peak_rule": "Refuse extra spawn/fire requests when budget full; never delete already threatening bullets in view to satisfy cap. Prevent delayed queued fire burst.",
+    "boss_budget": "Separate encounter schedule, initially max6 hostile projectiles +1summon; no ambient swarms or extra wave spawns. Keep existing one-pattern-at-a-time guarantee."
+  },
+  "pickups": {
+    "recommended": "Unique unlimited default per hero, plus one character-exclusive pickup slot. A floating tool crate resolves to selected hero exclusive tool; no unusable other-hero drops in solo.",
+    "first_pair": {
+      "tony": "Pressure fan:3bolts at6damage each,0.24s interval,280px range; once per pellet per target, total theoretical single-target75DPS when all hit.",
+      "sean": "Air ram:24damage,0.32s interval,240px range, strong knockback; limited crowd coverage must be tested. Both are proposals, not existing implementations."
+    },
+    "duration": "Start with20s active gameplay time, freeze during pause/dialogue/dispenser; default retained and selectable, no permanent upgrade grind. Pickup expires on death with default restored.",
+    "refresh": "Same pickup refreshes to20s, never stacks indefinitely. Different pickup replaces slot only via deliberate selection/interaction to avoid accidental loss.",
+    "alternative": "Fixed exclusive drops with visible owner labels; simpler but creates dead drops for wrong hero unless curated per selection.",
+    "rejected_without_new_approval": "Shared interchangeable weapons violate current exclusivity. Generic global Sean fire-rate penalty would also slow his future rapid weapons; encode cadence per weapon."
+  },
+  "approval_changes": [
+    "Higher starter damage and fasterSean0.24s cadence",
+    "Ordinary enemy HP24/36 and boss1080 candidate",
+    "Pickup slot/duration and paired pickup concepts",
+    "Busier wave budgets and new shooter/robot roles"
+  ],
+  "evaluation": [
+    "Instrument press-to-shot latency and inter-shot timestamps, including running/jumping/recoil/input guards.",
+    "A/B same short encounter for both heroes; record misses, time-to-kill, deaths, projectiles and completion.",
+    "Human Sean section4 review required; old bot failure not proof of difficulty alone.",
+    "Compare density gradually3->6->8, with explicit readable safe lane, not all changes at once.",
+    "Verify projectile budget at spawn and visible-shooter telegraphs; test full level and required boss with defaults only."
+  ],
+  "delivery": "Engineering presents consolidated final planning report with Level Design; no implementation until user chooses direction.",
+  "layout_review": {
+    "source": "design/first-call-action/level-proposal.json",
+    "status": "Planning critique only; no approved numerical changes",
+    "opening_counts": "Opening beats sum to17 excluding pickup carrier:12 runners,1 perched shooter,2 floor emergers,2 aggressive flyers. If carrier damageable, count separately in threat/population accounting.",
+    "assumed_hp_mix": "12runners at24HP,5specialists at36HP; proposalA starters. Swarm unchanged12HP/non-hunting and not substituted for aggressive flyers.",
+    "hit_workload": {
+      "tony": 39,
+      "sean": 34
+    },
+    "workload_model": "Steady trigger occupancy estimate shots_required*interval/accuracy, not elapsed clear time. Excludes target switching, movement, projectile travel and downtime; no pickup required.",
+    "opening_occupancy_seconds": {
+      "1": {
+        "tony": 6.24,
+        "sean": 8.16
+      },
+      "0.8": {
+        "tony": 7.8,
+        "sean": 10.2
+      },
+      "0.7": {
+        "tony": 8.91,
+        "sean": 11.66
+      },
+      "0.6": {
+        "tony": 10.4,
+        "sean": 13.6
+      }
+    },
+    "judgment": "17 in20s is feasible underA on paper, not demonstrated fair. At70% hit rate Sean needs11.66s of trigger time versusTony8.91s, leaving less repositioning/target acquisition slack. Fast perfect-case TTK alone hides this imbalance.",
+    "recommended_slice": "Start with12 over20s:8runners +1shooter +1emerger +2flyers. Compare same lane with17 only after both heroes human-tested; keep advertised17 as stretch candidate, not initial acceptance minimum.",
+    "population": "Start max6 visible hostile bodies including entering telegraphs; allow8 for<=5s after validation. Defer10 until measured readable. Max2shooters and3independent threat patterns; count contact swarm/runner convergences as pressure too.",
+    "projectiles": "Adopt LevelDesign stricter6 normal/10 short peak hostile projectile caps, replacing previous8/12 recommendation. Peak test separately from body-count increase.",
+    "timing": "First3s front only. Delay first rear entry until forward contact pressure has eased; fourth new role need not be introduced before player has read first3. Once backlogs hit cap, delay new entrants rather than queue burst.",
+    "ninety_total": "90 over180\u2013300 traversal seconds is0.30\u20130.50 entities/sec, below opening0.85; total alone not alarming. Encounter clustering/backtracking matter more. Do not force90 to fill empty route.",
+    "boss_duration_conflict": "LevelDesign60\u201390s vsMechanics40\u201360s: recommend first target45\u201360s, allow up to75s on imperfect play; no approved duration. Report discrepancy explicitly. Require Clogfather, never wave-only completion.",
+    "geometry": "Current short ranges320/480 and jump86 require firing positions reachable without forced chip damage. Validate upper shooter from near/low route with actual hit/muzzle coordinates. Keep proposed rises<=60,gaps<=80,landings>=120.",
+    "decision_gate": "Engineering presents A and alternativeB equal cadence; choose after20s playtest. No engine edits, balance updates or new species approval implied."
+  }
+}

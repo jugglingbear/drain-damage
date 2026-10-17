@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-16",
+  "source_chat": "Marketing",
+  "source_thread": "01a1387a-f55c-7630-af51-0409ceafd920",
+  "scope": "Reviewed available discussion from initial marketing assignment through edition19. Extract intent; do not treat magazine approval as blanket runtime approval.",
+  "items": [
+    {
+      "id": "glass-front-dispenser",
+      "classification": "Game art direction plus marketing",
+      "confidence": "High in light of user's clarification; original message mixed editorial and object-design requests",
+      "evidence": "give it a glass front face and put a couple of sleeping clones of the current hero in it for dispensing",
+      "requirements": [
+        "Rusty old vending-machine cabinet with glass front",
+        "Two sleeping copies of currently selected hero; do not mix Tony and Sean",
+        "Sleeping sprite artwork and updated machine design"
+      ],
+      "status": "Runtime cabinet, glass, trim and sleeping-clone placements delivered; Engineering integrating next build",
+      "publication_hold": "Just don't generate an updated magazine yet applied to PDF regeneration, not cancellation of game design",
+      "next": "Art delivers runtime layers; Engineering integrates preserving existing dispenser mechanics",
+      "handoff": "handoffs/spare-employee-dispenser-runtime-glass.json"
+    },
+    {
+      "id": "wastewater-cutaway",
+      "classification": "Explicit game feature",
+      "confidence": "Explicit",
+      "evidence": "handoff to Engineeringn to implement this in the first level of the game",
+      "requirements": [
+        "Visible pipe cutaway below floor throughout level",
+        "Flowing water carries randomly spaced nonflushable debris",
+        "Water falls and blockage increases near Clogfather",
+        "Arena pipe fully blocked, no flowing water"
+      ],
+      "status": "Engineering reported integration in Prototype44; later full-route visual validation remains separate"
+    },
+    {
+      "id": "bj-identity",
+      "classification": "Shared character identity; magazine placement is editorial",
+      "confidence": "High for shared identity, no new gameplay mechanics requested",
+      "evidence": "I want ours to be unique and memorable",
+      "requirements": [
+        "Distinct recognizable AI design",
+        "Remove superseded toilet-and-pipes BJ image from active assets",
+        "Use established server-rack identity across current material"
+      ],
+      "status": "Current Art identity server rack/green CRT; magazine correction completed; no additional mechanics implied"
+    },
+    {
+      "id": "writing-style",
+      "classification": "Project-wide creative-writing instruction including game",
+      "confidence": "Explicit",
+      "evidence": "especially in marketing copy, dialogue, descriptions, headlines, and other creative writing",
+      "requirements": [
+        "Natural varied sentence structure",
+        "Avoid repeated formulaic paired fragments",
+        "Review game dialogue/descriptions as well as marketing"
+      ],
+      "status": "Recorded in AGENTS.md"
+    },
+    {
+      "id": "dispenser-fiction",
+      "classification": "Shared fiction; immediate requested edit was magazine copy",
+      "confidence": "Explicit premise, inferred consistency across in-world writing",
+      "evidence": "It shouldn't overtly say that the machine kills the heroes (although it does)",
+      "requirements": [
+        "Preserve disturbing replacement premise",
+        "Magazine uses subtle corporate euphemisms",
+        "Apply same tone to future in-world machine notices where appropriate"
+      ],
+      "limits": "Does not request removing existing splat animation or forbid screen-based game effects; never mention the screen was explicitly about magazine prose"
+    },
+    {
+      "id": "widow-breeding",
+      "classification": "Magazine wording with possible shared-lore implication",
+      "confidence": "Explicit editorial change; game lore synchronization candidate",
+      "evidence": "one sprouted wings and apparently started breeding",
+      "status": "Approved prose synchronized in monster.json, catalog and gallery via Storyboarding review; no reproduction mechanics",
+      "limits": "Does not authorize reproduction, egg spawning, additional enemy waves, or new mechanics"
+    }
+  ],
+  "marketing_only": [
+    "1990s Nintendo Power/GamePro layout, colors and grouping",
+    "Page count/order, hero entries and boss inclusion in magazine",
+    "Cover horde without bosses; this is cover composition, not game encounter placement",
+    "Replace repeated spider back cover with company advertisement",
+    "Tony horror reaction replacing redundant Clogfather inset",
+    "Remove repeated introductions and development-history captions",
+    "Large unmistakable editorial TODOs",
+    "Magazine generation pauses/resumes, edition19 publication",
+    "Retro box packaging samples and marketing output directory"
+  ],
+  "conclusion": "Glass-front dispenser is the clearest dropped game-art handoff. Cutaway was explicitly requested and delivered to Engineering. Other shared directions are identity/writing/lore, not hidden combat-feature approvals.",
+  "engineering_delivery": {
+    "build": "Prototype 48 / 0.48.0",
+    "glass_front": "Integrated; two selected-hero stock slots; packaged geometry/lifecycle checks pass",
+    "cutaway": "Already integrated; packaged full-route wastewater tests pass",
+    "bj": "Server-rack portraits retained; role label synchronized and width checked",
+    "writing": "Story review preserved approved dialogue; Widow shared lore synchronized without reproduction mechanics",
+    "remaining": "Live visual review/screenshots await permission; magazine-only items not added to runtime"
+  },
+  "follow_through": {
+    "requested_by_user": "Complete missing items, coordinate agents and have Engineering produce new combined build",
+    "story_handoff": "handoffs/game-intent-story-review.json",
+    "engineering": "All Art and Story dependencies delivered; build confirmation pending",
+    "marketing_scope": "Hyperreal hero portraits stay magazine-only"
+  }
+}

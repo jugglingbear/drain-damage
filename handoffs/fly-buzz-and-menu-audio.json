@@ -1,0 +1,28 @@
+{
+  "status": "Buzz integrated in Prototype 43 / 0.43.0; packaged lifecycle checks pass; listening pending",
+  "manifest": "audio/sources/sewer-fly-buzz-v1/manifest.json",
+  "runtime": "assets/audio/sfx/sewer-fly-buzz-v1/swarm-loop.wav",
+  "requirements": [
+    "Loop near living swarms only with distance attenuation and gentle entry/exit fades.",
+    "Cap simultaneous voices/total volume so swarms do not drown music or combat.",
+    "Stop on swarm death, restart and menu/level exit; pause with gameplay; honor SFX mute.",
+    "No trigger every frame; maintain one voice per audible swarm or one aggregate voice."
+  ],
+  "menu_candidates": "audio/sources/menu-navigation-candidates-v1/manifest.json",
+  "menu_status": "Integrated in Prototype46 /0.46.0; packaged lifecycle/input checks pass; listening pending",
+  "menu_behavior": "Use selected cue on successful directional navigation in all pre-game screens; keyboard and controller share behavior. Avoid duplicate cues or uncontrolled held-key repetition.",
+  "menu_selected": {
+    "id": "wrench-clink",
+    "date": "2026-10-16",
+    "runtime": "assets/audio/sfx/menu-navigation-v1/wrench-clink.wav",
+    "sha256": "718bed01a9fa2d0d36541b313f39e6f3f5e757174328756a25918eb9bdbe2dde",
+    "integration_status": "integrated_prototype46",
+    "duration_seconds": 0.24,
+    "gain_db": 0,
+    "peak_dbfs": -15,
+    "loop": false,
+    "license": "CC0-1.0",
+    "author": "Kenney",
+    "source": "https://kenney.nl/assets/impact-sounds"
+  }
+}

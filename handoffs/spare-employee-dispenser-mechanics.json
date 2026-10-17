@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "status": "Gameplay contract for approved dispenser; runtime integration pending Engineering",
+  "owner": "Game Mechanics specification; Engineering runtime; Art and audio supplied separately",
+  "approved_presentation": "Spare Employee Dispenser: injured hero compressed and thrown at screen; bloody cartoon SPLAT with X-eyed dead hero sliding down and leaving fading blood trail; intact same-hero clone emerges. BJ silent first use.",
+  "timing": {
+    "injured_target_seconds": 5.5,
+    "injured_hard_ceiling_seconds": 7.0,
+    "respawn_max_seconds": 2.0,
+    "healthy_max_seconds": 0.5,
+    "clock": "Independent presentation elapsed time, advancing while gameplay is frozen. Explicit player Pause suspends presentation and deadlines; all limits measure active control-lock time, excluding time voluntarily paused.",
+    "watchdog": "At deadline call the same safe finalizer as skip, regardless of missing animations/audio/events. Never await audio completion. All animation states advance from elapsed time and/or validated events."
+  },
+  "trigger": {
+    "requirement": "Living hero, not already in interaction/death/dialogue/menu; enter an armed dispenser trigger.",
+    "checkpoint_order": "Commit only a new higher checkpoint index. Never regress progress by touching an older dispenser.",
+    "repeat_use": "Preserve current one-time checkpoint activation behavior: already activated dispenser does not repeatedly heal. Rearm-on-exit alone does not grant another heal.",
+    "rearm": "Consume entry latch immediately; rearm only after hero fully exits trigger, including after skip/respawn. Mark current activated index ineligible independently.",
+    "priority": "Resolve pending lethal damage/death first; a zero-HP hero cannot start injured check-in. Never interrupt the intro/dialogue or existing death sequence.",
+    "geometry": "Preserve first-crossing thresholds x3300,6660,8190. Decorative machine adds no solid obstacle. Resolve preexisting lethal damage first; capture pre-heal health and mode before commit."
+  },
+  "state_machine": {
+    "ready": "Await eligible entry; snapshot hero ID and interaction mode. Consume latch before side effects.",
+    "healthy_stamp": "Health equals selected hero max. Commit checkpoint and stamp; release within0.5s. No destruction or life change.",
+    "scan": "Injured living entry. Commit checkpoint and full healing immediately at0.0s, before comedy. Protect hero and pause encounter simulation. Scan0.0\u20130.4s.",
+    "compress": "0.4\u20131.4s grab/cartoon compression; presentation only, not gameplay death.",
+    "throw_impact": "1.4\u20132.1s throw toward screen, blood splatter and synchronized impact SPLAT. Show X-eyed dead cartoon hero as presentation only, no life loss.",
+    "slide_and_vend": "2.1\u20133.6s dead hero slides down screen leaving blood trail; both fade while vending overlaps. Clear overlay fully before release.",
+    "emerge": "3.6\u20135.5s intact same hero emerges, looks left/right and shrugs.",
+    "respawn_vend": "Existing death system consumes life exactly once. After player elects continuation and lives>0, restore selected hero max health at checkpoint and run dispense-only for<=2s. At entrance with no dispenser retain existing entrance respawn.",
+    "finish": "Idempotent safe finalizer, used for natural completion, skip, watchdog or missing asset. Restore one intact hero at safe exit; clear overlays/temporary props; unlock once; retain committed checkpoint and healing."
+  },
+  "commit_contract": {
+    "check_in": "At eligible first crossing, atomically commit higher checkpoint index, checkpoint_active=true, respawn x equal to3300/6660/8190 respectively with feet at440, and selected max health. Presentation uses captured pre-heal mode. Never shift saved checkpoint to machine center x+64.",
+    "death_respawn": "Leave life debit to existing death system; this sequence neither adds nor subtracts lives. Preserve gate/kill/swarm progress exactly as existing checkpoint respawn.",
+    "hero_identity": "Keep selected Tony/Sean, loadout and max HP; clone is presentation, not character switch or duplicate playable entity.",
+    "no_resurrection": "Zero lives remains Game Over; dispenser cannot bypass it.",
+    "world_progress": "Never reset level, defeated enemies, gate state, intro-played flags or prior checkpoints. Full explicit run restart uses normal reset.",
+    "mode_snapshot": "Read alive state, health and selected max_health BEFORE restoring HP: health<max selects injured, health==max selects stamp. Store mode; never re-evaluate after healing."
+  },
+  "simulation_lock": {
+    "freeze": [
+      "enemy movement and AI",
+      "swarm movement/contact timers",
+      "boss/hazard attacks",
+      "projectile travel/lifetimes",
+      "world damage and spawn triggers",
+      "other checkpoint activation"
+    ],
+    "continue": [
+      "dispenser presentation clock",
+      "UI and explicit pause handling",
+      "necessary existing music handling"
+    ],
+    "entry_projectiles": "Remove transient damaging projectiles and active overlap hazards that would immediately hit the exit, or relocate exit to safe clear location. Do not destroy unrelated enemies or permanent hazards. Snapshot/restore all other frozen state without catch-up ticks.",
+    "hero_actions": "Disable move,jump,fire and interaction while locked; scripted visual motion only. Keep player collision non-damaging during presentation.",
+    "release_protection_seconds": 1.5,
+    "release": "Zero player velocity; safe floor-supported exit, no solid overlap. Resume world once; protection follows existing hurt/respawn visual rules. No queued attack burst."
+  },
+  "skip": {
+    "policy": "First injured sequence plays unless watchdog intervenes; subsequent injured sequences skippable. Healthy and respawn paths are short and may also safely finalize on explicit skip.",
+    "input": "Use existing dialogue_skip action only, with its current keyboard/controller bindings. Snapshot held inputs on entry, require release then new just-pressed skip. Do not treat ordinary shoot/jump/confirm as skip unless already bound to dialogue_skip.",
+    "effect": "Jump immediately to finish; already committed HP/checkpoint retained. Clear held action/release guard so skip cannot fire, jump, pause or retrigger after release.",
+    "pause": "Pause during sequence freezes it, resume returns same state. Returning to main menu cancels visual state and cleans up locks without replaying intro within current run.",
+    "release_guard": "On finalize, block held shoot/jump/interact/skip/confirm/pause buttons until released; allow movement from current directional input. Restart/title exit clears sequence-owned audio/overlays. Do not modify global InputMap bindings."
+  },
+  "tests": [
+    "Both heroes: healthy stamp<=0.5s, injured target5.5s and forced finalization<=7s, checkpoint respawn<=2s.",
+    "At every state: skip where enabled and watchdog produce exactly one healthy playable hero, correct checkpoint and unchanged life count.",
+    "Missing animation callback, missing audio and long audio cannot hold control past deadline.",
+    "Repeated overlap/rapid exit-entry cannot retrigger healing; older checkpoint never regresses index.",
+    "Already dying or zero-life hero cannot activate dispenser; death respawn life debit remains exactly one.",
+    "Freeze enemies, swarms, projectiles and hazards; resume no catch-up damage or attack burst; release protection works.",
+    "Checkpoint respawn preserves kills/gates/swarm deaths and intro state; full restart resets normally.",
+    "Keyboard/controller held skip, jump, trigger and pause inputs do not leak into firing or interaction.",
+    "Explicit pause resumes cleanly; main-menu exit cleans presentation/locks; safe exit remains outside solids.",
+    "Verify visual timing and identity with permitted playtest; no screenshots or animation quality claims from headless tests.",
+    "Injured mode selected before immediate heal; healthy stamp never plays compression.",
+    "Session flag survives death/new run/hero switch, remains unset on healthy/respawn/main-menu abort, resets on app relaunch.",
+    "Preserve exact checkpoint x and feet440; decorative prop cannot block route.",
+    "Explicit Pause duration excluded from cap; sequence physics freeze does NOT freeze presentation watchdog.",
+    "Both heroes: X-eye impact, single synchronized splat, trailing blood follows slide and fades; natural/skip/watchdog/menu paths clean overlays without consuming life."
+  ],
+  "clarification": "Presentation details and duration ceiling came from Storyboarding approved brief. Commit-at-entry, repeat-use policy and input details are conservative implementation defaults preserving existing checkpoint semantics.",
+  "engineering_contract": "handoffs/spare-employee-dispenser-engineering.json",
+  "integration_gate": "Wait for Art, Audio and Mechanics deliveries; integrate runtime LAST. Do not rebuild a partial dispenser as complete.",
+  "first_full_sequence_seen": {
+    "scope": "Current application session, shared across Tony/Sean, checkpoints and new runs; not persisted to disk.",
+    "initial": false,
+    "set": "On safe completion or watchdog finalization of first injured full sequence. Do not set for healthy stamp or dispense-only respawn. Main-menu abort before completion does not count as seen.",
+    "reset": "Only application relaunch; normal death, Retry, title return, character switch and developer run restart preserve flag.",
+    "effect": "First injured full sequence non-skippable but time capped; later injured sequences accept explicit skip. No new settings UI needed."
+  },
+  "screen_impact_revision": {
+    "approved_date": "2026-10-16",
+    "status": "Explicit user revision; Art/Audio/Engineering integration pending",
+    "sequence": "Thrown hero hits screen with blood splatter and synchronized SPLAT sound. Dead cartoon hero has X eyes, slides downward leaving a blood trail; hero and trail fade completely.",
+    "style": "Cartoon blood and X-eyed dead hero; preserve Tony/Sean identity. This replaces earlier bloodless impact direction.",
+    "timing": "Fit impact into1.4\u20132.1s and slide/trail fade overlapping vending2.1\u20133.6s; finish cleanup by control release. Existing5.5s target and7s cap unchanged.",
+    "lives": "Presentation only; no additional life loss or gameplay death handler. Replacement hero emerges as already specified.",
+    "cleanup": "On skip/watchdog/menu/restart clear body, blood splatter/trail overlays and sequence-owned sound. No persistent screen stain.",
+    "audio": "One impact SPLAT cue on impact event, optionally slide sound; do not await audio completion."
+  },
+  "random_impact": {
+    "status": "Approved user revision; Engineering integration pending",
+    "selection": "Choose one random viewport-space impact center per full throw, not per frame. Reuse for trajectory endpoint, impact body, splat sound position where supported, slide and blood trail.",
+    "bounds": "Compute admissible center rectangle from actual viewport safe area inset by transformed full impact body bounds at maximum throw/impact scale, including rotation and all body layers. Include splatter extent where practical. Use actual left/top/right/bottom extents relative to anchor, not assumed centered artwork.",
+    "safe_area": "Exclude reserved top HUD band and retain a small edge margin; avoid masking lives/name HUD.",
+    "sampling": "Uniform random x and y within admissible rectangle. No requirement to avoid repeating nearby positions. Keep cosmetic randomness separate from enemy/gameplay RNG.",
+    "fallback": "If body does not fit, reduce presentation scale to fit safe region before sampling; if valid rectangle collapses, use its single valid center. Never clamp body after impact in a visible jump.",
+    "perspective": "Keep growing perspective throw; choose endpoint before animation, then interpolate from machine origin toward it. Validate largest body extent, not only starting sprite size.",
+    "slide": "Entire body must fit at impact. Subsequent intentional downward slide may leave bottom edge as gag finishes; blood trail follows sampled point and fades under existing cleanup/deadline rules.",
+    "tests": [
+      "Both heroes across many seeds: full transformed impact bounds stay within safe viewport.",
+      "Maximum scale, off-center anchors and supported viewport sizes covered.",
+      "Same sampled point used by throw end, impact and slide/trail start; no mid-animation jitter.",
+      "No effect on gameplay RNG, checkpoint, lives, total timing or pause/skip cleanup."
+    ]
+  }
+}

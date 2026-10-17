@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-16",
+  "status": "Prototype45 continuous first-level opening integrated; headless and packaged checks pass; human review pending",
+  "user_approval": [
+    "Make the real game look like the sewer-system concept art.",
+    "Never show background and foreground Clogfather simultaneously.",
+    "Test a faster short opening until it feels right, then expand that design through the level."
+  ],
+  "initial_trial": {
+    "hero_weapons": "Recommended A: Tony12 damage/.16s; Sean18/.24s; preserve other hero parameters for comparison",
+    "opening": "12 ordinary enemies over20s initial target;17 denser comparison only after testing",
+    "constraints": "Both-hero reachable supported upper/lower routes; visible entry cues; bounded attack pressure",
+    "scope": "Short representative slice first; full route and Clogfather implementation follow"
+  },
+  "dependencies": [
+    "Human balance and contrast feedback; later mixed-encounter expansion and playable boss remain planned"
+  ],
+  "current_playable_build": "Prototype45 /0.45.0",
+  "delivery": "Integrate related deliveries, run checks and export a new build; notify Sean. No foreground game without permission.",
+  "mechanics_delivery": "design/first-call-action/opening-trial-balance.json",
+  "mode_isolation": "Superseded: Start now uses faster opening and continues existing route. Baseline data retained internally for comparison.",
+  "layout_delivery": "handoffs/opening-trial-level-layout.json",
+  "trial_results": "Superseded: no timed cutoff, separate menu or player-facing results. Internal scheduler statistics retained for tests.",
+  "art_delivery": "handoffs/opening-trial-art.json",
+  "role_art_delivery": "handoffs/opening-trial-role-art.json",
+  "observed_scheduling": "Invulnerable moving bots: Tony11/12,Sean10/12;idle6/12. Safety deferrals honest; not survival proof.",
+  "user_correction_2026_10_16": "Faster opening is part of level one, not an independent time-limited mode; no20-second stop/results."
+}

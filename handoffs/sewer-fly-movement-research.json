@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "scope": "Research-informed first-level sewer swarm integration",
+  "conclusion": "Use bounded correlated steering for one swarm entity, not independent random direction every frame or full flocking/pathfinding for every fly.",
+  "godot_answer": "Godot supplies collision movement, navigation paths, avoidance and random navigable-point queries; game code still selects wander goals/steering and moves the actor. NavigationAgent2D is not a finished wandering AI.",
+  "sources": [
+    {
+      "title": "Craig Reynolds: Wander steering behavior",
+      "url": "https://www.red3d.com/cwr/steer/Wander.html",
+      "finding": "Retaining and perturbing a wander direction creates coherent random motion. Unrelated random headings each frame lack that continuity."
+    },
+    {
+      "title": "GameMaker: New Enemy in Windy Woods (2D platformer)",
+      "url": "https://gamemaker.io/en/tutorials/new-enemy-windy-woods",
+      "finding": "Tutorial demonstrates timed random jump direction then replaces it with targeted motion for predictability. Transfer the lesson about legible timing, not its player pursuit, which conflicts with our approved flies."
+    },
+    {
+      "title": "GameMaker: Hero\u2019s Trail overview (2D action-adventure, not a platformer)",
+      "url": "https://gamemaker.io/en/tutorials/heros-trail-breakdown",
+      "finding": "Authored paths constrain enemies and animation uses actual movement direction. Supports deliberate encounter space and velocity-driven animation; not evidence that random wandering is mandatory."
+    },
+    {
+      "title": "Godot: Using NavigationAgents",
+      "url": "https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_using_navigationagents.html",
+      "finding": "Agents provide path-following data but user code moves actors. Avoidance has no knowledge of physics collision; it cannot replace collision checks."
+    },
+    {
+      "title": "Godot: NavigationServer2D",
+      "url": "https://docs.godotengine.org/en/stable/classes/class_navigationserver2d.html#class-navigationserver2d-method-map-get-random-point",
+      "finding": "Random points can be sampled from navigation polygons. Useful for maze-like routing, unnecessary for a few swarms in simple authored flight regions."
+    },
+    {
+      "title": "Godot: Using CharacterBody2D/3D",
+      "url": "https://docs.godotengine.org/en/stable/tutorials/physics/using_character_body_2d.html",
+      "finding": "Movement/collision APIs support custom behavior. Reuse the project collision architecture rather than impose a scene-tree conversion for this feature."
+    }
+  ],
+  "decision": "Keep existing project toolchain. Implement a small stateful steering routine, explicit collision, authored flight bounds, and one collision entity per swarm. Consider navigation only if later level geometry needs routing.",
+  "confidence": "Principles are supported by sources; tuning numbers and placement choices are our first-pass design, not source-prescribed or playtested guarantees.",
+  "mechanics": "handoffs/sewer-fly-mechanics.json",
+  "validation": "Physics-tick seeded tests independent of render FPS, many seeds in corners and near doors; visual evaluation still required."
+}

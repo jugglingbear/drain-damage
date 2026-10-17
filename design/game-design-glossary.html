@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drain Damage — Game Design Glossary</title>
+<style>
+:root{color-scheme:dark}body{margin:0;background:#101923;color:#e9eee9;font:18px/1.65 system-ui,sans-serif}
+main{max-width:900px;margin:auto;padding:40px 24px}h1,h2,dt{color:#9cedcd}h1{line-height:1.2}
+h2{margin-top:40px}dt{font-weight:700;margin-top:22px}dd{margin:4px 0 0}a{color:#ffd67d}.note{color:#bacbd0}
+</style>
+</head>
+<body><main>
+<h1>Game Design Glossary</h1>
+<p>A shared vocabulary for discussing Drain Damage. Saved October 16, 2026.</p>
+<p class="note">These are practical working definitions. Some are common industry terms; others, such as “emerger,”
+are useful shorthand for our project. They describe roles and behavior, not necessarily separate monster species
+or features already implemented.</p>
+<h2>Enemies and hazards</h2>
+<dl>
+<dt>Hunter</dt><dd>An enemy that actively seeks or pursues the player. Its movement responds to the player’s position.
+Example: a toilet monster that spots Sean and chases him.</dd>
+<dt>Emerger</dt><dd>An enemy that enters the action by coming out of something: a floor grate, ceiling vent,
+background hatch or even the space in front of the screen. This describes its entrance; it could become a hunter
+or shooter after arriving.</dd>
+<dt>Environmental hazard</dt><dd>A dangerous part of the space that the player must navigate around. It does not need
+to hunt the player. Examples: steam jets, electrified water or our wandering Septic Air Force swarm, which can harm
+both plumbers and monsters. A hazard can be alive and destructible.</dd>
+<dt>Runner</dt><dd>A ground enemy that moves through a combat lane. It may follow a set route or pursue the player;
+“runner” alone does not specify which.</dd>
+<dt>Stationary shooter / perched shooter</dt><dd>An enemy that attacks from a fixed position. A perched shooter occupies
+an elevated position, encouraging the player to aim upward or take another route.</dd>
+<dt>Flyer</dt><dd>An airborne enemy. Its flight may follow a pattern, wander or track the player; the term describes
+how it moves rather than how aggressive it is.</dd>
+<dt>Skirmisher</dt><dd>A mobile enemy that attacks briefly, then retreats or repositions. It pressures the player
+through movement rather than standing still and absorbing shots.</dd>
+<dt>Fodder</dt><dd>Relatively easy ordinary enemies that die quickly and keep action moving. They can still be dangerous
+in combination with other threats.</dd>
+<dt>Elite</dt><dd>An occasional, clearly distinguishable enemy with greater durability or more demanding attacks
+than ordinary enemies. It should not be used as an excuse to make every monster slow to kill.</dd>
+<dt>Boss</dt><dd>A major encounter with distinctive attacks, usually marking a level’s climax. The Clogfather is the
+required boss for our proposed first-level redesign.</dd>
+</dl>
+<h2>Readable, fair action</h2>
+<dl>
+<dt>Telegraph</dt><dd>A warning before danger: a windup, flashing grate, shadow, sound or landing marker that gives
+the player time to react.</dd>
+<dt>Windup / attack / recovery</dt><dd>The preparation, dangerous action and settling period of an attack.
+Recovery often gives the player an opportunity to retaliate or reposition.</dd>
+<dt>Attack pattern</dt><dd>A recognizable sequence or arrangement of attacks, such as a low projectile followed
+by a high one. Players learn patterns and find ways through them.</dd>
+<dt>Combat lane / escape lane</dt><dd>A route through the action. A combat lane carries movement or attacks;
+an escape lane leaves the player a reachable way to avoid danger.</dd>
+<dt>Play plane</dt><dd>The depth layer where normal gameplay collisions happen in our side-scroller.
+A monster can appear in the background before entering this layer and becoming dangerous.</dd>
+<dt>Hitbox / hurtbox</dt><dd>A hitbox defines where an attack can connect. A hurtbox defines where a character can
+receive that hit. Neither has to match every visible pixel of the artwork.</dd>
+<dt>Invulnerability frames (“i-frames”)</dt><dd>A short period when a character cannot take damage, such as the
+protection immediately after being hit.</dd>
+</dl>
+<h2>Level flow and balance</h2>
+<dl>
+<dt>Encounter</dt><dd>A designed stretch of action involving enemies, terrain and objectives.</dd>
+<dt>Wave</dt><dd>A group of enemies introduced together or in a scheduled sequence.</dd>
+<dt>Set piece</dt><dd>A specially arranged, memorable sequence, such as fighting through a pump failure while
+machinery opens a route.</dd>
+<dt>Pacing / pressure and release</dt><dd>How intensity changes over time. Busy combat alternates with lighter
+movement or recovery so the entire level does not feel equally exhausting.</dd>
+<dt>Threat budget</dt><dd>A limit on how much danger may be active at once: enemies, shooters, projectiles or
+independent attack patterns. Many visible creatures need not all attack simultaneously.</dd>
+<dt>Encounter director</dt><dd>The game logic that schedules enemies and attacks while respecting progression,
+safe entrances and threat limits.</dd>
+<dt>Fire cadence</dt><dd>The rhythm or interval between shots. A 0.25-second interval allows four shots per second
+while firing continuously.</dd>
+<dt>Time to kill (TTK)</dt><dd>How long it takes to defeat a target under stated conditions. Distance, misses,
+armor and aiming can make real encounters longer than a simple damage calculation.</dd>
+<dt>Damage per second (DPS)</dt><dd>A measure of sustained damage output. Equal DPS does not guarantee equal feel:
+one weapon may fire frequent light shots while another fires fewer heavy shots.</dd>
+<dt>Pickup</dt><dd>An item collected during play, such as a temporary weapon, health or ammunition.
+An exclusive pickup can be equipped only by its intended hero.</dd>
+<dt>Blockout / graybox</dt><dd>A rough playable layout made with simple shapes to test movement, routes and combat
+before investing in finished scenery.</dd>
+<dt>Vertical slice</dt><dd>A small representative section combining the main systems well enough to judge the intended
+experience. “Vertical” refers to covering those systems, not to the level scrolling upward.</dd>
+</dl>
+<p><a href="../roadmap.html">Roadmap</a> · <a href="first-call-action/report.html">First-level redesign proposal</a></p>
+</main></body></html>

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "status": "Engineering recommendation for discussion; not a production art contract or implementation approval",
+  "recommendation": "Use modular hero locomotion, authored directional grip poses, separate weapons and effects. Reserve combined animations for exceptional attacks.",
+  "migration": [
+    "Keep existing combined sprites as a fallback until a complete modular set is reviewed.",
+    "Prototype Tony with pressure gun and Sean with heavy plunger only; do not regenerate the full weapon roster yet.",
+    "Validate idle, run, jump, recoil and damage with horizontal, upward diagonal, up, downward diagonal and down aiming; mirror left directions.",
+    "Promote the modular renderer only after small-window visual review confirms hand contact, stable scale and no duplicate weapon silhouettes."
+  ],
+  "proposed_coordinates": {
+    "logical_canvas": [128, 128],
+    "origin": "top-left, x right, y down",
+    "registration_anchor": [64, 104],
+    "standing_body_height": 72,
+    "rule": "Registration anchor maps to collision feet at player+[13,46]. Airborne frames retain the same virtual anchor; never normalize individual pose bounds.",
+    "source_scale": "Prefer exact 1x logical pixels or one documented integer multiplier shared by all layers; nearest-neighbor sampling.",
+    "anchors": "Grip, support-hand and muzzle in source-frame pixels, measured relative to top-left before mirroring. Source rectangle, registration anchor and scale required per frame.",
+    "mirror": "Reflect all image layers and anchor x offsets around the same registration anchor; reflect projectile direction too.",
+    "weapon_dimensions": "Use padded 128x128 source frames initially; tightly cropped delivery is allowed only with explicit source rectangle and anchor offsets."
+  },
+  "layer_contract": [
+    "Weapon-free body/legs locomotion frames sharing one registration anchor and scale.",
+    "Back arm, weapon, front arm/hand layers with explicit per-direction order; avoid a universal order that hides support hands.",
+    "Authored five right-side/cardinal aim directions; use mirrored counterparts to cover eight-way aim without rotating the torso.",
+    "Grip families reduce combinations, but support-hand locations and recoil offsets remain weapon-specific.",
+    "Use one locomotion phase for all layers. Torso/arm attachment offsets may vary with run phase; do not animate each layer on independent timers.",
+    "Recoil moves weapon and attached hands together while keeping the body registration stable. Muzzle effects inherit the recoil-adjusted muzzle.",
+    "Runtime aiming permissions remain separate from art availability. Missing poses must be explicit fallback limitations, never silently enabled weapon abilities."
+  ],
+  "tradeoffs": {
+    "benefit": "New weapons normally need weapon poses/anchors and grip-family adjustments rather than every complete hero animation.",
+    "cost": "Up-front clean-body and arm sets, careful anchor measurement, per-direction occlusion and synchronized animation are required.",
+    "pixel_consistency": "Prefer authored cardinal/diagonal weapon sprites over arbitrary rotation; avoid subpixel wobble by snapping final draw positions consistently.",
+    "exceptions": "Whips, long cables, planted tools and full-body specials may justify bespoke combined animations."
+  },
+  "prototype_gate": "Review both heroes and both starters in idle/run/airborne states, all permitted directions, both facings and recoil. Check hand contact, muzzle alignment, no foot pop, no detached layers, and unchanged collision shapes."
+}

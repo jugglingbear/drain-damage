@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "status": "Integrated and exported in Prototype 41 / 0.41.0; packaged checks passed, live visual/audio review pending",
+  "viewport": [
+    960,
+    540
+  ],
+  "floor_y": 440,
+  "checkpoint_x": [
+    3300,
+    6660,
+    8190
+  ],
+  "machine": {
+    "logical_canvas": [
+      192,
+      192
+    ],
+    "anchor": [
+      96,
+      192
+    ],
+    "world_anchor": "checkpoint_x + 64, floor_y",
+    "world_rect": "checkpoint_x - 32, 248, 192, 192",
+    "collision": "Decorative checkpoint prop; preserve clear walk-through floor and existing checkpoint threshold. Do not add a mandatory solid obstacle.",
+    "layers": [
+      "back/cabinet and interior",
+      "foreground opening/door trim",
+      "mechanical arm/hand, separate if it must pass in front of hero"
+    ],
+    "states": [
+      "idle",
+      "scan",
+      "grab/compress",
+      "throw",
+      "vend/emerge",
+      "stamp/ready"
+    ],
+    "registration": "Fixed source-to-logical scale and shared anchors; no per-frame opaque-bound normalization."
+  },
+  "hero": {
+    "characters": [
+      "tony",
+      "sean"
+    ],
+    "logical_canvas": [
+      128,
+      128
+    ],
+    "standing_anchor": [
+      64,
+      104
+    ],
+    "existing_world_anchor": "player top-left + (13,46), floor_y at feet",
+    "states": [
+      "startled grab",
+      "compress/cartoon ball",
+      "emerge",
+      "look left",
+      "look right",
+      "shrug"
+    ],
+    "identity": "Tony dark spiky hair/navy work shirt; Sean completely bald, chin beard, no moustache. Preserve current approved clothing/colors. No weapons needed during sequence.",
+    "layers": "Provide independent transparent hero sheets so machine can be shared; include source_rect, destination, anchor and duration per frame."
+  },
+  "screen_gag": {
+    "space": "960x540 viewport coordinates, independent of world camera",
+    "art": [
+      "hero-specific boots/clothes/eyes ball",
+      "bloody cartoon impact/splatter",
+      "hero-specific X-eyed slide body",
+      "fading blood trail"
+    ],
+    "canvas_suggestion": [
+      128,
+      128
+    ],
+    "anchor": [
+      64,
+      64
+    ],
+    "perspective": "Engineering scales and translates authored ball toward screen; keep source resolution sufficient for up to256px display. Revised approved effect uses cartoon blood, X eyes and fading trail.",
+    "safe_area": "Keep screen impact below top HUD band, preferably around(480,280); no full-screen backdrop baked into sprites.",
+    "cleanup": "Clear body, splatter and trail before control release and on skip, watchdog, menu and restart. Impact emits exactly one SPLAT cue. No extra life decrement or gameplay death.",
+    "timing": "Slide/fade overlaps vending within existing5.5s target/7s hard ceiling; no added duration."
+  },
+  "timing_seconds": {
+    "full_target": 5.5,
+    "full_hard_cap": 7.0,
+    "full_health_max": 0.5,
+    "respawn_max": 2.0,
+    "scan": [
+      0,
+      0.4
+    ],
+    "grab_compress": [
+      0.4,
+      1.4
+    ],
+    "throw_impact": [
+      1.4,
+      2.1
+    ],
+    "slide_vend": [
+      2.1,
+      3.6
+    ],
+    "emerge_look_shrug": [
+      3.6,
+      5.5
+    ]
+  },
+  "event_ids": [
+    "scan",
+    "grab",
+    "compress",
+    "throw",
+    "impact",
+    "slide",
+    "vend",
+    "emerge",
+    "stamp",
+    "release"
+  ],
+  "audio": "Short event-addressed files with manifest cue paths/gain/durations and exact provenance. Timeline never waits for audio completion; skip/restart stops sequence-owned cues. BJ silent.",
+  "handoffs": {
+    "art": "handoffs/spare-employee-dispenser-art.json",
+    "audio": "handoffs/spare-employee-dispenser-audio.json",
+    "mechanics": "handoffs/spare-employee-dispenser-mechanics.json"
+  },
+  "delivery_requirements": [
+    "Transparent PNGs with validated frame bounds and shared registration; preserve originals and exact prompts",
+    "Machine and both hero animations, full-health stamp and dispense-only respawn reusable",
+    "Asset manifests must state actual dimensions, frame regions, anchors, durations and limitations",
+    "No game opening or foregrounding without explicit permission"
+  ],
+  "integration_gate": "Read all three deliveries, resolve missing assets/rules, then integrate runtime LAST, test, export, update roadmap/storybook and notify Sean. Current Prototype39 stays unchanged while waiting.",
+  "delivery": {
+    "art": "assets/world/spare-employee-dispenser/manifest-v4.json",
+    "audio": "handoffs/spare-employee-dispenser-audio.json (v2 impact/slide, v1 remaining cues)",
+    "runtime": "scripts/employee_dispenser.gd",
+    "bundle": "data/combat.json#dispenser",
+    "validation": [
+      "Both heroes: healthy .4s, injured5.5s, respawn1.9s, watchdog7s active-time cap",
+      "Pause freeze, first-use flag, fresh skip and held-action guard",
+      "Every authored stage safe finalization; one impact cue, no lingering overlay/sequence audio",
+      "Progress/lives/identity preserved, reset and menu cleanup",
+      "Eleven packaged regression suites; seven metadata tests; export/signature verified"
+    ],
+    "extra_art": "Sean gameplay beard/soul patch replacements from facial-hair audit integrated",
+    "remaining": [
+      "Live hand reach/occlusion, screen gag choreography, identity/readability and sound mix review",
+      "Sean scripted full-route exhaustion in section4; Tony route passes"
+    ],
+    "storybook": "041 entry; actual screenshots pending permission, archive builds/history/Prototype-41.zip"
+  },
+  "prototype_42": "Random screen impact integrated using independent cosmetic RNG, transformed full-layer bounds, HUD inset and pre-sampling scale-to-fit; packaged both-hero/seed/edge/viewport checks pass. Visual review pending."
+}

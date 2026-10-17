@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-16",
+  "status": "Environment, FX and all three required trial-role source kits delivered; runtime integration/visual validation pending",
+  "manifest": "assets/world/opening-trial/manifest-v1.json",
+  "prompts": "assets/world/opening-trial/prompts-v1.json",
+  "layout": "handoffs/opening-trial-level-layout.json",
+  "delivered": [
+    "background-v1.png",
+    "platform-kit-v1.png",
+    "entry-fx-v1.png"
+  ],
+  "reuse": "Existing pipe-bundle-v1 supplies150x60 low/return plinths. Original source and prompt preserved.",
+  "scope": "Separate opening-trial mode, no runtime edits or build. No Clogfather or new approved species.",
+  "required_role_availability": {
+    "runner": {
+      "ready": true,
+      "source": "assets/sprites/toilet-v1.png",
+      "integration": "Reuse existing WorldArt draw_toilet and its2x2 regions, damage/death handling; preserve current anchors."
+    },
+    "shooter": {
+      "ready_for_trial_integration": true,
+      "identity": "Sputtervalve",
+      "identity_status": "Concrete provisional design, not approved canon",
+      "metadata": "bestiary/sputtervalve/monster.json",
+      "role_key": "sputtervalve",
+      "coverage": [
+        "idle",
+        "windup",
+        "fire",
+        "recover",
+        "hurt",
+        "death"
+      ]
+    },
+    "emerger": {
+      "ready_for_trial_integration": true,
+      "identity": "Gratecrawler",
+      "identity_status": "Concrete provisional design, not approved canon",
+      "metadata": "bestiary/gratecrawler/monster.json",
+      "role_key": "gratecrawler",
+      "coverage": [
+        "emerge",
+        "settle",
+        "idle",
+        "patrol",
+        "hurt",
+        "death"
+      ]
+    },
+    "flyer": {
+      "ready_for_trial_integration": true,
+      "identity": "The Hallowed Widow",
+      "role_key": "hallowed-widow-trial",
+      "status": "Existing art sliced and body anchors proposed; fly-through use strictly trial-only",
+      "coverage": [
+        "flight",
+        "hurt",
+        "death"
+      ],
+      "canonical_behavior": "unchanged",
+      "swarm_repurposed": false
+    }
+  },
+  "caveats": [
+    "Background bay is not verified seamless. Use discrete bays and conceal joins with existing pipe risers; visual review required.",
+    "Deck/support source maps to exact logical250x16 and250x120; support is decorative behind play plane, never full-height solid.",
+    "Foreground restricted belowfloor440, preferably y488\u2013540.",
+    "All three role state mappings supplied; source crops fit and perimeter alpha<=7/255. Residual fringe must be reviewed against game background.",
+    "Art proposes shooter40x42, emerger34x40, flyer30x24 hitboxes relative to anchors in role manifest. Mechanics/Engineering must reconcile those with collision/placement safety.",
+    "Sputtervalve and Gratecrawler are provisional trial designs/names; no final creature-direction approval claimed.",
+    "Death frames are finite key poses with runtime fade/removal; do not await animation callback for gameplay retirement.",
+    "Widow body alignment between living/death sheets and muzzle/grate/aim alignment need composed review."
+  ],
+  "boss_policy": "Opening has no Clogfather. Future finale exactly one visible boss, no duplicate silhouette/reflection/mural.",
+  "role_manifest": "assets/bestiary/opening-trial/manifest-v1.json"
+}

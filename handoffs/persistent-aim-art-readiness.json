@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-15",
+  "status": "New integration candidate delivered; not final user-approved production art.",
+  "current_runtime": {
+    "tony": "assets/sprites/tony-v1.png",
+    "sean": "assets/sprites/sean-v2.png",
+    "limitation": "Full-body sprites have horizontal weapons baked in. They cannot represent up/down aim by adding a separate gun."
+  },
+  "latest_modular": {
+    "manifest": "assets/prototypes/modular-aim/manifest.json",
+    "revision": 3,
+    "preview": "previews/modular-aim.html",
+    "coverage": [
+      "right",
+      "up_right",
+      "up"
+    ],
+    "heroes": [
+      "tony",
+      "sean"
+    ],
+    "approval": "User approved the approach and mockup work, not production use of these corrected poses. Revision 3 still awaits approval.",
+    "limitations": [
+      "Standing only; no downward, jump or fall body frames.",
+      "Rear shoulder connections rely on occlusion.",
+      "Grip silhouettes and pixel density need production review.",
+      "No validated locomotion, recoil or landing transition set."
+    ]
+  },
+  "existing_art_reuse_contract": {
+    "scope": "Permits technical prototyping with existing sources; does not confer visual approval or fill missing directions.",
+    "layers": "Use manifest source rectangles and transforms; keep arms at fixed body-relative scale. Do not stretch toward a target grip.",
+    "state": "Choose aim pose from persistent permitted aim direction, independently of whether a shot is fired. Fire timer controls recoil/effects only.",
+    "mirroring": "Reflect all layers and grip/muzzle anchors around the same registration x=64.",
+    "grounding": "Apply existing weapon aiming permissions on landing before choosing the pose and muzzle. An airborne downward pose must not remain active on ground.",
+    "missing_direction": "Do not rotate the entire hero or silently label horizontal sprites as directional. Missing art remains a visible unfinished limitation.",
+    "existing_horizontal": "Original combined sheets remain the current runtime fallback; do not add a second weapon over them."
+  },
+  "minimum_remaining_delivery": [
+    "Weapon-free airborne bodies for both heroes with knees/feet clear of muzzle.",
+    "Authored down and down-right arms/hands and separate weapons with measured grip/muzzle positions; mirror down-left.",
+    "Validate standing up/up-right corrections and fixed limb scale.",
+    "Check persistent aim while idle/moving, airborne downward fire and landing fallback before promotion."
+  ],
+  "files_untouched": [
+    "Runtime scripts",
+    "roadmap.html"
+  ],
+  "game_launched": false,
+  "candidate_manifest": "assets/sprites/modular-aim-v1/manifest.json",
+  "candidate_preview": "previews/directional-aim-v1.png",
+  "candidate_coverage": "Both heroes: standing right/up-right/up and airborne right/up-right/up/down-right/down; mirror left variants. 16 holds total.",
+  "approval_clarification": "No user instruction forbids further art creation or a technical integration candidate. Earlier approval-pending wording describes visual review, not a separate required permission to author assets.",
+  "remaining": "Live transitions and silhouette review, locomotion/recoil cycles and final visual signoff.",
+  "runtime_integration": {
+    "build": "Prototype 33 / 0.33.0",
+    "manifest": "assets/sprites/modular-aim-v1/runtime-manifest.json",
+    "renderer": "scripts/hero_aim_art.gd",
+    "checks": "Packaged held-aim pose selection, matching mirrored muzzles, fire release/cooldown, landing and obstruction checks pass.",
+    "remaining": "Live review/screenshots, locomotion/recoil animation and final pose refinement."
+  }
+}

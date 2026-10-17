@@ -1,0 +1,35 @@
+{
+  "status": "Planning only; recommendations pending consolidated review; no runtime changes",
+  "baseline": "Prototype 43 / 0.43.0",
+  "constraints": [
+    "Current logical viewport960x540, floor440, jump apex about86px; prefer <=60px rises and test both heroes.",
+    "Current mission accounting assumes one sequential active zone, four active required enemies, and all-defeated advancement. Simply raising spawn totals will preserve stop-and-clear pacing.",
+    "Current geometry uses solid rectangles including platform undersides. Catwalk supports must have authored collision independently of decoration to preserve lower route clearance.",
+    "Current ordinary enemy runtime primarily supports Flushfiend pursuit plus separate optional swarm hazards; new shooter/flyer/ambusher behavior and enemy projectile ownership need explicit implementation.",
+    "Current player shots can hit required monsters and optional swarms. New roles need shared damage/hit ownership and progression accounting, not another incompatible collision path.",
+    "Current completion at x9450 and mission completion must be replaced by explicit Clogfather defeat/exit state. Existing toilet-wave ending is provisional.",
+    "Keep first-name heroes, existing portrait emotion mapping and checkpoint/no-life-cost semantics."
+  ],
+  "recommended_staging": [
+    "Combat sandbox: candidate HP/fire cadence and enemy projectile visibility; compare both heroes including misses.",
+    "First20-second playable slice: runner, perched shooter and one telegraphed emergence route; one pickup and supported upper/lower paths.",
+    "Expand encounter director with bounded concurrent threats, finite spawn budgets, pressure/recovery rhythm and checkpoint-safe progress.",
+    "Add remaining approved monster behaviors and entrance animations incrementally; background/viewer-side actors non-colliding until telegraphed play-plane entry.",
+    "Implement Clogfather state machine, full boss art, bounded attacks, defeat and mission completion. Do not mark level complete with fallback waves.",
+    "Both-hero full route playtests, difficulty pass, performance/audio/readability, build and authorized storybook screenshots."
+  ],
+  "verification": [
+    "HP/hit-count table generated from candidate data; misses and cooldown recovery measured separately from perfect DPS.",
+    "Spawn director limits damaging actors/projectiles, prevents offscreen hits and overlap at entry, and cannot deadlock after respawn.",
+    "Routes reachable by both heroes; lower lane clearance, one-way/drop-through decision, projectile occlusion and support collision tested.",
+    "Exclusive pickups cannot equip wrong owner; loss/death/checkpoint rules explicit and tested.",
+    "Boss phase transitions, attack telegraphs, death/reset/skip cleanup and exactly-once completion.",
+    "Human first20-second and full-route tests; bot clears alone are not pacing or fairness validation."
+  ],
+  "open_decisions": [
+    "Exact roster identities and approved new art",
+    "Pickup retention and secondary-slot policy",
+    "Boss attacks/HP and ending narrative",
+    "Final balance after short playable slice"
+  ]
+}

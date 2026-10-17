@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-16",
+  "status": "Source-art phase mapping ready; runtime registration review pending",
+  "role": "hallowed-widow-trial",
+  "existing_manifest": "assets/bestiary/opening-trial/manifest-v1.json",
+  "windup": {
+    "frames": [
+      0,
+      1,
+      3,
+      1
+    ],
+    "note": "Use existing raised wings at accelerated wingbeat; Mechanics controls warning time."
+  },
+  "swoop": {
+    "path": "assets/bestiary/flying-spider-atlas-v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "source_rect": [
+      500,
+      512,
+      540,
+      512
+    ],
+    "destination": [
+      20,
+      1.8,
+      75.6,
+      71.68
+    ],
+    "anchor": [
+      48,
+      48
+    ],
+    "source_body_registration": [
+      200,
+      330
+    ],
+    "note": "Existing forward-lunge pose, facing left. Register body to same anchor; provisional registration pending runtime check. Apply existing 2x actor transform once, not again in destination."
+  },
+  "recovery": {
+    "frames": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "note": "Existing flight loop for return and cooldown."
+  },
+  "preserve": [
+    "180 HP",
+    "2x actor size",
+    "Mechanics owns trigger, timings, committed target and damage rules",
+    "Existing hurt/death animation priority"
+  ],
+  "validation": "Source inspected. No new pixels generated and no live game launched. Do not delay functional swoop if optional pose registration needs further tuning."
+}

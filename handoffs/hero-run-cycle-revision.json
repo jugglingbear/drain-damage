@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-16",
+  "status": "DO NOT INTEGRATE v4: retain current runtime animations for this build",
+  "problem": "Original six frames largely hold same lead leg, giving foot-wiggle rather than alternating stride.",
+  "manifest": "assets/sprites/hero-run-v4/manifest.json",
+  "preview": "previews/hero-run-cycle-v4.html",
+  "changes": "Revised knee lift and push-off; second half sourced from dedicated opposite-stride study. Must review continuity before shipping.",
+  "review_required": [
+    "Near/far leg continuity at loop seam",
+    "Arm sockets and weapon layers at all aim angles",
+    "Foot plant and cadence at actual hero speed",
+    "Backward-running playback",
+    "Preserve jump-and-point-down"
+  ],
+  "validation": [
+    {
+      "hero": "tony",
+      "frame": 0,
+      "edge_alpha_max": 0
+    },
+    {
+      "hero": "tony",
+      "frame": 1,
+      "edge_alpha_max": 0
+    },
+    {
+      "hero": "tony",
+      "frame": 2,
+      "edge_alpha_max": 0
+    },
+    {
+      "hero": "tony",
+      "frame": 3,
+      "edge_alpha_max": 0
+    },
+    {
+      "hero": "tony",
+      "frame": 4,
+      "edge_alpha_max": 1
+    },
+    {
+      "hero": "tony",
+      "frame": 5,
+      "edge_alpha_max": 1
+    },
+    {
+      "hero": "tony",
+      "frame": 6,
+      "edge_alpha_max": 0
+    },
+    {
+      "hero": "tony",
+      "frame": 7,
+      "edge_alpha_max": 8
+    },
+    {
+      "hero": "sean",
+      "frame": 0,
+      "edge_alpha_max": 1
+    },
+    {
+      "hero": "sean",
+      "frame": 1,
+      "edge_alpha_max": 1
+    },
+    {
+      "hero": "sean",
+      "frame": 2,
+      "edge_alpha_max": 1
+    },
+    {
+      "hero": "sean",
+      "frame": 3,
+      "edge_alpha_max": 0
+    },
+    {
+      "hero": "sean",
+      "frame": 4,
+      "edge_alpha_max": 1
+    },
+    {
+      "hero": "sean",
+      "frame": 5,
+      "edge_alpha_max": 1
+    },
+    {
+      "hero": "sean",
+      "frame": 6,
+      "edge_alpha_max": 0
+    },
+    {
+      "hero": "sean",
+      "frame": 7,
+      "edge_alpha_max": 10
+    }
+  ],
+  "decision": "Candidate fails release gate: near/far leg identity and loop continuity remain ambiguous; attachment offsets are uncalibrated for changed shoulders. Current runtime retained explicitly; visual running defect remains open, not claimed fixed.",
+  "retain_runtime_manifest": "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+  "retain_aim_manifest": "assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json",
+  "review_limitation": "Background animated preview attempt blocked by browser local-file URL policy. Source pose and manifest review sufficient to reject candidate; no claim animated playback or composed weapon QA passed."
+}

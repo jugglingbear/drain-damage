@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "working_id": "sewer-fly-swarm",
+  "display_name": null,
+  "status": "Integrated and exported in Prototype 39 / 0.39.0; packaged mechanics tests passed; visual balance and Sean full-route completion pending",
+  "approved_behavior": [
+    "Many tiny bugs form one tight swarm.",
+    "Slow random flight; no hunting, chasing, player tracking or deliberate interception.",
+    "Incidental obstacle during level traversal.",
+    "Contact damages both player and encountered monsters."
+  ],
+  "art_request": {
+    "states": [
+      "hover",
+      "move_up",
+      "move_down",
+      "move_left",
+      "move_right",
+      "death"
+    ],
+    "status": "Revision2 source mockup available; runtime validation required",
+    "contract": "One swarm entity and one shared anchor/scale across all frames. Suggested visual footprint 40\u201348 logical pixels and circular contact radius16px; dimensions provisional pending Art. Peripheral flies outside contact core are decorative. Choose dominant movement axis for diagonal travel; no extra diagonal sheet required. Death loop must not repeat.",
+    "animation_source": "assets/bestiary/sewer-flies/animation-v2.json"
+  },
+  "proposed_health": {
+    "max_hp": 12,
+    "spawn_hp": 12,
+    "role": "fragile wandering environmental enemy",
+    "encounter_stage": "Early first-level traversal, initially shown alone before mixed fights",
+    "rationale": "Nuisance rather than bullet sponge: two6-damage pressure bolts or one24-damage plunger. Existing30\u201340HP opening band is a guideline; lower health justified by obstacle role.",
+    "hits_to_defeat": {
+      "heavy-plunger-launcher": 1,
+      "pressure-gun": 2,
+      "drain-snake": 2,
+      "demolition-hammer": 1,
+      "pipe-wrench": 1,
+      "pipe-bomb-launcher": 1
+    },
+    "comparison": "All hits land once at full damage; no armor/resistance; melee must reach airborne core.",
+    "bar": {
+      "enabled": true,
+      "visible_by_default": false,
+      "display": "continuous"
+    },
+    "visual_policy": "assets/bestiary/damage/health-visuals.json",
+    "runtime_max_hp": null,
+    "registration": "Canonical HP is bestiary/sewer-flies/monster.json#health; handoff retains design rationale only. Initial12HP authorized as implementation tuning under request; not separately user-selected."
+  },
+  "proposed_contact": {
+    "hero_damage": 1,
+    "hero_damage_scale": "Current contact-hit player HP scale; revisit with any HP migration.",
+    "monster_damage": 6,
+    "monster_damage_scale": "Current enemy numeric HP scale; asymmetry intentional, not six hero damage.",
+    "per_target_cooldown_seconds": 1.5,
+    "cooldown_scope": "One sewer-fly damage cooldown on each target shared across all swarms, preventing stacked swarm hits. Leaving/re-entering overlap does not reset it.",
+    "first_hit": "Immediate valid overlap if target cooldown and invulnerability permit; then next at1.5s minimum.",
+    "tick_rule": "Use time, not frame count. No accumulated burst or catch-up ticks after pause/large delta.",
+    "player_protection": "Honor existing global hurt invulnerability and respawn/death/dialogue protections. Successful contact starts normal invulnerability; no stacked hazard hits.",
+    "damage_dispatch": "Use normal target damage/death pipeline; one swarm collision, not one hit per tiny bug."
+  },
+  "proposed_target_filter": {
+    "damage": [
+      "living player",
+      "living ordinary monsters including Flushfiends and Hallowed Widows"
+    ],
+    "exclude": [
+      "self",
+      "other sewer-fly swarms",
+      "dead or invulnerable actors",
+      "support/dialogue-only characters",
+      "props and gates"
+    ],
+    "bosses": "Contact may damage a boss only through its exposed damageable collider and normal vulnerability rules; never bypass shell or closed phase. One damage event per boss even across overlapping parts.",
+    "credit": "Monsters killed by swarm count as defeated for encounter gates, but not player weapon kills or player-kill achievements.",
+    "notes": "Same-swarm immunity and boss rules are proposed filters, not explicit user decisions."
+  },
+  "proposed_movement": {
+    "model": "bounded_correlated_wander",
+    "speed_pixels_per_second": 35,
+    "acceleration_pixels_per_second_squared": 70,
+    "heading_update_seconds": 0.6,
+    "max_random_heading_delta_degrees": 35,
+    "max_turn_rate_degrees_per_second": 90,
+    "hover_decision_interval_seconds": [
+      2.0,
+      4.0
+    ],
+    "hover_pause_seconds": [
+      0.3,
+      0.7
+    ],
+    "hover_pause_probability": 0.25,
+    "contact_radius_pixels": 16,
+    "boundary_steering_margin_pixels": 48,
+    "obstacle_lookahead_seconds": 1.0,
+    "algorithm": "Retain heading. At timed updates add bounded random angular offset, then steer smoothly with speed/turn/acceleration limits. Slow to hover and accelerate out; do not instantaneously reset velocity.",
+    "inputs": "Per-swarm seeded RNG, physics time, authored bounds and solid geometry only; no player/enemy position in steering.",
+    "priority": "Collision safety first, boundary/obstacle steering second, random wander third. Do not sum equal opposing forces and jitter in corners.",
+    "bounds": "Author simple connected flight regions, accounting for full collider radius. Steer before edge; swept collision is final protection. Keep spawn/region away from narrow mandatory paths.",
+    "obstacles": "Use current physical solids and partially opened doors. Avoid wall penetration; slide away or turn into valid clearance. One-way platforms can be crossed only when tagged explicitly for swarm flight.",
+    "stuck_recovery": "If intended movement makes less than4px progress over1s outside intentional hover, select a collision-free inward heading using bounded candidate checks; never teleport. If no route is free, hover harmlessly until geometry changes and retry at bounded intervals.",
+    "overlap": "No avoidance of heroes/monsters: contact is incidental. Other swarms may overlap, sharing target cooldown.",
+    "safe_route": "First introduction leaves a clear bypass and room to learn. Initial swarms optional and excluded from gate-clear requirements; their kills of existing gate enemies still count.",
+    "animation": "Select from actual velocity after collision. Use4px/s hover threshold and20% dominant-axis hysteresis; preserve loop clock across direction changes to avoid frame-zero flicker.",
+    "determinism": "Fixed physics updates; seeded RNG only at elapsed decision events, never per render frame. Separate seeds per spawn ID; cap catch-up after long stalls.",
+    "tuning_status": "Initial implementation defaults; validate visually and adjust before claiming feel is final."
+  },
+  "proposed_spawn_lifecycle": {
+    "placement": "Authored bounded spawn regions with valid walk-around space; no endless random generation.",
+    "first_pass_limit": "One swarm per intro region; maximum two per encounter for initial evaluation.",
+    "spawn": "Pre-place off camera or activate entirely beyond viewport; no visible pop-in or spawning overlapping another actor.",
+    "despawn": "Camera culling does not kill/reset actor. Suspend only when region truly unloaded; preserve HP, death and encounter state.",
+    "restart": "Full restart restores placement, health and deterministic seed; checkpoint respawn preserves defeated swarms like other enemies.",
+    "death": "Disable contact immediately at0HP, play finite disperse/fall animation and remove after completion. No lingering damaging particles or child enemy spawns."
+  },
+  "proposed_weapon_interaction": {
+    "collision": "One damageable swarm core; shots, melee and explosions each hit it at most once per attack under weapon rules.",
+    "projectiles": "Respect existing projectile collision/despawn, aim and range; no per-fly pierce multiplier.",
+    "knockback": "Use existing weapon impulse, clamp displacement to flight bounds/solids, then resume random flight without aggro.",
+    "health_visuals": "Standard health fractions apply but multiple thresholds may be skipped by low HP/high damage. Initial mockup only includes movement and death; six damage stages are not claimed delivered."
+  },
+  "validation_before_runtime": [
+    "Verify no targeting dependency on player coordinates.",
+    "Validate35px/s wander at walls/corners, closed doors and defined bounds.",
+    "Check contact cooldown shared across swarms and player hurt protection at multiple frame rates.",
+    "Confirm fly-on-monster damage, same-swarm immunity and boss vulnerability filtering.",
+    "Check two Tony hits/one Sean hit, unique hit accounting, instant harmless death.",
+    "Verify offscreen activation and checkpoint persistence without duplicated spawns.",
+    "Evaluate readable contact core, dodge routes and six animation states at gameplay size.",
+    "Run60s simulations across20 seeds for bounds/solids/stuck recovery, with render FPS30/60/120 and fixed physics tick.",
+    "Same seed and geometry produce identical no-contact path when player changes location; collisions/knockback can legitimately alter actual path.",
+    "Validate near-45-degree animation direction stability and preserved wingbeat phase.",
+    "Both-hero level runs include swarms; report deaths/difficulty rather than silently weakening unrelated enemies."
+  ],
+  "open_decisions": [
+    "Storyboarding selects memorable name/backstory and proposes optional quirk; tiny guns are not authorization for ranged attacks.",
+    "Visual playtest confirms movement, contact fairness and source-art continuity."
+  ],
+  "coordination": "Engineering integrates/builds/checks; Storyboarding supplies identity then Marketing magazine; Art handles required new artwork. Runtime work now authorized.",
+  "research": "handoffs/sewer-fly-movement-research.json",
+  "first_level_placement": {
+    "count": 2,
+    "introduction": "One isolated early swarm in a broad corridor with safe bypass; one later mixed-monster placement to demonstrate incidental monster damage. Do not add at boss arena or hard zone4 bottleneck in this first pass.",
+    "positions": "Engineering selects coordinates against current level geometry; validate no unavoidable contact, no checkpoint overlap and no visible spawn.",
+    "progression": "Optional hazards, not gate objectives."
+  },
+  "engineering_delivery": {
+    "version": "0.39.0",
+    "art": "assets/bestiary/sewer-flies/animation-v3.json; corrected slicing of unchanged v2 PNG, approved by Art",
+    "placements": [
+      [
+        2090,
+        290
+      ],
+      [
+        4400,
+        330
+      ]
+    ],
+    "intro": "Second encounter starts at x2270, beyond first swarm region. Existing kill counts unchanged.",
+    "checks": [
+      "20 seeds x60 seconds at fixed120Hz; identical paths, bounds, corner recovery and changing door geometry",
+      "Shared target cooldown, immunity, invulnerability and boss exclusion",
+      "Two pressure shots /one plunger through real projectile pipeline",
+      "Animation axis hysteresis and persistent phase; finite harmless death",
+      "Pause, checkpoint, full reset and no initial visible spawn",
+      "Seven Python metadata tests; packaged regressions passed"
+    ],
+    "remaining": [
+      "Live motion/readability/contact fairness review",
+      "Sean full-route bot exhausts lives at x5689 with14 cleared; Tony completes in121.3s",
+      "No six-stage damage art, future melee/explosion behavior or exposed-boss integration claimed"
+    ],
+    "screenshots": "Pending permission; build archived for later capture"
+  }
+}

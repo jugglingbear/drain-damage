@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-16",
+  "status": "Three concept illustrations delivered for consolidated planning report; no runtime assets or implementation approval implied",
+  "images": [
+    {
+      "id": "opening",
+      "title": "BASEMENT OPENING",
+      "path": "design/first-call-action/art/opening-v1.png",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "id": "pump-catwalk",
+      "title": "PUMP HALL",
+      "path": "design/first-call-action/art/pump-catwalk-v1.png",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "id": "clogfather-finale",
+      "title": "CLOGFATHER FINALE",
+      "path": "design/first-call-action/art/clogfather-finale-v1.png",
+      "dimensions": [
+        1672,
+        941
+      ]
+    }
+  ],
+  "prompts": "design/first-call-action/art/manifest-v1.json",
+  "layout_authority": "design/first-call-action/level-proposal.json#platform_mockups",
+  "engineering_constraints": "handoffs/level-one-redesign-engineering.json",
+  "logical_viewport": [
+    960,
+    540
+  ],
+  "floor_y": 440,
+  "preferred_max_step_rise": 60,
+  "platform_mockups": [
+    {
+      "id": "opening",
+      "viewport": [
+        960,
+        540
+      ],
+      "floor_y": 440,
+      "top_surfaces": [
+        [
+          180,
+          380,
+          150
+        ],
+        [
+          380,
+          320,
+          250
+        ],
+        [
+          700,
+          380,
+          160
+        ]
+      ],
+      "intent": "Low pipe bundle leads to supported mid catwalk; ground lane under catwalk remains passable. Perched shooter near x570,y320; forward ground arrivals right, warned rear left; overhead pickup aroundy235. Entrance positions illustrative, not exact runtime homes."
+    },
+    {
+      "id": "pump-gallery",
+      "viewport": [
+        960,
+        540
+      ],
+      "floor_y": 440,
+      "top_surfaces": [
+        [
+          80,
+          380,
+          150
+        ],
+        [
+          270,
+          320,
+          150
+        ],
+        [
+          450,
+          260,
+          210
+        ],
+        [
+          700,
+          320,
+          180
+        ]
+      ],
+      "intent": "Connected maintenance structure with60px rises, optional high lane and clear lower lane. Supports behind play plane are explicitly decorative; real solid machinery distinctly blocks. Perched shooter on upper lane, background vent to right, ceiling entry away from mandatory landing. At least120px landing widths."
+    },
+    {
+      "id": "clogfather",
+      "viewport": [
+        960,
+        540
+      ],
+      "floor_y": 440,
+      "intent": "Rooted fatberg on right, low forward weak point reachable by shorter starter range, at least640px connected combat floor; optional low ledges cannot become mandatory safe spots. Large named boss bar; one readable primary hazard plus limited adds."
+    }
+  ],
+  "caveats": [
+    "Pictures communicate density/materials, not exact platform positions. Use supplied platform_mockups coordinates, not traced picture geometry.",
+    "Opening and pump image platform heights include rises beyond60px; replace with specified reachable stepping layout in blockout.",
+    "Pump supports/crates visually cross lower route. Put supports behind collision plane and remove/decorate floor crates to retain passable lower lane.",
+    "Finale depicts high catwalk/ladder as atmosphere, not required traversal. Keep at least640logicalpx clear connected combat floor and low weak point reachable by starter weapons.",
+    "All purple silhouettes and captions are provisional roles, not approved creature identities. The flying role does not change slow non-hunting Septic Air Force behavior.",
+    "Entry montage illustrates multiple options, not simultaneous spawn counts. Floor/viewer-side emergence requires a clearer dedicated cue in implementation.",
+    "Background and viewer-side arrivals remain non-colliding until telegraphed landing on play plane; delay attacks until entry completes.",
+    "Clogfather attack arcs show alternative attack proposals, not three simultaneous hazards or approved moves. Extra background boss silhouette is atmospheric only, not a second boss.",
+    "Concept signage, arrows and silhouette labels are report annotations, not final game text or HUD.",
+    "No running-build capture, collision testing, boss implementation or new enemy art approval claimed."
+  ]
+}

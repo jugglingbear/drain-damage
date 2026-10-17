@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-16",
+  "status": "Ready for integration",
+  "manifest": "assets/world/wastewater-cutaway/manifest-v1.json",
+  "level_contract": "handoffs/wastewater-cutaway-level-design.json",
+  "assets": [
+    "assets/world/wastewater-cutaway/layers-v1.png",
+    "assets/world/wastewater-cutaway/debris-v1.png",
+    "assets/world/wastewater-cutaway/buildup-v1.png"
+  ],
+  "scope": "Art/manifests only; no Engineering scripts or shared roadmap modified.",
+  "validation": "Source dimensions and crop bounds checked; interior alpha250..254 and inset plug249..254, no holes. Final composed game review pending.",
+  "notes": [
+    "Use alternating mirrored pairs for tile seams; no native seamless claim.",
+    "Use exact layer crops instead of whole atlas cells.",
+    "No flowing water or floaters at x8570 onward.",
+    "Opening trial samples story_x capped1440, never full boss clog."
+  ]
+}

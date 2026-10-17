@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-16",
+  "decision": "Existing source resolution supports twice current linear display size; replacement artwork not required for size alone.",
+  "source_manifest": "assets/bestiary/opening-trial/manifest-v1.json",
+  "role": "hallowed-widow-trial",
+  "scaling": "Transform all destination positions and sizes uniformly around registered anchor [48,48]. Preserve original source crops. Flight/hurt source-to-logical scale becomes 0.28; death becomes 0.5. Use nearest filtering.",
+  "resolution": "Flight/hurt crops approximately 480-560 by 512 source pixels display at approximately 134-157 by 143 logical pixels. Death crops 256 square display at 128 square. Both remain downsampled at logical resolution.",
+  "cautions": [
+    "Scale offsets as well as dimensions, including hurt and death; avoid anchor jumps.",
+    "Expand render/culling bounds for wings and halo; original 96 square canvas does not contain all transformed art.",
+    "Scale existing body-core collider only; wings and halo remain decorative.",
+    "Existing live-to-death registration is approximate and needs composed runtime review; source resolution does not establish animation continuity."
+  ],
+  "scope": "Art advice only. Mechanics owns health, encounter duration, colliders and metadata updates. Originals unchanged; no game launched."
+}

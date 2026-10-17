@@ -1,0 +1,449 @@
+{
+  "date": "2026-10-16",
+  "owner": "Level Design",
+  "status": "Implementation handoff for user-approved short opening trial; exact placements/times are initial tuning, not playtested",
+  "approval_source": "Engineering relayed Sean approval of faster short opening trial then level extension, sewer-system visuals matching concepts, exactly one visible Clogfather.",
+  "scope": "Only opening trial now. Full-level expansion and Clogfather follow after trial validation. No boss or duplicate boss silhouette in opening environment.",
+  "world": {
+    "width": 6000,
+    "floor_y": 440,
+    "viewport": [
+      960,
+      540
+    ],
+    "spawn_top_left": [
+      85,
+      394
+    ],
+    "reason": "20 seconds at fastest270px/s can travel5400px;6000 provides room without artificial speed reduction or early wall. This is a trial runway, not a commitment to a6000px opening in the final level.",
+    "camera": "Preserve tracking rules; no autoscroll, hard combat gates or forced camera lock."
+  },
+  "geometry": [
+    {
+      "id": "access-0",
+      "rect": [
+        180,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-0",
+      "rect": [
+        370,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-0",
+      "rect": [
+        670,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-1",
+      "rect": [
+        1080,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-1",
+      "rect": [
+        1270,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-1",
+      "rect": [
+        1570,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-2",
+      "rect": [
+        1980,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-2",
+      "rect": [
+        2170,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-2",
+      "rect": [
+        2470,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-3",
+      "rect": [
+        2880,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-3",
+      "rect": [
+        3070,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-3",
+      "rect": [
+        3370,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-4",
+      "rect": [
+        3780,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-4",
+      "rect": [
+        3970,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-4",
+      "rect": [
+        4270,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-5",
+      "rect": [
+        4680,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-5",
+      "rect": [
+        4870,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-5",
+      "rect": [
+        5170,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    }
+  ],
+  "geometry_rules": [
+    "Ground stays continuous. Low access/return plinths are60px obstacles, jumpable from floor; the lower route goes over these low steps but under every high deck. It is not a flat no-jump speedrun corridor.",
+    "Deck y320 and16px thickness leave104px floor clearance, enough for72px hero art. No support/crate colliders in lower passage. Decorative legs are behind play plane and visibly recessed.",
+    "Access edge to deck gap40px,rise60px; deck to return gap50px,drop60px.150/250px tops meet120px minimum.",
+    "One-way decks admit upward passage; gravity lands on top. Projectile-blocking slab must be thin and art-aligned. Do not reuse floor-to-top solid rectangle for decks.",
+    "Shooter foot anchor on deck; projectile emission and sightline must reach hero below with actual aim geometry, not shoot through deck. Place near edge and suppress occluded shots."
+  ],
+  "timeline": [
+    {
+      "id": "opening-01",
+      "eligible_gameplay_second": 1,
+      "role": "runner",
+      "placement_rule": "forward_edge",
+      "warning_seconds": 0.6,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    },
+    {
+      "id": "opening-02",
+      "eligible_gameplay_second": 2,
+      "role": "runner",
+      "placement_rule": "forward_edge",
+      "warning_seconds": 0.6,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    },
+    {
+      "id": "opening-03",
+      "eligible_gameplay_second": 4,
+      "role": "runner",
+      "placement_rule": "forward_edge",
+      "warning_seconds": 0.6,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    },
+    {
+      "id": "opening-04",
+      "eligible_gameplay_second": 5,
+      "role": "rear_runner",
+      "placement_rule": "rear_edge",
+      "warning_seconds": 0.8,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    },
+    {
+      "id": "opening-05",
+      "eligible_gameplay_second": 7,
+      "role": "perched_shooter",
+      "placement_rule": "visible_deck",
+      "warning_seconds": 0.8,
+      "settle_seconds": 0,
+      "requires": "new shooter behavior and Art-approved sprite"
+    },
+    {
+      "id": "opening-06",
+      "eligible_gameplay_second": 8.5,
+      "role": "runner",
+      "placement_rule": "forward_edge",
+      "warning_seconds": 0.6,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    },
+    {
+      "id": "opening-07",
+      "eligible_gameplay_second": 11,
+      "role": "floor_emerger",
+      "placement_rule": "visible_grate",
+      "warning_seconds": 0.8,
+      "settle_seconds": 0.3,
+      "requires": "emergence behavior and Art-approved grate/entry animation"
+    },
+    {
+      "id": "opening-08",
+      "eligible_gameplay_second": 12.5,
+      "role": "runner",
+      "placement_rule": "forward_edge",
+      "warning_seconds": 0.6,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    },
+    {
+      "id": "opening-09",
+      "eligible_gameplay_second": 15,
+      "role": "aggressive_flyer",
+      "placement_rule": "forward_air",
+      "warning_seconds": 0.8,
+      "settle_seconds": 0.3,
+      "requires": "validated Widow flight and attack art, or separately approved flying species"
+    },
+    {
+      "id": "opening-10",
+      "eligible_gameplay_second": 16.5,
+      "role": "aggressive_flyer",
+      "placement_rule": "forward_air",
+      "warning_seconds": 0.8,
+      "settle_seconds": 0.3,
+      "requires": "validated Widow flight and attack art, or separately approved flying species"
+    },
+    {
+      "id": "opening-11",
+      "eligible_gameplay_second": 18,
+      "role": "runner",
+      "placement_rule": "forward_edge",
+      "warning_seconds": 0.6,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    },
+    {
+      "id": "opening-12",
+      "eligible_gameplay_second": 19,
+      "role": "runner",
+      "placement_rule": "forward_edge",
+      "warning_seconds": 0.6,
+      "settle_seconds": 0,
+      "requires": "existing Flushfiend with agreed trial tuning"
+    }
+  ],
+  "timeline_rules": {
+    "clock": "Gameplay time starts only after intro and input-release guard; pause/dialogue/dispenser freeze it. Times are earliest eligibility, not unconditional spawn deadlines.",
+    "budget": {
+      "visible_including_telegraphs": 6,
+      "shooters": 2,
+      "hostile_projectiles": 6,
+      "independent_attack_patterns": 3,
+      "peak_enabled": false
+    },
+    "queue": "Finite12 event IDs. One new warning at a time; at least0.6sec between warning starts. Full budget delays queued event, never deletes live shots or releases accumulated burst.",
+    "placement_refresh": "Choose positions from CURRENT viewport at warning start, never stale authored player position. Event role/time fixed; exact home is resolved by rules below.",
+    "safety": "At activation recheck viewport,hero bounds,solids,other spawns and predicted landing. Unsafe warning cancels and requeues same ID, never marks kill.",
+    "duration": "20s fixed observation window; safety always wins over schedule. Last event eligible19s leaves little margin: record shortfalls and adjust timing after first measurement rather than violate warning.",
+    "end": "Dedicated trial mode ends at20.0 active gameplay seconds with frozen results: issued/12, defeated, active, deferred and unavailable counts, damage and misses. Cancel remaining warnings/queued events without kill credit. Offer retry or return to menu; no story victory or main-level completion. If fewer than12 issued, report the shortfall and cause prominently; this is a pacing/safety diagnostic, not a successful full-sequence claim.",
+    "death": "On death, reset trial observation clock and all12 enemy IDs while preserving the normally deducted life count. Do not restore lives on automatic respawn. Zero lives uses normal Game Over. Explicit Retry/new attempt follows existing new-attempt life reset rules. Preserve existing intro replay rules; do not mix trial timers with main mission queue."
+  },
+  "placement_rules": {
+    "forward_edge": {
+      "preferred_x": "camera_x+960+48",
+      "y": 404,
+      "minimum_visible_reaction_seconds": 0.6,
+      "logic": "Walk in from right edge; no contact until visible warning/reaction elapsed. If right world margin prevents entry, use nearest clear visible floor point >=220px ahead and show warning. Skip candidates on access/return plinths."
+    },
+    "rear_edge": {
+      "preferred_x": "camera_x-86",
+      "y": 404,
+      "logic": "Enter from left, after at least one forward threat has become visible. Require>=220px separation at visibility; if camera clamped at start or hero hugs left edge, defer. No teleport behind hero."
+    },
+    "visible_deck": {
+      "candidate_feet": [
+        [
+          592,
+          320
+        ],
+        [
+          1492,
+          320
+        ],
+        [
+          2392,
+          320
+        ],
+        [
+          3292,
+          320
+        ],
+        [
+          4192,
+          320
+        ],
+        [
+          5092,
+          320
+        ]
+      ],
+      "logic": "Choose nearest fully visible deck ahead with220\u2013420px horizontal separation. Actor width must fit; final collider Art-owned. If no candidate, wait; do not put shooter on floor. After0.8s arrival warning, use Mechanics0.65s shooter windup as sole attack-timing authority. First shot never before0.8s visible; no offscreen attacks."
+    },
+    "visible_grate": {
+      "candidate_x": [
+        880,
+        1780,
+        2680,
+        3580,
+        4480,
+        5380
+      ],
+      "foot_y": 440,
+      "logic": "Pick fully visible grate180\u2013420px ahead,>=160px from predicted hero landing and clear of props.0.8s warning then emergence then0.3s harmless settle. If no safe candidate, defer; no hidden floor damage."
+    },
+    "forward_air": {
+      "preferred_x": "camera_x+960+48",
+      "entry_feet_y": [
+        250,
+        285
+      ],
+      "logic": "One flyer per event with alternating height. Enter from right; follow authored shallow crossing arc, no player-homing spawn. At least0.8s visible warning before attack; no shared swoop destination. Do not substitute non-hunting Septic Air Force."
+    }
+  },
+  "pickup": {
+    "eligible_second": 8,
+    "status": "Use approved exclusive pickup implementation only; not a13th hostile. If pickup mechanics/art are unavailable, report omission in reduced trial, do not disguise health as weapon upgrade.",
+    "route": "Carrier crosses above mid deck near y235; reward descends to safe deck or clear floor, no mandatory damage. Never put pickup above reachable height without drop."
+  },
+  "unavailable_roles": {
+    "required_full_trial": [
+      "8 Flushfiend runners",
+      "1 perched shooter",
+      "1 floor emerger",
+      "2 aggressive flyers"
+    ],
+    "policy": "Engineering should implement missing behaviors with Art-approved source assets. A technical graybox may use explicit debug markers only in headless/internal checks; no production art substitutes.",
+    "reduced_build": "If blocked, ship only as reduced runner/cadence/environment trial, with actual enemy count and omitted roles listed. Do not replace missing roles with more toilets and claim completed12-enemy multi-role trial.",
+    "priority": "First runner cadence and supported scenery, then perched shooter, emerger, aggressive flyer. Full trial signoff waits for all roles.",
+    "existing_swarm": "Optional environmental swarms excluded from this controlled comparison to avoid extra contact variables; retain unchanged in existing full route."
+  },
+  "art_contract": {
+    "production_assets": "Original sewer masonry, channel/piping, catwalk decking/supports and grate variants matching concept palette; no copied Contra assets. Dimensions logical, source sizes Engineering to confirm.",
+    "layers": "Background brick/pipe network, recessed supports, collision-aligned foreground decks/plinths, low non-occluding debris.",
+    "clogfather": "Exactly one visible in future boss composition. Remove all duplicate silhouette/reflection/mural/ghost shapes of boss from production scene. Opening contains none."
+  },
+  "checks": [
+    "Both heroes traverse every access/deck/return pair and pass beneath decks without visible head clipping",
+    "At normal advancing play12 events fit near20s; rushing,camping,backtracking and jumping never create contact spawn or unbounded delayed burst",
+    "Shooter aiming never shoots through its own deck; attacks readable from lower lane",
+    "All roles use shared damage/ownership and proposed1\u20133-hit ordinary profile, validated by Mechanics",
+    "No old zone gate or all-killed condition interrupts this opening",
+    "Report actual shots/misses/kills/last-spawn time/damage separately for both heroes",
+    "Art screenshots remain subject to game-window permission; Engineering builds/checks and announces ready version"
+  ],
+  "balance_source": "design/first-call-action/opening-trial-balance.json",
+  "mode": "Separate opening-trial menu entry as Engineering requested; existing full-level progression/tuning unchanged."
+}

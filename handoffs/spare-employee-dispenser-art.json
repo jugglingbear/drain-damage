@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "status": "Revised bloody impact Art candidate delivered; Engineering integration and visual review pending",
+  "owners": {
+    "art": "Bestiary / Art",
+    "runtime_layout": "Engineering",
+    "sequence_copy": "Storyboarding"
+  },
+  "approved_brief": {
+    "injured": "Scan, mechanical hand grabs/compresses hero into cartoon ball of clothes/boots/startled eyes, throw toward viewer, screen impact/slide, dispense intact replacement, look left/right and shrug.",
+    "full_health": "Quick checkpoint stamp without destruction",
+    "respawn": "Dispense-only segment",
+    "tone": "Cartoon blood splatter and X-eyed dead hero; no anatomical gore. Replaces earlier bloodless impact.",
+    "full_target_seconds": 5.5,
+    "hard_control_lock_ceiling_seconds": 7,
+    "respawn_target_seconds": 2,
+    "full_health_target_seconds": 0.5,
+    "first_use_bj": "Silent",
+    "ui_text": "Live optional text, not baked into artwork"
+  },
+  "proposed_contract": {
+    "status": "Superseded by accepted Engineering contract and delivered manifest",
+    "machine_world_canvas": [
+      192,
+      192
+    ],
+    "machine_foot_anchor": [
+      96,
+      176
+    ],
+    "machine_body_extent": [
+      80,
+      112
+    ],
+    "hero_canvas": [
+      128,
+      128
+    ],
+    "hero_foot_anchor": [
+      64,
+      104
+    ],
+    "hero_standing_height": 72,
+    "machine_parts": [
+      "static cabinet/front",
+      "rear dispense opening",
+      "mechanical hand/arm moving layer",
+      "front door/lip occluder",
+      "scan light/activated indicator"
+    ],
+    "hero_parts": [
+      "Tony compressed clothing/boots/eyes ball",
+      "Sean compressed clothing/boots/eyes ball",
+      "each hero emerge/look-left/look-right/shrug sequence without weapons"
+    ],
+    "screen_space": "Separate transparent impact/smear atlas, independent of world camera; runtime scales thrown ball toward viewer. Engineering supplies screen impact rectangle and maximum coverage.",
+    "source_scale": "Consistent authored scale, exact measured source rectangles; no per-frame opaque bounding-box normalization.",
+    "state_readability": "Activated state changes indicator shape/light and door detail, not color alone."
+  },
+  "events": [
+    {
+      "time": 0,
+      "event": "scan_start"
+    },
+    {
+      "time": 0.4,
+      "event": "grab_start"
+    },
+    {
+      "time": 1.4,
+      "event": "throw_release"
+    },
+    {
+      "time": 2.1,
+      "event": "impact_slide_and_dispense"
+    },
+    {
+      "time": 3.6,
+      "event": "hero_emerge"
+    },
+    {
+      "time": 5.5,
+      "event": "release_control"
+    }
+  ],
+  "engineering_confirmation_needed": [],
+  "delivery_plan": "Versioned transparent source sheets plus measured manifest with frame rectangles, shared anchors, durations, loop flags and event markers. Preserve exact prompts and earlier art. No runtime edits or game launch by Art.",
+  "runtime_safety_owned_by_engineering": [
+    "Pause enemies and hazards during sequence",
+    "Post-release protection",
+    "No immediate retrigger",
+    "Later-use skip and held-input guard",
+    "Preserve checkpoint progress semantics",
+    "Use event timeline, never wait for audio completion"
+  ],
+  "runtime_manifest": "assets/world/spare-employee-dispenser/manifest-v4.json",
+  "assets": [
+    "assets/world/spare-employee-dispenser/machine-v1.png",
+    "assets/world/spare-employee-dispenser/tony-v1.png",
+    "assets/world/spare-employee-dispenser/sean-v3.png",
+    "assets/world/spare-employee-dispenser/bloody-impact-v1.png"
+  ],
+  "provenance": "assets/world/spare-employee-dispenser/prompts-v1.json",
+  "limitations": [
+    "Machine opening/hero occlusion and hand reach need composed runtime review.",
+    "Hero emergence has one authored stepping pose, not a walk cycle.",
+    "Small source edge fringes may remain; alpha compositing required.",
+    "Sequence timing and world/screen transition not tested in running game.",
+    "No claim of production visual approval."
+  ],
+  "accepted_contract": "handoffs/spare-employee-dispenser-engineering.json",
+  "facial_hair_correction": "Sean v3 matches original photo: fuller broad gray chin beard plus distinct soul patch. v2 tiny tuft rejected. Originals preserved.",
+  "facial_hair_provenance": "assets/world/spare-employee-dispenser/sean-chin-beard-v3.json",
+  "screen_impact_revision": {
+    "date": "2026-10-16",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "prompt": "assets/world/spare-employee-dispenser/bloody-impact-prompts-v1.json",
+    "edge_checks": [
+      {
+        "hero": "tony",
+        "state": "impact",
+        "edge_alpha_max": 1
+      },
+      {
+        "hero": "tony",
+        "state": "slide",
+        "edge_alpha_max": 1
+      },
+      {
+        "hero": "tony",
+        "state": "blood_trail",
+        "edge_alpha_max": 1
+      },
+      {
+        "hero": "sean",
+        "state": "impact",
+        "edge_alpha_max": 1
+      },
+      {
+        "hero": "sean",
+        "state": "slide",
+        "edge_alpha_max": 1
+      },
+      {
+        "hero": "sean",
+        "state": "blood_trail",
+        "edge_alpha_max": 1
+      }
+    ],
+    "runtime": "Impact at1.9s; slide2.1\u20133.6s. Keep isolated blood_trail at screen impact anchor behind descending body; reveal downward with slide, fade body and trail to zero by3.6s. Clear on all exits. No life debit.",
+    "composition": "Impact/slide include attached splat/streaks; separate blood_trail supplies stationary screen residue. Tune opacity to avoid doubling density.",
+    "registration": "Same128 canvas and64,64 anchor, maximum256 display. Top-row height520 avoids clipped droplet; bottom starts520 with2logical-pixel y offset. Source scale stays0.25.",
+    "status": "Source art and alpha edges checked; runtime choreography/appearance pending"
+  }
+}

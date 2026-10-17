@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-16",
+  "status": "Superseded by all-platform moss-green v3 delivery for build49",
+  "problem": "Solid plinths blend into dark copper sewer wall; players collide before recognizing obstacle.",
+  "manifest": "assets/world/opening-trial/platform-contrast-manifest-v2.json",
+  "image": "assets/world/opening-trial/platform-contrast-v2.png",
+  "replacement_ids": [
+    "access-plinth",
+    "deck"
+  ],
+  "runtime_change": "Use new source crops for existing rects only; collision and layout unchanged. Apply to integrated first-level opening, not timed-trial-only.",
+  "verification": "Source visually inspected; alpha and crop bounds verified. Pale broad silhouettes replace dark teal/copper frames. Running-build review not performed.",
+  "ownership": "Art/manifests/handoff only; Engineering owns runtime, roadmap and build.",
+  "engineering_integration": "Prototype45 integrated in main first-level opening and pipe props; packaged checks pass, live composition pending",
+  "current_manifest": "assets/world/platform-readability-v3/manifest-v3.json",
+  "current_scope": "All20 first-level walkable obstacles; Level Design owns runtime binding."
+}

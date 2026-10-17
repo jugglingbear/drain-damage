@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "status": "Audio assets delivered; boss gameplay integration pending",
+  "authorization": "Sean authorized first-pass audio/music choices and Engineering integration; feedback later.",
+  "manifest": "audio/sources/clogfather-v1/manifest.json",
+  "storyboarding": "audio/sources/clogfather-v1/storyboarding-brief.json",
+  "cues": [
+    {
+      "path": "assets/audio/sfx/clogfather-v1/pressure-warning.wav",
+      "duration_seconds": 0.72,
+      "peak_dbfs": -12,
+      "sha256": "786fb496781c29600f0c910d1d6734ec15b5ad12bc83896a0a550db7d7ec27e2",
+      "cue_id": "pressure-warning",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43100
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/sludge-fire-a.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -12,
+      "sha256": "b09481c8aa3cd0e6d5c9702a3ebd023a356d10aee7a421511c27088f6a4852c3",
+      "cue_id": "sludge-fire-a",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43101
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/sludge-fire-b.wav",
+      "duration_seconds": 0.27,
+      "peak_dbfs": -12,
+      "sha256": "b1da44aea8578eb4f8d57610b40149571bd7c3a285883b8ca03a26e0155216d8",
+      "cue_id": "sludge-fire-b",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43102
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/sludge-impact-a.wav",
+      "duration_seconds": 0.34,
+      "peak_dbfs": -15,
+      "sha256": "2c3d1b17da3182ad0f56b121b4e585156450ee8f876e003db786d97c198d8dda",
+      "cue_id": "sludge-impact-a",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43103
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/sludge-impact-b.wav",
+      "duration_seconds": 0.38,
+      "peak_dbfs": -15,
+      "sha256": "fade3601f358b1b218bbe119e31d67059771310ade2eea0e946c8b1d392dd5a2",
+      "cue_id": "sludge-impact-b",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43104
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/groan-a.wav",
+      "duration_seconds": 1.15,
+      "peak_dbfs": -12,
+      "sha256": "d1a5eb813ffab0390329290dc5680cf3a8d7318965e95d4e71826e94b2fa0050",
+      "cue_id": "groan-a",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43105
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/groan-b.wav",
+      "duration_seconds": 0.95,
+      "peak_dbfs": -12,
+      "sha256": "cec8262b573450506347175e0904cb115e2cb509a9e1fd2ae771699741546e75",
+      "cue_id": "groan-b",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43106
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/hurt.wav",
+      "duration_seconds": 0.42,
+      "peak_dbfs": -12,
+      "sha256": "4ba97b36d114997e1fa5fb907ba172b249d3bc7ca4e352c4de3fd7cdf5827a1f",
+      "cue_id": "hurt",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43107
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/weak-point-open.wav",
+      "duration_seconds": 0.48,
+      "peak_dbfs": -12,
+      "sha256": "6736592d0946a697509c6170d704deb3c113dc1ffcfeeedae64703917e9b3c28",
+      "cue_id": "weak-point-open",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43108
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/armored-hit.wav",
+      "duration_seconds": 0.16,
+      "peak_dbfs": -15,
+      "sha256": "cfef2a9cba4663b4ccde9dd55bbaf308afe77695369dff19b9526895eae4d32e",
+      "cue_id": "armored-hit",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43109
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/acid-warning.wav",
+      "duration_seconds": 0.85,
+      "peak_dbfs": -12,
+      "sha256": "df2d18d4dbdcbd63468eee2e649265462a89812dc970a1b9001ea32491882052",
+      "cue_id": "acid-warning",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43110
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-v1/collapse.wav",
+      "duration_seconds": 1.8,
+      "peak_dbfs": -12,
+      "sha256": "f8d172e96942969b725b44d6c1f318a6672484f268be30f17fb0e2c04d81e281",
+      "cue_id": "collapse",
+      "gain_db": -5,
+      "loop": false,
+      "seed": 43111
+    }
+  ],
+  "music": {
+    "id": "clogfather",
+    "title": "Backpressure",
+    "path": "assets/audio/music/clogfather-backpressure-v1.ogg",
+    "duration_seconds": 51.2,
+    "bpm": 150,
+    "loop": true,
+    "gain_db": -18,
+    "provenance": "Original composition and synthesis in manifest generator; no borrowed melody or samples.",
+    "transition": "Use existing single-voice music director; switch on encounter start, stop on exit/defeat.",
+    "retry": "Restart boss track on encounter retry; do not overlap Hallow Quest.",
+    "after_defeat": "Return to level music or silence per encounter owner; no victory/portal implication."
+  },
+  "event_mapping": {
+    "volley_warning": [
+      "pressure-warning"
+    ],
+    "projectile_spawn": [
+      "sludge-fire-a",
+      "sludge-fire-b"
+    ],
+    "projectile_hit": [
+      "sludge-impact-a",
+      "sludge-impact-b"
+    ],
+    "idle_optional": [
+      "groan-b"
+    ],
+    "major_stagger": [
+      "groan-a"
+    ],
+    "damage_accepted": [
+      "hurt"
+    ],
+    "weak_point_open": [
+      "weak-point-open"
+    ],
+    "closed_shell_hit": [
+      "armored-hit"
+    ],
+    "acid_warning": [
+      "acid-warning"
+    ],
+    "death_started": [
+      "collapse"
+    ]
+  },
+  "mapping_rules": "Arrays with variants mean choose ONE per event, not all. Enemy projectile hit means actual collision, not timeout/offscreen cleanup. Proposed acid/weak-point events only when those mechanics exist.",
+  "mix_rules": [
+    "At most four boss SFX voices; warnings have priority over impacts/idle.",
+    "Coalesce impacts within 0.08s; hurt cooldown 0.25s; groan cooldown >=6s and never during warning.",
+    "Idle optional: sparse, quieter (-12dB), suppress during attacks/dialogue. No continuous vocal loop.",
+    "Pause voices/music with encounter; stop and cancel on death/retry/menu/exit. Death plays collapse once.",
+    "Respect SFX and music mute; audio never controls attack timing, damage or animation completion."
+  ],
+  "implementation_boundary": "Engineering confirms encounter absent; current Clogfather is HUD-only. Register/export/test audio support now if appropriate; wire actual events with later boss implementation.",
+  "limitations": "Procedural first pass; no subjective audition or in-game mix verification. Unique music is original synthesized retro composition, not authentic SNES hardware emulation.",
+  "provenance": {
+    "provenance": "Original deterministic procedural composition and synthesis. No third-party samples.",
+    "rights": "Project-generated material; no third-party sample licensing obligations introduced.",
+    "generator": "audio/sources/clogfather-v1/generate.py",
+    "generator_sha256": "d55bc883bb3a75ed4aa450d2b9403601c5fe4b2505ac5be0a36f86d53b7c64b8"
+  }
+}

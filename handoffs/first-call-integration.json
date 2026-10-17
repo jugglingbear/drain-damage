@@ -1,0 +1,82 @@
+{
+  "build": "0.27.0",
+  "status": "Headless integrated route; human and live visual review pending",
+  "world_width": 9600,
+  "props": "scripts/first_call.gd PROPS: 17 placements, 11 low/5 medium/1 tall",
+  "lanes": [
+    [
+      690,
+      1370
+    ],
+    [
+      2370,
+      3050
+    ],
+    [
+      4050,
+      4730
+    ],
+    [
+      5750,
+      6410
+    ],
+    [
+      7410,
+      8090
+    ],
+    [
+      8570,
+      9360
+    ]
+  ],
+  "gates": [
+    1390,
+    3070,
+    4750,
+    6430,
+    8110,
+    9380
+  ],
+  "counts": [
+    3,
+    5,
+    5,
+    6,
+    6,
+    3,
+    2
+  ],
+  "rationale": "Compacted grounded stairs earlier in zones to reserve >=640px open lanes. Staged shared spawn grid replaces rejected nearest-clear homes. All sides/tops and projectiles share solid geometry. Tall props are far from shutters.",
+  "scripted_runs": {
+    "tony": {
+      "seconds": 93.75,
+      "damage_by_zone": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "sean": {
+      "seconds": 139.7333,
+      "damage_by_zone": [
+        0,
+        4,
+        8,
+        6,
+        9,
+        1
+      ]
+    }
+  },
+  "measurement_note": "Scripted bot using actual weapons and movement, including respawns, excludes intro. Not human pacing or target-duration validation.",
+  "deferred": [
+    "Clogfather",
+    "acid hazards",
+    "portal",
+    "new zone background variants",
+    "live screenshots pending permission"
+  ]
+}

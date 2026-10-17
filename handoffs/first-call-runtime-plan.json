@@ -1,0 +1,278 @@
+{
+  "status": "Initial geometry audit only; relocated homes rejected as final encounter placements. Revised runtime layout pending.",
+  "source": "levels/first-call/level-design.json",
+  "world": {
+    "width": 9600,
+    "floor_y": 440,
+    "viewport": [
+      960,
+      540
+    ],
+    "spawn": [
+      85,
+      394
+    ],
+    "exit_x": 9450
+  },
+  "zones": [
+    {
+      "id": "service-entry",
+      "bounds": [
+        0,
+        1440
+      ],
+      "authored_homes": [
+        620,
+        1020,
+        1280
+      ],
+      "clear_floor_homes": [
+        620,
+        990,
+        1280
+      ],
+      "terrain": [
+        [
+          300,
+          380,
+          180,
+          60
+        ],
+        [
+          1060,
+          380,
+          160,
+          60
+        ]
+      ]
+    },
+    {
+      "id": "stores",
+      "bounds": [
+        1440,
+        3120
+      ],
+      "authored_homes": [
+        1710,
+        1990,
+        2350,
+        2700,
+        2950
+      ],
+      "clear_floor_homes": [
+        1710,
+        1640,
+        2452,
+        2650,
+        2950
+      ],
+      "terrain": [
+        [
+          1800,
+          380,
+          160,
+          60
+        ],
+        [
+          2020,
+          320,
+          180,
+          120
+        ],
+        [
+          2260,
+          380,
+          160,
+          60
+        ],
+        [
+          2720,
+          380,
+          160,
+          60
+        ]
+      ]
+    },
+    {
+      "id": "pressure-gallery",
+      "bounds": [
+        3120,
+        4800
+      ],
+      "authored_homes": [
+        3630,
+        3890,
+        4160,
+        4450,
+        4660
+      ],
+      "clear_floor_homes": [
+        3630,
+        3560,
+        4352,
+        4450,
+        4660
+      ],
+      "terrain": [
+        [
+          3700,
+          380,
+          160,
+          60
+        ],
+        [
+          3920,
+          320,
+          180,
+          120
+        ],
+        [
+          4160,
+          380,
+          160,
+          60
+        ]
+      ]
+    },
+    {
+      "id": "broken-pump-hall",
+      "bounds": [
+        4800,
+        6480
+      ],
+      "authored_homes": [
+        5050,
+        5310,
+        5570,
+        5850,
+        6110,
+        6350
+      ],
+      "clear_floor_homes": [
+        5050,
+        4980,
+        4910,
+        6292,
+        6362,
+        4840
+      ],
+      "terrain": [
+        [
+          5140,
+          380,
+          160,
+          60
+        ],
+        [
+          5360,
+          320,
+          180,
+          120
+        ],
+        [
+          5600,
+          260,
+          200,
+          180
+        ],
+        [
+          5860,
+          320,
+          180,
+          120
+        ],
+        [
+          6100,
+          380,
+          160,
+          60
+        ]
+      ]
+    },
+    {
+      "id": "return-main",
+      "bounds": [
+        6480,
+        8160
+      ],
+      "authored_homes": [
+        6980,
+        7210,
+        7450,
+        7680,
+        7900,
+        8070
+      ],
+      "clear_floor_homes": [
+        6960,
+        6890,
+        7682,
+        7752,
+        7900,
+        7992
+      ],
+      "terrain": [
+        [
+          7030,
+          380,
+          160,
+          60
+        ],
+        [
+          7250,
+          320,
+          180,
+          120
+        ],
+        [
+          7490,
+          380,
+          160,
+          60
+        ]
+      ]
+    },
+    {
+      "id": "main-sump",
+      "bounds": [
+        8160,
+        9600
+      ],
+      "authored_homes": [
+        8460,
+        8790,
+        9100,
+        9300,
+        9400
+      ],
+      "clear_floor_homes": [
+        8460,
+        8790,
+        9100,
+        9300,
+        9400
+      ],
+      "terrain": []
+    }
+  ],
+  "enemy_total": 30,
+  "checkpoints": [
+    3300,
+    6660,
+    8190
+  ],
+  "active_cap": 4,
+  "spawn_note": "Homes are clear of solids and recovery footprints. Actual activation must also check live player, camera, landing zones and active-enemy overlap.",
+  "blocking_decisions": [
+    "Level Design approved finite visible gates plus >=1.25s harmless reinforcement telegraphs, forward preferred; rear allowed only visible and >=220px away.",
+    "Runtime must author >=640px clear encounter lanes and reusable staged spawn positions; do not use the initial nearest-floor homes as final placements.",
+    "Bestiary / Art is generating low/medium/tall props and has been asked for48x260 shutter. Await usable art/collider metadata before integrated delivery."
+  ],
+  "unchanged": "Prototype 26 remains the runnable/exported game until the complete integration is validated.",
+  "next_steps": [
+    "Repack terrain to leave safe arena lanes",
+    "Implement solid player/enemy collision and staircase traversal",
+    "Integrate gates, telegraphs and sequential mission accounting",
+    "Validate both heroes, rush/camp/retreat/death/retry, and descent shooting"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "status": "Storyboarding contribution to requested wastewater cutaway; recommendations, not implemented scenery",
+  "references": [
+    "design/first-call-action/level-proposal.json",
+    "levels/first-call/level-design.json"
+  ],
+  "priority": "Use current action-redesign direction. Older zone bounds are orientation only; its ordinary-wave finale does not supersede the required Clogfather.",
+  "approved_direction": [
+    "Large wastewater pipe cutaway below the playable floor, near the bottom of the view.",
+    "Visible flowing water carries occasional recognizable improperly flushed objects.",
+    "Toward the Clogfather, water level DECREASES while deposited debris INCREASES.",
+    "At the boss, no flowing water; grease, oil and disgusting debris completely clog the pipe.",
+    "Environmental storytelling only; no new damage, pickups, collision, drainage puzzle or dialogue."
+  ],
+  "story_read": "The player follows the worsening condition of one continuous piece of infrastructure until the accumulated waste explains the boss’s setting. The objects provide occasional discoveries during quieter moments; the pipe should read even when the player ignores individual jokes.",
+  "zones": [
+    {
+      "zone": "service-entry",
+      "water": "Highest visible fill in this progression; clear sustained lateral movement.",
+      "debris": "Sparse passing toilet paper and one conspicuously inappropriate object, such as a sock. Minimal deposits.",
+      "intent": "Establish a functioning flow and an easily readable cross-section immediately."
+    },
+    {
+      "zone": "stores",
+      "water": "Slightly lower surface; still visibly flowing.",
+      "debris": "Occasional wipes and cotton swabs catch at joints; other items continue past.",
+      "intent": "First distinction between floating debris and material left behind."
+    },
+    {
+      "zone": "pressure-gallery",
+      "water": "Lower again; more exposed pipe interior.",
+      "debris": "Small grease shelves with wipes snagged on them; fewer objects pass without catching.",
+      "intent": "Make the change noticeable without a sign explaining it."
+    },
+    {
+      "zone": "broken-pump-hall",
+      "water": "Shallow moving ribbon between stationary deposits.",
+      "debris": "Larger compacted clumps, fabric strips and a partly buried rubber duck.",
+      "intent": "The same familiar objects now disappear into a growing mass."
+    },
+    {
+      "zone": "return-main",
+      "water": "A thin, sluggish trickle; any isolated puddles remain below earlier waterlines.",
+      "debris": "Grease and tangled fabric nearly bridge the bore. Allow a quiet stretch near the checkpoint to read it.",
+      "intent": "Prepare the final blockage without showing a second boss."
+    },
+    {
+      "zone": "boss approach and arena",
+      "water": "Moving ribbon dwindles to nothing before a fully packed terminal section; no flow through the clog.",
+      "debris": "Complete obstruction: greasy solid mass, dark oily staining, wipes, roots and trapped rubbish.",
+      "intent": "Visually lead toward the foreground Clogfather while preserving only one visible boss."
+    }
+  ],
+  "debris_palette": {
+    "frequent": "Small paper fragments, wipes, cotton swabs, hair and fabric strips; simplify at gameplay size.",
+    "recognizable_accents": [
+      "A bright red sock",
+      "A toothbrush",
+      "A tangled pair of underwear",
+      "A rubber duck",
+      "A toilet-brush head",
+      "A tiny plastic dinosaur"
+    ],
+    "rare_optional_gag": "A laminated DO NOT FLUSH sign drifting past; only if readable without enlarging or distracting from play.",
+    "restraint": "One distinctive accent at a time, irregularly spaced. Do not pack every view with jokes. No plot clues, new creature eggs, bodies, clone remains or portal hints."
+  },
+  "continuity_and_readability": [
+    "Keep the cutaway consistently below the solid floor and distinguish its rim from walkable platforms. It is not an accessible lower route.",
+    "Use consistent pipe diameter/joints and fixed deposits across adjacent views. Debris flow may move while the camera stops.",
+    "Suggested lateral drift follows forward level travel, slowing toward obstruction. This is visual direction, not a hydraulic simulation.",
+    "Do not replace Sean’s explicitly falling waterline with upstream flooding, rising backed-up water or a waterfall into the arena.",
+    "Water height and deposit amount are separate cues: the flowing channel shrinks while solids occupy more of the pipe. Do not paint an oily layer as a rising liquid surface.",
+    "Keep below-floor motion lower contrast than heroes, enemies, shots and hazards; no flashy pickup-like glows on debris.",
+    "No faces, eyes, breathing or boss-shaped silhouette in the pipe while the foreground Clogfather is visible. The terminal clog is scenery or physically continuous with the single boss, never a duplicate creature.",
+    "Maintain progression by world location, including backtracking; do not randomly reset fill levels per view.",
+    "Early trial should establish only the early state; do not compress the entire boss buildup into the faster opening slice.",
+    "Boss defeat does not automatically restore flow, reveal a portal or repair plumbing. Any aftermath change needs separate approval."
+  ],
+  "handoff_boundary": "Art owns assets; Level Design/Engineering own exact placement, dimensions, rendering and integration. Marketing collects contributions. No magazine regeneration or game launch requested here. No other agents’ files edited."
+}

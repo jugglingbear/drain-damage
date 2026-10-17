@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-16",
+  "status": "Glass-front vending redesign artwork delivered; selection/integration pending",
+  "scope": "Artwork only; no gameplay changes, game launch, magazine.json edits or magazine/PDF regeneration.",
+  "machine_variants": [
+    {
+      "path": "marketing/spare-employee-dispenser/tony-stocked-v1.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "marketing/spare-employee-dispenser/sean-stocked-v1.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    }
+  ],
+  "sleeping_sprite_manifest": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.json",
+  "source_inventory": [
+    {
+      "path": "marketing/spare-employee-dispenser/tony-stocked-v1.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "marketing/spare-employee-dispenser/sean-stocked-v1.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    }
+  ],
+  "prompts": "marketing/spare-employee-dispenser/glass-front-prompts-v1.json",
+  "design": "Rusty teal/brass old box, glass front with exactly two sleeping copies of the current hero, coin/button strip and lower dispensing hatch. Corporate unease without processing/gore.",
+  "marketing_usage": [
+    "Tony-stocked for Tony-specific placement; Sean-stocked for Sean-specific placement. Never combine occupants.",
+    "Both are1024x1536RGBA portrait cutouts. At150pt width effective resolution is491dpi; at7inch width146dpi. Full-page300dpi reproduction needs a later higher-resolution pass.",
+    "Keep full glassfront/heads in narrow cuts. Warm cubby lighting and large faces support readability; final page-size proof remains Marketing work while PDF generation is on hold.",
+    "Machine and occupants are flattened in magazine cutouts. Reusable sleeping sprites are separate; an empty cabinet/glass overlay would be an additional art task."
+  ],
+  "preserved": "All earlier machine/hero sheets and generation originals retained; no active runtime manifest replaced."
+}

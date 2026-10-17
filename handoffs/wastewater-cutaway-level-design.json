@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-16",
+  "owner": "Level Design",
+  "status": "Concrete environmental implementation recommendation; numerical values initial visual tuning, no runtime edits",
+  "request": "Continuous wastewater-pipe cutaway below first-level floor. Flow and floating inappropriate debris diminish toward Clogfather; grease and lodged debris increase to total blockage. Environmental storytelling only.",
+  "sources": [
+    "scripts/first_call.gd",
+    "levels/first-call/level-design.json",
+    "handoffs/opening-trial-level-layout.json",
+    "design/first-call-action/level-proposal.json"
+  ],
+  "placement": {
+    "viewport": [
+      960,
+      540
+    ],
+    "floor_y": 440,
+    "floor_structure_band": [
+      440,
+      456
+    ],
+    "pipe_outer_band": [
+      456,
+      528
+    ],
+    "pipe_interior_band": [
+      464,
+      520
+    ],
+    "bottom_margin": [
+      528,
+      540
+    ],
+    "coordinate_rule": "Logical world y, same horizontal transform as floor (world_x minus camera_x). Pipe is physical scene infrastructure, not a screen-fixed overlay or distant parallax layer. Retain floor silhouette and landing-edge contrast.",
+    "art": "Request original modular pipe shell, interior, flowing water, debris and terminal grease plug from Bestiary / Art through Engineering dimensions. Clip all contents to bore; never substitute code-drawn production art. No floor openings or damage collider implied."
+  },
+  "progression": [
+    {
+      "section": "service-entry",
+      "world_x": [
+        0,
+        1440
+      ],
+      "water_depth_fraction": 0.75,
+      "flow_pixels_per_second": 42,
+      "lodged_debris_coverage_fraction": 0.08
+    },
+    {
+      "section": "stores",
+      "world_x": [
+        1440,
+        3120
+      ],
+      "water_depth_fraction": 0.62,
+      "flow_pixels_per_second": 34,
+      "lodged_debris_coverage_fraction": 0.18
+    },
+    {
+      "section": "pressure-gallery",
+      "world_x": [
+        3120,
+        4800
+      ],
+      "water_depth_fraction": 0.46,
+      "flow_pixels_per_second": 25,
+      "lodged_debris_coverage_fraction": 0.32
+    },
+    {
+      "section": "broken-pump-hall",
+      "world_x": [
+        4800,
+        6480
+      ],
+      "water_depth_fraction": 0.3,
+      "flow_pixels_per_second": 16,
+      "lodged_debris_coverage_fraction": 0.5
+    },
+    {
+      "section": "return-main",
+      "world_x": [
+        6480,
+        8160
+      ],
+      "water_depth_fraction": 0.14,
+      "flow_pixels_per_second": 7,
+      "lodged_debris_coverage_fraction": 0.72
+    },
+    {
+      "section": "main-sump-approach",
+      "world_x": [
+        8160,
+        8570
+      ],
+      "water_depth_fraction": 0.04,
+      "flow_pixels_per_second": 2,
+      "lodged_debris_coverage_fraction": 0.9
+    },
+    {
+      "section": "clogfather-arena",
+      "world_x": [
+        8570,
+        9600
+      ],
+      "water_depth_fraction": 0,
+      "flow_pixels_per_second": 0,
+      "lodged_debris_coverage_fraction": 1.0
+    }
+  ],
+  "parameter_meaning": "Water fraction measures56px bore height from bottom; coverage is projected visible blockage, not entity count or a hydraulic simulation. Values are visual targets. Preserve the user-requested falling level even if real obstruction hydrology would differ.",
+  "interpolation": "Treat section values as targets at their midpoints. Interpolate smoothly along WORLD x, then ease to exact zero flow/zero water/full plug at x8570. Every visible pipe segment samples its own world coordinate, so camera spanning a boundary shows a continuous gradient rather than changing the entire screen at once. No dependence on kills, clock elapsed or gates.",
+  "debris": {
+    "floating": "Early sections: sparse individual wipes, cotton swabs, toothbrushes, hair clumps and one occasional absurd non-branded item. Art decides exact motifs.8\u201320 logical pixels, occasional24px item;4\u20136 moving pieces visible,hard cap8. No collectible glow or hostile-bullet silhouette.",
+    "direction": "Flow consistently right toward the obstruction. Early debris follows water at modest varied speed. As flow drops, floaters decrease; static lodged material takes over. Never reverse with player movement.",
+    "accumulation": "Midroute: caught wipes and hair around pipe seams, increasingly greasy deposits. Final approach: tiny stagnant puddles between debris, motion slows nearly to rest. Arena: continuous opaque grease/oil/debris mass fills bore; no water-scroll animation or moving floaters.",
+    "determinism": "Seed variation by stable world-segment ID and session seed. Reuse pooled pieces; no new random reshuffle when camera moves back. Wrap/drift offscreen or behind physical seam, not visible teleportation.",
+    "animation_clock": "Pause with gameplay during pause/dialogue/dispenser; do not advance catch-up bursts on resume."
+  },
+  "readability": [
+    "Everything stays below y456; no debris, splash or foreground pipe rim obscures feet, platforms, landing cues or enemies.",
+    "Water/debris contrast and saturation stay below hostile-projectile emphasis; avoid rapid glints,screen shake or foreground occlusion.",
+    "Allow thin pipe joints but retain at least80percent visible bore across an ordinary screen; no long opaque floor band hiding the storytelling.",
+    "Draw after base background and before floor lip/foreground edge; remove or mask existing opaque below-floor fill so it does not cover new cutaway. HUD and dialogue stay above environmental rendering.",
+    "At alternate display sizes use normal canvas scaling; no new camera zoom or reduced gameplay height."
+  ],
+  "backtracking": "Position-defined story: returning toward entrance shows that location wetter and less clogged again, while debris drift uses persistent phase. Never use furthest-player-progress to dry the whole pipe. Respawn returns to local appearance; restart resets animation seed/time according to existing session policy without changing spatial profile.",
+  "boss_transition": {
+    "approach": "Checkpoint8190 already sits within almost-dry approach. Make terminal clog clearly visible before combat starts. x8570 is current finale-lane start, a placement anchor for planned boss rather than a claim boss exists.",
+    "arena": "Show one Clogfather only. Terminal plug is inert grease/debris, not a second face/body/silhouette. Align pipe termination under the planned boss/outflow; no implication hero can enter it.",
+    "activation": "Do not wait for boss trigger to switch wet pipe to dry; obstruction is already spatially established. Boss HUD/intro do not alter pipe state.",
+    "defeat": "Default keep blocked appearance until an explicit restoration animation/story beat is approved. Boss death does not silently imply all plumbing repaired or portal revealed. If restoration is later approved, author a separate state transition with Storyboarding.",
+    "retry": "Return to pre-fight blocked appearance if boss resets. No invisible environmental hazards, enemy spawns or damage tied to debris."
+  },
+  "trial_integration": {
+    "scope": "The separate6000px20s opening trial is a test runway, not a compressed whole mission. Do NOT normalize its width into full wet-to-clog progression or show a boss plug at its exit.",
+    "profile": "For trial only, sample story_x=min(actual_trial_x,1440), holding entrance/stores transition thereafter. Use the same production art module; show entrance flow/debris with only mild reduction.",
+    "full_route": "Use actual9600px world profile when integrating full mission. If route changes, remap named section anchors explicitly instead of silently scaling the boss plug to any test width."
+  },
+  "checks": [
+    "Headless profile assertions: depth/flow never increase forward; coverage never decreases; x8570 onward exactly0flow/0water/1coverage.",
+    "Compare views near x500,2400,4000,5700,7600,8300 and8900; verify monotonic story and unobscured combat.",
+    "Backtrack/respawn to same segment: same static buildup,no rerandomized pop or global drainage.",
+    "Pause/resume and camera boundary traversal: no motion burst, seams or teleported floaters.",
+    "Boss arena has one boss and inert full plug; trial never depicts final clog.",
+    "Record genuine running-game capture after Engineering integration and permission; artwork preview is not gameplay evidence."
+  ],
+  "delivery": "Marketing retrieves this handoff and combines with Art/Storyboarding for Engineering. Engineering owns integration/build/roadmap/storybook. No magazine regeneration, runtime changes or game launch performed."
+}

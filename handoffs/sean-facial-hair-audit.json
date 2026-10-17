@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-16",
+  "character_rule": "Full broad gray-brown chin beard and distinct soul patch below lower lip, as in original photo; no connected moustache.",
+  "corrected": [
+    "assets/world/spare-employee-dispenser/sean-v3.png",
+    "assets/sprites/hero-animation-v2/sean-motion-v3.png",
+    "assets/sprites/hero-animation-v2/death-v3.png",
+    "assets/sprites/modular-aim-v1/sean-parts-v2.png",
+    "assets/sprites/modular-aim-v1/airborne-bodies-v3.png",
+    "assets/sprites/modular-aim-v1/sean-left-support-hand-v3.png",
+    "assets/sprites/sean-v3.png"
+  ],
+  "remaining_sprite_corrections": [],
+  "finding": "Earlier sprite findings require re-evaluation against original photo: broad chin beard and soul patch are intentional. Remove only incorrect hair around upper lip/mouth corners; do not shrink beard to a dot.",
+  "duplicate_notes": "Prototype/runtime modular files are identical. Support-hand sheet body heads are not used for arms.",
+  "portraits": {
+    "current": "assets/portraits/sean-expressions-v4.png",
+    "finding": "Clean upper lip and chin beard; no connected moustache. No correction needed.",
+    "historical": "v1/v2 have upper-lip stubble; v3 has clean upper lip. All are superseded by v4."
+  },
+  "scope": "Six additional sprite sheets revised to approved full chin beard and soul patch. Earlier versions preserved as history.",
+  "runtime_status": "Source art updated; replacement manifests delivered for Engineering integration and in-game review.",
+  "original_reference": "references/characters/sean-original.png",
+  "superseded_correction": "Dispenser v2 tiny isolated tuft rejected by Sean; do not propagate.",
+  "replacement_map": {
+    "assets/sprites/hero-animation-v2/sean-motion-v2.png": "assets/sprites/hero-animation-v2/sean-motion-v3.png",
+    "assets/sprites/hero-animation-v2/death-v2.png": "assets/sprites/hero-animation-v2/death-v3.png",
+    "assets/sprites/modular-aim-v1/sean-parts-v1.png": "assets/sprites/modular-aim-v1/sean-parts-v2.png",
+    "assets/sprites/modular-aim-v1/airborne-bodies.png": "assets/sprites/modular-aim-v1/airborne-bodies-v3.png",
+    "assets/sprites/modular-aim-v1/sean-left-support-hand-v2.png": "assets/sprites/modular-aim-v1/sean-left-support-hand-v3.png",
+    "assets/sprites/sean-v2.png": "assets/sprites/sean-v3.png"
+  },
+  "candidate_manifests": [
+    "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+    "assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json"
+  ],
+  "legacy_runtime_reference": "scripts/world_art.gd still preloads sean-v2.png; replace with sean-v3.png during integration.",
+  "unchanged": "Current dialogue portraits, approved dispenser Sean-v3 and bloody-impact-v1 already match. Earlier source revisions preserved."
+}

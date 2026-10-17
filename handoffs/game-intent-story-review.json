@@ -1,0 +1,41 @@
+{
+  "status": "Review complete; no story_dialogue.gd changes required",
+  "scope": "Current runtime wording and shared lore audit; no runtime files edited or game launched",
+  "sources": [
+    "scripts/story_dialogue.gd",
+    "scripts/dialogue.gd",
+    "scripts/employee_dispenser.gd",
+    "scripts/title_screen.gd",
+    "bestiary/the-hallowed-widow/monster.json",
+    "marketing/magazine/magazine.json"
+  ],
+  "findings": [
+    {
+      "area": "Dispenser",
+      "result": "No rendered explanatory prose in employee_dispenser.gd. No wording correction needed; preserve approved visual gag and short sequence. Magazine ban on overt procedure explanation does not remove game animation."
+    },
+    {
+      "area": "BJ dialogue",
+      "result": "Opening correctly uses Billy-Joe, BJ and Mainframe Plumbing & Supply. Current completion lines are exit-based, preserve customer-hung-up revision, and do not claim all enemies dead. Keep twelve explicitly selected death lines unchanged; do not over-apply later magazine euphemism preference to them."
+    },
+    {
+      "area": "BJ role label",
+      "file": "scripts/dialogue.gd",
+      "old": "AI OWNER / EMPLOYEE MORALE NOT FOUND",
+      "recommended": "YOUR ARTIFICIALLY INTELLIGENT LORD AND MASTER",
+      "reason": "Reuse Sean’s earlier selected cheeky identity wording instead of generic error-message humor. Engineering may apply in its UI file; check width. This is label consistency, not new dialogue."
+    },
+    {
+      "area": "Widow shared lore",
+      "result": "monster.json still contains obsolete first draft ending about Tony and lacks later wing/breeding wording. Synchronize canonical backstory/catalog/gallery with approved magazine text; no runtime dialogue addition or reproduction behavior."
+    }
+  ],
+  "widow_text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo—every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
+  "boundaries": [
+    "No egg spawning, reproduction or additional enemy waves authorized.",
+    "No dialogue or game features invented.",
+    "No magazine edits or PDF regeneration.",
+    "Engineering owns combined build and roadmap; Art owns pending cabinet layers and shared metadata synchronization."
+  ],
+  "validation": "Read-only source review; handoff JSON parsed successfully. No runtime tests necessary because no scripts changed."
+}

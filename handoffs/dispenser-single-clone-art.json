@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-16",
+  "status": "Art mapping ready; Engineering owns integration",
+  "base_manifest": "assets/world/spare-employee-dispenser/manifest-v5.json",
+  "new_pixels_required": false,
+  "source_review": "Cabinet and glass contain no baked-in clones. Both existing Tony and Sean sleeping layers can be toggled independently.",
+  "occupied": {
+    "count": 1,
+    "selected_hero_only": true,
+    "slot_index": 0,
+    "clip_rect": [
+      50,
+      73,
+      34,
+      64
+    ],
+    "foot_anchor": [
+      67,
+      137
+    ],
+    "source_scale": 0.105,
+    "source_center_x": 192,
+    "source_foot_y": {
+      "tony": 508,
+      "sean": 460
+    },
+    "right_slot": "Always empty; retain cabinet compartment and glass without occupant."
+  },
+  "empty": {
+    "count": 0,
+    "draw": [
+      "machine base",
+      "glass_front"
+    ],
+    "omit": "All sleeping_occupants for both slots, both hero variants. No residual silhouette or shadow."
+  },
+  "transition": "Hide sole stored clone when dispense begins, before replacement hero appears at hatch. Keep machine empty afterward for this run; runtime owns checkpoint stock/reset rules.",
+  "preserve": [
+    "Existing cabinet/glass crops and destinations",
+    "Registered hero exit feet82,166",
+    "Engineering clone mirror/foot anchor fix",
+    "Existing emergence and foreground trim layering"
+  ],
+  "supersedes": "v5 sleeping_occupants count2 and state_treatment stock-remains-visible instructions only.",
+  "validation": "Source inspected; no foreground/game launch. Runtime occupied-to-empty verification pending.",
+  "engineering_status": "Integrated in Prototype 51 / 0.51.0 using manifest-v6; one midpoint checkpoint, one consumable clone, persistent empty cabinet, unchanged three lives; packaged checks pass, visual review pending"
+}

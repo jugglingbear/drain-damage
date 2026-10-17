@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "status": "Approved small mockup; not approved for gameplay replacement",
+  "output_directory": "assets/prototypes/modular-aim",
+  "manifest_path": "assets/prototypes/modular-aim/manifest.json",
+  "canvas": [
+    128,
+    128
+  ],
+  "registration_anchor": [
+    64,
+    104
+  ],
+  "standing_body_height": 72,
+  "coordinates": "Logical stage pixels from top-left; x right, y down. Common feet registration64,104 and72px body. Transparent source PNGs are preserved and composed by source rectangle and draw transform, with nearest-neighbor sampling.",
+  "heroes": {
+    "tony": "pressure-gun",
+    "sean": "heavy-plunger-launcher"
+  },
+  "directions": {
+    "right": [
+      1,
+      0
+    ],
+    "up_right": [
+      0.70710678,
+      -0.70710678
+    ],
+    "up": [
+      0,
+      -1
+    ]
+  },
+  "coverage": "One standing frame per direction per hero. Mirror complete composition and anchors for left. No run/jump/recoil production yet.",
+  "layers": "Deliver weapon-free body plus separate back arm, weapon, and front hand/arm as needed. Order bottom-to-top explicitly per pose. Do not label combined hero+weapon art as modular.",
+  "manifest_example": {
+    "source_scale": 1,
+    "poses": [
+      {
+        "hero": "tony",
+        "weapon": "pressure-gun",
+        "direction": "right",
+        "layers": [
+          {
+            "role": "body",
+            "path": "assets/prototypes/modular-aim/tony-body.png"
+          },
+          {
+            "role": "back_arm",
+            "path": "assets/prototypes/modular-aim/tony-right-back-arm.png"
+          },
+          {
+            "role": "weapon",
+            "path": "assets/prototypes/modular-aim/pressure-gun-right.png"
+          },
+          {
+            "role": "front_hand",
+            "path": "assets/prototypes/modular-aim/tony-right-front-hand.png"
+          }
+        ],
+        "grip": [
+          76,
+          64
+        ],
+        "support_hand": [
+          86,
+          63
+        ],
+        "muzzle": [
+          100,
+          62
+        ]
+      }
+    ]
+  },
+  "anchor_note": "Example grip/support/muzzle numbers illustrate format only. Art must measure actual positions in logical 128x128 coordinates. Registration [64,104] is fixed. No per-pose autoscaling.",
+  "acceptance": [
+    "Six complete poses, correct exclusive weapons, genuine separate weapon layers.",
+    "Stable feet and body size, visible hands contacting weapon, correct layer order.",
+    "No baked-in second gun, clipped raised muzzle, detached hands, or fringe.",
+    "Mirrored anchors match mirrored pixels. Source originals and prompts preserved."
+  ],
+  "preview": "Engineering composes source regions non-destructively in an HTML canvas with layer toggles, mirrored poses and final anchor overlays. Art mockup only, not running-game screenshots.",
+  "deferred": [
+    "Locomotion and jump synchronization",
+    "Recoil and damage",
+    "Downward aiming",
+    "Production gameplay renderer migration"
+  ],
+  "layer_transform": {
+    "source_rect": "[x,y,width,height] original PNG pixels; default entire image",
+    "destination": "[x,y,width,height] logical stage pixels before rotation; default [0,0,128,128]",
+    "rotation_degrees": "Clockwise in y-down canvas; default0. Existing weapon rotations are provisional for alignment only.",
+    "pivot": "[x,y] logical stage pixels; default [64,104]",
+    "order": "translate(pivot), rotate, translate(-pivot), draw source_rect into destination"
+  }
+}

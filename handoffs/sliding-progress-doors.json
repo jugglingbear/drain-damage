@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "Integrated and exported in Prototype 38 / 0.38.0; packaged regression checks passed; visual review pending",
+  "requirement": "When the existing Flushfiend-clear condition unlocks a progress barrier, animate the door sliding vertically down into the floor instead of disappearing instantly.",
+  "unlock_rule": "Preserve existing kill/encounter completion requirement.",
+  "animation": {
+    "duration_seconds": 0.9,
+    "duration_status": "Initial tuning",
+    "motion": "Slide downward from current closed position until completely below floor; clip at floor so no door is visible beneath ground.",
+    "state": "closed -> opening -> open, once per gate; pause freezes animation.",
+    "collision": "Keep physical collision consistent with visible remaining door; never allow shots through still-visible solid sections or leave an invisible wall after fully open.",
+    "persistence": "Retain opened gates on checkpoint respawn under existing progression rules; full restart restores closed state."
+  },
+  "art": "Reuse existing service-shutter-v1.png if suitable; ask Bestiary / Art before creating additional artwork.",
+  "verification": [
+    "Clear requirement triggers opening once, not instantaneous disappearance.",
+    "Intermediate position visible; monotonic downward movement reaches fully open.",
+    "Player and projectile collision consistent throughout.",
+    "Pause/resume, checkpoint respawn, and full restart maintain correct gate state.",
+    "Door audio triggers once, aligns with motion/end, pauses/resumes cleanly and does not replay on restored open gates."
+  ],
+  "delivery_owner": "Engineering owns runtime/build/roadmap/storybook updates; no game foreground without permission.",
+  "audio": {
+    "status": "Integrated in Prototype 42 / 0.42.0; packaged transitions, pause, restore and cleanup checks pass; listening pending",
+    "requirement": "Mechanical door-opening sound synchronized with first-level progress door sliding down into floor.",
+    "direction": "Brief latch release, motor/metal movement during slide, and restrained end-stop clunk.",
+    "timing": "Follow actual opening duration, currently0.9s; trigger once on closed-to-opening transition, end-stop on fully open.",
+    "lifecycle": "Pause with door, resume without restarting cue; stop on level exit/restart. No replay for already-open doors or checkpoint restoration.",
+    "mix": "Audible over level music without drowning out combat; route through game SFX settings.",
+    "provenance": "Audio supplies versioned source/runtime cue and manifest with provenance; Engineering integrates after delivery.",
+    "handoff": "handoffs/sliding-progress-door-audio.json"
+  }
+}

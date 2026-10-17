@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-16",
+  "owner": "Level Design",
+  "status": "Proposal for Engineering report; no runtime or balance changes",
+  "user_direction": [
+    "Busy immediate run-and-gun action with overlapping entry directions and quick ordinary kills",
+    "Supported multilevel terrain with elevated attackers",
+    "Evaluate faster Sean weapon and unique defaults plus exclusive pickups with Game Mechanics",
+    "Clogfather required as first-level final boss",
+    "Engineering presents consolidated plan and mockups"
+  ],
+  "reference_reading": "User-supplied stills show readable horizontal combat lane, airborne pickups, several entry elevations and supported platforms. They do not establish measured spawn rates, enemy HP or exact first-20-second timing; opening description is user observation.",
+  "baseline": {
+    "layout": "scripts/first_call.gd: six gated zones,17 solid props,9600 pixels",
+    "tuning": "Current canonical Tony6 damage/0.15s; Sean24/1.0s;40HP Flushfiend gives7/2 hits. Sean2\u20133sec is perceived feel, not current configured interval.",
+    "newer_content": "Septic Air Force is integrated per current handoff: slow non-hunting swarm. Do not repurpose it as an aggressive flying attacker. Eight-way aiming exists; use current code, not old horizontal-only baseline."
+  },
+  "recommendation": {
+    "structure": "Continuous forward encounters punctuated by one midlevel set piece and the boss; replace six mandatory clear-all stops in the proposed revision. Preserve existing gate art for meaningful machinery set piece/boss lock, not every wave.",
+    "density": "More fragile bodies and simultaneous roles, not simply more high-HP pursuers. Maintain escape lanes and distinct enemy projectile silhouettes.",
+    "pacing": "First20s should establish four combat roles with staggered overlap, a visible pickup opportunity and terrain choice. Begin fighting within2s, no new mandatory tutorial.",
+    "length": "Retain9600 as planning envelope; target4\u20136min including initial40\u201360sec boss. Instrument human clears; shrink empty distance rather than pad HP. Boss60\u201390sec only later if attack variety warrants it.",
+    "ordinary_total": [
+      80,
+      100
+    ],
+    "count_note": "Provisional authored count excluding swarm decorative bugs and boss summons; not infinite spawns. Full mission count proposal below totals90 ordinary entities, not90 species.",
+    "on_screen_population": [
+      3,
+      6
+    ],
+    "brief_peak": 8,
+    "direct_pressure": "Initial cap6 visible,2 shooters,at most3 independent attack patterns. Peak8 visible for<=5sec, keep shooter cap2 until slice validates readability. Entry/warning bodies count.",
+    "projectile_budget": "Initial8 hostile bullets,peak12 for<=5sec. Treat as ceilings not quotas; never all aimed simultaneously. Mechanics/Engineering consolidated recommendation."
+  },
+  "first_twenty_seconds": [
+    {
+      "time": "0\u20133",
+      "beat": "2 forward runners enter visible ground lane; immediate shots and1\u20133-hit kills. No rear damage before first forward enemy is readable."
+    },
+    {
+      "time": "3\u20136",
+      "beat": "2 more forward runners and1 rear entrant with visible edge arrival cue; first low pipe step gives an optional elevated route."
+    },
+    {
+      "time": "6\u201310",
+      "beat": "1 perched shooter winds up a slow aimed shot while2 runners cross below. Pickup carrier traverses overhead; first reward is reachable from low platform or drops into clear floor."
+    },
+    {
+      "time": "10\u201314",
+      "beat": "2 floor-emerging enemies appear from distinct premarked grates and2 runners enter opposite side; do not mark the hero current landing point."
+    },
+    {
+      "time": "14\u201318",
+      "beat": "2 aggressive flyers cross distinct arcs plus1 ground runner; perched shooter fires only if projectile-pattern budget permits."
+    },
+    {
+      "time": "18\u201320",
+      "beat": "2 final runners and optional upper-route reward; briefly thin attack pressure while action continues into next space."
+    }
+  ],
+  "opening_total": 17,
+  "mission_counts": [
+    {
+      "zone": "service-entry",
+      "ordinary": 17,
+      "focus": "Opening20sec layered threats; low/mid route choice"
+    },
+    {
+      "zone": "stores",
+      "ordinary": 15,
+      "focus": "Supported catwalk with upper shooter and lower traverse; first ceiling entrance"
+    },
+    {
+      "zone": "pressure-gallery",
+      "ordinary": 14,
+      "focus": "Floor emergers and forward runners; first background entrance"
+    },
+    {
+      "zone": "broken-pump-hall",
+      "ordinary": 18,
+      "focus": "One authored machinery set piece; high/low route and limited viewer-side entrance"
+    },
+    {
+      "zone": "return-main",
+      "ordinary": 16,
+      "focus": "Role remix, short pressure release and full pre-boss checkpoint"
+    },
+    {
+      "zone": "main-sump-approach",
+      "ordinary": 10,
+      "focus": "Final short push; ordinary spawns end before boss introduction"
+    }
+  ],
+  "roster": {
+    "existing": "Flushfiend runner; Septic Air Force environmental wanderer; Hallowed Widow art exists but playable flight must be verified by Engineering. Clogfather is separate boss scope.",
+    "minimum_additional_species": 3,
+    "preferred_additional_species": 4,
+    "proposal": [
+      "New stationary projectile species: floor/perch mounts and readable windup",
+      "New emergence species: floor/ceiling variants share core behavior; background entry also reusable",
+      "New traversal/skirmisher species: fast mover with background/viewer-side entry animation",
+      "Optional fourth species only if needed for aggressive flight; otherwise validate existing Widow for that role"
+    ],
+    "principle": "Six entrance directions do not require six new species. Keep names, art and lore provisional with Bestiary/Storyboarding. Never change approved swarm non-hunting behavior."
+  },
+  "platform_mockups": [
+    {
+      "id": "opening",
+      "viewport": [
+        960,
+        540
+      ],
+      "floor_y": 440,
+      "top_surfaces": [
+        [
+          180,
+          380,
+          150
+        ],
+        [
+          380,
+          320,
+          250
+        ],
+        [
+          700,
+          380,
+          160
+        ]
+      ],
+      "intent": "Low pipe bundle leads to supported mid catwalk; ground lane under catwalk remains passable. Perched shooter near x570,y320; forward ground arrivals right, warned rear left; overhead pickup aroundy235. Entrance positions illustrative, not exact runtime homes."
+    },
+    {
+      "id": "pump-gallery",
+      "viewport": [
+        960,
+        540
+      ],
+      "floor_y": 440,
+      "top_surfaces": [
+        [
+          80,
+          380,
+          150
+        ],
+        [
+          270,
+          320,
+          150
+        ],
+        [
+          450,
+          260,
+          210
+        ],
+        [
+          700,
+          320,
+          180
+        ]
+      ],
+      "intent": "Connected maintenance structure with60px rises, optional high lane and clear lower lane. Supports behind play plane are explicitly decorative; real solid machinery distinctly blocks. Perched shooter on upper lane, background vent to right, ceiling entry away from mandatory landing. At least120px landing widths."
+    },
+    {
+      "id": "clogfather",
+      "viewport": [
+        960,
+        540
+      ],
+      "floor_y": 440,
+      "intent": "Rooted fatberg on right, low forward weak point reachable by shorter starter range, at least640px connected combat floor; optional low ledges cannot become mandatory safe spots. Large named boss bar; one readable primary hazard plus limited adds."
+    }
+  ],
+  "geometry_contract": "Current86px jump is hard constraint unless Mechanics explicitly proposes change. Required rises<=60,gaps<=80,landings>=120; validate both heroes. Structural background supports do not imply solid wall; collider/material language must distinguish pass-through support and solid prop. Layered platforms need intentional one-way tops and clearance beneath, not solid rectangles filling floor-to-deck.",
+  "entry_contract": {
+    "side": "Spawn outside viewport with early visible approach, never materialize touching hero. Rear entry is allowed by requested direction; cue and reaction distance scale with speed.",
+    "floor_ceiling": "Use grate/vent movement or silhouette cue and fixed telegraphed landing; commit landing before attack, never home onto hero during descent.",
+    "depth": "Animate background/foreground scale into a fixed play-plane destination. Harmless and untargetable before joining plane; clear landing marker and short settle before contact/shooting. Never obscure hero with giant foreground silhouette.",
+    "budget": "All entry telegraphs/active bodies consume population budget; max1 depth entry at once. Cancel/reselect threatened landing if player occupies it.",
+    "timing": "Initial candidates0.6\u20130.9s warning,0.25\u20130.4s settle; Mechanics to validate against movement and projectile speeds."
+  },
+  "progression": "Proposal supersedes old global kill-all rule only after implementation and story text agree. Finite encounters wake by forward progress. Do not require hunting every missed runner behind camera; resolve encounter retirement explicitly, never silently count retired bodies as kills. Boss defeat + exit finishes mission. Existing ending saying last of them must change if enemies may remain.",
+  "clogfather": {
+    "required": true,
+    "completion_gate": "The redesigned first mission is incomplete without playable boss; wave fallback is not final acceptance.",
+    "proposal": "Three escalating pattern combinations, low exposed weak point, no long invulnerability padding, limited2 add cap included in global pressure. Retune HP/windows after chosen starter DPS; do not preserve720 blindly.",
+    "preboss": "Checkpoint/heal, clear traversal projectiles and active pursuit safely before fight, restore boss state on retry; avoid repeating long approach.",
+    "story": "Boss aftermath requires Storyboarding script; portal is not automatically approved."
+  },
+  "implementation_stages": [
+    "Mechanics choose recommended balance candidate; headless TTK/miss recovery checks for both heroes",
+    "Build20-second playable vertical slice with runner/perched shooter/emergence and one layered structure; compare faster Sean options",
+    "Add aggressive flyer, later depth entrances and full route; measure density/readability on controller",
+    "Integrate and balance Clogfather, checkpoint/retry and correct ending",
+    "Build, capture with permission, human playtest and revise measured route pacing"
+  ],
+  "acceptance": [
+    "Ordinary baseline enemies need1\u20133 successful hits from BOTH starters for chosen profile; armor/boss exceptions explicit",
+    "No repeated2\u20133sec helpless firing gaps; test misses, firing while moving/aiming and perceived shot feedback",
+    "Hero can take upper/lower route while attacked; perched enemies reachable with actual aiming/range",
+    "Opening presents several roles without unavoidable crossfire or contact at spawn",
+    "No all-clear door after every small wave; continuous run-and-gun flow demonstrated",
+    "Clogfather is playable at end, retryable and finishable with either starter",
+    "All mockups labeled concepts, new species/counts/tuning labeled proposals; report delivered by Engineering"
+  ],
+  "coordination": {
+    "mechanics": "handoffs/first-level-run-and-gun-balance.json",
+    "engineering": "handoffs/level-one-redesign-engineering.json",
+    "agreement": "Accept conservative6-visible/8-peak start and40\u201360sec boss trial.17 opening/90 total remain provisional. OptionA is recommended trial, not approved tuning. Engineering presents consolidated report when Art mockups arrive.",
+    "opening_revision": "Engineering/Mechanics recommend12 for first playable comparison;17 remains denser variant,90 whole-route draft likewise provisional."
+  },
+  "opening_trial": {
+    "recommended_total": 12,
+    "higher_density_variant": 17,
+    "reason": "Mechanics throughput review reserves time for misses/repositioning;17 is a stress-test option after the faster starters feel good. Original beat list illustrates17 variant, not required initial density.",
+    "first_twenty_seconds": [
+      {
+        "time": "0\u20133",
+        "count": 2,
+        "roles": "forward runners"
+      },
+      {
+        "time": "3\u20136",
+        "count": 2,
+        "roles": "forward runner and warned rear runner"
+      },
+      {
+        "time": "6\u201310",
+        "count": 2,
+        "roles": "perched shooter and runner; pickup carrier is not hostile"
+      },
+      {
+        "time": "10\u201314",
+        "count": 2,
+        "roles": "floor emerger and runner"
+      },
+      {
+        "time": "14\u201318",
+        "count": 2,
+        "roles": "aggressive flyers on staggered arcs"
+      },
+      {
+        "time": "18\u201320",
+        "count": 2,
+        "roles": "forward runners; pressure thins before next space"
+      }
+    ]
+  }
+}

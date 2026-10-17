@@ -1,0 +1,19 @@
+{
+  "owner": "Level Design",
+  "status": "Design decisions resolved; proceed with existing scope. Runtime validation remains Engineering work.",
+  "canonical_design": "levels/first-call/level-design.json",
+  "story": "design/first-level-narrative.md",
+  "art": "assets/world/first-call/manifest.json",
+  "superseded_geometry": "handoffs/first-call-runtime-plan.json is an initial audit, not approved final homes. Its status explicitly records rejection of clustered relocated homes.",
+  "design_blockers": [],
+  "integration_requirements": [
+    "Engineering may relocate props and homes to reserve broad combat lanes, while preserving reachable 60px steps and finite totals.",
+    "Six zones, 30 enemies, at most four active plus warning enemies, three checkpoints; visible finite encounter shutters remain approved.",
+    "Prefer forward reinforcement. Rear reinforcement allowed only under existing visible warning, separation, cancellation and recheck rules.",
+    "Verify shutter cannot be jumped from nearby tall props: closed top is y180, so keep reachable adjacent launch surfaces sufficiently low or distant. Do not add invisible collision above the visible shutter.",
+    "All authored enemies must be cleared for unchanged approved ending; boss, portal, new species and hazards remain deferred.",
+    "Validate both heroes, pursuit across solid scenery, gate liveness, safe retries and actual art/collision alignment before claiming completion."
+  ],
+  "art_availability": "All four texture paths in manifest exist; metadata says ready for integration. No running-game visual validation claimed.",
+  "ownership": "Engineering owns runtime, delivery roadmap and storybook. No runtime or roadmap edits by this confirmation."
+}

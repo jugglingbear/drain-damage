@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "id": "opening-trial-a",
+  "status": "User-approved trial profile; not final balance or integrated gameplay",
+  "scope": "Isolated opening trial; do not silently retune entire existing level.",
+  "authority": "Canonical trial overrides over existing entity definitions; Engineering bundle loader applies explicitly for trial mode only.",
+  "weapons": {
+    "pressure-gun": {
+      "owner": "tony",
+      "damage": 12,
+      "attack_interval_seconds": 0.16
+    },
+    "heavy-plunger-launcher": {
+      "owner": "sean",
+      "damage": 18,
+      "attack_interval_seconds": 0.24
+    }
+  },
+  "preserve": [
+    "current player movement and HP",
+    "three total lives",
+    "projectile speed and320/480range",
+    "weapon exclusivity",
+    "persistent aim",
+    "Flushfiend turnaround",
+    "checkpoint/death rules"
+  ],
+  "approved_hp_tiers": [
+    12,
+    24,
+    36
+  ],
+  "roles": {
+    "runner": {
+      "base_creature_id": "toilet",
+      "max_hp": 24,
+      "spawn_hp": 24,
+      "behavior": "Existing Flushfiend patrol/aggro/turnaround; no new acceleration changes."
+    },
+    "shooter": {
+      "creature_id": null,
+      "status": "Initial role tuning; Art/Level defines identity",
+      "max_hp": 36,
+      "spawn_hp": 36,
+      "stationary": true,
+      "first_shot_visible_delay_seconds": 0.8,
+      "windup_seconds": 0.65,
+      "shot_interval_seconds": 1.8,
+      "projectile_speed_pixels_per_second": 150,
+      "projectile_radius_pixels": 4,
+      "projectile_max_lifetime_seconds": 3.5,
+      "projectile_damage_player": 1,
+      "aim": "Lock player position at windup start; one non-homing projectile per shot, no offscreen fire. Clear line of sight required; cancel unsafe shot if global budget full.",
+      "timing": "First shot no earlier than0.8s visible; windup included in1.8s start-to-start interval."
+    },
+    "emerger": {
+      "creature_id": null,
+      "status": "Initial role tuning; Art/Level defines identity",
+      "max_hp": 24,
+      "spawn_hp": 24,
+      "warning_seconds": 0.8,
+      "emerge_seconds": 0.35,
+      "settle_seconds": 0.3,
+      "ground_speed_pixels_per_second": 90,
+      "contact_damage_player": 1,
+      "behavior": "Premarked fixed floor vent. Harmless before fully emerged+settled; then short horizontal patrol/contact threat, no instant chase reversal.",
+      "spawn_safety": "Reject occupied landing marker or route with no reachable escape. Recheck before becoming damaging; hold/reselect if player remains on marker, never turn damage on underneath hero."
+    },
+    "flyer": {
+      "creature_id": null,
+      "status": "Proximity swoop implemented in source; combined build49 pending",
+      "max_hp": 180,
+      "spawn_hp": 180,
+      "speed_pixels_per_second": 100,
+      "contact_damage_player": 1,
+      "entry_warning_seconds": 0.8,
+      "path": "Proximity-triggered0.65s wingbeat warning locks hero position;0.8s committed dive,1s return and1.2s cooldown. Expanded-body scenery sweep aborts blocked dives. No target tracking during attack.",
+      "retirement": "Exit offscreen and retire without kill credit; trial completion must not require chasing it off map.",
+      "render_scale": 2.0,
+      "balance_rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",
+      "aggro_distance_pixels": 400,
+      "attack_warning_seconds": 0.65,
+      "swoop_seconds": 0.8,
+      "recovery_seconds": 1.0,
+      "recovery_cooldown_seconds": 1.2
+    },
+    "swarm": {
+      "base_creature_id": "sewer-fly-swarm",
+      "max_hp": 12,
+      "spawn_hp": 12,
+      "placement": "Not included in12-enemy opening roster; retain non-hunting behavior if tested separately."
+    }
+  },
+  "opening_schedule": [
+    {
+      "window_seconds": [
+        0,
+        3
+      ],
+      "spawns": [
+        "runner",
+        "runner"
+      ]
+    },
+    {
+      "window_seconds": [
+        3,
+        6
+      ],
+      "spawns": [
+        "runner",
+        "runner"
+      ]
+    },
+    {
+      "window_seconds": [
+        6,
+        10
+      ],
+      "spawns": [
+        "shooter",
+        "runner"
+      ]
+    },
+    {
+      "window_seconds": [
+        10,
+        14
+      ],
+      "spawns": [
+        "emerger",
+        "runner"
+      ]
+    },
+    {
+      "window_seconds": [
+        14,
+        18
+      ],
+      "spawns": [
+        "flyer",
+        "flyer"
+      ]
+    },
+    {
+      "window_seconds": [
+        18,
+        20
+      ],
+      "spawns": [
+        "runner",
+        "runner"
+      ]
+    }
+  ],
+  "schedule_rules": "12 authored entities total,8runners/1shooter/1emerger/2flyers.20s is target not forced deadline. Respect placement triggers and safety budgets; delay pending entries and drop missed timing rather than dump backlog. On reaching trial end allow completion without mandatory kills of escaped flyers.",
+  "budgets": {
+    "visible_hostiles_including_entry_telegraphs": 6,
+    "simultaneous_shooters": 2,
+    "hostile_projectiles": 6,
+    "simultaneous_independent_threat_patterns": 3,
+    "minimum_projectile_arrival_stagger_seconds": 0.3,
+    "safe_corridor_min_width_pixels": 96
+  },
+  "budget_rules": "One shooter in initial schedule is below cap2, intentionally. Reserve slot before telegraph, release on death/retire. Do not delete visible bullets to satisfy cap; defer firing with no burst backlog. Projectile threat includes all visible hostile shots, not cosmetics.",
+  "damage_rules": "One player contact-hit unit; respect global invulnerability and spawn protection, never stack hits same tick. Keep true projectile/sprite collision alignment.",
+  "boss": "No boss fight tuning in opening slice. Later first-level finale requires one visible Clogfather; never concurrent background duplicate.720current vs1080candidate unresolved; do not apply proposed boss HP automatically.",
+  "validation": {
+    "hit_counts": {
+      "hp12": {
+        "tony": 1,
+        "sean": 1
+      },
+      "hp24": {
+        "tony": 2,
+        "sean": 2
+      },
+      "hp36": {
+        "tony": 3,
+        "sean": 2
+      }
+    },
+    "timing": "Record input sampling, successful shot timestamps and impact timestamps. Immediate first eligible shot within one physics tick; sustained intervals quantized to physics tick within one tick tolerance, not animation duration. Test while idle, running, aiming, jumping and after action-release guards.",
+    "miss_recovery": "After a deliberate miss, next eligible shot within configured0.16/0.24s plus one physics tick. Separate travel time from input/cooldown latency.",
+    "travel_240px_seconds": {
+      "tony": 0.315789,
+      "sean": 0.461538
+    },
+    "ttk_24hp_at_240px_seconds": {
+      "tony": 0.475789,
+      "sean": 0.701538
+    },
+    "other": [
+      "Verify generated trial bundle explicitly selected; normal profile unaffected.",
+      "Range caps remain320/480 logical pixels in every direction.",
+      "Grounded down diagonals and continuous leg animations preserved.",
+      "No offscreen shots, emitter teleport damage or unsafe floor activation.",
+      "Fixed seeds, both heroes, misses and alternative routes; record deaths/clear time, not just perfect-hit bots.",
+      "Budget counters include warmups/entry markers and decrement after cleanup.",
+      "No fake kill credit for retired flyers."
+    ]
+  },
+  "delivery": "Engineering owns runtime integration/build/roadmap and reports actual trial version; this JSON is a ready mechanics data handoff. Role timings are implementer-selected first-pass tuning, not separately user-selected numbers."
+}

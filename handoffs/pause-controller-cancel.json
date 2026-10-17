@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "Integrated in Prototype 42 / 0.42.0; packaged pause/death checks passed; visual review pending",
+  "requirement": "Gamepad B means Back/Cancel. In normal pause screen B closes pause and resumes current game, never returns to main menu. A confirms the focused option.",
+  "main_menu": "Select Return to Main Menu and confirm with A or explicit mouse/keyboard activation. B resumes even if Return to Main Menu is focused.",
+  "implementation_note": "Current game.gd _process treats dialogue_skip (bound B) as request_title when paused. Separate context-specific pause cancel from dialogue skip/title exit.",
+  "guards": [
+    "Consume B press and require release so it cannot skip dialogue or dispenser sequence after resume.",
+    "Resume music and existing gameplay exactly once; do not reset level/checkpoint/lives.",
+    "Do not blindly use retry/respawn handler for cancel: Game Over/death popups require distinct handling; B must not resurrect or bypass guards.",
+    "Preserve explicit dialogue skip outside pause and existing pause toggle."
+  ],
+  "tests": [
+    "B resumes ordinary pause with either button focused.",
+    "A confirms Resume or Main Menu as selected.",
+    "Holding B yields one transition and no dialogue skip/input leakage.",
+    "Keyboard Escape remains pause/back; normal dialogue B retains its intended skip behavior."
+  ],
+  "delivery_owner": "Engineering runtime/build/roadmap; no foreground launch without permission."
+}
