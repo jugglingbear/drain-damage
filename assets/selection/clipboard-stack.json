@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-14",
+  "tool": "Built-in image_gen",
+  "asset": "assets/selection/clipboard-stack-v2.png",
+  "status": "Art delivered for Engineering integration; not runtime-integrated or game-window validated.",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "layout": {
+    "coordinate_system": "Source pixels, top-left origin; rectangles [x,y,width,height]. Scale all regions with image; preserve 3:2 aspect ratio.",
+    "paper_safe": [
+      210,
+      235,
+      1090,
+      440
+    ],
+    "heading": [
+      220,
+      230,
+      1060,
+      85
+    ],
+    "portrait": [
+      220,
+      330,
+      360,
+      410
+    ],
+    "profile_text": [
+      620,
+      335,
+      650,
+      300
+    ],
+    "footer": [
+      620,
+      655,
+      560,
+      90
+    ],
+    "avoid": "Top clip above y=200; staple holes near x=160,y=230; stains at bottom-left and bottom-right beyond y=700. Portrait region may extend below text-safe region.",
+    "suggested_draw_size": {
+      "width": 720,
+      "height": 480
+    },
+    "screen_960x540_example": {
+      "image_rect": [
+        120,
+        30,
+        720,
+        480
+      ],
+      "note": "Leaves side margins for previous/next controls. BJ/job remark and navigation may require a smaller clipboard or overlay outside paper; runtime owns final layout."
+    }
+  },
+  "behavior": "One clipboard, one employee profile visible. Left/right swaps portrait and live text on the top sheet; no paper animation. No baked text or names. Preserve current character portraits.",
+  "alpha": {
+    "mode": "RGBA",
+    "outside_samples": 0,
+    "paper_sample": 253,
+    "note": "Almost opaque paper; add an opaque ivory backing polygon confined inside top sheet if dark UI bleeds through. Hidden RGB remains outside alpha-zero pixels; use alpha-aware rendering."
+  },
+  "generations": [
+    {
+      "asset": "assets/selection/clipboard-stack-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: transparent game character-selection UI background. Create ONE wide landscape CLIPBOARD holding a stack of three slightly offset paper sheets, viewed perfectly straight-on orthographic, no perspective tilt. Target landscape 3:2 canvas 1536x1024. Clipboard occupies x=5% to95%, y=4% to96%. Thick muted dark teal-brown fiberboard with softly rounded corners. One wide worn brushed-steel spring clip centered along top, touches only uppermost paper margin, small copper-rust flecks. Three pale cream paper sheets stacked together; visible offset bottom and right edges imply multiple employee records. TOP sheet rectangular, level, approximately x=10% to90%, y=13% to87%, light ivory with uniform low-contrast matte texture. Keep the ENTIRE central sheet x=13% to87%, y=22% to80% almost clean and bright for live game text and one character portrait. No drawn divisions, no photo frame, no rules, no handwriting, no text, no letters, no icons, no names, no photographs. Subtle old coffee ring cropped at lower-right paper corner outside content region, small edge smudges, a restrained corner crease, tiny staple holes; no grime behind content. Smooth richly illustrated tactile game UI art, matching painted industrial plumbing comedy, not pixel art, not photoreal office stock photo. Clear silhouette, readable quiet paper surface, modest edge wear. Only one clipboard and its paper stack, no pens or other objects. Genuine transparent background outside clipboard; paper and board fully opaque. Entire clipboard within canvas with transparent margin; no floor, no environment, no cast shadow outside silhouette beyond subtle contact edge. Asset will be drawn at about 800x480; prioritize large clean usable paper area over decoration.",
+      "references": []
+    },
+    {
+      "asset": "assets/selection/clipboard-stack-v2.png",
+      "prompt": "Use case: background-extraction. Edit this exact clipboard and paper-stack UI asset. Remove ALL brown/gray studio backdrop outside the clipboard, replacing it with genuine alpha-zero transparent background, including top space beside metal clip and narrow surrounding edges. Keep clipboard fiberboard, metal clip and all paper sheets fully OPAQUE, alpha 255. Preserve exact image dimensions, positions, clean light paper, edge wear, clip, stacked sheets and coffee-ring corner. Do not change artwork or add anything. No backdrop or haze. Ensure the clip remains intact; its round hanging hole should also be transparent. This is a clean UI cutout, not a translucent image.",
+      "references": [
+        "assets/selection/clipboard-stack-v1.png"
+      ]
+    }
+  ],
+  "ownership": "Art only. Engineering owns runtime integration, text flow, input and screenshots. No game window opened."
+}

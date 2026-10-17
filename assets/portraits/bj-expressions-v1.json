@@ -1,0 +1,43 @@
+{
+  "name": "Billy-Joe",
+  "nickname": "BJ",
+  "date": "2026-10-14",
+  "tool": "Built-in image_gen",
+  "asset": "assets/portraits/bj-expressions-v1.png",
+  "prompt": "Use case: illustration-story. Asset: BJ dialogue portrait atlas for the same game as reference 2. Reference 1 is BJ's selected identity: weathered beige server rack, green monochrome CRT with simple pixel eyes and mouth, black server trays, big BJ stencil on left side. Reference 2 Tony atlas supplies ONLY illustrated art style and 2x2 layout; do NOT draw Tony or humans. Create ONE square genuinely transparent PNG containing exactly FOUR upper-rack bust portraits in equal 2 columns by 2 rows. Match Tony's clean expressive outlined cel-shaded late-1990s RPG illustration, not photorealism. Each portrait shows top half of same BJ rack, three-quarter facing viewer with LEFT side visible and large legible BJ stencil, CRT face prominent near upper third, several black server trays beneath. Rack hardware silhouette, screen position, scale, angle and bottom crop consistent across all four cells. Generous clear gutters, each entire portrait inside its cell, no overlap. Change ONLY green CRT face graphics for four expressions: TOP LEFT confident helpful: square eyes and small pleased smile; TOP RIGHT skeptical: one eye narrowed horizontal, other square slightly higher, tiny flat mouth; BOTTOM LEFT alarmed: two expanded tall bright rectangular eyes and small open square mouth; BOTTOM RIGHT sheepish: two small lowered eyes, one slightly offset, short crooked apologetic smile. All eyes and mouths simple green phosphor pixels on dark CRT, no human features, eyebrows optional pixel graphics only. Same weathered beige metal, black panels and restrained status LEDs throughout. No arms, legs, separate head, pipes, toilets, corruption, red eyes, room or background. No labels or captions; only BJ stencil on each cabinet. Transparent empty space with solid opaque portrait interiors. Exactly four aligned upper-rack portraits, not full-body racks.",
+  "references": [
+    "marketing/billy-joe/server-room-v1.png",
+    "assets/portraits/tony-expressions-v1.png"
+  ],
+  "layout": {
+    "columns": 2,
+    "rows": 2,
+    "order": "row-major",
+    "cell_width": 627,
+    "cell_height": 627
+  },
+  "expressions": [
+    {
+      "index": 0,
+      "name": "confident-helpful"
+    },
+    {
+      "index": 1,
+      "name": "skeptical"
+    },
+    {
+      "index": 2,
+      "name": "alarmed"
+    },
+    {
+      "index": 3,
+      "name": "sheepish"
+    }
+  ],
+  "status": "Dialogue portrait artwork delivered; runtime integration pending.",
+  "notes": "Green screen expressions only; no corruption state implied. Portrait atlas, not movement animation.",
+  "dimensions": {
+    "width": 1254,
+    "height": 1254
+  }
+}

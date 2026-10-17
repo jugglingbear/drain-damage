@@ -1,0 +1,1113 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "status": "Revision 2: corrected arm scale and authored raised poses; static preview inspected, user approval pending.",
+  "source_scale": 1,
+  "canvas": [
+    128,
+    128
+  ],
+  "registration_anchor": [
+    64,
+    104
+  ],
+  "standing_body_height": 72,
+  "source_coordinates": "Explicit source rectangles and transforms override default canvas scaling.",
+  "source_measurements": {
+    "tony": {
+      "body": [
+        80,
+        62,
+        344,
+        551
+      ],
+      "feet": [
+        212,
+        547
+      ],
+      "height": 481,
+      "near": [
+        52,
+        64
+      ],
+      "far": [
+        70,
+        63
+      ],
+      "front": [
+        [
+          [
+            135,
+            1016,
+            349,
+            1133
+          ],
+          [
+            174,
+            1061
+          ],
+          [
+            312,
+            1087
+          ]
+        ],
+        [
+          [
+            547,
+            961,
+            722,
+            1122
+          ],
+          [
+            581,
+            1075
+          ],
+          [
+            690,
+            1006
+          ]
+        ],
+        [
+          [
+            979,
+            917,
+            1097,
+            1122
+          ],
+          [
+            1028,
+            1075
+          ],
+          [
+            1055,
+            953
+          ]
+        ]
+      ],
+      "back": [
+        [
+          [
+            135,
+            726,
+            359,
+            830
+          ],
+          [
+            170,
+            770
+          ],
+          [
+            327,
+            780
+          ]
+        ],
+        [
+          [
+            547,
+            677,
+            738,
+            825
+          ],
+          [
+            581,
+            777
+          ],
+          [
+            709,
+            714
+          ]
+        ],
+        [
+          [
+            959,
+            649,
+            1107,
+            826
+          ],
+          [
+            999,
+            779
+          ],
+          [
+            1070,
+            694
+          ]
+        ]
+      ],
+      "grips": [
+        [
+          75,
+          70
+        ],
+        [
+          79,
+          64
+        ],
+        [
+          79,
+          59
+        ]
+      ],
+      "weapon": "pressure-gun",
+      "weapon_path": "assets/weapons/pressure-gun/atlas-v2.png",
+      "weapon_box": [
+        450,
+        140,
+        775,
+        370
+      ],
+      "weapon_grip": [
+        492,
+        317
+      ],
+      "support": [
+        600,
+        277
+      ],
+      "muzzle": [
+        766,
+        247
+      ]
+    },
+    "sean": {
+      "body": [
+        93,
+        91,
+        344,
+        548
+      ],
+      "feet": [
+        218.5,
+        544
+      ],
+      "height": 449,
+      "near": [
+        54,
+        64
+      ],
+      "far": [
+        72,
+        63
+      ],
+      "front": [
+        [
+          [
+            142,
+            1019,
+            343,
+            1150
+          ],
+          [
+            185,
+            1076
+          ],
+          [
+            309,
+            1097
+          ]
+        ],
+        [
+          [
+            535,
+            978,
+            736,
+            1138
+          ],
+          [
+            575,
+            1091
+          ],
+          [
+            705,
+            1018
+          ]
+        ],
+        [
+          [
+            976,
+            923,
+            1104,
+            1141
+          ],
+          [
+            1014,
+            1090
+          ],
+          [
+            1069,
+            964
+          ]
+        ]
+      ],
+      "back": [
+        [
+          [
+            135,
+            731,
+            359,
+            833
+          ],
+          [
+            177,
+            774
+          ],
+          [
+            328,
+            791
+          ]
+        ],
+        [
+          [
+            545,
+            692,
+            736,
+            836
+          ],
+          [
+            580,
+            787
+          ],
+          [
+            706,
+            731
+          ]
+        ],
+        [
+          [
+            971,
+            637,
+            1102,
+            822
+          ],
+          [
+            1007,
+            774
+          ],
+          [
+            1064,
+            678
+          ]
+        ]
+      ],
+      "grips": [
+        [
+          75,
+          72
+        ],
+        [
+          81,
+          66
+        ],
+        [
+          82,
+          61
+        ]
+      ],
+      "weapon": "heavy-plunger-launcher",
+      "weapon_path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+      "weapon_box": [
+        430,
+        140,
+        805,
+        370
+      ],
+      "weapon_grip": [
+        480,
+        315
+      ],
+      "support": [
+        650,
+        320
+      ],
+      "muzzle": [
+        790,
+        240
+      ]
+    }
+  },
+  "poses": [
+    {
+      "hero": "tony",
+      "weapon": "pressure-gun",
+      "direction": "right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            135,
+            726,
+            224,
+            104
+          ],
+          "destination": [
+            66.42202697250323,
+            58.50197676543264,
+            22.89902737597929,
+            10.631691281704672
+          ],
+          "pivot": [
+            70,
+            63
+          ],
+          "rotation_degrees": 7.106477480416492
+        },
+        {
+          "role": "body",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            80,
+            62,
+            264,
+            489
+          ],
+          "destination": [
+            44.24116424116424,
+            31.401247401247403,
+            39.517671517671516,
+            73.19750519750521
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/pressure-gun/atlas-v2.png",
+          "source_rect": [
+            450,
+            140,
+            325,
+            230
+          ],
+          "destination": [
+            70.8,
+            52.3,
+            32.5,
+            23.0
+          ],
+          "pivot": [
+            75,
+            70
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            307,
+            755,
+            43,
+            50
+          ],
+          "destination": [
+            84.00520870763019,
+            61.46658298821567,
+            4.395795433781739,
+            5.111390039281092
+          ],
+          "pivot": [
+            70,
+            63
+          ],
+          "rotation_degrees": 7.106477480416492
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            135,
+            1016,
+            214,
+            117
+          ],
+          "destination": [
+            45.398610232990045,
+            56.3830118072962,
+            36.223010516413616,
+            19.804169301029873
+          ],
+          "pivot": [
+            52,
+            64
+          ],
+          "rotation_degrees": 3.9510911841349787
+        }
+      ],
+      "grip": [
+        75,
+        70
+      ],
+      "support_hand": [
+        85.8,
+        66.0
+      ],
+      "muzzle": [
+        102.4,
+        63.0
+      ]
+    },
+    {
+      "hero": "tony",
+      "weapon": "pressure-gun",
+      "direction": "up_right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            547,
+            677,
+            191,
+            148
+          ],
+          "destination": [
+            46.833455215998875,
+            34.99154351516525,
+            28.590436590436592,
+            22.153846153846153
+          ],
+          "pivot": [
+            71.08293546547912,
+            40.53000505362679
+          ],
+          "rotation_degrees": -61.034945347954725
+        },
+        {
+          "role": "body",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            80,
+            62,
+            264,
+            489
+          ],
+          "destination": [
+            44.24116424116424,
+            31.401247401247403,
+            39.517671517671516,
+            73.19750519750521
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/pressure-gun/atlas-v2.png",
+          "source_rect": [
+            450,
+            140,
+            325,
+            230
+          ],
+          "destination": [
+            62.074609353410594,
+            33.29518541518769,
+            32.5,
+            23.0
+          ],
+          "pivot": [
+            66.2746093534106,
+            50.99518541518769
+          ],
+          "rotation_degrees": -45
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            689,
+            689,
+            43,
+            50
+          ],
+          "destination": [
+            68.08917247171613,
+            36.787801311423046,
+            6.436590436590437,
+            7.484407484407485
+          ],
+          "pivot": [
+            71.08293546547912,
+            40.53000505362679
+          ],
+          "rotation_degrees": -61.034945347954725
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            547,
+            961,
+            175,
+            161
+          ],
+          "destination": [
+            46.91060291060291,
+            46.935550935550935,
+            26.195426195426197,
+            24.0997920997921
+          ],
+          "pivot": [
+            52,
+            64
+          ],
+          "rotation_degrees": -10
+        }
+      ],
+      "grip": [
+        66.2746093534106,
+        50.99518541518769
+      ],
+      "support_hand": [
+        71.08293546547912,
+        40.53000505362679
+      ],
+      "muzzle": [
+        80.69958768961617,
+        26.670712142370455
+      ],
+      "revision_note": "Use authored raised arm, fixed body-relative scale. Rear shoulder is occluded; no stretching."
+    },
+    {
+      "hero": "tony",
+      "weapon": "pressure-gun",
+      "direction": "up",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            959,
+            649,
+            148,
+            177
+          ],
+          "destination": [
+            35.42619542619542,
+            28.20207900207901,
+            22.153846153846153,
+            26.494802494802496
+          ],
+          "pivot": [
+            52.04158004158004,
+            34.938045738045744
+          ],
+          "rotation_degrees": -72.4892692643064
+        },
+        {
+          "role": "body",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            80,
+            62,
+            264,
+            489
+          ],
+          "destination": [
+            44.24116424116424,
+            31.401247401247403,
+            39.517671517671516,
+            73.19750519750521
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/pressure-gun/atlas-v2.png",
+          "source_rect": [
+            450,
+            140,
+            325,
+            230
+          ],
+          "destination": [
+            51.84158004158004,
+            28.038045738045742,
+            32.5,
+            23.0
+          ],
+          "pivot": [
+            56.04158004158004,
+            45.73804573804574
+          ],
+          "rotation_degrees": -90
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            1050,
+            669,
+            43,
+            50
+          ],
+          "destination": [
+            49.04781704781705,
+            31.195841995842002,
+            6.436590436590437,
+            7.484407484407485
+          ],
+          "pivot": [
+            52.04158004158004,
+            34.938045738045744
+          ],
+          "rotation_degrees": -72.4892692643064
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/prototypes/modular-aim/tony-parts-v1.png",
+          "source_rect": [
+            979,
+            917,
+            118,
+            205
+          ],
+          "destination": [
+            44.66528066528066,
+            40.34927234927235,
+            17.663201663201665,
+            30.68607068607069
+          ],
+          "pivot": [
+            52,
+            64
+          ],
+          "rotation_degrees": 0
+        }
+      ],
+      "grip": [
+        56.04158004158004,
+        45.73804573804574
+      ],
+      "support_hand": [
+        52.04158004158004,
+        34.938045738045744
+      ],
+      "muzzle": [
+        49.04158004158004,
+        18.33804573804574
+      ],
+      "revision_note": "Use authored raised arm, fixed body-relative scale. Rear shoulder is occluded; no stretching."
+    },
+    {
+      "hero": "sean",
+      "weapon": "heavy-plunger-launcher",
+      "direction": "right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            135,
+            731,
+            224,
+            102
+          ],
+          "destination": [
+            65.88007464443147,
+            56.734362135965554,
+            32.639601896365505,
+            14.862675863523577
+          ],
+          "pivot": [
+            72,
+            63
+          ],
+          "rotation_degrees": 18.984247672391906
+        },
+        {
+          "role": "body",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            93,
+            91,
+            251,
+            457
+          ],
+          "destination": [
+            43.87527839643653,
+            31.358574610244986,
+            40.24944320712695,
+            73.28285077951003
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+          "source_rect": [
+            430,
+            140,
+            375,
+            230
+          ],
+          "destination": [
+            70.0,
+            54.5,
+            37.5,
+            23.0
+          ],
+          "pivot": [
+            75,
+            72
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            308,
+            766,
+            43,
+            50
+          ],
+          "destination": [
+            91.08833860903519,
+            61.83429993227266,
+            6.265637864034449,
+            7.285625423295872
+          ],
+          "pivot": [
+            72,
+            63
+          ],
+          "rotation_degrees": 18.984247672391906
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            142,
+            1019,
+            201,
+            131
+          ],
+          "destination": [
+            46.31662398889727,
+            53.815059706212665,
+            35.915315772829025,
+            23.407494359405984
+          ],
+          "pivot": [
+            54,
+            64
+          ],
+          "rotation_degrees": 11.242343285212458
+        }
+      ],
+      "grip": [
+        75,
+        72
+      ],
+      "support_hand": [
+        92.0,
+        72.5
+      ],
+      "muzzle": [
+        106.0,
+        64.5
+      ]
+    },
+    {
+      "hero": "sean",
+      "weapon": "heavy-plunger-launcher",
+      "direction": "up_right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            545,
+            692,
+            191,
+            144
+          ],
+          "destination": [
+            59.05389149120307,
+            30.930741467226788,
+            30.628062360801785,
+            23.091314031180403
+          ],
+          "pivot": [
+            84.87126342884227,
+            37.18463901733815
+          ],
+          "rotation_degrees": -39.53715686761557
+        },
+        {
+          "role": "body",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            93,
+            91,
+            251,
+            457
+          ],
+          "destination": [
+            43.87527839643653,
+            31.358574610244986,
+            40.24944320712695,
+            73.28285077951003
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+          "source_rect": [
+            430,
+            140,
+            375,
+            230
+          ],
+          "destination": [
+            67.49689475807769,
+            31.351900906916185,
+            37.5,
+            23.0
+          ],
+          "pivot": [
+            72.49689475807769,
+            48.851900906916185
+          ],
+          "rotation_degrees": -45
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            686,
+            706,
+            43,
+            50
+          ],
+          "destination": [
+            81.66413648006721,
+            33.17573033136933,
+            6.89532293986637,
+            8.017817371937639
+          ],
+          "pivot": [
+            84.87126342884227,
+            37.18463901733815
+          ],
+          "rotation_degrees": -39.53715686761557
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            535,
+            978,
+            201,
+            160
+          ],
+          "destination": [
+            47.58574610244989,
+            45.87973273942093,
+            32.23162583518931,
+            25.657015590200448
+          ],
+          "pivot": [
+            54,
+            64
+          ],
+          "rotation_degrees": -10
+        }
+      ],
+      "grip": [
+        72.49689475807769,
+        48.851900906916185
+      ],
+      "support_hand": [
+        84.87126342884227,
+        37.18463901733815
+      ],
+      "muzzle": [
+        89.11390411596156,
+        21.628289831234106
+      ],
+      "revision_note": "Use authored raised arm, fixed body-relative scale. Rear shoulder is occluded; no stretching."
+    },
+    {
+      "hero": "sean",
+      "weapon": "heavy-plunger-launcher",
+      "direction": "up",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            971,
+            637,
+            131,
+            185
+          ],
+          "destination": [
+            48.40645879732739,
+            20.22048997772829,
+            21.006681514476615,
+            29.665924276169267
+          ],
+          "pivot": [
+            63.3195991091314,
+            26.795100222717153
+          ],
+          "rotation_degrees": -44.1823245353034
+        },
+        {
+          "role": "body",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            93,
+            91,
+            251,
+            457
+          ],
+          "destination": [
+            43.87527839643653,
+            31.358574610244986,
+            40.24944320712695,
+            73.28285077951003
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+          "source_rect": [
+            430,
+            140,
+            375,
+            230
+          ],
+          "destination": [
+            57.8195991091314,
+            26.295100222717153,
+            37.5,
+            23.0
+          ],
+          "pivot": [
+            62.8195991091314,
+            43.79510022271715
+          ],
+          "rotation_degrees": -90
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            1044,
+            653,
+            43,
+            50
+          ],
+          "destination": [
+            60.11247216035635,
+            22.786191536748333,
+            6.89532293986637,
+            8.017817371937639
+          ],
+          "pivot": [
+            63.3195991091314,
+            26.795100222717153
+          ],
+          "rotation_degrees": -44.1823245353034
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/prototypes/modular-aim/sean-parts-v1.png",
+          "source_rect": [
+            976,
+            923,
+            128,
+            218
+          ],
+          "destination": [
+            47.906458797327396,
+            37.220489977728285,
+            20.525612472160358,
+            34.95768374164811
+          ],
+          "pivot": [
+            54,
+            64
+          ],
+          "rotation_degrees": 0
+        }
+      ],
+      "grip": [
+        62.8195991091314,
+        43.79510022271715
+      ],
+      "support_hand": [
+        63.3195991091314,
+        26.795100222717153
+      ],
+      "muzzle": [
+        55.3195991091314,
+        12.795100222717153
+      ],
+      "revision_note": "Use authored raised arm, fixed body-relative scale. Rear shoulder is occluded; no stretching."
+    }
+  ],
+  "limitations": [
+    "Standing only; no run, jump, recoil or downward poses.",
+    "Weapons rotated provisionally; authored directional weapon pixels still needed.",
+    "Arm lengths fitted between measured shoulder and hand points for this experiment.",
+    "Generated source parts do not share exact pixel density; production normalization remains.",
+    "This preview is not a running-game screenshot or approval for gameplay replacement."
+  ],
+  "review": {
+    "works": [
+      "Same body reused for all three directions per hero.",
+      "Weapons are separate and no original gun remains baked into the body.",
+      "Both starters render with measured grip and muzzle anchors."
+    ],
+    "needs_refinement": [
+      "Raised weapons still overlap parts of the head silhouette.",
+      "Rear-arm shoulder attachment is occluded rather than validated across animation.",
+      "Grip silhouette and consistent pixel density still need production cleanup."
+    ],
+    "not_tested": [
+      "Live interactive preview blocked by local browser URL policy.",
+      "Locomotion, jump, downward aiming, recoil and gameplay integration."
+    ],
+    "contact_sheet": "previews/modular-aim-contact-sheet.png",
+    "interactive_preview": "previews/modular-aim.html"
+  },
+  "revision": {
+    "number": 2,
+    "feedback": "Tony arm oversized; up-right and up arms not angled properly.",
+    "changes": [
+      "Fixed arm scale to body scale; removed reach-driven enlargement.",
+      "Use actual straight-up arm source for up.",
+      "Raise diagonal arm angle; move weapon to hand instead of stretching arm toward weapon."
+    ],
+    "previous_manifest": "assets/prototypes/modular-aim/manifest-v1.json"
+  }
+}

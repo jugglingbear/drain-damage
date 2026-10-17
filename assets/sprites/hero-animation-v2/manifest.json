@@ -1,0 +1,1219 @@
+{
+  "schema_version": 1,
+  "status": "Authored animation candidate; assembled and in-game visual validation pending",
+  "canvas": [
+    128,
+    128
+  ],
+  "registration_anchor": [
+    64,
+    104
+  ],
+  "heroes": {
+    "tony": {
+      "phases": {
+        "run": {
+          "loop": true,
+          "frames": [
+            {
+              "id": 0,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                0,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                15.6,
+                27.0,
+                84.48,
+                78.1
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.0,
+                -0.48
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 1,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                384,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                16.26,
+                27.0,
+                84.48,
+                78.1
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.78,
+                4.8
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 2,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                768,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                15.6,
+                27.0,
+                84.48,
+                78.1
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.12,
+                -0.7
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 3,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                1152,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                15.6,
+                27.0,
+                84.48,
+                78.1
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.78,
+                -1.36
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 4,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                0,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                15.6,
+                30.3,
+                84.48,
+                73.7
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.78,
+                2.38
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 5,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                384,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                15.6,
+                30.3,
+                84.48,
+                73.7
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.34,
+                0.84
+              ],
+              "duration": 0.09
+            }
+          ]
+        },
+        "takeoff": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 6,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                768,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                15.6,
+                30.3,
+                84.48,
+                73.7
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.66,
+                9.2
+              ],
+              "duration": 0.1
+            }
+          ]
+        },
+        "rising": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 7,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                1152,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                15.6,
+                30.3,
+                84.48,
+                73.7
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.66,
+                -2.46
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "apex": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 8,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                0,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                17.8,
+                34.92,
+                84.48,
+                73.48
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.78,
+                1.72
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "falling": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 9,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                384,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                16.7,
+                34.92,
+                84.48,
+                73.48
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.12,
+                1.94
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "landing": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 10,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                768,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                15.6,
+                34.92,
+                84.48,
+                73.48
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.66,
+                10.52
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "hurt": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 11,
+              "path": "assets/sprites/hero-animation-v2/tony-motion-v2.png",
+              "source_rect": [
+                1152,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                15.6,
+                34.92,
+                84.48,
+                73.48
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.78,
+                6.78
+              ],
+              "duration": 0.12
+            }
+          ]
+        }
+      },
+      "idle": "Retain existing standing body layer",
+      "death": [
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            9.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "recoil"
+        },
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            6.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "airborne_fall"
+        },
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            6.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.18,
+          "stage": "ground_impact"
+        },
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            6.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.27,
+          "stage": "settled"
+        }
+      ],
+      "head_icon": {
+        "path": "assets/sprites/modular-aim-v1/tony-parts-v1.png",
+        "source_rect": [
+          130,
+          65,
+          185,
+          172
+        ],
+        "max_size": [
+          24,
+          24
+        ]
+      }
+    },
+    "sean": {
+      "phases": {
+        "run": {
+          "loop": true,
+          "frames": [
+            {
+              "id": 0,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                0,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                7.6,
+                24.8,
+                92.16,
+                85.2
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.16,
+                -6.56
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 1,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                384,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                8.8,
+                24.8,
+                92.16,
+                85.2
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.92,
+                -4.4
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 2,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                768,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                8.8,
+                24.8,
+                92.16,
+                85.2
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.4,
+                -6.32
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 3,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                1152,
+                0,
+                384,
+                355
+              ],
+              "destination": [
+                10.0,
+                24.8,
+                92.16,
+                85.2
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.92,
+                -7.76
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 4,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                0,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                12.4,
+                24.8,
+                92.16,
+                80.39999999999999
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.16,
+                -6.8
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 5,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                384,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                12.4,
+                24.8,
+                92.16,
+                80.39999999999999
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.16,
+                -7.04
+              ],
+              "duration": 0.09
+            }
+          ]
+        },
+        "takeoff": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 6,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                768,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                8.8,
+                24.8,
+                92.16,
+                80.39999999999999
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.92,
+                2.8
+              ],
+              "duration": 0.1
+            }
+          ]
+        },
+        "rising": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 7,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                1152,
+                355,
+                384,
+                335
+              ],
+              "destination": [
+                10.0,
+                24.8,
+                92.16,
+                80.39999999999999
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.2,
+                -11.6
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "apex": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 8,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                0,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                12.4,
+                28.4,
+                92.16,
+                80.16
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.92,
+                -6.32
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "falling": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 9,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                384,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                12.4,
+                28.4,
+                92.16,
+                80.16
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.4,
+                -6.8
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "landing": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 10,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                768,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                8.8,
+                28.4,
+                92.16,
+                80.16
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.92,
+                0.64
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "hurt": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 11,
+              "path": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+              "source_rect": [
+                1152,
+                690,
+                384,
+                334
+              ],
+              "destination": [
+                11.2,
+                28.4,
+                92.16,
+                80.16
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                -1.44,
+                0.88
+              ],
+              "duration": 0.12
+            }
+          ]
+        }
+      },
+      "idle": "Retain existing standing body layer",
+      "death": [
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            18.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "recoil"
+        },
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            14.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "airborne_fall"
+        },
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            14.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.18,
+          "stage": "ground_impact"
+        },
+        {
+          "path": "assets/sprites/hero-animation-v2/death-v2.png",
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "destination": [
+            25.6,
+            14.0,
+            76.8,
+            102.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.27,
+          "stage": "settled"
+        }
+      ],
+      "head_icon": {
+        "path": "assets/sprites/modular-aim-v1/sean-parts-v1.png",
+        "source_rect": [
+          150,
+          85,
+          150,
+          180
+        ],
+        "max_size": [
+          24,
+          24
+        ]
+      }
+    }
+  },
+  "integration": {
+    "body": "Replace only body layer. Apply attachment_offset to every other layer destination and pivot, grip, support_hand and muzzle.",
+    "clock": "Advance run independently of aim and fire. Preserve clock when changing direction; recoil must not replace body animation.",
+    "mirror": "Mirror completed composition and anchors around x64. Backpedaling reverses cycle playback, not facing.",
+    "jump": "Use takeoff, rising, apex, falling, landing according to physics phase. Single authored hold per jump phase.",
+    "hurt": "Stationary hurt frame only; moving hurt retains locomotion with hit flash.",
+    "death": "No weapon layers. Recoil 0.14s then falling hold until grounded. On ground play impact0.18s then settle at least0.27s; never loop. Minimum total1.0s and grounded0.45s.",
+    "hud": "24x24 maximum head icon, preserve source aspect; one per total remaining life.",
+    "scope": "Tony pressure-gun and Sean heavy-plunger-launcher only. Other weapon combinations require grip/occlusion review."
+  },
+  "additional_aim_poses": [
+    {
+      "id": "tony-standing-down_right",
+      "hero": "tony",
+      "weapon": "pressure-gun",
+      "stance": "standing",
+      "direction": "down_right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/sprites/modular-aim-v1/downward-arms.png",
+          "source_rect": [
+            545,
+            95,
+            305,
+            315
+          ],
+          "destination": [
+            58.86677052553034,
+            56.87790711582308,
+            30.5,
+            31.5
+          ],
+          "pivot": [
+            83.36677052553034,
+            82.37790711582308
+          ],
+          "rotation_degrees": 14.563550751941905
+        },
+        {
+          "role": "body",
+          "path": "assets/sprites/modular-aim-v1/tony-parts-v1.png",
+          "source_rect": [
+            80,
+            62,
+            264,
+            489
+          ],
+          "destination": [
+            44.24116424116424,
+            31.401247401247403,
+            39.517671517671516,
+            73.19750519750521
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/pressure-gun/atlas-v2.png",
+          "source_rect": [
+            450,
+            140,
+            325,
+            230
+          ],
+          "destination": [
+            68.70159016396943,
+            59.86958100375455,
+            32.5,
+            23.0
+          ],
+          "pivot": [
+            72.90159016396943,
+            77.56958100375455
+          ],
+          "rotation_degrees": 45
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/sprites/modular-aim-v1/downward-arms.png",
+          "source_rect": [
+            753,
+            316,
+            79,
+            74
+          ],
+          "destination": [
+            79.66677052553034,
+            78.97790711582307,
+            7.9,
+            7.4
+          ],
+          "pivot": [
+            83.36677052553034,
+            82.37790711582308
+          ],
+          "rotation_degrees": 14.563550751941905
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/sprites/modular-aim-v1/downward-arms.png",
+          "source_rect": [
+            115,
+            95,
+            275,
+            315
+          ],
+          "destination": [
+            45.5,
+            58.2,
+            27.5,
+            31.5
+          ],
+          "pivot": [
+            52,
+            64
+          ],
+          "rotation_degrees": -20
+        }
+      ],
+      "grip": [
+        72.90159016396943,
+        77.56958100375455
+      ],
+      "support_hand": [
+        83.36677052553034,
+        82.37790711582308
+      ],
+      "muzzle": [
+        97.22606343678666,
+        91.99455933996012
+      ]
+    },
+    {
+      "id": "sean-standing-down_right",
+      "hero": "sean",
+      "weapon": "heavy-plunger-launcher",
+      "stance": "standing",
+      "direction": "down_right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/sprites/modular-aim-v1/downward-arms.png",
+          "source_rect": [
+            540,
+            490,
+            310,
+            305
+          ],
+          "destination": [
+            58.9190137812287,
+            63.65853369502591,
+            31.0,
+            30.5
+          ],
+          "pivot": [
+            83.9190137812287,
+            88.15853369502591
+          ],
+          "rotation_degrees": 23.48264551130819
+        },
+        {
+          "role": "body",
+          "path": "assets/sprites/modular-aim-v1/sean-parts-v1.png",
+          "source_rect": [
+            93,
+            91,
+            251,
+            457
+          ],
+          "destination": [
+            43.87527839643653,
+            31.358574610244986,
+            40.24944320712695,
+            73.28285077951003
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+          "source_rect": [
+            430,
+            140,
+            375,
+            230
+          ],
+          "destination": [
+            67.25175189165066,
+            58.28416502426133,
+            37.5,
+            23.0
+          ],
+          "pivot": [
+            72.25175189165066,
+            75.78416502426133
+          ],
+          "rotation_degrees": 45
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/sprites/modular-aim-v1/downward-arms.png",
+          "source_rect": [
+            753,
+            701,
+            79,
+            74
+          ],
+          "destination": [
+            80.2190137812287,
+            84.7585336950259,
+            7.9,
+            7.4
+          ],
+          "pivot": [
+            83.9190137812287,
+            88.15853369502591
+          ],
+          "rotation_degrees": 23.48264551130819
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/sprites/modular-aim-v1/downward-arms.png",
+          "source_rect": [
+            115,
+            490,
+            275,
+            300
+          ],
+          "destination": [
+            45.5,
+            57.5,
+            27.5,
+            30.0
+          ],
+          "pivot": [
+            52,
+            64
+          ],
+          "rotation_degrees": -20
+        }
+      ],
+      "grip": [
+        72.25175189165066,
+        75.78416502426133
+      ],
+      "support_hand": [
+        83.9190137812287,
+        88.15853369502591
+      ],
+      "muzzle": [
+        99.47536296733274,
+        92.4011743821452
+      ]
+    }
+  ],
+  "limitations": [
+    "Run cadence and limb overlap need visual review; generated stride silhouettes are uneven.",
+    "Body shoulder offsets measured from source art; full two-hand contact across every phase has not yet been visually verified.",
+    "Grounded diagonal-down reuses authored downward arms with standing body; muzzle/body clearance needs assembly review.",
+    "No dedicated recoil bitmap cycle. Engineering may translate aim group briefly without stopping locomotion.",
+    "No runtime launch or actual game screenshots by Art.",
+    "Sean rising pose shows part of unused shoulder socket; needs attachment polish. Raised weapons still obscure faces."
+  ],
+  "validation": {
+    "source_bounds": "pass",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "runtime": "pending",
+    "visual_matrix": "pending",
+    "assembled_preview": "previews/hero-animation-v2.png; representative up-right run/jump and death inspected",
+    "transparency": "Composited against dark background: no visible background rectangle in sampled frames"
+  }
+}

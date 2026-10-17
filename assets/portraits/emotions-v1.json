@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-14",
+  "tool": "Built-in image_gen",
+  "status": "Integrated in Prototype 18: semantic emotions, 5x2 integer-boundary slicing; in-game visual review pending.",
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": "row-major"
+  },
+  "emotions": [
+    {
+      "index": 0,
+      "name": "neutral"
+    },
+    {
+      "index": 1,
+      "name": "happy"
+    },
+    {
+      "index": 2,
+      "name": "amused"
+    },
+    {
+      "index": 3,
+      "name": "sad"
+    },
+    {
+      "index": 4,
+      "name": "worried"
+    },
+    {
+      "index": 5,
+      "name": "afraid"
+    },
+    {
+      "index": 6,
+      "name": "surprised"
+    },
+    {
+      "index": 7,
+      "name": "angry"
+    },
+    {
+      "index": 8,
+      "name": "skeptical"
+    },
+    {
+      "index": 9,
+      "name": "embarrassed"
+    }
+  ],
+  "characters": [
+    {
+      "id": "tony",
+      "asset": "assets/portraits/tony-expressions-v3.png",
+      "reference": "assets/portraits/tony-expressions-v1.png",
+      "dimensions": {
+        "width": 1983,
+        "height": 793
+      },
+      "nominal_cell_size": {
+        "width": 396.6,
+        "height": 396.5
+      },
+      "slicing_note": "Nominal equal grid; inspect boundary pixels and portrait anchors before runtime use.",
+      "original_generation_prompt": "Use case: identity-preserve. Create an expanded dialogue portrait atlas from the supplied identity reference, retaining its clean outlined cel-shaded RPG illustration style. Exactly TEN portraits in a rigid 5 COLUMNS by 2 ROWS grid, equal square cells, wide 5:2 canvas, aim for 2500x1000 or higher. True transparent background. Same bust framing, scale, lighting, outfit, orientation and bottom baseline in every cell, ample clear gutters, entire heads inside cells. No labels, grid lines, text or extra props. Emotions in exact reading order: top row NEUTRAL attentive relaxed closed mouth; HAPPY warm open smile; AMUSED laughing with eyes narrowed and open joyful mouth; SAD lowered eyes and downturned mouth; WORRIED tense brow small uncertain mouth. Bottom row AFRAID alarmed recoiling face wide eyes tense open mouth; SURPRISED raised brows rounded O mouth and wide eyes without fearful grimace; ANGRY lowered brows clenched or shouting mouth; SKEPTICAL one raised eyebrow side glance asymmetric mouth; EMBARRASSED sheepish smile lowered gaze. Clearly differentiate all ten emotions at small dialogue size. Preserve character identity aggressively. Transparent gutters, opaque character interiors. Character TONY: preserve swept spiky dark hair, recognizable face, short stubble, navy mechanic shirt teal overalls. Calm mature capable plumber expressing a full range of emotion. Upper torso busts, no hands needed. No changes to age or build.",
+      "latest_edit_provenance": "assets/portraits/tony-work-shirt-v1.json"
+    },
+    {
+      "id": "sean",
+      "asset": "assets/portraits/sean-expressions-v4.png",
+      "reference": "assets/portraits/sean-expressions-v2.png",
+      "dimensions": {
+        "width": 1983,
+        "height": 793
+      },
+      "nominal_cell_size": {
+        "width": 396.6,
+        "height": 396.5
+      },
+      "slicing_note": "Nominal equal grid; inspect boundary pixels and portrait anchors before runtime use.",
+      "original_generation_prompt": "Use case: identity-preserve. Create an expanded dialogue portrait atlas from the supplied identity reference, retaining its clean outlined cel-shaded RPG illustration style. Exactly TEN portraits in a rigid 5 COLUMNS by 2 ROWS grid, equal square cells, wide 5:2 canvas, aim for 2500x1000 or higher. True transparent background. Same bust framing, scale, lighting, outfit, orientation and bottom baseline in every cell, ample clear gutters, entire heads inside cells. No labels, grid lines, text or extra props. Emotions in exact reading order: top row NEUTRAL attentive relaxed closed mouth; HAPPY warm open smile; AMUSED laughing with eyes narrowed and open joyful mouth; SAD lowered eyes and downturned mouth; WORRIED tense brow small uncertain mouth. Bottom row AFRAID alarmed recoiling face wide eyes tense open mouth; SURPRISED raised brows rounded O mouth and wide eyes without fearful grimace; ANGRY lowered brows clenched or shouting mouth; SKEPTICAL one raised eyebrow side glance asymmetric mouth; EMBARRASSED sheepish smile lowered gaze. Clearly differentiate all ten emotions at small dialogue size. Preserve character identity aggressively. Transparent gutters, opaque character interiors. Character SEAN: completely bald including sides and back, gray-brown pointed chin-only beard, absolutely NO moustache, green-hazel eyes, safety glasses atop scalp. Orange shirt blue overalls. Preserve the approved moderately sturdy but slightly trimmer body, do not make him fat or skinny. Upper torso busts, no hands needed. Recognizable expressive adult apprentice.",
+      "latest_edit_provenance": "assets/portraits/sean-no-glasses-v1.json"
+    },
+    {
+      "id": "bj",
+      "asset": "assets/portraits/bj-expressions-v2.png",
+      "prompt": "Use case: identity-preserve. Create an expanded dialogue portrait atlas from the supplied identity reference, retaining its clean outlined cel-shaded RPG illustration style. Exactly TEN portraits in a rigid 5 COLUMNS by 2 ROWS grid, equal square cells, wide 5:2 canvas, aim for 2500x1000 or higher. True transparent background. Same bust framing, scale, lighting, outfit, orientation and bottom baseline in every cell, ample clear gutters, entire heads inside cells. No labels, grid lines, text or extra props. Emotions in exact reading order: top row NEUTRAL attentive relaxed closed mouth; HAPPY warm open smile; AMUSED laughing with eyes narrowed and open joyful mouth; SAD lowered eyes and downturned mouth; WORRIED tense brow small uncertain mouth. Bottom row AFRAID alarmed recoiling face wide eyes tense open mouth; SURPRISED raised brows rounded O mouth and wide eyes without fearful grimace; ANGRY lowered brows clenched or shouting mouth; SKEPTICAL one raised eyebrow side glance asymmetric mouth; EMBARRASSED sheepish smile lowered gaze. Clearly differentiate all ten emotions at small dialogue size. Preserve character identity aggressively. Transparent gutters, opaque character interiors. Character BJ: weathered beige SERVER RACK upper section, black hardware bays, recognizable green CRT face, large BJ stencil on visible left side (the ONLY permitted text). NO human body or features. Express every emotion solely through GREEN pixel eyes, brows and mouth on dark CRT. Neutral square eyes flat mouth; happy smiling eyes smile; amused closed arc eyes wide pixel laugh; sad drooping eyes frown; worried slanting concerned brows small wavy mouth; afraid tall wide eyes and tense jagged mouth; surprised wide square eyes small O mouth; angry downward slanted brows and forceful open mouth; skeptical one narrow eye and other raised; embarrassed lowered eyes crooked smile. Keep rack geometry, three-quarter angle, screen framing and status LEDs IDENTICAL across cells. Close bust crop prioritizes readable CRT while retaining BJ side stencil and a few server trays. No limbs, pipes, red corruption glow or other implied takeover.",
+      "reference": "assets/portraits/bj-expressions-v1.png",
+      "dimensions": {
+        "width": 1983,
+        "height": 793
+      },
+      "nominal_cell_size": {
+        "width": 396.6,
+        "height": 396.5
+      },
+      "slicing_note": "Nominal equal grid; inspect boundary pixels and portrait anchors before runtime use."
+    }
+  ],
+  "notes": "Earlier portrait sheets preserved. These are emotional dialogue portraits, not movement sprites. No corruption state for BJ. Sean retains approved trimmer build.",
+  "runtime": {
+    "script": "scripts/portrait_library.gd",
+    "dialogue_field": "emotion",
+    "invalid_emotion_policy": "Development assertion; test every shipped line before export",
+    "cropping": "Rounded integer boundaries; AtlasTexture.filter_clip enabled",
+    "validation": "30 cells checked for bounds, non-overlap, full coverage, paths and dimensions; visual anchors pending"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "tool": "Built-in imagegen",
+  "date": "2026-10-15",
+  "prompts": {
+    "tonyAlphaPrompt": "Use case: background-extraction. Remove ALL brown/black/blue glow and background from this sprite sheet. Preserve all twelve Tony body sprites exactly with same placement,size,colors and pose. Make every pixel outside each outlined figure completely transparent alpha0. No replacement background, no shadow, no glow, no checkerboard. Opaque hero pixels with crisp pixel edges. Do not change characters, grid, pose, clothing or dimensions.",
+    "seanAlphaPrompt": "Use case: background-extraction. Remove ALL brown/black/blue glow/background from this sprite sheet. Preserve all twelve Sean body sprites in exactly same positions, size, colors, poses. Outside each outlined figure must be completely transparent alpha0, hero interiors opaque alpha255. No replacement backdrop, shadows, glow or checkerboard. Crisp pixel art edges. Do not alter layout, characters, proportions or dimensions.",
+    "deathAlphaPrompt": "Use case: background-extraction. Remove every background pixel and glow around all eight figures. Preserve the exact8 Tony/Sean death sprite frames, their positions/scales/colors. Output hard-edged cutout sprites with alpha0 outside character silhouettes and opaque interiors. Absolutely no brown/black/colored background haze, no glow or shadow. No redesign. Keep original1536x1024 grid."
+  }
+}

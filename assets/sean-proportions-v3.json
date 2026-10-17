@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-14",
+  "tool": "Built-in image_gen",
+  "direction": "Sean remains broad and sturdy, with modestly reduced waist, upper-arm, cheek and neck fullness. Approved cover reference; sprites unchanged.",
+  "assets": [
+    {
+      "path": "marketing/magazine/guide-assets-v3/tony-sean-horde-cover-v2.png",
+      "prompt": "Use case: precise-object-edit. Edit the supplied portrait-format game cover artwork. Make ONLY Sean (the bald man on the RIGHT in orange shirt and blue overalls holding a red plunger cannon) modestly less husky. Slightly reduce the fullness of his waist, belly, torso and upper arms, about 10\u201315 percent, and very subtly reduce cheek/neck fullness. He must remain broad-shouldered, sturdy and solidly built, not skinny, not a lean fitness model. Preserve his recognizable face, age, completely bald head, chin-only beard without moustache, expression, eyewear on head, orange shirt, blue overalls, pose, hands and weapon. Preserve Tony on the LEFT exactly. Preserve all monsters, feathered wings, halos, pipes, water, lighting, composition, camera, colors and high-detail realistic illustrated style. Keep the entire portrait cover framing and resolution. No text or additional elements. This is a restrained proportion adjustment to Sean only, not a redesign.",
+      "source": "marketing/magazine/guide-assets-v3/tony-sean-horde-cover-v1.png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/title/drain-damage-v2.png",
+      "prompt": "Use case: precise-object-edit. Edit image 1, the Drain Damage title-screen artwork. Image 2 is an approved proportion reference for Sean ONLY. Make Sean, bald man foreground lower right in orange shirt blue overalls, modestly less husky: reduce belly/waist, upper arm and neck/cheek fullness about 10\u201315%, retain a sturdy broad build. Not skinny or muscular fitness model. Match the restrained slimming in image 2. Preserve Sean's recognizable face, bald scalp, chin-only beard, expression, clothing, pose and plunger cannon. Preserve Tony, monster, exact DRAIN DAMAGE title, layout, empty dark lower-left menu area, colors, detailed illustration style, all other artwork. Keep image 1 landscape dimensions and composition. Change only Sean's proportions.",
+      "references": [
+        "assets/title/drain-damage-v1.png",
+        "marketing/magazine/guide-assets-v3/tony-sean-horde-cover-v2.png"
+      ],
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "mode": "RGB"
+    },
+    {
+      "path": "assets/portraits/sean-expressions-v2.png",
+      "prompt": "Use case: precise-object-edit. Edit this Sean dialogue portrait atlas in place non-destructively as a new version. In ALL FOUR portraits make his build a little less husky, with subtly narrower torso/waist and upper arms and a touch less fullness at cheeks and neck. Still broad, sturdy and recognizable, not skinny or athletic model. Preserve completely bald head, chin-only gray-brown beard, no moustache, eyebrows, glasses atop head, mustard orange shirt and blue overalls. Preserve every distinct facial expression, hand pose, exact 2x2 quadrant layout, original framing and scale of heads, clean illustrated linework and coloring. Keep portraits within their own cells and existing crop boundaries for identical runtime slicing. Genuine transparent background, preserve alpha, no new elements or text. Only the restrained body proportion adjustment requested.",
+      "source": "assets/portraits/sean-expressions-v1.png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "mode": "RGBA"
+    }
+  ],
+  "preservation": "Original v1 artwork, previous PDFs, superseded GPI packaging concepts and actual storybook captures retained unchanged."
+}

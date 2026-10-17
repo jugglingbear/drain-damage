@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-14",
+  "tool": "Built-in image_gen",
+  "sources": [
+    {
+      "asset": "assets/controls/gamepad-cheese-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "status": "Current runtime controller; generated original, live review pending",
+      "prompt": "Use case: stylized-concept. Create an ORIGINAL whimsical game controller literally carved from a thick irregular slab of golden Swiss cheese, NOT a cheese skin on a recognizable commercial controller. Distinct wide rounded trapezoid silhouette like a rustic cheese cutting slab with a gently scalloped rind, uneven corners and a tiny bite missing from the upper left. No familiar long gamepad handles, no console manufacturer's casing or silhouette. Top-down orthographic front, landscape 3:2 image, entire device visible with generous transparent margin. Deep cheese holes, porous waxy buttery texture, rich orange rind, a few cheese crumbs adhered to edges. Polished tactile illustrated realism with soft lighting matching a plumbing comedy game's UI. Actual functional controls remain clear dark charcoal hardware inset into cheese: upper-left analog stick, lower-left cross D-pad, lower-middle/right analog stick, four black circular buttons in a diamond on right with LARGE legible colored letters Y yellow at top, B red at right, A green at bottom, X blue at left. Two small centrally placed black buttons with clear white generic overlapping-rectangles View symbol and three-horizontal-lines Menu symbol. Two small dark shoulder triggers projecting from top edge. No logos, no branding, no power emblem, no extra letters, no hands, no plate, no background. Genuine transparent alpha. Cheese holes must not obscure any controls. This is a new fictional cheese device rather than a replica of any real model."
+    },
+    {
+      "asset": "assets/controls/keyboard-v1.png",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "prompt": "Use case: product-mockup. Game UI illustration asset: a single compact tenkeyless ANSI US QWERTY keyboard, straight top-down orthographic view, wide landscape 3:1 composition with entire keyboard visible and 5% transparent margin. Smooth richly painted realistic game illustration matching a gross plumbing action-comedy, premium soft studio shading and rounded beveled keycaps. A worn cream/off-white keyboard with charcoal dark keycaps, subtle teal accent keycaps on A, D, W, spacebar and warm brass accent on Enter. Correct conventional keyboard rows and readable standard legends, including ESC, Tab, QWERTY, ASDF, ZXCV, long Spacebar, Enter, separate inverted-T arrows on right, no numpad. Authentic restrained plumbing grime: greasy fingerprints, dried rusty water rings on casing, scuffed corners, a little olive sludge caught in crevices, tiny piece of white plumber's tape on outer casing only. Dirt stays off key legends. Mature tactile polished art, not pixel art, not cartoon polygon shapes. No extra props, no hands, no text outside normal key legends, no annotations, no game instructions, no logos, no brand marks, no watermark. Genuine transparent background, no backdrop or cast rectangular shadow."
+    },
+    {
+      "asset": "assets/controls/gamepad-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "prompt": "Use case: product-mockup. Single generic unbranded modern console gamepad game-UI asset, top-down front view, entire silhouette visible with clear 8% transparent margin, landscape 3:2 canvas. Familiar Xbox-compatible layout but original housing and NO Xbox emblem or any branding. Soft smoothly sculpted rounded ergonomic grips, warm ivory worn shell, dark charcoal rubberized grips, recessed offset analog sticks (left upper, right lower), cross D-pad lower-left, four glossy round face buttons upper-right in correct diamond: Y yellow top, B red right, A green bottom, X blue left. Two small center buttons with generic overlapping-rectangles View symbol and three horizontal Menu lines. Blank center where logo would be. Shoulder bumpers and triggers visible at top, correct RT on right. Premium smooth painted realistic game illustration, beveled controls, soft occlusion, coherent highlights, real depth, polished tactile rendering rather than crude shapes. Subtle plumbing theme: oily fingerprints, rust specks at screw holes, faint olive grime at seams, small strip white plumber's tape on outer grip, never obscure buttons or letters. No wires, hands, props, callout lines, instructions, extra text, logos, watermark. Genuine transparent background."
+    },
+    {
+      "asset": "assets/controls/gamepad-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "status": "Preserved alternate; not used at runtime",
+      "prompt": "Remove only the gray/black backdrop and haze outside the controller to genuine fully transparent alpha. Preserve the exact controller shape, details, face buttons, grime and tape. Entire controller silhouette must remain visible with a small transparent margin on every side, do not cut off handles or triggers. No background, no glow, no shadow outside the object. This is an isolated UI cutout."
+    },
+    {
+      "asset": "assets/controls/gamepad-salvage-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source": "assets/controls/plumbing-concepts-v1/6-salvage-special.png",
+      "approval": "assets/controls/plumbing-controller-handoff.json",
+      "tool": "Built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Edit the supplied approved Salvage Special controller only in two ways: replace the white pause-bars glyph on the small LEFT center black button with a clear white View icon made of two overlapping outlined rectangles; remove the light gray background and external cast shadow to genuine transparent alpha. Preserve the exact silhouette, blue PVC left grip, black corrugated rubber right grip, metal washers, copper straps, wear, all controls and their positions, colored ABXY letters, and right center three-line Menu icon. Keep the entire device visible at the same 3:2 landscape composition. No other redesign.",
+      "status": "Runtime derivative; View icon corrected; live screenshot pending"
+    }
+  ],
+  "references": [
+    "https://www.feralinteractive.com/en/manuals/alienisolation/latest/steam/",
+    "https://www.ea.com/games/f1/f1-25/f1-25-controls-hub/f1-25-pc-controls-hub/keyboard-pc-hub"
+  ],
+  "notes": "Original generated hardware illustrations, no vendor logos. Live labels remain authoritative; imagery is decorative. Grouped action legends inspired by manual references, no source artwork copied. Alpha channels present; artwork inspected in the running control screens. Prototype 21 replaces the controller with original cheese artwork; live visual review is pending.",
+  "current_assets": [
+    "assets/controls/keyboard-v1.png",
+    "assets/controls/gamepad-salvage-v1.png"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-15",
+  "asset": "assets/selection/punch-clock-v1.png",
+  "status": "Integrated in Prototype 30 using supplied crop and aspect ratio; live visual review pending.",
+  "tool": "Built-in imagegen",
+  "dimensions": {
+    "width": 1254,
+    "height": 1254
+  },
+  "prompt": "Use case: stylized-concept. Create a single polished game-menu prop: an old mechanical employee time-card punch clock for a scruffy plumbing company. Genuine transparent background, no scene, no floor, no cast shadow outside object. Nearly straight-on front view, very slight visible top depth, full object isolated with generous8% transparent margins. Square canvas. Object approximately square including protruding timecard. Matches hand-painted realistic illustrated industrial clipboard: muted dark teal chipped enamel metal cabinet, worn brass trim, oxidized steel screws, restrained rust on corners, tactile chunky rounded housing. Recognizably a TIME CLOCK: small cream analog clock dial with dark simple tick marks and two clock hands inset in upper LEFT of front, a wide horizontal polished-metal card-feed slot across upper right, a cream paper timecard protruding vertically from that slot at upper RIGHT. Timecard has faint ruled rows and small rectangular punched holes, NO letters, numbers or branding. Small warm amber status indicator next to slot. Lower third of cabinet has a large broad raised BRASS rectangular button with softly rounded corners, entirely BLANK clean center reserved for runtime CLOCK IN text. Button occupies approx75% of machine width and20% of total height, readable at160px wide. Heavy beveled button with dark lower lip looks pressable, not a flat UI rectangle. Tiny metal vents and mounting screws add believable mechanism but avoid clutter. No face, no eyes, no arms, no characters, no pipes, no glowing sci-fi screen. Strong silhouette, coherent industrial craftsmanship, appealing painted illustration, fine texture secondary to clear large forms. Absolutely NO text anywhere. Keep dial, card slot and bottom brass button distinct and unobscured. This is final prop artwork not a diagram, grid, or presentation board.",
+  "layout": {
+    "coordinate_system": "Source pixels, top-left origin. Rectangles [x,y,width,height].",
+    "source_rect": [
+      75,
+      25,
+      1110,
+      1200
+    ],
+    "button_face_rect": [
+      185,
+      825,
+      885,
+      230
+    ],
+    "button_text_safe_rect": [
+      250,
+      870,
+      750,
+      130
+    ],
+    "runtime_example_960x540": {
+      "image_rect": [
+        790,
+        315,
+        160,
+        172.973
+      ],
+      "button_hit_rect": [
+        806,
+        430,
+        128,
+        34
+      ],
+      "button_label": "CLOCK IN",
+      "button_label_center": [
+        870,
+        448
+      ],
+      "button_font_size": 18,
+      "button_text_color": "#172725"
+    },
+    "notes": [
+      "Draw source_rect at preserved aspect ratio, not the whole square texture.",
+      "Replace existing code-drawn clock/card/button geometry in scripts/title_screen.gd.",
+      "Overlay CLOCK IN as runtime text centered on brass face; no additional TIME CLOCK label needed.",
+      "Update CLOCK_IN_RECT to match visible button while preserving Enter/controller A confirmation.",
+      "Keep this prop outside clipboard and navigation arrows.",
+      "Suggested source crop excludes isolated generation pixels above the timecard."
+    ]
+  },
+  "alpha": {
+    "mode": "RGBA",
+    "outside": 0,
+    "interior_samples": 253,
+    "note": "Preserve alpha; inspect against actual dark menu background."
+  },
+  "validation": "Source inspected; headless selection/export checks cover texture, button bounds and unchanged input behavior. Live menu review pending permission."
+}

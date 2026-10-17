@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-16",
+  "tool": "built-in imagegen",
+  "prompt": "Use case: precise-object-edit. Image1 is exact sprite sheet to edit. Image2 approved Sean beard design. Change ONLY Sean's facial hair in every visible Sean face in image1 to match image2: fuller broad gray-brown chin beard across lower chin, slight pointed shaggy lower edge and gray highlights, distinct narrow vertical soul patch directly below lowerlip with bare skin either side. Clean upperlip no moustache, no ring aroundmouth, no sideburns. Not a tiny dot. Translate into image1 pixelartstyle. Preserve every other pixel as closely as possible: exact canvas size, alpha transparency, grid, body positions/scales, poses, faceexpressions, hands, arms, detached arm parts, weapons, clothing, baldscalp. Leave Tony entirely unchanged on shared sheets. Never add arms to armless modular bodies. No new items. No background. Output exact same layout and dimensions as image1.",
+  "reference": "assets/world/spare-employee-dispenser/sean-v3.png",
+  "assets": [
+    {
+      "source": "assets/sprites/hero-animation-v2/sean-motion-v2.png",
+      "path": "assets/sprites/hero-animation-v2/sean-motion-v3.png",
+      "generated_source": "/Users/sfoley/.codex/generated_images/01a1388b-2b60-7011-832a-5c6a044e0028/exec-18750989-e601-45b3-8233-545927f8db5e.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "source": "assets/sprites/hero-animation-v2/death-v2.png",
+      "path": "assets/sprites/hero-animation-v2/death-v3.png",
+      "generated_source": "/Users/sfoley/.codex/generated_images/01a1388b-2b60-7011-832a-5c6a044e0028/exec-fed3aac1-4d08-4102-9518-3e43d47ca109.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "source": "assets/sprites/modular-aim-v1/sean-parts-v1.png",
+      "path": "assets/sprites/modular-aim-v1/sean-parts-v2.png",
+      "generated_source": "/Users/sfoley/.codex/generated_images/01a1388b-2b60-7011-832a-5c6a044e0028/exec-2fbf4cdc-6937-4d16-9c0e-506a3f5ddd22.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "source": "assets/sprites/modular-aim-v1/airborne-bodies.png",
+      "path": "assets/sprites/modular-aim-v1/airborne-bodies-v2.png",
+      "generated_source": "/Users/sfoley/.codex/generated_images/01a1388b-2b60-7011-832a-5c6a044e0028/exec-17fade1b-9c43-4450-ba2f-5957bf2e10d3.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "alpha_range": [
+        3,
+        252
+      ],
+      "final_path": "assets/sprites/modular-aim-v1/airborne-bodies-v3.png",
+      "alpha_cleanup": "assets/sprites/modular-aim-v1/airborne-alpha-v3.json"
+    },
+    {
+      "source": "assets/sprites/modular-aim-v1/sean-left-support-hand-v2.png",
+      "path": "assets/sprites/modular-aim-v1/sean-left-support-hand-v3.png",
+      "generated_source": "/Users/sfoley/.codex/generated_images/01a1388b-2b60-7011-832a-5c6a044e0028/exec-453be518-20f2-41e5-9d54-1ac8da81b8f7.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "source": "assets/sprites/sean-v2.png",
+      "path": "assets/sprites/sean-v3.png",
+      "generated_source": "/Users/sfoley/.codex/generated_images/01a1388b-2b60-7011-832a-5c6a044e0028/exec-2e54064c-371c-4d03-8620-f596e77229da.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "alpha_range": [
+        0,
+        255
+      ]
+    }
+  ]
+}

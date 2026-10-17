@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-15",
+  "asset": "assets/selection/employee-photo-frame-v1.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "tool": "Built-in imagegen",
+  "prompt": "Use case: stylized-concept. Reusable game UI overlay: ONE vintage instant photograph paper FRAME with a completely transparent square photo opening. Front-on orthographic, upright, no perspective, no rotation; runtime will tilt it. Entire isolated paper frame and tape visible, transparent outside and transparent central opening. Cream off-white aged photographic paper border, slightly yellowed corners, tiny scuffs, subtle curled lower corner, understated physical edge shadow. Classic instant-photo proportions: thin equal top and side white borders, much wider blank bottom margin. One short torn strip of translucent yellowed masking tape diagonally across top-left corner, another shorter strip diagonally across bottom-right corner, each extends past paper edge as if attaching photo to clipboard. Keep tape away from center opening. Hand-painted realistic illustration matching weathered teal industrial clipboard and aged ivory employee file. No clipboard itself, no background surface, NO person, NO portrait, NO text, NO logos, no symbols, no writing. Portrait-oriented paper centered on square 1024x1024 transparent canvas. Outer paper roughly x200..824,y100..920. Square transparent photo window roughly x250..774,y155..679. Bottom blank cream margin y680..920. Window must be fully transparent alpha zero, not a gray fill, no fake checkerboard. The frame is a reusable overlay to place over existing character portraits.",
+  "status": "Integrated in Prototype 31 as reusable photo assembly; live visual review pending.",
+  "applies_to": "Tony, Sean, and every future selectable hero",
+  "source_rect": [
+    130,
+    25,
+    990,
+    1200
+  ],
+  "photo_window": [
+    275,
+    180,
+    720,
+    720
+  ],
+  "photo_background": "#85948c",
+  "name_center": [
+    627,
+    1030
+  ],
+  "composition": [
+    "Draw faded studio-photo backdrop only inside photo window.",
+    "Draw existing selected hero portrait clipped to photo window.",
+    "Draw paper/tape overlay on top; preserve transparency.",
+    "Draw hero first name in lower blank border; keep name live, not baked.",
+    "Rotate the entire photo assembly together, including tape, backdrop, portrait and name."
+  ],
+  "layout_960x540": {
+    "frame_destination": [
+      247,
+      230,
+      173.25,
+      210
+    ],
+    "pivot": [
+      333.625,
+      335
+    ],
+    "rotation_degrees": -3,
+    "photo_window_unrotated": [
+      272.375,
+      257.125,
+      126,
+      126
+    ],
+    "note": "Fit within left portrait column; do not overlap bio at x430 or employee-file heading at y219. Validate final bounds after rotation."
+  },
+  "portrait_sources": {
+    "tony": "assets/portraits/tony-expressions-v3.png",
+    "sean": "assets/portraits/sean-expressions-v4.png",
+    "selection": "Reuse Portraits.expression(person.id, current selection emotion). No dialogue portrait changes."
+  },
+  "preview": "previews/employee-photo-treatment-v1.png",
+  "validation": "Transparent window verified and static two-hero composition inspected. Preview enlarges photos to demonstrate treatment; proposed runtime size is separately specified."
+}
