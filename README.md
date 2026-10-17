@@ -94,7 +94,7 @@ October 13, 2026.
 
 ## Develop
 
-From Terminal, run `cd /Users/sfoley/repos/plumbing_inc`, then:
+From Terminal, run `cd /Users/sfoley/repos/drain_damage`, then:
 
 | Command | What it does |
 | --- | --- |
