@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-14",
+  "paths_relative_to": "project root",
+  "bj": {
+    "portrait": "marketing/billy-joe/server-room-v1.png",
+    "provenance": "marketing/billy-joe/server-room-v1.json",
+    "placement": "After Tony/Sean and before monsters",
+    "status": "Selected server-rack design; used in Discharge Quarterly edition 11. Marketing key art, not runtime sprite."
+  },
+  "creatures": [
+    {
+      "name": "Flushfiend",
+      "metadata": "bestiary/flushfiend/monster.json",
+      "portrait": "bestiary/flushfiend/marketing-v1.png",
+      "sprites": [
+        "assets/sprites/toilet-v1.png",
+        "assets/bestiary/damage/flushfiend-damage-v1.png"
+      ]
+    },
+    {
+      "name": "The Hallowed Widow",
+      "metadata": "bestiary/the-hallowed-widow/monster.json",
+      "portrait": "bestiary/the-hallowed-widow/marketing-v1.png",
+      "sprites": [
+        "assets/bestiary/flying-spider-atlas-v2.png",
+        "assets/bestiary/damage/hallowed-widow-damage-v3.png"
+      ]
+    },
+    {
+      "name": "The Clogfather",
+      "metadata": "bestiary/clogfather/monster.json",
+      "portrait": "bestiary/clogfather/marketing-v1.png",
+      "sprites": [
+        "assets/bestiary/the-clogfather/body-atlas-v1.png",
+        "assets/bestiary/the-clogfather/parts-atlas-v1.png",
+        "assets/bestiary/the-clogfather/weak-point-atlas-v1.png",
+        "assets/bestiary/the-clogfather/damage-atlas-v1.png"
+      ],
+      "preview": "bestiary/clogfather/art-preview.html",
+      "animation": "assets/bestiary/the-clogfather/animation-v1.json",
+      "status": "Proposed boss; source artwork, not validated runtime animation"
+    }
+  ],
+  "publication_note": "Consult each monster.json for current implementation status. Do not label every source-sheet pose as a validated animation. Existing assets are referenced, not copied or modified."
+}

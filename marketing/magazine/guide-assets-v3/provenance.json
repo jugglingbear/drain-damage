@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-14",
+  "edition": 3,
+  "deliverable": "marketing/magazine/gpi-monster-manual-v3.pdf",
+  "cover": {
+    "path": "marketing/magazine/guide-assets-v3/tony-sean-horde-cover-v1.png",
+    "tool": "Built-in image_gen",
+    "prompt": "Use case: ads-marketing. Create original cinematic painted 1990s action game magazine cover ART ONLY, no typography. Reference 1 Tony identity: spiky dark hair, navy shirt, teal overalls. Reference 2 Sean identity: COMPLETELY BALD scalp including sides, chin-only beard, NO moustache, orange shirt, blue overalls. Reference 3 Flushfiend monster: angry ceramic toilet with red eyes, teeth and pipe legs. Reference 4 Hallowed Widow: hairy black spider, white feather wings, golden halo, red eyes. Portrait composition. Tony and Sean stand together back-to-back as equal central heroes in a copper-pipe industrial basement, fighting a surrounding HORDE of at least six normal-sized Flushfiends and four flying Hallowed Widows. Tony fires a compact silver teal pressure gun with brass nozzle leftward; Sean aims a bulky red-plunger launcher rightward. Clearly visible faces, full heroic bodies, dynamic diagonal motion, splashing water, atmospheric amber and teal light. Men are unmistakably cooperating, weapons pointed outward at monsters, never at one another. Monsters encircle sides and foreground but do not obscure heroes. High-detail realistic painted pulp cover, expressive believable faces matching references, tactile ceramic, fabric, feathers and metal. No bosses, no giant fatberg, no Clogfather, no AI monster, no portal, no new species. No text, lettering, watermark or logos. Keep both heroes centrally within the middle 75 percent and all faces below top 15 percent; usable dark atmosphere around edges for magazine design. Exactly two human heroes, normal anatomy.",
+    "original": "/Users/sfoley/.codex/generated_images/01a1387a-f55c-7630-af51-0409ceafd920/exec-e4b99610-ca97-43e9-a70a-0ed0f51d8c63.png",
+    "width": 1024,
+    "height": 1536,
+    "status": "Marketing illustration; not gameplay; regular monsters only"
+  },
+  "profiles": {
+    "order": [
+      "Tony",
+      "Sean"
+    ],
+    "backstories": "TODO - awaiting Storyboarding Agent",
+    "sources": [
+      "assets/portraits/tony-expressions-v1.png",
+      "assets/portraits/sean-expressions-v1.png",
+      "assets/sprites/tony-v1.png",
+      "assets/sprites/sean-v2.png"
+    ],
+    "notes": "Existing character setup only; no invented personal history. PDF clipping preserves source image files."
+  },
+  "prior_provenance": [
+    "marketing/magazine/guide-assets-v1/provenance.json",
+    "marketing/magazine/guide-assets-v2/provenance.json"
+  ],
+  "preserved_editions": [
+    1,
+    2
+  ],
+  "layout_source": "marketing/magazine/build_guide.py",
+  "validation": "Ten pages rendered and visually inspected; profile order, TODO labels, source syntax and formatting checked."
+}
