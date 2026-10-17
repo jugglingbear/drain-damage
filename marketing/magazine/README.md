@@ -37,7 +37,14 @@ preview and development-history captions. The approved fake-advertisement headli
 All eight pages were rendered and visually inspected; extracted text was reviewed. Earlier editions are preserved.
 The source before integration is archived in `guide-assets-v19/pre-publication-source.json`.
 
+## Edition 21 disclaimer removal
+
+Removed the fictional-company footer and fictional-publication/non-affiliation paragraph. All eight pages rendered
+and visually checked; extracted text audited. `current.pdf` matches edition 21.
+
 ## Editorial policy
+
+Do not include fictional-company, fictional-publication or non-affiliation disclaimers in the reader edition.
 
 Suggest the dispenser's disturbing corporate practices through euphemisms and omissions. Do not describe its
 lethal mechanism or bodily processing. Never mention the viewer's screen or other fourth-wall-breaking details.

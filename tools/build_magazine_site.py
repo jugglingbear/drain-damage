@@ -51,12 +51,16 @@ body{margin:0;background:#10141c;color:#f5eddc;font:17px/1.5 system-ui,sans-seri
 header,main,footer{max-width:960px;margin:auto;padding:24px}
 header{border-bottom:1px solid #424750}h1{font-size:clamp(28px,5vw,48px);margin:8px 0}
 a{color:#9bf0cf;text-underline-offset:4px}a:focus-visible{outline:3px solid #ffd36b;outline-offset:4px}
+.masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.masthead p{margin:0}.repo-link{padding:10px 12px;border:1px solid #64716b;border-radius:4px}
 nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}nav a{padding:6px 12px;border:1px solid #64716b}
 figure{margin:0 0 32px}img{display:block;width:100%;height:auto;box-shadow:0 6px 30px #0008}
 figcaption{text-align:center;color:#bac3c9;font-size:14px;margin-top:10px}
 footer{color:#bac3c9} @media(max-width:600px){main{padding:16px 0}header,footer{padding:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style></head><body><header><p>DRAIN DAMAGE</p><h1>__TITLE__</h1>
+</style></head><body><header><div class="masthead"><p>DRAIN DAMAGE</p>
+<a class="repo-link" href="https://github.com/jugglingbear/drain-damage"
+aria-label="Drain Damage repository on GitHub">GitHub ↗</a></div><h1>__TITLE__</h1>
 <p>The magazine for plumbing's least ordinary working day.</p>
 <p><a href="magazine.pdf">Open the original PDF</a> · <a href="magazine.pdf" download>Download magazine</a></p>
 <nav aria-label="Magazine pages">__LINKS__</nav></header><main aria-label="Magazine">__FIGURES__</main>
