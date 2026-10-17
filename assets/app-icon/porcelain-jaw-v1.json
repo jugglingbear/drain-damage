@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-16",
+  "status": "Selected by Sean; integrated in Prototype 55 / 0.55.0",
+  "image": "assets/app-icon/porcelain-jaw-v1.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "prompt": "Create a single finished square app icon based EXACTLY on concept NUMBER 1, TOP LEFT of the reference board. Only that design: bright red rubber plunger on wooden handle thrust diagonally into a monstrous cracked white porcelain jaw with oversized ceramic teeth, wet sludge and splashes, dark teal sewer background. Preserve the composition, rich illustrated material rendering, aggressive dark-comedy tone and red/white/teal contrast of #1. The plunger cup is the central focal point, toothy jaw frames it on right and top, handle enters from left. No other concepts, NO numbers, lettering, grid or captions. One square image 1024x1024 or higher, artwork full bleed to square edges, no baked-in rounded-corner mask, no outer border or shadow. Keep key teeth and plunger within inner85percent for platform masking. This is the selected Drain Damage game application icon.",
+  "reference": "marketing/app-icon/concepts-v1.png",
+  "tool": "Built-in image generation",
+  "integration": "Use as square app icon master. Generate platform icon sizes/ICNS as needed, preserve original. No numbers or caption. Full bleed; platform supplies masking. Engineering owns project/export icon configuration and next build.",
+  "macos_icon": "assets/app-icon/porcelain-jaw-v1.icns",
+  "packaging_recipe": "bash tools/build_app_icon.sh",
+  "validation": "Exported ICNS matches packaged master byte-for-byte; app signing and version checks pass. Finder/Dock visual check pending."
+}

@@ -1228,6 +1228,21 @@ retested. The exported app reports 0.54.0. Existing environment and shutdown war
 **Capture gap:** No game opened. Actual visual review and screenshots await permission; the separate app and
 `builds/history/Prototype-54.zip` retain this iteration. No release binaries were pushed.
 
+## 055 — The porcelain jaw app icon — October 16, 2026
+
+**Build:** Prototype 55 / 0.55.0.
+
+Sean selected Art's first app-icon concept: a red plunger inside a monstrous porcelain jaw. The original master
+and provenance are preserved. Standard and Retina sizes are packaged into ICNS, with project and Mac export icon
+settings pointing to the selected artwork. Reproduce the package with `bash tools/build_app_icon.sh` on macOS.
+
+**Validation:** Export/signing and packaged version checks pass. The app's icon matches the generated ICNS
+byte-for-byte and the app reports 0.55.0. The sandboxed icon utility initially rejected the icon set; rerunning
+with required host access succeeded. No gameplay changes. Finder/Dock visual review remains pending.
+
+**Capture gap:** No game opened. Actual screenshots await permission; the separate Prototype-55 app and archive
+preserve this iteration. The concept board is design history, not a running-build screenshot.
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
