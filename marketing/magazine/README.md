@@ -91,3 +91,25 @@ inspect the crops against their actual artwork boundaries. Preserve proportions 
 
 All layout elements and text remain in `magazine.json`. Display text supports `angle`, `outline` and
 `stroke_width`; paragraphs support an optional `font`. Font choices remain in the JSON layout settings.
+
+## Automatic web publication
+
+The PDF generator also refreshes `current.pdf`, the stable Git LFS publication file. After visual review, commit
+and push that file to `main`. The **Publish magazine** GitHub Actions workflow renders its pages and deploys
+only the reader, page images, and downloadable PDF to GitHub Pages. Local generation alone does not publish.
+
+The HTML reader reproduces the PDF pages as images rather than reflowing the design. It includes page navigation
+and the original PDF for selectable text and full-resolution zoom. Image-only pages are not a screen-reader
+replacement for the document. GitHub Actions uses the finished PDF, so macOS fonts are not needed on the server.
+
+Expected address: [Discharge Quarterly](https://jugglingbear.github.io/drain-damage/).
+The workflow can also be rerun manually from GitHub Actions. Failed builds leave the previous deployment intact.
+
+To preview the generated site locally with Poppler installed:
+
+```sh
+python3 tools/build_magazine_site.py
+python3 -m http.server 8000 --directory builds/magazine-site
+```
+
+Open `http://localhost:8000` in a browser. Generated site files stay in the ignored builds folder.

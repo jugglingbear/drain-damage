@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 from math import cos, pi, sin
 from pathlib import Path
 
@@ -149,4 +150,8 @@ for page_number, page_data in enumerate(DOCUMENT["pages"], 1):
     C.addOutlineEntry(page_data["section"], page_data["id"], level=0)
     C.showPage()
 C.save()
+# Stable tracked publication path lets Pages follow new editions without workflow edits.
+CURRENT = SOURCE.with_name("current.pdf")
+if OUT.resolve() != CURRENT.resolve():
+    shutil.copyfile(OUT, CURRENT)
 print(OUT)

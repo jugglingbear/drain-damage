@@ -1,0 +1,49 @@
+name: Publish magazine
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - marketing/magazine/current.pdf
+      - tools/build_magazine_site.py
+      - .github/workflows/magazine-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: magazine-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Fetch magazine from Git LFS
+        run: git lfs pull --include="marketing/magazine/current.pdf" --exclude=""
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install PDF renderer
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - uses: actions/configure-pages@v5
+      - name: Build magazine reader
+        run: python3 tools/build_magazine_site.py
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: builds/magazine-site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@v4
