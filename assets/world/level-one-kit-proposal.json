@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "owner": "Bestiary / Art",
+  "status": "Engineering confirmed prop and gate dimensions; first raster delivery available in assets/world/first-call/manifest.json. Background variants and debris remain proposed.",
+  "generation_authorized": true,
+  "existing_assets": [
+    {
+      "path": "assets/world/basement-v1.png",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "availability": "Existing pixel backdrop; visually inspected. Navy/teal brick, copper pipes, recessed boilers, amber lamps.",
+      "provenance": "assets/art-prompts-v1.json",
+      "runtime_reference": "scripts/world_art.gd draws at 720x480, y=-40; horizontal repetition and camera-relative offset. Seamless tiling has not been validated."
+    },
+    {
+      "path": "assets/world/portal/loop-atlas-v1.png",
+      "manifest": "assets/world/portal/animation-v1.json",
+      "availability": "Eight-phase source effect only; alignment/loop validation pending. Do not assume approved first-level placement."
+    }
+  ],
+  "current_runtime_reference": {
+    "sources": [
+      "scripts/game.gd",
+      "scripts/world_art.gd"
+    ],
+    "floor_y": 440,
+    "world_width": 2400,
+    "player_collision": [
+      26,
+      46
+    ],
+    "player_art_height": 72,
+    "platform_rectangles": [
+      [
+        215,
+        375,
+        145,
+        16
+      ],
+      [
+        405,
+        320,
+        150,
+        16
+      ],
+      [
+        1150,
+        375,
+        145,
+        16
+      ],
+      [
+        1320,
+        320,
+        150,
+        16
+      ]
+    ],
+    "note": "Snapshot only, not proposed level dimensions. Current player platform collision checks downward crossing of tops; grounded props must not imply side-blocking collision until Engineering confirms support."
+  },
+  "kit_proposal": [
+    {
+      "id": "grounded-pipe-bundles",
+      "priority": 1,
+      "pieces": [
+        "Short strapped bundle on floor saddles",
+        "Wide bundle with flat securing plate as landing surface",
+        "Stepped bundle assembly with visible supports"
+      ],
+      "visual_rules": "Crisp light upper landing edge; shadowed rounded pipe sides; no floating strips. Flat usable top follows approved collision span.",
+      "dimensions": null,
+      "collision_contract": null
+    },
+    {
+      "id": "machinery-and-plinths",
+      "priority": 1,
+      "pieces": [
+        "Broken pump housing with flat intact base",
+        "Low motor plinth",
+        "Wide maintenance machine base with cracked casing"
+      ],
+      "visual_rules": "Distinct intact load-bearing tops; protruding decorative parts outside collision clearly secondary. Bases reach ground. No machinery motion or damage implied.",
+      "dimensions": null,
+      "collision_contract": null
+    },
+    {
+      "id": "foreground-debris",
+      "priority": 2,
+      "pieces": [
+        "Loose washers and short pipe offcuts",
+        "Broken casing fragments",
+        "Coiled hose and small rubble clumps"
+      ],
+      "visual_rules": "Low contrast, below feet or behind route-critical silhouettes. Non-solid by default; never disguise hazards, collectibles, landing edges or enemy tells.",
+      "dimensions": null,
+      "collision_contract": "Proposed non-colliding decoration; Engineering and Level Design confirm."
+    },
+    {
+      "id": "corporate-basement-backgrounds",
+      "priority": 1,
+      "pieces": [
+        "Utility intake/service corridor",
+        "Pump and pressure plant",
+        "Distribution/storage maintenance bay",
+        "Older collection chamber transition"
+      ],
+      "visual_rules": "Suggested motifs only, awaiting zones. Preserve navy/teal brick, copper and amber accents. Corporate infrastructure through conduits, blank sign plates and service cabinets. No baked text, platforms, floor collision, characters or story events.",
+      "dimensions": null,
+      "tiling_contract": null
+    },
+    {
+      "id": "transition-and-occlusion-pieces",
+      "priority": 2,
+      "pieces": [
+        "Wall pillar or pipe chase transition",
+        "Recessed doorway surround",
+        "Low foreground pipe or grate edge"
+      ],
+      "visual_rules": "Use to bridge confirmed background zones; keep traversal and combat silhouettes clear.",
+      "dimensions": null
+    }
+  ],
+  "engineering_confirmation_needed": [
+    "Logical pixel density, integer display scale and texture filtering.",
+    "Approved source dimensions and world footprints for each prop variant; atlas versus separate PNG preference.",
+    "Top collision spans, anchors, allowed overhang and whether solid side collisions are supported.",
+    "One-way versus fully solid platform semantics; projectile blocking rules.",
+    "Maximum climb steps and reachable landing widths for both employee movement profiles.",
+    "Background layer dimensions, tiling axis, overlap/seam requirements and parallax factors.",
+    "Foreground occlusion allowance, render layers and camera-safe margins.",
+    "Atlas gutters/extrusion, alpha thresholds and import settings."
+  ],
+  "level_design_confirmation_needed": [
+    "Ordered zones and visual changes per zone.",
+    "Placement counts and small/medium/large prop families needed.",
+    "Critical path versus optional jumps, enemy lanes, checkpoint and hazard clearances.",
+    "Approved set pieces; no boss or portal assumed from existing source art."
+  ],
+  "planned_asset_contract": {
+    "root": "assets/world/level-one/",
+    "versioning": "Preserve each generated original with versioned filenames; no overwriting earlier artwork.",
+    "metadata_fields": [
+      "id",
+      "zone_tags",
+      "asset_path",
+      "source_dimensions",
+      "logical_dimensions",
+      "anchor_pixels",
+      "nominal_bounds",
+      "collision_reference",
+      "layer",
+      "repeat_mode",
+      "seam_status",
+      "generation_prompt",
+      "reference_paths",
+      "validation_status"
+    ],
+    "defaults": "No generated art or numeric collision dimensions are committed by this proposal. Actual dimensions measured after generation; Engineering approves collision mapping."
+  },
+  "handoff": "Engineering owns runtime integration; Level Design owns layout; Art supplies raster pixel assets after dimensions are confirmed. No code-drawn replacements, roadmap edits or runtime edits in this handoff.",
+  "delivery_manifest": "assets/world/first-call/manifest.json",
+  "level_design_source": "levels/first-call/level-design.json"
+}

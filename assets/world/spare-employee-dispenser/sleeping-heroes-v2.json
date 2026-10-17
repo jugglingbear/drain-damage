@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-16",
+  "status": "Sleeping occupant sprite candidates; source edges verified; not integrated",
+  "canvas": [
+    128,
+    128
+  ],
+  "anchor": [
+    64,
+    104
+  ],
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "heroes": {
+    "tony": [
+      {
+        "id": 0,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          0,
+          0,
+          384,
+          532
+        ],
+        "destination": [
+          33.28,
+          22.72,
+          61.44,
+          85.12
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 1,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          384,
+          0,
+          384,
+          532
+        ],
+        "destination": [
+          33.28,
+          22.72,
+          61.44,
+          85.12
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 2,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          768,
+          0,
+          384,
+          532
+        ],
+        "destination": [
+          33.28,
+          22.72,
+          61.44,
+          85.12
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 3,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          1152,
+          0,
+          384,
+          532
+        ],
+        "destination": [
+          33.28,
+          22.72,
+          61.44,
+          85.12
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      }
+    ],
+    "sean": [
+      {
+        "id": 0,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          0,
+          532,
+          384,
+          492
+        ],
+        "destination": [
+          33.28,
+          30.39999999999999,
+          61.44,
+          78.72
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 1,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          384,
+          532,
+          384,
+          492
+        ],
+        "destination": [
+          33.28,
+          30.39999999999999,
+          61.44,
+          78.72
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 2,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          768,
+          532,
+          384,
+          492
+        ],
+        "destination": [
+          33.28,
+          30.39999999999999,
+          61.44,
+          78.72
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 3,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.png",
+        "source_rect": [
+          1152,
+          532,
+          384,
+          492
+        ],
+        "destination": [
+          33.28,
+          30.39999999999999,
+          61.44,
+          78.72
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      }
+    ]
+  },
+  "animations": {
+    "sleep": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "loop": true,
+      "cycle_seconds": 1.6
+    }
+  },
+  "notes": [
+    "Top/bottom split at532 keeps boots intact and gives clear gutters. Shared0.16scale, source foot registration; do not independently fit frames.",
+    "Two clones of selected hero only; never mix Tony and Sean.",
+    "Four subtle breathing/head poses; no machine geometry baked into sleeping sprites.",
+    "Sean references corrected sean-v3, not rejected tiny-beard sean-v2.",
+    "No gameplay or magazine layout changes made. Separate machine glass/empty-shell layers have not been generated; stocked magazine cutouts are flattened composites."
+  ],
+  "provenance": "marketing/spare-employee-dispenser/glass-front-prompts-v1.json",
+  "validation": {
+    "all_eight_crop_edge_alpha": 0,
+    "bounds": "pass",
+    "runtime_animation": "pending"
+  }
+}

@@ -1,0 +1,549 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "status": "Environment source assets delivered; runtime composition review pending",
+  "layout_authority": "handoffs/opening-trial-level-layout.json",
+  "viewport": [
+    960,
+    540
+  ],
+  "floor_y": 440,
+  "filter": "nearest",
+  "prompts": "assets/world/opening-trial/prompts-v1.json",
+  "background": {
+    "path": "assets/world/opening-trial/background-v1.png",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "source_rect": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "destination": [
+      0,
+      15,
+      960,
+      540
+    ],
+    "anchor": [
+      0,
+      0
+    ],
+    "collision": null,
+    "notes": "Draw existing basement underlay behind at top15px. Offset aligns painted masonry lip near floor440. Not seamless: use discrete wall bays and occlude joins with reused copper risers; do not claim seamless tiling."
+  },
+  "parts": [
+    {
+      "id": "deck",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        48,
+        310,
+        784,
+        86
+      ],
+      "logical_size": [
+        250,
+        16
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "layer": "platform",
+      "collision": {
+        "rect": [
+          0,
+          0,
+          250,
+          16
+        ],
+        "type": "one_way_top"
+      }
+    },
+    {
+      "id": "support",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        885,
+        152,
+        604,
+        349
+      ],
+      "logical_size": [
+        250,
+        120
+      ],
+      "anchor": [
+        0,
+        120
+      ],
+      "layer": "behind_play_plane",
+      "collision": null
+    },
+    {
+      "id": "floor-fascia",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        32,
+        710,
+        816,
+        164
+      ],
+      "logical_size": [
+        480,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "layer": "below_floor",
+      "collision": null
+    },
+    {
+      "id": "foreground-pipe",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        880,
+        748,
+        628,
+        136
+      ],
+      "logical_size": [
+        240,
+        52
+      ],
+      "anchor": [
+        0,
+        52
+      ],
+      "layer": "foreground",
+      "collision": null
+    },
+    {
+      "id": "access-plinth",
+      "path": "assets/world/first-call/pipe-bundle-v1.png",
+      "dimensions": [
+        2048,
+        768
+      ],
+      "source_rect": [
+        100,
+        255,
+        1850,
+        350
+      ],
+      "logical_size": [
+        150,
+        60
+      ],
+      "anchor": [
+        0,
+        60
+      ],
+      "layer": "platform",
+      "collision": {
+        "type": "solid",
+        "rect": [
+          0,
+          0,
+          150,
+          60
+        ]
+      },
+      "reuse_provenance": "assets/world/first-call/manifest.json"
+    }
+  ],
+  "geometry_instances": [
+    {
+      "id": "access-0",
+      "rect": [
+        180,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-0",
+      "rect": [
+        370,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-0",
+      "rect": [
+        670,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-1",
+      "rect": [
+        1080,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-1",
+      "rect": [
+        1270,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-1",
+      "rect": [
+        1570,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-2",
+      "rect": [
+        1980,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-2",
+      "rect": [
+        2170,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-2",
+      "rect": [
+        2470,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-3",
+      "rect": [
+        2880,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-3",
+      "rect": [
+        3070,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-3",
+      "rect": [
+        3370,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-4",
+      "rect": [
+        3780,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-4",
+      "rect": [
+        3970,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-4",
+      "rect": [
+        4270,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    },
+    {
+      "id": "access-5",
+      "rect": [
+        4680,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low access plinth; one easy jump on lower route"
+    },
+    {
+      "id": "deck-5",
+      "rect": [
+        4870,
+        320,
+        250,
+        16
+      ],
+      "collision": "one_way_top",
+      "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+    },
+    {
+      "id": "exit-step-5",
+      "rect": [
+        5170,
+        380,
+        150,
+        60
+      ],
+      "collision": "solid",
+      "role": "low return step; do not join to deck with solid wall"
+    }
+  ],
+  "boss_policy": "No Clogfather in opening. Future finale exactly one visible Clogfather; no duplicate silhouette/reflection/mural.",
+  "draw_order": [
+    "base backdrop",
+    "background wall bays",
+    "recessed support frames",
+    "platform decks/access steps",
+    "characters/projectiles",
+    "floor fascia below440",
+    "foreground pipes below480",
+    "UI"
+  ],
+  "collision_policy": "Only authored Level Design geometry collides. Background, support frames, floor fascia decoration and foreground have no collision. Deck one-way top and projectile behavior owned by Engineering.",
+  "placement_notes": [
+    "For each deck rect[x,320,250,16], draw support[x,320,250,120] first, deck on top. Supports are recessed decoration, never solids.",
+    "Draw low plinth at each access/exit-step rect. Keep40px/50px gaps and60px rise from layout.",
+    "Floor fascia top y440; foreground pipes bottom at540 so top488, below traversable lane. No foreground above440.",
+    "Cropping removes alpha margins intentionally, maps exact footprint. Supports open center preserved. Background currently one bay; repeated bays need join occlusion and parallax visual review."
+  ],
+  "effects": [
+    {
+      "id": "grate-closed",
+      "path": "assets/world/opening-trial/entry-fx-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "logical_size": [
+        64,
+        32
+      ],
+      "anchor": [
+        32,
+        28
+      ],
+      "collision": null
+    },
+    {
+      "id": "grate-warning",
+      "path": "assets/world/opening-trial/entry-fx-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "logical_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        56
+      ],
+      "collision": null
+    },
+    {
+      "id": "landing-warning",
+      "path": "assets/world/opening-trial/entry-fx-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "logical_size": [
+        64,
+        40
+      ],
+      "anchor": [
+        32,
+        36
+      ],
+      "collision": null
+    },
+    {
+      "id": "hostile-projectile",
+      "path": "assets/world/opening-trial/entry-fx-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "logical_size": [
+        16,
+        16
+      ],
+      "anchor": [
+        8,
+        8
+      ],
+      "collision": null
+    },
+    {
+      "id": "hostile-charge",
+      "path": "assets/world/opening-trial/entry-fx-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "logical_size": [
+        20,
+        20
+      ],
+      "anchor": [
+        10,
+        10
+      ],
+      "collision": null
+    },
+    {
+      "id": "hostile-impact",
+      "path": "assets/world/opening-trial/entry-fx-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "logical_size": [
+        24,
+        24
+      ],
+      "anchor": [
+        12,
+        12
+      ],
+      "collision": null
+    }
+  ],
+  "effect_notes": [
+    "Grate states have matched visible bottom anchors at floor440. Warning artwork is harmless; Mechanics owns0.8s warning/0.35s emerge/0.3s settle.",
+    "Landing cue is non-colliding. Do not pulse by hiding it completely; keep visible warning throughout.",
+    "Projectile artwork is16px canvas with bright central core; Mechanics collider radius4, velocity150. One non-homing shot, no offscreen fire.",
+    "Charge and impact are single authored poses; runtime opacity/scale may animate them. No claim of multi-frame effects.",
+    "Grate and ring amber cues are entry markers, not interactable pickups. Proposed trial-only effect style."
+  ],
+  "validation": {
+    "source_bounds": "pass",
+    "actual_dimensions_checked": true,
+    "transparent_atlas_cell_edge_alpha_max": 1,
+    "runtime_composition": "pending",
+    "collision": "Engineering must validate actual collision against Level Design geometry"
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "status": "Ready for integration; live composition pending",
+  "parts": [
+    {
+      "id": "deck",
+      "path": "assets/world/platform-readability-v3/low-deck-v3.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        66,
+        750,
+        1405,
+        95
+      ],
+      "logical_size": [
+        250,
+        16
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "layer": "platform",
+      "collision": {
+        "rect": [
+          0,
+          0,
+          250,
+          16
+        ],
+        "type": "one_way_top"
+      },
+      "instances": 3,
+      "validation": {
+        "top_alpha_min": 240,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "crop_bounds": "pass"
+      }
+    },
+    {
+      "id": "access-plinth",
+      "path": "assets/world/platform-readability-v3/low-deck-v3.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        71,
+        230,
+        1394,
+        344
+      ],
+      "logical_size": [
+        150,
+        60
+      ],
+      "anchor": [
+        0,
+        60
+      ],
+      "layer": "platform",
+      "collision": {
+        "rect": [
+          0,
+          0,
+          150,
+          60
+        ],
+        "type": "solid"
+      },
+      "instances": 6,
+      "validation": {
+        "top_alpha_min": 242,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "crop_bounds": "pass"
+      }
+    },
+    {
+      "id": "pipe-bundle",
+      "path": "assets/world/platform-readability-v3/low-deck-v3.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        71,
+        230,
+        1394,
+        344
+      ],
+      "logical_size": [
+        160,
+        60
+      ],
+      "anchor": [
+        0,
+        60
+      ],
+      "layer": "platform",
+      "collision": {
+        "rect": [
+          0,
+          0,
+          160,
+          60
+        ],
+        "type": "solid"
+      },
+      "instances": 6,
+      "validation": {
+        "top_alpha_min": 242,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "crop_bounds": "pass"
+      }
+    },
+    {
+      "id": "pump-housing",
+      "path": "assets/world/platform-readability-v3/pump-v3.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        145,
+        220,
+        1249,
+        626
+      ],
+      "logical_size": [
+        180,
+        120
+      ],
+      "anchor": [
+        0,
+        120
+      ],
+      "layer": "platform",
+      "collision": {
+        "rect": [
+          0,
+          0,
+          180,
+          120
+        ],
+        "type": "solid"
+      },
+      "instances": 4,
+      "validation": {
+        "top_alpha_min": 240,
+        "alpha_range": [
+          0,
+          254
+        ],
+        "crop_bounds": "pass"
+      }
+    },
+    {
+      "id": "supported-assembly",
+      "path": "assets/world/platform-readability-v3/tall-v3.png",
+      "dimensions": [
+        1323,
+        1189
+      ],
+      "source_rect": [
+        87,
+        130,
+        1148,
+        936
+      ],
+      "logical_size": [
+        200,
+        180
+      ],
+      "anchor": [
+        0,
+        180
+      ],
+      "layer": "platform",
+      "collision": {
+        "rect": [
+          0,
+          0,
+          200,
+          180
+        ],
+        "type": "solid"
+      },
+      "instances": 1,
+      "validation": {
+        "top_alpha_min": 235,
+        "alpha_range": [
+          0,
+          255
+        ],
+        "crop_bounds": "pass"
+      }
+    }
+  ],
+  "filter": "nearest",
+  "prompt": "assets/world/platform-readability-v3/prompts-v3.json",
+  "placement": "Map each crop to existing obstacle rectangle exactly. Crops trim raised end caps to expose continuous opaque tread at collision top. No collision or layout changes.",
+  "scope": "All 20 first-level walkable obstacles, four visual families; pipe-bundle shares plinth artwork.",
+  "readability": "Oxidized moss-green exterior frames, lighter gray-green tread, dark undercut. No beige paint.",
+  "exclusions": [
+    "Recessed decorative supports remain noncolliding and dark.",
+    "Existing continuous floor and wastewater cutaway retained."
+  ],
+  "validation": "Source images inspected, alpha and crop bounds measured. No game launched; running-build review pending."
+}

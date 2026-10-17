@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "status": "Art approved for integration; running-build composition pending",
+  "scope": "Replace only access-plinth and deck visuals in first-level opening. Not restricted to timed trial.",
+  "parts": [
+    {
+      "id": "deck",
+      "path": "assets/world/opening-trial/platform-contrast-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        42,
+        744,
+        1452,
+        101
+      ],
+      "logical_size": [
+        250,
+        16
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "layer": "platform",
+      "collision": {
+        "rect": [
+          0,
+          0,
+          250,
+          16
+        ],
+        "type": "one_way_top"
+      }
+    },
+    {
+      "id": "access-plinth",
+      "path": "assets/world/opening-trial/platform-contrast-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        44,
+        218,
+        1448,
+        356
+      ],
+      "logical_size": [
+        150,
+        60
+      ],
+      "anchor": [
+        0,
+        60
+      ],
+      "layer": "platform",
+      "collision": {
+        "type": "solid",
+        "rect": [
+          0,
+          0,
+          150,
+          60
+        ]
+      }
+    }
+  ],
+  "filter": "nearest",
+  "prompt": "assets/world/opening-trial/platform-contrast-prompts-v2.json",
+  "placement": "Draw source crop to exact existing obstacle rect. Top of crop is collision top. No added margins or collision changes. Plinth retains bottom-left anchor0,60; deck top-left0,0.",
+  "readability": "Worn ivory frame and tread, broad galvanized gray pipes, ochre safety paint and dark recesses separate solid foreground from copper/teal wall. No emissive/glow outline.",
+  "preserve": [
+    "150x60 solid plinth",
+    "250x16 one-way deck",
+    "Existing layout positions and obstacle shapes",
+    "Supports remain recessed noncolliding background decoration"
+  ],
+  "validation": {
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "alpha_range": [
+      0,
+      254
+    ],
+    "outside_sample_alpha": 0,
+    "crop_bounds": "pass",
+    "top_edge_variation": "Corner cap to central tread less than2 logical pixels after mapping",
+    "live_composition": "Engineering review required; no game launched"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "post-fatberg-portal",
+  "status": "Proposed environmental effect; source loop, not integrated",
+  "image": "assets/world/portal/loop-atlas-v1.png",
+  "width": 1774,
+  "height": 887,
+  "columns": 4,
+  "rows": 2,
+  "frames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "suggested_fps": 6,
+  "loop": true,
+  "anchor": "center of drain flange",
+  "anchor_status": "Nominal equal cells; ring jitter requires alignment review",
+  "story": {
+    "reveal": "Proposed after boss collapse",
+    "destination": null,
+    "cause": null,
+    "cosmology": null,
+    "bj_behavior": "Proposed diversion/concealment; prior knowledge unresolved"
+  },
+  "prompts": "bestiary/clogfather/art-prompts-v1.json",
+  "validation": {
+    "runtime_ready": false,
+    "seamless_loop_verified": false,
+    "notes": "Eight source phases present. Review ring registration, seam, alpha and pacing in engine."
+  }
+}

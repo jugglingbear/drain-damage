@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "status": "Art ready for runtime integration; composed running-build review remains Engineering-owned",
+  "date": "2026-10-16",
+  "source_dimensions": {
+    "assets/world/wastewater-cutaway/layers-v1.png": [
+      1536,
+      1024
+    ],
+    "assets/world/wastewater-cutaway/debris-v1.png": [
+      1536,
+      1024
+    ],
+    "assets/world/wastewater-cutaway/buildup-v1.png": [
+      1536,
+      1024
+    ]
+  },
+  "coordinate_system": "Logical pixels; source_rect is x,y,width,height in original image. destination_size is width,height. anchor is local placement pivot, not world coordinates.",
+  "module_width": 480,
+  "placement": {
+    "outer_y": [
+      456,
+      528
+    ],
+    "bore_y": [
+      464,
+      520
+    ],
+    "top_rim_y": 456,
+    "bottom_rim_y": 520,
+    "interior_y": 464,
+    "contents_bottom_y": 520,
+    "floor_cap_y": [
+      440,
+      456
+    ]
+  },
+  "assets": [
+    {
+      "id": "interior",
+      "path": "assets/world/wastewater-cutaway/layers-v1.png",
+      "source_rect": [
+        90,
+        270,
+        600,
+        155
+      ],
+      "destination_size": [
+        480,
+        56
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "interior"
+    },
+    {
+      "id": "rim-top",
+      "path": "assets/world/wastewater-cutaway/layers-v1.png",
+      "source_rect": [
+        840,
+        245,
+        620,
+        47
+      ],
+      "destination_size": [
+        480,
+        8
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "shell"
+    },
+    {
+      "id": "rim-bottom",
+      "path": "assets/world/wastewater-cutaway/layers-v1.png",
+      "source_rect": [
+        840,
+        412,
+        620,
+        43
+      ],
+      "destination_size": [
+        480,
+        8
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "shell"
+    },
+    {
+      "id": "water-a",
+      "path": "assets/world/wastewater-cutaway/layers-v1.png",
+      "source_rect": [
+        40,
+        672,
+        700,
+        146
+      ],
+      "destination_size": [
+        480,
+        56
+      ],
+      "anchor": [
+        0,
+        56
+      ],
+      "role": "water"
+    },
+    {
+      "id": "water-b",
+      "path": "assets/world/wastewater-cutaway/layers-v1.png",
+      "source_rect": [
+        800,
+        672,
+        700,
+        146
+      ],
+      "destination_size": [
+        480,
+        56
+      ],
+      "anchor": [
+        0,
+        56
+      ],
+      "role": "water"
+    },
+    {
+      "id": "grease-light",
+      "path": "assets/world/wastewater-cutaway/buildup-v1.png",
+      "source_rect": [
+        24,
+        324,
+        726,
+        98
+      ],
+      "destination_size": [
+        480,
+        18
+      ],
+      "anchor": [
+        0,
+        18
+      ],
+      "role": "buildup"
+    },
+    {
+      "id": "grease-medium",
+      "path": "assets/world/wastewater-cutaway/buildup-v1.png",
+      "source_rect": [
+        786,
+        250,
+        728,
+        172
+      ],
+      "destination_size": [
+        480,
+        32
+      ],
+      "anchor": [
+        0,
+        32
+      ],
+      "role": "buildup"
+    },
+    {
+      "id": "grease-heavy",
+      "path": "assets/world/wastewater-cutaway/buildup-v1.png",
+      "source_rect": [
+        24,
+        570,
+        726,
+        298
+      ],
+      "destination_size": [
+        480,
+        56
+      ],
+      "anchor": [
+        0,
+        56
+      ],
+      "role": "buildup"
+    },
+    {
+      "id": "plug",
+      "path": "assets/world/wastewater-cutaway/buildup-v1.png",
+      "source_rect": [
+        815,
+        605,
+        665,
+        220
+      ],
+      "destination_size": [
+        480,
+        56
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "terminal-plug"
+    },
+    {
+      "id": "wet-wipe",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        12,
+        158,
+        350,
+        290
+      ],
+      "destination_size": [
+        20.0,
+        16.571
+      ],
+      "anchor": [
+        10.0,
+        10.771
+      ],
+      "role": "floating-debris"
+    },
+    {
+      "id": "diaper",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        392,
+        140,
+        365,
+        310
+      ],
+      "destination_size": [
+        20.0,
+        16.986
+      ],
+      "anchor": [
+        10.0,
+        11.041
+      ],
+      "role": "floating-debris"
+    },
+    {
+      "id": "boot",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        780,
+        120,
+        380,
+        325
+      ],
+      "destination_size": [
+        20.0,
+        17.105
+      ],
+      "anchor": [
+        10.0,
+        11.118
+      ],
+      "role": "floating-debris"
+    },
+    {
+      "id": "toy-car",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        1180,
+        195,
+        343,
+        245
+      ],
+      "destination_size": [
+        20.0,
+        14.286
+      ],
+      "anchor": [
+        10.0,
+        9.286
+      ],
+      "role": "floating-debris"
+    },
+    {
+      "id": "phone",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        32,
+        565,
+        340,
+        385
+      ],
+      "destination_size": [
+        17.662,
+        20.0
+      ],
+      "anchor": [
+        8.831,
+        13.0
+      ],
+      "role": "floating-debris"
+    },
+    {
+      "id": "toothbrush",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        420,
+        557,
+        330,
+        380
+      ],
+      "destination_size": [
+        17.368,
+        20.0
+      ],
+      "anchor": [
+        8.684,
+        13.0
+      ],
+      "role": "floating-debris"
+    },
+    {
+      "id": "plastic-bag",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        783,
+        558,
+        370,
+        390
+      ],
+      "destination_size": [
+        18.974,
+        20.0
+      ],
+      "anchor": [
+        9.487,
+        13.0
+      ],
+      "role": "floating-debris"
+    },
+    {
+      "id": "grease-can",
+      "path": "assets/world/wastewater-cutaway/debris-v1.png",
+      "source_rect": [
+        1184,
+        592,
+        316,
+        345
+      ],
+      "destination_size": [
+        18.319,
+        20.0
+      ],
+      "anchor": [
+        9.159,
+        13.0
+      ],
+      "role": "floating-debris"
+    }
+  ],
+  "profile_source": "handoffs/wastewater-cutaway-level-design.json",
+  "profile": [
+    {
+      "section": "service-entry",
+      "world_x": [
+        0,
+        1440
+      ],
+      "water_depth_fraction": 0.75,
+      "flow_pixels_per_second": 42,
+      "lodged_debris_coverage_fraction": 0.08
+    },
+    {
+      "section": "stores",
+      "world_x": [
+        1440,
+        3120
+      ],
+      "water_depth_fraction": 0.62,
+      "flow_pixels_per_second": 34,
+      "lodged_debris_coverage_fraction": 0.18
+    },
+    {
+      "section": "pressure-gallery",
+      "world_x": [
+        3120,
+        4800
+      ],
+      "water_depth_fraction": 0.46,
+      "flow_pixels_per_second": 25,
+      "lodged_debris_coverage_fraction": 0.32
+    },
+    {
+      "section": "broken-pump-hall",
+      "world_x": [
+        4800,
+        6480
+      ],
+      "water_depth_fraction": 0.3,
+      "flow_pixels_per_second": 16,
+      "lodged_debris_coverage_fraction": 0.5
+    },
+    {
+      "section": "return-main",
+      "world_x": [
+        6480,
+        8160
+      ],
+      "water_depth_fraction": 0.14,
+      "flow_pixels_per_second": 7,
+      "lodged_debris_coverage_fraction": 0.72
+    },
+    {
+      "section": "main-sump-approach",
+      "world_x": [
+        8160,
+        8570
+      ],
+      "water_depth_fraction": 0.04,
+      "flow_pixels_per_second": 2,
+      "lodged_debris_coverage_fraction": 0.9
+    },
+    {
+      "section": "clogfather-arena",
+      "world_x": [
+        8570,
+        9600
+      ],
+      "water_depth_fraction": 0,
+      "flow_pixels_per_second": 0,
+      "lodged_debris_coverage_fraction": 1.0
+    }
+  ],
+  "draw_order": [
+    "interior",
+    "water",
+    "floating-debris",
+    "buildup",
+    "terminal-plug",
+    "shell",
+    "floor cap",
+    "HUD"
+  ],
+  "tiling": {
+    "mode": "alternating mirrored pairs",
+    "tile_width": 480,
+    "pair_width": 960,
+    "rule": "For each layer alternate unflipped and horizontally flipped tiles using identical source. Adjacent edge texels then match. World-anchored static tiles; no end caps repeated inside continuous pipe. Water scrolls paired pattern to right under bore clipping. A and B are alternative water textures, not verified morph frames; use A for first integration.",
+    "native_seamless_claim": false
+  },
+  "water": {
+    "bottom_y": 520,
+    "height_rule": "56 * interpolated water_depth_fraction; scale destination height to this value, retaining ripple surface at its top. Clip inside bore. Omit at depth zero.",
+    "motion": "Scroll world-relative phase right at local flow speed; pause with gameplay. Do not reverse with player."
+  },
+  "buildup": {
+    "rule": "Bottom-anchor light/medium/heavy at y520. Select or crossfade by interpolated coverage; scale height to 56*coverage, clip to bore. At x8570 use plug across entire bore with no floaters/water.",
+    "terminal_rule": "Use inset plug crop to avoid transparent perimeter; alpha min249/255. Draw plug over opaque interior, no gaps or boss silhouette."
+  },
+  "debris": {
+    "anchor_rule": "Place anchor at water surface, slight submergence. Clip to bore; max8 pieces; stable world segment seed.",
+    "sizes": "20px maximum dimension; optional toy-car24px maximum; no glow or projectile emphasis.",
+    "source_crop_note": "Boot and car are not equal384px cells; custom crops keep their silhouettes separate."
+  },
+  "integration": {
+    "replace": "Existing y440..540 opaque floor fascia must become y440..456 floor cap; existing foreground pipe at y488..540 must be suppressed in this strip.",
+    "collision": "Decorative only, no damage or collision.",
+    "trial": "story_x=min(trial_world_x,1440); never compress full-route terminal clog into trial.",
+    "sampling": "World-position profile, never furthest player position; terminal starts8570."
+  },
+  "prompts": "assets/world/wastewater-cutaway/prompts-v1.json"
+}

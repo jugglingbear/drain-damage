@@ -1,0 +1,767 @@
+{
+  "schema_version": 1,
+  "status": "Art integration candidate; source regions checked, game choreography not validated",
+  "machine": {
+    "canvas": [
+      192,
+      192
+    ],
+    "anchor": [
+      96,
+      192
+    ],
+    "states": {
+      "idle": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          0,
+          0,
+          443,
+          565
+        ],
+        "destination": [
+          25.5,
+          27.599999999999994,
+          132.9,
+          169.5
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "scan": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          443,
+          0,
+          444,
+          565
+        ],
+        "destination": [
+          25.5,
+          27.599999999999994,
+          133.2,
+          169.5
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "dispense": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          887,
+          0,
+          443,
+          565
+        ],
+        "destination": [
+          25.5,
+          27.599999999999994,
+          132.9,
+          169.5
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "activated": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          1330,
+          0,
+          444,
+          565
+        ],
+        "destination": [
+          25.5,
+          27.599999999999994,
+          133.2,
+          169.5
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      }
+    },
+    "hand": {
+      "extend": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          0,
+          580,
+          510,
+          285
+        ],
+        "destination": [
+          0.0,
+          54.5,
+          153.0,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "compress": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          510,
+          580,
+          440,
+          285
+        ],
+        "destination": [
+          21.0,
+          54.5,
+          132.0,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "throw": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          950,
+          580,
+          380,
+          285
+        ],
+        "destination": [
+          45.0,
+          54.5,
+          114.0,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "retract": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          1330,
+          580,
+          444,
+          285
+        ],
+        "destination": [
+          33.0,
+          54.5,
+          133.2,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      }
+    },
+    "foreground_trim": {
+      "source_state": "dispense",
+      "source_rect": [
+        980,
+        449,
+        250,
+        100
+      ],
+      "destination": [
+        53.4,
+        162.3,
+        75,
+        30
+      ],
+      "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+      "note": "Bottom lip occluder only; draw cabinet first, emerging hero, then this trim. Mask hero to opening during emergence."
+    },
+    "attachment": {
+      "hand_mount": [
+        144,
+        95
+      ],
+      "opening_rect": [
+        54,
+        96,
+        56,
+        68
+      ],
+      "hero_exit_feet": [
+        82,
+        166
+      ],
+      "interaction_note": "Hand source faces left; animate mount/extension relative to machine. Hero grab position must meet open clamp; no auto-stretch of hero."
+    }
+  },
+  "heroes": {
+    "tony": {
+      "canvas": [
+        128,
+        128
+      ],
+      "standing_anchor": [
+        64,
+        104
+      ],
+      "states": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            0,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            24.1,
+            20.209999999999994,
+            79.42,
+            85.5
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "compress": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            418,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            24.1,
+            20.209999999999994,
+            79.42,
+            85.5
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "ball": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            -0.5,
+            -24.5,
+            125.39999999999999,
+            135.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "emerge": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            0,
+            450,
+            418,
+            395
+          ],
+          "destination": [
+            24.1,
+            30.28,
+            79.42,
+            75.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_right": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            418,
+            450,
+            418,
+            395
+          ],
+          "destination": [
+            24.1,
+            30.28,
+            79.42,
+            75.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_left": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            836,
+            450,
+            418,
+            395
+          ],
+          "destination": [
+            24.1,
+            30.28,
+            79.42,
+            75.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "shrug": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            0,
+            845,
+            418,
+            409
+          ],
+          "destination": [
+            24.1,
+            31.42,
+            79.42,
+            77.71000000000001
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "impact": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            418,
+            845,
+            418,
+            409
+          ],
+          "destination": [
+            5.199999999999996,
+            10.799999999999997,
+            117.04,
+            114.52000000000001
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "slide": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            836,
+            845,
+            418,
+            409
+          ],
+          "destination": [
+            5.199999999999996,
+            5.199999999999996,
+            117.04,
+            114.52000000000001
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        }
+      }
+    },
+    "sean": {
+      "canvas": [
+        128,
+        128
+      ],
+      "standing_anchor": [
+        64,
+        104
+      ],
+      "states": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            0,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            24.1,
+            20.78,
+            79.42,
+            84.55
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "compress": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            418,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            24.1,
+            20.78,
+            79.42,
+            84.55
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "ball": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            -0.5,
+            -24.5,
+            125.39999999999999,
+            133.5
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "emerge": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            0,
+            445,
+            418,
+            395
+          ],
+          "destination": [
+            24.1,
+            31.039999999999992,
+            79.42,
+            75.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_right": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            418,
+            445,
+            418,
+            395
+          ],
+          "destination": [
+            24.1,
+            31.039999999999992,
+            79.42,
+            75.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_left": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            418,
+            445,
+            418,
+            395
+          ],
+          "destination": [
+            24.1,
+            31.039999999999992,
+            79.42,
+            75.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": true
+        },
+        "shrug": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            0,
+            840,
+            418,
+            414
+          ],
+          "destination": [
+            24.1,
+            31.42,
+            79.42,
+            78.66
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "impact": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            418,
+            840,
+            418,
+            414
+          ],
+          "destination": [
+            5.199999999999996,
+            10.799999999999997,
+            117.04,
+            115.92000000000002
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "slide": {
+          "path": "assets/world/spare-employee-dispenser/sean-v1.png",
+          "source_rect": [
+            836,
+            840,
+            418,
+            414
+          ],
+          "destination": [
+            5.199999999999996,
+            5.199999999999996,
+            117.04,
+            115.92000000000002
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        }
+      }
+    }
+  },
+  "screen_space": {
+    "canvas": [
+      128,
+      128
+    ],
+    "anchor": [
+      64,
+      64
+    ],
+    "maximum_display_size": [
+      256,
+      256
+    ]
+  },
+  "provenance": "assets/world/spare-employee-dispenser/prompts-v1.json",
+  "timeline": [
+    {
+      "time": 0,
+      "event": "scan"
+    },
+    {
+      "time": 0.4,
+      "event": "grab"
+    },
+    {
+      "time": 0.8,
+      "event": "compress"
+    },
+    {
+      "time": 1.4,
+      "event": "throw"
+    },
+    {
+      "time": 1.9,
+      "event": "impact"
+    },
+    {
+      "time": 2.1,
+      "event": "slide"
+    },
+    {
+      "time": 2.1,
+      "event": "vend"
+    },
+    {
+      "time": 3.6,
+      "event": "emerge"
+    },
+    {
+      "time": 4.1,
+      "event": "look_left"
+    },
+    {
+      "time": 4.5,
+      "event": "look_right"
+    },
+    {
+      "time": 4.9,
+      "event": "shrug"
+    },
+    {
+      "time": 5.35,
+      "event": "stamp"
+    },
+    {
+      "time": 5.5,
+      "event": "release"
+    }
+  ],
+  "short_paths": {
+    "full_health": [
+      {
+        "time": 0,
+        "event": "stamp"
+      },
+      {
+        "time": 0.4,
+        "event": "release"
+      }
+    ],
+    "respawn": [
+      {
+        "time": 0,
+        "event": "vend"
+      },
+      {
+        "time": 0.3,
+        "event": "emerge"
+      },
+      {
+        "time": 0.9,
+        "event": "look_left"
+      },
+      {
+        "time": 1.15,
+        "event": "look_right"
+      },
+      {
+        "time": 1.4,
+        "event": "shrug"
+      },
+      {
+        "time": 1.9,
+        "event": "release"
+      }
+    ]
+  },
+  "animation_notes": [
+    "Authored key poses; runtime supplies arm travel, scan motion, throw scaling and slide/fade interpolation. Not a dense frame-by-frame cartoon.",
+    "Idle/activated are holds. Scan uses authored lit cabinet. Compression swaps crouch then ball.",
+    "Throw ball from world hand into screen-space around480,280; impact then slide downward while alpha fades; remove by3.6s.",
+    "Screen gag does not inherit camera transforms. Draw smear separately from intact replacement.",
+    "Hero left/right labels follow inspected poses rather than generated order; Sean left uses explicit mirror.",
+    "All text remains live. Do not stretch transparent sprites based on individual opaque bounds."
+  ],
+  "limitations": [
+    "Machine opening/hero occlusion and hand reach need composed runtime review.",
+    "Hero emergence has one authored stepping pose, not a walk cycle.",
+    "Small source edge fringes may remain; alpha compositing required.",
+    "Sequence timing and world/screen transition not tested in running game.",
+    "No claim of production visual approval."
+  ],
+  "validation": {
+    "source_bounds": "pass",
+    "rgba": "pass",
+    "frame_count": 26,
+    "actual_dimensions": {
+      "machine": [
+        1774,
+        887
+      ],
+      "tony": [
+        1254,
+        1254
+      ],
+      "sean": [
+        1254,
+        1254
+      ]
+    },
+    "runtime": "pending Engineering",
+    "substantial_alpha_crop_edges": "pass"
+  }
+}

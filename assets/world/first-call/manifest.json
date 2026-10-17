@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "owner": "Bestiary / Art",
+  "status": "Integrated in Prototype 27 using specified crops and destination bounds; headless traversal validated, live visual review pending",
+  "runtime_integrated": true,
+  "coordinate_convention": "Source rect [x,y,width,height] in original image pixels. Destination-local coordinates start at top-left. Draw source rect directly into full logical destination rectangle; do NOT fit the entire image or preserve source aspect ratio.",
+  "filter": "Nearest-neighbor; deliberate nonuniform scaling to confirmed footprint. Source originals retained unchanged.",
+  "background": "assets/world/basement-v1.png",
+  "assets": [
+    {
+      "id": "pipe-bundle-v1",
+      "texture_path": "assets/world/first-call/pipe-bundle-v1.png",
+      "image_dimensions": [
+        2048,
+        768
+      ],
+      "source_rect": [
+        100,
+        255,
+        1850,
+        350
+      ],
+      "source_foot_anchor": [
+        1025,
+        605
+      ],
+      "logical_size": [
+        160,
+        60
+      ],
+      "foot_anchor": [
+        80,
+        60
+      ],
+      "solid_collision_rect": [
+        0,
+        0,
+        160,
+        60
+      ],
+      "top_surface": [
+        0,
+        0,
+        160,
+        0
+      ],
+      "left_side": [
+        0,
+        0,
+        0,
+        60
+      ],
+      "right_side": [
+        160,
+        0,
+        160,
+        60
+      ],
+      "floor_y": 440,
+      "world_top_y": 380,
+      "alpha_minimum_in_source_crop": 251,
+      "prompt": "Use case: stylized-concept. Original game-ready side-scrolling PIXEL ART environment prop for Drain Damage. Match dark navy outlines, muted teal machinery, rusty copper plumbing, small warm brass accents of reference background. Orthographic straight SIDE ELEVATION, NO perspective top surface, no isometric view. One isolated object, crisp visible pixel clusters, limited palette, nearest-neighbor look, not smooth illustration. Genuine transparent empty background, opaque object. No floor shadow, no floor, no scenery, characters, labels, text, particles or detached bits. CRITICAL collision readability: main silhouette a solid rectangular mass with FLAT HORIZONTAL walkable top all the way across, VERTICAL left/right sides, flat continuous bottom resting on ground. No spikes or parts above top, no overhang beyond rectangle, no holes through body, no floating slab or unsupported legs. Object occupies a precisely rectangular footprint with only tiny corner bevels, large clear alpha margins around it. LOW PIPE BUNDLE / PUMP PLINTH. Wide low footprint aspect ratio 160:60 (8:3). Several tightly bundled copper pipe segments encased in a dark teal rectangular support cradle, full-height vertical end plates, steel straps, small cut-end circles visible as inset side details. A flat teal bolted securing plate forms the complete top landing edge. Base is a solid shallow machinery plinth, sides flush with top and bottom. Low and wide, no pipes protrude outside the rectangle. Render large enough for clean downscaling to160x60 logical pixels. Landscape canvas.",
+      "reference_images": [
+        "assets/world/basement-v1.png"
+      ],
+      "notes": "May also draw at180x60: use destination foot anchor90,60 and collider0,0,180,60."
+    },
+    {
+      "id": "pump-housing-v1",
+      "texture_path": "assets/world/first-call/pump-housing-v1.png",
+      "image_dimensions": [
+        1536,
+        1024
+      ],
+      "source_rect": [
+        190,
+        250,
+        1160,
+        580
+      ],
+      "source_foot_anchor": [
+        770,
+        830
+      ],
+      "logical_size": [
+        180,
+        120
+      ],
+      "foot_anchor": [
+        90,
+        120
+      ],
+      "solid_collision_rect": [
+        0,
+        0,
+        180,
+        120
+      ],
+      "top_surface": [
+        0,
+        0,
+        180,
+        0
+      ],
+      "left_side": [
+        0,
+        0,
+        0,
+        120
+      ],
+      "right_side": [
+        180,
+        0,
+        180,
+        120
+      ],
+      "floor_y": 440,
+      "world_top_y": 320,
+      "alpha_minimum_in_source_crop": 251,
+      "prompt": "Use case: stylized-concept. Original game-ready side-scrolling PIXEL ART environment prop for Drain Damage. Match dark navy outlines, muted teal machinery, rusty copper plumbing, small warm brass accents of reference background. Orthographic straight SIDE ELEVATION, NO perspective top surface, no isometric view. One isolated object, crisp visible pixel clusters, limited palette, nearest-neighbor look, not smooth illustration. Genuine transparent empty background, opaque object. No floor shadow, no floor, no scenery, characters, labels, text, particles or detached bits. CRITICAL collision readability: main silhouette a solid rectangular mass with FLAT HORIZONTAL walkable top all the way across, VERTICAL left/right sides, flat continuous bottom resting on ground. No spikes or parts above top, no overhang beyond rectangle, no holes through body, no floating slab or unsupported legs. Object occupies a precisely rectangular footprint with only tiny corner bevels, large clear alpha margins around it. MEDIUM SUPPORTED PUMP HOUSING. Rectangular footprint aspect ratio180:120 (3:2). A broken but stable dark teal industrial pump encased in a solid rectangular cabinet and plinth, inset circular copper pump casing and short recessed pipe connections visible on its front, cracked inset access panel, rusty bolts. Broad flat metal cap spans full width; straight vertical reinforced sides and continuous grounded bottom. All decorative mechanics within bounds. Render large enough for downscaling to180x120 logical pixels. Landscape canvas.",
+      "reference_images": [
+        "assets/world/basement-v1.png"
+      ],
+      "notes": "Crop deliberately trims corner caps and edge protrusions to provide solid flat collision-aligned silhouette."
+    },
+    {
+      "id": "supported-assembly-v1",
+      "texture_path": "assets/world/first-call/supported-assembly-v1.png",
+      "image_dimensions": [
+        1322,
+        1190
+      ],
+      "source_rect": [
+        90,
+        170,
+        1140,
+        885
+      ],
+      "source_foot_anchor": [
+        660,
+        1055
+      ],
+      "logical_size": [
+        200,
+        180
+      ],
+      "foot_anchor": [
+        100,
+        180
+      ],
+      "solid_collision_rect": [
+        0,
+        0,
+        200,
+        180
+      ],
+      "top_surface": [
+        0,
+        0,
+        200,
+        0
+      ],
+      "left_side": [
+        0,
+        0,
+        0,
+        180
+      ],
+      "right_side": [
+        200,
+        0,
+        200,
+        180
+      ],
+      "floor_y": 440,
+      "world_top_y": 260,
+      "alpha_minimum_in_source_crop": 239,
+      "prompt": "Use case: stylized-concept. Original game-ready side-scrolling PIXEL ART environment prop for Drain Damage. Match dark navy outlines, muted teal machinery, rusty copper plumbing, small warm brass accents of reference background. Orthographic straight SIDE ELEVATION, NO perspective top surface, no isometric view. One isolated object, crisp visible pixel clusters, limited palette, nearest-neighbor look, not smooth illustration. Genuine transparent empty background, opaque object. No floor shadow, no floor, no scenery, characters, labels, text, particles or detached bits. CRITICAL collision readability: main silhouette a solid rectangular mass with FLAT HORIZONTAL walkable top all the way across, VERTICAL left/right sides, flat continuous bottom resting on ground. No spikes or parts above top, no overhang beyond rectangle, no holes through body, no floating slab or unsupported legs. Object occupies a precisely rectangular footprint with only tiny corner bevels, large clear alpha margins around it. TALL SUPPORTED ASSEMBLY. Rectangular footprint aspect ratio200:180 (10:9). Heavy grounded dark teal machinery cabinet with stacked inset pump modules, copper pipe loops inside the cabinet, reinforced outer side columns and solid lower plinth. Broken equipment but stable and obviously load-bearing; flat broad walkable top cap and vertical full-height sides. No detached/floating pieces, no legs, no holes. Texture front suggests complex industrial machinery without obscuring solid rectangular silhouette. Render large enough for downscaling to200x180 logical pixels. Near square canvas.",
+      "reference_images": [
+        "assets/world/basement-v1.png"
+      ],
+      "notes": "Crop deliberately trims corner caps and edge protrusions to provide solid flat collision-aligned silhouette."
+    },
+    {
+      "id": "service-shutter-v1",
+      "texture_path": "assets/world/first-call/service-shutter-v1.png",
+      "image_dimensions": [
+        975,
+        1612
+      ],
+      "source_rect": [
+        365,
+        36,
+        244,
+        1534
+      ],
+      "source_foot_anchor": [
+        487,
+        1570
+      ],
+      "logical_size": [
+        48,
+        260
+      ],
+      "foot_anchor": [
+        24,
+        260
+      ],
+      "solid_collision_rect": [
+        0,
+        0,
+        48,
+        260
+      ],
+      "top_surface": [
+        0,
+        0,
+        48,
+        0
+      ],
+      "left_side": [
+        0,
+        0,
+        0,
+        260
+      ],
+      "right_side": [
+        48,
+        0,
+        48,
+        260
+      ],
+      "floor_y": 440,
+      "world_top_y": 180,
+      "alpha_minimum_in_source_crop": 250,
+      "prompt": "Use case: stylized-concept. Original SNES-inspired pixel-art INDUSTRIAL SERVICE SHUTTER, straight orthographic side elevation, isolated transparent PNG. One very NARROW TALL rectangular closed metal barrier, aspect ratio of visible solid shutter 48:260 (about1:5.4), centered on a portrait canvas with empty transparent space to either side. Dark teal steel horizontal shutter slats, navy outlines, rusty copper edge strips, restrained brass bolts, a clear straight bottom sealing bar. Completely closed opaque continuous rectangular silhouette: flat top, flat base, straight vertical sides, no gaps, legs, holes or protruding handle. No doorway arch or wide wall. No text, signs, lights, floor, wall, shadows, particles, characters, hazard stripes. Flat mechanical steel and crisp chunky pixel clusters matching a corporate basement with muted teal machinery and copper pipes, no smooth gradients or photo realism. The same image will be clipped and translated upward into overhead housing by game code to represent opening. No alternate frames needed. Render full closed vertical shutter uncut, keep visible object far narrower than canvas, no perspective. Entire shutter reaches its bottom line, grounded when placed; no detached supports.",
+      "reference_images": [],
+      "notes": "Closed collision48x260. Open state uses same image translated upward260 logical pixels and clipped to original destination rectangle; fully open has no visible shutter or collision. No separate open PNG required by Engineering contract."
+    }
+  ],
+  "validation": {
+    "alpha_measured": true,
+    "crop_interiors_have_no_transparent_holes": true,
+    "generated_images_visually_inspected": true,
+    "engine_visual_check": false,
+    "collision_playtest": false,
+    "notes": "Do not infer side solidity from old one-way platform code. Engineering must implement solid sides/tops/projectile blocking. Review scaling and crop at intended display size, with both heroes and pursuing enemies."
+  },
+  "level_design_source": "levels/first-call/level-design.json",
+  "scope": "Reusable families for eleven low, five medium and one tall placements per Level Design. Existing basement reused. Background variants and noncolliding debris deferred beyond this first prop handoff. Gate supplied after Engineering dimension confirmation. No runtime, roadmap or game-window operations.",
+  "gate_contract": {
+    "logical_size": [
+      48,
+      260
+    ],
+    "closed_top": 180,
+    "bottom": 440,
+    "open_state": "runtime_retracted_and_clipped",
+    "transition_collision": "Engineering controls safe timing; no newly closing gate behind player. Gates remain open after finite encounter clears.",
+    "ceiling_connection": "Retract upward beyond closed top into existing overhead service space; no new surrounding wall art supplied."
+  }
+}

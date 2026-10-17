@@ -1,0 +1,52 @@
+{
+  "tool": "built-in imagegen",
+  "date": "2026-10-16",
+  "prompt": "Use case: precise-object-edit. Image 1 is the exact Sean sprite sheet to edit. Image 2 is Sean's original photograph, facial hair reference ONLY. Change ONLY facial hair on all visible faces in image1: replace tiny isolated dark chin dot with the photo's full broad gray-brown chin beard, spreading across underside/front of chin, with a slightly pointed shaggy lower edge and lighter gray strands. Include a distinct narrow vertical soul patch centered directly below lower lip, as in photograph, with bare skin on either side separating it from outer chin beard. Beard should be visibly substantial like photo, roughly mouth-width or wider across lower chin, not tiny tuft. Keep upper lip clean: no moustache, no hair ring around mouth, no cheek beard or sideburns. Translate photo facial hair into same outlined pixel sprite style, NOT photographic pasted hair. Do not copy sunglasses from photo. Preserve all nine poses, bald head, expressions, clothing, hands, body proportions, positions, cell boundaries, exact1254x1254canvas, and transparent background of image1. Facial hair only, nothing else.",
+  "references": [
+    "assets/world/spare-employee-dispenser/sean-v2.png",
+    "references/characters/sean-original.png"
+  ],
+  "output": "assets/world/spare-employee-dispenser/sean-v3.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "source_edge_checks": [
+    {
+      "state": "grab",
+      "maximum_edge_alpha": 1
+    },
+    {
+      "state": "compress",
+      "maximum_edge_alpha": 0
+    },
+    {
+      "state": "ball",
+      "maximum_edge_alpha": 0
+    },
+    {
+      "state": "emerge",
+      "maximum_edge_alpha": 1
+    },
+    {
+      "state": "look_right",
+      "maximum_edge_alpha": 1
+    },
+    {
+      "state": "look_left",
+      "maximum_edge_alpha": 1
+    },
+    {
+      "state": "shrug",
+      "maximum_edge_alpha": 0
+    },
+    {
+      "state": "impact",
+      "maximum_edge_alpha": 1
+    },
+    {
+      "state": "slide",
+      "maximum_edge_alpha": 0
+    }
+  ]
+}
