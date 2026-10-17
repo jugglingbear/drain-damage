@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "id": "first-call",
+  "updated": "2026-10-14",
+  "owner": "Level Design",
+  "status": "Implementation brief; numbers are first-pass tuning, not playtested",
+  "title": "First Call: The Basement From Hell",
+  "baseline": "Prototype 26: 2400 pixels, 4 platforms, 3 Flushfiends; no boss",
+  "scope": "Expand the existing corporate basement into a complete side-scrolling mission; preserve approved opening and completion dialogue.",
+  "world": {
+    "width": 9600,
+    "floor_y": 440,
+    "viewport": [
+      960,
+      540
+    ],
+    "spawn": [
+      85,
+      394
+    ],
+    "exit_x": 9450
+  },
+  "duration": {
+    "target_minutes": [
+      4,
+      6
+    ],
+    "measurement": "First successful run excluding dialogue, pause and deaths; aspiration pending telemetry",
+    "traversal_only_seconds": [
+      36,
+      41
+    ],
+    "note": "Do not inflate duration with empty corridors, inflated HP or forced waiting. Record actual clear time for both heroes."
+  },
+  "movement_contract": {
+    "theoretical_apex_pixels": 86.49,
+    "required_rise_max": 60,
+    "required_horizontal_gap_max": 80,
+    "landing_width_min": 120,
+    "continuous_floor": true,
+    "rule": "Validate with slower Sean including acceleration and early release. No lethal pits. Upper paths are optional; grounded objects may require a single reachable jump.",
+    "collision": "Grounded machinery and pipe bundles have solid sides and tops matching their silhouette. Suspended service grates may be one-way. Do not draw a solid object with walk-through collision."
+  },
+  "encounter_contract": {
+    "playable_species": [
+      "toilet"
+    ],
+    "total_authored_enemies": 30,
+    "maximum_active_attackers": 4,
+    "ordinary_hp_source": "bestiary/flushfiend/monster.json",
+    "hp_override": null,
+    "activation": "Prefer visible forward spawns with at least 220 pixels of separation. At a closed encounter gate, a queued reinforcement may arrive to either side only through the telegraphed reinforcement rule. Count telegraphing plus active enemies against the cap of four.",
+    "pursuit": "Retain approved persistent pursuit after aggro; never silently leash or delete survivors. Delay later waves if earlier pursuers fill the active cap.",
+    "completion": "A clear objective must account for all 30 authored enemies, including queued enemies. No exit softlock from unspawned enemies. Finale only begins once earlier encounters are resolved.",
+    "routing": "Enemies cannot pass through solid props. Ground enemies must negotiate low obstacles or have connected alternate routes; test pursuit at every prop.",
+    "fairness": "No unannounced behind-player spawns, checkpoint spawns, landing-zone spawns or spawns during dialogue. A visible rear reinforcement is permitted only with the warning, clearance and cancellation rules below.",
+    "gates": {
+      "decision": "Approve visible finite encounter gates, with a necessary explicit exception for safely telegraphed rear reinforcements. A gate alone does not guarantee room ahead of a player pressed against it.",
+      "placement": "One gate at the exit of each authored zone, including the final exit. Engineering chooses coordinates after carving out a clear combat pocket; preserve checkpoint footprints on the far side.",
+      "appearance": "Art supplies a reusable industrial service shutter with closed/open states. Closed silhouette must span the traversable height and match collision; no invisible walls or code-drawn substitutes.",
+      "behavior": "Starts visibly closed before entry; never drops onto player or enemy. Opens immediately when the zone finite queue and surviving enemies are cleared; remains open across deaths. No timer padding. Backtracking remains open.",
+      "reinforcements": "Prefer ahead of the hero. If no forward location exists, choose a fully visible clear floor location behind with at least 220 pixels from player collision bounds, outside checkpoint footprints and predicted jump landing. Show the existing enemy sprite as a non-colliding flashing warning for at least 1.25 seconds before activation; this reuses art, not a substitute drawing. No damage or attacks during warning.",
+      "recheck": "Before activation recheck separation, visible camera bounds, prop/enemy overlap and landing safety. If unsafe, cancel and requeue without consuming a kill or spawn count. Do not pause the whole game; a queued enemy never counts as defeated.",
+      "liveness": "Reserve at least a 640-pixel continuous clear combat lane before each gate, with two candidate reinforcement locations. Test rushing gate, leftmost/rightmost player positions, camping candidate locations, repeated jumping, retreat and checkpoint retry. If no safe candidate exists, reposition terrain or gate; do not reduce warning distance or violate cap.",
+      "ui": "Show finite zone enemies remaining including queued enemies using existing HUD text; a closed gate must communicate why it is closed.",
+      "art_dependency": "Engineering supplies exact source dimensions and anchor/collider contract to Bestiary / Art before generation."
+    }
+  },
+  "zones": [
+    {
+      "id": "service-entry",
+      "x": [
+        0,
+        1440
+      ],
+      "seconds": [
+        25,
+        40
+      ],
+      "purpose": "Immediate action and a readable first object jump, no tutorial overlay",
+      "enemy_x": [
+        620,
+        1020,
+        1280
+      ],
+      "terrain": [
+        [
+          300,
+          380,
+          180,
+          60
+        ],
+        [
+          1060,
+          380,
+          160,
+          60
+        ]
+      ],
+      "art": "Low pipe bundles and broken pump plinth; open sightlines"
+    },
+    {
+      "id": "stores",
+      "x": [
+        1440,
+        3120
+      ],
+      "seconds": [
+        35,
+        50
+      ],
+      "purpose": "Alternating low and high routes through stored equipment",
+      "enemy_x": [
+        1710,
+        1990,
+        2350,
+        2700,
+        2950
+      ],
+      "terrain": [
+        [
+          1800,
+          380,
+          160,
+          60
+        ],
+        [
+          2020,
+          320,
+          180,
+          120
+        ],
+        [
+          2260,
+          380,
+          160,
+          60
+        ],
+        [
+          2720,
+          380,
+          160,
+          60
+        ]
+      ],
+      "art": "Pipe storage, heavy pump housings and supported service shelf"
+    },
+    {
+      "id": "pressure-gallery",
+      "x": [
+        3120,
+        4800
+      ],
+      "seconds": [
+        40,
+        55
+      ],
+      "purpose": "Recovery pocket followed by two short combat groups; reserve hazards for validated art and mechanics",
+      "enemy_x": [
+        3630,
+        3890,
+        4160,
+        4450,
+        4660
+      ],
+      "terrain": [
+        [
+          3700,
+          380,
+          160,
+          60
+        ],
+        [
+          3920,
+          320,
+          180,
+          120
+        ],
+        [
+          4160,
+          380,
+          160,
+          60
+        ]
+      ],
+      "art": "Pressure manifolds; any active leak requires visible warning and safe approach"
+    },
+    {
+      "id": "broken-pump-hall",
+      "x": [
+        4800,
+        6480
+      ],
+      "seconds": [
+        40,
+        55
+      ],
+      "purpose": "Broad machinery staircase, optional upper firing position, then open recovery space",
+      "enemy_x": [
+        5050,
+        5310,
+        5570,
+        5850,
+        6110,
+        6350
+      ],
+      "terrain": [
+        [
+          5140,
+          380,
+          160,
+          60
+        ],
+        [
+          5360,
+          320,
+          180,
+          120
+        ],
+        [
+          5600,
+          260,
+          200,
+          180
+        ],
+        [
+          5860,
+          320,
+          180,
+          120
+        ],
+        [
+          6100,
+          380,
+          160,
+          60
+        ]
+      ],
+      "art": "Connected collapsed pump assembly with grounded supports; no floating slab staircase"
+    },
+    {
+      "id": "return-main",
+      "x": [
+        6480,
+        8160
+      ],
+      "seconds": [
+        40,
+        55
+      ],
+      "purpose": "Final remix of small groups, cover and open lanes; checkpoint before finale",
+      "enemy_x": [
+        6980,
+        7210,
+        7450,
+        7680,
+        7900,
+        8070
+      ],
+      "terrain": [
+        [
+          7030,
+          380,
+          160,
+          60
+        ],
+        [
+          7250,
+          320,
+          180,
+          120
+        ],
+        [
+          7490,
+          380,
+          160,
+          60
+        ]
+      ],
+      "art": "Heavy return pipes, foreground rubble outside combat silhouettes"
+    },
+    {
+      "id": "main-sump",
+      "x": [
+        8160,
+        9600
+      ],
+      "seconds": [
+        45,
+        75
+      ],
+      "purpose": "Complete the job in an open finale arena",
+      "enemy_x": [
+        8460,
+        8790,
+        9100,
+        9300,
+        9400
+      ],
+      "terrain": [],
+      "art": "Distinct sump chamber; leave at least 640 pixels of connected clear combat floor",
+      "finale": "First integration uses two finite Flushfiend waves (3 then 2). The Clogfather replaces this fallback only when boss mechanics, art and timing are validated; never present fallback as boss delivery."
+    }
+  ],
+  "terrain_coordinates": "Each tuple is x, top_y, width, height in logical pixels; these are intended solid object bounds. All bases reach floor_y=440. Engineering may use a narrower verified art-aligned collider, preserving reachable top surfaces.",
+  "spawn_adjustment": "Authored enemy_x values express encounter intent. Do not use nearest-clear-point relocation as final placement: it clusters homes and reverses intended order. Engineering must reserve broad combat pockets, relocate terrain and distribute staged homes in route order, outside props and checkpoint footprints.",
+  "recovery": {
+    "checkpoint_x": [
+      3300,
+      6660,
+      8190
+    ],
+    "clear_radius_pixels": 160,
+    "activation": "Restore to selected hero max health once at each newly reached checkpoint; show plumber tape using existing art.",
+    "death": "Restore health and return to latest checkpoint; cleared enemies remain cleared, queued waves persist. Preserve pursuit identity but ensure a safe respawn position and grace before contact.",
+    "restart": "Reset all enemies, waves, checkpoints and mission progress. Preserve selected hero and existing story replay rules."
+  },
+  "art_contract": {
+    "owner": "Bestiary / Art",
+    "engineering_confirms_dimensions": true,
+    "suggested_logical_prop_sizes": [
+      [
+        160,
+        60
+      ],
+      [
+        180,
+        120
+      ],
+      [
+        200,
+        180
+      ]
+    ],
+    "background": "Reuse existing basement pending new art; request entry/storage, pressure/pump and sump variants, built for 960x540 viewport and seamless scrolling.",
+    "foreground": "Transparent PNG props with explicit foot anchors, top-surface coordinates and collision bounds. Decorative debris must not hide enemies, projectiles or landing edges.",
+    "priority": "Grounded low pipe bundle, medium pump housing, tall supported assembly, then zone backgrounds and non-colliding foreground debris.",
+    "restriction": "No independently generated or code-drawn substitute scenery. Existing art may be reused with its actual collision semantics; missing pieces remain explicitly pending."
+  },
+  "deferred": [
+    "Hallowed Widow and other species until playable AI and animations validate",
+    "Clogfather boss subject to existing combat-design.json, starter range and timing validation",
+    "Acid drips until telegraph art, safe-lane logic and contact-hit damage scale are validated",
+    "Portal and destination until Storyboarding resolves story direction",
+    "Alternative camera/perspective levels: future design exploration, no conversion of this first mission"
+  ],
+  "acceptance": [
+    "Both Tony and Sean can traverse every mandatory jump and finish all authored encounters",
+    "All 30 enemies are accounted for; at most four active attackers; no spawn or patrol inside a prop",
+    "Checkpoints do not activate repeatedly; death, restart and finale wave transitions cannot softlock",
+    "Persistent pursuers negotiate props; projectiles use the same solid-world bounds as movement",
+    "Camera, floor, background tiling, exit and HUD cover all 9600 pixels without old 2400 limits",
+    "Record clear time and damage per zone for both heroes; do not claim target duration as measured",
+    "Preserve prior build and capture actual running-game screenshots under the project permission rule",
+    "Roadmap and storybook distinguish integrated fallback, pending art and planned boss",
+    "Gate liveness and warning-spawn safety pass for both heroes, including rushing and camping; gates never conceal unresolvable queued enemies."
+  ],
+  "coordination": {
+    "story": "design/first-level-narrative.md",
+    "engineering": "handoffs/engineering-level-one-baseline.json",
+    "alignment": "Corporate-HQ service infrastructure and sump finale match Storyboarding. Existing ending applies only to cleared ordinary enemies; boss and portal need a dedicated approved replacement ending.",
+    "delivery_boundary": "Expanded playable route is an intermediate delivery toward the complete first mission. Do not mark the intended Clogfather mission complete with a Flushfiend fallback.",
+    "engineering_budget": "Engineering suggested 18\u201324 enemies over 6000\u20138000 pixels. Level Design proposes 30 over 9600 with a four-attacker cap; reduce empty distance or repetitive encounters after measured playtests, not by increasing HP.",
+    "art": "assets/world/level-one-kit-proposal.json",
+    "story_review": "Storyboarding reviewed the six-zone route: no narrative conflicts. All authored enemies must be defeated for current completion text; fallback must not imply boss defeat, repaired plumbing or headquarters safety."
+  }
+}
