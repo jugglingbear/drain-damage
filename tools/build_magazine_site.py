@@ -35,6 +35,8 @@ def build_site(destination: Path) -> None:
         for number, page in enumerate(pages, 1):
             shutil.copyfile(page, destination / f'page-{number}.jpg')
     shutil.copyfile(PDF, destination / 'magazine.pdf')
+    shutil.copytree(ROOT / 'storybook', destination / 'storybook', dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns('.gdignore', '.DS_Store'))
     figures = '\n'.join(
         f'<figure id="page-{n}"><img src="page-{n}.jpg" alt="Magazine page {n}" '
         f'loading="{"eager" if n == 1 else "lazy"}"><figcaption>Page {n} of {count}</figcaption></figure>'
@@ -46,6 +48,7 @@ def build_site(destination: Path) -> None:
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>__TITLE__ — Drain Damage</title>
 <style>
+.site-nav{max-width:960px;margin:auto;padding:16px 24px 0}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:2rem}
 body{margin:0;background:#10141c;color:#f5eddc;font:17px/1.5 system-ui,sans-serif}
 header,main,footer{max-width:960px;margin:auto;padding:24px}
@@ -58,7 +61,10 @@ figure{margin:0 0 32px}img{display:block;width:100%;height:auto;box-shadow:0 6px
 figcaption{text-align:center;color:#bac3c9;font-size:14px;margin-top:10px}
 footer{color:#bac3c9} @media(max-width:600px){main{padding:16px 0}header,footer{padding:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style></head><body><header><div class="masthead"><p>DRAIN DAMAGE</p>
+</style></head><body>
+<nav class="site-nav" aria-label="Project publications">
+<a href="storybook/storybook.html">Browse the development storybook →</a></nav>
+<header><div class="masthead"><p>DRAIN DAMAGE</p>
 <a class="repo-link" href="https://github.com/jugglingbear/drain-damage"
 aria-label="Drain Damage repository on GitHub">GitHub ↗</a></div><h1>__TITLE__</h1>
 <p>The magazine for plumbing's least ordinary working day.</p>

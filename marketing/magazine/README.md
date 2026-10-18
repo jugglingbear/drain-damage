@@ -165,13 +165,16 @@ All layout elements and text remain in `magazine.json`. Display text supports `a
 
 The PDF generator also refreshes `current.pdf`, the stable Git LFS publication file. After visual review, commit
 and push that file to `main`. The **Publish magazine** GitHub Actions workflow renders its pages and deploys
-only the reader, page images, and downloadable PDF to GitHub Pages. Local generation alone does not publish.
+the reader, page images, downloadable PDF, and development storybook with its media to GitHub Pages.
+Changes under `storybook/` also trigger publication. Local generation alone does not publish.
 
 The HTML reader reproduces the PDF pages as images rather than reflowing the design. It includes page navigation
 and the original PDF for selectable text and full-resolution zoom. Image-only pages are not a screen-reader
 replacement for the document. GitHub Actions uses the finished PDF, so macOS fonts are not needed on the server.
 
 Expected address: [Discharge Quarterly](https://jugglingbear.github.io/drain-damage/).
+The [development storybook](https://jugglingbear.github.io/drain-damage/storybook/storybook.html)
+and magazine have reciprocal links at the top of each page. The storybook retains explicit capture gaps.
 The workflow can also be rerun manually from GitHub Actions. Failed builds leave the previous deployment intact.
 
 To preview the generated site locally with Poppler installed:

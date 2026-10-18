@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - marketing/magazine/current.pdf
+      - storybook/**
       - tools/build_magazine_site.py
       - .github/workflows/magazine-pages.yml
   workflow_dispatch:
@@ -21,8 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Fetch magazine from Git LFS
-        run: git lfs pull --include="marketing/magazine/current.pdf" --exclude=""
+      - name: Fetch publication media from Git LFS
+        run: git lfs pull --include="marketing/magazine/current.pdf,storybook/**" --exclude=""
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'

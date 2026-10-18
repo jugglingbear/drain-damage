@@ -8,6 +8,10 @@
 :root { color-scheme:dark; }
 * { box-sizing:border-box; }
 body { margin:0; background:#101c2a; color:#eef4ed; font:16px/1.5 system-ui,sans-serif; }
+.site-nav { max-width:1400px; margin:auto; padding:20px 24px 0; }
+.site-nav a { display:inline-block; padding:10px 14px; border:1px solid #7ce4bc; color:#7ce4bc;
+  border-radius:4px; text-underline-offset:4px; }
+.site-nav a:focus-visible { outline:3px solid #ffd36b; outline-offset:4px; }
 main { max-width:1400px; margin:auto; padding:32px 24px 48px; }
 h1 { margin:0 0 24px; font-size:clamp(24px,4vw,38px); line-height:1.2; }
 .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
@@ -21,6 +25,9 @@ strong { color:#7ce4bc; }
 </style>
 </head>
 <body>
+<nav class="site-nav" aria-label="Project publications">
+<a href="../index.html">← Read Discharge Quarterly magazine</a>
+</nav>
 <main>
 <h1>Global Plumbing Initiative — In pictures</h1>
 <div class="gallery">
