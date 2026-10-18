@@ -6,7 +6,7 @@ Their employer’s working name is Mainframe Plumbing & Supply. The game title r
 
 ## Play
 
-Open `builds/Drain Damage.app` in Finder. Godot is not required to play the exported app.
+Open `builds/Prototype-71/Drain Damage.app` in Finder. Godot is not required to play the exported app.
 This local prototype is ad-hoc signed, not notarized for public distribution.
 
 - Move: A/D or left/right arrows.
@@ -20,7 +20,7 @@ There is no timed mode, twenty-second cutoff or results popup. The opening has s
 foreground plinths, Flushfiend runners, a perched shooter, a warned floor emerger and flying spiders. Spatial triggers
 and safety checks control arrivals; running past an unsafe entry does not create kill credit. Later rooms retain their
 finite waves and checkpoints. Prototype 47 removes kill-count shutters: ordinary enemies never block advancement.
-The finale remains toilet waves until the planned boss is implemented.
+The finale retains ordinary waves; Clogfather remains planned. Prototype 69 adds Skitterling before that finale.
 
 Tony has four contact-hit health and speed 270; Sean has five and speed 235. Both share jump physics.
 One Spare Employee Dispenser near the midpoint saves progress and heals once. It holds one selected-hero clone.
@@ -30,13 +30,24 @@ Stock stays empty across deaths and revisits; only a new run refills it. The thr
 Later injured sequences can use the existing dialogue-skip control. The gag costs no life. You begin with three total lives. After a death animation,
 BJ presents one of twelve messages with a matching emotional portrait. Choose Continue to return to the latest
 checkpoint with full health and three seconds of protection if lives remain. Held buttons cannot dismiss the popup.
-Defeated enemies stay defeated. At zero lives, Game Over offers Retry or Return to Main Menu; Retry starts a fresh run.
+Death resets encounters from the active respawn origin, including defeated enemies, while clearing old enemies,
+projectiles, corpses and warnings. Before the checkpoint, the level encounters restart. After it, earlier sections
+stay inactive; only checkpoint-owned encounters and those ahead return. The selected difficulty and resolved encounter
+arrangement stay the same across remaining-life respawns. At zero lives, Retry starts a new run with a new seed.
 Reach the exit; clearing ordinary enemy waves is optional. The approved introduction and route-specific completion dialogue remain skippable.
 Prototype 35 animates body movement independently of aim, with six run frames and distinct jump, landing,
 hurt and death poses. The HUD shows one selected-hero head for each remaining life.
 Human pacing and visual review are pending. Automated tests verify continuous play beyond twenty seconds,
 checkpoint recovery, encounter accounting, open traversal and completion conditions. They do not establish survival balance.
 No game window is opened by headless tests.
+
+Prototype 70 adds eight Septic Air Force encounters to the existing swarm, distributed across the opening, service
+route, overhead pump and three post-boss locations. These additions use a separate two-swarm capacity budget so they
+cannot displace ordinary monster admissions. New swarms have 0.8 seconds of visible harmless warning and hold contact
+while the hero occupies their initial footprint. Checkpoint retries restore four later encounters. The quiet approach
+and Skitterling room stay empty of ordinary enemies. All eighteen packaged full-route bots encountered all nine swarms;
+contact remained enabled, with test-only healing to complete coverage. Human chaos, fairness and sound review remain
+pending.
 
 ## Opening screen
 
@@ -46,7 +57,7 @@ All in-game button instructions live there. The selected title song is “It Tak
 
 - Open employee selection: Enter, Space, controller A, or Menu.
 - Toggle music: M or controller Y (remembered for this session only).
-- Return to title from pause or the completed-job screen: Q or controller B.
+- Return to title: choose Main Menu in the pause/completion menu. Controller B resumes or cancels pause.
 - Quit from title: Escape.
 
 Title artwork and its exact generation prompt are preserved in `assets/title/`.
@@ -67,9 +78,64 @@ The first-level profile supplies these faster values; canonical baseline records
 Tony’s pressure gun reaches 320 logical pixels; Sean’s plunger reaches 480.
 BJ uses the approved server-rack portrait and semantic emotional expressions.
 
+Prototype 68 fixes Flushfiends stalling against a second platform. They jump again after landing on each reachable
+step, using the same jump strength and movement collision. A blocked ceiling or unreachable wall triggers a short
+retreat. This is grounded navigation, with no midair double jump. Live staircase review remains pending.
+
+## Skitterling encounter
+
+Prototype 71 uses lateral tunnels into and out of the locked 960×540 room. Walk, stop or reverse inside them; authored
+foreground shells occlude the hero naturally. Entry closes only after the hero walks fully into the room. The camera
+blends into position, stays fixed through the fight and follows the hero out after the final defeat. Background and
+ceiling attack pipes retain their existing placement. The floor remains continuous, with no drowning mechanic.
+
+Roaches enter, shriek and form a rat with 540 HP: 45 Tony hits or 30 Sean hits, roughly seven seconds of uninterrupted
+fire. Its apparent death still holds for four seconds before renewed movement and the 180 HP alligator form. Excess
+rat damage cannot skip the second fight. The named 720 HP bar stays visible through transitions alongside player health
+and lives. Rat bites and pipe launches retain warnings.
+
+The alligator dives and visibly swims beneath the hero. It stops at a committed column for a 0.8-second warning, then
+throws one item vertically upward. The item hurts on its way up or down and never homes after the warning. Three
+sequential throws use distinct nearby origins, reacquiring the hero between throws; the 28-pixel item can still hit a
+stationary hero at each origin. After swimming to an emergence point, it warns, surfaces and performs two room-crossing
+jaw charges, each with a warning. The cycle repeats until defeated. Hidden travel is invulnerable, and occupied returns
+warn again rather than spawning on the hero. Death resets the fight at checkpoint 4650 under the normal clone-stock
+rules.
+
+Automated checks cover both heroes, all difficulties, stationary hits and moving dodges, walking portals, camera,
+checkpoint resets, launch shortcuts and full routes retaining all nine swarm encounters. Live animation, sound,
+human balance and screenshots remain pending; headless tests do not establish survival fairness.
+
+## Game difficulty
+
+After choosing Tony or Sean, select Easy, Normal or “The Computer is Cheating!!” (the Hard mode).
+Prototype 67 restores the same plate size as Easy and Normal, with the original sludge, bolts and metal texture
+visible. Art-approved coral tints add warmth across normal, hover and selected states; the full label fits at 22px.
+Selection retains a rim, corner marks and arrow. The internal Hard mode and gameplay are unchanged. Difficulty explanations and selected
+hero portraits/names remain absent, leaving the differences for players to discover.
+Normal is the default. Use Up/Down or W/S, the controller
+D-pad/left stick, or click a row. Enter/Space or controller A/Menu confirms; Back or Escape/controller B returns
+to employee selection without changing the chosen hero. The existing introduction follows Start Job.
+
+- Easy has a fixed authored subset, smaller groups and longer spacing.
+- Normal resolves controlled encounter variations at the start of each run.
+- Hard adds tested opening-role combinations and more overlap within the existing safety limits.
+
+Health, weapon damage and attack tells are unchanged. New runs vary Normal and Hard; a remaining-life respawn
+reuses that run's arrangement. Live fairness testing remains pending. Safety checks can defer or omit an entry;
+there is no requirement to kill every enemy. The short encounter just after the checkpoint may safely expire
+while the respawn protection interval is running.
+
+Prototype 60 extends Hard costumes through movement, aiming, death, HUD heads and the employee dispenser.
+Tony and Sean have heavily torn shirts; Sean also has torn blue overalls. Hard uses matching emotional portraits,
+and both plumbers speak in uppercase, including radio replies. Easy/Normal and BJ retain their existing presentation.
+Actual Godot visual review and screenshots remain pending; offline art composition and packaged checks pass.
+
 ## Portrait dialogue
 
-The tutorial and opening controls briefing were removed in Prototype 12. Character selection begins the approved story introduction, then the basement. Story conversations still freeze gameplay and support reveal, advance, and skip.
+The tutorial and opening controls briefing were removed in Prototype 12. Employee and difficulty selection lead to the
+approved story introduction, then the basement. Story conversations still freeze gameplay and support reveal, advance
+and skip.
 The expanded route is integrated. The Clogfather, acid hazards, and portal remain deferred.
 
 The first world-art pass adds a layered pixel basement, animated Sean and toilet sprites, and detailed metal platforms.
@@ -92,6 +158,39 @@ Bindings use Godot's standard gamepad mapping, with a stick deadzone to reduce d
 Disconnecting a controller pauses play. Sean confirmed successful in-game testing with an Xbox Series X|S controller on
 October 13, 2026.
 
+## Direct playtest targets
+
+Use `make run-targets` to list implemented destinations. Only level 1 and the Skitterling mini-boss are implemented;
+full boss targets remain unavailable. Plain `make run` still opens the normal title and selection flow.
+
+```sh
+make run LEVEL=1 HERO=tony DIFFICULTY=normal
+make run MINIBOSS=skitterling HERO=sean DIFFICULTY=hard SEED=42
+make run-check MINIBOSS=skitterling HERO=sean
+```
+
+Choose exactly one of `LEVEL`, `MINIBOSS` or `BOSS`. Optional `HERO` defaults to `tony`, `DIFFICULTY` to `normal`, and
+`SEED` to `42`; seed values range from 0 through 2147483647. Unknown, unimplemented, empty CLI or conflicting targets
+fail clearly. Hero/difficulty/seed overrides require a destination. `run-check` verifies initialization headlessly and
+exits without playing; `run-preview` accepts the same selectors and uses the small agent-test window.
+
+The Skitterling shortcut starts before the entrance tunnel with full selected-hero health, three lives and checkpoint
+4650 initialized. Walk through the entrance to start the fight. Earlier encounters are cleared; the post-boss route
+remains available. Death uses the normal checkpoint and clone-stock rules. A level shortcut skips the opening dialogue.
+
+To run a preserved exported build, add `APP` with its app-bundle path; the same registry and validation run inside the
+exported game. For example, after building Prototype 71:
+
+```sh
+make run MINIBOSS=skitterling APP="builds/Prototype-71/Drain Damage.app"
+make run-check LEVEL=1 APP="builds/Prototype-71/Drain Damage.app"
+"builds/Prototype-71/Drain Damage.app/Contents/MacOS/Drain Damage" -- --miniboss=skitterling --hero=sean
+```
+
+Direct Godot source launches accept the same arguments after `--`, including `--level=1`, `--difficulty=hard`,
+`--seed=42` and `--list-playtest-targets`. The registry is `data/playtest-targets.json`; new entries also require a real
+initializer in `scripts/playtest_launch.gd`. Launch options do not grant agents permission to open a game window.
+
 ## Develop
 
 From Terminal, run `cd /Users/sfoley/repos/drain_damage`, then:
@@ -99,6 +198,10 @@ From Terminal, run `cd /Users/sfoley/repos/drain_damage`, then:
 | Command | What it does |
 | --- | --- |
 | `make` or `make help` | Show the colorized command list |
+| `make install` | Install pinned local tools and fetch unresolved Git LFS assets |
+| `make install INSTALL_FLAGS=--system` | Also install missing system packages through an existing package manager |
+| `make install-check` | Check dependency readiness without making changes |
+| `make install-plan` | Preview dependency setup without making changes |
 | `make check` | Check the Godot executable |
 | `make build` | Build for the local OS; currently macOS only |
 | `make build-macos` | Export, include license notices, ad-hoc sign, and verify the Mac app |
@@ -110,8 +213,8 @@ From Terminal, run `cd /Users/sfoley/repos/drain_damage`, then:
 Close the game before rebuilding. The Mac build replaces `builds/Drain Damage.app`.
 `make run` uses the source directly, so it does not need a standalone export first.
 Use `make run GODOT=/path/to/Godot` to override the executable. Paths may be shell-quoted if they contain spaces.
-On macOS the default is the existing project-local Godot; other hosts look for `godot` on PATH.
-Other-host execution is not yet verified. Windows will need a compatible shell and Make environment.
+On macOS the default is the project-local Godot app; Linux uses `.tools/godot` when present, then `godot` on PATH.
+Linux execution is not yet verified. Native Windows setup is unsupported; use the Linux setup inside WSL2.
 
 `make build-android`, `make build-ios`, and `make build-windows` are reserved commands that currently
 fail with setup guidance. They do not claim to produce builds. SDKs, templates, signing where needed,
@@ -156,17 +259,51 @@ history. Some archived design records refer to excluded local drafts; those link
 The initial commits organize the existing Prototype 52 snapshot by subsystem; they do not reconstruct its original
 implementation chronology. The complete initial series is the buildable baseline.
 
-For a fresh Mac checkout, install the Godot 4.7.2 editor and matching macOS export template. Place the editor at
-`.tools/Godot.app` (or override `GODOT`) and the template at `.tools/macos.zip`, then run `make build`.
-The tracked `licenses/GODOT_COPYRIGHT.txt` is copied into each exported app. Engine binaries and templates are
-intentionally not downloaded by the build.
+## Install build dependencies
+
+After cloning, run:
+
+```sh
+make install INSTALL_FLAGS=--system
+make build
+```
+
+If Make is missing, invoke the same installer directly:
+
+```sh
+bash tools/install.sh --system
+```
+
+The installer detects macOS or Linux and x86_64 or ARM64. It installs the pinned Godot 4.7.2 editor and matching
+host export templates under ignored `.tools/`, verifies SHA-256 digests from `tools/godot-lock.json`, and fetches
+unresolved Git LFS assets. Matching tools are reused; conflicting local tools are preserved and reported.
+It does not launch the game. Python 3.10+, Git, Git LFS and Make are required; the Python helpers need no pip packages.
+
+`--system` permits installation of missing prerequisites through an existing Homebrew, apt, dnf or pacman.
+Package-manager authentication and confirmation still apply. Without that flag, missing system prerequisites cause
+a clear failure and an exact setup command; plain `make install` installs only project-local tools and assets.
+On macOS, first install Apple's Command Line Tools with `xcode-select --install` if absent. If Homebrew is needed
+but missing, install it from [Homebrew's website](https://brew.sh), then rerun setup. These first-time system
+installers are not silently run by the project. Git must already be available to clone the repository.
+
+Use `make install-plan` for a read-only plan or `make install-check` for a read-only readiness check. Their direct
+equivalents are `bash tools/install.sh --dry-run` and `bash tools/install.sh --check`.
+
+macOS setup supplies `.tools/Godot.app` and `.tools/macos.zip` for the existing build. Linux setup supplies
+`.tools/godot` and host templates for development; it does not add a Linux export preset. Native Windows/MSYS and
+other architectures fail explicitly; WSL2 can use the Linux path. Android/iOS SDKs and signing are outside this
+desktop bootstrap. Only macOS standalone export is currently configured.
+
+Configured-Mac and offline regression checks cover this installer. A complete fresh-machine installation,
+Linux execution, package-manager installation and WSL2 remain unverified. The tracked
+`licenses/GODOT_COPYRIGHT.txt` is copied into each exported Mac app. `make build` itself does not download tools.
 
 ## Creative direction
 
 - Solo play as Tony or Sean, with distinct weapons and a robot owner bossing both around.
 - Cheerful SNES-inspired presentation, original characters and environments, adult language.
 - Forgiving combat, quick retries, and readable attacks.
-- Next milestone: playtest character selection and weapon balance, then develop the first mission and boss.
+- Next milestone: playtest the integrated first mission, Skitterling fight, character selection and weapon balance.
 
 ## Roadmap
 
@@ -221,6 +358,31 @@ python3 -m unittest discover -s tests -p 'test_combat_metadata.py'
 ```
 
 The combat test deliberately logs rejected IDs, ownership violations, and unimplemented mechanics.
+
+Prototype 62 adds Sputtervalve metal hit variants and a distinct pressure-collapse death sound.
+Both gameplay routes use bounded SFX voices with per-enemy hit cooldowns; music mute remains independent.
+Headless event/lifecycle checks pass; subjective listening and mix balance remain pending.
+
+Prototype 63 makes the Hallowed Widow repeat its proximity-driven dive, rise and one-second upper pause,
+then turn toward the hero before the next approach. Both heroes and routes have repeated-cycle checks.
+The current seven-creature catalog has canonical hit/death audio references. Five ordinary enemies and the Skitterling
+mini-boss use them; Clogfather remains planned with profile-ready cues.
+Export validation requires both cues for every new creature and checks assets, hashes and bounded playback settings.
+Live fairness, listening and screenshots remain pending.
+
+Prototype 64 extends Normal with 30 mixed later encounter opportunities and a two-threat local admission target.
+Warnings count toward pacing; the six-body safety cap and existing attack budgets remain. Safe placements use existing
+prop tops and floor effects, later runners hop low obstacles, and expired encounters are bypassed without kill credit.
+The opening and complete Easy/Hard plans match their previous outputs across 100 seeds. Full-level checks pass for both
+heroes. That iteration reduced late accumulation but left the first continuation lighter than the opening.
+Prototype 65 addresses that measured gap; checkpoint respite is retained.
+
+Prototype 65 chooses supported shooter homes with clearance at the end of their warning, moves the first later emerger
+to earlier safe floor, and permits three committed threats in the first continuation before returning to two thereafter.
+The global six-body ceiling, warning durations and checkpoint grace are unchanged. With visible swarms counted, six-run
+means in the first continuation are 1.74 for forward-fire bots and 1.91 for synthetic combat bots, near the opening
+reference of 1.79–2.01. The finale remains controlled at about 1.46. The obstacle corridor is lighter at 1.22–1.43;
+these measurements do not prove uniform density or human fairness. Full-level playtest and screenshots remain pending.
 
 ## Selected soundtrack
 

@@ -5,11 +5,13 @@ HOST_OS := $(shell uname -s)
 ifeq ($(HOST_OS),Darwin)
 GODOT ?= .tools/Godot.app/Contents/MacOS/Godot
 else
-GODOT ?= godot
+GODOT ?= $(if $(wildcard .tools/godot),.tools/godot,godot)
 endif
 MAC_APP := builds/Drain Damage.app
+export GODOT LEVEL MINIBOSS BOSS HERO DIFFICULTY SEED APP
+INSTALL_FLAGS ?=
 
-.PHONY: help check build build-all build-macos build-android build-ios build-windows run run-preview editor combat-data
+.PHONY: help install install-check install-plan check build build-all build-macos build-android build-ios build-windows run run-preview run-targets run-check editor combat-data
 
 help: ## Show available commands
 	@printf '\n\033[1mDrain Damage — available commands:\033[0m\n'
@@ -20,6 +22,16 @@ help: ## Show available commands
 	@printf '\n'
 
 ##@ Commands
+install: ## Install pinned local dependencies (INSTALL_FLAGS=--system permits system packages)
+	@printf '📦 Checking host dependencies and installing missing local tools…\n'
+	@bash tools/install.sh $(INSTALL_FLAGS)
+
+install-check: ## Check dependencies without changing files, packages or Git settings
+	@bash tools/install.sh --check
+
+install-plan: ## Show missing dependencies and planned setup without making changes
+	@bash tools/install.sh --dry-run
+
 check: ## Check that Godot is available
 	@command -v "$(GODOT)" >/dev/null 2>&1 || { \
 		printf '❌ Godot not found. Set GODOT=/path/to/Godot (one executable, no arguments).\n' >&2; exit 1; }
@@ -61,13 +73,17 @@ build-windows: ## Planned: Windows executable (not configured yet)
 	@printf '❌ Windows pending: add export template and Windows preset, then test on Windows.\n' >&2
 	@exit 1
 
-run: check combat-data ## Run current source on the local OS (normal large window)
-	@printf '🎮 Running current source with the local Godot engine…\n'
-	@"$(GODOT)" --path .
+run: combat-data ## Play normally, or select LEVEL=1 / MINIBOSS=skitterling (see run-targets)
+	@python3 tools/run_game.py
 
-run-preview: check combat-data ## Run current source in a small agent-test window
-	@printf '🎮 Opening small preview…\n'
-	@"$(GODOT)" --path . -- --agent-test
+run-preview: combat-data ## Play in a small agent-test window; accepts the same selectors as run
+	@python3 tools/run_game.py --preview
+
+run-targets: ## List implemented level/miniboss/boss launch selectors without opening the game
+	@python3 tools/run_game.py --list
+
+run-check: combat-data ## Verify selected target initialization headlessly; optional APP=/path/to/game.app
+	@python3 tools/run_game.py --check
 
 editor: check ## Open this project in the Godot editor
 	@printf '🛠️ Opening Godot editor…\n'
