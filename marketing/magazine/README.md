@@ -23,6 +23,68 @@ ordered pages, text, captions, image references and layout templates. The PDF is
 The renderer uses the macOS fonts configured in `layout.font_directory`. Change that path and the font filenames
 if building elsewhere. Shared header/footer templates use `{page_number}` and `{section}` placeholders.
 
+## Edition 28 cover line
+
+Replaced the redundant “Seven locals!” cover burst with “Creature Feature.”
+The eight-page issue retains edition 27’s alternating action layout; `current.pdf` matches edition 28.
+Website publication remains pending.
+
+## Edition 27 playful action gallery
+
+Action-page headings and copy alternate left/right. Tinted panels, gently tilted headings and staggered
+sprite placements vary the rhythm while retaining left-to-right action sequences and existing artwork.
+The issue remains eight pages; that delivery matched edition 27. Website publication remains pending.
+
+## Edition 26 official Skitterling name
+
+Sean confirmed Skitterling as the official name unless he chooses to change it. Removed its working-name label
+and updated editorial guidance. Earlier editions remain preserved; that delivery matched edition 26.
+
+## Edition 25 Skitterling
+
+Skitterling joins the dense creature section after the five non-boss enemies and before the Clogfather.
+The eight-page issue keeps seven entries across two creature pages. Art confirmed the existing rat/alligator
+concept diptych; Storyboarding supplied descriptive copy without origin lore, fight solutions or the false-death
+reveal. The selected-for-now name is marked as a working name. Encounter integration remains in progress;
+artwork is not a gameplay capture and the magazine makes no current-playability claim.
+
+The cover and contents now count seven creatures. Earlier editions and pre-revision source are preserved.
+That delivery matched edition 25; website publication was not performed.
+
+## Edition 24 density study
+
+The creature feature now fits six entries across two pages instead of three, returning the issue to eight pages.
+Existing lore is retained with tighter columns, smaller portraits, compact tip boxes and existing action-pose
+insets. Body type is approximately 11 points. All five non-boss entries still precede the Clogfather.
+This is the first denser layout for Sean to compare with edition 23; no new lore or artwork was generated.
+Earlier editions and the pre-revision source are preserved. That delivery matched edition 24.
+
+## Edition 23 creature order
+
+All five non-boss creatures now precede the Clogfather in the creature feature. Gratecrawler and Sputtervalve
+move to page 5; page 6 presents the Septic Air Force first and the Clogfather last. Creature numbers and section
+bookmarks follow that order. Edition 22 and its source remain preserved; that delivery matched edition 23.
+
+## Edition 22 creature roster
+
+Edition 22 adds a paired Gratecrawler and Sputtervalve feature on page 6, bringing the issue to nine pages.
+The original compact design, gameplay feature, action gallery and company advertisement are retained.
+Gratecrawler remains a working name and is labeled accordingly; recovered user evidence confirms Sputtervalve
+as approved. Descriptions use physical traits and verified behavior, with no invented origin stories.
+Art confirmed the existing single-pose sprite
+crops; no new artwork was generated. Separate marketing portraits and backstories remain pending.
+
+The cover and contents now reflect six creatures. The Widow caption describes its repeating dive and recovery;
+the swarm caption clarifies that it drifts without hunting. The Clogfather remains descriptive, with no boss
+solution or claim that its encounter is playable. Runtime facts were checked against Engineering's Prototype 63
+delivery; the magazine does not depend on the concurrent next-build pacing work.
+
+All nine pages were rendered and visually inspected, and the complete extracted text and PDF metadata reviewed.
+The source before this update is preserved in `guide-assets-v22/pre-publication-source.json`, with crop provenance
+and checks in `guide-assets-v22/provenance.json`. Earlier PDFs remain intact. At that delivery, `current.pdf` matched
+edition 22;
+this is a reviewed local delivery, not confirmation of a new website deployment.
+
 ## Edition 20 portraits
 
 Edition 20 uses Art's new hyperreal Tony and Sean portraits on page 2. The rendered crew page was visually checked;
@@ -40,7 +102,7 @@ The source before integration is archived in `guide-assets-v19/pre-publication-s
 ## Edition 21 disclaimer removal
 
 Removed the fictional-company footer and fictional-publication/non-affiliation paragraph. All eight pages rendered
-and visually checked; extracted text audited. `current.pdf` matches edition 21.
+and visually checked; extracted text audited. At that delivery, `current.pdf` matched edition 21.
 
 ## Editorial policy
 

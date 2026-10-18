@@ -1,0 +1,83 @@
+{
+  "edition": 22,
+  "created_at": "2026-10-17T17:30:38-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "status": "Reviewed local PDF; not published",
+  "source": "marketing/magazine/magazine.json",
+  "previous_source": "marketing/magazine/guide-assets-v22/pre-publication-source.json",
+  "output": "marketing/magazine/discharge-quarterly-v22.pdf",
+  "publication_file": "marketing/magazine/current.pdf",
+  "pdf_sha256": "68d5974c8266c1bb3e9abbd0c1376c1e8cae86443bfecd2443500e451342daa9",
+  "previous_pdf_sha256": "9e11471ea37907cf118ae108d4811c109a4da5eb9cf1ff635df8c8ad6c3dd9c3",
+  "pages": 9,
+  "runtime_reference": "handoffs/widow-and-creature-audio-delivery.json",
+  "new_feature": {
+    "page": 6,
+    "creatures": [
+      "gratecrawler",
+      "sputtervalve"
+    ],
+    "name_status": "Sputtervalve name/design basis approved by Sean; Gratecrawler remains a working name.",
+    "lore": "Pending backstories remain empty in canonical sources; descriptive editorial copy only"
+  },
+  "art": [
+    {
+      "creature": "gratecrawler",
+      "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "crop": [
+        768,
+        0,
+        384,
+        512
+      ],
+      "pose": "standing/settled frame 2"
+    },
+    {
+      "creature": "sputtervalve",
+      "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "crop": [
+        0,
+        0,
+        384,
+        512
+      ],
+      "pose": "idle frame 0"
+    }
+  ],
+  "art_handling": "Art-confirmed full-cell crops clip original sprite images in PDF, maintaining aspect ratio and originals. Source artwork, not gameplay screenshots. No new generation.",
+  "copy_review": "Storyboarding supplied physical-description and behavior paragraphs; user-selected existing lore preserved. No pending origin lore imported.",
+  "other_changes": [
+    "Cover/contents updated to six creatures and correct page references",
+    "Widow gallery caption describes repeated dive/rise/pause/turn",
+    "Swarm caption clarifies non-hunting drift/contact",
+    "Clogfather descriptive feature retained without encounter instructions"
+  ],
+  "verification": [
+    "Renderer passed paragraph-overflow, image-existence and page-order checks",
+    "All nine 100dpi PNG pages visually inspected",
+    "Complete extracted text, PDF metadata and section bookmarks checked",
+    "All22 unique image references exist",
+    "current.pdf byte-identical to v22",
+    "Prior v21 PDF SHA256 unchanged",
+    "After recovered name approval, rebuilt and checked that only Sputtervalve working-name label was removed from extracted text; revised page6 rendered and inspected."
+  ],
+  "limitations": [
+    "Gratecrawler name remains provisional; both backstories and separate marketing portraits pending. Sputtervalve body enlargement/contrast revision pending; existing sprite art used.",
+    "Historical gameplay screenshots retained; no new game launch or capture",
+    "Website deployment not performed",
+    "Markdown linter unavailable; changed prose checked for heading/list spacing, width, whitespace and final newline",
+    "Git diff --stat invoked Git LFS clean and was blocked by .git/lfs/tmp permissions; direct artifact checks and source-only git diff --check passed. No commit or push attempted."
+  ],
+  "qa_directory": ".tools/magazine-v22-qa/",
+  "coordination": "Engineering owns shared roadmap edit and receives exact completed milestone; no game code or canonical creature edits by Marketing.",
+  "name_approval_evidence": "handoffs/art-2-recovered-history.json source_line5574,2026-10-17T20:31:23.231Z; confirmed by Art and Storyboarding, canonical metadata corrected."
+}

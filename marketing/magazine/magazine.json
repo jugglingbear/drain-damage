@@ -3,13 +3,13 @@
   "publication": {
     "title": "Discharge Quarterly",
     "game": "Drain Damage",
-    "edition": 21,
-    "date": "2026-10-16",
+    "edition": 28,
+    "date": "2026-10-17",
     "subtitle": "The Official Journal of the Plumbing, Heating & Creature Containment Association",
-    "pdf_title": "DISCHARGE QUARTERLY - Edition 21 - Drain Damage",
+    "pdf_title": "DISCHARGE QUARTERLY - Edition 28 - Drain Damage",
     "author": "Drain Damage / Marketing"
   },
-  "output": "marketing/magazine/discharge-quarterly-v21.pdf",
+  "output": "marketing/magazine/discharge-quarterly-v28.pdf",
   "layout": {
     "page_width": 612,
     "page_height": 792,
@@ -32,10 +32,12 @@
     "preserve": "Approved profiles and lore, spoiler-free policy and current names. Do not imply unfinished encounters are playable.",
     "writing_style": "Follow AGENTS.md Writing Style: Avoid Formulaic AI Copy. Use natural, varied sentences and specific observations. Avoid repeated paired fragments, formulaic contrasts and generic trailer language. Review all creative copy for repetitive rhetorical patterns before publication.",
     "corporate_horror": "Imply the Spare Employee Dispenser's disturbing practices through corporate euphemisms and omissions. Do not disclose its lethal mechanism or describe bodily processing. Never refer to the viewer's screen or other fourth-wall-breaking presentation details in magazine copy.",
-    "pending_revision": "Feedback through October 16 incorporated into edition 19; regeneration authorized.",
+    "pending_revision": "Edition 22 adds Gratecrawler and approved Sputtervalve using existing sprite artwork and descriptive copy. Only Gratecrawler remains a working name; origin lore pending for both. Clogfather stays descriptive only.",
     "todos": "Actual unresolved editorial placeholders must say TODO: followed by the specific missing item. Use a conspicuous high-contrast box with bold type at least 18 pt, with sufficient space and no clipping. Never bury TODOs in small italic captions or replace them with vague caveats. Do not invent TODOs for existing artwork merely because gameplay is unfinished.",
     "clogfather_revision": "First description preserved; redundant paragraph and idle inset replaced with Tony horror reaction.",
-    "disclaimers": "Do not add fictional-company, fictional-publication or non-affiliation disclaimers to reader-facing magazine content."
+    "disclaimers": "Do not add fictional-company, fictional-publication or non-affiliation disclaimers to reader-facing magazine content.",
+    "creature_order": "Five non-bosses first, then Skitterling miniboss, then Clogfather. No current playability claim for unintegrated encounters.",
+    "skitterling": "Skitterling is the official name, explicitly confirmed by Sean on 2026-10-17, unless he changes it. No working-name label. Existing conceptual art, no origin lore or fight-solution claims."
   },
   "pages": [
     {
@@ -220,10 +222,10 @@
         {
           "id": "cover-021",
           "type": "text",
-          "text": "NEW",
-          "x": 489,
+          "text": "CREATURE",
+          "x": 475,
           "y": 548,
-          "size": 24,
+          "size": 19,
           "color": "E62A32",
           "font": "Display",
           "angle": -6
@@ -231,10 +233,10 @@
         {
           "id": "cover-022",
           "type": "text",
-          "text": "LOOK!",
-          "x": 473,
+          "text": "FEATURE",
+          "x": 480,
           "y": 517,
-          "size": 28,
+          "size": 19,
           "color": "111421",
           "font": "Display",
           "angle": -6
@@ -327,7 +329,7 @@
         {
           "id": "cover-issue-number",
           "type": "text",
-          "text": "EDITION 21",
+          "text": "EDITION 28",
           "x": 537,
           "y": 15,
           "size": 8,
@@ -507,7 +509,7 @@
         {
           "id": "crew-017",
           "type": "text",
-          "text": "Four reasons to wear boots",
+          "text": "Seven reasons to wear boots",
           "x": 261,
           "y": 618,
           "size": 10,
@@ -1111,14 +1113,14 @@
       ]
     },
     {
-      "id": "creature-feature-one",
+      "id": "creature-field-guide-one",
       "number": 4,
       "template": "custom",
       "section": "Creature feature / 1",
       "elements": [
         {
-          "id": "creature-feature-one-001",
           "type": "rect",
+          "id": "creature-field-guide-one-bg",
           "x": 0,
           "y": 0,
           "w": 612,
@@ -1126,37 +1128,56 @@
           "color": "FFF9DE"
         },
         {
-          "id": "creature-feature-one-002",
           "type": "rect",
+          "id": "creature-field-guide-one-header",
+          "x": 0,
+          "y": 728,
+          "w": 612,
+          "h": 64,
+          "color": "008C70"
+        },
+        {
+          "type": "text",
+          "id": "creature-field-guide-one-title",
+          "text": "MEET THE LOCALS",
           "x": 24,
-          "y": 26,
+          "y": 751,
+          "size": 33,
+          "color": "FFF000",
+          "font": "Display"
+        },
+        {
+          "type": "text",
+          "id": "creature-field-guide-one-deck",
+          "text": "DISCHARGE QUARTERLY / CREATURE FIELD GUIDE",
+          "x": 25,
+          "y": 735,
+          "size": 10,
+          "color": "FFFFFF",
+          "font": "Bold"
+        },
+        {
+          "type": "rect",
+          "id": "creature-field-guide-one-rule",
+          "x": 24,
+          "y": 27,
           "w": 564,
           "h": 1,
           "color": "111421"
         },
         {
-          "id": "creature-feature-one-003",
           "type": "text",
-          "text": "DISCHARGE QUARTERLY",
+          "id": "creature-field-guide-one-footer",
+          "text": "DISCHARGE QUARTERLY   /   OCTOBER 2026",
           "x": 24,
-          "y": 11.5,
-          "size": 7.5,
+          "y": 12,
+          "size": 8,
           "color": "111421",
           "font": "Bold"
         },
         {
-          "id": "creature-feature-one-004",
           "type": "text",
-          "text": "OCTOBER 2026",
-          "x": 275,
-          "y": 12,
-          "size": 7,
-          "color": "111421",
-          "font": "Body"
-        },
-        {
-          "id": "creature-feature-one-005",
-          "type": "text",
+          "id": "creature-field-guide-one-number",
           "text": "04",
           "x": 566,
           "y": 9,
@@ -1165,161 +1186,97 @@
           "font": "Display"
         },
         {
-          "id": "creature-feature-one-006",
-          "type": "rect",
-          "x": 0,
-          "y": 683,
-          "w": 612,
-          "h": 109,
-          "color": "008C70"
-        },
-        {
-          "id": "creature-feature-one-007",
           "type": "text",
-          "text": "MEET THE LOCALS",
-          "x": 26,
-          "y": 720,
-          "size": 49,
-          "color": "111421",
-          "font": "Display",
-          "angle": 1
-        },
-        {
-          "id": "creature-feature-one-008",
-          "type": "text",
-          "text": "MEET THE LOCALS",
+          "id": "flush-title",
+          "text": "01 / FLUSHFIEND",
           "x": 24,
-          "y": 722,
-          "size": 49,
-          "color": "FFF000",
-          "font": "Display",
-          "angle": 1,
-          "outline": "FFFFFF",
-          "stroke_width": 0.35
-        },
-        {
-          "id": "creature-feature-one-009",
-          "type": "text",
-          "text": "A FIELD GUIDE TO A VERY BAD SERVICE CALL",
-          "x": 27,
           "y": 696,
-          "size": 13,
-          "color": "FFFFFF",
-          "font": "Bold"
-        },
-        {
-          "id": "creature-feature-one-010",
-          "type": "rect",
-          "x": 24,
-          "y": 458,
-          "w": 206,
-          "h": 206,
-          "color": "E62A32"
-        },
-        {
-          "id": "creature-feature-one-011",
-          "type": "image",
-          "path": "bestiary/flushfiend/marketing-v1.png",
-          "x": 26,
-          "y": 460,
-          "width": 202,
-          "height": 202,
-          "crop": null
-        },
-        {
-          "id": "creature-feature-one-012",
-          "type": "text",
-          "text": "01",
-          "x": 242,
-          "y": 632,
-          "size": 36,
-          "color": "E62A32",
+          "size": 25,
+          "color": "1744B9",
           "font": "Display"
         },
         {
-          "id": "creature-feature-one-013",
-          "type": "text",
-          "text": "FLUSHFIEND",
-          "x": 296,
-          "y": 626,
-          "size": 31,
-          "color": "111421",
-          "font": "Display",
-          "angle": 0
-        },
-        {
-          "id": "creature-feature-one-014",
-          "type": "text",
-          "text": "FLUSHFIEND",
-          "x": 294,
-          "y": 628,
-          "size": 31,
-          "color": "00BADA",
-          "font": "Display",
-          "angle": 0,
-          "outline": "FFFFFF",
-          "stroke_width": 0.35
-        },
-        {
-          "id": "creature-feature-one-015",
-          "type": "para",
-          "text": "This bad-tempered fixture has burning red eyes under a lid-like brow, ceramic teeth around its bowl, and short pipe legs. It patrols until a plumber gets too close, then closes the distance with a hop. The service appointment is unlikely to go as planned.",
-          "x": 244,
-          "top": 609,
-          "width": 342,
-          "size": 12,
-          "color": "111421",
-          "max_height": 104,
-          "leading": 13.440000000000001
-        },
-        {
-          "id": "creature-feature-one-016",
-          "type": "para",
-          "text": "<b>Service tip:</b> Look for pipe legs, red eyes and teeth around the bowl. If it starts following you, the appointment has moved beyond routine maintenance.",
-          "x": 244,
-          "top": 521,
-          "width": 342,
-          "size": 11.5,
-          "color": "111421",
-          "max_height": 62,
-          "leading": 12.88
-        },
-        {
-          "id": "creature-feature-one-017",
-          "type": "rect",
+          "id": "flush-portrait",
+          "type": "image",
+          "path": "bestiary/flushfiend/marketing-v1.png",
           "x": 24,
-          "y": 414,
+          "y": 516,
+          "width": 162,
+          "height": 162,
+          "crop": null
+        },
+        {
+          "type": "para",
+          "id": "flush-copy",
+          "text": "This bad-tempered fixture has burning red eyes under a lid-like brow, ceramic teeth around its bowl, and short pipe legs. It patrols until a plumber gets too close, then closes the distance with a hop. The service appointment is unlikely to go as planned.",
+          "x": 202,
+          "top": 677,
+          "width": 230,
+          "max_height": 148,
+          "size": 11,
+          "leading": 12.54,
+          "color": "111421",
+          "font": "Body"
+        },
+        {
+          "type": "rect",
+          "id": "flush-note-bg",
+          "x": 448,
+          "y": 516,
+          "w": 140,
+          "h": 162,
+          "color": "FFF000"
+        },
+        {
+          "type": "text",
+          "id": "flush-note-title",
+          "text": "SERVICE TIP",
+          "x": 458,
+          "y": 659,
+          "size": 13,
+          "color": "111421",
+          "font": "Bold"
+        },
+        {
+          "type": "para",
+          "id": "flush-note",
+          "text": "Look for pipe legs, red eyes and teeth around the bowl. If it starts following you, the appointment has moved beyond routine maintenance.",
+          "x": 458,
+          "top": 648,
+          "width": 120,
+          "max_height": 120,
+          "size": 10.5,
+          "leading": 11.969999999999999,
+          "color": "111421",
+          "font": "Body"
+        },
+        {
+          "type": "rect",
+          "id": "divider-one",
+          "x": 24,
+          "y": 502,
           "w": 564,
-          "h": 28,
+          "h": 2,
           "color": "E62A32"
         },
         {
-          "id": "creature-feature-one-018",
           "type": "text",
-          "text": "THE HALO DOESN'T MAKE THE FANGS ANY LESS WORRYING.",
-          "x": 34,
-          "y": 421,
-          "size": 16,
-          "color": "FFF000",
-          "font": "Condensed"
-        },
-        {
-          "id": "creature-feature-one-019",
-          "type": "rect",
+          "id": "widow-title",
+          "text": "02 / THE HALLOWED WIDOW",
           "x": 24,
-          "y": 160,
-          "w": 206,
-          "h": 239,
-          "color": "1744B9"
+          "y": 471,
+          "size": 25,
+          "color": "DF1684",
+          "font": "Display"
         },
         {
-          "id": "creature-feature-one-020",
+          "id": "widow-portrait",
           "type": "image",
           "path": "bestiary/the-hallowed-widow/marketing-v1.png",
-          "x": 26,
-          "y": 162,
-          "width": 202,
-          "height": 235,
+          "x": 422,
+          "y": 276,
+          "width": 166,
+          "height": 184,
           "crop": [
             70,
             0,
@@ -1328,99 +1285,276 @@
           ]
         },
         {
-          "id": "creature-feature-one-021",
+          "type": "para",
+          "id": "widow-copy",
+          "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo - every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
+          "x": 24,
+          "top": 455,
+          "width": 380,
+          "max_height": 143,
+          "size": 11.3,
+          "leading": 12.882,
+          "color": "111421",
+          "font": "Body"
+        },
+        {
+          "type": "rect",
+          "id": "widow-quote-bg",
+          "x": 24,
+          "y": 275,
+          "w": 380,
+          "h": 40,
+          "color": "FFF000"
+        },
+        {
+          "type": "para",
+          "id": "widow-quote",
+          "text": "<b>Tony:</b> \"I was hoping spiders went somewhere else when they died.\"",
+          "x": 33,
+          "top": 305,
+          "width": 360,
+          "max_height": 29,
+          "size": 11.5,
+          "leading": 13.11,
+          "color": "111421",
+          "font": "Bold"
+        },
+        {
+          "type": "rect",
+          "id": "divider-two",
+          "x": 24,
+          "y": 262,
+          "w": 564,
+          "h": 2,
+          "color": "E62A32"
+        },
+        {
           "type": "text",
-          "text": "02",
-          "x": 244,
-          "y": 370,
-          "size": 32,
+          "id": "grate-title",
+          "text": "03 / GRATECRAWLER",
+          "x": 24,
+          "y": 231,
+          "size": 25,
           "color": "1744B9",
           "font": "Display"
         },
         {
-          "id": "creature-feature-one-022",
           "type": "text",
-          "text": "THE HALLOWED WIDOW",
-          "x": 246,
-          "y": 332,
-          "size": 26,
-          "color": "111421",
-          "font": "Display",
-          "angle": 0
-        },
-        {
-          "id": "creature-feature-one-023",
-          "type": "text",
-          "text": "THE HALLOWED WIDOW",
-          "x": 244,
-          "y": 334,
-          "size": 26,
-          "color": "DF1684",
-          "font": "Display",
-          "angle": 0,
-          "outline": "FFFFFF",
-          "stroke_width": 0.35
-        },
-        {
-          "id": "creature-feature-one-024",
-          "type": "para",
-          "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo - every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
-          "x": 244,
-          "top": 318,
-          "width": 342,
-          "size": 11.5,
-          "color": "111421",
-          "max_height": 161,
-          "leading": 12.88
-        },
-        {
-          "id": "creature-feature-one-025",
-          "type": "rect",
-          "x": 24,
-          "y": 72,
-          "w": 564,
-          "h": 70,
-          "color": "FFF000"
-        },
-        {
-          "id": "creature-feature-one-026",
-          "type": "para",
-          "text": "<b>Tony:</b> \"I was hoping spiders went somewhere else when they died.\"",
-          "x": 36,
-          "top": 130,
-          "width": 435,
-          "size": 15,
-          "color": "111421",
-          "max_height": 44,
-          "leading": 16.8,
+          "id": "grate-working",
+          "text": "WORKING NAME",
+          "x": 463,
+          "y": 236,
+          "size": 10,
+          "color": "1744B9",
           "font": "Bold"
         },
         {
-          "id": "creature-feature-one-027",
+          "id": "grate-pose",
           "type": "image",
-          "path": "assets/portraits/tony-expressions-v3.png",
-          "x": 505,
-          "y": 78,
-          "width": 76,
-          "height": 76,
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "x": 24,
+          "y": 41,
+          "width": 136,
+          "height": 181,
+          "crop": [
+            768,
+            0,
+            384,
+            512
+          ]
+        },
+        {
+          "type": "para",
+          "id": "grate-copy",
+          "text": "A rusty drain strainer sits in the back of this hunched sludge creature, above a mouth full of porcelain teeth. Once it climbs out of a floor grate, it walks back and forth, turning at obstacles. It won't chase you, but its route may cross yours.",
+          "x": 176,
+          "top": 216,
+          "width": 250,
+          "max_height": 112,
+          "size": 11,
+          "leading": 12.54,
+          "color": "111421",
+          "font": "Body"
+        },
+        {
+          "type": "rect",
+          "id": "grate-note-bg",
+          "x": 442,
+          "y": 100,
+          "w": 146,
+          "h": 118,
+          "color": "CFECEC"
+        },
+        {
+          "type": "para",
+          "id": "grate-tip",
+          "text": "<b>Service tip:</b> Watch the grate before it emerges, then leave room for its patrol.",
+          "x": 452,
+          "top": 207,
+          "width": 126,
+          "max_height": 95,
+          "size": 10.5,
+          "leading": 11.969999999999999,
+          "color": "111421",
+          "font": "Body"
+        },
+        {
+          "type": "para",
+          "id": "grate-caption",
+          "text": "The strainer has come out with the blockage. Neither looks ready to go back.",
+          "x": 176,
+          "top": 91,
+          "width": 412,
+          "max_height": 40,
+          "size": 10.5,
+          "leading": 11.969999999999999,
+          "color": "111421",
+          "font": "Italic"
+        },
+        {
+          "id": "flush-detail-0",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 204,
+          "y": 529,
+          "width": 65,
+          "height": 63,
           "crop": [
             0,
-            396,
-            397,
-            397
+            0,
+            256,
+            235
           ]
+        },
+        {
+          "id": "flush-detail-1",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 280,
+          "y": 529,
+          "width": 65,
+          "height": 63,
+          "crop": [
+            256,
+            960,
+            256,
+            255
+          ]
+        },
+        {
+          "id": "flush-detail-2",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 356,
+          "y": 529,
+          "width": 65,
+          "height": 63,
+          "crop": [
+            768,
+            1215,
+            256,
+            321
+          ]
+        },
+        {
+          "id": "flush-detail-caption",
+          "type": "para",
+          "text": "Porcelain chips away until the fixture comes apart.",
+          "x": 202,
+          "top": 526,
+          "width": 230,
+          "max_height": 30,
+          "size": 9.5,
+          "leading": 10.7,
+          "color": "111421",
+          "font": "Italic"
+        },
+        {
+          "id": "widow-detail-0",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 34,
+          "y": 318,
+          "width": 75,
+          "height": 43,
+          "crop": [
+            40,
+            0,
+            430,
+            510
+          ]
+        },
+        {
+          "id": "widow-detail-1",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 157,
+          "y": 318,
+          "width": 75,
+          "height": 43,
+          "crop": [
+            475,
+            100,
+            560,
+            412
+          ]
+        },
+        {
+          "id": "widow-detail-2",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 280,
+          "y": 318,
+          "width": 75,
+          "height": 43,
+          "crop": [
+            1040,
+            150,
+            490,
+            362
+          ]
+        },
+        {
+          "id": "grate-emerge-detail",
+          "type": "image",
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "crop": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "x": 185,
+          "y": 100,
+          "width": 76,
+          "height": 49
+        },
+        {
+          "id": "grate-patrol-detail",
+          "type": "image",
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "crop": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "x": 295,
+          "y": 100,
+          "width": 76,
+          "height": 49
         }
       ]
     },
     {
-      "id": "creature-feature-two",
+      "id": "creature-field-guide-two",
       "number": 5,
       "template": "custom",
       "section": "Creature feature / 2",
       "elements": [
         {
-          "id": "creature-feature-two-001",
           "type": "rect",
+          "id": "creature-field-guide-two-bg",
           "x": 0,
           "y": 0,
           "w": 612,
@@ -1428,37 +1562,56 @@
           "color": "FFF9DE"
         },
         {
-          "id": "creature-feature-two-002",
           "type": "rect",
+          "id": "creature-field-guide-two-header",
+          "x": 0,
+          "y": 728,
+          "w": 612,
+          "h": 64,
+          "color": "008C70"
+        },
+        {
+          "type": "text",
+          "id": "creature-field-guide-two-title",
+          "text": "THE INSPECTION CONTINUES",
           "x": 24,
-          "y": 26,
+          "y": 751,
+          "size": 33,
+          "color": "FFF000",
+          "font": "Display"
+        },
+        {
+          "type": "text",
+          "id": "creature-field-guide-two-deck",
+          "text": "DISCHARGE QUARTERLY / CREATURE FIELD GUIDE",
+          "x": 25,
+          "y": 735,
+          "size": 10,
+          "color": "FFFFFF",
+          "font": "Bold"
+        },
+        {
+          "type": "rect",
+          "id": "creature-field-guide-two-rule",
+          "x": 24,
+          "y": 27,
           "w": 564,
           "h": 1,
           "color": "111421"
         },
         {
-          "id": "creature-feature-two-003",
           "type": "text",
-          "text": "DISCHARGE QUARTERLY",
+          "id": "creature-field-guide-two-footer",
+          "text": "DISCHARGE QUARTERLY   /   OCTOBER 2026",
           "x": 24,
-          "y": 11.5,
-          "size": 7.5,
+          "y": 12,
+          "size": 8,
           "color": "111421",
           "font": "Bold"
         },
         {
-          "id": "creature-feature-two-004",
           "type": "text",
-          "text": "OCTOBER 2026",
-          "x": 275,
-          "y": 12,
-          "size": 7,
-          "color": "111421",
-          "font": "Body"
-        },
-        {
-          "id": "creature-feature-two-005",
-          "type": "text",
+          "id": "creature-field-guide-two-number",
           "text": "05",
           "x": 566,
           "y": 9,
@@ -1467,140 +1620,92 @@
           "font": "Display"
         },
         {
-          "id": "creature-feature-two-006",
-          "type": "rect",
-          "x": 0,
-          "y": 736,
-          "w": 612,
-          "h": 56,
-          "color": "008C70"
-        },
-        {
-          "id": "creature-feature-two-007",
+          "id": "sputter-title",
           "type": "text",
-          "text": "CREATURE FEATURE / THE BIG & THE BUZZING",
+          "text": "04 / SPUTTERVALVE",
           "x": 24,
-          "y": 754,
+          "y": 698,
           "size": 23,
-          "color": "FFF000",
+          "color": "DF1684",
           "font": "Display"
         },
         {
-          "id": "creature-feature-two-008",
-          "type": "text",
-          "text": "THE CLOGFATHER",
-          "x": 26,
-          "y": 671,
-          "size": 42,
-          "color": "111421",
-          "font": "Display",
-          "angle": 0
-        },
-        {
-          "id": "creature-feature-two-009",
-          "type": "text",
-          "text": "THE CLOGFATHER",
-          "x": 24,
-          "y": 673,
-          "size": 42,
-          "color": "E62A32",
-          "font": "Display",
-          "angle": 0,
-          "outline": "FFFFFF",
-          "stroke_width": 0.35
-        },
-        {
-          "id": "creature-feature-two-010",
-          "type": "rect",
-          "x": 338,
-          "y": 409,
-          "w": 250,
-          "h": 250,
-          "color": "111421"
-        },
-        {
-          "id": "creature-feature-two-011",
-          "type": "image",
-          "path": "bestiary/clogfather/marketing-v1.png",
-          "x": 340,
-          "y": 411,
-          "width": 246,
-          "height": 246,
-          "crop": null
-        },
-        {
-          "id": "creature-feature-two-012",
-          "type": "text",
-          "text": "03 / A BLOCKAGE WITH AMBITION",
-          "x": 26,
-          "y": 642,
-          "size": 14,
-          "color": "008C70",
-          "font": "Condensed"
-        },
-        {
-          "id": "creature-feature-two-013",
+          "id": "sputter-copy",
           "type": "para",
-          "text": "A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.",
-          "x": 26,
-          "top": 629,
-          "width": 291,
-          "size": 12,
+          "text": "That angry face belongs to a pressure valve bolted firmly in place. The gauge gives you something to watch while the outlet charges its next violet shot. It cannot follow you, but standing in front of it is still a poor idea.",
+          "x": 24,
+          "top": 680,
+          "width": 400,
+          "max_height": 86,
+          "size": 10.8,
+          "leading": 12.203999999999999,
           "color": "111421",
-          "max_height": 111,
-          "leading": 13.440000000000001
+          "font": "Body"
         },
         {
-          "id": "creature-feature-two-016",
+          "id": "sputter-pose",
+          "type": "image",
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "x": 454,
+          "y": 567,
+          "width": 134,
+          "height": 134,
+          "crop": [
+            0,
+            0,
+            384,
+            512
+          ]
+        },
+        {
+          "id": "sputter-tip-box",
           "type": "rect",
           "x": 24,
-          "y": 59,
-          "w": 564,
-          "h": 300,
-          "color": "CFECEC"
+          "y": 568,
+          "w": 400,
+          "h": 37,
+          "color": "FFF000"
         },
         {
-          "id": "creature-feature-two-017",
-          "type": "text",
-          "text": "SEPTIC AIR FORCE",
-          "x": 37,
-          "y": 310,
-          "size": 35,
+          "id": "sputter-tip",
+          "type": "para",
+          "text": "<b>Service tip:</b> Watch for the violet charge and move clear of the outlet before it fires.",
+          "x": 32,
+          "top": 596,
+          "width": 384,
+          "max_height": 28,
+          "size": 10,
+          "leading": 11.299999999999999,
           "color": "111421",
-          "font": "Display",
-          "angle": 0
+          "font": "Body"
         },
         {
-          "id": "creature-feature-two-018",
+          "id": "sputter-rule",
+          "type": "rect",
+          "x": 24,
+          "y": 552,
+          "w": 564,
+          "h": 2,
+          "color": "E62A32"
+        },
+        {
+          "id": "swarm-title",
           "type": "text",
-          "text": "SEPTIC AIR FORCE",
-          "x": 35,
-          "y": 312,
-          "size": 35,
+          "text": "05 / SEPTIC AIR FORCE",
+          "x": 24,
+          "y": 523,
+          "size": 23,
           "color": "1744B9",
-          "font": "Display",
-          "angle": 0,
-          "outline": "FFFFFF",
-          "stroke_width": 0.35
+          "font": "Display"
         },
         {
-          "id": "creature-feature-two-019",
-          "type": "text",
-          "text": "04 / STILL WAITING FOR LANDING CLEARANCE",
-          "x": 36,
-          "y": 285,
-          "size": 14,
-          "color": "E62A32",
-          "font": "Condensed"
-        },
-        {
-          "id": "creature-feature-two-020",
+          "id": "swarm-pose",
           "type": "image",
           "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
-          "x": 36,
-          "y": 113,
-          "width": 154,
-          "height": 154,
+          "x": 24,
+          "y": 397,
+          "width": 116,
+          "height": 116,
           "crop": [
             0,
             0,
@@ -1609,38 +1714,134 @@
           ]
         },
         {
-          "id": "creature-feature-two-021",
+          "id": "swarm-copy",
           "type": "para",
           "text": "The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
-          "x": 206,
-          "top": 267,
-          "width": 369,
-          "size": 11.5,
+          "x": 158,
+          "top": 506,
+          "width": 430,
+          "max_height": 103,
+          "size": 10.8,
+          "leading": 12.203999999999999,
           "color": "111421",
-          "max_height": 157,
-          "leading": 12.88
+          "font": "Body"
         },
         {
-          "id": "creature-feature-two-022",
+          "id": "swarm-caption",
           "type": "para",
-          "text": "This tight cloud of flies hurts plumbers and monsters alike when they cross its path.",
-          "x": 36,
-          "top": 111,
-          "width": 154,
-          "size": 10.5,
+          "text": "The flies drift without hunting. Crossing their path hurts plumbers and monsters alike.",
+          "x": 24,
+          "top": 396,
+          "width": 564,
+          "max_height": 25,
+          "size": 10,
+          "leading": 11.299999999999999,
           "color": "111421",
-          "max_height": 42,
-          "leading": 11.760000000000002
+          "font": "Italic"
         },
         {
-          "id": "clogfather-tony-reaction",
+          "id": "swarm-rule",
+          "type": "rect",
+          "x": 24,
+          "y": 366,
+          "w": 564,
+          "h": 2,
+          "color": "E62A32"
+        },
+        {
+          "id": "skitter-title",
+          "type": "text",
+          "text": "06 / SKITTERLING",
+          "x": 24,
+          "y": 337,
+          "size": 23,
+          "color": "DF1684",
+          "font": "Display"
+        },
+        {
+          "id": "skitter-diptych",
+          "type": "image",
+          "path": "bestiary/cockroach-swarm/marketing-concepts-v1.png",
+          "x": 24,
+          "y": 202,
+          "width": 190,
+          "height": 126.67,
+          "crop": null
+        },
+        {
+          "id": "skitter-copy",
+          "type": "para",
+          "text": "A cockroach crossing the floor is bad enough. Skitterling begins with hundreds, crawling over one another until the heap takes on a shape you recognize. Even then, nothing holds still. Legs and antennae keep moving across its body, and every part of the silhouette is another insect trying to find its place.",
+          "x": 230,
+          "top": 320,
+          "width": 358,
+          "max_height": 115,
+          "size": 11,
+          "leading": 12.43,
+          "color": "111421",
+          "font": "Body"
+        },
+        {
+          "id": "skitter-rule",
+          "type": "rect",
+          "x": 24,
+          "y": 190,
+          "w": 564,
+          "h": 2,
+          "color": "E62A32"
+        },
+        {
+          "id": "boss-title",
+          "type": "text",
+          "text": "07 / THE CLOGFATHER",
+          "x": 24,
+          "y": 161,
+          "size": 25,
+          "color": "E62A32",
+          "font": "Display"
+        },
+        {
+          "id": "boss-copy",
+          "type": "para",
+          "text": "A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.",
+          "x": 24,
+          "top": 145,
+          "width": 370,
+          "max_height": 94,
+          "size": 10.8,
+          "leading": 12.203999999999999,
+          "color": "111421",
+          "font": "Body"
+        },
+        {
+          "id": "boss-portrait",
+          "type": "image",
+          "path": "bestiary/clogfather/marketing-v1.png",
+          "x": 438,
+          "y": 34,
+          "width": 150,
+          "height": 150,
+          "crop": null
+        },
+        {
+          "id": "boss-reaction",
           "type": "image",
           "path": "marketing/character-reactions/tony-clogfather-horror-v1.png",
-          "x": 143,
-          "y": 366,
-          "width": 172,
-          "height": 172,
+          "x": 337,
+          "y": 31,
+          "width": 87,
+          "height": 87,
           "crop": null
+        },
+        {
+          "id": "boss-caption",
+          "type": "text",
+          "text": "A BLOCKAGE WITH AMBITION",
+          "x": 24,
+          "y": 42,
+          "size": 10,
+          "color": "008C70",
+          "font": "Bold"
         }
       ]
     },
@@ -2046,14 +2247,14 @@
           "y": 541,
           "w": 564,
           "h": 129,
-          "color": "EEF2F2"
+          "color": "EDF4FC"
         },
         {
           "id": "action-gallery-011",
           "type": "rect",
           "x": 24,
           "y": 646,
-          "w": 183,
+          "w": 154,
           "h": 24,
           "color": "1744B9"
         },
@@ -2065,7 +2266,8 @@
           "y": 652,
           "size": 16,
           "color": "FFFFFF",
-          "font": "Condensed"
+          "font": "Condensed",
+          "angle": 1.5
         },
         {
           "id": "action-gallery-013",
@@ -2086,12 +2288,12 @@
           "y": 397,
           "w": 564,
           "h": 129,
-          "color": "EEF2F2"
+          "color": "FFF1DD"
         },
         {
           "id": "action-gallery-015",
           "type": "rect",
-          "x": 24,
+          "x": 405,
           "y": 502,
           "w": 183,
           "h": 24,
@@ -2101,17 +2303,18 @@
           "id": "action-gallery-016",
           "type": "text",
           "text": "PORCELAIN PROBLEMS",
-          "x": 32,
+          "x": 413,
           "y": 508,
           "size": 16,
           "color": "FFFFFF",
-          "font": "Condensed"
+          "font": "Condensed",
+          "angle": -1
         },
         {
           "id": "action-gallery-017",
           "type": "para",
           "text": "From a bad-tempered fixture to an expensive pile of broken porcelain.",
-          "x": 34,
+          "x": 415,
           "top": 488,
           "width": 161,
           "size": 11.5,
@@ -2126,14 +2329,14 @@
           "y": 253,
           "w": 564,
           "h": 129,
-          "color": "EEF2F2"
+          "color": "EAF5EA"
         },
         {
           "id": "action-gallery-019",
           "type": "rect",
           "x": 24,
           "y": 358,
-          "w": 183,
+          "w": 169,
           "h": 24,
           "color": "008C70"
         },
@@ -2145,12 +2348,13 @@
           "y": 364,
           "size": 16,
           "color": "FFFFFF",
-          "font": "Condensed"
+          "font": "Condensed",
+          "angle": 2
         },
         {
           "id": "action-gallery-021",
           "type": "para",
-          "text": "A halo offers very little reassurance when the fangs are this close.",
+          "text": "The Widow dives, rises and pauses above you before turning for another pass. Keep watching after the first swoop.",
           "x": 34,
           "top": 344,
           "width": 161,
@@ -2166,12 +2370,12 @@
           "y": 109,
           "w": 564,
           "h": 129,
-          "color": "EEF2F2"
+          "color": "FCE9F3"
         },
         {
           "id": "action-gallery-023",
           "type": "rect",
-          "x": 24,
+          "x": 405,
           "y": 214,
           "w": 183,
           "h": 24,
@@ -2181,17 +2385,18 @@
           "id": "action-gallery-024",
           "type": "text",
           "text": "NO FLIGHT PLAN",
-          "x": 32,
+          "x": 413,
           "y": 220,
           "size": 16,
           "color": "FFFFFF",
-          "font": "Condensed"
+          "font": "Condensed",
+          "angle": -1.5
         },
         {
           "id": "action-gallery-025",
           "type": "para",
           "text": "The Septic Air Force keeps close company. Try not to join the formation.",
-          "x": 34,
+          "x": 415,
           "top": 200,
           "width": 161,
           "size": 11.5,
@@ -2203,10 +2408,10 @@
           "id": "action-gallery-026",
           "type": "image",
           "path": "assets/sprites/tony-v1.png",
-          "x": 214,
-          "y": 563,
-          "width": 82,
-          "height": 82,
+          "x": 212,
+          "y": 553,
+          "width": 94,
+          "height": 94,
           "crop": [
             0,
             0,
@@ -2218,10 +2423,10 @@
           "id": "action-gallery-027",
           "type": "image",
           "path": "assets/sprites/tony-v1.png",
-          "x": 306,
+          "x": 300,
           "y": 563,
-          "width": 82,
-          "height": 82,
+          "width": 92,
+          "height": 92,
           "crop": [
             314,
             0,
@@ -2233,10 +2438,10 @@
           "id": "action-gallery-028",
           "type": "image",
           "path": "assets/sprites/sean-v2.png",
-          "x": 398,
-          "y": 563,
-          "width": 82,
-          "height": 82,
+          "x": 395,
+          "y": 550,
+          "width": 94,
+          "height": 94,
           "crop": [
             0,
             0,
@@ -2248,10 +2453,10 @@
           "id": "action-gallery-029",
           "type": "image",
           "path": "assets/sprites/sean-v2.png",
-          "x": 490,
-          "y": 563,
-          "width": 82,
-          "height": 82,
+          "x": 487,
+          "y": 566,
+          "width": 90,
+          "height": 90,
           "crop": [
             314,
             0,
@@ -2263,10 +2468,10 @@
           "id": "action-gallery-030",
           "type": "image",
           "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
-          "x": 214,
-          "y": 419,
-          "width": 82,
-          "height": 82,
+          "x": 28,
+          "y": 415,
+          "width": 86,
+          "height": 86,
           "crop": [
             0,
             0,
@@ -2278,10 +2483,10 @@
           "id": "action-gallery-031",
           "type": "image",
           "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
-          "x": 306,
-          "y": 419,
-          "width": 82,
-          "height": 82,
+          "x": 117,
+          "y": 427,
+          "width": 91,
+          "height": 91,
           "crop": [
             512,
             470,
@@ -2293,10 +2498,10 @@
           "id": "action-gallery-032",
           "type": "image",
           "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
-          "x": 398,
-          "y": 419,
-          "width": 82,
-          "height": 82,
+          "x": 214,
+          "y": 408,
+          "width": 89,
+          "height": 89,
           "crop": [
             256,
             960,
@@ -2308,10 +2513,10 @@
           "id": "action-gallery-033",
           "type": "image",
           "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
-          "x": 490,
-          "y": 419,
-          "width": 82,
-          "height": 82,
+          "x": 307,
+          "y": 403,
+          "width": 79,
+          "height": 79,
           "crop": [
             768,
             1215,
@@ -2323,8 +2528,8 @@
           "id": "action-gallery-034",
           "type": "image",
           "path": "assets/bestiary/flying-spider-atlas-v2.png",
-          "x": 214,
-          "y": 275,
+          "x": 212,
+          "y": 285,
           "width": 82,
           "height": 82,
           "crop": [
@@ -2338,10 +2543,10 @@
           "id": "action-gallery-035",
           "type": "image",
           "path": "assets/bestiary/flying-spider-atlas-v2.png",
-          "x": 306,
-          "y": 275,
-          "width": 82,
-          "height": 82,
+          "x": 303,
+          "y": 264,
+          "width": 87,
+          "height": 87,
           "crop": [
             475,
             100,
@@ -2354,9 +2559,9 @@
           "type": "image",
           "path": "assets/bestiary/flying-spider-atlas-v2.png",
           "x": 398,
-          "y": 275,
-          "width": 82,
-          "height": 82,
+          "y": 278,
+          "width": 91,
+          "height": 91,
           "crop": [
             1040,
             150,
@@ -2368,8 +2573,8 @@
           "id": "action-gallery-037",
           "type": "image",
           "path": "assets/bestiary/flying-spider-atlas-v2.png",
-          "x": 490,
-          "y": 275,
+          "x": 496,
+          "y": 290,
           "width": 82,
           "height": 82,
           "crop": [
@@ -2383,10 +2588,10 @@
           "id": "action-gallery-038",
           "type": "image",
           "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
-          "x": 214,
-          "y": 131,
-          "width": 82,
-          "height": 82,
+          "x": 32,
+          "y": 125,
+          "width": 83,
+          "height": 83,
           "crop": [
             0,
             0,
@@ -2398,10 +2603,10 @@
           "id": "action-gallery-039",
           "type": "image",
           "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
-          "x": 306,
-          "y": 131,
-          "width": 82,
-          "height": 82,
+          "x": 117,
+          "y": 150,
+          "width": 78,
+          "height": 78,
           "crop": [
             256,
             0,
@@ -2413,10 +2618,10 @@
           "id": "action-gallery-040",
           "type": "image",
           "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
-          "x": 398,
-          "y": 131,
-          "width": 82,
-          "height": 82,
+          "x": 212,
+          "y": 119,
+          "width": 89,
+          "height": 89,
           "crop": [
             512,
             0,
@@ -2428,10 +2633,10 @@
           "id": "action-gallery-041",
           "type": "image",
           "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
-          "x": 490,
-          "y": 131,
-          "width": 82,
-          "height": 82,
+          "x": 307,
+          "y": 143,
+          "width": 79,
+          "height": 79,
           "crop": [
             768,
             0,
@@ -2664,8 +2869,9 @@
     }
   ],
   "design_guidance": {
-    "format": "Eight-page 1990s magazine; grouped features, asymmetric columns, bright banners, bordered pictures, cutout characters and compact captions.",
-    "creatures": "Four creatures share a two-page spread. One separate curated action gallery; no complete sheets.",
-    "references": "User-supplied Nintendo Power / GamePro spreads; layouts reinterpreted with original game artwork."
+    "format": "Eight-page 1990s magazine; dense grouped features, compact columns, small art and inset captions.",
+    "creatures": "Seven creatures in two dense pages: five non-bosses before both bosses.",
+    "references": "User-supplied Nintendo Power / GamePro spreads; layouts reinterpreted with original game artwork.",
+    "action_gallery": "Alternate left/right heading and copy columns; tinted panels and staggered action poses."
   }
 }
