@@ -1,0 +1,56 @@
+{
+  "created_at": "2026-10-17T17:14:06-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 63 / 0.63.0",
+  "source_head": "49cc403 plus uncommitted integrations",
+  "app": "builds/Prototype-63/Drain Damage.app",
+  "archive": "builds/history/Prototype-63.zip",
+  "archive_sha256": "a5688e480c6fc20e84797af2152f84cd11dec87384e20caf0c722a8c673462ae",
+  "changes": [
+    "Widow proximity dive/rise/stationary1s pause/reselect hero side/repeat until killed",
+    "Canonical hit/death audio for all six creatures; five implemented playback routes",
+    "Export rejects missing creature/profile/cue/assets and invalid hashes/voice caps/cooldowns/gain/loops"
+  ],
+  "runtime_audio": [
+    "toilet",
+    "spider",
+    "sewer-fly-swarm",
+    "sputtervalve",
+    "gratecrawler"
+  ],
+  "profile_ready_audio": [
+    "clogfather"
+  ],
+  "canonical_minibosses": [],
+  "coverage": "6 of6 catalog profiles have hit and death references;5 runtime integrated,1 planned boss profile-ready.",
+  "checks": "Twelve packaged suites, fifteen Python tests, focused source checks, export/signing, bundle versions and ZIP integrity pass.",
+  "packaged_suites": [
+    "creature_audio",
+    "durable_flyer",
+    "sputtervalve_audio",
+    "flushfiend_death_audio",
+    "sewer_swarm",
+    "swarm_audio",
+    "standing_shots",
+    "hostile_projectile",
+    "opening_death_and_warmup",
+    "difficulty_respawn",
+    "combat_data",
+    "build_version"
+  ],
+  "behavior_checks": "Both paths/heroes/headings,three successive cycles,one-second pause,retarget/tie,locked dive,freeze/death/reset,full-body scenery/world bounds,15/10hits.",
+  "audio_checks": "Both event types,all damage paths,per-enemy cooldowns,lethal-only death,duplicates/exclusions,bounded pools,pause/mute/reset/disposal;all six packaged cue references load.",
+  "capture_gap": "No game window or audio audition. Actual gameplay captures, human fairness/readability and subjective listening/mix balance await permission.",
+  "capture_backlog": [
+    "Widow repeated dive/rise/pause and left/right turn",
+    "Each implemented enemy nonlethal hit and death",
+    "Approved listening session with music and overlapping enemies"
+  ],
+  "warnings": "Log/editor-settings permission and macOS certificate diagnostics remain; immediate-exit suites can report deferred audio/shutdown resources.",
+  "status": "Delivered; live playtest/listening/captures pending",
+  "capture_record": "storybook/063-widow-cycles-and-creature-audio/20261017-171406-capture-status.json",
+  "logs": "builds/verification-63/"
+}

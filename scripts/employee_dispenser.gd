@@ -1,6 +1,8 @@
 extends RefCounted
 ## Event-driven checkpoint presentation; never waits for audio or animation callbacks.
 const Data = preload("res://scripts/combat_data.gd")
+const HardArt = preload("res://scripts/hard_costume_art.gd")
+var hard_mode := false
 const GUARDED_ACTIONS := ["shoot", "jump", "dialogue_next", "dialogue_skip", "pause_game"]
 static var full_sequence_seen := false
 var art: Dictionary
@@ -47,8 +49,18 @@ func sample_impact(viewport_size: Vector2, unit := Vector2(-1,-1)) -> void:
 func _init() -> void:
 	cosmetic_rng.randomize()
 	Data.load_data()
-	art = Data.bundle.dispenser.art
 	audio = Data.bundle.dispenser.audio
+	configure(false)
+
+func configure(enabled: bool) -> void:
+	if art != null and not art.is_empty() and hard_mode == enabled: return
+	hard_mode = enabled
+	textures.clear()
+	art = Data.bundle.dispenser.art
+	if enabled:
+		art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/sprites/hard-mode/dispenser-manifest-v1.json"))
+		art.sleeping_heroes = JSON.parse_string(FileAccess.get_file_as_string(
+			"res://" + str(art.machine.sleeping_occupants.source_manifest)))
 	load_art(art.machine)
 	load_art(art.heroes)
 	load_art(art.sleeping_heroes)
@@ -56,7 +68,7 @@ func _init() -> void:
 func load_art(value: Variant) -> void:
 	if value is Dictionary:
 		if value.has("path") and value.has("source_rect"):
-			textures[value.path] = load("res://"+value.path)
+			textures[value.path] = HardArt.texture(value.path)
 		for child: Variant in value.values(): load_art(child)
 	elif value is Array:
 		for child: Variant in value: load_art(child)

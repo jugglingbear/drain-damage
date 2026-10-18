@@ -3,6 +3,7 @@ extends Node2D
 const Data = preload("res://scripts/combat_data.gd")
 var active := false
 var boss_name := ""
+var player_status := ""
 var hp := 0.0
 var maximum := 1.0
 var trail := 0.0
@@ -80,4 +81,8 @@ func _draw() -> void:
 	draw_rect(bar.grow(3), Color("71848b"))
 	draw_rect(bar, Color("25313b"))
 	draw_rect(Rect2(bar.position, Vector2(bar_width * trail, bar.size.y)), Color("f3b597"))
-	draw_rect(Rect2(bar.position, Vector2(bar_width * hp / maximum, bar.size.y)), Color("efad47"))
+	var fraction := hp / maximum
+	var color := Color("58d68d") if fraction > .5 else Color("f4d35e") if fraction > .25 else Color("ef5350")
+	draw_rect(Rect2(bar.position, Vector2(bar_width * fraction, bar.size.y)), color)
+	if not player_status.is_empty():
+		draw_string(ThemeDB.fallback_font,Vector2(0,75),player_status,HORIZONTAL_ALIGNMENT_CENTER,width,14,Color("fff6d5"))

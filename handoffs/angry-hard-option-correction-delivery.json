@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-10-17T18:42:11-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery metadata creation; not capture",
+  "capture_time": null,
+  "build": "Prototype 67 / 0.67.0",
+  "source_head": "49cc403 plus uncommitted integrations; isolated UI snapshot from66",
+  "app": "builds/Prototype-67/Drain Damage.app",
+  "archive": "builds/history/Prototype-67.zip",
+  "archive_sha256": "ab4bbbc662319c0ac348bcab89db4c64613472a5cf573954657c978494baa43b",
+  "status": "Verified UI correction; live appearance review pending",
+  "art_approval": "handoffs/angry-hard-option-art-correction.json",
+  "changes": [
+    "All three options use identical 375x64 artwork and355x46 interaction geometry",
+    "Removed opaque center cover; original sludge, bolts, metal texture and source preserved",
+    "Art-approved coral tint normal #ff9b78,hover #ffc09a,selected #ffe1aa",
+    "Exact full Hard label fits300px label bounds at22px; Easy/Normal remain27px"
+  ],
+  "checks": {
+    "packaged_suites": 6,
+    "python_tests": 15,
+    "export_and_signing": "pass",
+    "bundle_version": "0.67.0",
+    "zip_integrity": "pass",
+    "geometry_and_label_scales": "pass",
+    "original_gameplay_title_and_art_hashes": "unchanged from66"
+  },
+  "snapshot": "builds/source-67",
+  "scope": "Previous six creature profiles; unfinished Skitterling excluded without reverting shared changes",
+  "capture_gap": "No game window opened; actual texture/color/readability review and screenshots pending. Preserved66 and67 apps/ZIPs.",
+  "capture_backlog": [
+    "Difficulty screen normal, hovered and selected Hard states",
+    "Same-size plate comparison and full-label readability at large window size"
+  ],
+  "warnings": "Existing log/editor-settings permission, macOS certificate and immediate-shutdown resource diagnostics retained. Initial missing export directory fixed; final export passed.",
+  "capture_record": "storybook/067-original-size-angry-button/20261017-184211-capture-status.json"
+}

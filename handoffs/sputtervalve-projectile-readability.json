@@ -1,0 +1,127 @@
+{
+  "updated_at": "2026-10-17T15:12:58-07:00",
+  "status": "Integrated and packaged in Prototype56/0.56.0; automated checks pass; live visual review pending",
+  "request": "Sean reports tiny purple bolts in build0.55 screenshot; significantly enlarge them so they can be seen and avoided.",
+  "source_asset": "assets/world/opening-trial/entry-fx-v1.png",
+  "source_rect": [
+    0,
+    512,
+    512,
+    512
+  ],
+  "source_preservation": "Reuse existing authored pixels; no new PNG or generated art required.",
+  "current": {
+    "logical_size": [
+      16,
+      16
+    ],
+    "anchor": [
+      8,
+      8
+    ]
+  },
+  "replacement": {
+    "logical_size": [
+      64,
+      64
+    ],
+    "anchor": [
+      40,
+      32.5
+    ],
+    "scale_factor": 4,
+    "effect_id": "hostile-projectile"
+  },
+  "measurements": {
+    "opaque_threshold": 200,
+    "opaque_bounds_local": [
+      83,
+      152,
+      458,
+      349
+    ],
+    "bright_core_rule": "Alpha>=200 and minimum RGB channel>=180",
+    "bright_core_bounds_local": [
+      287,
+      235,
+      355,
+      284
+    ],
+    "bright_core_center_local": [
+      321,
+      259.5
+    ],
+    "chosen_registration_local": [
+      320,
+      260
+    ],
+    "bright_core_display_dimensions": [
+      8.5,
+      6.125
+    ],
+    "opaque_envelope_display_dimensions": [
+      46.875,
+      24.625
+    ],
+    "note": "Envelope includes detached decorative sparks; do not use envelope as a damage rectangle. Center the bright star on the trajectory instead of the full source cell."
+  },
+  "collision_contract": {
+    "radius_pixels": 4,
+    "damage": 1,
+    "speed_pixels_per_second": 150,
+    "rule": "Preserve existing collision radius, damage, speed, cadence and warning. This is a visibility correction; enlarged star rays and detached sparks remain decorative. No larger invisible collision area."
+  },
+  "engineering_delivery": [
+    "Apply size and anchor only to hostile-projectile in environment manifest; leave hostile-charge and other effects unchanged.",
+    "Regenerate combat data with existing generator; verify parent and integrated render paths use the same centered effect.",
+    "Check projectile registration, existing radius4 edge hits/misses and scenery sweeps; no added spawns.",
+    "Run relevant checks and build a new preserved version; do not block this bolt fix on body repaint or lore.",
+    "Update roadmap and storybook with actual delivery status; preserve capture gap if foreground permission unavailable."
+  ],
+  "remaining": "Body1.5x and non-beige contrast repaint remain separate unfinished changes. Shooter cap3 is now packaged; no new spawns. Live visual review and captures pending permission.",
+  "validation": "Existing source crop inspected and alpha/bright-core bounds measured with Pillow. No gameplay visual review, screenshot capture or new build performed.",
+  "delivery": {
+    "created_at": "2026-10-17T15:12:58-07:00",
+    "timezone": "America/Los_Angeles",
+    "utc_offset": "-07:00",
+    "timestamp_kind": "Delivery and capture-gap metadata creation; no image capture occurred",
+    "build": "Prototype 56 / 0.56.0",
+    "source_head": "49cc403 with uncommitted integration changes",
+    "app": "builds/Prototype-56/Drain Damage.app",
+    "archive": "builds/history/Prototype-56.zip",
+    "archive_sha256": "036f82114ab0053738a288fefe7aa134700aef8f52852e65fc059da40cd25001",
+    "status": "Export, signing,11Python tests,5source Godot suites and6packaged suites pass; visual review pending",
+    "capture_gap": "No foreground permission; no game window opened and no screenshots captured.",
+    "capture_backlog": [
+      "Representative gameplay with visible Sputtervalve projectile",
+      "Moving bolt centered on trajectory, hero near miss and scenery impact"
+    ],
+    "remaining": "Body1.5x and contrast repaint remain pending; no new spawn entries.",
+    "capture_record": "storybook/056-visible-sputtervalve-bolts/20261017-151258-capture-status.json",
+    "checks": {
+      "python": "11tests PASS via unittest discover",
+      "source": [
+        "hostile_projectile",
+        "opening_trial_state",
+        "opening_trial_game",
+        "integrated_opening",
+        "opening_trial_level"
+      ],
+      "packaged": [
+        "hostile_projectile",
+        "opening_trial_game",
+        "integrated_opening",
+        "opening_trial_level",
+        "build_version",
+        "standing_shots --integrated"
+      ],
+      "logs": "builds/verification-56/",
+      "packaged_method": "External Godot4.7.2 headless --main-pack from /private/tmp against exported PCK; PASS markers and absence of SCRIPT ERROR checked",
+      "bundle_versions": "CFBundleShortVersionString and CFBundleVersion both0.56.0",
+      "initial_export_failure": "Destination directory missing; created and reran successfully",
+      "warnings": "Existing editor-settings/log-write permission errors, macOS environment diagnostic and ObjectDB/resource shutdown warnings; no SCRIPT ERROR in passing suites.",
+      "archive": "ZIP CRC verification and recorded SHA256 match PASS",
+      "documentation": "git diff --check, changed Markdown width/whitespace/headings, JSON parsing and HTMLParser pass; markdownlint unavailable"
+    }
+  }
+}

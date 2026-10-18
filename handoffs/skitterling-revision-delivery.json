@@ -1,0 +1,155 @@
+{
+  "created_at": "2026-10-17T20:48:29-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 71 / 0.71.0",
+  "status": "All four requested changes integrated and packaged verification passed; human review pending",
+  "source_head": "49cc403 plus uncommitted integration; isolated snapshot atop Prototype 70",
+  "app": "builds/Prototype-71/Drain Damage.app",
+  "archive": "builds/history/Prototype-71.zip",
+  "archive_sha256": "8d406ce137795260baf5e48d2898742d26e4b5733e9dbf9f166dddde254e9221",
+  "snapshot": "builds/source-71",
+  "portals": {
+    "entry_world_x": [
+      6450,
+      6690
+    ],
+    "exit_world_x": [
+      7410,
+      7650
+    ],
+    "floor_y": 440,
+    "fight_hero_left_limits": [
+      6690,
+      7384
+    ],
+    "entry_commit": 6690,
+    "exit_release": 7650,
+    "movement": "Ordinary input, acceleration, stopping and reversal; no player teleport, zeroed velocity, automatic movement or fullscreen fade. Entry closes only after full emergence; exit opens on final death.",
+    "camera": "Reversible position blend6250..6690 into camera6570; fixed through fight; exit blend7410..7650 toward normal follow, including backtracking after release.",
+    "art": "New authored side-view rear/front layers. Alpha-tested opaque hero band hides body parts naturally; no whole-hero visibility switch. Background/ceiling attack pipes unchanged; no drowning mechanic.",
+    "cleanup": "Prior threats are offscreen beyond the quiet approach; visible player shots/effects preserved."
+  },
+  "health": {
+    "rat_hp": 540,
+    "alligator_hp": 180,
+    "displayed_max_hp": 720,
+    "tony_hits": {
+      "rat": 45,
+      "alligator": 15,
+      "total": 60
+    },
+    "sean_hits": {
+      "rat": 30,
+      "alligator": 10,
+      "total": 40
+    },
+    "rat_net_first_to_last_seconds": {
+      "tony": 7.04,
+      "sean": 6.96
+    },
+    "rationale": "Rat was too fragile. Triple its phase budget while preserving near-equal uninterrupted weapon time. These times exclude travel, misses, telegraphs and invulnerability.",
+    "phase_rules": "Rat overkill clamps at180 remaining; no HUD refill. Collapse0.5s then4s still false death, reskitter4.5s and alligator assembly2.5s retained."
+  },
+  "alligator_cycle": {
+    "swim_speed": 340,
+    "warning_seconds": 0.8,
+    "throws_per_cycle": 3,
+    "maximum_live_items": 1,
+    "item_diameter": 28,
+    "charge_speed": 300,
+    "charge_legs": 2,
+    "charge_warning_seconds": 0.9,
+    "sequence": "Dive, continuously track beneath hero until reaching a distinct nearby launch origin, pause with horizontal target locked, throw vertically, wait for item to clear, reacquire and repeat three times. Then swim to safe emergence anchor, warn, emerge, recover and make two warned jaw charges; repeat.",
+    "stationary_resolution": "Distinct nearby origins around the sampled hero footprint (-10/0/+10 preference) remain inside the threat of a28px item. No horizontal homing after warning commitment.",
+    "damage": "Items hurt upward and downward. Low44px leading jaws permit the existing jump. Bodies do not trap the hero; hidden travel invulnerable; occupied emergence warns/repositions safely.",
+    "audio": "Existing bounded pools/cues extended with swim_start and jaw_snap; warning tails canceled on release."
+  },
+  "launch": {
+    "registry": "data/playtest-targets.json",
+    "implemented": [
+      "LEVEL=1",
+      "MINIBOSS=skitterling"
+    ],
+    "full_boss_targets": [],
+    "examples": [
+      "make run-targets",
+      "make run LEVEL=1 HERO=tony DIFFICULTY=normal",
+      "make run MINIBOSS=skitterling HERO=sean DIFFICULTY=hard SEED=42",
+      "make run-check MINIBOSS=skitterling HERO=sean",
+      "make run-check LEVEL=1 APP=\"builds/Prototype-71/Drain Damage.app\""
+    ],
+    "hero_values": [
+      "tony",
+      "sean"
+    ],
+    "difficulty_values": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "defaults": {
+      "hero": "tony",
+      "difficulty": "normal",
+      "seed": 42
+    },
+    "seed_range": [
+      0,
+      2147483647
+    ],
+    "semantics": "Plain make run retains normal menus. Exactly one implemented selector is required with overrides. Mini-boss initializes checkpoint4650, full health/three lives/stock and spawns at6410 before the real entrance walk. Normal death/clone/reset policy applies.",
+    "cli": "Source/exported user arguments after --: --level=1 or --miniboss=skitterling, --hero=sean, --difficulty=hard, --seed=42, --list-playtest-targets. Invalid/conflicting/unimplemented targets fail.",
+    "permission": "No game window launched; selectors do not authorize foreground playtesting."
+  },
+  "validation": {
+    "packaged_suites": [
+      "skitterling_portals",
+      "playtest_launch",
+      "skitterling_combat_revision",
+      "skitterling_audio",
+      "skitterling_encounter",
+      "skitterling_art",
+      "skitterling_integration",
+      "difficulty_respawn",
+      "normal_density",
+      "integrated_opening",
+      "flushfiend_steps",
+      "swarm_schedule",
+      "flushfiend_staircase_pair",
+      "gratecrawler_patrol",
+      "menu_audio",
+      "difficulty_menu",
+      "creature_audio",
+      "build_version",
+      "hard_costumes",
+      "difficulty_traversal"
+    ],
+    "python_tests": 32,
+    "source_export_cli_checks": 16,
+    "full_route": "18 runs: both heroes, all3difficulties, seeds7/42/913,60/120Hz. Actual weapon shots defeat both phases; all9swarms issued/visible, including3postboss. Test-only healing preserves coverage; not a human survival/fairness claim.",
+    "focused": "Both-hero continuous walking/stopping/reversal, entry/exit locks, per-frame camera continuity, actual prepared-alpha occlusion; scene-adapted3upwardstationaryhits/movingdodges/visiblejawdamage; controller continuous moving-target swim, distinct origins, jump clearance, pause/death/reset; launch initialization/invalid selectors and existing menu/navigation/audio regressions.",
+    "export_signing_versions_zip": "pass",
+    "logs": "builds/verification-71/",
+    "supplement": "Packaged pause inside entry tunnel and death/retry inside reversed open exit also passed."
+  },
+  "preserved": [
+    "Prototype70 nine-swarm additive schedule",
+    "Prototype67 menu",
+    "Prototype68 Flushfiend navigation"
+  ],
+  "capture_gap": "No71 game-window screenshots captured. Human balance, composed visual/camera review and listening pending. Preserved70/71 apps/ZIPs; user-provided69 screenshot is historical source evidence only.",
+  "capture_backlog": [
+    "Hero partially/fully occluded in both lateral tunnels",
+    "Entry/reversible exit camera movement",
+    "540HP rat fight and false death",
+    "Three distinct upward throws and moving dodges",
+    "Emergence and two snapping jaw charges",
+    "Direct launch shortcut followed by checkpoint retry"
+  ],
+  "capture_record": "storybook/071-walking-portals-and-skitterling-revision/20261017-204829-capture-status.json",
+  "warnings": "Existing log/editor-settings permission, system CA and shutdown ObjectDB/resource diagnostics retained. No final packaged script/parse/assertion failures.",
+  "documentation_lint": "Markdown linter unavailable; changed prose width/structure and diff hygiene checked.",
+  "final_metadata_note": "Final canonical verification status was recorded after packaging. The generated health.status prose now says verified; the preserved app/snapshot combat bundle retains pre-verification status prose. This unused editorial field is the only bundle difference; every gameplay value and all code/assets are unchanged. No rebuild was needed."
+}

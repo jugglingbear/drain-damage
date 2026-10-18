@@ -13,6 +13,8 @@ var result_shown := false
 var retry_after: Dictionary = {}
 const ROLE_KEYS := {"perched_shooter":"sputtervalve", "floor_emerger":"gratecrawler",
 	"aggressive_flyer":"hallowed-widow-trial"}
+const AUDIO_IDS := {"runner":"toilet", "rear_runner":"toilet", "perched_shooter":"sputtervalve",
+	"floor_emerger":"gratecrawler", "aggressive_flyer":"spider"}
 const BALANCE_KEYS := {"runner":"runner", "rear_runner":"runner", "perched_shooter":"shooter",
 	"floor_emerger":"emerger", "aggressive_flyer":"flyer"}
 
@@ -38,6 +40,7 @@ func reset_game() -> void:
 	reset_observation()
 
 func reset_observation() -> void:
+	for sound in creature_audio.values(): sound.stop()
 	dispenser.cancel()
 	elapsed = 0.0
 	trial_state.reset()
@@ -119,10 +122,13 @@ func actor_projectile_rect(actor: Dictionary) -> Rect2:
 	if actor.role in ["runner", "rear_runner"]: return flushfiend_projectile_rect(actor.feet)
 	return actor_rect(actor)
 
+func actor_world_limit() -> float:
+	return 6000.0
+
 func position_safe(feet: Vector2, role: String, activation := false) -> bool:
 	var body := event_size(role)
 	body.position += feet
-	if body.position.x < 0 or body.end.x > 6000: return false
+	if body.position.x < 0 or body.end.x > actor_world_limit(): return false
 	if body.grow(45 if activation else 100).intersects(Rect2(player,PLAYER_SIZE)): return false
 	for other in actors:
 		if other.hp > 0 and other.feet != feet and body.grow(12).intersects(actor_rect(other)): return false
@@ -154,7 +160,7 @@ func choose_home(event: Dictionary) -> Vector2:
 		var y := 440.0
 		if role == "aggressive_flyer": y = 250
 		for offset in range(0,241,40):
-			var feet := Vector2(minf(camera_x+1008+offset,5960),y)
+			var feet := Vector2(minf(camera_x+1008+offset,actor_world_limit()-40),y)
 			if feet.x-player.x >= 220 and position_safe(feet,role): return feet
 	return Vector2.INF
 
@@ -179,9 +185,20 @@ func create_actor(event: Dictionary, home: Vector2) -> void:
 		"warning_seconds":float(event.warning_seconds),"target":Vector2.ZERO,"flight_time":0.0,"hover_started":false,"hover_remaining":0.0,
 		"runner":Data.spawn("toilet",home-Vector2(19,36))})
 
+func damage_trial_actor(actor: Dictionary, amount: float) -> void:
+	if amount <= 0 or not is_finite(amount) or actor.hp <= 0: return
+	var previous_hp: float = actor.hp
+	actor.hp = maxf(0, actor.hp - amount)
+	actor.flash = 0.1
+	if actor.hp == 0:
+		finish_trial_defeat(actor)
+	elif actor.hp < previous_hp:
+		creature_audio[AUDIO_IDS[actor.role]].play_hit(actor, float(actor.get("age", elapsed)))
+
 func finish_trial_defeat(actor: Dictionary) -> void:
 	if actor.get("defeat_recorded",false): return
 	actor.defeat_recorded = true
+	creature_audio[AUDIO_IDS[actor.role]].play_defeat()
 	trial_state.death(actor.event_id)
 	kills += 1
 	player_kills += 1
@@ -196,18 +213,23 @@ func finish_trial_defeat(actor: Dictionary) -> void:
 		corpse.death_time = 0.0
 		corpse.death_velocity = 0.0
 		corpses.append(corpse)
-		flushfiend_death_audio.play_defeat()
 
 func move_ground_actor(actor: Dictionary, dx: float, delta: float) -> void:
-	for prop in trial_data.layout.geometry:
-		if prop.collision != "solid": continue
-		var edge: float = prop.rect[0]-(actor.feet.x+19) if dx > 0 else actor.feet.x-19-(prop.rect[0]+prop.rect[2])
-		if edge >= -0.1 and edge < 10 and actor.feet.y >= 439: actor.vy = JUMP_SPEED
+	if actor.role in ["runner","rear_runner"]:
+		var bounds := event_size(actor.role)
+		var navigation := FlushfiendNavigation.velocity(Rect2(actor.feet+bounds.position,bounds.size),
+			Vector2(dx,actor.vy),actor,delta,trial_level.plinths,trial_level.move_body,GRAVITY,JUMP_SPEED)
+		dx = navigation.x
+		actor.vy = navigation.y
+		if dx != 0: actor.facing = signf(dx)
 	actor.vy += GRAVITY*delta
 	var shape := event_size(actor.role)
 	var motion: Dictionary = trial_level.move_body(actor.feet+shape.position,Vector2(dx,actor.vy),shape.size,delta)
 	actor.feet = motion.pos-shape.position
 	actor.vy = motion.velocity.y
+	# The body sweep uses this role's actual bounds; a blocked patrol turns instead of jumping.
+	if actor.role == "floor_emerger" and delta > 0 and dx != 0 and motion.velocity.x == 0:
+		actor.facing = -signf(dx)
 
 func step_trial_actors(delta: float) -> void:
 	for actor in actors:
@@ -240,12 +262,16 @@ func step_trial_actors(delta: float) -> void:
 		elif actor.role == "aggressive_flyer":
 			step_flyer(actor,delta)
 		else:
+			if actor.role == "floor_emerger":
+				if actor.feet.x <= actor.home.x-70 and actor.facing < 0:
+					actor.facing = 1.0
+				elif actor.feet.x >= actor.home.x+70 and actor.facing > 0:
+					actor.facing = -1.0
 			var dx: float = actor.facing*90
 			if actor.role in ["runner","rear_runner"]:
 				var pursuit: Dictionary = Data.monster("toilet").pursuit
 				dx = pursuit_velocity(actor.runner,player.x-actor.feet.x,pursuit,delta)
 				actor.facing = signf(dx) if dx != 0 else actor.facing
-			elif absf(actor.feet.x-actor.home.x) > 70: actor.facing *= -1
 			move_ground_actor(actor,dx,delta)
 		var pattern := "contact-"+str(actor.event_id)
 		# Hold a contact slot for the entire visible threat, not just the collision tick.
@@ -256,7 +282,7 @@ func step_trial_actors(delta: float) -> void:
 				trial_state.end_pattern(pattern)
 				actor.contact_live = false
 			if actor.contact_live and actor_rect(actor).intersects(Rect2(player,PLAYER_SIZE)): hurt_player()
-		if actor.feet.x < camera_x-160 or actor.feet.x > 6160:
+		if actor.role != "aggressive_flyer" and (actor.feet.x < camera_x-160 or actor.feet.x > actor_world_limit()+160):
 			trial_state.retire(actor.event_id)
 			actor.hp = -1
 			actor.death = 1
@@ -266,6 +292,7 @@ func step_trial_actors(delta: float) -> void:
 func move_flyer_clear(actor: Dictionary, destination: Vector2) -> bool:
 	# Sweep the whole scaled body so a committed dive cannot tunnel through a deck.
 	var shape := event_size("aggressive_flyer")
+	destination.x = clampf(destination.x,-shape.position.x,WORLD_WIDTH-shape.end.x)
 	var closest := 1.0
 	for solid in player_shot_solids():
 		var expanded := Rect2(solid.position-shape.end,solid.size+shape.size)
@@ -274,7 +301,13 @@ func move_flyer_clear(actor: Dictionary, destination: Vector2) -> bool:
 	actor.feet = actor.feet.lerp(destination,closest)
 	return closest >= 1.0
 
+func face_flyer_toward_hero(actor: Dictionary) -> void:
+	var distance: float = player.x+PLAYER_SIZE.x*0.5-actor.feet.x
+	# Keep the previous heading under a nearly centered hero instead of jittering left/right.
+	if absf(distance) > 6.0: actor.facing = signf(distance)
+
 func step_flyer(actor: Dictionary, delta: float) -> void:
+	if actor.hp <= 0 or paused or life_state != "alive" or dispenser.active or dialogue.active: return
 	var stats: Dictionary = trial_data.balance.roles.flyer
 	if not actor.has("attack_state"):
 		actor.attack_state = "approach"
@@ -285,11 +318,8 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 	actor.attack_clock += delta
 	var visible := actor_rect(actor).position.x >= camera_x and actor_rect(actor).end.x <= camera_x+960
 	match actor.attack_state:
-		"approach", "cooldown":
-			if actor.attack_state == "cooldown" and actor.attack_clock < stats.recovery_cooldown_seconds:
-				move_flyer_clear(actor,actor.feet+Vector2(actor.facing*float(stats.speed_pixels_per_second)*delta,0))
-				return
-			if visible and (player.x+PLAYER_SIZE.x*0.5-actor.feet.x)*actor.facing > 0 and absf(actor.feet.x-player.x) <= stats.aggro_distance_pixels:
+		"approach":
+			if visible and absf(actor.feet.x-(player.x+PLAYER_SIZE.x*0.5)) <= stats.aggro_distance_pixels:
 				var token := "contact-"+str(actor.event_id)
 				if not actor.contact_live:
 					actor.contact_live = trial_state.begin_pattern(token,actor.event_id)
@@ -297,16 +327,18 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 				actor.attack_state = "windup"
 				actor.attack_clock = 0.0
 				actor.attack_origin = actor.feet
-				# Aim is captured once, before the warning. Moving away remains a valid dodge.
+				# Lock the warned target even if the hero crosses behind during the approach.
 				actor.attack_target = player+PLAYER_SIZE*0.5
 				actor.attack_target.y = minf(actor.attack_target.y,440-event_size("aggressive_flyer").end.y-1)
-				# Keep the flight heading throughout the committed V-shaped attack.
+				face_flyer_toward_hero(actor)
 				actor.attack_direction = actor.facing
 			else:
+				var previous: Vector2 = actor.feet
 				move_flyer_clear(actor,actor.feet+Vector2(actor.facing*float(stats.speed_pixels_per_second)*delta,0))
+				if actor.feet.is_equal_approx(previous): face_flyer_toward_hero(actor)
 		"windup":
 			if not visible:
-				actor.attack_state = "cooldown"
+				actor.attack_state = "top_pause"
 				actor.attack_clock = 0.0
 			elif actor.attack_clock >= stats.attack_warning_seconds:
 				actor.attack_state = "swoop"
@@ -323,9 +355,18 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 				actor.recovery_target = Vector2(actor.feet.x+actor.attack_direction*forward_distance,actor.attack_origin.y)
 		"recover":
 			var t := clampf(actor.attack_clock/float(stats.recovery_seconds),0,1)
-			move_flyer_clear(actor,actor.recovery_origin.lerp(actor.recovery_target,t))
-			if t >= 1:
-				actor.attack_state = "cooldown"
+			var clear := move_flyer_clear(actor,actor.recovery_origin.lerp(actor.recovery_target,t))
+			if not clear:
+				# A blocked diagonal climbs vertically at the recovery rate; never teleport through scenery.
+				var climb_speed := maxf(100.0,absf(actor.recovery_origin.y-actor.attack_origin.y)/float(stats.recovery_seconds))
+				move_flyer_clear(actor,Vector2(actor.feet.x,move_toward(actor.feet.y,actor.attack_origin.y,climb_speed*delta)))
+			if t >= 1 and is_equal_approx(actor.feet.y,actor.attack_origin.y):
+				actor.attack_state = "top_pause"
+				actor.attack_clock = 0.0
+		"top_pause":
+			if actor.attack_clock >= float(stats.get("top_pause_seconds",1.0)):
+				face_flyer_toward_hero(actor)
+				actor.attack_state = "approach"
 				actor.attack_clock = 0.0
 
 func step_shooter(actor: Dictionary, delta: float, visible: bool) -> void:
@@ -382,10 +423,7 @@ func step_trial_shots(delta: float) -> void:
 			if target >= 0:
 				var actor: Dictionary = actors[target]
 				trial_state.record_damage(minf(actor.hp,shot.damage),false)
-				actor.hp = maxf(0,actor.hp-shot.damage)
-				actor.flash = 0.1
-				if actor.hp == 0:
-					finish_trial_defeat(actor)
+				damage_trial_actor(actor,shot.damage)
 			shots.remove_at(index)
 	for index in range(hostile_shots.size()-1,-1,-1):
 		var shot: Dictionary = hostile_shots[index]

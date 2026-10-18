@@ -476,12 +476,12 @@
         512
       ],
       "logical_size": [
-        16,
-        16
+        64,
+        64
       ],
       "anchor": [
-        8,
-        8
+        40,
+        32.5
       ],
       "collision": null
     },
@@ -535,7 +535,7 @@
   "effect_notes": [
     "Grate states have matched visible bottom anchors at floor440. Warning artwork is harmless; Mechanics owns0.8s warning/0.35s emerge/0.3s settle.",
     "Landing cue is non-colliding. Do not pulse by hiding it completely; keep visible warning throughout.",
-    "Projectile artwork is16px canvas with bright central core; Mechanics collider radius4, velocity150. One non-homing shot, no offscreen fire.",
+    "Projectile artwork uses a64px canvas anchored at40,32.5 to center the bright core; Mechanics collider radius4, velocity150. Star rays and detached sparks are decorative. One non-homing shot, no offscreen fire.",
     "Charge and impact are single authored poses; runtime opacity/scale may animate them. No claim of multi-frame effects.",
     "Grate and ring amber cues are entry markers, not interactable pickups. Proposed trial-only effect style."
   ],

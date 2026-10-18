@@ -1,0 +1,829 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T17:30:30-07:00",
+  "status": "Initial30-slot implementation failed density target; admission and habitat revision recommended, unverified",
+  "instruction": "Match Normal opening through second Widow throughout level; smooth middle lull and stronger finale, not a global density increase.",
+  "ownership": {
+    "level_design": "Measurement and this handoff only",
+    "engineering": "Plan/runtime/tests, before-after checks, roadmap/build/storybook"
+  },
+  "source_baseline": "Prototype63 / 0.63.0 working source; six Normal hero/seed traversals reached9450.",
+  "reference": {
+    "authored": "10 eligible opening entries through second Widow trigger1900+/-35; first trigger100. Typical gaps200, range150..250 before jitter.",
+    "nominal_rate": "10 potential entries over1800 trigger-span; mean interval200pixels. Eligibility does not guarantee arrival.",
+    "pressure": "Normal minimum opening issue interval0.8seconds, crowd cap6, one live Widow, existing attack budgets.",
+    "normal_seed_variation": "Opening index7 may be emerger instead of runner. All opening resolved output must remain identical.",
+    "forward_bot": "No second Widow in six continuous-forward/shoot-right runs: surviving first Widow blocked issuance.",
+    "controlled_probe": "Synthetic fixture pauses horizontal input while a Widow lives and defeats it via damage_trial_actor after actor age4seconds. Not a human playtest or natural weapon TTK.",
+    "controlled_second_widow": "All six runs issue second Widow at hero x1892.70..1961.50 and simulation10.7833..11.925seconds; this conditional result is not a universal timing target.",
+    "uncertainty": "Sean playtest seed, firing, movement and kill times unavailable; preserve seed variation and use a range of policies."
+  },
+  "baseline_visible_metrics": [
+    {
+      "x_range": [
+        0,
+        1900
+      ],
+      "mean_visible_range": [
+        1.7911547911547911,
+        2.007502679528403
+      ],
+      "empty_fraction_range": [
+        0.055734190782422297,
+        0.10515021459227468
+      ]
+    },
+    {
+      "x_range": [
+        1900,
+        3800
+      ],
+      "mean_visible_range": [
+        0.6082474226804123,
+        1.338862559241706
+      ],
+      "empty_fraction_range": [
+        0.2515463917525773,
+        0.4195876288659794
+      ]
+    },
+    {
+      "x_range": [
+        3800,
+        5700
+      ],
+      "mean_visible_range": [
+        0.5381485249237029,
+        1.3663967611336032
+      ],
+      "empty_fraction_range": [
+        0.35020242914979755,
+        0.6857476635514018
+      ]
+    },
+    {
+      "x_range": [
+        5700,
+        7600
+      ],
+      "mean_visible_range": [
+        1.6185567010309279,
+        2.452577319587629
+      ],
+      "empty_fraction_range": [
+        0.0,
+        0.20618556701030927
+      ]
+    },
+    {
+      "x_range": [
+        7600,
+        9450
+      ],
+      "mean_visible_range": [
+        1.4077669902912622,
+        2.564021164021164
+      ],
+      "empty_fraction_range": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "baseline_raw_bins": [
+    {
+      "hero_index": 0,
+      "seed": 7,
+      "bins": {
+        "0": {
+          "empty": 26,
+          "population": 1305,
+          "ticks": 407,
+          "visible": 730
+        },
+        "1": {
+          "empty": 107,
+          "population": 1458,
+          "ticks": 422,
+          "visible": 565
+        },
+        "2": {
+          "empty": 174,
+          "population": 1140,
+          "ticks": 431,
+          "visible": 326
+        },
+        "3": {
+          "empty": 0,
+          "population": 2026,
+          "ticks": 422,
+          "visible": 892
+        },
+        "4": {
+          "empty": 0,
+          "population": 1817,
+          "ticks": 412,
+          "visible": 580
+        }
+      }
+    },
+    {
+      "hero_index": 0,
+      "seed": 42,
+      "bins": {
+        "0": {
+          "empty": 52,
+          "population": 2609,
+          "ticks": 814,
+          "visible": 1458
+        },
+        "1": {
+          "empty": 335,
+          "population": 2912,
+          "ticks": 845,
+          "visible": 1010
+        },
+        "2": {
+          "empty": 587,
+          "population": 2162,
+          "ticks": 856,
+          "visible": 544
+        },
+        "3": {
+          "empty": 18,
+          "population": 4154,
+          "ticks": 845,
+          "visible": 1858
+        },
+        "4": {
+          "empty": 0,
+          "population": 4601,
+          "ticks": 823,
+          "visible": 2059
+        }
+      }
+    },
+    {
+      "hero_index": 0,
+      "seed": 913,
+      "bins": {
+        "0": {
+          "empty": 52,
+          "population": 2723,
+          "ticks": 814,
+          "visible": 1514
+        },
+        "1": {
+          "empty": 222,
+          "population": 2754,
+          "ticks": 845,
+          "visible": 942
+        },
+        "2": {
+          "empty": 407,
+          "population": 2195,
+          "ticks": 856,
+          "visible": 552
+        },
+        "3": {
+          "empty": 57,
+          "population": 3762,
+          "ticks": 845,
+          "visible": 1503
+        },
+        "4": {
+          "empty": 0,
+          "population": 3841,
+          "ticks": 823,
+          "visible": 1551
+        }
+      }
+    },
+    {
+      "hero_index": 1,
+      "seed": 7,
+      "bins": {
+        "0": {
+          "empty": 49,
+          "population": 1578,
+          "ticks": 466,
+          "visible": 851
+        },
+        "1": {
+          "empty": 135,
+          "population": 1356,
+          "ticks": 485,
+          "visible": 370
+        },
+        "2": {
+          "empty": 173,
+          "population": 1723,
+          "ticks": 494,
+          "visible": 675
+        },
+        "3": {
+          "empty": 100,
+          "population": 2294,
+          "ticks": 485,
+          "visible": 785
+        },
+        "4": {
+          "empty": 0,
+          "population": 2521,
+          "ticks": 473,
+          "visible": 1072
+        }
+      }
+    },
+    {
+      "hero_index": 1,
+      "seed": 42,
+      "bins": {
+        "0": {
+          "empty": 73,
+          "population": 3182,
+          "ticks": 933,
+          "visible": 1730
+        },
+        "1": {
+          "empty": 407,
+          "population": 2708,
+          "ticks": 970,
+          "visible": 590
+        },
+        "2": {
+          "empty": 664,
+          "population": 2481,
+          "ticks": 983,
+          "visible": 529
+        },
+        "3": {
+          "empty": 0,
+          "population": 5210,
+          "ticks": 970,
+          "visible": 2379
+        },
+        "4": {
+          "empty": 0,
+          "population": 5477,
+          "ticks": 945,
+          "visible": 2308
+        }
+      }
+    },
+    {
+      "hero_index": 1,
+      "seed": 913,
+      "bins": {
+        "0": {
+          "empty": 52,
+          "population": 3371,
+          "ticks": 933,
+          "visible": 1873
+        },
+        "1": {
+          "empty": 244,
+          "population": 2994,
+          "ticks": 970,
+          "visible": 982
+        },
+        "2": {
+          "empty": 429,
+          "population": 2883,
+          "ticks": 983,
+          "visible": 762
+        },
+        "3": {
+          "empty": 19,
+          "population": 4933,
+          "ticks": 970,
+          "visible": 2129
+        },
+        "4": {
+          "empty": 0,
+          "population": 5274,
+          "ticks": 945,
+          "visible": 2423
+        }
+      }
+    }
+  ],
+  "measurement": {
+    "baseline_probe": ".tools/density-probe/baseline.gd",
+    "baseline_log": ".tools/density-probe/baseline.log",
+    "controlled_probe": ".tools/density-probe/controlled.gd",
+    "controlled_log": ".tools/density-probe/controlled.log",
+    "policy": "Derived from existing difficulty_traversal fixture: Normal only, heroes0/1, seeds7/42/913, invulnerable, right+shoot, jump ahead of solids, up to70simulationseconds or9450. Seed7 at60Hz, others120Hz. Dispenser advanced as existing fixture.",
+    "metric": "Per1900px bin, sample live trial actor feet/campaign enemy position inside camera width960. Sum visible counts/ticks and zero-visible ticks/ticks. Swarm excluded from visible count but included in population.",
+    "limits": "Visibility proxy excludes full art extent, shooter line-of-sight, vertical aiming and swarm; invulnerability and simple bot do not establish player fairness. Final bin ends at9450.",
+    "diagnostics": "No assertion failures; log permission, macOS certificate and cleanup-resource warnings present. Inherited PASS label incorrectly says18runs; actual baseline six runs."
+  },
+  "normal_tuning": {
+    "enabled_later_count": 30,
+    "previous": 36,
+    "slots": [
+      {
+        "id": "normal-route-01",
+        "trigger_x": 3250,
+        "role": "perched_shooter",
+        "owner_origin": 85,
+        "expires_x": 3850,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-02",
+        "trigger_x": 3450,
+        "role": "runner",
+        "owner_origin": 85,
+        "expires_x": 4050,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-03",
+        "trigger_x": 3650,
+        "role": "runner",
+        "owner_origin": 85,
+        "expires_x": 4250,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-04",
+        "trigger_x": 3850,
+        "role": "floor_emerger",
+        "owner_origin": 85,
+        "expires_x": 4450,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-05",
+        "trigger_x": 4050,
+        "role": "runner",
+        "owner_origin": 85,
+        "expires_x": 4650,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-06",
+        "trigger_x": 4250,
+        "role": "runner",
+        "owner_origin": 85,
+        "expires_x": 4850,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-07",
+        "trigger_x": 4450,
+        "role": "runner",
+        "owner_origin": 85,
+        "expires_x": 5050,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-08",
+        "trigger_x": 4700,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 4800,
+        "wave": 0
+      },
+      {
+        "id": "normal-route-09",
+        "trigger_x": 4900,
+        "role": "aggressive_flyer",
+        "owner_origin": 4650,
+        "expires_x": 5500,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-10",
+        "trigger_x": 5100,
+        "role": "aggressive_flyer",
+        "owner_origin": 4650,
+        "expires_x": 5700,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-11",
+        "trigger_x": 5300,
+        "role": "perched_shooter",
+        "owner_origin": 4650,
+        "expires_x": 5900,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-12",
+        "trigger_x": 5500,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 6100,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-13",
+        "trigger_x": 5700,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 6300,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-14",
+        "trigger_x": 5900,
+        "role": "floor_emerger",
+        "owner_origin": 4650,
+        "expires_x": 6500,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-15",
+        "trigger_x": 6100,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 6700,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-16",
+        "trigger_x": 6300,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 6900,
+        "wave": 1
+      },
+      {
+        "id": "normal-route-17",
+        "trigger_x": 6500,
+        "role": "aggressive_flyer",
+        "owner_origin": 4650,
+        "expires_x": 7100,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-18",
+        "trigger_x": 6700,
+        "role": "aggressive_flyer",
+        "owner_origin": 4650,
+        "expires_x": 7300,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-19",
+        "trigger_x": 6900,
+        "role": "perched_shooter",
+        "owner_origin": 4650,
+        "expires_x": 7500,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-20",
+        "trigger_x": 7100,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 7700,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-21",
+        "trigger_x": 7300,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 7900,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-22",
+        "trigger_x": 7500,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 8100,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-23",
+        "trigger_x": 7700,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 8300,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-24",
+        "trigger_x": 7900,
+        "role": "floor_emerger",
+        "owner_origin": 4650,
+        "expires_x": 8500,
+        "wave": 2
+      },
+      {
+        "id": "normal-route-25",
+        "trigger_x": 8100,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 8700,
+        "wave": 3
+      },
+      {
+        "id": "normal-route-26",
+        "trigger_x": 8300,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 8900,
+        "wave": 3
+      },
+      {
+        "id": "normal-route-27",
+        "trigger_x": 8500,
+        "role": "aggressive_flyer",
+        "owner_origin": 4650,
+        "expires_x": 9100,
+        "wave": 3
+      },
+      {
+        "id": "normal-route-28",
+        "trigger_x": 8700,
+        "role": "aggressive_flyer",
+        "owner_origin": 4650,
+        "expires_x": 9300,
+        "wave": 3
+      },
+      {
+        "id": "normal-route-29",
+        "trigger_x": 8900,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 9380,
+        "wave": 3
+      },
+      {
+        "id": "normal-route-30",
+        "trigger_x": 9100,
+        "role": "runner",
+        "owner_origin": 4650,
+        "expires_x": 9380,
+        "wave": 3
+      }
+    ],
+    "spacing_seconds": 0.8,
+    "crowd_cap": 6,
+    "jitter_pixels": 30,
+    "cadence": "200px ordinary gaps;250px across checkpoint and200px thereafter. Lower late120/130px cadence and remove large inter-wave scheduling holes.",
+    "checkpoint": "Pin4700,forward only,1.25s retry grace and4800expiry unchanged; optional bypass intentional. Ownership stable before jitter.",
+    "opening_transition": "First later3250 follows approved opening expiry3120 by130px; do not issue before opening completion. Last opening trigger2450 remains unchanged.",
+    "composition": "18runners,3shooters,3emergers,6sequentialWidows; role count resembles reference without adding more total arrivals. Safe runner fallback where habitat is unavailable; record fallback.",
+    "shooter_supports": "3250 trigger can use existing3500 low plinth;5300 can use5570 low plinth;6900 can use7200 low plinth. Validate support width, rendered feet and safe forward distance before reservation. No new geometry/art.",
+    "emerger_supports": "3850/5900/7900 triggers approach existing open floor; use validated visible marker, predicted landing exclusion and activation recheck.",
+    "expiry": "Per-slot trigger+600 bounded by9380 prevents stalled backlog dumping; no required kill quota. Windows are tuning proposals, compare after measurements.",
+    "backpressure": "One issuance max per cadence; blocked entries do not block other roles. Single Widow token shared across opening/later. Do not spawn from old sections after respawn.",
+    "retirement": "Offscreen-behind retirement without kill credit must cover all later roles, release reservations, never delete visible actor to make space.",
+    "strong_finale": "Do not increase final crowd cap or spawn count. Fewer slots and200px gaps specifically reduce late stacking.",
+    "immutable": "Preserve all Easy/Hard resolved plans and Normal opening output, HP,damage,tells,attack/bullet caps,geometry and stock/lives.",
+    "wave_counts": [
+      8,
+      8,
+      8,
+      6
+    ],
+    "wave_semantics": "Four groups are telemetry buckets only; per-event expiry controls retirement, not legacy WAVE_RANGES.",
+    "emerger_presentation": "Reuse approved existing grate-warning/entry effects at validated floor; no new drawn prop or implied authored grate needed. If effect placement cannot be validated, resolve runner fallback."
+  },
+  "runtime_requirements": [
+    "Current later scheduler spawns only toilets; mixed roles require common trial actor/event bookkeeping with explicit expiry/owner.",
+    "Generalize Normal later role placement beyond current6000 bound /5960 clamp without changing approved opening or other modes.",
+    "Perched shooters may use validated existing prop tops; choose_home currently searches opening decks only.",
+    "Forward entry remains safe and readable; reroll neither role nor seed on safety failure. Emerger/Widow must not appear under hero.",
+    "Keep checkpoint ledger semantic tests rather than hardcoded36/7+29 for Normal: proposed30slots split7start/23checkpoint.",
+    "Persist seed and all resolved choices on death; activate/expire by progress, not global time."
+  ],
+  "acceptance": [
+    "Before/after identical six baseline policies, all reach9450; report visible means/empty fractions per section, issuance, bypass and fallback counts.",
+    "Aim for mid-level visible means near reference observed1.79..2.01 and less empty time; final pressure should not exceed baseline or materially outrun opening.",
+    "Do not hardcode exact visibility equality as a test: roles, obstacles, aiming and overlap change pressure. Inspect both tails of seed distribution.",
+    "At least100seed manifest checks: ordered unique IDs, owner partition, no jitter crossing4650, no invalid expiry or deterministic retry drift.",
+    "Easy/Hard complete plan signatures and Normal opening signatures unchanged from Engineering baseline.",
+    "Whole-level bothheroes seeds7/42/913 at60/120Hz; oneWidow, crowd6, existing3shooters/6bullets/3patterns limits; no backlog burst.",
+    "Controlled kill/pause policy checks secondWidow and later varied roles actually issue; do not equate synthetic kill with weapon balance.",
+    "Checkpoint retry excludes7pre entries and opening/swarm, restores23post; retain grace, optional tail bypass and clone stock.",
+    "Package/build Engineering owned; live Normal fairness/density check remains pending user-approved playtest."
+  ],
+  "density_revision": {
+    "reviewed_at": "2026-10-17T17:37:34-07:00",
+    "evidence": [
+      "builds/verification-64/baseline-after.log",
+      "builds/verification-64/controlled-after.log"
+    ],
+    "verdict": "Reject fixed30-slot cadence as sufficient. Mixed durable actors accumulate; reducing total potential count did not control local pressure.",
+    "results": {
+      "baseline_final_visible": "Tony3.14..3.15; Sean3.71..3.73 vs original opening1.79..2.01.",
+      "controlled_final_visible": "Tony3.59..3.60; Sean4.49..5.21. The worst case is above the approximate4.5 summary.",
+      "baseline_middle_visible": "3800..5700:0.90..1.25; zero-visible fraction32.96..37.25percent.",
+      "scope": "Six baseline and six synthetic controlled runs reach9450. No human fairness match established.",
+      "source_race": "At review current source already has route_pressure >=3 guard; do not assume inspected logs include that later edit. Archive script/source hash per next measurement."
+    },
+    "admission": [
+      "Normal later only: target TWO committed threats, independent of unchanged global crowd ceiling6 and attack budgets.",
+      "Before reservation count visible live bodies, ALL live unactivated entrants/warnings anywhere, and live actors expected to enter/reenter view; deduplicate by event ID.",
+      "Include opening survivors, swarm and any campaign bodies. Current route_pressure omits campaign enemies and ignores actors beyond camera+1250 or behind camera that can return.",
+      "Conservative first implementation: count all live later actors until defeated or validly retired, plus relevant opening survivors and swarm. Prevent hidden forward backlog.",
+      "Admit only if committed count <2; reservation immediately consumes the next slot. Keep0.8s minimum and one admission per update.",
+      "Visible hostile projectiles remaining after shooter death must also delay immediate replacement while dangerous; use occupied firing-lane pressure rather than treating every bullet as a monster.",
+      "At count2 or above hold pending entries; preserve expiry and bypass without kill credit. Never remove or weaken a visible enemy to meet target.",
+      "Do not add HP/kill-rate-based rubber banding or modify seed manifest. Admission responds only to occupied space, warnings and existing threats.",
+      "Do not raise target to3 merely to improve empty-time statistic: first test target2, then diagnose travel/habitat delay separately."
+    ],
+    "middle_habitat": [
+      "The3800..5700 bin spans checkpoint exclusion4450..4850 and stepped obstacle cluster4850..5730; ground-only delivery cannot uniformly fill it.",
+      "Pilot one role swap: normal-route-05 at4050 becomes aggressive_flyer; normal-route-09 at4900 becomes runner. Keep IDs/triggers/ownership/expiry and total species counts, and preserve one-live-Widow gate. This is a test proposal, not a proven improvement.",
+      "The earlier aerial opportunity can traverse above the stepped cluster using existing flight geometry; live safety and checkpoint exclusion still apply. Never force it if an opening Widow survives.",
+      "Keep shooters3250/5300/6900 and support tops3500/5570/7200 as first choices. Instrument rejected candidates by support/geometry/hero clearance/crowding, not only final fallback count.",
+      "Current fixed180px fallback delay can skip a usable perch as the player moves past it. Determine candidate perches from actual remaining220..420px forward window; fallback when no valid forward support remains in event window, not blindly at+180.",
+      "For emerger predicted landing exclusion, at constantTony270 the1.45s prediction is391.5px ahead: only~200..231.5px of current200..420 search survives160px exclusion. Sean235 leaves~200..180.75 (none) or beyond500.75 (outside search) when grounded assumptions hold; inspect actual velocity before claiming available habitat.",
+      "Correction for Sean arithmetic:235*1.45=340.75; allowed forward range up to180.75 or from500.75, so NONE of200..420 works at full speed. This deterministically forces fallback, independent of empty floor.",
+      "Preserve prediction safety; permit a farther visible floor candidate only if existing role warning/activation checks,220px edge distance and camera bounds all pass. Suggested search extends to camera+900, with world/body clearance, rather than shortening the160px exclusion.",
+      "Retain existing FX; no new props, telegraph changes or instantaneous damaging placement. If no safe candidate, defer or bypass rather than filling density numerically."
+    ],
+    "measurement_gate": [
+      "Re-run identical six baseline and six controlled policies on each revision, with source hashes. Add finer bins3120..4450,4450..4850,4850..5730,5730..7600,7600..9450 to separate intended checkpoint respite from habitat failure.",
+      "Record visible bodies, incoming reservations, swarm, projectile pressure, time-empty, longest empty interval, event trigger/admit/activate/retire coordinates, role fallbacks and rejection reasons.",
+      "First success gate: final baseline/control visible mean approaches roughly1.5..2.3, without increasing opening or middle empty fractions; this is a tuning tolerance, not a user-approved numeric requirement.",
+      "Middle improvement must be measured outside checkpoint respite too. Do not claim whole-level match if final is fixed but corridor remains empty.",
+      "All12runs reach9450, no caps/safety/ownership/seed violations;100seed opening/Easy/Hard signatures remain identical.",
+      "Same-seed retry retains role manifest including any swap; reset newly added admission counters/reservations atomically. Protect clone stock and1.25s grace.",
+      "Do not ship under a density-match claim until both middle and tail improve; disclose remaining gaps and approved-playtest need."
+    ],
+    "ownership": "Engineering owns all runtime/tests. Level Design changed only this handoff; no foreground or additional runtime tests in this review."
+  },
+  "edge_review": {
+    "status": "Accept for packaged verification as a pacing improvement; user density-match objective remains partially met",
+    "logs": [
+      "builds/verification-64/fine-baseline-edge.log",
+      "builds/verification-64/fine-controlled-edge.log"
+    ],
+    "coverage": "Both completed:6baseline+6controlled; all reach9450, reported caps/uniqueWidow/respawn checks pass. Log-write and macOS certificate errors remain environmental diagnostics.",
+    "section_ranges": [
+      [
+        3120,
+        4450
+      ],
+      [
+        4450,
+        4850
+      ],
+      [
+        4850,
+        5730
+      ],
+      [
+        5730,
+        7600
+      ],
+      [
+        7600,
+        9450
+      ]
+    ],
+    "baseline_mean_visible": [
+      0.626,
+      0.063,
+      1.223,
+      1.373,
+      1.348
+    ],
+    "controlled_mean_visible": [
+      1.323,
+      0.609,
+      1.428,
+      1.64,
+      1.55
+    ],
+    "remaining_gap": "First later stretch remains materially lighter than opening1.79..2.01, especially forward-fire policy; longest empty2.55seconds. Neither policy proves uniform reference density.",
+    "decision": "Do not raise global admission target or make speculative final changes before packaging. Late stacking is resolved, controlled pacing materially improved; retain checkpoint respite.",
+    "delivery_language": "Normal pacing improved: mixed encounters, less late accumulation, safer and earlier entries. Matching opening density across the entire level remains pending player validation and first-later-stretch tuning.",
+    "canonical_verification": "Engineering reports shooterfallback changed while controlled runs started. Require packaged rerun with same source hashes for bothpolicies before accepting canonical numbers.",
+    "next_target": "If packaged results reproduce gap, focus3250..4450 admission/activation rejection reasons and openingWidow reentry reservations. Do not overfit by increasing entire level cap or forcing optional entries.",
+    "limits": "Live playtest not performed. Synthetic4second Widow kill policy is not natural combat; baseline persistentWidow is another behavior extreme."
+  },
+  "packaged_review": {
+    "build": "Prototype64 / 0.64.0 per Engineering delivery",
+    "status": "Packaged log review passed; pacing improvement with remaining density gap",
+    "evidence": "14 packaged-*.log files in builds/verification-64 each contain PASS; no SCRIPT ERROR or Assertion lines found by targeted scan. Includes18all-mode traversals and6baseline+6controlledNormal traversals.",
+    "metrics": {
+      "fine-baseline": {
+        "runs": 6,
+        "section_mean_visible": [
+          0.626,
+          0.063,
+          1.223,
+          1.373,
+          1.348
+        ]
+      },
+      "normal_density_traversal": {
+        "runs": 6,
+        "section_mean_visible": [
+          1.323,
+          0.609,
+          1.428,
+          1.64,
+          1.55
+        ]
+      }
+    },
+    "trace": "builds/verification-64/early-trace.log",
+    "trace_findings": [
+      "Tony seed7: shooter warning at hero3257.4375, home3530; activation3599.4375 after passing home; retirement4013.4375.",
+      "Emerger warning4004.4375, home4222.188; activation4395.9375 after passing home.",
+      "Runners normal-route-02/03 expire4053.9375/4251.9375 while scarce warning/admission capacity is occupied.",
+      "Trace supports delayed activation and missed admission windows; activation-clearance cause is Engineering diagnosis, consistent with inspected safety code."
+    ],
+    "follow_up": [
+      "Tune role placement using predicted hero/body position at end of unchanged warning duration, including jump trajectory and platform support.",
+      "Require safe activation clearance as well as initial placement clearance; retain live recheck because player can change direction.",
+      "Compare forward candidate homes before issuing warning; do not shorten tells, disable clearance, raise global cap or force catch-up.",
+      "Measure warning-to-activation latency, activation ahead/behind hero and expired runner opportunities across bothheroes/seeds.",
+      "Keep Normal opening/Easy/Hard immutable and preserve checkpoint respite/respawn ownership."
+    ],
+    "remaining_gap": "Early later stretch still lighter than approved reference; no human playtest or completed whole-level density-match claim.",
+    "ownership": "Engineering preserves/releasesP64. This review edits handoff only; no runtime changes or launch."
+  },
+  "prototype65_recommendation": {
+    "status": "Concrete next test; Engineering owns implementation and verification",
+    "preferred_change": "Keep shooter first; repair predicted activation placement, and swap early emerger with preceding runner.",
+    "shooter": {
+      "event": "normal-route-01,trigger3250unchanged",
+      "selection": "Search all visible supported prop candidates up to camera+900, rather than taking nearest220..420px candidate. Prefer a candidate safe at warning completion and still ahead of predicted hero.",
+      "example": "At hero3257.4375, prefer pump top aroundx3750,y320 on3660..3840 support, rather thanx3530,y380. At270px/s after0.8s hero3473.4375:3750 retains276.5625px center lead.",
+      "checks": "Use actual hero and shooter rectangles, supported body footprint, scenery, camera visibility and predicted collision-aware movement; center lead alone is not acceptance. Keep current activation recheck,0.8s warning and shot windup.",
+      "fallback": "If no forward candidate passes, allow other eligible safe events; do not reserve a warning at an already-doomed near perch. Resolve existing runner fallback under recorded policy when perch opportunity is lost."
+    },
+    "emerger": {
+      "swap": "normal-route-03 at3650 becomes floor_emerger; normal-route-04 at3850 becomes runner. Same total roles/slots,IDs,ownership,expiry and jitter; update persisted seed manifest.",
+      "placement": "Use open floor roughly hero+570px, constrained by actual full-body visibility and clearance. At hero3650,marker4220 is on open floor before checkpoint exclusion.",
+      "prediction": "Use full1.45s warning+emerge+settle interval. Tony270 travels391.5px:marker4220 remains178.5px ahead of predicted4041.5. Sean235 travels340.75px:marker remains229.25px ahead.",
+      "guard": "At jittered trigger3620..3680,markers4190..4250 remain in open floor. Check actual predicted landing exclusion160px plus body,patrol and geometry constraints; never weaken existing exclusion.",
+      "why": "Current late warning nearhero4004 has no forward full-speed activation-safe floor marker before4450protectededge; moving eligibility earlier creates a real habitat window.",
+      "fallback": "If player trajectory invalidates safe placement, defer/bypass or existing safe fallback; do not create nearhero marker solely to meet count."
+    },
+    "shared": [
+      "Preserve target2 local admission, all warning reservations, crowd6 and oneWidow; no globalcapincrease.",
+      "Keep warning/body activation live checks. Predictions improve admission selection but cannot authorize damage when hero changes direction.",
+      "Do not double-count staged emerger delay or shorten it; use actual role lifecycle duration.",
+      "No newart/props, no HP/tell/weapon changes. Preserve opening/Easy/Hard hashes and checkpointgrace.",
+      "Take geometrically safe alternative candidates before fallback; no forced population or mandatory kills."
+    ],
+    "verification": [
+      "Repeat early trace for bothheroes/seeds7,42,913: warning duration vs activation, hero/body clearance at activation, expiredrunner02/03 replacement opportunities.",
+      "Assert shooter/emerger activation does not wait for hero to pass their homes in steadyforward fixture; failures should produce explicit placementreason.",
+      "Test stop/reverse/jump during warning to verify live safety still blocks unsafe activation.",
+      "Run same6baseline+6controlledfinebins; require material improvement3120..4450 without shifting accumulation into5730..exit.",
+      "Keep protected checkpoint respite separate; complete level9450, bothrespawnorigins, seedretention and immutablemode checks."
+    ]
+  },
+  "final65_review": {
+    "status": "Measured Normal pacing implementation ready for delivery subject to Engineering release checks; live fairness pending",
+    "evidence_root": "builds/verification-65",
+    "metrics": {
+      "fine-baseline": {
+        "runs": 6,
+        "all_creature_section_means": [
+          1.744,
+          0.254,
+          1.223,
+          1.341,
+          1.458
+        ],
+        "all_empty_fractions": [
+          0.091,
+          0.746,
+          0.288,
+          0.153,
+          0.016
+        ]
+      },
+      "normal_density_traversal": {
+        "runs": 6,
+        "all_creature_section_means": [
+          1.906,
+          0.872,
+          1.428,
+          1.586,
+          1.459
+        ],
+        "all_empty_fractions": [
+          0.052,
+          0.128,
+          0.208,
+          0.083,
+          0.0
+        ]
+      }
+    },
+    "coverage": "Reviewed completed packaged sixbaseline and sixcontrolled runs: bothheroes,seeds7/42/913,allreach9450,reportedcaps/uniqueWidow/respawngrace pass.",
+    "implemented_admission": "Source inspected: route_pressure >= (3 if player.x <4450 else2). This is a local target3, not the narrower extra-warning-only suggestion.",
+    "judgment": "First continuation now approaches opening reference under both tested policies; later accumulation remains suppressed. Accept measured implementation without claiming exact uniform density or validated human fairness.",
+    "remaining_measurement_gap": "FINE logs provide sums and empty ticks, not peak visible overlap or time>=3. Requested transient-overlap/reentry/carryover assessment remains unverified; averages cannot establish those properties.",
+    "scope_limit": "Mid and late means remain below~2, with intentional checkpoint respite. Same-density direction is addressed by measured pacing/placement changes, not proof allsectionsmatch.",
+    "followup": "Live Sean playtest should assess early3-threat overlap, later engagement andcheckpointcarryover; no foreground launch authorized here.",
+    "history": "Prototype64 partial results and earlier failed30slot iteration retained intact in this handoff.",
+    "ownership": "Handoff-only review; Engineering owns releasechecks/version/buildannouncement."
+  }
+}

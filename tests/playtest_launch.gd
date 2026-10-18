@@ -1,0 +1,49 @@
+extends SceneTree
+const Launch = preload("res://scripts/playtest_launch.gd")
+const Game = preload("res://scripts/integrated_first_call.gd")
+
+func _initialize() -> void:
+	call_deferred("run_checks")
+
+func run_checks() -> void:
+	assert(Launch.parse([]).is_empty())
+	assert(Launch.parse(["--agent-test"]).is_empty())
+	assert(Launch.parse(["--list-playtest-targets"]).list)
+	for arguments in [["--level=2"],["--boss=clogfather"],["--miniboss=none"],
+		["--level=1","--boss=clogfather"],["--level=1","--level=1"],["--level="],
+		["--hero=sean"],["--level=1","--hero=unknown"],["--level=1","--difficulty=unknown"],
+		["--level=1","--seed=-1"],["--level=1","--seed=2147483648"],["--unknown"],
+		["--verify-playtest-launch"],["--list-playtest-targets","--level=1"]]:
+		assert(Launch.parse(PackedStringArray(arguments)).has("error"),"Invalid launch must fail clearly")
+	for target in Launch.registry().targets:
+		for hero in [0,1]:
+			for mode in ["easy","normal","hard"]:
+				var options := Launch.parse(PackedStringArray(["--%s=%s" % [target.kind,target.id],
+					"--hero="+["tony","sean"][hero],"--difficulty="+mode,"--seed=913"]))
+				assert(not options.has("error"))
+				var game = Game.new()
+				game.employee = game.Crew.EMPLOYEES[hero]
+				game.difficulty = mode
+				game.seed_override = options.seed
+				root.add_child(game)
+				game.hide()
+				game.set_process(false)
+				game.set_physics_process(false)
+				Launch.initialize(game,target)
+				assert(game.employee.id == options.hero and game.run_seed == 913 and game.difficulty == mode)
+				assert(game.weapon.damage == (12 if hero == 0 else 18))
+				assert(game.health == game.employee.max_health and game.lives == 3 and game.dispenser.stocked)
+				assert(not game.dialogue.active and not game.dispenser.active and game.dialogue.release_guard == 0)
+				assert(game.skitterling.encounter.hp == game.skitterling.Encounter.MAX_HP and not game.skitterling.entered)
+				if target.kind == "level":
+					assert(game.player.x == 85 and game.checkpoint_index == -1 and game.respawn_origin == 85)
+				else:
+					assert(game.player.x == 6410 and game.checkpoint_index == 0 and game.respawn_origin == 4650)
+					assert(game.enemies.is_empty() and game.actors.is_empty() and game.swarms.actors.is_empty())
+					game.respawn_after_death()
+					assert(game.player.x == 4650 and not game.skitterling.entered and game.run_seed == 913)
+					assert(game.swarm_schedule.report().excluded == 5 and not game.dispenser.stocked)
+				game.queue_free()
+				await process_frame
+	print("PASS: launch registry, invalid/conflicting/unimplemented targets, both heroes/all difficulties and checkpoint reset")
+	quit()

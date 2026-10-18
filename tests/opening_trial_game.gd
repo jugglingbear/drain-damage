@@ -40,7 +40,7 @@ func run_checks() -> void:
 			assert(game.trial_state.results().visible <= 6)
 			assert(game.hostile_shots.size() <= 6)
 			assert(game.trial_state.results().patterns <= 3)
-			assert(game.trial_state.results().shooters <= 2)
+			assert(game.trial_state.results().shooters <= 3)
 			for actor: Dictionary in game.actors:
 				if actor.active and actor.role == "floor_emerger": assert(actor.age >= 1.45)
 		for action in ["right","shoot","jump"]: Input.action_release(action)

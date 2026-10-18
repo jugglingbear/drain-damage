@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T15:37:19-07:00",
+  "timezone": "America/Los_Angeles",
+  "status": "Level Design implementation recommendation; numeric tuning requires Engineering checks, not a shipped feature",
+  "scope": "Existing first-level geometry and implemented roles only. Engineering owns runtime, roadmap and delivery.",
+  "mechanics_contract": "handoffs/game-difficulty-and-respawn.json",
+  "ownership_rule": {
+    "boundary_x": 4650,
+    "coordinate": "Hero left-edge world x, matching existing TRIGGERS and checkpoint activation.",
+    "before": "Authored ownership trigger below 4650 belongs to start.",
+    "after": "Authored ownership trigger at or above 4650 belongs to checkpoint-4650.",
+    "stable": "Assign ownership before randomization. Never infer ownership from current actor or spawn position.",
+    "straddling_wave": "Seven entries before checkpoint, one at 4700 after it; retain eight total baseline entries.",
+    "opening": "All 12 existing opening events belong to start; preserve existing triggers and 3120 expiry.",
+    "swarm": "Existing swarm home 4400 and bounds 4140..4570 belong to start; exclude on checkpoint retry.",
+    "removed_swarm": "Do not restore the obsolete 2090 swarm in the integrated level."
+  },
+  "proposed_baseline_later_events": [
+    {
+      "id": "service-01",
+      "trigger_x": 3500,
+      "expires_x": 4800,
+      "segment": "start",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "service-02",
+      "trigger_x": 3660,
+      "expires_x": 4800,
+      "segment": "start",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "service-03",
+      "trigger_x": 3820,
+      "expires_x": 4800,
+      "segment": "start",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "service-04",
+      "trigger_x": 3980,
+      "expires_x": 4800,
+      "segment": "start",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "service-05",
+      "trigger_x": 4140,
+      "expires_x": 4800,
+      "segment": "start",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "service-06",
+      "trigger_x": 4300,
+      "expires_x": 4800,
+      "segment": "start",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "service-07",
+      "trigger_x": 4460,
+      "expires_x": 4800,
+      "segment": "start",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "service-08",
+      "trigger_x": 4700,
+      "expires_x": 4800,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-01",
+      "trigger_x": 4900,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-02",
+      "trigger_x": 5060,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-03",
+      "trigger_x": 5220,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-04",
+      "trigger_x": 5380,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-05",
+      "trigger_x": 5540,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-06",
+      "trigger_x": 5700,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-07",
+      "trigger_x": 5860,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-08",
+      "trigger_x": 6020,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-09",
+      "trigger_x": 6180,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "pump-10",
+      "trigger_x": 6340,
+      "expires_x": 6480,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-01",
+      "trigger_x": 6860,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-02",
+      "trigger_x": 6990,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-03",
+      "trigger_x": 7120,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-04",
+      "trigger_x": 7250,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-05",
+      "trigger_x": 7380,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-06",
+      "trigger_x": 7510,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-07",
+      "trigger_x": 7640,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-08",
+      "trigger_x": 7770,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-09",
+      "trigger_x": 7900,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "upper-10",
+      "trigger_x": 8030,
+      "expires_x": 8160,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-01",
+      "trigger_x": 8400,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-02",
+      "trigger_x": 8520,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-03",
+      "trigger_x": 8640,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-04",
+      "trigger_x": 8760,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-05",
+      "trigger_x": 8880,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-06",
+      "trigger_x": 9000,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-07",
+      "trigger_x": 9120,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    },
+    {
+      "id": "exit-08",
+      "trigger_x": 9240,
+      "expires_x": 9380,
+      "segment": "checkpoint-4650",
+      "baseline_role": "runner"
+    }
+  ],
+  "reset_transaction": [
+    "Choose origin from already activated checkpoint, not death position; reset route high-water mark to origin.",
+    "Clear every live actor including earlier pursuers, corpses, particles, both projectile sets and swarm contact cooldown.",
+    "Clear warnings, reservations, attack tokens, retry clocks, event counters and actor-to-event references together.",
+    "Restore full-HP pending events whose owner is at or after origin, even if previously killed, issued or bypassed.",
+    "Mark earlier owned events excluded for this retry; do not count them as killed, issued or waiting.",
+    "Keep seed and resolved event IDs, roles, trigger offsets and entrance preference lists unchanged.",
+    "Reset encounter clocks and local kill accounting; lifetime analytics may remain separate from attempt counters.",
+    "Use existing one-time life debit; preserve hero, difficulty, checkpoint and clone stock, with no introduction replay.",
+    "Do not reset consumed dispenser stock through a broad reset_game call. Cancel transient presentation safely.",
+    "Restore normal gameplay only after reset and dispenser transition complete; no scheduling during transition."
+  ],
+  "checkpoint_reentry": {
+    "first_eligibility_x": 4700,
+    "proposed_minimum_active_control_seconds": 1.25,
+    "conditions": "Require both progress and control-time guards. Pause, death and dispenser time do not count.",
+    "first_entry": "Forward only after checkpoint retry; no rear fallback for the 4700 entry.",
+    "later_entries": "Any rear entrance must remain wholly within the active segment and obey existing readable-entry rules.",
+    "safe_distance": "Retain at least 220 pixels between rendered threat edge and hero body; retain checkpoint exclusion.",
+    "checkpoint_exclusion": "Existing center exclusion is +/-200; additionally reject rendered overlap with cabinet or protected area.",
+    "geometry": "4850..5730 is a continuous stepped obstacle cluster; no invented ground spawn inside it.",
+    "safe_forward_lane": "The next open floor beyond that cluster starts at 5730. Validate body and art clearance.",
+    "defer": "4700 is eligibility, not guaranteed spawn. Use actual camera/body/geometry checks before insertion.",
+    "expiry": "At route progress 4800, bypass any unissued straddling-wave entry without kill credit; never move it into the pump wave.",
+    "reason": "Only 150 pixels remain after checkpoint; preserve flow rather than force a spawn into that short interval.",
+    "optional_on_retry": "Intentional: steady forward movement bypasses the 4700 tail event before the 1.25-second grace ends. Tony at270 pixels/second reaches4987.5 and Sean at235 reaches4943.75 from4650 in that time. It may issue only if the player lingers below4800 after grace and a forward entrance is safe. Restoring an event to pending is not a promise that it must spawn. Do not shorten protection, extend expiry or relocate it into the next wave to force its appearance.",
+    "next_wave": "Apply the same initial retry grace to all encounter issuance, including the4900 pump wave. After grace, the pump wave resumes its own safe cadence; skip expired entries without a catch-up burst."
+  },
+  "seeded_variants": {
+    "resolve_once": "Resolve a serializable manifest from seed, difficulty and layout revision at new-run start.",
+    "death": "Reuse that manifest; reset event-local RNG and clocks. Safety retries must not reroll roles or triggers.",
+    "reproducibility": "Same seed and input trajectory reproduce choices; different movement may defer or bypass safely.",
+    "ownership": "Variant trigger offsets cannot cross 4650, swap event order or pass expiry; pin 4700 entry.",
+    "placement": "Resolve authored candidate preferences, not unconditional spawn coordinates; rerun live safety checks.",
+    "easy": "Fixed subset/order and entrance preferences, fewer entries and longer stagger; omit entries explicitly in manifest.",
+    "normal": "Baseline counts 8/10/10/8; bounded trigger and entrance variants within each owned segment.",
+    "hard": "Use broader validated combinations and shorter spacing; preserve caps and warnings, no overdue burst.",
+    "species": "Only substitute where role habitat is valid. No perched shooter on pump props without validated perch support.",
+    "role_constraints": [
+      "Floor emerger needs an unoccupied visible marker and reachable escape; recheck before damage begins.",
+      "Widow needs verified 60x48 flight clearance and its existing tell/dive/recovery; one active Widow maximum.",
+      "With a Widow, preserve crowd cap 6; otherwise do not exceed existing integrated cap 8.",
+      "Keep current shooter, hostile-bullet and independent-pattern budgets from balance data; reserve before warning.",
+      "No simultaneous front/rear trap during checkpoint reentry or unavoidable crossfire over a mandatory landing."
+    ],
+    "unchanged": "HP, weapon damage, player movement, attack tells, scenery and checkpoint location.",
+    "fallback": "If a variant has no proven valid habitat, use a safe runner or omit it; never silently weaken safety.",
+    "tuning_status": "Exact Easy counts, variant weights and mode intervals are Engineering/Mechanics tuning, pending tests."
+  },
+  "acceptance": [
+    "Stable unique IDs: 36 later events, split 7 start / 29 checkpoint; no duplicate ownership.",
+    "Death before checkpoint restores all opening events, 4400 swarm and later events at full HP.",
+    "Death after checkpoint excludes all opening, 4400 swarm and first seven later entries, even if they pursued ahead.",
+    "Post-checkpoint reset includes 4700 entry and all 28 later-wave entries, including defeated/bypassed entries.",
+    "At x4649 checkpoint inactive; activated at x4650; verify exact boundary and same-tick lethal crossing ordering.",
+    "On retry no event issues at x4650; 4700 event needs control grace plus live safe entrance and expires at4800.",
+    "Cross whole trigger intervals in one tick: bounded issue cadence; no backlog dump or unintended completion quota.",
+    "Repeated deaths preserve resolved manifest and consumed clone stock; no old shots/tokens/particles survive.",
+    "Both heroes and all modes pass headless checks; foreground fairness review remains separately permission-gated.",
+    "At constant270/235 movement from4650, the first tail entry expires before1.25 seconds; this intentional bypass earns no kill credit. A stationary retry emits no threat during grace."
+  ],
+  "validation": "JSON, IDs, counts, bounds and ownership checked locally; no gameplay build, launch or visual validation performed."
+}

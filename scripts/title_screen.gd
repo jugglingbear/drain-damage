@@ -1,6 +1,7 @@
 extends Node2D
 
 const BuildVersion = preload("res://scripts/build_version.gd")
+const PlaytestLaunch = preload("res://scripts/playtest_launch.gd")
 ## Illustrated Drain Damage opening; gameplay is created only after Start.
 
 const MusicDirector = preload("res://scripts/music_director.gd")
@@ -25,6 +26,12 @@ var menu_index := 0
 var showing_controls := false
 var controls_page := 0
 var show_enemy_health_bars := false
+const DifficultyScreen = preload("res://scripts/difficulty_screen.gd")
+var difficulty_copy: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/difficulty-ui.json"))
+var choosing_difficulty := false
+var difficulty_index := 1
+var difficulty_hover := -1
+var confirm_blocked := false
 var selecting := false
 var selected := 0
 var selection_guard := 0.0
@@ -40,6 +47,15 @@ var navigation_plays := 0
 var held_navigation_buttons: Dictionary = {}
 
 func _ready() -> void:
+	var launch := PlaytestLaunch.parse(OS.get_cmdline_user_args())
+	if launch.has("error"):
+		printerr("Launch failed: "+launch.error)
+		get_tree().quit(2)
+		return
+	if launch.has("list"):
+		print(PlaytestLaunch.listing())
+		get_tree().quit()
+		return
 	if not Crew.Data.load_data():
 		get_tree().quit(1)
 		return
@@ -69,6 +85,11 @@ func _ready() -> void:
 	navigation_voice.stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
 	navigation_voice.volume_db = 0
 	add_child(navigation_voice)
+	if launch.has("target"):
+		selected = 0 if launch.hero == "tony" else 1
+		for index in range(difficulty_copy.options.size()):
+			if difficulty_copy.options[index].id == launch.difficulty: difficulty_index = index
+		call_deferred("start_game",launch)
 
 func _exit_tree() -> void:
 	navigation_voice.stop()
@@ -82,6 +103,11 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if game != null or starting: return
+	if is_confirm_event(event):
+		if not event.pressed:
+			confirm_blocked = false
+		elif confirm_blocked:
+			return
 	var directional := false
 	if event is InputEventKey:
 		directional = event.pressed and not event.echo and event.physical_keycode in [
@@ -98,11 +124,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			directional = true
 	elif event is InputEventJoypadMotion:
 		directional = event.axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y] and absf(event.axis_value) > 0.6
-	var before := Vector3i(menu_index,controls_page,selected)
-	var screen := Vector2i(int(showing_controls),int(selecting))
+	var before := Vector4i(menu_index,controls_page,selected,difficulty_index)
+	var screen := Vector3i(int(showing_controls),int(selecting),int(choosing_difficulty))
 	handle_pre_game_input(event)
-	if directional and game == null and not starting and before != Vector3i(menu_index,controls_page,selected) \
-		and screen == Vector2i(int(showing_controls),int(selecting)):
+	if directional and game == null and not starting and before != Vector4i(menu_index,controls_page,selected,difficulty_index) \
+		and screen == Vector3i(int(showing_controls),int(selecting),int(choosing_difficulty)):
 		# The existing Master bus is the shared SFX route; music mute is independent.
 		if not AudioServer.is_bus_mute(AudioServer.get_bus_index(navigation_voice.bus)):
 			navigation_voice.play()
@@ -110,6 +136,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func handle_pre_game_input(event: InputEvent) -> void:
 	if game != null or starting:
+		return
+	if choosing_difficulty:
+		handle_difficulty(event)
+		get_viewport().set_input_as_handled()
 		return
 	if showing_controls:
 		handle_controls(event)
@@ -241,6 +271,48 @@ func handle_selection(event: InputEvent) -> bool:
 		return true
 	return false
 
+func is_confirm_event(event: InputEvent) -> bool:
+	return (event is InputEventKey and event.physical_keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE]) \
+		or (event is InputEventJoypadButton and event.button_index in [JOY_BUTTON_A,JOY_BUTTON_START]) \
+		or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT)
+
+func handle_difficulty(event: InputEvent) -> void:
+	var direction := 0
+	var back := false
+	var confirm := false
+	if event is InputEventMouseMotion:
+		difficulty_hover = DifficultyScreen.row_at(event.position)
+	elif event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode in [KEY_UP,KEY_W]: direction = -1
+		if event.physical_keycode in [KEY_DOWN,KEY_S]: direction = 1
+		back = event.physical_keycode == KEY_ESCAPE
+		confirm = is_confirm_event(event)
+	elif event is InputEventJoypadButton and event.pressed:
+		if event.button_index == JOY_BUTTON_DPAD_UP: direction = -1
+		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction = 1
+		back = event.button_index == JOY_BUTTON_B
+		confirm = is_confirm_event(event)
+	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_Y:
+		if absf(event.axis_value) < 0.25: stick_latched = false
+		elif absf(event.axis_value) > 0.6 and not stick_latched:
+			direction = int(signf(event.axis_value))
+			stick_latched = true
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var row := DifficultyScreen.row_at(event.position)
+		if row >= 0: difficulty_index = row
+		back = DifficultyScreen.BACK.has_point(event.position)
+		confirm = DifficultyScreen.CONFIRM.has_point(event.position)
+	if direction != 0:
+		difficulty_index = posmod(difficulty_index+direction,3)
+		difficulty_hover = -1
+	if back:
+		choosing_difficulty = false
+		difficulty_hover = -1
+		selection_guard = 0.3
+		stick_latched = false
+	elif confirm:
+		request_start()
+
 func draw_selection() -> void:
 	draw_rect(Rect2(0, 0, 960, 540), Color("0d1526"))
 	draw_texture_rect(Portraits.expression("bj", "neutral"), Rect2(30, 8, 95, 95), false)
@@ -297,29 +369,48 @@ func request_start() -> void:
 	if not selecting:
 		selecting = true
 		selected = 0
+		difficulty_index = 1
+		difficulty_hover = -1
+		confirm_blocked = true
 		selection_guard = 0.3
 		get_viewport().set_input_as_handled()
 		return
 	if selection_guard > 0:
 		return
+	if not choosing_difficulty:
+		choosing_difficulty = true
+		difficulty_hover = -1
+		confirm_blocked = true
+		selection_guard = 0.3
+		stick_latched = false
+		get_viewport().set_input_as_handled()
+		return
 	starting = true
 	get_viewport().set_input_as_handled()
 	call_deferred("start_game")
 
-func start_game() -> void:
+func start_game(launch: Dictionary = {}) -> void:
 	navigation_voice.stop()
 	held_navigation_buttons.clear()
 	music_director.play_track("level")
 	game = GAME.new()
+	if launch.has("target"): game.seed_override = launch.seed
 	game.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	game.music_director = music_director
 	game.employee = Crew.EMPLOYEES[selected]
+	game.difficulty = difficulty_copy.options[difficulty_index].id
 	game.show_enemy_health_bars = show_enemy_health_bars
 	game.title_requested.connect(return_to_title, CONNECT_DEFERRED)
 	add_child(game)
 	# Only a fresh run enters here; retries and checkpoint respawns never replay the opening.
-	game.dialogue.start(Story.OPENING)
-	game.dialogue.release_guard = 0.4
+	if launch.has("target"):
+		PlaytestLaunch.initialize(game,launch.target)
+		if launch.verify:
+			print("PASS: playtest launch "+JSON.stringify(PlaytestLaunch.summary(game,launch)))
+			get_tree().quit()
+	else:
+		game.dialogue.start(Story.OPENING)
+		game.dialogue.release_guard = 0.4
 	set_process(false)
 	# Hide only this node's drawing; hiding the parent would also hide the gameplay child.
 	queue_redraw()
@@ -333,6 +424,9 @@ func return_to_title() -> void:
 	game = null
 	clock = 0
 	selecting = false
+	choosing_difficulty = false
+	difficulty_hover = -1
+	confirm_blocked = false
 	showing_controls = false
 	menu_index = 0
 	stick_latched = false
@@ -348,6 +442,9 @@ func _draw() -> void:
 		return
 	if showing_controls:
 		Controls.draw(self, controls_page, muted, show_enemy_health_bars)
+		return
+	if choosing_difficulty:
+		DifficultyScreen.draw(self)
 		return
 	if selecting:
 		draw_selection()

@@ -8,6 +8,8 @@ func run_checks() -> void:
 	for hero in [0,1]:
 		var game = Game.new()
 		game.employee = game.Crew.EMPLOYEES[hero]
+		game.difficulty = "hard"
+		game.seed_override = 42
 		root.add_child(game)
 		game.set_process(false)
 		game.set_physics_process(false)
@@ -65,7 +67,7 @@ func run_checks() -> void:
 		assert(not game.won and game.checkpoint_index == -1)
 		var body: Dictionary = game.move_player_body(Vector2(3100,394),Vector2(-235,0),Vector2(26,46),0.1)
 		assert(body.pos.x < 3100, "Backtracking cannot hit removed gate")
-		# Checkpoint and loss preserve world progress/weapon, do not recreate opening.
+		# Checkpoint death rebuilds its owned segment and excludes the earlier opening.
 		assert(game.Level.CHECKPOINTS == [4650.0])
 		game.player = Vector2(4649,394)
 		game._physics_process(0)
@@ -75,10 +77,11 @@ func run_checks() -> void:
 		assert(game.checkpoint_index == 0)
 		game.dispenser.cancel()
 		game.lives = 2
-		var before: Dictionary = game.trial_state.results()
+		var before: Dictionary = game.run_plan.duplicate(true)
 		game.respawn_after_death()
 		assert(game.player.x == 4650 and game.lives == 2)
-		assert(game.trial_state.results() == before and game.mission.current_zone == 2)
+		assert(game.run_plan == before and game.mission.current_zone == 2)
+		assert(game.trial_state.results().unavailable == 12 and game.actors.is_empty())
 		game.dispenser.cancel()
 		game.dialogue.release_guard = 0
 		# Former shutters never block either direction or shots, regardless of kills.
@@ -89,8 +92,11 @@ func run_checks() -> void:
 			var backward: Dictionary = game.move_player_body(Vector2(gate+70,394),Vector2(-235,0),Vector2(26,46),0.5)
 			assert(backward.pos.x < gate)
 		# Finite crowds arrive without waiting for kills and respect the global bound.
-		game.player = Vector2(3900,394)
-		game.camera_x = 3580
+		game.reset_game()
+		game.dispenser.cancel()
+		game.invulnerable = 100
+		game.player = Vector2(4460,394)
+		game.camera_x = 4140
 		game.enemies.clear()
 		game.actors.clear()
 		var initial_kills: int = game.kills
@@ -117,10 +123,14 @@ func run_checks() -> void:
 		game.step_encounters(0.7)
 		assert(game.kills == initial_kills, "Retirement is not a kill")
 		assert(game.wave_bypassed[0]+game.wave_spawned[0] == 8)
-		# A live enemy and unissued waves cannot block the temporary exit.
+		# Ordinary enemies cannot block the exit after the commissioned boss is complete.
 		game.checkpoint_index = 0
 		game.dispenser.cancel()
+		game.skitterling.entered = true
+		game.skitterling.released = true
+		game.skitterling.encounter.exit_open = true
 		game.player = Vector2(9451,394)
+		game.dialogue.release_guard = 0
 		game._physics_process(0)
 		assert(game.won)
 		game.reset_game()

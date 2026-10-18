@@ -1,0 +1,96 @@
+{
+  "created_at": "2026-10-17T20:14:34-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 69 / 0.69.0",
+  "source_head": "49cc403 plus uncommitted integration; isolated snapshot atop68",
+  "app": "builds/Prototype-69/Drain Damage.app",
+  "archive": "builds/history/Prototype-69.zip",
+  "archive_sha256": "56e119127c173becd953a8bdb48a55e456898a50717a81d93aad3fe9b16e3c8f",
+  "status": "Playable encounter integrated; packaged verification passed; live visual/listening/balance review pending",
+  "encounter": {
+    "id": "cockroach-swarm",
+    "name": "Skitterling",
+    "checkpoint": 4650,
+    "quiet_approach": [
+      5610,
+      6570
+    ],
+    "room": [
+      6570,
+      7530
+    ],
+    "viewport": [
+      960,
+      540
+    ],
+    "floor_y": 440,
+    "water_y": [
+      456,
+      540
+    ],
+    "phase_hp": [
+      180,
+      180
+    ],
+    "sequence_seconds": {
+      "entry": 2,
+      "rat_assembly": 2.5,
+      "rat_collapse": 0.5,
+      "still_false_death": 4,
+      "reskitter": 4.5,
+      "alligator_assembly": 2.5,
+      "final_death": 1.2
+    },
+    "timing_note": "Assembly holds harmlessly at completion if hero occupies its full footprint; returns rewarn/abort on intrusion.",
+    "attacks": "Telegraphed rat bite/pipe ambush; alligator jaw lunge and submerged tail/debris. One live rock, three sequential rocks per locked column.",
+    "exit": "Right pipe opens only after final death; camera stays6570 until departure; final level exit9450 requires encounter complete.",
+    "respawn": "Checkpoint4650; seed/stock/lives preserved; phases,hazards,audio,doors andcamera reset; exactlyonefinalkill.",
+    "placement_change": "Old5570plinth and6860/7020/7200cluster removed; conflicting schedule slots excluded inallmodes; originalseededplans preserved."
+  },
+  "art": "Authored measured manifests, alpha240 cached preparation, enabled frames only, alpha-clipped continuously phased roach layers, floor/pipe/water alignment, visible bounds clip attack/projectile bodies. Live composed review pending.",
+  "audio": "Canonical hit/death plus bounded loops/phase/port/water/debris cues wired; pause/mute/reset/dispose tested; no listening claim.",
+  "validation": {
+    "packaged_suites": [
+      "skitterling_encounter",
+      "skitterling_audio",
+      "skitterling_art",
+      "skitterling_integration",
+      "difficulty_respawn",
+      "normal_density",
+      "flushfiend_steps",
+      "integrated_opening",
+      "flushfiend_staircase_pair",
+      "gratecrawler_patrol",
+      "menu_audio",
+      "difficulty_menu",
+      "creature_audio",
+      "build_version",
+      "hard_costumes",
+      "difficulty_traversal"
+    ],
+    "python_tests": 16,
+    "full_route": "18runs,bothheroes/all3modes/3seeds60or120Hz; actual weapon shots defeatbothforms and reach9450",
+    "integration": "Shared projectile hits,overkillphasegate,mandatorytimings,camera/boundaries,pause,midfightdeath/hazardfreeze,checkpointstock/lives,onekill/terminalevent,exit",
+    "renderer": "Cachedpreparedframes,unchangedalpha underchurn,mirroredbounds,false-deathstillness,port/lanealignment,allstate draw paths",
+    "regressions": "Opening/seededplans,crowd/respawn,Flushfiendstep/pairfixtures,Gratecrawlerpatrol,menu/costumes/creatureaudio",
+    "export_signing_bundle_version_archive": "pass"
+  },
+  "capture_gap": "No game window opened; actual gameplay images, composed animation/transition continuity,soundmix and humanfairness remain pending. Build69app/ZIP preserved.",
+  "capture_backlog": [
+    "Quiet approach and pipe entry",
+    "Rat formation and namedHUD/playerstatus",
+    "Bite and warnedpipe launch/landing",
+    "Stillfalse-death and renewedroachskitter",
+    "Alligatorformation,jaw,dive,markeddebrislane",
+    "Finaldeath/rightpipeexit",
+    "Checkpointretry afterbossdeath"
+  ],
+  "capture_record": "storybook/069-skitterling-locked-room/20261017-201434-capture-status.json",
+  "logs": "builds/verification-69/",
+  "snapshot": "builds/source-69",
+  "warnings": "ExistingGodotlog/editor-settings permission,systemCA and immediate-shutdown ObjectDB/resource diagnostics retained; no script/parse failures in final packaged suites.",
+  "metadata_note": "Final delivery-status text updated after export only in excluded canonical/editorial metadata; generated runtime bundle unchanged."
+}

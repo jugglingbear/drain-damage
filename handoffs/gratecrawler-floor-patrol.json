@@ -1,0 +1,59 @@
+{
+  "updated_at": "2026-10-17T15:23:27-07:00",
+  "status": "Delivered in Prototype57/0.57.0; live visual review pending",
+  "approval": "Sean: make it not jump then but just patroll back and forth mindlessly once it crawls out; relayed by current-project Art.",
+  "diagnosis": "Pre-fix dx was computed before unconditional reversal outside70px; at120Hz first grate jittered808.5..809.25 with120flips/sec, stranded on60px step after shared auto-hop.",
+  "changes": [
+    "Exclude floor_emerger from auto-hop; runners retain prior behavior.",
+    "Reverse outward heading at home±70 before computing movement.",
+    "Turn when actual role-body sweep reports horizontal collision; no chasing or added attacks."
+  ],
+  "preserved": {
+    "health": 24,
+    "speed": 90,
+    "contact_damage": 1,
+    "warning": 0.8,
+    "emergence": 0.35,
+    "settle": 0.3,
+    "activation": "At least1.45s after reservation and only after visible/safe placement checks; occupied grate remains harmless."
+  },
+  "checks": {
+    "python": "11tests PASS",
+    "source": "gratecrawler_patrol PASS",
+    "packaged": [
+      "gratecrawler_patrol",
+      "opening_trial_game",
+      "integrated_opening",
+      "opening_trial_level",
+      "hostile_projectile",
+      "build_version",
+      "standing_shots"
+    ],
+    "regression": "Both paths60/120Hz,both initial headings,3real grate candidates; floor-only patrol,full accessible travel,solid bounds,turn frequency,1.45s activation,occupied-grate deferral and contact damage.",
+    "export": "PASS ad-hoc signature verified; bundle versions0.57.0",
+    "archive": "CRC and SHA256 PASS",
+    "logs": "builds/verification-57",
+    "warnings": "Live motion/readability remains unreviewed. Existing environment/log/editor-settings and shutdown warnings remain."
+  },
+  "delivery": {
+    "created_at": "2026-10-17T15:23:27-07:00",
+    "timezone": "America/Los_Angeles",
+    "utc_offset": "-07:00",
+    "timestamp_kind": "Delivery/capture-gap record creation, not image capture",
+    "build": "Prototype 57 / 0.57.0",
+    "app": "builds/Prototype-57/Drain Damage.app",
+    "archive": "builds/history/Prototype-57.zip",
+    "archive_sha256": "56c58ca414098f68405f9e550515501e8f2c1208f985f7e8051099604b8dda47",
+    "source_head": "49cc403 plus uncommitted integration changes",
+    "capture_status": "Pending permission; no game window opened or screenshot captured",
+    "capture_backlog": [
+      "Representative gameplay after Gratecrawler emergence",
+      "Floor patrol turning at nearby step and patrol boundary"
+    ],
+    "validation": "11Python tests, focused source patrol test and7packaged Godot suites pass; export/signing and ZIP integrity pass",
+    "limitations": "Live motion/readability remains unreviewed. Existing environment/log/editor-settings and shutdown warnings remain."
+  },
+  "capture_record": "storybook/057-gratecrawler-floor-patrol/20261017-152327-capture-status.json",
+  "remaining": "No new name approval,lore,attacks or art. Sputtervalve body repaint remains separate. Actual screenshots await permission.",
+  "documentation": "Roadmap, chapter057 README/HTML/capture backlog and Art-owned bestiary metadata/gallery synchronized. Markdown hygiene, JSON and HTML structure checks pass; markdownlint unavailable."
+}

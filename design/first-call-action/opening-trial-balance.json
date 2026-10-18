@@ -63,26 +63,26 @@
       "settle_seconds": 0.3,
       "ground_speed_pixels_per_second": 90,
       "contact_damage_player": 1,
-      "behavior": "Premarked fixed floor vent. Harmless before fully emerged+settled; then short horizontal patrol/contact threat, no instant chase reversal.",
+      "behavior": "Premarked fixed floor vent. Harmless before fully emerged+settled; then mindless horizontal floor patrol/contact threat. No jumping or chasing; turn at patrol bounds and blocking solids.",
       "spawn_safety": "Reject occupied landing marker or route with no reachable escape. Recheck before becoming damaging; hold/reselect if player remains on marker, never turn damage on underneath hero."
     },
     "flyer": {
       "creature_id": null,
-      "status": "Proximity swoop implemented in source; combined build49 pending",
+      "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
       "max_hp": 180,
       "spawn_hp": 180,
       "speed_pixels_per_second": 100,
       "contact_damage_player": 1,
       "entry_warning_seconds": 0.8,
-      "path": "Straight flight in facing direction. Nearby hero ahead triggers0.65s warning locking aim,0.8s committed dive,1s forward climb to original altitude, then1.2s forward-flight cooldown. V-shaped path never retraces origin. Scenery sweeps prevent penetration.",
-      "retirement": "Exit offscreen and retire without kill credit; trial completion must not require chasing it off map.",
+      "path": "Fly forward until visible hero is within400px on either side; lock target during0.65s warning, dive0.8s, rise forward to original altitude over1s, pause stationary1s, then face hero and repeat. Within6px of horizontal center retain previous facing. Blocked diagonal recovery climbs vertically with swept collision.",
+      "retirement": "Activated living Widow does not retire offscreen; remains a repeating threat until killed or attempt reset. Entry warnings may still cancel safely.",
       "render_scale": 2.0,
       "balance_rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",
       "aggro_distance_pixels": 400,
       "attack_warning_seconds": 0.65,
       "swoop_seconds": 0.8,
       "recovery_seconds": 1.0,
-      "recovery_cooldown_seconds": 1.2
+      "top_pause_seconds": 1.0
     },
     "swarm": {
       "base_creature_id": "sewer-fly-swarm",
@@ -156,13 +156,13 @@
   "schedule_rules": "12 authored entities total,8runners/1shooter/1emerger/2flyers.20s is target not forced deadline. Respect placement triggers and safety budgets; delay pending entries and drop missed timing rather than dump backlog. On reaching trial end allow completion without mandatory kills of escaped flyers.",
   "budgets": {
     "visible_hostiles_including_entry_telegraphs": 6,
-    "simultaneous_shooters": 2,
+    "simultaneous_shooters": 3,
     "hostile_projectiles": 6,
     "simultaneous_independent_threat_patterns": 3,
     "minimum_projectile_arrival_stagger_seconds": 0.3,
     "safe_corridor_min_width_pixels": 96
   },
-  "budget_rules": "One shooter in initial schedule is below cap2, intentionally. Reserve slot before telegraph, release on death/retire. Do not delete visible bullets to satisfy cap; defer firing with no burst backlog. Projectile threat includes all visible hostile shots, not cosmetics.",
+  "budget_rules": "One shooter in initial schedule is below cap3, intentionally. Reserve slot before telegraph, release on death/retire. Do not delete visible bullets to satisfy cap; defer firing with no burst backlog. Projectile threat includes all visible hostile shots, not cosmetics.",
   "damage_rules": "One player contact-hit unit; respect global invulnerability and spawn protection, never stack hits same tick. Keep true projectile/sprite collision alignment.",
   "boss": "No boss fight tuning in opening slice. Later first-level finale requires one visible Clogfather; never concurrent background duplicate.720current vs1080candidate unresolved; do not apply proposed boss HP automatically.",
   "validation": {

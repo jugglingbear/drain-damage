@@ -5,7 +5,7 @@
   "name": "The Hallowed Widow",
   "creature_type": "Winged spider",
   "description": "White angel wings and a golden halo disguise a dark, bristling flying spider with red eyes and ivory fangs.",
-  "implementation_status": "Proximity swoop integrated in build49; packaged checks pass, visual review pending",
+  "implementation_status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
   "backstory": {
     "status": "approved",
     "author_role": "storyboarding agent",
@@ -26,7 +26,7 @@
   "health": {
     "max_hp": 180,
     "spawn_hp": 180,
-    "status": "Proximity swoop integrated in build49; packaged checks pass, visual review pending",
+    "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
     "runtime_max_hp": 180,
     "runtime_note": "First-level profile:180HP, twice previous linear display size; replaces36HP opening variant.",
     "encounter_stage": "first_level",
@@ -70,7 +70,37 @@
     "attack_warning_seconds": 0.65,
     "swoop_seconds": 0.8,
     "recovery_seconds": 1,
-    "recovery_cooldown_seconds": 1.2,
-    "recovery_path": "V-shaped forward climb to pre-dive altitude; no return to original point, no homing."
+    "recovery_path": "Forward rise to pre-dive altitude, stationary1s upper pause, then face hero left/right and repeat. Six-pixel centered tie retains facing; swept vertical fallback if diagonal climb blocked.",
+    "top_pause_seconds": 1.0,
+    "pursuit": "Proximity400 on either side; committed target during warning/dive; active living Widow persists offscreen until killed or attempt reset."
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "runtime_integrated",
+    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/monster-damage-v1/widow-hit.wav",
+          "gain_db": -3,
+          "sha256": "6d324d52d9e16aecff10e3ded6a5fd142cf0f6b909992eaeb8a5bf7f202bb7d1"
+        }
+      ],
+      "cooldown_seconds": 0.1,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/monster-damage-v1/widow-death.wav",
+          "gain_db": -3,
+          "sha256": "7f13ee83cbf7411078b7acc06bd5e0d8ca9e302da0fa26e56d016575a7dd7f90"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 2,
+      "loop": false
+    }
   }
 }

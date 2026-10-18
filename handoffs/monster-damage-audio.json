@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-17",
+  "status": "integrated_0.63.0_headless_verified_listening_pending",
+  "target_build": "0.63.0",
+  "manifest": "audio/sources/monster-damage-v1/manifest.json",
+  "coverage": [
+    {
+      "creature_id": "clogfather",
+      "profile": "bestiary/clogfather/monster.json",
+      "encounter_status": "planned_boss",
+      "audio_status": "profile_ready",
+      "hit_paths": [
+        "assets/audio/sfx/clogfather-v1/hurt.wav"
+      ],
+      "death_path": "assets/audio/sfx/clogfather-v1/collapse.wav"
+    },
+    {
+      "creature_id": "toilet",
+      "profile": "bestiary/flushfiend/monster.json",
+      "encounter_status": "playable",
+      "audio_status": "runtime_integrated",
+      "hit_paths": [
+        "assets/audio/sfx/monster-damage-v1/flushfiend-hit.wav"
+      ],
+      "death_path": "assets/audio/sfx/flushfiend-shatter-v1/porcelain-break.wav"
+    },
+    {
+      "creature_id": "gratecrawler",
+      "profile": "bestiary/gratecrawler/monster.json",
+      "encounter_status": "playable",
+      "audio_status": "runtime_integrated",
+      "hit_paths": [
+        "assets/audio/sfx/monster-damage-v1/gratecrawler-hit.wav"
+      ],
+      "death_path": "assets/audio/sfx/monster-damage-v1/gratecrawler-death.wav"
+    },
+    {
+      "creature_id": "sewer-fly-swarm",
+      "profile": "bestiary/sewer-flies/monster.json",
+      "encounter_status": "playable",
+      "audio_status": "runtime_integrated",
+      "hit_paths": [
+        "assets/audio/sfx/monster-damage-v1/swarm-hit.wav"
+      ],
+      "death_path": "assets/audio/sfx/monster-damage-v1/swarm-death.wav"
+    },
+    {
+      "creature_id": "sputtervalve",
+      "profile": "bestiary/sputtervalve/monster.json",
+      "encounter_status": "playable",
+      "audio_status": "runtime_integrated",
+      "hit_paths": [
+        "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+        "assets/audio/sfx/sputtervalve-v1/hit-b.wav"
+      ],
+      "death_path": "assets/audio/sfx/sputtervalve-v1/death.wav"
+    },
+    {
+      "creature_id": "spider",
+      "profile": "bestiary/the-hallowed-widow/monster.json",
+      "encounter_status": "playable",
+      "audio_status": "runtime_integrated",
+      "hit_paths": [
+        "assets/audio/sfx/monster-damage-v1/widow-hit.wav"
+      ],
+      "death_path": "assets/audio/sfx/monster-damage-v1/widow-death.wav"
+    }
+  ],
+  "canonical_miniboss_profiles": [],
+  "scope": "All six canonical bestiary profiles; no canonical miniboss profile exists. Future profiles must have both events.",
+  "intentional_reuse": [
+    {
+      "creature_id": "toilet",
+      "event": "death",
+      "source_manifest": "audio/sources/flushfiend-shatter-v1/manifest.json",
+      "reason": "Preserve established porcelain shatter and its original CC0 provenance."
+    },
+    {
+      "creature_id": "sputtervalve",
+      "event": "hit_and_death",
+      "source_manifest": "audio/sources/sputtervalve-v1/manifest.json",
+      "reason": "Preserve build0.62.0 assets byte-for-byte, variants, gains and pools."
+    },
+    {
+      "creature_id": "clogfather",
+      "event": "hit_and_death",
+      "source_manifest": "audio/sources/clogfather-v1/manifest.json",
+      "reason": "Existing original hurt/collapse designed for this boss; profile-ready only, no playable encounter."
+    }
+  ],
+  "event_contract": {
+    "hit": "Only positive actual HP reduction leaving HP above zero; alternate variants without gameplay RNG; actor-local cooldown using paused simulation time.",
+    "death": "Only first guarded actual defeat; lethal damage emits death only, bypasses hit cooldown. No corpse, despawn, restore, offscreen or zero-damage playback.",
+    "pools": "Separate bounded hit/death pools per creature; death tails may outlive actor. Flushfiend retains four death voices; all others two hit/two death.",
+    "lifecycle": "Freeze on pause, stop and clear cooldowns on retry/respawn/title/dispose; SFX mute applies, music-only mute does not. Audio never gates gameplay.",
+    "swarm": "Continuous ambient buzz remains separate; HP damage and defeat events must also route through this profile."
+  },
+  "validation": {
+    "asset_headers_hashes_endpoints_peaks": "passed",
+    "subjective_listening": "pending_no_playback_authorized",
+    "runtime": "Engineering reports 12 packaged suites and 15 Python tests passed; all five implemented enemy audio paths covered. Clogfather references validated only.",
+    "reproducibility": "passed: deterministic rerender byte-identical",
+    "preserved_asset_hashes": "passed: existing Sputtervalve, Clogfather and Flushfiend manifest cues unchanged"
+  },
+  "owners": {
+    "canonical_audio_fields": "Audio",
+    "catalog_gallery": "Art",
+    "runtime_tests_build_roadmap": "Engineering"
+  },
+  "consultation": {
+    "art": "Confirmed six canonical profiles and no canonical miniboss omissions.",
+    "storyboarding": "No identity/tone conflicts: nonhuman Widow without heavenly implication; Gratecrawler material sounds add no origin; swarm dispersal adds no organized behavior.",
+    "engineering": "Schema agreed; generic controller, generated validation and build integration owned by Engineering."
+  },
+  "delivery": "handoffs/widow-and-creature-audio-delivery.json"
+}

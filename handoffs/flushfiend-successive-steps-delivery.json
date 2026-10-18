@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-10-17T18:48:18-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery metadata creation, not capture",
+  "capture_time": null,
+  "build": "Prototype 68 / 0.68.0",
+  "source_head": "49cc403 plus uncommitted integrations; isolated navigation fix atop67",
+  "app": "builds/Prototype-68/Drain Damage.app",
+  "archive": "builds/history/Prototype-68.zip",
+  "archive_sha256": "e99c4a8a79a1ad27e4abcf2770eab0ccb4039f0ed15910891b4979fc139a1157",
+  "cause": "Opening/Normal-route runner jump checks required feet.y>=439, so landing on elevated support prevented the next hop. Campaign path already used relative rise, but now shares collision-checked navigation.",
+  "behavior": "Probe actual grounded support; jump successive reachable steps up to61px using existing speed/gravity. Simulate the collision path before launch. Ceiling-blocked or taller obstacles cause0.8s retreat instead of indefinite wall-walk. No midair jump reset.",
+  "baseline": "Regression fails on preserved67 at60px platform-to-platform ascent; assertion recorded in builds/verification-68/baseline.log",
+  "validation": {
+    "packaged_suites": [
+      "flushfiend_steps",
+      "integrated_opening",
+      "opening_trial_game",
+      "gratecrawler_patrol",
+      "difficulty_traversal",
+      "difficulty_menu",
+      "menu_audio",
+      "hard_costumes",
+      "difficulty_respawn",
+      "normal_density",
+      "build_version"
+    ],
+    "python_tests": 15,
+    "regression": "Both heroes, runner/rear_runner, left/right, successive grounded landings380/320/260, opening/later actor and campaign paths, low ceilings,tall walls,no apex jump",
+    "traversal": "Both heroes,all3modes,3seeds reach9450 exit; global budgets and checkpoint invariants pass",
+    "export_signing_versions_zip": "pass",
+    "source_scope": "Only navigation changes atop67; prior six-creature roster,menu,difficulty plans preserved; unfinishedSkitterling excluded"
+  },
+  "capture_gap": "No game window opened; actual staircase behavior and gameplay screenshots pending approved session. Preserve67/68 apps and ZIPs.",
+  "capture_backlog": [
+    "Reported lower-right platform facing left into higher plinth",
+    "Successive stair landings in both directions",
+    "Low-ceiling/unreachable-obstacle retreat"
+  ],
+  "capture_record": "storybook/068-flushfiend-successive-steps/20261017-184818-capture-status.json",
+  "warnings": "Existing Godot log/editor-settings permission,macOS certificate and immediate-shutdown resource diagnostics retained. Source test import cache initialized before final verification.",
+  "logs": "builds/verification-68/",
+  "snapshot": "builds/source-68",
+  "second_screenshot_verification": {
+    "verified_at": "2026-10-17T18:50:57-07:00",
+    "reported_build": "0.66.0",
+    "verified_build": "0.68.0",
+    "geometry": "Actual authored4850..5730 symmetric staircase; tops380,320,260,320,380",
+    "scenario": "Two simultaneous active Flushfiends, actual pursuit/step_trial_actors, hero stationary at5277,214 on central top; bothheroes/bothdirections",
+    "result": "Both land at380,320,260 and finish oncentralplatform: right-to-left feet5282.519,260; left-to-right5271.602,260",
+    "log": "builds/verification-68/packaged-flushfiend_staircase_pair.log",
+    "additional_packaged_suite": "flushfiend_staircase_pair",
+    "runtime_changed": false,
+    "rebuilt": false,
+    "limitation": "Headless navigation check; invulnerablehero, no manualvisualreview. Actorsretainexistingnonblockingoverlap behavior."
+  }
+}

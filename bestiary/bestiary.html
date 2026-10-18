@@ -40,7 +40,7 @@ li { margin:8px 0; }
 <h1>The bestiary.</h1>
 <p class="intro">Things you really don't want to find on a service call.
 A living collection of creature designs, game animation assets, and cinematic marketing portraits.</p>
-<p class="small">Updated October 14, 2026 · 3 creatures tracked · 1 playable · Boss and portal artwork are previews</p>
+<p class="small">Updated October 17, 2026 · 7 creatures tracked · 6 playable in Prototype 71 · Clogfather planned</p>
 <nav aria-label="Project navigation">
 <a href="../roadmap.html">Development roadmap</a>
 <a href="../storybook/storybook.html">Development storybook</a>
@@ -52,6 +52,18 @@ A living collection of creature designs, game animation assets, and cinematic ma
 histories, original Flushfiend combat captures, sprite artwork, and a clearly labeled Hallowed Widow encounter concept.
 The Clogfather appears in a future-boss briefing. This screen-reading edition is based on Prototype 12.</p>
 </header>
+<section id="creature-audio-status">
+<h2>Hit and defeat sounds</h2>
+<p>The six creatures in Prototype 63 have prepared hit and death sound profiles. The new cockroach swarm also has a source-only audio profile. The five playable creatures now have
+profile-backed hit and defeat playback; canonical status is runtime integrated and source checks pass.
+Prototype 63 / 0.63.0 is delivered: twelve packaged suites and fifteen Python tests pass.
+Live listening and gameplay captures remain pending. The Clogfather remains a planned encounter; prepared sounds do not make it playable.</p>
+<p>Flushfiend, the Hallowed Widow, Gratecrawler and Septic Air Force have one hit variant each.
+Sputtervalve retains its two hit variants. Each creature has one defeat sound; the existing porcelain shatter,
+Sputtervalve effects and Clogfather hurt/collapse assets are preserved.</p>
+<p><a href="../handoffs/monster-damage-audio.json">Audio coverage, provenance and integration status</a> ·
+<a href="../assets/bestiary/catalog.json">Per-creature profile links</a></p>
+</section>
 <div class="grid">
 <article id="flushfiend">
 <figure><a href="flushfiend/marketing-v1.png" aria-label="Open full-resolution Flushfiend portrait">
@@ -92,10 +104,13 @@ alt="A dark hairy spider with red eyes and ivory fangs, hovering on white feathe
 <div class="number">SPECIMEN 002 / FALSE REASSURANCE</div>
 <h2>The Hallowed Widow</h2>
 <p>The first-level revision doubles the flying Widow's width and height and assigns <strong>180 HP</strong>.
-It warns with a faster wingbeat, dives toward the hero’s last position, then climbs forward to its original altitude in a V-shaped path.</p>
+It warns with a faster wingbeat, dives toward the committed hero position, then rises to its pre-dive altitude.
+It stops for one second, faces the hero’s side, and repeats until killed or the attempt resets.
+Within six pixels of centered alignment it keeps its heading. Full-body collision sweeps and world bounds apply;
+a blocked diagonal climb falls back to vertical recovery.</p>
 <p>First-level weapons require 15 Tony hits or 10 Sean hits: about 2.2 seconds of accurate firing plus travel.
-Continuous health bar, hidden by default. Source implementation ready; build 49 and visual review pending.</p>
-<span class="badge pending">Playable flight art · Enlarged revision awaiting build verification</span>
+Continuous health bar, hidden by default. Revised loop delivered in Prototype 63 / 0.63.0; packaged checks pass. Live fairness and visual review pending.</p>
+<span class="badge pending">Playable flight art · Revised loop delivered in Prototype 63</span>
 <p>White angel wings. A golden halo. Absolutely no reason to trust it.
 Beneath the heavenly disguise hangs a dark, bristling spider with glowing red eyes and long ivory fangs.</p>
 <h3>Game sprites &amp; animation</h3>
@@ -103,7 +118,8 @@ Beneath the heavenly disguise hangs a dark, bristling spider with glowing red ey
 <li><a href="../assets/bestiary/flying-spider-atlas-v2.png">Six-pose sprite source sheet</a>:
 four wingbeat poses, forward flight, and airborne hurt reaction.</li>
 <li><a href="../assets/bestiary/flying-spider-animation-v2.json">Animation plan and generation prompt</a></li>
-<li>Pending: frame alignment, flight-loop validation, attack and defeat animation, and gameplay integration.</li>
+<li>Flight, hurt and death art are integrated; the revised loop passed Prototype 63 packaged checks.
+Frame-alignment polish, live fairness and actual gameplay visual review remain pending.</li>
 </ul>
 <h3>Marketing portrait</h3>
 <p><a href="the-hallowed-widow/marketing-v1.png" download>Download hyperrealistic PNG</a> · 1254 × 1254 · Version 1</p>
@@ -138,7 +154,7 @@ This draft does not establish intentional summoning.</p></div></article>
 <h2>Septic Air Force</h2>
 <p>A 48-pixel circular contact area covers most visible flies at the current 128-pixel display size.</p><p><strong>Working name selected by Sean.</strong> A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone’s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.</p>
 <div style="width:256px;height:256px;background-image:url('../assets/bestiary/sewer-flies/swarm-mockup-v2.png');background-size:1024px 1536px" role="img" aria-label="One hovering sewer fly swarm mockup"></div>
-<p>Runtime swarm display is now twice the width and height, centered on the same 16-pixel contact core. 12 HP: two Tony pressure shots or one Sean plunger. Two optional first-level swarms use seeded non-hunting flight, shared contact cooldowns and finite death. Prototype 43 adds a bounded proximity buzz for living swarms with pause/mute and exit cleanup; listening review pending. Corrected slicing validated; live readability and six damage-stage artwork remain pending. Draft backstory supplied; marketing portrait pending.</p>
+<p>Runtime swarm display is now twice the width and height, centered on the same 16-pixel contact core. 12 HP: two Tony pressure shots or one Sean plunger. Prototype 70 expands placement to nine potential first-level swarms, retaining the original x4400 encounter and adding eight authored slots. New swarms have a 0.8-second harmless introduction. Four later slots belong to checkpoint retries; the quiet approach and boss room at x5610–7530 remain empty. These are scheduled encounters, not nine simultaneous swarms. Prototype 70 packaged verification passed: 17 suites, 28 Python tests, and 18 full-route trials with all nine encounters issued and visible. Live visual, listening and fairness review remain pending. Seeded non-hunting flight, 12 HP, artwork, audio, shared contact cooldowns and finite death are retained. Prototype 43 adds a bounded proximity buzz for living swarms with pause/mute and exit cleanup; listening review pending. Corrected slicing validated; live readability and six damage-stage artwork remain pending. Draft backstory supplied; marketing portrait pending.</p>
 <h3>Backstory</h3><p><strong>Storyboarding draft.</strong> The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.</p>
 <p><a href="sewer-flies/preview.html">Animated mockup</a> · <a href="../assets/bestiary/sewer-flies/swarm-mockup-v2.png">Sprite sheet</a> ·
 <a href="../assets/bestiary/sewer-flies/animation-v3.json">Animation information</a> · <a href="sewer-flies/monster.json">Metadata</a></p></div></article>
@@ -154,8 +170,28 @@ This gallery and its marketing images are excluded from Godot imports.</p>
 The original outputs are 1254 × 1254 pixels; larger print deliverables will need a separate production pass.
 These are marketing interpretations, not screenshots of the game.</p>
 </section>
-<section id="sputtervalve"><h2>Sputtervalve — provisional opening design</h2><p>A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.</p><p>36 opening HP; Tony: 3 shots, Sean: 2. Integrated into the continuous first-level opening for Prototype 45; visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Sputtervalve sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/sputtervalve-v1.png) 0% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/sputtervalve-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="sputtervalve/monster.json">Metadata</a></p></section>
-<section id="gratecrawler"><h2>Gratecrawler — provisional opening design</h2><p>A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.</p><p>24 opening HP; Tony: 2 shots, Sean: 2. Integrated into the continuous first-level opening for Prototype 45; visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Gratecrawler sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/gratecrawler-v1.png) 66.666% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/gratecrawler-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="gratecrawler/monster.json">Metadata</a></p></section>
+<section id="sputtervalve"><h2>Sputtervalve — approved name and design basis</h2><p>Name and pressure-valve design approved October 17. Body enlargement and contrast repaint remain pending; backstory is not yet approved.</p><p>A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.</p><p>36 opening HP; Tony: 3 shots, Sean: 2. Integrated into the continuous first-level opening for Prototype 45; visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Sputtervalve sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/sputtervalve-v1.png) 0% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/sputtervalve-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="sputtervalve/monster.json">Metadata</a></p></section>
+<section id="gratecrawler"><h2>Gratecrawler — provisional opening design</h2><p>A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.</p><p>24 opening HP; Tony: 2 shots, Sean: 2. Prototype 57: emerges after a warning, then patrols back and forth on the floor, turning at obstacles and patrol boundaries. No jumping or pursuit. Headless and packaged checks pass; live visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Gratecrawler sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/gratecrawler-v1.png) 66.666% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/gratecrawler-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="gratecrawler/monster.json">Metadata</a></p></section>
+<section id="cockroach-swarm"><h2>Skitterling</h2>
+<p>A first-level mini-boss in a locked pipe chamber: constantly crawling cockroaches form a giant rat,
+collapse into an apparent death, then rise and reassemble into a larger alligator.</p>
+<img src="cockroach-swarm/marketing-concepts-v1.png" alt="Concept art of cockroaches forming a rat and an alligator" style="width:100%;height:auto">
+<p>This image is concept artwork, not gameplay. The runtime room, pipes, shutters, water, debris and animations
+are integrated. Cached alpha preparation and separately animated, alpha-clipped roach layers keep the formed
+bodies crawling. Live composition and animation-continuity review remain pending.</p>
+<p>Runtime health is 720 displayed HP: 540 HP for the rat and 180 HP for the alligator. Rat-phase overkill cannot skip the
+alligator fight. Active starter weapons require Tony 45 rat hits plus 15 alligator hits (60 total), Sean 30 plus 10 (40 total).
+Rat collapse takes 0.5 seconds, followed by four seconds still, 4.5 seconds renewed skittering, and 2.5 seconds
+alligator assembly. The final defeat opens the right exit pipe.</p>
+<p>Prototype 71 is delivered and verified: 20 packaged suites, 32 Python tests, 16 actual source/export CLI
+checks and 18 full routes passed. Portal traversal and camera behavior, prepared alpha masks, upward debris hits,
+moving dodges and visible-jaw charge checks passed. Live visual, listening and fairness review remain pending.</p>
+<p>Skitterling is the official name. Backstory remains pending.</p>
+<p><a href="cockroach-swarm/monster.json">Creature metadata</a> ·
+<a href="../assets/bestiary/cockroach-swarm/runtime-manifest-v1.json">Runtime animation manifest</a> ·
+<a href="../assets/world/skitterling-room/manifest-v1.json">Room artwork</a> ·
+<a href="cockroach-swarm/prompts-v1.json">Exact concept prompt</a></p><p>Prototype 71 adds side-view walk-through tunnels with authored foreground occlusion, visible underwater swimming, three separately targeted upward debris throws, and a snapping charge across the room. Packaged verification passed; live review remains pending.</p>
+</section>
 </main>
 <p>October 15 runtime update: Flushfiends now enter from beyond the camera after encounter triggers, with immediate movement and persistent proximity pursuit. Finite counts survive checkpoint respawns and reset on restart. Prototype 33 adds 0.35 seconds braking plus 0.65 seconds stopped before reversing pursuit, then 0.20 seconds acceleration. Further crossings do not restart the turn timer; pause freezes it. Headless checks pass; visual review pending.</p>
 </body>

@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-16",
+  "updated": "2026-10-17",
   "creatures": [
     {
       "id": "toilet",
       "name": "Flushfiend",
       "status": "Integrated animated enemy",
       "art": "assets/sprites/toilet-v1.png",
-      "layout": "2 columns \u00d7 2 rows: walk A, walk B, hop, hit",
+      "layout": "2 columns × 2 rows: walk A, walk B, hop, hit",
       "prompt": "assets/art-prompts-v1.json#toilet",
       "renderer": "scripts/world_art.gd",
       "remaining": [
@@ -79,22 +79,27 @@
         "source": "design/first-call-action/opening-trial-balance.json",
         "role": "runner",
         "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+      },
+      "audio_summary": {
+        "status": "runtime_integrated",
+        "source": "bestiary/flushfiend/monster.json#audio",
+        "hit_variants": 1,
+        "death_variants": 1,
+        "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
+        "listening_review": "pending"
       }
     },
     {
       "id": "spider",
       "name": "The Hallowed Widow",
-      "status": "Proximity swoop source implemented; build49 pending",
+      "status": "Revised dive/rise/pause loop delivered in Prototype63/0.63.0; packaged checks pass; live fairness and visual review pending",
       "art": "assets/bestiary/flying-spider-atlas-v2.png",
       "tool": "Built-in image_gen",
       "prompt": "assets/bestiary/flying-spider-prompt-v2.json",
       "remaining": [
-        "Refine atlas gutters, consistent body anchors, and alpha edges",
-        "Validate looping wingbeat at gameplay size",
-        "Create attack and defeat animation",
-        "Implement flight movement, collision, and balance",
-        "Integrate and capture running-game screenshots",
-        "Prepare damage atlases for runtime: alpha, anchors, timing, and hit feedback"
+        "Review revised loop fairness and readability in actual gameplay",
+        "Review wingbeat, alignment and live-to-death transition in actual gameplay",
+        "Capture approved live gameplay screenshots"
       ],
       "original_concept": "assets/bestiary/spider-concept-v1.png",
       "animation_spec": "assets/bestiary/flying-spider-animation-v2.json",
@@ -117,7 +122,7 @@
       "health": {
         "max_hp": 180,
         "visible_by_default": false,
-        "status": "Proximity swoop source implemented; build49 pending",
+        "status": "180HP retained; revised flight delivered in Prototype63/0.63.0; packaged checks pass",
         "source": "bestiary/the-hallowed-widow/monster.json#health"
       },
       "description": "White angel wings and a golden halo disguise a dark, bristling flying spider with red eyes and ivory fangs.",
@@ -125,10 +130,18 @@
         "status": "approved",
         "author_role": "storyboarding agent",
         "updated": "2026-10-16",
-        "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo\u2014every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
+        "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo—every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
         "canon_note": "User-selected magazine prose synchronized by Storyboarding review. Breeding is narrative wording, not a reproduction mechanic."
       },
-      "flight_recovery": "Forward V-shaped climb to original altitude"
+      "flight_recovery": "Rise to pre-dive altitude, stop for1second, face the hero on either side and repeat until killed or attempt reset. Within6pixels of centered alignment retain heading. Full-body sweep and world bounds apply; blocked diagonal rise uses vertical recovery.",
+      "audio_summary": {
+        "status": "runtime_integrated",
+        "source": "bestiary/the-hallowed-widow/monster.json#audio",
+        "hit_variants": 1,
+        "death_variants": 1,
+        "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
+        "listening_review": "pending"
+      }
     },
     {
       "id": "clogfather",
@@ -167,15 +180,23 @@
         "status": "draft",
         "author_role": "storyboarding agent",
         "updated": "2026-10-14",
-        "text": "Billy-Joe classified repeated blockage warnings as duplicate reports and canceled the cleaning crews. Beneath headquarters, grease hardened around wipes, roots, and a buried outflow until the blockage filled the chamber. Then it began moving against the current. The Clogfather grew around something BJ's diagrams do not show. Removing it will restore access\u2014but what it has been hiding may be worse than the clog.",
+        "text": "Billy-Joe classified repeated blockage warnings as duplicate reports and canceled the cleaning crews. Beneath headquarters, grease hardened around wipes, roots, and a buried outflow until the blockage filled the chamber. Then it began moving against the current. The Clogfather grew around something BJ's diagrams do not show. Removing it will restore access—but what it has been hiding may be worse than the clog.",
         "canon_note": "Proposed history, not approved canon. Portal origin and BJ prior knowledge remain open; no intentional summoning is established."
+      },
+      "audio_summary": {
+        "status": "profile_ready",
+        "source": "bestiary/clogfather/monster.json#audio",
+        "hit_variants": 1,
+        "death_variants": 1,
+        "runtime_status": "Planned boss; no playable encounter",
+        "listening_review": "pending"
       }
     },
     {
       "id": "sewer-fly-swarm",
       "name": "Septic Air Force",
-      "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
-      "status": "Prototype40: double-size display; movement and contact tuning unchanged, visual playtest pending",
+      "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone’s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
+      "status": "Integrated in Prototype70/0.70.0: nine potential first-level swarms. Automated packaged verification passed; live visual, listening and fairness review pending.",
       "metadata": "bestiary/sewer-flies/monster.json",
       "art": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
       "animation": "assets/bestiary/sewer-flies/animation-v3.json",
@@ -202,7 +223,24 @@
         128,
         128
       ],
-      "contact_radius_pixels": 48
+      "contact_radius_pixels": 48,
+      "audio_summary": {
+        "status": "runtime_integrated",
+        "source": "bestiary/sewer-flies/monster.json#audio",
+        "hit_variants": 1,
+        "death_variants": 1,
+        "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
+        "listening_review": "pending"
+      },
+      "placement_summary": {
+        "potential_total": 9,
+        "source": "bestiary/sewer-flies/monster.json#runtime_notes",
+        "status": "Integrated Prototype70; automated packaged verification passed; live review pending",
+        "quiet_boss_region_x": [
+          5610,
+          7530
+        ]
+      }
     },
     {
       "id": "sputtervalve",
@@ -257,13 +295,22 @@
         "source": "design/first-call-action/opening-trial-balance.json",
         "role": "shooter",
         "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
-      }
+      },
+      "audio_summary": {
+        "status": "runtime_integrated",
+        "source": "bestiary/sputtervalve/monster.json#audio",
+        "hit_variants": 2,
+        "death_variants": 1,
+        "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
+        "listening_review": "pending"
+      },
+      "name_status": "Name and pressure-valve design basis approved by Sean on 2026-10-17; visual revisions pending"
     },
     {
       "id": "gratecrawler",
       "name": "Gratecrawler",
       "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.",
-      "status": "Provisional trial art delivered; runtime pending",
+      "status": "Integrated in Prototype 57 / 0.57.0: floor-only patrol with boundary and obstacle turns; no jumping or pursuit. Headless and packaged checks pass; live visual review pending.",
       "metadata": "bestiary/gratecrawler/monster.json",
       "art": "assets/bestiary/opening-trial/gratecrawler-v1.png",
       "animation": "assets/bestiary/opening-trial/manifest-v1.json",
@@ -312,6 +359,50 @@
         "source": "design/first-call-action/opening-trial-balance.json",
         "role": "emerger",
         "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+      },
+      "audio_summary": {
+        "status": "runtime_integrated",
+        "source": "bestiary/gratecrawler/monster.json#audio",
+        "hit_variants": 1,
+        "death_variants": 1,
+        "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
+        "listening_review": "pending"
+      }
+    },
+    {
+      "id": "cockroach-swarm",
+      "name": "Skitterling",
+      "name_status": "Official name selected by Sean; remains Skitterling unless Sean changes it. Confirmed 2026-10-17.",
+      "description": "A floor swarm of constantly skittering cockroaches assembles into a giant rat, collapses after damage, and reforms as a giant alligator. Individual insects continue crawling while each animal silhouette holds.",
+      "status": "Delivered in Prototype 71 / 0.71.0; packaged verification passed. Live visual, listening and fairness review pending.",
+      "metadata": "bestiary/cockroach-swarm/monster.json",
+      "art": "assets/bestiary/cockroach-swarm/rat-source-v2.png",
+      "animation": "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json",
+      "marketing": {
+        "image": "bestiary/cockroach-swarm/marketing-concepts-v1.png",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "style": "hyperrealistic concept diptych: rat and alligator",
+        "prompt": "bestiary/cockroach-swarm/prompts-v1.json",
+        "status": "Concept proposal; visual design review pending"
+      },
+      "health": {
+        "max_hp": 720,
+        "runtime_max_hp": 720,
+        "visible_by_default": true,
+        "status": "Prototype 71 verified runtime: 540 HP rat plus 180 HP alligator, 720 displayed total. Live balance review pending.",
+        "source": "bestiary/cockroach-swarm/monster.json#health",
+        "phase_hp": {
+          "rat": 540,
+          "alligator": 180
+        }
+      },
+      "audio_summary": {
+        "status": "runtime_integrated",
+        "source": "bestiary/cockroach-swarm/monster.json#audio",
+        "runtime_status": "Delivered in Prototype 71; packaged checks passed; listening review pending"
       }
     }
   ],

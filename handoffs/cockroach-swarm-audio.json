@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T17:58:18-07:00",
+  "timezone": "America/Los_Angeles",
+  "creature_id": "cockroach-swarm",
+  "display_name_status": "pending_Sean_selection",
+  "status": "source_assets_and_proposed_contract_only",
+  "manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
+  "canonical_audio_block": {
+    "schema_version": 1,
+    "status": "profile_ready",
+    "manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/hit.wav",
+          "gain_db": -3,
+          "sha256": "ff51950836c9eb654554903dc2c01ec1b22c62922929396aaee130fc862f9d2f"
+        }
+      ],
+      "cooldown_seconds": 0.12,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/death.wav",
+          "gain_db": -3,
+          "sha256": "61341be701c03917de926d21f5d615900f847406a8e5050d71d33850806656ab"
+        }
+      ],
+      "cooldown_seconds": 0,
+      "max_voices": 2,
+      "loop": false
+    }
+  },
+  "auxiliary_events": {
+    "formed-loop": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/formed-loop.wav",
+          "gain_db": -9,
+          "sha256": "6368cc7f719cf03c42c55980347696df236e6e000eadc97bbba6004940382be6"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 1,
+      "loop": true
+    },
+    "dispersed-loop": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/dispersed-loop.wav",
+          "gain_db": -9,
+          "sha256": "768f7f5040831c3ecf1fb1e6474fa27416f171cf93ef00b35d391149034d3c97"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 1,
+      "loop": true
+    },
+    "collapse": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/collapse.wav",
+          "gain_db": -4,
+          "sha256": "ab74bc2fe8328dad71d1d2b4dc33f8abff344928ce3a723c8efcf0af127ee00f"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 1,
+      "loop": false
+    },
+    "reform": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/reform.wav",
+          "gain_db": -4,
+          "sha256": "efb462e34823e2ab599c1cd247c4eccd0a168e8d1fb486dd2e4e0ddb1db8405c"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 1,
+      "loop": false
+    },
+    "rat-warning": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/rat-warning.wav",
+          "gain_db": -3,
+          "sha256": "a5f7602cce0d1b9d99999efaf2985f49bb97569a625795e4b2ad2babb043cd49"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 1,
+      "loop": false
+    },
+    "alligator-warning": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/alligator-warning.wav",
+          "gain_db": -3,
+          "sha256": "03b1b2a47d2e78cf9ea14c34552ffb88bddde607cbd2fe254cf3ad62525218e4"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 1,
+      "loop": false
+    }
+  },
+  "approval_boundary": "Rat/scattered/alligator crawling concept approved; attacks, HP, thresholds, timing and terminal defeat design provisional. Runtime integration not authorized. Cue durations never drive gameplay timers.",
+  "event_contract": {
+    "encounter_start": "Start formed bed once; never per-roach voices.",
+    "rat_windup": "Proposed .8s three-pulse warning.",
+    "alligator_windup": "Proposed1s two-pulse warning.",
+    "transform_collapse": "Collapse cue once; crossfade formed to dispersed. Never death.",
+    "transform_scatter": "Continue dispersed bed without restart.",
+    "transform_reform": "Reform cue once; crossfade dispersed to formed.",
+    "hit": "Positive actual nonlethal HP reduction only; .12s actor-local simulation-time cooldown. Proposed threshold-crossing collapse replaces simultaneous hit.",
+    "terminal_death": "Guard exactly once on actual terminal defeat; stop all other cues/beds, let death tail finish. Never on phase transition/despawn/restore.",
+    "priority": "terminal death > attack warning > phase cue > hit > bed"
+  },
+  "limits": {
+    "steady_bed_voices": 1,
+    "crossfade_bed_voices": 2,
+    "crossfade_seconds": 0.15,
+    "crossfade_curve": "linear equal-gain",
+    "rapid_transition": "Retarget existing two players from current gains; never allocate more.",
+    "warning_voices": 1,
+    "phase_voices": 1,
+    "hit_voices": 2,
+    "death_voices": 2,
+    "bed_duck_db_during_warning": -6,
+    "duck_attack_seconds": 0.03,
+    "duck_release_seconds": 0.12,
+    "obsolete_warning": "Cancel on phase change/death; never gate attacks on cue completion."
+  },
+  "lifecycle": {
+    "controls": "Master/SFX mute applies; music-only mute independent. No queued catch-up events on unmute.",
+    "pause": "Freeze stream positions, crossfade/duck envelopes and cooldowns.",
+    "cleanup": "Reset/checkpoint/menu/dispose stops all and clears state; restore never replays prior events.",
+    "offscreen": "PROPOSED positional attenuation, no offscreen attack initiation; already-fired cues may finish attenuated. Exact distance/culling pending."
+  },
+  "validation": {
+    "source": "PASS eight deterministic renders, PCM16 mono44100 headers/frame counts/hashes, peak bounds, one-shot zero edges, loop seam steps108/44 below internal2109/1814; Python syntax120column hygiene.",
+    "runtime": "Not integrated/tested.",
+    "listening": "Not auditioned; perceived seamlessness and mix unapproved."
+  },
+  "consultation": {
+    "Art": "StableID confirmed; chitin/legs/antennae, no animal flesh.",
+    "Mechanics": "Phase/attack timings and sharedHP candidate only; no per-roach voices.",
+    "Storyboarding": "Nonverbal material texture; no animal voice, new origin, intelligence or allegiance."
+  },
+  "next_steps": [
+    "Art merges canonical_audio_block and syncs catalog/gallery.",
+    "Mechanics and Sean settle combat before runtime integration.",
+    "Engineering owns roadmap pending concept entry and future runtime validation.",
+    "Approved listening must check grossness, repetition, warning clarity and music overlap."
+  ],
+  "canonical_merge": {
+    "status": "verified",
+    "profile": "bestiary/cockroach-swarm/monster.json",
+    "result": "Exact canonical audio block matches delivered handoff; referenced hit/death hashes match.",
+    "runtime": "Still unimplemented; metadata coverage does not establish playable integration."
+  }
+}

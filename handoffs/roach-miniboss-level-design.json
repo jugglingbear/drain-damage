@@ -1,0 +1,53 @@
+{
+  "status": "Design recommendation only; exact placement, encounter routing and mandatory gate not approved",
+  "scope": "Existing first-level geometry. No runtime/art changes. Mechanics owns stats; Art owns creature ID/art.",
+  "candidate": {
+    "arena_x": [
+      7950,
+      9150
+    ],
+    "floor_y": 440,
+    "clear_width": 1200,
+    "reason": "Last solid prop ends7360; this interval is flat clear floor before current9450 completion. Leaves590px approach after final prop and300px beyond arena before temporary exit.",
+    "form_rectangles": "Rat256x150 at y290; alligator288x112 at y328, assuming requested dimensions are actual collision envelopes.",
+    "reference_body_left_x": 8700,
+    "rat_left_charge_safe_strip": "From7950 to8520 after180px left charge:570px connected floor remains.",
+    "alligator_left_bite_safe_strip": "From7950 to8560 with140px left reach:610px connected floor remains.",
+    "qualification": "These are one-sided envelope examples, not proof of all movements. Subtract hero footprint/margins and test actual facing,body,attack sweep and Art registration.",
+    "why_not_960": "960-256-180=524 and960-288-140=532 leave only24/32px above500, before hero width and safety margins.1200 is safer with current available floor."
+  },
+  "combat_space": [
+    "Keep initial threat in right side of arena, with charge/reach directed into open floor; no attack that traps hero between body and boundary.",
+    "Validate >=500px connected safe floor outside combined body plus current attack sweep, with room for full hero collider, for every attack start.",
+    "Rat cannot require jumping over150px body. Recovery must permit retreat/reposition on ground; cornered or wrong-side configurations cancel/reposition before a tell.",
+    "Three-second harmless transform preserves clear escape; do not place newly widened alligator collider on hero or use scatter particles as extra damage sources.",
+    "Treat rat,scatter andalligator as one encounter/threat/HP ledger.360HP/180threshold and attack sizes are Mechanics proposals, not new Level Design approval."
+  ],
+  "isolation": [
+    "Arena overlaps current late encounters; reserve it instead of adding miniboss atop Normal density. Suppress new ordinary entries whose paths could enter arena.",
+    "Wait for existing live threats/projectiles/warnings to clear safely before intro/activation; a surviving opening Widow must not coexist with miniboss.",
+    "Never silently kill/despawn visible actors or award cleanup kills. Persistent Widow can delay encounter; there is no approved forced-clearing exception.",
+    "Difficulty scheduling and encounter ownership must explicitly account for replaced late slots. No new swarm adds during scatter.",
+    "Do not activate solely on reaching trigger if another threat is present or safe space is unavailable."
+  ],
+  "camera": [
+    "1200px world arena exceeds960px viewport; attack readability must be checked independently of world-space clearance.",
+    "Keep full attacking form, tell, attack sweep and relevant escape visible before attack. Normal follow camera may need an approach/reveal sequence; no camera-lock implementation approved here.",
+    "Home8700 is a geometry reference, not a validated spawn/reveal coordinate. Do not spawn visibly without approved entry art/telegraph."
+  ],
+  "progression": {
+    "checkpoint": "Keep4650. This miniboss belongs to checkpoint-owned segment and resets with same seed on retry.",
+    "clogfather": "Required Clogfather remains a separate later design obligation; miniboss does not substitute for it.",
+    "completion": "Current9450 exit cannot be assumed to remain correct for a mandatory miniboss. Exact completion/gate changes require separate explicit direction.",
+    "routing": "No invisible walls, forced lock-in or unavoidable body blockage implied. Whether encounter is mandatory or bypassable remains undecided; do not implement until routing contract resolved."
+  },
+  "acceptance": [
+    "Bothheroes: floor retreat possible throughout charge,bite,transform,recovery without compulsory jump over rat.",
+    "Max attack sweep leaves500px connected safe region including body-clearance margins; no offscreen damaging attack.",
+    "No other active enemy,warning or threatening projectile in arena at activation; test persistentWidow arrival.",
+    "Player at either edge and changing sides cannot be pinned by form change or arena boundary.",
+    "Death resets sole compound encounter/fullHP under existing checkpoint/lives/clone rules; no duplicate scatter entities.",
+    "Engineering headless geometry checks plus separately approved visual/playtest session before claiming arena fairness."
+  ],
+  "validation": "Reviewed current first_call.gd PROPS/CHECKPOINTS and integrated9450 exit; arithmetic checked. No running simulation or foreground launch."
+}

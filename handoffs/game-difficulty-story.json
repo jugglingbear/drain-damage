@@ -1,0 +1,65 @@
+{
+  "status": "Storyboarding copy ready for integration; difficulty behavior and screen not yet verified in a build",
+  "created_at": "2026-10-17T15:35:35-07:00",
+  "timezone": "America/Los_Angeles",
+  "scope": "Difficulty selection copy and narrative/art guidance; Engineering owns runtime, layout, build and roadmap.",
+  "player_facing": {
+    "title": "Game Difficulty",
+    "prompt": "Choose the pace of your next job.",
+    "options": [
+      {
+        "id": "easy",
+        "label": "Easy",
+        "description": "Smaller groups arrive in a fixed order, with more time between encounters."
+      },
+      {
+        "id": "normal",
+        "label": "Normal",
+        "description": "A steady challenge with changing enemy groups, entrances and timing."
+      },
+      {
+        "id": "hard",
+        "label": "Hard",
+        "description": "More overlapping threats and tougher enemy combinations leave less room for mistakes."
+      }
+    ],
+    "confirm": "Start Job",
+    "back": "Back",
+    "retry_note": "After a death, encounters restart from your respawn point. New runs vary encounters on Normal and Hard."
+  },
+  "copy_contract": [
+    "Descriptions depend on Mechanics implementing the stated differences; do not display unimplemented promises.",
+    "Avoid random seed, spawn budget, HP multipliers and other implementation terminology in the menu.",
+    "No shame, competence judgment or jokes targeting Easy players; do not equate difficulty with hero personality.",
+    "Keep enemy health and weapon damage unchanged initially; difficulty copy describes encounter pressure.",
+    "Retry note is optional secondary help, not required permanent screen clutter. It concerns arrangement, not dead-enemy persistence.",
+    "Enemy reset from respawn point onward is a separate rule; do not promise that defeated enemies remain absent.",
+    "Remaining-life respawns retain the resolved encounter arrangement. Game Over Retry starts a full new run and may select a new arrangement; never describe that button as retaining the old encounters."
+  ],
+  "flow": {
+    "recommended": "Start Game -> Hero -> Difficulty -> existing introduction/play",
+    "default": "normal",
+    "back": "Return to hero selection preserving the selected hero.",
+    "intro": "Preserve existing fresh-game introduction, skip and input-release guards; retry does not replay it."
+  },
+  "art_opinion": {
+    "approved_direction": "Hard-mode heroes with exaggerated bigger muscles and torn workclothes; preserve trousers, recognizable trade gear and established Tony/Sean identities.",
+    "approval": "Sean explicitly selected torn workclothes and bigger muscles over nudity on 2026-10-17, relayed by Game Mechanics.",
+    "rejected_alternative": "Nudity with a black censor bar.",
+    "status": "Approved for Art creation and Engineering integration; delivery and runtime coverage not yet verified.",
+    "scope": "Cosmetic only; no balance, health, damage, collider or other stat changes.",
+    "ownership": "Art creates artwork and provenance; Engineering integrates approved assets.",
+    "integration": "Report selection-screen artwork separately from full in-game animation/state coverage. Do not imply complete gameplay costume support from a portrait-only delivery."
+  },
+  "capture_followup": {
+    "status": "Planned feature capture agenda, not a delivered iteration or screenshot",
+    "capture_time": null,
+    "requested_views": [
+      "Difficulty screen with each description readable",
+      "Back navigation preserving hero selection",
+      "Representative gameplay for each difficulty once shipped"
+    ],
+    "integration": "Engineering supplies the delivered version and timestamped gap record; Storyboarding appends the numbered chapter after delivery.",
+    "permission": "No game launch or foreground capture authorized by this handoff."
+  }
+}

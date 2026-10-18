@@ -29,7 +29,7 @@ const BUDGET_KEYS := {
 	"bullets": "hostile_projectiles",
 	"patterns": "simultaneous_independent_threat_patterns",
 }
-const HARD_CAPS := {"visible": 6, "shooters": 2, "bullets": 6, "patterns": 3}
+const HARD_CAPS := {"visible": 6, "shooters": 3, "bullets": 6, "patterns": 3}
 
 var continuous_mode := false
 var elapsed: float = 0.0
@@ -58,8 +58,9 @@ func configure(layout: Dictionary, balance: Dictionary, continuous := false) -> 
 	var timeline: Variant = layout.get("timeline")
 	var roles: Variant = balance.get("roles")
 	var budgets: Variant = balance.get("budgets")
-	if not timeline is Array or timeline.size() != 12:
-		return _invalid("Trial requires exactly 12 timeline events")
+	if not timeline is Array or (not continuous and timeline.size() != 12) \
+		or (continuous and (timeline.size() < 12 or timeline.size() > 256)):
+		return _invalid("Trial requires 12 events; continuous routes support 12 to 256 finite events")
 	if not roles is Dictionary or not budgets is Dictionary:
 		return _invalid("Missing roles or budgets")
 	for key: String in BUDGET_KEYS:
@@ -167,6 +168,23 @@ func cancel(id: String, reason: String = "Unsafe placement") -> bool:
 	_events[id].reason = reason
 	_release_owner_patterns(id)
 	return true
+
+func use_runner_fallback(id: String) -> bool:
+	# Only an unreserved continuous-route event may borrow the validated runner template.
+	if not continuous_mode or not _can_mutate() or not _events.has(id): return false
+	var event: Dictionary = _events[id]
+	if event.state != "pending" or event.role not in ["perched_shooter", "floor_emerger"]: return false
+	for template in _templates:
+		if template.role != "runner": continue
+		event.original_role = event.role
+		event.role = "runner"
+		event.canonical_role = "runner"
+		event.warning_seconds = template.warning_seconds
+		event.settle_seconds = template.get("settle_seconds",0.0)
+		event.activation_delay = template.activation_delay
+		event.fallback_reason = "No safe forward habitat before admission"
+		return true
+	return false
 
 func mark_unavailable(id: String, reason: String) -> bool:
 	if not _can_mutate() or not _events.has(id) or reason.is_empty(): return false

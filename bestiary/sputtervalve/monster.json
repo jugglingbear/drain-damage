@@ -1,7 +1,7 @@
 {
   "id": "sputtervalve",
   "name": "Sputtervalve",
-  "name_status": "Proposed working name, not user-approved canon",
+  "name_status": "Name and pressure-valve design basis approved by Sean on 2026-10-17; visual revisions pending",
   "description": "A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.",
   "implementation_status": "Integrated continuous first-level opening; Prototype45 checks in progress",
   "backstory": {
@@ -63,5 +63,45 @@
     "source": "design/first-call-action/opening-trial-balance.json",
     "role": "shooter",
     "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "runtime_integrated",
+    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+          "gain_db": -3,
+          "sha256": "22a77d3d43ea0c80584f0291d67fe780a6a6e055b7f497b45660ae971d711cbb"
+        },
+        {
+          "path": "assets/audio/sfx/sputtervalve-v1/hit-b.wav",
+          "gain_db": -3,
+          "sha256": "ee9b1b5f84d68b7571c3082268f9e89dfa249c903eaba8feae28c83d2cea5b5e"
+        }
+      ],
+      "cooldown_seconds": 0.1,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/sputtervalve-v1/death.wav",
+          "gain_db": -3,
+          "sha256": "2b8391d1a3365d929c6f0ff5f2d41432fcba25884e3dec37d85002c21119094a"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 2,
+      "loop": false
+    }
+  },
+  "name_approval": {
+    "source": "handoffs/art-2-recovered-history.json",
+    "source_line": 5574,
+    "timestamp": "2026-10-17T20:31:23.231Z",
+    "decision": "Sean answered yes to retaining the Sputtervalve name and valve design, requesting 50% larger body, stronger contrast and larger projectiles. Exact backstory remains unapproved."
   }
 }

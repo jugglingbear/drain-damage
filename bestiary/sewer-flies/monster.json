@@ -2,8 +2,8 @@
   "id": "sewer-fly-swarm",
   "name": "Septic Air Force",
   "name_status": "Working name selected by Sean on 2026-10-16",
-  "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
-  "implementation_status": "Expanded48px contact envelope implemented in source; packaged build and playtest pending",
+  "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone’s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
+  "implementation_status": "Integrated in Prototype70/0.70.0: nine potential first-level swarms. Automated packaged verification passed; live visual, listening and fairness review pending.",
   "backstory": {
     "status": "draft",
     "text": "The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
@@ -14,7 +14,7 @@
     "spawn_hp": 12,
     "role": "fragile wandering environmental enemy",
     "encounter_stage": "Early first-level traversal, initially shown alone before mixed fights",
-    "rationale": "Nuisance rather than bullet sponge: two6-damage pressure bolts or one24-damage plunger. Existing30\u201340HP opening band is a guideline; lower health justified by obstacle role.",
+    "rationale": "Nuisance rather than bullet sponge: two6-damage pressure bolts or one24-damage plunger. Existing30–40HP opening band is a guideline; lower health justified by obstacle role.",
     "hits_to_defeat": {
       "heavy-plunger-launcher": 1,
       "pressure-gun": 2,
@@ -46,7 +46,7 @@
       128,
       128
     ],
-    "runtime_scale_note": "128x128 display;48px radius covers89.9\u201399.8% alpha-weighted living fly ink across20frames, measured by Art. Contact, shots and obstacle clearance share radius."
+    "runtime_scale_note": "128x128 display;48px radius covers89.9–99.8% alpha-weighted living fly ink across20frames, measured by Art. Contact, shots and obstacle clearance share radius."
   },
   "marketing": {
     "status": "Not requested for current sprite mockup; pending future production",
@@ -137,11 +137,39 @@
   "runtime_notes": {
     "placements": [
       [
-        2090,
-        290
+        920,
+        330
+      ],
+      [
+        1880,
+        330
+      ],
+      [
+        2890,
+        330
+      ],
+      [
+        3310,
+        330
       ],
       [
         4400,
+        330
+      ],
+      [
+        5260,
+        190
+      ],
+      [
+        7990,
+        330
+      ],
+      [
+        8720,
+        330
+      ],
+      [
+        9240,
         330
       ]
     ],
@@ -154,6 +182,78 @@
       "Only the two currently playable ranged weapons exercised; future melee/explosions remain unimplemented"
     ],
     "validation": "20 seeded 60-second corner/door paths, contacts, weapon hits and lifecycle pass; Tony full route passes, Sean bot exhausts lives in section four",
-    "introduction": "First swarm occupies clear floor gap after entrance encounter; second encounter trigger delayed to x2270, past its region."
+    "introduction": "First swarm occupies clear floor gap after entrance encounter; second encounter trigger delayed to x2270, past its region.",
+    "placement_schedule": {
+      "source": "scripts/swarm_schedule.gd",
+      "status": "Integrated Prototype70; packaged verification passed",
+      "potential_total": 9,
+      "retained_original_home": [
+        4400,
+        330
+      ],
+      "additional_slots": 8,
+      "additional_intro_seconds": 0.8,
+      "intro_policy": "New additive swarms are harmless during introduction; original encounter timing retained.",
+      "checkpoint_retry_homes": [
+        [
+          5260,
+          190
+        ],
+        [
+          7990,
+          330
+        ],
+        [
+          8720,
+          330
+        ],
+        [
+          9240,
+          330
+        ]
+      ],
+      "excluded_region_x": [
+        5610,
+        7530
+      ],
+      "note": "Authored potential encounters, not nine simultaneous swarms; admission, bypass and retirement follow scheduler.",
+      "verification": {
+        "packaged_suites": 17,
+        "python_tests": 28,
+        "full_route_trials": 18,
+        "result": "All nine encounters issued and visible in all18packaged full routes; baseline18routes eachshowedone",
+        "release_checks": "Export, signing, version and ZIP checks passed",
+        "live_review": "Visual, listening and fairness pending"
+      }
+    }
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "runtime_integrated",
+    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/monster-damage-v1/swarm-hit.wav",
+          "gain_db": -3,
+          "sha256": "f890c227d8d4b39acf5455ff9fc737bd50b4e3c1bfc5aeeec209c2fe2c51caa8"
+        }
+      ],
+      "cooldown_seconds": 0.1,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/monster-damage-v1/swarm-death.wav",
+          "gain_db": -3,
+          "sha256": "b546d6a76feadb66d680014ec081b485c9b2e2d2539eb2d0a4795cc27afbce05"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 2,
+      "loop": false
+    }
   }
 }

@@ -1,0 +1,86 @@
+{
+  "id": "skitterling-encounter-treatment",
+  "creature_id": "cockroach-swarm",
+  "display_name": "Skitterling",
+  "name_status": "Official name selected by Sean; remains Skitterling unless Sean changes it. Confirmed 2026-10-17.",
+  "updated_at": "2026-10-17T18:38:45-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "status": "Commissioned encounter treatment; implementation and live capture pending",
+  "authority": "Sean commission relayed by current Level Design chat on 2026-10-17",
+  "layout_owner": "Level Design; exact offsets and shared encounter contract pending",
+  "supersedes": "Earlier optional7950 arena and single3s transformation are historical proposals, not this treatment.",
+  "sequence": [
+    {
+      "beat": "Approach",
+      "direction": "After checkpoint4650, about one screen onward, then about one empty screen without monsters/platforms. Enter a large pipe into fixed960x540 room."
+    },
+    {
+      "beat": "Reveal",
+      "direction": "Camera locks on both axes. Background pipe emits cockroaches; allow about2s skittering, then loud shriek/insects and2–3s rat assembly."
+    },
+    {
+      "beat": "Rat fight",
+      "direction": "Telegraphed bite; pipe escape makes rat invulnerable in walls. A chosen wall/ceiling pipe shows roach warning about2s before launch and landing. Attack details belong to Mechanics/Engineering."
+    },
+    {
+      "beat": "Apparent death",
+      "direction": "Defeated rat collapses and lies apparently dead for4–5s. Preserve this pause before renewed activity."
+    },
+    {
+      "beat": "Renewed swarm",
+      "direction": "Roaches skitter again for4–5s, then assemble into larger alligator. Alligator assembly duration is unspecified; do not inherit obsolete3s transform."
+    },
+    {
+      "beat": "Alligator fight",
+      "direction": "Charged jaw/tail attacks, invulnerable water dive and vertical debris thrown by tail are commissioned attack directions; timing and fairness validation remain with Mechanics/Engineering."
+    },
+    {
+      "beat": "Terminal defeat",
+      "direction": "Only final alligator defeat opens right pipe and releases camera for continuation. Exact release transition belongs to shared layout contract."
+    }
+  ],
+  "presentation": [
+    "No mandatory dialogue. Let crawling, temporary stillness and renewed movement carry the reveal.",
+    "Do not announce victory, clear the encounter or open the exit during rat collapse. Preserve the apparent death without a false system-level completion reward.",
+    "Separate rat collapse audio from final death/exit confirmation. Renewed skittering must remain perceptible before reassembly.",
+    "Do not add a supernatural origin, allegiance or backstory; pending lore remains empty.",
+    "This miniboss does not replace the later Clogfather obligation."
+  ],
+  "capture_time": null,
+  "capture_views": [
+    "Empty approach and large entry pipe",
+    "Locked room and background swarm emergence",
+    "Rat assembly and telegraphed attacks",
+    "Wall/ceiling warning before rat launch",
+    "Rat apparent death, renewed crawling and alligator assembly as a comparison sequence",
+    "Alligator jaw/tail warning and water dive/debris",
+    "Final defeat, right pipe opening and resumed route"
+  ],
+  "capture_rules": "Actual running-build screenshots require existing launch permission. Archive concept art separately; timestamp actual captures and record build. No game opened for this treatment.",
+  "layout_contract": "handoffs/skitterling-locked-room.json",
+  "layout_summary": {
+    "checkpoint_x": 4650,
+    "quiet_approach": [
+      5610,
+      6570
+    ],
+    "room": [
+      6570,
+      7530
+    ],
+    "locked_camera": [
+      6570,
+      0
+    ]
+  },
+  "timing_defaults": {
+    "initial_skitter_seconds": 2,
+    "rat_assembly_seconds": 2.5,
+    "rat_false_death_seconds": 4.5,
+    "renewed_skitter_seconds": 4.5,
+    "alligator_assembly_seconds": 2.5,
+    "authority": "Level Design integration defaults. Rat assembly implements user2–3s; false death and renewed skitter each implement user4–5s. Alligator2.5s is proposed, not an exact user number."
+  },
+  "name_reconciliation": "Canonical display name Skitterling; article in encounter prose was not a rename. Current naming status follows monster.json; earlier provisional discussions remain historical."
+}

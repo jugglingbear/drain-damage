@@ -379,6 +379,35 @@
   },
   "monsters": {
     "toilet": {
+      "audio": {
+        "schema_version": 1,
+        "status": "runtime_integrated",
+        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/monster-damage-v1/flushfiend-hit.wav",
+              "gain_db": -3,
+              "sha256": "bac4444e3426f9fcfdc129333bc0a0bed4804404fc799caa8466a290bfb34825"
+            }
+          ],
+          "cooldown_seconds": 0.1,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/flushfiend-shatter-v1/porcelain-break.wav",
+              "gain_db": -3,
+              "sha256": "fb36d36e31ab4310847447de55ebe2f58b1a40ce0cf5ca5b870184b33e0afb40"
+            }
+          ],
+          "cooldown_seconds": 0.0,
+          "max_voices": 4,
+          "loop": false
+        }
+      },
       "health": {
         "max_hp": 40,
         "spawn_hp": 40,
@@ -890,10 +919,39 @@
       }
     },
     "spider": {
+      "audio": {
+        "schema_version": 1,
+        "status": "runtime_integrated",
+        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/monster-damage-v1/widow-hit.wav",
+              "gain_db": -3,
+              "sha256": "6d324d52d9e16aecff10e3ded6a5fd142cf0f6b909992eaeb8a5bf7f202bb7d1"
+            }
+          ],
+          "cooldown_seconds": 0.1,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/monster-damage-v1/widow-death.wav",
+              "gain_db": -3,
+              "sha256": "7f13ee83cbf7411078b7acc06bd5e0d8ca9e302da0fa26e56d016575a7dd7f90"
+            }
+          ],
+          "cooldown_seconds": 0.0,
+          "max_voices": 2,
+          "loop": false
+        }
+      },
       "health": {
         "max_hp": 180,
         "spawn_hp": 180,
-        "status": "Proximity swoop integrated in build49; packaged checks pass, visual review pending",
+        "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
         "runtime_max_hp": 180,
         "runtime_note": "First-level profile:180HP, twice previous linear display size; replaces36HP opening variant.",
         "encounter_stage": "first_level",
@@ -1372,6 +1430,35 @@
       "entrance": null
     },
     "clogfather": {
+      "audio": {
+        "schema_version": 1,
+        "status": "profile_ready",
+        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/clogfather-v1/hurt.wav",
+              "gain_db": -5,
+              "sha256": "4ba97b36d114997e1fa5fb907ba172b249d3bc7ca4e352c4de3fd7cdf5827a1f"
+            }
+          ],
+          "cooldown_seconds": 0.25,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/clogfather-v1/collapse.wav",
+              "gain_db": -5,
+              "sha256": "f8d172e96942969b725b44d6c1f318a6672484f268be30f17fb0e2c04d81e281"
+            }
+          ],
+          "cooldown_seconds": 0.0,
+          "max_voices": 2,
+          "loop": false
+        }
+      },
       "health": {
         "max_hp": 720,
         "spawn_hp": 720,
@@ -1466,6 +1553,35 @@
       "runtime_support": "hud_preview_only"
     },
     "sewer-fly-swarm": {
+      "audio": {
+        "schema_version": 1,
+        "status": "runtime_integrated",
+        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/monster-damage-v1/swarm-hit.wav",
+              "gain_db": -3,
+              "sha256": "f890c227d8d4b39acf5455ff9fc737bd50b4e3c1bfc5aeeec209c2fe2c51caa8"
+            }
+          ],
+          "cooldown_seconds": 0.1,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/monster-damage-v1/swarm-death.wav",
+              "gain_db": -3,
+              "sha256": "b546d6a76feadb66d680014ec081b485c9b2e2d2539eb2d0a4795cc27afbce05"
+            }
+          ],
+          "cooldown_seconds": 0.0,
+          "max_voices": 2,
+          "loop": false
+        }
+      },
       "health": {
         "max_hp": 12,
         "spawn_hp": 12,
@@ -1949,6 +2065,40 @@
       "runtime_support": "optional_swarm"
     },
     "sputtervalve": {
+      "audio": {
+        "schema_version": 1,
+        "status": "runtime_integrated",
+        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+              "gain_db": -3,
+              "sha256": "22a77d3d43ea0c80584f0291d67fe780a6a6e055b7f497b45660ae971d711cbb"
+            },
+            {
+              "path": "assets/audio/sfx/sputtervalve-v1/hit-b.wav",
+              "gain_db": -3,
+              "sha256": "ee9b1b5f84d68b7571c3082268f9e89dfa249c903eaba8feae28c83d2cea5b5e"
+            }
+          ],
+          "cooldown_seconds": 0.1,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/sputtervalve-v1/death.wav",
+              "gain_db": -3,
+              "sha256": "2b8391d1a3365d929c6f0ff5f2d41432fcba25884e3dec37d85002c21119094a"
+            }
+          ],
+          "cooldown_seconds": 0.0,
+          "max_voices": 2,
+          "loop": false
+        }
+      },
       "health": {
         "max_hp": 36,
         "spawn_hp": 36,
@@ -1989,6 +2139,35 @@
       "runtime_support": "hud_preview_only"
     },
     "gratecrawler": {
+      "audio": {
+        "schema_version": 1,
+        "status": "runtime_integrated",
+        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/monster-damage-v1/gratecrawler-hit.wav",
+              "gain_db": -3,
+              "sha256": "3759fa41aa80255efbe91b47f8d3c044792bddaf48d865fae0cbc4e38d5ea747"
+            }
+          ],
+          "cooldown_seconds": 0.1,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/monster-damage-v1/gratecrawler-death.wav",
+              "gain_db": -3,
+              "sha256": "bcb3986bc195d70f6a2c37afb3f1cad3179272f16c94a596af2277ec7a07b24c"
+            }
+          ],
+          "cooldown_seconds": 0.0,
+          "max_voices": 2,
+          "loop": false
+        }
+      },
       "health": {
         "max_hp": 24,
         "spawn_hp": 24,
@@ -2027,6 +2206,152 @@
       "name": "Gratecrawler",
       "damage_art": null,
       "runtime_support": "hud_preview_only"
+    },
+    "cockroach-swarm": {
+      "audio": {
+        "schema_version": 1,
+        "status": "runtime_integrated",
+        "manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/cockroach-swarm-v1/hit.wav",
+              "gain_db": -3,
+              "sha256": "ff51950836c9eb654554903dc2c01ec1b22c62922929396aaee130fc862f9d2f"
+            }
+          ],
+          "cooldown_seconds": 0.12,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/cockroach-swarm-v1/death.wav",
+              "gain_db": -3,
+              "sha256": "61341be701c03917de926d21f5d615900f847406a8e5050d71d33850806656ab"
+            }
+          ],
+          "cooldown_seconds": 0,
+          "max_voices": 2,
+          "loop": false
+        }
+      },
+      "health": {
+        "max_hp": 720,
+        "spawn_hp": 720,
+        "runtime_max_hp": 720,
+        "status": "Prototype 71 verified runtime: 540 HP rat plus 180 HP alligator, 720 displayed total. Live balance review pending.",
+        "encounter_stage": "first_level_checkpoint_owned_locked_miniboss_room",
+        "role": "Single compound transforming miniboss",
+        "bar": {
+          "visible_by_default": true,
+          "policy": "assets/bestiary/damage/health-visuals.json#boss_hud",
+          "name": "Skitterling",
+          "enabled": true
+        },
+        "model": "One720HP display pool: rat consumes540 down to180; alligator consumes180 down to0. Excess ratphase damage discarded; no phase skip.",
+        "threshold_hp": 180,
+        "damage_accounting": "Apply one hit per compoundactor. Rat accepted=min(hit,hp-180), discard excess; threshold180 queues falsecollapse once. Hidden/transition states ignore damage. Gator0 terminal once. Reset720HP.",
+        "rationale": "Rat540 triples prior180: Tony45shots at12/.16 takes7.04s first-to-last uninterrupted; Sean30shots at18/.24 takes6.96s. Prior15/10shots took2.24/2.16s. Travel/tells extend actualfight. Gator180 and mandatorytransition preserved.",
+        "active_first_level_comparisons": {
+          "tony": {
+            "weapon": "pressure-gun",
+            "damage": 12,
+            "interval_seconds": 0.16,
+            "range_pixels": 320,
+            "hits": 60,
+            "hits_to_threshold": 45,
+            "rat_hits": 45,
+            "alligator_hits": 15,
+            "rat_first_to_last_seconds": 7.04,
+            "alligator_first_to_last_seconds": 2.24
+          },
+          "sean": {
+            "weapon": "heavy-plunger-launcher",
+            "damage": 18,
+            "interval_seconds": 0.24,
+            "range_pixels": 480,
+            "hits": 40,
+            "hits_to_threshold": 30,
+            "rat_hits": 30,
+            "alligator_hits": 10,
+            "rat_first_to_last_seconds": 6.96,
+            "alligator_first_to_last_seconds": 2.16
+          }
+        },
+        "canonical_base_comparisons": {
+          "pressure-gun": {
+            "damage": 6,
+            "hits": 120,
+            "overkill": 0,
+            "owner": "tony",
+            "runtime": "playable; active first-level override differs",
+            "rat_hits": 90,
+            "alligator_hits": 30
+          },
+          "heavy-plunger-launcher": {
+            "damage": 24,
+            "hits": 31,
+            "overkill": 24,
+            "owner": "sean",
+            "runtime": "playable; active first-level override differs",
+            "rat_hits": 23,
+            "alligator_hits": 8
+          },
+          "pipe-wrench": {
+            "damage": 12,
+            "hits": 60,
+            "overkill": 0,
+            "owner": "tony",
+            "runtime": "planned",
+            "rat_hits": 45,
+            "alligator_hits": 15
+          },
+          "drain-snake": {
+            "damage": 8,
+            "hits": 91,
+            "overkill": 8,
+            "owner": "tony",
+            "runtime": "planned",
+            "rat_hits": 68,
+            "alligator_hits": 23
+          },
+          "demolition-hammer": {
+            "damage": 60,
+            "hits": 12,
+            "overkill": 0,
+            "owner": "sean",
+            "runtime": "planned",
+            "rat_hits": 9,
+            "alligator_hits": 3
+          },
+          "pipe-bomb-launcher": {
+            "damage": 60,
+            "hits": 12,
+            "overkill": 0,
+            "owner": "sean",
+            "runtime": "planned",
+            "rat_hits": 9,
+            "alligator_hits": 3
+          }
+        },
+        "comparison_limits": "Requiredshots=ceil540/damage+ceil180/damage. Noarmor; ignores misses/range/invulnerable periods. Planned weapons not playable. Compoundgeometry nevermultiplies hits.",
+        "rat_phase_hp": 540,
+        "alligator_phase_hp": 180,
+        "hits_to_defeat": {
+          "pressure-gun": 120,
+          "heavy-plunger-launcher": 30,
+          "pipe-wrench": 60,
+          "drain-snake": 90,
+          "demolition-hammer": 12,
+          "pipe-bomb-launcher": 12
+        },
+        "hits_to_defeat_note": "Unphased schema arithmetic only. Actual phase-aware counts are canonical_base_comparisons; active first-level counts are45+15Tony and30+10Sean."
+      },
+      "name": "Skitterling",
+      "damage_art": null,
+      "runtime_support": "compound_boss"
     }
   },
   "visual_policy": {
@@ -3527,26 +3852,26 @@
           "settle_seconds": 0.3,
           "ground_speed_pixels_per_second": 90,
           "contact_damage_player": 1,
-          "behavior": "Premarked fixed floor vent. Harmless before fully emerged+settled; then short horizontal patrol/contact threat, no instant chase reversal.",
+          "behavior": "Premarked fixed floor vent. Harmless before fully emerged+settled; then mindless horizontal floor patrol/contact threat. No jumping or chasing; turn at patrol bounds and blocking solids.",
           "spawn_safety": "Reject occupied landing marker or route with no reachable escape. Recheck before becoming damaging; hold/reselect if player remains on marker, never turn damage on underneath hero."
         },
         "flyer": {
           "creature_id": null,
-          "status": "Proximity swoop implemented in source; combined build49 pending",
+          "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
           "max_hp": 180,
           "spawn_hp": 180,
           "speed_pixels_per_second": 100,
           "contact_damage_player": 1,
           "entry_warning_seconds": 0.8,
-          "path": "Straight flight in facing direction. Nearby hero ahead triggers0.65s warning locking aim,0.8s committed dive,1s forward climb to original altitude, then1.2s forward-flight cooldown. V-shaped path never retraces origin. Scenery sweeps prevent penetration.",
-          "retirement": "Exit offscreen and retire without kill credit; trial completion must not require chasing it off map.",
+          "path": "Fly forward until visible hero is within400px on either side; lock target during0.65s warning, dive0.8s, rise forward to original altitude over1s, pause stationary1s, then face hero and repeat. Within6px of horizontal center retain previous facing. Blocked diagonal recovery climbs vertically with swept collision.",
+          "retirement": "Activated living Widow does not retire offscreen; remains a repeating threat until killed or attempt reset. Entry warnings may still cancel safely.",
           "render_scale": 2.0,
           "balance_rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",
           "aggro_distance_pixels": 400,
           "attack_warning_seconds": 0.65,
           "swoop_seconds": 0.8,
           "recovery_seconds": 1.0,
-          "recovery_cooldown_seconds": 1.2
+          "top_pause_seconds": 1.0
         },
         "swarm": {
           "base_creature_id": "sewer-fly-swarm",
@@ -3620,13 +3945,13 @@
       "schedule_rules": "12 authored entities total,8runners/1shooter/1emerger/2flyers.20s is target not forced deadline. Respect placement triggers and safety budgets; delay pending entries and drop missed timing rather than dump backlog. On reaching trial end allow completion without mandatory kills of escaped flyers.",
       "budgets": {
         "visible_hostiles_including_entry_telegraphs": 6,
-        "simultaneous_shooters": 2,
+        "simultaneous_shooters": 3,
         "hostile_projectiles": 6,
         "simultaneous_independent_threat_patterns": 3,
         "minimum_projectile_arrival_stagger_seconds": 0.3,
         "safe_corridor_min_width_pixels": 96
       },
-      "budget_rules": "One shooter in initial schedule is below cap2, intentionally. Reserve slot before telegraph, release on death/retire. Do not delete visible bullets to satisfy cap; defer firing with no burst backlog. Projectile threat includes all visible hostile shots, not cosmetics.",
+      "budget_rules": "One shooter in initial schedule is below cap3, intentionally. Reserve slot before telegraph, release on death/retire. Do not delete visible bullets to satisfy cap; defer firing with no burst backlog. Projectile threat includes all visible hostile shots, not cosmetics.",
       "damage_rules": "One player contact-hit unit; respect global invulnerability and spawn protection, never stack hits same tick. Keep true projectile/sprite collision alignment.",
       "boss": "No boss fight tuning in opening slice. Later first-level finale requires one visible Clogfather; never concurrent background duplicate.720current vs1080candidate unresolved; do not apply proposed boss HP automatically.",
       "validation": {
@@ -4007,7 +4332,7 @@
         "clock": "Gameplay time starts only after intro and input-release guard; pause/dialogue/dispenser freeze it. Times are earliest eligibility, not unconditional spawn deadlines.",
         "budget": {
           "visible_including_telegraphs": 6,
-          "shooters": 2,
+          "shooters": 3,
           "hostile_projectiles": 6,
           "independent_attack_patterns": 3,
           "peak_enabled": false
@@ -4610,12 +4935,12 @@
             512
           ],
           "logical_size": [
-            16,
-            16
+            64,
+            64
           ],
           "anchor": [
-            8,
-            8
+            40,
+            32.5
           ],
           "collision": null
         },
@@ -4669,7 +4994,7 @@
       "effect_notes": [
         "Grate states have matched visible bottom anchors at floor440. Warning artwork is harmless; Mechanics owns0.8s warning/0.35s emerge/0.3s settle.",
         "Landing cue is non-colliding. Do not pulse by hiding it completely; keep visible warning throughout.",
-        "Projectile artwork is16px canvas with bright central core; Mechanics collider radius4, velocity150. One non-homing shot, no offscreen fire.",
+        "Projectile artwork uses a64px canvas anchored at40,32.5 to center the bright core; Mechanics collider radius4, velocity150. Star rays and detached sparks are decorative. One non-homing shot, no offscreen fire.",
         "Charge and impact are single authored poses; runtime opacity/scale may animate them. No claim of multi-frame effects.",
         "Grate and ring amber cues are entry markers, not interactable pickups. Proposed trial-only effect style."
       ],

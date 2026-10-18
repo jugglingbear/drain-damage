@@ -1,0 +1,65 @@
+{
+  "status": "Selection artwork integrated in Prototype58/0.58.0; packaged checks pass; live visual review pending",
+  "date": "2026-10-17",
+  "canvas": [
+    960,
+    540
+  ],
+  "engineering_geometry": "handoffs/game-difficulty-ui-contract.json",
+  "copy_source": "handoffs/game-difficulty-story.json",
+  "new_bitmap_required": false,
+  "background": {
+    "path": "assets/title/drain-damage-v2.png",
+    "destination": [
+      0,
+      0,
+      960,
+      540
+    ],
+    "treatment": "Reuse current title-background fitting; apply existing navy UI scrim at0.90 opacity across canvas so baked title/figures do not compete with live descriptions. Functional solid panel styling approved; no new code-drawn illustration."
+  },
+  "plates": {
+    "path": "assets/title/dripping-menu-v1.png",
+    "dimensions": [
+      2172,
+      724
+    ],
+    "normal_source_rect": [
+      0,
+      0,
+      2172,
+      362
+    ],
+    "selected_source_rect": [
+      0,
+      362,
+      2172,
+      362
+    ],
+    "destinations": "Use Engineering row_art_rects verbatim; existing slight aspect adjustment approved. Decorative drips are outside hit regions.",
+    "label_color": "Existing cream menu text",
+    "selected": "Gold selected half-sheet plus existing mint functional focus border and pointer; do not rely on color alone.",
+    "unselected": "Dark upper half-sheet; description text stays fully readable."
+  },
+  "layout": {
+    "approved": "All rectangles/font sizes in Engineering contract approved. Max3 description lines at18px; measure final wrapped copy, never shrink to illegible text.",
+    "chosen_hero": "Hard bust at840,8,96,96; hero label720,108,210,28 per revised Engineering contract.",
+    "prompt_rect": [
+      54,
+      95,
+      650,
+      28
+    ],
+    "navigation": "Existing functional Back and Start Job buttons with visible focus borders approved; keep independent row selection and button focus legible.",
+    "safe_text": "Labels in Engineering label_rects; descriptions in description_rects. No decorative image over live text.",
+    "retry_note": "Optional omit for this layout; avoid clutter."
+  },
+  "costumes": {
+    "status": "Muscular torn-workclothes direction approved; selection busts delivered",
+    "manifest": "assets/selection/hard-mode/manifest-v1.json",
+    "runtime": "Full in-game variants pending, separate from delivered selection busts",
+    "rejected": "Nudity/censor-bar alternative"
+  },
+  "provenance": "Existing bitmap originals and prompts preserved in assets/title/drain-damage-prompts-v1.json and existing Sean proportion records. No generation or image edit performed.",
+  "validation": "Existing plate sheet visually inspected,2172x724 confirmed; contract fits960x540. Engineering must measure text, test input and packaged navigation. No foreground game or runtime screenshot."
+}

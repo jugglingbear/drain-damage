@@ -1,0 +1,267 @@
+{
+  "status": "User commissioned implementation; layout/tuning defaults proposed by Level Design for team integration",
+  "date": "2026-10-17",
+  "creature_id": "cockroach-swarm",
+  "display_name": "Skitterling",
+  "supersedes": "Earlier optional7950..9150 scrollingarena recommendation and3second singletransform; preserve earlier handoff as history.",
+  "world": {
+    "checkpoint_x": 4650,
+    "first_screen_after_checkpoint": [
+      4650,
+      5610
+    ],
+    "quiet_approach": [
+      5610,
+      6570
+    ],
+    "room": [
+      6570,
+      7530
+    ],
+    "room_camera": [
+      6570,
+      0
+    ],
+    "resume_route_x": 7530,
+    "temporary_level_exit_x": 9450,
+    "geometry": "Remove old5570..5730 plinth because it overlaps quietapproach; remove old6860/7020/7200 platform cluster inside room. Keep flatfloor440; no platform or monster in quiet5610..6570.",
+    "entry": "Large traversablepipe conveys transition through quiet approach into sealed room. Set camera exactly once after entrance concealment; lockx/y throughout intro,fight,transitions,finaldeath. Rightpipe opens only after terminaldefeat.",
+    "ownership": "Checkpoint4650 owns encounter. On death reset phases/HP/ports/hazards/camera/doors; retainlives/clone stock/seed. No newcheckpoint.",
+    "isolation": "Suppress ordinary entries affecting quietapproach/room. At opaque pipe transition retire only fullyhidden prioractors/projectiles with no killcredit; prevent pursuit across pipe. Do not strand player waiting on distantWidow or visibly erase it.",
+    "normal_schedule": "This authored boss sequence intentionally replaces conflicting densityslots in approach/room; preserve encounters before approach and resume safely beyond exit. Apply roomacross modes; modebalanceMechanics-owned.",
+    "entry_threshold": 6570,
+    "room_entry_hero_local": [
+      96,
+      394
+    ],
+    "exit_threshold": 7530,
+    "transition_detail": "Use authored opaque entrancepipe to conceal reposition tolocal96/camera6570; do not visibly teleport. Lock after entering, rightpipe passable onlyafterterminal, releasecamera atcompletion withsafeexitfollow."
+  },
+  "art_layout": {
+    "canvas": [
+      960,
+      540
+    ],
+    "hud_keep_clear": [
+      0,
+      0,
+      960,
+      82
+    ],
+    "floor_y": 440,
+    "walkable_floor": [
+      32,
+      440,
+      896,
+      16
+    ],
+    "water_visible_band": [
+      0,
+      456,
+      960,
+      84
+    ],
+    "water_policy": "Boss-only submergedlayer belowwalkway; continuoushero support at440, no newplayer drowning or mandatoryplatformjump.",
+    "background_pipe": {
+      "center": [
+        480,
+        258
+      ],
+      "outer_size": [
+        320,
+        300
+      ],
+      "opening_size": [
+        240,
+        228
+      ],
+      "layer": "behind actors; mouth leads swarm foreground"
+    },
+    "left_entry": {
+      "opening_rect": [
+        0,
+        288,
+        112,
+        152
+      ],
+      "direction": "horizontal; reveal/conceal entrance"
+    },
+    "right_exit": {
+      "opening_rect": [
+        848,
+        288,
+        112,
+        152
+      ],
+      "direction": "horizontal; distinct closed/open states"
+    },
+    "attack_ports": [
+      {
+        "id": "ceiling-left",
+        "center": [
+          250,
+          166
+        ],
+        "opening_size": [
+          136,
+          76
+        ]
+      },
+      {
+        "id": "ceiling-right",
+        "center": [
+          710,
+          166
+        ],
+        "opening_size": [
+          136,
+          76
+        ]
+      },
+      {
+        "id": "wall-left",
+        "center": [
+          48,
+          232
+        ],
+        "opening_size": [
+          96,
+          104
+        ]
+      },
+      {
+        "id": "wall-right",
+        "center": [
+          912,
+          232
+        ],
+        "opening_size": [
+          96,
+          104
+        ]
+      }
+    ],
+    "port_note": "Roaches can squeeze through smaller mouths; rat emerges from swarm then unfolds outside opening. All damagingbody/sweeps must match visibleart; keep all effects belowHUD. Port positions are decorative origins not damagingcolliders.",
+    "layers": "Roombackwall/pipe mouths; rear-occlusion masks; actors; frontpipe lips; water/debris/splashfront. Deliver anchors/alpha/portmasks, exit animation, reusable approachpipe. No code-drawn substitutes.",
+    "collision": "Decorative ports/backgroundpipe nonsolid; sideboundaries onlywhilelocked; fullfloor support. Boss contact/attack volumes Mechanics-owned, not fulltransparentcell."
+  },
+  "sequence": [
+    {
+      "state": "entry_swarm",
+      "seconds": 2,
+      "action": "Roaches pourfrombackgroundpipe andskitter; player can reposition harmlessly."
+    },
+    {
+      "state": "shriek",
+      "seconds": "Audio/Mechanics align cue; no extra longpause",
+      "action": "Loud boundedshriek overinsectlayers; cueassembly."
+    },
+    {
+      "state": "rat_assemble",
+      "seconds": 2.5,
+      "action": "Visible2\u20133s build into rat; harmless, prevent formationoverhero."
+    },
+    {
+      "state": "rat_combat",
+      "seconds": "until ratphase defeated",
+      "action": "Telegraphedbite plus periodic pipeambush; invulnerable onlyinwalls/transition, readable recovery vulnerable."
+    },
+    {
+      "state": "rat_false_death",
+      "seconds": 4.5,
+      "action": "Collapsed apparentlydead roaches remainstill4\u20135s; nofinaldeathsound/exitunlock."
+    },
+    {
+      "state": "reawaken_skitter",
+      "seconds": 4.5,
+      "action": "Roaches rise andskitter4\u20135s; harmless transition."
+    },
+    {
+      "state": "alligator_assemble",
+      "seconds": 2.5,
+      "action": "Proposed2.5s formation tolargeralligator, not skipsecondfight."
+    },
+    {
+      "state": "alligator_combat",
+      "seconds": "until finaldefeat",
+      "action": "Shortjawattack pluswaterdive/tail-launchedverticaldebris; invulnerable submerged, vulnerable surfaced/recovery."
+    },
+    {
+      "state": "terminal_death",
+      "seconds": "Mechanics/Art align",
+      "action": "Clearhazards, playterminaldeathonce, openrightpipe, releasecamera onlyafter fightfinished."
+    }
+  ],
+  "attack_recommendations": [
+    "Rat groundbite: rearback recognizable tell, commitdirection/target beforeattack, shortvisible reach, recovery that lets eitherhero reposition withoutjumpingover150pxbody.",
+    "Rat pipecycle: vanish into rearpipe, hidden~2s, roachcloud at selectedwall/ceilingport~2s, launchstraightfromthatport thenland in clearlywarnedzone. Locktargetbeforelaunch; neverhome duringflight.",
+    "Alligator: shortjawlunge rather than combinedfullroomcharge+tailstrike; use tail primarilyfor waterdebris attack. Mechanics may adddistinctgroundtailsweep onlyif separatetell/escape proven.",
+    "Watercycle: visible divecue, submerged invulnerability, markoneverticaldebrislane beforeupwardlaunch; noaimtrackingafterlock, boundedflight/lifetime andnooffscreenunwarnedreturn.",
+    "No simultaneousbodyattack anddebrislane acrossboth escapes. Rat/gator body mustnot forcejumpingoverlargeform; allow harmlessrecovery passage or repositionawayfromcorner.",
+    "960pxroom supersedes old1200recommendation: reduceattackmovement/reach asneeded tokeep a reachableescape; do not import180charge/140extra invisiblejaw withoutgeometryproof.",
+    "Phasehealth mustguarantee ratdefeat thenalligatorfight; prior sharedpoolHP0shortcut is incompatible. Mechanics chooses guardedphasebudget/clampedtransition, clearlydisplayed."
+  ],
+  "acceptance": [
+    "No monsters/platforms inquietapproach; oldpursuers cannot enterroom; no visiblecleanupkills.",
+    "Camera exact6570,0 throughoutallbossstates includingdeathpopup/pause; noverticalshake displacing view.",
+    "Bothheroes/allmodescomplete phases andleave throughrightpipe; cannottrigger9450completionearly.",
+    "Ratfalse-death4\u20135s andreskitter4\u20135s distinct; damage cannot skipalligator; terminalevent once.",
+    "Pipe/waterinvulnerability ends onlywithsafevisible return; neverdamagingappearanceunderhero.",
+    "Checkpointretry deterministic; transienthazards/sound/warnings cleared; no stockrefill.",
+    "Artanimationregistration andcollision match; headlessstate/escape tests plus approvedvisualreview or honestcapturebacklog."
+  ],
+  "owners": {
+    "level_design": "This contract/layout",
+    "mechanics": "Attacktiming/phaseHP/statecontract",
+    "art": "Room/assets/canonicalmetadata",
+    "engineering": "Runtime/tests/roadmap/build/storybookcaptures",
+    "audio": "Eventcues/mix",
+    "storyboarding": "Narrative/capturecuration",
+    "marketing": "Magazineupdate"
+  },
+  "idea_bank": "Reviewed cockroach-monsters/alligator-boss entries; currentdirectrequest supplies encounterauthorization. No additionaloptionalideas added.",
+  "attack_authority": "Sequence,lockedcamera,rightpipeexit andhideinvulnerability aredirectrequest. Bite/pipeambush/jawlunge/waterdebris are commissioneddesignideas now selectedasinitialteamimplementation; exactnumbers are tuningdefaults. Groundtailsweep optional, not automaticallyextraattack.",
+  "landing_candidates": {
+    "local_feet_x": [
+      180,
+      480,
+      780
+    ],
+    "feet_y": 440,
+    "rule": "Select byfullformbounds andheroescape, warn footprint at chosenlanding andport for2s; commit beforelaunch, safehold/reselectifhero occupieslanding. Candidatecentersnotautomaticcollisionapproval."
+  },
+  "debris_columns": {
+    "local_x_range": [
+      160,
+      800
+    ],
+    "water_origin_y": 500,
+    "rule": "One locked warned column at time; collisiononlyonvisibledebris, boundedup/downtrajectory/lifetime, clearterminal/reset. Keepunblockedgroundescape, notracking."
+  },
+  "phase_health_recommendation": {
+    "rat": 180,
+    "alligator": 180,
+    "shared_display": 360,
+    "rule": "Clamp ratphase atremaining180; nooverkillbank/skip; terminalonlyalligator0. Mechanicsownsmetadata/weaponcomparisons."
+  },
+  "name_note": "Retain previously explicitly selected Skitterling; user phrase The Skitterling in encounter description is not treated as a separate rename.",
+  "art_registration_update": {
+    "status": "Level Design accepts delivered visible ceiling mouths at localY166, superseding schematicY122.",
+    "room_manifest": "assets/world/skitterling-room/manifest-v1.json",
+    "runtime_manifest": "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json",
+    "ceiling_origins": [
+      [
+        250,
+        166
+      ],
+      [
+        710,
+        166
+      ]
+    ],
+    "integration": "Engineering and Mechanics must use identical origins for warningcloud, launch and trajectory; keepworldoffset6570 androomcamera unchanged.",
+    "safety": "Recompute trajectories and sweptbounds from neworigin; preserve visible2second warning and fixed landing. Hidden emergence can unfold from mouth, but damagingbody must be visible belowHUD before harm. Do not translate fullrat sprite to mouth without its manifestanchor.",
+    "validation": "Manifest instance coordinates inspected; game composition and collision/launch tests pending.",
+    "asset_limits": "Use only enabled named animations and per-sheet fixedscale/per-frame anchors; disabled frames excluded. No invisible140px jaw extension."
+  }
+}

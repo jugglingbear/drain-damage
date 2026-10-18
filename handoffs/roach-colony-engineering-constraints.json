@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T17:56:50-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "status": "Engineering art/runtime constraints; encounter design and assets pending; not playable",
+  "request": "First-level mini-boss composed of continuously crawling cockroaches: rat form, damage-triggered collapse into floor roaches, then alligator reform after a few seconds.",
+  "identity": {
+    "stable_id": "cockroach-swarm",
+    "display_name": null,
+    "metadata_directory": "bestiary/cockroach-swarm",
+    "runtime_art_directory": "assets/bestiary/cockroach-swarm",
+    "status": "Stable neutral ID confirmed by Art; display name unselected"
+  },
+  "ownership": {
+    "engineering": "Runtime constraints and eventual integration after reviewed assets/encounter contract",
+    "art": "Concepts, pixel sheets, overlays/masks, portraits, exact prompts and versioned originals",
+    "mechanics": "Provisional encounter/phase/balance contract and attack animation requirements",
+    "audio": "Continuous creature bed, hit/death, transitions and attack cues with provenance",
+    "storyboarding": "Name proposals, eventual backstory and making-of curation"
+  },
+  "viewport": {
+    "logical_pixels": [
+      960,
+      540
+    ],
+    "floor_y": 440,
+    "hud_bottom_y": 82,
+    "filter": "nearest",
+    "size_interpretation": "25\u201330percent of screen width, not area; provisional interpretation for art layout"
+  },
+  "art_canvas": {
+    "frame_pixels": [
+      384,
+      256
+    ],
+    "ground_anchor_pixels": [
+      192,
+      224
+    ],
+    "recommended_columns": 4,
+    "sheet_width_pixels": 1536,
+    "transparent_background": true,
+    "visible_form_targets": {
+      "rat": [
+        256,
+        150
+      ],
+      "alligator": [
+        288,
+        112
+      ]
+    },
+    "crop_rules": "Keep tails, antennae, dust and moving roaches within each fixed cell; keep ground registration stable. Dimensions are art targets, not final collision boxes.",
+    "manifest": "Explicit sheet dimensions, per-animation frame rectangles, durations, looping flag, anchor, per-form visible bounds, transition handoff frame and facing/mirroring notes."
+  },
+  "layering": {
+    "required": "Animate roach churn in every formed idle, movement, telegraph and recovery loop; a stationary form must never become a static silhouette.",
+    "base": "Readable rat/alligator body mass with baked moving roaches; existing game pixel-art style.",
+    "overlays": "Separate transparent authored roach-motion overlays and optional per-form masks for phase-offset playback.",
+    "individual_roaches": {
+      "frame_pixels": [
+        24,
+        24
+      ],
+      "suggested_visible_pixels": [
+        16,
+        8
+      ],
+      "animation": "4\u20136 frames per authored facing; floor crawl and turn readability.",
+      "provisional_cosmetic_instance_budget": 64
+    },
+    "shadow": "Separate ground layer; no baked opaque environment.",
+    "runtime_note": "Cosmetic roaches reuse Art sprites and do not become dozens of physics/HP actors. Aggregate floor-phase collision is a proposal for Mechanics, not final behavior."
+  },
+  "animation_inventory": [
+    "rat formation",
+    "rat idle with continuous churn",
+    "rat locomotion with continuous churn",
+    "rat collapse into floor roaches",
+    "dispersed floor-roach crawl loop",
+    "alligator reformation",
+    "alligator idle with continuous churn",
+    "alligator locomotion with continuous churn",
+    "nonlethal hit response preserving churn",
+    "terminal dispersal/death"
+  ],
+  "animation_targets": {
+    "formed_loops": "8\u201312 frames with seamless churn; 10\u201312fps starting playback proposal",
+    "transitions": "12\u201316 frame one-shot targets with coherent start/end registration; durations are stretchable pending Mechanics",
+    "attacks": "Reserve windup/attack/recovery states for both forms; choreography and damaging frames pending Mechanics, not invented by Engineering.",
+    "facing": "Both travel/facing directions supported by explicit art or documented safe mirroring"
+  },
+  "safety_contract": [
+    "Collision bounds derive from validated visible form bodies, not the full transparent cell or every moving antenna.",
+    "Retain readable attack warnings and distinct harmless collapse/reform timing until Mechanics defines damaging phases.",
+    "One encounter lifecycle owns phase transitions, pause, damage threshold, death and reset; do not accidentally replay terminal death on collapse.",
+    "Checkpoint retry must reset phase, threshold latch, cosmetic roaches, sounds and warnings deterministically.",
+    "Do not introduce a mandatory kill gate, encounter location or arena geometry without the approved level contract."
+  ],
+  "balance": {
+    "max_hp": null,
+    "spawn_hp": null,
+    "collapse_threshold": null,
+    "dispersed_seconds": null,
+    "status": "Provisional Mechanics contract delivered; no final tuning approval or runtime integration",
+    "current_first_level_weapons": {
+      "Tony": {
+        "damage": 12,
+        "interval_seconds": 0.16,
+        "range_pixels": 320
+      },
+      "Sean": {
+        "damage": 18,
+        "interval_seconds": 0.24,
+        "range_pixels": 480
+      }
+    },
+    "policy": "assets/bestiary/balance-policy.json; positive design health and both weapon comparisons required before metadata is complete.",
+    "mechanics_candidate": {
+      "status": "Proposed design only; not approved final tuning or implemented",
+      "shared_max_hp": 360,
+      "spawn_hp": 360,
+      "rat_collapse_at_or_below_hp": 180,
+      "damage_carries_through": true,
+      "transition_seconds": 3,
+      "transition_harmless": true,
+      "transition_invulnerable": true,
+      "first_level_hits": {
+        "Tony": 30,
+        "Sean": 20
+      },
+      "owner": "Game Mechanics; full provisional contract in mechanics_handoff"
+    }
+  },
+  "audio": {
+    "bed": "Seamless bounded gross skitter/churn; phase crossfades, no stacked duplicate loop voices.",
+    "events": [
+      "nonlethal hit",
+      "terminal death",
+      "collapse",
+      "reform",
+      "approved attack warnings"
+    ],
+    "controls": "SFX/Master mute, pause/resume, stop/reset/dispose; music mute remains separate.",
+    "schema_note": "Canonical hit/death remain nonlooping required cues. Continuous bed and transition timing need a separate reviewed encounter-audio contract; current validator must not be bypassed.",
+    "review": "No audible audition or final mix approval claimed.",
+    "handoff": "handoffs/cockroach-swarm-audio.json",
+    "source_status": "Eight source WAVs delivered; Engineering independently verified hashes and PCM16 mono44100 headers. No runtime playback or listening validation."
+  },
+  "deliverables": "Versioned pixel sheets and animation manifests; separate hyperreal marketing portraits for both forms; exact prompts, actual dimensions and source provenance. Art owns catalog/bestiary registration once identity and provisional balance are agreed.",
+  "implementation_boundary": "No runtime changes, monster registration, final stats, new build or game launch in this handoff. Prototype65 remains latest verified game.",
+  "mechanics_handoff": "handoffs/roach-miniboss-mechanics.json",
+  "review": {
+    "reviewed_at": "2026-10-17T17:58:55-07:00",
+    "result": "Mechanics clarified140px extra bite reach: a separate authored jaw overlay or wider attack cell is needed; current Art in-place bite does not support the extension.",
+    "open_geometry_question": "Final attack art/reach remains pending. Mechanics suggests576x256 attack cell with anchor288,224, or separate explicit jaw overlay; Art may enlarge margins or reduce provisional reach. Never use invisible reach.",
+    "unblocked": "Concepts, body churn, idle/movement and collapse/reform source art",
+    "ownership": "Engineering owns current roadmap entry; Art owns canonical monster metadata, gallery and catalog."
+  }
+}

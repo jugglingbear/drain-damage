@@ -3,17 +3,28 @@ extends RefCounted
 const MANIFEST := "res://assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json"
 const ANIMATIONS := "res://assets/sprites/hero-animation-v2/manifest-beard-v3.json"
 const ANCHOR := Vector2(64, 104)
+const HardArt = preload("res://scripts/hard_costume_art.gd")
+var hard_mode := false
 var poses: Dictionary = {}
 var textures: Dictionary = {}
 var animations: Dictionary = {}
 
 func _init() -> void:
-	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
+	configure(false)
+
+func configure(enabled: bool) -> void:
+	if not poses.is_empty() and hard_mode == enabled: return
+	hard_mode = enabled
+	poses.clear()
+	textures.clear()
+	var pose_path := "res://assets/sprites/hard-mode/aim-manifest-v1.json" if enabled else MANIFEST
+	var animation_path := "res://assets/sprites/hard-mode/animation-manifest-v1.json" if enabled else ANIMATIONS
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(pose_path))
 	for pose: Dictionary in data.poses:
 		poses[pose.id] = pose
 		for layer: Dictionary in pose.layers:
 			load_texture(layer.path)
-	animations = JSON.parse_string(FileAccess.get_file_as_string(ANIMATIONS))
+	animations = JSON.parse_string(FileAccess.get_file_as_string(animation_path))
 	for pose: Dictionary in animations.additional_aim_poses:
 		poses[pose.id] = pose
 		for layer: Dictionary in pose.layers: load_texture(layer.path)
@@ -24,7 +35,7 @@ func _init() -> void:
 			for frame: Dictionary in phase.frames: load_texture(frame.path)
 
 func load_texture(path: String) -> void:
-	if not textures.has(path): textures[path] = load("res://" + path)
+	if not textures.has(path): textures[path] = HardArt.texture(path)
 
 func body_frame(game: Node2D) -> Dictionary:
 	var phases: Dictionary = animations.heroes[game.employee.id].phases

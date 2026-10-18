@@ -10,6 +10,8 @@ var line_index := 0
 var revealed := 0.0
 var release_guard := 0.0
 var awaiting_release := false
+var hard_portraits := false
+var hard_dialogue := false
 
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -25,7 +27,11 @@ func _input(event: InputEvent) -> void:
 		using_controller = false
 
 func current_text() -> String:
-	return str(lines[line_index].text)
+	var entry: Dictionary = lines[line_index]
+	var text := str(entry.text)
+	if hard_dialogue and str(entry.who).to_lower() in ["tony", "sean"]:
+		return text.to_upper()
+	return text
 
 func start(conversation: Array[Dictionary]) -> void:
 	for entry in conversation:
@@ -85,7 +91,7 @@ func _draw() -> void:
 	var is_boss := str(entry.who).to_lower() == "bj"
 	var is_tony := str(entry.who).to_lower() == "tony"
 	var accent := Color("7ce4bc") if is_tony else Color("ffcf70")
-	var portrait := Portraits.expression(str(entry.who), str(entry.emotion))
+	var portrait := Portraits.expression(str(entry.who), str(entry.emotion), hard_portraits)
 	draw_rect(Rect2(0, 0, 960, 540), Color(0.02, 0.04, 0.08, 0.55))
 	draw_rect(Rect2(22, 334, 916, 188), Color("101c2a"))
 	draw_rect(Rect2(22, 334, 916, 3), accent)

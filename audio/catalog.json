@@ -25,5 +25,32 @@
     "metadata": "audio/title-music.json",
     "status": "superseded_selection_preserved"
   },
-  "runtime_status": "Integrated in Prototype 16 / 0.16.0; headless verified; subjective listening pending"
+  "runtime_status": "Integrated in Prototype 16 / 0.16.0; headless verified; subjective listening pending",
+  "sfx": [
+    {
+      "id": "sputtervalve-damage-v1",
+      "assignment": "sputtervalve_hit_and_death",
+      "metadata": "audio/sources/sputtervalve-v1/manifest.json",
+      "handoff": "handoffs/sputtervalve-audio.json",
+      "status": "integrated_0.62.0_headless_verified_listening_pending"
+    },
+    {
+      "id": "monster-damage-v1",
+      "metadata": "audio/sources/monster-damage-v1/manifest.json",
+      "handoff": "handoffs/monster-damage-audio.json",
+      "status": "integrated_0.63.0_headless_verified_listening_pending"
+    },
+    {
+      "id": "cockroach-swarm-v1",
+      "metadata": "audio/sources/cockroach-swarm-v1/manifest.json",
+      "handoff": "handoffs/cockroach-swarm-audio.json",
+      "status": "source_assets_only_runtime_unapproved"
+    },
+    {
+      "id": "cockroach-swarm-v2",
+      "metadata": "audio/sources/cockroach-swarm-v2/manifest.json",
+      "handoff": "handoffs/skitterling-encounter-audio.json",
+      "status": "encounter_assets_delivered_runtime_pending"
+    }
+  ]
 }

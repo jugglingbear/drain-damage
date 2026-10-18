@@ -99,5 +99,34 @@
     "source": "design/first-call-action/opening-trial-balance.json",
     "role": "runner",
     "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "runtime_integrated",
+    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/monster-damage-v1/flushfiend-hit.wav",
+          "gain_db": -3,
+          "sha256": "bac4444e3426f9fcfdc129333bc0a0bed4804404fc799caa8466a290bfb34825"
+        }
+      ],
+      "cooldown_seconds": 0.1,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/flushfiend-shatter-v1/porcelain-break.wav",
+          "gain_db": -3,
+          "sha256": "fb36d36e31ab4310847447de55ebe2f58b1a40ce0cf5ca5b870184b33e0afb40"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 4,
+      "loop": false
+    }
   }
 }

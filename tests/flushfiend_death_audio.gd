@@ -17,7 +17,7 @@ func run_checks() -> void:
 	assert(cue.voices[0].volume_db == -3)
 	assert(cue.voices[0].stream.loop_mode == AudioStreamWAV.LOOP_DISABLED)
 	game.damage_enemy(0,1,Vector2.ZERO)
-	assert(cue.starts == 0 and game.tone_frequency == 90)
+	assert(cue.starts == 0 and cue.hit_starts == 1)
 	game.damage_enemy(0,10000,Vector2.ZERO)
 	assert(cue.starts == 1)
 	game.damage_enemy(0,10000,Vector2.ZERO,false)

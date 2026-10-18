@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-17",
+  "status": "Integrated Prototype62 /0.62.0; headless verified; listening pending",
+  "creature_id": "sputtervalve",
+  "runtime_role": "perched_shooter",
+  "manifest": "audio/sources/sputtervalve-v1/manifest.json",
+  "authorization": "Sean requested hit/death sounds, Storyboarding consultation and Engineering integration.",
+  "agreed_direction": "Dry metal hit with short gauge rattle; heavier collapse with escaping pressure and loose metal.",
+  "cues": [
+    {
+      "cue_id": "hit-a",
+      "path": "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -15,
+      "rms_dbfs": -31.55,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "22a77d3d43ea0c80584f0291d67fe780a6a6e055b7f497b45660ae971d711cbb"
+    },
+    {
+      "cue_id": "hit-b",
+      "path": "assets/audio/sfx/sputtervalve-v1/hit-b.wav",
+      "duration_seconds": 0.22,
+      "peak_dbfs": -15,
+      "rms_dbfs": -29.08,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "ee9b1b5f84d68b7571c3082268f9e89dfa249c903eaba8feae28c83d2cea5b5e"
+    },
+    {
+      "cue_id": "death",
+      "path": "assets/audio/sfx/sputtervalve-v1/death.wav",
+      "duration_seconds": 0.72,
+      "peak_dbfs": -12,
+      "rms_dbfs": -35.95,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "2b8391d1a3365d929c6f0ff5f2d41432fcba25884e3dec37d85002c21119094a"
+    }
+  ],
+  "source_and_recipe": "audio/sources/sputtervalve-v1/manifest.json",
+  "generator": "audio/sources/sputtervalve-v1/generate.py",
+  "event_contract": {
+    "nonlethal": "Only after actual positive HP reduction leaving HP>0 on perched_shooter. Choose one hit variant.",
+    "death": "At guarded finish_trial_defeat(actor), only perched_shooter, once per actual defeat. No hit cue on lethal blow.",
+    "excluded": "No firing, misses, invulnerable/no-damage contacts, corpse hits, despawn/offscreen cleanup or restored state.",
+    "hit_cooldown_seconds": 0.1,
+    "cooldown_scope": "Per actor; death bypasses hit cooldown. Pause freezes cooldown.",
+    "hit_voices": 2,
+    "death_voices": 2,
+    "allocation": "Separate bounded round-robin pools; never allocate per hit.",
+    "variants": "Alternate hit-a/hit-b locally; do not consume gameplay RNG.",
+    "pause": "Suspend/resume streams with explicit gameplay pause.",
+    "cleanup": "Stop all owned voices and clear hit cooldown state on retry, respawn, title and disposal.",
+    "mute": "Use existing Master SFX routing; respect SFX mute. Music-only mute must not suppress these cues.",
+    "timing": "Audio never gates damage, death animation, actor removal or control. Death tail may outlive corpse visual."
+  },
+  "engineering": {
+    "owner_thread": "01a14b9d-9200-7433-96da-a1295a926532",
+    "target_build": 62,
+    "hooks": "opening_trial_game.gd step_bullets and finish_trial_defeat; covers continuous Start inherited path.",
+    "checks": [
+      "Actual nonlethal damage/variant and cooldown behavior; independent enemies.",
+      "Lethal-only death, one cue despite duplicate defeat calls, no cue on cleanup or other roles.",
+      "Bounded pools, pause/resume, mute separation, retry/respawn/title/disposal cleanup.",
+      "Source and packaged focused regressions, export/signature, asset inclusion and build version."
+    ],
+    "records": "Engineering updates integration status, roadmap and storybook; preserve build for later permitted capture.",
+    "delivery": "handoffs/sputtervalve-audio-delivery.json",
+    "shared_damage_hook": "opening_trial_game.gd damage_trial_actor called by both projectile routes"
+  },
+  "reuse_rationale": "Existing menu clink is a selected UI cue, ceramic shatter identifies Flushfiends, and boss wet/groan cues do not match valve hardware. Reuse other metal source members from existing licensed pack.",
+  "validation": "Mono PCM16 headers, exact frame counts, zero endpoints, peaks and hashes checked. No audition.",
+  "listening": "Pending permitted in-game listening; no audio played.",
+  "story_boundaries": "No origin/backstory change, human voice, magic/portal motif, explosion or long novelty gag."
+}

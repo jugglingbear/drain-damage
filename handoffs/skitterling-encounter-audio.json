@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T18:37:01-07:00",
+  "timezone": "America/Los_Angeles",
+  "creature_id": "cockroach-swarm",
+  "display_name": "Skitterling",
+  "status": "assets_delivered_runtime_integration_pending",
+  "manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+  "preserved_manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
+  "supersedes": "Earlier source-only authorization boundary and3s transformation proposal; v1 assets remain preserved. Level Design relays explicit encounter implementation commission.",
+  "events": {
+    "swarm_entry": "v2/swarm-entry once; start v1/dispersed-loop for initial2s skitter.",
+    "rat_assembly": "v2/insect-shriek once + v2/assembly once; crossfade to v1/formed-loop across2.5s assembly, never repeatedly emit shriek.",
+    "rat_bite_warning": "v1/rat-warning (.8s).",
+    "rat_pipe_hide": "v2/swarm-entry reused intentionally as pipe retreat material cue; formed bed fades to dispersed at quiet gain.",
+    "pipe_warning": "v2/pipe-warning2s; current helper centered, visible port warning remains required.",
+    "pipe_launch": "v2/pipe-launch once, cancel prior warning.",
+    "pipe_land": "v2/landing once.",
+    "rat_phase_defeat": "v2/rat-false-collapse once, fade bed to silence during4.5s apparent death; never canonical death/kill/reward/gate release.",
+    "reskitter": "v1/dispersed-loop for4.5s, resume once and do not restart per frame.",
+    "alligator_assembly": "v2/assembly reused2.5s; crossfade to formed bed; exact assembly timing remains implementation tuning.",
+    "alligator_jaw_warning": "v1/alligator-warning reused; .9s proposed tell may cancel remaining .1s tail at attack start.",
+    "water_dive": "v2/water-dive once; quiet dispersed bed while submerged, SFX only.",
+    "water_emerge": "v2/water-emerge once; formed bed resumes by crossfade.",
+    "tail_warning": "v2/tail-warning once per locked .8s throw warning; remaining cue tail canceled at release.",
+    "debris_release": "v2/debris-release once per each of three sequential upward throws; cancel current tail warning at release.",
+    "debris_impact": "v2/debris-impact, coalesce volley impacts with .10s cooldown and at most2voices.",
+    "hit": "Existing v1/hit canonical nonlethal actual HP reduction; actor-local .12s cooldown. Phase-ending rat blow emits false collapse only.",
+    "terminal_death": "Existing v1/death canonical once for terminal alligator defeat; stop every bed/warning/phase cue, tail may outlive actor.",
+    "cleanup": "Stop all streams/clear event guards/cooldowns on reset/checkpoint/menu/dispose.",
+    "swim_start": "Bed-only dispersed texture on alligator_swim and alligator_surface_swim entry; no splash replay or extra voice.",
+    "jaw_snap": "v2/debris-release intentionally reused as dry roach-chitin jaw contact once per charge leg, after attack_start; two effects voices remain bounded."
+  },
+  "asset_lookup": "v1/ and v2/ names map to assets/audio/sfx/cockroach-swarm-v1|v2/<name>.wav; exact hashes/gains/durations in manifests.",
+  "limits": {
+    "steady_bed_voices": 1,
+    "crossfade_bed_voices": 2,
+    "crossfade_seconds": 0.15,
+    "crossfade_curve": "linear equal-gain",
+    "rapid_transition": "Retarget existing two players from current gains; never allocate more.",
+    "warning_voices": 1,
+    "phase_voices": 1,
+    "hit_voices": 2,
+    "death_voices": 2,
+    "bed_duck_db_during_warning": -6,
+    "duck_attack_seconds": 0.03,
+    "duck_release_seconds": 0.12,
+    "obsolete_warning": "Cancel on phase change/death; never gate attacks on cue completion."
+  },
+  "lifecycle": {
+    "controls": "Master/SFX mute applies; music-only mute independent. No queued catch-up events on unmute.",
+    "pause": "Freeze stream positions, crossfade/duck envelopes and cooldowns.",
+    "cleanup": "Reset/checkpoint/menu/dispose stops all and clears state; restore never replays prior events.",
+    "offscreen": "PROPOSED positional attenuation, no offscreen attack initiation; already-fired cues may finish attenuated. Exact distance/culling pending."
+  },
+  "mix": "Warnings/shriek higher than low-level skitter; duck beds6dB during tells, phase/shriek1voice, warning1voice, effects2voices. Music-only mute never mutes creature audio. No final listening approval.",
+  "timing": "All state timers owned by Mechanics/Engineering; audio completion never gates attacks, transformations or exit unlock. Pausing freezes playback and crossfades.",
+  "validation": {
+    "source": "PASS twelve reproducible v2cues; all20v1/v2header/frame/hash checks and original v1hash preservation.",
+    "runtime": "Focused headless helper suite passed; game wiring and packaged checks owned by Engineering.",
+    "listening": "No audition, mix and subjective clarity pending."
+  },
+  "canonical": "Keep existing hit/death block unchanged; auxiliary cues stay separate. Art owns metadata/catalog; Engineering owns runtime/build/roadmap.",
+  "runtime_helper": {
+    "path": "scripts/skitterling_audio.gd",
+    "test": "tests/skitterling_audio.gd",
+    "api": [
+      "attach(game)",
+      "step(delta)",
+      "set_paused(bool)",
+      "event(name)",
+      "play_hit(actor,clock=-1)",
+      "stop()",
+      "dispose()"
+    ],
+    "event_rule": "Once per state entry; attack_start cancels obsolete warning; rat_assembly layers shriek plus assembly.",
+    "limitations": "Centered Master playback, no positional port pan/attenuation yet. Fixed warning duck has no smoothed envelope. Caller validates damage and owns state timing."
+  },
+  "swim_charge_revision": {
+    "updated_at": "2026-10-17T20:34:27-07:00",
+    "status": "helper_ready_packaged_integration_pending",
+    "ownership": "Audio helper/test/handoff; Mechanics controller; Engineering room/build/roadmap.",
+    "reuse": {
+      "path": "assets/audio/sfx/cockroach-swarm-v2/debris-release.wav",
+      "sha256": "68a653c35a872d20335ec795890cb1630be2dacc2d3091bbd07168b7d1a08cb4",
+      "source_manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+      "intent": "Original chitin contact supports jaw closure without literal animal voice; no new asset or provenance change."
+    },
+    "validation": "Focused headless tests pass three swim/warn/release sequences, two jaw-warning/attack/snap legs, paused snap exclusion and existing pause/mute/death/reset bounds. Existing log permissions/macOS certificate diagnostics remain.",
+    "listening": "Not auditioned; directional pipe audio and subjective mix still pending."
+  }
+}

@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import struct
+import wave
 from pathlib import Path
 from typing import Any
 
@@ -137,6 +138,38 @@ def validate_art_regions(value: Any) -> None:
             validate_art_regions(child)
 
 
+def validate_compound_boss() -> None:
+    """Validate enabled compound-boss frames and authored room crops before export."""
+    manifest = read("assets/bestiary/cockroach-swarm/runtime-manifest-v1.json")
+    require(manifest["canvas"] == [384, 256] and manifest["anchor"] == [192, 224], "Boss anchor mismatch")
+    require(manifest["alpha_cutoff"] == 240, "Boss alpha policy mismatch")
+    sheets = {sheet["id"]: sheet for sheet in manifest["sheets"]}
+    for sheet in sheets.values():
+        path = ROOT / sheet["path"]
+        require(hashlib.sha256(path.read_bytes()).hexdigest() == sheet["sha256"], "Boss sheet hash mismatch")
+        for frame in sheet["frames"]:
+            validate_art_regions({"path": sheet["path"], "source_rect": frame["source_rect"]})
+    for animation in manifest["animations"].values():
+        require(animation["sheet"] in sheets and bool(animation["frames"]), "Missing boss animation")
+        frames = {frame["id"]: frame for frame in sheets[animation["sheet"]]["frames"]}
+        for frame_id in animation["frames"]:
+            require(frame_id in frames and frames[frame_id]["enabled"], "Disabled boss frame in animation")
+            require(frames[frame_id]["edge_pixels"] == 0, "Boss frame touches crop edge")
+    room = read("assets/world/skitterling-room/manifest-v1.json")
+    for frame in room["background"]["strips"]:
+        validate_art_regions({"path": room["background"]["path"], "source_rect": frame["source_rect"]})
+    for prop in room["pipes"]["props"].values():
+        validate_art_regions({"path": room["pipes"]["path"], "source_rect": prop["source_rect"]})
+    for frame in room["effects"]["frames"]:
+        validate_art_regions({"path": room["effects"]["path"], "source_rect": frame["source_rect"]})
+    portals = room["portals"]
+    require(portals["alpha_cutoff"] == 240, "Portal alpha policy mismatch")
+    require({item["id"]: item["local_x"] for item in portals["instances"]}
+            == {"entry": -120, "exit": 840}, "Portal/world collision registration mismatch")
+    for layer in portals["layers"].values():
+        validate_art_regions({"path": portals["path"], "source_rect": layer["source_rect"]})
+
+
 def wastewater_data() -> dict[str, Any]:
     """Package approved scenery and its world-position progression independently of combat."""
     art = read("assets/world/wastewater-cutaway/manifest-v1.json")
@@ -169,6 +202,47 @@ def opening_trial_data(weapons: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
+def validate_creature_audio(monster: dict[str, Any], creature_id: str) -> dict[str, Any]:
+    """Require complete, verifiable hit/death assets for playable and planned creatures alike."""
+    audio = monster.get("audio")
+    require(isinstance(audio, dict), f"{creature_id}: missing hit/death audio")
+    require(audio.get("schema_version") == 1, f"{creature_id}: unsupported audio schema")
+    require(audio.get("status") in ("profile_ready", "runtime_integrated"), f"{creature_id}: invalid audio status")
+    manifest = audio.get("manifest")
+    require(isinstance(manifest, str) and bool(manifest), f"{creature_id}: missing audio provenance")
+    read(manifest)
+    for event in ("hit", "death"):
+        context = f"{creature_id}.audio.{event}"
+        cue = audio.get(event)
+        require(isinstance(cue, dict), f"{context}: missing cue")
+        require(cue.get("loop") is False, f"{context}: damage audio cannot loop")
+        cooldown = number(cue, "cooldown_seconds", context, strict=False)
+        require(cooldown <= 1 and (event != "death" or cooldown == 0), f"{context}: invalid cooldown")
+        voices = cue.get("max_voices")
+        require(type(voices) is int and 1 <= voices <= 4, f"{context}: expected bounded voice count")
+        variants = cue.get("variants")
+        require(isinstance(variants, list) and 1 <= len(variants) <= 4, f"{context}: missing/invalid variants")
+        for variant in variants:
+            require(isinstance(variant, dict), f"{context}: invalid variant")
+            path = variant.get("path")
+            require(isinstance(path, str) and path.startswith("assets/audio/"), f"{context}: invalid audio path")
+            source = (ROOT / path).resolve()
+            require(source.is_relative_to(ROOT / "assets/audio") and source.is_file(), f"{context}: missing asset")
+            require(hashlib.sha256(source.read_bytes()).hexdigest() == variant.get("sha256"),
+                    f"{context}: audio hash mismatch")
+            gain = variant.get("gain_db")
+            require(type(gain) in (int, float) and math.isfinite(gain) and -60 <= gain <= 0,
+                    f"{context}: invalid playback gain")
+            try:
+                with wave.open(str(source)) as stream:
+                    require(stream.getcomptype() == "NONE" and stream.getsampwidth() == 2
+                            and stream.getnchannels() == 1 and 22050 <= stream.getframerate() <= 96000
+                            and stream.getnframes() > 0, f"{context}: expected nonempty mono PCM16 WAV")
+            except (wave.Error, EOFError) as error:
+                raise ValueError(f"{context}: invalid WAV") from error
+    return audio
+
+
 def build() -> dict[str, Any]:
     """Compile catalogs by following canonical metadata links, never summary stats."""
     weapons: dict[str, Any] = {}
@@ -197,11 +271,17 @@ def build() -> dict[str, Any]:
     for field in ("trail_delay_seconds", "trail_catchup_seconds"):
         number(hud["damage_feedback"], field, "boss_hud.damage_feedback")
     monsters: dict[str, Any] = {}
-    for entry in read("assets/bestiary/catalog.json")["creatures"]:
+    creature_entries = read("assets/bestiary/catalog.json")["creatures"]
+    registered_profiles = [(ROOT / entry["metadata"]).resolve() for entry in creature_entries]
+    canonical_profiles = {path.resolve() for path in (ROOT / "bestiary").glob("*/monster.json")}
+    require(len(registered_profiles) == len(set(registered_profiles)), "Duplicate canonical creature profile")
+    require(set(registered_profiles) == canonical_profiles, "Creature catalog must cover every canonical profile")
+    for entry in creature_entries:
         monster_id = entry["id"]
         require(monster_id not in monsters, f"Duplicate creature: {monster_id}")
         monster = read(entry["metadata"])
         require(monster.get("id") == monster_id, f"{monster_id}: mismatched canonical ID")
+        audio = validate_creature_audio(monster, monster_id)
         pursuit = monster.get("pursuit")
         if pursuit is not None:
             require(isinstance(pursuit, dict), f"{monster_id}: invalid pursuit")
@@ -257,12 +337,19 @@ def build() -> dict[str, Any]:
                             and x + width <= spec["dimensions"][0]
                             and y + height <= spec["dimensions"][1], "Swarm frame outside atlas")
                     number(frame, "duration_seconds", monster_id)
-            monsters[monster_id] = {"health": health, "name": monster["name"], "damage_art": None,
+            monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": None,
                                     "movement": movement, "contact": monster["contact"], "animation": spec,
                                     "runtime_support": "optional_swarm"}
             continue
+        if monster.get("runtime_support") == "compound_boss":
+            require(monster_id == "cockroach-swarm", "Unsupported compound boss")
+            require(maximum == 720 and health["spawn_hp"] == 720, "Boss phase budget mismatch")
+            validate_compound_boss()
+            monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": None,
+                                    "runtime_support": "compound_boss"}
+            continue
         if monster.get("runtime_support") == "hud_preview_only":
-            monsters[monster_id] = {"health": health, "name": monster["name"], "damage_art": None,
+            monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": None,
                                     "runtime_support": "hud_preview_only"}
             continue
         spec = read(monster["assets"]["damage_animation_spec"])
@@ -297,7 +384,8 @@ def build() -> dict[str, Any]:
                     and y + height <= spec["dimensions"]["height"], f"{monster_id}: frame outside atlas")
             require(0 <= anchor[0] <= width and 0 <= anchor[1] <= height,
                     f"{monster_id}: anchor outside frame")
-        monsters[monster_id] = {"health": health, "name": monster["name"], "damage_art": spec, "pursuit": pursuit,
+        monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": spec,
+                                "pursuit": pursuit,
                                 "entrance": monster.get("entrance")}
     return {"schema_version": 1, "generated_by": "tools/build_combat_data.py; edit canonical sources",
             "weapons": weapons, "monsters": monsters, "visual_policy": policy, "dispenser": dispenser_data(),

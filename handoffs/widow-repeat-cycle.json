@@ -1,0 +1,31 @@
+{
+  "status": "Movement source delivered; combined build63 pending Engineering audio integration and final checks",
+  "date": "2026-10-17",
+  "request": "Repeat forward flight, nearby-hero dive, rise, stationary upper pause about1s, then choose left/right from hero position and repeat until killed.",
+  "implementation": {
+    "trigger": "Visible hero center within400px on either side; no ahead-only restriction.",
+    "attack": "0.65s locked-target warning,0.8s committed dive,1s forward rise to prior altitude.",
+    "pause": "Stationary top_pause1.0s; only completes after original altitude reached. Retarget on completion; within6px retain previous heading.",
+    "obstacles": "Full60x48 sweep; blocked diagonal uses swept vertical climb. World x bounds clamped; stranded edge turns toward hero.",
+    "lifetime": "Active living Widow excluded from offscreen retirement; warning cancellation unchanged. Death and attempt reset stop/remove actor.",
+    "unchanged": "180HP,2xrender/body,100px/s flight,1contactdamage,one live/warning Widow,15Tony/10Sean shots.",
+    "data": "top_pause_seconds replaces obsolete recovery_cooldown_seconds; default1s supports pre-regeneration bundle."
+  },
+  "files": [
+    "scripts/opening_trial_game.gd",
+    "tests/durable_flyer.gd",
+    "design/first-call-action/opening-trial-balance.json",
+    "bestiary/the-hallowed-widow/monster.json"
+  ],
+  "verification": {
+    "focused": "PASS exit0 /tmp/widow-repeat-final.log on both opening/integrated paths, both heroes, both initial headings,3cycles,1s pause,retarget/tie/behindhero,freeze/death/dispenser,actual15/10hits,deck/blockedclimb/worldedge/offscreen/reset.",
+    "hygiene": "Changed files JSON syntax/final-newline/no-trailing-whitespace PASS.",
+    "warnings": "macOS certificate warning and1ObjectDB shutdown leak.",
+    "integration": "Subsequent standing_shots --integrated saw concurrent creature_audio.gd parse errors55/66 plus downstream nil audio/unregenerated profile errors. A printed PASS was NOT accepted as clean. Engineering informed; rerun after its audio integration."
+  },
+  "remaining": [
+    "Engineering owns bundle regeneration with audio profile edits and packaged tests/build.",
+    "Art/Engineering own catalog/gallery and roadmap/build status sync.",
+    "Human visual/fairness/audio review and actual screenshots remain pending; no game foregrounding performed."
+  ]
+}

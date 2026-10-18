@@ -3,7 +3,7 @@
   "name": "Gratecrawler",
   "name_status": "Proposed working name, not user-approved canon",
   "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.",
-  "implementation_status": "Integrated continuous first-level opening; Prototype45 checks in progress",
+  "implementation_status": "Integrated in Prototype 57 / 0.57.0: floor-only patrol with boundary and obstacle turns; no jumping or pursuit. Headless and packaged checks pass; live visual review pending.",
   "backstory": {
     "status": "pending",
     "text": ""
@@ -57,11 +57,40 @@
     "image": null
   },
   "runtime_support": "hud_preview_only",
-  "runtime_support_note": "Canonical damage-state atlas pending; opening trial uses separate role manifest and balance overrides.",
+  "runtime_support_note": "Canonical combat-data schema uses HUD preview only because its damage-state atlas is pending; the separate opening-role system implements Prototype 57 floor patrol.",
   "active_level_profile": {
     "level": "first-call",
     "source": "design/first-call-action/opening-trial-balance.json",
     "role": "emerger",
-    "note": "Prototype45 continuous opening; source profile specifies runtime HP and starter-weapon comparisons."
+    "note": "Prototype 57 floor-only patrol; active opening profile supplies HP and starter-weapon comparisons."
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "runtime_integrated",
+    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/monster-damage-v1/gratecrawler-hit.wav",
+          "gain_db": -3,
+          "sha256": "3759fa41aa80255efbe91b47f8d3c044792bddaf48d865fae0cbc4e38d5ea747"
+        }
+      ],
+      "cooldown_seconds": 0.1,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/monster-damage-v1/gratecrawler-death.wav",
+          "gain_db": -3,
+          "sha256": "bcb3986bc195d70f6a2c37afb3f1cad3179272f16c94a596af2277ec7a07b24c"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 2,
+      "loop": false
+    }
   }
 }

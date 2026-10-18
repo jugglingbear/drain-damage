@@ -28,6 +28,54 @@ class CombatMetadataTests(unittest.TestCase):
         builder = load_builder()
         self.assertEqual(builder.build(), json.loads((ROOT / "data/combat.json").read_text()))
 
+    def test_unregistered_creature_profile_is_rejected(self) -> None:
+        builder = load_builder()
+        original_read = builder.read
+
+        def missing_entry(path: str) -> dict[str, Any]:
+            data = original_read(path)
+            if path == "assets/bestiary/catalog.json":
+                data["creatures"].pop()
+            return data
+
+        with (patch.object(builder, "read", missing_entry),
+              self.assertRaisesRegex(ValueError, "every canonical profile")):
+            builder.build()
+
+    def test_every_creature_has_both_verified_audio_events(self) -> None:
+        builder = load_builder()
+        for entry in builder.read("assets/bestiary/catalog.json")["creatures"]:
+            profile = builder.read(entry["metadata"])
+            self.assertEqual(builder.validate_creature_audio(profile, entry["id"]), profile["audio"])
+
+    def test_missing_or_unbounded_creature_audio_is_rejected(self) -> None:
+        builder = load_builder()
+        source = builder.read("bestiary/flushfiend/monster.json")
+        for event in ("hit", "death"):
+            for field, value in [("variants", []), ("loop", True), ("max_voices", 99),
+                                 ("max_voices", True), ("cooldown_seconds", -1)]:
+                with self.subTest(event=event, field=field):
+                    profile = copy.deepcopy(source)
+                    profile["audio"][event][field] = value
+                    with self.assertRaises(ValueError):
+                        builder.validate_creature_audio(profile, "toilet")
+            profile = copy.deepcopy(source)
+            del profile["audio"][event]
+            with self.assertRaises(ValueError):
+                builder.validate_creature_audio(profile, "toilet")
+
+    def test_creature_audio_paths_hashes_and_gain_are_validated(self) -> None:
+        builder = load_builder()
+        source = builder.read("bestiary/clogfather/monster.json")
+        for field, value in [("path", "../outside.wav"), ("path", "assets/audio/missing.wav"),
+                             ("sha256", "wrong"), ("gain_db", 1), ("gain_db", True),
+                             ("gain_db", float("nan"))]:
+            with self.subTest(field=field, value=value):
+                profile = copy.deepcopy(source)
+                profile["audio"]["death"]["variants"][0][field] = value
+                with self.assertRaises(ValueError):
+                    builder.validate_creature_audio(profile, "clogfather")
+
     def test_trial_overrides_preserve_campaign_values(self) -> None:
         bundle = load_builder().build()
         self.assertEqual(bundle["weapons"]["pressure-gun"]["damage"], 6)
@@ -42,6 +90,19 @@ class CombatMetadataTests(unittest.TestCase):
         for crop in [[0, 0, 99999, 10], [-1, 0, 10, 10], [0, 0, 0, 10], [True, 0, 10, 10]]:
             with self.subTest(crop=crop), self.assertRaises(ValueError):
                 builder.validate_art_regions({**asset, "source_rect": crop})
+
+    def test_disabled_compound_boss_frame_is_rejected(self) -> None:
+        builder = load_builder()
+        original_read = builder.read
+
+        def invalid_animation(path: str) -> dict[str, Any]:
+            data = original_read(path)
+            if path == "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json":
+                data["animations"]["rat_idle"]["frames"] = [0]
+            return data
+
+        with patch.object(builder, "read", invalid_animation), self.assertRaises(ValueError):
+            builder.validate_compound_boss()
 
     def test_invalid_swarm_data_is_rejected(self) -> None:
         builder = load_builder()

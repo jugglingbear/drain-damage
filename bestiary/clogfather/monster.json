@@ -11,7 +11,7 @@
     "status": "draft",
     "author_role": "storyboarding agent",
     "updated": "2026-10-14",
-    "text": "Billy-Joe classified repeated blockage warnings as duplicate reports and canceled the cleaning crews. Beneath headquarters, grease hardened around wipes, roots, and a buried outflow until the blockage filled the chamber. Then it began moving against the current. The Clogfather grew around something BJ's diagrams do not show. Removing it will restore access\u2014but what it has been hiding may be worse than the clog.",
+    "text": "Billy-Joe classified repeated blockage warnings as duplicate reports and canceled the cleaning crews. Beneath headquarters, grease hardened around wipes, roots, and a buried outflow until the blockage filled the chamber. Then it began moving against the current. The Clogfather grew around something BJ's diagrams do not show. Removing it will restore access—but what it has been hiding may be worse than the clog.",
     "canon_note": "Proposed history, not approved canon. Portal origin and BJ prior knowledge remain open; no intentional summoning is established."
   },
   "asset_path_base": "project root",
@@ -124,5 +124,34 @@
     "cause": null,
     "bj_connection": null
   },
-  "runtime_support": "hud_preview_only"
+  "runtime_support": "hud_preview_only",
+  "audio": {
+    "schema_version": 1,
+    "status": "profile_ready",
+    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/clogfather-v1/hurt.wav",
+          "gain_db": -5,
+          "sha256": "4ba97b36d114997e1fa5fb907ba172b249d3bc7ca4e352c4de3fd7cdf5827a1f"
+        }
+      ],
+      "cooldown_seconds": 0.25,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/clogfather-v1/collapse.wav",
+          "gain_db": -5,
+          "sha256": "f8d172e96942969b725b44d6c1f318a6672484f268be30f17fb0e2c04d81e281"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 2,
+      "loop": false
+    }
+  }
 }

@@ -1,4 +1,5 @@
 extends RefCounted
+signal damaged(actor: Dictionary, lethal: bool)
 ## Seeded environmental wander: steering never receives a player or target position.
 const DISPLAY_SIZE := Vector2(128,128)
 const Data = preload("res://scripts/combat_data.gd")
@@ -140,7 +141,16 @@ func step(game: Node2D, delta: float) -> void:
 		enemy.swarm_cooldown = maxf(0,enemy.get("swarm_cooldown",0.0)-delta)
 	for actor in actors:
 		step_motion(actor,delta,solids)
+		if actor.get("warning",0.0) > 0:
+			# Offscreen staging must not spend the player's visible warning time.
+			if actor.pos.x+64 >= game.camera_x and actor.pos.x-64 <= game.camera_x+960:
+				actor.warning = maxf(0,actor.warning-delta)
+			continue
 		if actor.hp <= 0 or actor.blocked: continue
+		# A hero entering the warning footprint remains safe until they clear it.
+		if actor.get("additive",false) and not actor.get("contact_ready",false):
+			if overlaps(actor,Rect2(game.player,game.PLAYER_SIZE)): continue
+			actor.contact_ready = true
 		if hero_cooldown <= 0 and game.invulnerable <= 0 and game.life_state == "alive" \
 				and overlaps(actor,Rect2(game.player,game.PLAYER_SIZE)):
 			game.hurt_player()
@@ -172,9 +182,10 @@ func shot_hit(start: Vector2, finish: Vector2, index: int, thickness: float) -> 
 
 func damage(index: int, amount: float) -> void:
 	var actor: Dictionary = actors[index]
-	if actor.hp <= 0: return
+	if actor.hp <= 0 or amount <= 0 or not is_finite(amount): return
 	actor.hp = maxf(0,actor.hp-amount)
 	actor.flash = 0.1
+	damaged.emit(actor, actor.hp == 0)
 	if actor.hp == 0:
 		actor.death = 0
 		actor.velocity = Vector2.ZERO

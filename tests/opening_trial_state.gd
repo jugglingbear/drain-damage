@@ -15,7 +15,7 @@ func fixture(role: String = "runner") -> Dictionary:
 func balance() -> Dictionary:
 	return {"roles": {"runner": {}, "shooter": {}, "emerger": {"emerge_seconds": 0.35}, "flyer": {}},
 		"budgets": {"visible_hostiles_including_entry_telegraphs": 6,
-		"simultaneous_shooters": 2, "hostile_projectiles": 6,
+		"simultaneous_shooters": 3, "hostile_projectiles": 6,
 		"simultaneous_independent_threat_patterns": 3}}
 
 func spawn_actor(state: RefCounted, id: String) -> void:
@@ -102,8 +102,12 @@ func run_checks() -> void:
 	assert(state.configure(fixture("perched_shooter"), balance()))
 	spawn_actor(state, "e0")
 	spawn_actor(state, "e1")
-	assert(not state.reserve("e2") and state.results().shooters == 2)
-	assert(state.retire("e0") and state.reserve("e2"))
+	assert(state.reserve("e2") and state.results().shooters == 3)
+	state.advance(0.6)
+	assert(not state.reserve("e3"), "Warning shooter consumes the third slot")
+	assert(state.activate("e2"))
+	assert(not state.reserve("e3"), "Three live shooters fill the cap")
+	assert(state.retire("e0") and state.reserve("e3"))
 	var emerger := fixture("floor_emerger")
 	emerger.timeline[0].warning_seconds = 0.8
 	emerger.timeline[0].settle_seconds = 0.3
@@ -135,6 +139,9 @@ func run_checks() -> void:
 	assert(not state.configure(bad, balance()))
 	var bad_budget := balance()
 	bad_budget.budgets.hostile_projectiles = 7
+	assert(not state.configure(fixture(), bad_budget))
+	bad_budget = balance()
+	bad_budget.budgets.simultaneous_shooters = 4
 	assert(not state.configure(fixture(), bad_budget))
 	var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://handoffs/opening-trial-level-layout.json"))

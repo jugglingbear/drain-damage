@@ -1,0 +1,77 @@
+extends SceneTree
+
+func _initialize() -> void:
+	call_deferred("run_checks")
+
+func run_checks() -> void:
+	var host := Node.new()
+	root.add_child(host)
+	var sound = load("res://scripts/skitterling_audio.gd").new()
+	sound.attach(host)
+	assert(sound.beds.size() == 2 and sound.effects.size() == 2)
+	sound.event("swarm_entry")
+	sound.step(.15)
+	assert(sound.target == 1 and sound.levels[1] == 1)
+	sound.set_paused(true)
+	var before: float = sound.clock
+	sound.step(1)
+	sound.event("rat_assembly")
+	assert(sound.clock == before and sound.target == 1)
+	sound.set_paused(false)
+	sound.event("rat_assembly")
+	sound.step(.15)
+	assert(sound.target == 0 and sound.levels == [1.0,0.0])
+	sound.event("rat_phase_defeat")
+	sound.step(.15)
+	assert(sound.target == -1 and sound.damage.death_starts == 0)
+	sound.event("reskitter")
+	for key in sound.CUES:
+		sound.event(key)
+	sound.event("debris_impact")
+	assert(sound.event_starts.debris_impact == 1)
+	var releases: int = sound.event_starts.debris_release
+	var warnings: int = sound.event_starts.tail_warning
+	for throw_index in range(3):
+		sound.event("swim_start")
+		sound.step(.15)
+		assert(sound.target == 1 and sound.levels[1] == 1)
+		sound.event("tail_warning")
+		sound.step(.8)
+		sound.event("debris_release")
+		assert(not sound.warning.playing, "Throw cancels the longer warning tail")
+		sound.event("debris_impact")
+	assert(sound.event_starts.debris_release == releases+3)
+	assert(sound.event_starts.tail_warning == warnings+3)
+	sound.event("water_emerge")
+	sound.step(.15)
+	assert(sound.target == 0)
+	var snaps: int = sound.event_starts.jaw_snap
+	for leg in range(2):
+		sound.event("alligator_jaw_warning")
+		sound.event("attack_start")
+		sound.event("jaw_snap")
+		assert(not sound.warning.playing)
+	assert(sound.event_starts.jaw_snap == snaps+2 and sound.effects.size() == 2)
+	sound.set_paused(true)
+	sound.event("jaw_snap")
+	assert(sound.event_starts.jaw_snap == snaps+2)
+	sound.set_paused(false)
+	AudioServer.set_bus_mute(0,true)
+	sound.event("terminal_death")
+	assert(sound.defeated and sound.damage.death_starts == 0)
+	AudioServer.set_bus_mute(0,false)
+	sound.event("terminal_death")
+	assert(sound.damage.death_starts == 0, "Muted defeat cannot replay after unmute")
+	sound.stop()
+	var actor := {"hp":10.0}
+	sound.play_hit(actor)
+	sound.play_hit(actor)
+	assert(sound.damage.hit_starts == 1)
+	sound.event("terminal_death")
+	sound.event("terminal_death")
+	assert(sound.damage.death_starts == 1 and sound.target == -1)
+	sound.dispose()
+	host.queue_free()
+	await create_timer(.2).timeout
+	print("PASS: Skitterling audio bounded pools, phase/death separation, pause/mute/reset checks pass")
+	quit()

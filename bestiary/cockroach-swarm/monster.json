@@ -1,0 +1,205 @@
+{
+  "id": "cockroach-swarm",
+  "name": "Skitterling",
+  "name_status": "Official name selected by Sean; remains Skitterling unless Sean changes it. Confirmed 2026-10-17.",
+  "name_candidates": [
+    "Vermin Union",
+    "Roachwork",
+    "Infestus",
+    "The Scuttlebeast",
+    "Pestiform",
+    "The Crawllective",
+    "Roach Rorschach",
+    "The Skittering",
+    "Verminous Maximus",
+    "The Infestigator",
+    "Roachzilla",
+    "The Many-Legged Lie"
+  ],
+  "description": "A floor swarm of constantly skittering cockroaches assembles into a giant rat, collapses after damage, and reforms as a giant alligator. Individual insects continue crawling while each animal silhouette holds.",
+  "implementation_status": "Delivered in Prototype 71 / 0.71.0; packaged verification passed. Live visual, listening and fairness review pending.",
+  "created_at": "2026-10-17T18:04:31.083999-07:00",
+  "backstory": {
+    "status": "pending",
+    "text": ""
+  },
+  "health": {
+    "max_hp": 720,
+    "spawn_hp": 720,
+    "runtime_max_hp": 720,
+    "status": "Prototype 71 verified runtime: 540 HP rat plus 180 HP alligator, 720 displayed total. Live balance review pending.",
+    "encounter_stage": "first_level_checkpoint_owned_locked_miniboss_room",
+    "role": "Single compound transforming miniboss",
+    "bar": {
+      "visible_by_default": true,
+      "policy": "assets/bestiary/damage/health-visuals.json#boss_hud",
+      "name": "Skitterling",
+      "enabled": true
+    },
+    "model": "One720HP display pool: rat consumes540 down to180; alligator consumes180 down to0. Excess ratphase damage discarded; no phase skip.",
+    "threshold_hp": 180,
+    "damage_accounting": "Apply one hit per compoundactor. Rat accepted=min(hit,hp-180), discard excess; threshold180 queues falsecollapse once. Hidden/transition states ignore damage. Gator0 terminal once. Reset720HP.",
+    "rationale": "Rat540 triples prior180: Tony45shots at12/.16 takes7.04s first-to-last uninterrupted; Sean30shots at18/.24 takes6.96s. Prior15/10shots took2.24/2.16s. Travel/tells extend actualfight. Gator180 and mandatorytransition preserved.",
+    "active_first_level_comparisons": {
+      "tony": {
+        "weapon": "pressure-gun",
+        "damage": 12,
+        "interval_seconds": 0.16,
+        "range_pixels": 320,
+        "hits": 60,
+        "hits_to_threshold": 45,
+        "rat_hits": 45,
+        "alligator_hits": 15,
+        "rat_first_to_last_seconds": 7.04,
+        "alligator_first_to_last_seconds": 2.24
+      },
+      "sean": {
+        "weapon": "heavy-plunger-launcher",
+        "damage": 18,
+        "interval_seconds": 0.24,
+        "range_pixels": 480,
+        "hits": 40,
+        "hits_to_threshold": 30,
+        "rat_hits": 30,
+        "alligator_hits": 10,
+        "rat_first_to_last_seconds": 6.96,
+        "alligator_first_to_last_seconds": 2.16
+      }
+    },
+    "canonical_base_comparisons": {
+      "pressure-gun": {
+        "damage": 6,
+        "hits": 120,
+        "overkill": 0,
+        "owner": "tony",
+        "runtime": "playable; active first-level override differs",
+        "rat_hits": 90,
+        "alligator_hits": 30
+      },
+      "heavy-plunger-launcher": {
+        "damage": 24,
+        "hits": 31,
+        "overkill": 24,
+        "owner": "sean",
+        "runtime": "playable; active first-level override differs",
+        "rat_hits": 23,
+        "alligator_hits": 8
+      },
+      "pipe-wrench": {
+        "damage": 12,
+        "hits": 60,
+        "overkill": 0,
+        "owner": "tony",
+        "runtime": "planned",
+        "rat_hits": 45,
+        "alligator_hits": 15
+      },
+      "drain-snake": {
+        "damage": 8,
+        "hits": 91,
+        "overkill": 8,
+        "owner": "tony",
+        "runtime": "planned",
+        "rat_hits": 68,
+        "alligator_hits": 23
+      },
+      "demolition-hammer": {
+        "damage": 60,
+        "hits": 12,
+        "overkill": 0,
+        "owner": "sean",
+        "runtime": "planned",
+        "rat_hits": 9,
+        "alligator_hits": 3
+      },
+      "pipe-bomb-launcher": {
+        "damage": 60,
+        "hits": 12,
+        "overkill": 0,
+        "owner": "sean",
+        "runtime": "planned",
+        "rat_hits": 9,
+        "alligator_hits": 3
+      }
+    },
+    "comparison_limits": "Requiredshots=ceil540/damage+ceil180/damage. Noarmor; ignores misses/range/invulnerable periods. Planned weapons not playable. Compoundgeometry nevermultiplies hits.",
+    "rat_phase_hp": 540,
+    "alligator_phase_hp": 180,
+    "hits_to_defeat": {
+      "pressure-gun": 120,
+      "heavy-plunger-launcher": 30,
+      "pipe-wrench": 60,
+      "drain-snake": 90,
+      "demolition-hammer": 12,
+      "pipe-bomb-launcher": 12
+    },
+    "hits_to_defeat_note": "Unphased schema arithmetic only. Actual phase-aware counts are canonical_base_comparisons; active first-level counts are45+15Tony and30+10Sean."
+  },
+  "runtime_support": "compound_boss",
+  "runtime_support_note": "Dedicated compound encounter owns rendering and phase health; source and packaged integration tests pass; live visual review pending.",
+  "game_art": {
+    "image": "assets/bestiary/cockroach-swarm/rat-source-v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "animation": "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json",
+    "prompt": "assets/bestiary/cockroach-swarm/prompts-v1.json",
+    "status": "Prototype 71 packaged rendering checks passed for side-view portal occlusion, underwater swimming, tail throws and snapping charges. Live visual review pending."
+  },
+  "marketing": {
+    "image": "bestiary/cockroach-swarm/marketing-concepts-v1.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "style": "hyperrealistic concept diptych: rat and alligator",
+    "prompt": "bestiary/cockroach-swarm/prompts-v1.json",
+    "status": "Concept proposal; visual design review pending"
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "runtime_integrated",
+    "manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/hit.wav",
+          "gain_db": -3,
+          "sha256": "ff51950836c9eb654554903dc2c01ec1b22c62922929396aaee130fc862f9d2f"
+        }
+      ],
+      "cooldown_seconds": 0.12,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/death.wav",
+          "gain_db": -3,
+          "sha256": "61341be701c03917de926d21f5d615900f847406a8e5050d71d33850806656ab"
+        }
+      ],
+      "cooldown_seconds": 0,
+      "max_voices": 2,
+      "loop": false
+    }
+  },
+  "audio_auxiliary_contract": "handoffs/cockroach-swarm-audio.json",
+  "mechanics_proposal": "handoffs/roach-miniboss-mechanics.json",
+  "encounter_contract_status": "Prototype 71 delivered: 540 HP rat then 180 HP alligator, three separately targeted upward throws, visible underwater swimming, snapping charges and physical walk-through portals. Live review pending.",
+  "room_art": "assets/world/skitterling-room/manifest-v1.json",
+  "encounter_contract": "handoffs/skitterling-locked-room.json",
+  "name_candidates_status": "Historical brainstorming only; not current alternatives to the official name.",
+  "verification": {
+    "source_integration": "Engineering reports mandatorysequence, HP, exit, audio and reset checks pass",
+    "full_route": "18 full routes passed with all nine swarm encounters",
+    "packaging": "Prototype 71: 20 packaged suites, 32 Python tests and 16 actual source/export CLI checks passed",
+    "visual_review": "pending",
+    "previous_delivery": "Prototype69 automated encounter verification applies to the earlier360HP encounter; currentrevision verification separate.",
+    "current_art": "Packaged side-portal physical traversal/camera and prepared alpha masks passed; scene-adapted upward stationary hits, moving dodges and visible-jaw charges passed",
+    "listening_review": "pending",
+    "fairness_review": "pending"
+  }
+}

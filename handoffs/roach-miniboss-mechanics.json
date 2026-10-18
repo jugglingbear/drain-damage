@@ -1,0 +1,509 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-17",
+  "timezone": "America/Los_Angeles",
+  "status": "Commissioned encounter implementation contract; numeric tuning defaults require runtime/playtest validation",
+  "identity": {
+    "id": "cockroach-swarm",
+    "folder": "bestiary/cockroach-swarm",
+    "game_art": "assets/bestiary/cockroach-swarm",
+    "display_name": "Skitterling",
+    "backstory": "",
+    "backstory_status": "pending",
+    "name_status": "Provisional name selected by Sean; stableID unchanged"
+  },
+  "approved_concept": [
+    "Fixed960x540 room after checkpoint and empty approach through large pipe; camera locked until final boss death.",
+    "Initial floor swarm skitters about2s, loud shriek/insects, forms rat over2\u20133s; continuous living roach motion.",
+    "Defeated rat collapses apparently dead4\u20135s, skitters again4\u20135s, then forms larger alligator for second fight.",
+    "Rat bites and escapes through backgroundpipe; invulnerable in walls; chosen wall/ceiling pipe shows roaches about2s before launch/landing.",
+    "Alligator jaw attacks and water dives with tail-thrown debris targeting hero; final death opens rightpipe and traversal continues."
+  ],
+  "proposal_boundary": "Encounter implementation now commissioned through Level Design. ExactHP/attack numbers below are Mechanics implementation defaults, not user-selected final balance; source art coverage and geometry must be verified before claiming complete.",
+  "health": {
+    "max_hp": 720,
+    "spawn_hp": 720,
+    "runtime_max_hp": null,
+    "status": "Revised controller source implemented and tested; combined build pending",
+    "encounter_stage": "first_level_checkpoint_owned_locked_miniboss_room",
+    "role": "Single compound transforming miniboss",
+    "bar": {
+      "visible_by_default": true,
+      "policy": "assets/bestiary/damage/health-visuals.json#boss_hud",
+      "name": "Skitterling"
+    },
+    "model": "One720HP display pool: rat consumes540 down to180; alligator consumes180 down to0. Excess ratphase damage discarded; no phase skip.",
+    "threshold_hp": 180,
+    "damage_accounting": "Apply one hit per compoundactor. Rat accepted=min(hit,hp-180), discard excess; threshold180 queues falsecollapse once. Hidden/transition states ignore damage. Gator0 terminal once. Reset720HP.",
+    "rationale": "Rat540 triples prior180: Tony45shots at12/.16 takes7.04s first-to-last uninterrupted; Sean30shots at18/.24 takes6.96s. Prior15/10shots took2.24/2.16s. Travel/tells extend actualfight. Gator180 and mandatorytransition preserved.",
+    "active_first_level_comparisons": {
+      "tony": {
+        "weapon": "pressure-gun",
+        "damage": 12,
+        "interval_seconds": 0.16,
+        "range_pixels": 320,
+        "hits": 60,
+        "hits_to_threshold": 45,
+        "rat_hits": 45,
+        "alligator_hits": 15,
+        "rat_first_to_last_seconds": 7.04,
+        "alligator_first_to_last_seconds": 2.24
+      },
+      "sean": {
+        "weapon": "heavy-plunger-launcher",
+        "damage": 18,
+        "interval_seconds": 0.24,
+        "range_pixels": 480,
+        "hits": 40,
+        "hits_to_threshold": 30,
+        "rat_hits": 30,
+        "alligator_hits": 10,
+        "rat_first_to_last_seconds": 6.96,
+        "alligator_first_to_last_seconds": 2.16
+      }
+    },
+    "canonical_base_comparisons": {
+      "pressure-gun": {
+        "damage": 6,
+        "hits": 120,
+        "overkill": 0,
+        "owner": "tony",
+        "runtime": "playable; active first-level override differs",
+        "rat_hits": 90,
+        "alligator_hits": 30
+      },
+      "heavy-plunger-launcher": {
+        "damage": 24,
+        "hits": 31,
+        "overkill": 24,
+        "owner": "sean",
+        "runtime": "playable; active first-level override differs",
+        "rat_hits": 23,
+        "alligator_hits": 8
+      },
+      "pipe-wrench": {
+        "damage": 12,
+        "hits": 60,
+        "overkill": 0,
+        "owner": "tony",
+        "runtime": "planned",
+        "rat_hits": 45,
+        "alligator_hits": 15
+      },
+      "drain-snake": {
+        "damage": 8,
+        "hits": 91,
+        "overkill": 8,
+        "owner": "tony",
+        "runtime": "planned",
+        "rat_hits": 68,
+        "alligator_hits": 23
+      },
+      "demolition-hammer": {
+        "damage": 60,
+        "hits": 12,
+        "overkill": 0,
+        "owner": "sean",
+        "runtime": "planned",
+        "rat_hits": 9,
+        "alligator_hits": 3
+      },
+      "pipe-bomb-launcher": {
+        "damage": 60,
+        "hits": 12,
+        "overkill": 0,
+        "owner": "sean",
+        "runtime": "planned",
+        "rat_hits": 9,
+        "alligator_hits": 3
+      }
+    },
+    "comparison_limits": "Requiredshots=ceil540/damage+ceil180/damage. Noarmor; ignores misses/range/invulnerable periods. Planned weapons not playable. Compoundgeometry nevermultiplies hits.",
+    "rat_phase_hp": 540,
+    "alligator_phase_hp": 180
+  },
+  "states": {
+    "entry_skitter": {
+      "seconds": 2.0,
+      "damageable": false,
+      "hurts_hero": false
+    },
+    "rat_assembly": {
+      "seconds": 2.5,
+      "damageable": false,
+      "hurts_hero": false,
+      "event": "assembly_shriek atstart; no attack on assemblycompletion",
+      "occupancy": "Presentation remains2.5s. If full footprint plus8px margin occupied at completion, hold state atelapsed2.5 harmless/invulnerable until clear; no push or teleport, then normalready0.6."
+    },
+    "rat_ready": {
+      "seconds": 0.6,
+      "damageable": true,
+      "hurts_hero": false
+    },
+    "rat_bite_tell": {
+      "seconds": 0.8,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "Lock facing/target; visiblejawprep. Only initiate if escape corridor valid."
+    },
+    "rat_bite": {
+      "seconds": 0.2,
+      "damageable": true,
+      "hero_damage": 1,
+      "notes": "Visiblejaw envelope only, no invisible reach. Atmost60px wholebody advance if art/geometry support, else stationarybite."
+    },
+    "rat_bite_recovery": {
+      "seconds": 1.2,
+      "damageable": true,
+      "hurts_hero": false
+    },
+    "rat_pipe_retreat": {
+      "seconds": 0.7,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "Visible withdrawal; become invulnerable only once fully insidepipe, not entireteleport approach."
+    },
+    "rat_inside_pipe": {
+      "seconds": 0.5,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "No worldcollider while behindwalls; choose safe port by seededplan."
+    },
+    "rat_pipe_warning": {
+      "seconds": 2.0,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Visiblecrawlingroaches at chosenport and landingmark; lock trajectory/landing atwarningstart. No retargeting duringtell.",
+      "occupancy": "At expiry, occupied full landing footprint plus8px margin causes reselection and complete new2s warning; neverlaunch underhero."
+    },
+    "rat_pipe_launch": {
+      "seconds": 0.6,
+      "damageable": true,
+      "hero_damage": 1,
+      "notes": "Fixed0.6s trajectory; vulnerability/harm only after0.15s and entire logical body is inside room x32..928 belowHUD82. Landing stays locked at warningstart. No homing."
+    },
+    "rat_landing_recovery": {
+      "seconds": 1.4,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "Begin on actual grounded landing; no landing shockwave/additional hit. Repeat bite then pipeambush."
+    },
+    "rat_collapse": {
+      "seconds": 4.5,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Apparent deadheap, rare residualmotion allowed. Nearsilent bed, never terminaldeathcue or unlock."
+    },
+    "reskitter": {
+      "seconds": 4.5,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Roaches resume grosscrawl fromheap; sameencounter, no independent enemies."
+    },
+    "alligator_assembly": {
+      "seconds": 2.5,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Safe clearanchor; no push/damage/overlap trap. Largerform, sameHP remaining180.",
+      "occupancy": "Presentation remains2.5s. If full footprint plus8px margin occupied at completion, hold state atelapsed2.5 harmless/invulnerable until clear; no push or teleport, then normalready0.6."
+    },
+    "alligator_ready": {
+      "seconds": 0.6,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "After0.6s begins dive, not initialjawattack."
+    },
+    "alligator_jaw_recovery": {
+      "seconds": 1.8,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "1.8s harmless/vulnerable aftertwotraversals; thennextdive resets3throwhistory."
+    },
+    "alligator_water_dive": {
+      "seconds": 0.6,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "Visiblewaterentry; invulnerable once fully submerged; floor remains traversable."
+    },
+    "alligator_water_warning": {
+      "seconds": 0.8,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Brief stationarypause atswimdestination. column_x locks toactualbossx. Tail+floorwarning; no late retarget."
+    },
+    "alligator_debris": {
+      "count": 3,
+      "release_spacing_seconds": null,
+      "damageable": false,
+      "hero_damage": 1,
+      "notes": "ONE upward throw per visit. Bothup/down harm, radius14 matches28px art. Waitrockgroundimpact then reacquirehero/swim/pausefornextthrow. Afterthird move tosurfaceanchor. Three distinctxorigins percycle."
+    },
+    "alligator_surface_warning": {
+      "seconds": 1.0,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Afterdebrisclear choose empty safeanchor, showwater/roachwarning; never reform underhero.",
+      "occupancy": "Occupied at expiry -> continuous surface_swim to newanchor thenfull1s warning."
+    },
+    "alligator_surface": {
+      "seconds": 0.6,
+      "damageable": false,
+      "hurts_hero": false
+    },
+    "alligator_surface_recovery": {
+      "seconds": 2.0,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "Vulnerable2s afteremergence, thencharge_tell."
+    },
+    "terminal_death": {
+      "seconds": 1.2,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Clearallhazards immediately, terminalcue once; openrightpipe once deathpresentationfinishes, thenunlockcamera atscriptedexit boundary."
+    },
+    "rat_pipe_abort": {
+      "seconds": 0.6,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "If hero enters locked landing during flight, reverse harmlessly to same port; then inside_pipe0.5 and full new warning2. No homing or successful landing cue."
+    },
+    "alligator_surface_return": {
+      "seconds": 0.6,
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Lateintrusionduringrise returns harmlesslyunderwater. Thencontinuoussurface_swim tosafeanchor/full1s warning."
+    },
+    "alligator_swim": {
+      "seconds": "distance/340",
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Continuously reacquire hero-near distinctorigin every simulation substep while swimming340px/s atfeetY570; fasterthanTony270/Sean235. Onarrival commitcurrentorigin and enterstationary0.8warning. Warning/rock neverretarget. No teleport."
+    },
+    "alligator_surface_swim": {
+      "seconds": "distance/340",
+      "damageable": false,
+      "hurts_hero": false,
+      "notes": "Continuous340px/s movement tosafeemergenceanchor. Onlythen1s surfacewarning, avoiding prior submergedteleport."
+    },
+    "alligator_charge_tell": {
+      "seconds": 0.9,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "Commitcross-roomendpoint176or784. Visible/audiblejawwarning beforefirstleg."
+    },
+    "alligator_charge": {
+      "seconds": "distance/300",
+      "damageable": true,
+      "hero_damage": 1,
+      "notes": "Continuous300px/s traverse tocommittedendpoint; leading72x44px lowjaw hurts, wholebody nonblocking. Existing86px standardjump clearsjaw. Emit attack_start thenjaw_snap once perleg. Twolegs withfullturnwarning, thenrecovery1.8/dive; repeatuntildefeat."
+    },
+    "alligator_charge_turn": {
+      "seconds": 0.9,
+      "damageable": true,
+      "hurts_hero": false,
+      "notes": "Stationary fullwarning before reversing; no instant damagingturn."
+    }
+  },
+  "attack_safety": {
+    "damage_scale": "One current contact-hit unit; never15/20 against4/5HP heroes.",
+    "invulnerability": "Respect existing global hero1.5s invulnerability; no stacked roach/body/jaw hits.",
+    "budget": "Isolatedonecompoundenemy; oneattackpattern atatime; threephysicaldebrismax count towardglobal6bulletcap. No other enemies/warnings/projectiles admitted to room; no additional physicsroachactors.",
+    "reach": "Damage only visiblebody/jaw or descendingdebris; antennae/decorations excluded. Bothstarters have groundheight target and canreach during recovery. Keepdamage1 andexisting1.5sinvulnerability.",
+    "fairness": "Rat unsafejaw usespipealternative. Gator low44pxjaw/300pxs charges can be jumped with current-465/1250 jump; nonblockingbody permits clearance. Both heroes can dodge .8s committed verticalthrow bymoving80px. Testsinclude portalhero bounds120..814. Renderedalpha/jawmapping stillrequiresArtreview.",
+    "timing": "Pause/death/dispenser freeze timers; audio completion never advances phases."
+  },
+  "art_contract": {
+    "viewport": [
+      960,
+      540
+    ],
+    "floor_y": 440,
+    "frame_canvas": [
+      384,
+      256
+    ],
+    "foot_anchor": [
+      192,
+      224
+    ],
+    "rat_footprint": [
+      256,
+      150
+    ],
+    "alligator_footprint": [
+      288,
+      112
+    ],
+    "scale_status": "Engineering-supplied proposed logical footprints; actual alpha/collider validation required",
+    "states": [
+      "entry_skitter",
+      "rat_assembly",
+      "rat_ready",
+      "rat_bite_tell",
+      "rat_bite",
+      "rat_bite_recovery",
+      "rat_pipe_retreat",
+      "rat_inside_pipe",
+      "rat_pipe_warning",
+      "rat_pipe_launch",
+      "rat_landing_recovery",
+      "rat_collapse",
+      "reskitter",
+      "alligator_assembly",
+      "alligator_ready",
+      "alligator_jaw_recovery",
+      "alligator_water_dive",
+      "alligator_water_warning",
+      "alligator_debris",
+      "alligator_surface_warning",
+      "alligator_surface",
+      "alligator_surface_recovery",
+      "terminal_death",
+      "rat_pipe_abort",
+      "alligator_surface_return",
+      "alligator_swim",
+      "alligator_surface_swim",
+      "alligator_charge_tell",
+      "alligator_charge",
+      "alligator_charge_turn",
+      "rat_hit",
+      "alligator_hit",
+      "pipe_entrance_roach_warning",
+      "landing_marker",
+      "water_surface_warning",
+      "debris_up_and_down"
+    ],
+    "churn": "Match Engineering8\u201312frame formed loops at10\u201312fps initial target, with phase-offset compatible overlay frames. Constant internal movement in every living formed phase; warning/recoil must not freeze insects.",
+    "registration": "Preserve foot anchor across forms and facings, distinguish attack reach from idle footprint, provide active-frame/mouth anchors and crop rectangles. Mirrored animation must not move world feet.",
+    "damage_visuals": "Keep six HP appearance bands independent of form and continuous churn; phase collapse is not terminal death. Sprite availability/coverage must be explicit.",
+    "material": "Chestnut-black chitin/legs/antennae, no animal flesh/fur/scales; preserve source originals/prompts.",
+    "concept": "bestiary/cockroach-swarm/marketing-concepts-v1.png",
+    "engineering_reference": "handoffs/roach-colony-engineering-constraints.json",
+    "alligator_bite_geometry": {
+      "status": "Short90pxlunge superseded by2cross-room traversals at300px/s. Leadingjaw72x44 lowenvelope mustmatchvisiblebiteart; standardjump tested. Never addinvisibleextension."
+    }
+  },
+  "audio": {
+    "stable_id": "cockroach-swarm",
+    "events": [
+      "swarm_entry",
+      "rat_assembly",
+      "rat_bite_warning",
+      "attack_start",
+      "rat_pipe_hide",
+      "pipe_warning",
+      "pipe_launch",
+      "pipe_land",
+      "rat_phase_defeat",
+      "reskitter",
+      "alligator_assembly",
+      "alligator_jaw_warning",
+      "water_dive",
+      "tail_warning",
+      "debris_release",
+      "debris_impact",
+      "water_emerge",
+      "terminal_death",
+      "hit",
+      "exit_open",
+      "swim_start",
+      "jaw_snap"
+    ],
+    "beds": "Formed/dispersed looping beds, one active except brief crossfade; continuous subtle churn, bounded voices.",
+    "priority": "Terminal death > attack tell > transformation > hits > beds; duck bed to make tells readable.",
+    "lifecycle": "Pause suspends; death/reset/menu stop beds; terminal oneshot may finish. Offscreen beds attenuate; cue lengths never gate mechanics.",
+    "false_death": "Ratcollapse usesdistinctcollapseevent, nearsilent4.5s; reskitterbed rampsafterward. TerminaldeathonlyalligatorHP0. Timers owned by gameplay; no waitingaudiofinish.",
+    "integration": "Map hit to helper.play_hit; exit_open is a world event, not an audio cue. Other events map to helper.event. Reset invokes helper.stop separately; frozen state invokes set_paused."
+  },
+  "placement": {
+    "status": "Commissioned fixed-room direction; exactworldcoordinatesownedbyLevelDesign updatedcontract.",
+    "viewport": [
+      960,
+      540
+    ],
+    "floor_y": 440,
+    "checkpoint": 4650,
+    "routing": "Aboutonescreen aftercheckpoint then~onescreenemptyapproach/largepipe; lockcameraallaxes insidefightroom untilfinaldeath; exitrightpipecontinuesthelevel. Replacesoldoptional7950arena.",
+    "isolation": "Level contract: opaque entrance transition retires fully hidden prior actors/projectiles without kill credit; Engineering integration owns this.",
+    "ports": "Art runtime mouth anchors: ceiling(250,166)/(710,166), walls(48,232)/(912,232). CeilingY166 supersedes design122 to match authored elbow. Controller/test aligned; Level must update layout reference.",
+    "reference": "handoffs/skitterling-locked-room.json"
+  },
+  "reset": {
+    "ownership": "Assign stable encounterID/respawn segment before runtime integration; existing checkpoint4650 ownership rule applies.",
+    "death": "Checkpointretry reconstructs720HP ratentry, clearsphase/ports/rocks/throworigins/chargelegs/audio/camera/exit. Retainrunseed and existinglives/clone stock.",
+    "cleanup": "Clear colliders/hazards/roach visuals,pattern reservations,transient particles and audio voices. Preserve run seed,selected hero,difficulty,checkpoint and clone stock.",
+    "difficulty": "Same initialHP/damage/tells across modes; future attack composition changes require explicit tuning."
+  },
+  "acceptance": [
+    "Both heroes can damage rat/alligator with default horizontal shot while standing; no mandatory unavailable weapon.",
+    "Scattered and reforming states do not harm hero; overlap prevents unsafe formation.",
+    "No perroach damage multiplication, repeated contact stacking, scene-wall tunneling or offscreen attacks.",
+    "Every formed living state visibly churns including idle/windup/recovery/hit.",
+    "All attack patterns have visible warnings, escape routes and safe vulnerability/recovery opportunities.",
+    "Pause/death/checkpoint/newrun cleanup and exact ownership restoration tested.",
+    "Seeded repeatable simulations plus permitted human fairness/visual/audio review before calling encounter balanced.",
+    "Ratphaseclampsat180,never skipsalligator evenwithoverkill/multiplesameframehits; midpointneverunlocksexit.",
+    "Exact2/2.5/4.5/4.5/2.5s transition timers pause/freeze correctly; camera stayslocked untilfinaldeath.",
+    "Pipewarninglasts2s with lockedtrajectory; hero can dodge, never homing duringlaunch; landing recovery atactualground.",
+    "Submergedalligatorinvulnerable; three sequential rocks, max1live,three distinct committedcolumns,clearbeforeemergence; no debris/jawoverlap.",
+    "Full960room corner/hero-side/standingweapon accessibility checked bothheroes/allmodes; no invisiblebodyblockingtrap.",
+    "Death/checkpoint/reentry releases then restoresappropriatecameralock,seed,HP,closedexit andall budgets exactlyonce."
+  ],
+  "owners": {
+    "mechanics": "scripts/skitterling_encounter.gd, tests/skitterling_encounter.gd and this mechanics contract.",
+    "art": "Canonical creature/art metadata and sprite source",
+    "engineering": "World/camera/bullet/lifecycle/art/audio integration, build/regressions, roadmap and storybook delivery.",
+    "storyboarding": "Name/lore",
+    "audio": "Source cues and manifests",
+    "level_design": "Exactfixedroom/approach/portgeometry/camera/route integrationcontract."
+  },
+  "validation": "Focusedheadless suite PASS exit0: rat540/gator180 phase accounting/reset; existingtimers/occupancy/freeze/seed; bothhero speeds270/235 actual26x46 at32/120/450/814/900; stationary gets3upwardhits, moving80px dodgesall;3distinctcommittedorigins; continuous340pxs swims includingemergence;1live projectile;2roomcharges/fullturntells; stationarychargehit/timedstandardjumpclear at120/450/814. Difficulty usesidenticalcontroller rules; actualmode/scene integration matrix remainsEngineering-owned. ExistingmacOSCA diagnosticonly.",
+  "superseded": [
+    "Earlier optional7950..9150 arena/1200width and no-integration boundary.",
+    "Earlier3s collapse/scatter/reform and carry-all-overkill threshold.",
+    "Earlier140px extra invisible-prone bite extension; current jaw lunge translates wholebody90px with visible jaws.",
+    "Rat180/total360 nowrat540/total720; alligator180 retained.",
+    "Previoussinglefixedcolumn/harmlessupwardrocks replaced3distinctreacquiredswimorigins/upanddownhits.",
+    "Previousshort90pxgatorlunge replaced2roomtraversalswithfullreversalwarning."
+  ],
+  "debris_geometry": {
+    "max_live": 1,
+    "global_projectile_cap": 6,
+    "column_width_pixels": 48,
+    "recommended_radius_pixels": 14,
+    "launch_y": 500,
+    "apex_y": 150,
+    "gravity_pixels_per_second_squared": 1000,
+    "initial_up_speed": 836.6600265340755,
+    "lifetime_seconds": null,
+    "rule": "One live28px rock; upANDdown damaging. Three sequentialthrows withactualtracking swims/pause between. Distinctorigin offsets preferred[-10,0,10] around CURRENTherocenter while swimming, fallbacknearbyoffsets ifreused. Commit onarrival; warning/rock fixed. Descentremovedat440."
+  },
+  "controller_delivery": {
+    "status": "Revised540/180 combat controller and focused tests delivered; next combined build pending",
+    "source": "scripts/skitterling_encounter.gd",
+    "test": "tests/skitterling_encounter.gd",
+    "api": [
+      "configure(run_seed:int)",
+      "reset()",
+      "start(hero_rect:Rect2)",
+      "step(delta:float,hero_rect:Rect2,frozen:bool=false)",
+      "damage(amount:int)->int accepted",
+      "damageable()->bool",
+      "visible()->bool",
+      "body_rect()->Rect2",
+      "hurt_regions()->Array[Rect2]",
+      "snapshot()->Dictionary",
+      "drain_events()->Array[String]"
+    ],
+    "coordinates": "Room-localfeetanchor, translateworldx6570. Heroactual26x46, portalbounds120..814 included. Body nonblocking. Snapshot additionally exposes swim_target,throw_origins,throw_count,charge_end.",
+    "caller_contract": "Call step once per simulation frame, including frozen=true during pause/death/dialogue/dispenser. Resolve returned hurt regions once against hero with global invulnerability. Deduplicate each projectile compound-body hit; damage() is per accepted hit, not per sprite. Drain events after step and after damage. Do not feed hit/exit_open to generic audio helper.event. reset clears pending events and flags; separately stop audio and release camera/doors.",
+    "geometry_limit": "Art mustmap underwatermotion/tail/currentrock28px andlow72x44snappingjaw; no code-generatedart. Sceneintegration actualhitinvulnerability/camera/bullets andhumanvisualbalance pending.",
+    "validation": "Focusedheadless suite PASS exit0: rat540/gator180 phase accounting/reset; existingtimers/occupancy/freeze/seed; bothhero speeds270/235 actual26x46 at32/120/450/814/900; stationary gets3upwardhits, moving80px dodgesall;3distinctcommittedorigins; continuous340pxs swims includingemergence;1live projectile;2roomcharges/fullturntells; stationarychargehit/timedstandardjumpclear at120/450/814. Difficulty usesidenticalcontroller rules; actualmode/scene integration matrix remainsEngineering-owned. ExistingmacOSCA diagnosticonly.",
+    "log": "/tmp/skitterling-revised-test.log",
+    "build": "Pending combined Engineering integration with room/art/audio; no game window opened.",
+    "port_alignment": "Controller PORTS match assets/world/skitterling-room/manifest-v1.json mouth_center values; focused test asserts allfour. CeilingY166 adopted from measured art; no shifted invisible launch origin.",
+    "occupancy_fix": "Existinghold/reselect/abort safeguards retained. Surface warningreselection now continuousswim beforefreshwarning; no underwaterteleport.",
+    "tracking_fix": "Swimmer nowcontinuouslyreacquires beforecommit, speed340 outrunsbothheroes. Headless tests hero235/270 bothdirections bouncingwithin120..814: swimmercatchescurrentfootprint; perframeboundedmotion; warningholdsposition and releasedrockcolumn staysfixed afterhero relocates. Entirefocused suitePASS."
+  }
+}

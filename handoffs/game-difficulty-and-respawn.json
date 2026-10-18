@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-17",
+  "status": "Core difficulty selection and encounter resets delivered in Prototype 58 / 0.58.0; Hard selection portraits integrated; gameplay costumes pending.",
+  "user_request": "Difficulty selection screen and full encounter respawn from active respawn origin; consult Art, Engineering, Storyboarding.",
+  "flow": {
+    "recommended": "Start Game -> Hero -> Difficulty -> existing introduction/play",
+    "default": "Normal",
+    "back": "Return to hero selection preserving choice",
+    "input": "Existing keyboard/controller/mouse conventions; A confirms/B backs; release guards prevent instant start"
+  },
+  "difficulty": {
+    "easy": "Fixed authored roster and approved entrances, consistent progress-relative timing; smaller groups and longer breathing.",
+    "normal": "Controlled seeded variants of entrances, timing and compatible species; baseline intended challenge.",
+    "hard": "Broader tested combinations and overlap, shorter recovery; preserve safe exits and readable warnings.",
+    "shared": "Initially preserve hero stats, weapon damage, monster HP, attack behavior; challenge via encounter scheduling.",
+    "safety": "Static still respects safe entry. No under-hero emergence or offscreen aimed fire. Never dump deferred backlog or silently raise bullet/pattern caps.",
+    "retry": "Resolve arrangement for run, retain on death/retry from checkpoint; new full run can select new seed.",
+    "tuning": "Exact variant weights/counts/timings are implementation tuning requiring tests, not approved numeric balance."
+  },
+  "respawn": {
+    "supersedes": "Historical preservation of defeated monsters and live encounter progress across player death.",
+    "before_checkpoint": "Reset all level encounters from beginning, including defeated enemies.",
+    "after_checkpoint": "Reset encounters belonging to active checkpoint segment and ahead; completed earlier sections remain inactive and cannot send pursuers.",
+    "boundary": "Partition checkpoint-straddling waves by explicit encounter ownership/eligible position, not current enemy position. No duplicate or skipped reset entries.",
+    "clear": "Old enemies/corpses, player and hostile projectiles, warning reservations, attack tokens, retry timers and local progression counters must be reset consistently.",
+    "retain": "Selected hero/difficulty/run arrangement; decrement life once, preserve active checkpoint and single-clone stock. No extra lives, clone refill or full intro on death.",
+    "source_finding": "Historical pre-fix finding: preserving_respawn suppressed encounter reset. Prototype 58 reconstructs eligible encounters by stable origin ownership; earlier segment remains excluded.",
+    "optional_checkpoint_tail": "4700 entry expires at4800; intentional optional bypass during1.25s active-control grace. Eligible restoration does not guarantee issuance."
+  },
+  "art": {
+    "required": "Difficulty subscreen assets as needed after Engineering dimensions/runtime contract, reuse existing approved art where suitable.",
+    "constraints": "No runtime collider/stat changes for cosmetics; preserve readable held tools and hero identity. No independent Engineering art substitutes.",
+    "approved_direction": "Hard-mode Tony and Sean have exaggerated muscles and torn work clothes, retaining trousers and recognizable trade gear.",
+    "approval": "Sean explicitly chose this direction on October 17, 2026 and requested production.",
+    "rejected_alternative": "Nudity with censor bars.",
+    "status": "Hard selection busts integrated in Prototype 58; full gameplay body/aim/death/HUD/dispenser costume artwork remains in production.",
+    "delivery_scope": "Selection-only costume milestone; current gameplay sprites remain unchanged. Full runtime appearance must not be claimed complete."
+  },
+  "owners": {
+    "engineering": "Implementation, coordination with Level Design, runtime data, tests, roadmap, build/version/signing, storybook capture or honest backlog.",
+    "art": "Menu art and visual recommendations, source metadata/prompts.",
+    "storyboarding": "Natural concise mode copy and creative opinion; no shame for Easy players; storybook editorial.",
+    "mechanics": "This contract and balance review."
+  },
+  "acceptance": [
+    "All three modes differ as described; labels never promise unimplemented dynamic scheduling.",
+    "Both heroes: pre-checkpoint death restores defeated encounter enemies; checkpoint death restores segment/ahead without old-section pursuers.",
+    "Kill, damage, warn, fire, die: restored full enemy HP and clean budgets/projectiles/corpses; no duplicate life loss.",
+    "Same run seed/arrangement across retry; new run variations reproducible for testing.",
+    "Checkpoint boundary crossing and straddling wave reset are explicit; no old ambush immediately on protected respawn.",
+    "Single clone remains consumed after actual vend across deaths, new run refills.",
+    "Menu Back/confirm and held input do not skip screen; selection survives navigation and reaches runtime.",
+    "Headless checks and packaged export required; visual/audio/fairness review remains separately pending."
+  ],
+  "delivery": "Engineering reports exported/signed Prototype 58,11 Python tests and13 packaged suites passing. Review findings for actual crowd limits and natural death-flush completion fixed and regressed. No foreground launch or actual screenshots; human visual/audio/fairness review pending.",
+  "delivery_record": "handoffs/game-difficulty-delivery.json",
+  "verification_attribution": "Delivery evidence read from Engineering handoff; tests were not independently rerun by Mechanics. Invulnerable scripted traversal is not survival/fairness proof."
+}

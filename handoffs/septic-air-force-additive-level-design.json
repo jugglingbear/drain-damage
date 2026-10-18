@@ -1,0 +1,180 @@
+{
+  "status": "Additive Level Design recommendation; Engineering owns implementation/tests/build/docs",
+  "request": "Sean requests many more Septic Air Force with increased overlap, without replacing any other monster entries.",
+  "audit": {
+    "base_reset": "sewer_swarm.gd creates2staticactors at2090(seed101) and4400(seed202).",
+    "integrated_fresh": "Filter removes homes below3120, leavingONLY4400 acrossEasy/Normal/Hard. Createdatreset, notprogress-triggered.",
+    "checkpoint_retry": "4650origin removesboth:ZEROremaining swarmactors.",
+    "post_boss": "Concealed clear_prior removesall swarms; none replenished afterboss.",
+    "lifecycle": "HP12,35px/s boundedseededwander,48pxcontactradius; deadactorsstaylisted butstopdrawing; not schedulerentries.",
+    "evidence_limit": "Source-derived creation counts, not measured realizedvisibility."
+  },
+  "schedule": [
+    {
+      "id": "opening-east",
+      "home": [
+        920,
+        330
+      ],
+      "bounds": [
+        840,
+        230,
+        200,
+        194
+      ],
+      "eligibility_x": 85,
+      "owner_origin": 85
+    },
+    {
+      "id": "opening-middle",
+      "home": [
+        1880,
+        330
+      ],
+      "bounds": [
+        1760,
+        230,
+        200,
+        194
+      ],
+      "eligibility_x": 920,
+      "owner_origin": 85
+    },
+    {
+      "id": "opening-exit",
+      "home": [
+        2890,
+        330
+      ],
+      "bounds": [
+        2760,
+        230,
+        260,
+        194
+      ],
+      "eligibility_x": 1930,
+      "owner_origin": 85
+    },
+    {
+      "id": "service-entry",
+      "home": [
+        3310,
+        330
+      ],
+      "bounds": [
+        3170,
+        230,
+        260,
+        194
+      ],
+      "eligibility_x": 2350,
+      "owner_origin": 85
+    },
+    {
+      "id": "original-service",
+      "home": [
+        4400,
+        330
+      ],
+      "bounds": [
+        4140,
+        230,
+        430,
+        194
+      ],
+      "eligibility_x": 3440,
+      "owner_origin": 85
+    },
+    {
+      "id": "pump-overhead",
+      "home": [
+        5260,
+        190
+      ],
+      "bounds": [
+        5020,
+        130,
+        480,
+        120
+      ],
+      "eligibility_x": 4300,
+      "owner_origin": 4650
+    },
+    {
+      "id": "boss-exit",
+      "home": [
+        7990,
+        330
+      ],
+      "bounds": [
+        7820,
+        230,
+        340,
+        194
+      ],
+      "eligibility_x": 7030,
+      "owner_origin": 4650
+    },
+    {
+      "id": "terminal-west",
+      "home": [
+        8720,
+        330
+      ],
+      "bounds": [
+        8550,
+        230,
+        340,
+        194
+      ],
+      "eligibility_x": 7760,
+      "owner_origin": 4650
+    },
+    {
+      "id": "terminal-east",
+      "home": [
+        9240,
+        330
+      ],
+      "bounds": [
+        9110,
+        230,
+        260,
+        194
+      ],
+      "eligibility_x": 8280,
+      "owner_origin": 4650
+    }
+  ],
+  "counts": {
+    "fresh_potential": 9,
+    "existing_retained": 1,
+    "added": 8,
+    "pre_checkpoint": 5,
+    "checkpoint_owned": 4,
+    "post_boss": 3
+  },
+  "modes": "Same9initialopportunitiesallmodes; preserveothermodeplans. Any reductions mustbeexplicitlyreported.",
+  "integration": [
+    "Separate stableIDswarmledger andRNGstream. Existingrun_plan opening/later entries unchanged; no replacement/removal.",
+    "Eligibilityhome-960 permitsoffscreencreation. Atfirstslotnearstart orafterlargeadvance, useexistingart/buzz withproposed0.8s harmlessvisiblelead-in ifcreationwouldbevisible. No underherospawn.",
+    "Preserve1.25s active-controlcheckpointgrace. Owner<4650 stays excluded oncheckpointretry; fourlater opportunities resetwithsameseeds.",
+    "All3postbossslots requireSkitterlingreleased. Do notinstantiatebeforeclear_prior andlosefutureopportunities. No swarm in5610..7530.",
+    "Retireonlyfullyoffscreenbehindwithoutkillcredit,neverreissuesameIDuntilretry. Dead/future/remoteactorsconsume no localbudget.",
+    "Atmost2visible/incoming swarms underseparateadditivebudget; deferwhenfull. Do notconsumeordinaryenemyadmission slots andcancelotheropportunities.",
+    "Preserveordinaryroute_pressure/crowdadmission accounting; newadditions mustnotstealordinarycapacity. Legacy4400contributionmayremainforcompatibility.",
+    "Reportrealcombinedpopulationhonestly andtestordinarycap+additivecap, ratherthanpretendoldcombinedcapstillholds. Do notmodifyexistingroster tofitoldcap.",
+    "KeepHP12,movement,sharedherocontactcooldown,art/audio unchanged. Swarmenvironmentaldamage canchangeordinarykill outcomes; reportratherthanclaimidenticalrealizedcombat.",
+    "Pump-overhead region staysabove260tallprop top; usesjump/aim access, notmandatorygroundshot. Keepgroundbypass."
+  ],
+  "geometry": "Candidatebounds needfull48radius and64renderhalfextent checks againstactualsolids. Openingpockets betweenplinths; modifyonlyswarmbounds ifinvalid.",
+  "acceptance": [
+    "Bothheroes/all3modes/seeds7/42/913 complete9450 includingboss; countpotential/issued/visible/defeated/bypassed byregion.",
+    "Distribution3opening+2service+1pump+3postboss;9potential isnot9guaranteedrealizedencounters.",
+    "100seedothermonsterplan serializationunchanged. Contact-disabledcomparison isolatesordinaryadmissioncompetition; contactenabledcomparison measureschaoticoutcomes.",
+    "Fresh5pre+4post; checkpointretry0pre+4post; bossclearpreservesfutureledger; no duplicateIDs.",
+    "Quiet/roomcollisionandrenderbounds excluded; no grace/pause/deathentry; sharedcooldownandaudiovoices bounded.",
+    "Beforebaseline1created fresh/0checkpoint/0postboss; afteractualcounts reported, notinferredfrommetadata.",
+    "Humanfairness/playtest remainsseparate andpermission-gated."
+  ]
+}

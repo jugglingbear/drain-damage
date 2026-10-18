@@ -1,0 +1,85 @@
+{
+  "status": "Delivered Prototype58; automated checks pass; live fairness/visual review pending",
+  "updated_at": "2026-10-17T15:47:12-07:00",
+  "delivery": {
+    "created_at": "2026-10-17T15:47:12-07:00",
+    "timezone": "America/Los_Angeles",
+    "utc_offset": "-07:00",
+    "timestamp_kind": "Delivery record creation, not capture time",
+    "capture_time": null,
+    "build": "Prototype 58 / 0.58.0",
+    "source_head": "49cc403 plus uncommitted integrations",
+    "app": "builds/Prototype-58/Drain Damage.app",
+    "archive": "builds/history/Prototype-58.zip",
+    "archive_sha256": "03dc385633a2c198b21043abb2b0706a84c826fd8b9ed895e9779a2369b8932a",
+    "status": "Export/signing,11Python tests and13packaged Godot suites PASS; live review pending",
+    "capture_gap": "No game window opened; actual screenshots await permission.",
+    "capture_backlog": [
+      "Difficulty screen for all three modes and both Hard portraits",
+      "Back navigation preserving hero",
+      "Representative mode gameplay",
+      "Before/after checkpoint death and encounter restoration"
+    ],
+    "pending": "Hard gameplay costume body/aim/death/HUD/dispenser art remains in production; only selection busts delivered."
+  },
+  "capture_record": "storybook/058-difficulty-and-encounter-resets/20261017-154712-capture-status.json",
+  "contracts": [
+    "handoffs/game-difficulty-and-respawn.json",
+    "handoffs/game-difficulty-story.json",
+    "handoffs/game-difficulty-art.json",
+    "handoffs/difficulty-respawn-level-design.json"
+  ],
+  "flow": "Start -> Hero -> Difficulty -> existing intro. Normal default. Back retains hero. Keyboard/controller/mouse and release guards.",
+  "plan_source": "scripts/difficulty_plan.gd; resolve once per full run, serialized dictionary retained for remaining-life respawn",
+  "tuning": {
+    "easy": "8enabled opening entries,22later; fixed roster/triggers/entrance preferences; crowd4,opening spacing1.1s,later1.2s",
+    "normal": "12opening,36later; optional later emerger/rear-runner substitutions,trigger/entrance/spacing seed variation; crowd6,opening.8s,later.8–1.1s",
+    "hard": "12opening,36later; extra shooter/emerger combinations,seeded triggers/entrances; crowd8 or6withWidow,opening.6s,later.65–.8s",
+    "limits": "Shooter3,bullets6,patterns3 unchanged; one live/warning Widow; live entry safety may defer/bypass, no forced quotas.",
+    "unchanged": "Hero movement/health,monster HP,weapon damage,attack tells and checkpoint position.",
+    "baseline_change": "Normal crowd6 is lower than prior integrated8; this is initial tuning,not human fairness signoff."
+  },
+  "respawn": {
+    "before_checkpoint": "Rebuild whole encounter plan from85,including defeated enemies and4400swarm.",
+    "checkpoint": "Rebuild checkpoint-owned entries from4650; all12opening,4400swarm and7pre-checkpoint later IDs excluded regardless of actor position.",
+    "partition": "36stable later IDs=7before/29after. Easy explicitly disables14. First checkpoint-owned trigger4700 forward-only,expires4800.",
+    "grace": "Require1.25s active-control time and progress. Moving respawns normally bypass4700 tail; intentional optional omission,not moved into nextwave.",
+    "clear": "Actors,enemies,corpses,particles,friendly/hostile shots,warning reservations,pattern/bullet tokens,retry clocks and local counters.",
+    "retain": "Hero,difficulty,run seed/resolved plan,checkpoint,lives after one death debit,and consumed single-clone stock.",
+    "audio": "Death flush continues through early Continue; no new intro. Full GameOver Retry starts newrun/newseed and refillsstock."
+  },
+  "art_scope": "Existing title/menu art reused per Art contract. New muscular/torn-workclothes busts appear only in Hard selection. Full gameplay costume not shipped.",
+  "checks": {
+    "python": "11unittest tests PASS",
+    "packaged_suites": [
+      "difficulty_menu",
+      "difficulty_respawn",
+      "difficulty_traversal",
+      "integrated_opening",
+      "opening",
+      "menu_audio",
+      "hero_death_audio",
+      "employee_dispenser",
+      "gratecrawler_patrol",
+      "hostile_projectile",
+      "standing_shots",
+      "opening_death_and_warmup",
+      "build_version"
+    ],
+    "logs": "builds/verification-58/",
+    "method": "Godot4.7.2 headless,external script and exported PCK from /private/tmp; PASS and no SCRIPT ERROR.",
+    "coverage": "300resolved plans;18mode/hero/seed traversal scenarios60/120Hz; actual opening/later crowd admission; genuine lethal/popup/Continue with killed enemies at both origins; checkpoint4649/4650 and lethal crossing; audio/stock retention.",
+    "warnings": "Existing user-log/editor-settings permission errors,macOS environment diagnostic,ObjectDB/resource shutdown warnings.",
+    "fixed_during_review": [
+      "Crowd cap initially used oldconstant; corrected and actual admission tested.",
+      "Respawn initially cut death-flush audio; removed stop and tested early Continue.",
+      "Traversal fixtures corrected move_speed field and restored intended invulnerability/input release state."
+    ]
+  },
+  "limitations": [
+    "No foreground window or screenshot.",
+    "Automated traversal uses invulnerability; not survival/fairness evidence.",
+    "Safety filtering may omit planned entries depending on player motion.",
+    "Hard gameplay costume work remains with Art."
+  ]
+}

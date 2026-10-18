@@ -8,6 +8,7 @@ signal title_requested
 const BossHUD = preload("res://scripts/boss_hud.gd")
 var boss_hud := BossHUD.new()
 
+const FlushfiendNavigation = preload("res://scripts/flushfiend_navigation.gd")
 const Data = preload("res://scripts/combat_data.gd")
 var weapon: Dictionary
 var corpses: Array[Dictionary] = []
@@ -34,8 +35,12 @@ const DoorAudio = preload("res://scripts/door_audio.gd")
 var door_audio := DoorAudio.new()
 const SwarmAudio = preload("res://scripts/swarm_audio.gd")
 var swarm_audio := SwarmAudio.new()
-const FlushfiendDeathAudio = preload("res://scripts/flushfiend_death_audio.gd")
-var flushfiend_death_audio := FlushfiendDeathAudio.new()
+const CreatureAudio = preload("res://scripts/creature_audio.gd")
+var flushfiend_death_audio := CreatureAudio.new("toilet")
+var sputtervalve_audio := CreatureAudio.new("sputtervalve")
+var creature_audio := {"toilet": flushfiend_death_audio, "sputtervalve": sputtervalve_audio,
+	"spider": CreatureAudio.new("spider"), "gratecrawler": CreatureAudio.new("gratecrawler"),
+	"sewer-fly-swarm": CreatureAudio.new("sewer-fly-swarm")}
 const HeroDeathAudio = preload("res://scripts/hero_death_audio.gd")
 var hero_death_audio := HeroDeathAudio.new()
 var encounter_triggered: Array[bool] = [false,false,false,false,false,false,false]
@@ -160,7 +165,8 @@ func _ready() -> void:
 	dispenser.attach(self)
 	door_audio.attach(self,Level.GATES.size())
 	swarm_audio.attach(self)
-	flushfiend_death_audio.attach(self)
+	swarms.damaged.connect(_on_swarm_damaged)
+	for sound in creature_audio.values(): sound.attach(self)
 	hero_death_audio.attach(self)
 	reset_game()
 
@@ -202,7 +208,7 @@ func create_pause_menu() -> void:
 func set_paused(value: bool) -> void:
 	paused = value
 	door_audio.set_paused(value)
-	flushfiend_death_audio.set_paused(value)
+	for sound in creature_audio.values(): sound.set_paused(value)
 	# The death popup pauses gameplay automatically, but lets the flush finish.
 	hero_death_audio.set_paused(value and life_state not in ["death_popup","game_over"])
 	pause_stick_latched = false
@@ -309,7 +315,7 @@ func request_title() -> void:
 	if death_popup_locked: return
 	door_audio.stop()
 	swarm_audio.stop()
-	flushfiend_death_audio.stop()
+	for sound in creature_audio.values(): sound.stop()
 	hero_death_audio.stop()
 	dispenser.cancel()
 	set_paused(false)
@@ -320,7 +326,7 @@ func request_title() -> void:
 func _exit_tree() -> void:
 	door_audio.dispose()
 	swarm_audio.dispose()
-	flushfiend_death_audio.dispose()
+	for sound in creature_audio.values(): sound.dispose()
 	hero_death_audio.dispose()
 	dispenser.dispose()
 	audio_player.stop()
@@ -360,7 +366,7 @@ func reset_game() -> void:
 	dispenser.reset_stock()
 	door_audio.stop()
 	swarm_audio.stop()
-	flushfiend_death_audio.stop()
+	for sound in creature_audio.values(): sound.stop()
 	hero_death_audio.stop()
 	dispenser.cancel()
 	boss_hud.end_encounter()
@@ -606,12 +612,11 @@ func step_combat(delta: float) -> void:
 		if not enemy.aggro: enemy.horizontal_speed = dx
 		var obstacles := player_shot_solids()
 		var vy: float = enemy.get("vertical_speed",0.0)
-		if enemy.get("grounded",true) and dx != 0:
-			for rect in obstacles:
-				var edge: float = rect.position.x - (enemy.pos.x + 38) if dx > 0 else enemy.pos.x - rect.end.x
-				var rise: float = enemy.pos.y + 36 - rect.position.y
-				if edge >= -0.1 and edge <= 8 and rise > 1 and rise <= 61:
-					vy = JUMP_SPEED
+		var navigation := FlushfiendNavigation.velocity(Rect2(enemy.pos,Vector2(38,36)),
+			Vector2(dx,vy),enemy,delta,obstacles,move_player_body,GRAVITY,JUMP_SPEED)
+		dx = navigation.x
+		vy = navigation.y
+		if dx != 0: enemy.direction = signf(dx)
 		vy += GRAVITY * delta
 		var motion := move_player_body(enemy.pos, Vector2(dx,vy), Vector2(38,36), delta)
 		enemy.pos = motion.pos
@@ -725,6 +730,11 @@ func segment_hit(start: Vector2, end: Vector2, area: Rect2) -> float:
 			if near > far: return -1.0
 	return near
 
+func _on_swarm_damaged(actor: Dictionary, lethal: bool) -> void:
+	var sound = creature_audio["sewer-fly-swarm"]
+	if lethal: sound.play_defeat()
+	else: sound.play_hit(actor, elapsed)
+
 func damage_enemy(index: int, amount: float, impact: Vector2, player_credit := true) -> void:
 	if amount <= 0 or not is_finite(amount):
 		push_error("Damage must be finite and positive")
@@ -733,9 +743,9 @@ func damage_enemy(index: int, amount: float, impact: Vector2, player_credit := t
 	enemy.hp = clampf(enemy.hp - amount, 0, enemy.max_hp)
 	enemy.flash = Data.bundle.visual_policy.hit_feedback.suggested_flash_seconds
 	burst(impact, MINT)
-	if enemy.hp > 0 or enemy.id != "toilet": play_tone(90.0, 0.08)
+	if enemy.hp > 0: creature_audio[enemy.id].play_hit(enemy, elapsed)
 	if enemy.hp == 0:
-		if enemy.id == "toilet": flushfiend_death_audio.play_defeat()
+		creature_audio[enemy.id].play_defeat()
 		enemy.death_time = 0.0
 		enemy.death_velocity = 0.0
 		enemy.aggro = false
@@ -794,6 +804,7 @@ func step_death(delta: float) -> void:
 	set_paused(true)
 
 func respawn_after_death() -> void:
+	for sound in creature_audio.values(): sound.stop()
 	if lives <= 0: return
 	life_state = "alive"
 	health = employee.max_health

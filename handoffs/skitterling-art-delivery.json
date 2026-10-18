@@ -1,0 +1,51 @@
+{
+  "creature_id": "cockroach-swarm",
+  "display_name": "Skitterling",
+  "status": "Delivered in Prototype 71 / 0.71.0; packaged verification passed. Live visual, listening and fairness review pending.",
+  "runtime_manifest": "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json",
+  "room_manifest": "assets/world/skitterling-room/manifest-v1.json",
+  "approved_preparation": "Cache alpha240 cutoff to remove generated haze; retain original PNGs. Nearest filtering.",
+  "checks": [
+    "All enabled creature frames have zero opaque pixels at crop edges at alpha240",
+    "All16 effects frames have zero opaque pixels at crop edges at alpha240",
+    "Source dimensions and hashes recorded in creature runtime manifest",
+    "Read-only canonical metadata build passes for7creatures; no generated runtime file rewritten",
+    "JSON and gallery HTML parse",
+    "Mechanics reports controller ports match authored manifest, including ceiling mouthY166; controller port tests pass",
+    "Godot headless renderer test passes: cached preparation reused across instances",
+    "All authored roach-churn variants preserve exact body alpha mask and change body pixels",
+    "Mirrored visible bounds match; false-death pose freezes after0.5s for a full4.0s apparent-death hold",
+    "All controller duration states render headlessly including safe abort/return",
+    "Open/closed sideportal everypixelof160x46 innerband opaque afteralpha240; fullheroRect at6550/7510 enclosed"
+  ],
+  "remaining": [
+    "Live animation composition, transition continuity and visual review",
+    "Permission-dependent gameplay captures"
+  ],
+  "source_preservation": "Earlier candidates and exact prompts preserved; disabled crop-edge frames remain recorded but excluded from animations",
+  "new_assets": [
+    "assets/world/skitterling-room/background-v1.png",
+    "assets/world/skitterling-room/pipes-v1.png",
+    "assets/world/skitterling-room/effects-v1.png",
+    "assets/bestiary/cockroach-swarm/actions-v1.png",
+    "assets/bestiary/cockroach-swarm/water-actions-v2.png",
+    "assets/bestiary/cockroach-swarm/rat-flight-v2.png"
+  ],
+  "runtime_adapter": "scripts/skitterling_art.gd",
+  "focused_test": "tests/skitterling_art.gd",
+  "warning_registration": "Surface warning uses committed landing.x; debris lane at column_x is marked with authored splash above walkway fromy384..440 throughout warning and debris states.",
+  "portal_art": "assets/world/skitterling-room/side-portals-v1.png",
+  "portal_prompt": "assets/world/skitterling-room/side-portals-prompts-v1.json",
+  "portal_manifest": "assets/world/skitterling-room/manifest-v1.json#portals",
+  "portal_api": "draw_portals_back/front(host,world_origin,entry_closed,exit_open); portal_occlusion_rects(world_origin,entry_closed,exit_open)",
+  "revision": "Ratruntime540HP +gator180HP; swimvisiblebelowwalkway, threeone-shot tailflicks, snappingcharge; no newgamewindow",
+  "release_verification": {
+    "version": "0.71.0",
+    "packaged_suites": 20,
+    "python_tests": 32,
+    "source_export_cli_checks": 16,
+    "full_routes": 18,
+    "reported_by": "Engineering",
+    "live_review": "Visual, listening and fairness pending"
+  }
+}

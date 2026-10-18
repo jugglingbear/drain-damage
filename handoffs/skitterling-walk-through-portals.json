@@ -1,0 +1,75 @@
+{
+  "status": "Level Design integration contract; Art mask validation pending, Engineering owns runtime",
+  "supersedes": "Concealed teleport tolocal96 and timedfreeze/fade in skitterling-locked-room.json; preserve earlier document ashistory.",
+  "coordinates": {
+    "room": [
+      6570,
+      7530
+    ],
+    "floor_y": 440,
+    "hero_body": [
+      26,
+      46
+    ],
+    "entrance_barrel": [
+      6450,
+      6690
+    ],
+    "exit_barrel": [
+      7410,
+      7650
+    ],
+    "entry_camera_blend": [
+      6250,
+      6690
+    ],
+    "entry_commit_hero_left": 6690,
+    "battle_hero_left_limits": [
+      6690,
+      7384
+    ],
+    "exit_closed_inner_plane": 7410,
+    "exit_release_hero_left": 7650
+  },
+  "art_contract": [
+    "Sideview horizontalpipe withcontinuouswalkablebore; authoredopaque foregroundbarrel plusmouthlip hidehero naturally untilbodyemerges.",
+    "Proposed240pxbarrels, openingsclearanceatleast64pxhigh abovefloor440; complete26x46colliderfits. Artworkrenderboundsmayextend beyondtravelinterval.",
+    "Art mustdeliveractualopaque coverage intervals andmasks; do nothideentirehero withboolean atrectboundary wherevisibleparts shouldshow.",
+    "Foregroundpipe drawsafterhero/projectiles andbeforeHUD; bodyparts outsidebarrel remainvisible. No fullscreenfade or closedshutter stretchedoverhero.",
+    "Exitclosedcap must visibly aligninnerplane7410 beforefightcompletion; openinganimation thenremovescollider. Entrycap closesbehindhero onlyafterfullyemerged."
+  ],
+  "movement": [
+    "Useordinarycontinuousinput/physics throughbothbarrels. Neverassignplayerposition orzero horizontalvelocity tocompleteportal; noautowalk required.",
+    "Floor remainscontinuous440; pipe artworkcreatesnodrowning,mandatoryjump,ledge orhiddenobstacle.",
+    "Beforeentrycommit hero maystop/reverse/backtrackthroughentry normally; do nottriggerboss or irreversiblecleanup onfirsttouch6450.",
+    "At hero.left>=6690 entirebodyhasclearedentrybarrel. Closeentrybehind, markentered,startbossintroonce andlockcamera6570,0.",
+    "Duringbattleleftbound6690 prevents reenteringclosedentry; rightbound7410-herowidth keepsherooutsideclosedexit. Clampcollision normally,neverreposition intoarena.",
+    "Onterminaldeathclearhazards/openexit. Permitwalkingrightthrough7410..7650. Do notreleaseexit merelyonratcollapse.",
+    "Afterdefeat reversewithinexitpipe isallowed, withsameocclusion; no relock/replay/heal. Entry remainsvisiblyclosed afterbattle, so noaccidentalreturntolockedapproach.",
+    "Markreleased oncehero.left>=7650 (fullybeyondexitbarrel), preservebossdefeatedflag foreverthisattempt. Backtrackingintoopenroom isallowedwithoutrespawningboss.",
+    "Noportal completion isbasedonlyontimer; stoppinginsidepipe mustremainstable/resumable."
+  ],
+  "camera": [
+    "Entry usesposition-based continuousblend, notcamera snap or free-running timer. Forhero.left6250..6690, mapcameraX5930..6570 withsmoothstep((x-6250)/440); outsidebeforeblend useexistingfollow.",
+    "Blend isreversiblebeforecommit. Theseendpoints matchnormal320pxfollowat6250 andlocked6570at6690; fullhero staysonviewport duringblend.",
+    "Duringallbossstates camera exactly6570,0; noleft/right/up/downscroll untilterminaldefeat.",
+    "Afterexitopens, keepcamera6570 whileheroapproachesexit; ashero.left crosses7410..7650 blend from6570 totheordinaryfollowtarget(player.x-320) using smoothstep.",
+    "Usepositionblend insideexit evenifplayerreverses; endcamera7330 at7650, continuouswithnormalfollow. Defeatedroom remainsunlocked, no sudden snapback onreverse.",
+    "Afterrelease maintaincontinuouscamera policy aroundexitband onbacktracking; do notswitch tolockedbranchbasedonenteredflagalone.",
+    "Pause/deathfreeze positionandcamera. Checkpointretry resetsportalstates andnormalfollowat4650; no leftoverblend."
+  ],
+  "cleanup_and_swarms": [
+    "Preservequiet5610..6570 andexistingnine-swarmledger; no new ordinaryentries through unreleasedbossregion.",
+    "Containpriorpursuers beforequiet; cleanup onlywhentheyareoffscreen/fullyoccluded andcannotvisiblydisappear. Entrancebarrel no longerjustifiesfullscreenconcealment.",
+    "PreservependingpostbossswarmIDs; releaseat7650stillallowsfirsthome7990withsafe0.8s visiblewarning. All9remainpotential; rerunrealizeddistribution.",
+    "No killcreditforportalcleanup; clearwarning/projectiletokensalongwithactors. Do notresetHP/lives/stock whilewalking."
+  ],
+  "tests": [
+    "Bothheroes bothdirections stop/reverse atmouth,midbarrel,emergence; assertpositiondelta neverexceedsordinarymotion/collision allowance.",
+    "Entrycommitexactonce at6690; no actorpositionassignment to96local. Camera continuousat6250/6690/7410/7650 andfixedthroughallfightstates.",
+    "Bounds checkhero remainsvisible whenoutsidebarrel; screenshotocclusionusesactualalphamask,notblanketactorhide.",
+    "Ratfalse-deathkeepsclosedexit; finaldefeatopens; retreatinsideexitneverrelocks/restarts. Postreleasebacktrackingthroughopenexit safe.",
+    "Checkpointdeathinsideeachportal/phaseclearsblend andretainsstock/lives/seedpolicy.",
+    "Headlesscontinuousworldtraversal +all9swarmdistribution; visualocclusion/camerafeel remainsapprovedplaytestgap."
+  ]
+}

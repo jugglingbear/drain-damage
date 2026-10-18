@@ -1,61 +1,136 @@
 extends "res://scripts/opening_trial_game.gd"
 ## Continuous opening replaces the first two rooms; campaign coordinates never change.
+const SkitterlingRoom = preload("res://scripts/skitterling_room.gd")
+var skitterling := SkitterlingRoom.new()
+const SwarmSchedule = preload("res://scripts/swarm_schedule.gd")
+var swarm_schedule := SwarmSchedule.new()
 const OPENING_END := 3120.0
-const TRIGGERS := [100.0,250.0,450.0,600.0,800.0,1000.0,1200.0,1400.0,1650.0,1900.0,2200.0,2450.0]
-const WAVE_RANGES := [Vector2(3500,4800), Vector2(4900,6480), Vector2(6860,8160), Vector2(8400,9380)]
-const WAVE_COUNTS := [8,10,10,8]
-const CROWD_CAP := 8
 var wave_spawned: Array[int] = [0,0,0,0]
 var wave_bypassed: Array[int] = [0,0,0,0]
 var wave_clock := 0.0
 var next_wave_spawn := 0.0
 var retired_crowd := 0
 var route_progress := 0.0
-var preserving_respawn := false
+const DifficultyPlan = preload("res://scripts/difficulty_plan.gd")
+var difficulty := "normal"
+var seed_override := -1
+var run_seed := 0
+var run_plan: Dictionary = {}
+var encounter_states: Dictionary = {}
+var respawn_origin := 85.0
+var rebuilding_respawn := false
+var next_opening_spawn := 0.0
 var opening_passed := false
+var route_admitted: Dictionary = {}
+var route_fallbacks: Dictionary = {}
 
 func _ready() -> void:
 	super._ready()
+	skitterling.attach(self)
 	# Base _ready dispatched reset_game, so the mixed geometry is already configured.
 
+func reset_game() -> void:
+	dialogue.hard_portraits = difficulty == "hard"
+	dialogue.hard_dialogue = difficulty == "hard"
+	world_art.hero_aim_art.configure(difficulty == "hard")
+	dispenser.configure(difficulty == "hard")
+	run_seed = seed_override if seed_override >= 0 else randi()
+	run_plan = DifficultyPlan.resolve(difficulty,run_seed)
+	respawn_origin = 85.0
+	super.reset_game()
+
 func reset_observation() -> void:
-	if preserving_respawn: return
+	# Parent respawn calls this after restoring the hero/dispenser; reset once beforehand instead.
+	if rebuilding_respawn: return
 	super.reset_observation()
-	opening_passed = false
+	skitterling.reset(run_seed)
+	boss_hud.end_encounter()
+	opening_passed = respawn_origin >= OPENING_END
+	corpses.clear()
+	particles.clear()
+	kills = 0
+	player_kills = 0
+	fire_timer = 0
+	jump_buffer = 0
+	next_opening_spawn = 0
+	encounter_states.clear()
+	route_admitted.clear()
+	route_fallbacks.clear()
+	for event in run_plan.later:
+		encounter_states[event.id] = "pending" if event.enabled and event.owner_origin >= respawn_origin else "excluded"
 	wave_spawned.fill(0)
 	wave_bypassed.fill(0)
 	wave_clock = 0
 	next_wave_spawn = 0
 	retired_crowd = 0
-	route_progress = 0
+	route_progress = respawn_origin
 	swarms.reset()
 	for index in range(swarms.actors.size()-1,-1,-1):
-		if swarms.actors[index].pos.x < OPENING_END: swarms.actors.remove_at(index)
+		if swarms.actors[index].pos.x < maxf(OPENING_END,respawn_origin): swarms.actors.remove_at(index)
+	swarm_schedule.reset(self)
 	var layout: Dictionary = trial_data.layout.duplicate(true)
 	var kept: Array = []
 	for item in layout.geometry:
 		if float(item.rect[0]) < OPENING_END - 500: kept.append(item)
 	layout.geometry = kept
-	for event in layout.timeline: event.eligible_gameplay_second = 0.0
-	trial_state.configure(layout, trial_data.balance, true)
+	for index in range(layout.timeline.size()):
+		var event: Dictionary = layout.timeline[index]
+		var resolved: Dictionary = run_plan.opening[index]
+		event.eligible_gameplay_second = 0.0
+		event.role = resolved.role
+		for authored in trial_data.layout.timeline:
+			if authored.role == event.role:
+				event.warning_seconds = authored.warning_seconds
+				event.settle_seconds = authored.get("settle_seconds",0.0)
+				break
+	if difficulty == "normal":
+		for resolved in run_plan.later:
+			for authored in trial_data.layout.timeline:
+				if authored.role != resolved.role: continue
+				var event: Dictionary = authored.duplicate(true)
+				event.id = resolved.id
+				event.eligible_gameplay_second = 0.0
+				layout.timeline.append(event)
+				break
+	var configured := trial_state.configure(layout, trial_data.balance, true)
+	assert(configured)
+	if difficulty == "normal":
+		for event in run_plan.later:
+			if event.owner_origin < respawn_origin:
+				trial_state.mark_unavailable(event.id,"excluded by respawn ownership")
+	for event in run_plan.opening:
+		if not event.enabled or event.owner_origin < respawn_origin:
+			trial_state.mark_unavailable(event.id,"excluded by difficulty or respawn ownership")
 	trial_level.configure(layout)
 	trial_level.width = WORLD_WIDTH
 	for rect in Level.PROPS:
-		if rect.position.x >= OPENING_END: trial_level.plinths.append(rect)
+		if rect.position.x >= OPENING_END and skitterling.allowed_body(rect): trial_level.plinths.append(rect)
+	for event in run_plan.later:
+		if event.trigger >= SkitterlingRoom.QUIET and event.trigger < SkitterlingRoom.END:
+			encounter_states[event.id] = "excluded"
+			if difficulty == "normal": trial_state.mark_unavailable(event.id,"replaced by authored boss room")
 	# Legacy indices remain for checkpoint telemetry only, never as kill quotas.
 	mission.zone_counts.fill(0)
 	mission.current_zone = 2
 	gate_progress.fill(1)
 
 func respawn_after_death() -> void:
-	preserving_respawn = true
+	if lives <= 0: return
+	respawn_origin = respawn_point.x
+	reset_observation()
+	flushfiend_death_audio.stop()
+	swarm_audio.stop()
+	rebuilding_respawn = true
 	super.respawn_after_death()
-	preserving_respawn = false
-	for shot in hostile_shots: trial_state.remove_bullet(shot.id)
-	hostile_shots.clear()
+	rebuilding_respawn = false
 
 func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: float) -> Dictionary:
-	return trial_level.move_body(position,motion,size,delta)
+	var result := trial_level.move_body(position,motion,size,delta)
+	if size == PLAYER_SIZE:
+		var bounded := skitterling.constrain(result.pos,size)
+		if bounded.x != result.pos.x: result.velocity.x = 0
+		result.pos = bounded
+	return result
 
 func player_shot_solids() -> Array[Rect2]:
 	var solids := trial_level.projectile_solids()
@@ -67,39 +142,92 @@ func step_gates(_delta: float) -> void:
 	gate_progress.fill(1)
 
 func crowd_population() -> int:
-	var count := enemies.size()
+	var count := enemies.size()+(1 if skitterling.encounter.active else 0)
 	for actor in actors:
 		if actor.hp > 0: count += 1
 	for swarm in swarms.actors:
 		if swarm.hp > 0: count += 1
 	return count
 
+func ordinary_population() -> int:
+	return crowd_population()-swarm_schedule.additional_population(self)
+
 func crowd_limit() -> int:
 	for actor in actors:
-		if actor.hp > 0 and actor.role == "aggressive_flyer": return 6
-	return CROWD_CAP
+		if actor.hp > 0 and actor.role == "aggressive_flyer": return mini(6,int(run_plan.crowd_cap))
+	return int(run_plan.crowd_cap)
 
 func issue_event() -> void:
 	if player.x >= OPENING_END: opening_passed = true
 	if opening_passed:
 		# Unseen pending threats are retired from scheduling, never credited as kills.
 		for event: Dictionary in trial_state.results().events:
-			if event.state == "pending":
+			if event.id.begins_with("opening-") and event.state == "pending":
 				trial_state.mark_unavailable(event.id,"passed opening before safe entry")
 		return
-	if crowd_population() >= crowd_limit() or trial_state.next_eligible().is_empty(): return
+	if trial_state.elapsed < next_opening_spawn: return
+	if ordinary_population() >= crowd_limit() or trial_state.next_eligible().is_empty(): return
 	var events: Array = trial_state.results().events
-	for index in range(events.size()):
-		var event: Dictionary = events[index]
-		if event.state != "pending" or player.x < TRIGGERS[index]: continue
+	var by_id: Dictionary = {}
+	for event in events: by_id[event.id] = event
+	for resolved in run_plan.opening:
+		var event: Dictionary = by_id[resolved.id]
+		if event.state != "pending" or player.x < resolved.trigger: continue
 		if trial_state.elapsed < retry_after.get(event.id,0.0): continue
 		if event.role == "aggressive_flyer":
-			if crowd_population() >= 6 or crowd_limit() == 6: continue
+			if ordinary_population() >= mini(6,int(run_plan.crowd_cap)): continue
 		var home := choose_home(event)
 		if home == Vector2.INF or home.x >= OPENING_END - 40: continue
 		if not trial_state.reserve(event.id): continue
 		create_actor(event,home)
+		next_opening_spawn = trial_state.elapsed+run_plan.opening_spacing
 		return
+
+func actor_world_limit() -> float:
+	return WORLD_WIDTH if difficulty == "normal" else super.actor_world_limit()
+
+func route_home(event: Dictionary) -> Vector2:
+	var home := Vector2.INF
+	if event.role == "perched_shooter":
+		for deck in trial_level.plinths:
+			if deck.position.x < OPENING_END: continue
+			for x in [deck.end.x-30,deck.get_center().x,deck.position.x+30]:
+				var feet := Vector2(x,deck.position.y)
+				var shape := event_size(event.role)
+				if x+shape.position.x < deck.position.x or x+shape.end.x > deck.end.x: continue
+				if x >= player.x+220 and x < camera_x+900 and x < camera_x+910 \
+					and position_safe(feet,event.role) and route_clearance(feet,event.role) \
+					and predicted_entry_clear(feet,event.role,0.8): return feet
+	elif event.role == "floor_emerger":
+		for offset in range(580,219,-20):
+			var feet := Vector2(player.x+offset,440)
+			if absf(feet.x-(player.x+velocity.x*1.45)) < 160: continue
+			if feet.x < camera_x+900 and position_safe(feet,event.role) \
+				and route_clearance(feet,event.role): return feet
+	elif event.role == "runner":
+		# The existing landing warning is visible at the forward edge before contact can activate.
+		for offset in range(0,121,40):
+			var feet := Vector2(minf(camera_x+900+offset,actor_world_limit()-40),440)
+			if feet.x-player.x >= 220 and position_safe(feet,event.role) and route_clearance(feet,event.role):
+				return feet
+	else:
+		home = super.choose_home(event)
+	if home != Vector2.INF and route_clearance(home,event.role): return home
+	return Vector2.INF
+
+func predicted_entry_clear(feet: Vector2, role: String, delay: float) -> bool:
+	var body := event_size(role)
+	body.position += feet
+	var predicted := Rect2(player+Vector2(velocity.x*delay,0),PLAYER_SIZE)
+	return not body.grow(100).intersects(predicted)
+
+func route_clearance(feet: Vector2, role: String) -> bool:
+	var body := event_size(role)
+	body.position += feet
+	if body.position.x < respawn_origin or not skitterling.allowed_body(body): return false
+	for checkpoint in Level.CHECKPOINTS:
+		if body.position.x < checkpoint+200 and body.end.x > checkpoint-200: return false
+	return true
 
 func choose_home(event: Dictionary) -> Vector2:
 	if event.role == "perched_shooter":
@@ -132,13 +260,18 @@ func _physics_process(delta: float) -> void:
 			shot_serial += 1
 			shots[-1].trial_id = "shot-%d" % shot_serial
 			trial_state.record_shot(shots[-1].trial_id)
-		camera_x = move_toward(camera_x,clampf(player.x-320,0,WORLD_WIDTH-960),400*dt)
+		if not skitterling.locked():
+			camera_x = move_toward(camera_x,clampf(player.x-320,0,WORLD_WIDTH-960),400*dt)
+		skitterling.advance(self,dt)
+		swarm_schedule.step(self)
 		issue_event()
 		step_trial_actors(dt)
+		skitterling.contain_prior(self)
 		# Base combat advances campaign bodies. One shared sweep below owns all shots.
 		var saved: Array[Dictionary] = shots
 		shots = []
 		step_combat(dt)
+		skitterling.contain_prior(self)
 		shots = saved
 		step_trial_shots(dt)
 		if life_state == "alive": swarms.step(self,minf(dt,0.1/count))
@@ -149,7 +282,7 @@ func _physics_process(delta: float) -> void:
 		if player.x >= Level.CHECKPOINTS[checkpoint] and checkpoint > checkpoint_index:
 			activate_checkpoint(checkpoint)
 			if dispenser.active: return
-	if player.x >= 9450: complete_job()
+	if player.x >= 9450 and skitterling.encounter.exit_open: complete_job()
 	for index in range(particles.size()-1,-1,-1):
 		particles[index].pos += particles[index].vel*delta
 		particles[index].vel.y += 350*delta
@@ -159,43 +292,118 @@ func _physics_process(delta: float) -> void:
 func step_encounters(delta: float) -> void:
 	wave_clock += delta
 	route_progress = maxf(route_progress,player.x)
+	if player.x >= SkitterlingRoom.QUIET and not skitterling.released: return
+	if difficulty == "normal":
+		step_normal_route()
+		return
 	# Retire only well outside view, without kill credit or a visible disappearance.
 	for index in range(enemies.size()-1,-1,-1):
 		if enemies[index].pos.x+38 < camera_x-320:
 			enemies.remove_at(index)
 			retired_crowd += 1
-	for index in range(WAVE_RANGES.size()):
-		if route_progress >= WAVE_RANGES[index].y:
-			wave_bypassed[index] = WAVE_COUNTS[index]-wave_spawned[index]
-	if wave_clock < next_wave_spawn or crowd_population() >= crowd_limit(): return
-	for index in range(WAVE_RANGES.size()):
-		if player.x < WAVE_RANGES[index].x or route_progress >= WAVE_RANGES[index].y: continue
-		if wave_spawned[index] >= WAVE_COUNTS[index]: continue
+	for event in run_plan.later:
+		if encounter_states[event.id] == "pending" and route_progress >= event.end:
+			encounter_states[event.id] = "bypassed"
+			wave_bypassed[event.wave] += 1
+	if wave_clock < next_wave_spawn or ordinary_population() >= crowd_limit(): return
+	if respawn_origin >= DifficultyPlan.CHECKPOINT and wave_clock < 1.25: return
+	for event in run_plan.later:
+		if encounter_states[event.id] != "pending" or player.x < event.trigger: continue
 		var radius := entrance_radius()
-		var first_side := -1.0 if wave_spawned[index] % 3 == 2 else 1.0
-		for side in [first_side,-first_side]:
+		var sides: Array = [event.side,-event.side]
+		if event.wave == 0 and event.owner_origin == DifficultyPlan.CHECKPOINT: sides = [1.0]
+		for side in sides:
 			for offset in range(0,385,48):
 				var x: float = floorf(camera_x)+(984+radius if side>0 else -24-radius)-19+side*offset
 				var hero_body := Rect2(player,PLAYER_SIZE)
 				var spawn_left: float = x+19-radius
 				var spawn_right: float = x+19+radius
+				if spawn_left < respawn_origin or not skitterling.allowed_body(Rect2(spawn_left,404,spawn_right-spawn_left,36)): continue
 				if maxf(spawn_left-hero_body.end.x,hero_body.position.x-spawn_right) < 220: continue
 				if not safe_entrance(x): continue
 				var blocked := false
 				for checkpoint in Level.CHECKPOINTS:
-					if absf(x+19-checkpoint) < 200: blocked = true
+					if absf(x+19-checkpoint) < 200+radius: blocked = true
 				for actor in actors:
 					if actor.hp > 0 and absf(actor.feet.x-x-19) < radius*2+16: blocked = true
 				if blocked: continue
 				var enemy := Data.spawn("toilet",Vector2(x,404))
 				enemy.entering = true
+				enemy.encounter_id = event.id
+				enemy.owner_origin = event.owner_origin
 				enemy.direction = signf(player.x-x)
 				enemy.hp = float(trial_data.balance.roles.runner.spawn_hp)
 				enemy.max_hp = float(trial_data.balance.roles.runner.max_hp)
 				enemies.append(enemy)
-				wave_spawned[index] += 1
-				next_wave_spawn = wave_clock+0.65
+				encounter_states[event.id] = "spawned"
+				wave_spawned[event.wave] += 1
+				next_wave_spawn = wave_clock+event.spacing
 				return
+
+func route_pressure() -> int:
+	# All warnings commit future pressure. Remote survivors still consume the global safety cap;
+	# local pressure counts them again as soon as they approach the view, without deleting them.
+	var count := 0
+	for enemy in enemies:
+		if enemy.pos.x >= camera_x-160 and enemy.pos.x <= camera_x+1250: count += 1
+	var living_shooter := false
+	for actor in actors:
+		if actor.hp <= 0: continue
+		if actor.active and (actor_rect(actor).end.x < camera_x-160 or actor.feet.x > camera_x+1250): continue
+		count += 1
+		if actor.role == "perched_shooter": living_shooter = true
+	for swarm in swarms.actors:
+		if not swarm.get("additive",false) and swarm.hp > 0 and swarm.pos.x >= camera_x-48 and swarm.pos.x <= camera_x+1008: count += 1
+	if not living_shooter:
+		for shot in hostile_shots:
+			if shot.pos.x >= camera_x and shot.pos.x <= camera_x+960:
+				count += 1
+				break
+	return count
+
+func step_normal_route() -> void:
+	var states: Dictionary = {}
+	for event in trial_state.results().events: states[event.id] = event
+	for resolved in run_plan.later:
+		var event: Dictionary = states[resolved.id]
+		if event.state == "pending" and route_progress >= resolved.end:
+			trial_state.mark_unavailable(event.id,"passed route window before safe entry")
+			encounter_states[event.id] = "bypassed"
+			wave_bypassed[resolved.wave] += 1
+	if player.x < OPENING_END or wave_clock < next_wave_spawn: return
+	if route_pressure() >= (3 if player.x < 4450 else 2): return
+	if ordinary_population() >= crowd_limit(): return
+	if respawn_origin >= DifficultyPlan.CHECKPOINT and wave_clock < 1.25: return
+	for resolved in run_plan.later:
+		var event: Dictionary = states[resolved.id]
+		if event.state != "pending" or route_progress >= resolved.end or player.x < resolved.trigger: continue
+		if trial_state.elapsed < retry_after.get(event.id,0.0): continue
+		var home := route_home(event)
+		if home == Vector2.INF and event.role in ["perched_shooter","floor_emerger"]:
+			# Keep a reachable perch pending while occupied; fallback only after its forward window closes.
+			if event.role == "perched_shooter":
+				var forward_support := false
+				for prop in trial_level.plinths:
+					if prop.end.x-30 >= player.x+220 and prop.position.x+30 <= player.x+420:
+						forward_support = true
+				if forward_support: continue
+			elif player.x < resolved.trigger+180: continue
+			var fallback: Dictionary = event.duplicate(true)
+			fallback.role = "runner"
+			home = route_home(fallback)
+			if home == Vector2.INF or not trial_state.use_runner_fallback(event.id): continue
+			route_fallbacks[event.id] = event.role
+			for updated in trial_state.results().events:
+				if updated.id == event.id: event = updated
+		if home == Vector2.INF or not trial_state.reserve(event.id): continue
+		create_actor(event,home)
+		actors[-1].owner_origin = resolved.owner_origin
+		encounter_states[event.id] = "spawned"
+		if not route_admitted.has(event.id):
+			route_admitted[event.id] = true
+			wave_spawned[resolved.wave] += 1
+		next_wave_spawn = wave_clock+resolved.spacing
+		return
 
 func step_trial_shots(delta: float) -> void:
 	for index in range(shots.size()-1,-1,-1):
@@ -208,6 +416,7 @@ func step_trial_shots(delta: float) -> void:
 		var actor_target := -1
 		var enemy_target := -1
 		var swarm_target := -1
+		var boss_target := false
 		for solid in player_shot_solids():
 			var hit := projectile_hit(start,end,solid,direction)
 			if hit >= 0: nearest = minf(nearest,hit)
@@ -230,18 +439,25 @@ func step_trial_shots(delta: float) -> void:
 				swarm_target = swarm_index
 				actor_target = -1
 				enemy_target = -1
+		var boss_rect := skitterling.target_rect()
+		if boss_rect.has_area():
+			var hit := projectile_hit(start,end,boss_rect,direction)
+			if hit >= 0 and hit < nearest:
+				nearest = hit
+				boss_target = true
+				actor_target = -1
+				enemy_target = -1
+				swarm_target = -1
 		shot.pos = end
 		shot.distance += travel
 		if nearest <= 1 or shot.distance >= shot.range:
-			if shot.has("trial_id"): trial_state.resolve_shot(shot.trial_id,actor_target >= 0 or enemy_target >= 0 or swarm_target >= 0)
-			if swarm_target >= 0: swarms.damage(swarm_target,shot.damage)
+			if shot.has("trial_id"): trial_state.resolve_shot(shot.trial_id,actor_target >= 0 or enemy_target >= 0 or swarm_target >= 0 or boss_target)
+			if boss_target: skitterling.damage(self,int(shot.damage))
+			elif swarm_target >= 0: swarms.damage(swarm_target,shot.damage)
 			elif enemy_target >= 0: damage_enemy(enemy_target,shot.damage,start.lerp(end,nearest))
 			elif actor_target >= 0:
 				var actor: Dictionary = actors[actor_target]
-				actor.hp = maxf(0,actor.hp-shot.damage)
-				actor.flash = 0.1
-				if actor.hp == 0:
-					finish_trial_defeat(actor)
+				damage_trial_actor(actor,shot.damage)
 			shots.remove_at(index)
 	# Reuse the role projectile update without advancing friendly shots a second time.
 	var saved: Array[Dictionary] = shots
@@ -273,6 +489,7 @@ func _draw() -> void:
 	draw_set_transform(Vector2(-floorf(camera_x),0))
 	draw_environment()
 	wastewater_art.draw(self,camera_x,elapsed,false)
+	skitterling.draw_back(self)
 	for enemy: Dictionary in enemies: draw_toilet(enemy)
 	for corpse: Dictionary in corpses: draw_toilet(corpse)
 	swarms.draw(self,show_enemy_health_bars)
@@ -282,6 +499,7 @@ func _draw() -> void:
 			effect("grate-warning" if actor.role == "floor_emerger" else "landing-warning",
 				Vector2(clampf(actor.feet.x,camera_x+35,camera_x+925),minf(actor.feet.y,440)))
 		draw_actor(actor)
+	skitterling.draw_actor(self)
 	if not dispenser.hides_hero() and (life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
 	for shot in shots:
 		# Reuse the existing original projectile presentation.
@@ -296,6 +514,7 @@ func _draw() -> void:
 	for shot in hostile_shots: effect("hostile-projectile",shot.pos)
 	for particle in particles:
 		box(particle.pos.x,particle.pos.y,4,4,particle.color)
+	skitterling.draw_front(self)
 	draw_set_transform(Vector2.ZERO)
 	draw_hud()
 	dispenser.draw_overlay(self)
@@ -303,3 +522,24 @@ func _draw() -> void:
 		box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
 		if life_state in ["game_over","death_popup"]: draw_death_popup()
 		else: label_at("JOB COMPLETE" if won else "UNION BREAK",Vector2(245,216),36,MINT)
+
+func _process(delta: float) -> void:
+	super._process(delta)
+	skitterling.process_audio(self,delta)
+
+func hurt_player() -> void:
+	super.hurt_player()
+	player = skitterling.constrain(player,PLAYER_SIZE)
+
+func set_paused(value: bool) -> void:
+	super.set_paused(value)
+	skitterling.audio.set_paused(value or life_state != "alive")
+
+func request_title() -> void:
+	if death_popup_locked: return
+	skitterling.audio.stop()
+	super.request_title()
+
+func _exit_tree() -> void:
+	skitterling.audio.dispose()
+	super._exit_tree()
