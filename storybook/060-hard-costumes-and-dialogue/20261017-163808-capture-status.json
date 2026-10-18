@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-10-17T16:38:08-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 60 / 0.60.0",
+  "source_head": "49cc403 plus uncommitted integrations",
+  "app": "builds/Prototype-60/Drain Damage.app",
+  "archive": "builds/history/Prototype-60.zip",
+  "archive_sha256": "4b24e7747cd980fd84c7dcc53c272bc2d9accf7005267f4486b42720066cba2f",
+  "changes": [
+    "Hard-only body/aim/death/HUD/dispenser/sleeping/impact costumes for both heroes",
+    "Hard emotional portraits and Sean torn-blue-overall selection bust",
+    "Tony/Sean Hard dialogue uppercase; BJ and Easy/Normal authored text unchanged"
+  ],
+  "checks": "Eleven packaged suites and two Python version tests pass; export/signing, bundle versions and ZIP CRC pass.",
+  "packaged_suites": [
+    "hard_costumes",
+    "hard_dialogue",
+    "portraits",
+    "hero_animation",
+    "hero_animation_hard",
+    "employee_dispenser",
+    "difficulty_menu",
+    "difficulty_respawn",
+    "ending_input",
+    "opening",
+    "build_version"
+  ],
+  "art_review": "Art reviewed all11 offline composition pages; Engineering sampled aim, motion, impact and sleeping views.",
+  "preparation": "Approved alpha cutoff240, binary alpha cached before gameplay, originals preserved;12 sheets verified.",
+  "capture_gap": "No game window opened. Actual Godot composition, first-load feel and live screenshots remain unreviewed.",
+  "capture_backlog": [
+    "Both heroes Hard aim/run/jump/death/HUD",
+    "Dispenser clone/sleeping/impact",
+    "Hard uppercase opening and both radio endings; Normal comparison",
+    "Sean selection bust and both expression atlases"
+  ],
+  "warnings": "Existing log/editor-settings permission, macOS certificate and shutdown-resource diagnostics remain.",
+  "limitations": "Existing raised-weapon face occlusion and animation/shoulder polish limitations remain.",
+  "capture_record": "storybook/060-hard-costumes-and-dialogue/20261017-163808-capture-status.json",
+  "logs": "builds/verification-60/",
+  "status": "Delivered; live visual review pending"
+}

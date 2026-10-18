@@ -1243,6 +1243,443 @@ with required host access succeeded. No gameplay changes. Finder/Dock visual rev
 **Capture gap:** No game opened. Actual screenshots await permission; the separate Prototype-55 app and archive
 preserve this iteration. The concept board is design history, not a running-build screenshot.
 
+## 056 — Visible Sputtervalve bolts — October 17, 2026
+
+**Build:** Prototype 56 / 0.56.0; source HEAD `49cc403` plus uncommitted integration changes.
+
+The violet bolt was too small to read in Sean's 0.55 screenshot. Art's existing star now draws on a 64-pixel
+canvas instead of 16, with its bright core centered on the projectile trajectory. Decorative rays and sparks
+remain harmless; collision radius 4, damage 1, speed 150, cadence and warnings are unchanged. The prepared
+three-shooter limit ships here, with six bullets and three patterns still the caps and no added spawn entries.
+The separate 1.5× body enlargement and contrast repaint remain unfinished.
+
+**Validation:** Eleven Python tests, five source Godot suites and six packaged suites pass. Coverage includes
+both gameplay paths, core registration, radius-edge hits/misses, scenery sweeps, existing shooting cadence,
+shooter limits, both-hero continuous traversal, platform geometry, standing shots and version display.
+The first export failed because the destination folder did not exist; creating it resolved the failure.
+Export/signing pass. Existing editor-settings/log-write permission, macOS environment and resource-shutdown
+warnings remain.
+
+**Capture gap:** No game window opened. Actual screenshots and live projectile readability review await permission.
+The separate `builds/Prototype-56/Drain Damage.app` and `builds/history/Prototype-56.zip` preserve this iteration.
+
+**Record created:** 2026-10-17T15:12:58-07:00 (`America/Los_Angeles`); this is not a capture time.
+
+[Timestamped capture backlog and archive hash](056-visible-sputtervalve-bolts/20261017-151258-capture-status.json).
+
+## 057 — Gratecrawler keeps to the floor — October 17, 2026
+
+**Build:** Prototype 57 / 0.57.0; source HEAD `49cc403` plus uncommitted integration changes.
+
+The Gratecrawler had inherited the runners' obstacle jump and could land on a step, then jitter at its patrol
+boundary because it reversed every physics tick. It now stays on the floor, walking back and forth without
+chasing. It turns when heading outward at its patrol limit or when its actual body meets blocking scenery.
+Runners keep their existing jump behavior. No new attack, artwork or lore is introduced.
+
+**Validation:** Eleven Python tests and seven packaged Godot suites pass, including both gameplay paths at
+60 and 120 Hz, both starting headings and three real grate positions. The tests verify sustained floor patrol,
+solid-wall turns and the full 1.45-second warning/emergence/settling delay. An occupied grate remains harmless;
+contact damage starts only after safe activation. Existing projectile, traversal, geometry, shooting and
+version checks also pass. Export/signing and archive integrity pass; existing environment, permission and
+resource-shutdown diagnostics remain. Live motion review is pending.
+
+**Capture gap:** No game window opened. The separate `builds/Prototype-57/Drain Damage.app` and
+`builds/history/Prototype-57.zip` preserve this iteration for an approved capture session.
+
+**Record created:** 2026-10-17T15:23:27-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Timestamped capture backlog and archive hash](057-gratecrawler-floor-patrol/20261017-152327-capture-status.json).
+
+## 058 — Choose the job’s difficulty — October 17, 2026
+
+**Build:** Prototype 58 / 0.58.0; source HEAD `49cc403` plus uncommitted integrations.
+
+Employee selection now leads to Game Difficulty before the existing introduction. Easy uses a fixed, smaller
+encounter plan; Normal varies controlled arrangements; Hard adds tested opening combinations and greater overlap.
+Damage, health and attack tells stay the same. Art's muscular, torn-workclothes portraits appear when Hard is selected.
+These are selection portraits only; the complete gameplay costumes remain in production.
+
+Death now resets encounters from the active respawn origin. Earlier enemies cannot pursue from behind after a
+checkpoint retry. Defeated eligible enemies return at full health, while old shots, corpses, warnings and attack
+tokens clear. Remaining-life respawns retain the selected hero, difficulty, run arrangement and consumed clone stock.
+The short encounter just after the checkpoint may expire during the protected restart; it is intentionally optional.
+
+**Validation:** Eleven Python tests and thirteen packaged Godot suites pass, including 300 resolved plans,
+eighteen scripted mode/hero/seed traversals at 60/120 Hz, input/release guards, crowd admission and genuine
+lethal-hit/popup/Continue paths at both origins. Review caught and fixed the old crowd cap and an early death-flush
+cutoff; regressions cover both. Export/signing and archive integrity pass. Existing permission/environment and
+resource-shutdown diagnostics remain. Invulnerable scripted traversal does not establish human survival balance.
+
+**Capture gap:** No game window opened. Actual menu/readability/fairness review and screenshots await permission.
+The separate `builds/Prototype-58/Drain Damage.app` and `builds/history/Prototype-58.zip` preserve this iteration.
+
+**Record created:** 2026-10-17T15:47:12-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Timestamped capture backlog and archive hash](058-difficulty-and-encounter-resets/20261017-154712-capture-status.json).
+
+## 059 — More torn workshirts for Hard selection — October 17, 2026
+
+**Build:** Prototype 59 / 0.59.0; source HEAD `49cc403` plus uncommitted integrations.
+
+Sean asked for much heavier shirt damage, with roughly half of each hero's shirt gone. Art's revised Tony and Sean
+busts now appear on Hard selection, retaining their identities, colors and Sean's bib straps. Both keep the existing
+96×96 header position. Earlier portraits and Prototype 58 remain preserved. Gameplay costumes are still in production;
+this iteration changes selection portraits only.
+
+**Validation:** Two Python version tests and two packaged suites pass: difficulty navigation and version display.
+The exported screen loads both v2 portraits at their recorded 1254×1254 size. Export/signing, bundle versions and
+archive integrity pass. Existing log/editor-settings permission, macOS environment and shutdown diagnostics remain.
+The original portrait images were inspected; their live 96-pixel composition remains unreviewed.
+
+**Capture gap:** No game window opened. The separate `builds/Prototype-59/Drain Damage.app` and
+`builds/history/Prototype-59.zip` preserve this iteration for an approved capture session.
+
+**Record created:** 2026-10-17T15:58:09-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Timestamped capture backlog and archive hash](059-hard-portrait-shirt-revision/20261017-155809-capture-status.json).
+
+## 060 — Hard costumes and louder dialogue — October 17, 2026
+
+**Build:** Prototype 60 / 0.60.0; source HEAD `49cc403` plus uncommitted integrations.
+
+Hard now carries the torn-workclothes treatment through both heroes' movement, aiming, death, HUD heads and dispenser
+sequences, including sleeping clones and impact frames. Sean's blue overalls are torn as well as his orange shirt.
+Matching emotional portraits cover both speakers, and Tony and Sean speak in uppercase throughout Hard dialogue,
+including radio replies. BJ and Easy/Normal retain their authored presentation.
+
+Art corrected motion-row overlap and expanded muscular arm crops while preserving pixel registration. Twelve source
+sheets remain intact; approved alpha cleanup is prepared and cached before gameplay. Art's eleven offline composition
+pages are preserved separately as asset studies, not gameplay screenshots. Existing animation/shoulder polish and
+raised-weapon face occlusion remain limitations.
+
+**Validation:** Eleven packaged suites and two Python version tests pass. Hard animation checks cover 240 combinations;
+mode switching, respawn, all costume paths, binary alpha, cache reuse, wrapping and dialogue input also pass.
+Export/signing, both bundle versions and ZIP integrity pass. Existing environment and shutdown diagnostics remain.
+
+**Capture gap:** No game window opened. Actual Godot composition and first-load feel remain unreviewed. The separate
+`builds/Prototype-60/Drain Damage.app` and `builds/history/Prototype-60.zip` preserve this build for approved capture.
+
+**Record created:** 2026-10-17T16:38:08-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Timestamped capture backlog and archive hash](060-hard-costumes-and-dialogue/20261017-163808-capture-status.json).
+
+## 061 — Let the difficulty speak for itself — October 17, 2026
+
+**Build:** Prototype 61 / 0.61.0; source HEAD `49cc403` plus uncommitted integrations.
+
+Sean wanted players to discover the differences between difficulty levels. The explanatory paragraphs and selected
+character's portrait/name are removed. Easy, Normal and Hard now sit in a centered stack of the existing menu plates.
+The background illustration, heading, prompt, Back and Start Job remain. Gameplay mechanics and costume assets are
+unchanged, and earlier builds preserve the former screen.
+
+**Validation:** Three packaged suites pass: both heroes and all difficulties through keyboard/controller/mouse,
+release guards, Back navigation, intro entry, menu audio and version display. Two Python version tests, export/signing,
+bundle metadata and archive integrity also pass. Existing environment/shutdown diagnostics remain.
+
+**Capture gap:** No game window opened. Live layout review and actual difficulty/gameplay captures await permission.
+The separate `builds/Prototype-61/Drain Damage.app` and `builds/history/Prototype-61.zip` preserve this iteration.
+
+**Record created:** 2026-10-17T16:49:20-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Timestamped capture backlog and archive hash](061-simple-difficulty-selection/20261017-164920-capture-status.json).
+
+## 062 — Sputtervalve sounds damaged — October 17, 2026
+
+**Build:** Prototype 62 / 0.62.0; source HEAD `49cc403` plus uncommitted integrations.
+
+Sputtervalve now answers nonlethal hits with alternating short metal clanks and gauge rattles. Its defeat has a distinct
+collapse and escaping-pressure sound. Audio supplied licensed source recordings, originals and a reproducible recipe;
+no firing cue or new creature lore was added. Both projectile paths share the damage hook. Separate bounded pools and
+a per-enemy cooldown keep rapid hits controlled, while the terminal cue bypasses that cooldown and plays only once.
+
+**Validation:** Focused source checks, seven packaged suites and two Python version tests pass. Actual hit/death events,
+variant alternation, independent cooldowns, excluded contacts, pause/mute separation and reset/disposal cleanup are
+covered. Existing hero/Flushfiend audio, projectile collision and opening/respawn regressions pass. PCM source headers,
+export/signing, bundle versions and ZIP integrity pass. Godot's existing import compression is retained.
+
+**Capture/listening gap:** No game window opened and no subjective audition occurred. Mix balance and actual gameplay
+captures remain pending permission. Earlier builds are preserved; this iteration is stored in
+`builds/Prototype-62/Drain Damage.app` and `builds/history/Prototype-62.zip`.
+
+**Record created:** 2026-10-17T17:00:25-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record and archive hash](062-sputtervalve-hit-and-death-audio/20261017-170025-capture-status.json).
+
+## 063 — The Widow circles back and the creatures answer hits — October 17, 2026
+
+**Build:** Prototype 63 / 0.63.0; source HEAD `49cc403` plus uncommitted integrations.
+
+The Hallowed Widow now repeats its attack cycle: approach the nearby hero, dive at the warned position, rise, pause
+for one second at the top and choose a direction from the hero's current side. Its committed dive remains dodgeable;
+scenery and world bounds still constrain movement. Active Widows remain until defeated or the run resets.
+
+All six registered creature profiles now contain hit and death audio references. Five implemented enemies play them:
+Flushfiend, Hallowed Widow, Sewer Flies, Sputtervalve and Gratecrawler. Clogfather has profile-ready cues
+but no playable boss encounter; no canonical mini-boss exists. The Widow has a short insect-like hit
+and a longer screeching death.
+Existing shatter and valve cues remain preserved. Export validation requires both events and rejects missing assets,
+bad hashes, invalid playback settings and profiles omitted from the catalog. The standing requirement is in AGENTS.md.
+
+**Validation:** Twelve packaged suites and fifteen Python tests pass. Coverage includes repeated cycles for both heroes
+and routes, both directions, pause/death/reset, scenery sweeps, standing shots, swarms and all creature
+damage/audio paths.
+Bounded pools, per-enemy cooldowns, lethal-only death, mute separation and disposal are checked. Source checks,
+export/signing, bundle versions and ZIP integrity pass. Environment and immediate-shutdown diagnostics remain recorded.
+
+**Capture/listening gap:** No game window or audio audition. Human fairness, live composition and mix balance remain
+unreviewed. Preserve `builds/Prototype-63/Drain Damage.app` and `builds/history/Prototype-63.zip` for approved capture.
+
+**Record created:** 2026-10-17T17:14:06-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record and archive hash](063-widow-cycles-and-creature-audio/20261017-171406-capture-status.json).
+
+## 064 — A varied route with less late crowding — October 17, 2026
+
+**Build:** Prototype 64 / 0.64.0; source HEAD `49cc403` plus uncommitted integrations.
+
+Normal now uses 30 mixed later encounter opportunities, replacing its 36 runners. Incoming warnings count toward a local
+two-threat target, while the separate six-body safety ceiling remains. Shooters use existing prop tops, emergers find
+safe floor beyond the predicted landing area, and later runners hop low scenery. An earlier later-Widow opportunity
+helps the obstructed middle. The approved opening and all Easy/Hard plans are preserved across 100 seeds.
+
+The first candidate still crowded the finale despite fewer scheduled slots. Measuring actual bodies led to the local
+admission target. Counting every distant survivor then made later sections too empty, so local pressure now follows
+nearby threats while the global safety ceiling still includes survivors. No enemy is erased to make space.
+
+**Measured limits:** Six synthetic combat runs improve the first continuation from 0.41 to 1.32 visible enemies on
+average and reduce the finale from 2.40 to 1.55. These bots stop and synthetically defeat each Widow after four seconds;
+they do not establish natural combat balance. Forward-fire bots retain a surviving Widow and produce different results.
+The first continuation remains lighter than the opening, so uniform whole-level density is not complete. Further tuning
+should examine safe activation delays there. The checkpoint respite remains intentional.
+
+**Validation:** Fourteen packaged suites and fifteen Python tests pass. Coverage includes 18 full-level difficulty, hero
+and seed runs, six additional Normal baseline runs, six synthetic combat runs, shared caps, unique Widow admission,
+checkpoint ownership/grace, safe homes, fallback accounting, audio, costumes and projectiles. Export/signing, bundle
+versions and ZIP integrity pass. Existing environment and immediate-shutdown diagnostics remain in the logs.
+
+**Capture gap:** No game window opened. Actual full-route, mixed-role and finale comparisons await approved capture.
+Preserve `builds/Prototype-64/Drain Damage.app` and `builds/history/Prototype-64.zip` for that session.
+
+**Record created:** 2026-10-17T17:44:55-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record, measurements and archive hash](064-normal-route-pacing/20261017-174455-capture-status.json).
+
+## 065 — Safe entrances close the early pacing gap — October 17, 2026
+
+**Build:** Prototype 65 / 0.65.0; source HEAD `49cc403` plus uncommitted integrations.
+
+Prototype 64 reduced late crowding but left the first continuation too light. Tracing each entrance showed a shooter
+waiting until the hero passed its perch before safely activating, while other slots expired. Shooter placement now
+accounts for the hero's expected position after the unchanged warning and can use farther existing supports. The first
+later emerger moves to earlier open floor and prefers a position beyond the predicted landing area.
+
+The first continuation allows three committed nearby threats, then returns to two after x4450. The six-body safety cap,
+attack budgets, warnings and checkpoint grace remain unchanged. Passive swarms count toward local pressure when their
+visible bounds enter view. They are also included in the final measurements, correcting the earlier proxy's omission.
+
+**Measured outcome:** Six runs per policy put the first continuation at 1.74 visible creatures for forward-fire bots and
+1.91 for synthetic combat bots, compared with 0.74/0.67 in Prototype 63 and an opening reference of 1.79–2.01.
+Empty-time fractions there fall to 9.1%/5.2% from 47.6%/50.0%. The finale averages about 1.46 instead of 2.18/2.40. The
+obstacle corridor remains lighter at 1.22–1.43 and the checkpoint retains respite. These bots are invulnerable; the
+controlled policy stops and synthetically kills Widows after four seconds. The results do not establish exact uniformity
+or human combat fairness. A full-route playtest remains the next review.
+
+**Validation:** Fourteen packaged suites and fifteen Python tests pass. Both heroes and three seeds reach the exit in
+all difficulties and both Normal measurement policies. Tests retain the original opening/Easy/Hard signatures across 100
+seeds, check shared caps and unique Widow admission, preserve respawn ownership/grace and stock, and hold occupied
+warning markers harmless until cleared. Audio, costumes, projectiles, export/signing, versions and ZIP integrity pass.
+Existing environment and immediate-shutdown diagnostics remain recorded.
+
+**Capture gap:** No game window opened. Preserve `builds/Prototype-65/Drain Damage.app` and
+`builds/history/Prototype-65.zip` for approved screenshots. Prototype 64 and all earlier chapters remain intact.
+
+**Record created:** 2026-10-17T17:52:33-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record, measurements and archive hash](065-sustained-normal-encounters/20261017-175233-capture-status.json).
+
+## 066 — The difficulty button gets angry — October 17, 2026
+
+**Build:** Prototype 66 / 0.66.0; source HEAD `49cc403` plus uncommitted integrations, isolated UI snapshot.
+
+Sean renamed the Hard choice exactly “The Computer is Cheating!!” and asked for a more angry-looking button. Art
+approved reusing the existing salvaged-metal plate: dark oxblood normally, hotter red on hover and a warm rim with
+corner marks and an arrow when selected. A quiet charcoal center keeps the cream label readable. The wider button fits
+the entire line at the existing 27px font size; the original artwork is preserved.
+
+The internal difficulty remains Hard. Easy and Normal keep their existing labels and geometry, and the screen still has
+no difficulty explanations or selected-hero portrait/name. The muscular reveal stays in gameplay. Hover highlights the
+new button without selecting or starting a mode; keyboard, controller and click behavior retain their release guards.
+
+**Validation:** Six packaged suites and fifteen Python tests pass. Checks cover exact text/ID, label fit at logical
+scales, hover/selected drawing, both heroes and all modes through keyboard/controller/mouse, Back/intro flow, navigation
+audio, Hard costumes, encounter/respawn invariants and version display. Export/signing, bundle metadata and archive
+integrity pass. Gameplay source hashes match Prototype 65. The isolated snapshot excludes unfinished roach assets and
+retains the previous six creature profiles without reverting concurrent Art work.
+
+**Capture gap:** No game window opened. Live appearance, hover/focus readability and actual screenshots remain pending.
+Preserve `builds/Prototype-66/Drain Damage.app` and `builds/history/Prototype-66.zip` for an approved capture session.
+Earlier chapters and original assets remain intact. Existing environment and immediate-shutdown diagnostics are
+recorded.
+
+**Record created:** 2026-10-17T18:06:24-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record, layout checks and archive hash](066-angry-hard-option/20261017-180624-capture-status.json).
+
+## 067 — The angry button returns to its original size — October 17, 2026
+
+**Build:** Prototype 67 / 0.67.0; source HEAD `49cc403` plus uncommitted integrations, isolated UI snapshot.
+
+Sean rejected Prototype 66's wider button and opaque maroon center after reviewing its appearance. This correction
+restores the same 375×64 artwork and 355×46 interaction area as Easy and Normal. The center cover is removed so the
+original sludge, bolts and metal texture remain visible. Art supplied lighter coral tints for the normal, hovered and
+selected states. The exact label “The Computer is Cheating!!” fits at 22px; selection retains its outline and arrow.
+
+Gameplay, title flow and the original menu artwork are byte-identical to Prototype 66. The snapshot retains the previous
+six creature profiles and excludes unfinished Skitterling work without reverting concurrent source changes.
+
+**Validation:** Six packaged suites and fifteen Python tests pass, including equal button geometry, label fit/scales,
+both heroes/all modes through keyboard/controller/mouse, hover/Back/intro flow, audio, costumes, encounter/respawn
+invariants and version. Export/signing, bundle metadata and ZIP integrity pass. Existing environment and shutdown
+diagnostics remain recorded.
+
+**Capture gap:** No game window opened. Live color, texture and readability review and actual screenshots remain pending.
+Preserve `builds/Prototype-67/Drain Damage.app`, `builds/history/Prototype-67.zip` and all earlier iterations.
+
+**Record created:** 2026-10-17T18:42:11-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record and verification](067-original-size-angry-button/20261017-184211-capture-status.json).
+
+## 068 — Flushfiends climb the next step — October 17, 2026
+
+**Build:** Prototype 68 / 0.68.0; source HEAD `49cc403` plus uncommitted integrations.
+Isolated fix atop Prototype 67.
+
+Sean found a Flushfiend frozen against a taller plinth while standing on the lower platform to its right. A regression
+reproduced the problem in Prototype 67: the opening and Normal-route runner logic allowed hops only at floor height.
+Landing on a platform therefore prevented the next jump. The campaign movement already checked relative step height;
+both paths now share grounded-support detection and a collision test of the proposed hop.
+
+Flushfiends can jump again after each landing, ascending successive reachable steps in either direction. They retain
+their existing jump strength and physics. Low ceilings and unreachable walls cause a short retreat rather than endless
+wall-walking; an unsupported jump apex cannot grant another jump. Prototype 67's menu correction and the difficulty
+schedules remain intact. Unfinished Skitterling work is excluded from this isolated delivery.
+
+**Validation:** Eleven packaged suites and fifteen Python tests pass. The regression covers both heroes, runner roles,
+opening/later/campaign paths, landings at 380/320/260, both directions, ceilings, tall walls and no midair jump.
+Both heroes complete the full route in all three difficulties across three seeds. Collision, crowd budgets, checkpoint,
+respawn, menu, costume, audio and version checks pass, as do export/signing, bundle metadata and ZIP integrity.
+Existing environment and immediate-shutdown diagnostics remain recorded.
+
+**Follow-up verification:** A second screenshot from 0.66.0 showed two Flushfiends stuck on the taller staircase.
+An additional test against the unchanged packaged Prototype 68 uses that actual five-plinth geometry and two active
+pursuers. Both land on the 380/320/260 steps and reach the hero on top, for both heroes and both directions. No further
+runtime change or rebuild was needed; manual motion review remains pending.
+
+**Capture gap:** No game window opened. Actual staircase behavior and gameplay screenshots remain pending. Preserve
+`builds/Prototype-68/Drain Damage.app`, `builds/history/Prototype-68.zip` and all earlier iterations for comparison.
+
+**Record created:** 2026-10-17T18:48:18-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record, cause and verification](068-flushfiend-successive-steps/20261017-184818-capture-status.json).
+
+## 069 — Skitterling takes over a locked room — October 17, 2026
+
+**Build:** Prototype 69 / 0.69.0; source HEAD `49cc403` plus uncommitted integration, isolated snapshot atop Prototype
+68.
+
+The first mini-boss now interrupts the service route after the checkpoint. An empty approach leads into a fixed room,
+where roaches spill from the rear pipe, shriek and assemble into a rat. Its defeat appears conclusive: the collapse
+takes
+half a second and the swarm stays still for four seconds. Renewed skittering then gathers into the larger alligator.
+The camera remains locked until the fight ends and the player leaves through the opened right pipe.
+
+Both forms have separate guarded 180 HP budgets. Rat overkill cannot skip the second fight. Bites, pipe ambushes and
+submerged debris attacks have visible warnings; occupied returns warn again or retreat harmlessly. The boss health bar
+retains its damage through transitions while player health and lives remain readable. A checkpoint retry restores the
+encounter without refilling the clone dispenser. Final defeat awards one kill.
+
+Art's measured sprites and room props are integrated with cached alpha preparation and continuously crawling authored
+roach overlays. Audio supplies bounded insect beds, shriek, warnings, transitions, impacts and final death. The quiet
+approach and room replace conflicting platforms and ordinary encounters; the seeded plan definitions remain intact.
+The angry menu correction and Flushfiend navigation fix are retained. Earlier builds and source artwork are preserved.
+
+**Validation:** Sixteen packaged suites and sixteen Python tests pass. Eighteen full-route runs cover both heroes, all
+three difficulties and three seeds at 60/120 Hz, defeating both forms with actual weapon shots and reaching the exit.
+Checks cover phase gates, shared shots, camera and boundaries, pause, mid-fight death, hazards, checkpoint stock/lives,
+final audio/kill dispatch, renderer preparation and the existing menu, navigation and crowd rules. Export/signing,
+bundle versions and ZIP integrity pass. Existing environment and immediate-shutdown diagnostics remain recorded.
+
+**Capture gap:** No game window opened. Actual gameplay screenshots, animation continuity, sound mix and human combat
+fairness remain unreviewed. Preserve `builds/Prototype-69/Drain Damage.app` and `builds/history/Prototype-69.zip` for an
+approved session. Source-art studies and headless draw checks are not gameplay captures.
+
+**Record created:** 2026-10-17T20:14:34-07:00 (`America/Los_Angeles`); no image capture occurred.
+
+[Capture record, sequence and verification](069-skitterling-locked-room/20261017-201434-capture-status.json).
+
+## 070 — Additive Septic Air Force — October 17, 2026
+
+**Version:** Prototype 70 / 0.70.0, built from an isolated snapshot atop 69; source HEAD `49cc403` plus local changes.
+
+The first level now has nine swarm encounters instead of one. Three appear through the opening, two across the service
+route, one above the pump and three after Skitterling. Eight new slots have their own capacity budget, so adding them
+does not replace ordinary monsters or consume their admission slots. The original swarm keeps its placement and seed.
+
+New arrivals remain harmless for 0.8 visible seconds; offscreen time cannot consume that warning. Contact waits longer
+if the hero occupies the footprint. Checkpoint retries restore four later slots, and the boss approach and room stay
+isolated. Existing artwork, movement, health and audio are retained. Skitterling, the angry menu and the Flushfiend
+navigation fix remain in the build.
+
+**Validation:** Seventeen packaged suites and twenty-eight Python tests pass. Eighteen baseline runs saw one swarm;
+all eighteen updated runs issued and saw nine, including all three post-boss encounters. Eighteen paired scheduling
+comparisons preserved ordinary admission. Contact-enabled bots used test-only healing to complete route coverage;
+combined populations peaked at five or six, with at most two added swarms. These measurements do not establish human
+survival balance. Checkpoint, visible warnings, boss isolation, geometry, audio bounds and existing regressions pass.
+Export/signing, bundle versions and ZIP integrity pass.
+
+**Capture gap:** No game window opened and no screenshots were captured. Human chaos/fairness, listening and visuals
+remain pending. Preserve `builds/Prototype-70/Drain Damage.app` and `builds/history/Prototype-70.zip`, alongside 69.
+
+**Record created:** 2026-10-17T20:30:46-07:00 (`America/Los_Angeles`, UTC offset -0700);
+no image capture occurred.
+
+[Capture record and measured distribution](070-additive-septic-air-force/20261017-203046-capture-status.json).
+
+## 071 — Walking tunnels and a tougher Skitterling — October 17, 2026
+
+**Version:** Prototype 71 / 0.71.0, isolated snapshot atop 70; source HEAD `49cc403` plus local changes.
+
+The player now walks through lateral entrance and exit tunnels. Authored foreground shells cover the hero naturally;
+movement can stop or reverse inside, and the camera blends into the room without a teleport or fade. Entry closes only
+after the hero emerges. The right tunnel stays locked until the final defeat, then permits walking and backtracking.
+Background and ceiling attack pipes remain unchanged, and the floor still supports the player above the water.
+
+The rat's health increases from 180 to 540: 45 Tony hits or 30 Sean hits, about seven seconds of uninterrupted fire for
+either hero. The false death remains intact; the alligator keeps its 180 HP budget, for a guarded 720 HP display. It
+now visibly swims beneath the hero, pauses at a committed warning and throws one item vertically upward. Three distinct
+nearby origins threaten a stationary hero while leaving moving dodges possible. Each item clears before the next throw.
+Afterward, the alligator swims to an emergence point and performs two warned snapping-jaw charges before diving again.
+
+Playtest shortcuts are discoverable with `make run-targets`. `make run LEVEL=1` starts the first level, while
+`make run MINIBOSS=skitterling` initializes the checkpoint and places the hero before the real entrance walk. Optional
+hero, difficulty and seed selectors work in source and exported games. Invalid or unimplemented destinations fail
+clearly. Plain `make run` retains the normal menus; `make run-check` verifies initialization headlessly.
+
+**Validation:** Twenty packaged suites, thirty-two Python tests and sixteen source/exported CLI checks pass. Eighteen
+full-route runs retain all nine swarms. Checks cover physical portals, alpha masks, camera continuity, health gates,
+three upward hits against a stationary hero, moving dodges, rendered jaw damage, reset/audio and prior regressions.
+Bots use test-only healing for full-route coverage; these checks do not establish human survival balance. Export,
+signing, versions and ZIP integrity pass.
+
+**Capture gap:** No game window opened. Clean screenshots, animation/camera feel, listening and human balance remain
+pending. Preserve `builds/Prototype-71/Drain Damage.app` and `builds/history/Prototype-71.zip` alongside earlier builds.
+The separately archived user-provided Prototype 69 screenshot is historical source evidence, not a capture of 71.
+
+**Record created:** 2026-10-17T20:48:29-07:00 (`America/Los_Angeles`, UTC offset -0700);
+no image capture occurred.
+
+[Delivery record](071-walking-portals-and-skitterling-revision/20261017-204829-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

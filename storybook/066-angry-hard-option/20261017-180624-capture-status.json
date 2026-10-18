@@ -1,0 +1,98 @@
+{
+  "created_at": "2026-10-17T18:06:24-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 66 / 0.66.0",
+  "source_head": "49cc403 plus uncommitted integrations; isolated UI snapshot",
+  "app": "builds/Prototype-66/Drain Damage.app",
+  "archive": "builds/history/Prototype-66.zip",
+  "archive_sha256": "e594e25a28de1c534a3abf9b2cebe46d7148cb3aa16cc6f3ceca5adfcce157d9",
+  "status": "Verified UI delivery; live visual review and screenshots pending",
+  "label": "The Computer is Cheating!!",
+  "internal_id": "hard",
+  "art": {
+    "approval": "Current Art approved existing salvaged-metal plate tint reuse before implementation.",
+    "source": "assets/title/dripping-menu-v1.png",
+    "new_bitmap": false,
+    "source_sha256": "dea0147593e479dca88d5a7e6c965575853d0d804ab22709b70a69c58510e1ca",
+    "normal": "#a94135",
+    "hover": "#dc5a3f",
+    "selected_plate": "#ff7650",
+    "center": "#231416",
+    "text": "#fff6d5",
+    "selected_cues": "Warm gold3px rim,4px corner accents and arrow; indication is not color-only."
+  },
+  "layout": {
+    "canvas": [
+      960,
+      540
+    ],
+    "hit_rect": [
+      210,
+      341,
+      540,
+      64
+    ],
+    "art_rect": [
+      200,
+      332,
+      560,
+      82
+    ],
+    "label_rect": [
+      258,
+      349,
+      470,
+      48
+    ],
+    "font_size": 27,
+    "label_width": 352,
+    "label_contrast_ratio": 16.39,
+    "scale_checks": [
+      1.0,
+      1.5,
+      1.6666666666666667,
+      2.0
+    ]
+  },
+  "preserved": [
+    "Hard mechanics/internal ID",
+    "Easy/Normal label, geometry and artwork",
+    "No difficulty explanations or selected-hero portrait/name",
+    "Default Normal, selection release guards, Back and intro flow"
+  ],
+  "packaged_suites": [
+    "difficulty_menu",
+    "menu_audio",
+    "hard_costumes",
+    "difficulty_respawn",
+    "normal_density",
+    "build_version"
+  ],
+  "python_tests_passed": 15,
+  "checks": "Exact label and ID, full-size text bounds/scales, hover without selection, selected draw states, both heroes/all difficulties through keyboard/controller/mouse, navigation audio, Hard costumes, seeded plans/respawn and version; export/signing, bundle metadata and ZIP integrity pass.",
+  "snapshot": {
+    "source_snapshot": "builds/source-66",
+    "unchanged_gameplay_from": "Prototype65",
+    "roster_count": 6,
+    "excluded_unintegrated_creature": "cockroach-swarm",
+    "ui_sources": {
+      "scripts/difficulty_screen.gd": "5f75cc60dd478fa5bdc83b312516ca9b011633678260307a816c61d423ea9c16",
+      "scripts/title_screen.gd": "ed8cd3d876337058085334a240b5398806bac05fe458d456d6a597d6b02db461",
+      "data/difficulty-ui.json": "4a73ad0a19399f4b9b0fc126ce563ebe17262004f89c6d15e607b0a2ab5cf9a3"
+    },
+    "label_contrast_ratio": 16.39
+  },
+  "scope_check": "Snapshot contains the previous six profiles; all four gameplay source hashes match Prototype65. New cockroach assets/profile/audio sources excluded without reverting concurrent workspace changes. Packaged menu verification includes a release-only roster guard.",
+  "capture_gap": "No game window opened. Actual appearance/hover/focus at user window sizes and screenshots remain unreviewed.",
+  "capture_backlog": [
+    "Difficulty screen normal Hard appearance",
+    "Angry option hover and selected/focus states",
+    "Exact long label at standard and large playtest sizes"
+  ],
+  "warnings": "Existing log/editor-settings permission, macOS certificate and immediate-shutdown resource diagnostics retained.",
+  "logs": "builds/verification-66/",
+  "capture_record": "storybook/066-angry-hard-option/20261017-180624-capture-status.json"
+}

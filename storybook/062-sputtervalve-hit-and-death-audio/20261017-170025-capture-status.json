@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-10-17T17:00:25-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 62 / 0.62.0",
+  "source_head": "49cc403 plus uncommitted integrations",
+  "app": "builds/Prototype-62/Drain Damage.app",
+  "archive": "builds/history/Prototype-62.zip",
+  "archive_sha256": "af4621fc7ce5da15c85ac8875ea3529eaf3c67246e6491ccb5ba3ea2759e6ad8",
+  "changes": "Sputtervalve nonlethal metal hit variants and terminal pressure-collapse death on both runtime routes.",
+  "checks": "Focused source regression, seven packaged suites, two Python version tests, PCM source headers/durations, export/signing, bundle metadata and ZIP integrity pass.",
+  "packaged_suites": [
+    "sputtervalve_audio",
+    "flushfiend_death_audio",
+    "hero_death_audio",
+    "hostile_projectile",
+    "opening_death_and_warmup",
+    "difficulty_respawn",
+    "build_version"
+  ],
+  "audio_contract": "Two hit voices plus two death voices; per-actor0.10s hit cooldown; no lethal hit cue; guarded death; Master SFX routing; pause and lifecycle cleanup.",
+  "capture_gap": "No game window or audition. Subjective listening/mix balance and actual gameplay capture await permission.",
+  "capture_backlog": [
+    "Sputtervalve nonlethal hit and terminal defeat gameplay",
+    "Approved listening session with music and overlapping enemies"
+  ],
+  "warnings": "Existing log/editor-settings permission, macOS certificate and shutdown-resource diagnostics remain.",
+  "status": "Delivered; listening and gameplay capture pending",
+  "capture_record": "storybook/062-sputtervalve-hit-and-death-audio/20261017-170025-capture-status.json",
+  "logs": "builds/verification-62/"
+}

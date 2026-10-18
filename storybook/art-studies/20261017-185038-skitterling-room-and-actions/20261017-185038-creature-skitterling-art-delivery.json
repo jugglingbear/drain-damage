@@ -1,0 +1,30 @@
+{
+  "creature_id": "cockroach-swarm",
+  "display_name": "Skitterling",
+  "status": "Measured artwork delivered for runtime integration; build pending Engineering",
+  "runtime_manifest": "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json",
+  "room_manifest": "assets/world/skitterling-room/manifest-v1.json",
+  "approved_preparation": "Cache alpha240 cutoff to remove generated haze; retain original PNGs. Nearest filtering.",
+  "checks": [
+    "All enabled creature frames have zero opaque pixels at crop edges at alpha240",
+    "All16 effects frames have zero opaque pixels at crop edges at alpha240",
+    "Source dimensions and hashes recorded in creature runtime manifest",
+    "Read-only canonical metadata build passes for7creatures; no generated runtime file rewritten",
+    "JSON and gallery HTML parse",
+    "Mechanics reports controller ports match authored manifest, including ceiling mouthY166; controller port tests pass"
+  ],
+  "remaining": [
+    "Composed motion, registration and transition continuity visual review",
+    "Headless state/geometry validation and packaged build owned by Engineering",
+    "Live visual review and screenshots require permission"
+  ],
+  "source_preservation": "Earlier candidates and exact prompts preserved; disabled crop-edge frames remain recorded but excluded from animations",
+  "new_assets": [
+    "assets/world/skitterling-room/background-v1.png",
+    "assets/world/skitterling-room/pipes-v1.png",
+    "assets/world/skitterling-room/effects-v1.png",
+    "assets/bestiary/cockroach-swarm/actions-v1.png",
+    "assets/bestiary/cockroach-swarm/water-actions-v2.png",
+    "assets/bestiary/cockroach-swarm/rat-flight-v2.png"
+  ]
+}

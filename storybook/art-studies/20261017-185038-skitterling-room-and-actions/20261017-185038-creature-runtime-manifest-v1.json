@@ -1,0 +1,3187 @@
+{
+  "schema_version": 1,
+  "creature_id": "cockroach-swarm",
+  "status": "Measured integration manifest; source crop/alpha checks complete, composed runtime visual validation pending",
+  "canvas": [
+    384,
+    256
+  ],
+  "anchor": [
+    192,
+    224
+  ],
+  "alpha_cutoff": 240,
+  "alpha_policy": "Cache prepared texture: discard alpha below240, set retained alpha255; preserve source PNG. Nearest filtering.",
+  "registration": "Single scale per sheet; measured opaque bottom-center anchored to192,224. Airborne world trajectory owns foot translation. These anchors need composed-motion visual review.",
+  "sheets": [
+    {
+      "id": "rat-source-v2",
+      "path": "assets/bestiary/cockroach-swarm/rat-source-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "7f2647d52cd5b9f0917759096747bc36f040bc68e21c9ccd5f078d57962d20d3",
+      "shared_scale": 0.7170868347338936,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            384,
+            270
+          ],
+          "opaque_bounds": [
+            45,
+            86,
+            384,
+            253
+          ],
+          "edge_pixels": 1,
+          "source_anchor": [
+            214.5,
+            253
+          ],
+          "destination": [
+            38.1849,
+            42.577,
+            275.3613,
+            193.6134
+          ],
+          "enabled": false
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            384,
+            0,
+            384,
+            270
+          ],
+          "opaque_bounds": [
+            43,
+            88,
+            366,
+            251
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            204.5,
+            251
+          ],
+          "destination": [
+            45.3557,
+            44.0112,
+            275.3613,
+            193.6134
+          ],
+          "enabled": true
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            768,
+            0,
+            384,
+            270
+          ],
+          "opaque_bounds": [
+            27,
+            90,
+            376,
+            254
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            201.5,
+            254
+          ],
+          "destination": [
+            47.507,
+            41.8599,
+            275.3613,
+            193.6134
+          ],
+          "enabled": true
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            270
+          ],
+          "opaque_bounds": [
+            21,
+            86,
+            375,
+            254
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            198.0,
+            254
+          ],
+          "destination": [
+            50.0168,
+            41.8599,
+            275.3613,
+            193.6134
+          ],
+          "enabled": true
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            270,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            44,
+            73,
+            382,
+            233
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            213.0,
+            233
+          ],
+          "destination": [
+            39.2605,
+            56.9188,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            384,
+            270,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            26,
+            62,
+            374,
+            233
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            200.0,
+            233
+          ],
+          "destination": [
+            48.5826,
+            56.9188,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            768,
+            270,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            26,
+            64,
+            371,
+            235
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            198.5,
+            235
+          ],
+          "destination": [
+            49.6583,
+            55.4846,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            1152,
+            270,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            19,
+            73,
+            368,
+            234
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            193.5,
+            234
+          ],
+          "destination": [
+            53.2437,
+            56.2017,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 8,
+          "source_rect": [
+            0,
+            515,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            35,
+            87,
+            374,
+            225
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            204.5,
+            225
+          ],
+          "destination": [
+            45.3557,
+            62.6555,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 9,
+          "source_rect": [
+            384,
+            515,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            16,
+            73,
+            373,
+            223
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            194.5,
+            223
+          ],
+          "destination": [
+            52.5266,
+            64.0896,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 10,
+          "source_rect": [
+            768,
+            515,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            25,
+            82,
+            377,
+            225
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            201.0,
+            225
+          ],
+          "destination": [
+            47.8655,
+            62.6555,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 11,
+          "source_rect": [
+            1152,
+            515,
+            384,
+            245
+          ],
+          "opaque_bounds": [
+            24,
+            81,
+            377,
+            226
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            200.5,
+            226
+          ],
+          "destination": [
+            48.2241,
+            61.9384,
+            275.3613,
+            175.6863
+          ],
+          "enabled": true
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            760,
+            384,
+            264
+          ],
+          "opaque_bounds": [
+            34,
+            84,
+            373,
+            230
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            203.5,
+            230
+          ],
+          "destination": [
+            46.0728,
+            59.07,
+            275.3613,
+            189.3109
+          ],
+          "enabled": true
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            384,
+            760,
+            402,
+            264
+          ],
+          "opaque_bounds": [
+            1,
+            38,
+            402,
+            230
+          ],
+          "edge_pixels": 8,
+          "source_anchor": [
+            201.5,
+            230
+          ],
+          "destination": [
+            47.507,
+            59.07,
+            288.2689,
+            189.3109
+          ],
+          "enabled": false
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            786,
+            760,
+            366,
+            264
+          ],
+          "opaque_bounds": [
+            19,
+            25,
+            334,
+            230
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            176.5,
+            230
+          ],
+          "destination": [
+            65.4342,
+            59.07,
+            262.4538,
+            189.3109
+          ],
+          "enabled": true
+        },
+        {
+          "id": 15,
+          "source_rect": [
+            1152,
+            760,
+            384,
+            264
+          ],
+          "opaque_bounds": [
+            16,
+            76,
+            372,
+            229
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            194.0,
+            229
+          ],
+          "destination": [
+            52.8852,
+            59.7871,
+            275.3613,
+            189.3109
+          ],
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "alligator-source-v2",
+      "path": "assets/bestiary/cockroach-swarm/alligator-source-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "c5f7f1c240c34fce8445c7f6ca25744c255ceeed49465657030b38103078c44c",
+      "shared_scale": 0.7236180904522613,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            384,
+            256
+          ],
+          "opaque_bounds": [
+            11,
+            143,
+            384,
+            243
+          ],
+          "edge_pixels": 4,
+          "source_anchor": [
+            197.5,
+            243
+          ],
+          "destination": [
+            49.0854,
+            48.1608,
+            277.8693,
+            185.2462
+          ],
+          "enabled": false
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            384,
+            0,
+            392,
+            256
+          ],
+          "opaque_bounds": [
+            10,
+            144,
+            392,
+            243
+          ],
+          "edge_pixels": 6,
+          "source_anchor": [
+            201.0,
+            243
+          ],
+          "destination": [
+            46.5528,
+            48.1608,
+            283.6583,
+            185.2462
+          ],
+          "enabled": false
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            776,
+            0,
+            377,
+            256
+          ],
+          "opaque_bounds": [
+            0,
+            143,
+            377,
+            243
+          ],
+          "edge_pixels": 7,
+          "source_anchor": [
+            188.5,
+            243
+          ],
+          "destination": [
+            55.598,
+            48.1608,
+            272.804,
+            185.2462
+          ],
+          "enabled": false
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            1153,
+            0,
+            383,
+            256
+          ],
+          "opaque_bounds": [
+            5,
+            143,
+            378,
+            243
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            191.5,
+            243
+          ],
+          "destination": [
+            53.4271,
+            48.1608,
+            277.1457,
+            185.2462
+          ],
+          "enabled": true
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            256,
+            389,
+            244
+          ],
+          "opaque_bounds": [
+            16,
+            110,
+            389,
+            212
+          ],
+          "edge_pixels": 2,
+          "source_anchor": [
+            202.5,
+            212
+          ],
+          "destination": [
+            45.4673,
+            70.593,
+            281.4874,
+            176.5628
+          ],
+          "enabled": false
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            389,
+            256,
+            390,
+            244
+          ],
+          "opaque_bounds": [
+            6,
+            111,
+            390,
+            213
+          ],
+          "edge_pixels": 1,
+          "source_anchor": [
+            198.0,
+            213
+          ],
+          "destination": [
+            48.7236,
+            69.8693,
+            282.2111,
+            176.5628
+          ],
+          "enabled": false
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            779,
+            256,
+            373,
+            244
+          ],
+          "opaque_bounds": [
+            2,
+            109,
+            372,
+            212
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            187.0,
+            212
+          ],
+          "destination": [
+            56.6834,
+            70.593,
+            269.9095,
+            176.5628
+          ],
+          "enabled": true
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            1152,
+            256,
+            384,
+            244
+          ],
+          "opaque_bounds": [
+            9,
+            119,
+            375,
+            213
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            192.0,
+            213
+          ],
+          "destination": [
+            53.0653,
+            69.8693,
+            277.8693,
+            176.5628
+          ],
+          "enabled": true
+        },
+        {
+          "id": 8,
+          "source_rect": [
+            0,
+            500,
+            392,
+            230
+          ],
+          "opaque_bounds": [
+            12,
+            103,
+            392,
+            208
+          ],
+          "edge_pixels": 5,
+          "source_anchor": [
+            202.0,
+            208
+          ],
+          "destination": [
+            45.8291,
+            73.4874,
+            283.6583,
+            166.4322
+          ],
+          "enabled": false
+        },
+        {
+          "id": 9,
+          "source_rect": [
+            392,
+            500,
+            381,
+            230
+          ],
+          "opaque_bounds": [
+            1,
+            104,
+            381,
+            206
+          ],
+          "edge_pixels": 3,
+          "source_anchor": [
+            191.0,
+            206
+          ],
+          "destination": [
+            53.7889,
+            74.9347,
+            275.6985,
+            166.4322
+          ],
+          "enabled": false
+        },
+        {
+          "id": 10,
+          "source_rect": [
+            773,
+            500,
+            381,
+            230
+          ],
+          "opaque_bounds": [
+            3,
+            103,
+            381,
+            207
+          ],
+          "edge_pixels": 1,
+          "source_anchor": [
+            192.0,
+            207
+          ],
+          "destination": [
+            53.0653,
+            74.2111,
+            275.6985,
+            166.4322
+          ],
+          "enabled": false
+        },
+        {
+          "id": 11,
+          "source_rect": [
+            1154,
+            500,
+            382,
+            230
+          ],
+          "opaque_bounds": [
+            4,
+            105,
+            373,
+            207
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            188.5,
+            207
+          ],
+          "destination": [
+            55.598,
+            74.2111,
+            276.4221,
+            166.4322
+          ],
+          "enabled": true
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            730,
+            368,
+            294
+          ],
+          "opaque_bounds": [
+            14,
+            16,
+            368,
+            224
+          ],
+          "edge_pixels": 5,
+          "source_anchor": [
+            191.0,
+            224
+          ],
+          "destination": [
+            53.7889,
+            61.9095,
+            266.2915,
+            212.7437
+          ],
+          "enabled": false
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            368,
+            730,
+            400,
+            294
+          ],
+          "opaque_bounds": [
+            1,
+            112,
+            399,
+            224
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            200.0,
+            224
+          ],
+          "destination": [
+            47.2764,
+            61.9095,
+            289.4472,
+            212.7437
+          ],
+          "enabled": true
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            768,
+            730,
+            384,
+            294
+          ],
+          "opaque_bounds": [
+            13,
+            101,
+            382,
+            217
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            197.5,
+            217
+          ],
+          "destination": [
+            49.0854,
+            66.9749,
+            277.8693,
+            212.7437
+          ],
+          "enabled": true
+        },
+        {
+          "id": 15,
+          "source_rect": [
+            1152,
+            730,
+            384,
+            294
+          ],
+          "opaque_bounds": [
+            13,
+            123,
+            377,
+            223
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            195.0,
+            223
+          ],
+          "destination": [
+            50.8945,
+            62.6332,
+            277.8693,
+            212.7437
+          ],
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "rat-collapse-source-v1",
+      "path": "assets/bestiary/cockroach-swarm/rat-collapse-source-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "c568fa140728a87b55e0254177b977c62c086adb4b239e52dc1588be0d94b0c5",
+      "shared_scale": 0.6956521739130435,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            389,
+            300
+          ],
+          "opaque_bounds": [
+            41,
+            55,
+            389,
+            277
+          ],
+          "edge_pixels": 1,
+          "source_anchor": [
+            215.0,
+            277
+          ],
+          "destination": [
+            42.4348,
+            31.3043,
+            270.6087,
+            208.6957
+          ],
+          "enabled": false
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            389,
+            0,
+            379,
+            300
+          ],
+          "opaque_bounds": [
+            25,
+            67,
+            378,
+            276
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            201.5,
+            276
+          ],
+          "destination": [
+            51.8261,
+            32.0,
+            263.6522,
+            208.6957
+          ],
+          "enabled": true
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            768,
+            0,
+            384,
+            300
+          ],
+          "opaque_bounds": [
+            20,
+            75,
+            379,
+            287
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            199.5,
+            287
+          ],
+          "destination": [
+            53.2174,
+            24.3478,
+            267.1304,
+            208.6957
+          ],
+          "enabled": true
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            300
+          ],
+          "opaque_bounds": [
+            26,
+            70,
+            374,
+            289
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            200.0,
+            289
+          ],
+          "destination": [
+            52.8696,
+            22.9565,
+            267.1304,
+            208.6957
+          ],
+          "enabled": true
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            300,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            27,
+            41,
+            383,
+            253
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            205.0,
+            253
+          ],
+          "destination": [
+            49.3913,
+            48.0,
+            267.1304,
+            194.7826
+          ],
+          "enabled": true
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            384,
+            300,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            15,
+            59,
+            366,
+            257
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            190.5,
+            257
+          ],
+          "destination": [
+            59.4783,
+            45.2174,
+            267.1304,
+            194.7826
+          ],
+          "enabled": true
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            768,
+            300,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            16,
+            81,
+            380,
+            261
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            198.0,
+            261
+          ],
+          "destination": [
+            54.2609,
+            42.4348,
+            267.1304,
+            194.7826
+          ],
+          "enabled": true
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            1152,
+            300,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            17,
+            101,
+            369,
+            262
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            193.0,
+            262
+          ],
+          "destination": [
+            57.7391,
+            41.7391,
+            267.1304,
+            194.7826
+          ],
+          "enabled": true
+        },
+        {
+          "id": 8,
+          "source_rect": [
+            0,
+            580,
+            384,
+            240
+          ],
+          "opaque_bounds": [
+            15,
+            77,
+            383,
+            218
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            199.0,
+            218
+          ],
+          "destination": [
+            53.5652,
+            72.3478,
+            267.1304,
+            166.9565
+          ],
+          "enabled": true
+        },
+        {
+          "id": 9,
+          "source_rect": [
+            384,
+            580,
+            384,
+            240
+          ],
+          "opaque_bounds": [
+            20,
+            78,
+            381,
+            221
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            200.5,
+            221
+          ],
+          "destination": [
+            52.5217,
+            70.2609,
+            267.1304,
+            166.9565
+          ],
+          "enabled": true
+        },
+        {
+          "id": 10,
+          "source_rect": [
+            768,
+            580,
+            384,
+            240
+          ],
+          "opaque_bounds": [
+            22,
+            110,
+            379,
+            228
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            200.5,
+            228
+          ],
+          "destination": [
+            52.5217,
+            65.3913,
+            267.1304,
+            166.9565
+          ],
+          "enabled": true
+        },
+        {
+          "id": 11,
+          "source_rect": [
+            1152,
+            580,
+            384,
+            240
+          ],
+          "opaque_bounds": [
+            17,
+            121,
+            370,
+            222
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            193.5,
+            222
+          ],
+          "destination": [
+            57.3913,
+            69.5652,
+            267.1304,
+            166.9565
+          ],
+          "enabled": true
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            820,
+            384,
+            204
+          ],
+          "opaque_bounds": [
+            17,
+            74,
+            374,
+            182
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            195.5,
+            182
+          ],
+          "destination": [
+            56.0,
+            97.3913,
+            267.1304,
+            141.913
+          ],
+          "enabled": true
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            384,
+            820,
+            384,
+            204
+          ],
+          "opaque_bounds": [
+            17,
+            75,
+            370,
+            176
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            193.5,
+            176
+          ],
+          "destination": [
+            57.3913,
+            101.5652,
+            267.1304,
+            141.913
+          ],
+          "enabled": true
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            768,
+            820,
+            384,
+            204
+          ],
+          "opaque_bounds": [
+            19,
+            75,
+            376,
+            178
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            197.5,
+            178
+          ],
+          "destination": [
+            54.6087,
+            100.1739,
+            267.1304,
+            141.913
+          ],
+          "enabled": true
+        },
+        {
+          "id": 15,
+          "source_rect": [
+            1152,
+            820,
+            384,
+            204
+          ],
+          "opaque_bounds": [
+            16,
+            76,
+            370,
+            182
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            193.0,
+            182
+          ],
+          "destination": [
+            57.7391,
+            97.3913,
+            267.1304,
+            141.913
+          ],
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "alligator-reform-source-v1",
+      "path": "assets/bestiary/cockroach-swarm/alligator-reform-source-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "1c13d99649d036325556bef08b3047adf1cd97c4de3510652c6104fdee06d4f8",
+      "shared_scale": 0.4897959183673469,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            28,
+            132,
+            364,
+            256
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            196.0,
+            256
+          ],
+          "destination": [
+            96.0,
+            98.6122,
+            188.0816,
+            137.1429
+          ],
+          "enabled": true
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            384,
+            0,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            17,
+            112,
+            351,
+            261
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            184.0,
+            261
+          ],
+          "destination": [
+            101.8776,
+            96.1633,
+            188.0816,
+            137.1429
+          ],
+          "enabled": true
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            768,
+            0,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            25,
+            130,
+            376,
+            256
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            200.5,
+            256
+          ],
+          "destination": [
+            93.7959,
+            98.6122,
+            188.0816,
+            137.1429
+          ],
+          "enabled": true
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            280
+          ],
+          "opaque_bounds": [
+            25,
+            111,
+            371,
+            255
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            198.0,
+            255
+          ],
+          "destination": [
+            95.0204,
+            99.102,
+            188.0816,
+            137.1429
+          ],
+          "enabled": true
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            280,
+            384,
+            260
+          ],
+          "opaque_bounds": [
+            21,
+            96,
+            364,
+            243
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            192.5,
+            243
+          ],
+          "destination": [
+            97.7143,
+            104.9796,
+            188.0816,
+            127.3469
+          ],
+          "enabled": true
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            384,
+            280,
+            384,
+            260
+          ],
+          "opaque_bounds": [
+            19,
+            94,
+            364,
+            241
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            191.5,
+            241
+          ],
+          "destination": [
+            98.2041,
+            105.9592,
+            188.0816,
+            127.3469
+          ],
+          "enabled": true
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            768,
+            280,
+            372,
+            260
+          ],
+          "opaque_bounds": [
+            12,
+            107,
+            338,
+            242
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            175.0,
+            242
+          ],
+          "destination": [
+            106.2857,
+            105.4694,
+            182.2041,
+            127.3469
+          ],
+          "enabled": true
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            1140,
+            280,
+            396,
+            260
+          ],
+          "opaque_bounds": [
+            1,
+            110,
+            386,
+            241
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            193.5,
+            241
+          ],
+          "destination": [
+            97.2245,
+            105.9592,
+            193.9592,
+            127.3469
+          ],
+          "enabled": true
+        },
+        {
+          "id": 8,
+          "source_rect": [
+            0,
+            540,
+            384,
+            250
+          ],
+          "opaque_bounds": [
+            17,
+            89,
+            368,
+            227
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            192.5,
+            227
+          ],
+          "destination": [
+            97.7143,
+            112.8163,
+            188.0816,
+            122.449
+          ],
+          "enabled": true
+        },
+        {
+          "id": 9,
+          "source_rect": [
+            384,
+            540,
+            384,
+            250
+          ],
+          "opaque_bounds": [
+            7,
+            101,
+            375,
+            225
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            191.0,
+            225
+          ],
+          "destination": [
+            98.449,
+            113.7959,
+            188.0816,
+            122.449
+          ],
+          "enabled": true
+        },
+        {
+          "id": 10,
+          "source_rect": [
+            768,
+            540,
+            384,
+            250
+          ],
+          "opaque_bounds": [
+            15,
+            109,
+            377,
+            224
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            196.0,
+            224
+          ],
+          "destination": [
+            96.0,
+            114.2857,
+            188.0816,
+            122.449
+          ],
+          "enabled": true
+        },
+        {
+          "id": 11,
+          "source_rect": [
+            1152,
+            540,
+            384,
+            250
+          ],
+          "opaque_bounds": [
+            4,
+            101,
+            362,
+            226
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            183.0,
+            226
+          ],
+          "destination": [
+            102.3673,
+            113.3061,
+            188.0816,
+            122.449
+          ],
+          "enabled": true
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            790,
+            450,
+            234
+          ],
+          "opaque_bounds": [
+            23,
+            80,
+            427,
+            204
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            225.0,
+            204
+          ],
+          "destination": [
+            81.7959,
+            124.0816,
+            220.4082,
+            114.6122
+          ],
+          "enabled": true
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            450,
+            790,
+            478,
+            234
+          ],
+          "opaque_bounds": [
+            7,
+            76,
+            454,
+            206
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            230.5,
+            206
+          ],
+          "destination": [
+            79.102,
+            123.102,
+            234.1224,
+            114.6122
+          ],
+          "enabled": true
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            928,
+            790,
+            608,
+            234
+          ],
+          "opaque_bounds": [
+            1,
+            77,
+            589,
+            204
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            295.0,
+            204
+          ],
+          "destination": [
+            47.5102,
+            124.0816,
+            297.7959,
+            114.6122
+          ],
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "actions-v1",
+      "path": "assets/bestiary/cockroach-swarm/actions-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "e422c8ea20dcb465895e21a8094a4d787a027246a53c92c45973e529cb2e1862",
+      "shared_scale": 0.7710843373493976,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            382,
+            256
+          ],
+          "opaque_bounds": [
+            38,
+            71,
+            382,
+            244
+          ],
+          "edge_pixels": 31,
+          "source_anchor": [
+            210.0,
+            244
+          ],
+          "destination": [
+            30.0723,
+            35.8554,
+            294.5542,
+            197.3976
+          ],
+          "enabled": false
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            382,
+            0,
+            413,
+            256
+          ],
+          "opaque_bounds": [
+            0,
+            27,
+            408,
+            184
+          ],
+          "edge_pixels": 24,
+          "source_anchor": [
+            204.0,
+            184
+          ],
+          "destination": [
+            34.6988,
+            82.1205,
+            318.4578,
+            197.3976
+          ],
+          "enabled": false
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            795,
+            0,
+            365,
+            256
+          ],
+          "opaque_bounds": [
+            11,
+            45,
+            365,
+            232
+          ],
+          "edge_pixels": 2,
+          "source_anchor": [
+            188.0,
+            232
+          ],
+          "destination": [
+            47.0361,
+            45.1084,
+            281.4458,
+            197.3976
+          ],
+          "enabled": false
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            1160,
+            0,
+            376,
+            256
+          ],
+          "opaque_bounds": [
+            1,
+            45,
+            367,
+            248
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            184.0,
+            248
+          ],
+          "destination": [
+            50.1205,
+            32.7711,
+            289.9277,
+            197.3976
+          ],
+          "enabled": false
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            256,
+            384,
+            256
+          ],
+          "opaque_bounds": [
+            56,
+            36,
+            384,
+            237
+          ],
+          "edge_pixels": 4,
+          "source_anchor": [
+            220.0,
+            237
+          ],
+          "destination": [
+            22.3614,
+            41.253,
+            296.0964,
+            197.3976
+          ],
+          "enabled": false
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            384,
+            256,
+            384,
+            256
+          ],
+          "opaque_bounds": [
+            65,
+            25,
+            348,
+            225
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            206.5,
+            225
+          ],
+          "destination": [
+            32.7711,
+            50.506,
+            296.0964,
+            197.3976
+          ],
+          "enabled": true
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            768,
+            256,
+            384,
+            256
+          ],
+          "opaque_bounds": [
+            39,
+            65,
+            371,
+            248
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            205.0,
+            248
+          ],
+          "destination": [
+            33.9277,
+            32.7711,
+            296.0964,
+            197.3976
+          ],
+          "enabled": true
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            1152,
+            256,
+            384,
+            256
+          ],
+          "opaque_bounds": [
+            43,
+            57,
+            336,
+            239
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            189.5,
+            239
+          ],
+          "destination": [
+            45.8795,
+            39.7108,
+            296.0964,
+            197.3976
+          ],
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "water-actions-v2",
+      "path": "assets/bestiary/cockroach-swarm/water-actions-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "de68f4ce4d02265baed9282ebe870dfee63bf0a484d132a7982773a9bb5f4c96",
+      "shared_scale": 0.5647058823529412,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            540,
+            500
+          ],
+          "opaque_bounds": [
+            17,
+            318,
+            527,
+            425
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            272.0,
+            425
+          ],
+          "destination": [
+            38.4,
+            -16.0,
+            304.9412,
+            282.3529
+          ],
+          "enabled": true
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            540,
+            0,
+            420,
+            500
+          ],
+          "opaque_bounds": [
+            11,
+            135,
+            347,
+            441
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            179.0,
+            441
+          ],
+          "destination": [
+            90.9176,
+            -25.0353,
+            237.1765,
+            282.3529
+          ],
+          "enabled": true
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            960,
+            0,
+            310,
+            500
+          ],
+          "opaque_bounds": [
+            29,
+            151,
+            254,
+            422
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            141.5,
+            422
+          ],
+          "destination": [
+            112.0941,
+            -14.3059,
+            175.0588,
+            282.3529
+          ],
+          "enabled": true
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            1270,
+            0,
+            266,
+            500
+          ],
+          "opaque_bounds": [
+            149,
+            251,
+            239,
+            423
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            194.0,
+            423
+          ],
+          "destination": [
+            82.4471,
+            -14.8706,
+            150.2118,
+            282.3529
+          ],
+          "enabled": true
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            500,
+            384,
+            524
+          ],
+          "opaque_bounds": [
+            39,
+            133,
+            321,
+            438
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            180.0,
+            438
+          ],
+          "destination": [
+            90.3529,
+            -23.3412,
+            216.8471,
+            295.9059
+          ],
+          "enabled": true
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            384,
+            500,
+            384,
+            524
+          ],
+          "opaque_bounds": [
+            25,
+            95,
+            276,
+            441
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            150.5,
+            441
+          ],
+          "destination": [
+            107.0118,
+            -25.0353,
+            216.8471,
+            295.9059
+          ],
+          "enabled": true
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            768,
+            500,
+            384,
+            524
+          ],
+          "opaque_bounds": [
+            35,
+            187,
+            283,
+            440
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            159.0,
+            440
+          ],
+          "destination": [
+            102.2118,
+            -24.4706,
+            216.8471,
+            295.9059
+          ],
+          "enabled": true
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            1152,
+            500,
+            384,
+            524
+          ],
+          "opaque_bounds": [
+            27,
+            317,
+            360,
+            439
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            193.5,
+            439
+          ],
+          "destination": [
+            82.7294,
+            -23.9059,
+            216.8471,
+            295.9059
+          ],
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "roach-layers-v1",
+      "path": "assets/bestiary/cockroach-swarm/roach-layers-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "bb51147fcffba880c9c6b6f5688f948cc8c7aa2a862d182e7ab27e8784aa3b5b",
+      "shared_scale": 0.08191126279863481,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            313,
+            313
+          ],
+          "opaque_bounds": [
+            32,
+            78,
+            297,
+            259
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            164.5,
+            259
+          ],
+          "destination": [
+            178.5256,
+            202.785,
+            25.6382,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            313,
+            0,
+            314,
+            313
+          ],
+          "opaque_bounds": [
+            26,
+            85,
+            296,
+            265
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            161.0,
+            265
+          ],
+          "destination": [
+            178.8123,
+            202.2935,
+            25.7201,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            627,
+            0,
+            313,
+            313
+          ],
+          "opaque_bounds": [
+            39,
+            71,
+            293,
+            272
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            166.0,
+            272
+          ],
+          "destination": [
+            178.4027,
+            201.7201,
+            25.6382,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            940,
+            0,
+            314,
+            313
+          ],
+          "opaque_bounds": [
+            10,
+            89,
+            295,
+            256
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            152.5,
+            256
+          ],
+          "destination": [
+            179.5085,
+            203.0307,
+            25.7201,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            313,
+            313,
+            314
+          ],
+          "opaque_bounds": [
+            36,
+            95,
+            302,
+            215
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            169.0,
+            215
+          ],
+          "destination": [
+            178.157,
+            206.3891,
+            25.6382,
+            25.7201
+          ],
+          "enabled": true
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            313,
+            313,
+            314,
+            314
+          ],
+          "opaque_bounds": [
+            32,
+            79,
+            303,
+            219
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            167.5,
+            219
+          ],
+          "destination": [
+            178.2799,
+            206.0614,
+            25.7201,
+            25.7201
+          ],
+          "enabled": true
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            627,
+            313,
+            313,
+            314
+          ],
+          "opaque_bounds": [
+            33,
+            86,
+            301,
+            217
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            167.0,
+            217
+          ],
+          "destination": [
+            178.3208,
+            206.2253,
+            25.6382,
+            25.7201
+          ],
+          "enabled": true
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            940,
+            313,
+            314,
+            314
+          ],
+          "opaque_bounds": [
+            49,
+            105,
+            299,
+            221
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            174.0,
+            221
+          ],
+          "destination": [
+            177.7474,
+            205.8976,
+            25.7201,
+            25.7201
+          ],
+          "enabled": true
+        },
+        {
+          "id": 8,
+          "source_rect": [
+            0,
+            627,
+            313,
+            313
+          ],
+          "opaque_bounds": [
+            25,
+            37,
+            293,
+            239
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            159.0,
+            239
+          ],
+          "destination": [
+            178.9761,
+            204.4232,
+            25.6382,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 9,
+          "source_rect": [
+            313,
+            627,
+            314,
+            313
+          ],
+          "opaque_bounds": [
+            40,
+            17,
+            299,
+            235
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            169.5,
+            235
+          ],
+          "destination": [
+            178.116,
+            204.7509,
+            25.7201,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 10,
+          "source_rect": [
+            627,
+            627,
+            313,
+            313
+          ],
+          "opaque_bounds": [
+            21,
+            25,
+            283,
+            239
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            152.0,
+            239
+          ],
+          "destination": [
+            179.5495,
+            204.4232,
+            25.6382,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 11,
+          "source_rect": [
+            940,
+            627,
+            314,
+            313
+          ],
+          "opaque_bounds": [
+            13,
+            47,
+            291,
+            227
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            152.0,
+            227
+          ],
+          "destination": [
+            179.5495,
+            205.4061,
+            25.7201,
+            25.6382
+          ],
+          "enabled": true
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            940,
+            313,
+            314
+          ],
+          "opaque_bounds": [
+            15,
+            25,
+            306,
+            263
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            160.5,
+            263
+          ],
+          "destination": [
+            178.8532,
+            202.4573,
+            25.6382,
+            25.7201
+          ],
+          "enabled": true
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            313,
+            940,
+            314,
+            314
+          ],
+          "opaque_bounds": [
+            10,
+            14,
+            303,
+            251
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            156.5,
+            251
+          ],
+          "destination": [
+            179.1809,
+            203.4403,
+            25.7201,
+            25.7201
+          ],
+          "enabled": true
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            627,
+            940,
+            313,
+            314
+          ],
+          "opaque_bounds": [
+            13,
+            25,
+            300,
+            264
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            156.5,
+            264
+          ],
+          "destination": [
+            179.1809,
+            202.3754,
+            25.6382,
+            25.7201
+          ],
+          "enabled": true
+        },
+        {
+          "id": 15,
+          "source_rect": [
+            940,
+            940,
+            314,
+            314
+          ],
+          "opaque_bounds": [
+            10,
+            16,
+            302,
+            261
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            156.0,
+            261
+          ],
+          "destination": [
+            179.2218,
+            202.6212,
+            25.7201,
+            25.7201
+          ],
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "rat-flight-v2",
+      "path": "assets/bestiary/cockroach-swarm/rat-flight-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "5f0728f4152596e9093d6f835b317c1369603eccb31deff0a2fab054f8e2a265",
+      "shared_scale": 0.3610719322990127,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            768,
+            512
+          ],
+          "opaque_bounds": [
+            65,
+            193,
+            719,
+            433
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            392.0,
+            433
+          ],
+          "destination": [
+            50.4598,
+            67.6559,
+            277.3032,
+            184.8688
+          ],
+          "enabled": true
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            768,
+            0,
+            768,
+            512
+          ],
+          "opaque_bounds": [
+            43,
+            141,
+            739,
+            412
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            391.0,
+            412
+          ],
+          "destination": [
+            50.8209,
+            75.2384,
+            277.3032,
+            184.8688
+          ],
+          "enabled": true
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            0,
+            512,
+            768,
+            512
+          ],
+          "opaque_bounds": [
+            53,
+            69,
+            720,
+            347
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            386.5,
+            347
+          ],
+          "destination": [
+            52.4457,
+            98.708,
+            277.3032,
+            184.8688
+          ],
+          "enabled": true
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            768,
+            512,
+            768,
+            512
+          ],
+          "opaque_bounds": [
+            34,
+            173,
+            743,
+            408
+          ],
+          "edge_pixels": 0,
+          "source_anchor": [
+            388.5,
+            408
+          ],
+          "destination": [
+            51.7236,
+            76.6827,
+            277.3032,
+            184.8688
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  ],
+  "animations": {
+    "rat_idle": {
+      "sheet": "rat-source-v2",
+      "frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_move": {
+      "sheet": "rat-source-v2",
+      "frames": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_warning": {
+      "sheet": "rat-source-v2",
+      "frames": [
+        12
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_bite": {
+      "sheet": "rat-source-v2",
+      "frames": [
+        14
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_recovery": {
+      "sheet": "rat-source-v2",
+      "frames": [
+        15
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_hit": {
+      "sheet": "rat-source-v2",
+      "frames": [
+        14
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_assembly": {
+      "sheet": "rat-collapse-source-v1",
+      "frames": [
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_collapse": {
+      "sheet": "rat-collapse-source-v1",
+      "frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_false_death": {
+      "sheet": "rat-collapse-source-v1",
+      "frames": [
+        15
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "floor_skitter": {
+      "sheet": "rat-collapse-source-v1",
+      "frames": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_assembly": {
+      "sheet": "alligator-reform-source-v1",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_idle": {
+      "sheet": "alligator-source-v2",
+      "frames": [
+        3,
+        6,
+        7,
+        11
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_move": {
+      "sheet": "alligator-source-v2",
+      "frames": [
+        3,
+        6,
+        7,
+        11
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_warning": {
+      "sheet": "alligator-source-v2",
+      "frames": [
+        13
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_bite": {
+      "sheet": "alligator-source-v2",
+      "frames": [
+        13
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_recovery": {
+      "sheet": "alligator-source-v2",
+      "frames": [
+        15
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_hit": {
+      "sheet": "alligator-source-v2",
+      "frames": [
+        14
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "terminal_death": {
+      "sheet": "alligator-reform-source-v1",
+      "frames": [
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_retreat": {
+      "sheet": "actions-v1",
+      "frames": [
+        5,
+        6,
+        7
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_launch": {
+      "sheet": "rat-flight-v2",
+      "frames": [
+        0,
+        1
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_airborne": {
+      "sheet": "rat-flight-v2",
+      "frames": [
+        1,
+        2
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "rat_landing": {
+      "sheet": "rat-flight-v2",
+      "frames": [
+        3
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_dive": {
+      "sheet": "water-actions-v2",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_surface": {
+      "sheet": "water-actions-v2",
+      "frames": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_tail_warning": {
+      "sheet": "water-actions-v2",
+      "frames": [
+        4,
+        5
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "alligator_tail_throw": {
+      "sheet": "water-actions-v2",
+      "frames": [
+        6,
+        7
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "roach_top": {
+      "sheet": "roach-layers-v1",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "roach_side": {
+      "sheet": "roach-layers-v1",
+      "frames": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "roach_cluster": {
+      "sheet": "roach-layers-v1",
+      "frames": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    },
+    "roach_churn": {
+      "sheet": "roach-layers-v1",
+      "frames": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "loop": true,
+      "frame_seconds": 0.1,
+      "timing_authority": "Stretch nonloops to controller state duration; idle/churn10fps"
+    }
+  },
+  "continuous_churn": "Layer roach_cluster/roach_churn at phase-offset10fps clipped to current prepared body alpha, even on warning/recovery/hit. Freeze all only during false-death hold; floor_skitter resumes afterward.",
+  "body_collision": "Visible leading quarter only during attack, coarse body footprint may not exceed prepared opaque artwork; tail/antennae decorative. Review logical visible bounds in frames.",
+  "excluded_frames": {
+    "rat-source-v2.png": [
+      0,
+      13
+    ],
+    "alligator-source-v2.png": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      8,
+      9,
+      10,
+      12
+    ],
+    "rat-collapse-source-v1.png": [
+      0
+    ],
+    "alligator-reform-source-v1.png": [],
+    "actions-v1.png": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "water-actions-v2.png": [],
+    "roach-layers-v1.png": [],
+    "rat-flight-v2.png": []
+  },
+  "remaining": [
+    "Composed motion and live transition continuity review",
+    "Verify alpha threshold preserves insect leg detail at game scale",
+    "Do not claim delivered gameplay before Engineering validation/build"
+  ]
+}

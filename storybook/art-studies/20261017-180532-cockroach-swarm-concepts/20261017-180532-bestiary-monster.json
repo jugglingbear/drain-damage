@@ -1,0 +1,170 @@
+{
+  "id": "cockroach-swarm",
+  "name": "Cockroach swarm (name pending)",
+  "name_status": "Descriptive placeholder; Storyboarding candidates awaiting Sean selection",
+  "name_candidates": [
+    "Vermin Union",
+    "Roachwork",
+    "Infestus",
+    "The Scuttlebeast",
+    "Pestiform",
+    "The Crawllective",
+    "Roach Rorschach",
+    "The Skittering",
+    "Verminous Maximus",
+    "The Infestigator",
+    "Roachzilla",
+    "The Many-Legged Lie"
+  ],
+  "description": "A floor swarm of constantly skittering cockroaches assembles into a giant rat, collapses after damage, and reforms as a giant alligator. Individual insects continue crawling while each animal silhouette holds.",
+  "implementation_status": "Commissioned concept and sprite source artwork; not implemented. Alpha cleanup, frame registration, loop and transition continuity remain pending.",
+  "created_at": "2026-10-17T18:04:31.083999-07:00",
+  "backstory": {
+    "status": "pending",
+    "text": ""
+  },
+  "health": {
+    "max_hp": 360,
+    "spawn_hp": 360,
+    "runtime_max_hp": null,
+    "status": "proposed",
+    "encounter_stage": "first_level_mid_to_late_miniboss_location_pending",
+    "role": "Single compound transforming miniboss",
+    "bar": {
+      "visible_by_default": true,
+      "policy": "assets/bestiary/damage/health-visuals.json#boss_hud",
+      "name": "Use selected name when approved; no invented final name",
+      "enabled": true
+    },
+    "model": "One shared continuous pool, no phase refill. Rat atHP>180; first crossing to<=180 schedules transformation exactly once ifHP>0; alligator uses remainingHP.",
+    "threshold_hp": 180,
+    "damage_accounting": "Apply each hit once with full damage and carry threshold overkill into shared pool. HP0 always wins over queued transformation; death only once. Never reset threshold latch until encounter reset.",
+    "rationale": "360HP sits above180HP aerial elite and below720HP finale; guideline bands are not hard constraints. Shared pool gives visible progress and avoids secretly doubling health. Exact20\u201335s encounter target is unvalidated.",
+    "active_first_level_comparisons": {
+      "tony": {
+        "weapon": "pressure-gun",
+        "damage": 12,
+        "interval_seconds": 0.16,
+        "range_pixels": 320,
+        "hits": 30,
+        "first_to_last_seconds": 4.64,
+        "hits_to_threshold": 15
+      },
+      "sean": {
+        "weapon": "heavy-plunger-launcher",
+        "damage": 18,
+        "interval_seconds": 0.24,
+        "range_pixels": 480,
+        "hits": 20,
+        "first_to_last_seconds": 4.56,
+        "hits_to_threshold": 10
+      }
+    },
+    "canonical_base_comparisons": {
+      "pressure-gun": {
+        "damage": 6,
+        "hits": 60,
+        "overkill": 0,
+        "owner": "tony",
+        "runtime": "playable; active first-level override differs"
+      },
+      "heavy-plunger-launcher": {
+        "damage": 24,
+        "hits": 15,
+        "overkill": 0,
+        "owner": "sean",
+        "runtime": "playable; active first-level override differs"
+      },
+      "pipe-wrench": {
+        "damage": 12,
+        "hits": 30,
+        "overkill": 0,
+        "owner": "tony",
+        "runtime": "planned"
+      },
+      "drain-snake": {
+        "damage": 8,
+        "hits": 45,
+        "overkill": 0,
+        "owner": "tony",
+        "runtime": "planned"
+      },
+      "demolition-hammer": {
+        "damage": 60,
+        "hits": 6,
+        "overkill": 0,
+        "owner": "sean",
+        "runtime": "planned"
+      },
+      "pipe-bomb-launcher": {
+        "damage": 60,
+        "hits": 6,
+        "overkill": 0,
+        "owner": "sean",
+        "runtime": "planned"
+      }
+    },
+    "comparison_limits": "ceil(maxHP/damage), full-health no armor, excluding travel/misses/attackwindup and3s transform. Timing is continuous firing ideal, not fight length. Composite insect geometry never multiplies explosion/piercing hits. Melee recovery access must be validated when tools implemented.",
+    "hits_to_defeat": {
+      "pressure-gun": 60,
+      "heavy-plunger-launcher": 15,
+      "pipe-wrench": 30,
+      "drain-snake": 45,
+      "demolition-hammer": 6,
+      "pipe-bomb-launcher": 6
+    }
+  },
+  "runtime_support": "hud_preview_only",
+  "runtime_support_note": "Schema compatibility only. Planned creature with no gameplay actor or encounter; runtime HP unset.",
+  "game_art": {
+    "image": "assets/bestiary/cockroach-swarm/rat-source-v2.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "animation": "assets/bestiary/cockroach-swarm/manifest-v1.json",
+    "prompt": "assets/bestiary/cockroach-swarm/prompts-v1.json",
+    "status": "Five candidate sheets /79 source frames; not runtime validated"
+  },
+  "marketing": {
+    "image": "bestiary/cockroach-swarm/marketing-concepts-v1.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "style": "hyperrealistic concept diptych: rat and alligator",
+    "prompt": "bestiary/cockroach-swarm/prompts-v1.json",
+    "status": "Concept proposal; visual design review pending"
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "profile_ready",
+    "manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/hit.wav",
+          "gain_db": -3,
+          "sha256": "ff51950836c9eb654554903dc2c01ec1b22c62922929396aaee130fc862f9d2f"
+        }
+      ],
+      "cooldown_seconds": 0.12,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/cockroach-swarm-v1/death.wav",
+          "gain_db": -3,
+          "sha256": "61341be701c03917de926d21f5d615900f847406a8e5050d71d33850806656ab"
+        }
+      ],
+      "cooldown_seconds": 0,
+      "max_voices": 2,
+      "loop": false
+    }
+  },
+  "audio_auxiliary_contract": "handoffs/cockroach-swarm-audio.json",
+  "mechanics_proposal": "handoffs/roach-miniboss-mechanics.json"
+}

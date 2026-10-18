@@ -1,0 +1,604 @@
+{
+  "canvas": [
+    960,
+    540
+  ],
+  "floor_y": 440,
+  "alpha_cutoff": 240,
+  "filter": "nearest",
+  "status": "Authored sources and measured crops ready for integration; composed visual review pending",
+  "background": {
+    "path": "assets/world/skitterling-room/background-v1.png",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "strips": [
+      {
+        "source_rect": [
+          0,
+          0,
+          1672,
+          740
+        ],
+        "destination": [
+          0,
+          0,
+          960,
+          440
+        ]
+      },
+      {
+        "source_rect": [
+          0,
+          740,
+          1672,
+          30
+        ],
+        "destination": [
+          0,
+          440,
+          960,
+          16
+        ]
+      },
+      {
+        "source_rect": [
+          0,
+          856,
+          1672,
+          85
+        ],
+        "destination": [
+          0,
+          456,
+          960,
+          84
+        ]
+      }
+    ]
+  },
+  "pipes": {
+    "path": "assets/world/skitterling-room/pipes-v1.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "props": {
+      "open": {
+        "source_rect": [
+          49,
+          20,
+          481,
+          467
+        ],
+        "anchor": "center",
+        "alpha_cutoff": 240
+      },
+      "closed": {
+        "source_rect": [
+          539,
+          20,
+          476,
+          467
+        ],
+        "anchor": "center",
+        "alpha_cutoff": 240
+      },
+      "half_open": {
+        "source_rect": [
+          1036,
+          20,
+          476,
+          466
+        ],
+        "anchor": "center",
+        "alpha_cutoff": 240
+      },
+      "side_pipe": {
+        "source_rect": [
+          32,
+          590,
+          537,
+          338
+        ],
+        "anchor": "center",
+        "alpha_cutoff": 240
+      },
+      "ceiling_pipe": {
+        "source_rect": [
+          654,
+          512,
+          364,
+          468
+        ],
+        "anchor": "center",
+        "alpha_cutoff": 240
+      },
+      "front_rim": {
+        "source_rect": [
+          1033,
+          513,
+          479,
+          467
+        ],
+        "anchor": "center",
+        "alpha_cutoff": 240
+      }
+    }
+  },
+  "instances": [
+    {
+      "id": "background",
+      "prop": "open",
+      "destination": [
+        320,
+        108,
+        320,
+        300
+      ],
+      "front_prop": "front_rim",
+      "layer": "backwall; rim overlays retreat/entryroach only"
+    },
+    {
+      "id": "entry",
+      "prop": "side_pipe",
+      "destination": [
+        -80,
+        260,
+        220,
+        180
+      ],
+      "mirror_x": true,
+      "layer": "front occlusion"
+    },
+    {
+      "id": "exit",
+      "prop": "closed",
+      "open_sequence": [
+        "closed",
+        "half_open",
+        "open"
+      ],
+      "destination": [
+        824,
+        252,
+        160,
+        188
+      ],
+      "layer": "backwall; front_rim optional actor lip"
+    },
+    {
+      "id": "ceiling-left",
+      "prop": "ceiling_pipe",
+      "destination": [
+        166,
+        82,
+        168,
+        116
+      ],
+      "mouth_center": [
+        250,
+        166
+      ]
+    },
+    {
+      "id": "ceiling-right",
+      "prop": "ceiling_pipe",
+      "destination": [
+        626,
+        82,
+        168,
+        116
+      ],
+      "mouth_center": [
+        710,
+        166
+      ]
+    },
+    {
+      "id": "wall-left",
+      "prop": "open",
+      "destination": [
+        -22,
+        170,
+        140,
+        124
+      ],
+      "mouth_center": [
+        48,
+        232
+      ]
+    },
+    {
+      "id": "wall-right",
+      "prop": "open",
+      "destination": [
+        842,
+        170,
+        140,
+        124
+      ],
+      "mouth_center": [
+        912,
+        232
+      ]
+    }
+  ],
+  "port_geometry_note": "Mechanics adopted ceiling mouthY166 and reports allfour controller ports match this manifest. Decorative openings are not physics colliders; composed visual review pending.",
+  "effects": {
+    "path": "assets/world/skitterling-room/effects-v1.png",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "frames": [
+      {
+        "id": 0,
+        "source_rect": [
+          0,
+          0,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          24,
+          153,
+          369,
+          215
+        ],
+        "anchor": [
+          196.5,
+          215
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 1,
+        "source_rect": [
+          384,
+          0,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          23,
+          152,
+          369,
+          215
+        ],
+        "anchor": [
+          196.0,
+          215
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 2,
+        "source_rect": [
+          768,
+          0,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          20,
+          125,
+          368,
+          215
+        ],
+        "anchor": [
+          194.0,
+          215
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 3,
+        "source_rect": [
+          1152,
+          0,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          18,
+          151,
+          367,
+          215
+        ],
+        "anchor": [
+          192.5,
+          215
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 4,
+        "source_rect": [
+          0,
+          256,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          39,
+          81,
+          358,
+          253
+        ],
+        "anchor": [
+          198.5,
+          253
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 5,
+        "source_rect": [
+          384,
+          256,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          31,
+          37,
+          366,
+          254
+        ],
+        "anchor": [
+          198.5,
+          254
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 6,
+        "source_rect": [
+          768,
+          256,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          19,
+          11,
+          367,
+          253
+        ],
+        "anchor": [
+          193.0,
+          253
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 7,
+        "source_rect": [
+          1152,
+          256,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          35,
+          100,
+          352,
+          253
+        ],
+        "anchor": [
+          193.5,
+          253
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 8,
+        "source_rect": [
+          0,
+          512,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          61,
+          48,
+          344,
+          208
+        ],
+        "anchor": [
+          202.5,
+          208
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 9,
+        "source_rect": [
+          384,
+          512,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          47,
+          64,
+          351,
+          214
+        ],
+        "anchor": [
+          199.0,
+          214
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 10,
+        "source_rect": [
+          768,
+          512,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          80,
+          44,
+          317,
+          216
+        ],
+        "anchor": [
+          198.5,
+          216
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 11,
+        "source_rect": [
+          1152,
+          512,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          91,
+          59,
+          315,
+          214
+        ],
+        "anchor": [
+          203.0,
+          214
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 12,
+        "source_rect": [
+          0,
+          768,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          95,
+          47,
+          319,
+          179
+        ],
+        "anchor": [
+          207.0,
+          179
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 13,
+        "source_rect": [
+          384,
+          768,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          78,
+          29,
+          302,
+          195
+        ],
+        "anchor": [
+          190.0,
+          195
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 14,
+        "source_rect": [
+          768,
+          768,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          46,
+          18,
+          340,
+          196
+        ],
+        "anchor": [
+          193.0,
+          196
+        ],
+        "edge_pixels": 0
+      },
+      {
+        "id": 15,
+        "source_rect": [
+          1152,
+          768,
+          384,
+          256
+        ],
+        "opaque_bounds": [
+          34,
+          22,
+          328,
+          194
+        ],
+        "anchor": [
+          181.0,
+          194
+        ],
+        "edge_pixels": 0
+      }
+    ],
+    "water_loop": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "splash": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "debris": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "roach_warning": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "frame_seconds": 0.1,
+    "sizes": {
+      "water": [
+        320,
+        84
+      ],
+      "splash": [
+        150,
+        100
+      ],
+      "debris": [
+        28,
+        28
+      ],
+      "roach_warning": [
+        96,
+        64
+      ]
+    }
+  },
+  "approach_pipe": "Reuse side_pipe repeated behind open entrance with opaque barrel drawn foreground for concealment; do not stretch a closed shutter over walking hero.",
+  "mask_policy": "Use authored front_rim alpha for circular mouth lip. Use side_pipe opaque barrel as foreground concealment. Room margins clip props naturally. No generated primitive substitute.",
+  "prompts": "assets/world/skitterling-room/prompts-v1.json"
+}
