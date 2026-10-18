@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "role": "Storyboarding 2",
+  "created_at": "2026-10-17T13:51:20-07:00",
+  "timezone": "America/Los_Angeles",
+  "timestamp_kind": "Succession audit creation, not game-image capture",
+  "canonical_root": "/Users/sfoley/repos/drain_damage",
+  "predecessor_thread": "01a1387e-545b-7671-943e-3d36a1c88db7",
+  "successor_thread": "01a14b9d-aa2d-7e70-8653-bed1d95ed4ed",
+  "status": "Ready to take over; full available predecessor history and exhaustive predecessor handoff reconciled",
+  "write_test": {
+    "result": "PASS",
+    "method": "Normal-permission mktemp directly in repository; wrote and read Storyboarding 2 write verification; deleted same file",
+    "cleanup": "PASS",
+    "escalation": false
+  },
+  "scope": "Takeover and evidence preservation only. No game, art, publishing, build or roadmap implementation. Preserve concurrent work.",
+  "review": {
+    "history": "65 available predecessor turns on seven newest-first pages, ending at original role assignment. Human text and replies reviewed; relevant commands, handoff messages and outputs inspected. Full returned records retained separately; not every historical asset was visually re-inspected.",
+    "archive": "handoffs/storyboarding-2-recovered-history.json",
+    "instructions": [
+      "AGENTS.md",
+      "/Users/sfoley/.codex/coding-standards.md",
+      ".github/instructions inventory contains Makefile instructions only; no Makefile edited"
+    ],
+    "records": [
+      "design/first-level-narrative.md",
+      "scripts/story_dialogue.gd",
+      "assets/selection/approved-copy.json",
+      "assets/portraits/emotions-v1.json",
+      "assets/selection/clipboard-stack.json",
+      "handoffs/first-level-ending-rewrite.json",
+      "handoffs/game-intent-story-review.json",
+      "handoffs/sewer-fly-story.json",
+      "handoffs/wastewater-cutaway-story.json",
+      "handoffs/marketing-discussion-game-intent-audit.json",
+      "marketing/magazine/dispenser-copy-handoff.json",
+      "marketing/magazine/README.md",
+      "storybook/README.md (entire text through055)",
+      "storybook/storybook.html (structure/headings; embedded image data not inspected)",
+      "storybook/curation-backlog.json",
+      "storybook/055-selected-app-icon/capture-status.json",
+      "bestiary/monster-ideas.json",
+      "all six bestiary/*/monster.json identity, description, backstory and implementation fields",
+      "marketing/app-icon/concepts-v1.json",
+      "project.godot version",
+      "roadmap.html relevant narrative/build/marketing sections",
+      "builds/history file inventory",
+      "Historical screenshots listed in recovered-history userMessage localImage blocks (nine files)",
+      "audio/sources/clogfather-v1/storyboarding-brief.json",
+      "assets/bestiary/catalog.json identity/status fields"
+    ],
+    "not_claimed": "No fresh visual playtest, PDF render inspection, asset-pixel audit, build test, audio audition or verification of every archival package.",
+    "historical_images": "All nine localImage paths referenced in predecessor user turns were found and visually inspected. They show old selection copy, old introduction, old BJ completion, magazine factual/jargon copy and tape checkpoint. Original files not altered or copied into new game chapters."
+  },
+  "ownership": {
+    "storyboarding": [
+      "Plot, dialogue, events, character growth and continuity",
+      "Separate user decisions, working names, proposals and implemented behavior",
+      "Monster backstory contributions and editorial consistency",
+      "Development storybook and eventual making-of book curation"
+    ],
+    "engineering": [
+      "Runtime integration, builds, regression checks, preserved app packages, actual game captures",
+      "Supply verified delivered capability/build facts; coordinate shared roadmap/README/HTML edits"
+    ],
+    "art": [
+      "All new and replacement artwork, manifests and generation provenance",
+      "Monster metadata/catalog/gallery synchronization in coordinated lore deliveries"
+    ],
+    "marketing": [
+      "Magazine canonical JSON, layouts, PDF generation and publication",
+      "Marketing art ownership and versioned originals"
+    ],
+    "level_design": [
+      "Route/arena/terrain/encounter placement"
+    ],
+    "mechanics": [
+      "Combat balance, weapon exclusivity, health contracts"
+    ],
+    "audio": [
+      "Sound selection/editing, source licensing and implementation cues"
+    ],
+    "release": [
+      "Distribution/build-platform coordination"
+    ],
+    "boundaries": [
+      "Contact Art before any new artwork; do not independently generate or code-draw substitutes.",
+      "No foreground game without explicit Sean permission; screenshot requirement is not launch authorization.",
+      "No overwrites of user/concurrent changes; coordinate shared-file editing.",
+      "No new cinematic, creature, plot or publication work authorized by this takeover."
+    ]
+  },
+  "canon": {
+    "names": {
+      "game": "Drain Damage (working title)",
+      "alternate_game": "Plumbageddon reserved alternative",
+      "company": "Mainframe Plumbing & Supply (working name)",
+      "magazine": "Discharge Quarterly",
+      "association": "Plumbing, Heating & Creature Containment Association",
+      "ai": [
+        "Billy-Joe",
+        "BJ"
+      ],
+      "heroes": [
+        "Tony",
+        "Sean"
+      ],
+      "retired": "Do not revive the old AI name in outgoing story dialogue; retain it in authentic historical records."
+    },
+    "tony": {
+      "approved": "Kind, friendly, patient, wise fourth-generation plumber with decades of broad trade expertise. Respect the trade beyond fixing pipes. Skeptical of management, not contemptuous of Sean. Arachnophobic.",
+      "approved_bio": "A fourth-generation plumber with decades of experience installing, building, and keeping essential systems running.",
+      "approved_future_quote": "I was hoping spiders went somewhere else when they died.",
+      "quote_scope": "Tony, not Sean; reserved for a suitable actual spider encounter, afraid emotion. Do not insert without scene scope.",
+      "proposed_arc": "Protect people, pass on knowledge, learn boundaries with exploitative management and share responsibility with Sean. Specific refusal and rescue exchanges are proposals."
+    },
+    "sean": {
+      "approved": "Extremely unqualified apprentice who wandered in off the streets, willing and often fearless, confidently misunderstanding tools but occasionally perceptive. Grows from wanting to look useful to being useful; does not abruptly become a master.",
+      "art_identity": "Bald, no moustache; current art directions include substantial chin beard and separate soul patch, orange shirt/blue overalls. Historical prompt wording can be superseded; consult Art's latest identity records."
+    },
+    "bj": {
+      "approved": "Calm, overconfident, thinks himself all-knowing/all-seeing, makes mistakes and disregards employee welfare. Controls US plumbing firms and distribution warehouses within a largely AI-run world. Eventually an antagonistic force takes him over and the heroes must defeat the threat.",
+      "unresolved": [
+        "Antagonist identity",
+        "Takeover mechanism",
+        "BJ's ultimate fate"
+      ],
+      "proposal": "Organic growth in server room; never promote to established canon.",
+      "visual": "Beige server rack with green CRT, not a toilet robot or prematurely corrupted face."
+    },
+    "structure": [
+      "Start below headquarters; selected hero fights while the other supports on radio/access points.",
+      "Same essential plot across routes, distinct reciprocal dialogue.",
+      "Between-level scenes generally four to eight lines, skippable; current revised endings intentionally have nine turns.",
+      "Gameplay evidence precedes explanatory conversation; essential facts cannot rely solely on optional combat chatter.",
+      "World mixes Earthworm Jim-style absurdity and Contra-style readable action, adult/trade humor, rare fourth-wall breaks and sincere moments."
+    ],
+    "writing": [
+      "Avoid habitual paired fragments and slogan reversals.",
+      "Dialogue must answer prior lines coherently; no forced non-sequiturs.",
+      "Not every line needs a joke. Tony's kindness is baseline, not an arc to acquire.",
+      "Profiles use high-level traits, not firing rates.",
+      "Selected exact death quips remain approved despite more subtle magazine dispenser copy."
+    ]
+  },
+  "dialogue": {
+    "source": "scripts/story_dialogue.gd",
+    "opening": "Current seven lines: BJ introduces Mainframe; Tony introduces himself and new apprentice; basement property assignment; Sean brought wrench; Tony identifies tire iron kindly; Tony asks if anyone down there; BJ says Not yet. Head on down.",
+    "opening_change_reason": "Head through that door was replaced because no visible door was established. Opening runs fresh-new-game after selection, not death/retry; skip, frozen action and release guards remain.",
+    "completion": "Prototype49 replaces older seven-line routes with nine reciprocal turns each. Current exact JSON is handoffs/first-level-ending-rewrite.json; current GDScript matches reviewed text. Both end at exit with next mobile-toilet service call, no all-clear, full-health, boss, portal or restored-plumbing claim.",
+    "superseded_dispatch": "User-approved customer-hung-up line shipped earlier, then was superseded by49's whole-scene rewrite. Do not restore it just because older review handoff says preserve it.",
+    "missing_reply": "User reported absent Sean reply. Previous source already had it; packaged held-input tests passed, omission was not reproduced. Do not claim the root cause was fixed.",
+    "death_lines": "User selected candidates1,3,4,5,7,11,12,15,16,18,21,24. All twelve exact lines and semantic emotions remain in current script; pool avoids immediate repeats.",
+    "portraits": "5x2 row-major manifest; neutral0 happy1 amused2 sad3 worried4 afraid5 surprised6 angry7 skeptical8 embarrassed9. Tony-v3, Sean-v4, BJ-v2 at1983x793; use semantic names, not old2x2 indices.",
+    "historical_failures": "Predecessor twice needed follow-up because handoffs were not completed: revised introduction not sent, clipboard implementation left pending. Track integrated/build-ready status rather than equating sent with done."
+  },
+  "lore": {
+    "flushfiend": "Identity and nationwide possible appearances settled. AI smart-toilet distribution/rebellion backstory remains draft in bestiary/flushfiend/monster.json; stable ID toilet. Do not publish causal spoilers.",
+    "widow": "Approved shared backstory now includes sprouted wings and apparently started breeding, then heaven concern ending. Stable ID spider. Does not authorize eggs, reproduction or waves. No confirmed supernatural origin.",
+    "clogfather": "Giant living fatberg approved and required first-level finale. Current bestiary says no playable boss. Detailed anatomy,720HP tuning, moving mouths,weak-point windows,adds,valves and origin remain designs/proposals. Earlier ordinary-wave fallback is not acceptance of finished redesigned level.",
+    "clogfather_origin": "BJ dismissing duplicate blockage reports and canceling crews is draft. No intentional summoning established.",
+    "sputtervalve": {
+      "status": "Latest predecessor response is draft only; canonical monster backstory still pending/empty, provisional name/design, no hyperreal portrait.",
+      "identity": "Squat bolted iron pressure valve, gauge face, copper elbow snout, red handwheel, violet sewage spark; distinct from floor-emerging Gratecrawler.",
+      "draft": "Sputtervalves began as automatic pressure-control fittings, built to notice trouble and relieve it. Something in the wastewater has since taken up residence inside their iron housings. The gauge twitches even when the line is disconnected, and the little copper outlet coughs violet filth at anyone approaching. Plumbers still call them valves, mostly because nobody wants to be the first person to put “angry pipe animal” on an inspection report.",
+      "boundary": "Contamination inhabiting equipment is not approved origin and does not connect it to BJ's takeover."
+    },
+    "gratecrawler": "Separate provisional floor emerger; backstory pending/empty; no marketing portrait.",
+    "septic_air_force": "Working name selected October16; slow random non-hunting swarm harms player and monsters on incidental contact. Aviation backstory is draft; no guns, uniform, military allegiance or chasing behavior implied. Stable ID sewer-fly-swarm and existing sewer-flies paths retained.",
+    "rejected_swarm_name": "Drain Brains too close to Drain Damage/brain-damage wordplay.",
+    "gnatastrophe": "Reserved possible future boss name only in bestiary/monster-ideas.json. No confirmed species, relationship or production."
+  },
+  "environment_and_cinematics": {
+    "cutaway": "Approved large pipe beneath floor: visible flow/debris initially, water level falls and deposits increase toward fully clogged/no-flow boss area. World-location consistency on backtrack. Decorative, no new collision/damage/puzzle.",
+    "debris_proposals": "Wipes, cotton swabs, hair/fabric, red sock, toothbrush, underwear, rubber duck, brush head, plastic dinosaur; rare DO NOT FLUSH sign optional. Do not add corpse/clone/egg/portal lore.",
+    "single_boss": "Only one visible Clogfather at any time; background mass cannot duplicate foreground boss.",
+    "aftermath": "Defeat does not automatically fix plumbing, restore flow, clear remaining enemies, reveal portal or establish next destination.",
+    "portal": "User requested eerie animated concept art; favored reveal sketch remains provisional, destination/cause/time-travel not established. Remote partner needs sightline/shared camera before visual observations.",
+    "cinematic": "Skippable story-introduction direction requested October16 inspired by Contra III impact. Notes only; beats, duration, placement relative to selection/BJ intro and production not chosen. Seven-second dispenser cap does not apply.",
+    "later_levels": "Apartment tower, Restaurant Row, municipal pumping station, abandoned treatment works and executive headquarters return retained as proposals, not itinerary."
+  },
+  "dispenser": {
+    "approved_gag": "Injured hero scanned/grabbed/compressed by hand, thrown at viewer, splats/slides; replacement emerges, looks left/right, shrugs. Full-health quick check-in; death dispense-only. BJ silent. Preserve hero identity and checkpoint protection.",
+    "timing": "Target5.5s,hard7s control-lock watchdog; healthy0.4s; respawn1.9s. First full injured use then later fresh-input skip; audio never dictates delay.",
+    "current_revision": "Prototype51 has one checkpoint x4650 and one left-slot spare of selected hero. Healthy activation saves checkpoint without using stock; vending consumes once; empty persists across death/revisits; new run resets; no refill mechanic. Earlier two sleeping clones/three checkpoints are historical.",
+    "magazine": "Corporate euphemisms and omissions; do not explain killing/processing/healing/clone mechanics or viewer screen. This does not remove actual game gag or selected death lines."
+  },
+  "marketing": {
+    "source": "marketing/magazine/magazine.json; renderer build_guide.py; current policy marketing/magazine/README.md",
+    "tone": "Experienced trade editor covering absurd working conditions, warm toward plumbers, skeptical of management; lively without forced punchlines.",
+    "latest_policy": "Read current README: edition21 removes fictional-publication/company/non-affiliation disclaimers. Reader edition excludes developer jargon, prototype/build history, source-sheet/frame counts, preview caveats and future plot spoilers. Actual unresolved editorial TODOs must be conspicuous. Older Storyboarding advice requesting disclaimer/preview labels is superseded.",
+    "publication": "Dispenser handoff was proposed under temporary publication hold; README records edition19 integration, edition20 portraits, edition21 disclaimer removal. Do not treat historical hold as permanent or initiate new publishing in takeover.",
+    "assets": "Versioned portraits and prompts remain Art/Marketing-owned. Icon concept1 porcelain jaw/plunger selected and packaged55; concept10 pipe teeth symbolic, not new monster."
+  },
+  "audio_guidance": {
+    "scope": "Creative selection targets, not guarantees of exact synthesized/generated sounds. User clarified use free-to-use/open libraries, adapt through licensed editing.",
+    "title": "Cheerful professional confidence with something wrong underneath; energetic retro melody, warmth; proposed140BPM palette/motifs not locked authored score.",
+    "clogfather": "Huge blockage reluctantly moving, nonverbal gurgle/pressure/creaks/wet impacts; readable attack cues, sparse idle, no gangster personality, portal/BJ-corruption implication or restored-flow victory sound.145–155BPM palette is guidance, not commitment.",
+    "licenses": "Audio owns sources/license/attribution and actual feasible choices."
+  },
+  "storybook": {
+    "ownership": "Ongoing Storyboarding editorial curation with Engineering delivery/captures; prefer generous early/middle/late material, before/after comparisons, funny failures and rejected directions.",
+    "current": "README through055;54 numbered chapters because017 was intermediate source-art configuration, not delivered export. Separate unnumbered October14 art note. Existing heading still Global Plumbing Initiative.",
+    "backlog": "storybook/curation-backlog.json reports40 flags; these are heuristic, not40 wholly absent milestones.010 flag is resolved historical gap text;020 needs representative gameplay;044 has2 user captures but incomplete representative coverage.",
+    "capture_evidence": "Existing images in001–012,014,016,020,027,044 folders. Preserve all originals. Build archives13,15 and16 onward (excluding undelivered17) verified by file inventory, not unpacked/hash-tested.",
+    "timestamp_rule": "Every new capture and making-of artifact: YYYYmmdd-HHMMSS America/Los_Angeles in filename and metadata; record timezone/UTC offset. Distinguish capture/creation from later import; historical exact times only from trustworthy records, never modification/copy times.",
+    "pending_editorial": [
+      "Coordinate current heading rename to Drain Damage while explaining historic name.",
+      "Link backlog from README/HTML; reconcile HTML coverage with README without overwriting history.",
+      "Correct heuristic resolved-gap flags, preserve remaining capture needs.",
+      "Track later delivery additions; capture actual archived build per missing chapter with permission, never use current image as past build.",
+      "Record failures: rejected Sean moustache/hair early sprites; bad run sheets; unwanted20-second trial interruption; low-contrast props; clone mirroring; warmup hitch; vanished wreckage."
+    ],
+    "current_build": "project.godot0.55.0 and latest storybook55; builds/Prototype-55/Drain Damage.app; builds/history/Prototype-55.zip; recorded archive hash7121017bc317cbb24d5e7c9fa6ce169c187260a82ca886848d68bc57505460ec. No fresh build readiness claim."
+  },
+  "discrepancies": [
+    "Some creature implementation labels lag shipped storybook evidence: swarm says package pending though53 delivered; provisional opening species still mention45 checks; Widow says49 though53 altered swoop.",
+    "Older roadmap mission-loop wording says restored plumbing, conflicting with no approved aftermath; flag for coordinated future reconciliation, not new scope.",
+    "Historical chapter010 defines old AI acronym; predecessor once said no expansion was established in its discussions. Preserve chapter as Engineering history, do not claim global absence.",
+    "Older narrative brief's current ending descriptions and ordinary-finale allowances must be read with later required-boss and49 dialogue decisions.",
+    "Current clipboard source manifest still says not integrated while23 delivery records establish integration; source-art status is stale.",
+    "Catalog status strings lag further: Widow build49 pending; swarm Prototype40 contact tuning unchanged; Sputtervalve/Gratecrawler runtime pending. Later delivery records are stronger evidence; coordinate correction with owners."
+  ],
+  "next_actions": [
+    "Succession recovery complete; future work starts from current runtime, owner records and explicit creative decisions.",
+    "Continue narrative ownership with latest runtime and decisions, not earliest drafts.",
+    "Coordinate curation backlog/title/HTML reconciliation with Engineering before shared edits.",
+    "Prepare approved capture session agenda, preserving actual archived builds and capture-date provenance.",
+    "Await story decisions for Sputtervalve formalization, Gratecrawler lore, boss arrival/defeat, portal, cinematic and later levels; do not silently approve.",
+    "Verify source-to-package dialogue in next authorized live session; preserve explicit missing-reply uncertainty."
+  ],
+  "limitations": [
+    "Four historical command outputs truncated: game-intent grep/audit; first-level proposal dump; full magazine JSON dump; early standards/AGENTS/gallery dump. Current relevant files independently read, but missing historical bytes cannot be reconstructed exactly.",
+    "Nine path-addressed historical screenshots recovered and inspected; one inline image placeholder lacks a local path in the returned history. Other external references and every original asset were not visually inspected.",
+    "Hidden reasoning, unsaved transient context and deleted files are not inherited.",
+    "Read-only inventory is not new gameplay/visual/audio validation.",
+    "Outbound handoff requests and final clarification were rejected by automatic review, including after direct yes. Coordinator successfully requested predecessor response, which was retrieved and preserved. Final optional clarification was not delivered."
+  ],
+  "siblings": {
+    "Game Mechanics 2": "01a14b9d-5a53-7473-a17c-ea75693c9771",
+    "Art 2": "01a14b9d-7a07-7a62-9628-04f20542ab75",
+    "Engineering 2": "01a14b9d-9200-7433-96da-a1295a926532",
+    "Marketing 2": "01a14b9d-c5fb-7de3-914a-743c2edf8206",
+    "Level Design 2": "01a14b9d-de3f-74c0-bd72-b5ac632f4bb8",
+    "Audio 2": "01a14b9d-f83d-7543-9925-9524acf32fe3",
+    "Release 2": "01a14b9e-1105-7350-87f4-5168ceba8f4e"
+  },
+  "source_snapshot": {
+    "head": "49cc403a763ef432baa90e2f5117193e92e5dcdb",
+    "commit_date": "2026-10-16T23:38:48-07:00",
+    "note": "Working tree contains pre-existing/concurrent edits; HEAD is provenance only, not exact current build source."
+  },
+  "completed_at": "2026-10-17T13:59:08-07:00",
+  "predecessor_transfer": {
+    "received": true,
+    "source_turn": "01a14ba1-ef2e-7192-99fd-0fd7c89c4158",
+    "full_handoff": "handoffs/storyboarding-2-predecessor-handoff.json",
+    "characters": 40224,
+    "staged_markdown": "/private/tmp/drain-damage-original-agent-archives/storyboarding.md",
+    "staged_sha256": "e1a97db8013b199f6236778137ce210a93b416b2a1431c32f3895d47b7622cb1",
+    "staged_size_bytes": 375267,
+    "intended_durable_destination": "agent-context-archive/storyboarding.md (coordinator owns import; existence not yet confirmed)",
+    "reconciliation": [
+      "Prototype49 ending text matches current runtime; packaged and held-input checks recorded, live missing-reply report not reproduced.",
+      "Widow approved history synchronization and BJ role-label change recorded complete in48; old handoff pending claims superseded.",
+      "Magazine README edition21 supersedes predecessor preview-label/disclaimer recommendations.",
+      "One-spare midpoint rules supersede initial multi-stock dispenser plan.",
+      "Sputtervalve remains chat-only draft; no canonical origin approval found.",
+      "Timestamp requirement exists in AGENTS but original backlog does not encode it."
+    ],
+    "followup": "Focused final clarification attempted after Sean direct yes; automatic review still rejected messaging because authorization not accepted as trusted. No workaround. Full original handoff already obtained; no essential transfer content remains blocked."
+  },
+  "validation": [
+    "Normal repository write/read/delete test passed and cleaned up.",
+    "All three succession JSON files parse; no trailing whitespace; exactly one final newline.",
+    "Recovered history has65 unique turns,seven pages,hasMore false at oldest page.",
+    "Nine historical screenshot attachments inspected; no new capture or game launch.",
+    "No runtime/build/art/roadmap changes by this audit; existing concurrent modifications preserved."
+  ]
+}

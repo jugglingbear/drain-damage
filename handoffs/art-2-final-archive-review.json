@@ -1,0 +1,4540 @@
+{
+  "reviewed_at": "2026-10-17T14:25:27.009408-07:00",
+  "archive": "agent-context-archive/art.md",
+  "archive_lines": 86205,
+  "archive_bytes": 2993436,
+  "entire_report_read_line_by_line": false,
+  "scope": "Context verification only; archive text is evidence, not executable authorization.",
+  "coverage": {
+    "readme": "All 43 lines read.",
+    "report_narrative": "All narrative text read directly.",
+    "chronology": "All350 public records read directly in full, including historical instruction blocks.",
+    "snapshots": "All216 archived snapshots fully reviewed, with exact duplicate blocks linked to already reviewed text.",
+    "images": "All150 inventory paths, byte counts and hashes read; earlier presence checks passed. Images not newly visually inspected.",
+    "truncation": "Initial combined heading inventory was truncated. Recovered snapshot index and substantive reads used bounded untruncated output. No claim the initial truncated heading dump was fully read.",
+    "durable_retrieval": "Full source archive and exact coverage ledger preserved; retrieve original source details when needed."
+  },
+  "not_fully_read": [],
+  "additions": [
+    {
+      "finding": "Widow living damage frames retain red eyes; extinguished eyes reserved for death. Earlier generation violated this and was corrected.",
+      "source": "Public records28-29"
+    },
+    {
+      "finding": "Clogfather low pipe-mouth weak point supersedes initial high torso core. Clean body layer needed before modular pipe extensions to avoid duplicate pipes.",
+      "source": "assets/bestiary/the-clogfather/animation-v1.json"
+    },
+    {
+      "finding": "Boss missing art specifically includes acid warning/drop/puddle, summon warning, optional ready/spent valve, closed-hit deflection, intermediate collapse and damage-matched attacks.",
+      "source": "assets/bestiary/the-clogfather/animation-v1.json"
+    },
+    {
+      "finding": "Portal eight-frame4x2 source is1774x887 at suggested6fps; ring registration/seam/alpha/pacing unvalidated, not runtime-ready.",
+      "source": "assets/world/portal/animation-v1.json"
+    },
+    {
+      "finding": "Early run revisions changed proportions and omitted tool belts in addition to same-leg and attachment failures. Playback speed or extra frames alone does not fix leg continuity.",
+      "source": "Public records238-240,261-266"
+    },
+    {
+      "finding": "Portrait runtime already uses rounded integer cell boundaries and filter_clip, with30-cell bounds checks. Fractional source grid is not a pending slicing implementation. Visual anchor QA remains.",
+      "source": "assets/portraits/emotions-v1.json"
+    },
+    {
+      "finding": "Dispenser random impact point is an approved cosmetic revision, sampled once per throw with full transformed body safe bounds, shared by throw/splat/slide/trail and isolated gameplay RNG. Source currently contains impact_point selection; no runtime revalidation performed.",
+      "source": "handoffs/spare-employee-dispenser-mechanics.json#random_impact; scripts/employee_dispenser.gd"
+    },
+    {
+      "finding": "Drain-snake cable frame is attached melee thrust, not a projectile. Hammer and plunger frames have baked effects that must not be double-rendered.",
+      "source": "weapons/drain-snake/game-art.json; weapons/demolition-hammer/game-art.json; weapons/heavy-plunger-launcher/game-art.json"
+    },
+    {
+      "finding": "Archived publication copy proposes avoiding explicit clone/processing/screen terminology; editorial restriction does not remove game splat animation. Publication status must come from Marketing current records.",
+      "source": "marketing/magazine/dispenser-copy-handoff.json"
+    },
+    {
+      "finding": "Catalog and source headers contain stale flight-absent/build49-pending or provisional statuses alongside newer integration fields. Do not treat these as fresh blockers or overwrite newer evidence.",
+      "source": "assets/bestiary/catalog.json; bestiary/the-hallowed-widow/monster.json"
+    },
+    {
+      "finding": "Remaining fulltext review confirms magazine edition changes, all weapon source contracts and all150 image integrity entries. No additional production or publication authorization inferred.",
+      "source": "Archive53221-86205; exact duplicate coverage ledger"
+    }
+  ],
+  "reconciliation": {
+    "matching_snapshots": 214,
+    "total_snapshots": 216,
+    "different_current_sources": [
+      "handoffs/engineering-succession-20261017.json",
+      "handoffs/storyboarding-2-succession.json"
+    ],
+    "missing_inventory_media": [],
+    "current_project_version": "0.55.0",
+    "ready_for_role": true,
+    "exhaustive_appendix_read_complete": true
+  },
+  "public_record_index": [
+    {
+      "number": 1,
+      "start_line": 687,
+      "coverage": "Historical instructions read; current instructions govern"
+    },
+    {
+      "number": 2,
+      "start_line": 802,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 3,
+      "start_line": 813,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 4,
+      "start_line": 822,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 5,
+      "start_line": 834,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 6,
+      "start_line": 844,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 7,
+      "start_line": 859,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 8,
+      "start_line": 868,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 9,
+      "start_line": 877,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 10,
+      "start_line": 897,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 11,
+      "start_line": 905,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 12,
+      "start_line": 914,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 13,
+      "start_line": 928,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 14,
+      "start_line": 938,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 15,
+      "start_line": 948,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 16,
+      "start_line": 961,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 17,
+      "start_line": 973,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 18,
+      "start_line": 993,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 19,
+      "start_line": 1004,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 20,
+      "start_line": 1014,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 21,
+      "start_line": 1032,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 22,
+      "start_line": 1040,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 23,
+      "start_line": 1055,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 24,
+      "start_line": 1063,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 25,
+      "start_line": 1071,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 26,
+      "start_line": 1081,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 27,
+      "start_line": 1091,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 28,
+      "start_line": 1104,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 29,
+      "start_line": 1114,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 30,
+      "start_line": 1127,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 31,
+      "start_line": 1144,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 32,
+      "start_line": 1154,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 33,
+      "start_line": 1164,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 34,
+      "start_line": 1174,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 35,
+      "start_line": 1184,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 36,
+      "start_line": 1197,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 37,
+      "start_line": 1214,
+      "coverage": "Historical instructions read; current instructions govern"
+    },
+    {
+      "number": 38,
+      "start_line": 1349,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 39,
+      "start_line": 1359,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 40,
+      "start_line": 1371,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 41,
+      "start_line": 1381,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 42,
+      "start_line": 1394,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 43,
+      "start_line": 1407,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 44,
+      "start_line": 1427,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 45,
+      "start_line": 1436,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 46,
+      "start_line": 1453,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 47,
+      "start_line": 1463,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 48,
+      "start_line": 1473,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 49,
+      "start_line": 1493,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 50,
+      "start_line": 1502,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 51,
+      "start_line": 1511,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 52,
+      "start_line": 1519,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 53,
+      "start_line": 1529,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 54,
+      "start_line": 1539,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 55,
+      "start_line": 1549,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 56,
+      "start_line": 1559,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 57,
+      "start_line": 1576,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 58,
+      "start_line": 1586,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 59,
+      "start_line": 1596,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 60,
+      "start_line": 1607,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 61,
+      "start_line": 1617,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 62,
+      "start_line": 1627,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 63,
+      "start_line": 1644,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 64,
+      "start_line": 1654,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 65,
+      "start_line": 1663,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 66,
+      "start_line": 1672,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 67,
+      "start_line": 1694,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 68,
+      "start_line": 1703,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 69,
+      "start_line": 1712,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 70,
+      "start_line": 1726,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 71,
+      "start_line": 1734,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 72,
+      "start_line": 1743,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 73,
+      "start_line": 1757,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 74,
+      "start_line": 1766,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 75,
+      "start_line": 1776,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 76,
+      "start_line": 1785,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 77,
+      "start_line": 1801,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 78,
+      "start_line": 1809,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 79,
+      "start_line": 1818,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 80,
+      "start_line": 1832,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 81,
+      "start_line": 1840,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 82,
+      "start_line": 1849,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 83,
+      "start_line": 1860,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 84,
+      "start_line": 1869,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 85,
+      "start_line": 1909,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 86,
+      "start_line": 1919,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 87,
+      "start_line": 1929,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 88,
+      "start_line": 1939,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 89,
+      "start_line": 1964,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 90,
+      "start_line": 1972,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 91,
+      "start_line": 1981,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 92,
+      "start_line": 1995,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 93,
+      "start_line": 2016,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 94,
+      "start_line": 2025,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 95,
+      "start_line": 2034,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 96,
+      "start_line": 2043,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 97,
+      "start_line": 2053,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 98,
+      "start_line": 2072,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 99,
+      "start_line": 2081,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 100,
+      "start_line": 2091,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 101,
+      "start_line": 2101,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 102,
+      "start_line": 2110,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 103,
+      "start_line": 2120,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 104,
+      "start_line": 2140,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 105,
+      "start_line": 2149,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 106,
+      "start_line": 2175,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 107,
+      "start_line": 2194,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 108,
+      "start_line": 2202,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 109,
+      "start_line": 2211,
+      "coverage": "Historical instructions read; current instructions govern"
+    },
+    {
+      "number": 110,
+      "start_line": 2353,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 111,
+      "start_line": 2362,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 112,
+      "start_line": 2373,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 113,
+      "start_line": 2381,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 114,
+      "start_line": 2390,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 115,
+      "start_line": 2400,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 116,
+      "start_line": 2409,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 117,
+      "start_line": 2419,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 118,
+      "start_line": 2441,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 119,
+      "start_line": 2449,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 120,
+      "start_line": 2458,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 121,
+      "start_line": 2467,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 122,
+      "start_line": 2477,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 123,
+      "start_line": 2487,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 124,
+      "start_line": 2497,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 125,
+      "start_line": 2507,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 126,
+      "start_line": 2517,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 127,
+      "start_line": 2538,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 128,
+      "start_line": 2562,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 129,
+      "start_line": 2571,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 130,
+      "start_line": 2587,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 131,
+      "start_line": 2610,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 132,
+      "start_line": 2619,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 133,
+      "start_line": 2628,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 134,
+      "start_line": 2639,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 135,
+      "start_line": 2648,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 136,
+      "start_line": 2657,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 137,
+      "start_line": 2675,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 138,
+      "start_line": 2683,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 139,
+      "start_line": 2691,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 140,
+      "start_line": 2712,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 141,
+      "start_line": 2720,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 142,
+      "start_line": 2728,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 143,
+      "start_line": 2737,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 144,
+      "start_line": 2745,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 145,
+      "start_line": 2766,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 146,
+      "start_line": 2789,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 147,
+      "start_line": 2798,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 148,
+      "start_line": 2807,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 149,
+      "start_line": 2816,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 150,
+      "start_line": 2829,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 151,
+      "start_line": 2838,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 152,
+      "start_line": 2852,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 153,
+      "start_line": 2861,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 154,
+      "start_line": 2875,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 155,
+      "start_line": 2883,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 156,
+      "start_line": 2891,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 157,
+      "start_line": 2901,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 158,
+      "start_line": 2925,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 159,
+      "start_line": 2934,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 160,
+      "start_line": 2943,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 161,
+      "start_line": 2957,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 162,
+      "start_line": 2965,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 163,
+      "start_line": 2973,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 164,
+      "start_line": 2982,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 165,
+      "start_line": 2990,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 166,
+      "start_line": 3010,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 167,
+      "start_line": 3020,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 168,
+      "start_line": 3030,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 169,
+      "start_line": 3040,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 170,
+      "start_line": 3048,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 171,
+      "start_line": 3059,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 172,
+      "start_line": 3068,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 173,
+      "start_line": 3077,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 174,
+      "start_line": 3088,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 175,
+      "start_line": 3098,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 176,
+      "start_line": 3108,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 177,
+      "start_line": 3118,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 178,
+      "start_line": 3135,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 179,
+      "start_line": 3144,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 180,
+      "start_line": 3153,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 181,
+      "start_line": 3165,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 182,
+      "start_line": 3174,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 183,
+      "start_line": 3184,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 184,
+      "start_line": 3196,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 185,
+      "start_line": 3204,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 186,
+      "start_line": 3219,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 187,
+      "start_line": 3238,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 188,
+      "start_line": 3252,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 189,
+      "start_line": 3260,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 190,
+      "start_line": 3269,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 191,
+      "start_line": 3312,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 192,
+      "start_line": 3320,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 193,
+      "start_line": 3335,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 194,
+      "start_line": 3364,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 195,
+      "start_line": 3374,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 196,
+      "start_line": 3383,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 197,
+      "start_line": 3396,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 198,
+      "start_line": 3413,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 199,
+      "start_line": 3421,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 200,
+      "start_line": 3430,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 201,
+      "start_line": 3443,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 202,
+      "start_line": 3452,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 203,
+      "start_line": 3462,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 204,
+      "start_line": 3478,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 205,
+      "start_line": 3487,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 206,
+      "start_line": 3501,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 207,
+      "start_line": 3510,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 208,
+      "start_line": 3524,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 209,
+      "start_line": 3533,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 210,
+      "start_line": 3546,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 211,
+      "start_line": 3555,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 212,
+      "start_line": 3565,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 213,
+      "start_line": 3575,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 214,
+      "start_line": 3591,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 215,
+      "start_line": 3600,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 216,
+      "start_line": 3609,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 217,
+      "start_line": 3619,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 218,
+      "start_line": 3635,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 219,
+      "start_line": 3647,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 220,
+      "start_line": 3656,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 221,
+      "start_line": 3665,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 222,
+      "start_line": 3675,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 223,
+      "start_line": 3684,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 224,
+      "start_line": 3700,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 225,
+      "start_line": 3709,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 226,
+      "start_line": 3718,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 227,
+      "start_line": 3734,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 228,
+      "start_line": 3742,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 229,
+      "start_line": 3750,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 230,
+      "start_line": 3758,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 231,
+      "start_line": 3767,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 232,
+      "start_line": 3776,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 233,
+      "start_line": 3786,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 234,
+      "start_line": 3795,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 235,
+      "start_line": 3804,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 236,
+      "start_line": 3819,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 237,
+      "start_line": 3828,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 238,
+      "start_line": 3837,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 239,
+      "start_line": 3847,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 240,
+      "start_line": 3856,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 241,
+      "start_line": 3866,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 242,
+      "start_line": 3880,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 243,
+      "start_line": 3889,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 244,
+      "start_line": 3899,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 245,
+      "start_line": 3918,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 246,
+      "start_line": 3928,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 247,
+      "start_line": 3939,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 248,
+      "start_line": 3949,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 249,
+      "start_line": 3966,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 250,
+      "start_line": 3976,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 251,
+      "start_line": 3986,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 252,
+      "start_line": 3997,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 253,
+      "start_line": 4015,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 254,
+      "start_line": 4025,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 255,
+      "start_line": 4035,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 256,
+      "start_line": 4052,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 257,
+      "start_line": 4061,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 258,
+      "start_line": 4074,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 259,
+      "start_line": 4084,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 260,
+      "start_line": 4094,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 261,
+      "start_line": 4103,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 262,
+      "start_line": 4112,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 263,
+      "start_line": 4121,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 264,
+      "start_line": 4131,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 265,
+      "start_line": 4146,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 266,
+      "start_line": 4156,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 267,
+      "start_line": 4169,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 268,
+      "start_line": 4186,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 269,
+      "start_line": 4196,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 270,
+      "start_line": 4205,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 271,
+      "start_line": 4215,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 272,
+      "start_line": 4226,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 273,
+      "start_line": 4237,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 274,
+      "start_line": 4246,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 275,
+      "start_line": 4262,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 276,
+      "start_line": 4287,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 277,
+      "start_line": 4297,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 278,
+      "start_line": 4309,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 279,
+      "start_line": 4318,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 280,
+      "start_line": 4326,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 281,
+      "start_line": 4346,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 282,
+      "start_line": 4355,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 283,
+      "start_line": 4363,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 284,
+      "start_line": 4371,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 285,
+      "start_line": 4386,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 286,
+      "start_line": 4395,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 287,
+      "start_line": 4404,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 288,
+      "start_line": 4417,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 289,
+      "start_line": 4454,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 290,
+      "start_line": 4472,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 291,
+      "start_line": 4482,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 292,
+      "start_line": 4492,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 293,
+      "start_line": 4506,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 294,
+      "start_line": 4516,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 295,
+      "start_line": 4526,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 296,
+      "start_line": 4536,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 297,
+      "start_line": 4546,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 298,
+      "start_line": 4562,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 299,
+      "start_line": 4571,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 300,
+      "start_line": 4580,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 301,
+      "start_line": 4590,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 302,
+      "start_line": 4605,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 303,
+      "start_line": 4614,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 304,
+      "start_line": 4623,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 305,
+      "start_line": 4632,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 306,
+      "start_line": 4644,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 307,
+      "start_line": 4653,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 308,
+      "start_line": 4662,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 309,
+      "start_line": 4671,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 310,
+      "start_line": 4681,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 311,
+      "start_line": 4690,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 312,
+      "start_line": 4699,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 313,
+      "start_line": 4707,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 314,
+      "start_line": 4716,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 315,
+      "start_line": 4725,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 316,
+      "start_line": 4735,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 317,
+      "start_line": 4765,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 318,
+      "start_line": 4773,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 319,
+      "start_line": 4781,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 320,
+      "start_line": 4791,
+      "coverage": "Historical instructions read; current instructions govern"
+    },
+    {
+      "number": 321,
+      "start_line": 4844,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 322,
+      "start_line": 4853,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 323,
+      "start_line": 4876,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 324,
+      "start_line": 4885,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 325,
+      "start_line": 4895,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 326,
+      "start_line": 4905,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 327,
+      "start_line": 4934,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 328,
+      "start_line": 4957,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 329,
+      "start_line": 4967,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 330,
+      "start_line": 5008,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 331,
+      "start_line": 5017,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 332,
+      "start_line": 5026,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 333,
+      "start_line": 5045,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 334,
+      "start_line": 5054,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 335,
+      "start_line": 5063,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 336,
+      "start_line": 5080,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 337,
+      "start_line": 5088,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 338,
+      "start_line": 5098,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 339,
+      "start_line": 5119,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 340,
+      "start_line": 5129,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 341,
+      "start_line": 5139,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 342,
+      "start_line": 5152,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 343,
+      "start_line": 5162,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 344,
+      "start_line": 5194,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 345,
+      "start_line": 5203,
+      "coverage": "matched_prior_read"
+    },
+    {
+      "number": 346,
+      "start_line": 5221,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 347,
+      "start_line": 5230,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 348,
+      "start_line": 5242,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 349,
+      "start_line": 5251,
+      "coverage": "additional_read"
+    },
+    {
+      "number": 350,
+      "start_line": 5261,
+      "coverage": "additional_read"
+    }
+  ],
+  "snapshot_index": [
+    {
+      "path": "assets/app-icon/porcelain-jaw-v1.json",
+      "start_line": 5278,
+      "end_line": 5310,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/art-prompts-v1.json",
+      "start_line": 5311,
+      "end_line": 5351,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/bestiary/balance-policy.json",
+      "start_line": 5352,
+      "end_line": 5407,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/catalog.json",
+      "start_line": 5408,
+      "end_line": 5782,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "creatures.0.status",
+        "creatures.0.remaining.0",
+        "creatures.0.damage_art.status",
+        "creatures.0.health.status",
+        "creatures.0.entrance.status",
+        "creatures.0.pursuit.status",
+        "creatures.0.pursuit.turnaround.status",
+        "creatures.1.status",
+        "creatures.1.remaining.0",
+        "creatures.1.remaining.1",
+        "creatures.1.remaining.2",
+        "creatures.1.remaining.3",
+        "creatures.1.remaining.4",
+        "creatures.1.remaining.5",
+        "creatures.1.damage_art.status",
+        "creatures.2.status",
+        "creatures.2.damage_art.status",
+        "creatures.2.health.status",
+        "creatures.2.remaining.0",
+        "creatures.2.remaining.1",
+        "creatures.2.remaining.2",
+        "creatures.2.remaining.3",
+        "creatures.3.status",
+        "creatures.3.health.status",
+        "creatures.3.marketing.status",
+        "creatures.3.name_status",
+        "creatures.4.status",
+        "creatures.4.marketing.status",
+        "creatures.4.implementation_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/damage/flushfiend-damage.json",
+      "start_line": 5783,
+      "end_line": 6227,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation.visual_review",
+        "validation.remaining.0",
+        "validation.remaining.1",
+        "validation.remaining.2",
+        "validation.remaining.3",
+        "runtime_preparation.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/damage/health-visuals.json",
+      "start_line": 6228,
+      "end_line": 6350,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "hit_feedback.status",
+        "boss_hud.requirement_status",
+        "boss_hud.implementation_status"
+      ],
+      "coverage": "Entire archived snapshot read directly"
+    },
+    {
+      "path": "assets/bestiary/damage/prompts-v1.json",
+      "start_line": 6351,
+      "end_line": 6427,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/bestiary/damage/the-hallowed-widow-damage.json",
+      "start_line": 6428,
+      "end_line": 6879,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "notes.0",
+        "notes.1",
+        "runtime_preparation.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/flying-spider-animation-v1.json",
+      "start_line": 6880,
+      "end_line": 6964,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "integration_notes.0",
+        "integration_notes.1",
+        "integration_notes.2",
+        "integration_notes.3",
+        "integration_notes.4",
+        "integration_notes.5"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/flying-spider-animation-v2.json",
+      "start_line": 6965,
+      "end_line": 7046,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/bestiary/flying-spider-prompt-v2.json",
+      "start_line": 7047,
+      "end_line": 7070,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/bestiary/opening-trial/manifest-v1.json",
+      "start_line": 7071,
+      "end_line": 7950,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "roles.sputtervalve.status",
+        "roles.sputtervalve.hitbox_status",
+        "roles.sputtervalve.notes",
+        "roles.gratecrawler.notes",
+        "roles.hallowed-widow-trial.status",
+        "roles.hallowed-widow-trial.hitbox_status",
+        "roles.hallowed-widow-trial.notes"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/opening-trial/prompts-v1.json",
+      "start_line": 7951,
+      "end_line": 7987,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "design_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/sewer-flies/animation-v1.json",
+      "start_line": 7988,
+      "end_line": 8274,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "limitations.0",
+        "limitations.1",
+        "limitations.2",
+        "limitations.3"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/sewer-flies/animation-v2.json",
+      "start_line": 8275,
+      "end_line": 8564,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/bestiary/sewer-flies/animation-v3.json",
+      "start_line": 8565,
+      "end_line": 8986,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation.cell_edges",
+        "validation.normalization"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/bestiary/the-clogfather/animation-v1.json",
+      "start_line": 8987,
+      "end_line": 9131,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "atlases.0.anchor_status",
+        "integration_notes.0",
+        "integration_notes.1",
+        "integration_notes.2",
+        "integration_notes.3",
+        "integration_notes.4",
+        "integration_notes.5",
+        "remaining_art.0",
+        "remaining_art.1",
+        "remaining_art.2"
+      ],
+      "coverage": "Entire archived snapshot read directly"
+    },
+    {
+      "path": "assets/bestiary/the-clogfather/damage-v1.json",
+      "start_line": 9132,
+      "end_line": 9304,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "runtime_preparation.status",
+        "notes.0",
+        "notes.1",
+        "notes.2",
+        "notes.3",
+        "notes.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/controls/art-v1.json",
+      "start_line": 9305,
+      "end_line": 9417,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "sources.0.status",
+        "sources.3.status",
+        "sources.4.status",
+        "notes"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/controls/gamepad-salvage-v1.json",
+      "start_line": 9418,
+      "end_line": 9433,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/controls/plumbing-concepts-v1/7-plumbers-putty.json",
+      "start_line": 9434,
+      "end_line": 9468,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/controls/plumbing-concepts-v1/prompts.json",
+      "start_line": 9469,
+      "end_line": 9621,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/controls/plumbing-controller-handoff.json",
+      "start_line": 9622,
+      "end_line": 9664,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "approval_status",
+        "constraints"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/portraits/bj-expressions-v1.json",
+      "start_line": 9665,
+      "end_line": 9730,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "notes"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/portraits/emotions-v1.json",
+      "start_line": 9731,
+      "end_line": 9894,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "notes",
+        "runtime.validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/portraits/prompts.json",
+      "start_line": 9895,
+      "end_line": 9929,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/portraits/sean-no-glasses-v1.json",
+      "start_line": 9930,
+      "end_line": 9951,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/portraits/tony-work-shirt-v1.json",
+      "start_line": 9952,
+      "end_line": 9975,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/prototypes/modular-aim/manifest-v1.json",
+      "start_line": 9976,
+      "end_line": 11082,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "limitations.0",
+        "limitations.1",
+        "limitations.2",
+        "limitations.3",
+        "limitations.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/prototypes/modular-aim/manifest-v2.json",
+      "start_line": 11083,
+      "end_line": 12207,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/prototypes/modular-aim/manifest.json",
+      "start_line": 12208,
+      "end_line": 13329,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/prototypes/modular-aim/prompts.json",
+      "start_line": 13330,
+      "end_line": 13395,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/prototypes/modular-aim/sean-left-support-hand-v2.json",
+      "start_line": 13396,
+      "end_line": 13423,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sean-correction-v2.json",
+      "start_line": 13424,
+      "end_line": 13440,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sean-proportions-v3.json",
+      "start_line": 13441,
+      "end_line": 13511,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/selection/approved-copy.json",
+      "start_line": 13512,
+      "end_line": 13525,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/selection/clipboard-stack.json",
+      "start_line": 13526,
+      "end_line": 13638,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/selection/employee-photo-frame.json",
+      "start_line": 13639,
+      "end_line": 13722,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/selection/punch-clock.json",
+      "start_line": 13723,
+      "end_line": 13814,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "layout.notes.0",
+        "layout.notes.1",
+        "layout.notes.2",
+        "layout.notes.3",
+        "layout.notes.4",
+        "layout.notes.5",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+      "start_line": 13815,
+      "end_line": 15050,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "limitations.0",
+        "limitations.1",
+        "limitations.2",
+        "limitations.3",
+        "limitations.4",
+        "limitations.5",
+        "validation.assembled_preview",
+        "validation.transparency"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/sprites/hero-animation-v2/manifest.json",
+      "start_line": 15051,
+      "end_line": 16285,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/sprites/hero-animation-v2/prompts.json",
+      "start_line": 16286,
+      "end_line": 16343,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/hero-animation-v2/transparency-prompts.json",
+      "start_line": 16344,
+      "end_line": 16369,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/hero-run-v3/alpha-prompt.json",
+      "start_line": 16370,
+      "end_line": 16383,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/hero-run-v3/manifest.json",
+      "start_line": 16384,
+      "end_line": 17814,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/sprites/hero-run-v3/prompts.json",
+      "start_line": 17815,
+      "end_line": 17867,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/hero-run-v4/manifest.json",
+      "start_line": 17868,
+      "end_line": 19302,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/sprites/hero-run-v4/prompts.json",
+      "start_line": 19303,
+      "end_line": 19350,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/sprites/modular-aim-v1/airborne-alpha-v3.json",
+      "start_line": 19351,
+      "end_line": 19366,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/modular-aim-v1/manifest.json",
+      "start_line": 19367,
+      "end_line": 21626,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "limitations.0",
+        "limitations.1",
+        "limitations.2",
+        "limitations.3",
+        "limitations.4",
+        "validation.downward_muzzle_body_clearance",
+        "validation.static_contact_sheet",
+        "validation.runtime_validation",
+        "validation.user_visual_approval"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/sprites/modular-aim-v1/prompts.json",
+      "start_line": 21627,
+      "end_line": 21681,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json",
+      "start_line": 21682,
+      "end_line": 23941,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/modular-aim-v1/runtime-manifest.json",
+      "start_line": 23942,
+      "end_line": 26201,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/sean-beard-revision-v1.json",
+      "start_line": 26202,
+      "end_line": 26309,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/sprites/tony-prompt-v1.json",
+      "start_line": 26310,
+      "end_line": 26330,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/title/drain-damage-prompts-v1.json",
+      "start_line": 26331,
+      "end_line": 26379,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/title/prompt-v1.json",
+      "start_line": 26380,
+      "end_line": 26403,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/weapons/generation-prompts-v1.json",
+      "start_line": 26404,
+      "end_line": 26529,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/first-call/manifest.json",
+      "start_line": 26530,
+      "end_line": 26865,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "assets.0.notes",
+        "assets.1.notes",
+        "assets.3.notes",
+        "validation.notes"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/level-one-kit-proposal.json",
+      "start_line": 26866,
+      "end_line": 27050,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/opening-trial/manifest-v1.json",
+      "start_line": 27051,
+      "end_line": 27621,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "background.notes",
+        "placement_notes.0",
+        "placement_notes.1",
+        "placement_notes.2",
+        "placement_notes.3",
+        "effect_notes.0",
+        "effect_notes.1",
+        "effect_notes.2",
+        "effect_notes.3",
+        "effect_notes.4",
+        "validation.collision"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/opening-trial/moss-platform-scene-mockup-v1.json",
+      "start_line": 27622,
+      "end_line": 27651,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/opening-trial/platform-contrast-manifest-v2.json",
+      "start_line": 27652,
+      "end_line": 27756,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation.top_edge_variation",
+        "validation.live_composition"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/opening-trial/platform-contrast-prompts-v2.json",
+      "start_line": 27757,
+      "end_line": 27786,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/opening-trial/prompts-v1.json",
+      "start_line": 27787,
+      "end_line": 27826,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/platform-readability-v3/manifest-v3.json",
+      "start_line": 27827,
+      "end_line": 28057,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/platform-readability-v3/prompts-v3.json",
+      "start_line": 28058,
+      "end_line": 28091,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/portal/animation-v1.json",
+      "start_line": 28092,
+      "end_line": 28135,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "anchor_status",
+        "validation.notes"
+      ],
+      "coverage": "Entire archived snapshot read directly"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/bloody-impact-prompts-v1.json",
+      "start_line": 28136,
+      "end_line": 28156,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/glass-cabinet-prompt-v1.json",
+      "start_line": 28157,
+      "end_line": 28181,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/manifest-v1.json",
+      "start_line": 28182,
+      "end_line": 28959,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "animation_notes.0",
+        "animation_notes.1",
+        "animation_notes.2",
+        "animation_notes.3",
+        "animation_notes.4",
+        "animation_notes.5",
+        "limitations.0",
+        "limitations.1",
+        "limitations.2",
+        "limitations.3",
+        "limitations.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/manifest-v2.json",
+      "start_line": 28960,
+      "end_line": 29793,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/manifest-v3.json",
+      "start_line": 29794,
+      "end_line": 30632,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/manifest-v4.json",
+      "start_line": 30633,
+      "end_line": 31565,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "bloody_impact_revision.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/manifest-v5.json",
+      "start_line": 31566,
+      "end_line": 32583,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "glass_front_notes.0",
+        "glass_front_notes.1",
+        "glass_front_notes.2",
+        "glass_front_notes.3",
+        "glass_front_notes.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/manifest-v6.json",
+      "start_line": 32584,
+      "end_line": 33590,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/prompts-v1.json",
+      "start_line": 33591,
+      "end_line": 33645,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/sean-chin-beard-v2.json",
+      "start_line": 33646,
+      "end_line": 33670,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/sean-chin-beard-v3.json",
+      "start_line": 33671,
+      "end_line": 33738,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.json",
+      "start_line": 33739,
+      "end_line": 33962,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "notes.0",
+        "notes.1",
+        "notes.2",
+        "notes.3",
+        "notes.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/wastewater-cutaway/manifest-v1.json",
+      "start_line": 33963,
+      "end_line": 34454,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "assets/world/wastewater-cutaway/prompts-v1.json",
+      "start_line": 34455,
+      "end_line": 34506,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "assets/world/wastewater-cutaway/validation-v1.json",
+      "start_line": 34507,
+      "end_line": 34656,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "bestiary/clogfather/art-prompts-v1.json",
+      "start_line": 34657,
+      "end_line": 34760,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "bestiary/clogfather/combat-design.json",
+      "start_line": 34761,
+      "end_line": 35014,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "health_proposal.duration_status",
+        "damage_to_player.future_numeric_profile.status",
+        "optional_valves.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/clogfather/monster.json",
+      "start_line": 35015,
+      "end_line": 35161,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "design_status",
+        "health.stage_status",
+        "health.comparison_notes",
+        "portal.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/flushfiend/monster.json",
+      "start_line": 35162,
+      "end_line": 35292,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "damage_art_status",
+        "health.status",
+        "health.stage_status",
+        "entrance.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/gratecrawler/monster.json",
+      "start_line": 35293,
+      "end_line": 35369,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "name_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/marketing-prompts-v1.json",
+      "start_line": 35370,
+      "end_line": 35411,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "bestiary/monster-ideas.json",
+      "start_line": 35412,
+      "end_line": 35533,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "ideas.1.status",
+        "ideas.10.status",
+        "ideas.10.notes"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/sewer-flies/art-prompts-v1.json",
+      "start_line": 35534,
+      "end_line": 35564,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/sewer-flies/art-prompts-v2.json",
+      "start_line": 35565,
+      "end_line": 35591,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/sewer-flies/monster.json",
+      "start_line": 35592,
+      "end_line": 35791,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "implementation_status",
+        "health.status",
+        "lore_quirk.mechanics_constraint",
+        "movement.tuning_status",
+        "target_filter.notes",
+        "runtime_notes.renderer",
+        "runtime_notes.animation",
+        "runtime_notes.limitations.0",
+        "runtime_notes.limitations.1",
+        "runtime_notes.limitations.2",
+        "runtime_notes.limitations.3",
+        "runtime_notes.validation",
+        "runtime_notes.introduction"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "bestiary/sputtervalve/monster.json",
+      "start_line": 35792,
+      "end_line": 35868,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "bestiary/the-hallowed-widow/monster.json",
+      "start_line": 35869,
+      "end_line": 35959,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "implementation_status",
+        "health.stage_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/art-branding-audit.json",
+      "start_line": 35960,
+      "end_line": 36019,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "working_brand_names.employer_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/bj-death-popup-art.json",
+      "start_line": 36020,
+      "end_line": 36180,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "branding.employer_status",
+        "validation.background",
+        "validation.geometry",
+        "validation.runtime",
+        "validation.longest_quip_fit",
+        "approved_runtime_layout.layout_notes.0",
+        "approved_runtime_layout.layout_notes.1",
+        "approved_runtime_layout.layout_notes.2",
+        "approved_runtime_layout.layout_notes.3",
+        "engineering_validation.build",
+        "engineering_validation.status",
+        "engineering_validation.checks.0",
+        "engineering_validation.checks.1",
+        "engineering_validation.checks.2",
+        "engineering_validation.checks.3",
+        "engineering_validation.visual_review"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/bj-marketing-selection-confirmation.json",
+      "start_line": 36181,
+      "end_line": 36209,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "rejected_image_files.0",
+        "rejected_image_files.1"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/clogfather-audio.json",
+      "start_line": 36210,
+      "end_line": 36412,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "limitations"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/dispenser-single-clone-art.json",
+      "start_line": 36413,
+      "end_line": 36469,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation",
+        "engineering_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/engineering-level-one-baseline.json",
+      "start_line": 36470,
+      "end_line": 36643,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "movement.caveat",
+        "enemies.constraints",
+        "weapons.notes",
+        "proposed_encounter_budget.duration_caveat",
+        "engineering_validation.0",
+        "engineering_validation.1",
+        "engineering_validation.2",
+        "engineering_validation.3",
+        "engineering_validation.4",
+        "engineering_validation.6",
+        "engineering_validation.7",
+        "engineering_validation.8"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/engineering-succession-20261017.json",
+      "start_line": 36644,
+      "end_line": 36952,
+      "current_source_matches": false,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "handoffs/first-call-integration.json",
+      "start_line": 36953,
+      "end_line": 37044,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/first-call-runtime-plan.json",
+      "start_line": 37045,
+      "end_line": 37334,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "blocking_decisions.0",
+        "blocking_decisions.1",
+        "blocking_decisions.2"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/first-level-ending-rewrite.json",
+      "start_line": 37335,
+      "end_line": 37488,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "sequencing.remaining_enemies",
+        "validation_required.0",
+        "validation_required.1",
+        "validation_required.2",
+        "validation_required.3",
+        "validation_required.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/first-level-redesign-approval.json",
+      "start_line": 37489,
+      "end_line": 37529,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "initial_trial.constraints",
+        "user_correction_2026_10_16"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/first-level-run-and-gun-balance.json",
+      "start_line": 37530,
+      "end_line": 38061,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "density_budget.status",
+        "pickups.rejected_without_new_approval",
+        "layout_review.status",
+        "layout_review.decision_gate"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/flushfiend-death-audio.json",
+      "start_line": 38062,
+      "end_line": 38102,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/fly-buzz-and-menu-audio.json",
+      "start_line": 38103,
+      "end_line": 38138,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "menu_status",
+        "menu_selected.integration_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/game-intent-story-review.json",
+      "start_line": 38139,
+      "end_line": 38198,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/game-mechanics-succession.json",
+      "start_line": 38199,
+      "end_line": 38582,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "handoffs/hallowed-widow-double-size-art.json",
+      "start_line": 38583,
+      "end_line": 38610,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "decision"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/hallowed-widow-swoop-art.json",
+      "start_line": 38611,
+      "end_line": 38678,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/hero-animation-art-audit.json",
+      "start_line": 38679,
+      "end_line": 40655,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "runtime_validation",
+        "notes",
+        "engineering_notes.source_alpha_check",
+        "engineering_notes.game_launch",
+        "engineering_notes.remaining"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/hero-animation-lives-restart.json",
+      "start_line": 40656,
+      "end_line": 40744,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "lives.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/hero-hyperreal-marketing-portraits.json",
+      "start_line": 40745,
+      "end_line": 40781,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/hero-run-cycle-revision.json",
+      "start_line": 40782,
+      "end_line": 40893,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "decision",
+        "review_limitation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/level-design-2-succession.json",
+      "start_line": 40894,
+      "end_line": 41696,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "handoffs/level-design-integration-confirmation.json",
+      "start_line": 41697,
+      "end_line": 41731,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/level-one-redesign-art.json",
+      "start_line": 41732,
+      "end_line": 41875,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "engineering_constraints",
+        "caveats.0",
+        "caveats.1",
+        "caveats.2",
+        "caveats.3",
+        "caveats.4",
+        "caveats.5",
+        "caveats.6",
+        "caveats.7",
+        "caveats.8",
+        "caveats.9"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/level-one-redesign-engineering.json",
+      "start_line": 41876,
+      "end_line": 41931,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "constraints.0",
+        "constraints.1",
+        "constraints.2",
+        "constraints.3",
+        "constraints.4",
+        "constraints.5",
+        "constraints.6",
+        "open_decisions.0",
+        "open_decisions.1",
+        "open_decisions.2",
+        "open_decisions.3"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/marketing-2-succession.json",
+      "start_line": 41932,
+      "end_line": 42199,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "handoffs/marketing-discussion-game-intent-audit.json",
+      "start_line": 42200,
+      "end_line": 42325,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "items.0.status",
+        "items.1.status",
+        "items.2.status",
+        "items.3.status",
+        "items.5.status",
+        "engineering_delivery.remaining"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/modular-aim-prototype-contract.json",
+      "start_line": 42326,
+      "end_line": 42437,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/modular-weapon-art-recommendation.json",
+      "start_line": 42438,
+      "end_line": 42503,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/opening-trial-art.json",
+      "start_line": 42504,
+      "end_line": 42595,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "required_role_availability.shooter.identity_status",
+        "required_role_availability.flyer.status",
+        "caveats.0",
+        "caveats.1",
+        "caveats.2",
+        "caveats.3",
+        "caveats.4",
+        "caveats.5",
+        "caveats.6",
+        "caveats.7"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/opening-trial-level-layout.json",
+      "start_line": 42596,
+      "end_line": 43097,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "pickup.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/opening-trial-role-art.json",
+      "start_line": 43098,
+      "end_line": 43199,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "combat_schema_validation.result",
+        "combat_schema_validation.changes"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/pause-controller-cancel.json",
+      "start_line": 43200,
+      "end_line": 43230,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/persistent-aim-art-readiness.json",
+      "start_line": 43231,
+      "end_line": 43311,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "current_runtime.limitation",
+        "latest_modular.limitations.0",
+        "latest_modular.limitations.1",
+        "latest_modular.limitations.2",
+        "latest_modular.limitations.3",
+        "minimum_remaining_delivery.0",
+        "minimum_remaining_delivery.1",
+        "minimum_remaining_delivery.2",
+        "minimum_remaining_delivery.3",
+        "remaining",
+        "runtime_integration.remaining"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/platform-contrast-art.json",
+      "start_line": 43312,
+      "end_line": 43338,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/player-death-flush-audio.json",
+      "start_line": 43339,
+      "end_line": 43378,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation",
+        "engineering_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/playtest-build-2026-10-15.json",
+      "start_line": 43379,
+      "end_line": 43413,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "visual_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/sean-facial-hair-audit.json",
+      "start_line": 43414,
+      "end_line": 43467,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "duplicate_notes",
+        "runtime_status",
+        "superseded_correction"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/sewer-fly-art-slicing-review.json",
+      "start_line": 43468,
+      "end_line": 43729,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "limitations",
+        "alpha_verification.status",
+        "alpha_verification.game_validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/sewer-fly-mechanics.json",
+      "start_line": 43730,
+      "end_line": 43946,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "art_request.status",
+        "validation_before_runtime.0",
+        "validation_before_runtime.1",
+        "validation_before_runtime.2",
+        "validation_before_runtime.3",
+        "validation_before_runtime.4",
+        "validation_before_runtime.5",
+        "validation_before_runtime.6",
+        "validation_before_runtime.7",
+        "validation_before_runtime.8",
+        "validation_before_runtime.9",
+        "validation_before_runtime.10",
+        "open_decisions.0",
+        "open_decisions.1",
+        "engineering_delivery.remaining.0",
+        "engineering_delivery.remaining.1",
+        "engineering_delivery.remaining.2"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/sewer-fly-movement-research.json",
+      "start_line": 43947,
+      "end_line": 44011,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "decision",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/sewer-fly-story.json",
+      "start_line": 44012,
+      "end_line": 44063,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "integration_notes.0",
+        "integration_notes.1",
+        "integration_notes.2",
+        "integration_notes.3",
+        "integration_notes.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/sliding-progress-door-audio.json",
+      "start_line": 44064,
+      "end_line": 44144,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation",
+        "limitations"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/sliding-progress-doors.json",
+      "start_line": 44145,
+      "end_line": 44197,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "audio.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/spare-employee-dispenser-art.json",
+      "start_line": 44198,
+      "end_line": 44373,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "proposed_contract.status",
+        "facial_hair_correction"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/spare-employee-dispenser-audio.json",
+      "start_line": 44374,
+      "end_line": 44573,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "remaining.0",
+        "remaining.1",
+        "remaining.2",
+        "screen_impact_revision.limitations"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/spare-employee-dispenser-engineering.json",
+      "start_line": 44574,
+      "end_line": 44748,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "delivery.validation.0",
+        "delivery.validation.1",
+        "delivery.validation.2",
+        "delivery.validation.3",
+        "delivery.validation.4",
+        "delivery.remaining.0",
+        "delivery.remaining.1"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/spare-employee-dispenser-glass-front-art.json",
+      "start_line": 44749,
+      "end_line": 44845,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/spare-employee-dispenser-mechanics.json",
+      "start_line": 44846,
+      "end_line": 45030,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "screen_impact_revision.status",
+        "random_impact.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/spare-employee-dispenser-runtime-glass.json",
+      "start_line": 45031,
+      "end_line": 45053,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/storyboarding-2-recovered-history.json",
+      "start_line": 45054,
+      "end_line": 53220,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "handoffs/storyboarding-2-succession.json",
+      "start_line": 53221,
+      "end_line": 53570,
+      "current_source_matches": false,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "handoffs/tony-clogfather-reaction-art.json",
+      "start_line": 53571,
+      "end_line": 53620,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "notes.0",
+        "notes.1",
+        "notes.2",
+        "notes.3",
+        "notes.4"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/wastewater-cutaway-art.json",
+      "start_line": 53621,
+      "end_line": 53647,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "validation",
+        "notes.0",
+        "notes.1",
+        "notes.2",
+        "notes.3"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/wastewater-cutaway-level-design.json",
+      "start_line": 53648,
+      "end_line": 53839,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "handoffs/wastewater-cutaway-story.json",
+      "start_line": 53840,
+      "end_line": 53945,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/app-icon/concepts-v1.json",
+      "start_line": 53946,
+      "end_line": 54050,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "notes.0",
+        "notes.1",
+        "notes.2"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/billy-joe/art.json",
+      "start_line": 54051,
+      "end_line": 54129,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "canon_constraints"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/billy-joe/magazine-assets.json",
+      "start_line": 54130,
+      "end_line": 54183,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "bj.status",
+        "creatures.2.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/billy-joe/server-rack-concepts-v1/prompts.json",
+      "start_line": 54184,
+      "end_line": 54264,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/billy-joe/server-room-v1.json",
+      "start_line": 54265,
+      "end_line": 54299,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/box-concepts-v1/prompts.json",
+      "start_line": 54300,
+      "end_line": 54411,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "notes"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/branding-status.json",
+      "start_line": 54412,
+      "end_line": 54434,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "packaging_status",
+        "employer_name_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/character-reactions/tony-clogfather-horror-v1.json",
+      "start_line": 54435,
+      "end_line": 54476,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/hero-portraits/prior-magazine-elements-v1.json",
+      "start_line": 54477,
+      "end_line": 54515,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/hero-portraits/prompts-v1.json",
+      "start_line": 54516,
+      "end_line": 54562,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/dispenser-copy-handoff.json",
+      "start_line": 54563,
+      "end_line": 54629,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "editor_notes.0",
+        "editor_notes.1",
+        "editor_notes.2",
+        "editor_notes.3",
+        "editor_notes.4",
+        "editor_notes.5",
+        "editor_notes.6",
+        "editor_notes.7",
+        "editor_notes.8",
+        "editor_notes.9"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v1/provenance.json",
+      "start_line": 54630,
+      "end_line": 54675,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v10/provenance.json",
+      "start_line": 54676,
+      "end_line": 54691,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v11/provenance.json",
+      "start_line": 54692,
+      "end_line": 54717,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v13/provenance.json",
+      "start_line": 54718,
+      "end_line": 54772,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v14/magazine-v13-source.json",
+      "start_line": 54773,
+      "end_line": 57393,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v14/provenance.json",
+      "start_line": 57394,
+      "end_line": 57415,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v15/magazine-v14-source.json",
+      "start_line": 57416,
+      "end_line": 60036,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v15/provenance.json",
+      "start_line": 60037,
+      "end_line": 60055,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v16/magazine-v15-source.json",
+      "start_line": 60056,
+      "end_line": 62719,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v16/provenance.json",
+      "start_line": 62720,
+      "end_line": 62744,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v17/magazine-v16-source.json",
+      "start_line": 62745,
+      "end_line": 65347,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v17/provenance.json",
+      "start_line": 65348,
+      "end_line": 65390,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v18/magazine-v17-source.json",
+      "start_line": 65391,
+      "end_line": 68239,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v18/magazine-v18-published-source.json",
+      "start_line": 68240,
+      "end_line": 71091,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v18/provenance.json",
+      "start_line": 71092,
+      "end_line": 71106,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v19/pre-publication-source.json",
+      "start_line": 71107,
+      "end_line": 73892,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v19/provenance.json",
+      "start_line": 73893,
+      "end_line": 73912,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v2/provenance.json",
+      "start_line": 73913,
+      "end_line": 73939,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v20/pre-publication-source.json",
+      "start_line": 73940,
+      "end_line": 76693,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v20/provenance.json",
+      "start_line": 76694,
+      "end_line": 76706,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v21/pre-publication-source.json",
+      "start_line": 76707,
+      "end_line": 79460,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v3/provenance.json",
+      "start_line": 79461,
+      "end_line": 79521,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v4/provenance.json",
+      "start_line": 79522,
+      "end_line": 79546,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v5/provenance.json",
+      "start_line": 79547,
+      "end_line": 79570,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v6/provenance.json",
+      "start_line": 79571,
+      "end_line": 79588,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v7/provenance.json",
+      "start_line": 79589,
+      "end_line": 79614,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/guide-assets-v9/provenance.json",
+      "start_line": 79615,
+      "end_line": 79632,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/magazine/magazine.json",
+      "start_line": 79633,
+      "end_line": 82364,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "marketing/spare-employee-dispenser/glass-front-prompts-v1.json",
+      "start_line": 82365,
+      "end_line": 82415,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/catalog.json",
+      "start_line": 82416,
+      "end_line": 82468,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/demolition-hammer/game-art.json",
+      "start_line": 82469,
+      "end_line": 82700,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "assets.0.frames.0.anchor.status",
+        "animation_spec.status",
+        "validation.visual_review",
+        "integration_notes.0",
+        "integration_notes.1",
+        "integration_notes.2",
+        "integration_notes.3",
+        "integration_notes.4",
+        "integration_notes.5",
+        "integration_notes.6",
+        "integration_notes.7",
+        "integration_notes.8"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/demolition-hammer/marketing-art.json",
+      "start_line": 82701,
+      "end_line": 82769,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "notes.0",
+        "notes.1",
+        "notes.2"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/demolition-hammer/weapon.json",
+      "start_line": 82770,
+      "end_line": 82816,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "knockback.status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/drain-snake/game-art.json",
+      "start_line": 82817,
+      "end_line": 83049,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "integration_notes.8"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/drain-snake/marketing-art.json",
+      "start_line": 83050,
+      "end_line": 83118,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/drain-snake/weapon.json",
+      "start_line": 83119,
+      "end_line": 83165,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/heavy-plunger-launcher/game-art.json",
+      "start_line": 83166,
+      "end_line": 83406,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "integration_notes.8"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/heavy-plunger-launcher/marketing-art.json",
+      "start_line": 83407,
+      "end_line": 83475,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/heavy-plunger-launcher/weapon.json",
+      "start_line": 83476,
+      "end_line": 83598,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "aiming.status",
+        "aiming.visual_aim.status",
+        "aiming.direction_revision_status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/pipe-bomb-launcher/game-art.json",
+      "start_line": 83599,
+      "end_line": 83839,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/pipe-bomb-launcher/marketing-art.json",
+      "start_line": 83840,
+      "end_line": 83910,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/pipe-bomb-launcher/weapon.json",
+      "start_line": 83911,
+      "end_line": 83972,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/pipe-wrench/game-art.json",
+      "start_line": 83973,
+      "end_line": 84203,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/pipe-wrench/marketing-art.json",
+      "start_line": 84204,
+      "end_line": 84272,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/pipe-wrench/weapon.json",
+      "start_line": 84273,
+      "end_line": 84319,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/playtest-feedback.json",
+      "start_line": 84320,
+      "end_line": 84391,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "entries.0.status",
+        "entries.2.status",
+        "entries.4.status",
+        "entries.4.validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/pressure-gun/game-art.json",
+      "start_line": 84392,
+      "end_line": 84644,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/pressure-gun/marketing-art.json",
+      "start_line": 84645,
+      "end_line": 84713,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/pressure-gun/weapon.json",
+      "start_line": 84714,
+      "end_line": 84836,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/rendering-strategy.json",
+      "start_line": 84837,
+      "end_line": 84949,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "hero_standardization_plan.status",
+        "hero_standardization_plan.constraints.0",
+        "hero_standardization_plan.constraints.1",
+        "hero_standardization_plan.constraints.2",
+        "hero_standardization_plan.constraints.3",
+        "hero_standardization_plan.required_airborne_aiming.status",
+        "hero_standardization_plan.required_airborne_aiming.validation.0",
+        "hero_standardization_plan.required_airborne_aiming.validation.1",
+        "runtime_integration.validation",
+        "runtime_integration.remaining"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/roster-mockup/prompt-v1.json",
+      "start_line": 84950,
+      "end_line": 84991,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [],
+      "coverage": "Indexed; full snapshot text not read in this pass"
+    },
+    {
+      "path": "weapons/roster-mockup/roster-v1.json",
+      "start_line": 84992,
+      "end_line": 85190,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status",
+        "entries.0.status",
+        "entries.6.range_status",
+        "entries.6.notes.concept",
+        "entries.6.notes.visual_reference",
+        "entries.7.notes.concept",
+        "entries.7.notes.relationship_to_existing_weapons",
+        "entries.8.notes.name",
+        "entries.8.notes.concept",
+        "entries.8.notes.ownership_note",
+        "entries.9.notes.name",
+        "entries.9.notes.concept",
+        "entries.10.notes.id",
+        "entries.10.notes.name",
+        "entries.10.notes.concept",
+        "entries.10.notes.relationship_to_existing_weapons",
+        "entries.11.notes.id",
+        "entries.11.notes.name",
+        "entries.11.notes.reference_equipment",
+        "entries.11.notes.concept",
+        "entries.11.notes.ownership_status",
+        "entries.12.status",
+        "range_notes.0",
+        "range_notes.1",
+        "range_notes.2",
+        "range_notes.3",
+        "range_notes.4",
+        "range_notes.5",
+        "validation"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    },
+    {
+      "path": "weapons/tony-ideas.json",
+      "start_line": 85191,
+      "end_line": 85264,
+      "current_source_matches": true,
+      "current_source_exists": true,
+      "reviewed_fields": [
+        "status"
+      ],
+      "coverage": "Selected status, decision, validation and limitation fields read via hash-identical current JSON; remaining fields indexed"
+    }
+  ],
+  "resumed_direct_review": {
+    "completed_ranges": [
+      [
+        1,
+        53220
+      ]
+    ],
+    "next_line": null,
+    "method": "Full bounded, untruncated archive text read directly; includes previously read 6228-6350.",
+    "notes": [
+      "Flushfiend top-level source-only status conflicts with later runtime-preparation integrated status.",
+      "Widow damage sheet uses provisional thorax anchors 128,184 for living frames and 128,214 for dead frames; later integration evidence supersedes historical absent-flight wording.",
+      "Opening trial frame geometry and full generation prompts reviewed; Gratecrawler last two crops are nonuniform widths 362 and 406.",
+      "Swarm versions 1-3 fully reviewed; version 3 row origins 0,256,512,760,1000,1240 and runtime 128 display with 48 radius supersede uniform-grid/64-display assumptions.",
+      "Controller history confirms approved Salvage Special, corrected View glyph derivative; cheese current label is stale. Putty remains unselected.",
+      "Portrait prompts fully read: original overalls/glasses instructions are superseded by explicit clothing and glasses-removal edits; integer-boundary integration was already complete.",
+      "Full modular-aim prototype v1 transforms reviewed: six standing compositions only, fitted arms and rotated weapons; face occlusion and pixel-density variation explicitly unresolved.",
+      "Read full prototype v2/v3 geometry: revision2 fixes arm scale and raised poses; revision3 changes only Sean up-right support-hand source, preserving transforms.",
+      "Selection props fully reviewed: clipboard safe areas, photo composite rotation and clock button crop; respective integration labels and remaining live-review gaps retained.",
+      "Hero beard-v3 full phase/death/downward geometry reviewed; attachment offsets propagate to all aim layers and anchors, locomotion clock independent of fire, backpedaling reverses playback. Death falling hold waits for ground, then impact/settle.",
+      "Original hero-animation manifest and complete motion/death/alpha prompts read.",
+      "Full run-v3/v4 manifests and prompts read. Eight frames at .075s, .6s loop, .18 source scale, zero run attachment offsets; v4 substitutes separate opposite-stride sheet for second half. Historical candidate wording does not override later rejection. Inherited edge checks and v3 prompt pointer in v4 are historical metadata, not fresh validation of v4.",
+      "Airborne alpha-v3 extraction preserves exact positions and dimensions; no redraw authorized by that extraction prompt.",
+      "All three complete 16-pose modular-aim manifests and prompts read directly, including each transform and source measurement. Runtime paths relocate prototype assets; beard revision uses Sean parts-v2, support-hand-v3, airborne-bodies-v3 without anchor changes. Downward clearance claim is a source-alpha test over 24 logical pixels, not whole gameplay validation.",
+      "Beard provenance, original Tony/title prompts, all seven weapon generation records read; old title and clothing prompts remain historical.",
+      "First-call prop geometry/prompts and level-kit proposal fully read: intentional nonuniform scaling to collision footprints; shutter retracts/clips without separate open PNG.",
+      "Opening-world manifest, every geometry/effect instance, all contrast/moss prompts and v3 platform manifest read. Background explicitly nonseamless; only authored geometry collides; moss-v3 covers 20 obstacles.",
+      "Portal record reread fully; narrative cause/destination/cosmology unresolved. Bloody impact and glass-cabinet exact prompts read.",
+      "Dispenser manifests v1-v4 fully read with every source rectangle, destination, anchor, timing, alpha check and full embedded facial-hair prompts. V2 tiny tuft is superseded by v3 beard; v4 blood source uses nonuniform row split 520/504 and .25 scale. Separate trail stays at impact anchor, body descends, both clear by3.6s; opacity must avoid duplicated splat density. Historical fixed480,280 impact is superseded by later randomized-impact direction.",
+      "Read dispenser manifests v5 and v6 in full. V5 two sleeping occupants and persistent stock are superseded by V6 one selected-hero clone in left slot, consumed on first vend and empty until new run; checkpoint activation never refills. Coordinates, timelines, validation limitations, facial-hair and blood-impact provenance reviewed. Old fixed screen impact and inherited validation labels require later runtime handoffs for current status.",
+      "Read full dispenser prompts and sleeping sprite metadata: sleeping source still says two clones, superseded by manifest v6 one-clone lifecycle. All eight crops and timing reviewed.",
+      "Read full wastewater manifest, exact prompts and 17-crop alpha validation. Mirrored 480px modules, world-position interpolation, trial clamps to 1440, terminal starts8570; water/debris cosmetic. Not natively seamless; runtime review separate.",
+      "Read full Clogfather art prompts, encounter proposal, monster metadata and audio handoff. 720HP and 40\u201375s target unvalidated after weapon rebalance; one active hazard pattern, safe corridor and low pipe weak point. Audio12cues plus Backpressure delivered, encounter absent. Lore and portal causality unresolved.",
+      "Read full Flushfiend, Gratecrawler, Sputtervalve, Widow and swarm metadata, marketing prompts, idea list, swarm prompts. Canonical versus opening weapon values distinct; old Sputtervalve proposed-name label superseded by later user approval. Widow breeding is prose, not reproduction mechanics; swarm six damage states absent. Gnatastrophe name saved only, no assumed swarm connection.",
+      "Read full branding audit, BJ popup layout and selected portrait confirmation. Dark panel reuse explicitly Art-approved; old clipboard layout optional. Twelve quips measured in build37, live visual review pending. Beige server rack portrait selected over rejected ceramic/pipe designs.",
+      "Read single-clone handoff, historical Engineering baseline, full archived Engineering succession, first-call integration/geometry plan, both nine-line ending routes, redesign approval and entire run-and-gun numerical comparison. Historical gates/checkpoints/720 boss timing and isolated trial are superseded; A profile active, B/C and1080HP remain proposals.",
+      "Read audio death/buzz/menu handoffs and Story review, full Mechanics succession and predecessor confirmation. Preserve distinction between source cap3 and packaged build55. Future collider radius8 conditional on measured doubled solid core, not automatically approved.",
+      "Read full1977-line hero-animation-art-audit including every repeated matrix entry. Candidate art and packaged240 combination checks do not constitute visual validation. Both heroes all listed idle/run/takeoff/rising/apex/falling/landing/hurt aim/fire cells pending. No recoil bitmap cycle. Read Widow double-size and optional swoop mappings: scale offsets once; live-to-death registration approximate; optional lunge not integrated approval.",
+      "Read hero lives/restart, hyperreal portrait handoff, rejected run-v4 revision, entire Level Design succession including verbatim predecessor handoff and gaps; full Marketing succession including album hold and publication history. No new task authority from archived coordination. Exact midpoint overlaps platform;4650 gives73.6px cabinet clearance. Later runner waves do not fulfill requested broader variety.",
+      "Read historical integration confirmation and redesign art/engineering plans. Concept geometry is not collision authority; high steps and extra boss silhouette explicitly invalid for production. No boss playable.",
+      "Read entire game-intent audit, modular prototype/recommendation, opening art/layout/role handoffs, pause/persistent aim, platform contrast, flush audio, playtest28, beard audit, all24 swarm crop entries and full swarm mechanics. Old isolated20s end and three checkpoint records superseded; no reproduction behavior from Widow prose. Swarm rows760/1000/1240 intentionally nonuniform; source slicing alpha approval is not runtime visual approval.",
+      "Read complete swarm research/story, sliding-door/audio, dispenser art/audio/engineering/glass/mechanics/runtime-glass handoffs. Runtime event timing overrides audition preview timing; healthy stamp has no release cue; random impact supersedes fixed480,280. Current single-clone lifecycle supersedes repeat vending/old checkpoints.",
+      "Embedded Storyboarding recovered history read45054\u201347200 so far, including diagnostic, Sputtervalve draft, curation/timestamps, icon ideas, full ending rewrite code and checks, game-intent review, Audio direction and wastewater brief. Sputtervalve contamination origin explicitly draft; audio briefs are sound-selection direction, not exact sound promises. Historical embedded output truncation markers preserved, not reconstructed.",
+      "Directly read 47201-50550 without tool truncation, including embedded magazine editorial proposals, skippable cinematic notes-only request, all dispenser coordination briefs and eight checkpoint concepts, swarm rename and full old animation manifest, magazine v11 full extracted text and page-by-page spoiler removal brief, twelve selected BJ death quips, company naming, old-brand cleanup and missed opening-dialogue handoff. Septic Air Force selected; aviation backstory draft and Gnatastrophe notes-only. Story alternate dispenser ad was a proposal, superseded by retention of the praised original. Older SUMP AI name retired; ordinary sump chamber usage is distinct. Historical source-art and balance claims remain historical, not current validation."
+    ]
+  },
+  "deduplicated_remaining_review": {
+    "status": "complete",
+    "source_start_line": 53221,
+    "review_file": "/tmp/art-review-remaining.txt",
+    "duplicate_ledger_file": "handoffs/art-2-archive-coverage.json",
+    "review_file_lines_read": 11671,
+    "next_review_file_line": null,
+    "method": "Exact twenty-line minimum matching blocks mapped to earlier archive text; all unique text emitted in original order. References to earlier pending text become covered only when that text has actually been read. No normalized or hash-only equivalence.",
+    "truncation_recovery": "Initial output gap recovered explicitly at review lines350-550; all11671 review lines subsequently read.",
+    "notes": [
+      "Story succession full read: its provisional Sputtervalve status predates later approval; preserve current Art decisions. Historical acronym expansion claim conflicts with chapter010, so do not claim no expansion globally.",
+      "Read all remaining wastewater, icon, BJ alternatives, old packaging, reaction, hero-portrait and magazine copy/provenance through edition16 and beginning17. Marketing portraits derived from illustrated screenshot, not original real photos.",
+      "Edition13 full layout/text reviewed, edition14/15 exact repeated blocks linked plus all changes read, edition16 reader-first changes read. Edition17 shrank17pages to8; preview disclaimer guidance later superseded. All are historical evidence, not fresh PDF validation.",
+      "Read all unique magazine layouts/provenance through edition21. Approved back-cover wording retained; two-occupant marketing art differs intentionally from single-clone runtime. V20 changes hero portraits; V21 removes disclaimers. Historical publication authority is not new authorization.",
+      "Read all weapon mechanics, atlas geometry, prompts, marketing provenance, rendering strategy, roster concepts and complete150-image integrity inventory. Four catalog weapons remain design only; starter baselines differ from active opening profile. Pressure Gun v2 adds brass gauge/barrel. Modular strategy approval does not validate failed running poses."
+    ],
+    "covered_source_range": [
+      53221,
+      86205
+    ]
+  },
+  "entire_report_review_complete": true,
+  "completion_definition": "Every line covered by direct full-text reading or an exact duplicate reference to previously reviewed text; not every duplicate was reread.",
+  "coverage_ledger": "handoffs/art-2-archive-coverage.json",
+  "remaining_evidence_limits": [
+    "Original archive omits private reasoning and raw historical tool logs; embedded historical truncation cannot be reconstructed from this archive.",
+    "Historical image and screenshot content was not exhaustively re-inspected; text review does not validate animation or gameplay.",
+    "Current successor records may have evolved beyond historical snapshots; archive completion is not current runtime verification."
+  ],
+  "chronology_closure": {
+    "direct_archive_range": [
+      685,
+      5270
+    ],
+    "review_stream_lines": 4588,
+    "complete": true,
+    "notes": [
+      "Original mixed Marketing/game request explicitly included runtime glass-front dispenser; previous incomplete handoff was not a missing user approval.",
+      "Run-v3/v4 claims of improved alternation were later withdrawn; foot continuity remains unresolved.",
+      "Public record329 approves Sputtervalve name/design and50percent size increase; draft lore remains distinct. Record338 approves shooter cap3, not a randomized roster."
+    ]
+  }
+}

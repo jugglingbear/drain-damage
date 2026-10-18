@@ -1,0 +1,469 @@
+{
+  "schema_version": 1,
+  "role": "Level Design 2",
+  "created_at": "2026-10-17T13:50:48-07:00",
+  "timezone": "America/Los_Angeles",
+  "repository": "/Users/sfoley/repos/drain_damage",
+  "source_commit_at_audit": "49cc403",
+  "scope": "Succession and context acquisition only. No gameplay, artwork, build, version, roadmap or historical storybook changes made by this audit.",
+  "predecessor": {
+    "thread_id": "01a13d87-8252-7062-be67-b387cd55e46b",
+    "title": "Level Design",
+    "handoff_turn": "01a14b9f-55c9-7922-a563-71913b8e23ac",
+    "followup_turn": "01a14ba1-7325-7112-ae13-d1e91fabba64"
+  },
+  "successor_thread_id": "01a14b9d-de3f-74c0-bd72-b5ac632f4bb8",
+  "write_test": {
+    "result": "PASS",
+    "normal_permissions": true,
+    "path": ".succession-level-design-53e97b92593b4344992213f169818cf3.tmp",
+    "operations": [
+      "create",
+      "write",
+      "read and compare",
+      "delete",
+      "verify absent"
+    ],
+    "permission_changes": false
+  },
+  "recovery": {
+    "pages": 2,
+    "turns": 17,
+    "order": "newest through oldest",
+    "has_more": false,
+    "turn_ids": [
+      "01a14b9a-c308-78b3-a659-1d865f6f59b1",
+      "01a14b8a-0ed5-7631-93b4-69a92afd286b",
+      "01a14807-3b82-7571-be83-535d954e874e",
+      "01a147b0-c403-7551-9dd1-2131c81808ca",
+      "01a1472a-f479-7b73-b6bb-b623b3558162",
+      "01a146e6-904d-7403-9bc9-e1fb3771ee74",
+      "01a146c2-4268-7910-a7b2-cbc3540dff92",
+      "01a146ba-8869-7cc1-afee-94c75a46e1e2",
+      "01a146ad-3411-7ea2-9342-e57d0d46f73e",
+      "01a146ab-6732-7700-a025-e70310716020",
+      "01a14683-02b8-76d3-9c0a-54b8283c9ee8",
+      "01a1467f-f30b-7071-80a5-b5ebc62cc409",
+      "01a14600-d98c-7580-82cb-fa7f83954873",
+      "01a14043-8b44-7d91-ad44-579abc284c7f",
+      "01a13d97-f1d8-70a1-a0f3-19068921f39e",
+      "01a13d90-075f-7b71-96cf-747a0ffb5aae",
+      "01a13d8b-be70-7103-9b41-ca8bd0c50486"
+    ],
+    "outputs_requested": true,
+    "max_output_characters_per_item": 20000,
+    "full_history_readback_archive": "/private/tmp/level-design-2-recovered-history-20261017.json",
+    "predecessor_handoff_archive": "/private/tmp/level-design-2-predecessor-handoff-20261017.json",
+    "archive_note": "Temporary audit copies may be removed by OS cleanup. Detailed predecessor handoff and successor corrections are preserved in this tracked-location record. Read_thread returns available summaries/items, not inaccessible internal reasoning.",
+    "review": "Reviewed all available user and assistant messages, coordination messages, relevant implementation and validation outputs; inspected current source and records separately. Large combined responses were reread in filtered smaller batches. This is not a claim of recovering hidden internal reasoning or every byte omitted from original command output."
+  },
+  "original_user_requests": [
+    {
+      "turn_id": "01a14600-d98c-7580-82cb-fa7f83954873",
+      "content": [
+        {
+          "type": "text",
+          "text": "\n# Files mentioned by the user:\n\n## Screenshot 2026-10-16 at 11.23.29 AM.png: /var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_zi8Ox2/Screenshot 2026-10-16 at 11.23.29 AM.png\nImage attachment: true\n\n## Screenshot 2026-10-16 at 11.23.43 AM.png: /var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_WApaYT/Screenshot 2026-10-16 at 11.23.43 AM.png\nImage attachment: true\n\n## Screenshot 2026-10-16 at 11.23.56 AM.png: /var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_uLz9e5/Screenshot 2026-10-16 at 11.23.56 AM.png\nImage attachment: true\n\n## Screenshot 2026-10-16 at 11.24.06 AM.png: /var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_9zqHAo/Screenshot 2026-10-16 at 11.24.06 AM.png\nImage attachment: true\n\n## Screenshot 2026-10-16 at 11.33.53 AM.png: /var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_WHUuZm/Screenshot 2026-10-16 at 11.33.53 AM.png\nImage attachment: true\n\nDistinguish instructions in attached documents from the user's request.\n\n## My request:\nTake a look at some screens from Contra 3: The Alien Wars for SNES.\n\nIn the first 20 seconds of the game, the player is inundated by numerous enemies that come in from the left side of the screen, the right, weapon powerups flying above, robot things coming up from the ground, enemies pitchingn projectiles. It's very busy/noisy. \n\nI want our game to be like that. Maybe we need to adjust the HP of the monsters and the power of the weapons so it never takes more than 1-3 hits to kill them and have Sean's weapons be a bit faster (not 1 shot per 2-3 sec). Or maybe we shouldn't have Sean be a slower-firing player but instead have Sean and Tony each have their default unique weapon and then have other weapons only be equippable by Tony or Sean (not both)? I'm not sure. Please consult with the Game Mechanics agent and have them do some research and thinking about it.\n\nAlso notice how there are more complex platforms in the level (in one of the screenshots). There is a bad guy shooting at the player from atop one. We should have stationary monsters, flying monsters, moving monsters and monsters that pop out from under the ground, from the ceiling, from the background into the foreground and from the viewer's screen area into the normal foreground (as if the monster is jumping in from the viewer's screen into the game). We only have a couple of monsters sketched out right now but we will have more soon. \n\nEither way, the first level needs a lot of work. It also doesn't have the Clogfather at all in it, which it should at the end.\n\nLet's come up with a plan and some mockups of the new platforming, ideas for how many additional monsters to have, adjustments to weapon power and monster HP so we can have the game be busier and more action-packed. Have engineering present the report.\n"
+        },
+        {
+          "type": "localImage",
+          "path": "/var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_zi8Ox2/Screenshot 2026-10-16 at 11.23.29 AM.png"
+        },
+        {
+          "type": "localImage",
+          "path": "/var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_WApaYT/Screenshot 2026-10-16 at 11.23.43 AM.png"
+        },
+        {
+          "type": "localImage",
+          "path": "/var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_uLz9e5/Screenshot 2026-10-16 at 11.23.56 AM.png"
+        },
+        {
+          "type": "localImage",
+          "path": "/var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_9zqHAo/Screenshot 2026-10-16 at 11.24.06 AM.png"
+        },
+        {
+          "type": "localImage",
+          "path": "/var/folders/y3/fnkknsvj5ygc9v3mhvfbkwh00000gn/T/TemporaryItems/NSIRD_screencaptureui_WHUuZm/Screenshot 2026-10-16 at 11.33.53 AM.png"
+        }
+      ]
+    },
+    {
+      "turn_id": "01a13d8b-be70-7103-9b41-ca8bd0c50486",
+      "content": [
+        {
+          "type": "text",
+          "text": "You are the Level Design agent. Your job will be to help design each level of the game including, but not limited to:\n\n\n\n- Assigning platform positions\n- Communicating with the Art agent to get create backgrounds and foreground debris that the heroes can jump onto so they're not always jumping onto floating flat platforms (which would be very boring)\n- Determining which monsters are present, how many, where they are positioned, etc\n- How long each level is horizontally and chronologically\n- Possibly creating whole new types of level that are not strictly 2D side-scrolling (for example: Contra 3: The Alien Wars had some levels that were overhead. Maybe we can design a few levels that are not 2D as well (they don't have to be overhead like Contra 3's))\n- Anything else related to the creation of levels\n\n\n\nYour first task is to talk to the Storyboard agent and Engineering in order to convert the first level of the game, which used to be a tutorial, into a full-length playable level with numerous monsters, platforms, foreground objects to jump on/over, etc.\n\n\n\nFeel free to do some research into other 2D Contra (and clone) games if you are not already a level design expert. Don't copy anything directly but feel free to learn from other game designs.\n"
+        }
+      ]
+    }
+  ],
+  "responsibilities_assumed": [
+    "Level layout, platform placement, jump reachability and art/collision alignment.",
+    "Enemy placement, encounter pacing, finite wave budgets, safe entrances and escape lanes.",
+    "Level length and measured pacing; future alternative formats remain exploratory.",
+    "Arena and route requirements with Game Mechanics, Art, Storyboarding and Engineering.",
+    "Coordinated implementation of assigned geometry/integration modules and their tests; ownership must be agreed before shared edits."
+  ],
+  "authority": "Latest explicit user instructions govern; current repository AGENTS.md and supplied successor instructions are active. Historical predecessor claims about replacement AGENTS instructions are historical only. Runtime is evidence of implemented behavior, not independent authorization to override user requirements.",
+  "current_verified": {
+    "version": "0.55.0 in project.godot; roadmap/storybook record Prototype 55. Existing apps/archive verified to exist; no fresh export or packaged test run in this audit.",
+    "runtime_chain": [
+      "scripts/title_screen.gd",
+      "scripts/integrated_first_call.gd",
+      "scripts/opening_trial_game.gd",
+      "scripts/game.gd"
+    ],
+    "route": {
+      "width": 9600,
+      "floor_y": 440,
+      "viewport": [
+        960,
+        540
+      ],
+      "spawn": [
+        85,
+        394
+      ],
+      "opening_end": 3120,
+      "temporary_exit": 9450,
+      "checkpoint": [
+        4650
+      ],
+      "raised_platforms": 20
+    },
+    "geometry": {
+      "opening_plinth_x": [
+        180,
+        670,
+        1080,
+        1570,
+        1980,
+        2470
+      ],
+      "opening_plinth_size": [
+        150,
+        60
+      ],
+      "opening_plinth_y": 380,
+      "decks": [
+        [
+          370,
+          320,
+          250,
+          16
+        ],
+        [
+          1270,
+          320,
+          250,
+          16
+        ],
+        [
+          2170,
+          320,
+          250,
+          16
+        ]
+      ],
+      "later_low_x": [
+        3500,
+        3840,
+        4850,
+        5570,
+        6860,
+        7200
+      ],
+      "later_low_size": [
+        160,
+        60
+      ],
+      "later_pump_x": [
+        3660,
+        5010,
+        5390,
+        7020
+      ],
+      "later_pump_size": [
+        180,
+        120
+      ],
+      "tall": [
+        5190,
+        260,
+        200,
+        180
+      ],
+      "rules": "60px rises, <=80px required gaps, >=120px landing widths, continuous floor; decks have one-way body tops and thin projectile-solid slabs, recessed supports are decorative."
+    },
+    "encounters": {
+      "opening_triggers": [
+        100,
+        250,
+        450,
+        600,
+        800,
+        1000,
+        1200,
+        1400,
+        1650,
+        1900,
+        2200,
+        2450
+      ],
+      "opening_roles": "8 runners including rear entry, 1 perched shooter, 1 floor emerger, 2 sequential aggressive flyers; finite potential events, not guaranteed kills.",
+      "later_waves": [
+        [
+          3500,
+          4800,
+          8
+        ],
+        [
+          4900,
+          6480,
+          10
+        ],
+        [
+          6860,
+          8160,
+          10
+        ],
+        [
+          8400,
+          9380,
+          8
+        ]
+      ],
+      "spawn_interval_seconds": 0.65,
+      "body_edge_clearance": 220,
+      "checkpoint_exclusion": 200,
+      "crowd_cap": 8,
+      "crowd_cap_with_widow": 6,
+      "one_widow": true,
+      "remaining_swarm_x": 4400,
+      "completion": "No kill-count gate. Unissued/bypassed/retired enemies award no kills. x9450 is temporary completion without playable Clogfather."
+    },
+    "weapons": {
+      "tony": {
+        "damage": 12,
+        "interval_seconds": 0.16,
+        "range": 320
+      },
+      "sean": {
+        "damage": 18,
+        "interval_seconds": 0.24,
+        "range": 480
+      },
+      "runner_hp": 24,
+      "note": "Faster first-level profile; canonical baseline records retained, not all weapon mechanics implemented."
+    },
+    "widow": {
+      "hp": 180,
+      "linear_scale": 2,
+      "body": [
+        60,
+        48
+      ],
+      "latest_change": "Prototype 53 forward V-shaped recovery supersedes predecessor's older return-to-origin description. 0.65s warning, 0.8s committed dive, 1s forward climb, 1.2s forward cooldown; locked aim, scenery sweeps, no mandatory kill.",
+      "caveat": "Human fairness and obstructed recovery remain unverified; optional lunge pose is not confirmed integrated."
+    },
+    "checkpoint": {
+      "x": 4650,
+      "reason": "48.8% from spawn85 to exit9450; exact midpoint4767.5 overlaps next prop4850. Cabinet ends4776.4, leaving73.6px.",
+      "stock": "Prototype51 records one left-bay sleeping selected-hero clone; healthy check-in preserves stock; first replacement consumes it; remains empty across death/revisit; new run resets; three lives unchanged."
+    },
+    "platform_art": {
+      "manifest": "assets/world/platform-readability-v3/manifest-v3.json",
+      "prompts": "assets/world/platform-readability-v3/prompts-v3.json",
+      "style": "Moss/gray-green frames and lighter treads with dark undercuts; all20 raised instances. Ivory v2 superseded. Geometry unchanged.",
+      "bindings": [
+        "scripts/first_call.gd",
+        "tools/build_combat_data.py",
+        "data/combat.json"
+      ]
+    },
+    "wastewater": {
+      "renderer": "scripts/wastewater_art.gd",
+      "profile": "scripts/wastewater_profile.gd",
+      "manifest": "assets/world/wastewater-cutaway/manifest-v1.json",
+      "prompts": "assets/world/wastewater-cutaway/prompts-v1.json",
+      "profile_source": "handoffs/wastewater-cutaway-level-design.json",
+      "band": [
+        456,
+        528
+      ],
+      "bore": [
+        464,
+        520
+      ],
+      "terminal_x": 8570,
+      "behavior": "World-position water/flow decrease and blockage increases; full stationary plug at8570. Backtracking is spatial, frozen gameplay clock freezes motion. No damage/collision/new boss implied. Trial-only cap1440 remains internal fixture behavior.",
+      "rendering": "configure(Data.bundle.wastewater); draw under caller world transform;16px profile strips, mirrored480px tiles, deterministic world-cell debris."
+    }
+  },
+  "history_and_reversals": [
+    "Prototype26 baseline:2400px,4 platforms,3 Flushfiends. Old horizontal-only combat assumptions became obsolete after aiming updates.",
+    "Prototype27 expansion:9600px,six zones,30 enemies,17 grounded props,three checkpoints,four attacker cap. Finite visible shutters were accepted to avoid unsafe queued spawns; nearest-clear relocation rejected because it clustered/reversed homes.",
+    "Initial full-route bot record:Tony93.75s,Sean139.7333s includes respawns and excludes intro. These are not human4–6min pacing measurements.",
+    "Contra-inspired redesign: original17-opening/90-full-route budget reduced to12 initial events after missed-shot workload review;80–100/90 remains proposal. WeaponA accepted for initial comparison, then integrated.",
+    "Prototype44 separate20s trial was an implementation misunderstanding; Sean corrected it. Prototype45 normal Start is continuous, no trial menu/timer/results or boundary teleport.",
+    "Prototype47 explicit user change removes all six compulsory kill gates and adds36 later finite runners. Ordinary survivor retirement may occur offscreen with no fake kill credit.",
+    "Prototype49 all20 surfaces get moss-green v3 art; enlarged Widow gets committed swoop; both route endings are reciprocal and avoid all-clear claims.",
+    "Prototype50 persistent opening Flushfiend wreckage and damage-atlas warmup address recorded disappearance/stall source; no claim all live hitches fixed.",
+    "Prototype51 exactly one midpoint checkpoint and one expendable clone supersede three machines and multiple sleepers.",
+    "Prototype53 swarm radius48 and forward V-shaped Widow motion supersede old16 radius and return-to-origin recovery.",
+    "Prototype54 version badge;55 selected app icon. Neither is proof of completed boss or human pacing."
+  ],
+  "pending_and_dependencies": [
+    {
+      "item": "Playable Clogfather and real boss-dependent completion",
+      "owners": [
+        "Engineering 2",
+        "Game Mechanics 2",
+        "Level Design 2",
+        "Art 2",
+        "Storyboarding 2",
+        "Audio 2"
+      ],
+      "status": "Required unfinished product scope, not implemented. Low reachable weak point and >=640px connected combat floor proposed constraints; both starters must work. Only one visible boss; no duplicate background silhouette.",
+      "unresolved": "720 baseline vs1080 proposed HP;45–60s proposed target; attacks, retry, ending and portal decisions. Exactly-one checkpoint forbids silently restoring old pre-boss checkpoint proposal.",
+      "audio": "handoffs/clogfather-audio.json has delivered cues/music but boss event integration pending."
+    },
+    {
+      "item": "Broader route variety and enemy entries",
+      "status": "Later runner waves do not fulfill all requested shooter/emerger/ceiling/depth/pickup variety. Names Sputtervalve and Gratecrawler were provisional trial identities; no automatic approval of third/fourth new species or90 enemies."
+    },
+    {
+      "item": "Shooter cap2 to3",
+      "owners": [
+        "Game Mechanics 2",
+        "Engineering 2"
+      ],
+      "status": "Existing uncommitted edits before this audit in layout,balance,state,tests,generated data. Original Mechanics handoff says Art relayed Sean approval, with NO new spawn events and NO bullet/pattern increase. Original Level Design had no knowledge or ownership. Build delivery not verified.",
+      "source": "Original Mechanics turn01a14b9f-f793-79f1-ad32-1a80e178584c, handoff to Game Mechanics2; preserve6 bullets/3 patterns."
+    },
+    {
+      "item": "Sputtervalve size/projectile",
+      "owners": [
+        "Art 2",
+        "Game Mechanics 2",
+        "Engineering 2"
+      ],
+      "status": "Original Mechanics handoff reports user body1.5x request and purple projectile2x visual diameter proposal; conditional radius8 only if solid core doubles, radius4 if only glow. No final implementation/solid-core approval established in this audit.",
+      "source": "Original Mechanics handoff; collision/muzzle and deck clearance require verification. Not Level Design-owned pending edit."
+    },
+    {
+      "item": "Human playtest and visual evidence",
+      "status": "Measure both heroes' survival/pacing, all20 platform contrast and contact alignment, shooter sightlines, Widow deck escapes/forward recovery, wastewater continuity and checkpoint composition. Headless invulnerable bots do not prove fairness.",
+      "owners": [
+        "Engineering 2",
+        "Level Design 2",
+        "Storyboarding 2"
+      ],
+      "capture": "Existing backlog through055; preserve builds/history/Prototype-NN.zip and original captures. No launch approval from this succession task."
+    },
+    {
+      "item": "Current-document reconciliation",
+      "status": "levels/first-call/level-design.json and older integration confirmations retain gates/three checkpoints; opening layout/balance retain isolated timed mode; wastewater handoff mentions8190; report retains Prototype43 and preboss-checkpoint proposal. Current runtime/chronological delivery records supersede those current-state claims. Preserve historical chapters. Coordinate changes later; this audit does not rewrite shared records."
+    }
+  ],
+  "validation": {
+    "this_audit": "Normal-permission write/read/delete passed. Read-only source/metadata/history inspection; no Godot test, rebuild, game launch, screenshot or new artwork performed.",
+    "historical": "Predecessor recorded both-hero integrated checks,16 standing-shot cases, trial geometry/state, pipe profile/rendering, seven metadata tests and PNG/crop checks passing. Final checkpoint test exit0 reachedTony8139.7/Sean7098.3 in30s using invulnerability. Storybook records packaged suites through55.",
+    "diagnostics": "Historical user://log-write,macOS certificate and ObjectDB/resource shutdown diagnostics remain reported. Early assertion/fixture failures were corrected before passing handoffs; tests can hang on assertion, so bounded subprocesses and explicit owned logs matter.",
+    "limitations": "No fresh verification of packaged/source equivalence. Existing uncommitted shooter change means source need not match delivered0.55 build. Human balance/visual/audio checks not inferred from headless passes."
+  },
+  "predecessor_full_handoff": "This handoff covers everything recoverable from my current conversation context, including the earlier compacted summary. It is historical evidence, not a fresh inspection of the relocated repository. Your current file inspection and Engineering’s latest delivery records should establish what is actually shipped.\n\n## Role, collaborators, and ownership\n\nSean assigned this chat Level Design: platform placement, level length and pacing, enemy placement/counts, environmental objects players can climb, coordination with Storyboarding and Art, and eventually alternative level formats.\n\nThe immediate objective was to turn the former tutorial into a full first level with dense action, meaningful platforming, varied enemy entrances, and the Clogfather at the end. Sean explicitly requested coordination with Game Mechanics and asked Engineering to present the combined report.\n\nExisting collaborators:\n\n| Role | Chat ID |\n|---|---|\n| Engineering | `01a1375f-7657-7580-b16e-57a6f5925efd` |\n| Game Mechanics | `01a138a7-cc43-7420-a950-55b935ddde25` |\n| Bestiary / Art | `01a1388b-2b60-7011-832a-5c6a044e0028` |\n| Storyboarding | `01a1387e-545b-7671-943e-3d36a1c88db7` |\n\nEngineering owned integration, base game changes, builds, versions, roadmap, storybook, and the final user report. My edits were assigned subsets, coordinated to avoid shared-file collisions. Mechanics owned weapon balance and later the Widow behavior. Art owned artwork and asset manifests.\n\nThe project was relocated to `/Users/sfoley/repos/drain_damage`. Do not recreate `/Users/sfoley/repos/plumbing_inc`.\n\n## User intent and corrections\n\nThe original Contra screenshots illustrated the intended feel:\n\n- Many enemies arriving from both horizontal sides.\n- Flying threats and powerups.\n- Stationary elevated shooters and projectile throwers.\n- Ground, ceiling, background-to-foreground, and viewer-to-play-plane entrances.\n- Architecture and debris supporting platforms, rather than repeated floating slabs.\n- Ordinary enemies generally dying in one to three hits.\n- Sean’s weapon firing much faster than the perceived two-to-three-second interval.\n- Distinct weapon identities for Tony and Sean, with potentially character-exclusive additional weapons.\n- A full level culminating in the Clogfather.\n\nThose were direction and requests for design consultation, not approval of every possible new enemy or entrance mechanic.\n\nSubsequent explicit corrections, relayed through Mechanics/Engineering and implemented within my assigned scope:\n\n1. **Remove every first-level kill-count progress gate.** Replace gated encounters with larger crowds and finite waves along a freely traversable route.\n2. **Make the flying spider twice its linear size and durable.** This became a deliberate exception to ordinary enemies’ one-to-three-hit target.\n3. **Give the Widow an actual proximity swoop attack matching its magazine description.** A passive fixed hover was superseded.\n4. **Audit contrast across every first-level platform.** The initial pale/ivory treatment did not cover the large machinery. The later direction was dank moss/gray-green frames and readable treads, dark undercuts, no beige or glow.\n5. **Exactly one checkpoint near halfway through the level.** This superseded three checkpoint machines. One sleeping clone should occupy the sole machine; after dispensing, it should be empty.\n6. Preserve three lives, scenery, and free traversal.\n7. During the daughter’s playtest, do not foreground or launch the game. All my checks remained headless.\n\n## Last delivered level structure\n\nThe active first-level implementation was:\n\n`integrated_first_call.gd` → `opening_trial_game.gd` → `game.gd`\n\nEngineering switched normal Start to the integrated class. The old trial class remained as an internal implementation/test dependency; it was no longer intended as the normal separate timed experience.\n\nThe integrated level:\n\n- World width: **9,600 pixels**.\n- Temporary completion threshold: **x = 9,450**.\n- Player starting x: **85**.\n- Opening replacement ends at **x = 3,120**.\n- The opening uses the first three platform modules from an earlier 6,000-pixel trial layout.\n- Remaining authored scenery stays in its original world coordinates.\n- The opening continues beyond 20 seconds; no timed-results stop.\n- Checkpoint/respawn does not recreate opening enemies or reset world progress.\n- The final delivered checkpoint constant was **`CHECKPOINTS := [4650.0]`**.\n\n### Why x4650\n\nThe midpoint between spawn85 and exit9450 is4767.5. The existing cabinet rendering would overlap the next platform beginning at4850 if placed at that exact midpoint.\n\nAt checkpoint4650:\n\n- Progress is approximately49% of the playable route.\n- The floor is clear between the previous obstacle ending4000 and the next beginning4850.\n- Cabinet visible bounds were approximately4643.5–4776.4.\n- This leaves approximately73.6 pixels before the next platform.\n- No scenery or collision layout needed moving.\n\nThe existing integrated loops derive machine placement, activation triggers, and enemy-spawn exclusions from `Level.CHECKPOINTS`; changing the constant removed the other placements automatically.\n\n## Ungated encounter implementation\n\nI delivered this in `scripts/integrated_first_call.gd` and updated `tests/integrated_opening.gd`.\n\n### Opening\n\nTwelve finite opening event positions:\n\n`100, 250, 450, 600, 800, 1000, 1200, 1400, 1650, 1900, 2200, 2450`\n\nTheir eligibility times were set to zero in the integrated copy of the layout. Position determines when they become eligible; safety and population checks can defer them.\n\nPassing the opening marks remaining unissued opening events unavailable. It does not award kills. Existing live actors persist until normal retirement/death.\n\n### Later waves\n\n| Range | Maximum arrivals |\n|---|---:|\n| x3500–4800 | 8 |\n| x4900–6480 | 10 |\n| x6860–8160 | 10 |\n| x8400–9380 | 8 |\n\nTotal: **36 later runners**, up from the old22 encounter quota, plus the opening’s12 potential events.\n\nImportant distinctions:\n\n- These are finite available arrivals, not a guarantee the player must fight all48 enemies.\n- Moving past a wave’s range bypasses its unissued remainder.\n- No kill requirement blocks forward travel or the temporary exit.\n- Arrivals are staggered by at least0.65 seconds.\n- At most one arrival is created per encounter update.\n- Deferred arrivals do not accumulate into a burst.\n- Front/rear entrance selection prefers rear every third arrival and tries the alternate side if needed.\n- Entrances are offscreen.\n- Player clearance is measured from the expanded visible Flushfiend bounds, not merely its anchor.\n- Required clearance:220 pixels.\n- Spawn placement avoids scenery, other bodies, opening actors, and checkpoint proximity.\n- Checkpoint exclusion: within200 pixels of its location.\n- Enemies sufficiently far behind the camera retire without kill credit.\n- Retirement threshold used `enemy.pos.x + 38 < camera_x - 320`.\n- No live threats are deleted merely to satisfy a population cap.\n\n### Population budget\n\n- Eight bodies normally.\n- Six while a live or warning/entering Widow exists.\n- One Widow at a time.\n- A new Widow is deferred when population is already six.\n- Population conservatively counts campaign enemies, live opening actors, and live swarm actors.\n\nMechanics also wanted two shooters, six hostile bullets, and three independent attack patterns. Opening state already managed those attack budgets. The later waves I added were runners, not additional shooters.\n\n### Gates and completion\n\nAll six former shutters were removed from the integrated level’s:\n\n- Collision.\n- Projectile blocking.\n- Drawing.\n- Kill-count progression.\n\nLegacy mission arrays/indices remained for compatibility/telemetry:\n\n- `mission.zone_counts.fill(0)`\n- `mission.current_zone = 2`\n- `gate_progress.fill(1)`\n\nThe integrated movement and projectile-solid methods use the replacement level geometry, not the legacy gate geometry.\n\nHUD changed to following the service route rather than an enemy quota.\n\n**The Clogfather was still missing at my last verified handoff.** Completion at9450 was explicitly temporary, and Engineering was told not to describe the boss milestone as complete.\n\n## Combat and Widow details\n\nThe working opening balance at my last checks:\n\n| Character | Damage | Attack interval |\n|---|---:|---:|\n| Tony | 12 | 0.16 seconds |\n| Sean | 18 | 0.24 seconds |\n\nLater runners use24HP, giving two hits from either default weapon.\n\nThe Widow:\n\n- Twice its original linear render size.\n- Collision expanded consistently to60×48.\n- 180HP.\n- Fifteen Tony hits or ten Sean hits.\n- Approximate first-to-last-hit time under uninterrupted fire:2.24 seconds Tony,2.16 seconds Sean.\n- This deliberately superseded the general ordinary-enemy one-to-three-hit target.\n\n### Superseded hover behavior\n\nMechanics first delivered a proximity-triggered fixed four-second hover, then resumed leftward travel. This was explicitly replaced after Sean requested a real swoop matching the magazine.\n\n### Latest swoop handoff received\n\nMechanics reported:\n\n-0.65-second visible warning.\n- Aim locked at warning start.\n-0.8-second committed dive.\n- No tracking after commitment.\n- Expanded full-body sweep against `player_shot_solids`, including floor.\n- Blocked dive aborts into a one-second return.\n-1.2-second cooldown.\n-2× scale and180HP preserved.\n- Tests cover open-floor dive, warning, fixed aim, recovery, and deck nonpenetration.\n\nI did not edit the parent adapter during that work; Mechanics owned it.\n\n### Clearance constraints I supplied\n\nOpening decks are250×16 at y320. With flyer center/base lane250 and a24-pixel shallow arc, its doubled bounds originally stayed above the deck.\n\nFor the attack:\n\n- Gaps between plinths and decks are only40 or50 pixels.\n- A60-pixel-wide flyer cannot safely pass through them.\n- The under-deck opening is104 pixels high, from336 to440.\n- A48-pixel flyer plus46-pixel hero nearly fills that space.\n- Do not trap the hero under a deck with the large body.\n- Sweep against real solids, abort blocked descent, and preserve an escape direction.\n- Only the actual play-plane body should deal contact damage.\n\n## Complete platform inventory and art delivery\n\nTwenty raised walkable instances, four visual families. The plinth family has two destination widths.\n\n### Opening\n\n| Type | Size | Positions |\n|---|---|---|\n| Solid access/return plinth |150×60|x180,670,1080,1570,1980,2470; y380|\n| One-way deck |250×16|(370,320), (1270,320), (2170,320)|\n\nEach deck has a250×120 decorative support drawn behind the play plane. Supports are not full-height collision walls.\n\n### Later scenery\n\n| Type | Size | Positions |\n|---|---|---|\n| Solid pipe bundle |160×60|x3500,3840,4850,5570,6860,7200; y380|\n| Solid pump housing |180×120|x3660,5010,5390,7020; y320|\n| Solid supported assembly |200×180|(5190,260)|\n\nFloor remains continuous at y440.\n\n### Final art source\n\n`assets/world/platform-readability-v3/manifest-v3.json`\n\n| Part | Image | Source crop |\n|---|---|---|\n| Deck |`low-deck-v3.png`|66,750,1405,95|\n| Access plinth / pipe bundle |`low-deck-v3.png`|71,230,1394,344|\n| Pump |`pump-v3.png`|145,220,1249,626|\n| Tall assembly |`tall-v3.png`|87,130,1148,936|\n\nImages are under `assets/world/platform-readability-v3/`.\n\nDimensions:\n\n- Low/deck:1536×1024.\n- Pump:1536×1024.\n- Tall:1323×1189. **Do not reuse the old tall image’s crop or dimensions.**\n\nArt measured continuous top-row alpha minima235–242/255. Crops trim raised caps so the visible landing edge begins at the collision top.\n\nI changed:\n\n- `scripts/first_call.gd`: three later texture paths and exact crops.\n- `tools/build_combat_data.py`: only the platform override manifest reference.\n- Regenerated `data/combat.json` so the opening deck/plinth receive the same new art.\n\nPreserved:\n\n- All collision rectangles and platform locations.\n- Existing floor fascia.\n- Dark recessed supports.\n- Wastewater cutaway.\n- Earlier artwork files.\n\nThe prior `platform-contrast-v2` ivory/plinth-and-deck-only delivery is superseded for the integrated level.\n\n## Other implementation details worth preserving\n\n### Shared projectile update\n\nThe integrated class had to avoid advancing friendly bullets twice through parent/base combat:\n\n1. Save friendly shots and temporarily give base combat an empty list while it moves campaign enemies.\n2. Restore shots.\n3. Run one integrated closest-hit sweep across scenery, opening actors, campaign enemies, and swarm.\n4. Temporarily hide friendly shots again when calling the parent’s hostile-shot update.\n\nDo not casually replace this with both parent updates; it previously required explicit single-travel regression coverage.\n\n### Flushfiend collision and death audio\n\n- Visible projectile hit body is43 pixels tall.\n- Helper returns `Rect2(feet + Vector2(-19,-43), Vector2(38,43))`.\n- Movement/contact body remains36 pixels tall.\n- Opening runner/rear-runner hit handling uses the visible projectile body.\n- On lethal opening runner/rear-runner damage, call `flushfiend_death_audio.play_defeat()`.\n- Do not use that audio for shooter, emerger, or flyer.\n- Engineering owns base campaign Flushfiend audio hooks.\n\n### Swarm\n\n- The optional swarm at2090 was removed from the replaced opening.\n- The later swarm at4400 was retained.\n- Do not conflate it with the Hallowed Widow.\n- Its behavior was not otherwise redesigned by my work.\n- Base/swarm geometry hooks were adjusted by Engineering to respect the integrated geometry.\n\n### Checkpoints and reset\n\n`preserving_respawn` prevents respawn from resetting the opening observation/world state. Full restart resets it.\n\nRespawn clears hostile-shot state/tokens, preserves progress and weapon, and respects normal life handling.\n\n### Wastewater work recovered from compaction\n\nI previously delivered `scripts/wastewater_art.gd`:\n\n- Configures from `Data.bundle.wastewater`.\n- Draw called under the world transform.\n- Stable profile art uses16-pixel strips and mirrored480-pixel tiles.\n- Below-floor region approximately456–528.\n- Terminal area at8570 plugged.\n- Trial-specific cap at1440.\n- Engineering integrated it around build44.\n- Relevant tests passed then.\n\nNo pending wastewater change was assigned at my last handoff.\n\n## Validation history and limits\n\n### Ungated integration\n\n`tests/integrated_opening.gd` passed for both characters, covering:\n\n- Actual run/jump/shoot traversal beyond20 seconds.\n- Seamless opening boundary.\n- Friendly projectile advances exactly once.\n- Former gates passable in both directions.\n- Former gates absent from projectile solids.\n- Crowds grow beyond four without kills.\n- Global population cap.\n- Widow population cap.\n- No burst backlog.\n- Bypass/retirement does not award kills.\n- Checkpoint/respawn preserves state.\n- Temporary exit independent of remaining enemies.\n- Full restart restores three lives.\n\nAn early fixture failed because it parked newly spawned enemies at the entrances without advancing combat movement. The fixture was corrected to advance bodies between arrival updates; this was a test setup issue.\n\nAn earlier exit fixture also accidentally crossed an unactivated checkpoint, causing its dispenser to move the player before completion. The fixture was corrected to establish the intended checkpoint state.\n\n### Additional checks\n\n- `tests/standing_shots.gd -- --integrated`:16 cases passed across heroes, facing, movement direction, and runner roles.\n- `tests/durable_flyer.gd`:Mechanics’ enlarged flyer/swoop checks passed.\n- Opening state and level collision tests passed earlier.\n- Metadata tests: seven passed after new platform bindings.\n- PNG dimensions and crop bounds verified for all five manifest entries.\n- Later texture/crop bindings verified against Art’s manifest.\n- Changed-file whitespace checks passed.\n- Data generator validated six weapons and six monsters.\n\n### Last checkpoint test\n\nAfter changing to4650:\n\n- Exactly one checkpoint asserted.\n- x4649 did not activate it.\n- x4651 activated index0.\n- Respawn returned to4650 while preserving the test’s two remaining lives.\n- Full reset restored three lives.\n- Exit fixture used checkpoint index0.\n- Actual30-second traversal reached approximately8139.7 for Tony and7098.3 for Sean.\n- Test exited0.\n\n### Diagnostics and visual gaps\n\nHeadless tests emitted existing diagnostics:\n\n- Cannot write `user://logs/...`.\n- macOS certificate lookup error.\n- ObjectDB/resource shutdown warnings in some tests.\n\nI reported these rather than describing output as entirely clean.\n\nI did **not** launch a game window, perform final visual composition review, create storybook captures, or build the final combined delivery in these handoffs. Engineering owned those steps.\n\nDo not turn source-image inspection into a claim that the new art was visually checked in the running game.\n\n## Exact status after x4650 handoff\n\n**No unresolved implementation task remained assigned to this Level Design chat.** I released the files to Engineering after tests passed.\n\nOutstanding dependencies and product work remained:\n\n1. Engineering’s single sleeping clone and spent/empty machine behavior.\n2. Engineering’s base-game/dispenser regression updates.\n3. Combined build and user-facing delivery.\n4. Running-game visual review of new platform art.\n5. Appropriate roadmap/storybook reconciliation.\n6. Clogfather boss encounter and real end-of-level completion.\n7. Broader requested enemy diversity, entry styles, powerups, and a fully authored action cadence—not all were implemented by simply adding runner waves.\n\nThe checkpoint delivery was intended for Engineering’s next build, discussed as build51. That was an integration target, **not my confirmation that build51 shipped**. Likewise earlier platform work targeted combined49; verify actual build records.\n\n### Dependent tests explicitly flagged to Engineering\n\n- `tests/employee_dispenser.gd`: old6660/8190 coordinates and checkpoint indices1/2.\n- `tests/basement.gd`: hardcoded `range(3)` and “three checkpoints” wording.\n- `tests/dispenser_registration.gd`:3300 appeared as an arbitrary geometry sample, not necessarily a real checkpoint requirement.\n\nEngineering owned those files. I did not silently update them.\n\n## Reconciling stale gates, three checkpoints, and timed-trial records\n\nUse this authority order:\n\n1. Sean’s latest direct instructions and corrections.\n2. Current integrated runtime and its passing tests.\n3. Engineering’s latest verified build/delivery records.\n4. Current design documents updated to match those.\n5. Historical documents and old implementation classes as historical context.\n\nSpecific intended reconciliation:\n\n- **Gates:** no kill-count gates in the integrated first level. Legacy `GATES`, mission classes, gate tests, and base implementation may still exist. Their existence does not make them current integrated gameplay.\n- **Checkpoints:** one at4650 supersedes3300/6660/8190.\n- **Timed trial:** continuous normal first-level opening supersedes the separate20-second experiment. Trial filenames and parent classes remain implementation history, not proof of a timed mode in normal Start.\n- **Platform palette:** moss-green v3 supersedes ivory v2 for all20 raised surfaces.\n- **Widow behavior:** committed swoop supersedes passive four-second hover.\n- **Boss:** temporary x9450 exit must remain labeled incomplete until the Clogfather actually exists and controls completion.\n\nPreserve historical storybook iterations and source artwork. Update current roadmap/design claims without rewriting history as though earlier iterations never existed.\n\nEngineering was explicitly asked to reconcile roadmap/storybook with each delivery. I did not verify that all those updates happened. Your observation that current records still describe obsolete behavior is a real reconciliation task, not evidence that Sean reversed these corrections.\n\n## Instructions and provenance caveat\n\nEarlier project instructions included Art ownership, playtest permission, build notifications, roadmap/storybook maintenance, character naming, and bestiary/combat metadata rules.\n\nLater Sean supplied an AGENTS.md replacement saying it **replaces all previously provided AGENTS.md instructions**, retaining global coding conventions. Therefore do not mechanically treat the earlier pasted project instructions as still authoritative solely because they appear in this history. Read the current repository guidance and honor direct user instructions and active coordination commitments.\n\nThe explicit daughter-playtest restriction and assigned file ownership were separate concrete coordination instructions during those tasks.\n\n## Access diagnostic\n\nOn October17, my existing chat attempted normal-permission temporary-file creation directly in the renamed root.\n\nResult:\n\n- Working directory: `/Users/sfoley/repos/drain_damage`.\n- Creation failed: `PermissionError(1, 'Operation not permitted')`.\n- No file was created; cleanup was unnecessary.\n- No escalation, workaround, project modification, or permission change.\n- This chat’s configured writable project root still pointed to the obsolete `/Users/sfoley/repos/plumbing_inc`.\n\nA new chat’s successful write test does not retroactively establish that this predecessor chat gained access. Your successor environment should use its own verified permissions.\n\n## Lost context and unsaved requests\n\nThe conversation was compacted before the ungating work resumed. I have the detailed compacted summary plus subsequent visible turns, but not verbatim access in this response to every pre-compaction tool result or discussion.\n\nConsequently:\n\n- I cannot honestly certify that every original design rationale or mockup detail survived compaction.\n- I know of no unsaved user request or unfinished Level Design-owned edit after the4650 handoff.\n- The major unresolved user objective is still the complete first level, especially the Clogfather and broader enemy/encounter variety.\n- Your recovery of all17 available turns and inspection of repository handoffs is the best complement to this account.\n- Check original `design/first-call-action/`, `handoffs/`, roadmap, and storybook records for earlier mockups and narrative decisions; do not invent missing decisions from filenames.\n",
+  "predecessor_followup": "Confirmed: no owned/received shooter2→3 change; no second or boss checkpoint approval; no final90-enemy,pickup,boss1080/45–60s,portal,alternative-perspective decision; latest53/55/build51 findings supersede older handoff uncertainty; no outstanding owned changes.",
+  "history_gaps": [
+    {
+      "turn_id": "01a146e6-904d-7403-9bc9-e1fb3771ee74",
+      "command": "/bin/zsh -lc \"cat scripts/opening_trial_state.gd; sed -n '1,100p' scripts/game.gd; sed -n '300,510p' scripts/game.gd; sed -n '540,645p' scripts/game.gd\"",
+      "note": "Original returned command output explicitly truncated. Current files inspected where relevant, but exact omitted historical bytes not recovered."
+    },
+    {
+      "turn_id": "01a146ad-3411-7ea2-9342-e57d0d46f73e",
+      "command": "/bin/zsh -lc 'cat /Users/sfoley/.codex/coding-standards.md >/dev/null; ls .github/instructions; cat scripts/first_call.gd; cat tests/basement.gd | head -90; cat handoffs/opening-trial-level-layout.json'",
+      "note": "Original returned command output explicitly truncated. Current files inspected where relevant, but exact omitted historical bytes not recovered."
+    },
+    {
+      "turn_id": "01a13d90-075f-7b71-96cf-747a0ffb5aae",
+      "command": "/bin/zsh -lc 'cat handoffs/first-call-runtime-plan.json; cat tools/prepare_first_call.py; cat levels/first-call/level-design.json'",
+      "note": "Original returned command output explicitly truncated. Current files inspected where relevant, but exact omitted historical bytes not recovered."
+    },
+    {
+      "turn_id": "01a13d8b-be70-7103-9b41-ca8bd0c50486",
+      "command": "/bin/zsh -lc 'cat AGENTS.md README.md project.godot; ls -a .github/instructions; ls docs'",
+      "note": "Original returned command output explicitly truncated. Current files inspected where relevant, but exact omitted historical bytes not recovered."
+    },
+    {
+      "turn_id": "01a13d8b-be70-7103-9b41-ca8bd0c50486",
+      "command": "/bin/zsh -lc \"ls -a; rg -n 'WORLD|LEVEL|platform|enemy|checkpoint|exit|GRAVITY|JUMP|SPEED' scripts/game.gd | head -100; rg -n 'basement|mission|level|Prototype|2026' roadmap.html | head -65; rg --files story .github assets/environment assets/world 2>/dev/null\"",
+      "note": "Original returned command output explicitly truncated. Current files inspected where relevant, but exact omitted historical bytes not recovered."
+    }
+  ],
+  "other_gaps": [
+    "One contextCompaction marker in ungating turn; predecessor has summarized earlier context, not every original precompaction tool result.",
+    "read_thread mcpToolCall records expose call arguments/status but do not necessarily return full original tool responses. Hidden reasoning not accessible or inherited.",
+    "Five original Contra screenshots remain at temporary attachment paths and were visually inspected; no frame-by-frame gameplay timing inferred.",
+    "Three original concept PNGs and exact prompts inspected; they are concepts, not reachable blockouts or gameplay captures.",
+    "Historical source and build dates can differ from retrieval/archival time; no timestamps inferred from file modification times."
+  ],
+  "collaborators": {
+    "Engineering 2": "01a14b9d-9200-7433-96da-a1295a926532",
+    "Game Mechanics 2": "01a14b9d-5a53-7473-a17c-ea75693c9771",
+    "Art 2": "01a14b9d-7a07-7a62-9628-04f20542ab75",
+    "Storyboarding 2": "01a14b9d-aa2d-7e70-8653-bed1d95ed4ed",
+    "Marketing 2": "01a14b9d-c5fb-7de3-914a-743c2edf8206",
+    "Audio 2": "01a14b9d-f83d-7543-9925-9524acf32fe3",
+    "Release 2": "01a14b9e-1105-7350-87f4-5168ceba8f4e"
+  },
+  "instructions_reviewed": [
+    "AGENTS.md",
+    "/Users/sfoley/.codex/coding-standards.md",
+    ".github/instructions/makefile.instructions.md"
+  ],
+  "records_reviewed": [
+    "levels/first-call/level-design.json",
+    "handoffs/level-design-integration-confirmation.json",
+    "handoffs/first-call-integration.json",
+    "handoffs/first-call-runtime-plan.json",
+    "handoffs/engineering-level-one-baseline.json",
+    "handoffs/level-one-redesign-engineering.json",
+    "handoffs/level-one-redesign-art.json",
+    "handoffs/first-level-run-and-gun-balance.json",
+    "handoffs/first-level-redesign-approval.json",
+    "handoffs/first-level-ending-rewrite.json",
+    "handoffs/game-intent-story-review.json",
+    "handoffs/opening-trial-level-layout.json",
+    "handoffs/opening-trial-role-art.json",
+    "handoffs/wastewater-cutaway-level-design.json",
+    "handoffs/clogfather-audio.json",
+    "design/first-call-action/level-proposal.json",
+    "design/first-call-action/opening-trial-balance.json",
+    "design/first-call-action/report.html",
+    "design/first-call-action/art/manifest-v1.json",
+    "design/first-level-narrative.md",
+    "assets/world/platform-readability-v3/manifest-v3.json",
+    "assets/world/platform-readability-v3/prompts-v3.json",
+    "scripts/integrated_first_call.gd",
+    "scripts/opening_trial_level.gd",
+    "scripts/first_call.gd",
+    "scripts/wastewater_profile.gd",
+    "scripts/wastewater_art.gd",
+    "tests/integrated_opening.gd",
+    "tests/opening_trial_level.gd",
+    "tests/wastewater_art.gd",
+    "tests/wastewater_profile.gd",
+    "project.godot",
+    "main.tscn",
+    "scripts/build_version.gd",
+    "Makefile",
+    ".gitignore",
+    "roadmap.html relevant sections",
+    "storybook/README.md iterations044–055 and relevant earlier delivery sections",
+    "storybook/curation-backlog.json",
+    "README.md relevant runtime/delivery sections",
+    "git status, diff and recent commit history"
+  ],
+  "readiness": "Ready to assume Level Design responsibilities. Available predecessor history and detailed reply/follow-up recovered; known inaccessible history identified. Pending product decisions and cross-agent deliveries remain open and are not automatic implementation authorization."
+}

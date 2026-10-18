@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codex project rename: existing chats retain obsolete write access</title>
+<style>
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #172536; background: #edf1f5; }
+body { max-width: 960px; margin: 36px auto; padding: 32px; background: white; line-height: 1.6; }
+h1, h2 { line-height: 1.2; }
+h1 { font-size: 2rem; }
+h2 { margin-top: 2rem; }
+.status { display: inline-block; padding: 6px 12px; background: #fff0c2; border-radius: 6px; font-weight: 700; }
+.meta { color: #526173; }
+code { overflow-wrap: anywhere; font-size: .92em; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; vertical-align: top; border: 1px solid #cbd3dd; padding: 10px; }
+th { background: #edf1f5; }
+@media (max-width: 640px) { body { margin: 0; padding: 20px; } table { font-size: .85rem; } }
+@media print { body { max-width: none; margin: 0; padding: 0; } }
+</style>
+</head>
+<body>
+<header>
+<p class="status">Draft — not submitted</p>
+<h1>Existing Codex chats lose project write access after a folder rename</h1>
+<p class="meta">Recorded October 17, 2026 · America/Los_Angeles (UTC−07:00). App version: not recorded.</p>
+<p>Renaming a local project and re-adding it in Codex left existing chats able to read the renamed repository
+but unable to create files there during the recorded audit. A fresh chat could write to the same directory.
+The user could not find a supported way to restore the existing chats’ access while retaining their context.</p>
+</header>
+<main>
+<h2>Environment and user actions</h2>
+<p>The project was known as Plumbing Incorporated and lived at <code>/Users/sfoley/repos/plumbing_inc</code>.
+It contained a Git repository connected to GitHub. The user renamed the folder to Drain Damage at
+<code>/Users/sfoley/repos/drain_damage</code>, removed the old project/directory entry from Codex,
+and added the renamed directory. This report does not claim that the repository was deleted or that operating-system
+permissions were changed.</p>
+<h2>Steps to reproduce the reported sequence</h2>
+<ol>
+<li>Add a local repository to Codex and create multiple chats associated with it.</li>
+<li>Rename its containing folder outside the existing chats.</li>
+<li>Remove the old project entry in Codex and add the renamed directory.</li>
+<li>Continue an existing chat against the renamed project and inspect its working directory and writable roots.</li>
+<li>Attempt a normal, uniquely named temporary-file create/write/read/delete in the renamed repository.</li>
+<li>Compare the result with the same diagnostic from a newly created chat associated with that directory.</li>
+</ol>
+<p>These are reconstructed steps from this incident, not a separately repeated clean-install reproduction.</p>
+<h2>Expected and actual behavior</h2>
+<p><strong>Expected:</strong> Existing chats can be reassociated with the renamed project through supported UI,
+with the correct working directory and writable roots, without losing conversation context.</p>
+<p><strong>Actual during the audit:</strong> Project membership changed, but existing chats reported the old
+<code>plumbing_inc</code> working directory or writable root. They could read the new location but their normal
+temporary-file creation failed with <code>PermissionError</code> / <code>Operation not permitted</code>.</p>
+<h2>Evidence snapshot</h2>
+<table>
+<thead><tr><th scope="col">Chat or check</th><th scope="col">Observed or reported result</th></tr></thead>
+<tbody>
+<tr><td>Original Game Mechanics, Art, Engineering, Storyboarding, Marketing, Level Design, Audio, and Release</td>
+<td>The coordinated October 17 audit recorded failed normal temporary-file creation in the renamed repository
+and reports of the obsolete writable root. These are attributed chat diagnostic results.</td></tr>
+<tr><td>Fresh coordinating chat</td><td>Create/write/read/delete succeeded in
+<code>/Users/sfoley/repos/drain_damage</code> under normal permissions.</td></tr>
+<tr><td>Engineering 2</td><td>A unique temporary file was created, written, read, deleted, and confirmed absent
+in the renamed repository under normal permissions. Replacement chats also reported successful writes where checked.</td></tr>
+<tr><td>Late Game Mechanics response</td><td>Later claimed a successful write test. That response conflicted with
+the active archive task and has not been independently verified. The earlier failure snapshot is not evidence
+that every original chat remains permanently unable to write.</td></tr>
+</tbody>
+</table>
+<h2>Impact and workaround</h2>
+<p>The user created eight replacement chats and recovered the original agents’ histories, decisions, requirements,
+and unfinished work. Original agents staged durable archives in a temporary directory for Engineering 2 to import
+into the renamed repository. This recovery required substantial coordination and carried a risk of lost context,
+missing attachments, and stale implementation claims. The workaround does not establish a supported repair path
+for an affected existing chat.</p>
+<h2>Suspected cause and requested diagnostics</h2>
+<p><strong>Hypothesis:</strong> Per-chat workspace permissions or working-directory associations may remain tied
+to the original path after the project is removed and re-added. The internal root cause is not proven.</p>
+<p>Please provide a supported way to reassociate existing chats with the renamed project and refresh their working
+directory and writable roots. Diagnostics should expose the project path, effective chat working directory,
+writable roots, and any stale association, with an actionable repair option. Investigating differences between
+original and fresh chats should help distinguish application state from filesystem access problems.</p>
+<h2>Scope and submission status</h2>
+<p>This local draft contains no private transcript dump or external assets. It does not associate the incident with
+usage limits, claim a permanent failure, or establish an operating-system permission defect. The Codex version
+and an independently repeated reproduction remain to be recorded. No bug report has been submitted.</p>
+</main>
+</body>
+</html>

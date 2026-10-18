@@ -1,0 +1,642 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-17",
+  "timezone": "America/Los_Angeles",
+  "scope": "Context acquisition and responsibility transfer only; no publication, artwork, or game changes.",
+  "successor": {
+    "name": "Marketing 2",
+    "thread": "01a14b9d-c5fb-7de3-914a-743c2edf8206"
+  },
+  "predecessor": {
+    "name": "Marketing",
+    "thread": "01a1387a-f55c-7630-af51-0409ceafd920"
+  },
+  "repository": "/Users/sfoley/repos/drain_damage",
+  "write_test": "Passed normal-permission unique root temporary-file create/write/read/delete; cleanup verified.",
+  "transfer_status": "Ready to assume Marketing responsibilities. Predecessor supplied detailed handoff and answered follow-up; no additional live commissions known. Explicit limitations remain.",
+  "evidence_reviewed": {
+    "instructions": [
+      "AGENTS.md",
+      "/Users/sfoley/.codex/coding-standards.md"
+    ],
+    "chat": "48 turns across six newest-first pages, latest diagnostic through October 14 lore update.",
+    "reader_limit": "At rolloutOrdinal 531, even one turn with outputs disabled exceeds the chat reader size limit.",
+    "fallback": "/Users/sfoley/.codex/sessions/2026/10/13/rollout-2026-10-13T20-35-44-01a1387a-f55c-7630-af51-0409ceafd920.jsonl",
+    "fallback_scope": "Visible user/assistant messages in initial records 0-539, relevant handoffs and validation outputs. No claim to hidden reasoning.",
+    "records": [
+      "marketing/magazine/README.md",
+      "marketing/magazine/magazine.json",
+      "marketing/magazine/build_guide.py",
+      "marketing/branding-status.json",
+      "marketing/magazine/guide-assets-v1/provenance.json",
+      "marketing/magazine/guide-assets-v3/provenance.json",
+      "marketing/magazine/guide-assets-v20/provenance.json",
+      "marketing/magazine/dispenser-copy-handoff.json",
+      "marketing/billy-joe/art.json",
+      "marketing/billy-joe/magazine-assets.json",
+      "marketing/billy-joe/server-room-v1.json",
+      "marketing/hero-portraits/prompts-v1.json",
+      "marketing/hero-portraits/prior-magazine-elements-v1.json",
+      "marketing/character-reactions/tony-clogfather-horror-v1.json",
+      "marketing/spare-employee-dispenser/glass-front-prompts-v1.json",
+      "marketing/app-icon/concepts-v1.json",
+      "assets/app-icon/porcelain-jaw-v1.json",
+      "handoffs/marketing-discussion-game-intent-audit.json",
+      "handoffs/bj-marketing-selection-confirmation.json",
+      "handoffs/hero-hyperreal-marketing-portraits.json",
+      "weapons/*/marketing-art.json",
+      "tools/build_magazine_site.py",
+      ".github/workflows/magazine-pages.yml",
+      ".gitignore",
+      "roadmap.html (relevant marketing/storybook sections)",
+      "storybook/README.md (initial/latest chapters and complete heading inventory)",
+      "storybook/curation-backlog.json (ownership, priorities, chapter/gap inventory)"
+    ]
+  },
+  "role": {
+    "owns": [
+      "Magazine editorial source/layout/PDF review",
+      "Marketing and packaging materials",
+      "Weapon marketing-art.json manifests"
+    ],
+    "original_remit": "Positioning, taglines, store descriptions, trailers, social posts, screenshots, press materials and launch campaigns; not all have been commissioned or produced.",
+    "dependencies": {
+      "Art 2": "Consult existing Art before any new art; preserve originals, exact prompts, dimensions and provenance.",
+      "Storyboarding 2": "Canonical stories/lore and ongoing making-of editorial curation; coordinate album structure and narratives.",
+      "Engineering 2": "Runtime integration, build preservation, authorized game captures, publication commits/push/deployment verification.",
+      "Game Mechanics 2": "Weapon and enemy mechanics; Marketing does not change canonical balance while editing copy."
+    },
+    "guardrails": "No game launch/foreground without explicit permission. No claims that source art implies playable mechanics. Preserve unrelated changes and historical originals."
+  },
+  "brand_and_voice": {
+    "game": "Drain Damage",
+    "publication": "Discharge Quarterly",
+    "subtitle": "The Official Journal of the Plumbing, Heating & Creature Containment Association",
+    "employer": "Mainframe Plumbing & Supply (working choice, not final commitment)",
+    "superseded": "Global Plumbing Initiative/GPI; S.U.M.P.; The Backflow magazine name. Plumbageddon was a backup game title, not subtitle.",
+    "heroes": "First names Tony and Sean only. Tony patient, skilled fourth-generation plumber; Sean inexperienced apprentice. Do not reveal future character outcomes.",
+    "identity": "Tony navy rolled-sleeve work shirt, no overalls in latest portraits. Sean fully bald, orange shirt/blue overalls, substantial gray chin beard plus separate soul patch, clean upper lip, no glasses.",
+    "bj": "Selected beige server rack, green CRT face, large BJ side lettering; old porcelain-and-pipes images explicitly rejected/deleted, prompts retained.",
+    "voice": "Seasoned plumbing trade editor: concrete, conversational, warm toward crew, dry toward management. Natural varied sentences; avoid repeated paired fragments and generic trailer lines.",
+    "spoilers": "No BJ errors/takeover/fate, portal secrets, creature-origin causation, boss solutions or future outcomes. Internal story proposals are not public canon.",
+    "reader_rules": [
+      "No development jargon, build IDs, source-sheet/frame/collision/integration details or agent process in publication.",
+      "No development-history captions or vague preview/exploring disclaimers. Keep provenance internally; never imply unfinished encounters are playable.",
+      "No fictional-company/publication/non-affiliation disclaimers in reader edition.",
+      "Dispenser copy implies disturbing corporate practice through euphemism; do not explain killing/processing or mention the screen.",
+      "Actual editorial TODOs must be explicit, bold, at least 18pt and high contrast, not buried in captions.",
+      "Keep approved Widow heaven sentence and Tony's spider quote; latest wording says one sprouted wings and apparently started breeding.",
+      "Septic Air Force replaces rejected Drain Brains. Gnatastrophe is a possible future boss name, not a creature to announce."
+    ]
+  },
+  "magazine": {
+    "source": "marketing/magazine/magazine.json",
+    "renderer": "marketing/magazine/build_guide.py",
+    "edition": 21,
+    "dated": "2026-10-16",
+    "archive": "marketing/magazine/discharge-quarterly-v21.pdf",
+    "publication_file": "marketing/magazine/current.pdf",
+    "local_verification": "Archive and current.pdf byte-identical; all 20 unique image references exist; editions 1-21 remain locally present.",
+    "sha256": "9e11471ea37907cf118ae108d4811c109a4da5eb9cf1ff635df8c8ad6c3dd9c3",
+    "pages": [
+      "Cover",
+      "Paired crew profiles",
+      "BJ and dispenser",
+      "Creature roundup 1",
+      "Creature roundup 2",
+      "Gameplay feature",
+      "Curated action gallery",
+      "Company advertisement"
+    ],
+    "design": "Eight-page 1990s Nintendo Power/GamePro direction: bright banners, shadowed large type, asymmetric compact columns, bordered images and cutouts. No 2-3 pages per creature or full sheets.",
+    "cover": "Tony and Sean together against normal-monster horde; no bosses. Illustration, not gameplay evidence.",
+    "history": {
+      "1": "Eight-page initial guide, actual Prototype12 toilet captures and illustrated spider preview; draft lore.",
+      "2": "Revised Storyboarding lore/BJ/Clogfather.",
+      "3": "Ten pages, heroes before monsters, horde cover, initially TODO backstories.",
+      "4-6": "Drain Damage title, provisional The Backflow then selected Discharge Quarterly.",
+      "7-8": "Sixteen pages including BJ after heroes and Clogfather sprite sheets.",
+      "9-11": "Employer name, replacement company-ad back cover, corrected server-rack BJ; rejected image files deleted.",
+      "12": "Spoiler-free personality revision and canonical editable JSON instead of Python-embedded copy.",
+      "13-14": "Sewer-fly entry; rejected Drain Brains replaced by working Septic Air Force.",
+      "15-16": "Dispenser feature then complete no-development-jargon editorial pass.",
+      "17": "Redesigned seventeen-page issue into eight pages after user rejected the visual format.",
+      "18": "Natural writing revision and AGENTS style guidance.",
+      "19": "Subtle dispenser copy, glass-front machines, Tony horror reaction, Widow wording, cleaned captions.",
+      "20": "New hyperreal Tony/Sean portraits on page2; prior text preserved apart from edition number.",
+      "21": "Removed fictional-company/publication/affiliation disclaimers; published with GitHub corner link."
+    },
+    "build_workflow": "Edit JSON stable IDs; all prose/layout/metadata live there. Coordinates are bottom-left PDF points; paragraph top is top edge. Python/ReportLab and configured macOS fonts render output; generator refreshes current.pdf.",
+    "review_gate": "Extract complete text including metadata/bookmarks for editorial audit; render and visually inspect every page. Overflow/missing images/unknown elements fail renderer, but visual review is still required.",
+    "publication": "After review, give Engineering edition, changed files, review results, unresolved issues and explicit current.pdf match. Engineering commits/pushes main and verifies Publish magazine workflow/live PDF. Local generation alone is not publication.",
+    "site": "https://jugglingbear.github.io/drain-damage/",
+    "deployment_evidence": "Predecessor recorded successful edition21 deployment and byte-for-byte remote/local PDF match; commits 83dc785 and follow-up verification record 61caacc. Not rechecked live in takeover.",
+    "lesson": "gh token failure does not establish SSH Git push failure; predecessor corrected that mistaken blockage claim.",
+    "retention": "Keep current.pdf tracked via LFS, v20 curated archive, active v1 toilet captures and v3 cover-v2 plus provenance. Do not blanket-ignore/delete older guide-assets folders. Old PDF drafts/source snapshots/box concepts remain local."
+  },
+  "art_and_assets": {
+    "weapons": "Six completed 1254x1254 original product portraits under weapons/<id>/marketing/portrait-v1.png. Tony: pipe-wrench, drain-snake, pressure-gun; Sean: demolition-hammer, heavy-plunger-launcher, pipe-bomb-launcher. Teal/brass compact precision versus orange/steel heavy tools. Exact prompts/checksums in each marketing-art.json; no runtime implication.",
+    "boxes": "marketing/box-concepts-v1/: Yellow Arcade, Gold Service, Midnight Service front-left/back-right samples. Gold draft rejected for changed title/invented gameplay and replaced. All provisional obsolete branding. Generated screenshot panels reinterpret inputs; final packaging must insert untouched captures.",
+    "bj_portrait": "marketing/billy-joe/server-room-v1.png, 1024x1536; concept B old-hand selected. Historical key-art-v1/v2 porcelain images deleted by request.",
+    "heroes": "marketing/hero-portraits/{tony,sean}-hyperreal-v1.png, each1122x1402. Based on illustrated magazine screenshot, not original real photos. Magazine-only.",
+    "reaction": "marketing/character-reactions/tony-clogfather-horror-v1.png,1254x1254 transparent; replaced repetitive boss paragraph/idle inset.",
+    "dispenser": "marketing/spare-employee-dispenser/{tony,sean}-stocked-v1.png and exact prompts. Two sleeping copies of matching hero in original marketing design; runtime later changed to one spare in Prototype51, not silently applied to archived magazine.",
+    "icon": "Concept1 Porcelain Jaw vs Plunger selected provisionally. assets/app-icon/porcelain-jaw-v1.png1254x1254 and .icns integrated in Prototype55/0.55.0; packaged/signing/version checks recorded, Finder/Dock visual check pending."
+  },
+  "game_intent_boundaries": {
+    "cutaway": "Explicit game request: flowing underfloor wastewater/debris across level, decreasing water/increasing obstruction approaching Clogfather, fully blocked motionless arena. Handoff audit records implementation, later full-route tests.",
+    "glass_front": "Original mixed magazine/game request was initially treated too narrowly; audit corrected dropped runtime cabinet handoff. Prototype48 records integration. Do not equate magazine approval with runtime completion.",
+    "widow": "Breeding phrase is lore wording, no authorization for spawning/reproduction mechanics.",
+    "marketing_only": "Hyperreal heroes, Tony horror cutout, cover composition, layout and publication pauses do not authorize game replacements or combat features."
+  },
+  "pending": {
+    "album": "Planning requested: Day01=2026-10-13, actual Los Angeles days thereafter; old personal photo album, taped Polaroids, black Sharpie captions, generous early/middle/late material, features, evolution, funny failures and discarded directions.",
+    "plan_status": "Predecessor recommendation was provisional because old path prevented inventory/saving; not a completed album production handoff.",
+    "proposed_workflow": "One structured content inventory feeding PDF and web preview, large unobscured screenshots, readable print for long prose, original-image links and accessible text.",
+    "hold": "Latest Sean instruction: review recommendations tomorrow; no generation or work yet. Reciprocal Storybook/Magazine top links and eventual GitHub Pages storybook publication requested for when ready. No fresh approval to implement inferred from elapsed time.",
+    "capture_rules": "Storyboarding curates; Engineering supplies actual captures/build facts. Preserve originals. New artifacts use YYYYmmdd-HHMMSS and America/Los_Angeles UTC-offset metadata. Never infer historical capture times from copies/mtime or replace old-build gaps with current images.",
+    "backlog": "storybook/curation-backlog.json reviewed through055; many gaps. Chapter010 flagged despite note saying gap resolved, so flags require editorial verification rather than automatic adoption.",
+    "next": "Wait for Sean to resume album planning; then coordinate Storyboarding/Art/Engineering before shared edits. Do not regenerate magazine, implement links, publish or create artwork under this takeover assignment."
+  },
+  "stale_records": [
+    "marketing/app-icon/concepts-v1.json says integration pending; assets/app-icon/porcelain-jaw-v1.json records Prototype55 integration.",
+    "Hero handoff says PDF unchanged; edition20 integrated those portraits.",
+    "Tony reaction metadata says placement pending; edition19 integrated it.",
+    "BJ art.json says runtime pending; earlier Engineering handoffs record integration.",
+    "dispenser-copy-handoff.json retains old hold/disclaimer proposals; later user feedback and edition21 supersede them.",
+    "Game-intent audit contains both older pending language and Prototype48 completion; interpret dated delivery fields together."
+  ],
+  "limitations": [
+    "Chat reader cannot return earliest oversized turn; visible local transcript recovered instead. Twenty command outputs in paginated results are marked truncated; original files and relevant outputs were inspected, not every historical dump reconstructed.",
+    "Four original packaging clipboard PNGs missing: cfa21663-c670-439a-95fc-7d69a3632e8d, aea49157-a39e-4c37-8746-e4a9b7286762, 621ae097-d0f2-4665-b533-3907bc853d28, 0d185e29-bbd6-4deb-8d02-cfaa6870ba7a. All11 desktop magazine references and six October16 feedback screenshots checked still exist.",
+    "Original hidden reasoning, unsaved context, and unavailable attachments cannot be inherited.",
+    "Historical PDF visual checks and live deployment are predecessor evidence; takeover checked local identity/references, not fresh render or live publication.",
+    "No game build, launch, screenshot session, artwork generation, commit or publication performed. Existing unrelated edits preserved.",
+    "Prior exact visual layout QA remains historical evidence; current site responsive desktop/mobile visual testing is specifically still unperformed."
+  ],
+  "predecessor_confirmation": {
+    "turn": "01a14b9f-cd2b-7a13-9acb-a912662e5c05",
+    "review": "Read both complete final messages, including full detailed handoff and follow-up; compact wait output had been truncated and was recovered with read_thread.",
+    "hold": "Confirmed album hold not lifted; no other pending marketing commission overrides it.",
+    "advertisement": "Preserve explicitly praised WE VALUE OUR STAFF / THAT IS WHY WE KEEP SPARES. Storyboarding alternative advertisement was proposed, not selected; only its feature columns/caption were incorporated.",
+    "reaction": "Do not mirror Tony reaction; his gaze points up/right toward Clogfather.",
+    "web_gap": "Wrapping responsive CSS exists, but browser-based desktop/mobile visual tests were not completed.",
+    "icon_gap": "No first-hand icon-selection exchange recoverable in Marketing history; rely on Art/Engineering records.",
+    "coordination": "Directory notifications completed for all seven actual peers. QA and Production labels were spoken mistakes, corrected; no such project agents."
+  },
+  "final_archive_review": {
+    "reviewed_at": "2026-10-17T14:08:50-07:00",
+    "timezone": "America/Los_Angeles",
+    "entire_saved_report_reviewed": true,
+    "archive": "agent-context-archive/marketing.md",
+    "archive_sha256": "43b0b1d8fe62a131ac5f8f0fba65788230badac7b937b560c41a9cb6b5f38400",
+    "archive_lines": 96135,
+    "archive_bytes": 1329360,
+    "coverage": "Entire archive README, narrative, all 71 structured snapshots, both guidance snapshots, all 118 artifact inventory entries, image-resolution list and validation scope.",
+    "method": "Bounded reads with whitespace-normalized structured fields; full magazine baselines followed by every changed/removed field across repeated snapshots. Own unchanged succession snapshot verified against the file already read. Empty-array inline fields audited separately. This is complete semantic review with indexed retrieval, not a claim that all 96,135 lines remain simultaneously in active memory.",
+    "truncation": "Two oversized batches were truncated; affected ranges were reread in bounded output. No remaining unread or truncated saved-report section.",
+    "reconciliation": "Before this update, all 71 source files existed and matched their archived SHA256. All 118 inventory paths existed with matching byte counts. Current magazine remains edition 21; source, placements and policy changes reviewed through final snapshot. Earlier takeover verified current.pdf and v21 hashes and all 20 unique image paths.",
+    "limitations": "Binary media are inventoried, not embedded in this Markdown archive; this review is not fresh image/PDF visual QA, a deployment check or runtime validation. Four historical packaging clipboard images remain missing. Historical truncated tool dumps and inaccessible internal state remain unavailable. These do not leave a saved-report text section unread.",
+    "newly_retained_details": [
+      "Edition21 deployment evidence includes workflow run 39010299085; historical .git/lfs/tmp write obstruction was separate from CLI authentication.",
+      "Fonts: Impact display, Arial Narrow body/bold/italic, Arial Bold wide. Shadow/outline duplicate extracted headings can be intentional.",
+      "Tony reaction final x143 y366 at172pt, gaze up/right, never mirror. Hero portrait crops are1122x1122 from top-left at212pt, x53/347 y369.",
+      "Dispenser marketing originals1024x1536: about491dpi at150pt width,146dpi at7in width; full-page300dpi requires higher-resolution artwork.",
+      "Dispenser original three-checkpoint/two-clone art differs from Prototype51 one midpoint and one consumable spare; preserve historical distinctions.",
+      "Wastewater progression uses full-route x0–9600 with terminal8570; opening trial cap1440 does not compress the whole progression. No automatic boss-defeat water restoration or portal inference.",
+      "Gratecrawler and Sputtervalve remain provisional names with pending lore/portraits, not newly authorized commissions. Clogfather remains proposed boss, not verified playable combat.",
+      "Capture backlog snapshot covers54 entries through055, with no017 entry and many gaps. Chapter010 flag conflicts with its resolved-gap note and needs editorial review.",
+      "Exact generation prompts and weapon actual1254x1254 dimensions preserved; requested2048 does not imply delivered resolution.",
+      "Archive peer identities and old paths are historical references; resolve current chats before any future coordination."
+    ],
+    "readiness": "Ready to assume Marketing responsibilities. Album hold remains in force; no new commission, game/art change, PDF regeneration, publication or launch authorized by this audit.",
+    "record_index": [
+      {
+        "record": 0,
+        "path": "assets/app-icon/porcelain-jaw-v1.json",
+        "start_line": 382,
+        "end_line": 442
+      },
+      {
+        "record": 1,
+        "path": "assets/world/spare-employee-dispenser/sleeping-heroes-v2.json",
+        "start_line": 443,
+        "end_line": 956
+      },
+      {
+        "record": 2,
+        "path": "bestiary/clogfather/monster.json",
+        "start_line": 957,
+        "end_line": 1362
+      },
+      {
+        "record": 3,
+        "path": "bestiary/flushfiend/monster.json",
+        "start_line": 1363,
+        "end_line": 1712
+      },
+      {
+        "record": 4,
+        "path": "bestiary/gratecrawler/monster.json",
+        "start_line": 1713,
+        "end_line": 1898
+      },
+      {
+        "record": 5,
+        "path": "bestiary/sewer-flies/monster.json",
+        "start_line": 1899,
+        "end_line": 2374
+      },
+      {
+        "record": 6,
+        "path": "bestiary/sputtervalve/monster.json",
+        "start_line": 2375,
+        "end_line": 2559
+      },
+      {
+        "record": 7,
+        "path": "bestiary/the-hallowed-widow/monster.json",
+        "start_line": 2560,
+        "end_line": 2801
+      },
+      {
+        "record": 8,
+        "path": "handoffs/bj-marketing-selection-confirmation.json",
+        "start_line": 2802,
+        "end_line": 2860
+      },
+      {
+        "record": 9,
+        "path": "handoffs/clogfather-audio.json",
+        "start_line": 2861,
+        "end_line": 3415
+      },
+      {
+        "record": 10,
+        "path": "handoffs/dispenser-single-clone-art.json",
+        "start_line": 3416,
+        "end_line": 3546
+      },
+      {
+        "record": 11,
+        "path": "handoffs/hero-hyperreal-marketing-portraits.json",
+        "start_line": 3547,
+        "end_line": 3606
+      },
+      {
+        "record": 12,
+        "path": "handoffs/marketing-2-succession.json",
+        "start_line": 3607,
+        "end_line": 4256
+      },
+      {
+        "record": 13,
+        "path": "handoffs/marketing-discussion-game-intent-audit.json",
+        "start_line": 4257,
+        "end_line": 4559
+      },
+      {
+        "record": 14,
+        "path": "handoffs/spare-employee-dispenser-art.json",
+        "start_line": 4560,
+        "end_line": 4964
+      },
+      {
+        "record": 15,
+        "path": "handoffs/spare-employee-dispenser-audio.json",
+        "start_line": 4965,
+        "end_line": 5461
+      },
+      {
+        "record": 16,
+        "path": "handoffs/spare-employee-dispenser-engineering.json",
+        "start_line": 5462,
+        "end_line": 5873
+      },
+      {
+        "record": 17,
+        "path": "handoffs/spare-employee-dispenser-glass-front-art.json",
+        "start_line": 5874,
+        "end_line": 6045
+      },
+      {
+        "record": 18,
+        "path": "handoffs/spare-employee-dispenser-mechanics.json",
+        "start_line": 6046,
+        "end_line": 6466
+      },
+      {
+        "record": 19,
+        "path": "handoffs/spare-employee-dispenser-runtime-glass.json",
+        "start_line": 6467,
+        "end_line": 6510
+      },
+      {
+        "record": 20,
+        "path": "handoffs/tony-clogfather-reaction-art.json",
+        "start_line": 6511,
+        "end_line": 6618
+      },
+      {
+        "record": 21,
+        "path": "handoffs/wastewater-cutaway-art.json",
+        "start_line": 6619,
+        "end_line": 6675
+      },
+      {
+        "record": 22,
+        "path": "handoffs/wastewater-cutaway-level-design.json",
+        "start_line": 6676,
+        "end_line": 7077
+      },
+      {
+        "record": 23,
+        "path": "handoffs/wastewater-cutaway-story.json",
+        "start_line": 7078,
+        "end_line": 7311
+      },
+      {
+        "record": 24,
+        "path": "marketing/app-icon/concepts-v1.json",
+        "start_line": 7312,
+        "end_line": 7498
+      },
+      {
+        "record": 25,
+        "path": "marketing/billy-joe/art.json",
+        "start_line": 7499,
+        "end_line": 7634
+      },
+      {
+        "record": 26,
+        "path": "marketing/billy-joe/magazine-assets.json",
+        "start_line": 7635,
+        "end_line": 7747
+      },
+      {
+        "record": 27,
+        "path": "marketing/billy-joe/server-rack-concepts-v1/prompts.json",
+        "start_line": 7748,
+        "end_line": 7858
+      },
+      {
+        "record": 28,
+        "path": "marketing/billy-joe/server-room-v1.json",
+        "start_line": 7859,
+        "end_line": 7908
+      },
+      {
+        "record": 29,
+        "path": "marketing/box-concepts-v1/prompts.json",
+        "start_line": 7909,
+        "end_line": 8044
+      },
+      {
+        "record": 30,
+        "path": "marketing/branding-status.json",
+        "start_line": 8045,
+        "end_line": 8094
+      },
+      {
+        "record": 31,
+        "path": "marketing/character-reactions/tony-clogfather-horror-v1.json",
+        "start_line": 8095,
+        "end_line": 8167
+      },
+      {
+        "record": 32,
+        "path": "marketing/hero-portraits/prior-magazine-elements-v1.json",
+        "start_line": 8168,
+        "end_line": 8259
+      },
+      {
+        "record": 33,
+        "path": "marketing/hero-portraits/prompts-v1.json",
+        "start_line": 8260,
+        "end_line": 8316
+      },
+      {
+        "record": 34,
+        "path": "marketing/magazine/dispenser-copy-handoff.json",
+        "start_line": 8317,
+        "end_line": 8460
+      },
+      {
+        "record": 35,
+        "path": "marketing/magazine/guide-assets-v1/provenance.json",
+        "start_line": 8461,
+        "end_line": 8536
+      },
+      {
+        "record": 36,
+        "path": "marketing/magazine/guide-assets-v10/provenance.json",
+        "start_line": 8537,
+        "end_line": 8568
+      },
+      {
+        "record": 37,
+        "path": "marketing/magazine/guide-assets-v11/provenance.json",
+        "start_line": 8569,
+        "end_line": 8616
+      },
+      {
+        "record": 38,
+        "path": "marketing/magazine/guide-assets-v13/provenance.json",
+        "start_line": 8617,
+        "end_line": 8736
+      },
+      {
+        "record": 39,
+        "path": "marketing/magazine/guide-assets-v14/magazine-v13-source.json",
+        "start_line": 8737,
+        "end_line": 16729
+      },
+      {
+        "record": 40,
+        "path": "marketing/magazine/guide-assets-v14/provenance.json",
+        "start_line": 16730,
+        "end_line": 16777
+      },
+      {
+        "record": 41,
+        "path": "marketing/magazine/guide-assets-v15/magazine-v14-source.json",
+        "start_line": 16778,
+        "end_line": 24770
+      },
+      {
+        "record": 42,
+        "path": "marketing/magazine/guide-assets-v15/provenance.json",
+        "start_line": 24771,
+        "end_line": 24814
+      },
+      {
+        "record": 43,
+        "path": "marketing/magazine/guide-assets-v16/magazine-v15-source.json",
+        "start_line": 24815,
+        "end_line": 32932
+      },
+      {
+        "record": 44,
+        "path": "marketing/magazine/guide-assets-v16/provenance.json",
+        "start_line": 32933,
+        "end_line": 32980
+      },
+      {
+        "record": 45,
+        "path": "marketing/magazine/guide-assets-v17/magazine-v16-source.json",
+        "start_line": 32981,
+        "end_line": 40903
+      },
+      {
+        "record": 46,
+        "path": "marketing/magazine/guide-assets-v17/provenance.json",
+        "start_line": 40904,
+        "end_line": 40993
+      },
+      {
+        "record": 47,
+        "path": "marketing/magazine/guide-assets-v18/magazine-v17-source.json",
+        "start_line": 40994,
+        "end_line": 49848
+      },
+      {
+        "record": 48,
+        "path": "marketing/magazine/guide-assets-v18/magazine-v18-published-source.json",
+        "start_line": 49849,
+        "end_line": 58709
+      },
+      {
+        "record": 49,
+        "path": "marketing/magazine/guide-assets-v18/provenance.json",
+        "start_line": 58710,
+        "end_line": 58737
+      },
+      {
+        "record": 50,
+        "path": "marketing/magazine/guide-assets-v19/pre-publication-source.json",
+        "start_line": 58738,
+        "end_line": 67362
+      },
+      {
+        "record": 51,
+        "path": "marketing/magazine/guide-assets-v19/provenance.json",
+        "start_line": 67363,
+        "end_line": 67395
+      },
+      {
+        "record": 52,
+        "path": "marketing/magazine/guide-assets-v2/provenance.json",
+        "start_line": 67396,
+        "end_line": 67456
+      },
+      {
+        "record": 53,
+        "path": "marketing/magazine/guide-assets-v20/pre-publication-source.json",
+        "start_line": 67457,
+        "end_line": 75984
+      },
+      {
+        "record": 54,
+        "path": "marketing/magazine/guide-assets-v20/provenance.json",
+        "start_line": 75985,
+        "end_line": 76004
+      },
+      {
+        "record": 55,
+        "path": "marketing/magazine/guide-assets-v21/pre-publication-source.json",
+        "start_line": 76005,
+        "end_line": 84532
+      },
+      {
+        "record": 56,
+        "path": "marketing/magazine/guide-assets-v3/provenance.json",
+        "start_line": 84533,
+        "end_line": 84645
+      },
+      {
+        "record": 57,
+        "path": "marketing/magazine/guide-assets-v4/provenance.json",
+        "start_line": 84646,
+        "end_line": 84693
+      },
+      {
+        "record": 58,
+        "path": "marketing/magazine/guide-assets-v5/provenance.json",
+        "start_line": 84694,
+        "end_line": 84749
+      },
+      {
+        "record": 59,
+        "path": "marketing/magazine/guide-assets-v6/provenance.json",
+        "start_line": 84750,
+        "end_line": 84789
+      },
+      {
+        "record": 60,
+        "path": "marketing/magazine/guide-assets-v7/provenance.json",
+        "start_line": 84790,
+        "end_line": 84849
+      },
+      {
+        "record": 61,
+        "path": "marketing/magazine/guide-assets-v9/provenance.json",
+        "start_line": 84850,
+        "end_line": 84885
+      },
+      {
+        "record": 62,
+        "path": "marketing/magazine/magazine.json",
+        "start_line": 84886,
+        "end_line": 93344
+      },
+      {
+        "record": 63,
+        "path": "marketing/spare-employee-dispenser/glass-front-prompts-v1.json",
+        "start_line": 93345,
+        "end_line": 93412
+      },
+      {
+        "record": 64,
+        "path": "storybook/curation-backlog.json",
+        "start_line": 93413,
+        "end_line": 94387
+      },
+      {
+        "record": 65,
+        "path": "weapons/demolition-hammer/marketing-art.json",
+        "start_line": 94388,
+        "end_line": 94531
+      },
+      {
+        "record": 66,
+        "path": "weapons/drain-snake/marketing-art.json",
+        "start_line": 94532,
+        "end_line": 94676
+      },
+      {
+        "record": 67,
+        "path": "weapons/heavy-plunger-launcher/marketing-art.json",
+        "start_line": 94677,
+        "end_line": 94821
+      },
+      {
+        "record": 68,
+        "path": "weapons/pipe-bomb-launcher/marketing-art.json",
+        "start_line": 94822,
+        "end_line": 94968
+      },
+      {
+        "record": 69,
+        "path": "weapons/pipe-wrench/marketing-art.json",
+        "start_line": 94969,
+        "end_line": 95112
+      },
+      {
+        "record": 70,
+        "path": "weapons/pressure-gun/marketing-art.json",
+        "start_line": 95113,
+        "end_line": 95257
+      }
+    ]
+  }
+}

@@ -1,0 +1,659 @@
+{
+  "schema_version": 1,
+  "title": "Tony’s optional idea bank — notes supplied by Sean, October17,2026",
+  "status": "Every item optional and unapproved; documentation only, not a requirement or roadmap commitment",
+  "source_attribution": "Tony’s brainstorming notes supplied by Sean on2026-10-17; screenshot wording visually verified. Sean’s separate tentative stats interest was relayed by Project Manager.",
+  "created_at": "2026-10-17T17:56:23-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "authority": [
+    "No implementation, rebalance, artwork, audio production or new playable-character authorization follows from this bank.",
+    "Current Tony/Sean-only player-facing roster constraint remains; Josh/helper are speculative source notes only.",
+    "Existing approved character identities, weapons and creature records take precedence. Similarity is not evidence of approval or integration.",
+    "Later explicit approvals must be tracked separately with their own evidence. This optional source catalog neither authorizes them nor cancels separately approved work, including the subsequently requested transforming roach mini-boss."
+  ],
+  "consultation_rule": "When matching feature work is discussed, consult relevant tagged ideas and ask Sean whether he wants one included. Offer a relevant suggestion/question; do not automatically implement or repeatedly recite the whole bank.",
+  "source_images": [
+    {
+      "id": "1",
+      "original_path": "/tmp/codex-remote-attachments/01a14b99-18c1-7240-89ce-d9ee7c8455e8/14e174f0-9038-4069-bc7b-69bdafe8ab8a/1-1000052277.jpg",
+      "preserved_path": "design/idea-sources/tony-2026-10-17/1-1000052277.jpg",
+      "sha256": "7e6277faf24a1206af60c4fb670214d6b7d36222e84c4f90c8dd8d7efc030ca9",
+      "capture_time": null,
+      "capture_date": "unknown",
+      "verified": "Visually read by Storyboarding; original bytes preserved"
+    },
+    {
+      "id": "2",
+      "original_path": "/tmp/codex-remote-attachments/01a14b99-18c1-7240-89ce-d9ee7c8455e8/14e174f0-9038-4069-bc7b-69bdafe8ab8a/2-1000052278.jpg",
+      "preserved_path": "design/idea-sources/tony-2026-10-17/2-1000052278.jpg",
+      "sha256": "dd551dfd5f5cd1fb16d66beee91bbc97bd97497c8592f72c2a00af076aca2651",
+      "capture_time": null,
+      "capture_date": "unknown",
+      "verified": "Visually read by Storyboarding; original bytes preserved"
+    },
+    {
+      "id": "3",
+      "original_path": "/tmp/codex-remote-attachments/01a14b99-18c1-7240-89ce-d9ee7c8455e8/14e174f0-9038-4069-bc7b-69bdafe8ab8a/3-1000052279.jpg",
+      "preserved_path": "design/idea-sources/tony-2026-10-17/3-1000052279.jpg",
+      "sha256": "bd2415dedd69758b272600ecdab47eb5fdcf4d72985a88d47dc2bd226e48006b",
+      "capture_time": null,
+      "capture_date": "unknown",
+      "verified": "Visually read by Storyboarding; original bytes preserved"
+    }
+  ],
+  "source_transcription": {
+    "method": "Visible message text, line wrapping normalized; spelling and awkward wording retained. Sender surname/UI not transcribed into prose.",
+    "image1": "4 different skill attributes up to 5\nPower\nSpeed\nToughness\nAgility\n\nCharacters:\nTony - Master Plumber (Efficiency and know how) prioritizes speed\nP - 1\nS - 5\nT - 2\nA - 3\n\nSpecial Skill: site code book. (Open code book and send a powerful blast know knowledge toward the enemy. Focuses attack)\n\nSean - engineer (Knows all from behind a desk) prioritizes power\n\nP - 5\nS - 2\nT - 1\nA - 3\n\nSpecial Skill: system design. Pipes come from the ground a ceiling affecting large area of screen moderately damaging enemies area of effect)\n\nJosh - Technician prioritizes agility getting the job done no matter the space.\n\nP - 3",
+    "image2_monsters_hazards": "Cockroach monsters\nSnake boss\nSpider baddies\nFlying spider boss\nSewer flies\nAlligator (because of nyc sewers ;)) boss\nToilet monsters\nClog monsters\nCamel crickets baddies or boss\nFlies\nRoots for spikes\nSpider webs to slow you down\nMr. Hanky’s\nAsbestos projectiles\nSteam leaks hazards\nDrips hazards\nElectrical hazards\nToilet paper projectiles\nAnnoyed tenants\nFaucet monsters\nBathtub monsters",
+    "images2_and3_shared_text": "I love that you have a plunger weapon as your base.\n\nI like my water cannon which is a jetter basically\n\nJosh can throw wrenches\n\nHelper hurls questions: huh, what, ?, where? How, why. Randomly",
+    "image3_special_weapons": "Special weapons\n\nTorch : flame thrower shorter range but like a laser swingable\n\nPrime : purple grenades shaped like cans launcher\n\nKinetic water ram : spread shot air puffs\n\nGarden hose : water laser slower moves in straight line across screen\n\nWater heater: rocket launcher. Steam from bottom of heated straight line projectile\n\nTyvek suit : monetary invincibility\n\nNot sure if any of this helps"
+  },
+  "source_limits": [
+    "Josh continuation clipped after P3; no other stats or skill recoverable.",
+    "Screenshot2 includes preceding partial Wrong with no context; not actionable.",
+    "Screenshots2/3 overlap; shared material appears once in categorized ideas.",
+    "Screenshot2 clips beginning of special weapons; screenshot3 supplies readable continuation.",
+    "Screenshot capture date/time cannot be established from UI clock or filesystem times; supplied date and archive time are separate.",
+    "Original images contain private message UI and sender surname; internal source evidence only, not player-facing or promotional assets."
+  ],
+  "ideas": [
+    {
+      "id": "attribute-framework",
+      "category": "hero-stats",
+      "tags": [
+        "stats",
+        "power",
+        "speed",
+        "toughness",
+        "agility"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image1",
+      "source_summary": "Four attributes up to5: Power, Speed, Toughness, Agility.",
+      "interpretation": "No mapping from these scores to runtime units approved.",
+      "related_records": []
+    },
+    {
+      "id": "tony-stat-sketch",
+      "category": "hero-stats",
+      "tags": [
+        "tony",
+        "speed",
+        "stats"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image1",
+      "source_summary": "Tony: Master Plumber, efficiency/know-how, prioritizes speed; P1 S5 T2 A3.",
+      "interpretation": "Source sketch only; does not rebalance current Tony.",
+      "related_records": []
+    },
+    {
+      "id": "sean-stat-sketch",
+      "category": "hero-stats",
+      "tags": [
+        "sean",
+        "power",
+        "stats",
+        "characterization"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image1",
+      "source_summary": "Sean: engineer who knows all from behind a desk, prioritizes power; P5 S2 T1 A3.",
+      "interpretation": "This conflicts with established apprentice characterization and is not a canon revision.",
+      "related_records": []
+    },
+    {
+      "id": "josh-stat-sketch",
+      "category": "speculative-roster",
+      "tags": [
+        "josh",
+        "agility",
+        "stats",
+        "roster"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image1",
+      "source_summary": "Josh: Technician, prioritizes agility and working in any space; only P3 visible.",
+      "interpretation": "Speed, Toughness, Agility scores and special skill are clipped/unknown; not a playable-character approval.",
+      "related_records": []
+    },
+    {
+      "id": "asymmetric-hero-tradeoffs",
+      "category": "hero-stats",
+      "tags": [
+        "stats",
+        "health",
+        "movement",
+        "firing",
+        "balance"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "sean-interest-relayed-by-project-manager",
+      "source_summary": "Sean is particularly interested, tentatively, in one hero having perhaps1.5x health but slower walking and slightly slower firing, and another moving very fast with less health.",
+      "interpretation": "Separate from Tony screenshot scores. No hero assignment, exact values or implementation approved; ask whether to explore a tradeoff before changing balance.",
+      "related_records": [
+        "README.md"
+      ]
+    },
+    {
+      "id": "site-code-book",
+      "category": "special-attacks",
+      "tags": [
+        "tony",
+        "special",
+        "focused-attack"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image1",
+      "source_summary": "Tony opens site code book and sends powerful blast of “know knowledge”; source ends “Focuses attack”.",
+      "interpretation": "Likely knowledge-themed focused attack; retain awkward original rather than inventing mechanics.",
+      "related_records": []
+    },
+    {
+      "id": "system-design",
+      "category": "special-attacks",
+      "tags": [
+        "sean",
+        "special",
+        "area-damage",
+        "pipes"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image1",
+      "source_summary": "Pipes come from ground and ceiling, affecting large screen area with moderate damage.",
+      "interpretation": "Area-of-effect interpretation is explicit in source; timing, coverage and ownership remain proposals.",
+      "related_records": []
+    },
+    {
+      "id": "cockroach-monsters",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Cockroach monsters",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "snake-boss",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "boss"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Snake boss",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "spider-baddies",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Spider baddies",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "flying-spider-boss",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "boss"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Flying spider boss",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "sewer-flies",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Sewer flies",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "alligator-boss",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "boss"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Alligator boss, NYC sewer joke",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "toilet-monsters",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Toilet monsters",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "clog-monsters",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Clog monsters",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "camel-crickets",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "boss"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Camel crickets as baddies or boss",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "flies",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Flies",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "mr-hankys",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Mr. Hanky’s",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "annoyed-tenants",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Annoyed tenants",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "faucet-monsters",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Faucet monsters",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": []
+    },
+    {
+      "id": "bathtub-monsters",
+      "category": "monsters",
+      "tags": [
+        "monster",
+        "enemy"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Bathtub monsters",
+      "interpretation": "Reference/idea only; no new canonical species, boss rank, lore or production approval.",
+      "related_records": [
+        "bestiary/monster-ideas.json#bathtub-monsters"
+      ],
+      "sean_elaboration": {
+        "date": "2026-10-17",
+        "text": "A walking bathtub with [something] in it that fires some kind of projectiles.",
+        "placement": "Optional later-level candidate; not scheduled",
+        "undecided": [
+          "occupant",
+          "projectile type"
+        ],
+        "status": "Notes only; no artwork or runtime implementation authorized"
+      }
+    },
+    {
+      "id": "roots-spikes",
+      "category": "hazards",
+      "tags": [
+        "hazard",
+        "environment"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Roots as spikes",
+      "interpretation": null,
+      "related_records": []
+    },
+    {
+      "id": "slowing-webs",
+      "category": "hazards",
+      "tags": [
+        "hazard",
+        "environment"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Spider webs slow you down",
+      "interpretation": null,
+      "related_records": []
+    },
+    {
+      "id": "steam-leaks",
+      "category": "hazards",
+      "tags": [
+        "hazard",
+        "environment"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Steam-leak hazards",
+      "interpretation": null,
+      "related_records": []
+    },
+    {
+      "id": "drips",
+      "category": "hazards",
+      "tags": [
+        "hazard",
+        "environment"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Drip hazards",
+      "interpretation": null,
+      "related_records": []
+    },
+    {
+      "id": "electricity",
+      "category": "hazards",
+      "tags": [
+        "hazard",
+        "environment"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Electrical hazards",
+      "interpretation": null,
+      "related_records": []
+    },
+    {
+      "id": "asbestos-projectiles",
+      "category": "projectiles",
+      "tags": [
+        "weapon",
+        "projectile"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Asbestos projectiles",
+      "interpretation": "Projectile owner and behavior unspecified.",
+      "related_records": []
+    },
+    {
+      "id": "toilet-paper-projectiles",
+      "category": "projectiles",
+      "tags": [
+        "weapon",
+        "projectile"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image2",
+      "source_summary": "Toilet-paper projectiles",
+      "interpretation": "Projectile owner and behavior unspecified.",
+      "related_records": []
+    },
+    {
+      "id": "existing-starters",
+      "category": "weapon-feedback",
+      "tags": [
+        "weapon",
+        "plunger",
+        "water",
+        "jetter"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "images2-and3-overlap",
+      "source_summary": "Tony likes the existing base plunger and regards his water cannon as essentially a jetter.",
+      "interpretation": "Positive source feedback, not new tuning or a weapon rename.",
+      "related_records": [
+        "weapons/heavy-plunger-launcher/weapon.json",
+        "weapons/pressure-gun/weapon.json"
+      ]
+    },
+    {
+      "id": "josh-wrench-throw",
+      "category": "speculative-roster",
+      "tags": [
+        "josh",
+        "weapon",
+        "wrench",
+        "roster"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "images2-and3-overlap",
+      "source_summary": "Josh could throw wrenches.",
+      "interpretation": "No added character or weapon authorization.",
+      "related_records": [
+        "weapons/pipe-wrench/weapon.json"
+      ]
+    },
+    {
+      "id": "helper-questions",
+      "category": "special-attacks",
+      "tags": [
+        "helper",
+        "questions",
+        "comedy",
+        "roster"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "images2-and3-overlap",
+      "source_summary": "Helper hurls random questions: huh, what, ?, where? How, why.",
+      "interpretation": "Helper identity and whether words are attacks, dialogue or visual gags are unresolved; do not assume a new character.",
+      "related_records": []
+    },
+    {
+      "id": "torch",
+      "category": "special-weapons",
+      "tags": [
+        "weapon",
+        "special",
+        "projectile"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image3",
+      "source_summary": "Shorter-range flamethrower, swingable like a laser.",
+      "interpretation": "Sweep mechanics unspecified.",
+      "related_records": [
+        "weapons/tony-ideas.json"
+      ]
+    },
+    {
+      "id": "prime",
+      "category": "special-weapons",
+      "tags": [
+        "weapon",
+        "special",
+        "projectile"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image3",
+      "source_summary": "“Prime”: launcher of purple grenades shaped like cans.",
+      "interpretation": "Preserve source name Prime; do not silently rename primer.",
+      "related_records": [
+        "weapons/pipe-bomb-launcher/weapon.json"
+      ]
+    },
+    {
+      "id": "kinetic-water-ram",
+      "category": "special-weapons",
+      "tags": [
+        "weapon",
+        "special",
+        "projectile"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image3",
+      "source_summary": "Spread-shot air puffs.",
+      "interpretation": "Water ram is the source name despite air-puff description; compare earlier kinetic-air-ram without merging.",
+      "related_records": [
+        "weapons/tony-ideas.json"
+      ]
+    },
+    {
+      "id": "garden-hose",
+      "category": "special-weapons",
+      "tags": [
+        "weapon",
+        "special",
+        "projectile"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image3",
+      "source_summary": "Slower water laser moving in a straight line across screen.",
+      "interpretation": "Meaning of slower and range unspecified.",
+      "related_records": [
+        "weapons/pressure-gun/weapon.json"
+      ]
+    },
+    {
+      "id": "water-heater",
+      "category": "special-weapons",
+      "tags": [
+        "weapon",
+        "special",
+        "projectile"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image3",
+      "source_summary": "Rocket launcher; steam from bottom of heated straight-line projectile.",
+      "interpretation": "Source wording unclear: launcher/projectile appearance and steam placement need clarification.",
+      "related_records": []
+    },
+    {
+      "id": "tyvek-suit",
+      "category": "special-weapons",
+      "tags": [
+        "weapon",
+        "special",
+        "protection"
+      ],
+      "status": "optional_unapproved",
+      "source_reference": "image3",
+      "source_summary": "“Tyvek suit : monetary invincibility”.",
+      "interpretation": "Possibly momentary invincibility, but uncertain; do not infer a currency mechanic or duration.",
+      "related_records": []
+    }
+  ],
+  "overlap_index": [
+    {
+      "topics": [
+        "cockroach-monsters",
+        "spider-baddies"
+      ],
+      "record": "design-ideas.json",
+      "note": "Earlier ambient crunchable critters are a separate proposal from combat monsters."
+    },
+    {
+      "topics": [
+        "snake-boss",
+        "alligator-boss",
+        "mr-hankys",
+        "annoyed-tenants"
+      ],
+      "record": "bestiary/monster-ideas.json",
+      "note": "Earlier rattlesnakes/alligator/poop/angry-client ideas overlap; keep history and scope separate."
+    },
+    {
+      "topics": [
+        "flying-spider-boss"
+      ],
+      "record": "bestiary/the-hallowed-widow/monster.json",
+      "note": "Existing flying Widow does not approve converting it into a boss."
+    },
+    {
+      "topics": [
+        "sewer-flies",
+        "flies"
+      ],
+      "record": "bestiary/sewer-flies/monster.json",
+      "note": "Existing Septic Air Force is a comparison, not approval of another species or new behavior."
+    },
+    {
+      "topics": [
+        "toilet-monsters"
+      ],
+      "record": "bestiary/flushfiend/monster.json",
+      "note": "Existing Flushfiend reference; no automatic added mechanic."
+    },
+    {
+      "topics": [
+        "clog-monsters"
+      ],
+      "record": "bestiary/clogfather/monster.json",
+      "note": "Existing planned Clogfather is not proof all clog ideas are approved/playable."
+    },
+    {
+      "topics": [
+        "torch",
+        "kinetic-water-ram",
+        "josh-wrench-throw"
+      ],
+      "record": "weapons/tony-ideas.json",
+      "note": "Compare earlier torch, air ram and large wrench suggestions; do not overwrite or silently merge."
+    }
+  ],
+  "followup_questions": [
+    "For hero stats: should we explore the health/movement/firing tradeoff, and which hero—if either—would receive which role?",
+    "For a matching weapon/hazard discussion: would you like to include this specific Tony idea, revise an overlapping existing proposal, or leave it in the bank?"
+  ],
+  "related_index": "design-ideas.json"
+}

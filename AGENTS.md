@@ -1,5 +1,24 @@
 # Project instructions
 
+## Agent consultation scope
+
+- When asked to consult other agents, limit consultation to agents in the current Drain Damage project
+  (project ID `ee1159b9-4ea1-4749-9cd3-4152636b3070`), unless Sean explicitly asks otherwise.
+- Agents in Drain Damage (old), including predecessors, are outside that scope. Other projects are also excluded.
+- Resolve collaborators by current project membership and role, not a same/similar title or historical thread ID.
+- Replacement names have no `2` suffix; original chats have an ` (old)` suffix and are in Drain Damage (old).
+- All agents currently in this project may initiate necessary project-related communication with one another
+  without separate approval, under Sean's standing authorization.
+- Communication with agents outside this project still requires explicit user instruction.
+
+## Optional idea recall
+
+- Consult [Tony's optional idea bank](design/tony-idea-bank.json) when discussing matching hero-stat, weapon,
+  special-attack, monster, boss or hazard work; [the idea index](design-ideas.json) links earlier proposals too.
+- Bring up relevant entries as suggestions and ask whether Sean wants one included. The bank is not a requirement,
+  roadmap commitment, rebalance instruction or authorization to implement anything or expand the playable roster.
+- Preserve source wording and uncertainties; distinguish Sean's tentative interests from approved decisions.
+
 ## Character names
 
 - Use only Tony and Sean in all player-facing game text, including menus, dialogue, and credits.
@@ -56,6 +75,22 @@ The user wants screenshots of every iteration to tell the story of the game's gr
 - Keep the storybook in the project, outside ignored build/scratch folders, and exclude it from Godot game imports.
 - If capture is blocked, record the gap honestly and preserve the build for later capture; do not fabricate screenshots.
 
+### Making-of book curation
+
+- Storyboarding owns ongoing editorial curation of the development storybook, coordinating with Engineering.
+- Collect generous early, middle, and late development material for an eventual making-of book: milestone
+  screenshots, before/after comparisons, character/menu/environment evolution, funny failures, and design pivots.
+- Preserve earlier chapters and originals. Label concept art, rejected ideas, and actual gameplay captures distinctly.
+- Engineering preserves builds and supplies actual screenshots under the existing permission rules. This standing
+  collection request does not authorize opening or foregrounding the game without permission.
+- Maintain a capture backlog for missing milestones so they can be photographed during an approved session.
+- Timestamp every new storybook capture and making-of artifact with `YYYYmmdd-HHMMSS` in the filename and
+  its entry/metadata, using `America/Los_Angeles` (for example, `20261016-233045-title-screen.png`).
+- Record the timezone and UTC offset in metadata to disambiguate daylight-saving transitions. Distinguish actual
+  capture/creation time from later archival/import time; add a suffix if filenames would collide within one second.
+- Preserve historical originals. Backfill exact timestamps only from trustworthy capture records; retain known
+  dates and mark exact times unknown when unavailable. File copy/modification time is not proof of capture time.
+
 ## Bestiary maintenance
 
 - Keep `bestiary/bestiary.html` current when adding or revising a monster, its artwork, or implementation status.
@@ -78,6 +113,13 @@ self-documenting default help, source-order sections, orange headers, white targ
 inline descriptions, and emoji progress. Preserve the Godot toolchain used by this game.
 
 ## Combat metadata maintenance
+
+- Every canonical creature profile, including bosses and mini-bosses, must define both hit and death audio references.
+  Preserve source/license provenance and validate referenced assets before export. Planned creatures need profile-ready
+  cues and an honest unimplemented status; asset coverage does not establish playable integration.
+- Successful nonlethal damage plays the hit cue; lethal damage plays death only once. Keep voices bounded, throttle hit
+  spam per enemy, and preserve pause, mute and reset/disposal behavior. Validate complete catalog/profile coverage
+  so new creatures cannot silently omit either cue.
 
 - Give every new monster a `health` object in its `monster.json`, including positive maximum and spawn HP,
   progression placement, health-bar visibility, balance rationale, and weapon hit-count comparisons.

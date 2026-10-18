@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "role": "Engineering 2",
+  "date": "2026-10-17",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "status": "Engineering succession complete; predecessor interview and full saved archive review complete; all eight original-agent archives integrated",
+  "predecessor": {
+    "name": "Engineering",
+    "thread_id": "01a1375f-7657-7580-b16e-57a6f5925efd",
+    "host": "local"
+  },
+  "successor": {
+    "thread_id": "01a14b9d-9200-7433-96da-a1295a926532",
+    "root": "/Users/sfoley/repos/drain_damage"
+  },
+  "scope": "Succession/context acquisition only. No feature implementation, game launch, new artwork, commit, push or release.",
+  "write_test": {
+    "result": "Passed create/write/read/delete directly in repository with normal permissions",
+    "method": "Unique UUID temporary filename; umask 077; shell write, cat, rm and absence check",
+    "cleanup": "Completed"
+  },
+  "evidence": {
+    "history_archive": "builds/context-transfer/engineering-20261017-history.json",
+    "pages": 19,
+    "turns": 132,
+    "inbound_handoffs": 131,
+    "user_message_items": 87,
+    "oldest_turn": "01a1375f-79b2-7650-a9ee-b2df679624eb",
+    "newest_at_snapshot": "01a14b9a-a9bf-7993-bc34-438809082602",
+    "coverage": "Paginated newest to oldest to hasMore=false. Read user requests, final deliveries and inbound handoffs; inspected relevant build/test outputs, current code, metadata, instructions and records. Full fetched tool-visible data preserved locally; not every historical shell line independently audited.",
+    "limitations": [
+      "95 historical output items reported truncation; exact turn/item/command ledger is in history_archive.truncated_items.",
+      "12 context-compaction events expose only IDs, not their bodies. Hidden/internal reasoning is not recoverable or inherited.",
+      "18 user image paths recovered; six missing temporary attachments are listed in supplemental audit JSON. Remaining image pixels were not all re-inspected.",
+      "Read_thread exposes available turn records, not a guarantee that all original application attachments or original tool payloads are recoverable.",
+      "Historical successful checks are attributed to predecessor; no fresh gameplay/build test run performed during this audit."
+    ],
+    "predecessor_interview": "builds/context-transfer/engineering-20261017-interview.json",
+    "durable_original_archives": "agent-context-archive/README.md",
+    "archive_integrity_manifest": "agent-context-archive/manifest.json",
+    "final_archive_review": "handoffs/engineering-final-archive-review.json",
+    "final_archive_review_status": "Complete saved-text review; exact duplicate passages mapped to directly reviewed source spans",
+    "final_archive_coverage": "handoffs/engineering-final-archive-coverage.json",
+    "final_archive_review_completed_at": "2026-10-17T14:42:28-07:00"
+  },
+  "baseline": {
+    "version": "0.55.0",
+    "canonical_version": "project.godot application/config/version",
+    "latest_app": "builds/Prototype-55/Drain Damage.app",
+    "latest_archive": "builds/history/Prototype-55.zip",
+    "archive_sha256_recorded": "7121017bc317cbb24d5e7c9fa6ce169c187260a82ca886848d68bc57505460ec",
+    "bundle_verified_read_only": "Info.plist CFBundleShortVersionString and CFBundleVersion both 0.55.0",
+    "git_head_at_audit": "49cc403",
+    "branch_history": "Previous backup/push completed; no new remote verification in this audit.",
+    "default_app_warning": "builds/Drain Damage.app was explicitly rebuilt at 0.50.0; do not assume default app equals latest separately versioned app.",
+    "source_diff": [
+      "AGENTS.md",
+      "data/combat.json",
+      "design/first-call-action/opening-trial-balance.json",
+      "handoffs/opening-trial-level-layout.json",
+      "roadmap.html",
+      "scripts/opening_trial_state.gd",
+      "tests/opening_trial_game.gd",
+      "tests/opening_trial_state.gd"
+    ],
+    "untracked_at_start": [
+      "storybook/curation-backlog.json"
+    ],
+    "preservation": "Existing diffs belong to prior/sibling work. Do not revert or sweep into unrelated commits."
+  },
+  "responsibilities": [
+    "Integrate approved Art, Mechanics, Level Design, Storyboarding and Audio deliveries; define file ownership before concurrent edits.",
+    "Supply Art dimensions, anchors, layout, collision and runtime needs; ask existing Art role for all new artwork, including UI.",
+    "Build after game integration unless waiting for related deliveries; report exact version, changes, actual checks and remaining gaps.",
+    "Maintain roadmap and engineering delivery facts; coordinate storybook curation with Storyboarding and publication with Marketing.",
+    "Preserve prior apps/archives and user running playtests; never launch/foreground game without explicit permission.",
+    "Own supported export verification, release packaging when explicitly requested, and magazine Pages deployment checks after reviewed publication handoff."
+  ],
+  "decisions": [
+    "Solo cheerful SNES-inspired 2D adult plumbing comedy, initially forgiving; no copied Contra assets/layouts.",
+    "Drain Damage is game title; Mainframe Plumbing & Supply is current working employer; Discharge Quarterly is magazine.",
+    "Only first names Tony/Sean in player-facing text. Tony is patient/kind/experienced, not gratuitously mean. Sean bald, chin beard/soul patch, no moustache or glasses.",
+    "Tony is selection default every time selection opens. One clipboard profile with checked trait lines, taped photo, separate illustrated punch clock.",
+    "Do not reintroduce tutorial. Controls screen holds gameplay-button references; visible dialogue Skip hint is an approved exception.",
+    "Seven-line shared introduction once per fresh new game; death/checkpoint/retry does not replay it. Named semantic portrait emotions and input release guards.",
+    "Nine-line per-hero ending routes preserve nonselected plumber's radio replies. Current exit dialogue must not imply all monsters cleared, boss defeated or plumbing repaired.",
+    "Three total lives, including current. Death decrements once; checkpoint full heal/protection, Game Over deliberate Retry restores three. Secret developer restart chord stays out of player-facing documentation.",
+    "Controller B resumes/cancels pause even if Main Menu focused; A confirms selection. Dialogue/death/dispenser input lifecycles remain separate.",
+    "Continuous first-level opening replaced rejected standalone 20-second mode. Legacy comparison class/tests remain internal.",
+    "Kill-count progression shutters removed from active first level; ordinary foes can be bypassed. Physical scenery collision remains.",
+    "Exactly one midpoint checkpoint at x4650, one sleeping selected-hero clone, persistent empty machine after dispense, no restock on death.",
+    "One Clogfather visible when eventually integrated; no simultaneous background duplicate and foreground boss.",
+    "Wastewater direction is intentional: less water and denser debris toward boss, stopped/full clog at terminal zone, including backtracking; environmental only.",
+    "Use natural varied writing. Rejected paired advertising fragments, generic meatbag jokes, excessive jargon in reader magazine.",
+    "Preserve originals/rejected art locally and provenance, but do not indiscriminately commit old magazines/discarded binary art."
+  ],
+  "runtime": {
+    "chain": [
+      "main.tscn",
+      "scripts/title_screen.gd",
+      "scripts/integrated_first_call.gd",
+      "scripts/opening_trial_game.gd",
+      "scripts/game.gd"
+    ],
+    "geometry": "960x540 logical canvas, floor y440, width9600, spawn approximately85/394, exit x9450; shared gravity1250/jump-465, apex~86, prefer <=60px steps.",
+    "heroes": {
+      "tony": {
+        "health": 4,
+        "speed": 270,
+        "weapon": "pressure-gun",
+        "first_level_damage": 12,
+        "interval": 0.16,
+        "range": 320
+      },
+      "sean": {
+        "health": 5,
+        "speed": 235,
+        "weapon": "heavy-plunger-launcher",
+        "first_level_damage": 18,
+        "interval": 0.24,
+        "range": 480
+      }
+    },
+    "data_authority": "weapons/<id>/weapon.json and bestiary/<slug>/monster.json; build_combat_data.py validates and emits data/combat.json. Catalog health summaries mirror canonical metadata. First-level overrides in opening-trial-balance.json are distinct from baseline6/.15 and24/1.",
+    "opening": "First3120px uses three sewer modules and12 spatial triggers:100,250,450,600,800,1000,1200,1400,1650,1900,2200,2450. Roles8 runners,1 shooter,1 emerger,2 flyers; safety may defer/skip, never fake kills.",
+    "later_waves": "Four finite waves8/10/10/8 over3500..4800,4900..6480,6860..8160,8400..9380; >=.65s spacing,220px hero clearance,200px checkpoint exclusion. Crowd cap8 including opening/swarm,6 with large Widow.",
+    "scheduler": "Reserve slots before visible warnings; one warning at a time/.6s spacing. Explicit pattern/bullet ownership; emitter death does not erase live bullets. Current source caps6 visible/3 shooters/6 bullets/3 patterns; latest packaged build predates shooter change.",
+    "enemies": "First-level runner24HP; shooter36HP; emerger24HP; Widow180HP at2x with15Tony/10Sean hits; Septic Air Force12HP,128px rendering,48px contact radius. Stable swarm ID sewer-fly-swarm.",
+    "widow": "Straight flight100px/s, only forward/proximate hero triggers .65s warning, .8s committed captured-target swoop,1s forward recovery to original altitude,1.2s forward cooldown; scenery sweep can prevent ideal V. Single Widow at a time.",
+    "swarm": "Seeded correlated non-hunting wander35px/s, acceleration70, target-shared1.5s contact cooldown; hero damage1/monster6, same-swarm immunity, no boss closed-shell damage.",
+    "combat": "Persistent held aim independent of firing; normalize diagonal travel, swept path-length caps, grounded downward diagonals allowed, straight down airborne only. Same visual muzzle and projectile origin. Standing Flushfiend target helper38x43; movement/contact remains distinct.",
+    "dispenser": "5.5s full gag, hard<=7; full-health .4s, respawn<=2. One cosmetic random impact endpoint with full body visible; death/blood effects do not cost life. Pause/skip/watchdog cleanup; spent stock persists until new run.",
+    "audio": "Title It Takes A Hero, level Hallow Quest16-bit, CC0 Zane Little Music. Single voice fades .25out/.25in, title-16dB/level-20dB, dialogue duck4dB. Wrench menu clink, fly buzz, porcelain death shatter, dispenser sounds and3s hero flush integrated. Listening validation remains outstanding."
+  },
+  "pending": {
+    "sputtervalve": {
+      "approval": "Sean formalized pressure-valve creature/name, requested1.5x body and more visible purple shot; Art owns revised art/formal metadata.",
+      "source": "assets/bestiary/opening-trial/manifest-v1.json roles.sputtervalve; runtime role perched_shooter",
+      "contract": "96x96 stage, feet[48,80], left-facing source; preserve registration. Current body[-20,-42,40,42] and muzzle[-22,-25].1.5x gives body[-30,-63,60,63], muzzle[-33,-37.5], mirrored consistently; typical57.6x76.8 frame becomes86.4x115.2.",
+      "projectile": "Proposed visible solid diameter8->16, pale core/violet rim. Mechanics recommends radius4->8 only if solid core doubles; halo alone must not enlarge hurt radius. Damage1/speed150/cadence/warning unchanged. Final measured Art core contract still needed.",
+      "integration": "role_scale currently only enlarges flyer. Shooter muzzle22/-25, hostile speed150/radius4 are currently literal in opening_trial_game.gd. Integrated shot path delegates hostile update to parent. Update art/runtime/metadata coherently; test edge hits/misses, scenery sweeps, platform and muzzle clearance.",
+      "cap_change": "Applied numeric3 and tests, generated bundle, predecessor PASS opening_trial_state/opening_trial_game. No extra spawn entries; six bullets/three patterns unchanged. Deferred build for same artwork integration."
+    },
+    "boss": "Playable Clogfather is still required, not optional wave substitute. Rooted fatberg art/source poses and720HP design exist; new weapon profile invalidates old hit-count timing rationale.1080HP recommendation remains proposal. Need state machine, safe attacks/weak point/hit rules, death, checkpoint/ending and art validation. Portal destination/cause and BJ takeover specifics remain unresolved.",
+    "boss_audio": "12 original cues plus Backpressure51.2s150BPM assets ready. music_director.gd only supports title/level; no event support integrated. Audio assets alone do not imply encounter.",
+    "boss_hud": "Reusable scripts/boss_hud.gd exists, not a fight. Approved green>50%,yellow>25..50%,red>0..25% policy is NOT consumed by renderer: current fill fixed efad47. Record pending correction; do not claim complete.",
+    "hero_animation": "Reject hero-run-v4 (and priorv3) due ambiguous leg continuity/uncalibrated shoulder attachment. Retain manifest-beard-v3 and runtime-manifest-beard-v2. Real stride polish/recoil/live aim review remain open.",
+    "widow_art": "Optional lunge mapping handoffs/hallowed-widow-swoop-art.json delivered but registration remains pending; runtime uses existing flight loop/faster wingbeat warning.",
+    "weapons": "Six metadata specs/art exist; only two default guns playable. Melee, pipe-bomb, exclusive pickups/loadout rules and additional grip families not implemented.",
+    "experience": "Live early hitch confirmation, contrast/swoop/swarm/aim/dispenser composition, subjective audio, both-hero fairness and full-route survival testing. Historical Sean section-four bot failure is prior gated route, not proof current route fails.",
+    "ui_release": "Custom macOS menu/About planned, content/art undecided. Settings persistence, remapping, broader accessibility, mobile/touch/safe-area lifecycle and non-Mac exports remain planned.",
+    "storybook": "Storyboarding owns ongoing curation; Marketing plans Day01/Day02 Polaroid album/Sharpie aesthetic.54 numbered chapters through055,40 backlog flags; chapter010 flag may reflect resolved historical gap. Preserve actual captures and timestamp only trustworthy creation time.",
+    "documentation": "Historical handoffs/roadmap contain superseded claims. README B-to-title pause instruction is stale, old equalHP/Widow-not-playable sections stale, budget_rules still cap2 despite numeric3, roadmap headers include earlier pending statuses. Reconcile during scoped delivery, preserve historical records."
+  },
+  "workflow": {
+    "build": "make build / make build-macos with local .tools/Godot.app/Contents/MacOS/Godot and matching .tools/macos.zip; combat-data generation, version sync, headless import/export, Godot notices, ad-hoc codesign/verify.",
+    "preserve_running": "Use make build-macos MAC_APP='builds/Prototype-NN/Drain Damage.app' for separate new build; keep prior archives. Normal launches maximized1600x900; --agent-test960x540 only with applicable permission.",
+    "packaged_checks": "Use Godot --headless --main-pack absolute app/Contents/Resources/Drain Damage.pck --script external test path, outside repository cwd; copy test outside excluded res://tests when needed. Timeouts and inspect PASS plus SCRIPT ERROR/assert output; exit0 alone insufficient.",
+    "checks": "Python unittest test_combat_metadata/test_first_call/test_project_version. Godot targeted scheduler, integrated_opening, standing_shots -- --integrated, durable_flyer, sewer_swarm, hero/dispenser/input/audio tests according to change. Legacy base route tests are not current normal Start proof.",
+    "warnings": "Historical macOS certificate/log-write diagnostics and ObjectDB/resource shutdown warnings remain; report them rather than calling every log clean.",
+    "release": "Only macOS supported now; universal template includes arm64 macOS13 andx86_64 macOS11 minima but Intel/fresh-machine untested. No notarization. Future explicit release: readiness from roles, dist/vX.Y.Z/platform-architecture packages/checksums/toolchain/signing/test evidence, Git LFS binaries plus remote hash verification. No implicit release/push.",
+    "magazine": "marketing/magazine/magazine.json canonical; build_guide.py renders PDF and current.pdf. Marketing reviews every page; Engineering receives reviewed handoff then commits/pushes/checks Pages. tools/build_magazine_site.py turns PDF pages to image-based HTML, downloadable original. .github/workflows/magazine-pages.yml deploys on relevant main changes. Last recorded published edition21; publication not reverified remotely in audit.",
+    "screenshots": "Approved computer-use game-window-only capture; no foreground permission inherited from previous sessions. Save original under storybook/NNN-title; filenamesYYYYmmdd-HHMMSS America/Los_Angeles with offset and capture vs archive time. Missing images remain gaps, not fabricated/recreated claims."
+  },
+  "record_locations": [
+    "AGENTS.md",
+    "/Users/sfoley/.codex/coding-standards.md",
+    ".github/instructions/makefile.instructions.md",
+    "README.md",
+    "Makefile",
+    "project.godot",
+    "export_presets.cfg",
+    "roadmap.html",
+    "storybook/README.md",
+    "storybook/storybook.html",
+    "storybook/curation-backlog.json",
+    "handoffs/first-level-redesign-approval.json",
+    "handoffs/first-call-integration.json",
+    "handoffs/first-call-runtime-plan.json",
+    "handoffs/hero-run-cycle-revision.json",
+    "handoffs/clogfather-audio.json",
+    "handoffs/hallowed-widow-swoop-art.json",
+    "design/first-call-action/report.html",
+    "design/first-call-action/level-proposal.json",
+    "design/first-call-action/opening-trial-balance.json",
+    "levels/first-call/level-design.json",
+    "bestiary/clogfather/combat-design.json",
+    "assets/bestiary/catalog.json",
+    "assets/bestiary/balance-policy.json",
+    "assets/bestiary/opening-trial/manifest-v1.json",
+    "assets/world/platform-readability-v3/manifest-v3.json",
+    "assets/world/spare-employee-dispenser/manifest-v6.json",
+    "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+    "assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json",
+    "assets/portraits/emotions-v1.json",
+    "assets/app-icon/porcelain-jaw-v1.json",
+    "weapons/rendering-strategy.json",
+    "audio/catalog.json",
+    "marketing/magazine/README.md"
+  ],
+  "next_actions": [
+    "Confirm Art2 final Sputtervalve package and explicit solid-core/radius agreement before resuming that integration.",
+    "Preserve cap3 patch; integrate only authorized related deliveries, then targeted tests/export, version/roadmap/storybook and readiness notice.",
+    "Keep Clogfather/hero-run/pickups/mobile work distinct; do not silently expand takeover audit into implementation."
+  ],
+  "siblings": {
+    "Game Mechanics 2": "01a14b9d-5a53-7473-a17c-ea75693c9771",
+    "Art 2": "01a14b9d-7a07-7a62-9628-04f20542ab75",
+    "Storyboarding 2": "01a14b9d-aa2d-7e70-8653-bed1d95ed4ed",
+    "Marketing 2": "01a14b9d-c5fb-7de3-914a-743c2edf8206",
+    "Level Design 2": "01a14b9d-de3f-74c0-bd72-b5ac632f4bb8",
+    "Audio 2": "01a14b9d-f83d-7543-9925-9524acf32fe3",
+    "Release 2": "01a14b9e-1105-7350-87f4-5168ceba8f4e"
+  }
+}

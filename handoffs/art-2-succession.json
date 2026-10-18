@@ -1,0 +1,347 @@
+{
+  "date": "2026-10-17",
+  "timezone": "America/Los_Angeles",
+  "successor": "Art 2",
+  "successor_thread": "01a14b9d-7a07-7a62-9628-04f20542ab75",
+  "predecessor_thread": "01a1388b-2b60-7011-832a-5c6a044e0028",
+  "repository": "/Users/sfoley/repos/drain_damage",
+  "scope": "Context acquisition only; no new artwork, gameplay changes, build, game launch or predecessor archival.",
+  "write_test": {
+    "result": "PASS",
+    "method": "Normal-permission mktemp directly in repository; write, read and delete succeeded.",
+    "prefix": ".art2-transfer-test.",
+    "escalation_or_workaround": false
+  },
+  "evidence": {
+    "public_history_archive": "handoffs/art-2-recovered-history.json",
+    "history_order": "Newest to oldest, through the original Bestiary assignment.",
+    "chat_api": "Paginated newest history with outputs; reduced to one turn after size errors.",
+    "api_gap": "Older-than cursor rolloutOrdinal 4551 exceeded read size even at one turn with outputs disabled.",
+    "recovery": "Read public user messages, assistant final answers and received delegations from local session JSONL.",
+    "local_source": "/Users/sfoley/.codex/sessions/2026/10/13/rollout-2026-10-13T20-53-27-01a1388b-2b60-7011-832a-5c6a044e0028.jsonl",
+    "limits": [
+      "No hidden reasoning was inherited or used as transfer evidence.",
+      "Not every historical command output or image was re-inspected; source references remain recoverable locally.",
+      "Historical local screenshot attachments may be unavailable; they were not all checked for existence.",
+      "No new visual, animated, packaged-build or gameplay validation was performed in this audit.",
+      "Original exact prompts remain in asset provenance records; summaries do not replace them."
+    ],
+    "guidance_read": [
+      "AGENTS.md",
+      "/Users/sfoley/.codex/coding-standards.md",
+      ".github/instructions/makefile.instructions.md"
+    ],
+    "records_reviewed": [
+      "handoffs/*art*.json including full archived coverage matrix and crop arrays; subsequent exhaustive archive review supersedes initial selective reads.",
+      "handoffs/hero-run-cycle-revision.json",
+      "handoffs/sean-facial-hair-audit.json",
+      "handoffs/marketing-discussion-game-intent-audit.json",
+      "bestiary/*/monster.json",
+      "bestiary/monster-ideas.json",
+      "assets/bestiary/balance-policy.json",
+      "assets/bestiary/opening-trial/prompts-v1.json",
+      "assets/world/platform-readability-v3/manifest-v3.json",
+      "assets/world/platform-readability-v3/prompts-v3.json",
+      "assets/world/wastewater-cutaway/manifest-v1.json",
+      "assets/app-icon/porcelain-jaw-v1.json",
+      "weapons/rendering-strategy.json",
+      "project.godot",
+      "roadmap.html (build history and Art-related entries)",
+      ".gitignore",
+      "weapons/roster-mockup/roster-v1.json"
+    ],
+    "public_history_entry_count": 248,
+    "full_archive_review": "handoffs/art-2-final-archive-review.json"
+  },
+  "role": {
+    "owns": [
+      "Game raster artwork, source sheets, measured frame/anchor manifests and exact prompt provenance",
+      "Bestiary names/descriptions/assets and synchronized gallery/catalog, with Storyboarding supplying lore",
+      "weapons/<weapon-id>/game-art.json and assets/weapons/ source art",
+      "Art readiness, replacement versions, rejected candidates and visual acceptance gaps"
+    ],
+    "partners": {
+      "Engineering 2": "01a14b9d-9200-7433-96da-a1295a926532",
+      "Game Mechanics 2": "01a14b9d-5a53-7473-a17c-ea75693c9771",
+      "Storyboarding 2": "01a14b9d-aa2d-7e70-8653-bed1d95ed4ed",
+      "Marketing 2": "01a14b9d-c5fb-7de3-914a-743c2edf8206",
+      "Level Design 2": "01a14b9d-de3f-74c0-bd72-b5ac632f4bb8",
+      "Audio 2": "01a14b9d-f83d-7543-9925-9524acf32fe3",
+      "Release 2": "01a14b9e-1105-7350-87f4-5168ceba8f4e"
+    },
+    "boundaries": [
+      "Engineering specifies dimensions and runtime requirements, integrates, tests and packages.",
+      "Mechanics owns balance, health, hitboxes and behavior; distinguish canonical and level override values.",
+      "Storyboarding owns lore approval tracking and storybook editorial curation.",
+      "Marketing owns publication and weapon marketing-art.json; distinguish magazine-only from shared game intent.",
+      "Coordinate shared roadmap/gallery/catalog ownership before concurrent edits.",
+      "Ask before foregrounding the game; source checks do not authorize playtest interruption.",
+      "Preserve original art, rejected local studies, exact prompts and historical captures."
+    ]
+  },
+  "current_snapshot": {
+    "project_version": "0.55.0",
+    "build_record": "Prototype 55; app icon integrated, exported ICNS/signing/version checks recorded.",
+    "build_validation_note": "Recorded evidence only; Art 2 did not rebuild or independently rerun those tests.",
+    "source_delta": "Three-shooter cap present in state, balance and layout source during audit; packaging unverified.",
+    "source_caution": "Uncommitted unrelated edits already existed; preserve them. Budget prose still says cap2.",
+    "latest_screenshot_gap": "Many delivery records retain live review/storybook gaps; do not equate headless PASS with visual approval."
+  },
+  "priority_sputtervalve": {
+    "approved": [
+      "Sean explicitly accepted Sputtervalve name and pressure-valve design on October 17.",
+      "Increase body approximately 50 percent and improve contrast against sewer background.",
+      "Make purple projectile noticeably bigger and provide formal sprites, lore and magazine representation.",
+      "Increase simultaneous shooters to three; challenging without bullet hell."
+    ],
+    "not_approved_as_exact_spec": [
+      "Two-times projectile diameter and pale core/violet rim are Art proposals.",
+      "Displayed contamination/pressure-valve lore is a draft, not separately approved exact copy.",
+      "No damage increase, extra authored encounters or randomized roster was requested."
+    ],
+    "current": {
+      "metadata": "bestiary/sputtervalve/monster.json",
+      "sprite": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+      "manifest": "assets/bestiary/opening-trial/manifest-v1.json",
+      "prompts": "assets/bestiary/opening-trial/prompts-v1.json",
+      "projectile_manifest": "assets/world/opening-trial/manifest-v1.json",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "grid": "4 columns by 2 rows; source cells 384 by 512",
+      "states": "idle x2, windup, fire, recover, hurt, death x2",
+      "identity": "Bolted iron valve, gauge face, copper elbow snout, red handwheel, violet sewage spark",
+      "hp": 36,
+      "authored_opening_count": 1,
+      "status": "No revision artwork generated by predecessor; metadata approval status is stale."
+    },
+    "engineering_contract_from_predecessor": {
+      "canvas": [
+        96,
+        96
+      ],
+      "feet_anchor": [
+        48,
+        80
+      ],
+      "source_facing": "left",
+      "current_collider_relative_feet": [
+        -20,
+        -42,
+        40,
+        42
+      ],
+      "current_muzzle_relative_feet": [
+        -22,
+        -25
+      ],
+      "scaled_collider": [
+        -30,
+        -63,
+        60,
+        63
+      ],
+      "scaled_muzzle": [
+        -33,
+        -37.5
+      ],
+      "frame_display_before": [
+        57.6,
+        76.8
+      ],
+      "frame_display_after": [
+        86.4,
+        115.2
+      ],
+      "rule": "Engineering applies uniform 1.5x around feet once; repaint must not independently double-scale/recenter.",
+      "projectile": "Current hit radius 4, damage 1; Mechanics must approve collision changes separately.",
+      "budgets": "Six hostile bullets and three independent attack patterns retained."
+    },
+    "next_actions": [
+      "Reconfirm active Engineering contract and prepare versioned higher-contrast body/projectile art.",
+      "Preserve frame registration, footing, muzzle alignment and safe placement envelope.",
+      "Coordinate Storyboarding draft lore and Marketing portrait/magazine entry.",
+      "Synchronize approved identity in monster.json, gallery, catalog and current roadmap during actual delivery.",
+      "Engineering integrates and builds; visual review remains permission-gated."
+    ]
+  },
+  "design_memory": {
+    "heroes": [
+      "Only Tony and Sean; no surnames in player-facing text.",
+      "Tony: dark spiky hair, navy work shirt, trousers/tool belt; user removed overalls.",
+      "Sean: bald, orange shirt/blue bib overalls, sturdy but less husky; no sunglasses.",
+      "Sean has broad gray chin beard and distinct soul patch, clean upper lip; tiny tuft revision rejected.",
+      "references/characters/sean-original.png exists locally; private likeness references are Git-ignored.",
+      "Marketing hyperreal portraits must use illustrated character references, not original real photos."
+    ],
+    "bj": [
+      "Selected beige anthropomorphic server rack with green CRT and large BJ side lettering.",
+      "marketing/billy-joe/server-room-v1.png is approved marketing image.",
+      "Toilet/pipe BJ concept rejected and key-art-v1/v2 image deletion explicitly requested historically.",
+      "Do not define unapproved corruption mechanism, portal origin or supernatural explanation."
+    ],
+    "branding": {
+      "game": "Drain Damage",
+      "magazine": "Discharge Quarterly",
+      "working_employer": "Mainframe Plumbing & Supply",
+      "rule": "No invented acronym; preserve historical names in original provenance."
+    },
+    "style": "Natural varied writing, restrained jokes; avoid repeated paired-fragment trailer copy.",
+    "scope_correction": "Magazine publication hold did not cancel glass-front game redesign; that missed delivery was fixed."
+  },
+  "active_art_and_delivery_index": {
+    "hero_animation": {
+      "animation": "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+      "aim": "assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json",
+      "renderer": "scripts/hero_aim_art.gd",
+      "contract": "128 square canvas, feet [64,104], approximately 72px standing height; mirror all anchors/layers together.",
+      "behavior": "Body locomotion independent of aim/fire; offsets move arms, weapon and muzzle together.",
+      "directions": "All eight airborne; grounded diagonal down allowed, straight down airborne only.",
+      "known_defect": "Feet wiggle; lead legs do not cross convincingly.",
+      "rejected": "hero-run-v3/v4 are not approved; leg identity, loop seam and shoulder attachments unresolved.",
+      "rejection_record": "handoffs/hero-run-cycle-revision.json",
+      "remaining": "True run polish, recoil art, full visual movement/aim/fire matrix and reusable final hero standard."
+    },
+    "portraits": {
+      "manifest": "assets/portraits/emotions-v1.json",
+      "active": [
+        "assets/portraits/tony-expressions-v3.png",
+        "assets/portraits/sean-expressions-v4.png",
+        "assets/portraits/bj-expressions-v2.png"
+      ],
+      "grid": "1983x793; 5x2 with non-integer cell dimensions; use semantic mappings.",
+      "emotions": [
+        "neutral",
+        "happy",
+        "amused",
+        "sad",
+        "worried",
+        "afraid",
+        "surprised",
+        "angry",
+        "skeptical",
+        "embarrassed"
+      ]
+    },
+    "ui": [
+      "assets/title/drain-damage-v2.png and dripping-menu-v1.png",
+      "assets/controls/gamepad-salvage-v1.png and keyboard-v1.png",
+      "assets/selection/clipboard-stack-v2.png and clipboard-stack.json",
+      "assets/selection/punch-clock-v1.png and punch-clock.json",
+      "assets/selection/employee-photo-frame.json: taped instant-photo treatment, live names, reusable heroes",
+      "handoffs/bj-death-popup-art.json: approved reuse of existing dark panel; twelve quips fit in build37"
+    ],
+    "platforms": {
+      "manifest": "assets/world/platform-readability-v3/manifest-v3.json",
+      "scope": "All 20 raised surfaces; 3 decks, 6 plinths, 6 pipe bundles, 4 pumps, 1 tall assembly.",
+      "palette": "Oxidized moss green, light gray-green tread, dark undercut; beige rejected.",
+      "status": "Integrated build49; exact crops match collision tops; floor and decorative supports retained.",
+      "gap": "Live composition/contrast review."
+    },
+    "dispenser": {
+      "manifest": "assets/world/spare-employee-dispenser/manifest-v6.json",
+      "handoff": "handoffs/dispenser-single-clone-art.json",
+      "status": "Build51: one midpoint machine, one selected-hero sleeping clone in left bay; right bay empty.",
+      "stock_rule": "Hide clone at first dispense start; remains empty across death/revisit/new life until new run.",
+      "preserve": "Cabinet/glass separation, machine-v1 hand art, blood/impact, Sean v3 beard and mirror/feet fix.",
+      "timing": "Injured sequence target5.5s, max7s; full-health stamp0.5s; respawn2s; no life debit for replacement.",
+      "tone": "Cartoon X eyes and blood slide/fading trail; no anatomical gore; first-use BJ silent.",
+      "gap": "Composed hand/occlusion/hero sequence review; emergence has a single stepping pose."
+    },
+    "wastewater": {
+      "manifest": "assets/world/wastewater-cutaway/manifest-v1.json",
+      "status": "Integrated44/full route45; environmental storytelling, no damage mechanic.",
+      "geometry": "Floor cap440..456, outer456..528, bore464..520; 480px modules in mirrored pairs.",
+      "terminal": "At x8570 onward fully clogged, no flowing water or floaters.",
+      "gap": "Live composition; source textures are not claimed natively seamless."
+    },
+    "icon": {
+      "master": "assets/app-icon/porcelain-jaw-v1.png",
+      "provenance": "assets/app-icon/porcelain-jaw-v1.json",
+      "status": "Sean selected concept1 for now; 1254 square full-bleed master integrated build55.",
+      "gap": "Finder/Dock visual review; concepts9/11 have incorrect Sean facial hair and are not references."
+    },
+    "marketing": [
+      "marketing/hero-portraits/tony-hyperreal-v1.png and sean-hyperreal-v1.png; magazine only",
+      "marketing/character-reactions/tony-clogfather-horror-v1.png; gaze up/right, do not mirror",
+      "marketing/spare-employee-dispenser/tony-stocked-v1.png and sean-stocked-v1.png; historical two-clone cutouts"
+    ]
+  },
+  "bestiary_memory": {
+    "flushfiend": "Stable ID toilet; approved name. Existing animated enemy and damage stages. Origin lore remains draft.",
+    "widow": {
+      "stable_id": "spider",
+      "identity": "Dark bristling spider, red eyes/ivory fangs, white feathered wings and golden halo.",
+      "status": "180 HP and 2x size; warned proximity swoop in49, forward-climbing recovery in53.",
+      "optional_pose": "handoffs/hallowed-widow-swoop-art.json forward-lunge remains deferred pending registration.",
+      "lore": "Approved breeding wording is narrative only; no reproduction mechanic."
+    },
+    "swarm": {
+      "stable_id": "sewer-fly-swarm",
+      "name": "Septic Air Force",
+      "art": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+      "animation": "assets/bestiary/sewer-flies/animation-v3.json",
+      "slicing": "4 columns, 256 square crops at y0,256,512,760,1000,1240; never assume uniform rows.",
+      "runtime": "128 square display; 48px contact/shot/clearance radius integrated53; 12 HP.",
+      "behavior": "Slow random non-hunting asymmetric swarm; incidental contact damages heroes and monsters.",
+      "gaps": "No six damage-stage art or marketing portrait; live fairness/animation review pending."
+    },
+    "gratecrawler": "Separate provisional floor emerger; not Sputtervalve. Name/design unapproved, lore and portrait pending.",
+    "clogfather": {
+      "status": "Fatberg identity approved; source art exists, no playable boss.",
+      "path": "bestiary/clogfather/monster.json",
+      "art": "assets/bestiary/the-clogfather/ body, parts, weak-point and damage atlases v1",
+      "portal": "assets/world/portal/animation-v1.json; source loop for proposed post-boss beat.",
+      "constraints": "Exactly one visible boss, no duplicate background silhouette; portal cause/destination unresolved.",
+      "gap": "Art cleanup, animation, hazard effects, mechanics tuning and boss integration; 720 HP is provisional."
+    },
+    "ideas": "bestiary/monster-ideas.json; unpromoted monsters remain notes-only. Gnatastrophe is a saved name candidate."
+  },
+  "weapons": {
+    "catalog_art": "Six game-art.json files and assets/weapons/<weapon-id>/; source sets are not six playable weapons.",
+    "tony": [
+      "pipe-wrench",
+      "drain-snake",
+      "pressure-gun"
+    ],
+    "sean": [
+      "demolition-hammer",
+      "heavy-plunger-launcher",
+      "pipe-bomb-launcher"
+    ],
+    "playable": [
+      "pressure-gun",
+      "heavy-plunger-launcher"
+    ],
+    "mockup": "weapons/roster-mockup/weapon-roster-v1.png: 13 labeled weapons including seven ideas, not implementation approval.",
+    "reason_for_modular": "Avoid complete hero animation sheets per weapon; preserve authored grips and exceptions for specials.",
+    "remaining": "Other weapon slices, alpha/attachments, grip-family refinement and final production hero standard."
+  },
+  "readiness": {
+    "ready_to_assume_role": true,
+    "production_claim": "Takeover ready; pending artwork and visual gaps remain explicitly unfinished.",
+    "next_priority": "Sputtervalve formalization/readability delivery, then outstanding run-cycle work under existing priorities.",
+    "archive_caveat": "Exhaustive archive review complete: all unique text read and exact duplicate blocks verified against already reviewed text. Coverage ledger: handoffs/art-2-archive-coverage.json. Historical missing logs/media and live validation limits remain."
+  },
+  "predecessor_transfer_messages": [
+    {
+      "timestamp": "2026-10-17T20:47:18.224Z",
+      "text": "<codex_delegation>\n  <source_thread_id>01a1388b-2b60-7011-832a-5c6a044e0028</source_thread_id>\n  <input>Art succession context, part1 CURRENT PRIORITY / AUTHORITY:\nCanonical repository /Users/sfoley/repos/drain_damage; plumbing_inc renamed and no longer exists. My chat still has old writable root. Normal tempfile write/read/delete probe at newroot FAILED PermissionError(1,'Operation not permitted'), no file created. Do not recreate oldroot/work around. Your newchat likely has correct permissions. I have NOT written Sputtervalve revisions yet. Read-only newroot works. User replaced provided AGENTS instructions with global defaults, but actual newroot AGENTS.md contains project rules; read it and coding-standards. Preserve unrelated changes. Repo now Git (was not earlier); Engineering made orderly initial commits excluding rejected/unused art, preserving local media, so older paths in history may now be absent/untracked.\n\nLATEST USER VOICE REQUESTS (Oct17):\n1. Tiny first-level enemy shooting purple projectiles was not personally designed by Sean; he wants formally created with formal sprites, lore magazine and marketing representation. Identified VERIFIED as Sputtervalve. User said YES to keeping name and pressure-valve design, then demanded readability improvements.\n2. Make body about50% bigger (1.5x), higher contrast against sewer, and purple projectile noticeably bigger. I proposed 2x visible projectile diameter, violet rim/pale core, no implicit damage increase. This sizing is an Art proposal for shot; body1.5x explicit user instruction.\n3. Increase simultaneous shooter upper cap2\u21923, challenging but NOT bullet hell. Mechanics identified exact changes and handedEngineering because same oldroot permission denial. Preserve six-hostile-bullet and three-independent-pattern caps, no extra spawn entries implicitly. NOT verified implemented.\n4. User asked count: current level authored list has ONE Sputtervalve. Cap2 previously was ceiling not actual spawn count. Verified scripts integrated_first_call.gd + opening_trial_state.gd + handoffs/opening-trial-level-layout.json timeline.\n5. User asked dynamic/random schedule: explained NOT randomized roster/counts. Authored events triggered by progress, position/timing adapts to safe positions/available budgets, pending enemies may be skipped after region passed. Later waves fixedcounts8,10,10,8 in integrated_first_call. Do not claim roguelike randomization or implement it without request.\n\nSPUTTERVALVE VERIFIED RECORDS:\nbestiary/sputtervalve/monster.json: id sputtervalve, name previously 'Proposed working name, not user-approved canon' (NOW user approval needs recording); bolted pressure valve, angry gauge face, copper elbow cannon/snount, red wheel, violet sewage spark. Backstory empty/pending. marketing image null/pending. HP36 currentprofile; stale metadata runtime_support hud_preview_only /Prototype45 notes need reconcile. Do not blindly change balance.\nassets/bestiary/opening-trial/sputtervalve-v1.png 1536x1024 4cols2rows source384x512. Existing real sprite art DOES exist, but provisional: idle2,windup,fire,recover,hurt,death2. Runtime assets/bestiary/opening-trial/manifest-v1.json role sputtervalve; prompts-v1.json exactoriginalprompt. handoffs/opening-trial-art.json and opening-trial-role-art.json explicitly say provisional not finalcanon. Initial shooter role requested in first-level action prototype, distinct from ground emerger Gratecrawler (also provisional).\nExisting sprites dark teal/rustcopper blends background. Need highercontrast repaint with preserved geometry/crops/registration, not simplyrecenter. No generated revision started yet.\n\nEngineering constraints received:\ncurrent96x96canvas footanchor[48,80], sourcefacesleft; collider relativefeet[-20,-42,40,42], muzzle[-22,-25].\n1.5x aroundfeet -&gt; collider[-30,-63,60,63], muzzle[-33,-37.5],mirrorXright.\nCurrent displayedframedestination57.6x76.8 -&gt;86.4x115.2.\nEngineering can applyuniformruntime1.5x. Do NOT independently enlarge/recenter atlas then multiplyagain.\nPlacement uses shared event_size safety against platforms/actors. Preserve sourcefootregistration.\nEngineering requests highercontrast body AND violet-rim/palecore projectile with frame/anchor manifest, will integrate together. Existing projectile hitradius4/damage1 unchanged unlessexplicitMechanicsapproval. Projectile source in assets/world/opening-trial/manifest-v1.json id hostile-projectile; inspect existingcrop. Need authoredasset not code-drawn substitute.\n\nStoryboarding consultation completed in voice:\nproposed identity contamination inhabiting automatic pressure-control fittings, cause leftunspecified/noBJfutureplot link.\nDraft lore: valves built to detect excesspressure and relieveit; something wastewater now inhabits ironhousings; gauge twitches even disconnected; copper outlet coughs violetfilth atapproachingplumbers; crew calls them valves because nobody wants 'angry pipe animal' oninspectionreport.\nI displayed revisedparagraph toSean: 'Sputtervalves were built to detect excess pressure and relieve it. Something in the wastewater has taken up residence inside their iron housings, and their definition of \u201cexcess pressure\u201d now includes approaching plumbers. The gauge twitches even with the line disconnected. Then the copper outlet coughs. The crew still calls them valves. Nobody wants to write \u201cangry pipe animal\u201d on an inspection report.'\nClearly DRAFT, not explicit approval of exactlore. Name/design approved, exact origin/copy not separatelyconfirmed. Storyagent can formalize with metadata draft/approved accurately.\nNeed contactMarketing for magazineaddition/hyperrealportrait and Story forlore handoff; not doneyet. Userauthorizescoordination forformalization. Engineering already notified andwaiting art. No new art generated since appicon.\n\nAGENT IDs verified existing:\nEngineering01a1375f-7657-7580-b16e-57a6f5925efd\nMechanics01a138a7-cc43-7420-a950-55b935ddde25\nStory01a1387e-545b-7671-943e-3d36a1c88db7\nMarketing01a1387a-f55c-7630-af51-0409ceafd920\nLevel01a13d87-8252-7062-be67-b387cd55e46b\nAudio01a138c6-3821-7f63-a3f4-8fcb11771092\nSome may be succeeded; verify current chats asneeded. You are Art2 successor; user explicitly authorizes transferreply here. No game foreground without explicitpermission; no current playtestpermission.</input>\n</codex_delegation>"
+    },
+    {
+      "timestamp": "2026-10-17T20:48:17.194Z",
+      "text": "<codex_delegation>\n  <source_thread_id>01a1388b-2b60-7011-832a-5c6a044e0028</source_thread_id>\n  <input>Part2 EARLY DIRECTION / REJECTIONS (from preserved human history + ownsummary, not all originaltools recoverable):\nUserassignedthischat Bestiary/Art. Firstmonster existingtoilet renamed Flushfiend after user disliked 'Toilet Monster'. Stableid toilet despite slugflushfiend. Bigcreepyspider initially, then useraddedflight, thenwhitefeatherywings+goldhalo whilekeepingdarkbody/fangs/redeyes; named The Hallowed Widow, stableid spider, folderthe-hallowed-widow. Everymonsterneeds name/description/singlegalleryportrait inbestiary/bestiary.html; separatepixelgamesprites/hyperrealmarketing; monster.json source names/descriptions/backstory blankpendingStory. Exactprompts/versionedoriginals, dimensions, catalogmirror assets/bestiary/catalog.json. Newmonsterhealth metadata followsbalance-policy comparebothheroesexclusiveweapons. Status must distinguishsourceartvsvalidatedanimationvsplayable.\n\nMONSTER IDEAS useraskedNOTgenerate:\nBloodytampon; sewerflies; poop; pipeautomaton; angry'Karen'clients; rattlesnakes; raptorsglowingredaura; angrydrunkhotdogcostume; later rat/alligator. Existingnotes/tablefilesfindviarepo. Only sewerflies developed fromthislist.\nSewerflies: bunch tinybugs tightbutasymmetricswarm, randomSLOWdrift, NEVER huntsplayer, contactdamagesplayerANDothermonsters. Requestedhover/up/down/left/right/deathsheet. Sourceasymmetric swarm-mockup-v2.png despite'mockup' is ACTIVE. animation-v3.json explicitlynonuniformroworigins y0,256,512,760,1000,1240, 4cols256. Do not inferuniform6rows. Initial64canvas later128runtime. Septic Air Force finalnameeditorial. Userrecentlyexpandedcontactfromtinycoretofullmass; Art measuredall20livingframes actualalpha&gt;=32 weightedradius .5source\u2192128display. Recommended48px radius center64,64(source128,128); covers89.9\u201399.8% ink,44only79\u201396%. SentMechanics; said samecirclecontact/projectile/wallclearance, deathnoncontact. Mechanics ownsimplementation. Noimagechangeneeded.\nWidow2xsize180HP explicitcurrent. ProximityswoopimplementedEngineering49 functionalusingexistingflight/hurt/death. Artoptionalbottommiddleforwardlunge frame deferrednotblockedfunctionalattack. handoffs/hallowed-widow-swoop-art.json: atlasflying-spider-atlas-v2.png crop500,512,540,512 destination20,1.8,75.6,71.68 anchor48,48 atBASEscale, applyactor2xONCE. Registrationprovisional. Existing4wingbeatframes. Lorebreedingparagraphinmagazineapproved asLORE, not authorizationreproductionmechanic. Avoid inventingruntimebreeding.\n\nHERO DESIGN:\nTony onlyfirst name, darkspikyhair, navyworkshirt/trousers/toolbelt, NO OVERALLS userremoved. Seanbald, orange workshirt+bluebiboveralls, stockybutLESSHUSKY thanoriginalearlyart. Userapprovedslimmingcovermockup thenaskedapplytoallfat-lookingSeanartexceptspritesprobablyfine. NOsunglassesonSeanhead. Facialhair: CHIN BEARD + separateSOULPATCH, NOT GOATEE, no moustache/cheekbeard. Userrejectedtinychinbeard; askedoriginalphotoandapprovedfullergraychinbeard. Originalphoto previouslyavailable references/characters/sean-original.png; actualnewrootavailabilitymustcheck. Usedonlyforbeardcorrection. Forlatesthyperrealmarketinghero portraits userexplicitlyFORBIDSoriginalrealphotos; referenceillustrateddesigns only.\nBJ rejectedtoiletwithpipes. UserchoseSECONDserverrackmockupwithgreenCRT, slightlyanthropomorphizedserverrack, thenserverroomsetting andbigBJletters side. BJelectronicfacegreenCRT, beigeindustrialrack. Avoidoldtoiletbody.\nAll3dialogportraitsexpandedfearanger surprisehappyetc. Latestactive Tonyexpressionsv3, Seanv4, BJv2. Userwantedhero-selection portraits asoldPolaroid tapedclipboard; integrated earlier viaEngineering. Gameillustrations retained whenMarketinghyperrealportraitscreated.\nHeroappicon #11 anddispensericon#9conceptsheet haveWRONGSeanfullbeard/moustache; rejectedasfinalcharacterreference, wouldneedfixifselected. Userselected#1instead.\n\nMODULAR WEAPONS / ANIMATION:\nUserwantedconsultEngineering: manyweapons avoidfullsheetperhero/weapon. Modularbody+arms+weapon approach developed. Up/up-right userrejected oversizedTonyarm and armsnotaimingwithweapon. Seanback/lefthandlookedbackwards; revisedleftsupporthandv3 isactive. UseraskedstandardizeacrossTonySean/futureheroes and INCLUDEJUMP-POINT-DOWN, donotforget.\nCurrentactive hero manifests fromscript: assets/sprites/hero-animation-v2/manifest-beard-v3.json, assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json. Requiredparts inPart4.\nUser runningcritique: legsnevercross,feetwiggle. Severalgenerated replacements v3/v4failedlegidentity/stridecontinuity; explicitlyREJECTED DO NOTINTEGRATE. Outstanding runfix, notsolved. handoffs/hero-run-cycle-revision.json documents. previews/hero-run-cycle-v4.html existsbutnotverifiedanimated. Browserlocalfiletoolwaspolicyblocked; doNOTworkaroundwithdifferentbrowser/CDP/server to bypass. NoactualanimatedQAclaim. Keepcurrentbeardv3runtime untilgoodnewcycle.\nUseraskedweaponsrostersprite mockupallknownandideaswithnames/ranges. Deliveredweapons/roster-mockup/weapon-roster-v1.png1086x1448 +roster-v1.json/prompt-v1.json. 13weapons: 6catalog PipeWrench,DrainSnake,PressureGun(Tony),DemolitionHammer,HeavyPlungerLauncher,PipeBombLauncher(Sean);7ideas KineticAirRam,ToiletAuger,PlungerWaterWave,SolderingTorch,ThreeFootPipeWrench,DrainMachineCable,PressureFan. Rangesprovisionalexceptcatalog. NOauthorizationallnewweaponsimplementation fromsheetalone.\n\nCONTROLS:\nUser askedcontrollerbodysoftplumbersputty thenchoseblack/bluehandles: salvagecontroller oliveputtybodybluePVClefthandleblackribbedright, copperstraps coloredABXY. Activeassets/controls/gamepad-salvage-v1.png. Othergamepads/conceptsevenwereunselected. keyboard-v1active.\nPunchclockuserhatedflatcodeart; replacementoldtealmetalmechanicalclockwithcard/brassCLOCKINbutton generated/integrated (findcurrentmanifest). Do notuseoldflatplaceholder.\n\nSCOPE DISTINCTIONS:\nHyperrealTony/Sean forMARKETING/MAGAZINEONLY, NOT gameportraits/sprites. OtherMarketingconversationitems partlygame: wastewater, glassclonecabinet etc. Fullaudit handoffs/marketing-discussion-game-intent-audit.json, Storyreview game-intent-story-review.json. Earlierglassfrontdispenserrequest dropped becausemixededitorial+gamehandoff; fixed48. MagazinecopytonedcorporategagdoesNOTremovegrossreplacementgamegag. BJ sharedapprovedidentity. Magazinepageorder/font/cover/PDFeditorialonly.\nAppicon selected#1 Plunger vsPorcelainJaw: assets/app-icon/porcelain-jaw-v1.png1254square +JSONexactprompt, generatedfrommarketing/app-icon/concepts-v1.png12conceptsheet. User'fornow'. Engineeringreceivedintegrationrequest, packagingcompletionNOTverifiedbyme. Fullbleedno bakedroundmask/numbers. UserwantedStoryconsult, Storyfavored1/2/4/3. No new appiconworkneededunlessEngineeringpending.</input>\n</codex_delegation>"
+    },
+    {
+      "timestamp": "2026-10-17T20:49:08.515Z",
+      "text": "<codex_delegation>\n  <source_thread_id>01a1388b-2b60-7011-832a-5c6a044e0028</source_thread_id>\n  <input>Part3 RECENT DELIVERIES / MEASUREMENTS:\nAllpathsprojectrelative undernewdrain_damage now. Exactprompts incompanionJSONs, neverregeneratefrommemoryifcanread.\n\nPLATFORMCONTRAST: User screenshotdarkplatformblendswall anddislikedBEIGEearlierfix. Allfirstlevel20raisedobstaclesmustread:\n3onewaydeck250x16 atx370,1270,2170 y320.\n6plinth150x60 x180,670,1080,1570,1980,2470 y380.\n6laterbundle160x60 x3500,3840,4850,5570,6860,7200 y380.\n4pump180x120 x3660,5010,5390,7020 y320.\n1tall200x180 x5190 y260.\nDelivered assets/world/platform-readability-v3/manifest-v3.json +prompts-v3.json\nlow-deck-v3.png1536x1024: deckcrop[66,750,1405,95];plinth/bundle[71,230,1394,344].\npump-v3.png1536x1024 crop[145,220,1249,626].\ntall-v3.png1323x1189 crop[87,130,1148,936].\nMossgreenframes/lightgraygreentread/darkundercut; noivorypaint. Cropstoptreadcontinuousalpha min235\u2013242, boundschecked. Raisedcornercaps trimmed intentionally topcollision matches. Floorfasciaalreadyreadable retained; wastewatercutaway preserved; decorativebackingsupportsdarknoncolliding retained.\nLevelDesignCONFIRMEDall20integratedviafirst_call.gd andbuild_combat_data.py reference, metadata7testsPASS, handedEngineering49. LivecompositionnotcheckedbyArt. Engineeringownsroadmapcombinedbuild; avoidoverlap.\nhandoffs/platform-contrast-art.json supersessionnote. Earlierplatform-contrast-v2.pngBEIGEsuperseded; moss-platform-scene-mockup-v1.png onlydirectionpreview notruntime.\n\nGLASSDISPENSER:\nassets/world/spare-employee-dispenser/glass-cabinet-v1.png1086x1448 (baseemptycabinetleft,transparentglassoverlayright),manifest-v5 builtfromv4 preservinghand/blood/heroframes.\n192canvas anchor96,192. Baseallstates source[0,145,632,1148] destination[25.5,27.6,132.9,164.4].\nglasssource[638,408,440,539] dest[42.32,65.26,94.22,77.19]; glasscentersalpha0.\ntrimsource[90,1148,425,145]dest[44.43,171.24,89.37,20.76].\nopening_rect[56,151,64,20], exitfeet[82,166], worldorigincheckpointX-32,248 floor440.\nsleeping-heroes-v2.json +PNG. SourcecenterX192 feetTony508Sean460 scale.105. Initially2slotsclip[50,73,34,64],[96,73,34,64],feet[67,137],[113,137],frame.4s. Runtime48confirmed.\nLATESTUSER ONE midpointmachine, ONEclone, afterfirstactualdispenseEMPTY restofrun incldeath/revisit/newlife untilnewrun. Art approved existingEMPTYcabinetbase+glass adequate no newpixels. Occupiedslot0only,leftbay;rightbayempty. Handoff handoffs/dispenser-single-clone-art.json. Removeoccupantatdispensebegin beforeemergentheroappears. Keepmirror/footfixEngineeringowns. Activebuildernowmanifest-v6.json, Engineeringbuild51; verifycurrent. DO NOTreintroduce2clonecount orstockremainsvisible fromv5notes. machine-v1.png stillREQUIREDhandart despitebasecabinetreplaced. Existingblood/body sequencepreserved. Seanmirror teleportfixEngineering-owned; do notregressdraw_framefix.\n\nWASTEWATER:\nassets/world/wastewater-cutaway/manifest-v1.json, layers-v1.png,debris-v1.png,buildup-v1.png,prompts-v1.json,validation-v1.json.\nhandoffs/wastewater-cutaway-art.json,Leveldesign counterpart.\nFloorcap440..456 outer456..528,bore464..520;tile480 mirroredpairs960.\nInteriorcrop90,270,600,155\u2192480x56;rimtop840,245,620,47\u2192480x8,bottom840,412,620,43.\nWatercrops40,672,700,146and800,672,700,146\u2192480x56 variabledepthbottom520.\ngreaselight24,324,726,98;medium786,250,728,172;heavy24,570,726,298;plug815,605,665,220;alpha249..254.\n8debris wipe,diaper,boot,toycar,phone,toothbrush,plasticbag,can max20logical.\nFullrouteclogx8570, integrated44/full45. No newdamage.\n\nMARKETINGHERO:\nmarketing/hero-portraits/tony-hyperreal-v1.png andsean-hyperreal-v1.png1122x1402, prompts-v1.json, prior-magazine-elements-v1.json. ONLYillustratedscreenshotreference, NOrealphoto.\nhandoffs/hero-hyperreal-marketing-portraits.json.\nUpdatedmagazinecrew022/033 image refs/crops0,0,w,w. Marketingthenedition20. Artworkapprovedasdeliverybutusernotseparatelyevaluatednewphotoreal? No impliedgameuse.\n\nBUILDHISTORY confidentlyverified:\n48Engineeringsaidbuilt/exported/signed/archived,9Python+6packagedsuitesPASS inclglass/dispenser/dialogue/completion/wastewater/integratedlevel, NOlivecomposition.\n49allplatformhandoff/functionalWidowswoop inprogresslastchecked; later51singleclone (readcurrentrecordsforfinalstatus).\nDo notclaimlatestbuildnumberfromoldhistory.\n\nARTCHECKS / TOOLPRACTICE:\nAlwaysimage_gen forpixel/rasterediting. NoPython/Pillowpainting/recolor/compositingunlessuserexplicitasks; readonlyalpha/dimensions/boundsanalysisallowed. Copyfiles allowed. Runtimecropmetadata allowed. Generatedimagesreturnpathin~/.codex/generated_images/&lt;oldchat&gt;/exec-*.png; copypreserveoriginal andexactprompt.\nPillowruntime /Users/sfoley/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.\nGeneratedtransparentimagespreviewmayappearwithRGBglow butalpha0; inspectactualalpha beforeclaimbgopaque.\nGeometry/provenancevalidation notequivalentliveanimatedreview. Generatedrunstudieslookplausiblebutfailedactuallegidentity; keeprejectionexplicit.\nNo gameforeground currentlyauthorized. Earlierdaughterplaying explicitNOlaunch, nowgeneralprojectrulepermissionstillapplies.\nBestiary/gallery/cataloghealthsync mandatorywhenformalizing. Exactmetadata source pathsrelativeprojectroot.\nIfwritepermissionsnewrootblocked, reportsourcefolderconfigupdate, don'tworkaround. I didnotescalate.</input>\n</codex_delegation>"
+    },
+    {
+      "timestamp": "2026-10-17T20:50:45.858Z",
+      "text": "<codex_delegation>\n  <source_thread_id>01a1388b-2b60-7011-832a-5c6a044e0028</source_thread_id>\n  <input>Part4 ACTIVEASSETS / FINALGAPAUDIT:\nThanks newerverifiedfacts supersedeoldstatus: icon0.55.0 integrated,swarm48pxbuild53 integrated, Seanoriginalexists. Recordyourverification.\n\nLatestread-onlyGitexclusionadvicegivenEngineering:\nKEEP portraits tony-expressions-v3.png,sean-expressions-v4.png,bj-expressions-v2.png +emotions-v1.json.\nEarlierTonyv1/v2,Seanv1/v2/v3,BJv1 historicallocalonly.\nKEEP controlskeyboard-v1.png,gamepad-salvage-v1.png. Earliergamepad-v1/v2/cheese-v1 andplumbing-concepts-v1 sevenideas unselected.\nKEEP titledrain-damage-v2.png,dripping-menu-v1.png; earlierdrain-damage-v1/service-call-v1 obsolete.\nKEEP hero-animation-v2 death-v3.png,sean-motion-v3.png,tony-motion-v2.png +manifest-beard-v3.json. deathv1/v2,Seanmotionv1/v2,Tonymotionv1 superseded.\nKEEP modular-aim-v1 airborne-bodies-v3.png,downward-arms.png,sean-left-support-hand-v3.png,sean-parts-v2.png,tony-parts-v1.png +runtime-manifest-beard-v2.json. airborne-bodies.png/v2,Seanpartsv1,lefthandv2 superseded.\nassets/prototypes/modular-aim/*.png oldprototypecopies localonly.\nKEEP assets/sprites/sean-v3.png,tony-v1.png,toilet-v1.png becauseworld_art.gd preloads.\nKEEP assets/weapons/heavy-plunger-launcher/atlas-v1.png andpressure-gun/atlas-v2.png referencedbyhero manifests.\nKEEP machine-v1 handsource,platform-kit-v1 floor/supports,swarm-mockup-v2 despite filenameslookingold.\nRejected hero-run-v3/v4 PNGs andsceneplatformmockup canexcludedinitialGitcommits, preserveoriginalslocally. Matching.png.importcompanionsconsistent. OldJSONprovenancecanremain withdocumentedlocal-onlymedia. These arehistoricalrecommendations NOT authorizingfuturedeletion.\n\nGAPS BEYONDSPUTTERVALVE:\nConfirmedunfinished: runningcyclecrossing/legidentity, complete reusableheroanimationstandard+allaim/jumpdownvalidation, livecomposedreviewofseveralassets/muzzleanchors, optionalWidowforward-lungeposealignment, formalizationofGratecrawler STILL provisionalbutnotuseraskedthisvoice toformalizeit; don'tsilentlycanonize.\nWeapon13itemrostersheet DELIVERED; individualnewweaponanimations notrequestedforproductionyet/ideamechanicsunapproved. Notmissingdelivery.\nMonsteridealist items intentionallyNOTgenerated, donotcallmissingapprovedart.\nAppicon selectedmaster DELIVERED andyouverifiedintegrated. Magazinehero portraits DELIVERED, shouldbeusededition20+; no neednewportraits.\nPolaroidselection/punchclock/controller/BJportraits/sleepingclone art werehandedEngineeringearlier; verifyrecordsforfinalintegration ifneeded, no specificunfulfilledcommissionknownfrommyrecoverablecontext.\nSewerflyformalmarketingportrait: original animation-v3 limitations said nohyperrealportraitcommissioned inthatmockup. Latermagazineeditionsmayhaveone; inspectbeforecallingmissing. Usergeneralpolicy everymonsterbothtypes, soformalizationauditshouldflagactualmissing notgenerate blindlyduringtransfer.\nBoss/portalpolish: I have NOrecoverableverifiedadditionaldetailbeyondyourpublichistory. Clogfatherart exists elsewhere; earliernotes demandexactlyonevisibleboss/no duplicatebackgroundsilhouette. Do notassertportaldesign/approvalfrommytransfer; trustrecoveredhistory/currentfiles. Storytoldappicon avoidportal/futureBJfate spoilers; nofutureplotdetailswereauthorizedforicon.\nSeanallartthinning/beard: userrequestedpropagatewherefat butspritesinitiallyfine; laterbeardpropagatedactiveSeanspritesincludingdispenserv3. No exhaustivefreshwholeprojectauditperformedafterlaterassets; historicalolderimagesintentionallypreserved notallneedrewrite.\n\nNEXTORDER:\nA Completeaudit/succession only now (yourequested nonewart).\nB Whenresumingproduction, tellEngineeringandStory/MarketingnewArtownerandrequestcurrentownership; EngineeringawaitsSputtervalvebody+projectile revisions.\nC GeneratehighercontrastSputtervalvepaletteedit SAMEgrid/crops/footpositions, runtime1.5xhandledEngineering; brightenbroadbodyplanesandoutlinecontrastwithoutbeigeblob/neonglow. Palettechoice notyetuserapprovedspecific; proposewornlightergraymetal/redwheel/copper outlet maintainingseweridentity.\nD Newprojectilevisible~2xproposal, palevioletcore/saturatedrim, keepdamage1/hitradius4 unlessMechanicsagreeschanges. Provideactualdims/crop/dest/anchor.\nE FormalmarketinghyperrealSputtervalveportrait matchingreviseddesign; Storyfinisheslore draftapprovedstatusaccurate; Marketingmagazineentry. Name/designapproved, exactlorenotconfirmed.\nF Syncmonster/catalog/gallery/provenanceandroadmap; handoffruntimeEngineering, magazineMarketing. Buildverification/reporttruthful.\nG Returnrunfixlaterwithactualoppositelegcycleandmodularattachmenttests; nofakepassedpreview.\n\nNo approved completedartcurrentlybeingwithheld/undelivered that I know of. Sputtervalve newart is requestedbutNOTYETCREATED. Allothercompletedrecentassets werealreadycopiedprojectandhandoffsent. I will stopproductionhere andnotarchive, pertransferrequest. These4messages + publichistory/currentfiles are my fullrecoverablecontext; whereIflagunknown don'tfillwithassumptions.</input>\n</codex_delegation>"
+    }
+  ],
+  "predecessor_followup": "Four-part transfer completed; no finished artwork withheld. Sputtervalve revision not created.",
+  "final_archive_verification": "handoffs/art-2-final-archive-review.json"
+}

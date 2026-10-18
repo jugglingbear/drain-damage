@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-17",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "role": "Game Mechanics 2",
+  "repository": "/Users/sfoley/repos/drain_damage",
+  "predecessor": {
+    "name": "Game Mechanics",
+    "thread_id": "01a138a7-cc43-7420-a950-55b935ddde25",
+    "preserved": true
+  },
+  "successor_thread_id": "01a14b9d-5a53-7473-a17c-ea75693c9771",
+  "scope": "Succession/context acquisition only; no game implementation, builds, artwork, launches, or predecessor archival.",
+  "write_test": {
+    "result": "PASS",
+    "method": "Unique UUID temporary file directly in new repository, normal permissions; created, written, read, deleted; absence verified.",
+    "cleanup": "Complete"
+  },
+  "history": {
+    "pages": 14,
+    "turns": 72,
+    "order": "Newest through oldest; pagination reached hasMore=false.",
+    "first_turn": "01a138a9-653f-7472-881e-92b16914cfa7",
+    "latest_pretransfer_turn": "01a14b9a-967d-7a90-93a9-f7043c653c50",
+    "archive": "previews/succession/game-mechanics-history.json",
+    "archive_status": "Local ignored recovery archive of public messages, tool calls and returned outputs; reasoning items excluded.",
+    "review": "All user/assistant/incoming messages and 75 outgoing handoffs examined; relevant implementation and validation outputs examined. Retrieval is not access to hidden reasoning.",
+    "truncated_outputs": [
+      {
+        "turn": "01a14b93-2359-7083-8812-6b0ea0922673",
+        "item": "exec-2c78482e-88b4-4b04-8bf4-addaa9ae2202",
+        "command": "/bin/zsh -lc \"sed -n '1,130p' tests/opening_trial_state.gd; rg -n 'shooters.{0,30}2|simultaneous_shooters|simultaneous.*shooter' handoffs design scripts tests --glob '*.json' --glob '*.gd' | head -35; rg --files .github/instructions; cat AGENTS.md\""
+      },
+      {
+        "turn": "01a146ba-240e-7e11-ab7d-6b585def32b5",
+        "item": "exec-f995a1f5-e11c-4646-ad4f-e21df1d582dc",
+        "command": "/bin/zsh -lc 'cat /Users/sfoley/.codex/coding-standards.md; cat AGENTS.md; cat scripts/opening_trial_game.gd; cat tests/opening_trial_game.gd'"
+      },
+      {
+        "turn": "01a146ba-240e-7e11-ab7d-6b585def32b5",
+        "item": "exec-3b2f01a2-6f4a-47d4-bccc-46aa758f5014",
+        "command": "/bin/zsh -lc 'cat scripts/opening_trial_state.gd; cat scripts/opening_trial_level.gd; cat design/first-call-action/opening-trial-balance.json; cat handoffs/opening-trial-level-layout.json'"
+      },
+      {
+        "turn": "01a146ad-2c02-70e1-b527-8eaff525ed88",
+        "item": "exec-092f30ec-7efa-47f2-bed5-8832c808eb7e",
+        "command": "/bin/zsh -lc 'cat handoffs/opening-trial-level-layout.json'"
+      },
+      {
+        "turn": "01a13d5f-b166-7170-8e9e-98ff295fed97",
+        "item": "exec-aa049ebe-21ef-469d-b13a-d8a680bbf8e7",
+        "command": "/bin/zsh -lc \"rg -n 'CHASE|PATROL|home|direction|clamp|enemy.pos' scripts/game.gd; cat weapons/pressure-gun/weapon.json; cat weapons/heavy-plunger-launcher/weapon.json; cat bestiary/flushfiend/monster.json; rg -n 'hits_to_defeat|weapon_comparisons' bestiary/*/*.json; rg -n '40 /|40 HP|500|650|pressure-gun damage|heavy-plunger damage' roadmap.html\""
+      },
+      {
+        "turn": "01a13c0b-b31e-7ff3-ac06-c0f46fbc6501",
+        "item": "exec-54db321b-907d-4ca0-bea2-44479ddb5599",
+        "command": "/bin/zsh -lc \"rg --files -g '*clog*' -g '*boss*' -g 'AGENTS.md' -g '*catalog.json' -g '*policy.json' -g '*player*.json'; cat assets/bestiary/catalog.json; cat assets/bestiary/balance-policy.json; cat weapons/catalog.json; rg -n 'Clogfather|Current build|boss|Combat metadata' roadmap.html; cat AGENTS.md\""
+      },
+      {
+        "turn": "01a138c3-0337-7c81-9c88-5fcb275c29a9",
+        "item": "exec-8a1a3a69-3f32-4404-95b7-e77e69babd16",
+        "command": "/bin/zsh -lc \"cat assets/bestiary/catalog.json; rg --files weapons bestiary .github 2>/dev/null; sed -n '1,100p' assets/bestiary/flying-spider-animation-v2.json; rg -n 'mechanics|weapon|health|damage' roadmap.html\""
+      },
+      {
+        "turn": "01a138a9-653f-7472-881e-92b16914cfa7",
+        "item": "exec-9fe297a8-8ba8-4b5e-a166-7ca15721a125",
+        "command": "/bin/zsh -lc \"git status --short; rg --files -g '*.gd' -g '.github/**' -g '*json' -g '*toml'; cat AGENTS.md; cat README.md; rg -n 'health|damage|weapon|speed|Tony|Sean|combat|Combat' roadmap.html\""
+      }
+    ]
+  },
+  "responsibilities": [
+    "Own mechanics requirements and deliberate balance: hero health/movement, exclusive weapon effects/cadence/damage/range, monster health, behavior, threat budgets, hit counts, fairness and test acceptance.",
+    "Keep per-entity JSON authoritative; catalogs mirror/index it; validated data/combat.json is generated for export, not independently authored.",
+    "Coordinate scoped runtime work with Engineering and Level Design before touching shared adapters. Engineering owns final integration/version/export/signing/packaged validation/roadmap/storybook delivery.",
+    "Art owns new or replacement artwork and runtime art manifests; Marketing owns realistic weapon portraits; Storyboarding owns lore/dialogue and storybook curation; Audio owns sound source and provenance.",
+    "Preserve existing work, older art/builds and exact prompts. Headless checks are not visual, audible, survival, or fairness signoff. Ask before game foregrounding.",
+    "Report ready build version and gaps only after actual export/checks. A dispatched request or metadata edit does not prove delivery."
+  ],
+  "current_snapshot": {
+    "source_commit": "49cc403",
+    "project_version": "0.55.0",
+    "recorded_current_build": "Prototype 55",
+    "version_evidence": "project.godot and roadmap.html; storybook entries 053–055. No build run in this audit.",
+    "heroes": {
+      "tony": {
+        "hp": 4,
+        "speed": 270
+      },
+      "sean": {
+        "hp": 5,
+        "speed": 235
+      },
+      "shared": "Same jump physics; three TOTAL lives; selected-hero head HUD."
+    },
+    "health_decision": "Original reciprocal 25% request is mathematically inconsistent. 75/100 vs80/100 were proposals; current4/5 contact-hit ratio is provisional, not final large-number HP approval.",
+    "active_first_level": {
+      "tony": {
+        "damage": 12,
+        "interval": 0.16,
+        "projectile_speed": 760,
+        "range": 320
+      },
+      "sean": {
+        "damage": 18,
+        "interval": 0.24,
+        "projectile_speed": 520,
+        "range": 480
+      },
+      "source": "design/first-call-action/opening-trial-balance.json",
+      "since": "Prototype45 continuous first-level integration"
+    },
+    "baseline": {
+      "tony": "6 damage/.15s/320px",
+      "sean": "24 damage/1s/480px",
+      "note": "Top-level starter weapon metadata remains comparison baseline. Do not overwrite active profile or mistake old metadata status for current play."
+    },
+    "weapons": {
+      "playable": [
+        "pressure-gun",
+        "heavy-plunger-launcher"
+      ],
+      "tony_design": [
+        "pipe-wrench:12/.30s,60px sweep,.06 windup",
+        "drain-snake:8/.25s,140px thrust,3 targets,.06 windup"
+      ],
+      "sean_design": [
+        "demolition-hammer:60/1.5s,75px sweep,.3 windup",
+        "pipe-bomb-launcher:60/2s,420px/s,500px travel,gravity700,35-degree launch,90px explosion,no falloff/no self damage"
+      ],
+      "policy": "Exclusive ownership approved. One melee/one ranged slot and future weapon gameplay remain proposals; unsupported tools must fail explicitly."
+    },
+    "level": "9,600px continuous route; exit x9450. No timed cutoff/results in default play. No ordinary kill gates since47. Twelve authored opening events (8 runners,1 shooter,1 emerger,2 flyers), then finite8/10/10/8 later runners. Arrivals depend on spatial progress and safety, not randomized new encounter lists.",
+    "budgets": "Opening visible6 incl warnings; current source cap3 shooters,6 bullets,3 independent patterns. Integrated crowd8 otherwise/6 with live or warning Widow; one Widow at a time. Cap3 source edits exist but next build pending Art.",
+    "checkpoint": "One atx4650 (~49%). One selected-hero clone in left bay. Healthy check-in preserves stock; first real vend consumes. Empty persists through deaths/revisits; new run refills. Later respawn beside empty cabinet; three lives unchanged.",
+    "monsters": {
+      "flushfiend": "StableID toilet. Baseline40HP; active runner24HP. Persistent aggro within280px, no chase leash; preaggro patrol150px,80px/s, chase115px/s,6px stop deadzone. Turn .35brake+.65stop+.20accel; active turn not repeatedly reset.",
+      "widow": "StableID spider. Active180HP,2x linear render/collider60x48,15 Tony/10 Sean hits. Flight100px/s at initialy250; nearby hero ahead within400 triggers.65s locked warning,.8s dive,1s forward climb to old altitude,1.2s forward cooldown. Sweep scenery; blocked path safety takes precedence over exact altitude.",
+      "swarm": "StableID sewer-fly-swarm; selected working name Septic Air Force.12HP,35px/s coherent non-hunting wander,48px circle at128px display. Hero1/monster6 contact,1.5s per-target cooldown shared across swarms; no swarm-on-swarm/boss bypass. Integrated opening removes old2090 swarm; later4400 swarm remains.",
+      "shooter": "Sputtervalve proposed name,36HP,3 Tony/2 Sean shots. Current projectile radius4,speed150,damage1,lifetime3.5; visible delay/windup/no homing and budget gates.",
+      "emerger": "Gratecrawler proposed name,24HP,2 shots either hero. .8warning+.35emerge+.3settle;90px/s short patrol; safe activation cannot damage beneath hero.",
+      "boss": "Clogfather rooted fatberg identity approved, encounter required but not playable. Canonical720HP provisional;1080 candidate for faster profile unapproved. Current exit is temporary, not boss completion."
+    }
+  },
+  "decisions_and_corrections": [
+    "Shared weapons superseded by strict per-hero exclusivity.",
+    "Sean40-damage one-shot toilet and650px range replaced with24/480 baseline; Tony500 range shortened320. Faster12/.16 and18/.24 later approved for trial, then integrated first level.",
+    "Do not dismiss perceived2–3-second Sean delay: configured1s cooldown plus misses/travel explains experience. Balance counts need accuracy and target-switching time, not DPS alone.",
+    "17 enemies/20s and90-route proposals not minimum acceptance. Recommended12 first; broad peaks10bodies/10bullets were not approved by this history.",
+    "Grounded down diagonals allowed; only straight-down requires airborne. Persistent visual aim independent of fire, normalized range/speed, legs and jump phases independent of aim/recoil.",
+    "Running plunger collision fix uses visible transverse projectile thickness Sean7/Tony2; standing Tony fix uses visible43px Flushfiend bullet target instead of36px movement body. Do not invisibly shift muzzle or add arbitrary aim assistance.",
+    "Kill-gate disappearing barriers first became.9s sliding doors and synchronized sound; later47 removed those gates from active first level. Do not restore old gate requirements.",
+    "Widow four-second stationary engagement hover from47 superseded by proximity swoop49 and forward V recovery53; no homing/retrace.",
+    "Swarm16px core superseded48px after Art measured20 living frames89.9–99.8% ink coverage. Do not double48 again. animation-v3 uses unchangedv2 PNG with nonuniform row crops.",
+    "Dispenser bloodless initial gag superseded bloody X-eye SPLAT/slide/fading trail. Perspective growth and random full-body-safe impact approved; cosmetic RNG independent of combat.",
+    "Dispenser5.5s target/7s hard active control-lock cap; healthy<=.5s/respawn<=2s. Commit heal/checkpoint before presentation using preheal injury snapshot. Pause excludes elapsed time; skip/watchdog finalization idempotent; gag never consumes life.",
+    "Dispenser first injured full-sequence flag app-session shared across heroes/new runs; later explicit skip release-guarded. Historical three checkpoint coordinates3300/6660/8190 superseded4650.",
+    "Pause B resumes regardless of focus, A confirms; Main Menu requires explicit selection. Y/R standalone reset removed; developer chord remains technical-only, never player instructions.",
+    "Player death3s flush once including final life; not hit/enemy death/dispenser. Natural finish across popup/respawn, explicit pause freezes, title/new run cleans; audio never gates gameplay.",
+    "Canon proposals must stay proposals: smart-toilet origin, portal cause/destination, exact BJ takeover force/fate. No invented lore from mechanics."
+  ],
+  "boss_contract": {
+    "paths": [
+      "bestiary/clogfather/monster.json",
+      "bestiary/clogfather/combat-design.json",
+      "assets/bestiary/damage/health-visuals.json"
+    ],
+    "rules": "One hazard pattern at a time: sludge .9tell/210px/s/.45spacing/2.5life; acid1.2tell locked columns/.6fall/.8puddle/max35%floor; single warned1.2s Flushfiend summon. All hazards clear then.8approach grace+5s weak-point opening. Phase threshold queues until recovery ends; death immediate.",
+    "arena": "Initial640px clear floor,180px reachable safe corridor for slower hero; low weak point<=280px ranged/60px melee. Optional valves .4s hold,one shared use/phase, not required.",
+    "damage": "Current contact-hit scale1; future15/20 attack values must NEVER be applied to4/5HP heroes. Retune windows/HP after active starter profile, both defaults must win without pickups.",
+    "hud": "Top-center name/80%-width continuous bar; true fill immediate, trail .15delay/.35catchup. Green>50%,yellow>25..50%,red>0..25%; zero empty. No phase refill, bars visible in invulnerable phases. HUD preview implemented, not boss fight."
+  },
+  "validation_evidence": {
+    "historical": "Reviewed actual predecessor command results, not newly rerun.",
+    "passed": [
+      "Durable flyer180HP/15&10 actual hits, locked target dodge, deck sweep, both-direction monotonic V recovery.",
+      "Swarm20 seeded60s paths at120Hz, corners/door changes/contact cooldown/actual weapon hits/lifecycle.",
+      "Standing shots16 cases both heroes/facings/moving directions/runner roles; running shots504 geometry cases.",
+      "Scheduler real12-event schedule, budget reservations, emitted bullets survive emitter death, retirement not kills, unresolved shots not misses.",
+      "Trial aggressive Tony11 issued/2killed/1deferred, Sean10/1/2; idle each6 issued/6deferred. Invulnerability used for observation, not survival signoff.",
+      "Build49 nine Python+ten packaged suites;51 nine+eight;52 nine+six;53 nine+four (storybook and predecessor).54 eleven Python+four packaged,55 export/signing/version evidence (storybook)."
+    ],
+    "warnings": "macOS CA-certificate errors and some ObjectDB/resource shutdown warnings recur. Historical early assertion/draw errors were followed by passing reruns; do not hide them.",
+    "correction": "Predecessor explicitly corrected a false git diff --check claim for47: directory was not Git at that point; direct whitespace assertions passed instead.",
+    "remaining": "Human visual/audio/fairness checks remain pending. Old Tony completed121.3s/Sean exhausted lives zone4x5689/14cleared is historical pre45/47 evidence, not proof of current failure or current fix.",
+    "test_commands": [
+      "python3 -m unittest discover -s tests -p 'test_*.py'",
+      "Godot --headless --log-file <owned temporary path> --path . --script tests/<suite>.gd",
+      "tests/standing_shots.gd accepts -- --integrated"
+    ],
+    "build_contract": "Makefile uses Godot4.7.2 local .tools/Godot.app/Contents/MacOS/Godot; make combat-data; make build-macos exports/ad-hoc signs/verifies. MAC_APP override preserves active playtest app. No make test target currently; user asked whether one existed, did not explicitly authorize adding it in recovered history."
+  },
+  "pending": [
+    "Engineering/Art combined Sputtervalve body1.5x readable revision and shooter cap3 packaging. Current original body[-20,-42,40,42],muzzle[-22,-25] -> proposed[-30,-63,60,63],muzzle[-33,-37.5].",
+    "Measure revised solid shot: radius8 only if actual solid diameter doubles8->16; keep4 if only glow doubles. Preserve damage1/speed150/cadence/warnings/bullets6/patterns3. Recommendation not separately user-selected tuning. Near-edge hits/misses, expanded wall sweep, muzzle/deck clearance needed.",
+    "No random encounters or extra spawns authorized by cap increase. One authored shooter still below cap.",
+    "Playable Clogfather encounter/hazard integration, boss balance and supporting art validation; no automatic1080 retune.",
+    "Future exclusive weapons/pickups/loadout and optional valve experiment not implemented. Tony six ideas and achievements/background bosses/crunchable critters/Little Nightmares mood remain discussion only.",
+    "Widow optional forward-lunge crop registration pending visual review; existing flight art valid functional fallback.",
+    "Capture backlog and listening/fairness tests require permitted session; preserve archived builds."
+  ],
+  "stale_records": [
+    "opening-trial-balance status/scope still says isolated/not integrated, budget_rules says cap2, flyer status says49pending; active profile/source/new cap supersede.",
+    "spare-employee-dispenser-mechanics.json still says pending and three old checkpoints;51 single-clone contract supersedes.",
+    "Starter aiming visual status and weapons/playtest-feedback contain pending labels superseded33/35/38/45.",
+    "sewer-fly-mechanics old12HP baseline hit counts, v2 art-request status and two placements coexist with later v3/48radius/integrated removal; do not confuse them.",
+    "weapons/catalog.json header status, health-visual policy header, rendering-strategy top status, monster implementation labels and historical roadmap paragraphs lag later delivery records.",
+    "README old B return-to-title instruction conflicts with current pause B-resume contract.",
+    "Do not mass-edit these during audit; reconcile scoped current records with owning agents on next authorized delivery."
+  ],
+  "reference_files": [
+    "AGENTS.md",
+    "/Users/sfoley/.codex/coding-standards.md",
+    ".github/instructions/makefile.instructions.md",
+    "Makefile",
+    "README.md",
+    "project.godot",
+    ".gitignore",
+    "roadmap.html",
+    "storybook/README.md",
+    "weapons/catalog.json",
+    "weapons/*/weapon.json",
+    "weapons/*/game-art.json",
+    "weapons/*/marketing-art.json",
+    "weapons/rendering-strategy.json",
+    "weapons/playtest-feedback.json",
+    "weapons/tony-ideas.json",
+    "design-ideas.json",
+    "assets/bestiary/balance-policy.json",
+    "assets/bestiary/damage/health-visuals.json",
+    "bestiary/*/monster.json",
+    "bestiary/clogfather/combat-design.json",
+    "handoffs/first-level-run-and-gun-balance.json",
+    "design/first-call-action/opening-trial-balance.json",
+    "handoffs/opening-trial-level-layout.json",
+    "handoffs/sewer-fly-mechanics.json",
+    "handoffs/sewer-fly-movement-research.json",
+    "handoffs/spare-employee-dispenser-mechanics.json",
+    "handoffs/dispenser-single-clone-art.json",
+    "handoffs/hallowed-widow-swoop-art.json",
+    "handoffs/hero-animation-lives-restart.json",
+    "handoffs/pause-controller-cancel.json",
+    "handoffs/sliding-progress-doors.json",
+    "handoffs/player-death-flush-audio.json",
+    "scripts/crew.gd",
+    "scripts/combat_data.gd",
+    "scripts/opening_trial_state.gd",
+    "scripts/opening_trial_game.gd",
+    "scripts/integrated_first_call.gd",
+    "scripts/sewer_swarm.gd",
+    "tools/build_combat_data.py",
+    "tests/opening_trial_state.gd",
+    "tests/standing_shots.gd",
+    "tests/durable_flyer.gd",
+    "tests/sewer_swarm.gd"
+  ],
+  "art_records": "Weapon game source atlases v1 except pressure-gun v2; all1254square except drain-snake1536x1024; runtime_ready=false in manifests. Six marketing portrait-v1.png1254square complete; exact prompts retained in each manifest. Hero runtime manifest assets/sprites/hero-animation-v2/manifest.json. Swarm animation-v3/PNGv2. Dispenser manifest-v6. Optional Widow lunge handoff uses atlas-v2 crop500,512,540,512 and actor2x once.",
+  "attachments": "Both original Tony idea screenshots in /tmp/codex-remote-attachments/01a138a7-cc43-7420-a950-55b935ddde25/7d424cec-0852-4930-9f5a-c15c6f15f550/ were opened and read. Six notes match originals; ownership remains proposed.",
+  "limits": [
+    "No hidden reasoning inherited or claimed.",
+    "Eight historical outputs explicitly truncated by source retrieval; exact IDs/commands listed above. Current counterparts inspected, historical missing bytes not reconstructed.",
+    "Some broad file reads in this audit were truncated; focused reads recovered mechanics content. Art manifests reviewed for status/assets/provenance and some prompts, not exhaustive visual validation of every asset.",
+    "No actual game screenshots or fresh build/test results produced in this audit."
+  ],
+  "predecessor_confirmation": {
+    "received": true,
+    "turn_id": "01a14b9f-f793-79f1-ad32-1a80e178584c",
+    "unsent_work": "Predecessor confirms no outstanding unsent code or drafts and no retained file ownership.",
+    "permissions": "Final archive supersedes earlier uncertainty: predecessor reports successful normal temporary-file creation and removal after refreshed permissions. Successor normal write check also passed earlier.",
+    "clarifications": [
+      "No later comparable both-hero completion test was received; historical Sean bot failure neither confirmed current nor proven fixed.",
+      "Conditional radius8 recommendation remains unapproved/unmeasured; source cap3 independently verified by successor, not confirmed packaged.",
+      "Health ratio unresolved; no approved1080 boss HP.",
+      "Blocked Widow recovery cannot be claimed to regain altitude on all obstructed paths."
+    ],
+    "verbatim_archive": "previews/succession/game-mechanics-transfer.json"
+  },
+  "additional_archive_work": {
+    "status": "Completed, imported, and reviewed in full by successor.",
+    "staging_path": "/private/tmp/drain-damage-original-agent-archives/game-mechanics.md",
+    "intended_repository_path": "agent-context-archive/game-mechanics.md",
+    "owner": "Original authored report preserved; Engineering 2 imported it."
+  },
+  "final_archive_review": {
+    "reviewed_at": "2026-10-17T14:05:20-07:00",
+    "timezone": "America/Los_Angeles",
+    "entire_saved_report_reviewed": true,
+    "readme": {
+      "path": "agent-context-archive/README.md",
+      "lines_reviewed": [
+        1,
+        43
+      ]
+    },
+    "report": {
+      "path": "agent-context-archive/game-mechanics.md",
+      "bytes": 228239,
+      "sha256": "9e5c3b89a79ad477b2d020e686a74989ddb4eabc08c79a16defbccb63f5811a6",
+      "lines": 4301,
+      "ranges_reviewed": [
+        [
+          1,
+          160
+        ],
+        [
+          161,
+          700
+        ],
+        [
+          701,
+          1250
+        ],
+        [
+          1251,
+          1800
+        ],
+        [
+          1801,
+          2350
+        ],
+        [
+          2351,
+          2900
+        ],
+        [
+          2901,
+          3450
+        ],
+        [
+          3451,
+          4000
+        ],
+        [
+          4001,
+          4301
+        ]
+      ],
+      "source_turn_headings_observed": 74
+    },
+    "unread_or_truncated_sections_in_this_review": [],
+    "section_index": [
+      {
+        "heading": "Purpose, evidence, and interpretation",
+        "line": 15
+      },
+      {
+        "heading": "Latest verified facts and urgent continuation points",
+        "line": 37
+      },
+      {
+        "heading": "Ownership and collaboration",
+        "line": 62
+      },
+      {
+        "heading": "Character differentiation and weapon evolution",
+        "line": 93
+      },
+      {
+        "heading": "Metadata and integration contract",
+        "line": 131
+      },
+      {
+        "heading": "Health presentation and boss design",
+        "line": 152
+      },
+      {
+        "heading": "Aiming, locomotion, collisions, and controls",
+        "line": 199
+      },
+      {
+        "heading": "Flushfiends, waves, and removed progress gates",
+        "line": 230
+      },
+      {
+        "heading": "Sewer-fly research and Septic Air Force",
+        "line": 250
+      },
+      {
+        "heading": "Opening trial, scheduler, and integration lessons",
+        "line": 295
+      },
+      {
+        "heading": "Hallowed Widow progression and V-shaped attack",
+        "line": 336
+      },
+      {
+        "heading": "Dispenser, checkpoint, audio, platform, and dialogue decisions",
+        "line": 360
+      },
+      {
+        "heading": "Discussion-only ideas preserved for later",
+        "line": 409
+      },
+      {
+        "heading": "Testing, failures, and evidence limits",
+        "line": 432
+      },
+      {
+        "heading": "Latest shooter changes and exact pending handoff",
+        "line": 495
+      },
+      {
+        "heading": "Location, availability, and recovery chronology",
+        "line": 514
+      },
+      {
+        "heading": "Artifact map and documentation gaps",
+        "line": 533
+      },
+      {
+        "heading": "Completion limits and next-owner checklist",
+        "line": 575
+      },
+      {
+        "heading": "Chronological recovered source records",
+        "line": 592
+      },
+      {
+        "heading": "Archive accounting",
+        "line": 4278
+      },
+      {
+        "heading": "Saved-file validation",
+        "line": 4292
+      }
+    ],
+    "additions_and_corrections": [
+      "Predecessor write access subsequently passed; do not retain untested or blocked as its latest evidence.",
+      "Final archive independently confirms cap3 in principal source fields. Current successor recheck also confirms layout, generated bundle and test assertions; this does not establish a packaged cap3 build.",
+      "Preserve six continuous-HP visual thresholds: >75 healthy, >50 mild, >25 moderate, >10 severe, >0 near-death, zero dead. Every hit needs feedback even without a stage crossing; .06s flash is tuning.",
+      "Boss yellow means >25 through50 percent, not literal integer26 minimum from an old final answer. True HP governs color independently of delayed trail; HUD dimensions and timings are initial tuning.",
+      "Preserve concrete failed fixtures: standing-shot fixtures crossed plinths and one drew a missing runner; V fixture intersected a plinth. Clear-space fixture corrections retained production obstacle collision.",
+      "Final archive says its Clogfather recovery inspected only the first portion of combat-design.json. Read complete current design before implementation; archive is not complete phase authority.",
+      "Source chronology documents repeated aim reports after dispatch: a handoff alone never proved delivery. Old shared arsenal, 40-damage Sean, kill gates, four-second hover and three checkpoints are superseded.",
+      "Preserve scheduler reasoning: 150px/s rear entrant cannot catch Tony270; safe retries and eligible-event scanning resolved queue blockage without forcing all12 entries or claiming invulnerable bots prove survival.",
+      "Research links are historical sources, not fresh verification. Contra manual pixels were not exposed; do not attribute unseen content. Responsive local command never proves lid/display/device-origin state."
+    ],
+    "source_reconciliation": [
+      "project.godot remains0.55.0; no fresh build or test executed.",
+      "HARD_CAPS visible6/shooters3/bullets6/patterns3; layout/profile/generated bundle mirror3.",
+      "Scheduler test reserves third warning, rejects fourth warning/live, releases after retirement, rejects budget4.",
+      "Sputtervalve profile/generated shot radius remains4; role_scale still enlarges only aggressive_flyer.",
+      "Swarm metadata radius48; crew runtime Tony4HP/270 and Sean5HP/235 unchanged.",
+      "Health visual policy matches exact six thresholds; reusable boss HUD remains preview/no playable boss.",
+      "Makefile still has check for Godot availability and no test target; no target added."
+    ],
+    "remaining_limits": [
+      "Saved report fully read, but full underlying history is not guaranteed: archive notes bounded retrieval and omitted incoming message bodies. Earlier successor history recovery supplements it but has eight truncated command outputs, indexed separately.",
+      "Original two Tony image attachments were viewed during initial successor audit; archive embeds no binaries. No new missing image was encountered in this text review. Temporary logs and external media were not revalidated or exhaustively inventoried.",
+      "Unresolved health ratio, conditional Sputtervalve solid core/body, boss tuning/implementation, obstructed Widow recovery and human visual/audio/fairness validation remain open.",
+      "Full text remains available through durable indexed retrieval; no promise of simultaneous permanent memory of every byte or transfer of hidden reasoning."
+    ],
+    "scope": "Context verification and successor record only; original archive and game files unchanged.",
+    "readiness": "Ready to continue mechanics with current-source checks and indexed historical retrieval."
+  }
+}
