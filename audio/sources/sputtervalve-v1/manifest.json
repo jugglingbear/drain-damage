@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-17",
+  "creature_id": "sputtervalve",
+  "status": "Assets validated; runtime integration and listening pending",
+  "format": {
+    "sample_rate": 44100,
+    "channels": 1,
+    "pcm_bits": 16
+  },
+  "cues": [
+    {
+      "cue_id": "hit-a",
+      "path": "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -15,
+      "rms_dbfs": -31.55,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "22a77d3d43ea0c80584f0291d67fe780a6a6e055b7f497b45660ae971d711cbb"
+    },
+    {
+      "cue_id": "hit-b",
+      "path": "assets/audio/sfx/sputtervalve-v1/hit-b.wav",
+      "duration_seconds": 0.22,
+      "peak_dbfs": -15,
+      "rms_dbfs": -29.08,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "ee9b1b5f84d68b7571c3082268f9e89dfa249c903eaba8feae28c83d2cea5b5e"
+    },
+    {
+      "cue_id": "death",
+      "path": "assets/audio/sfx/sputtervalve-v1/death.wav",
+      "duration_seconds": 0.72,
+      "peak_dbfs": -12,
+      "rms_dbfs": -35.95,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "2b8391d1a3365d929c6f0ff5f2d41432fcba25884e3dec37d85002c21119094a"
+    }
+  ],
+  "direction": "Dry metal hit with short gauge rattle; heavier collapse with escaping pressure and loose metal.",
+  "consultation": "Storyboarding agreed October 17; no speech, magic origin, attack tell or new lore.",
+  "source": {
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "page": "https://kenney.nl/assets/impact-sounds",
+    "pack": "audio/sources/menu-navigation-candidates-v1/kenney-impact-sounds.zip",
+    "pack_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+    "license_record": "audio/sources/sputtervalve-v1/Kenney-License.txt",
+    "members": [
+      {
+        "member": "Audio/impactMetal_light_001.ogg",
+        "preserved": "audio/sources/sputtervalve-v1/impactMetal_light_001.ogg",
+        "sha256": "fba69c467ddd85da7b1d82e259f936b876d9ba6a3d6f1b24bdd10468e46bfe08"
+      },
+      {
+        "member": "Audio/impactMetal_light_003.ogg",
+        "preserved": "audio/sources/sputtervalve-v1/impactMetal_light_003.ogg",
+        "sha256": "92d5db6bfc672d9dc1b4f390b2900504f013187fa36335472554fafefa9050b1"
+      },
+      {
+        "member": "Audio/impactMetal_heavy_002.ogg",
+        "preserved": "audio/sources/sputtervalve-v1/impactMetal_heavy_002.ogg",
+        "sha256": "b914c8f1eb7c0f34bb165d7c77f4be0351f6be0660c13c53e65424e262e2c093"
+      }
+    ]
+  },
+  "procedure": "Source decode: rate ratios .95/.86/.78; 44.1k mono; HP180/LP6500; initial silence below -45dB removed; normalized source layers; hit rattle at65/110ms; death metal at0/120/265/430ms; original seeded filtered noise from80ms with exponential pressure decay; final2ms/35ms edges and peak normalization. Exact gains, filters and durations in generator.",
+  "original_synthesis": {
+    "pressure_noise_seed": 171026,
+    "third_party_voice_or_music": false
+  },
+  "generator": "audio/sources/sputtervalve-v1/generate.py",
+  "generator_sha256": "712aaef7f2b3c8c10c8a4240f0ba0ee032847876fa606423e58bb20ab111ea8d",
+  "validation": "Mono PCM16 headers, exact frame counts, zero endpoints, peaks and hashes checked. No audition.",
+  "limitations": "Designed metal/pressure approximation; physical materials are sound direction, not new lore. No subjective listening or in-game balance claim."
+}

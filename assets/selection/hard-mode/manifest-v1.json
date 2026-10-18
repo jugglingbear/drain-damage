@@ -1,0 +1,92 @@
+{
+  "status": "Selection artwork integrated in Prototype58/0.58.0; packaged checks pass; live visual review pending",
+  "approved_direction": "Exaggerated muscles and torn work clothes; no nudity/censor bar",
+  "assets": [
+    {
+      "path": "assets/selection/hard-mode/tony-concept-v1.png",
+      "hero": "concept",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "source": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-1956dbf6-e4d2-436c-8cba-8c355f9a20ec.png",
+      "sha256": "b90513a3320802c6e49e0b349cf83c9b9f1908f6ca188570e2a8ac955fd7325d"
+    },
+    {
+      "path": "assets/selection/hard-mode/tony-bust-v1.png",
+      "hero": "tony",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "source": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-0c838628-565e-49c5-8781-191c4c4568ca.png",
+      "sha256": "e3a0975df8db23d38152314b302079fa4ac1bb6923b5b41881938afd286b0b3f"
+    },
+    {
+      "path": "assets/selection/hard-mode/sean-bust-v1.png",
+      "hero": "sean",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "source": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-ba374d03-9ab5-49bd-916a-903a8cf21233.png",
+      "sha256": "a2d5a56ff2c207af9fed3a68b19d5376969ebf3df40527210f1d7ba4433ea6cd"
+    }
+  ],
+  "prompts": "assets/selection/hard-mode/prompts-v1.json",
+  "tool": "Built-in image_gen",
+  "date": "2026-10-17",
+  "render": {
+    "source": "Full square of each bust",
+    "destination": [
+      840,
+      8,
+      96,
+      96
+    ],
+    "chosen_hero_label": [
+      720,
+      108,
+      210,
+      28
+    ],
+    "when": "Chosen hero Hard selection only; Easy/Normal retain neutral current portrait",
+    "anchor": "top-left destination, preserve aspect ratio"
+  },
+  "review": "Faces, torn clothing, Tony navy shirt/no overalls, Sean bald/orange shirt/blue bib/full gray chin beard/no moustache checked visually; alpha0..255 verified. Composed96px running UI not yet reviewed.",
+  "runtime_costume": {
+    "status": "Approved direction; production not delivered",
+    "required": [
+      "Both heroes body locomotion: idle/run/takeoff/rise/apex/fall/landing/hurt",
+      "Every modular aim pose and arm layer, including downward directions, both facings",
+      "Death sequences and HUD portraits",
+      "Dispenser compression/emergence/look/shrug/impact/smear/sleeping clone states"
+    ],
+    "contracts": [
+      "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+      "assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json"
+    ],
+    "constraints": "Preserve canvas/cells/feet and grip/muzzle anchors, collision and stats. Do not scale whole runtime body or claim busts alter gameplay appearance.",
+    "sequence": "Selection busts first; body/aim set next; death/dispenser coverage before enabling coherent full gameplay costume. No reliable completion time estimated."
+  },
+  "reference_images": {
+    "tony_initial": "assets/portraits/tony-expressions-v3.png",
+    "tony_bust_edit": "assets/selection/hard-mode/tony-concept-v1.png",
+    "sean": "assets/portraits/sean-expressions-v4.png"
+  }
+}

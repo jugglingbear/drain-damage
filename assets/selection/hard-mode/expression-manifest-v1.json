@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-17",
+  "status": "Integrated in Prototype60/0.60.0; packaged checks pass; live visual review pending",
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": "row-major"
+  },
+  "emotions": [
+    {
+      "index": 0,
+      "name": "neutral"
+    },
+    {
+      "index": 1,
+      "name": "happy"
+    },
+    {
+      "index": 2,
+      "name": "amused"
+    },
+    {
+      "index": 3,
+      "name": "sad"
+    },
+    {
+      "index": 4,
+      "name": "worried"
+    },
+    {
+      "index": 5,
+      "name": "afraid"
+    },
+    {
+      "index": 6,
+      "name": "surprised"
+    },
+    {
+      "index": 7,
+      "name": "angry"
+    },
+    {
+      "index": 8,
+      "name": "skeptical"
+    },
+    {
+      "index": 9,
+      "name": "embarrassed"
+    }
+  ],
+  "assets": [
+    {
+      "path": "assets/selection/hard-mode/tony-expressions-v1.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/selection/hard-mode/sean-expressions-v1.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/selection/hard-mode/sean-bust-v3.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    }
+  ],
+  "prompts": "assets/selection/hard-mode/expression-prompts-v1.json",
+  "review": "All twenty expressions visually inspected against original order. Costume consistency and torn denim checked. Dimensions and alpha measured. Use existing integer-boundary 5x2 slicing; live crop review pending.",
+  "direction": "Both shirts approximately half gone. Sean blue overalls also visibly torn at bib, pocket and straps. This supersedes earlier instruction to keep denim intact, including pending gameplay costumes.",
+  "runtime_costume": "Full gameplay costume set integrated in0.60.0; actual live visual review pending",
+  "runtime_delivery": "handoffs/hard-costume-and-dialogue-delivery.json"
+}
