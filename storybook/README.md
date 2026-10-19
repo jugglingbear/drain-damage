@@ -1880,6 +1880,31 @@ no image capture occurred.
 
 [Capture status and verification](078-checkpoint-navigation-and-pause/20261019-143429-capture-status.json).
 
+## 079 — Authored rat gait without shrinking — October 19, 2026
+
+**Version:** Prototype 79 / 0.79.0; preserved app, ZIP and source snapshot `builds/source-79`.
+
+Six authored running phases and six full-length crouched sprint phases replace the uniform rush-shrinking workaround
+introduced in 77. Whole-body scale remains 1.0. Grounded travel drives one gait cycle per 120 pixels; standing still,
+pausing or climbing holds the gait, and reset clears accumulated distance. Warning/recovery posture and fractional gait
+transitions share pose selection with visible contact and projectile geometry. Health, speed, acceleration, warnings
+and attack timings remain unchanged.
+
+**Validation:** Engineering reports eleven packaged suites and thirty-three Python tests passing. Contact coverage
+includes twenty-four starting-phase corner cases across six phases, both heroes and both corners, twelve baseline
+pounce/rush routes and six stationary rush-hit cases. Eighteen room-pressure cases and phase, hold, continuity and
+source-dimension checks pass, along with export, signing and archive verification.
+
+**Capture gap:** No game window opened or actual Prototype 79 screenshot was captured. Live leg-gait and posture
+readability, human balance and GPU performance remain pending. Preserve 78 and 79 for an approved comparison.
+The [archived gait study](art-studies/20261019-144349-skitterling-gait/20261019-144550-archive-record.json)
+is software source composition, not gameplay or live visual acceptance.
+
+**Record created:** 2026-10-19T14:48:03.713077-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](079-authored-rat-gait/20261019-144803-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

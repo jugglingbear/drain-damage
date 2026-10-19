@@ -35,12 +35,23 @@ func run_checks() -> void:
 				if not escaped:
 					failures += 1
 					push_error("No visible-contact dodge route: "+str([hero_id,move,x]))
+		# Every authored gait phase must preserve corner escape, not only the initial encounter phase.
+		for x in [120.0,814.0]:
+			for gait_phase in range(6):
+				var escaped := false
+				for jump_gap in [-80.0,-110.0,-140.0]:
+					if route(game,"rush",x,speed,1.0 if x < 480 else -1.0,jump_gap,gait_phase*20.0):
+						escaped = true
+						break
+				if not escaped:
+					failures += 1
+					push_error("Authored gait phase blocks corner jump: "+str([hero_id,x,gait_phase]))
 		game.queue_free()
 		await process_frame
-	if failures == 0: print("PASS: actual room pounce/rush contact evasion through recovery, both heroes and both corners/center")
+	if failures == 0: print("PASS: actual room pounce/rush contact evasion through recovery, both heroes, corners/center and six gait phases")
 	quit(1 if failures else 0)
 
-func route(game: Node2D, move: String, x: float, speed: float, direction: float, jump_at: float) -> bool:
+func route(game: Node2D, move: String, x: float, speed: float, direction: float, jump_at: float, gait_distance := -1.0) -> bool:
 	last_hit_state = ""
 	var room = game.skitterling
 	room.reset(77)
@@ -55,6 +66,7 @@ func route(game: Node2D, move: String, x: float, speed: float, direction: float,
 		if boss.state == "rat_"+move+"_tell": break
 		boss.step(1.0/120,room.hero_rect(game))
 	if boss.state != "rat_"+move+"_tell": return false
+	if gait_distance >= 0: boss.rat_ground_distance = gait_distance
 	boss.drain_events()
 	var before: int = game.health
 	var jumped := false

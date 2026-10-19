@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-10-19T14:48:03.713077-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not capture time",
+  "capture_time": null,
+  "build": "Prototype 79 / 0.79.0",
+  "status": "Packaged verification passed; live motion acceptance pending",
+  "app": "builds/Prototype-79/Drain Damage.app",
+  "archive": "builds/history/Prototype-79.zip",
+  "archive_sha256": "7e89c3c761d774f9e14eee380b727dfd1bd8b0241fa69954d8fe084f54193de9",
+  "snapshot": "builds/source-79",
+  "changes": [
+    "Six authored running phases and six full-length crouched sprint phases",
+    "Removed uniform0.507614 rush shrinking; runtime whole-body scale stays1.0",
+    "Gait follows actual grounded travel at120px per cycle; pause/still/climb freeze and reset clears distance",
+    "Smooth tell/recovery posture and fractional-gait transitions, matching draw/contact/projectile selection",
+    "No HP, speed, acceleration, warning or attack timing changes"
+  ],
+  "checks": {
+    "packaged_suites": 11,
+    "python_tests": 33,
+    "contact_dodges": "24 starting-phase corner cases across six phases/both heroes/both corners;12 baseline pounce/rush routes and6 stationary rush hit cases",
+    "room_pressure": "18 stationary actual-room cases across both heroes/all difficulties/positions",
+    "animation": "Six phase selections, stationary hold, exact boundary continuity, opaque contact and source dimensions",
+    "export_signing_archive": "passed",
+    "results": "builds/verification-79/packaged-results.json"
+  },
+  "source_study": "storybook/art-studies/20261019-144349-skitterling-gait/20261019-144550-archive-record.json",
+  "capture_gap": "Source study is software composition, not gameplay. No game window opened or actual79capture; preserve78/79 for comparison.",
+  "remaining": [
+    "Live leg-gait and posture readability",
+    "Human balance and GPU performance review"
+  ],
+  "diagnostics": "Existing macOS CA/editor-settings and shutdown resource warnings; final packaged checks contain no script/parse/assertion failures."
+}

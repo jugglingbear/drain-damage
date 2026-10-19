@@ -127,6 +127,7 @@ func run_checks() -> void:
 	pipe_dodge_checks()
 	random_volley_escape_checks()
 	rat_contact_gate_checks()
+	rat_ground_gait_checks()
 	# Exercise every reachable combat state and freeze it, with both safe and corner hero positions.
 	var visited: Dictionary = {}
 	for x in [96.0, 450.0, 836.0]:
@@ -543,3 +544,33 @@ func rat_contact_gate_checks() -> void:
 	check(boss.rat_contact_active(), "Fully emerged rat has contact damage")
 	boss.reset()
 	check(not boss.rat_contact_active(), "Reset clears contact")
+
+func rat_ground_gait_checks() -> void:
+	var hero := Rect2(120,394,26,46)
+	var boss := fresh(hero)
+	advance_to(boss,"rat_ready",hero)
+	check(is_zero_approx(boss.rat_ground_distance), "Formation never advances running gait")
+	boss.position = Vector2(180,440)
+	boss.wall_anchor = Vector2(780,440)
+	boss._enter("rat_wall_approach")
+	boss.step(.5,hero)
+	check(is_equal_approx(boss.rat_ground_distance,150), "Ground gait follows world travel")
+	var distance: float = boss.rat_ground_distance
+	boss.step(1,hero,true)
+	check(boss.rat_ground_distance == distance, "Pause freezes gait distance")
+	boss.step(1.5,hero)
+	check(is_equal_approx(boss.rat_ground_distance,600), "Gait stops at actual wall approach endpoint")
+	boss.step(.5,hero)
+	check(is_equal_approx(boss.rat_ground_distance,600), "Climbing does not cycle running feet")
+	boss.position = Vector2(780,440)
+	boss._enter("rat_rush_tell")
+	boss.step(.8,hero)
+	distance = boss.rat_ground_distance
+	var start_x: float = boss.position.x
+	boss.step(.2,hero)
+	check(boss.rat_ground_distance > distance, "Accelerating rush advances gait")
+	check(is_equal_approx(boss.rat_ground_distance-distance,absf(boss.position.x-start_x)),
+		"Rush gait follows accelerated travel instead of elapsed time")
+	check(boss.snapshot().rat_ground_distance == boss.rat_ground_distance, "Renderer receives authoritative gait phase")
+	boss.reset()
+	check(is_zero_approx(boss.rat_ground_distance), "Retry resets running gait")

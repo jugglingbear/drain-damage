@@ -153,6 +153,8 @@ func draw_room(host: CanvasItem, world_origin: Vector2, exit_open: bool) -> void
 func _selection(snapshot: Dictionary, hold_idle := true) -> Dictionary:
 	var state: String = snapshot.get("state", "idle")
 	if not STATE_ART.has(state): return {}
+	if state in ["rat_wall_approach", "rat_rush_setup", "rat_rush_tell", "rat_rush", "rat_rush_recovery"]:
+		return _ground_gait(snapshot)
 	var animation: String = STATE_ART[state]
 	var elapsed: float = snapshot.get("elapsed", 0.0)
 	var duration: float = Encounter.DURATIONS.get(state, 1.0)
@@ -401,12 +403,42 @@ func visible_contact_regions(snapshot: Dictionary, world_origin := Vector2.ZERO,
 			if not covered: result.append(cell)
 	return result
 
-func rush_scale(snapshot: Dictionary) -> float:
-	## Keep the authored low pose throughout tell, charge and recovery; scale insects uniformly about feet.
-	if snapshot.get("state", "") not in ["rat_rush_tell", "rat_rush", "rat_rush_recovery"]: return 1.0
-	var guide: Dictionary = roach_body.targets["rat-attacks-source-v1:3"]
-	var height := 1.0
-	for index in range(RoachBody.COUNT):
-		# Half diagonal covers every rotated sprite pixel, including antennae; mobility bounds all clocks.
-		height = maxf(height, ANCHOR.y - guide.points[index].y + Vector2(guide.shapes[index].size).length() * .5 + 1.5)
-	return minf(1.0, 50.0 / height)
+func rush_scale(_snapshot: Dictionary) -> float:
+	## Authored crouching changes posture, never whole-animal scale.
+	return 1.0
+
+func _ground_gait(snapshot: Dictionary) -> Dictionary:
+	var state: String = snapshot.state
+	var phase := fposmod(float(snapshot.get("rat_ground_distance", 0.0)) / 120.0, 1.0) * 6.0
+	var index := int(phase)
+	var sheet := "rat-crouch-source-v1" if state in ["rat_rush_tell", "rat_rush", "rat_rush_recovery"] else "rat-run-source-v1"
+	var key := sheet + ":" + str(index)
+	var next_key := sheet + ":" + str((index + 1) % 6)
+	var blend := fposmod(phase, 1.0)
+	var elapsed := float(snapshot.get("elapsed", 0.0))
+	var fraction := blend
+	if state == "rat_rush_tell":
+		key = "rat-run-source-v1:" + str(index)
+		if elapsed < .1:
+			next_key = "rat-run-source-v1:" + str((index + 1) % 6)
+			blend = fraction * (1.0 - smoothstep(0, .1, elapsed))
+		else:
+			next_key = "rat-crouch-source-v1:" + str(index)
+			blend = clampf((elapsed - .1) / .2, 0, 1)
+		if elapsed >= .7:
+			key = "rat-crouch-source-v1:" + str(index)
+			next_key = "rat-crouch-source-v1:" + str((index + 1) % 6)
+			blend = fraction * smoothstep(.7, .8, elapsed)
+	elif state == "rat_rush_recovery":
+		key = "rat-crouch-source-v1:" + str(index)
+		if elapsed < .1:
+			next_key = "rat-crouch-source-v1:" + str((index + 1) % 6)
+			blend = fraction * (1.0 - smoothstep(0, .1, elapsed))
+		elif elapsed < 1.1:
+			next_key = "rat-run-source-v1:" + str(index)
+			blend = clampf((elapsed - .8) / .3, 0, 1)
+		else:
+			key = "rat-run-source-v1:" + str(index)
+			next_key = "rat-run-source-v1:" + str((index + 1) % 6)
+			blend = fraction * smoothstep(1.1, 1.2, elapsed)
+	return {"key":key, "next_key":next_key, "blend":blend, "state":state}

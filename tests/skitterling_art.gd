@@ -85,20 +85,38 @@ func _initialize() -> void:
 		assert(contacts[i].size == Vector2(2, 2), "Contact samples individual insect cores")
 	for crouch_state in ["rat_rush_tell", "rat_rush", "rat_rush_recovery"]:
 		snapshot.state = crouch_state
-		var scale: float = art.rush_scale(snapshot)
+		assert(art.rush_scale(snapshot) == 1.0, "Crouching must never shrink the whole rat")
+	for step in range(6):
+		snapshot.state = "rat_rush"
+		snapshot.rat_ground_distance = step * 20.0
 		var selected: Dictionary = art._selection(snapshot)
-		assert(selected.key == "rat-attacks-source-v1:3")
+		assert(selected.key == "rat-crouch-source-v1:" + str(step))
 		var bounds := Rect2()
 		for index in range(Art.RoachBody.COUNT):
-			var p: Vector2 = (art.roach_body.insect_position(selected.key, selected.key, 0, index, 2.0) - Art.ANCHOR) * scale
+			var p: Vector2 = art.roach_body.insect_position(selected.key, selected.key, 0, index, 2.0) - Art.ANCHOR
 			var shape: Dictionary = art.roach_body.insect_shape(selected.key, selected.key, 0, index, 2.0)
-			var radius: float = Vector2(shape.size).length() * .5 * scale
-			assert(p.y - radius >= -50.001, "All rotated sprite pixels must fit below jump clearance")
+			var radius: float = Vector2(shape.size).length() * .5
 			var insect := Rect2(p - Vector2.ONE * radius, Vector2.ONE * radius * 2)
 			bounds = insect if index == 0 else bounds.merge(insect)
-		print(crouch_state, " scale=", scale, " conservative bounds=", bounds)
-		assert(bounds.size.x <= 260)
+		print("crouch phase ", step, " conservative bounds=", bounds)
+		assert(bounds.size.x > 220, "Full-size crouch preserves the rat's length")
 		assert(not art.visible_contact_regions(snapshot, Vector2.ZERO, 2.0).is_empty())
+	snapshot.state = "rat_wall_approach"
+	var stopped: Dictionary = art._selection(snapshot)
+	snapshot.elapsed += 1.0
+	assert(stopped == art._selection(snapshot), "Stationary travel freezes gait, independent of elapsed time")
+	snapshot.rat_ground_distance = 37.0
+	for boundary in [["rat_rush_tell", .8, "rat_rush"], ["rat_rush_recovery", 1.2, "rat_rush_setup"]]:
+		snapshot.state = boundary[0]
+		snapshot.elapsed = boundary[1]
+		var before: Dictionary = art._selection(snapshot)
+		snapshot.state = boundary[2]
+		snapshot.elapsed = 0.0
+		var after: Dictionary = art._selection(snapshot)
+		for index in range(Art.RoachBody.COUNT):
+			var a: Vector2 = art.roach_body.insect_position(before.key, before.next_key, before.blend, index, 2.0)
+			var b: Vector2 = art.roach_body.insect_position(after.key, after.next_key, after.blend, index, 2.0)
+			assert(a.distance_to(b) < .001, "Fractional gait must remain continuous across state boundaries")
 	snapshot.rat_contact_active = false
 	assert(art.visible_contact_regions(snapshot).is_empty())
 	snapshot.state = "rat_collapse"

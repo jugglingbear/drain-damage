@@ -45,5 +45,19 @@
       "Combined build checks",
       "Actual gameplay visual acceptance"
     ]
-  }
+  },
+  "gait_revision": {
+    "status": "source/runtime prepared; fairness and integration pending",
+    "source_sheets": [
+      "assets/bestiary/cockroach-swarm/rat-run-source-v1.png",
+      "assets/bestiary/cockroach-swarm/rat-crouch-source-v1.png"
+    ],
+    "prompts": "assets/bestiary/cockroach-swarm/rat-gait-prompts-v1.json",
+    "gait": "six authored phases driven by rat_ground_distance,120px per cycle",
+    "scale": "runtime body_scale1.0; authored crouch replaces uniform0.507614 shrink",
+    "transitions": "tell settles phase0.1s,crouches0.2s,restores phase final0.1s; recovery settles0.1s,holds until0.8s,rises0.3s,restores phase0.1s",
+    "preview": "previews/skitterling-gait-v1/20261019-144349-source-poses.png",
+    "validation": "focused Art suite passed; opaque feet within0\u20133px offloor in inspectedsixposes atclock2; live review pending"
+  },
+  "gait_delivery": "handoffs/skitterling-gait-delivery.json"
 }

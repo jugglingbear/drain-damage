@@ -347,21 +347,21 @@
     },
     "rat_rush_tell": {
       "seconds": 0.8,
-      "notes": "Hold authored low rush pose; .8s warning commits facing and target. Rendered insects and contact use identical feet-centered scaling.",
+      "notes": "Full .8s warning; preserve current gait phase while easing into an authored folded-ear crouch, not a scaled-down animal. Pose and contact match.",
       "damageable": true,
       "hurts_hero": true,
       "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_rush": {
       "seconds": "distance withacceleration900/maxspeed360",
-      "notes": "Visible authored low rush pose, at most50px above feet and about124.5px wide. Accelerates to360px/s; endpoint targetX-facing*48 clamped160..800. Actual visible insect contact is the sole damage shape; no detached leading rectangle.",
+      "notes": "Six authored low-sprint poses at full body length, driven by120px stride distance; global scale stays1.0. Conservative sprite-quad width247\u2013262px, top60\u201372px above feet; opaque contact cores are smaller. Speed360/acceleration900 unchanged; endpoint targetX-facing*48 clamped160..800. Actual visible insect contact is sole damage shape.",
       "damageable": true,
       "hurts_hero": true,
       "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_rush_recovery": {
       "seconds": 1.2,
-      "notes": "Hold low rush pose throughout1.2s recovery. Vulnerable and contact-damaging; no sudden full-height expansion while hero jumps over it.",
+      "notes": "Full1.2s vulnerable/contact-damaging recovery; smoothly settle gait, hold low posture, then return to running posture without scale changes.",
       "damageable": true,
       "hurts_hero": true,
       "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
@@ -613,7 +613,7 @@
     "port_alignment": "Controller PORTS match assets/world/skitterling-room/manifest-v1.json mouth_center values; focused test asserts allfour. CeilingY166 adopted from measured art; no shifted invisible launch origin.",
     "occupancy_fix": "No infiniteassemblyhold (harmless/nonblocking completion proceeds). Pipe hiddenemergence reselect/abort preserved. Newvisiblepounce deliberatelydoesnotcancelwhenhero staysintarget.",
     "tracking_fix": "Swimmer nowcontinuouslyreacquires beforecommit, speed340 outrunsbothheroes. Headless tests hero235/270 bothdirections bouncingwithin120..814: swimmercatchescurrentfootprint; perframeboundedmotion; warningholdsposition and releasedrockcolumn staysfixed afterhero relocates. Entirefocused suitePASS.",
-    "snapshot_additions": "rat_contact_active bool. volley_targets contains five fixed random floor X positions during warning; sixth target appended at final release, then fixed. hazards retain vx/kind/target_x/age.",
+    "snapshot_additions": "rat_contact_active bool. volley_targets contains five fixed random floor X positions during warning; sixth target appended at final release, then fixed. hazards retain vx/kind/target_x/age. rat_ground_distance: accumulated absolute actual ground travel; renderer uses120px per six-pose cycle.",
     "airborne_regression": "Killduringwallclimb andpounce: noinitialteleport, floorwithin.4s, nohurts, reskitteratexact4.5s; focused suitePASS.",
     "integration_pressure": "Packaged73:18actualgamecases Tony/Sean\u00d7Easy/Normal/Hard\u00d7left120/center450/right814 over60s yielded9\u201312hits/case withnormal1.5simmunity; test-onlypositionpin/healing/nobullets. Fullrecordlinked.",
     "art_delivery": "handoffs/skitterling-readable-roaches-v2.json; newposes/140roaches/pipevisibility testsPASS, measuredretreatquery.508msaverage. No moreMechanicseditsneeded.",
@@ -634,5 +634,25 @@
     "selection": "Deterministic acrossallmodes forinitialdelivery; no added unapproved random difficulty tuning.",
     "corner_policy": "No safe_gap suppression of primaryattacks. Stationary legalpositions120..814 musttake recurringhits. Committedtargetstaysattackable; separatepipeocclusionabort remains."
   },
-  "updated_date": "2026-10-19"
+  "updated_date": "2026-10-19",
+  "rat_animation_revision": {
+    "status": "Delivered Prototype79/0.79.0;11packaged+33Python checks pass; live motion acceptance pending",
+    "problem": "Ground scuttle and rush used one static pose; rush globally scaled the whole rat to roughly half size.",
+    "requirement": "Authored running leg cycle, stable body length and constituent insect scale, genuine crouching pose with smooth transitions; visible contact must match animation.",
+    "gait_signal": "snapshot.rat_ground_distance accumulates absolute actual horizontal movement during wall approach, rush setup and rush. Frozen/stationary/airborne states do not advance it; encounter reset clears it. Renderer maps distance to authored stride length.",
+    "controller_validation": "Focused suite PASS including actual travel, accelerated rush, pause, stationary/climb and reset checks; /tmp/skitterling-gait-controller.log.",
+    "fairness_gate": "Recheck both heroes at corners and center using actual rendered contact through attack/recovery. Do not reinstate uniform shrinking or invisible contact exemptions to pass.",
+    "stride_pixels": 120,
+    "preliminary_fairness": "PASS all six starting gait phases for both heroes at both corners, plus12 baseline pounce/rush routes through recovery and stationary rush damage; no speed or warning change.",
+    "delivery_record": "handoffs/skitterling-gait-delivery.json",
+    "validation": {
+      "packaged_suites": 11,
+      "python_tests": 33,
+      "contact_dodges": "24 starting-phase corner cases across six phases/both heroes/both corners;12 baseline pounce/rush routes and6 stationary rush hit cases",
+      "room_pressure": "18 stationary actual-room cases across both heroes/all difficulties/positions",
+      "animation": "Six phase selections, stationary hold, exact boundary continuity, opaque contact and source dimensions",
+      "export_signing_archive": "passed",
+      "results": "builds/verification-79/packaged-results.json"
+    }
+  }
 }

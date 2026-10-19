@@ -173,6 +173,13 @@ These are marketing interpretations, not screenshots of the game.</p>
 <section id="sputtervalve"><h2>Sputtervalve — approved name and design basis</h2><p>Name and pressure-valve design approved October 17. Body enlargement and contrast repaint remain pending; backstory is not yet approved.</p><p>A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.</p><p>36 opening HP; Tony: 3 shots, Sean: 2. Integrated into the continuous first-level opening for Prototype 45; visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Sputtervalve sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/sputtervalve-v1.png) 0% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/sputtervalve-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="sputtervalve/monster.json">Metadata</a></p></section>
 <section id="gratecrawler"><h2>Gratecrawler — provisional opening design</h2><p>A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.</p><p>24 opening HP; Tony: 2 shots, Sean: 2. Prototype 57: emerges after a warning, then patrols back and forth on the floor, turning at obstacles and patrol boundaries. No jumping or pursuit. Headless and packaged checks pass; live visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Gratecrawler sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/gratecrawler-v1.png) 66.666% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/gratecrawler-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="gratecrawler/monster.json">Metadata</a></p></section>
 <section id="cockroach-swarm"><h2>Skitterling</h2>
+<p>Prototype 79 animation integration: six authored running phases and six crouched sprint phases replace the
+static ground pose and whole-body shrinking workaround. The gait follows distance traveled, with stable body
+scale and smooth crouch transitions. Visible contact follows the same pose. Eleven packaged suites and 33 Python tests pass;
+live motion acceptance remains pending.</p>
+<p><a href="../assets/bestiary/cockroach-swarm/rat-run-source-v1.png">Running source sheet</a> ·
+<a href="../assets/bestiary/cockroach-swarm/rat-crouch-source-v1.png">Crouched sprint source sheet</a> ·
+<a href="../assets/bestiary/cockroach-swarm/rat-gait-prompts-v1.json">Exact generation prompts</a>.</p>
 <p>Silhouette refinement: insects now follow the local direction and width of the animal’s features, with smaller
 outline movement and original-resolution textures. Source comparison is reviewed; live acceptance remains pending.</p>
 <p>Readability revision in progress: 140 larger cockroaches, stable depth ordering, slower crawling, and pipe-mouth
@@ -188,7 +195,7 @@ cockroach sprites, with no solid animal underneath. Twenty packaged suites pass;
 <p>Prototype 74 health is 1440 displayed HP: 900 HP for the rat and 540 HP for the alligator; packaged verification passes. Rat-phase overkill cannot skip the alligator fight. Tony needs 75 rat hits plus 45 alligator hits
 (120 total), and Sean needs 50 plus 30 (80 total). Collapse, renewed skittering and alligator assembly now take
 1.6, 1.2 and 1.4 seconds respectively. The pipe launch takes 1.1 seconds. The Prototype 77 revision adds visible rat contact damage and a rapid six-item alligator
-volley: five random floor arcs and one aimed at the hero's position when fired. Integration checks are pending.</p>
+volley: five random floor arcs and one aimed at the hero's position when fired. Prototype 77 packaged checks pass.</p>
 <p>Prototype 71 is delivered and verified: 20 packaged suites, 32 Python tests, 16 actual source/export CLI
 checks and 18 full routes passed. Portal traversal and camera behavior, prepared alpha masks, upward debris hits,
 moving dodges and visible-jaw charge checks passed. Live visual, listening and fairness review remain pending.</p>
