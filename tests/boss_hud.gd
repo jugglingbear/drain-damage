@@ -8,15 +8,15 @@ func run_checks() -> void:
 	var hud := HUD.new()
 	root.add_child(hud)
 	assert(hud.swarm_frame != null and hud.swarm_fill != null)
-	assert(hud.swarm_frame.get_size() == Vector2(1664, 64))
+	assert(hud.swarm_frame.get_size() == Vector2(1728, 112))
 	assert(hud.swarm_fill.get_size() == Vector2(1536, 40))
 	var frame_image := hud.swarm_frame.get_image()
-	for y in range(12, 52):
-		for x in range(64, 1600):
+	for y in range(36, 76):
+		for x in range(96, 1632):
 			assert(frame_image.get_pixel(x, y).a == 0, "Frame must not obscure the HP boundary")
 	hud.begin_encounter("cockroach-swarm")
 	assert(hud.active and hud.maximum == 1440 and hud.hp == 1440)
-	assert(hud.boss_id == "cockroach-swarm" and hud.reserved_height() == 80)
+	assert(hud.boss_id == "cockroach-swarm" and hud.reserved_height() == 110)
 	hud.player_status = "Tony   HP 5 / 5   LIVES 3"
 	await process_frame
 	hud.update_hp(900)

@@ -1822,6 +1822,36 @@ no image capture occurred.
 
 [Capture status and verification](076-living-swarm-health-bar/20261019-133018-capture-status.json).
 
+## 077 — Contact, six-shot volleys and a larger health bar — October 19, 2026
+
+**Version:** Prototype 77 / 0.77.0; preserved app, ZIP and source snapshot `builds/source-77`.
+
+Visible insects in the formed rat now damage the hero on contact through the shared damage path and normal 1.5-second
+immunity. Hidden, assembling and collapsing states remain harmless. The alligator fires six arcs at 0.22-second spacing:
+five seeded random floor targets, then a final target sampled when that shot fires. Projectiles do not home afterward.
+
+Actual-contact testing exposed a rush that could block a corner escape. A uniformly scaled low rush pose now stays at
+most 50 pixels high through warning, rush and recovery, with matching visible, contact and projectile bounds. Its
+committed endpoint stops 48 pixels from the target; stationary heroes still take contact damage.
+
+Sean reported Prototype 76's health-bar insects were unreadable. Living Swarm v2 enlarges the rails from 6 to 18 pixels,
+uses larger endcaps and reserves a 110-pixel HUD band. Orange fill and the dark track remain. Prototype 76 is preserved
+as the rejected readability iteration; software HUD previews are not gameplay screenshots.
+
+**Validation:** Engineering reports eleven packaged suites and thirty-three Python tests passing, plus export, signing
+and archive checks. Twelve actual-contact dodge routes cover both heroes, pounce/rush and left/center/right positions
+through recovery; six stationary rush cases still register hits. Eighteen room-pressure cases, firing-time aim,
+impact/escape and bounded audio checks pass. Earlier test failures remain in logs; final suites contain no script,
+parse or assertion errors. Automated routes do not establish human combat balance.
+
+**Capture gap:** No game window opened or actual Prototype 77 screenshot was captured. Larger-HUD and low-rush visual
+acceptance, human balance, listening and GPU performance remain pending. Preserve 76 and 77 for an approved comparison.
+
+**Record created:** 2026-10-19T14:13:01.575103-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](077-contact-volley-and-readable-hud/20261019-141301-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

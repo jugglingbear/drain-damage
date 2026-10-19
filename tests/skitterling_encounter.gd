@@ -126,6 +126,7 @@ func run_checks() -> void:
 	airborne_collapse_checks()
 	pipe_dodge_checks()
 	random_volley_escape_checks()
+	rat_contact_gate_checks()
 	# Exercise every reachable combat state and freeze it, with both safe and corner hero positions.
 	var visited: Dictionary = {}
 	for x in [96.0, 450.0, 836.0]:
@@ -226,44 +227,56 @@ func combat_revision_checks() -> void:
 				boss.damage(9999)
 				advance_to(boss, "alligator_water_warning", hero)
 				var targets: Array = boss.volley_targets.duplicate()
-				check(is_equal_approx(targets[2], hero.get_center().x), "Aimed arc locks current hero at warning")
-				check(absf(targets[2]-boss.column_x) > 1, "Aimed shot must have horizontal arc")
+				check(targets.size() == 5, "Five random targets; aimed target pending until release")
 				var time := 0.0
 				var release_times: Array[float] = []
 				var max_live := 0
-				var hit := false
+				var aimed_target := NAN
 				var aimed_hit := false
 				var landed: Dictionary = {}
 				var direction := 1 if x < 200 else -1
 				var dodge_x := clampf(x+direction*180, 120, 814)
 				boss.drain_events()
 				while boss.state in ["alligator_water_warning", "alligator_debris"] and time < 5:
-					if dodge and time >= .2:
+					if dodge and not is_nan(aimed_target):
 						hero.position.x = move_toward(hero.position.x, dodge_x, speed/120)
 					boss.step(1.0/120, hero)
 					time += 1.0/120
-					check(boss.volley_targets == targets, "No retarget after warning")
+					check(boss.volley_targets.slice(0,5) == targets, "Random targets remain committed")
+					if boss.volley_targets.size() == 6:
+						if is_nan(aimed_target):
+							aimed_target = hero.get_center().x
+						check(is_equal_approx(boss.volley_targets[5], aimed_target), "Aim samples firing position and never homes")
 					if boss.drain_events().has("debris_release"): release_times.append(time)
 					max_live = maxi(max_live, boss.hazards.size())
-					for hurt in boss.hurt_regions():
-						if hurt.intersects(hero): hit = true
 					for rock in boss.hazards:
 						check(rock.position.y >= 149, "Volley stays below HUD")
-						if rock.id == 1: check(is_zero_approx(rock.vx), "First shot vertical")
-						if rock.id == 3 and rock.descending:
+						check(rock.kind == ("aimed_arc" if rock.id == 6 else "random_arc"), "Five random arcs and one aimed arc")
+						if rock.id == 6 and rock.descending:
 							if Rect2(rock.position-Vector2(14,14),Vector2(28,28)).intersects(hero): aimed_hit = true
 						if rock.age > 1.58:
 							check(absf(rock.position.x-float(rock.target_x)) <= absf(float(rock.vx))*.02+.01,
 								"Arc must reach committed floor landing")
 							landed[rock.id] = true
-				check(release_times.size() == 3 and max_live == 3 and landed.size() == 3, "Three overlapping complete shots")
-				check(absf(release_times[2]-release_times[0]-.44) < .02, "Rapid volley spans .44 seconds")
-				check(not hit if dodge else aimed_hit, "Moving hero dodges; stationary hero takes aimed landing "+str([speed,x,dodge]))
-				check(boss.hazards.is_empty(), "Wait for all three before surface")
+				check(release_times.size() == 6 and max_live == 6 and landed.size() == 6, "Six overlapping complete shots")
+				check(absf(release_times[5]-release_times[0]-1.10) < .02, "Rapid volley spans 1.10 seconds")
+				check(not aimed_hit if dodge else aimed_hit, "Moving hero dodges; stationary hero takes aimed landing "+str([speed,x,dodge]))
+				check(boss.hazards.is_empty(), "Wait for all six before surface")
 				advance_to(boss, "alligator_surface_recovery", hero)
 				check(boss.damageable(), "Surface recovery remains vulnerable")
 				boss.reset()
 				check(boss.hp == 1440 and boss.volley_targets.is_empty(), "Reset clears volley and HP")
+	# Move after warning but before the sixth shot, then verify the new firing position.
+	var mover := fresh()
+	advance_to(mover, "rat_ready")
+	mover.damage(9999)
+	advance_to(mover, "alligator_water_warning")
+	var moved_hero := Rect2(700,394,26,46)
+	advance_to(mover, "alligator_debris", moved_hero)
+	mover.step(1.11,moved_hero)
+	check(is_equal_approx(mover.volley_targets[5],713), "Aim uses firing position rather than warning position")
+	mover.step(.1,HERO)
+	check(is_equal_approx(mover.volley_targets[5],713), "Released aim cannot follow moving hero")
 	# Random trajectory is reproducible for a checkpoint retry, not redrawn every frame.
 	var boss := fresh()
 	advance_to(boss, "rat_ready")
@@ -479,18 +492,54 @@ func random_volley_escape_checks() -> void:
 			for x in [120.0,450.0,814.0]:
 				var escaped := false
 				for destination in [120.0,270.0,450.0,630.0,814.0]:
-					var hero := Rect2(x,394,26,46)
-					var boss := fresh(hero)
-					boss.configure(seed_value)
-					boss.start(hero)
-					advance_to(boss,"rat_ready",hero)
-					boss.damage(9999)
-					advance_to(boss,"alligator_water_warning",hero)
-					var touched := false
-					for tick in range(360):
-						if tick >= 24: hero.position.x=move_toward(hero.position.x,destination,speed/120)
-						boss.step(1.0/120,hero)
-						for hurt in boss.hurt_regions():
-							if hurt.intersects(hero): touched=true
-					escaped=escaped or not touched
-				check(escaped,"Random volley must leave a reachable route: "+str([seed_value,speed,x]))
+					if escaped: break
+					for final_destination in [120.0,270.0,450.0,630.0,814.0]:
+						var hero := Rect2(x,394,26,46)
+						var boss := fresh(hero)
+						boss.configure(seed_value)
+						boss.start(hero)
+						advance_to(boss,"rat_ready",hero)
+						boss.damage(9999)
+						advance_to(boss,"alligator_water_warning",hero)
+						var touched := false
+						var aimed_age := -1.0
+						for tick in range(480):
+							if boss._released == 6:
+								aimed_age = 0 if aimed_age < 0 else aimed_age+1.0/120
+							# React again 200ms after the final aimed release, and test through its impact.
+							var goal: float = final_destination if aimed_age >= .2 else destination
+							if tick >= 24: hero.position.x=move_toward(hero.position.x,goal,speed/120)
+							boss.step(1.0/120,hero)
+							for hurt in boss.hurt_regions():
+								if hurt.intersects(hero): touched=true
+							if touched or boss.state == "alligator_surface_swim": break
+						if not touched and boss.state == "alligator_surface_swim":
+							escaped = true
+							break
+						escaped = false
+				check(escaped,"Six-shot volley leaves a complete reachable route: "+str([seed_value,speed,x]))
+
+func rat_contact_gate_checks() -> void:
+	var boss := fresh()
+	for target in ["entry_skitter", "rat_assembly", "rat_ready"]:
+		advance_to(boss,target)
+		check(boss.rat_contact_active() == (target == "rat_ready"), "Contact starts only when rat is formed")
+	for target in ["rat_ready", "rat_wall_approach", "rat_wall_climb", "rat_pounce_tell",
+		"rat_pounce", "rat_pounce_recovery", "rat_rush_setup", "rat_rush_tell", "rat_rush",
+		"rat_rush_recovery", "rat_pipe_retreat", "rat_landing_recovery"]:
+		boss.state = target
+		check(boss.rat_contact_active(), "Formed visible state enables contact: "+target)
+		boss.step(0,HERO,true)
+		check(not boss.rat_contact_active(), "Frozen rat cannot hurt by contact")
+		boss.step(0,HERO,false)
+	for target in ["rat_inside_pipe", "rat_pipe_warning", "rat_pipe_abort", "rat_collapse", "reskitter"]:
+		boss.state = target
+		check(not boss.rat_contact_active(), "Hidden/transition rat is harmless: "+target)
+	boss.state = "rat_pipe_launch"
+	boss.position = Vector2(480,440)
+	boss.elapsed = .14
+	check(not boss.rat_contact_active(), "Pipe reveal grace remains harmless")
+	boss.elapsed = .15
+	check(boss.rat_contact_active(), "Fully emerged rat has contact damage")
+	boss.reset()
+	check(not boss.rat_contact_active(), "Reset clears contact")

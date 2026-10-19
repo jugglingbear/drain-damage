@@ -15,8 +15,8 @@ var opacity := 1.0
 var policy: Dictionary
 var swarm_frame: Texture2D
 var swarm_fill: Texture2D
-const SWARM_FRAME_PATH := "res://assets/bestiary/cockroach-swarm/health-bar-v1/frame.png"
-const SWARM_FILL_PATH := "res://assets/bestiary/cockroach-swarm/health-bar-v1/fill.png"
+const SWARM_FRAME_PATH := "res://assets/bestiary/cockroach-swarm/health-bar-v2/frame.png"
+const SWARM_FILL_PATH := "res://assets/bestiary/cockroach-swarm/health-bar-v2/fill.png"
 
 func _ready() -> void:
 	Data.load_data()
@@ -75,23 +75,24 @@ func tick(delta: float) -> void:
 	queue_redraw()
 
 func reserved_height() -> float:
-	return float(policy.reserved_band_pixels) if active else 0.0
+	return (110.0 if boss_id == "cockroach-swarm" else float(policy.reserved_band_pixels)) if active else 0.0
 
 func _draw() -> void:
 	if not active: return
 	var width := float(policy.reference_viewport_pixels[0])
 	var bar_width: float = width * policy.width_fraction
-	var top := float(policy.top_margin_pixels)
-	var bar := Rect2((width - bar_width) / 2, top + 25, bar_width, policy.reference_bar_height_pixels)
+	var swarm := boss_id == "cockroach-swarm"
+	var top := 6.0 if swarm else float(policy.top_margin_pixels)
+	var bar := Rect2((width - bar_width) / 2, 46.0 if swarm else top + 25, bar_width, policy.reference_bar_height_pixels)
 	modulate.a = opacity
-	draw_rect(Rect2(0, 0, width, policy.reserved_band_pixels), Color("101c2a"))
+	draw_rect(Rect2(0, 0, width, reserved_height()), Color("101c2a"))
 	draw_string(ThemeDB.fallback_font, Vector2(0, top + 16), boss_name.to_upper(),
 		HORIZONTAL_ALIGNMENT_CENTER, width, 20, Color("ffe18d"))
-	if boss_id == "cockroach-swarm":
+	if swarm:
 		draw_rect(bar, Color("100d0b"))
 		draw_swarm_fill(bar, trail, Color("f3b597"))
 		draw_swarm_fill(bar, hp / maximum, Color.WHITE)
-		draw_texture_rect(swarm_frame, Rect2(bar.position - Vector2(32, 6), bar.size + Vector2(64, 12)), false)
+		draw_texture_rect(swarm_frame, Rect2(bar.position - Vector2(48, 18), bar.size + Vector2(96, 36)), false)
 	else:
 		draw_rect(bar.grow(3), Color("71848b"))
 		draw_rect(bar, Color("25313b"))
@@ -100,7 +101,7 @@ func _draw() -> void:
 		var color := Color("58d68d") if fraction > .5 else Color("f4d35e") if fraction > .25 else Color("ef5350")
 		draw_rect(Rect2(bar.position, Vector2(bar_width * fraction, bar.size.y)), color)
 	if not player_status.is_empty():
-		draw_string(ThemeDB.fallback_font,Vector2(0,75),player_status,HORIZONTAL_ALIGNMENT_CENTER,width,14,Color("fff6d5"))
+		draw_string(ThemeDB.fallback_font,Vector2(0,104 if swarm else 75),player_status,HORIZONTAL_ALIGNMENT_CENTER,width,14,Color("fff6d5"))
 
 func draw_swarm_fill(bar: Rect2, fraction: float, tint: Color) -> void:
 	var amount := clampf(fraction, 0, 1)

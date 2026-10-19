@@ -31,18 +31,37 @@ func run_checks() -> void:
 	assert(sound.event_starts.debris_impact == 1)
 	var releases: int = sound.event_starts.debris_release
 	var warnings: int = sound.event_starts.tail_warning
+	var impacts: int = sound.event_starts.debris_impact
+	var burst_nodes: int = host.get_child_count()
 	sound.event("swim_start")
 	sound.step(.15)
 	sound.event("tail_warning")
 	sound.step(.8)
-	for throw_index in range(3):
+	for throw_index in range(6):
 		if throw_index > 0: sound.step(.22)
+		if throw_index == 3:
+			var frozen_clock: float = sound.clock
+			sound.set_paused(true)
+			sound.step(2)
+			sound.event("debris_release")
+			sound.event("debris_impact")
+			assert(sound.clock == frozen_clock and sound.event_starts.debris_release == releases+3)
+			assert(sound.event_starts.debris_impact == impacts+3)
+			sound.set_paused(false)
 		assert(sound.target == 1 and sound.levels[1] == 1)
 		sound.event("debris_release")
 		assert(not sound.warning.playing, "Throw cancels the longer warning tail")
 		sound.event("debris_impact")
-	assert(sound.event_starts.debris_release == releases+3)
+		assert(sound.effects.size() == 2 and host.get_child_count() == burst_nodes)
+	assert(sound.event_starts.debris_release == releases+6)
+	assert(sound.event_starts.debris_impact == impacts+6)
 	assert(sound.event_starts.tail_warning == warnings+1)
+	sound.stop()
+	assert(sound.target == -1 and sound.clock == 0 and sound.impact_after == 0)
+	for voice in sound.effects+sound.beds:
+		assert(not voice.playing and not voice.stream_paused)
+	sound.event("debris_impact")
+	assert(sound.event_starts.debris_impact == impacts+7, "Reset clears the impact throttle")
 	sound.event("alligator_assembly")
 	sound.step(1.34)
 	assert(not sound.cue_cutoffs.is_empty())

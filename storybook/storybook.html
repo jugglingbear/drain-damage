@@ -479,5 +479,20 @@ normal HUD size, live appearance and actual gameplay captures remain pending. So
 <p><a href="076-living-swarm-health-bar/20261019-133018-capture-status.json">Capture status and verification</a>
 were recorded October 19, 2026 at 13:30:18.823265 (America/Los_Angeles, UTC−07:00), not a screenshot capture time.
 Earlier builds and chapters are preserved. See the <a href="README.md">full development log</a> for details.</p></section>
+<section><h2>77 · Contact, six-shot volleys and a larger health bar — October 19, 2026</h2>
+<p>Prototype 77 / 0.77.0 makes visible formed-rat insects damage the hero through normal contact immunity. Hidden and
+transition states remain harmless. Six alligator arcs use five random floor targets and a final target sampled at firing,
+with no later homing. Actual-contact tests exposed corner blockage; a low rush pose and committed endpoint now permit
+escape while still hitting stationary heroes.</p>
+<p>Sean rejected Prototype 76’s unreadable HUD insects. Living Swarm v2 uses 18px rails instead of 6px, larger endcaps and
+a 110px reserved band, retaining orange fill and dark track. The earlier iteration remains preserved.</p>
+<p>Engineering reports eleven packaged suites and thirty-three Python tests passing, including twelve actual-contact
+dodge routes, six stationary rush-hit cases and eighteen room-pressure cases. Export, signing and archive checks pass.
+Earlier failures remain documented; final checks contain no script, parse or assertion errors.</p>
+<p>No game window opened or actual 77 capture occurred. Software HUD composition is not gameplay. Human visual acceptance,
+combat balance, listening and GPU performance remain pending.
+<a href="077-contact-volley-and-readable-hud/20261019-141301-capture-status.json">Capture status and verification</a>
+were recorded October 19, 2026 at 14:13:01.575103 (America/Los_Angeles, UTC−07:00), not a screenshot capture time.
+See the <a href="README.md">full development log</a> for details.</p></section>
 </body>
 </html>

@@ -94,14 +94,14 @@ func insect_position(key: String, next_key: String, blend: float, index: int, cl
 	return point
 
 func draw(host: CanvasItem, key: String, next_key: String, blend: float, origin: Vector2,
-		facing: int, clock: float, underwater := false, water_top := 456.0, pipe: Dictionary = {}) -> void:
+		facing: int, clock: float, underwater := false, water_top := 456.0, pipe: Dictionary = {}, deterministic := false, body_scale := 1.0) -> void:
 	var counts := [0, 0, 0, 0]
 	var reset := clock == 0 or previous_clock < 0 or clock < previous_clock or clock - previous_clock > .5
 	var weight := 1.0 if reset else 1.0 - exp(-18.0 * maxf(0, clock - previous_clock))
 	if displayed.is_empty(): displayed.resize(COUNT)
 	for index in range(COUNT):
 		var point := insect_position(key, next_key, blend, index, clock if pipe.is_empty() else 0.0)
-		if pipe.is_empty(): point = displayed[index].lerp(point, weight)
+		if pipe.is_empty() and not deterministic: point = displayed[index].lerp(point, weight)
 		displayed[index] = point
 		var angle := insect_angle(index, clock if pipe.is_empty() else 0.0)
 		var size := insect_size(index)
@@ -113,6 +113,8 @@ func draw(host: CanvasItem, key: String, next_key: String, blend: float, origin:
 		if facing > 0:
 			point.x = -point.x
 			angle = PI - angle
+		point *= body_scale
+		size *= body_scale
 		point += origin
 		var sample := pipe_sample(index, point, pipe)
 		if not sample.visible: continue

@@ -1,0 +1,54 @@
+{
+  "status": "Integrated in Prototype77; packaged HUD checks pass; live visual acceptance pending",
+  "revision_reason": "User reports v1 six-pixel rails conceal cockroach identity at gameplay size",
+  "source": "bestiary/cockroach-swarm/health-bar-production-v1/source-v2.png",
+  "exact_generation_prompt": "bestiary/cockroach-swarm/health-bar-production-v1/art.json",
+  "preparation": "prepare.gd; existing authored rails uniformly resized to18 logical pixels, repeated; endcaps uniformly resized to56px",
+  "frame": {
+    "path": "assets/bestiary/cockroach-swarm/health-bar-v2/frame.png",
+    "dimensions": [
+      1728,
+      112
+    ],
+    "aperture": [
+      96,
+      36,
+      1536,
+      40
+    ],
+    "destination": [
+      48,
+      28,
+      864,
+      56
+    ]
+  },
+  "fill": {
+    "path": "assets/bestiary/cockroach-swarm/health-bar-v2/fill.png",
+    "dimensions": [
+      1536,
+      40
+    ],
+    "destination": [
+      96,
+      46,
+      768,
+      20
+    ],
+    "behavior": "crop source and destination proportionally to HP"
+  },
+  "hud": {
+    "title_baseline": 22,
+    "status_baseline": 104,
+    "reserved_height": 110
+  },
+  "preview": "native-size-preview.png: actual960px logical width, software composition full/65%/15%, not gameplay",
+  "validation": {
+    "aperture_transparent": true,
+    "native_size_preview_inspected": true
+  },
+  "limitations": [
+    "Static frame; live GPU/playtest review pending"
+  ],
+  "delivery_record": "handoffs/skitterling-contact-volley-delivery.json"
+}

@@ -8,6 +8,7 @@ const SWIM_SPEED := 340.0
 const CHARGE_SPEED := 300.0
 const ROCK_RADIUS := 14.0
 const VOLLEY_SPACING := .22
+const VOLLEY_COUNT := 6
 const ARC_FLIGHT_SECONDS := 1.6
 const RAT_GROUND_SPEED := 300.0
 const RAT_RUSH_SPEED := 360.0
@@ -145,6 +146,10 @@ func damageable() -> bool:
 	return active and not _frozen and state in VULNERABLE and (
 		state != "rat_pipe_launch" or _fully_emerged())
 
+func rat_contact_active() -> bool:
+	## The room intersects the rendered insects, not the empty corners of the logical body.
+	return phase == "rat" and damageable()
+
 func _fully_emerged() -> bool:
 	var bounds := body_rect()
 	return elapsed >= .15 and bounds.position.x >= 32 and bounds.end.x <= 928 and bounds.position.y >= 82
@@ -181,7 +186,7 @@ func hurt_regions() -> Array[Rect2]:
 func snapshot() -> Dictionary:
 	return {"state": state, "phase": phase, "hp": hp, "max_hp": MAX_HP,
 		"position": position, "facing": facing, "elapsed": elapsed, "active": active,
-		"visible": visible(), "damageable": damageable(), "body_rect": body_rect(),
+		"visible": visible(), "damageable": damageable(), "rat_contact_active": rat_contact_active(), "body_rect": body_rect(),
 		"port": port, "port_position": PORTS[port] if port >= 0 else Vector2.ZERO,
 		"landing": landing, "column_x": column_x, "hazards": hazards.duplicate(true),
 		"exit_open": exit_open, "frozen": _frozen, "throw_origins": throw_origins.duplicate(),
@@ -229,7 +234,7 @@ func _tick(dt: float) -> void:
 	if state == "rat_rush":
 		_rush_speed = minf(RAT_RUSH_SPEED, _rush_speed+RAT_RUSH_ACCELERATION*dt)
 		position.x = move_toward(position.x, _destination.x, _rush_speed*dt)
-		_add_hurt(_rat_strike(before, 64, 44).merge(_rat_strike(body_rect(), 64, 44)))
+		# The crouched rush damages through the room's visible insect contact regions.
 		if is_equal_approx(position.x, _destination.x): _enter("rat_rush_recovery")
 		return
 	if state == "alligator_charge":
@@ -253,11 +258,11 @@ func _tick(dt: float) -> void:
 		_add_hurt(before.merge(body_rect()))
 	if state == "alligator_debris":
 		_step_debris(dt)
-		while _released < 3 and elapsed >= _released*VOLLEY_SPACING:
+		while _released < VOLLEY_COUNT and elapsed >= _released*VOLLEY_SPACING:
 			_release_debris()
-		if _released == 3 and hazards.is_empty(): _enter("alligator_surface_swim")
+		if _released == VOLLEY_COUNT and hazards.is_empty(): _enter("alligator_surface_swim")
 	elif DURATIONS.has(state) and elapsed >= float(DURATIONS[state])-.000001:
-		# Assembly/ready bodies are harmless and nonblocking; occupancy must not stall combat forever.
+		# Assembly is harmless and nonblocking; occupancy must not stall combat forever.
 		if state == "rat_pipe_warning" and _occupied(landing):
 			_enter("rat_pipe_warning")
 		elif state == "alligator_surface_warning" and _occupied(landing):
@@ -336,7 +341,7 @@ func _enter(next_state: String) -> void:
 		"rat_pounce_tell", "rat_rush_tell":
 			facing = 1 if _hero.get_center().x > position.x else -1
 			attack_target = Vector2(_hero.get_center().x, FLOOR_Y)
-			var offset := 92.0 if state == "rat_pounce_tell" else 96.0
+			var offset := 92.0 if state == "rat_pounce_tell" else 48.0
 			_origin = position
 			_destination = Vector2(clampf(attack_target.x-facing*offset, 160, 800), FLOOR_Y)
 		"rat_rush":
@@ -372,7 +377,9 @@ func _enter(next_state: String) -> void:
 			facing = 1 if swim_target > position.x else -1
 		"alligator_water_warning":
 			column_x = position.x
-			volley_targets = [column_x, _rng.randf_range(133, 827), clampf(_hero.get_center().x, 133, 827)]
+			volley_targets.clear()
+			for shot in range(VOLLEY_COUNT-1):
+				volley_targets.append(_rng.randf_range(133, 827))
 		"alligator_debris":
 			_release_debris()
 		"alligator_surface_swim":
@@ -400,13 +407,16 @@ func _release_debris() -> void:
 	var shot := _released
 	_released += 1
 	throw_origins.append(column_x)
+	# The final shot samples the hero now; its trajectory never tracks after release.
+	if shot == VOLLEY_COUNT-1:
+		volley_targets.append(clampf(_hero.get_center().x, 133, 827))
 	var target := volley_targets[shot]
-	var horizontal := 0.0 if shot == 0 else (target-column_x)/ARC_FLIGHT_SECONDS
+	var horizontal := (target-column_x)/ARC_FLIGHT_SECONDS
 	# All shots start below the walkway. Ballistic arcs land exactly at the committed floor target.
 	var vertical := (FLOOR_Y-500-.5*1000*ARC_FLIGHT_SECONDS*ARC_FLIGHT_SECONDS)/ARC_FLIGHT_SECONDS
 	hazards.append({"position": Vector2(column_x, 500), "vy": vertical, "vx": horizontal,
 		"descending": false, "radius": ROCK_RADIUS, "id": _released,
-		"kind": ["vertical", "random_arc", "aimed_arc"][shot], "target_x": target, "age": 0.0})
+		"kind": "aimed_arc" if shot == VOLLEY_COUNT-1 else "random_arc", "target_x": target, "age": 0.0})
 	_events.append("debris_release")
 
 func _step_debris(dt: float) -> void:
@@ -428,6 +438,6 @@ func _step_debris(dt: float) -> void:
 			_events.append("debris_impact")
 
 func _next_throw_origin() -> float:
-	# Track while swimming, then commit the whole volley at the warning boundary.
+	# Track while swimming, then hold the launch origin throughout the volley.
 	var hero_x := _hero.get_center().x
 	return clampf(hero_x+(80 if hero_x < 480 else -80), 133, 827)

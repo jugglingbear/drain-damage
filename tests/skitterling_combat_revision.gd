@@ -35,7 +35,7 @@ func run_checks() -> void:
 				var dodge_origin: float = game.player.x
 				var dodge_destination: float = game.player.x
 				for tick in range(120*15):
-					if boss.state == "alligator_water_warning" and locked.is_empty():
+					if boss.volley_targets.size() == 6 and locked.is_empty():
 						locked = boss.volley_targets.duplicate()
 						dodge_origin = game.player.x
 						var best_clearance := -1.0
@@ -46,18 +46,22 @@ func run_checks() -> void:
 							if clearance > best_clearance:
 								best_clearance = clearance
 								dodge_destination = dodge_origin + offset
-					if dodge and not locked.is_empty() and (boss.state != "alligator_water_warning" or boss.elapsed >= .2):
+					if dodge and not locked.is_empty() and (boss.state == "alligator_debris" and boss.elapsed >= 1.3):
 						game.player.x = move_toward(game.player.x, dodge_destination, game.employee.move_speed / 120)
 					game.health = game.employee.max_health
 					game.invulnerable = 0
+					var before_shots: int = boss.snapshot().throw_count
+					var fire_target: float = clampf(game.player.x - 6570 + game.PLAYER_SIZE.x / 2, 133, 827)
 					room.advance(game,1.0/120)
-					assert(boss.hazards.size() <= 3)
+					assert(boss.hazards.size() <= 6)
 					if game.health < game.employee.max_health: hits += 1
 					for hazard: Dictionary in boss.hazards:
 						kinds[hazard.kind] = true
-						if hazard.kind == "aimed_arc": assert(hazard.target_x == locked[2])
+						if hazard.kind == "aimed_arc":
+							assert(hazard.target_x == boss.volley_targets[5])
+							if before_shots == 5: assert(is_equal_approx(hazard.target_x, fire_target))
 					if boss.state == "alligator_surface_swim": break
-				assert(kinds.size() == 3 and locked.size() == 3)
+				assert(kinds.size() == 2 and locked.size() == 6)
 				assert(hits == 0 if dodge else hits > 0, "Committed volley must punish waiting and allow movement")
 				# The scene clips damage to the real rendered jaw; stationary floor contact must still hurt.
 				boss.position = Vector2(176,440)
@@ -73,5 +77,5 @@ func run_checks() -> void:
 				assert(snapped,"Visible charge jaws must hurt through the real art/room adapter")
 				game.queue_free()
 				await process_frame
-	print("PASS: both heroes/all modes scene-adapted rapid three-kind volley, dodges, locked aim and visible jaw charges")
+	print("PASS: both heroes/all modes scene-adapted six-shot volley, dodges, fire-time aim and visible jaw charges")
 	quit()

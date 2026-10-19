@@ -80,13 +80,23 @@ func advance(host: Node2D, delta: float) -> void:
 		clock += delta
 		encounter.step(delta,hero_rect(host))
 		flush_events(host)
+		var player_body := Rect2(host.player,host.PLAYER_SIZE)
+		var touching := false
+		var snapshot := encounter.snapshot()
+		if encounter.rat_contact_active():
+			for region: Rect2 in art.visible_contact_regions(snapshot, ORIGIN, clock):
+				if region.intersects(player_body):
+					touching = true
+					break
 		for region in encounter.hurt_regions():
 			var world: Rect2 = Rect2(region.position+ORIGIN,region.size)
 			if encounter.state != "alligator_debris":
-				world = world.intersection(art.collision_bounds(encounter.snapshot(),ORIGIN))
-			if world.has_area() and world.intersects(Rect2(host.player,host.PLAYER_SIZE)):
-				host.hurt_player()
+				world = world.intersection(art.collision_bounds(snapshot,ORIGIN))
+			if world.has_area() and world.intersects(player_body):
+				touching = true
 				break
+		# Contact and attack overlap share one damage call and the normal immunity window.
+		if touching: host.hurt_player()
 		if encounter.exit_open and host.player.x >= EXIT_END:
 			released = true
 			host.boss_hud.end_encounter()

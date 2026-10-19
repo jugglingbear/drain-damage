@@ -13,7 +13,7 @@ const STATE_ART := {
 	"rat_wall_approach":"rat_ground_scuttle", "rat_wall_climb":"rat_climb",
 	"rat_pounce_tell":"rat_claw_tell", "rat_pounce":"rat_claw_pounce",
 	"rat_pounce_recovery":"rat_land_recovery", "rat_rush_setup":"rat_ground_scuttle",
-	"rat_rush_tell":"rat_claw_tell", "rat_rush":"rat_ground_rush", "rat_rush_recovery":"rat_land_recovery",
+	"rat_rush_tell":"rat_ground_rush", "rat_rush":"rat_ground_rush", "rat_rush_recovery":"rat_ground_rush",
 	"alligator_tail_tell":"alligator_tail_tell", "alligator_tail_sweep":"alligator_tail_sweep",
 	"alligator_tail_recovery":"alligator_tail_recovery",
 	"entry_skitter":"floor_skitter", "rat_assembly":"rat_assembly", "rat_ready":"rat_idle",
@@ -183,7 +183,9 @@ func collision_bounds(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Rec
 	var bounds: Rect2 = frames[selection.key].bounds
 	if int(snapshot.get("facing", -1)) > 0:
 		bounds.position.x = CANVAS.x - bounds.end.x
-	bounds.position += world_origin + Vector2(snapshot.position) - ANCHOR
+	var scale := rush_scale(snapshot)
+	bounds = Rect2((bounds.position - ANCHOR) * scale, bounds.size * scale)
+	bounds.position += world_origin + Vector2(snapshot.position)
 	return bounds
 
 func visible_bounds(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Rect2:
@@ -193,7 +195,9 @@ func visible_bounds(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Rect2
 	var bounds: Rect2 = frames[selection.key].bounds.merge(frames[selection.next_key].bounds).grow(RoachBody.EXTENT)
 	if int(snapshot.get("facing", -1)) > 0:
 		bounds.position.x = CANVAS.x - bounds.end.x
-	bounds.position += world_origin + Vector2(snapshot.position) - ANCHOR
+	var scale := rush_scale(snapshot)
+	bounds = Rect2((bounds.position - ANCHOR) * scale, bounds.size * scale)
+	bounds.position += world_origin + Vector2(snapshot.position)
 	return bounds
 
 func state_is_still(snapshot: Dictionary) -> bool:
@@ -205,7 +209,8 @@ func draw_boss(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, cl
 	if not selection.is_empty() and snapshot.get("visible", false) and snapshot.get("state") not in ["alligator_swim", "alligator_surface_swim"]:
 		roach_body.draw(host, selection.key, selection.next_key, selection.blend,
 			world_origin + Vector2(snapshot.position), int(snapshot.get("facing", -1)),
-			0.0 if state_is_still(snapshot) else clock, false, world_origin.y + 456, pipe_parameters(snapshot, world_origin))
+			0.0 if state_is_still(snapshot) else clock, false, world_origin.y + 456, pipe_parameters(snapshot, world_origin),
+			str(snapshot.get("state", "")).begins_with("rat_"), rush_scale(snapshot))
 
 	var state: String = snapshot.get("state", "idle")
 	if state == "rat_pipe_warning":
@@ -359,3 +364,49 @@ func visible_target_regions(snapshot: Dictionary, world_origin := Vector2.ZERO) 
 					covered = true
 			if not covered: result.append(cell)
 	return result
+
+func visible_contact_regions(snapshot: Dictionary, world_origin := Vector2.ZERO, clock := 0.0) -> Array[Rect2]:
+	## Conservative opaque insect cores, sharing the rat draw's analytic pose and pipe concealment.
+	var result: Array[Rect2] = []
+	if not ready or not snapshot.get("visible", false) or not snapshot.get("rat_contact_active", false): return result
+	if snapshot.get("state", "") == "rat_pipe_retreat": return visible_target_regions(snapshot, world_origin)
+	var selection := _selection(snapshot)
+	if selection.is_empty(): return result
+	var body_scale := rush_scale(snapshot)
+	var pipe := pipe_parameters(snapshot, world_origin)
+	var pose_clock := clock if pipe.is_empty() else 0.0
+	for index in range(RoachBody.COUNT):
+		var point := roach_body.insect_position(selection.key, selection.next_key, selection.blend, index, pose_clock) - ANCHOR
+		var shape := roach_body.insect_shape(selection.key, selection.next_key, selection.blend, index, pose_clock)
+		var size: Vector2 = shape.size if pipe.is_empty() else RoachBody.insect_size(index)
+		var angle: float = shape.angle if pipe.is_empty() else RoachBody.insect_angle(index, 0.0)
+		if int(snapshot.get("facing", -1)) > 0:
+			point.x = -point.x
+			angle = PI - angle
+		point *= body_scale
+		size *= body_scale
+		point += Vector2(snapshot.position) + world_origin
+		var sample := RoachBody.pipe_sample(index, point, pipe)
+		if not sample.visible: continue
+		point = sample.position
+		size *= float(sample.scale)
+		for offset in [-.18, 0.0, .18]:
+			var center: Vector2 = point + Vector2.from_angle(angle) * size.x * offset
+			var cell := Rect2(center - Vector2.ONE, Vector2(2, 2))
+			if not roach_body.opaque_cell(cell, point, size, angle): continue
+			var covered := false
+			if not pipe.is_empty():
+				for corner: Vector2 in [cell.position, cell.end, Vector2(cell.end.x, cell.position.y), Vector2(cell.position.x, cell.end.y)]:
+					if pipe.outer.has_point(corner) and ((corner - pipe.mouth) / pipe.radius).length_squared() > 1: covered = true
+			if not covered: result.append(cell)
+	return result
+
+func rush_scale(snapshot: Dictionary) -> float:
+	## Keep the authored low pose throughout tell, charge and recovery; scale insects uniformly about feet.
+	if snapshot.get("state", "") not in ["rat_rush_tell", "rat_rush", "rat_rush_recovery"]: return 1.0
+	var guide: Dictionary = roach_body.targets["rat-attacks-source-v1:3"]
+	var height := 1.0
+	for index in range(RoachBody.COUNT):
+		# Half diagonal covers every rotated sprite pixel, including antennae; mobility bounds all clocks.
+		height = maxf(height, ANCHOR.y - guide.points[index].y + Vector2(guide.shapes[index].size).length() * .5 + 1.5)
+	return minf(1.0, 50.0 / height)

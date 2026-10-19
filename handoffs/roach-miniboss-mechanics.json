@@ -2,7 +2,7 @@
   "schema_version": 1,
   "created_date": "2026-10-17",
   "timezone": "America/Los_Angeles",
-  "status": "Commissioned encounter implementation contract; numeric tuning defaults require runtime/playtest validation",
+  "status": "Prototype 77 contact and six-shot revision implemented; integration/build validation pending.",
   "identity": {
     "id": "cockroach-swarm",
     "folder": "bestiary/cockroach-swarm",
@@ -148,13 +148,15 @@
     "rat_ready": {
       "seconds": 0.6,
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_pipe_retreat": {
       "seconds": 0.7,
       "damageable": true,
-      "hurts_hero": false,
-      "notes": "Visible withdrawal; become invulnerable only once fully insidepipe, not entireteleport approach."
+      "hurts_hero": true,
+      "notes": "Visible withdrawal; become invulnerable only once fully insidepipe, not entireteleport approach.",
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_inside_pipe": {
       "seconds": 0.5,
@@ -173,13 +175,16 @@
       "seconds": 1.1,
       "damageable": true,
       "hero_damage": 1,
-      "notes": "1.1s fixedlinearflight (was.6); retains2s warning, .15minimumvisiblegate, roomclip andoccupiedlandingabort. Slowertravel createsreactionspace withoutremovingthreat."
+      "notes": "1.1s fixedlinearflight (was.6); retains2s warning, .15minimumvisiblegate, roomclip andoccupiedlandingabort. Slowertravel createsreactionspace withoutremovingthreat.",
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_landing_recovery": {
       "seconds": 1.4,
       "damageable": true,
-      "hurts_hero": false,
-      "notes": "Begin on actual grounded landing; no landing shockwave/additional hit. Repeat bite then pipeambush."
+      "hurts_hero": true,
+      "notes": "Begin on actual grounded landing; no landing shockwave/additional hit. Repeat bite then pipeambush.",
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_collapse": {
       "seconds": 1.6,
@@ -223,14 +228,14 @@
       "seconds": 0.8,
       "damageable": false,
       "hurts_hero": false,
-      "notes": "Brief stationarypause atswimdestination. column_x locks toactualbossx. Tail+floorwarning; no late retarget."
+      "notes": "Hold current launch origin; reveal five random floor targets. Aimed target remains pending until the sixth release."
     },
     "alligator_debris": {
-      "count": 3,
+      "count": 6,
       "release_spacing_seconds": 0.22,
       "damageable": false,
       "hero_damage": 1,
-      "notes": "One rapidvolley at0/.22/.44s fromsameorigin:vertical,seededrandomparabola,aimedparabola landsatwarning-timeheroCenter. Bothup/downdamaging, no homing; waitallclear then surface. Supersedes3distinctorigin swimcycles."
+      "notes": "Six releases at 0/.22/.44/.66/.88/1.10 seconds from one origin: five seeded random floor arcs, then one arc aimed at the hero center when that shot fires. No homing after release. Both rising and falling debris hurt; wait until all six clear before surfacing."
     },
     "alligator_surface_warning": {
       "seconds": 1.0,
@@ -272,7 +277,7 @@
       "seconds": "distance/340",
       "damageable": false,
       "hurts_hero": false,
-      "notes": "Continuouslytrackhero at340px/s toanorigin80pxbesidehero towardroominterior; stopandcommit all3targets atwarning. Lateraloffset makesaimedshot anactualarc."
+      "notes": "Continuously approach an origin 80px beside the hero toward room interior at 340px/s; hold origin at warning. Final aimed target samples the hero at firing."
     },
     "alligator_surface_swim": {
       "seconds": "distance/340",
@@ -300,57 +305,66 @@
     },
     "rat_wall_approach": {
       "seconds": "distance/300",
-      "notes": "Harmless groundapproach tooppositehero wallanchor180/780,floor440; no teleport.",
+      "notes": "groundapproach tooppositehero wallanchor180/780,floor440; no teleport.",
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_wall_climb": {
       "seconds": 0.7,
-      "notes": "Feet440\u2192250; bodytop100 belowHUD. Harmless climb.",
+      "notes": "Feet440\u2192250; bodytop100 belowHUD. climb.",
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_pounce_tell": {
       "seconds": 1.0,
       "notes": "Facehero, lockattack_target atcurrentheroCenter/floor440. Clawspread/openmouth/screech; neverretarget aftercommit.",
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_pounce": {
       "seconds": 0.9,
       "notes": "Linearx toclampedfootcenter(targetX-facing*92,160..800), feetYlerp250\u2192440 minus80sin(PI*t). Leading72x48claws/mouth hurts, body nonblocking. Doesnotcancelbecausehero remains atannouncedtarget.",
       "damageable": true,
-      "hurts_hero": true
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_pounce_recovery": {
       "seconds": 1.2,
-      "notes": "Grounded skid/reassembly; harmless vulnerable shootingwindow.",
+      "notes": "Grounded skid/reassembly; contact-damaging vulnerable shootingwindow.",
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_rush_setup": {
       "seconds": "distance/300",
-      "notes": "Harmless continuousgroundreposition tooppositehero x180/780 beforewarning.",
+      "notes": "continuousgroundreposition tooppositehero x180/780 beforewarning.",
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_rush_tell": {
       "seconds": 0.8,
-      "notes": "Crouch/scrape, facingandtargetlock. No trackingaftercommit.",
+      "notes": "Hold authored low rush pose; .8s warning commits facing and target. Rendered insects and contact use identical feet-centered scaling.",
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_rush": {
       "seconds": "distance withacceleration900/maxspeed360",
-      "notes": "Acceleratefrom0\u2192360px/s, fixedendpointtargetX-facing*96 clamped160..800. Leading64x44lowmouth/claws hurts; standardjumpclears.",
+      "notes": "Visible authored low rush pose, at most50px above feet and about124.5px wide. Accelerates to360px/s; endpoint targetX-facing*48 clamped160..800. Actual visible insect contact is the sole damage shape; no detached leading rectangle.",
       "damageable": true,
-      "hurts_hero": true
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "rat_rush_recovery": {
       "seconds": 1.2,
-      "notes": "Harmless/vulnerable pause aftermiss orhit.",
+      "notes": "Hold low rush pose throughout1.2s recovery. Vulnerable and contact-damaging; no sudden full-height expansion while hero jumps over it.",
       "damageable": true,
-      "hurts_hero": false
+      "hurts_hero": true,
+      "contact": "Visible formed insect silhouette causes one normal contact hit; respect global 1.5s immunity. Pipe launch requires full emergence; retreat excludes insects behind pipe metal."
     },
     "alligator_tail_tell": {
       "seconds": 1.0,
@@ -374,9 +388,9 @@
   "attack_safety": {
     "damage_scale": "One current contact-hit unit; never15/20 against4/5HP heroes.",
     "invulnerability": "Respect existing global hero1.5s invulnerability; no stacked roach/body/jaw hits.",
-    "budget": "Isolatedonecompoundenemy; oneattackpattern atatime; threephysicaldebrismax count towardglobal6bulletcap. No other enemies/warnings/projectiles admitted to room; no additional physicsroachactors.",
-    "reach": "Damage only visiblebody/jaw or descendingdebris; antennae/decorations excluded. Bothstarters have groundheight target and canreach during recovery. Keepdamage1 andexisting1.5sinvulnerability.",
-    "fairness": "No passive standing refuge: sampled every20px across120..814 inclbothexactends over60s, >=5acceptedhits respecting1.5s hero immunity. Pounceleading72x48 canbe rununder aftercommit byboth270/235heroes; rush64x44, charge72x44 andtail120x40 canbe standardjumped. Wholebody nonblocking; harmlesssetup/assembly neverpush. Distincthiddenpipeappearanceabort retained.",
+    "budget": "Six physical debris maximum, within global six-projectile cap. No other enemies/projectiles enter the isolated room; clear all debris before surfacing.",
+    "reach": "Rat contact uses actual visible insect cells, excluding empty silhouette corners and pipe-hidden insects. Rising and falling debris damage. One damage unit with normal 1.5s immunity.",
+    "fairness": "Formed rat contact remains active during approach, tells, attacks and recovery. Assembly/collapse/hidden pipe/abort are harmless. Low rush pose uses matching visible contact and reaches stationary targets. Actual room evasion tests include both heroes, corners and center, through recovery; old bite-only jump tests alone are insufficient.",
     "timing": "Pause/death/dispenser freeze timers; audio completion never advances phases."
   },
   "art_contract": {
@@ -526,16 +540,16 @@
   },
   "acceptance": [
     "Both heroes can damage rat/alligator with default horizontal shot while standing; no mandatory unavailable weapon.",
-    "Scattered and reforming states do not harm hero; overlap prevents unsafe formation.",
+    "Scattered, assembling and collapsing states do not harm the hero; formed rat contact begins in ready.",
     "No perroach damage multiplication, repeated contact stacking, scene-wall tunneling or offscreen attacks.",
     "Every formed living state visibly churns including idle/windup/recovery/hit.",
     "All attack patterns have visible warnings, escape routes and safe vulnerability/recovery opportunities.",
     "Pause/death/checkpoint/newrun cleanup and exact ownership restoration tested.",
     "Seeded repeatable simulations plus permitted human fairness/visual/audio review before calling encounter balanced.",
-    "Ratphaseclampsat180,never skipsalligator evenwithoverkill/multiplesameframehits; midpointneverunlocksexit.",
-    "Exact2/2.5/4.5/4.5/2.5s transition timers pause/freeze correctly; camera stayslocked untilfinaldeath.",
+    "Rat phase clamps at540 HP, never skips alligator on overkill; midpoint never unlocks exit.",
+    "Entry1.0/rat assembly1.4/collapse1.6/reskitter1.2/gator assembly1.4 timers freeze correctly.",
     "Pipewarninglasts2s with lockedtrajectory; hero can dodge, never homing duringlaunch; landing recovery atactualground.",
-    "Submergedalligatorinvulnerable; three sequential rocks, max1live,three distinct committedcolumns,clearbeforeemergence; no debris/jawoverlap.",
+    "Submerged alligator is invulnerable; six overlapping arcs, max6 live, five random and one firing-time aimed; clear before emergence, no debris/jaw overlap.",
     "Full960room corner/hero-side/standingweapon accessibility checked bothheroes/allmodes; no invisiblebodyblockingtrap.",
     "Death/checkpoint/reentry releases then restoresappropriatecameralock,seed,HP,closedexit andall budgets exactlyonce."
   ],
@@ -547,7 +561,7 @@
     "audio": "Source cues and manifests",
     "level_design": "Exactfixedroom/approach/portgeometry/camera/route integrationcontract."
   },
-  "validation": "Verified74delivery includes18fullroutes,18actualroompressurecases andbothheroes/allmodesvolleychecks; detailedchecks/limits inlinked delivery_record.",
+  "validation": "Prototype77 controller validation passed; integrated contact geometry, packaged checks and human review pending.",
   "superseded": [
     "Earlier optional7950..9150 arena/1200width and no-integration boundary.",
     "Earlier3s collapse/scatter/reform and carry-all-overkill threshold.",
@@ -562,7 +576,7 @@
     "Threeindividualswimthrows\u2192one rapidvertical/randomarc/aimedarc burst."
   ],
   "debris_geometry": {
-    "max_live": 3,
+    "max_live": 6,
     "global_projectile_cap": 6,
     "column_width_pixels": 48,
     "recommended_radius_pixels": 14,
@@ -571,10 +585,10 @@
     "gravity_pixels_per_second_squared": 1000,
     "initial_up_speed": 837.5,
     "lifetime_seconds": 1.6,
-    "rule": "28pxrocks radius14. Analytic vx=(floorTarget-origin)/1.6, vy=-837.5, gravity1000; floor440 at1.6s exactly. Shot1vx0; shot2targetseeded133..827; shot3heroCenter sampledwithwarning. Launchspacing.22; max3live countsagainst6globalcap. No postwarningretarget."
+    "rule": "Radius 14; vx=(floor target-origin)/1.6, vy=-837.5, gravity1000; reaches floor440 at1.6s. Shots1..5 seeded random x133..827; shot6 hero center sampled at firing. Spacing .22s; six live maximum; no post-release retarget."
   },
   "controller_delivery": {
-    "status": "Delivered Prototype74/0.74.0;21packaged+33Python checks pass. Humanvisual/listening/balance review pending.",
+    "status": "Delivered Prototype77/0.77.0;11packaged+33Python checks pass; live balance review pending",
     "source": "scripts/skitterling_encounter.gd",
     "test": "tests/skitterling_encounter.gd",
     "api": [
@@ -584,6 +598,7 @@
       "step(delta:float,hero_rect:Rect2,frozen:bool=false)",
       "damage(amount:int)->int accepted",
       "damageable()->bool",
+      "rat_contact_active()->bool",
       "visible()->bool",
       "body_rect()->Rect2",
       "hurt_regions()->Array[Rect2]",
@@ -591,19 +606,22 @@
       "drain_events()->Array[String]"
     ],
     "coordinates": "Room-localfeetanchor, translateworldx6570. Heroactual26x46, portalbounds120..814 included. Body nonblocking. Snapshot additionally exposes swim_target,throw_origins,throw_count,charge_end.",
-    "caller_contract": "Call step once per simulation frame, including frozen=true during pause/death/dialogue/dispenser. Resolve returned hurt regions once against hero with global invulnerability. Deduplicate each projectile compound-body hit; damage() is per accepted hit, not per sprite. Drain events after step and after damage. Do not feed hit/exit_open to generic audio helper.event. reset clears pending events and flags; separately stop audio and release camera/doors.",
+    "caller_contract": "Call step once per simulation frame, including frozen=true during pause/death/dialogue/dispenser. Resolve returned hurt regions once against hero with global invulnerability. Deduplicate each projectile compound-body hit; damage() is per accepted hit, not per sprite. Drain events after step and after damage. Do not feed hit/exit_open to generic audio helper.event. reset clears pending events and flags; separately stop audio and release camera/doors. Separately intersect Art visible_contact_regions with the hero whenever rat_contact_active is true, using the same global immunity.",
     "geometry_limit": "Art mustmap underwatermotion/tail/currentrock28px andlow72x44snappingjaw; no code-generatedart. Sceneintegration actualhitinvulnerability/camera/bullets andhumanvisualbalance pending.",
-    "validation": "FocusedheadlesssuitePASS:900/540healthphasearithmetic/reset, shortenedexacttimers, 1.1pipeflight andescapeafter300mswarningreaction bothheroes12seeds/3positions; .44s3shotburst/max3live, analyticparabolaendpoints, lockedaim/randomseedrepeat, stationaryaimedlandinghit, bothherospeedsmove180pxafter200mswarningreactionandavoidvolleyat120/450/814. Existingpounce/rush/tail/cornerpressure/freeze/cleanup tests pass. ExistingCA diagnostic only.",
-    "log": "/tmp/skitterling-tuning-test.log",
-    "build": "builds/Prototype-74/Drain Damage.app",
+    "validation": "Focused suite PASS: six overlapping shots over1.10s; ballistic endpoints; final firing-time aim instead of warning-time aim; no homing; stationary hit/moving evasion of aimed shot; seeded repeat/reset; complete-volley routes for12 seeds \u00d72 hero speeds \u00d73 floor positions with200ms reactions. Contact eligibility/freeze/reset/pipe emergence gates pass. Actual rendered contact integration pending.",
+    "log": "/tmp/skitterling-six-contact-final.log",
     "port_alignment": "Controller PORTS match assets/world/skitterling-room/manifest-v1.json mouth_center values; focused test asserts allfour. CeilingY166 adopted from measured art; no shifted invisible launch origin.",
     "occupancy_fix": "No infiniteassemblyhold (harmless/nonblocking completion proceeds). Pipe hiddenemergence reselect/abort preserved. Newvisiblepounce deliberatelydoesnotcancelwhenhero staysintarget.",
     "tracking_fix": "Swimmer nowcontinuouslyreacquires beforecommit, speed340 outrunsbothheroes. Headless tests hero235/270 bothdirections bouncingwithin120..814: swimmercatchescurrentfootprint; perframeboundedmotion; warningholdsposition and releasedrockcolumn staysfixed afterhero relocates. Entirefocused suitePASS.",
-    "snapshot_additions": "volley_targets:Array[float] floorX [vertical,random,aimed], all y440; hazards vx/kind/target_x/age inadditiontoexistingposition/radius. RendererusesauthoritativeDURATIONS.",
+    "snapshot_additions": "rat_contact_active bool. volley_targets contains five fixed random floor X positions during warning; sixth target appended at final release, then fixed. hazards retain vx/kind/target_x/age.",
     "airborne_regression": "Killduringwallclimb andpounce: noinitialteleport, floorwithin.4s, nohurts, reskitteratexact4.5s; focused suitePASS.",
     "integration_pressure": "Packaged73:18actualgamecases Tony/Sean\u00d7Easy/Normal/Hard\u00d7left120/center450/right814 over60s yielded9\u201312hits/case withnormal1.5simmunity; test-onlypositionpin/healing/nobullets. Fullrecordlinked.",
     "art_delivery": "handoffs/skitterling-readable-roaches-v2.json; newposes/140roaches/pipevisibility testsPASS, measuredretreatquery.508msaverage. No moreMechanicseditsneeded.",
-    "delivery_record": "handoffs/skitterling-silhouette-tuning-delivery.json"
+    "previous_delivery_record": "handoffs/skitterling-silhouette-tuning-delivery.json",
+    "previous_build": "builds/Prototype-74/Drain Damage.app",
+    "contact_dodge_test": "tests/skitterling_contact_dodge.gd",
+    "build": "builds/Prototype-77/Drain Damage.app",
+    "delivery_record": "handoffs/skitterling-contact-volley-delivery.json"
   },
   "rat_pattern": {
     "sequence": [
@@ -615,5 +633,6 @@
     "repeat": true,
     "selection": "Deterministic acrossallmodes forinitialdelivery; no added unapproved random difficulty tuning.",
     "corner_policy": "No safe_gap suppression of primaryattacks. Stationary legalpositions120..814 musttake recurringhits. Committedtargetstaysattackable; separatepipeocclusionabort remains."
-  }
+  },
+  "updated_date": "2026-10-19"
 }

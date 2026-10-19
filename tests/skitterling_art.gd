@@ -71,6 +71,36 @@ func _initialize() -> void:
 	var right: Rect2 = art.visible_bounds(snapshot)
 	assert(is_equal_approx(left.position.x - 480, 480 - right.end.x))
 	assert(left.size == right.size and left.end.y <= 465)
+	snapshot.rat_contact_active = true
+	var started := Time.get_ticks_usec()
+	var contacts: Array[Rect2] = art.visible_contact_regions(snapshot, Vector2.ZERO, 2.0)
+	assert(not contacts.is_empty(), "Formed rat must have visible insect contact")
+	for repeat in range(30):
+		assert(contacts == art.visible_contact_regions(snapshot, Vector2.ZERO, 2.0))
+	print("Rat contact query average ms: ", (Time.get_ticks_usec() - started) / 31000.0)
+	var shifted: Array[Rect2] = art.visible_contact_regions(snapshot, Vector2(100, 80), 2.0)
+	assert(shifted.size() == contacts.size())
+	for i in range(contacts.size()):
+		assert(contacts[i].position.is_equal_approx(shifted[i].position - Vector2(100, 80)))
+		assert(contacts[i].size == Vector2(2, 2), "Contact samples individual insect cores")
+	for crouch_state in ["rat_rush_tell", "rat_rush", "rat_rush_recovery"]:
+		snapshot.state = crouch_state
+		var scale: float = art.rush_scale(snapshot)
+		var selected: Dictionary = art._selection(snapshot)
+		assert(selected.key == "rat-attacks-source-v1:3")
+		var bounds := Rect2()
+		for index in range(Art.RoachBody.COUNT):
+			var p: Vector2 = (art.roach_body.insect_position(selected.key, selected.key, 0, index, 2.0) - Art.ANCHOR) * scale
+			var shape: Dictionary = art.roach_body.insect_shape(selected.key, selected.key, 0, index, 2.0)
+			var radius: float = Vector2(shape.size).length() * .5 * scale
+			assert(p.y - radius >= -50.001, "All rotated sprite pixels must fit below jump clearance")
+			var insect := Rect2(p - Vector2.ONE * radius, Vector2.ONE * radius * 2)
+			bounds = insect if index == 0 else bounds.merge(insect)
+		print(crouch_state, " scale=", scale, " conservative bounds=", bounds)
+		assert(bounds.size.x <= 260)
+		assert(not art.visible_contact_regions(snapshot, Vector2.ZERO, 2.0).is_empty())
+	snapshot.rat_contact_active = false
+	assert(art.visible_contact_regions(snapshot).is_empty())
 	snapshot.state = "rat_collapse"
 	snapshot.elapsed = .5
 	assert(art.state_is_still(snapshot))
@@ -88,9 +118,12 @@ func _initialize() -> void:
 	assert(warning.get_center().x == 400 and warning.end.y == 440 and warning.position.y < 440)
 	snapshot.state = "alligator_debris"
 	assert(art.warning_bounds(snapshot)[0] == warning, "Committed debris lane remains marked")
-	snapshot.volley_targets = [250.0, 500.0, 750.0]
+	snapshot.volley_targets = [150.0, 300.0, 450.0, 600.0, 750.0]
 	var marks: Array[Rect2] = art.warning_bounds(snapshot)
-	assert(marks.size() == 3 and marks[2].get_center().x == 750)
+	assert(marks.size() == 5 and marks[4].get_center().x == 750)
+	snapshot.volley_targets.append(825.0)
+	marks = art.warning_bounds(snapshot)
+	assert(marks.size() == 6 and marks[5].get_center().x == 825, "Aimed marker appears only after release")
 	snapshot.volley_targets = []
 	# Pipe draws and target queries share deterministic snapshot-driven motion.
 	snapshot.state = "rat_pipe_retreat"

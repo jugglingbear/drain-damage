@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-10-19T14:13:01.575103-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery record creation, not capture time",
+  "capture_time": null,
+  "build": "Prototype 77 / 0.77.0",
+  "status": "Packaged checks passed; live visual and balance review pending",
+  "app": "builds/Prototype-77/Drain Damage.app",
+  "archive": "builds/history/Prototype-77.zip",
+  "archive_sha256": "d7df5415ab3a5a6a2f3498af5326a60e22e767435acd8c49260ea0191588e09c",
+  "snapshot": "builds/source-77",
+  "changes": [
+    "Visible formed-rat insect contact uses shared one-damage call and normal1.5s immunity; hidden/assembly/collapse remain harmless",
+    "Six alligator arcs: five seeded random floor targets, final target sampled at firing; no homing;0.22s spacing",
+    "Actual contact revealed rush corner blockage; uniformly scaled low rush pose stays at most50px high through tell/rush/recovery, matching draw/contact/projectile bounds",
+    "Rush uses visible insect contact, committed endpoint48px from target; stationary heroes still hit",
+    "Living Swarm HUDv2:18px rails instead of6, larger endcaps,110px reserved band; orangefill and darktrack retained"
+  ],
+  "checks": {
+    "packaged_suites": 11,
+    "python_tests": 33,
+    "actual_contact_dodges": "Both heroes, pounce/rush at left/center/right, through recovery:12 routes; six stationary rush hit cases",
+    "room_pressure": "18 real-room stationary cases across both heroes/all modes/positions",
+    "volley": "Five random+one firing-time aim, full final impact, seeded escapes and actual scene adapter",
+    "audio": "Six releases/impacts, bounded voices, pause/reset; human listening pending",
+    "export_signing_archive": "passed",
+    "results": "builds/verification-77/packaged-results.json"
+  },
+  "capture_gap": "No game window opened and no actual77capture; native HUD preview is software composition only. Preserve76/77 for comparison.",
+  "remaining": [
+    "Human visual acceptance of larger HUD and smaller rush pose",
+    "Human combat balance and listening review",
+    "GPU performance"
+  ],
+  "diagnostics": "Existing macOS CA/editor-settings and shutdown ObjectDB warnings. Final packaged suites contain no script/parse/assertion errors. Earlier test-driver inference and array-timing failures corrected; failed logs retained."
+}

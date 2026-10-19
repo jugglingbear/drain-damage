@@ -51,7 +51,7 @@
   "boss_hud": {
     "approved_date": "2026-10-14",
     "requirement_status": "Named top-of-screen boss bar approved; dimensions and animation timings are initial tuning",
-    "implementation_status": "Reusable HUD integrated with playable encounters; Living Swarm skin integrated in Prototype 76; visual review pending",
+    "implementation_status": "Reusable HUD integrated; larger Living Swarm skin in Prototype77; visual review pending",
     "anchor": "screen_top_center",
     "name_source": "monster.name",
     "name_position": "centered above bar",
@@ -110,9 +110,24 @@
         "style": "Living Swarm, selected by Sean on October 19, 2026",
         "fill": "Authored orange texture at every positive HP; dark depleted track; cockroach frame",
         "fill_behavior": "Crop from the right immediately with HP; preserve brief tinted damage trail and existing death fade",
-        "frame": "assets/bestiary/cockroach-swarm/health-bar-v1/frame.png",
-        "fill_texture": "assets/bestiary/cockroach-swarm/health-bar-v1/fill.png",
-        "status": "Integrated in Prototype 76; packaged verification recorded in delivery handoff; visual review pending"
+        "frame": "assets/bestiary/cockroach-swarm/health-bar-v2/frame.png",
+        "fill_texture": "assets/bestiary/cockroach-swarm/health-bar-v2/fill.png",
+        "status": "Larger18px rails integrated for Prototype77; visual review pending",
+        "reserved_band_pixels": 110,
+        "frame_destination": [
+          48,
+          28,
+          864,
+          56
+        ],
+        "fill_destination": [
+          96,
+          46,
+          768,
+          20
+        ],
+        "title_baseline": 22,
+        "player_status_baseline": 104
       }
     }
   }
