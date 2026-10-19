@@ -120,6 +120,7 @@ func run_checks() -> void:
 
 	combat_revision_checks()
 	charge_jump_checks()
+	landing_charge_timing_checks()
 	swim_tracking_checks()
 	rat_attack_checks()
 	tail_sweep_checks()
@@ -574,3 +575,30 @@ func rat_ground_gait_checks() -> void:
 	check(boss.snapshot().rat_ground_distance == boss.rat_ground_distance, "Renderer receives authoritative gait phase")
 	boss.reset()
 	check(is_zero_approx(boss.rat_ground_distance), "Retry resets running gait")
+
+func landing_charge_timing_checks() -> void:
+	for frame_rate in [60.0,120.0]:
+		var boss := fresh()
+		advance_to(boss,"rat_ready")
+		boss.damage(9999)
+		advance_to(boss,"alligator_surface_recovery")
+		check(is_equal_approx(boss.position.y,Encounter.FLOOR_Y), "Charge delay begins at actual floor landing")
+		var landing_x: float = boss.position.x
+		var remainder: float = 1.0-boss.elapsed
+		boss.step(3,HERO,true)
+		check(boss.state == "alligator_surface_recovery" and boss.position.x == landing_x,
+			"Paused landing does not consume charge warning")
+		boss.drain_events()
+		while remainder > .0011:
+			var dt := minf(1.0/frame_rate,remainder-.001)
+			boss.step(dt,HERO)
+			remainder -= dt
+		check(boss.state == "alligator_charge_tell" and boss.position.x == landing_x,
+			"Alligator holds warning until one second after landing")
+		check(boss.drain_events().count("alligator_jaw_warning") == 1, "Exactly one charge warning after landing")
+		boss.step(.001,HERO)
+		check(boss.state == "alligator_charge", "Charge begins one second after landing")
+		boss.step(1.0/frame_rate,HERO)
+		check(absf(boss.position.x-landing_x) > 0, "Alligator moves immediately after charge begins")
+	check(is_equal_approx(Encounter.DURATIONS.alligator_charge_tell,.9), "Preserve full .9s visible first-charge warning")
+	check(is_equal_approx(Encounter.DURATIONS.alligator_charge_turn,.9), "Preserve reversal warning")

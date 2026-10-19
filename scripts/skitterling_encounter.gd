@@ -25,7 +25,7 @@ const DURATIONS := {
 	"alligator_tail_sweep": .35, "alligator_tail_recovery": 1.2,
 	"alligator_jaw_recovery": 1.8, "alligator_water_dive": .6,
 	"alligator_water_warning": .8, "alligator_charge_tell": .9, "alligator_charge_turn": .9, "alligator_surface_warning": 1.0,
-	"alligator_surface": .6, "alligator_surface_return": .6, "alligator_surface_recovery": 2.0, "terminal_death": 1.2,
+	"alligator_surface": .6, "alligator_surface_return": .6, "alligator_surface_recovery": .1, "terminal_death": 1.2,
 }
 const NEXT := {
 	"entry_skitter": "rat_assembly", "rat_assembly": "rat_ready",

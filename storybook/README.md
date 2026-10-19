@@ -1905,6 +1905,27 @@ no image capture occurred.
 
 [Capture status and verification](079-authored-rat-gait/20261019-144803-capture-status.json).
 
+## 080 — Faster charge after landing — October 19, 2026
+
+**Version:** Prototype 80 / 0.80.0; preserved app, ZIP and source snapshot `builds/source-80`.
+
+The alligator now starts its charge one second after actually landing on the floor, instead of 2.9 seconds.
+Surface recovery drops from 2.0 to 0.1 seconds, followed by the existing 0.9-second warning. Charge speed, damage,
+health, the second-leg warning, water-emergence duration, artwork and audio cues remain unchanged.
+
+**Validation:** Engineering reports six focused packaged suites and thirty-three Python tests passing, plus export,
+signing and archive checks. Timing checks at 60 and 120 Hz start from the actual floor-landing boundary, verify no
+early movement and exactly one warning, and confirm pause freezes the delay. Full-route and gait-phase matrices were
+not rerun for this narrow timing change.
+
+**Capture gap:** No game window opened or actual Prototype 80 screenshot was captured. Live pacing review remains
+pending. Preserve 79 and 80 for an approved comparison.
+
+**Record created:** 2026-10-19T14:51:35.184076-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and focused verification](080-faster-alligator-charge/20261019-145135-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

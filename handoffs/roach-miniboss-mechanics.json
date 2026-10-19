@@ -250,10 +250,10 @@
       "hurts_hero": false
     },
     "alligator_surface_recovery": {
-      "seconds": 2.0,
+      "seconds": 0.1,
       "damageable": true,
       "hurts_hero": false,
-      "notes": "Vulnerable2s afteremergence, thencharge_tell."
+      "notes": "Settle for0.1s after reaching floor, then existing0.9s visible charge warning. Charge begins1.0s after floor landing; pause freezes this interval."
     },
     "terminal_death": {
       "seconds": 1.2,
@@ -654,5 +654,14 @@
       "export_signing_archive": "passed",
       "results": "builds/verification-79/packaged-results.json"
     }
+  },
+  "landing_charge_revision": {
+    "status": "Delivered Prototype80;6focusedpackaged+33Python checks pass; live pacing review pending",
+    "landing_to_charge_seconds": 1.0,
+    "settling_seconds": 0.1,
+    "warning_seconds": 0.9,
+    "previous_total_seconds": 2.9,
+    "preserved": "Charge speed, damage, health, second-leg0.9s warning, water rise0.6s and projectile cleanup.",
+    "delivery_record": "handoffs/skitterling-landing-charge-delivery.json"
   }
 }

@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-10-19T14:51:35.184076-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not capture time",
+  "capture_time": null,
+  "build": "Prototype 80 / 0.80.0",
+  "status": "Focused packaged verification passed; live pacing review pending",
+  "app": "builds/Prototype-80/Drain Damage.app",
+  "archive": "builds/history/Prototype-80.zip",
+  "archive_sha256": "8253c6661e58cc282f715ce0f2f5679cc262968f6bd91d9e3ff003db5671967e",
+  "snapshot": "builds/source-80",
+  "change": "Alligator surface recovery2.0\u21920.1seconds; existing0.9second charge warning retained. Charge begins1.0second after actual floor landing instead of2.9.",
+  "preserved": [
+    "Charge speed",
+    "Damage and health",
+    "Second-leg0.9second turn warning",
+    "Water emergence0.6seconds",
+    "Existing artwork and audio cues"
+  ],
+  "checks": {
+    "packaged_suites": 6,
+    "python_tests": 33,
+    "timing": "Actual floor landing boundary at60/120Hz, no early motion, exactly one warning, pause freezes delay, movement after1second",
+    "regressions": [
+      "encounter",
+      "combat_revision",
+      "integration",
+      "art",
+      "audio",
+      "build_version"
+    ],
+    "export_signing_archive": "passed",
+    "scope": "Focused timer-change checks; no claim of rerunning full route or gait-phase matrix",
+    "results": "builds/verification-80/packaged-results.json"
+  },
+  "capture_gap": "No game window opened; actual80capture and live pacing review pending. Preserve79/80 comparison.",
+  "diagnostics": "Existing macOS CA/editor-settings and shutdown resource warnings; no script/parse/assertion failures in final packaged checks."
+}
