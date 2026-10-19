@@ -1680,6 +1680,126 @@ no image capture occurred.
 
 [Delivery record](071-walking-portals-and-skitterling-revision/20261017-204829-capture-status.json).
 
+## 072 — Cockroaches constitute the body — October 19, 2026
+
+**Version:** Prototype 72 / 0.72.0; source HEAD `6b522a2e4f05bca808065a9b88219228e382fd1f`
+plus renderer integration, preserved in an isolated source snapshot.
+
+Skitterling now consists of 600 independently moving authored cockroach sprites. The renderer no longer draws a solid
+animal beneath them. Continuous individual motion and staggered leg cycles keep the rat and alligator forms crawling.
+Four drawing batches, separate front/body buffers and shared immutable preparation support the composition.
+Existing artwork is reused; earlier source sheets and animation studies remain preserved for comparison.
+
+Combat geometry is maintained separately from the decorative insect outline. Engineering checked 64,908 samples against
+preserved Prototype 71 across mapped states, 601 times, both facings and two origins, with exact agreement.
+
+**Validation:** Twenty packaged suites and thirty-two Python tests pass, along with export, signing and ZIP integrity.
+Existing environment and shutdown warnings remain recorded; final checks report no script, parse or assertion failures.
+
+**Capture gap:** No game window opened and no actual Prototype 72 screenshots were captured. Live appearance, silhouette
+readability and real device/GPU performance remain unreviewed. Human balance and listening checks carried over from 71
+remain pending. Preserve `builds/Prototype-72/Drain Damage.app`, `builds/history/Prototype-72.zip` and earlier builds.
+The archived animation source study is not a gameplay capture.
+
+**Record created:** 2026-10-19T12:32:09-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](072-constituent-roach-animation/20261019-123209-capture-status.json).
+
+**Later visual feedback:** Sean rejected this appearance as brown static. He requested fewer, larger, readable roaches
+with visible writhing, smooth pipe entry and exit, and the warning swarm behind the pipe rim. Art owns the renderer
+revision; Engineering identified missing front occlusion at individual attack ports. This feedback does not invalidate
+the recorded automated checks, which did not establish visual quality. Prototype 72 remains preserved; the next revision
+is pending, with no Prototype 73 delivery or new capture claimed.
+
+## 073 — Larger roaches and active attacks — October 19, 2026
+
+**Version:** Prototype 73 / 0.73.0; source HEAD `6b522a2e4f05bca808065a9b88219228e382fd1f`
+plus integration, preserved in an isolated source snapshot.
+
+Following Sean's rejection of Prototype 72 as brown static, Skitterling now uses 140 larger authored cockroaches with
+new rat and tail pose guides. No solid animal is drawn underneath. Warning insects appear behind pipe rims, and
+individual insects converge into or emerge from the openings. Exposed insects can be shot during retreat only.
+
+The encounter adds wall climbing, a committed pounce, accelerating rush, secondary pipe ambush and rear tail sweep.
+An airborne rat collapse lands harmlessly within the existing timer; assembly no longer waits indefinitely when its
+footprint is occupied. A one-second original synthetic rat-like squeal and insect rasp accompanies the encounter;
+it is not a recording of a real animal.
+
+**Validation:** Engineering reports twenty-one packaged suites and thirty-two Python tests passing. Eighteen room
+pressure cases cover both heroes, all modes and three positions, recording nine to twelve hits per minute. These tests
+pin position, restore health and disable shooting while retaining normal 1.5-second immunity; they do not establish
+human dodge fairness. CPU retreat-target queries averaged about 0.49–0.52ms, not a GPU performance result.
+
+All eighteen full-route checks passed after correcting the test driver's zero-gap facing handling. The app was unchanged
+and did not require another build; the original diagnostic log remains preserved. Export, signing and ZIP checks pass.
+
+**Capture gap:** No game window opened and no actual Prototype 73 screenshots were captured. Roach readability, pipe
+and attack poses, listening/mix, real device GPU performance and human fairness remain pending. Preserve 72 and 73 apps
+and ZIPs for an approved comparison. Archived source studies remain distinct from gameplay captures.
+
+**Record created:** 2026-10-19T12:55:06-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](073-readable-roaches-and-active-attacks/20261019-125506-capture-status.json).
+
+## 074 — Clearer silhouettes and a three-shot volley — October 19, 2026
+
+**Version:** Prototype 74 / 0.74.0; source HEAD `6b522a2e4f05bca808065a9b88219228e382fd1f`
+plus integration, preserved in an isolated source snapshot.
+
+Sean reported that Prototype 73's roaches obscured the rat and alligator anatomy. Art now fits the 140 insects to thin
+features, with smaller aligned edge insects, restrained edge motion and original-resolution crops. There is still no
+solid animal underneath. The archived software comparison documents source composition, not accepted gameplay visuals.
+
+Rat health is now 900 and alligator health 540, for 1,440 total: Tony needs 75 plus 45 hits, Sean 50 plus 30.
+Pipe flight takes 1.1 seconds; its two-second warning and 0.15-second reveal remain. The midpoint transition shortens
+to 1.6 seconds of collapse, 1.2 seconds of renewed skittering and 1.4 seconds of assembly, totaling 4.2 seconds.
+
+A single 0.8-second warning marks and locks three floor targets before a vertical, random-arc and aimed-arc shot.
+They launch at 0, 0.22 and 0.44 seconds, with at most three live projectiles. Existing attacks and the synthetic pounce
+cue remain. The approved continuous-water follow-up is separate and excluded from this build.
+
+**Validation:** Engineering reports twenty-one packaged suites, thirty-three Python tests and eighteen full-route cases
+passing. Eighteen room-pressure cases and both-hero/all-mode volley checks cover stationary hits, moving evasion,
+target locking and the three-projectile cap. Controller escape checks sample twelve seeds, three positions and two
+hero speeds with reaction delays. Export, signing and ZIP checks pass; automated checks do not establish human balance.
+
+**Capture gap:** No game window opened or actual screenshot was captured. Live silhouette and attack appearance,
+listening, human balance and device GPU performance remain pending. Preserve 73 and 74 builds for an approved
+comparison.
+
+**Record created:** 2026-10-19T13:14:02-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](074-silhouettes-and-volley-tuning/20261019-131402-capture-status.json).
+
+## 075 — Continuous room water — October 19, 2026
+
+**Version:** Prototype 75 / 0.75.0; source HEAD `6b522a2e4f05bca808065a9b88219228e382fd1f`
+plus integration, preserved in an isolated source snapshot.
+
+The room water now flows continuously using the existing authored water crop. A cached mirrored texture replaces
+switching crests, moving at 12 pixels per second with small spatial wave displacement across 120 bounded strips.
+The room clock controls pause and reset. The water band and swimmer/warning layer order remain unchanged, as do
+Prototype 74's health, attacks and timing. No new artwork was needed; health-bar concepts remain proposals.
+
+**Validation:** Engineering reports nine focused packaged suites and thirty-three Python tests passing, plus export,
+signing and ZIP checks. Water checks cover sample motion, mirrored joins, band bounds, frozen-clock equality and cache
+reuse. Prototype 74's full twenty-one-suite and eighteen-route matrix was not rerun as part of this delivery.
+
+An initial volley test always moved right and could enter a marked random arc. The corrected test uses a deterministic
+seed and chooses the clearer marked escape; it passes against the unchanged app. The initial failure remains recorded.
+
+**Capture gap:** No game window opened or actual Prototype 75 screenshot was captured. Water appearance, seams, crests
+and GPU performance remain unreviewed; earlier silhouette, human fairness and listening checks remain pending.
+Preserve 74 and 75 builds for an approved comparison.
+
+**Record created:** 2026-10-19T13:18:20-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and focused verification](075-continuous-room-water/20261019-131820-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

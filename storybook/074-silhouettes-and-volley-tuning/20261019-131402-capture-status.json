@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-10-19T13:14:02-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 74 / 0.74.0",
+  "status": "Delivered in Prototype 74 / 0.74.0; 21 packaged suites passed. Live visual, listening, GPU and human balance review pending.",
+  "source_head": "6b522a2e4f05bca808065a9b88219228e382fd1f plus uncommitted integration",
+  "app": "builds/Prototype-74/Drain Damage.app",
+  "archive": "builds/history/Prototype-74.zip",
+  "archive_sha256": "31cb28b5a3e52e63a2cac1e3c430c93b22353895081ae39eab49cb8ba00af16d",
+  "snapshot": "builds/source-74",
+  "changes": [
+    "140 insects fitted to thin animal features using original-resolution crops; no solid animal base",
+    "Rat900/alligator540; Tony75+45hits, Sean50+30",
+    "Pipeflight1.1s, warning2s and reveal.15 unchanged; midpoint1.6+1.2+1.4=4.2s",
+    "One.8s warning locks vertical/randomarc/aimedarc targets; shots0/.22/.44s, max3live",
+    "Art marks all3 floor targets; existing attacks and synthetic pounce cue retained"
+  ],
+  "checks": {
+    "packaged_suites": 21,
+    "python_tests": 33,
+    "full_route_cases": 18,
+    "room_pressure_cases": 18,
+    "volley": "Both heroes/all modes: stationary hit, movement evasion, three kinds, locked target, cap3",
+    "controller_escape": "12 seeds x3 positions x2 hero speeds after200ms reaction; pipe escape after300ms",
+    "export_signing_zip": "passed"
+  },
+  "capture_gap": "No game window or actual capture. Software source comparison is not gameplay. Preserve73/74 for approved review.",
+  "remaining": [
+    "Live silhouette and pipe/attack appearance acceptance",
+    "Human balance and listening",
+    "Device GPU performance"
+  ],
+  "next_task": "Continuous water rendering is approved but excluded from74.",
+  "diagnostics": "Existing macOS CA/editor-settings and shutdown ObjectDB/resource warnings; no final script/parse/assertion failures."
+}

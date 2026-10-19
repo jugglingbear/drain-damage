@@ -60,6 +60,9 @@ with reciprocal top navigation from the magazine; its Storybook link sits immedi
 Historical capture gaps remain labeled.
 <a href="https://jugglingbear.github.io/drain-damage/storybook/storybook.html">Browse the storybook</a>.</p>
 <main class="wrap">
+<p>October 19 workflow update: <a href="AGENTS.md#task-ownership-and-coordination">task ownership and coordination</a>
+now use one accountable owner, focused specialist contributions and concise linked handoffs. This policy changes
+coordination only; it does not change gameplay or delivery checks.</p>
 <header>
 <div class="kicker">DRAIN DAMAGE / DEVELOPMENT ROADMAP</div>
 <h1>From three angry toilets<br>to a real adventure.</h1>
@@ -72,7 +75,37 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 17, 2026 · Current build: Prototype 71 / 0.71.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 19, 2026 · Current build: Prototype 75 / 0.75.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Approved Skitterling attack revision — October 19:</strong> Mechanics and Art delivered a warned,
+committed wall pounce with landing recovery, a visibly accelerating rush bite, less frequent pipe ambushes,
+and an occasional telegraphed rear tail sweep for the alligator. Corner camping must not grant passive safety;
+active evasion and jumping remain viable. Existing debris stays in use. Delivered in Prototype 73; packaged validation passes, while human visual and balance review remain pending.</p>
+<p><strong>Skitterling visual revision implemented; acceptance pending — October 19:</strong> Sean rejected Prototype 72’s swarm
+as brown static. Prototype 73 uses fewer, larger cockroaches intended to improve readable writhing,
+smoother pipe transitions, and warning insects emerging behind the pipe rim. Health and debris remain unchanged;
+attack behavior follows the approved revision above.
+The replacement is packaged as Prototype 73 but not yet visually accepted; Prototype 72 is preserved for comparison.</p>
+<p><strong>Prototype 74 — silhouette correction and encounter tuning:</strong> Original-resolution insects follow
+the rat and alligator outlines. Health is 900/540 (1440 total); pipe flight takes 1.1 seconds and the midpoint
+transition takes 4.2 seconds. One warning commits a rapid vertical/random-arc/aimed-arc volley. All 21 packaged
+suites, 33 Python tests and 18 full routes pass; visual acceptance and human fairness remain pending.</p>
+<p><strong>Boss health-bar concepts — pending selection:</strong> Art supplied four cockroach-themed
+<a href="bestiary/cockroach-swarm/health-bar-concepts-v1/01-carapace.png">mockups</a> with partial/full/low states.
+These are proposals only; no choice or runtime integration is approved.</p>
+<p><strong>Prototype 75 — continuous room water:</strong> Replaced discrete water-frame changes with continuous
+motion of existing authored water texture, preserving the water band, pause/reset behavior and layer order.
+Delivered separately from Prototype 74. Nine focused packaged suites and 33 Python tests pass; visual acceptance
+and GPU performance remain pending. No game window was opened.</p>
+<p><strong>Prototype 73 — readable roaches and active attacks:</strong> 140 larger insects form the body;
+new rat and tail poses, pipe-mouth occlusion and exposed-insect retreat targeting are integrated. Wall pounces,
+accelerating rushes and rear tail sweeps replace passive corner safety. All 21 packaged suites and 32 Python tests pass,
+including 18 actual-room stationary cases and 18 full-route runs. Export, signing and ZIP integrity pass.
+Visual acceptance, listening, GPU performance and actual captures remain pending; no game window was opened.</p>
+<p><strong>Prototype 72 — a body made of moving cockroaches:</strong> Six hundred independently moving authored
+cockroach sprites form Skitterling, with four batched draws and no solid animal underneath. Separate collision bounds
+retain Prototype 71 combat geometry across 64,908 differential samples. Twenty packaged suites and 32 Python tests
+pass; export, signing and archive integrity pass. Live appearance, device performance and actual captures remain pending.
+No game window was opened.</p>
 <p><strong>Prototype 71 — walk-through tunnels and revised Skitterling fight:</strong> Authored lateral pipe shells
 occlude the walking hero; entry and exit use continuous movement and reversible camera blends, without teleport or fade.
 Entry closes after full emergence, and the exit opens only after the final defeat. Background/ceiling attack pipes and
@@ -336,6 +369,7 @@ roster additions or implementation authorization. Source screenshots and earlier
 <li><strong>Three-foot pipe wrench</strong>: A large melee weapon swung like a sword.</li>
 <li><strong>Drain-machine cable special</strong>: Tony pulls out a drain machine and launches its cable across the screen. Powerful, strictly linear attack at his current elevation.</li>
 </ul><p>Also consider Contra-style floating weapon pickups. Decide regular weapons versus temporary pickups versus specials, exclusive character ownership, damage/range/cooldowns, and overlap with the existing wrench and drain snake. Tony suggested the drain-machine special for himself; the plunger wave’s owner remains unconfirmed. Full-screen specials do not change current starter-weapon ranges. <a href="weapons/tony-ideas.json">Full weapon discussion notes</a>.</p></li>
+<li><h3>Bestiary concept poster</h3><p>Delivered: <a href="bestiary/posters/implemented-and-imagined-v1.png">implemented and imagined poster</a> shows six implemented creatures, both Skitterling forms, 21 descriptive idea labels, and the planned Clogfather. Audited against the saved idea bank and predecessor notes. Concept art only; no gameplay or roster changes.</p></li>
 <li><h3>Possible monsters and troublesome clients</h3><p>Bloody tampon, Sewer flies, Poop, Automaton made of pipes, Angry &quot;Karen&quot; clients, Rattlesnakes, Raptors with a glowing red aura, An angry drunk in a hotdog costume, Rat monster (design undecided), Alligator monster (design undecided), and Sean’s later-level walking bathtub with an undecided occupant and projectile type. These are brainstorming concepts, not confirmed roster entries; names, lore, artwork, and mechanics remain open. <a href="bestiary/monster-ideas.json">Bestiary idea notes</a>.</p></li>
 <li><h3>Hero art experiments and earlier mockup notes</h3><p>Required hero sprite coverage includes jumping/falling while aiming straight down and down-left/down-right, with proper grips and leg/muzzle clearance. These airborne poses remain pending beyond the standing mockup. Agreed follow-up: once the modular design is approved, establish a versioned hero sprite and animation standard for Tony, Sean and future heroes, with reusable templates, layer/anchor rules, animation coverage and validation criteria. Current mockup dimensions and fitting shortcuts are not a frozen production standard. October 15 mockup revision 3: corrected Sean’s backward rear-hand grip in the up-right pose; reassembled preview checked, approval pending. October 15 mockup revision 2: corrected oversized arms and raised aiming angles after Sean’s review. <a href="previews/modular-aim-contact-sheet.png">Revised contact sheet</a>; arm scale now stays fixed, with separate upward and diagonal poses. Head overlap and production grip cleanup remain; user approval pending. October 15: Sean approved a small modular-art mockup with Tony/pressure gun and Sean/heavy plunger. Six standing compositions now have an <a href="previews/modular-aim.html">interactive layer preview</a>, with mirrored left, layer toggles and grip/muzzle overlays. Source bounds, exclusive weapons, and identical body registration pass automated checks. The <a href="previews/modular-aim-contact-sheet.png">static contact sheet</a> has now been visually reviewed: body reuse and separate weapons demonstrate the approach, but upward poses obscure faces and arm/grip proportions need authored refinement. Next gate: refine those poses and recheck contact, occlusion and consistent pixel scale before animation or gameplay integration. Interactive browser review remains blocked by local-file policy; this is not production approval. Gameplay replacement and broader animation remain deferred. <a href="handoffs/modular-aim-prototype-contract.json">Prototype asset contract</a>. October 15: Art and Engineering recommend <a href="weapons/rendering-strategy.json">layered hero and weapon sprites</a> for the expanding arsenal: reusable locomotion, directional grip poses, separate weapons and hand overlays; bespoke poses for exceptional attacks. Initial modular standing assets are delivered for the two existing exclusive weapons; production assets and gameplay integration remain pending. </p></li>
 <li><h3>More places and personalities</h3><p>A luxury high-rise, a haunted restroom, and snooty fictional customers who underestimate the trades.</p></li>

@@ -1,0 +1,29 @@
+{
+  "status": "Constituent-roach renderer source checks passed; Engineering integration/export and live visual review pending.",
+  "requirement": "Cockroaches ARE the body, not insects on a body.",
+  "code": [
+    "scripts/skitterling_art.gd",
+    "scripts/skitterling_roach_body.gd",
+    "tests/skitterling_art.gd"
+  ],
+  "assets": "Reuses roach-layers-v1 frames0\u20133; existing body art supplies invisible placement/tone guides only. No new generated artwork.",
+  "performance": {
+    "insects": 600,
+    "batched_draws": 4,
+    "mutable_buffers": "Separate body/front submissions",
+    "targets": "Immutable precomputed tables shared across instances",
+    "remaining": "Profile real GPU/device performance"
+  },
+  "checks": [
+    "Art headless suite passed",
+    "Engineering first six regression suites passed; final checks pending"
+  ],
+  "limitations": [
+    "Live aesthetic review pending",
+    "Browser file URL preview inspection blocked by policy; no workaround attempted",
+    "Animated HTML is a source study, not gameplay; omits runtime shading and pose transitions",
+    "Dynamic points may leave target masks during interpolation; decorative outline variation intended",
+    "Source body images remain in memory for baseline collision geometry and provenance"
+  ],
+  "preview": "previews/skitterling-writhing-v1/index.html"
+}

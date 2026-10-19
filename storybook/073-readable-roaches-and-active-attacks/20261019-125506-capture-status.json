@@ -1,0 +1,61 @@
+{
+  "created_at": "2026-10-19T12:55:06-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 73 / 0.73.0",
+  "status": "Delivered in Prototype 73 / 0.73.0; 21 packaged suites passed. Live visual acceptance, listening and device GPU performance pending.",
+  "source_head": "6b522a2e4f05bca808065a9b88219228e382fd1f plus uncommitted integration",
+  "app": "builds/Prototype-73/Drain Damage.app",
+  "archive": "builds/history/Prototype-73.zip",
+  "archive_sha256": "a51b73e36bc3520ad9693bec60c176c3cb609f9f3033429bfe54a65c40d67e00",
+  "snapshot": "builds/source-73",
+  "changes": [
+    "140 larger authored roaches; new rat/tail pose guides; no solid animal underneath",
+    "Wall climb, locked pounce, accelerating rush; secondary pipe ambush; rear tail sweep",
+    "Pipe warnings behind rim, individual convergence/emergence, retreat-only exposed-insect shot targets",
+    "Airborne rat collapse lands harmlessly within existing timer; assembly no indefinite occupancy hold",
+    "One-second original synthetic rat-like squeal plus insect rasp; not a real animal recording"
+  ],
+  "checks": {
+    "packaged_suites": 21,
+    "python_tests": 32,
+    "room_pressure_cases": 18,
+    "stationary_hits_per_60_seconds": [
+      9,
+      12
+    ],
+    "positions": [
+      120,
+      450,
+      814
+    ],
+    "heroes": [
+      "Tony",
+      "Sean"
+    ],
+    "modes": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "test_support": "Position pinned and health restored; normal1.5-second immunity; no shooting",
+    "full_route_cases": 18,
+    "retreat_target_mean_ms_range": [
+      0.4915,
+      0.5218
+    ],
+    "performance_scope": "CPU query only, not GPU acceptance",
+    "export_signing_zip": "passed"
+  },
+  "regression_note": "Initial traversal logged a test-driver error from facing=sign(gap) at exact zero gap. Test now retains facing; all18 full routes reran clean against unchanged app. Initial log preserved.",
+  "capture_gap": "No game window opened. No actual Prototype73 screenshots or subjective appearance/listening approval. Preserve72 and73 for approved comparison.",
+  "remaining": [
+    "Live roach readability and pipe/attack pose acceptance",
+    "Listening/mix review",
+    "Real device GPU performance",
+    "Human dodge/fairness review"
+  ],
+  "diagnostics": "Existing macOS CA/editor-settings permissions and shutdown ObjectDB/resource diagnostics; final suites have no script/parse/assertion failures."
+}
