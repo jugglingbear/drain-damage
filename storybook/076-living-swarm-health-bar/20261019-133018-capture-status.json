@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-10-19T13:30:18.823265-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery record creation, not screenshot capture",
+  "build": "Prototype 76 / 0.76.0",
+  "status": "Integrated and packaged checks passed; live visual review pending",
+  "app": "builds/Prototype-76/Drain Damage.app",
+  "archive": "builds/history/Prototype-76.zip",
+  "archive_sha256": "3c25c5c91ad6b0034814e11b6301f4c493e3fcf6c954b834714ce8ffa0297cf1",
+  "snapshot": "builds/source-76",
+  "art": "bestiary/cockroach-swarm/health-bar-production-v1/art.json",
+  "changes": [
+    "Skitterling uses the selected Living Swarm frame and orange fill at all health levels",
+    "Authored rails/endcaps preserve insect proportions; static frame, no animation",
+    "HP crops fill from right to left, dark track and brief damage trail retained",
+    "Existing boss name, player status, phase continuity, death fade and retry behavior retained",
+    "Other boss bars keep their existing appearance"
+  ],
+  "checks": {
+    "packaged": [
+      "boss_hud",
+      "skitterling_integration",
+      "skitterling_portals",
+      "build_version"
+    ],
+    "python_tests": 33,
+    "export_signing_zip": "passed",
+    "aperture": "Every pixel transparent in source aperture; textures load from packaged app"
+  },
+  "capture_time": null,
+  "capture_gap": "No game window opened; actual gameplay capture and visual acceptance pending. Software art preview is not gameplay.",
+  "remaining": [
+    "Small roach detail at normal HUD size",
+    "Live aesthetic review"
+  ],
+  "diagnostics": "Existing macOS CA/editor-settings diagnostics; no script, parse or assertion failures in final checks."
+}

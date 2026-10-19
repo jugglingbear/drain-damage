@@ -75,7 +75,7 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 19, 2026 · Current build: Prototype 75 / 0.75.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 19, 2026 · Current build: Prototype 76 / 0.76.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Approved Skitterling attack revision — October 19:</strong> Mechanics and Art delivered a warned,
 committed wall pounce with landing recovery, a visibly accelerating rush bite, less frequent pipe ambushes,
 and an occasional telegraphed rear tail sweep for the alligator. Corner camping must not grant passive safety;
@@ -89,9 +89,15 @@ The replacement is packaged as Prototype 73 but not yet visually accepted; Proto
 the rat and alligator outlines. Health is 900/540 (1440 total); pipe flight takes 1.1 seconds and the midpoint
 transition takes 4.2 seconds. One warning commits a rapid vertical/random-arc/aimed-arc volley. All 21 packaged
 suites, 33 Python tests and 18 full routes pass; visual acceptance and human fairness remain pending.</p>
-<p><strong>Boss health-bar concepts — pending selection:</strong> Art supplied four cockroach-themed
+<p><strong>Boss health bar — Living Swarm selected:</strong> Art supplied four cockroach-themed
 <a href="bestiary/cockroach-swarm/health-bar-concepts-v1/01-carapace.png">mockups</a> with partial/full/low states.
-These are proposals only; no choice or runtime integration is approved.</p>
+Sean selected concept 3, Living Swarm: orange health fill, a dark depleted track and a cockroach frame.
+Integrated in Prototype 76; the other concepts remain unused.</p>
+<p><strong>Prototype 76 — Living Swarm health bar:</strong> Skitterling now has an authored cockroach frame,
+orange health fill and dark depleted track. Damage crops the fill without stretching; phase continuity, damage
+trail, death fade and retry behavior remain intact. Four focused packaged suites and 33 Python tests pass;
+export, signing and archive checks pass. The frame is static, and small insect detail needs live visual review.
+No game window was opened; the actual screenshot remains on the capture backlog.</p>
 <p><strong>Prototype 75 — continuous room water:</strong> Replaced discrete water-frame changes with continuous
 motion of existing authored water texture, preserving the water band, pause/reset behavior and layer order.
 Delivered separately from Prototype 74. Nine focused packaged suites and 33 Python tests pass; visual acceptance

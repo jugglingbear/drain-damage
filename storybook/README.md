@@ -1800,6 +1800,28 @@ no image capture occurred.
 
 [Capture status and focused verification](075-continuous-room-water/20261019-131820-capture-status.json).
 
+## 076 — Living Swarm health bar — October 19, 2026
+
+**Version:** Prototype 76 / 0.76.0; preserved app and ZIP with source snapshot designated `builds/source-76`.
+
+Skitterling now uses Sean's selected Living Swarm health-bar design. Authored cockroach rails and endcaps surround an
+orange fill and dark track, preserving insect proportions. The frame is static. Health loss crops the fill from right
+to left, with the brief damage trail retained. The boss name, player status, phase continuity, death fade and retries
+remain intact; other boss bars retain their appearance.
+
+**Validation:** Engineering reports four packaged suites passing: boss HUD, Skitterling integration, portals and build
+version. Thirty-three Python tests, export, signing and ZIP checks pass. The source aperture is transparent and the
+textures load from the packaged app. These are focused checks, not a newly rerun full gameplay matrix.
+
+**Capture gap:** No game window opened or actual gameplay screenshot was captured. Small cockroach detail at normal HUD
+size and live appearance remain unreviewed. Software art previews are not gameplay captures. Preserve Prototype 76
+and earlier builds for an approved comparison.
+
+**Record created:** 2026-10-19T13:30:18.823265-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](076-living-swarm-health-bar/20261019-133018-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

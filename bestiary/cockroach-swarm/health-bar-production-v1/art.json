@@ -1,0 +1,63 @@
+{
+  "status": "Integrated in Prototype 76; packaged checks pass; live visual review pending",
+  "tool": "built-in image_gen",
+  "selected_concept": "bestiary/cockroach-swarm/health-bar-concepts-v1/03-living-swarm.png",
+  "sources": [
+    {
+      "path": "source-v1.png",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "prompt": "Create production pixel-art game UI assets based on selected reference Living Swarm health bar. Preserve glossy brown individually recognizable cockroaches with warm amber rim highlights, tiny legs and antennae. Transparent background, no sewer background, no text, no labels, no shadow rectangle. Wide landscape asset sheet. TWO separate isolated assets with generous transparent separation: UPPER asset a single very long low horizontal hollow rectangular health bar frame composed entirely of dozens of interlocking cockroaches, compact larger roach cluster at left and right ends, small roaches along top and bottom. Aspect ratio about 12:1 overall. Straight level top and bottom rails, clean uninterrupted rectangular TRANSPARENT interior opening about 80% overall width and 35% overall height, no orange fill or dark backing inside opening. Avoid antennae projecting far vertically; keep frame low for a game HUD. LOWER asset: separate straight rectangular brilliant orange-gold health fill texture, same opening width, low height, luminous granular amber center and darker orange top/bottom, fully filled from left to right, square ends, no taper, no border, no bugs. Authored crisp richly shaded pixel art, readable at 960px game width. Reference image is STYLE and selected DESIGN reference only; convert to these two clean isolated production layers, remove all lettering and backdrop and sample bars."
+    },
+    {
+      "path": "source-v2.png",
+      "dimensions": [
+        2021,
+        778
+      ],
+      "prompt": "Edit this production health-bar asset sheet into a MUCH THINNER HUD-compatible version. Transparent background. No text. Canvas wide landscape with ample blank transparent margins. Upper asset must be an extremely long narrow cockroach frame with overall aspect ratio 26:1, e.g. 2000 pixels wide and ONLY77 pixels tall. Interior aperture must be a perfectly straight transparent rectangle approximately1846 pixels wide and48 pixels tall. Tiny individually recognizable roaches, each only20 to30 pixels long, form very thin top/bottom rails about14pixels tall. Compact end clusters of similarly SMALL roaches. Absolutely no giant roach head, no huge end insects, no tall antenna arcs. Keep all antennae and legs within77px overall frameheight. Glossy dark mahogany cockroaches with amber highlights and crisp pixel art. The frame should look like a long thin strip of crawling cockroaches, not a big ornate creature. Place this single frame centered horizontally in upper half of canvas. Below separately place a straight orange-gold glowing textured fill rectangle1846pixelswide48pixelstall with square ends and full opacity. No border on fill. NO backing inside transparent frame opening. Retain the chosen orange-and-cockroach aesthetic. Critical overallframe26:1 ratio with generous transparency above/below; do not enlarge asset vertically to fill canvas."
+    }
+  ],
+  "preparation": "prepare.gd: uniformly scaled repeated authored rails and endcaps. No regenerated or code-drawn insects.",
+  "frame": {
+    "path": "assets/bestiary/cockroach-swarm/health-bar-v1/frame.png",
+    "dimensions": [
+      1664,
+      64
+    ],
+    "aperture": [
+      64,
+      12,
+      1536,
+      40
+    ],
+    "destination": [
+      64,
+      31,
+      832,
+      32
+    ]
+  },
+  "fill": {
+    "path": "assets/bestiary/cockroach-swarm/health-bar-v1/fill.png",
+    "dimensions": [
+      1536,
+      40
+    ],
+    "destination": [
+      96,
+      37,
+      768,
+      20
+    ],
+    "behavior": "crop source and destination proportionally to health; never stretch partial fill"
+  },
+  "preview": "layout-preview.png is software composition at 2x, full/65%/15%; not gameplay",
+  "limitations": [
+    "Static authored frame; animation not implemented",
+    "Six logical pixel rails constrain insect detail; live HUD review pending"
+  ],
+  "integration_record": "handoffs/living-swarm-health-bar-delivery.json"
+}
