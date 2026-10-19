@@ -67,7 +67,7 @@ func run_checks() -> void:
 			assert(game.actors.is_empty() and game.enemies.is_empty() and game.corpses.is_empty())
 			assert(game.hostile_shots.is_empty() and game.shots.is_empty() and game.particles.is_empty())
 			assert(game.trial_state.results().bullets == 0 and game.trial_state.results().patterns == 0)
-			assert(game.swarms.actors.size() == 1 and game.swarms.actors[0].hp == 12)
+			assert(game.swarms.actors.size() == 1 and game.swarms.actors[0].hp == 24)
 			game.player.x = 100
 			game.issue_event()
 			assert(game.actors.size() == 1 and game.actors[0].hp == 24)

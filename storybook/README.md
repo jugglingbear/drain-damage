@@ -1926,6 +1926,27 @@ no image capture occurred.
 
 [Capture status and focused verification](080-faster-alligator-charge/20261019-145135-capture-status.json).
 
+## 081 — Tougher Septic Air Force — October 19, 2026
+
+**Version:** Prototype 81 / 0.81.0; preserved app, ZIP and source snapshot `builds/source-81`.
+
+Septic Air Force health increases from 12 to 24 HP. Both active first-level starter weapons now need two hits:
+Tony's first 12-damage shot leaves 12 HP; Sean's first 18-damage shot leaves 6 HP. Other swarm behavior is unchanged.
+
+**Validation:** Engineering reports seven focused packaged suites and thirty-three Python tests passing. Actual shots
+from both heroes across all three difficulties verify one nonlethal hit cue and one lethal death cue. Full reset and
+checkpoint spawns restore 24 HP. Swarm behavior, scheduling, audio, respawn and version checks pass, as do export,
+signing and archive checks. Full-route traversal was not rerun. An initial missing export directory was corrected
+before the successful export; final checks contain no script, parse or assertion failures.
+
+**Capture gap:** No game window opened or actual Prototype 81 screenshot was captured. Live balance review remains
+pending. Preserve the build and earlier iterations for an approved comparison.
+
+**Record created:** 2026-10-19T14:58:22.063344-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and focused verification](081-tougher-septic-air-force/20261019-145822-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-10-19T14:58:22.063344-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not capture time",
+  "capture_time": null,
+  "build": "Prototype 81 / 0.81.0",
+  "status": "Focused packaged verification passed; live balance review pending",
+  "app": "builds/Prototype-81/Drain Damage.app",
+  "archive": "builds/history/Prototype-81.zip",
+  "archive_sha256": "a25af74763324f4adc4b6122b19168fbe990a4452d775b353bfc6d2fe8b3e238",
+  "snapshot": "builds/source-81",
+  "change": "Septic Air Force health rises from 12 to 24 HP. Both active first-level starters take two hits: Sean 18 damage leaves 6 HP; Tony 12 damage leaves 12 HP.",
+  "checks": {
+    "packaged_suites": 7,
+    "python_tests": 33,
+    "regressions": [
+      "sewer_swarm",
+      "swarm_health",
+      "swarm_audio",
+      "creature_audio",
+      "build_version",
+      "difficulty_respawn",
+      "swarm_schedule"
+    ],
+    "actual_shots": "Both heroes across easy, normal and hard; one nonlethal hit cue, one lethal death cue; full reset and checkpoint spawn at 24 HP.",
+    "export_signing_archive": "passed",
+    "results": "builds/verification-81/packaged-results.json",
+    "scope": "Focused health, swarm behavior, scheduling, audio, respawn and version checks; full-route traversal not rerun."
+  },
+  "capture_gap": "No game window opened; actual Prototype 81 captures and live balance review pending.",
+  "diagnostics": "Initial export lacked its destination directory; created it and re-exported successfully. Existing macOS CA/editor-settings and shutdown resource warnings; no final script/parse/assertion failures."
+}

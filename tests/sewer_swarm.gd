@@ -107,10 +107,10 @@ func run_checks() -> void:
 	game.invulnerable = 10
 	swarm.step(game,0)
 	assert(game.enemies.is_empty() and game.mission.defeated[0] == 1 and game.player_kills == 0)
-	assert(swarm.actors[0].hp == 12 and swarm.actors[1].hp == 12)
-	swarm.damage(0,6)
-	assert(swarm.actors[0].hp == 6)
-	swarm.damage(0,6)
+	assert(swarm.actors[0].hp == 24 and swarm.actors[1].hp == 24)
+	swarm.damage(0,12)
+	assert(swarm.actors[0].hp == 12)
+	swarm.damage(0,12)
 	assert(swarm.actors[0].hp == 0 and swarm.shot_hit(overlap,overlap,0,2) < 0)
 	swarm.damage(1,24)
 	assert(swarm.actors[1].hp == 0)
@@ -126,7 +126,7 @@ func run_checks() -> void:
 		game.employee = person
 		game.reset_game()
 		var actor: Dictionary = swarm.actors[0]
-		var hits := 1 if person.id == "sean" else 2
+		var hits := 1 if person.id == "sean" else 4
 		for hit in range(hits):
 			game.shots.append({"pos":actor.pos-Vector2(50,0), "dir":Vector2.RIGHT, "damage":game.weapon.damage,
 				"speed":1000, "distance":0.0, "range":game.weapon.projectile.max_travel_distance_pixels})
@@ -137,7 +137,7 @@ func run_checks() -> void:
 		swarm.step_motion(actor,0.65,solids)
 		assert(actor.death >= 0.64)
 	game.reset_game()
-	assert(swarm.actors.size() == 2 and swarm.actors[0].hp == 12)
+	assert(swarm.actors.size() == 2 and swarm.actors[0].hp == 24)
 	print("PASS: ",paths," seeded 60-second paths, doors/corners, animation, contact sharing, gate credit, death and lifecycle")
 	game.queue_free()
 	quit()

@@ -1583,29 +1583,44 @@
         }
       },
       "health": {
-        "max_hp": 12,
-        "spawn_hp": 12,
+        "max_hp": 24,
+        "spawn_hp": 24,
         "role": "fragile wandering environmental enemy",
         "encounter_stage": "Early first-level traversal, initially shown alone before mixed fights",
-        "rationale": "Nuisance rather than bullet sponge: two6-damage pressure bolts or one24-damage plunger. Existing30\u201340HP opening band is a guideline; lower health justified by obstacle role.",
+        "rationale": "Sean requested at least two hits from his current starter weapon. At24HP both active first-level starters take two hits: Sean18 damage leaves6HP; Tony12 leaves12HP. Preserve a light wandering obstacle without adding a third Tony hit.",
         "hits_to_defeat": {
           "heavy-plunger-launcher": 1,
-          "pressure-gun": 2,
-          "drain-snake": 2,
+          "pressure-gun": 4,
+          "drain-snake": 3,
           "demolition-hammer": 1,
-          "pipe-wrench": 1,
+          "pipe-wrench": 2,
           "pipe-bomb-launcher": 1
         },
-        "comparison": "All hits land once at full damage; no armor/resistance; melee must reach airborne core.",
+        "comparison": "hits_to_defeat uses canonical base weapon damage for schema validation. The playable first level applies approved starter overrides; see active_first_level_comparison. No armor or per-fly damage multiplication.",
         "bar": {
           "enabled": true,
           "visible_by_default": false,
           "display": "continuous"
         },
         "visual_policy": "assets/bestiary/damage/health-visuals.json",
-        "runtime_max_hp": 12,
+        "runtime_max_hp": 24,
         "registration": "Canonical HP consumed by validated data/combat.json and scripts/sewer_swarm.gd",
-        "status": "Initial integration tuning selected by Game Mechanics;12HP, awaiting playtest"
+        "status": "24HP integrated for Prototype81; live balance review pending",
+        "active_first_level_comparison": {
+          "source": "design/first-call-action/opening-trial-balance.json#weapons",
+          "sean": {
+            "weapon": "heavy-plunger-launcher",
+            "damage": 18,
+            "hits": 2,
+            "hp_after_first_hit": 6
+          },
+          "tony": {
+            "weapon": "pressure-gun",
+            "damage": 12,
+            "hits": 2,
+            "hp_after_first_hit": 12
+          }
+        }
       },
       "name": "Septic Air Force",
       "damage_art": null,

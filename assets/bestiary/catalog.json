@@ -201,12 +201,16 @@
       "art": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
       "animation": "assets/bestiary/sewer-flies/animation-v3.json",
       "health": {
-        "max_hp": 12,
-        "spawn_hp": 12,
+        "max_hp": 24,
+        "spawn_hp": 24,
         "visible_by_default": false,
-        "status": "Integrated initial 12 HP tuning; visual playtest pending",
+        "status": "24HP integrated for Prototype81; live balance review pending",
         "source": "bestiary/sewer-flies/monster.json#health",
-        "runtime_max_hp": 12
+        "runtime_max_hp": 24,
+        "active_first_level_hits": {
+          "sean": 2,
+          "tony": 2
+        }
       },
       "marketing": {
         "status": "Not requested for current sprite mockup; pending future production",
