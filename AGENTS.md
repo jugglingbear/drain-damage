@@ -11,6 +11,22 @@
   without separate approval, under Sean's standing authorization.
 - Communication with agents outside this project still requires explicit user instruction.
 
+## Task ownership and coordination
+
+- Assign one accountable owner per task. Involve specialists for a concrete contribution or necessary review;
+  agree file ownership before parallel edits. The owner coordinates contributors and monitors the delivery.
+- Start with current authoritative records: [the roadmap](roadmap.html), relevant canonical metadata and delivery
+  records in `handoffs/`, and [the storybook capture backlog](storybook/curation-backlog.json). Retrieve historical
+  archives only to answer a specific unresolved question. Completed handoffs and historical permissions are not
+  pending tasks; contacting retired or other-project chats requires a new explicit human request.
+- Current-project agents may consult one another as needed under Sean's standing authorization. Avoid
+  acknowledgment-only messages, duplicate status requests, and multiple agents monitoring the same delivery.
+- Give interim updates for blockers, decisions or material changes. The owner provides one consolidated completion
+  with deliverables, validation and remaining gaps.
+- At meaningful handoffs or completion, keep current-state records concise and link supporting evidence instead
+  of copying history. Reuse existing records; do not add a reporting layer or require updates after every message.
+- These coordination rules preserve all existing artwork, build, testing, roadmap, storybook and permission rules.
+
 ## Optional idea recall
 
 - Consult [Tony's optional idea bank](design/tony-idea-bank.json) when discussing matching hero-stat, weapon,
