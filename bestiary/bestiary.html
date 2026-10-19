@@ -40,7 +40,7 @@ li { margin:8px 0; }
 <h1>The bestiary.</h1>
 <p class="intro">Things you really don't want to find on a service call.
 A living collection of creature designs, game animation assets, and cinematic marketing portraits.</p>
-<p class="small">Updated October 17, 2026 · 7 creatures tracked · 6 playable in Prototype 71 · Clogfather planned</p>
+<p class="small">Updated October 19, 2026 · 7 creatures tracked · 6 playable in Prototype 74 · Clogfather planned</p>
 <nav aria-label="Project navigation">
 <a href="../roadmap.html">Development roadmap</a>
 <a href="../storybook/storybook.html">Development storybook</a>
@@ -173,19 +173,32 @@ These are marketing interpretations, not screenshots of the game.</p>
 <section id="sputtervalve"><h2>Sputtervalve — approved name and design basis</h2><p>Name and pressure-valve design approved October 17. Body enlargement and contrast repaint remain pending; backstory is not yet approved.</p><p>A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.</p><p>36 opening HP; Tony: 3 shots, Sean: 2. Integrated into the continuous first-level opening for Prototype 45; visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Sputtervalve sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/sputtervalve-v1.png) 0% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/sputtervalve-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="sputtervalve/monster.json">Metadata</a></p></section>
 <section id="gratecrawler"><h2>Gratecrawler — provisional opening design</h2><p>A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.</p><p>24 opening HP; Tony: 2 shots, Sean: 2. Prototype 57: emerges after a warning, then patrols back and forth on the floor, turning at obstacles and patrol boundaries. No jumping or pursuit. Headless and packaged checks pass; live visual review pending. Backstory and marketing portrait pending.</p><div role="img" aria-label="Gratecrawler sprite portrait" style="width:192px;height:256px;background:url(../assets/bestiary/opening-trial/gratecrawler-v1.png) 66.666% 0% / 400% 200%"></div><p><a href="../assets/bestiary/opening-trial/gratecrawler-v1.png">Sprite sheet</a> · <a href="../assets/bestiary/opening-trial/manifest-v1.json">Animation manifest</a> · <a href="gratecrawler/monster.json">Metadata</a></p></section>
 <section id="cockroach-swarm"><h2>Skitterling</h2>
+<p>Silhouette refinement: insects now follow the local direction and width of the animal’s features, with smaller
+outline movement and original-resolution textures. Source comparison is reviewed; live acceptance remains pending.</p>
+<p>Readability revision in progress: 140 larger cockroaches, stable depth ordering, slower crawling, and pipe-mouth
+occlusion. New authored rat attack and alligator tail guides support the coordinated attack revision.
+Source checks pass; packaged verification and visual acceptance remain pending.</p>
 <p>A first-level mini-boss in a locked pipe chamber: constantly crawling cockroaches form a giant rat,
 collapse into an apparent death, then rise and reassemble into a larger alligator.</p>
 <img src="cockroach-swarm/marketing-concepts-v1.png" alt="Concept art of cockroaches forming a rat and an alligator" style="width:100%;height:auto">
 <p>This image is concept artwork, not gameplay. The runtime room, pipes, shutters, water, debris and animations
-are integrated. Cached alpha preparation and separately animated, alpha-clipped roach layers keep the formed
-bodies crawling. Live composition and animation-continuity review remain pending.</p>
-<p>Runtime health is 720 displayed HP: 540 HP for the rat and 180 HP for the alligator. Rat-phase overkill cannot skip the
-alligator fight. Active starter weapons require Tony 45 rat hits plus 15 alligator hits (60 total), Sean 30 plus 10 (40 total).
-Rat collapse takes 0.5 seconds, followed by four seconds still, 4.5 seconds renewed skittering, and 2.5 seconds
-alligator assembly. The final defeat opens the right exit pipe.</p>
+are integrated in Prototype 71. Prototype 72 forms the entire body from 600 independently moving
+cockroach sprites, with no solid animal underneath. Twenty packaged suites pass; live visual review and device performance remain pending.
+<a href="../previews/skitterling-writhing-v1/index.html">Animated source study (not gameplay)</a>.</p>
+<p>Prototype 74 health is 1440 displayed HP: 900 HP for the rat and 540 HP for the alligator; packaged verification passes. Rat-phase overkill cannot skip the alligator fight. Tony needs 75 rat hits plus 45 alligator hits
+(120 total), and Sean needs 50 plus 30 (80 total). Collapse, renewed skittering and alligator assembly now take
+1.6, 1.2 and 1.4 seconds respectively. The pipe launch takes 1.1 seconds. The alligator fires a rapid three-item
+volley: vertical, random arc and an arc aimed at the hero's position when the warning begins.</p>
 <p>Prototype 71 is delivered and verified: 20 packaged suites, 32 Python tests, 16 actual source/export CLI
 checks and 18 full routes passed. Portal traversal and camera behavior, prepared alpha masks, upward debris hits,
 moving dodges and visible-jaw charge checks passed. Live visual, listening and fairness review remain pending.</p>
+<p>Prototype 73 replaces the rejected dense swarm with 140 larger individual cockroaches and new authored
+rat and tail poses. Warned wall pounces, accelerating rush bites and occasional rear tail sweeps challenge stationary
+players. Pipe warnings sit behind the rim; retreat shots hit only exposed insect regions. A one-second original
+synthetic rat-like squeal and insect rasp accompanies the pounce tell. All 21 packaged suites pass; live appearance,
+listening and GPU performance remain unreviewed.</p>
+<p>Prototype 74 fits original-resolution insects to the animal outline to preserve ears, snout, jaws, legs and tail.
+The body remains insects only. All 21 packaged suites and 33 Python tests pass; human visual acceptance remains pending.</p>
 <p>Skitterling is the official name. Backstory remains pending.</p>
 <p><a href="cockroach-swarm/monster.json">Creature metadata</a> ·
 <a href="../assets/bestiary/cockroach-swarm/runtime-manifest-v1.json">Runtime animation manifest</a> ·

@@ -34,16 +34,29 @@ func _initialize() -> void:
 			for y in range(394, 440):
 				var uv := source.position + (Vector2(x, y) - destination.position) / destination.size * source.size
 				assert(pixels.get_pixelv(Vector2i(uv)).a == 1.0, "Portal must fully cover walking hero")
-	var changed := false
+	assert(art.roach_body.meshes.size() == 4, "Body uses four bounded batched draws")
+	assert(art.roach_body.insect_textures.size() == 4)
+	for insect: Image in art.roach_body.insect_images:
+		assert(insect.get_width() > 200, "Use full-resolution insect source, never magnify reduced runtime crops")
+	var fitted := 0
+	for shape: Dictionary in art.roach_body.targets["rat-source-v2:1"].shapes:
+		assert(shape.mobility <= 1.5)
+		if shape.size.y < 14: fitted += 1
+	assert(fitted > 20, "Thin anatomy must use smaller fitted insects")
+	for key: String in art.roach_body.targets:
+		assert(art.roach_body.targets[key].points.size() == Art.RoachBody.COUNT)
+		for point: Vector2 in art.roach_body.targets[key].points:
+			assert(art.frames[key].image.get_pixelv(Vector2i(point)).a > .5)
+	var moved := 0
+	for index in range(Art.RoachBody.COUNT):
+		var point: Vector2 = art.roach_body.insect_position("rat-source-v2:1", "rat-source-v2:1", 0, index, 1.0)
+		var next: Vector2 = art.roach_body.insect_position("rat-source-v2:1", "rat-source-v2:1", 0, index, 1.0 + 1.0 / 60)
+		assert(point.distance_to(next) < .5, "Roaches must move continuously between rendered frames")
+		if point.distance_to(next) > .001: moved += 1
+	assert(moved > 125, "Nearly every insect must move independently")
+	# Source-body textures are retained for provenance only; no baked surface variants remain.
 	for key: String in art.frames:
-		var frame: Dictionary = art.frames[key]
-		var base: PackedByteArray = frame.image.get_data()
-		for texture: Texture2D in frame.textures:
-			var variant := texture.get_image().get_data()
-			for index in range(3, variant.size(), 4):
-				assert(variant[index] == base[index], "Churn must preserve exact body alpha: " + key)
-			if variant != base: changed = true
-	assert(changed, "Authored roach layers must visibly change body pixels")
+		assert(art.frames[key].textures.size() == 1)
 	var encounter := Encounter.new()
 	encounter.configure(21)
 	encounter.start(Rect2(90, 394, 26, 46))
@@ -57,11 +70,11 @@ func _initialize() -> void:
 	snapshot.facing = 1
 	var right: Rect2 = art.visible_bounds(snapshot)
 	assert(is_equal_approx(left.position.x - 480, 480 - right.end.x))
-	assert(left.size == right.size and left.end.y <= 441)
+	assert(left.size == right.size and left.end.y <= 465)
 	snapshot.state = "rat_collapse"
 	snapshot.elapsed = .5
 	assert(art.state_is_still(snapshot))
-	assert(is_equal_approx(Encounter.DURATIONS.rat_collapse - Art.COLLAPSE_SECONDS, 4.0))
+	assert(Encounter.DURATIONS.rat_collapse > Art.COLLAPSE_SECONDS)
 	var dead: Dictionary = art._selection(snapshot)
 	snapshot.elapsed = 4.0
 	assert(dead == art._selection(snapshot), "False death must remain motionless after collapse")
@@ -75,6 +88,45 @@ func _initialize() -> void:
 	assert(warning.get_center().x == 400 and warning.end.y == 440 and warning.position.y < 440)
 	snapshot.state = "alligator_debris"
 	assert(art.warning_bounds(snapshot)[0] == warning, "Committed debris lane remains marked")
+	snapshot.volley_targets = [250.0, 500.0, 750.0]
+	var marks: Array[Rect2] = art.warning_bounds(snapshot)
+	assert(marks.size() == 3 and marks[2].get_center().x == 750)
+	snapshot.volley_targets = []
+	# Pipe draws and target queries share deterministic snapshot-driven motion.
+	snapshot.state = "rat_pipe_retreat"
+	snapshot.position = Vector2(480, 400)
+	snapshot.elapsed = .1
+	var regions: Array[Rect2] = art.visible_target_regions(snapshot)
+	assert(not regions.is_empty(), "Visible retreat insects remain targetable")
+	assert(regions == art.visible_target_regions(snapshot), "Query must not depend on draw history")
+	var translated: Array[Rect2] = art.visible_target_regions(snapshot, Vector2(100, 80))
+	assert(regions.size() == translated.size())
+	for index in range(regions.size()):
+		assert(regions[index].position.is_equal_approx(translated[index].position - Vector2(100, 80)))
+	snapshot.elapsed = .7
+	assert(art.visible_target_regions(snapshot).is_empty(), "Consumed swarm cannot be shot behind pipe")
+	snapshot.state = "rat_pipe_launch"
+	snapshot.elapsed = .15
+	snapshot.port = 0
+	snapshot.port_position = Vector2(250, 166)
+	var pipe: Dictionary = art.pipe_parameters(snapshot)
+	assert(pipe.mouth.y == 181, "Art mouth uses actual authored aperture, not logical launch coordinate")
+	for index in range(Art.RoachBody.COUNT):
+		var point := Vector2(index, 300)
+		var sample: Dictionary = Art.RoachBody.pipe_sample(index, point, pipe)
+		assert(sample.visible and sample.position == point and sample.scale == 1.0)
+	var rim: Image = art.ceiling_rim.get_image()
+	assert(rim.get_pixel(187, 396).a == 0, "Warning insects must show through the pipe aperture")
+	assert(rim.get_pixel(187, 450).a > .5, "Authored bottom lip must cover the warning cloud")
+	for attack: Dictionary in [
+		{"key":"rat-attacks-source-v1:2", "area":Rect2(64,176,72,48)},
+		{"key":"rat-attacks-source-v1:3", "area":Rect2(64,180,64,44)},
+		{"key":"tail-sweep-source-v1:2", "area":Rect2(216,184,120,40)}]:
+		var populated := 0
+		for index in range(Art.RoachBody.COUNT):
+			var point: Vector2 = art.roach_body.insect_position(attack.key, attack.key, 0, index, 0)
+			if attack.area.has_point(point): populated += 1
+		assert(populated >= 3, "Active attack area must contain authored insect anatomy: " + str(attack.key))
 	var canvas := ArtCanvas.new()
 	canvas.art = art
 	root.add_child(canvas)
@@ -91,5 +143,5 @@ func _initialize() -> void:
 		await process_frame
 		await process_frame
 	canvas.queue_free()
-	print("PASS: Skitterling authored preparation, cached alpha-clipped churn, mirrored bounds, false death and draw states")
+	print("PASS: Skitterling authored preparation, 140 larger constituent insects, continuous motion, mirrored bounds, false death and draw states")
 	quit()

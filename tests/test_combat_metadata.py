@@ -24,6 +24,22 @@ def load_builder() -> ModuleType:
 class CombatMetadataTests(unittest.TestCase):
     """Invalid source metadata fails before export rather than becoming silent defaults."""
 
+    def test_compound_phase_budgets_are_validated(self) -> None:
+        builder = load_builder()
+        original_read = builder.read
+        for field, value in [("rat_phase_hp", 0), ("alligator_phase_hp", -1),
+                             ("rat_phase_hp", 901), ("threshold_hp", 539)]:
+            with self.subTest(field=field, value=value):
+                def invalid_budget(path: str) -> dict[str, Any]:
+                    data = copy.deepcopy(original_read(path))
+                    if path == "bestiary/cockroach-swarm/monster.json":
+                        data["health"][field] = value
+                    return data
+
+                with patch.object(builder, "read", side_effect=invalid_budget):
+                    with self.assertRaises(ValueError):
+                        builder.build()
+
     def test_bundle_matches_canonical_sources(self) -> None:
         builder = load_builder()
         self.assertEqual(builder.build(), json.loads((ROOT / "data/combat.json").read_text()))

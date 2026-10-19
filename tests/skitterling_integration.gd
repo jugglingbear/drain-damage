@@ -57,7 +57,7 @@ func run_checks() -> void:
 					assert(room.encounter.hp < before and game.shots.is_empty())
 					if phase == "rat":
 						rat_defeated = true
-						assert(room.encounter.hp == 180 and not room.encounter.exit_open)
+						assert(room.encounter.hp == room.encounter.PHASE_HP and not room.encounter.exit_open)
 					else: gator_defeated = true
 				if room.encounter.exit_open: break
 			assert(rat_defeated and gator_defeated and room.encounter.exit_open)

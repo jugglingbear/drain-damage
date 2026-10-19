@@ -1,0 +1,46 @@
+{
+  "created_at": "2026-10-19T13:18:20-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not screenshot capture",
+  "capture_time": null,
+  "build": "Prototype 75 / 0.75.0",
+  "status": "Continuous water integrated and focused packaged checks passed; live visual acceptance pending",
+  "source_head": "6b522a2e4f05bca808065a9b88219228e382fd1f plus uncommitted integration",
+  "app": "builds/Prototype-75/Drain Damage.app",
+  "archive": "builds/history/Prototype-75.zip",
+  "archive_sha256": "684d9a269260b23121e74f0493bab4a9b8c2a59884a36c8e223e6be6094dc37c",
+  "snapshot": "builds/source-75",
+  "changes": [
+    "Reuses authored room.effects frame0 water crop; no new artwork",
+    "Cached mirrored texture creates seamless flow instead of switching unrelated crests",
+    "Continuous12px/s flow and small spatial wave displacement,120 bounded textured strips",
+    "Room clock drives pause/reset; band456..540 and swimmer/warning order retained",
+    "Prototype74 health/attacks/timings unchanged; health-bar concepts remain proposals"
+  ],
+  "checks": {
+    "packaged_suites": 9,
+    "python_tests": 33,
+    "water": "Continuous sample motion, mirrored wrap joins, water-band bounds, repeat/frozen-clock equality, cache reuse and transformed draw",
+    "regressions": [
+      "art",
+      "room_pressure",
+      "integration",
+      "combat_revision",
+      "portals",
+      "audio",
+      "encounter",
+      "build_version"
+    ],
+    "export_signing_zip": "passed",
+    "scope": "Focused water-related regression; full21suite and18route matrix passed on74, not rerun as75 claims"
+  },
+  "test_driver_note": "Initial volley bot always moved right and could enter random marked arc; revised deterministic seed and chooses clearer marked left/right escape. Corrected packaged test passes against unchanged app. Initial failure retained.",
+  "capture_gap": "No game window opened; no actual75capture or subjective water review. Preserve74/75 for comparison.",
+  "remaining": [
+    "Water visual acceptance and seam/crest appearance",
+    "GPU performance",
+    "Earlier silhouette/attack human fairness and listening review"
+  ],
+  "diagnostics": "Existing macOS CA/editor-settings and shutdown resource warnings; final corrected suites have no script/parse/assertion failures."
+}

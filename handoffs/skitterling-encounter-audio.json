@@ -9,27 +9,35 @@
   "preserved_manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
   "supersedes": "Earlier source-only authorization boundary and3s transformation proposal; v1 assets remain preserved. Level Design relays explicit encounter implementation commission.",
   "events": {
-    "swarm_entry": "v2/swarm-entry once; start v1/dispersed-loop for initial2s skitter.",
-    "rat_assembly": "v2/insect-shriek once + v2/assembly once; crossfade to v1/formed-loop across2.5s assembly, never repeatedly emit shriek.",
+    "swarm_entry": "Existing entry cue with dispersed bed during1s entry.",
+    "rat_assembly": "Shriek plus assembly layer; assembly fades over final60ms and stops at1.4s simulation time.",
     "rat_bite_warning": "v1/rat-warning (.8s).",
     "rat_pipe_hide": "v2/swarm-entry reused intentionally as pipe retreat material cue; formed bed fades to dispersed at quiet gain.",
     "pipe_warning": "v2/pipe-warning2s; current helper centered, visible port warning remains required.",
-    "pipe_launch": "v2/pipe-launch once, cancel prior warning.",
+    "pipe_launch": "Existing .35s launch cue; flight1.1s owned by gameplay, no stretched loop.",
     "pipe_land": "v2/landing once.",
-    "rat_phase_defeat": "v2/rat-false-collapse once, fade bed to silence during4.5s apparent death; never canonical death/kill/reward/gate release.",
-    "reskitter": "v1/dispersed-loop for4.5s, resume once and do not restart per frame.",
-    "alligator_assembly": "v2/assembly reused2.5s; crossfade to formed bed; exact assembly timing remains implementation tuning.",
+    "rat_phase_defeat": "False-collapse cue .9s; silence through remaining1.6s apparent-death state. Never terminal death.",
+    "reskitter": "Dispersed bed during1.2s reskitter; state entry changes bed normally.",
+    "alligator_assembly": "Existing assembly source fades/stops at1.4s simulation time.",
     "alligator_jaw_warning": "v1/alligator-warning reused; .9s proposed tell may cancel remaining .1s tail at attack start.",
     "water_dive": "v2/water-dive once; quiet dispersed bed while submerged, SFX only.",
     "water_emerge": "v2/water-emerge once; formed bed resumes by crossfade.",
-    "tail_warning": "v2/tail-warning once per locked .8s throw warning; remaining cue tail canceled at release.",
-    "debris_release": "v2/debris-release once per each of three sequential upward throws; cancel current tail warning at release.",
+    "tail_warning": "One .8s warning per three-shot burst; first release cancels source tail.",
+    "debris_release": "Three releases at0/.22/.44s, existing .35s cue, fixed2effect voices.",
     "debris_impact": "v2/debris-impact, coalesce volley impacts with .10s cooldown and at most2voices.",
     "hit": "Existing v1/hit canonical nonlethal actual HP reduction; actor-local .12s cooldown. Phase-ending rat blow emits false collapse only.",
     "terminal_death": "Existing v1/death canonical once for terminal alligator defeat; stop every bed/warning/phase cue, tail may outlive actor.",
     "cleanup": "Stop all streams/clear event guards/cooldowns on reset/checkpoint/menu/dispose.",
     "swim_start": "Bed-only dispersed texture on alligator_swim and alligator_surface_swim entry; no splash replay or extra voice.",
-    "jaw_snap": "v2/debris-release intentionally reused as dry roach-chitin jaw contact once per charge leg, after attack_start; two effects voices remain bounded."
+    "jaw_snap": "v2/debris-release intentionally reused as dry roach-chitin jaw contact once per charge leg, after attack_start; two effects voices remain bounded.",
+    "rat_climb": "Claw/chitin scuttle onset with continuous formed insect bed.",
+    "rat_pounce_warning": "v3/rat-insect-pounce-warning:1s original insect rasp plus original synthetic rat-like squeal; not an animal recording.",
+    "rat_pounce": "Reuse short air/material launch; ends warning.",
+    "rat_pounce_land": "Reuse material impact; restores formed bed and clears any warning.",
+    "rat_rush_warning": "Existing .8s rat-form warning.",
+    "rat_rush": "Reuse scuttle onset; acceleration belongs to gameplay, not audio pitch.",
+    "alligator_tail_warning": "Existing1s warning.",
+    "alligator_tail_sweep": "Reuse dry chitin contact for swipe; no extra looping layer."
   },
   "asset_lookup": "v1/ and v2/ names map to assets/audio/sfx/cockroach-swarm-v1|v2/<name>.wav; exact hashes/gains/durations in manifests.",
   "limits": {
@@ -88,5 +96,80 @@
     },
     "validation": "Focused headless tests pass three swim/warn/release sequences, two jaw-warning/attack/snap legs, paused snap exclusion and existing pause/mute/death/reset bounds. Existing log permissions/macOS certificate diagnostics remain.",
     "listening": "Not auditioned; directional pipe audio and subjective mix still pending."
+  },
+  "wall_pounce_rush_tail_revision": {
+    "updated_at": "2026-10-19T12:41:08-07:00",
+    "status": "helper_ready_combined_build_pending",
+    "events": {
+      "rat_climb": {
+        "path": "assets/audio/sfx/cockroach-swarm-v2/swarm-entry.wav",
+        "sha256": "8b11367870e939ed5553a7bbe1f5125f933b88c9affb540203511e1e47d97bb8",
+        "source_manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+        "intentional_reuse": "Claw/chitin scuttle onset with continuous formed insect bed."
+      },
+      "rat_pounce_warning": {
+        "path": "assets/audio/sfx/cockroach-swarm-v3/rat-insect-pounce-warning.wav",
+        "sha256": "a28188e3d11e8669cf459efb3b5833625a28c458bc16f63970fb7d59b9313a74",
+        "source_manifest": "audio/sources/cockroach-swarm-v3/manifest.json",
+        "intentional_reuse": "Original v2insect source plus new original synthetic rat-like squeal; supersedes insect-only approximation."
+      },
+      "rat_pounce": {
+        "path": "assets/audio/sfx/cockroach-swarm-v2/pipe-launch.wav",
+        "sha256": "48c25eedd555c1f64e0a8945031f098a1c5d6ec7915c3164202777a0f1f7304a",
+        "source_manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+        "intentional_reuse": "Reuse short air/material launch; ends warning."
+      },
+      "rat_pounce_land": {
+        "path": "assets/audio/sfx/cockroach-swarm-v2/landing.wav",
+        "sha256": "a0ed2e9c72bcb6371afbb91b64f23451da27319ef676ee779571d81b561bbd07",
+        "source_manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+        "intentional_reuse": "Reuse material impact; restores formed bed and clears any warning."
+      },
+      "rat_rush_warning": {
+        "path": "assets/audio/sfx/cockroach-swarm-v1/rat-warning.wav",
+        "sha256": "a5f7602cce0d1b9d99999efaf2985f49bb97569a625795e4b2ad2babb043cd49",
+        "source_manifest": "audio/sources/cockroach-swarm-v1/manifest.json",
+        "intentional_reuse": "Existing .8s rat-form warning."
+      },
+      "rat_rush": {
+        "path": "assets/audio/sfx/cockroach-swarm-v2/swarm-entry.wav",
+        "sha256": "8b11367870e939ed5553a7bbe1f5125f933b88c9affb540203511e1e47d97bb8",
+        "source_manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+        "intentional_reuse": "Reuse scuttle onset; acceleration belongs to gameplay, not audio pitch."
+      },
+      "alligator_tail_warning": {
+        "path": "assets/audio/sfx/cockroach-swarm-v2/tail-warning.wav",
+        "sha256": "a60a6e2d74f7f0750780f725f89aa6c6f5f30202cb89314107126805f0e3ff0c",
+        "source_manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+        "intentional_reuse": "Existing1s warning."
+      },
+      "alligator_tail_sweep": {
+        "path": "assets/audio/sfx/cockroach-swarm-v2/debris-release.wav",
+        "sha256": "68a653c35a872d20335ec795890cb1630be2dacc2d3091bbd07168b7d1a08cb4",
+        "source_manifest": "audio/sources/cockroach-swarm-v2/manifest.json",
+        "intentional_reuse": "Reuse dry chitin contact for swipe; no extra looping layer."
+      }
+    },
+    "dispatch": "Emit once per state entry; attack_start cancels warning. Pounce cue now exactly1s; no audio-driven state timing.",
+    "validation": "Focused headless suite passes new warning/attack/landing routes, pause/mute exclusion, unchanged node count, and prior lifecycle/death/reset tests. All20 source asset hashes unchanged.",
+    "gaps": "No audition; perceived rat/insect blend unverified. Engineering owns combined game wiring, packaged build/checks and roadmap."
+  },
+  "pounce_composite_revision": {
+    "date": "2026-10-19",
+    "manifest": "audio/sources/cockroach-swarm-v3/manifest.json",
+    "status": "source_and_headless_helper_passed_packaged_pending",
+    "validation": "One-second mono44100PCM16, peak-12dBFS, zero endpoints, deterministic rerender and width passed; focused Godot helper suite passes.",
+    "provenance": "All original synthesis; v2 preserved; no third-party sample or animal recording."
+  },
+  "rapid_burst_revision": {
+    "date": "2026-10-19",
+    "status": "helper_and_focused_tests_passed_combined_build_pending",
+    "validation": "Three release events0/.22/.44 after one warning; existing impact coalescing/bounded pools retained. Assembly1.4s cutoff and pause freeze checked. Prior mute/death/reset tests pass.",
+    "files": [
+      "scripts/skitterling_audio.gd",
+      "tests/skitterling_audio.gd",
+      "handoffs/skitterling-encounter-audio.json"
+    ],
+    "gaps": "No audition; Engineering owns combined build/packaged checks/roadmap."
   }
 }

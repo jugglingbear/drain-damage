@@ -343,7 +343,10 @@ def build() -> dict[str, Any]:
             continue
         if monster.get("runtime_support") == "compound_boss":
             require(monster_id == "cockroach-swarm", "Unsupported compound boss")
-            require(maximum == 720 and health["spawn_hp"] == 720, "Boss phase budget mismatch")
+            rat_hp = number(health, "rat_phase_hp", monster_id)
+            alligator_hp = number(health, "alligator_phase_hp", monster_id)
+            require(maximum == rat_hp + alligator_hp and health["spawn_hp"] == maximum
+                    and health["threshold_hp"] == alligator_hp, "Boss phase budget mismatch")
             validate_compound_boss()
             monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": None,
                                     "runtime_support": "compound_boss"}

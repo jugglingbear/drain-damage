@@ -3,6 +3,7 @@ extends RefCounted
 const CreatureAudio = preload("res://scripts/creature_audio.gd")
 const V1 := "res://assets/audio/sfx/cockroach-swarm-v1/"
 const V2 := "res://assets/audio/sfx/cockroach-swarm-v2/"
+const V3 := "res://assets/audio/sfx/cockroach-swarm-v3/"
 const CUES := {
 	"swarm_entry": [V2+"swarm-entry.wav", -4.0],
 	"rat_assembly": [V2+"insect-shriek.wav", -3.0],
@@ -22,6 +23,14 @@ const CUES := {
 	"debris_impact": [V2+"debris-impact.wav", -4.0],
 	# The roach jaws use the existing chitin contact, with no animal voice or extra loop.
 	"jaw_snap": [V2+"debris-release.wav", -4.0],
+	"rat_climb": [V2+"swarm-entry.wav", -4.0],
+	"rat_pounce_warning": [V3+"rat-insect-pounce-warning.wav", -3.0],
+	"rat_pounce": [V2+"pipe-launch.wav", -3.0],
+	"rat_pounce_land": [V2+"landing.wav", -3.0],
+	"rat_rush_warning": [V1+"rat-warning.wav", -3.0],
+	"rat_rush": [V2+"swarm-entry.wav", -4.0],
+	"alligator_tail_warning": [V2+"tail-warning.wav", -3.0],
+	"alligator_tail_sweep": [V2+"debris-release.wav", -4.0],
 }
 var damage = CreatureAudio.new("cockroach-swarm")
 var beds: Array[AudioStreamPlayer] = []
@@ -36,6 +45,7 @@ var impact_after := 0.0
 var paused := false
 var defeated := false
 var event_starts: Dictionary = {}
+var cue_cutoffs: Dictionary = {}
 
 func attach(game: Node) -> void:
 	damage.attach(game)
@@ -69,18 +79,25 @@ func event(name: String) -> void:
 		return
 	if name in ["swarm_entry", "reskitter", "rat_pipe_hide", "water_dive", "swim_start"]: target = 1
 	if name in ["rat_assembly", "alligator_assembly", "water_emerge", "pipe_land"]: target = 0
+	if name in ["rat_climb", "rat_pounce_warning", "rat_pounce_land", "rat_rush",
+		"alligator_tail_warning"]: target = 0
 	if name == "rat_phase_defeat":
 		target = -1
 		warning.stop()
 		for voice in effects: voice.stop()
 	if name in ["pipe_launch", "rat_pipe_hide", "water_dive", "debris_release", "jaw_snap"]: warning.stop()
 	if name == "attack_start": warning.stop()
+	if name in ["rat_pounce", "rat_pounce_land", "rat_rush", "alligator_tail_sweep"]: warning.stop()
 	if not streams.has(name) or AudioServer.is_bus_mute(0): return
 	if name == "debris_impact":
 		if clock < impact_after: return
 		impact_after = clock+.10
 	var voice: AudioStreamPlayer = warning if name.ends_with("warning") else effects[cursor]
 	if voice != warning: cursor = (cursor+1)%effects.size()
+	cue_cutoffs.erase(voice)
+	# The original assembly source is longer than the revised gameplay transition.
+	if name in ["assembly_layer", "alligator_assembly"]:
+		cue_cutoffs[voice] = {"end": clock+1.4, "gain": float(CUES[name][1])}
 	voice.stream = streams[name]
 	voice.volume_db = CUES[name][1]
 	voice.play()
@@ -93,6 +110,13 @@ func play_hit(actor: Dictionary, now := -1.0) -> void:
 func step(delta: float) -> void:
 	if paused or beds.is_empty(): return
 	clock += maxf(delta, 0)
+	for voice in cue_cutoffs.keys():
+		var remaining: float = cue_cutoffs[voice].end-clock
+		if remaining <= 0:
+			voice.stop()
+			cue_cutoffs.erase(voice)
+		else:
+			voice.volume_db = cue_cutoffs[voice].gain+linear_to_db(minf(1.0, remaining/.06))
 	for index in range(beds.size()):
 		levels[index] = move_toward(levels[index], 1.0 if target == index else 0.0, maxf(delta,0)/.15)
 		var voice := beds[index]
@@ -123,6 +147,7 @@ func stop() -> void:
 	clock = 0
 	impact_after = 0
 	cursor = 0
+	cue_cutoffs.clear()
 
 func dispose() -> void:
 	stop()

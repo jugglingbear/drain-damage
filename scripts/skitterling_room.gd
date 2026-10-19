@@ -83,7 +83,7 @@ func advance(host: Node2D, delta: float) -> void:
 		for region in encounter.hurt_regions():
 			var world: Rect2 = Rect2(region.position+ORIGIN,region.size)
 			if encounter.state != "alligator_debris":
-				world = world.intersection(art.visible_bounds(encounter.snapshot(),ORIGIN))
+				world = world.intersection(art.collision_bounds(encounter.snapshot(),ORIGIN))
 			if world.has_area() and world.intersects(Rect2(host.player,host.PLAYER_SIZE)):
 				host.hurt_player()
 				break
@@ -115,7 +115,20 @@ func target_rect() -> Rect2:
 	if not encounter.damageable(): return Rect2()
 	var body := encounter.body_rect()
 	body.position += ORIGIN
-	return body.intersection(art.visible_bounds(encounter.snapshot(),ORIGIN))
+	return body.intersection(art.collision_bounds(encounter.snapshot(),ORIGIN))
+
+func target_regions() -> Array[Rect2]:
+	## Retreat shots can hit only the exposed swarm, never insects concealed by pipe metal.
+	var result: Array[Rect2] = []
+	var baseline := target_rect()
+	if not baseline.has_area(): return result
+	if encounter.state != "rat_pipe_retreat":
+		result.append(baseline)
+		return result
+	for visible: Rect2 in art.visible_target_regions(encounter.snapshot(), ORIGIN):
+		var clipped := baseline.intersection(visible)
+		if clipped.has_area(): result.append(clipped)
+	return result
 
 func allowed_body(body: Rect2) -> bool:
 	return body.end.x <= QUIET or body.position.x >= END

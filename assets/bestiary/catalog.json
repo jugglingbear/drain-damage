@@ -6,7 +6,7 @@
       "name": "Flushfiend",
       "status": "Integrated animated enemy",
       "art": "assets/sprites/toilet-v1.png",
-      "layout": "2 columns × 2 rows: walk A, walk B, hop, hit",
+      "layout": "2 columns \u00d7 2 rows: walk A, walk B, hop, hit",
       "prompt": "assets/art-prompts-v1.json#toilet",
       "renderer": "scripts/world_art.gd",
       "remaining": [
@@ -130,7 +130,7 @@
         "status": "approved",
         "author_role": "storyboarding agent",
         "updated": "2026-10-16",
-        "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo—every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
+        "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo\u2014every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
         "canon_note": "User-selected magazine prose synchronized by Storyboarding review. Breeding is narrative wording, not a reproduction mechanic."
       },
       "flight_recovery": "Rise to pre-dive altitude, stop for1second, face the hero on either side and repeat until killed or attempt reset. Within6pixels of centered alignment retain heading. Full-body sweep and world bounds apply; blocked diagonal rise uses vertical recovery.",
@@ -180,7 +180,7 @@
         "status": "draft",
         "author_role": "storyboarding agent",
         "updated": "2026-10-14",
-        "text": "Billy-Joe classified repeated blockage warnings as duplicate reports and canceled the cleaning crews. Beneath headquarters, grease hardened around wipes, roots, and a buried outflow until the blockage filled the chamber. Then it began moving against the current. The Clogfather grew around something BJ's diagrams do not show. Removing it will restore access—but what it has been hiding may be worse than the clog.",
+        "text": "Billy-Joe classified repeated blockage warnings as duplicate reports and canceled the cleaning crews. Beneath headquarters, grease hardened around wipes, roots, and a buried outflow until the blockage filled the chamber. Then it began moving against the current. The Clogfather grew around something BJ's diagrams do not show. Removing it will restore access\u2014but what it has been hiding may be worse than the clog.",
         "canon_note": "Proposed history, not approved canon. Portal origin and BJ prior knowledge remain open; no intentional summoning is established."
       },
       "audio_summary": {
@@ -195,7 +195,7 @@
     {
       "id": "sewer-fly-swarm",
       "name": "Septic Air Force",
-      "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone’s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
+      "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
       "status": "Integrated in Prototype70/0.70.0: nine potential first-level swarms. Automated packaged verification passed; live visual, listening and fairness review pending.",
       "metadata": "bestiary/sewer-flies/monster.json",
       "art": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
@@ -374,7 +374,7 @@
       "name": "Skitterling",
       "name_status": "Official name selected by Sean; remains Skitterling unless Sean changes it. Confirmed 2026-10-17.",
       "description": "A floor swarm of constantly skittering cockroaches assembles into a giant rat, collapses after damage, and reforms as a giant alligator. Individual insects continue crawling while each animal silhouette holds.",
-      "status": "Delivered in Prototype 71 / 0.71.0; packaged verification passed. Live visual, listening and fairness review pending.",
+      "status": "Delivered in Prototype 74 / 0.74.0; 21 packaged suites passed. Live visual, listening, GPU and human balance review pending.",
       "metadata": "bestiary/cockroach-swarm/monster.json",
       "art": "assets/bestiary/cockroach-swarm/rat-source-v2.png",
       "animation": "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json",
@@ -389,20 +389,32 @@
         "status": "Concept proposal; visual design review pending"
       },
       "health": {
-        "max_hp": 720,
-        "runtime_max_hp": 720,
+        "max_hp": 1440,
+        "runtime_max_hp": 1440,
         "visible_by_default": true,
-        "status": "Prototype 71 verified runtime: 540 HP rat plus 180 HP alligator, 720 displayed total. Live balance review pending.",
+        "status": "Revised controller source: rat900/alligator540, displayed1440; combined build and live balance review pending.",
         "source": "bestiary/cockroach-swarm/monster.json#health",
         "phase_hp": {
-          "rat": 540,
-          "alligator": 180
+          "rat": 900,
+          "alligator": 540
         }
       },
       "audio_summary": {
         "status": "runtime_integrated",
         "source": "bestiary/cockroach-swarm/monster.json#audio",
         "runtime_status": "Delivered in Prototype 71; packaged checks passed; listening review pending"
+      },
+      "animation_revision": {
+        "status": "Delivered in Prototype 72 / 0.72.0; 20 packaged suites passed. Live visual review and device performance pending.",
+        "source": "bestiary/cockroach-swarm/monster.json#game_art"
+      },
+      "readability_revision": {
+        "status": "Delivered in Prototype 73 / 0.73.0; 21 packaged suites passed. Live visual acceptance, listening and device GPU performance pending.",
+        "source": "bestiary/cockroach-swarm/monster.json#game_art"
+      },
+      "silhouette_revision": {
+        "status": "Delivered in Prototype 74 / 0.74.0; 21 packaged suites passed. Live visual, listening, GPU and human balance review pending.",
+        "source": "bestiary/cockroach-swarm/monster.json#game_art"
       }
     }
   ],

@@ -439,8 +439,7 @@ func step_trial_shots(delta: float) -> void:
 				swarm_target = swarm_index
 				actor_target = -1
 				enemy_target = -1
-		var boss_rect := skitterling.target_rect()
-		if boss_rect.has_area():
+		for boss_rect: Rect2 in skitterling.target_regions():
 			var hit := projectile_hit(start,end,boss_rect,direction)
 			if hit >= 0 and hit < nearest:
 				nearest = hit

@@ -41,7 +41,7 @@ func run_checks() -> void:
 						var gap: float = boss.position.x+6570-game.player.x
 						Input.action_release("left")
 						Input.action_release("right")
-						game.facing = signf(gap)
+						if not is_zero_approx(gap): game.facing = signf(gap)
 						if absf(gap) > game.weapon.projectile.max_travel_distance_pixels*.65:
 							Input.action_press("right" if gap > 0 else "left")
 						game.jump_buffer = 0

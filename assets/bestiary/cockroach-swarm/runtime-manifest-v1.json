@@ -2782,6 +2782,246 @@
           "enabled": true
         }
       ]
+    },
+    {
+      "id": "tail-sweep-source-v1",
+      "path": "assets/bestiary/cockroach-swarm/tail-sweep-source-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "f9356a6b2c774800ec12715a18b64cf8ddd22a823b44b66e218392ccffefe715",
+      "shared_scale": 0.3735408560311284,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            768,
+            550
+          ],
+          "opaque_bounds": [
+            19,
+            151,
+            732,
+            510
+          ],
+          "source_anchor": [
+            375.5,
+            510
+          ],
+          "destination": [
+            51.73540856031127,
+            33.49416342412451,
+            286.8793774319066,
+            205.44747081712063
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            768,
+            0,
+            768,
+            550
+          ],
+          "opaque_bounds": [
+            15,
+            237,
+            755,
+            511
+          ],
+          "source_anchor": [
+            385.0,
+            511
+          ],
+          "destination": [
+            48.18677042801556,
+            33.12062256809338,
+            286.8793774319066,
+            205.44747081712063
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            0,
+            550,
+            800,
+            474
+          ],
+          "opaque_bounds": [
+            15,
+            154,
+            786,
+            370
+          ],
+          "source_anchor": [
+            400.5,
+            370
+          ],
+          "destination": [
+            42.396887159533065,
+            85.7898832684825,
+            298.83268482490274,
+            177.05836575875486
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            800,
+            550,
+            736,
+            474
+          ],
+          "opaque_bounds": [
+            12,
+            164,
+            723,
+            371
+          ],
+          "source_anchor": [
+            367.5,
+            371
+          ],
+          "destination": [
+            54.723735408560316,
+            85.41634241245137,
+            274.9260700389105,
+            177.05836575875486
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        }
+      ]
+    },
+    {
+      "id": "rat-attacks-source-v1",
+      "path": "assets/bestiary/cockroach-swarm/rat-attacks-source-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "6e5afd5fd1b4566888db25c6172c694783947305f2841729dec7ba4d8f06dc9b",
+      "shared_scale": 0.3565459610027855,
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            768,
+            550
+          ],
+          "opaque_bounds": [
+            94,
+            76,
+            756,
+            515
+          ],
+          "source_anchor": [
+            425.0,
+            515
+          ],
+          "destination": [
+            40.46796657381614,
+            40.37883008356545,
+            273.8272980501393,
+            196.10027855153203
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            768,
+            0,
+            768,
+            550
+          ],
+          "opaque_bounds": [
+            65,
+            167,
+            738,
+            514
+          ],
+          "source_anchor": [
+            401.5,
+            514
+          ],
+          "destination": [
+            48.84679665738162,
+            40.735376044568255,
+            273.8272980501393,
+            196.10027855153203
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            0,
+            550,
+            784,
+            474
+          ],
+          "opaque_bounds": [
+            46,
+            89,
+            764,
+            402
+          ],
+          "source_anchor": [
+            405.0,
+            402
+          ],
+          "destination": [
+            47.59888579387186,
+            80.66852367688023,
+            279.53203342618383,
+            169.00278551532034
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            784,
+            550,
+            752,
+            474
+          ],
+          "opaque_bounds": [
+            66,
+            139,
+            721,
+            403
+          ],
+          "source_anchor": [
+            393.5,
+            403
+          ],
+          "destination": [
+            51.69916434540389,
+            80.31197771587745,
+            268.1225626740947,
+            169.00278551532034
+          ],
+          "enabled": true,
+          "edge_pixels": 0
+        }
+      ]
     }
   ],
   "animations": {
@@ -3156,9 +3396,93 @@
       "loop": true,
       "frame_seconds": 0.13,
       "timing_authority": "Continuous snapping during controller charge; body travel owned by controller"
+    },
+    "rat_ground_scuttle": {
+      "sheet": "rat-attacks-source-v1",
+      "frames": [
+        3
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; authored openjaw/claws become constituent placementguides."
+    },
+    "rat_climb": {
+      "sheet": "rat-attacks-source-v1",
+      "frames": [
+        0
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; authored openjaw/claws become constituent placementguides."
+    },
+    "rat_claw_tell": {
+      "sheet": "rat-attacks-source-v1",
+      "frames": [
+        1
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; authored openjaw/claws become constituent placementguides."
+    },
+    "rat_claw_pounce": {
+      "sheet": "rat-attacks-source-v1",
+      "frames": [
+        2
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; authored openjaw/claws become constituent placementguides."
+    },
+    "rat_land_recovery": {
+      "sheet": "rat-flight-v2",
+      "frames": [
+        3,
+        0
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller duration; constituent positions interpolate continuously."
+    },
+    "rat_ground_rush": {
+      "sheet": "rat-attacks-source-v1",
+      "frames": [
+        3
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; authored openjaw/claws become constituent placementguides."
+    },
+    "alligator_tail_tell": {
+      "sheet": "tail-sweep-source-v1",
+      "frames": [
+        0,
+        1
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; tail-sweep pose atfloor withinrear120x40."
+    },
+    "alligator_tail_sweep": {
+      "sheet": "tail-sweep-source-v1",
+      "frames": [
+        2
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; tail-sweep pose atfloor withinrear120x40."
+    },
+    "alligator_tail_recovery": {
+      "sheet": "tail-sweep-source-v1",
+      "frames": [
+        3,
+        0
+      ],
+      "loop": false,
+      "frame_seconds": 0.1,
+      "timing_authority": "Controller timings; tail-sweep pose atfloor withinrear120x40."
     }
   },
-  "continuous_churn": "Layer roach_cluster/roach_churn at phase-offset10fps clipped to current prepared body alpha, even on warning/recovery/hit. Freeze all only during false-death hold; floor_skitter resumes afterward.",
+  "continuous_churn": "140 larger individual cockroaches form the body. Stable depth ordering, continuous slow paths/headings,8fps phase-offset legs. No solid animal base. False-death motion remains frozen.",
   "body_collision": "Visible leading quarter only during attack, coarse body footprint may not exceed prepared opaque artwork; tail/antennae decorative. Review logical visible bounds in frames.",
   "excluded_frames": {
     "rat-source-v2.png": [
@@ -3195,5 +3519,24 @@
     "Composed motion and live transition continuity review",
     "Verify alpha threshold preserves insect leg detail at game scale",
     "Do not claim delivered gameplay before Engineering validation/build"
-  ]
+  ],
+  "constituent_renderer": {
+    "script": "scripts/skitterling_roach_body.gd",
+    "sprite_source": "assets/bestiary/cockroach-swarm/roach-layers-v1.png",
+    "frames": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "count": 140,
+    "draws_per_submission": 4,
+    "mask_role": "Placement and tone guides only; decorative legs/paths extend slightly outside silhouette. No strict dynamic mask clipping.",
+    "collision": "Separate Prototype71 collision_bounds; no art-driven rebalance",
+    "status": "Source Art/pipe checks pass; combinedattack integration/export and visualacceptance pending",
+    "display_size": "26\u201332 by19 logicalpixels perinsect",
+    "depth_order": "Fixed4batches; animation cannot reshuffle insectocclusion",
+    "pipe_animation": "Deterministic staggered entry/retreat/launch;18insectwarningcloud behindauthoredrim; ceilingmouthartY181 distinct fromlogical166",
+    "silhouette_fit": "Original-resolution insect sprites, coverage-spaced anchors, locally fitted size and direction, restrained outline motion; no solid animal base."
+  }
 }

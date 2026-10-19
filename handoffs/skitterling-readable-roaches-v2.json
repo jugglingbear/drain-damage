@@ -1,0 +1,49 @@
+{
+  "status": "Final Art source tests passed; ready for combined Engineering build",
+  "replaces": "Prototype72 visually rejected as brownstatic; preserved",
+  "renderer": "140 larger cockroaches, 26\u201332 \u00d7 19 logical pixels, fixed depth ordering, continuous slow headings, 8 fps legs",
+  "authored_guides": [
+    "assets/bestiary/cockroach-swarm/rat-attacks-source-v1.png",
+    "assets/bestiary/cockroach-swarm/tail-sweep-source-v1.png"
+  ],
+  "pipe": {
+    "warning": "18individual insects at actualaperture behindauthoredmetal; ceilingartY181",
+    "launch": "Staggered frommouth, allfullscale/fullposition by.15s",
+    "retreat": "Individual convergence into centralpipe over.7s; partialocclusion byrim",
+    "target_api": "visible_target_regions(snapshot,world_origin) returns4x4cells insideopaque insectcore acrossalllegframes andoutsideauthoredrim; deterministic,drawindependent",
+    "entry": "Initial2s streamusesactualindividuals, removedoldclusterstamps"
+  },
+  "checks": [
+    "Art headless PASS includingnewstates",
+    "Pipe target deterministic/nonzeroworldorigin/consumedempty",
+    "Launchfullvisibilityat.15",
+    "Aperturetransparentandbottomlipopaque",
+    "Authored insect centers populate pounce, rush and tail active regions"
+  ],
+  "remaining": [
+    "Engineering integration/export",
+    "Live visualreadability,pipeocclusion,attackposeacceptance",
+    "DeviceGPUperformance"
+  ],
+  "ownership": "Engineering room/build; Mechanics controller; Art renderer/manifests/tests",
+  "performance": {
+    "retreat_target_average_ms": 0.5083,
+    "method": "30 source queries with varying elapsed times on this Mac; CPU only, not GPU or device acceptance",
+    "optimization": "Opaque insect target cells precomputed once; query scales/translates and clips them against the rim"
+  },
+  "silhouette_revision": {
+    "status": "Source tests pass; coordinated build pending",
+    "source_study": "previews/skitterling-silhouette-v1/study.json",
+    "changes": [
+      "Original resolution insect textures replace enlarged reduced crops",
+      "Farthest-spaced anchors include thin anatomy",
+      "Local silhouette direction and width guide each insect",
+      "Outline displacement limited to0.2\u20131.5pixels; interior still turns",
+      "Pipe geometry/target sampling remain synchronized"
+    ],
+    "remaining": [
+      "Combined build checks",
+      "Actual gameplay visual acceptance"
+    ]
+  }
+}

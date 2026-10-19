@@ -2238,10 +2238,10 @@
         }
       },
       "health": {
-        "max_hp": 720,
-        "spawn_hp": 720,
-        "runtime_max_hp": 720,
-        "status": "Prototype 71 verified runtime: 540 HP rat plus 180 HP alligator, 720 displayed total. Live balance review pending.",
+        "max_hp": 1440,
+        "spawn_hp": 1440,
+        "runtime_max_hp": 1440,
+        "status": "Revised controller source: rat900/alligator540, displayed1440; combined build and live balance review pending.",
         "encounter_stage": "first_level_checkpoint_owned_locked_miniboss_room",
         "role": "Single compound transforming miniboss",
         "bar": {
@@ -2250,104 +2250,104 @@
           "name": "Skitterling",
           "enabled": true
         },
-        "model": "One720HP display pool: rat consumes540 down to180; alligator consumes180 down to0. Excess ratphase damage discarded; no phase skip.",
-        "threshold_hp": 180,
-        "damage_accounting": "Apply one hit per compoundactor. Rat accepted=min(hit,hp-180), discard excess; threshold180 queues falsecollapse once. Hidden/transition states ignore damage. Gator0 terminal once. Reset720HP.",
-        "rationale": "Rat540 triples prior180: Tony45shots at12/.16 takes7.04s first-to-last uninterrupted; Sean30shots at18/.24 takes6.96s. Prior15/10shots took2.24/2.16s. Travel/tells extend actualfight. Gator180 and mandatorytransition preserved.",
+        "model": "One1440HP pool: rat consumes900 to540; alligator consumes540 to0. Rat phase overkill is discarded; neither form can be skipped.",
+        "threshold_hp": 540,
+        "damage_accounting": "Rat accepted=min(hit,hp-540), threshold540 triggers falsecollapse once. Hidden states ignorehits; alligator0 terminalonce. Reset1440.",
+        "rationale": "Sean reports bothforms tooquick: rat540\u2192900 (+67%), alligator180\u2192540 (3x). Tony75rat/45gator, Sean50/30. Shorter transitions remove waiting while increasedHP adds actual combat.",
         "active_first_level_comparisons": {
           "tony": {
             "weapon": "pressure-gun",
             "damage": 12,
             "interval_seconds": 0.16,
             "range_pixels": 320,
-            "hits": 60,
-            "hits_to_threshold": 45,
-            "rat_hits": 45,
-            "alligator_hits": 15,
-            "rat_first_to_last_seconds": 7.04,
-            "alligator_first_to_last_seconds": 2.24
+            "hits": 120,
+            "hits_to_threshold": 75,
+            "rat_hits": 75,
+            "alligator_hits": 45,
+            "rat_first_to_last_seconds": 11.84,
+            "alligator_first_to_last_seconds": 7.04
           },
           "sean": {
             "weapon": "heavy-plunger-launcher",
             "damage": 18,
             "interval_seconds": 0.24,
             "range_pixels": 480,
-            "hits": 40,
-            "hits_to_threshold": 30,
-            "rat_hits": 30,
-            "alligator_hits": 10,
-            "rat_first_to_last_seconds": 6.96,
-            "alligator_first_to_last_seconds": 2.16
+            "hits": 80,
+            "hits_to_threshold": 50,
+            "rat_hits": 50,
+            "alligator_hits": 30,
+            "rat_first_to_last_seconds": 11.76,
+            "alligator_first_to_last_seconds": 6.96
           }
         },
         "canonical_base_comparisons": {
           "pressure-gun": {
             "damage": 6,
-            "hits": 120,
+            "hits": 240,
             "overkill": 0,
             "owner": "tony",
             "runtime": "playable; active first-level override differs",
-            "rat_hits": 90,
-            "alligator_hits": 30
+            "rat_hits": 150,
+            "alligator_hits": 90
           },
           "heavy-plunger-launcher": {
             "damage": 24,
-            "hits": 31,
+            "hits": 61,
             "overkill": 24,
             "owner": "sean",
             "runtime": "playable; active first-level override differs",
-            "rat_hits": 23,
-            "alligator_hits": 8
+            "rat_hits": 38,
+            "alligator_hits": 23
           },
           "pipe-wrench": {
             "damage": 12,
-            "hits": 60,
+            "hits": 120,
             "overkill": 0,
             "owner": "tony",
             "runtime": "planned",
-            "rat_hits": 45,
-            "alligator_hits": 15
+            "rat_hits": 75,
+            "alligator_hits": 45
           },
           "drain-snake": {
             "damage": 8,
-            "hits": 91,
+            "hits": 181,
             "overkill": 8,
             "owner": "tony",
             "runtime": "planned",
-            "rat_hits": 68,
-            "alligator_hits": 23
+            "rat_hits": 113,
+            "alligator_hits": 68
           },
           "demolition-hammer": {
             "damage": 60,
-            "hits": 12,
+            "hits": 24,
             "overkill": 0,
             "owner": "sean",
             "runtime": "planned",
-            "rat_hits": 9,
-            "alligator_hits": 3
+            "rat_hits": 15,
+            "alligator_hits": 9
           },
           "pipe-bomb-launcher": {
             "damage": 60,
-            "hits": 12,
+            "hits": 24,
             "overkill": 0,
             "owner": "sean",
             "runtime": "planned",
-            "rat_hits": 9,
-            "alligator_hits": 3
+            "rat_hits": 15,
+            "alligator_hits": 9
           }
         },
-        "comparison_limits": "Requiredshots=ceil540/damage+ceil180/damage. Noarmor; ignores misses/range/invulnerable periods. Planned weapons not playable. Compoundgeometry nevermultiplies hits.",
-        "rat_phase_hp": 540,
-        "alligator_phase_hp": 180,
+        "comparison_limits": "Actualshots=ceil900/damage+ceil540/damage. Noarmor; travel/misses/hiddenwindows excluded; plannedweapons notplayable.",
+        "rat_phase_hp": 900,
+        "alligator_phase_hp": 540,
         "hits_to_defeat": {
-          "pressure-gun": 120,
-          "heavy-plunger-launcher": 30,
-          "pipe-wrench": 60,
-          "drain-snake": 90,
-          "demolition-hammer": 12,
-          "pipe-bomb-launcher": 12
+          "pressure-gun": 240,
+          "heavy-plunger-launcher": 60,
+          "pipe-wrench": 120,
+          "drain-snake": 180,
+          "demolition-hammer": 24,
+          "pipe-bomb-launcher": 24
         },
-        "hits_to_defeat_note": "Unphased schema arithmetic only. Actual phase-aware counts are canonical_base_comparisons; active first-level counts are45+15Tony and30+10Sean."
+        "hits_to_defeat_note": "Schema unphasedceil1440/damage only; actual phase counts in canonical_base_comparisons. ActiveTony75+45=120;Sean50+30=80."
       },
       "name": "Skitterling",
       "damage_art": null,

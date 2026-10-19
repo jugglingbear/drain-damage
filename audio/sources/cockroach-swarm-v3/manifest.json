@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "creature_id": "cockroach-swarm",
+  "cues": [
+    {
+      "cue_id": "rat-insect-pounce-warning",
+      "path": "assets/audio/sfx/cockroach-swarm-v3/rat-insect-pounce-warning.wav",
+      "duration_seconds": 1.0,
+      "peak_dbfs": -12,
+      "gain_db": -3,
+      "loop": false,
+      "rms_dbfs": -22.59,
+      "sha256": "a28188e3d11e8669cf459efb3b5833625a28c458bc16f63970fb7d59b9313a74"
+    }
+  ],
+  "format": {
+    "sample_rate": 44100,
+    "channels": 1,
+    "pcm_bits": 16
+  },
+  "source": {
+    "path": "assets/audio/sfx/cockroach-swarm-v2/insect-shriek.wav",
+    "sha256": "461f452f90405061a445ac9d4673e8a9195ab6300b133a86033dee57c450daeb",
+    "manifest": "audio/sources/cockroach-swarm-v2/manifest.json"
+  },
+  "provenance": "Original insect synthesis plus new original synthetic high squeal; no animal recording.",
+  "rights": "Project-generated material; no third-party sample licensing obligations introduced.",
+  "procedure": "First second of normalized insect source at .55 plus .45 two-envelope harmonic FM squeal; 8ms attack/60ms release; final peak normalization. Exact recipe preserved in generator.",
+  "generator": "audio/sources/cockroach-swarm-v3/generate.py",
+  "generator_sha256": "b7e728837d84173ace340b692d5d2a0d0c5100383b9451490b51c45ee866ccdd",
+  "validation": "PCM headers, duration, zero endpoints, peaks and reproducibility checked; no audition.",
+  "limitations": "Rat-like synthetic timbre is an approximation. Perceived animal/insect blend awaits listening."
+}

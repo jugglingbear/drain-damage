@@ -1,5 +1,7 @@
 extends RefCounted
 ## Authored art only. All coordinates respect the caller's existing world/camera transform.
+const Water = preload("res://scripts/skitterling_water.gd")
+const RoachBody = preload("res://scripts/skitterling_roach_body.gd")
 const Encounter = preload("res://scripts/skitterling_encounter.gd")
 const BODY_PATH := "res://assets/bestiary/cockroach-swarm/runtime-manifest-v1.json"
 const ROOM_PATH := "res://assets/world/skitterling-room/manifest-v1.json"
@@ -8,6 +10,12 @@ const CANVAS := Vector2i(384, 256)
 const CUTOFF := 240
 const COLLAPSE_SECONDS := .5
 const STATE_ART := {
+	"rat_wall_approach":"rat_ground_scuttle", "rat_wall_climb":"rat_climb",
+	"rat_pounce_tell":"rat_claw_tell", "rat_pounce":"rat_claw_pounce",
+	"rat_pounce_recovery":"rat_land_recovery", "rat_rush_setup":"rat_ground_scuttle",
+	"rat_rush_tell":"rat_claw_tell", "rat_rush":"rat_ground_rush", "rat_rush_recovery":"rat_land_recovery",
+	"alligator_tail_tell":"alligator_tail_tell", "alligator_tail_sweep":"alligator_tail_sweep",
+	"alligator_tail_recovery":"alligator_tail_recovery",
 	"entry_skitter":"floor_skitter", "rat_assembly":"rat_assembly", "rat_ready":"rat_idle",
 	"rat_bite_tell":"rat_warning", "rat_bite":"rat_bite", "rat_bite_recovery":"rat_recovery",
 	"rat_pipe_retreat":"rat_retreat", "rat_pipe_launch":"rat_airborne", "rat_pipe_abort":"rat_airborne",
@@ -30,6 +38,11 @@ var textures: Dictionary = {}
 var images: Dictionary = {}
 var frames: Dictionary = {}
 var last_error := ""
+var roach_body := RoachBody.new()
+var roach_front := RoachBody.new()
+var roach_pipe := RoachBody.new()
+var ceiling_rim: Texture2D
+var water := Water.new()
 
 func prepare() -> bool:
 	if ready: return true
@@ -39,6 +52,11 @@ func prepare() -> bool:
 		textures = shared_cache.textures
 		images = shared_cache.images
 		frames = shared_cache.frames
+		roach_body.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+		roach_front.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+		roach_pipe.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+		_prepare_water()
+		_prepare_ceiling_rim()
 		ready = true
 		return true
 	body = _json(BODY_PATH)
@@ -63,29 +81,22 @@ func prepare() -> bool:
 			var key := str(sheet.id) + ":" + str(int(frame.id))
 			frames[key] = {"image":canvas, "textures":[ImageTexture.create_from_image(canvas)],
 				"bounds":Rect2(canvas.get_used_rect())}
-	# Bake independent crawling layers once; no image allocation or pixel work during gameplay.
-	for key: String in frames.keys():
-		if not _formed_sheet(key): continue
-		var base: Image = frames[key].image
-		var bounds: Rect2 = frames[key].bounds
-		var variants: Array = []
-		for phase in range(4):
-			var composite := base.duplicate() as Image
-			for patch in range(8):
-				var bug: Image = frames["roach-layers-v1:" + str(8 + posmod(phase + patch, 4))].image
-				var tile := bug.get_region(bug.get_used_rect())
-				tile.resize(22, 14, Image.INTERPOLATE_NEAREST)
-				var at := Vector2i(bounds.position + bounds.size * Vector2(
-					.15 + float(patch % 4) * .2, .35 + float(patch / 4) * .3))
-				at.x = clampi(at.x, 0, CANVAS.x - 22)
-				at.y = clampi(at.y, 0, CANVAS.y - 14)
-				var mask := base.get_region(Rect2i(at, tile.get_size()))
-				composite.blend_rect_mask(tile, mask, Rect2i(Vector2i.ZERO, tile.get_size()), at)
-			variants.append(ImageTexture.create_from_image(composite))
-		frames[key].textures = variants
+	roach_body.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+	roach_front.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+	roach_pipe.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+	_prepare_water()
+	_prepare_ceiling_rim()
 	shared_cache = {"body":body, "room":room, "textures":textures, "images":images, "frames":frames}
 	ready = true
 	return true
+
+func _prepare_water() -> void:
+	var frame: Dictionary = room.effects.frames[0]
+	var crop := _rect(frame.source_rect)
+	var opaque := _rect_from_edges(frame.opaque_bounds)
+	crop.position += opaque.position
+	crop.size = opaque.size
+	water.prepare(images[room.effects.path], Rect2i(crop))
 
 func _formed_sheet(key: String) -> bool:
 	return not key.begins_with("roach-layers")
@@ -139,7 +150,7 @@ func draw_room(host: CanvasItem, world_origin: Vector2, exit_open: bool) -> void
 		if instance.id == "exit" and exit_open: prop = "open"
 		_prop(host, prop, destination, instance.get("mirror_x", false))
 
-func _selection(snapshot: Dictionary) -> Dictionary:
+func _selection(snapshot: Dictionary, hold_idle := true) -> Dictionary:
 	var state: String = snapshot.get("state", "idle")
 	if not STATE_ART.has(state): return {}
 	var animation: String = STATE_ART[state]
@@ -152,13 +163,34 @@ func _selection(snapshot: Dictionary) -> Dictionary:
 	var ids: Array = spec.frames
 	var index := posmod(int(elapsed / float(spec.frame_seconds)), ids.size()) if spec.loop else mini(
 		ids.size() - 1, int(clampf(elapsed / duration, 0, 1) * ids.size()))
-	return {"key":str(spec.sheet) + ":" + str(int(ids[index])), "state":state}
+	# Resting poses hold their structure; insects supply the continuous movement.
+	if hold_idle and animation in ["rat_idle", "alligator_idle", "alligator_move"]: index = 0
+	var next_index := (index + 1) % ids.size() if spec.loop else mini(index + 1, ids.size() - 1)
+	var blend := fposmod(elapsed / float(spec.frame_seconds), 1.0) if spec.loop else fposmod(
+		clampf(elapsed / duration, 0, 1) * ids.size(), 1.0)
+	if hold_idle and animation in ["rat_idle", "alligator_idle", "alligator_move"]:
+		next_index = index
+		blend = 0.0
+	if next_index == index: blend = 0.0
+	return {"key":str(spec.sheet) + ":" + str(int(ids[index])), "state":state,
+		"next_key":str(spec.sheet) + ":" + str(int(ids[next_index])), "blend":blend}
+
+func collision_bounds(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Rect2:
+	## Preserve Prototype71 combat geometry independently of the new insect-only visuals.
+	if not ready or not snapshot.get("visible", false): return Rect2()
+	var selection := _selection(snapshot, false)
+	if selection.is_empty(): return Rect2()
+	var bounds: Rect2 = frames[selection.key].bounds
+	if int(snapshot.get("facing", -1)) > 0:
+		bounds.position.x = CANVAS.x - bounds.end.x
+	bounds.position += world_origin + Vector2(snapshot.position) - ANCHOR
+	return bounds
 
 func visible_bounds(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Rect2:
 	if not ready or not snapshot.get("visible", false): return Rect2()
 	var selection := _selection(snapshot)
 	if selection.is_empty(): return Rect2()
-	var bounds: Rect2 = frames[selection.key].bounds
+	var bounds: Rect2 = frames[selection.key].bounds.merge(frames[selection.next_key].bounds).grow(RoachBody.EXTENT)
 	if int(snapshot.get("facing", -1)) > 0:
 		bounds.position.x = CANVAS.x - bounds.end.x
 	bounds.position += world_origin + Vector2(snapshot.position) - ANCHOR
@@ -171,22 +203,14 @@ func draw_boss(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, cl
 	if not ready: return
 	var selection := _selection(snapshot)
 	if not selection.is_empty() and snapshot.get("visible", false) and snapshot.get("state") not in ["alligator_swim", "alligator_surface_swim"]:
-		var frame: Dictionary = frames[selection.key]
-		var variants: Array = frame.textures
-		var phase := 0 if state_is_still(snapshot) else posmod(int(clock * 10), variants.size())
-		var destination := Rect2(world_origin + Vector2(snapshot.position) - ANCHOR, Vector2(CANVAS))
-		if int(snapshot.get("facing", -1)) > 0: destination.size.x = -destination.size.x
-		host.draw_texture_rect(variants[phase], destination, false)
+		roach_body.draw(host, selection.key, selection.next_key, selection.blend,
+			world_origin + Vector2(snapshot.position), int(snapshot.get("facing", -1)),
+			0.0 if state_is_still(snapshot) else clock, false, world_origin.y + 456, pipe_parameters(snapshot, world_origin))
+
 	var state: String = snapshot.get("state", "idle")
-	if state == "entry_skitter":
-		# Authored insect tiles travel from the visible rear mouth to the foreground swarm.
-		for index in range(16):
-			var progress := fposmod(clock * .65 + index * .061, 1.0)
-			var target := Vector2(350 + index * 17, 440)
-			_effect(host, 12 + posmod(index + int(clock * 10), 4),
-				world_origin + Vector2(480, 300).lerp(target, progress), Vector2(24, 16))
 	if state == "rat_pipe_warning":
-		_effect(host, 12 + posmod(int(clock * 10), 4), world_origin + Vector2(snapshot.port_position), Vector2(96, 64))
+		roach_pipe.draw(host, "rat-source-v2:1", "rat-source-v2:1", 0.0, world_origin, -1, clock,
+			false, world_origin.y + 456, pipe_parameters(snapshot, world_origin))
 		_effect(host, 12 + posmod(int(clock * 10 + 2), 4), world_origin + Vector2(snapshot.landing), Vector2(112, 32))
 
 func _effect(host: CanvasItem, id: int, at: Vector2, size: Vector2) -> void:
@@ -205,17 +229,25 @@ func draw_front(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, c
 	var state: String = snapshot.get("state", "idle")
 	if state in ["entry_skitter", "rat_pipe_retreat"]:
 		_prop(host, "front_rim", Rect2(world_origin + Vector2(320, 108), Vector2(320, 300)))
+	if state in ["rat_pipe_warning", "rat_pipe_launch", "rat_pipe_abort"]:
+		var port: int = int(snapshot.get("port", 0))
+		if port < 2:
+			var x := 166.0 if port == 0 else 626.0
+			host.draw_texture_rect(ceiling_rim, Rect2(world_origin + Vector2(x, 82), Vector2(168, 116)), false)
+		else:
+			var x := -22.0 if port == 2 else 842.0
+			_prop(host, "front_rim", Rect2(world_origin + Vector2(x, 170), Vector2(140, 124)))
 	# Animated water is confined below continuous hero support; it never changes collision.
-	for column in range(3):
-		_effect(host, posmod(int(clock * 8) + column, 4), world_origin + Vector2(160 + column * 320, 540), Vector2(320, 84))
+	water.draw(host, world_origin, clock)
 	if state in ["alligator_swim", "alligator_surface_swim"]:
 		_draw_swimmer(host, snapshot, world_origin, clock)
 	if state in ["alligator_water_warning", "alligator_debris"]:
 		var elapsed: float = snapshot.get("elapsed", 0.0)
 		var id := (4 if elapsed < .4 else 5) if state == "alligator_water_warning" else (6 if elapsed < .2 else 7)
 		var key := "water-actions-v2:" + str(id)
-		var destination := Rect2(world_origin + Vector2(snapshot.column_x, 530) - ANCHOR, Vector2(CANVAS))
-		host.draw_texture_rect(frames[key].textures[posmod(int(clock * 10), 4)], destination, false)
+		roach_front.draw(host, key, key, 0.0, world_origin + Vector2(snapshot.column_x, 530),
+			int(snapshot.get("facing", -1)), clock)
+
 	if state in ["alligator_water_dive", "alligator_surface"]:
 		_effect(host, 4 + posmod(int(clock * 10), 4), world_origin + Vector2(snapshot.position.x, 500), Vector2(150, 100))
 	for warning: Rect2 in warning_bounds(snapshot):
@@ -258,22 +290,72 @@ func portal_occlusion_rects(world_origin: Vector2, _entry_closed := false, _exit
 func _draw_swimmer(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, clock: float) -> void:
 	var selection := _selection(snapshot)
 	if selection.is_empty(): return
-	var variants: Array = frames[selection.key].textures
-	var destination := Rect2(world_origin + Vector2(snapshot.position) - ANCHOR, Vector2(CANVAS))
-	var clipped := destination.intersection(Rect2(world_origin + Vector2(0, 456), Vector2(960, 84)))
-	if not clipped.has_area(): return
-	var source := Rect2(clipped.position - destination.position, clipped.size)
-	if int(snapshot.get("facing", -1)) > 0:
-		source.position.x = CANVAS.x - source.end.x
-		clipped.size.x = -clipped.size.x
-	host.draw_texture_rect_region(variants[posmod(int(clock * 10), variants.size())], clipped, source,
-		Color(.65, .85, .85, .85))
+	roach_front.draw(host, selection.key, selection.next_key, selection.blend,
+		world_origin + Vector2(snapshot.position), int(snapshot.get("facing", -1)), clock, true, world_origin.y + 456)
 
 func warning_bounds(snapshot: Dictionary) -> Array[Rect2]:
 	## Authored splashes reach the walkway at the committed hazard/return location.
 	var state: String = snapshot.get("state", "idle")
 	if state in ["alligator_water_warning", "alligator_debris"]:
-		return [Rect2(float(snapshot.column_x) - 36, 384, 72, 56)]
+		var columns: Array = snapshot.get("volley_targets", [])
+		if columns.is_empty(): columns = [float(snapshot.column_x)]
+		var marks: Array[Rect2] = []
+		for column in columns: marks.append(Rect2(float(column) - 36, 384, 72, 56))
+		return marks
 	if state == "alligator_surface_warning":
 		return [Rect2(Vector2(snapshot.landing).x - 75, 340, 150, 100)]
 	return []
+
+func _prepare_ceiling_rim() -> void:
+	# Reuse the authored pipe. Clear only its dark aperture so insects sit behind the metal lip.
+	var pixels: Image = images[room.pipes.path].get_region(_recti(room.pipes.props.ceiling_pipe.source_rect))
+	for y in range(pixels.get_height()):
+		for x in range(pixels.get_width()):
+			if ((Vector2(x, y) - Vector2(187, 396)) / Vector2(145, 32)).length_squared() < 1:
+				pixels.set_pixel(x, y, Color.TRANSPARENT)
+	ceiling_rim = ImageTexture.create_from_image(pixels)
+
+func pipe_parameters(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Dictionary:
+	var state: String = snapshot.get("state", "")
+	var elapsed := float(snapshot.get("elapsed", 0.0))
+	if state in ["rat_pipe_retreat", "entry_skitter"]:
+		return {"mode":"retreat" if state == "rat_pipe_retreat" else "launch",
+			"progress":clampf(elapsed / float(Encounter.DURATIONS[state]), 0, 1),
+			"mouth":world_origin + Vector2(480, 258), "radius":Vector2(115, 105),
+			"outer":Rect2(world_origin + Vector2(320, 108), Vector2(320, 300))}
+	if state not in ["rat_pipe_warning", "rat_pipe_launch", "rat_pipe_abort"]: return {}
+	var port := int(snapshot.get("port", 0))
+	var mouth: Vector2 = Vector2(snapshot.port_position) + world_origin
+	var radius := Vector2(50, 44)
+	var outer := Rect2(mouth - Vector2(70, 62), Vector2(140, 124))
+	if port < 2:
+		mouth.y = world_origin.y + 181
+		radius = Vector2(64, 9)
+		outer = Rect2(Vector2(mouth.x - 84, world_origin.y + 82), Vector2(168, 116))
+	var mode := "warning" if state == "rat_pipe_warning" else "launch" if state == "rat_pipe_launch" else "retreat"
+	return {"mode":mode, "elapsed":elapsed, "progress":clampf(elapsed / (.15 if mode == "launch" else float(Encounter.DURATIONS.get(state, 1.0))), 0, 1),
+		"mouth":mouth, "radius":radius, "outer":outer}
+
+func visible_target_regions(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Array[Rect2]:
+	## Pure shot-target coverage: sample visible insect cells, excluding the authored rim and consumed insects.
+	var result: Array[Rect2] = []
+	if snapshot.get("state", "") != "rat_pipe_retreat": return result
+	var selection := _selection(snapshot)
+	var pipe := pipe_parameters(snapshot, world_origin)
+	for index in range(RoachBody.COUNT):
+		var point := roach_body.insect_position(selection.key, selection.next_key, selection.blend, index, 0.0) - ANCHOR
+		if int(snapshot.get("facing", -1)) > 0: point.x = -point.x
+		point += Vector2(snapshot.position) + world_origin
+		var sample := RoachBody.pipe_sample(index, point, pipe)
+		if not sample.visible: continue
+		# Small cells keep partially occluded insects from leaving a broad target across the metal rim.
+		var center: Vector2 = sample.position
+		var cells: Array = RoachBody.prepared_cells[Vector2i(index, int(snapshot.get("facing", -1)))]
+		for local: Rect2 in cells:
+			var cell := Rect2(center + local.position * float(sample.scale), local.size * float(sample.scale))
+			var covered := false
+			for corner: Vector2 in [cell.position, cell.end, Vector2(cell.end.x, cell.position.y), Vector2(cell.position.x, cell.end.y)]:
+				if pipe.outer.has_point(corner) and ((corner - pipe.mouth) / pipe.radius).length_squared() > 1:
+					covered = true
+			if not covered: result.append(cell)
+	return result
