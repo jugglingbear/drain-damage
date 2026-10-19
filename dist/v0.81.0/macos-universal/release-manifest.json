@@ -1,0 +1,97 @@
+{
+  "version": "0.81.0",
+  "kind": "fresh-machine macOS test prerelease",
+  "created_at": "2026-10-19T15:23:02.652525-07:00",
+  "source_commit": "bc1b899ec003b73fd317fe75a03cb2a15b34592b",
+  "requested_target": {
+    "architecture": "arm64",
+    "macos": "26.6.2"
+  },
+  "architectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "declared_minimum_macos": {
+    "arm64": "13.0",
+    "x86_64": "11.0"
+  },
+  "minimum_os_tested": false,
+  "intel_execution_tested": false,
+  "fresh_machine_tested": false,
+  "signing": {
+    "type": "ad-hoc",
+    "developer_id": false,
+    "notarized": false,
+    "strict_extracted_signature": "passed"
+  },
+  "tools": {
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "git_lfs": "3.8.0",
+    "gh": "2.99.0",
+    "host_macos": "26.6.2 (25G83)",
+    "host_architecture": "arm64"
+  },
+  "archive": {
+    "file": "Drain-Damage-0.81.0-macos-universal.zip",
+    "sha256": "2bbf369f60aea0a594fa6d90807b67a7a1bb017a11abc2811503ec8efcb63d70",
+    "bytes": 293479329,
+    "contents": "Unmodified Prototype81 app plus INSTALL.md"
+  },
+  "packaged_files": {
+    "Contents/Info.plist": "9989377fbaa67d39c2fc24b5ac8b6d58f3612fe0a69ee95851d53648e231232c",
+    "Contents/MacOS/Drain Damage": "a940e9447985bb4aad36c1e0d3567e36fdce91735eda2d3f4def69f54b1d134e",
+    "Contents/PkgInfo": "7e50a30efad50208a173203ced60818d693bb61266b75aa10927d1a2adce80cb",
+    "Contents/Resources/Drain Damage.pck": "13c61950b148dece34ed065205e64029d91eae8da6f7b176a79e50afc9f83985",
+    "Contents/Resources/GODOT_COPYRIGHT.txt": "cb1980c88089573bcacd7221d777c689bb8bbd778799f24c27fca0fe5f774d6d",
+    "Contents/Resources/PrivacyInfo.xcprivacy": "0535353bb08c25b8ce5ed9ac7e442a5994f402e0f6cbc4bed668cfc63c2ceac3",
+    "Contents/Resources/icon.icns": "99863c5b67828191cb765d091d5267d613ad09b8dc3b87a1a3e59efa2ac01745",
+    "Contents/_CodeSignature/CodeResources": "e6c46524acd56d7aa3f69549a7723dd3e126163e0ea38ee5e4330ceef6786b63"
+  },
+  "dependency_inspection": "Both Mach-O slices reference only /System/Library and /usr/lib paths; no Homebrew or developer-runtime dependency found.",
+  "validation": {
+    "standalone_headless_startup": "Extracted release executable, /private/tmp working directory, --headless --quit-after 3; exit0. No editor required.",
+    "packaged_regressions": {
+      "passed": 13,
+      "harness": "Godot 4.7.2 editor binary runs external scripts against exact extracted release PCK; not standalone executable script tests",
+      "suites": [
+        "sewer_swarm",
+        "swarm_health",
+        "swarm_audio",
+        "creature_audio",
+        "build_version",
+        "difficulty_respawn",
+        "swarm_schedule",
+        "difficulty_traversal",
+        "skitterling_audio",
+        "music",
+        "skitterling_encounter",
+        "skitterling_portals",
+        "skitterling_integration"
+      ],
+      "full_route": "18 hero/difficulty/seed cases at60/120Hz passed; all9swarm slots issued and visible."
+    },
+    "source_python_tests": 33,
+    "archive_integrity": "passed",
+    "git_lfs_attributes": "filter=lfs diff=lfs merge=lfs",
+    "git_lfs_fsck": "passed before package staging",
+    "final_zip_app_files": "Every app-file SHA256 matches verified extracted original; INSTALL.md matches external guide"
+  },
+  "known_gaps": [
+    "Fresh-machine first launch and Gatekeeper flow not exercised",
+    "Intel and minimum macOS versions not exercised",
+    "Live graphics, sound output, controller pairing, boss pacing, gait and swarm balance pending",
+    "Actual Prototype81 screenshots pending; magazine images are historical",
+    "Wider campaign, Clogfather and some story/art production unfinished; dialogue intentionally text-only"
+  ],
+  "diagnostics": [
+    "Sandbox user-log/editor-settings access and macOS CA warnings; shutdown resource warnings",
+    "External-script tests via release executable did not complete and were stopped; not counted as passes"
+  ],
+  "lfs_quota": "Usage API unavailable: HTTP404 and missing user scope. No scope or paid-overage settings changed.",
+  "magazine": {
+    "url": "https://jugglingbear.github.io/drain-damage/marketing/magazine/current.pdf",
+    "edition": 28,
+    "sha256": "ecf54dd3e0cd5ec9c1d295de2fdf1cc46214d3714585ba0c2e606e5dd2fde76a",
+    "note": "Optional reading; historical imagery is not fresh Prototype81 evidence."
+  }
+}

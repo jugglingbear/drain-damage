@@ -23,6 +23,24 @@ ordered pages, text, captions, image references and layout templates. The PDF is
 The renderer uses the macOS fonts configured in `layout.font_directory`. Change that path and the font filenames
 if building elsewhere. Shared header/footer templates use `{page_number}` and `{section}` placeholders.
 
+## Prototype 81 release review — October 19, 2026
+
+Edition 28 is retained for the fresh-Mac test release. Reviewed all reader-facing copy against the current
+roadmap, canonical creature profiles, active starter-weapon profile and Prototype 81 swarm-health delivery.
+No numerical health, hit-count or boss-timing claims require correction. The general weapon cadence, patrol,
+repeating Widow swoop and non-hunting swarm descriptions remain applicable. Gratecrawler remains a working name;
+Skitterling is official. Clogfather remains a lore entry, not a claim of a playable encounter.
+
+All eight PDF pages were rendered and visually inspected. The stable PDF is byte-identical to edition 28;
+source image references exist and page count/edition text pass inspection. No new PDF or artwork was generated.
+
+The page 6 gameplay images are historical captures with the older Global Plumbing Initiative HUD and level layout;
+they do not document Prototype 81. Existing marketing illustrations likewise are not current gameplay evidence.
+Fresh running-build screenshots remain a release gap, not filled by these illustrations. No game was launched.
+Release owns final inclusion; Engineering owns deployment and the roadmap update. This review makes no live-site claim.
+
+PDF SHA-256: `ecf54dd3e0cd5ec9c1d295de2fdf1cc46214d3714585ba0c2e606e5dd2fde76a`.
+
 ## Edition 28 cover line
 
 Replaced the redundant “Seven locals!” cover burst with “Creature Feature.”
