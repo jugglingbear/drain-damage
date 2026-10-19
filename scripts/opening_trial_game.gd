@@ -584,4 +584,4 @@ func _draw() -> void:
 				line += 21
 			label_at("12 scheduled · Pickup trial not included",Vector2(245,345),15,GOLD)
 		else:
-			label_at("UNION BREAK",Vector2(245,216),36,MINT)
+			draw_pause_panel()

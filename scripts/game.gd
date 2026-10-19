@@ -8,6 +8,7 @@ signal title_requested
 const BossHUD = preload("res://scripts/boss_hud.gd")
 var boss_hud := BossHUD.new()
 
+const PAUSE_MENU_ART = preload("res://assets/title/dripping-menu-v1.png")
 const FlushfiendNavigation = preload("res://scripts/flushfiend_navigation.gd")
 const Data = preload("res://scripts/combat_data.gd")
 var weapon: Dictionary
@@ -181,7 +182,13 @@ func create_pause_menu() -> void:
 		button.position = Vector2(245, 286 + 54 * index)
 		button.size = Vector2(470, 44)
 		button.add_theme_font_size_override("font_size", 22)
-		button.add_theme_color_override("font_color", MINT)
+		button.add_theme_color_override("font_color", Color("fff2cf"))
+		button.add_theme_color_override("font_hover_color", Color("fff2cf"))
+		button.add_theme_color_override("font_focus_color", Color("fff2cf"))
+		button.add_theme_color_override("font_pressed_color", GOLD)
+		button.add_theme_color_override("font_shadow_color", Color("080e15"))
+		button.add_theme_constant_override("shadow_offset_x", 1)
+		button.add_theme_constant_override("shadow_offset_y", 2)
 		var style := StyleBoxFlat.new()
 		style.bg_color = Color("243a43")
 		style.set_border_width_all(2)
@@ -191,6 +198,8 @@ func create_pause_menu() -> void:
 		focus.border_color = GOLD
 		focus.set_border_width_all(3)
 		button.add_theme_stylebox_override("focus", focus)
+		for signal_name in ["focus_entered", "focus_exited", "mouse_entered", "mouse_exited"]:
+			button.connect(signal_name, queue_redraw)
 		pause_menu.add_child(button)
 		buttons.append(button)
 	resume_button = buttons[0]
@@ -238,10 +247,38 @@ func resume_or_retry() -> void:
 
 func restore_pause_buttons() -> void:
 	resume_button.text = "Resume"
-	resume_button.position = Vector2(245, 286)
-	title_button.position = Vector2(245, 340)
+	resume_button.position = Vector2(245, 255)
+	title_button.position = Vector2(245, 345)
+	style_pause_buttons(true)
 	resume_button.disabled = false
 	title_button.disabled = false
+
+func style_pause_buttons(industrial: bool) -> void:
+	for button: Button in [resume_button, title_button]:
+		button.size = Vector2(470, 48 if industrial else 44)
+		var normal := StyleBoxFlat.new()
+		normal.bg_color = Color.TRANSPARENT if industrial else Color("243a43")
+		normal.border_color = MINT
+		normal.set_border_width_all(0 if industrial else 2)
+		for state in ["normal", "hover", "pressed", "disabled"]:
+			button.add_theme_stylebox_override(state, normal)
+		var focus := StyleBoxFlat.new()
+		focus.bg_color = Color.TRANSPARENT
+		focus.border_color = GOLD
+		focus.set_border_width_all(2)
+		button.add_theme_stylebox_override("focus", focus)
+
+func draw_pause_plates() -> void:
+	var source_size := Vector2(PAUSE_MENU_ART.get_width(), PAUSE_MENU_ART.get_height() / 2.0)
+	for button: Button in [resume_button, title_button]:
+		var chosen := button.has_focus() or button.is_hovered()
+		var source := Rect2(Vector2(0, source_size.y if chosen else 0), source_size)
+		draw_texture_rect_region(PAUSE_MENU_ART, Rect2(button.position - Vector2(20,13), Vector2(510,85)), source)
+		if chosen:
+			var pointer := button.position + Vector2(20,24)
+			draw_colored_polygon(PackedVector2Array([
+				pointer + Vector2(-4,-6), pointer + Vector2(5,0), pointer + Vector2(-4,6)
+			]), MINT)
 
 func update_death_popup_guard(delta: float) -> void:
 	if not death_popup_locked: return
@@ -799,6 +836,7 @@ func step_death(delta: float) -> void:
 	resume_button.disabled = true
 	title_button.disabled = true
 	resume_button.text = "Retry" if lives == 0 else "Continue at Checkpoint" if checkpoint_active else "Continue at Entrance"
+	style_pause_buttons(false)
 	resume_button.position = Vector2(245, 330)
 	title_button.position = Vector2(245, 384)
 	set_paused(true)
@@ -889,11 +927,17 @@ func _draw() -> void:
 		if life_state in ["death_popup", "game_over"]:
 			draw_death_popup()
 			return
-		box(190, 160, 580, 240, INK)
-		box(190, 160, 580, 4, MINT)
-		label_at("GAME OVER" if life_state == "game_over" else "JOB COMPLETE" if won else "UNION BREAK", Vector2(245, 216), 36, MINT)
-		label_at("End of shift." if life_state == "game_over" else "BJ: Adequate. Return to work." if won else "Take your time. The toilets can wait.",
-			Vector2(245, 260), 22, Color.WHITE)
+		draw_pause_panel()
+
+func draw_pause_panel() -> void:
+	var heading := "JOB COMPLETE" if won else "UNION BREAK"
+	var heading_x := (960 - ThemeDB.fallback_font.get_string_size(heading,HORIZONTAL_ALIGNMENT_LEFT,-1,32).x) / 2
+	label_at(heading, Vector2(heading_x+1,202), 32, Color("080e15"))
+	label_at(heading, Vector2(heading_x,200), 32, Color("fff2cf"))
+	var message := "BJ: Adequate. Return to work." if won else "Take your time. The toilets can wait."
+	var message_x := (960 - ThemeDB.fallback_font.get_string_size(message,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x) / 2
+	label_at(message, Vector2(message_x,229), 18, Color("fff2cf"))
+	draw_pause_plates()
 
 func draw_death_popup() -> void:
 	# Art approved reuse of this menu style; all copy and expressions remain live.

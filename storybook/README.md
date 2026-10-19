@@ -1852,6 +1852,34 @@ no image capture occurred.
 
 [Capture status and verification](077-contact-volley-and-readable-hud/20261019-141301-capture-status.json).
 
+## 078 — Repairing the stair pocket and styling pause — October 19, 2026
+
+**Version:** Prototype 78 / 0.78.0; preserved app, ZIP and source snapshot `builds/source-78`.
+
+The post-checkpoint Flushfiend stall came from the integrated level geometry: removing the last stair for the quiet
+approach left a narrow floor pocket below a wall too tall to climb. Earlier tests restored the full old platform list
+and missed this combination. Both heroes and both actor paths reproduced the trap before the repair.
+
+The repaired stairs restore 60-pixel rises without entering the quiet approach. Art approved cropping the existing
+pump's right third to preserve scale and its exposed edge; the lower step reuses existing artwork. Legacy platform
+records and AI behavior are unchanged. Eight actual-geometry cases at 60 and 120 Hz now climb back toward the hero.
+
+Pause now reuses the industrial main-menu plates with gold focus, a pointer and centered ivory heading. Resume and
+Return to Main Menu callbacks, input methods, release guards, pause freezing and death-popup behavior remain intact.
+Checkpoint health/replacement clarity is a roadmap proposal only; healing, animation, clones and lives are unchanged.
+
+**Validation:** Engineering reports twelve packaged suites and thirty-three Python tests passing, including eighteen
+full-route runs and eight navigation cases. Export, signing and archive checks pass. Final packaged checks contain no
+script, parse or assertion failures; existing environment diagnostics remain recorded.
+
+**Capture gap:** No game window opened or actual Prototype 78 screenshot was captured. Live pause-menu readability,
+platform crop review and gameplay screenshots remain pending. Preserve 77 and 78 for an approved comparison.
+
+**Record created:** 2026-10-19T14:34:29.223156-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](078-checkpoint-navigation-and-pause/20261019-143429-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

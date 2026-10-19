@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-10-19T14:34:29.223156-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery metadata creation, not capture time",
+  "capture_time": null,
+  "build": "Prototype 78 / 0.78.0",
+  "status": "Packaged verification passed; visual acceptance pending",
+  "app": "builds/Prototype-78/Drain Damage.app",
+  "archive": "builds/history/Prototype-78.zip",
+  "archive_sha256": "6cf5fa71f743f73736b76498fb80ecff7874b881fc023472a5a32762883e6447",
+  "snapshot": "builds/source-78",
+  "navigation": {
+    "cause": "Quiet approach removed the final60px stair5570..5730 while keeping120px wall5390..5570. A38px Flushfiend fits the40px floor pocket5570..5610 and cannot climb out; quiet containment also prevents retreat. Old tests restored full PROPS and missed actual mixed geometry.",
+    "fix": "Integrated geometry now uses5390..5450 at y320 and5450..5610 at y380, restoring60px rises within unchangedQUIET5610. Legacy PROPS and AI behavior unchanged.",
+    "reproduction": "Before regression fails for both heroes and normal/campaign paths: feet5591,440 remain trapped after hero crosses behind. After repair,8cases across60/120Hz settle380 then climb back tohero4900.",
+    "art": "Art-approved rightthird crop of existing pump keeps authored scale and exposed edge; lowstep reuses existing art."
+  },
+  "pause": {
+    "changes": "Existing dripping-menu-v1 normal/gold plates, centered ivory heading, live labels, focus outline and pointer; no new generated art",
+    "behavior": "Resume/Return to Main Menu, keyboard/controller/stick/mouse, release guards, pause freeze and death-popup semantics preserved",
+    "layout": "Two510x85 plates at225,242 and225,332; hitareas470x48 at245,255 and245,345"
+  },
+  "checks": {
+    "packaged_suites": 12,
+    "python_tests": 33,
+    "full_routes": 18,
+    "navigation_cases": 8,
+    "results": "builds/verification-78/packaged-results.json",
+    "export_signing_archive": "passed"
+  },
+  "checkpoint_clarity": "Roadmap proposal only: missing-health scan and refill/replacement feedback. No checkpoint animation, healing, clone or life changes.",
+  "capture_gap": "No game window opened; actual78 screenshots pending. Preserve77/78 for comparison.",
+  "remaining": [
+    "Live pause-menu readability and platform crop review",
+    "Actual gameplay screenshots"
+  ],
+  "diagnostics": "Existing macOS CA/editor-settings and shutdown resource warnings; final packaged checks have no script/parse/assertion failures."
+}

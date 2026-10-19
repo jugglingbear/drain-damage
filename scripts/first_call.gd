@@ -60,7 +60,13 @@ static func move_body(position: Vector2, velocity: Vector2, size: Vector2,
 
 static func draw_prop(canvas: Node2D, rect: Rect2, shutter := false) -> void:
 	var index := 3 if shutter else 0 if rect.size.y == 60 else 1 if rect.size.y == 120 else 2
-	canvas.draw_texture_rect_region(TEXTURES[index], rect, CROPS[index])
+	var source: Rect2 = CROPS[index]
+	if index == 1 and rect.size.x < 180:
+		# Keep the exposed right edge at its authored scale on the shortened approach stair.
+		var right := source.end.x
+		source.size.x *= rect.size.x / 180.0
+		source.position.x = right - source.size.x
+	canvas.draw_texture_rect_region(TEXTURES[index], rect, source)
 
 static func gate_rect(index: int, progress: float) -> Rect2:
 	var drop := 260.0 * clampf(progress, 0, 1)

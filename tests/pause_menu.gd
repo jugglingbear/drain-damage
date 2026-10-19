@@ -31,6 +31,12 @@ func run_checks() -> void:
 		await process_frame
 		assert(game.paused and game.pause_menu.visible and game.resume_button.has_focus())
 		assert(game.title_button.text == "Return to Main Menu")
+		assert(game.PAUSE_MENU_ART.get_size() == Vector2(2172,724))
+		assert(not game.resume_button.get_rect().intersects(game.title_button.get_rect()))
+		for button: Button in [game.resume_button,game.title_button]:
+			assert(Rect2(0,0,960,540).encloses(button.get_rect().grow(20)))
+			assert(button.get_theme_stylebox("normal").bg_color.a == 0)
+			assert(ThemeDB.fallback_font.get_string_size(button.text,HORIZONTAL_ALIGNMENT_LEFT,-1,22).x < 390)
 		var position: Vector2 = game.player
 		game._physics_process(1)
 		assert(game.player == position)

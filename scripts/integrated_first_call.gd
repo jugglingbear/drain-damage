@@ -104,6 +104,11 @@ func reset_observation() -> void:
 	trial_level.configure(layout)
 	trial_level.width = WORLD_WIDTH
 	for rect in Level.PROPS:
+		# Retain a descending 60px stair before the quiet boundary instead of a trapped floor pocket.
+		if rect == Rect2(5390,320,180,120):
+			trial_level.plinths.append(Rect2(5390,320,60,120))
+			trial_level.plinths.append(Rect2(5450,380,160,60))
+			continue
 		if rect.position.x >= OPENING_END and skitterling.allowed_body(rect): trial_level.plinths.append(rect)
 	for event in run_plan.later:
 		if event.trigger >= SkitterlingRoom.QUIET and event.trigger < SkitterlingRoom.END:
@@ -520,7 +525,7 @@ func _draw() -> void:
 	if paused or (won and not dialogue.active):
 		box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
 		if life_state in ["game_over","death_popup"]: draw_death_popup()
-		else: label_at("JOB COMPLETE" if won else "UNION BREAK",Vector2(245,216),36,MINT)
+		else: draw_pause_panel()
 
 func _process(delta: float) -> void:
 	super._process(delta)

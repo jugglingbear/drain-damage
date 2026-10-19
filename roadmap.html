@@ -75,7 +75,18 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 19, 2026 · Current build: Prototype 77 / 0.77.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 19, 2026 · Current build: Prototype 78 / 0.78.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 78 — checkpoint staircase and pause menu:</strong> Restore the final
+60-pixel descending step before the quiet boss approach so Flushfiends cannot fall into a trapped floor pocket.
+Reuse existing industrial menu plates, gold selection art and a focus pointer for the pause actions.
+The quiet-zone boundary and checkpoint behavior are unchanged. Twelve packaged suites and 33 Python tests pass,
+including 18 full routes and eight actual-geometry navigation cases across both heroes, actor systems and 60/120 Hz.
+Export, signing and ZIP checks pass; visual acceptance and actual screenshots remain pending.</p>
+<p><strong>Checkpoint clarity — proposed, not implemented:</strong> Show missing-health scan feedback before
+the replacement sequence, “HEALTH LOW / REPLACEMENT APPROVED,” then “HEALTH RESTORED / CHECKPOINT SAVED”
+on emergence. A healthy arrival would show “HEALTH FULL.” Existing artwork and HUD health-slot feedback could
+explain the friendly refill. Preserve atomic healing for skip/watchdog safety, one checkpoint and one clone;
+no extra lockout or lives. Sean has asked for ideas; this remains a proposal pending selection.</p>
 <p><strong>Approved contact and volley correction — October 19:</strong> Touching the visible formed rat
 must damage the hero through the normal immunity window. The alligator volley increases to six arcs: five
 random floor targets and one aimed at the hero's position when that shot fires, without homing afterward.
