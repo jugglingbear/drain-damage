@@ -2056,6 +2056,34 @@ no image capture occurred.
 
 [Capture status and verification](085-clogfather-finale-and-inspection/20261020-153508-capture-status.json).
 
+## 086 — Enemy pressure and portal departure — October 20, 2026
+
+**Version:** Prototype 86 / 0.86.0; source commit `1ddb8cc`; app, ZIP and snapshot `builds/source-86` preserved.
+
+Sputtervalve fires without an attack windup and repeats every 2.5 seconds; Gratecrawler adds arcing muck shots, and
+Hallowed Widow pursuit is revised. Clogfather alternates low and higher weak points. The higher opening was adjusted
+40 pixels vertically to support ordinary horizontal jump shots from both heroes; the before/after source studies
+are preserved. The ending automatically follows collapse with route-specific dialogue and involuntary portal suction.
+Only the selected hero enters; the partner remains on radio. Completion states that level two is not yet playable.
+
+**Validation:** Engineering reports all thirty-six final packaged suites and thirty-four Python tests passing,
+plus export, signature and ZIP checks. Eighteen original-route cases retain the actual 25% density gate, and twelve
+extension cases pass. The density regression came from a high Widow incorrectly blocking floor entrances regardless
+of height. A vertical-overlap check fixes admission while preserving caps and ground/diving exclusions; acceptance
+was not weakened. The source snapshot is preserved.
+
+**Source review:** The contact sheet, portal/remains view and collapse studies are source compositions, not gameplay.
+The initial portal/remains occlusion led to an Engineering fade adjustment. Collapse height/damage continuity remains
+unapproved. Earlier compositions and the revised higher-opening contact sheet are preserved separately.
+
+**Capture gap:** No game window opened or actual Prototype 86 screenshot was captured. Human balance, animation,
+collapse continuity, portal occlusion and subjective audio review remain pending. Level-two gameplay remains held.
+
+**Record created:** 2026-10-20T16:14:32-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](086-projectiles-and-portal/20261020-161432-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

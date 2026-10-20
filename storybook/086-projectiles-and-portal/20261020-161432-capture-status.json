@@ -1,0 +1,29 @@
+{
+  "build": "Prototype 86 / 0.86.0",
+  "status": "All 36 packaged suites and 34 Python tests pass; export, signature and ZIP verified. Live review pending.",
+  "created_at": "2026-10-20T16:14:32-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Documentation creation, not gameplay capture",
+  "capture_time": null,
+  "app": "builds/Prototype-86/Drain Damage.app",
+  "archive": "builds/history/Prototype-86.zip",
+  "archive_sha256": "dc6ecf756162517940c95eb6ce2e4b6733a7085cbdf1fdcd1cfbf3bcab0a1fe9",
+  "source_snapshot": "builds/source-86",
+  "source_snapshot_status": "Preserved builds/source-86 snapshot",
+  "source_commit": "1ddb8cc",
+  "checks": {
+    "python_passed": 34,
+    "packaged_passed": 36,
+    "packaged_total": 36,
+    "route_coverage": "18 original-route cases retain the actual 25% density gate; 12 extension cases pass",
+    "density_fix": "High Widow falsely blocked floor entrances when height was ignored. Vertical-overlap check restores eligible entries while preserving caps and ground/diving exclusions; acceptance was not weakened."
+  },
+  "source_art": "storybook/art-studies/20261020-155842-prototype86-weakpoints-and-portal/20261020-155842-archive-record.json",
+  "remaining": [
+    "Live balance, animation, collapse continuity, portal occlusion and audio review",
+    "Actual running-build screenshots"
+  ],
+  "capture_gap": "No game window opened; no foreground permission. Source compositions are not gameplay captures.",
+  "scope": "First-level enemy pressure, alternating weak points and portal departure only; level two gameplay remains held."
+}

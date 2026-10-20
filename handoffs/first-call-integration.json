@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 85 / 0.85.0",
-  "created_at": "2026-10-20T15:35:08.958034-07:00",
+  "build": "Prototype 86 / 0.86.0",
+  "created_at": "2026-10-20T16:08:57.836902-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, ad-hoc signature, archive and headless checks passed; live review pending",
-  "app": "builds/Prototype-85/Drain Damage.app",
-  "archive": "builds/history/Prototype-85.zip",
-  "archive_sha256": "0a2a39a97bd1c44716e071ccc371aebf440e92be48647061d34bf223a9d38414",
-  "source_snapshot": "builds/source-85",
+  "status": "Export, ad-hoc signature, archive, 36 packaged suites and 34 Python tests passed; live review pending",
+  "app": "builds/Prototype-86/Drain Damage.app",
+  "archive": "builds/history/Prototype-86.zip",
+  "archive_sha256": "dc6ecf756162517940c95eb6ce2e4b6733a7085cbdf1fdcd1cfbf3bcab0a1fe9",
+  "source_snapshot": "builds/source-86",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -18,85 +18,92 @@
     14150,
     15110
   ],
-  "completion_x": 15150,
   "changes": [
-    "6500 logical pixels from Skitterling exit to Clogfather approach, including the existing continuation; five distinct new background panels",
-    "Rooted 1080 HP Clogfather with sludge and acid, five-second weak-point recovery, continuous health bar, damage stages, collapse and dedicated music",
-    "Second checkpoint preserves completed Skitterling and excludes prior route encounters; each dispenser owns one spare employee",
-    "6.8-second injured check-in: grab/lift, opposite-arm magnifying inspection, actual pre-heal HP diagnosis, crush/throw, bloody screen slide and same-hero clone",
-    "Healthy 0.4-second and respawn 1.9-second paths and normal death life accounting retained; completion ends this level without a portal"
+    "Sputtervalve removes the 0.65-second attack windup, preserves 0.8-second visible introduction, and fires every 2.5 seconds when safely admitted with a clear line of sight",
+    "Gratecrawler doubles visual and collision size to 68x80, retains 24 HP, plods at 45 pixels/second, and throws aimed ballistic muck every 2.5 seconds with a 0.3-second tell",
+    "Hallowed Widow retains 135 HP, continuously reacquires the hero at 300 pixels/second and escapes blocked recovery without teleporting or becoming stranded",
+    "Clogfather retains 1080 HP and alternates low center (650,398) and high center (716,325) each recovery; both heroes reach the high opening with ordinary horizontal jump shots; ground-fired high shots deflect",
+    "Both hero aftermath branches lead to an involuntary portal departure; partner stays on radio, remains fade over 0.8 seconds, and the completion screen explicitly says level two is not yet playable",
+    "Floor entrances require vertical overlap before an existing actor can block them; high Widows no longer suppress safe ground admissions, while diving bodies, horizontal spacing and crowd limits remain protected"
   ],
   "checks": {
-    "packaged_suites": 31,
+    "packaged_suites": 36,
+    "status": "passed",
+    "results": "builds/verification-86/final-results.json",
     "python_tests": 34,
-    "results": "builds/verification-85/final-results.json",
+    "python_log": "builds/verification-86/python-final.log",
+    "build_log": "builds/verification-86/build-final.log",
+    "architectures": [
+      "x86_64",
+      "arm64"
+    ],
     "suites": [
-      "opening_trial_level",
-      "held_aim",
       "aim_entrance",
-      "hostile_projectile",
-      "platform_projectiles",
-      "durable_flyer",
-      "normal_density",
-      "difficulty_respawn",
-      "swarm_health",
-      "flushfiend_checkpoint_navigation",
-      "button_consistency",
       "alligator_art_motion",
-      "difficulty_menu",
       "build_version",
-      "skitterling_integration",
-      "employee_dispenser",
-      "glass_dispenser",
-      "dispenser_registration",
-      "swarm_schedule",
-      "dispenser_inspection",
+      "button_consistency",
+      "clogfather_art",
+      "clogfather_audio",
       "clogfather_encounter",
+      "clogfather_high_weakpoint",
       "clogfather_integration",
+      "clogfather_music",
       "clogfather_route",
       "clogfather_route_traversal",
-      "clogfather_audio",
-      "clogfather_music",
       "dialogue",
-      "music",
+      "difficulty_menu",
+      "difficulty_respawn",
       "difficulty_traversal",
-      "clogfather_art",
-      "skitterling_portals"
+      "dispenser_inspection",
+      "dispenser_registration",
+      "durable_flyer",
+      "employee_dispenser",
+      "entrance_vertical_spacing",
+      "first_level_ending",
+      "flushfiend_checkpoint_navigation",
+      "glass_dispenser",
+      "gratecrawler_patrol",
+      "held_aim",
+      "hostile_projectile",
+      "music",
+      "normal_density",
+      "opening_trial_level",
+      "platform_projectiles",
+      "role_combat_revision",
+      "skitterling_integration",
+      "skitterling_portals",
+      "swarm_health",
+      "swarm_schedule"
     ],
-    "route_coverage": "18 original-route mode/hero/seed regressions; 12 extended-route forward/reverse cases across both heroes, all modes and 60/120Hz; six boss integration cases",
-    "route_measurement_limit": "Traversal bots restore HP for distribution coverage; these are not human fairness or fight-duration results",
-    "test_corrections": [
-      "Route helper success marker normalized to the runner convention",
-      "Art anchor test compares numeric values rather than JSON float versus integer array types; corrected check passes against the final package"
-    ],
-    "build_log": "builds/verification-85/build.log",
-    "python_log": "builds/verification-85/python-tests.log"
+    "route_coverage": "18 original-route hero/mode/seed cases retain the Prototype 83 comparison gate: Easy unchanged and Normal/Hard actual admissions at least 25% higher. Twelve extension forward/reverse cases pass at 60/120 Hz; bots refill health for coverage, not balance acceptance."
   },
   "source_art_review": {
     "approved_compositions": [
-      "Boss body, open/closed weak point and HUD",
-      "All four normal/Hard held-hero, hand and inspection-lens compositions"
+      "High opening across all five damage stages",
+      "Portal frame fit and common registration; corpse occlusion resolved with fade"
     ],
-    "registered_and_inspected_only": [
-      "All damage-stage and collapse source sheets/crops; full composed-stage and continuous transition review pending"
+    "limitations": [
+      "Source compositions are not running-game screenshots",
+      "Existing collapse continuity issue: some adjacent frames regain height or appear less damaged; live motion review remains pending"
     ],
     "evidence": [
-      "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
-      "assets/world/spare-employee-dispenser/inspection-contract-v1.json",
-      "assets/world/first-call/background-manifest-v2.json"
+      "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
+      "assets/world/first-call/portal-manifest-v1.json",
+      "assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"
     ]
   },
   "remaining": [
-    "Live gameplay balance and boss duration for both heroes",
-    "Live animation, damage/collapse transitions, checkpoint stock-window occlusion and background seams",
+    "Human combat balance and boss duration for both heroes",
+    "Live larger-crawler grounding, muck visibility, weak-point and portal transition review",
+    "Existing collapse-frame continuity and checkpoint/background visual review",
     "Subjective audio/music mix review",
     "Actual running-build screenshots"
   ],
   "capture_gap": "No game window opened; preserve this build for an approved capture session. Source composites are not gameplay screenshots.",
   "deferred": [
-    "Portal and all level-two production remain on hold"
+    "Level-two gameplay, flush micro-level and log ride remain on hold; only first-level portal ending is implemented"
   ],
-  "diagnostics": "Existing sandbox user-log/editor-settings, macOS CA and shutdown-resource warnings; final suites have no script, parse, resource-load or assertion failures.",
+  "diagnostics": "Existing sandbox user-log/editor-settings, macOS CA and shutdown-resource warnings; final packaged suites contain no script, parse, resource-load or assertion failures.",
   "historical_prototype27": {
     "build": "0.27.0",
     "status": "Headless integrated route; human and live visual review pending",
@@ -179,5 +186,6 @@
       "live screenshots pending permission"
     ]
   },
-  "source_commit": "4e16bc4"
+  "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
+  "source_commit": "1ddb8cc"
 }
