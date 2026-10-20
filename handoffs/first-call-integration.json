@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 87 / 0.87.0",
-  "created_at": "2026-10-20T16:31:10.721166-07:00",
+  "build": "Prototype 88 / 0.88.0",
+  "created_at": "2026-10-20T16:43:32.642400-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, signature, archive, 10 relevant packaged suites and 34 Python tests passed; live UI review pending",
-  "app": "builds/Prototype-87/Drain Damage.app",
-  "archive": "builds/history/Prototype-87.zip",
-  "archive_sha256": "97c05fabebe4c9310e7cf788e8eb1ac82d7e15983c5bec0faa4227f2ffd22e5b",
-  "source_snapshot": "builds/source-87",
+  "status": "Export, signature, archive, 9 relevant packaged suites and 34 Python tests passed; live visual review pending",
+  "app": "builds/Prototype-88/Drain Damage.app",
+  "archive": "builds/history/Prototype-88.zip",
+  "archive_sha256": "8b94029b0af46691891e17cfc83d68a64db18c0c4f29695b4da60ba2df67bc81",
+  "source_snapshot": "builds/source-88",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -19,36 +19,36 @@
     15110
   ],
   "changes": [
-    "Back and Start Job participate in five-control keyboard, controller, stick and Tab navigation; visible focus is independent of selected difficulty",
-    "Mouse center/edge activation, both heroes and all difficulties, Back/re-entry choice preservation and held-input release guards verified",
-    "Confirming a difficulty moves focus to Start Job; a fresh confirmation activates Start Job. Escape and controller B retain Back behavior",
-    "Prototype 86 combat, boss, portal and checkpoint behavior preserved; no level-two gameplay production"
+    "Full-size frightened Tony/Sean poses in normal and Hard outfits, carried by a six-frame water/debris surge; portal crops the sprite without scaling",
+    "First five aftermath lines block; selected hero shouts UUAAAAAAAAAA!! during guarded 2.5-second pull, including skipped dialogue",
+    "Gratecrawler maximum and spawn HP increase from 24 to 72 in all difficulties: six Tony shots or four Sean shots; doubled size, 45px/s patrol and 2.5-second muck cadence preserved",
+    "Level-two gameplay remains held; partner stays outside on radio"
   ],
   "checks": {
-    "packaged_suites": 10,
+    "packaged_suites": 9,
     "status": "passed",
-    "results": "builds/verification-87/final-results.json",
+    "results": "builds/verification-88/packaged-results.json",
     "suites": [
       "build_version",
-      "button_consistency",
+      "clogfather_art",
       "clogfather_integration",
+      "dialogue",
       "difficulty_actions",
-      "difficulty_menu",
       "first_level_ending",
-      "menu_audio",
-      "pause_menu",
-      "playtest_launch",
-      "title_screen"
+      "gratecrawler_patrol",
+      "hard_dialogue",
+      "role_combat_revision"
     ],
     "python_tests": 34,
-    "python_log": "builds/verification-87/python.log",
-    "build_log": "builds/verification-87/build.log",
-    "scope": "Menu/navigation, audio, pause, both heroes and difficulties, launch targets, input guards, boss integration and portal ending; previous full combat/route evidence retained in Prototype 86"
+    "python_log": "builds/verification-88/python.log",
+    "build_log": "builds/verification-88/build.log",
+    "scope": "Both heroes and costumes, full-size portal clipping, dialogue/skip/pause/reset guards, actual weapon collision hit counts in all difficulties, patrol/muck behavior, boss integration and difficulty controls"
   },
   "source_art_review": {
     "approved_compositions": [
       "High opening across all five damage stages",
-      "Portal frame fit and common registration; corpse occlusion resolved with fade"
+      "Portal frame fit and common registration; corpse occlusion resolved with fade",
+      "Four full-size panic poses with rear surge at mid-pull and half-entry; source compositions only"
     ],
     "limitations": [
       "Source compositions are not running-game screenshots",
@@ -57,13 +57,13 @@
     "evidence": [
       "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
       "assets/world/first-call/portal-manifest-v1.json",
-      "assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"
+      "assets/bestiary/gratecrawler/muck-ball-manifest-v1.json",
+      "assets/world/first-call/portal-departure-manifest-v1.json"
     ]
   },
   "remaining": [
-    "Live difficulty-screen focus and controller/mouse visual review",
-    "Human combat balance and boss duration for both heroes",
-    "Live larger-crawler grounding, muck visibility, weak-point and portal transition review",
+    "Live full-size panic pose, water/debris motion, portal layering and loop transition review",
+    "Human Gratecrawler durability and boss-duration balance review",
     "Existing collapse-frame continuity and checkpoint/background visual review",
     "Subjective audio/music mix review",
     "Actual running-build screenshots"
@@ -156,8 +156,8 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "c08a687",
-  "previous_delivery": "storybook/086-projectiles-and-portal/20261020-161432-capture-status.json",
+  "source_commit": "18f5f61",
+  "previous_delivery": "storybook/087-difficulty-navigation/20261020-163046-capture-status.json",
   "publication": {
     "magazine_edition": 29,
     "status": "GitHub Pages deployment succeeded and live files verified",

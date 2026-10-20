@@ -2105,6 +2105,31 @@ no image capture occurred.
 
 [Capture status and verification](087-difficulty-navigation/20261020-163046-capture-status.json).
 
+## 088 — Full-size portal departure — October 20, 2026
+
+**Version:** Prototype 88 / 0.88.0; source commit `18f5f61`; app, ZIP and snapshot `builds/source-88` preserved.
+
+The selected hero is carried toward the portal at full size with frightened, splayed arms and legs. Four variants
+cover Tony and Sean in normal and Hard costumes. A huge six-frame water/debris surge follows the Clogfather's defeat;
+portal occlusion hides the hero progressively instead of shrinking them. Five blocking dialogue lines establish the
+released water, then the selected hero's “UUAAAAAAAAAA!!” appears during the pull as a world caption.
+
+Gratecrawler health rises from 24 to 72 HP: six Tony starter hits or four Sean hits. Its existing doubled size,
+45 movement speed and 2.5-second muck cadence remain unchanged. Level-two gameplay remains held.
+
+**Validation:** Engineering reports all nine suites passing against the final exact re-export, thirty-four Python
+tests passing, and signed ZIP verification. Art approved source fit for the poses and surge, not live animation.
+
+**Capture gap:** No game window opened or actual Prototype 88 screenshot was captured. Live pose/wave/occlusion,
+caption readability and human balance remain pending. The preserved contact sheet is a source composition only.
+
+**Record created:** 2026-10-20T16:43:19-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred. Art confirmed October 20 source creation; its exact time is unknown.
+
+[Capture status and verification](088-full-size-portal-departure/20261020-164319-capture-status.json).
+
+[Source-composition archive](art-studies/20261020-164319-portal-departure/20261020-164319-archive-record.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
