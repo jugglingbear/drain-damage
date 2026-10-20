@@ -1,0 +1,51 @@
+{
+  "build": "Prototype 83 / 0.83.0",
+  "created_at": "2026-10-20T12:19:29.784925-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "status": "Export, signing, archive and headless checks passed; live review pending",
+  "app": "builds/Prototype-83/Drain Damage.app",
+  "archive": "builds/history/Prototype-83.zip",
+  "archive_sha256": "5701ad08d5d72f654d01f52b0aaf2c7a35d09dd2536df94103c6644fdbecf5ed",
+  "snapshot": "builds/source-83",
+  "coverage": [
+    "Title menu transient states",
+    "Employee arrows/Back and punch-clock focus",
+    "Difficulty Back/Confirm; same-size angry Hard preserved",
+    "Controls tabs/Back/music and enemy-bar toggles",
+    "Pause and Life Lost/Game Over plates",
+    "Opening trial result plates",
+    "Completion working Return to Main Menu only"
+  ],
+  "checks": {
+    "packaged_suites": 12,
+    "python_tests": 33,
+    "results": "builds/verification-83/final-results.json",
+    "suites": [
+      "controls",
+      "button_consistency",
+      "difficulty_menu",
+      "pause_menu",
+      "death_popup",
+      "menu_audio",
+      "opening_death_and_warmup",
+      "build_version",
+      "alligator_art_motion",
+      "difficulty_respawn",
+      "skitterling_integration",
+      "title_screen"
+    ],
+    "scope": "Input routes, guards, label fit, plate slices, death/retry/reset, difficulty and alligator/integration regressions",
+    "test_correction": "Old title_screen test reproduced failing in82 because it omitted confirm releases and difficulty step; corrected test passes against final83 PCK."
+  },
+  "remaining": [
+    "Actual rendered-screen review",
+    "Live input/visual playtest",
+    "Actual running-build screenshots"
+  ],
+  "capture_gap": "No game window opened. Preserve83 for approved capture alongside earlier builds.",
+  "diagnostics": "Existing user-log, CA/editor-settings and shutdown-resource warnings; final suites have no script/parse/assertion failures.",
+  "timestamp_kind": "Delivery record creation, not capture time",
+  "capture_time": null,
+  "source_commit": "370fb83"
+}

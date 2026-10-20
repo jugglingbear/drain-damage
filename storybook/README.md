@@ -1976,6 +1976,29 @@ no image capture occurred.
 
 [Capture status and verification](082-alligator-gait-and-jaws/20261020-120328-capture-status.json).
 
+## 083 — Consistent plumbing buttons — October 20, 2026
+
+**Version:** Prototype 83 / 0.83.0; preserved app, ZIP and source snapshot `builds/source-83`.
+
+Approved metal-and-sludge artwork now provides consistent focus, hover, pressed and disabled states across the menus.
+Coverage includes employee arrows and Back, difficulty Back/Confirm, Controls tabs and settings, pause, Life Lost,
+Game Over and trial results. Completion exposes one working Return to Main Menu button. The same-size angry Hard
+option and Prototype 82 alligator animation remain preserved. Existing art is reused; Art approved source/layout work,
+not an actual rendered-screen playtest.
+
+**Validation:** Engineering reports twelve packaged suites and thirty-three Python tests passing, plus export,
+signing and ZIP verification. Checks cover input routes, guards, label fit, plate slices, death/retry/reset and related
+difficulty, audio and alligator regressions. An old title-screen test also failed against 82 because it omitted confirm
+releases and the difficulty step; the corrected test passes against the final 83 package.
+
+**Capture gap:** No game window opened or actual Prototype 83 screenshot was captured. Rendered-screen review, live
+input/visual playtesting and running-build screenshots remain pending. Preserve 83 alongside earlier builds.
+
+**Record created:** 2026-10-20T12:19:29.784925-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](083-consistent-plumbing-buttons/20261020-121929-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
