@@ -235,6 +235,6 @@ artwork, runtime build, playtest request or specialist delivery deadline.
 
 - [First-level narrative and current implementation boundaries](first-level-narrative.md).
 - [Tony's optional source ideas](tony-idea-bank.json), including crawlspace, bathroom, kitchen and sewer-line notes.
-- Local riding-stage references: `idea-sources/level-two-2026-10-20/manifest.json` (not part of this publication).
+- [Preserved riding-stage references](idea-sources/level-two-2026-10-20/manifest.json).
 
 The supplied reference images are internal design references, not original artwork or game deliverables.
