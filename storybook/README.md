@@ -1999,6 +1999,28 @@ no image capture occurred.
 
 [Capture status and verification](083-consistent-plumbing-buttons/20261020-121929-capture-status.json).
 
+## 084 — Platform shots, denser encounters and a weaker Widow — October 20, 2026
+
+**Version:** Prototype 84 / 0.84.0; preserved app, ZIP and source snapshot `builds/source-84`.
+
+Shots now pass through thin one-way decks from either side; solid platforms and floors still block them.
+Actor collisions remain unchanged. Normal and Hard gain approximately 25% more eligible ordinary enemies,
+including swarm additions, with extra-only pacing and safe entry. Easy remains unchanged. Widow health drops
+from 180 to 135 HP in every mode: Tony needs 12 starter hits instead of 15, and Sean needs 8 instead of 10.
+
+**Validation:** Engineering reports seventeen packaged suites, eighteen full routes and thirty-three Python tests
+passing, plus export, signing and ZIP verification. Bot encounters rise from 26–27 to 34–35 on Normal and from
+34 to 43–46 on Hard; Easy stays at 27 for Tony and 26 for Sean. Observed increases depend on the route and
+spawn conditions and do not establish human fairness.
+
+**Capture gap:** No game window opened or actual Prototype 84 screenshot was captured. Human fairness and live
+input/visual review remain pending. Preserve 83 and 84 for an approved comparison.
+
+**Record created:** 2026-10-20T14:16:47.608157-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](084-projectiles-density-and-widow/20261020-141647-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

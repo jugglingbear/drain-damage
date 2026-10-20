@@ -1,0 +1,46 @@
+{
+  "created_at": "2026-10-20T14:16:47.608157-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery record creation, not capture time",
+  "capture_time": null,
+  "build": "Prototype 84 / 0.84.0",
+  "status": "Export, signing, archive and packaged checks pass; live review pending",
+  "app": "builds/Prototype-84/Drain Damage.app",
+  "archive": "builds/history/Prototype-84.zip",
+  "archive_sha256": "fb09c628289ed579d6fec5a7d37fcef2aefc68396bcf9699da990374f5302f51",
+  "snapshot": "builds/source-84",
+  "checks": {
+    "packaged_suites": 17,
+    "python_tests": 33,
+    "full_routes": 18,
+    "suites": [
+      "opening_trial_level",
+      "held_aim",
+      "aim_entrance",
+      "hostile_projectile",
+      "platform_projectiles",
+      "durable_flyer",
+      "normal_density",
+      "difficulty_respawn",
+      "swarm_health",
+      "flushfiend_checkpoint_navigation",
+      "button_consistency",
+      "difficulty_menu",
+      "alligator_art_motion",
+      "build_version",
+      "skitterling_integration",
+      "swarm_schedule",
+      "difficulty_traversal"
+    ],
+    "results": "builds/verification-84/packaged-results.json",
+    "mechanics_evidence": "builds/verification-84/mechanics/encounter-comparison.json"
+  },
+  "delivery": "handoffs/normal-density-refinement-delivery.json#prototype84",
+  "remaining": [
+    "Human fairness and live input/visual review",
+    "Actual running-build screenshots"
+  ],
+  "capture_gap": "No game window opened. Prototype83 and84 builds preserved for approved comparison.",
+  "source_commit": "817e331"
+}
