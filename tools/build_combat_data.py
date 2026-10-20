@@ -218,6 +218,7 @@ def opening_trial_data(weapons: dict[str, Any]) -> dict[str, Any]:
                                        for part in result["environment"]["parts"]]
     validate_art_regions(result)
     validate_art_regions(read("assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"))
+    validate_art_regions(read("assets/bestiary/gratecrawler/throw-manifest-v1.json"))
     validate_art_regions(read("assets/world/first-call/portal-manifest-v1.json"))
     validate_art_regions(read("assets/world/first-call/portal-departure-manifest-v1.json"))
     return result

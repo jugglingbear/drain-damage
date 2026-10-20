@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "status": "Integrated in Prototype 90; both-facing source composition and packaged behavior checks passed; live motion review pending",
+  "anchor": [
+    48,
+    80
+  ],
+  "release_seconds": 0.3,
+  "duration_seconds": 0.6,
+  "release_frame": 2,
+  "frames": [
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "source_rect": [
+        0,
+        0,
+        768,
+        512
+      ],
+      "destination": [
+        -14.400000000000006,
+        16.299999999999997,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        58.4,
+        32.809999999999995
+      ],
+      "duration_seconds": 0.15,
+      "source_foot_anchor": [
+        480,
+        490
+      ],
+      "source_hand_center": [
+        560,
+        127
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "source_rect": [
+        768,
+        0,
+        768,
+        512
+      ],
+      "destination": [
+        -0.35999999999999943,
+        16.299999999999997,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        57.1,
+        29.04
+      ],
+      "duration_seconds": 0.15,
+      "source_foot_anchor": [
+        372,
+        490
+      ],
+      "source_hand_center": [
+        442,
+        98
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "source_rect": [
+        0,
+        512,
+        768,
+        512
+      ],
+      "destination": [
+        -21.549999999999997,
+        22.28,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        -2.0500000000000043,
+        45.42
+      ],
+      "duration_seconds": 0.12,
+      "source_foot_anchor": [
+        535,
+        444
+      ],
+      "source_hand_center": [
+        150,
+        178
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "source_rect": [
+        768,
+        512,
+        768,
+        512
+      ],
+      "destination": [
+        -4.260000000000005,
+        21.759999999999998,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        23.3,
+        63.75
+      ],
+      "duration_seconds": 0.18,
+      "source_foot_anchor": [
+        402,
+        448
+      ],
+      "source_hand_center": [
+        212,
+        323
+      ]
+    }
+  ],
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "provenance": "assets/bestiary/gratecrawler/throw-prompts-v1.json",
+  "facing": "Source LEFT. Mirror destination and hand around feet anchor for RIGHT before role_scale2.",
+  "source_scale": 0.13,
+  "registration": "Common source scale matches existing Gratecrawler atlas; perpose foot registration, never opaque-bounds fit.",
+  "ball": "Existing muck-ball art attached at frame.hand while clock<0.3; release once from frame2.hand at0.3, no attachedball thereafter.",
+  "movement": "Pause through0.6s; temporarily face target, restore previous patrol facing afterward.",
+  "aim": "Target locked at windup start; ballistic velocity calculated from actual release hand to locked target.",
+  "review_limit": "Source compositions do not validate live timing or motion.",
+  "source_review": {
+    "evidence": "previews/gratecrawler-throw-v1/both-facings.png",
+    "kind": "Software source composition, not gameplay screenshot",
+    "approved": "Four poses each facing at runtime2x scale; held-ball contact, outside-body release, stable footanchor and mirrored registration",
+    "validation": "Four source bounds and timing/footanchor checks pass",
+    "remaining": "Live transitions, aim lock, release timing and patrol restoration"
+  }
+}

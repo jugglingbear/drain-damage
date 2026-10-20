@@ -441,6 +441,26 @@
         "spawn_hp": 72,
         "multiplier": 3,
         "status": "Packaged validation passed; live balance review pending"
+      },
+      "game_art": {
+        "image": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "animation": "assets/bestiary/opening-trial/manifest-v1.json",
+        "prompt": "assets/bestiary/opening-trial/prompts-v1.json",
+        "projectile": "assets/bestiary/gratecrawler/muck-ball-manifest-v1.json",
+        "throw_animation": "assets/bestiary/gratecrawler/throw-manifest-v1.json"
+      },
+      "prototype90_revision": {
+        "status": "Integrated in Prototype 90; eleven packaged suites passed; live visual review pending",
+        "sequence": "Pause patrol, face and lock target at windup start, release from authored hand at 0.3 seconds, recover through 0.6 seconds, then restore prior patrol direction",
+        "release_seconds": 0.3,
+        "duration_seconds": 0.6,
+        "repeat_seconds": 2.5,
+        "interruptions": "Hit, death or leaving visibility cancels pending release; pause freezes sequence; reset discards it",
+        "preserved": "72 HP, doubled size, 45 px/s patrol, muck damage, gravity 700 and one-second committed trajectory"
       }
     },
     {

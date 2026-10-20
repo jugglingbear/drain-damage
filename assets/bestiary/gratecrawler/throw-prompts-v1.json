@@ -1,0 +1,18 @@
+{
+  "tool": "built-in imagegen",
+  "date": "2026-10-20",
+  "generations": [
+    {
+      "prompt": "Create a transparent production animation sprite sheet for the exact GRATECRAWLER monster in the reference. Four equal square cells arranged2columns by2rows, generous transparent gutters. Exactly same creature identity: hunched dark olive wet sludge body, glowing amber eyes, broken white porcelain teeth, long clawlike fingers, rusty circular drain strainer embedded on upper back, stumpy planted legs. Sideview facing LEFT in EVERY cell. Four successive poses of a readable overarm THROW toward LEFT: top-left windup1, throwing hand cupped raised beside/behind head at right ofhead; top-right windup2 arm cocked farther back/up, torso leaned slightly back; bottom-left RELEASE, same arm swung fully forward to LEFT, elbow straightened, open empty palm far LEFT of torso at shoulderheight, fingers pointing LEFT, clear unobstructed hand silhouette; bottom-right recovery arm lower returning toward usual hunched stance. Other arm stays lower forbalance. NO projectile or muck ball baked in: runtime attaches ball at cup/palm. Keep throwing arm anatomically connected and exactly two arms, no extra limbs. Feet stay planted at same positions and baseline, body same scale, head/torso silhouette closely matches standing reference. Release hand must extend visibly beyond LEFT edge of head/torso so projectile emerges OUTSIDE body. All wholefigures withincells, no edgeclipping. Approximate figure height75percentcell, same head size allfour; include30percentwidthleftclearance for fullyextendedarm. Pixel-art game sprite matching reference detail/colors/shading, strong darkoutline, true transparentbackground, no floor, shadow, text, numbers, labels, particles or other props. This is four continuous throwing poses, not walking or emergence.",
+      "reference": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+      "output": "assets/bestiary/gratecrawler/throw-source-v1.png",
+      "status": "Rejected extra-arm anatomy; preserved original"
+    },
+    {
+      "prompt": "Precise anatomy correction to this exact fourpose sprite sheet. TOP ROW BOTH FIGURES currently incorrectly have THREE ARMS: a raised arm behind head, a prominent nearer arm hanging at right-front of torso, and an extra far-side dangling hand/forearm at LEFT below mouth. REMOVE ONLY that extra far-side dangling hand/forearm belowmouth in BOTH TOP figures. Restore transparent background where extra fingers protruded, and smooth natural torso where it connected. Top figures must have exactly TWO arms: raised throwingarm and near hangingarm. Keep BOTH BOTTOM figures unchanged as they already have twoarms. Preserve canvas1536x1024, pixel style, silhouette, all feet positions, all other anatomy, colors, transparency, and cell registration exactly. No other changes, no new props.",
+      "reference": "assets/bestiary/gratecrawler/throw-source-v1.png",
+      "output": "assets/bestiary/gratecrawler/throw-v2.png",
+      "status": "Corrected two-arm anatomy"
+    }
+  ]
+}

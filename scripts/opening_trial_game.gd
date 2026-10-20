@@ -9,6 +9,7 @@ var actors: Array[Dictionary] = []
 var hostile_shots: Array[Dictionary] = []
 var trial_textures: Dictionary = {}
 var muck_art: Dictionary = {}
+var muck_throw_art: Dictionary = {}
 var shot_serial := 0
 var result_shown := false
 var retry_after: Dictionary = {}
@@ -28,6 +29,8 @@ func _ready() -> void:
 	load_trial_textures(trial_data.role_art)
 	muck_art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"))
 	load_trial_textures(muck_art)
+	muck_throw_art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/bestiary/gratecrawler/throw-manifest-v1.json"))
+	load_trial_textures(muck_throw_art)
 	super._ready()
 
 func load_trial_textures(value: Variant) -> void:
@@ -192,6 +195,7 @@ func create_actor(event: Dictionary, home: Vector2) -> void:
 		"max_hp":float(stats.max_hp),"age":0.0,"active":false,"visible_age":0.0,"death":0.0,
 		"flash":0.0,"facing":1.0 if role == "rear_runner" else -1.0,"vy":0.0,"clock":0.0,
 		"shot_clock":0.0,"winding":false,"fire_age":-1.0,"contact_live":false,
+		"throw_state":"","throw_clock":0.0,"patrol_facing":-1.0,"throw_target":Vector2.ZERO,
 		"warning_seconds":float(event.warning_seconds),"target":Vector2.ZERO,"flight_time":0.0,"hover_started":false,"hover_remaining":0.0,
 		"runner":Data.spawn("toilet",home-Vector2(19,36))})
 
@@ -200,6 +204,7 @@ func damage_trial_actor(actor: Dictionary, amount: float) -> void:
 	var previous_hp: float = actor.hp
 	actor.hp = maxf(0, actor.hp - amount)
 	actor.flash = 0.1
+	if actor.role == "floor_emerger": cancel_muck_throw(actor)
 	if actor.hp == 0:
 		finish_trial_defeat(actor)
 	elif actor.hp < previous_hp:
@@ -272,19 +277,22 @@ func step_trial_actors(delta: float) -> void:
 			step_shooter(actor,delta,visible)
 		elif actor.role == "aggressive_flyer":
 			step_flyer(actor,delta)
-		else:
-			if actor.role == "floor_emerger":
+		elif actor.role == "floor_emerger":
+			var was_throwing: bool = not actor.throw_state.is_empty()
+			step_muck_thrower(actor,delta,visible)
+			if not was_throwing and actor.throw_state.is_empty():
 				if actor.feet.x <= actor.home.x-70 and actor.facing < 0:
 					actor.facing = 1.0
 				elif actor.feet.x >= actor.home.x+70 and actor.facing > 0:
 					actor.facing = -1.0
-			var dx: float = actor.facing*float(trial_data.balance.roles.emerger.ground_speed_pixels_per_second)
+				move_ground_actor(actor,actor.facing*float(trial_data.balance.roles.emerger.ground_speed_pixels_per_second),delta)
+		else:
+			var dx := 0.0
 			if actor.role in ["runner","rear_runner"]:
 				var pursuit: Dictionary = Data.monster("toilet").pursuit
 				dx = pursuit_velocity(actor.runner,player.x-actor.feet.x,pursuit,delta)
 				actor.facing = signf(dx) if dx != 0 else actor.facing
 			move_ground_actor(actor,dx,delta)
-			if actor.role == "floor_emerger": step_muck_thrower(actor,delta,visible)
 		var pattern := "contact-"+str(actor.event_id)
 		# Hold a contact slot for the entire visible threat, not just the collision tick.
 		if actor.role != "perched_shooter":
@@ -427,29 +435,65 @@ func step_shooter(actor: Dictionary, delta: float, visible: bool) -> void:
 	actor.shot_clock = 0
 	actor.fire_age = actor.age
 
+func cancel_muck_throw(actor: Dictionary) -> void:
+	if not actor.get("throw_state","").is_empty():
+		actor.facing = actor.patrol_facing
+		actor.fire_age = actor.age
+	actor.throw_state = ""
+	actor.throw_clock = 0.0
+	actor.winding = false
+	actor.shot_clock = 0.0
+
+func muck_throw_frame(actor: Dictionary) -> Dictionary:
+	var time: float = actor.throw_clock
+	for frame: Dictionary in muck_throw_art.frames:
+		if time < float(frame.duration_seconds)-0.000001: return frame
+		time -= float(frame.duration_seconds)
+	return muck_throw_art.frames.back()
+
+func muck_hand(actor: Dictionary) -> Vector2:
+	var frame := muck_throw_frame(actor)
+	var anchor: Array = muck_throw_art.anchor
+	var offset := Vector2(frame.hand[0]-anchor[0],frame.hand[1]-anchor[1])
+	return actor.feet+offset*Vector2(-actor.facing,1)*role_scale(actor.role)
+
 func step_muck_thrower(actor: Dictionary, delta: float, visible: bool) -> void:
-	var stats: Dictionary = trial_data.balance.roles.emerger
-	if not visible:
-		actor.winding = false
-		actor.shot_clock = 0
+	if paused or life_state != "alive" or dialogue.active or dispenser.active or delta <= 0: return
+	if actor.hp <= 0 or not visible:
+		cancel_muck_throw(actor)
 		return
+	var stats: Dictionary = trial_data.balance.roles.emerger
 	actor.shot_clock += delta
-	if not actor.winding:
-		if actor.shot_clock < (0.3 if actor.fire_age < 0 else float(stats.muck_interval_seconds)-float(stats.muck_warning_seconds)): return
+	if actor.throw_state.is_empty():
+		var delay := 0.3 if actor.fire_age < 0 else float(stats.muck_interval_seconds)-float(muck_throw_art.release_seconds)
+		if actor.shot_clock+0.000001 < delay: return
 		if not actor.contact_live:
 			if not trial_state.begin_pattern("contact-"+str(actor.event_id),actor.event_id): return
 			actor.contact_live = true
+		actor.patrol_facing = actor.facing
+		actor.throw_target = player+PLAYER_SIZE*0.5
+		actor.facing = -1.0 if actor.throw_target.x < actor.feet.x else 1.0
+		actor.throw_state = "windup"
+		actor.throw_clock = 0.0
 		actor.winding = true
-		actor.muck_tell = 0.0
-	actor.muck_tell += delta
-	if actor.muck_tell < float(stats.muck_warning_seconds): return
-	var target := player+PLAYER_SIZE*0.5
-	var facing := -1.0 if target.x < actor.feet.x else 1.0
-	var origin: Vector2 = actor.feet+Vector2(facing*26,-60)
+		return
+	actor.throw_clock += delta
+	if actor.throw_state == "recover":
+		if actor.throw_clock+0.000001 >= float(muck_throw_art.duration_seconds):
+			actor.throw_state = ""
+			actor.facing = actor.patrol_facing
+		return
+	if actor.throw_clock+0.000001 < float(muck_throw_art.release_seconds): return
+	# Advance to the authored release pose before sampling its hand. Aim stays committed even if the hero crosses.
+	actor.throw_clock = float(muck_throw_art.release_seconds)
+	actor.throw_state = "recover"
+	var target: Vector2 = actor.throw_target
+	var origin := muck_hand(actor)
 	var flight := float(stats.muck_flight_seconds)
 	var gravity := float(stats.muck_gravity)
 	var velocity := Vector2((target.x-origin.x)/flight,(target.y-origin.y)/flight-gravity*flight*0.5)
-	var clear := true
+	# A point-blank target behind the extended hand must not send muck back through the body.
+	var clear: bool = (target.x-origin.x)*actor.facing > 0
 	var previous := origin
 	for index in range(1,17):
 		var time := flight*index/16.0
@@ -623,6 +667,8 @@ func draw_actor(actor: Dictionary) -> void:
 			break
 		clock_value -= float(animation.durations[index])
 	var frame: Dictionary = spec.frames[frame_id]
+	var throwing: bool = actor.role == "floor_emerger" and actor.hp > 0 and not actor.throw_state.is_empty()
+	if throwing: frame = muck_throw_frame(actor)
 	var destination := region(frame.destination)
 	var anchor := Vector2(spec.anchor[0],spec.anchor[1])
 	destination.position -= anchor
@@ -631,6 +677,11 @@ func draw_actor(actor: Dictionary) -> void:
 		Vector2(-1 if actor.facing > 0 else 1,1)*role_scale(actor.role))
 	draw_asset(frame,destination,Color(1,1,1,1-clampf(actor.death/0.6,0,1)))
 	draw_set_transform(Vector2(-floorf(camera_x),0))
+	if throwing and actor.throw_state == "windup":
+		var held: Dictionary = muck_art.frames[0]
+		var held_destination := region(held.destination)
+		held_destination.position += muck_hand(actor)
+		draw_asset(held,held_destination)
 	if actor.hp > 0 and actor.active and show_enemy_health_bars:
 		var body := actor_rect(actor)
 		box(body.position.x,body.position.y-14,body.size.x,4,Color("243447"))
