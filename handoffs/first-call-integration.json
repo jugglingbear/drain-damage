@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 86 / 0.86.0",
-  "created_at": "2026-10-20T16:08:57.836902-07:00",
+  "build": "Prototype 87 / 0.87.0",
+  "created_at": "2026-10-20T16:31:10.721166-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, ad-hoc signature, archive, 36 packaged suites and 34 Python tests passed; live review pending",
-  "app": "builds/Prototype-86/Drain Damage.app",
-  "archive": "builds/history/Prototype-86.zip",
-  "archive_sha256": "dc6ecf756162517940c95eb6ce2e4b6733a7085cbdf1fdcd1cfbf3bcab0a1fe9",
-  "source_snapshot": "builds/source-86",
+  "status": "Export, signature, archive, 10 relevant packaged suites and 34 Python tests passed; live UI review pending",
+  "app": "builds/Prototype-87/Drain Damage.app",
+  "archive": "builds/history/Prototype-87.zip",
+  "archive_sha256": "97c05fabebe4c9310e7cf788e8eb1ac82d7e15983c5bec0faa4227f2ffd22e5b",
+  "source_snapshot": "builds/source-87",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -19,63 +19,31 @@
     15110
   ],
   "changes": [
-    "Sputtervalve removes the 0.65-second attack windup, preserves 0.8-second visible introduction, and fires every 2.5 seconds when safely admitted with a clear line of sight",
-    "Gratecrawler doubles visual and collision size to 68x80, retains 24 HP, plods at 45 pixels/second, and throws aimed ballistic muck every 2.5 seconds with a 0.3-second tell",
-    "Hallowed Widow retains 135 HP, continuously reacquires the hero at 300 pixels/second and escapes blocked recovery without teleporting or becoming stranded",
-    "Clogfather retains 1080 HP and alternates low center (650,398) and high center (716,325) each recovery; both heroes reach the high opening with ordinary horizontal jump shots; ground-fired high shots deflect",
-    "Both hero aftermath branches lead to an involuntary portal departure; partner stays on radio, remains fade over 0.8 seconds, and the completion screen explicitly says level two is not yet playable",
-    "Floor entrances require vertical overlap before an existing actor can block them; high Widows no longer suppress safe ground admissions, while diving bodies, horizontal spacing and crowd limits remain protected"
+    "Back and Start Job participate in five-control keyboard, controller, stick and Tab navigation; visible focus is independent of selected difficulty",
+    "Mouse center/edge activation, both heroes and all difficulties, Back/re-entry choice preservation and held-input release guards verified",
+    "Confirming a difficulty moves focus to Start Job; a fresh confirmation activates Start Job. Escape and controller B retain Back behavior",
+    "Prototype 86 combat, boss, portal and checkpoint behavior preserved; no level-two gameplay production"
   ],
   "checks": {
-    "packaged_suites": 36,
+    "packaged_suites": 10,
     "status": "passed",
-    "results": "builds/verification-86/final-results.json",
-    "python_tests": 34,
-    "python_log": "builds/verification-86/python-final.log",
-    "build_log": "builds/verification-86/build-final.log",
-    "architectures": [
-      "x86_64",
-      "arm64"
-    ],
+    "results": "builds/verification-87/final-results.json",
     "suites": [
-      "aim_entrance",
-      "alligator_art_motion",
       "build_version",
       "button_consistency",
-      "clogfather_art",
-      "clogfather_audio",
-      "clogfather_encounter",
-      "clogfather_high_weakpoint",
       "clogfather_integration",
-      "clogfather_music",
-      "clogfather_route",
-      "clogfather_route_traversal",
-      "dialogue",
+      "difficulty_actions",
       "difficulty_menu",
-      "difficulty_respawn",
-      "difficulty_traversal",
-      "dispenser_inspection",
-      "dispenser_registration",
-      "durable_flyer",
-      "employee_dispenser",
-      "entrance_vertical_spacing",
       "first_level_ending",
-      "flushfiend_checkpoint_navigation",
-      "glass_dispenser",
-      "gratecrawler_patrol",
-      "held_aim",
-      "hostile_projectile",
-      "music",
-      "normal_density",
-      "opening_trial_level",
-      "platform_projectiles",
-      "role_combat_revision",
-      "skitterling_integration",
-      "skitterling_portals",
-      "swarm_health",
-      "swarm_schedule"
+      "menu_audio",
+      "pause_menu",
+      "playtest_launch",
+      "title_screen"
     ],
-    "route_coverage": "18 original-route hero/mode/seed cases retain the Prototype 83 comparison gate: Easy unchanged and Normal/Hard actual admissions at least 25% higher. Twelve extension forward/reverse cases pass at 60/120 Hz; bots refill health for coverage, not balance acceptance."
+    "python_tests": 34,
+    "python_log": "builds/verification-87/python.log",
+    "build_log": "builds/verification-87/build.log",
+    "scope": "Menu/navigation, audio, pause, both heroes and difficulties, launch targets, input guards, boss integration and portal ending; previous full combat/route evidence retained in Prototype 86"
   },
   "source_art_review": {
     "approved_compositions": [
@@ -93,6 +61,7 @@
     ]
   },
   "remaining": [
+    "Live difficulty-screen focus and controller/mouse visual review",
     "Human combat balance and boss duration for both heroes",
     "Live larger-crawler grounding, muck visibility, weak-point and portal transition review",
     "Existing collapse-frame continuity and checkpoint/background visual review",
@@ -187,5 +156,6 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "1ddb8cc"
+  "source_commit": "c08a687",
+  "previous_delivery": "storybook/086-projectiles-and-portal/20261020-161432-capture-status.json"
 }

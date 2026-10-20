@@ -2084,6 +2084,27 @@ no image capture occurred.
 
 [Capture status and final verification](086-projectiles-and-portal/20261020-161432-capture-status.json).
 
+## 087 — Difficulty menu navigation — October 20, 2026
+
+**Version:** Prototype 87 / 0.87.0; source commit `c08a687`; app, ZIP and snapshot `builds/source-87` preserved.
+
+Back and Start previously sat outside the difficulty menu's three-row focus loop. Navigation now covers all five
+controls while preserving the selected difficulty. Keyboard arrows/Tab and controller D-pad/stick reach the footer.
+Confirming a difficulty row focuses Start; releasing and confirming again starts the game. Escape/B retains the Back
+shortcut, with mouse edge buttons and release guards covered. Existing artwork is reused.
+
+**Validation:** Engineering reports ten relevant packaged suites and thirty-four Python tests passing, plus export,
+signature and ZIP verification. Coverage includes both heroes, all difficulty choices and supported navigation routes.
+This focused delivery does not claim a new full combat test matrix.
+
+**Capture gap:** No game window opened or actual Prototype 87 screenshot was captured. Live input/visual review
+remains pending. The user-supplied desktop screenshot was not archived because it includes unrelated/private content.
+
+**Record created:** 2026-10-20T16:30:46-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](087-difficulty-navigation/20261020-163046-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
