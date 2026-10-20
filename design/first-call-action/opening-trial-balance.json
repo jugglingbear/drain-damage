@@ -44,14 +44,14 @@
       "spawn_hp": 36,
       "stationary": true,
       "first_shot_visible_delay_seconds": 0.8,
-      "windup_seconds": 0.65,
-      "shot_interval_seconds": 1.8,
+      "windup_seconds": 0.0,
+      "shot_interval_seconds": 2.5,
       "projectile_speed_pixels_per_second": 150,
       "projectile_radius_pixels": 4,
       "projectile_max_lifetime_seconds": 3.5,
       "projectile_damage_player": 1,
-      "aim": "Lock player position at windup start; one non-homing projectile per shot, no offscreen fire. Clear line of sight required; cancel unsafe shot if global budget full.",
-      "timing": "First shot no earlier than0.8s visible; windup included in1.8s start-to-start interval."
+      "aim": "Aim at release with no extra windup; visible entry fairness0.8s, nonhoming150px/s purple projectile. Defer blocked sightlines/budget without retaining a fire token.",
+      "timing": "First shot after0.8s visible; thereafter2.5s between actual shots, no additional long windup."
     },
     "emerger": {
       "creature_id": null,
@@ -61,10 +61,16 @@
       "warning_seconds": 0.8,
       "emerge_seconds": 0.35,
       "settle_seconds": 0.3,
-      "ground_speed_pixels_per_second": 90,
+      "ground_speed_pixels_per_second": 45,
       "contact_damage_player": 1,
-      "behavior": "Premarked fixed floor vent. Harmless before fully emerged+settled; then mindless horizontal floor patrol/contact threat. No jumping or chasing; turn at patrol bounds and blocking solids.",
-      "spawn_safety": "Reject occupied landing marker or route with no reachable escape. Recheck before becoming damaging; hold/reselect if player remains on marker, never turn damage on underneath hero."
+      "behavior": "Slow floor patrol with solid turns; aimed ballistic muck toward hero position at release.",
+      "spawn_safety": "Reject occupied landing marker or route with no reachable escape. Recheck before becoming damaging; hold/reselect if player remains on marker, never turn damage on underneath hero.",
+      "render_scale": 2.0,
+      "muck_interval_seconds": 2.5,
+      "muck_warning_seconds": 0.3,
+      "muck_flight_seconds": 1.0,
+      "muck_gravity": 700,
+      "muck_radius_pixels": 12
     },
     "flyer": {
       "creature_id": null,
@@ -74,7 +80,7 @@
       "speed_pixels_per_second": 100,
       "contact_damage_player": 1,
       "entry_warning_seconds": 0.8,
-      "path": "Fly forward until visible hero is within400px on either side; lock target during0.65s warning, dive0.8s, rise forward to original altitude over1s, pause stationary1s, then face hero and repeat. Within6px of horizontal center retain previous facing. Blocked diagonal recovery climbs vertically with swept collision.",
+      "path": "Reacquire hero direction every approach tick and pursue at300px/s, including offscreen; only start warned dives when visible and within400px. Preserve0.65s committed warning,0.8s dive, recovery toward pre-dive altitude and1s upper pause. Blocked recovery slides away from overhangs; after2.5s use current clear altitude rather than strand the actor.",
       "retirement": "Activated living Widow does not retire offscreen; remains a repeating threat until killed or attempt reset. Entry warnings may still cancel safely.",
       "render_scale": 2.0,
       "balance_rationale": "12 Tony hits at 12 damage or 8 Sean hits at 18 damage; 25% less HP in every difficulty.",
@@ -82,7 +88,8 @@
       "attack_warning_seconds": 0.65,
       "swoop_seconds": 0.8,
       "recovery_seconds": 1.0,
-      "top_pause_seconds": 1.0
+      "top_pause_seconds": 1.0,
+      "pursuit_speed_pixels_per_second": 300
     },
     "swarm": {
       "base_creature_id": "sewer-fly-swarm",

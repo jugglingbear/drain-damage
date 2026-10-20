@@ -92,7 +92,7 @@
     {
       "id": "spider",
       "name": "The Hallowed Widow",
-      "status": "Revised dive/rise/pause loop delivered in Prototype63/0.63.0; packaged checks pass; live fairness and visual review pending",
+      "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
       "art": "assets/bestiary/flying-spider-atlas-v2.png",
       "tool": "Built-in image_gen",
       "prompt": "assets/bestiary/flying-spider-prompt-v2.json",
@@ -141,19 +141,25 @@
         "death_variants": 1,
         "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
         "listening_review": "pending"
-      }
+      },
+      "prototype86_revision": {
+        "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+        "health_unchanged": 135,
+        "behavior": "Continuously reacquires the hero, including offscreen, at 300 pixels/second. Visible attacks retain the dive/rise/pause cycle. Blocked recovery slides around obstacles and returns to pursuit within 2.5 seconds without teleporting."
+      },
+      "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending"
     },
     {
       "id": "clogfather",
       "name": "The Clogfather",
-      "status": "Integrated first-level boss in Prototype 85; live playtest pending",
+      "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
       "metadata": "bestiary/clogfather/monster.json",
       "art": "assets/bestiary/the-clogfather/rooted-body-v2.png",
-      "animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
+      "animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
       "damage_art": {
         "image": "assets/bestiary/the-clogfather/damage-body-v2.png",
-        "spec": "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
-        "status": "Registered damage stages and six-frame collapse integrated; source sheets/crops inspected, composed-stage and live motion review pending"
+        "spec": "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
+        "status": "Five live damage-stage source compositions reviewed; collapse poses inspected but height/damage continuity and live animation remain unapproved."
       },
       "health": {
         "max_hp": 1080,
@@ -189,7 +195,40 @@
         "death_variants": 1,
         "runtime_status": "Integrated bounded hit/death/attack cues and boss music; listening review pending",
         "listening_review": "pending"
-      }
+      },
+      "prototype86_revision": {
+        "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+        "weak_openings": {
+          "low": {
+            "rect": [
+              626,
+              377,
+              48,
+              42
+            ],
+            "center": [
+              650,
+              398
+            ]
+          },
+          "high": {
+            "rect": [
+              692,
+              304,
+              48,
+              42
+            ],
+            "center": [
+              716,
+              325
+            ]
+          },
+          "order": "low first; alternate each recovery; only active opening vulnerable",
+          "high_rule": "Requires projectile fired while airborne; ordinary jump plus horizontal shot reaches target for both heroes."
+        },
+        "ending": "Defeat reveals impossible opening; chosen hero involuntarily pulled inside while partner remains outside on radio. Level2 gameplay not implemented."
+      },
+      "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending"
     },
     {
       "id": "sewer-fly-swarm",
@@ -249,7 +288,7 @@
       "id": "sputtervalve",
       "name": "Sputtervalve",
       "description": "A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.",
-      "status": "Provisional trial art delivered; runtime pending",
+      "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
       "metadata": "bestiary/sputtervalve/monster.json",
       "art": "assets/bestiary/opening-trial/sputtervalve-v1.png",
       "animation": "assets/bestiary/opening-trial/manifest-v1.json",
@@ -292,7 +331,7 @@
         "status": "pending; no hyperrealistic portrait generated for provisional design",
         "image": null
       },
-      "implementation_status": "Integrated continuous first-level opening; Prototype45 checks in progress",
+      "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
       "active_level_profile": {
         "level": "first-call",
         "source": "design/first-call-action/opening-trial-balance.json",
@@ -307,13 +346,17 @@
         "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
         "listening_review": "pending"
       },
-      "name_status": "Name and pressure-valve design basis approved by Sean on 2026-10-17; visual revisions pending"
+      "name_status": "Name and pressure-valve design basis approved by Sean on 2026-10-17; visual revisions pending",
+      "prototype86_revision": {
+        "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+        "attack": "No attack windup; 2.5-second repeat with the existing purple projectile. The initial 0.8-second visible introduction and spawn safety remain."
+      }
     },
     {
       "id": "gratecrawler",
       "name": "Gratecrawler",
-      "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.",
-      "status": "Integrated in Prototype 57 / 0.57.0: floor-only patrol with boundary and obstacle turns; no jumping or pursuit. Headless and packaged checks pass; live visual review pending.",
+      "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it crawls from warned floor grates, plods back and forth, and lobs aimed muck balls.",
+      "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
       "metadata": "bestiary/gratecrawler/monster.json",
       "art": "assets/bestiary/opening-trial/gratecrawler-v1.png",
       "animation": "assets/bestiary/opening-trial/manifest-v1.json",
@@ -356,7 +399,7 @@
         "status": "pending; no hyperrealistic portrait generated for provisional design",
         "image": null
       },
-      "implementation_status": "Integrated continuous first-level opening; Prototype45 checks in progress",
+      "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
       "active_level_profile": {
         "level": "first-call",
         "source": "design/first-call-action/opening-trial-balance.json",
@@ -370,7 +413,28 @@
         "death_variants": 1,
         "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
         "listening_review": "pending"
-      }
+      },
+      "prototype86_revision": {
+        "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+        "visual_scale_multiplier": 2,
+        "body_dimensions": [
+          68,
+          80
+        ],
+        "feet_anchor_unchanged": true,
+        "health_unchanged": 24,
+        "patrol_speed": 45,
+        "jump": false,
+        "muck": {
+          "tell_seconds": 0.3,
+          "repeat_seconds": 2.5,
+          "gravity": 700,
+          "flight_seconds": 1.0,
+          "target_locked_at_fire": true,
+          "core_radius": 12
+        }
+      },
+      "projectile_art": "assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"
     },
     {
       "id": "cockroach-swarm",

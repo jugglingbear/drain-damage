@@ -94,7 +94,9 @@ func target_rect() -> Rect2:
 
 func draw(host: Node2D) -> void:
 	if host.camera_x+960 < START or host.camera_x > START+960: return
-	art.draw(host,encounter.snapshot(),ORIGIN-Vector2(floorf(host.camera_x),0),clock)
+	var snapshot := encounter.snapshot()
+	if host.ending.active(): snapshot.remains_alpha = 1-smoothstep(0,0.8,host.ending.clock)
+	art.draw(host,snapshot,ORIGIN-Vector2(floorf(host.camera_x),0),clock)
 	host.draw_set_transform(Vector2(-floorf(host.camera_x),0))
 
 func shell_rect() -> Rect2:
@@ -102,8 +104,8 @@ func shell_rect() -> Rect2:
 	if body.has_area(): body.position += ORIGIN
 	return body
 
-func damage(host: Node2D, amount: int, attack_id: String) -> int:
-	var accepted := encounter.hit(amount,attack_id)
+func damage(host: Node2D, amount: int, attack_id: String, airborne_attack := false) -> int:
+	var accepted := encounter.hit(amount,attack_id,airborne_attack)
 	flush_events(host)
 	return accepted
 

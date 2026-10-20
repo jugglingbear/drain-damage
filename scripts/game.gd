@@ -621,7 +621,8 @@ func step_player(delta: float) -> void:
 				blocked = true
 		if not blocked:
 			shots.append({"pos": muzzle, "dir": aim, "damage": weapon.damage, "speed": weapon.projectile.speed_pixels_per_second,
-				"distance": 0.0, "range": weapon.projectile.max_travel_distance_pixels})
+				"distance": 0.0, "range": weapon.projectile.max_travel_distance_pixels,
+				"fired_airborne": not grounded})
 		fire_timer = weapon.attack_interval_seconds
 		play_tone(310.0 if employee.id == "tony" else 110.0, 0.055)
 

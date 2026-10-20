@@ -123,11 +123,11 @@ class CombatMetadataTests(unittest.TestCase):
     def test_missing_rooted_boss_attack_art_is_rejected(self) -> None:
         builder = load_builder()
         original_read = builder.read
-        for key in ("acid_warning", "acid_drop", "sludge_projectile_a", "collapse_5"):
+        for key in ("acid_warning", "acid_drop", "sludge_projectile_a", "collapse_5", "weak_high_open"):
             with self.subTest(key=key):
                 def missing_frame(path: str) -> dict[str, Any]:
                     data = original_read(path)
-                    if path == "assets/bestiary/the-clogfather/runtime-manifest-v2.json":
+                    if path == "assets/bestiary/the-clogfather/runtime-manifest-v3.json":
                         data["frames"].pop(key)
                     return data
 

@@ -4,10 +4,25 @@
 
 **Owner:** Storyboarding. Handoff to Level Design and Engineering; no runtime implementation claimed here.
 
+## October 20 future transition direction
+
+Sean favors the selected hero being sucked through the Clogfather portal into a giant-toilet flush and poop-log ride,
+with the other hero remaining outside on radio. Return to the real world is proposed for level three.
+The [level-two proposal](level-two-flush-and-log-ride.md) supersedes the earlier walk-away portal sketches below
+for future planning. Those sketches are historical alternatives, not instructions to implement both endings.
+
+**October 20 authorization update:** Sean explicitly requested the post-Clogfather portal dialogue, graphics and
+necessary first-level departure presentation through PM. Prototype 86 may implement that ending. Level-two gameplay,
+flush/log-ride production and nonblocking radio overlays remain held pending Sean's explicit start instruction.
+Existing blocking dialogue behavior is retained for this ending.
+Tony's kindness and patience coexist with playful, outrageous humor; he is not limited to being the straight man.
+
 ## Agreed foundation
 
 - Game working title: Drain Damage.
 - Begin in the basement of the AI plumbing corporation's headquarters.
+- October 20 campaign direction: only the first level uses a basement/sewer setting. Later levels must have
+  distinctly different settings; exact destinations and order remain undecided.
 - Billy-Joe (BJ) controls US plumbing companies and distribution warehouses within a largely AI-run world.
 - Use only Billy-Joe or BJ for this character in story text, dialogue, and future handoffs. Retired AI names
   must not appear in outgoing Storyboarding material.
@@ -40,7 +55,7 @@ No exact terrain sequence or additional enemy roster is approved by this brief.
    visible before dialogue interprets them. Specific evidence of BJ's wrongdoing remains proposed lore.
 4. Confront the Clogfather in the collection chamber. Preserve readable action; avoid mandatory speeches during combat.
 5. Proposed reveal: defeating the fatberg uncovers an eerie portal or impossible opening behind the blocked outflow.
-6. Proposed transition: the plumbers question it; BJ redirects them to another assignment before they investigate.
+6. Authorized transition: the selected hero is involuntarily pulled through; the other remains outside on radio.
 
 The portal is a user-requested art concept and favored story direction, not a finalized cosmology. Do not identify
 its destination, establish time travel, make BJ confess to creating it, or reveal the eventual antagonist here.
@@ -52,8 +67,8 @@ The intended boss design is a rooted fatberg with moving pipe mouths/extensions,
 overhead hazards, and attack openings. Game Mechanics owns tuning; Level Design owns arena space and safe routes.
 Small-enemy releases and interactive valves are proposed mechanics, not narrative requirements.
 
-Suggested exit: return toward a service access/exit after the revelation, then a brief dispatch transition.
-Do not require entering the portal or choose a second-level destination yet. Keep the support plumber's location
+Prototype 86 replaces the interim exit with a brief portal aftermath and involuntary departure.
+Do not implement level two or resolve its destination in this delivery. Keep the support plumber's location
 consistent; a radio reply must not imply they suddenly stand beside the selected hero.
 
 ## Dialogue sources and implementation boundaries
@@ -69,33 +84,18 @@ The current approved opening and route-specific prototype endings live in
 - Essential discoveries must not depend on optional radio remarks during combat.
 - Every line carries a semantic emotion. Tony's kindness is the default; skepticism is not contempt for Sean.
 
-The current completion scripts describe clearing the prototype area and receiving another address. They do not
-describe a boss, repaired plumbing, or a portal. They are suitable only while those beats are absent. Once the boss
-and reveal are implemented, replace the completion scene with a dedicated scene rather than stacking contradictory
-endings. In particular, do not claim all enemies are gone if optional enemies can remain alive.
+The canonical completion data now supplies six portal-aftermath lines per hero for Prototype 86 integration.
+Engineering owns the one-shot transition from completed or skipped dialogue into suction, then the honest
+“Level two not yet playable” completion boundary. The old next-address and four-line victory endings are superseded.
+Do not stack endings or claim all optional enemies are dead or the plumbing has been repaired.
 
-## Proposed portal exchange, not final dialogue
-
-This earlier Storyboarding sketch expresses the intended reveal and evasion. Adapt it for selected/support roles
-and obtain a finalized script before treating it as production dialogue.
-
-> Sean: Tony... where does that pipe go?
->
-> Tony: It shouldn't go anywhere. That's an outside wall.
->
-> BJ: Your next assignment is ready.
->
-> Tony: We've got something here you need to see.
->
-> BJ: I have already seen everything necessary. Proceed to the exit.
-
-For this exchange to work, establish Tony's sightline or a shared camera view when he is supporting remotely.
-Otherwise rewrite the observation. Do not silently grant the radio partner visual omniscience.
+The [portal ending contract](../handoffs/clogfather-portal-story.json) defines presentation and reset boundaries.
+No runtime delivery is claimed by this narrative update; use Engineering's final build record for integration status.
 
 ## Remaining decisions
 
 - Final route and encounter plan, boss implementation scope, and exit placement.
-- Whether the portal reveal ships with the first full-length level or is explicitly deferred.
+- Final visual timing and validation of the authorized first-level portal departure.
 - Final character-specific boss/reveal dialogue once actual implemented events are known.
 - Source of the living fatberg, portal destination, and relationship to BJ's later corruption.
 - Second-level destination. Earlier locations remain candidates, not an agreed itinerary.

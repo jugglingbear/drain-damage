@@ -2,8 +2,8 @@
   "id": "gratecrawler",
   "name": "Gratecrawler",
   "name_status": "Proposed working name, not user-approved canon",
-  "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it climbs through warned floor grates.",
-  "implementation_status": "Integrated in Prototype 57 / 0.57.0: floor-only patrol with boundary and obstacle turns; no jumping or pursuit. Headless and packaged checks pass; live visual review pending.",
+  "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it crawls from warned floor grates, plods back and forth, and lobs aimed muck balls.",
+  "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
   "backstory": {
     "status": "pending",
     "text": ""
@@ -50,7 +50,8 @@
       1024
     ],
     "animation": "assets/bestiary/opening-trial/manifest-v1.json",
-    "prompt": "assets/bestiary/opening-trial/prompts-v1.json"
+    "prompt": "assets/bestiary/opening-trial/prompts-v1.json",
+    "projectile": "assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"
   },
   "marketing": {
     "status": "pending; no hyperrealistic portrait generated for provisional design",
@@ -91,6 +92,26 @@
       "cooldown_seconds": 0.0,
       "max_voices": 2,
       "loop": false
+    }
+  },
+  "prototype86_revision": {
+    "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+    "visual_scale_multiplier": 2,
+    "body_dimensions": [
+      68,
+      80
+    ],
+    "feet_anchor_unchanged": true,
+    "health_unchanged": 24,
+    "patrol_speed": 45,
+    "jump": false,
+    "muck": {
+      "tell_seconds": 0.3,
+      "repeat_seconds": 2.5,
+      "gravity": 700,
+      "flight_seconds": 1.0,
+      "target_locked_at_fire": true,
+      "core_radius": 12
     }
   }
 }

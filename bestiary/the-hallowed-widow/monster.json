@@ -5,7 +5,7 @@
   "name": "The Hallowed Widow",
   "creature_type": "Winged spider",
   "description": "White angel wings and a golden halo disguise a dark, bristling flying spider with red eyes and ivory fangs.",
-  "implementation_status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
+  "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
   "backstory": {
     "status": "approved",
     "author_role": "storyboarding agent",
@@ -102,5 +102,10 @@
       "max_voices": 2,
       "loop": false
     }
+  },
+  "prototype86_revision": {
+    "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+    "health_unchanged": 135,
+    "behavior": "Continuously reacquires the hero, including offscreen, at 300 pixels/second. Visible attacks retain the dive/rise/pause cycle. Blocked recovery slides around obstacles and returns to pursuit within 2.5 seconds without teleporting."
   }
 }

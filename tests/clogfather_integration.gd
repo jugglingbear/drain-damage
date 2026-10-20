@@ -152,7 +152,12 @@ func run_checks() -> void:
 			if not check(game.kills == kills+1,"repeated completion granted another kill"): return
 			game.player = Vector2(game.ClogfatherRoom.FINISH,394)
 			game._physics_process(0)
-			if not check(game.won,"defeated boss still blocks job completion"): return
+			if not check(game.ending.state == "dialogue" and not game.won,
+				"collapse must start aftermath before completion"): return
+			unlock(game)
+			game._physics_process(0)
+			game._physics_process(2.5)
+			if not check(game.won and game.ending.state == "complete","portal departure did not complete level"): return
 			game.reset_game()
 			unlock(game)
 			if not check(game.checkpoint_index == -1 and game.respawn_point.x == 85 and game.lives == 3

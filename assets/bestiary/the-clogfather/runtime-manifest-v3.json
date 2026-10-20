@@ -1,0 +1,860 @@
+{
+  "schema_version": 1,
+  "status": "Prototype86 source art registered; both weak openings composed across all five live damage stages; runtime integration and live review pending",
+  "coordinate_space": "All destination/anchor/muzzle values in960x540 arena viewport reference. Translate together by arena origin minus camera. Do not per-frame fit opaque bounds.",
+  "frames": {
+    "upper_pipe": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        0,
+        0,
+        530,
+        500
+      ],
+      "alpha_bounds": [
+        17,
+        88,
+        515,
+        440
+      ],
+      "registration_status": "Source regions validated; composed alignment pending",
+      "destination": [
+        700,
+        200,
+        106,
+        100
+      ],
+      "anchor": [
+        752,
+        235
+      ],
+      "usage": "Optional joint layer; avoid duplicating forepipe"
+    },
+    "sludge_relaxed": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        530,
+        0,
+        486,
+        500
+      ],
+      "alpha_bounds": [
+        21,
+        88,
+        473,
+        449
+      ],
+      "registration_status": "Source regions validated; composed alignment pending",
+      "destination": [
+        650,
+        184,
+        111.78,
+        115
+      ],
+      "anchor": [
+        752,
+        235
+      ],
+      "muzzle": [
+        675,
+        255
+      ],
+      "source_attachment": [
+        410,
+        190
+      ],
+      "source_muzzle": [
+        105,
+        309
+      ]
+    },
+    "sludge_swell": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        1016,
+        0,
+        520,
+        500
+      ],
+      "alpha_bounds": [
+        7,
+        88,
+        502,
+        456
+      ],
+      "registration_status": "Source regions validated; composed alignment pending",
+      "destination": [
+        650,
+        184,
+        119.6,
+        115
+      ],
+      "anchor": [
+        752,
+        235
+      ],
+      "muzzle": [
+        675,
+        255
+      ]
+    },
+    "weak_closed": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        0,
+        500,
+        530,
+        524
+      ],
+      "alpha_bounds": [
+        50,
+        26,
+        496,
+        432
+      ],
+      "registration_status": "Source regions validated; composed alignment pending",
+      "destination": [
+        612,
+        352,
+        106,
+        104.8
+      ],
+      "anchor": [
+        650,
+        398
+      ]
+    },
+    "weak_open": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        530,
+        500,
+        486,
+        524
+      ],
+      "alpha_bounds": [
+        29,
+        26,
+        476,
+        429
+      ],
+      "registration_status": "Source regions validated; composed alignment pending",
+      "destination": [
+        614,
+        352,
+        97.2,
+        104.8
+      ],
+      "anchor": [
+        650,
+        398
+      ]
+    },
+    "drool": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        1016,
+        500,
+        520,
+        524
+      ],
+      "alpha_bounds": [
+        123,
+        26,
+        446,
+        444
+      ],
+      "registration_status": "Source regions validated; composed alignment pending",
+      "destination": [
+        636,
+        410,
+        41.6,
+        41.92
+      ],
+      "anchor": [
+        650,
+        419
+      ]
+    },
+    "body": {
+      "path": "assets/bestiary/the-clogfather/rooted-body-v2.png",
+      "source_rect": [
+        25,
+        76,
+        1176,
+        1126
+      ],
+      "destination": [
+        650,
+        120,
+        305,
+        320
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "registration_status": "Fixed authored destination; all damage states must share this registration"
+    },
+    "sludge_projectile_a": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        40,
+        130,
+        410,
+        300
+      ],
+      "destination": [
+        -18,
+        -14,
+        36,
+        28
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "sludge_projectile_b": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        475,
+        125,
+        390,
+        310
+      ],
+      "destination": [
+        -18,
+        -14,
+        36,
+        28
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "sludge_impact": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        900,
+        110,
+        440,
+        345
+      ],
+      "destination": [
+        -24,
+        -36,
+        48,
+        38
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "acid_ceiling_warning": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        1400,
+        70,
+        300,
+        355
+      ],
+      "destination": [
+        -20,
+        0,
+        40,
+        48
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "acid_drop": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        125,
+        470,
+        180,
+        355
+      ],
+      "destination": [
+        -12,
+        -32,
+        24,
+        38
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "acid_puddle": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        360,
+        650,
+        580,
+        205
+      ],
+      "destination": [
+        -32,
+        -16,
+        64,
+        18
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "deflect": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        915,
+        545,
+        420,
+        280
+      ],
+      "destination": [
+        -18,
+        -16,
+        36,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "weak_hit": {
+      "path": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
+      "source_rect": [
+        1380,
+        490,
+        350,
+        370
+      ],
+      "destination": [
+        -22,
+        -24,
+        44,
+        46
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local; destination is offset from hazard position, anchor[0,0]"
+    },
+    "damage_body_healthy": {
+      "path": "assets/bestiary/the-clogfather/damage-body-v2.png",
+      "source_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        104.5,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        500
+      ],
+      "registration_status": "Common scale across all stages; row baseline corrected4sourcepx; composed review pending"
+    },
+    "damage_body_mild": {
+      "path": "assets/bestiary/the-clogfather/damage-body-v2.png",
+      "source_rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        104.5,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        500
+      ],
+      "registration_status": "Common scale across all stages; row baseline corrected4sourcepx; composed review pending"
+    },
+    "damage_body_moderate": {
+      "path": "assets/bestiary/the-clogfather/damage-body-v2.png",
+      "source_rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        104.5,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        500
+      ],
+      "registration_status": "Common scale across all stages; row baseline corrected4sourcepx; composed review pending"
+    },
+    "damage_body_severe": {
+      "path": "assets/bestiary/the-clogfather/damage-body-v2.png",
+      "source_rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        107.18399999999997,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        496
+      ],
+      "registration_status": "Common scale across all stages; row baseline corrected4sourcepx; composed review pending"
+    },
+    "damage_body_near_death": {
+      "path": "assets/bestiary/the-clogfather/damage-body-v2.png",
+      "source_rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        107.18399999999997,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        496
+      ],
+      "registration_status": "Common scale across all stages; row baseline corrected4sourcepx; composed review pending"
+    },
+    "damage_body_dead": {
+      "path": "assets/bestiary/the-clogfather/damage-body-v2.png",
+      "source_rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        107.18399999999997,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        496
+      ],
+      "registration_status": "Common scale across all stages; row baseline corrected4sourcepx; composed review pending"
+    },
+    "collapse_0": {
+      "path": "assets/bestiary/the-clogfather/damage-body-v2.png",
+      "source_rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        107.18399999999997,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        496
+      ],
+      "registration_status": "Common scale across all stages; row baseline corrected4sourcepx; composed review pending"
+    },
+    "collapse_1": {
+      "path": "assets/bestiary/the-clogfather/collapse-v2.png",
+      "source_rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        104.5,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        500
+      ]
+    },
+    "collapse_2": {
+      "path": "assets/bestiary/the-clogfather/collapse-v2.png",
+      "source_rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        104.5,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        500
+      ]
+    },
+    "collapse_3": {
+      "path": "assets/bestiary/the-clogfather/collapse-v2.png",
+      "source_rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        107.18399999999997,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        496
+      ]
+    },
+    "collapse_4": {
+      "path": "assets/bestiary/the-clogfather/collapse-v2.png",
+      "source_rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        107.18399999999997,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        496
+      ]
+    },
+    "collapse_5": {
+      "path": "assets/bestiary/the-clogfather/collapse-v2.png",
+      "source_rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "destination": [
+        655.376,
+        107.18399999999997,
+        309.248,
+        343.552
+      ],
+      "anchor": [
+        810,
+        440
+      ],
+      "source_anchor": [
+        256,
+        496
+      ]
+    },
+    "acid_warning": {
+      "path": "assets/bestiary/the-clogfather/acid-warning-v2.png",
+      "source_rect": [
+        84,
+        217,
+        2004,
+        280
+      ],
+      "destination": [
+        -32,
+        -12,
+        64,
+        12
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "effect-local"
+    },
+    "weak_high_closed": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        0,
+        500,
+        530,
+        524
+      ],
+      "alpha_bounds": [
+        50,
+        26,
+        496,
+        432
+      ],
+      "registration_status": "Common translated nozzle registration; source composition reviewed",
+      "destination": [
+        678,
+        279,
+        106,
+        104.8
+      ],
+      "anchor": [
+        716,
+        325
+      ]
+    },
+    "weak_high_open": {
+      "path": "assets/bestiary/the-clogfather/modular-parts-v2.png",
+      "source_rect": [
+        530,
+        500,
+        486,
+        524
+      ],
+      "alpha_bounds": [
+        29,
+        26,
+        476,
+        429
+      ],
+      "registration_status": "Common translated nozzle registration; source composition reviewed",
+      "destination": [
+        680,
+        279,
+        97.2,
+        104.8
+      ],
+      "anchor": [
+        716,
+        325
+      ]
+    }
+  },
+  "pending": [
+    "background",
+    "checkpoint composed review",
+    "damage and collapse composed review"
+  ],
+  "visual_motion": "Use continuous small body heave pinned at root, articulated pipe transforms with fixed muzzle event alignment. Weak-point states require smooth shutter transition; do not alternate two poses as idle loop.",
+  "hud": {
+    "frame": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        0,
+        0,
+        2172,
+        310
+      ],
+      "destination": [
+        48,
+        28,
+        864,
+        64
+      ]
+    },
+    "track": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        325,
+        1932,
+        48
+      ],
+      "destination": [
+        146,
+        53,
+        668,
+        20
+      ]
+    },
+    "fill_green": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        424,
+        1932,
+        48
+      ],
+      "destination": [
+        146,
+        53,
+        668,
+        20
+      ]
+    },
+    "fill_yellow": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        522,
+        1932,
+        48
+      ],
+      "destination": [
+        146,
+        53,
+        668,
+        20
+      ]
+    },
+    "fill_red": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        620,
+        1932,
+        48
+      ],
+      "destination": [
+        146,
+        53,
+        668,
+        20
+      ]
+    },
+    "aperture": [
+      146,
+      53,
+      668,
+      20
+    ],
+    "name_baseline_y": 22,
+    "player_status_baseline_y": 104,
+    "draw_order": [
+      "track",
+      "cropped_fill",
+      "frame",
+      "live_labels"
+    ],
+    "status": "Source registered; native-size source composition approved. Live gameplay review pending."
+  },
+  "collapse": {
+    "duration_seconds": 1.2,
+    "loop": false,
+    "frames": [
+      "collapse_0",
+      "collapse_1",
+      "collapse_2",
+      "collapse_3",
+      "collapse_4",
+      "collapse_5"
+    ],
+    "note": "Frame0 reuses near-death body. Crossfade BOTH outgoing and incoming opacity; never draw opaque outgoing silhouette behind shrinking incoming pose. Root remains810,440; no per-frame normalization."
+  },
+  "weak_openings": {
+    "low": {
+      "rect": [
+        626,
+        377,
+        48,
+        42
+      ],
+      "center": [
+        650,
+        398
+      ]
+    },
+    "high": {
+      "rect": [
+        692,
+        304,
+        48,
+        42
+      ],
+      "center": [
+        716,
+        325
+      ]
+    },
+    "order": "low first; alternate each recovery; only active opening vulnerable",
+    "high_rule": "Requires projectile fired while airborne; ordinary jump plus horizontal shot reaches target for both heroes."
+  },
+  "source_review": {
+    "evidence": "previews/prototype86-art/contact.png",
+    "approved": "High opening readable across healthy/mild/moderate/severe/near-death body stages; body/HUD placement",
+    "collapse": "All six source poses composed; slight height rebound and apparent damage discontinuity remain. Animation not visually approved.",
+    "portal_occlusion": "Final remains obscure portal center; Engineering fades remains over0.8seconds during reveal."
+  }
+}

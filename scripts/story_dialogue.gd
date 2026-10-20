@@ -35,17 +35,21 @@ const OPENING: Array[Dictionary] = [
 ]
 
 const COMPLETION_TONY: Array[Dictionary] = [
-	{"who": "tony", "emotion": "neutral", "text": "It’s down. I’m still here.", "radio": false},
-	{"who": "sean", "emotion": "worried", "text": "Are you hurt?", "radio": true},
-	{"who": "tony", "emotion": "happy", "text": "I’ll check when I find a clean bit.", "radio": false},
-	{"who": "sean", "emotion": "neutral", "text": "I’ll get the hose.", "radio": true},
+	{"who": "tony", "emotion": "neutral", "text": "It’s down. There’s something behind it.", "radio": false},
+	{"who": "sean", "emotion": "worried", "text": "Something else with teeth?", "radio": true},
+	{"who": "tony", "emotion": "surprised", "text": "A hole. The room’s blowing into it.", "radio": false},
+	{"who": "sean", "emotion": "worried", "text": "Tony, get away from it!", "radio": true},
+	{"who": "tony", "emotion": "worried", "text": "I’m trying. My boots have other plans.", "radio": false},
+	{"who": "tony", "emotion": "surprised", "text": "Sean! Stay on the radio!", "radio": false},
 ]
 
 const COMPLETION_SEAN: Array[Dictionary] = [
-	{"who": "sean", "emotion": "surprised", "text": "Tony? I think I got it.", "radio": false},
-	{"who": "tony", "emotion": "worried", "text": "Are you still in one piece?", "radio": true},
-	{"who": "sean", "emotion": "neutral", "text": "Yes. None of it’s clean.", "radio": false},
-	{"who": "tony", "emotion": "happy", "text": "We can work with that. You did well, buddy.", "radio": true},
+	{"who": "sean", "emotion": "surprised", "text": "Tony, I got it. There’s a hole behind it.", "radio": false},
+	{"who": "tony", "emotion": "neutral", "text": "Leave it alone, buddy. Come back out.", "radio": true},
+	{"who": "sean", "emotion": "worried", "text": "I’m trying. Everything’s sliding the wrong way.", "radio": false},
+	{"who": "tony", "emotion": "worried", "text": "Grab something bolted down!", "radio": true},
+	{"who": "sean", "emotion": "worried", "text": "The bolts are going past me!", "radio": false},
+	{"who": "tony", "emotion": "worried", "text": "Sean, keep talking. I’m right here.", "radio": true},
 ]
 
 static func completion(employee_id: String) -> Array[Dictionary]:

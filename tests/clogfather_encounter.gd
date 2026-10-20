@@ -29,7 +29,7 @@ func run_checks() -> void:
 			assert(boss.hazards.size() == 2)
 			advance_to(boss,"recovery",HERO,hz)
 			assert(boss.hazards.is_empty() and boss.hurt_rects().is_empty())
-			assert(boss.weak_point_rect() == Rect2(626,377,48,42))
+			assert(boss.weak_point_rect() == Rect2(626,377,48,42) and boss.recovery_index == 1)
 			var saved_hp: int = boss.hp
 			assert(boss.hit(damage,"one-shot") == damage)
 			assert(boss.hit(damage,"one-shot") == 0 and boss.hp == saved_hp-damage)
@@ -42,7 +42,7 @@ func run_checks() -> void:
 			# Death bypasses every queued attack and emits only death, then one completion.
 			advance_to(boss,"recovery",HERO,hz)
 			boss.drain_events()
-			boss.hit(10000,"lethal")
+			boss.hit(10000,"lethal",true)
 			assert(boss.hp == 0 and boss.state == "collapse")
 			assert(boss.hazards.is_empty() and boss.warnings.is_empty() and boss.hurt_rects().is_empty())
 			assert(boss.drain_events() == ["death_started"])
@@ -111,7 +111,7 @@ func run_checks() -> void:
 			if boss.state == "acid_warning": saw_acid = true
 			cooldown = maxf(0,cooldown-1.0/120)
 			if boss.damageable() and cooldown <= 0:
-				assert(boss.hit(damage,"shot-%d" % hits) > 0)
+				assert(boss.hit(damage,"shot-%d" % hits,true) > 0)
 				hits += 1
 				cooldown = 0.16 if damage == 12 else 0.24
 			if boss.hp == 0: break

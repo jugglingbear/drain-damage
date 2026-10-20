@@ -4,6 +4,8 @@ const SkitterlingRoom = preload("res://scripts/skitterling_room.gd")
 var skitterling := SkitterlingRoom.new()
 const ClogfatherRoom = preload("res://scripts/clogfather_room.gd")
 var clogfather := ClogfatherRoom.new()
+const FirstLevelEnding = preload("res://scripts/first_level_ending.gd")
+var ending := FirstLevelEnding.new()
 const ClogfatherRoute = preload("res://scripts/clogfather_route.gd")
 const SwarmSchedule = preload("res://scripts/swarm_schedule.gd")
 var swarm_schedule := SwarmSchedule.new()
@@ -36,6 +38,7 @@ func _ready() -> void:
 	super._ready()
 	skitterling.attach(self)
 	clogfather.attach(self)
+	assert(ending.prepare(),"First-level portal art preparation failed")
 	if FileAccess.file_exists(BACKGROUND_MANIFEST):
 		var scenery: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(BACKGROUND_MANIFEST))
 		background_panels = scenery.panels
@@ -62,6 +65,7 @@ func reset_observation() -> void:
 	skitterling.reset(run_seed)
 	if respawn_origin >= ClogfatherRoom.CHECKPOINT: skitterling.restore_completed()
 	clogfather.reset(run_seed)
+	ending.reset()
 	boss_hud.end_encounter()
 	opening_passed = respawn_origin >= OPENING_END
 	corpses.clear()
@@ -224,7 +228,7 @@ func issue_event() -> void:
 		return
 
 func actor_world_limit() -> float:
-	return ClogfatherRoom.CONTAINMENT if difficulty == "normal" or player.x >= 9500 else super.actor_world_limit()
+	return ClogfatherRoom.CONTAINMENT
 
 func route_home(event: Dictionary) -> Vector2:
 	if event.get("id", "").ends_with("-extra") and event.role == "runner": return density_runner_home()
@@ -308,6 +312,9 @@ func _physics_process(delta: float) -> void:
 		step_death(delta)
 		return
 	if dialogue.active or dialogue.release_guard > 0 or restart_guard_device >= 0: return
+	if ending.active():
+		ending.step(self,delta)
+		return
 	var count := maxi(1,ceili(delta*120))
 	for index in range(count):
 		var dt := delta/count
@@ -345,7 +352,7 @@ func _physics_process(delta: float) -> void:
 		if player.x >= Level.CHECKPOINTS[checkpoint] and checkpoint > checkpoint_index:
 			activate_checkpoint(checkpoint)
 			if dispenser.active: return
-	if player.x >= ClogfatherRoom.FINISH and clogfather.encounter.exit_open: complete_job()
+	if clogfather.encounter.exit_open: ending.begin(self)
 	for index in range(particles.size()-1,-1,-1):
 		particles[index].pos += particles[index].vel*delta
 		particles[index].vel.y += 350*delta
@@ -398,7 +405,11 @@ func step_encounters(delta: float) -> void:
 				for checkpoint in Level.CHECKPOINTS:
 					if absf(x+19-checkpoint) < 200+radius: blocked = true
 				for actor in actors:
-					if actor.hp > 0 and absf(actor.feet.x-x-19) < radius*2+16: blocked = true
+					if actor.hp <= 0: continue
+					var body: Rect2 = actor_rect(actor)
+					# A high flyer must not reserve the floor entrance beneath it.
+					if body.end.y > 388 and body.position.y < 456 \
+						and absf(actor.feet.x-x-19) < radius*2+16: blocked = true
 				if blocked: continue
 				var enemy := Data.spawn("toilet",Vector2(x,404))
 				enemy.entering = true
@@ -559,7 +570,9 @@ func step_trial_shots(delta: float) -> void:
 			if clog_target:
 				var point := start.lerp(end,nearest)
 				if clog_weak:
-					clogfather.damage(self,int(shot.damage),str(shot.get("trial_id","shot-%d" % shot_serial)))
+					var accepted := clogfather.damage(self,int(shot.damage),
+						str(shot.get("trial_id","shot-%d" % shot_serial)),bool(shot.get("fired_airborne",false)))
+					if accepted == 0: clogfather.deflect(start.lerp(end,nearest))
 				else: clogfather.deflect(point)
 			elif boss_target: skitterling.damage(self,int(shot.damage))
 			elif swarm_target >= 0: swarms.damage(swarm_target,shot.damage)
@@ -598,7 +611,6 @@ func draw_environment() -> void:
 	for x in range(0,int(WORLD_WIDTH),480):
 		draw_asset(part("floor-fascia"),Rect2(x,440,480,100))
 	dispenser.draw_machines(self)
-	if clogfather.encounter.exit_open: label_at("EXIT →",Vector2(ClogfatherRoom.FINISH,315),16,MINT)
 
 func _draw() -> void:
 	if trial_data.is_empty(): return
@@ -616,8 +628,12 @@ func _draw() -> void:
 				Vector2(clampf(actor.feet.x,camera_x+35,camera_x+925),minf(actor.feet.y,440)))
 		draw_actor(actor)
 	skitterling.draw_actor(self)
+	ending.draw_portal(self)
 	clogfather.draw(self)
-	if not dispenser.hides_hero() and (life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
+	if ending.state == "pull":
+		world_art.hero_aim_art.draw(self,ending.hero_scale())
+	elif ending.state != "complete" and not dispenser.hides_hero() \
+		and (life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
 	for shot in shots:
 		# Reuse the existing original projectile presentation.
 		draw_set_transform(shot.pos-Vector2(floorf(camera_x),0),shot.dir.angle())
@@ -628,7 +644,7 @@ func _draw() -> void:
 			box(-16,-1,16,3,Color("ad7546"))
 			box(0,-5,5,11,Color("e57356"))
 		draw_set_transform(Vector2(-floorf(camera_x),0))
-	for shot in hostile_shots: effect("hostile-projectile",shot.pos)
+	for shot in hostile_shots: draw_hostile_shot(shot)
 	for particle in particles:
 		box(particle.pos.x,particle.pos.y,4,4,particle.color)
 	skitterling.draw_front(self)
@@ -642,8 +658,21 @@ func _draw() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
+	if ending.state == "dialogue" and not paused: ending.clock += delta
 	skitterling.process_audio(self,delta)
 	clogfather.process_audio(self,delta)
+
+func draw_pause_panel() -> void:
+	if not won or ending.state != "complete":
+		super.draw_pause_panel()
+		return
+	var heading := "FIRST LEVEL COMPLETE"
+	var width := ThemeDB.fallback_font.get_string_size(heading,HORIZONTAL_ALIGNMENT_LEFT,-1,32).x
+	label_at(heading,Vector2((960-width)/2,200),32,Color("fff2cf"))
+	var message := "Level two is not yet playable."
+	width = ThemeDB.fallback_font.get_string_size(message,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x
+	label_at(message,Vector2((960-width)/2,229),18,Color("fff2cf"))
+	draw_pause_plates()
 
 func hurt_player() -> void:
 	super.hurt_player()

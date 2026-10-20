@@ -21,6 +21,8 @@ var warnings: Array[Rect2] = []
 var safe_corridor := Rect2()
 var shell := Rect2(700,120,255,320)
 var weak_point := Rect2(626,377,48,42)
+var high_weak_point := Rect2(692,304,48,42)
+var recovery_index := 0
 var nozzle := Vector2(675,255)
 var floor_span := Rect2(0,FLOOR_Y,700,0)
 var _hero := Rect2(96,394,26,46)
@@ -48,6 +50,7 @@ func reset(seed_value: int = 1) -> void:
 	max_hp = int(Data.monster("clogfather").health.max_hp)
 	hp = max_hp
 	phase = 1
+	recovery_index = 0
 	state = "idle"
 	elapsed = 0
 	active = false
@@ -80,12 +83,12 @@ func body_rect() -> Rect2:
 	return shell if active and hp > 0 else Rect2()
 
 func weak_point_rect() -> Rect2:
-	return weak_point if damageable() else Rect2()
+	return (high_weak_point if recovery_index % 2 == 0 else weak_point) if damageable() else Rect2()
 
-func hit(amount: int, attack_id: String) -> int:
+func hit(amount: int, attack_id: String, airborne_attack := false) -> int:
 	if not active or _frozen or hp <= 0 or amount <= 0 or attack_id.is_empty() or _hits.has(attack_id): return 0
 	_hits[attack_id] = true
-	if not damageable():
+	if not damageable() or (recovery_index % 2 == 0 and not airborne_attack):
 		_events.append("closed_shell_hit")
 		return 0
 	var accepted := mini(amount,hp)
@@ -115,7 +118,8 @@ func snapshot() -> Dictionary:
 		"active":active,"exit_open":exit_open,"damageable":damageable(),"body_rect":body_rect(),
 		"weak_point_rect":weak_point_rect(),"hazards":hazards.duplicate(true),
 		"warnings":warnings.duplicate(),"safe_corridor":safe_corridor,"nozzle":nozzle,
-		"aim":_aim,"closing":state == "recovery" and elapsed >= 4.25}
+		"weak_point_level":"high" if recovery_index > 0 and recovery_index % 2 == 0 else "low",
+		"recovery_index":recovery_index,"aim":_aim,"closing":state == "recovery" and elapsed >= 4.25}
 
 func step(delta: float, hero_rect: Rect2, frozen := false) -> void:
 	_frozen = frozen
@@ -136,6 +140,7 @@ func _enter(next_state: String) -> void:
 		warnings.clear()
 		safe_corridor = Rect2()
 	if state == "recovery":
+		recovery_index += 1
 		_closing_warned = false
 		_events.append("weak_point_open")
 

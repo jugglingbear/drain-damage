@@ -144,10 +144,10 @@ def validate_art_regions(value: Any) -> None:
 
 def validate_rooted_boss() -> None:
     """Reject incomplete boss attack, damage, collapse, and HUD artwork before export."""
-    manifest = read("assets/bestiary/the-clogfather/runtime-manifest-v2.json")
+    manifest = read("assets/bestiary/the-clogfather/runtime-manifest-v3.json")
     required = {"body", "sludge_relaxed", "sludge_swell", "weak_closed", "weak_open", "drool",
                 "sludge_projectile_a", "sludge_projectile_b", "acid_warning", "acid_ceiling_warning",
-                "acid_drop", "acid_puddle", "weak_hit", "deflect"}
+                "acid_drop", "acid_puddle", "weak_hit", "deflect", "weak_high_closed", "weak_high_open"}
     required.update(f"damage_body_{stage}" for stage in ("healthy", "mild", "moderate", "severe", "near_death"))
     required.update(f"collapse_{index}" for index in range(6))
     require(required <= manifest.get("frames", {}).keys(), "Missing rooted boss attack or animation artwork")
@@ -217,6 +217,8 @@ def opening_trial_data(weapons: dict[str, Any]) -> dict[str, Any]:
     result["environment"]["parts"] = [replacements.get(part["id"], part)
                                        for part in result["environment"]["parts"]]
     validate_art_regions(result)
+    validate_art_regions(read("assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"))
+    validate_art_regions(read("assets/world/first-call/portal-manifest-v1.json"))
     return result
 
 

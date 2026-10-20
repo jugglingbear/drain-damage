@@ -16,6 +16,7 @@ func run_checks() -> void:
 			for home_x in [880.0, 1780.0, 2680.0]:
 				for initial_facing in [-1.0, 1.0]:
 					game.actors.clear()
+					game.invulnerable = 1000
 					game.camera_x = home_x - 400
 					game.player = Vector2(home_x + 300, 394)
 					game.create_actor({"id":"fixture", "role":"floor_emerger", "warning_seconds":0.8},
@@ -30,15 +31,15 @@ func run_checks() -> void:
 						var old_facing: float = actor.facing
 						game.step_trial_actors(1.0 / hz)
 						assert(is_equal_approx(actor.feet.y, 440), "Gratecrawler must not jump onto scenery")
-						assert(absf(actor.feet.x - home_x) <= 70 + 90.0 / hz + 0.01)
+						assert(absf(actor.feet.x - home_x) <= 70 + 45.0 / hz + 0.01)
 						for solid: Rect2 in game.trial_level.plinths:
 							assert(not game.actor_rect(actor).grow(-0.01).intersects(solid))
 						if tick >= hz * 4:
 							min_x = minf(min_x, actor.feet.x)
 							max_x = maxf(max_x, actor.feet.x)
 							if actor.facing != old_facing: flips += 1
-					assert(max_x - min_x > 100, "Patrol must cross its accessible interval, not jitter")
-					assert(flips >= 2 and flips <= 5, "Turn only at boundaries or blocking scenery")
+					assert(max_x - min_x > 90, "Patrol must cross its accessible interval, not jitter")
+					assert(flips >= 1 and flips <= 3, "Turn only at boundaries or blocking scenery")
 			check_emergence(game, hz, false)
 			check_emergence(game, hz, true)
 		game.queue_free()

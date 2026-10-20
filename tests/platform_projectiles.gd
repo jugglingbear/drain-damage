@@ -19,6 +19,11 @@ func run_checks() -> void:
 			game.swarms.actors.clear()
 			game.player = Vector2(4000,394)
 			var center := Vector2(2000,200)
+			game.trial_state.advance(10)
+			var shooter_id := "opening-05"
+			assert(game.trial_state.reserve(shooter_id))
+			game.trial_state.advance(1)
+			assert(game.trial_state.activate(shooter_id))
 			for solid in [false,true]:
 				game.trial_level.plinths.clear()
 				game.trial_level.decks.clear()
@@ -43,13 +48,16 @@ func run_checks() -> void:
 					game.step_trial_shots(2.0)
 					assert(game.hostile_shots.is_empty() == solid,"Hostile swept classification failed")
 					game.hostile_shots.clear()
-				var shooter := {"event_id":"fixture","feet":center-Vector2(22,80),
+				game.player = center+Vector2(-13,77)
+				var shooter := {"event_id":shooter_id,"hp":36.0,"visible_age":1.0,"feet":center-Vector2(22,80),
 					"target":center+Vector2(0,100),"facing":1.0,"winding":true,
-					"shot_clock":0.65,"fire_age":-1.0,"age":1.0}
+					"shot_clock":2.5,"fire_age":-1.0,"age":1.0}
 				game.step_shooter(shooter,0,true)
 				assert(game.hostile_shots.is_empty() == solid,"Shooter sightline must match projectile geometry")
 				for shot in game.hostile_shots: game.trial_state.remove_bullet(shot.id)
 				game.hostile_shots.clear()
+				game.trial_state.end_pattern("fire-"+shooter_id)
+				game.player = Vector2(4000,394)
 				var body: Dictionary = game.trial_level.move_body(center-Vector2(13,100),
 					Vector2(0,900),Vector2(26,46),0.2)
 				assert(body.grounded and is_equal_approx(body.pos.y+46,obstacle.position.y))

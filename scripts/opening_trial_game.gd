@@ -8,6 +8,7 @@ var trial_data: Dictionary
 var actors: Array[Dictionary] = []
 var hostile_shots: Array[Dictionary] = []
 var trial_textures: Dictionary = {}
+var muck_art: Dictionary = {}
 var shot_serial := 0
 var result_shown := false
 var retry_after: Dictionary = {}
@@ -25,6 +26,8 @@ func _ready() -> void:
 	trial_state.configure(trial_data.layout,trial_data.balance)
 	load_trial_textures(trial_data.environment)
 	load_trial_textures(trial_data.role_art)
+	muck_art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"))
+	load_trial_textures(muck_art)
 	super._ready()
 
 func load_trial_textures(value: Variant) -> void:
@@ -111,7 +114,9 @@ func _physics_process(delta: float) -> void:
 		if life_state != "alive": break
 
 func role_scale(role: String) -> float:
-	return float(trial_data.balance.roles.flyer.get("render_scale",1.0)) if role == "aggressive_flyer" else 1.0
+	if role in ["aggressive_flyer","floor_emerger"]:
+		return float(trial_data.balance.roles[BALANCE_KEYS[role]].get("render_scale",1.0))
+	return 1.0
 
 func event_size(role: String) -> Rect2:
 	if role in ["runner","rear_runner"]: return Rect2(-19,-36,38,36)
@@ -237,6 +242,7 @@ func move_ground_actor(actor: Dictionary, dx: float, delta: float) -> void:
 		actor.facing = -signf(dx)
 
 func step_trial_actors(delta: float) -> void:
+	if paused or life_state != "alive" or dispenser.active or dialogue.active or delta <= 0: return
 	for actor in actors:
 		actor.age += delta
 		actor.clock += delta
@@ -272,12 +278,13 @@ func step_trial_actors(delta: float) -> void:
 					actor.facing = 1.0
 				elif actor.feet.x >= actor.home.x+70 and actor.facing > 0:
 					actor.facing = -1.0
-			var dx: float = actor.facing*90
+			var dx: float = actor.facing*float(trial_data.balance.roles.emerger.ground_speed_pixels_per_second)
 			if actor.role in ["runner","rear_runner"]:
 				var pursuit: Dictionary = Data.monster("toilet").pursuit
 				dx = pursuit_velocity(actor.runner,player.x-actor.feet.x,pursuit,delta)
 				actor.facing = signf(dx) if dx != 0 else actor.facing
 			move_ground_actor(actor,dx,delta)
+			if actor.role == "floor_emerger": step_muck_thrower(actor,delta,visible)
 		var pattern := "contact-"+str(actor.event_id)
 		# Hold a contact slot for the entire visible threat, not just the collision tick.
 		if actor.role != "perched_shooter":
@@ -297,11 +304,18 @@ func step_trial_actors(delta: float) -> void:
 func move_flyer_clear(actor: Dictionary, destination: Vector2) -> bool:
 	# Sweep the whole scaled body so a committed dive cannot tunnel through a deck.
 	var shape := event_size("aggressive_flyer")
-	destination.x = clampf(destination.x,-shape.position.x,WORLD_WIDTH-shape.end.x)
+	destination.x = clampf(destination.x,-shape.position.x,actor_world_limit()-shape.end.x)
+	destination.y = clampf(destination.y,-shape.position.y+1,440-shape.end.y-1)
 	var closest := 1.0
 	for solid in actor_solids():
 		var expanded := Rect2(solid.position-shape.end,solid.size+shape.size)
-		var hit := segment_hit(actor.feet,destination,expanded)
+		var start: Vector2 = actor.feet
+		# Boundary contact permits sliding or moving away, without shrinking the solid into a penetration.
+		if (start.x <= expanded.position.x+0.00001 and destination.x <= start.x) \
+				or (start.x >= expanded.end.x-0.00001 and destination.x >= start.x) \
+				or (start.y <= expanded.position.y+0.00001 and destination.y <= start.y) \
+				or (start.y >= expanded.end.y-0.00001 and destination.y >= start.y): continue
+		var hit := segment_hit(start,destination,expanded)
 		if hit >= 0: closest = minf(closest,maxf(0,hit-0.001))
 	actor.feet = actor.feet.lerp(destination,closest)
 	return closest >= 1.0
@@ -338,9 +352,11 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 				face_flyer_toward_hero(actor)
 				actor.attack_direction = actor.facing
 			else:
-				var previous: Vector2 = actor.feet
-				move_flyer_clear(actor,actor.feet+Vector2(actor.facing*float(stats.speed_pixels_per_second)*delta,0))
-				if actor.feet.is_equal_approx(previous): face_flyer_toward_hero(actor)
+				face_flyer_toward_hero(actor)
+				var speed := float(stats.get("pursuit_speed_pixels_per_second",300.0))
+				if not move_flyer_clear(actor,actor.feet+Vector2(actor.facing*speed*delta,0)):
+					if not move_flyer_clear(actor,actor.feet+Vector2(0,-180*delta)):
+						move_flyer_clear(actor,actor.feet+Vector2(0,180*delta))
 		"windup":
 			if not visible:
 				actor.attack_state = "top_pause"
@@ -354,6 +370,7 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 			if not clear or t >= 1:
 				actor.attack_state = "recover"
 				actor.attack_clock = 0.0
+				actor.erase("recovery_escape")
 				actor.recovery_origin = actor.feet
 				var forward_distance := maxf(absf(actor.feet.x-actor.attack_origin.x),
 					float(stats.speed_pixels_per_second)*float(stats.recovery_seconds))
@@ -364,8 +381,13 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 			if not clear:
 				# A blocked diagonal climbs vertically at the recovery rate; never teleport through scenery.
 				var climb_speed := maxf(100.0,absf(actor.recovery_origin.y-actor.attack_origin.y)/float(stats.recovery_seconds))
-				move_flyer_clear(actor,Vector2(actor.feet.x,move_toward(actor.feet.y,actor.attack_origin.y,climb_speed*delta)))
-			if t >= 1 and is_equal_approx(actor.feet.y,actor.attack_origin.y):
+				var climbed := move_flyer_clear(actor,Vector2(actor.feet.x,move_toward(actor.feet.y,actor.attack_origin.y,climb_speed*delta)))
+				if not climbed:
+					if not actor.has("recovery_escape"): actor.recovery_escape = actor.facing
+					if not move_flyer_clear(actor,actor.feet+Vector2(actor.recovery_escape*150*delta,0)):
+						actor.recovery_escape *= -1
+						move_flyer_clear(actor,actor.feet+Vector2(actor.recovery_escape*150*delta,0))
+			if (t >= 1 and is_equal_approx(actor.feet.y,actor.attack_origin.y)) or actor.attack_clock >= 2.5:
 				actor.attack_state = "top_pause"
 				actor.attack_clock = 0.0
 		"top_pause":
@@ -375,34 +397,82 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 				actor.attack_clock = 0.0
 
 func step_shooter(actor: Dictionary, delta: float, visible: bool) -> void:
+	if paused or life_state != "alive" or dispenser.active or dialogue.active or actor.hp <= 0: return
+	var stats: Dictionary = trial_data.balance.roles.shooter
 	actor.shot_clock += delta
 	var pattern := "fire-"+str(actor.event_id)
 	if not visible:
 		actor.winding = false
+		actor.visible_age = 0
 		actor.shot_clock = 0
 		trial_state.end_pattern(pattern)
 		return
-	if not actor.winding:
-		if actor.fire_age >= 0 and actor.age-actor.fire_age >= 0.35:
+	if actor.fire_age >= 0 and actor.age-actor.fire_age >= 0.35: trial_state.end_pattern(pattern)
+	if actor.visible_age < float(stats.first_shot_visible_delay_seconds): return
+	if actor.fire_age >= 0 and actor.shot_clock+0.000001 < float(stats.shot_interval_seconds): return
+	if not trial_state.begin_pattern(pattern,actor.event_id): return
+	actor.target = player+PLAYER_SIZE*0.5
+	actor.facing = -1.0 if actor.target.x < actor.feet.x else 1.0
+	var muzzle: Vector2 = actor.feet+Vector2(actor.facing*22,-25)
+	for solid in player_shot_solids():
+		if segment_hit(muzzle,actor.target,solid) >= 0:
 			trial_state.end_pattern(pattern)
-		if actor.shot_clock < 0.8: return
-		if not trial_state.begin_pattern(pattern,actor.event_id): return
-		actor.target = player+PLAYER_SIZE*0.5
-		actor.facing = signf(actor.target.x-actor.feet.x)
-		actor.winding = true
+			return
+	var token := "bullet-%s-%s" % [actor.event_id,actor.age]
+	if not trial_state.add_bullet(token):
+		trial_state.end_pattern(pattern)
+		return
+	hostile_shots.append({"id":token,"pos":muzzle,"dir":(actor.target-muzzle).normalized(),"age":0.0})
+	actor.winding = false
+	actor.shot_clock = 0
+	actor.fire_age = actor.age
+
+func step_muck_thrower(actor: Dictionary, delta: float, visible: bool) -> void:
+	var stats: Dictionary = trial_data.balance.roles.emerger
+	if not visible:
+		actor.winding = false
 		actor.shot_clock = 0
 		return
-	if actor.shot_clock < 0.65: return
-	var muzzle: Vector2 = actor.feet+Vector2(actor.facing*22,-25)
+	actor.shot_clock += delta
+	if not actor.winding:
+		if actor.shot_clock < (0.3 if actor.fire_age < 0 else float(stats.muck_interval_seconds)-float(stats.muck_warning_seconds)): return
+		if not actor.contact_live:
+			if not trial_state.begin_pattern("contact-"+str(actor.event_id),actor.event_id): return
+			actor.contact_live = true
+		actor.winding = true
+		actor.muck_tell = 0.0
+	actor.muck_tell += delta
+	if actor.muck_tell < float(stats.muck_warning_seconds): return
+	var target := player+PLAYER_SIZE*0.5
+	var facing := -1.0 if target.x < actor.feet.x else 1.0
+	var origin: Vector2 = actor.feet+Vector2(facing*26,-60)
+	var flight := float(stats.muck_flight_seconds)
+	var gravity := float(stats.muck_gravity)
+	var velocity := Vector2((target.x-origin.x)/flight,(target.y-origin.y)/flight-gravity*flight*0.5)
 	var clear := true
-	for solid in player_shot_solids():
-		if segment_hit(muzzle,actor.target,solid) >= 0: clear = false
-	var token := "bullet-%s-%s" % [actor.event_id,actor.age]
+	var previous := origin
+	for index in range(1,17):
+		var time := flight*index/16.0
+		var point := origin+velocity*time+Vector2(0,gravity*time*time*0.5)
+		for solid in player_shot_solids():
+			if segment_hit(previous,point,solid.grow(12)) >= 0: clear = false
+		previous = point
+	var token := "muck-%s-%s" % [actor.event_id,actor.age]
 	if clear and trial_state.add_bullet(token):
-		hostile_shots.append({"id":token,"pos":muzzle,"dir":(actor.target-muzzle).normalized(),"age":0.0})
+		hostile_shots.append({"id":token,"kind":"muck","pos":origin,"dir":velocity.normalized(),
+			"velocity":velocity,"gravity":gravity,"radius":12.0,"age":0.0,"target":target})
 	actor.winding = false
-	actor.shot_clock = -0.35
+	actor.shot_clock = 0
 	actor.fire_age = actor.age
+
+func draw_hostile_shot(shot: Dictionary) -> void:
+	if shot.get("kind", "") != "muck":
+		effect("hostile-projectile",shot.pos)
+		return
+	var frame: Dictionary = muck_art.frames[int(shot.age*12)%4]
+	var destination := region(frame.destination)
+	destination.position += shot.pos
+	draw_asset(frame,destination)
 
 func step_trial_shots(delta: float) -> void:
 	for index in range(shots.size()-1,-1,-1):
@@ -430,20 +500,32 @@ func step_trial_shots(delta: float) -> void:
 				trial_state.record_damage(minf(actor.hp,shot.damage),false)
 				damage_trial_actor(actor,shot.damage)
 			shots.remove_at(index)
-	for index in range(hostile_shots.size()-1,-1,-1):
-		var shot: Dictionary = hostile_shots[index]
-		var end: Vector2 = shot.pos+shot.dir*150*delta
-		var fraction := segment_hit(shot.pos,end,Rect2(player,PLAYER_SIZE).grow(4))
-		var wall := 2.0
-		for solid in player_shot_solids():
-			var hit := segment_hit(shot.pos,end,solid.grow(4))
-			if hit >= 0: wall = minf(wall,hit)
-		shot.age += delta
-		if fraction >= 0 and fraction < wall: hurt_player()
-		if fraction >= 0 or wall <= 1 or shot.age > 3.5:
-			trial_state.remove_bullet(shot.id)
-			hostile_shots.remove_at(index)
-		else: shot.pos = end
+	step_hostile_projectiles(delta)
+
+func step_hostile_projectiles(delta: float) -> void:
+	if paused or life_state != "alive" or dispenser.active or dialogue.active or delta <= 0: return
+	var remaining := delta
+	while remaining > 0.000001 and life_state == "alive":
+		var dt := minf(remaining,1.0/120)
+		remaining -= dt
+		for index in range(hostile_shots.size()-1,-1,-1):
+			var shot: Dictionary = hostile_shots[index]
+			var radius := float(shot.get("radius",4.0))
+			var end: Vector2 = shot.pos+shot.dir*150*dt
+			if shot.get("kind", "") == "muck":
+				end = shot.pos+shot.velocity*dt+Vector2(0,shot.gravity*dt*dt*0.5)
+				shot.velocity.y += shot.gravity*dt
+			var fraction := segment_hit(shot.pos,end,Rect2(player,PLAYER_SIZE).grow(radius))
+			var wall := 2.0
+			for solid in player_shot_solids():
+				var hit := segment_hit(shot.pos,end,solid.grow(radius))
+				if hit >= 0: wall = minf(wall,hit)
+			shot.age += dt
+			if fraction >= 0 and fraction < wall: hurt_player()
+			if fraction >= 0 or wall <= 1 or shot.age > 3.5:
+				trial_state.remove_bullet(shot.id)
+				hostile_shots.remove_at(index)
+			else: shot.pos = end
 
 func show_results() -> void:
 	result_shown = true
@@ -575,7 +657,7 @@ func _draw() -> void:
 			box(-16,-1,16,3,Color("ad7546"))
 			box(0,-5,5,11,Color("e57356"))
 		draw_set_transform(Vector2(-floorf(camera_x),0))
-	for shot in hostile_shots: effect("hostile-projectile",shot.pos)
+	for shot in hostile_shots: draw_hostile_shot(shot)
 	draw_set_transform(Vector2.ZERO)
 	draw_hud()
 	if paused:

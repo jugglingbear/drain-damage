@@ -7,6 +7,7 @@ func run_checks() -> void:
 	var art = load("res://scripts/clogfather_art.gd").new()
 	assert(art.prepare())
 	for key in ["body","sludge_relaxed","sludge_swell","weak_closed","weak_open","drool",
+		"weak_high_closed","weak_high_open",
 		"sludge_projectile_a","sludge_projectile_b","acid_warning","acid_ceiling_warning",
 		"acid_drop","acid_puddle","weak_hit","deflect"]:
 		assert(art.definition.frames.has(key),"Missing required Clogfather artwork: "+key)

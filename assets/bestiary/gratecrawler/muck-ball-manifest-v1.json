@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "status": "Source artwork and registration inspected; integration and live animation review pending",
+  "dimensions": [
+    1774,
+    887
+  ],
+  "provenance": "assets/bestiary/gratecrawler/muck-ball-prompt-v1.json",
+  "coordinate_space": "Effect-local offsets relative to projectile center or impact contact",
+  "frames": [
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "destination": [
+        -18,
+        -18,
+        36,
+        36
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "destination": [
+        -18,
+        -18,
+        36,
+        36
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        887,
+        0,
+        443,
+        444
+      ],
+      "destination": [
+        -18,
+        -18,
+        36,
+        36
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        1330,
+        0,
+        444,
+        444
+      ],
+      "destination": [
+        -18,
+        -18,
+        36,
+        36
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "destination": [
+        -24,
+        -34,
+        48,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "destination": [
+        -24,
+        -34,
+        48,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        887,
+        444,
+        443,
+        443
+      ],
+      "destination": [
+        -24,
+        -34,
+        48,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/muck-ball-v1.png",
+      "source_rect": [
+        1330,
+        444,
+        444,
+        443
+      ],
+      "destination": [
+        -24,
+        -34,
+        48,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ]
+    }
+  ],
+  "projectile": {
+    "frames": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "fps": 12,
+    "loop": true,
+    "core_radius": 12,
+    "logical_canvas": [
+      24,
+      24
+    ],
+    "logical_anchor": [
+      12,
+      12
+    ],
+    "orientation": "Round orientation-independent; cosmetic rotation allowed"
+  },
+  "impact": {
+    "frames": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "fps": 12,
+    "loop": false
+  },
+  "runtime_contract": {
+    "gravity": 700,
+    "target_locked_at_fire": true,
+    "flight_seconds": 1.0,
+    "launch_relative_to_feet": "facing*26,-60"
+  }
+}

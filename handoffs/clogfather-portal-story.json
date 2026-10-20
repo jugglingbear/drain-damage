@@ -1,0 +1,28 @@
+{
+  "id": "clogfather_portal_departure_v1",
+  "status": "Integrated in Prototype 86; packaged ending and dialogue checks passed, live presentation review pending",
+  "authorization": "Sean direct October20 PM request authorizes first-level portal dialogue/art/necessary departure only. Level2 gameplay remains held.",
+  "canonical_dialogue": "scripts/story_dialogue.gd",
+  "api": "completion(employee_id)",
+  "lines_per_route": 6,
+  "trigger": "Automatically once the 1.2-second Clogfather collapse completes and exit_open becomes true; reveal portal centered at14970, freeze combat and start completion(employee.id). Do not set won yet. No walk-to15150 requirement.",
+  "release": "After dialogue is inactive, awaiting_release is false and release guard is zero, begin the 2.5-second involuntary pull exactly once. Defer while paused; set completion only after departure.",
+  "reset": "Cancel pending ending on death/reset/title; prevent stale callback/duplicate completion; preserve input release guards",
+  "roles": "Selected hero enters; support remains outside and radio-only",
+  "boundary": "After suction/fade show Level two not yet playable; no level2 scene, flush, ride or new nonblocking overlay",
+  "unknowns": [
+    "Portal origin",
+    "BJ knowledge",
+    "Eventual antagonist",
+    "Exact destination"
+  ],
+  "validation_required": [
+    "Both routes and radio flags",
+    "Normal finish and skip reach same suction once",
+    "Pause and held dismissal input cannot advance gameplay accidentally",
+    "Reset/title during dialogue or suction clears pending state",
+    "No ending before terminal boss defeat",
+    "Honest unimplemented-level2 UI after departure"
+  ],
+  "delivery": "handoffs/first-call-integration.json"
+}

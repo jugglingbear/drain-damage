@@ -1,9 +1,10 @@
 extends RefCounted
 ## Registered authored layers share arena coordinates and retain stable attachment points.
-const MANIFEST := "res://assets/bestiary/the-clogfather/runtime-manifest-v2.json"
+const MANIFEST := "res://assets/bestiary/the-clogfather/runtime-manifest-v3.json"
 var definition: Dictionary = {}
 var textures: Dictionary = {}
 var opening := 0.0
+var high_opening := 0.0
 var damage_flash := 0.0
 var deflect_flash := 0.0
 var deflect_position := Vector2(700,300)
@@ -16,11 +17,14 @@ func prepare() -> bool:
 
 func reset() -> void:
 	opening = 0
+	high_opening = 0
 	damage_flash = 0
 	deflect_flash = 0
 
 func step(snapshot: Dictionary, delta: float) -> void:
-	opening = move_toward(opening,1.0 if snapshot.damageable else 0.0,delta/0.25)
+	var high: bool = snapshot.get("weak_point_level","low") == "high"
+	opening = move_toward(opening,1.0 if snapshot.damageable and not high else 0.0,delta/0.25)
+	high_opening = move_toward(high_opening,1.0 if snapshot.damageable and high else 0.0,delta/0.25)
 	damage_flash = maxf(0,damage_flash-delta)
 	deflect_flash = maxf(0,deflect_flash-delta)
 
@@ -47,9 +51,10 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 		var progress := clampf(snapshot.elapsed/1.2,0,1)*5 if snapshot.state == "collapse" else 5.0
 		var current := mini(5,int(progress))
 		var blend := progress-current
-		frame(canvas,"collapse_%d" % current,origin,Vector2.ZERO,Vector2.ONE,0,1-blend)
+		var remains_alpha: float = snapshot.get("remains_alpha",1.0)
+		frame(canvas,"collapse_%d" % current,origin,Vector2.ZERO,Vector2.ONE,0,(1-blend)*remains_alpha)
 		if current < 5:
-			frame(canvas,"collapse_%d" % (current+1),origin,Vector2.ZERO,Vector2.ONE,0,blend)
+			frame(canvas,"collapse_%d" % (current+1),origin,Vector2.ZERO,Vector2.ONE,0,blend*remains_alpha)
 		return
 	var breathing := 0.0 if snapshot.hp <= 0 else sin(clock*2.2)*0.006
 	var fraction: float = float(snapshot.hp)/maxf(1,snapshot.max_hp)
@@ -66,8 +71,12 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 	frame(canvas,"sludge_swell",origin,Vector2.ZERO,Vector2.ONE,0,swelling)
 	frame(canvas,"weak_closed",origin,Vector2.ZERO,Vector2.ONE,0,1-opening)
 	frame(canvas,"weak_open",origin,Vector2.ZERO,Vector2.ONE,0,opening)
+	frame(canvas,"weak_high_closed",origin,Vector2.ZERO,Vector2.ONE,0,1-high_opening)
+	frame(canvas,"weak_high_open",origin,Vector2.ZERO,Vector2.ONE,0,high_opening)
 	frame(canvas,"drool",origin,Vector2(0,sin(clock*2)*1.5),Vector2.ONE,0,opening)
-	if damage_flash > 0: place(canvas,"weak_hit",origin,Vector2(650,398))
+	if damage_flash > 0:
+		var weak: Rect2 = snapshot.weak_point_rect
+		if weak.has_area(): place(canvas,"weak_hit",origin,weak.get_center())
 	if deflect_flash > 0: place(canvas,"deflect",origin,deflect_position)
 	for warning: Rect2 in snapshot.warnings:
 		place(canvas,"acid_warning",origin,Vector2(warning.get_center().x,440))

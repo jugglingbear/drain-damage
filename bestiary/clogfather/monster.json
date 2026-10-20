@@ -5,7 +5,7 @@
   "name": "The Clogfather",
   "creature_type": "Rooted living fatberg boss",
   "description": "A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.",
-  "implementation_status": "Integrated first-level boss in Prototype 85; headless validation passed, live review pending",
+  "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
   "design_status": "Giant fatberg identity approved; detailed anatomy, core appearance and combat tuning proposed",
   "backstory": {
     "status": "draft",
@@ -110,21 +110,22 @@
   },
   "assets": {
     "game_sprite_sheet": "assets/bestiary/the-clogfather/rooted-body-v2.png",
-    "animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
+    "animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
     "parts_sprite_sheet": "assets/bestiary/the-clogfather/modular-parts-v2.png",
     "weak_point_sprite_sheet": "assets/bestiary/the-clogfather/modular-parts-v2.png",
     "damage_sprite_sheet": "assets/bestiary/the-clogfather/damage-body-v2.png",
-    "damage_animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
+    "damage_animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
     "marketing_portrait": "bestiary/clogfather/marketing-v1.png",
     "prompts": "bestiary/clogfather/art-prompts-v1.json",
     "catalog": "assets/bestiary/catalog.json",
     "production_prompts": "assets/bestiary/the-clogfather/production-prompts-v2.json",
     "hazard_sprite_sheet": "assets/bestiary/the-clogfather/hazard-effects-v2.png",
     "collapse_sprite_sheet": "assets/bestiary/the-clogfather/collapse-v2.png",
-    "health_bar": "assets/bestiary/the-clogfather/health-bar-v1.png"
+    "health_bar": "assets/bestiary/the-clogfather/health-bar-v1.png",
+    "portal_animation_spec": "assets/world/first-call/portal-manifest-v1.json"
   },
   "combat_design": "bestiary/clogfather/combat-design.json",
-  "damage_art_status": "Registered damage stages and six-frame collapse integrated; source sheets and crop bounds inspected, full composed-stage and live motion review pending",
+  "damage_art_status": "Five live damage-stage source compositions reviewed; collapse poses inspected but height/damage continuity and live animation remain unapproved.",
   "portal": {
     "status": "Proposed post-defeat story beat",
     "art_spec": "assets/world/portal/animation-v1.json",
@@ -162,5 +163,37 @@
       "loop": false
     }
   },
-  "art_production_status": "Body, modular pipes, weak point, sludge/acid effects, damage stages, collapse and gross HUD delivered; source body/HUD composition reviewed. Playable integration remains Engineering-owned."
+  "art_production_status": "Body, modular pipes, weak point, sludge/acid effects, damage stages, collapse and gross HUD delivered; source body/HUD composition reviewed. Playable integration remains Engineering-owned.",
+  "prototype86_revision": {
+    "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+    "weak_openings": {
+      "low": {
+        "rect": [
+          626,
+          377,
+          48,
+          42
+        ],
+        "center": [
+          650,
+          398
+        ]
+      },
+      "high": {
+        "rect": [
+          692,
+          304,
+          48,
+          42
+        ],
+        "center": [
+          716,
+          325
+        ]
+      },
+      "order": "low first; alternate each recovery; only active opening vulnerable",
+      "high_rule": "Requires projectile fired while airborne; ordinary jump plus horizontal shot reaches target for both heroes."
+    },
+    "ending": "Defeat reveals impossible opening; chosen hero involuntarily pulled inside while partner remains outside on radio. Level2 gameplay not implemented."
+  }
 }
