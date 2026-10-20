@@ -1,5 +1,6 @@
 extends RefCounted
 ## Art-approved reuse of title background and menu plates; copy is shipped as data.
+const Buttons = preload("res://scripts/plumbing_buttons.gd")
 const BACK := Rect2(54,470,140,42)
 const CONFIRM := Rect2(740,470,180,42)
 const HARD_NORMAL := Color("ff9b78")
@@ -48,12 +49,14 @@ static func draw(host: Node2D) -> void:
 	for index in range(3):
 		var chosen: bool = index == host.difficulty_index
 		var rect := row_rect(index)
-		var source := Rect2(0,362 if chosen else 0,2172,362)
+		var hovered: bool = host.difficulty_hover == index
+		var pressed: bool = rect.has_point(host.get_local_mouse_position()) and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+		var state: Dictionary = Buttons.appearance(chosen,hovered,pressed,false)
+		var source := Rect2(0,362 if state.highlight else 0,2172,362)
 		if index == 2:
 			# Art-approved tint reuse keeps the original plate; functional focus cues stay independent of color.
-			var hovered: bool = host.difficulty_hover == index
 			host.draw_texture_rect_region(host.MENU_ART,art_rect(index),
-				source,hard_tint(chosen,hovered))
+				source,hard_tint(chosen,hovered)*state.tint)
 			var rim: Color = host.GOLD if chosen else HARD_HOVER if hovered else HARD_NORMAL
 			host.draw_rect(rect,rim,false,3 if chosen else 2)
 			if chosen:
@@ -64,11 +67,10 @@ static func draw(host: Node2D) -> void:
 					host.draw_line(corner,corner+Vector2(0,direction.y*12),rim,4)
 				host.caption(">",rect.position+Vector2(19,32),24,host.GOLD)
 		else:
-			host.draw_texture_rect_region(host.MENU_ART,art_rect(index),source)
+			host.draw_texture_rect_region(host.MENU_ART,art_rect(index),source,state.tint)
 			if chosen:
 				host.draw_rect(rect,host.MINT,false,2)
 				host.caption(">",rect.position+Vector2(19,32),24,host.MINT)
-		host.caption(copy.options[index].label,label_origin(index,copy.options[index].label),label_size(index),LABEL_COLOR)
-	for item in [{"rect":BACK,"text":copy.back},{"rect":CONFIRM,"text":copy.confirm}]:
-		host.draw_rect(item.rect,host.MINT,false,2)
-		host.caption(item.text,item.rect.position+Vector2(15,28),20,host.MINT)
+		host.caption(copy.options[index].label,label_origin(index,copy.options[index].label)+Vector2(0,state.offset),label_size(index),LABEL_COLOR)
+	Buttons.compact(host,BACK,copy.back,false,20)
+	Buttons.compact(host,CONFIRM,copy.confirm,false,20,host.selection_guard > 0 or host.confirm_blocked)

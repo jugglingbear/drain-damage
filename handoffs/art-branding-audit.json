@@ -42,5 +42,144 @@
     "rule": "Use full employer spelling where company identity is needed. Do not invent an acronym or replace game-title labels."
   },
   "current_employer_art_action": "No employer-name placeholder or old company lettering found in the inspected current artwork. Use selected working name in future company-specific artwork; preserve exact historical prompts and originals.",
-  "pending_story_selection": "Game-over one-liner candidates await Sean selection; not implemented by Art."
+  "pending_story_selection": "Game-over one-liner candidates await Sean selection; not implemented by Art.",
+  "button_consistency_audit": {
+    "date": "2026-10-20",
+    "status": "Art source review approved; Engineering final packaged checks and rendered-screen acceptance pending.",
+    "ownership": "Art: source review and reuse contract. Engineering: runtime, input states, tests, build and roadmap.",
+    "source": "assets/title/dripping-menu-v1.png",
+    "source_dimensions": [
+      2172,
+      724
+    ],
+    "normal_source": [
+      0,
+      0,
+      2172,
+      362
+    ],
+    "highlight_source": [
+      0,
+      362,
+      2172,
+      362
+    ],
+    "reuse": "Keep full plates for title, difficulty and pause/death primary actions. For compact controls use horizontal three-slice rendering; retain complete end caps and vertically scale all slices equally, stretching only the center horizontally.",
+    "compact_slices": {
+      "left": [
+        0,
+        0,
+        420,
+        362
+      ],
+      "center": [
+        420,
+        0,
+        1332,
+        362
+      ],
+      "right": [
+        1752,
+        0,
+        420,
+        362
+      ],
+      "highlight_y_offset": 362,
+      "note": "At 40 px art height each cap is about46 px wide. Add height only where layout permits; no clipping of sludge. Keep readable label space between caps."
+    },
+    "states": {
+      "normal": "Upper source row; ivory live label with dark shadow.",
+      "hover": "Lower gold source row; same geometry and label position.",
+      "focus": "Lower gold source row plus thin gold outline and directional marker where room permits. Keyboard/controller focus must remain visible independently of mouse hover.",
+      "pressed": "Keep gold source and focus; darken plate modestly and offset label down1 logical pixel. Do not move hit bounds.",
+      "disabled": "Upper source row dimmed with readable muted label; suppress gold highlight and marker even if stale focus/hover remains. Preserve death input-release lock.",
+      "selected_toggle": "Use persistent gold plate plus explicit ON/OFF text or active-tab marker; focus remains independently indicated."
+    },
+    "screens": {
+      "title": "Existing full plates approved; unify transient states.",
+      "employee_selection": "Preserve clipboard/photos and punch-clock prop. Compact plates for Back and navigation arrows; focus/hover outline around actual clock-in button, never a plate over the entire prop.",
+      "difficulty": "Keep equal375x64 art and355x46 hit bounds for all rows; preserve exact Hard label, angry tints, sludge and corner cues from angry-hard-option-art-correction.json. Compact plates for Back/Confirm.",
+      "controls_settings": "Compact plates for Keyboard/Gamepad tabs, Back and two toggles. Reference cards and keyboard/gamepad diagrams are informational and retain existing treatment.",
+      "pause": "Preserve approved510x85 full plates and470x48 hit bounds.",
+      "death_game_over": "Replace legacy flat buttons with full plates. Separate rows sufficiently to avoid drip overlap; preserve BJ portrait, copy and life count. Position changes only as needed for button clearance.",
+      "completion": "Audit actual interaction: current draw_pause_panel draws pause plates after completion even when pause_menu is hidden. Every visible plate must have its matching available action, or omit the noninteractive plate; do not add a new action solely for decoration."
+    },
+    "validation": [
+      "Inspect actual-size labels and end caps for narrow controls.",
+      "Check normal, hover, keyboard/controller focus, pressed, disabled and toggle-selected combinations.",
+      "Check death guard prevents activation and suppresses highlight until unlocked.",
+      "Verify decoration does not enlarge click targets or hide adjacent text.",
+      "Preserve Hard label, equal size and visible sludge.",
+      "Live game review and screenshots require existing playtest permission."
+    ],
+    "new_art_required": false,
+    "implementation_review": {
+      "date": "2026-10-20",
+      "status": "Approved after verifying both disabled-state corrections in source; actual rendered-screen acceptance remains pending.",
+      "reviewed": [
+        "scripts/plumbing_buttons.gd",
+        "scripts/title_screen.gd",
+        "scripts/controls_screen.gd",
+        "scripts/difficulty_screen.gd",
+        "scripts/game.gd",
+        "scripts/opening_trial_game.gd"
+      ],
+      "findings": [
+        "Resolved: title starting state suppresses focus/marker and uses shared disabled label/offset.",
+        "Resolved: death/trial guards release native focus; pause does not focus disabled Resume; guarded completion releases title focus."
+      ],
+      "approved": "Three-slice end caps, compact label layout, death/trial row clearance, Hard treatment, completion single-action display.",
+      "remaining": [
+        "Actual-size rendered-screen review and gameplay screenshots under existing playtest permission."
+      ]
+    },
+    "runtime_delivery": {
+      "build": "Prototype 83 / 0.83.0",
+      "created_at": "2026-10-20T12:19:29.784925-07:00",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-0700",
+      "status": "Export, signing, archive and headless checks passed; live review pending",
+      "app": "builds/Prototype-83/Drain Damage.app",
+      "archive": "builds/history/Prototype-83.zip",
+      "archive_sha256": "5701ad08d5d72f654d01f52b0aaf2c7a35d09dd2536df94103c6644fdbecf5ed",
+      "snapshot": "builds/source-83",
+      "coverage": [
+        "Title menu transient states",
+        "Employee arrows/Back and punch-clock focus",
+        "Difficulty Back/Confirm; same-size angry Hard preserved",
+        "Controls tabs/Back/music and enemy-bar toggles",
+        "Pause and Life Lost/Game Over plates",
+        "Opening trial result plates",
+        "Completion working Return to Main Menu only"
+      ],
+      "checks": {
+        "packaged_suites": 12,
+        "python_tests": 33,
+        "results": "builds/verification-83/final-results.json",
+        "suites": [
+          "controls",
+          "button_consistency",
+          "difficulty_menu",
+          "pause_menu",
+          "death_popup",
+          "menu_audio",
+          "opening_death_and_warmup",
+          "build_version",
+          "alligator_art_motion",
+          "difficulty_respawn",
+          "skitterling_integration",
+          "title_screen"
+        ],
+        "scope": "Input routes, guards, label fit, plate slices, death/retry/reset, difficulty and alligator/integration regressions",
+        "test_correction": "Old title_screen test reproduced failing in82 because it omitted confirm releases and difficulty step; corrected test passes against final83 PCK."
+      },
+      "remaining": [
+        "Actual rendered-screen review",
+        "Live input/visual playtest",
+        "Actual running-build screenshots"
+      ],
+      "capture_gap": "No game window opened. Preserve83 for approved capture alongside earlier builds.",
+      "diagnostics": "Existing user-log, CA/editor-settings and shutdown-resource warnings; final suites have no script/parse/assertion failures."
+    }
+  }
 }

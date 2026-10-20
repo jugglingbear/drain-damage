@@ -1,5 +1,6 @@
 extends Node2D
 
+const Buttons = preload("res://scripts/plumbing_buttons.gd")
 const BuildVersion = preload("res://scripts/build_version.gd")
 const PlaytestLaunch = preload("res://scripts/playtest_launch.gd")
 ## Illustrated Drain Damage opening; gameplay is created only after Start.
@@ -230,8 +231,8 @@ func handle_controls(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var point: Vector2 = event.position
 		for index in range(2):
-			if Rect2(290 + index * 210, 18, 195, 40).has_point(point): controls_page = index
-		if Rect2(827, 18, 110, 40).has_point(point): showing_controls = false
+			if Controls.tab_rect(index).has_point(point): controls_page = index
+		if Controls.BACK_RECT.has_point(point): showing_controls = false
 		if Controls.setting_at_point(point) == "health": show_enemy_health_bars = not show_enemy_health_bars
 		if Controls.setting_at_point(point) == "music": toggle_sound()
 
@@ -347,12 +348,13 @@ func draw_selection() -> void:
 		draw_texture_rect(checked_icon, Rect2(430, trait_y + 2, 14, 14), false, ink)
 		row.draw(get_canvas_item(), Vector2(452, trait_y), ink)
 		trait_y += maxf(22, row.get_size().y + 4)
-	caption("<", Vector2(85, 305), 32, MINT)
-	caption(">", Vector2(850, 305), 32, MINT)
+	for index in range(2):
+		Buttons.compact(self,Rect2(65+index*765,260,65,80),"<" if index == 0 else ">",selected == index,20,false,26)
 	draw_rect(Rect2(0, 510, 960, 30), Color("0d1526"))
-	caption("BACK", Vector2(40, 496), 16, MINT)
+	Buttons.compact(self,Rect2(28,473,100,35),"BACK")
 	# The punch clock stays outside the clipboard and shares its button bounds with input.
 	draw_texture_rect_region(PUNCH_CLOCK, PUNCH_CLOCK_RECT, PUNCH_CLOCK_SOURCE)
+	Buttons.prop_focus(self,CLOCK_IN_RECT,true,selection_guard > 0 or confirm_blocked)
 	var font := ThemeDB.fallback_font
 	var label_size := font.get_string_size("CLOCK IN", HORIZONTAL_ALIGNMENT_LEFT, -1, 18)
 	var baseline := 448.0 + (font.get_ascent(18) - font.get_descent(18)) / 2.0
@@ -450,14 +452,15 @@ func _draw() -> void:
 		draw_selection()
 		return
 	draw_texture_rect(ART, Rect2(0, 0, 960, 540), false)
-	var source_size := Vector2(MENU_ART.get_width(), MENU_ART.get_height() / 2.0)
 	for index in range(MENU_LABELS.size()):
 		var hit_area := menu_rect(index)
 		var chosen := menu_index == index
-		var source := Rect2(Vector2(0, source_size.y if chosen else 0.0), source_size)
 		var decoration := Rect2(hit_area.position - Vector2(10, 8), Vector2(375, 64))
-		draw_texture_rect_region(MENU_ART, decoration, source)
-		if chosen:
+		var hovered := hit_area.has_point(get_local_mouse_position())
+		var pressed := hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+		var state := Buttons.appearance(chosen,hovered,pressed,starting)
+		Buttons.plate(self,decoration,chosen,hovered,pressed,starting)
+		if chosen and not starting:
 			var focus := StyleBoxFlat.new()
 			focus.bg_color = Color.TRANSPARENT
 			focus.border_color = GOLD
@@ -468,7 +471,7 @@ func _draw() -> void:
 			draw_colored_polygon(PackedVector2Array([
 				pointer + Vector2(-4, -6), pointer + Vector2(5, 0), pointer + Vector2(-4, 6)
 			]), MINT)
-		var baseline := hit_area.position + Vector2(52, 32)
+		var baseline := hit_area.position + Vector2(52, 32 + state.offset)
 		caption(MENU_LABELS[index], baseline + Vector2(1, 2), 27, Color("080e15"))
-		caption(MENU_LABELS[index], baseline, 27, Color("fff6d5") if chosen else Color("dce5e7"))
+		caption(MENU_LABELS[index], baseline, 27, state.label)
 	BuildVersion.draw(self)

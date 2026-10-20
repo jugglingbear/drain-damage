@@ -8,6 +8,7 @@ signal title_requested
 const BossHUD = preload("res://scripts/boss_hud.gd")
 var boss_hud := BossHUD.new()
 
+const Buttons = preload("res://scripts/plumbing_buttons.gd")
 const PAUSE_MENU_ART = preload("res://assets/title/dripping-menu-v1.png")
 const FlushfiendNavigation = preload("res://scripts/flushfiend_navigation.gd")
 const Data = preload("res://scripts/combat_data.gd")
@@ -189,16 +190,7 @@ func create_pause_menu() -> void:
 		button.add_theme_color_override("font_shadow_color", Color("080e15"))
 		button.add_theme_constant_override("shadow_offset_x", 1)
 		button.add_theme_constant_override("shadow_offset_y", 2)
-		var style := StyleBoxFlat.new()
-		style.bg_color = Color("243a43")
-		style.set_border_width_all(2)
-		style.border_color = MINT
-		button.add_theme_stylebox_override("normal", style)
-		var focus := style.duplicate() as StyleBoxFlat
-		focus.border_color = GOLD
-		focus.set_border_width_all(3)
-		button.add_theme_stylebox_override("focus", focus)
-		for signal_name in ["focus_entered", "focus_exited", "mouse_entered", "mouse_exited"]:
+		for signal_name in ["focus_entered", "focus_exited", "mouse_entered", "mouse_exited", "button_down", "button_up"]:
 			button.connect(signal_name, queue_redraw)
 		pause_menu.add_child(button)
 		buttons.append(button)
@@ -224,7 +216,7 @@ func set_paused(value: bool) -> void:
 	pause_menu.visible = value
 	if music_director != null: music_director.set_paused(value)
 	if value:
-		resume_button.grab_focus()
+		if not resume_button.disabled: resume_button.grab_focus()
 	else:
 		resume_button.release_focus()
 		title_button.release_focus()
@@ -247,21 +239,27 @@ func resume_or_retry() -> void:
 
 func restore_pause_buttons() -> void:
 	resume_button.text = "Resume"
+	resume_button.show()
+	title_button.show()
 	resume_button.position = Vector2(245, 255)
 	title_button.position = Vector2(245, 345)
-	style_pause_buttons(true)
+	style_pause_buttons()
 	resume_button.disabled = false
 	title_button.disabled = false
 
-func style_pause_buttons(industrial: bool) -> void:
+func style_pause_buttons() -> void:
 	for button: Button in [resume_button, title_button]:
-		button.size = Vector2(470, 48 if industrial else 44)
+		button.size = Vector2(470, 48)
 		var normal := StyleBoxFlat.new()
-		normal.bg_color = Color.TRANSPARENT if industrial else Color("243a43")
+		normal.bg_color = Color.TRANSPARENT
 		normal.border_color = MINT
-		normal.set_border_width_all(0 if industrial else 2)
+		normal.set_border_width_all(0)
 		for state in ["normal", "hover", "pressed", "disabled"]:
 			button.add_theme_stylebox_override(state, normal)
+		var pressed_style := normal.duplicate() as StyleBoxFlat
+		pressed_style.content_margin_top = 2
+		button.add_theme_stylebox_override("pressed", pressed_style)
+		button.add_theme_color_override("font_disabled_color", Buttons.MUTED)
 		var focus := StyleBoxFlat.new()
 		focus.bg_color = Color.TRANSPARENT
 		focus.border_color = GOLD
@@ -269,11 +267,11 @@ func style_pause_buttons(industrial: bool) -> void:
 		button.add_theme_stylebox_override("focus", focus)
 
 func draw_pause_plates() -> void:
-	var source_size := Vector2(PAUSE_MENU_ART.get_width(), PAUSE_MENU_ART.get_height() / 2.0)
 	for button: Button in [resume_button, title_button]:
-		var chosen := button.has_focus() or button.is_hovered()
-		var source := Rect2(Vector2(0, source_size.y if chosen else 0), source_size)
-		draw_texture_rect_region(PAUSE_MENU_ART, Rect2(button.position - Vector2(20,13), Vector2(510,85)), source)
+		if not button.visible: continue
+		var chosen := button.has_focus() and not button.disabled
+		Buttons.plate(self, Rect2(button.position - Vector2(20,13),Vector2(510,85)),
+			chosen,button.is_hovered(),button.is_pressed(),button.disabled)
 		if chosen:
 			var pointer := button.position + Vector2(20,24)
 			draw_colored_polygon(PackedVector2Array([
@@ -326,8 +324,8 @@ func _input(event: InputEvent) -> void:
 	if handle_developer_restart(event):
 		get_viewport().set_input_as_handled()
 		return
-	if not paused: return
-	if death_popup_locked:
+	if not paused and not (won and pause_menu.visible): return
+	if death_popup_locked or (won and (dialogue.awaiting_release or dialogue.release_guard > 0)):
 		get_viewport().set_input_as_handled()
 		return
 	var navigate := false
@@ -341,7 +339,7 @@ func _input(event: InputEvent) -> void:
 			navigate = true
 			pause_stick_latched = true
 	if navigate:
-		if resume_button.has_focus(): title_button.grab_focus()
+		if not resume_button.visible or resume_button.has_focus(): title_button.grab_focus()
 		else: resume_button.grab_focus()
 	if confirm:
 		if title_button.has_focus(): request_title()
@@ -484,7 +482,7 @@ func _process(delta: float) -> void:
 		and (Input.is_action_just_pressed("return_title") or Input.is_action_just_pressed("dialogue_skip"))):
 		request_title()
 		return
-	if not dispenser.actions_locked and Input.is_action_just_pressed("pause_game") and not suppress_pause_frame and restart_guard_device < 0 and life_state in ["alive", "dying"]:
+	if not won and not dispenser.actions_locked and Input.is_action_just_pressed("pause_game") and not suppress_pause_frame and restart_guard_device < 0 and life_state in ["alive", "dying"]:
 		set_paused(not paused)
 	suppress_pause_frame = false
 	if music_director != null:
@@ -494,6 +492,7 @@ func _process(delta: float) -> void:
 	swarm_audio.tick(self,delta)
 	dispenser.tick(self,delta)
 	dialogue.tick(delta, paused)
+	update_completion_button()
 	fill_audio()
 	if not paused and not dialogue.active and not dispenser.active and not dispenser.just_finished:
 		elapsed += delta
@@ -505,6 +504,18 @@ func _process(delta: float) -> void:
 			corpse.pos.y = minf(FLOOR_Y - 36, corpse.pos.y + corpse.death_velocity * delta)
 			corpse.flash = maxf(0, corpse.flash - delta)
 	queue_redraw()
+
+func update_completion_button() -> void:
+	## The completed job has one existing action: return to title, never resume a finished run.
+	if not won or dialogue.active: return
+	resume_button.hide()
+	title_button.position = Vector2(245, 300)
+	pause_menu.show()
+	var locked: bool = dialogue.awaiting_release or dialogue.release_guard > 0
+	var was_disabled := title_button.disabled
+	title_button.disabled = locked
+	if locked: title_button.release_focus()
+	if not locked and (was_disabled or not title_button.has_focus()): title_button.grab_focus()
 
 func _physics_process(delta: float) -> void:
 	if dispenser.just_finished:
@@ -835,10 +846,12 @@ func step_death(delta: float) -> void:
 	death_popup_guard = 0.35
 	resume_button.disabled = true
 	title_button.disabled = true
+	resume_button.release_focus()
+	title_button.release_focus()
 	resume_button.text = "Retry" if lives == 0 else "Continue at Checkpoint" if checkpoint_active else "Continue at Entrance"
-	style_pause_buttons(false)
-	resume_button.position = Vector2(245, 330)
-	title_button.position = Vector2(245, 384)
+	style_pause_buttons()
+	resume_button.position = Vector2(245, 326)
+	title_button.position = Vector2(245, 416)
 	set_paused(true)
 
 func respawn_after_death() -> void:
@@ -941,7 +954,7 @@ func draw_pause_panel() -> void:
 
 func draw_death_popup() -> void:
 	# Art approved reuse of this menu style; all copy and expressions remain live.
-	box(150, 110, 660, 360, INK)
+	box(150, 110, 660, 420, INK)
 	box(150, 110, 660, 4, MINT)
 	var portrait := Dialogue.Portraits.expression("bj", death_message.emotion)
 	draw_texture_rect(portrait, Rect2(170, 140, 160, 160), false)
@@ -951,7 +964,8 @@ func draw_death_popup() -> void:
 	paragraph.add_string(death_message.text, ThemeDB.fallback_font, 21)
 	paragraph.draw(get_canvas_item(), Vector2(350, 175), Color("f1eee4"))
 	label_at("BJ", Vector2(170, 318), 17, GOLD)
-	label_at("%d %s remaining" % [lives, "life" if lives == 1 else "lives"], Vector2(245, 451), 14, MINT)
+	label_at("%d %s remaining" % [lives, "life" if lives == 1 else "lives"], Vector2(245, 510), 14, MINT)
+	draw_pause_plates()
 
 func draw_ellipse_shadow(feet: Vector2, size: Vector2) -> void:
 	draw_set_transform(feet - Vector2(floorf(camera_x), 0), 0, size)

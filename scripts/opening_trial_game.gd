@@ -444,12 +444,14 @@ func show_results() -> void:
 	result_shown = true
 	set_paused(true)
 	resume_button.text = "Retry Opening Trial"
-	resume_button.position.y = 360
-	title_button.position.y = 414
+	resume_button.position.y = 368
+	title_button.position.y = 458
 	death_popup_locked = true
 	death_popup_guard = 0.35
 	resume_button.disabled = true
 	title_button.disabled = true
+	resume_button.release_focus()
+	title_button.release_focus()
 
 func _process(delta: float) -> void:
 	if result_shown:
@@ -583,5 +585,6 @@ func _draw() -> void:
 				label_at("%s: %s" % [key.capitalize(),result.get(key,0)],Vector2(245,line),18,Color.WHITE)
 				line += 21
 			label_at("12 scheduled · Pickup trial not included",Vector2(245,345),15,GOLD)
+			draw_pause_plates()
 		else:
 			draw_pause_panel()

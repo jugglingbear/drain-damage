@@ -3,10 +3,10 @@ extends SceneTree
 func _initialize() -> void:
 	call_deferred("run_checks")
 
-func key(code: Key) -> InputEventKey:
+func key(code: Key, pressed := true) -> InputEventKey:
 	var event := InputEventKey.new()
 	event.physical_keycode = code
-	event.pressed = true
+	event.pressed = pressed
 	return event
 
 func run_checks() -> void:
@@ -48,6 +48,7 @@ func run_checks() -> void:
 	title._unhandled_input(key(KEY_ESCAPE))
 	assert(not title.selecting, "Back returns to title")
 	for index in range(2):
+		title._unhandled_input(key(KEY_ENTER,false))
 		title._unhandled_input(key(KEY_ENTER))
 		assert(title.selected == 0, "Reopening selection resets to Tony")
 		title.selection_guard = 0
@@ -59,6 +60,11 @@ func run_checks() -> void:
 			pad.pressed = true
 			title._unhandled_input(pad)
 		assert(title.selected == index)
+		title._unhandled_input(key(KEY_ENTER,false))
+		title._unhandled_input(key(KEY_ENTER))
+		assert(title.choosing_difficulty and title.game == null)
+		title.selection_guard = 0
+		title._unhandled_input(key(KEY_ENTER,false))
 		title._unhandled_input(key(KEY_ENTER))
 		await process_frame
 		assert(title.music_director.requested == "level", "Gameplay requests the level track")
@@ -86,10 +92,23 @@ func run_checks() -> void:
 	for button in [JOY_BUTTON_A, JOY_BUTTON_START]:
 		var pad := InputEventJoypadButton.new()
 		pad.button_index = button
+		pad.pressed = false
+		title._unhandled_input(pad)
 		pad.pressed = true
 		title._unhandled_input(pad)
 		assert(title.selecting)
 		title.selection_guard = 0
+		title._unhandled_input(pad)
+		assert(not title.choosing_difficulty,"Held confirm cannot skip selection")
+		pad.pressed = false
+		title._unhandled_input(pad)
+		pad.pressed = true
+		title._unhandled_input(pad)
+		assert(title.choosing_difficulty)
+		title.selection_guard = 0
+		pad.pressed = false
+		title._unhandled_input(pad)
+		pad.pressed = true
 		title._unhandled_input(pad)
 		await process_frame
 		assert(title.game != null)
@@ -99,5 +118,5 @@ func run_checks() -> void:
 	assert(title.music.playing and not title.muted)
 	title.queue_free()
 	await create_timer(0.3).timeout
-	print("PASS: guarded selection, both employees, immediate gameplay, restart identity, return, controller start, mute")
+	print("PASS: guarded selection, both employees, difficulty confirmation, restart identity, return, controller start, mute")
 	quit()
