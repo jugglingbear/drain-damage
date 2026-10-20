@@ -201,5 +201,6 @@ func draw_actor(host: Node2D) -> void:
 
 func draw_front(host: Node2D) -> void:
 	if art == null: return
-	if entered: art.draw_front(host,encounter.snapshot(),ORIGIN,clock)
+	# The integrated route supplies its progressive pipe water; keep all aquatic attack effects above it.
+	if entered: art.draw_front(host,encounter.snapshot(),ORIGIN,clock,false)
 	art.draw_portals_front(host,ORIGIN,entered,encounter.exit_open)

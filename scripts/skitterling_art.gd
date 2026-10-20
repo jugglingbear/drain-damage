@@ -240,7 +240,8 @@ func _effect(host: CanvasItem, id: int, at: Vector2, size: Vector2) -> void:
 func _rect_from_edges(values: Array) -> Rect2:
 	return Rect2(values[0], values[1], values[2] - values[0], values[3] - values[1])
 
-func draw_front(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, clock: float) -> void:
+func draw_front(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, clock: float,
+		include_room_water := true) -> void:
 	if not ready: return
 	var state: String = snapshot.get("state", "idle")
 	if state in ["entry_skitter", "rat_pipe_retreat"]:
@@ -254,7 +255,7 @@ func draw_front(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, c
 			var x := -22.0 if port == 2 else 842.0
 			_prop(host, "front_rim", Rect2(world_origin + Vector2(x, 170), Vector2(140, 124)))
 	# Animated water is confined below continuous hero support; it never changes collision.
-	water.draw(host, world_origin, clock)
+	if include_room_water: water.draw(host, world_origin, clock)
 	if state in ["alligator_swim", "alligator_surface_swim"]:
 		_draw_swimmer(host, snapshot, world_origin, clock)
 	if state in ["alligator_water_warning", "alligator_debris"]:

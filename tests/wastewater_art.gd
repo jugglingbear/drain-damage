@@ -13,27 +13,31 @@ func _initialize() -> void:
 	assert(Data.bundle.has("wastewater"), "Engineering must bundle wastewater manifest/profile")
 	var renderer = Pipe.new()
 	assert(renderer.configure(Data.bundle.wastewater))
-	for camera in [0.0, 1600.0, 3600.0, 5600.0, 7400.0, 8200.0, 8570.0]:
+	for camera in [0.0, 1600.0, 4650.0, 7400.0, 9600.0, 12000.0, 13800.0, 14150.0, 14240.0]:
 		var plan: Array[Dictionary] = renderer.commands(camera, 10)
 		assert(not plan.is_empty())
 		var count := 0
+		var bore_width := 0.0
 		for command: Dictionary in plan:
 			var rect: Rect2 = command.rect
+			assert(rect.position.x >= camera and rect.end.x <= minf(camera+960,15200)+0.001)
+			if command.id == "interior": bore_width += rect.size.x
 			assert(rect.position.y >= 456 and rect.end.y <= 528.001)
 			assert(command.alpha >= 0 and command.alpha <= 1)
 			if command.id in renderer.debris_ids:
 				count += 1
 				assert(rect.position.y >= 464 and rect.end.y <= 520.001)
-			if rect.position.x >= 8570:
+			if rect.position.x >= 14150:
 				assert(command.id != "water-a" and command.id not in renderer.debris_ids)
 		assert(count <= 8)
+		assert(is_equal_approx(bore_width,minf(960,15200-camera)),"Pipe must cover the extended route viewport")
 		renderer.commands(0, 99)
 		assert(plan == renderer.commands(camera, 10), "Backtracking/frozen-clock determinism")
 	var early: Array = renderer.commands(0, 10)
 	assert(early != renderer.commands(0, 11), "Water and debris must animate")
-	assert(renderer.commands(8570, 10) == renderer.commands(8570, 11), "Terminal must be motionless")
+	assert(renderer.commands(14150, 10) == renderer.commands(14150, 11), "Terminal must be motionless")
 	var plug_width := 0.0
-	for command: Dictionary in renderer.commands(8570, 10):
+	for command: Dictionary in renderer.commands(14150, 10):
 		if command.id == "plug":
 			assert(command.rect.position.y == 464 and command.rect.size.y == 56)
 			plug_width += command.rect.size.x

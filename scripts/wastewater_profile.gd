@@ -2,6 +2,7 @@ extends RefCounted
 ## Spatial scenery values: neither player progress nor combat changes the pipe.
 var points: Array[Dictionary] = []
 var terminal_x := 8570.0
+var world_end := 9600.0
 
 func configure(sections: Array) -> void:
 	points.clear()
@@ -10,6 +11,7 @@ func configure(sections: Array) -> void:
 			"water":float(section.water_depth_fraction),"flow":float(section.flow_pixels_per_second),
 			"coverage":float(section.lodged_debris_coverage_fraction)})
 	terminal_x = sections[-1].world_x[0]
+	world_end = sections[-1].world_x[1]
 	points[-1].x = terminal_x
 
 func sample(world_x: float, opening_trial := false) -> Dictionary:

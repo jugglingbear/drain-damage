@@ -54,7 +54,7 @@ func commands(camera: float, clock: float, trial := false) -> Array[Dictionary]:
 	## Deterministic, inspectable draw plan. Frozen gameplay clock means frozen animation.
 	var output: Array[Dictionary] = []
 	if not ready: return output
-	var limit := 6000.0 if trial else 9600.0
+	var limit: float = 6000.0 if trial else profile.world_end
 	var left := maxf(0, camera)
 	var right := minf(limit, camera + 960)
 	var x := left

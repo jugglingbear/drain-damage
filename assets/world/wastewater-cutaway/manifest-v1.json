@@ -377,7 +377,7 @@
       "section": "stores",
       "world_x": [
         1440,
-        3120
+        4435
       ],
       "water_depth_fraction": 0.62,
       "flow_pixels_per_second": 34,
@@ -386,8 +386,8 @@
     {
       "section": "pressure-gallery",
       "world_x": [
-        3120,
-        4800
+        4435,
+        7430
       ],
       "water_depth_fraction": 0.46,
       "flow_pixels_per_second": 25,
@@ -396,8 +396,8 @@
     {
       "section": "broken-pump-hall",
       "world_x": [
-        4800,
-        6480
+        7430,
+        10425
       ],
       "water_depth_fraction": 0.3,
       "flow_pixels_per_second": 16,
@@ -406,8 +406,8 @@
     {
       "section": "return-main",
       "world_x": [
-        6480,
-        8160
+        10425,
+        13420
       ],
       "water_depth_fraction": 0.14,
       "flow_pixels_per_second": 7,
@@ -416,8 +416,8 @@
     {
       "section": "main-sump-approach",
       "world_x": [
-        8160,
-        8570
+        13420,
+        14150
       ],
       "water_depth_fraction": 0.04,
       "flow_pixels_per_second": 2,
@@ -426,8 +426,8 @@
     {
       "section": "clogfather-arena",
       "world_x": [
-        8570,
-        9600
+        14150,
+        15200
       ],
       "water_depth_fraction": 0,
       "flow_pixels_per_second": 0,
@@ -457,7 +457,7 @@
     "motion": "Scroll world-relative phase right at local flow speed; pause with gameplay. Do not reverse with player."
   },
   "buildup": {
-    "rule": "Bottom-anchor light/medium/heavy at y520. Select or crossfade by interpolated coverage; scale height to 56*coverage, clip to bore. At x8570 use plug across entire bore with no floaters/water.",
+    "rule": "Bottom-anchor light/medium/heavy at y520. Select or crossfade by interpolated coverage; scale height to 56*coverage, clip to bore. At x14150 use plug across entire bore with no floaters/water.",
     "terminal_rule": "Use inset plug crop to avoid transparent perimeter; alpha min249/255. Draw plug over opaque interior, no gaps or boss silhouette."
   },
   "debris": {
@@ -469,7 +469,7 @@
     "replace": "Existing y440..540 opaque floor fascia must become y440..456 floor cap; existing foreground pipe at y488..540 must be suppressed in this strip.",
     "collision": "Decorative only, no damage or collision.",
     "trial": "story_x=min(trial_world_x,1440); never compress full-route terminal clog into trial.",
-    "sampling": "World-position profile, never furthest player position; terminal starts8570."
+    "sampling": "World-position profile, never furthest player position; terminal starts14150."
   },
   "prompts": "assets/world/wastewater-cutaway/prompts-v1.json"
 }

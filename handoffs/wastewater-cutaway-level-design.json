@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-20",
   "owner": "Level Design",
-  "status": "Concrete environmental implementation recommendation; numerical values initial visual tuning, no runtime edits",
+  "status": "Prototype 89 integrated; ten packaged suites and 34 Python tests passed; live visual review pending",
   "request": "Continuous wastewater-pipe cutaway below first-level floor. Flow and floating inappropriate debris diminish toward Clogfather; grease and lodged debris increase to total blockage. Environmental storytelling only.",
   "sources": [
     "scripts/first_call.gd",
@@ -49,7 +49,7 @@
       "section": "stores",
       "world_x": [
         1440,
-        3120
+        4435
       ],
       "water_depth_fraction": 0.62,
       "flow_pixels_per_second": 34,
@@ -58,8 +58,8 @@
     {
       "section": "pressure-gallery",
       "world_x": [
-        3120,
-        4800
+        4435,
+        7430
       ],
       "water_depth_fraction": 0.46,
       "flow_pixels_per_second": 25,
@@ -68,8 +68,8 @@
     {
       "section": "broken-pump-hall",
       "world_x": [
-        4800,
-        6480
+        7430,
+        10425
       ],
       "water_depth_fraction": 0.3,
       "flow_pixels_per_second": 16,
@@ -78,8 +78,8 @@
     {
       "section": "return-main",
       "world_x": [
-        6480,
-        8160
+        10425,
+        13420
       ],
       "water_depth_fraction": 0.14,
       "flow_pixels_per_second": 7,
@@ -88,8 +88,8 @@
     {
       "section": "main-sump-approach",
       "world_x": [
-        8160,
-        8570
+        13420,
+        14150
       ],
       "water_depth_fraction": 0.04,
       "flow_pixels_per_second": 2,
@@ -98,8 +98,8 @@
     {
       "section": "clogfather-arena",
       "world_x": [
-        8570,
-        9600
+        14150,
+        15200
       ],
       "water_depth_fraction": 0,
       "flow_pixels_per_second": 0,
@@ -107,7 +107,7 @@
     }
   ],
   "parameter_meaning": "Water fraction measures56px bore height from bottom; coverage is projected visible blockage, not entity count or a hydraulic simulation. Values are visual targets. Preserve the user-requested falling level even if real obstruction hydrology would differ.",
-  "interpolation": "Treat section values as targets at their midpoints. Interpolate smoothly along WORLD x, then ease to exact zero flow/zero water/full plug at x8570. Every visible pipe segment samples its own world coordinate, so camera spanning a boundary shows a continuous gradient rather than changing the entire screen at once. No dependence on kills, clock elapsed or gates.",
+  "interpolation": "Treat section values as targets at their midpoints. Interpolate smoothly along WORLD x, then ease to exact zero flow/zero water/full plug at x14150. Every visible pipe segment samples its own world coordinate, so camera spanning a boundary shows a continuous gradient rather than changing the entire screen at once. No dependence on kills, clock elapsed or gates.",
   "debris": {
     "floating": "Early sections: sparse individual wipes, cotton swabs, toothbrushes, hair clumps and one occasional absurd non-branded item. Art decides exact motifs.8\u201320 logical pixels, occasional24px item;4\u20136 moving pieces visible,hard cap8. No collectible glow or hostile-bullet silhouette.",
     "direction": "Flow consistently right toward the obstruction. Early debris follows water at modest varied speed. As flow drops, floaters decrease; static lodged material takes over. Never reverse with player movement.",
@@ -124,7 +124,7 @@
   ],
   "backtracking": "Position-defined story: returning toward entrance shows that location wetter and less clogged again, while debris drift uses persistent phase. Never use furthest-player-progress to dry the whole pipe. Respawn returns to local appearance; restart resets animation seed/time according to existing session policy without changing spatial profile.",
   "boss_transition": {
-    "approach": "Checkpoint8190 already sits within almost-dry approach. Make terminal clog clearly visible before combat starts. x8570 is current finale-lane start, a placement anchor for planned boss rather than a claim boss exists.",
+    "approach": "Checkpoint x13800 lies in the nearly dry approach; full blockage begins at the actual Clogfather arena x14150.",
     "arena": "Show one Clogfather only. Terminal plug is inert grease/debris, not a second face/body/silhouette. Align pipe termination under the planned boss/outflow; no implication hero can enter it.",
     "activation": "Do not wait for boss trigger to switch wet pipe to dry; obstruction is already spatially established. Boss HUD/intro do not alter pipe state.",
     "defeat": "Default keep blocked appearance until an explicit restoration animation/story beat is approved. Boss death does not silently imply all plumbing repaired or portal revealed. If restoration is later approved, author a separate state transition with Storyboarding.",
@@ -143,5 +143,13 @@
     "Boss arena has one boss and inert full plug; trial never depicts final clog.",
     "Record genuine running-game capture after Engineering integration and permission; artwork preview is not gameplay evidence."
   ],
-  "delivery": "Marketing retrieves this handoff and combines with Art/Storyboarding for Engineering. Engineering owns integration/build/roadmap/storybook. No magazine regeneration, runtime changes or game launch performed."
+  "delivery": "Marketing retrieves this handoff and combines with Art/Storyboarding for Engineering. Engineering owns integration/build/roadmap/storybook. No magazine regeneration, runtime changes or game launch performed.",
+  "route_revision": {
+    "previous_world_end": 9600,
+    "previous_terminal_x": 8570,
+    "world_end": 15200,
+    "terminal_x": 14150,
+    "rule": "Preserve entry 0..1440 and existing water/flow/coverage targets; extend remaining approach sections proportionally to the current boss arena.",
+    "layering": "Pipe draws after room scenery and before portal surge. Integrated Skitterling omits only its opaque water base, retaining swimmers, splashes and attack warnings; standalone room unchanged."
+  }
 }

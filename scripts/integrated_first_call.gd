@@ -616,7 +616,6 @@ func _draw() -> void:
 	if trial_data.is_empty(): return
 	draw_set_transform(Vector2(-floorf(camera_x),0))
 	draw_environment()
-	wastewater_art.draw(self,camera_x,elapsed,false)
 	skitterling.draw_back(self)
 	for enemy: Dictionary in enemies: draw_toilet(enemy)
 	for corpse: Dictionary in corpses: draw_toilet(corpse)
@@ -630,6 +629,8 @@ func _draw() -> void:
 	skitterling.draw_actor(self)
 	ending.draw_portal(self)
 	clogfather.draw(self)
+	# Room scenery must not cover the continuous route's below-floor cutaway.
+	wastewater_art.draw(self,camera_x,elapsed,false)
 	ending.draw_surge(self,false)
 	if ending.state == "pull":
 		ending.draw_hero(self)
