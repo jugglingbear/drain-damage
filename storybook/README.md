@@ -2021,6 +2021,41 @@ no image capture occurred.
 
 [Capture status and verification](084-projectiles-density-and-widow/20261020-141647-capture-status.json).
 
+## 085 — Clogfather finale and checkpoint inspection — October 20, 2026
+
+**Version:** Prototype 85 / 0.85.0; source commit `4e16bc4`; preserved app, ZIP and snapshot `builds/source-85`.
+
+The route now extends about 6500 logical pixels from the Skitterling exit to the Clogfather approach, including
+existing continuation, with five distinct new background panels. A second checkpoint at 13800 preserves defeated
+Skitterling progress. The rooted 1080 HP Clogfather uses sludge and ceiling acid attacks, five-second weak-point
+recovery, a continuous health bar, damage stages, collapse and dedicated music. Completion requires terminal boss
+defeat and reaching the exit; both heroes receive a four-line victory exchange. No portal or level-two work is included.
+
+Injured checkpoint check-in now lasts 6.8 seconds: grab/lift, opposite-arm magnifying inspection, diagnosis using
+actual pre-heal HP, crush/throw, bloody screen slide and same-hero clone. Each dispenser owns one spare employee.
+Healthy 0.4-second and respawn 1.9-second paths and normal death life accounting remain intact.
+
+**Validation:** Engineering reports thirty-one final packaged suites and thirty-four Python tests passing, plus
+export, signature and ZIP checks. Coverage includes eighteen original-route regressions, twelve extended-route
+forward/reverse cases across both heroes, all modes and 60/120 Hz, and six boss integration cases. Traversal bots
+restore HP for coverage; these results do not establish human fairness or fight duration.
+
+Art approved composed boss body/open and closed weak points/HUD and all four normal/Hard held-hero inspection poses.
+Damage and collapse sheets/crops were registered and inspected; full composed-stage and continuous transition review
+remain pending.
+[Preserved source studies](art-studies/20261020-153001-clogfather-and-inspection/20261020-153001-archive-record.json)
+are software compositions, not gameplay screenshots. Creation date is October 20; exact creation times are unknown.
+Their archive time, 15:30:01 America/Los_Angeles (UTC−07:00), is recorded separately.
+
+**Capture gap:** No game window opened or actual Prototype 85 screenshot was captured. Live balance, boss duration,
+animation, damage/collapse transitions, checkpoint stock-window occlusion, background seams and subjective audio mix
+remain pending. Earlier captures and builds are preserved; outstanding Prototype 83 menu views remain on the backlog.
+
+**Record created:** 2026-10-20T15:35:08.958034-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](085-clogfather-finale-and-inspection/20261020-153508-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

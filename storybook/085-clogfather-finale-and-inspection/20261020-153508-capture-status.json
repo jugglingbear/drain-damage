@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 85 / 0.85.0",
+  "created_at": "2026-10-20T15:35:08.958034-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "status": "Export, ad-hoc signature, archive and headless checks passed; live review pending",
+  "app": "builds/Prototype-85/Drain Damage.app",
+  "archive": "builds/history/Prototype-85.zip",
+  "archive_sha256": "0a2a39a97bd1c44716e071ccc371aebf440e92be48647061d34bf223a9d38414",
+  "source_snapshot": "builds/source-85",
+  "world_width": 15200,
+  "checkpoints": [
+    4650,
+    13800
+  ],
+  "boss_arena": [
+    14150,
+    15110
+  ],
+  "completion_x": 15150,
+  "changes": [
+    "6500 logical pixels from Skitterling exit to Clogfather approach, including the existing continuation; five distinct new background panels",
+    "Rooted 1080 HP Clogfather with sludge and acid, five-second weak-point recovery, continuous health bar, damage stages, collapse and dedicated music",
+    "Second checkpoint preserves completed Skitterling and excludes prior route encounters; each dispenser owns one spare employee",
+    "6.8-second injured check-in: grab/lift, opposite-arm magnifying inspection, actual pre-heal HP diagnosis, crush/throw, bloody screen slide and same-hero clone",
+    "Healthy 0.4-second and respawn 1.9-second paths and normal death life accounting retained; completion ends this level without a portal"
+  ],
+  "checks": {
+    "packaged_suites": 31,
+    "python_tests": 34,
+    "results": "builds/verification-85/final-results.json",
+    "suites": [
+      "opening_trial_level",
+      "held_aim",
+      "aim_entrance",
+      "hostile_projectile",
+      "platform_projectiles",
+      "durable_flyer",
+      "normal_density",
+      "difficulty_respawn",
+      "swarm_health",
+      "flushfiend_checkpoint_navigation",
+      "button_consistency",
+      "alligator_art_motion",
+      "difficulty_menu",
+      "build_version",
+      "skitterling_integration",
+      "employee_dispenser",
+      "glass_dispenser",
+      "dispenser_registration",
+      "swarm_schedule",
+      "dispenser_inspection",
+      "clogfather_encounter",
+      "clogfather_integration",
+      "clogfather_route",
+      "clogfather_route_traversal",
+      "clogfather_audio",
+      "clogfather_music",
+      "dialogue",
+      "music",
+      "difficulty_traversal",
+      "clogfather_art",
+      "skitterling_portals"
+    ],
+    "route_coverage": "18 original-route mode/hero/seed regressions; 12 extended-route forward/reverse cases across both heroes, all modes and 60/120Hz; six boss integration cases",
+    "route_measurement_limit": "Traversal bots restore HP for distribution coverage; these are not human fairness or fight-duration results",
+    "test_corrections": [
+      "Route helper success marker normalized to the runner convention",
+      "Art anchor test compares numeric values rather than JSON float versus integer array types; corrected check passes against the final package"
+    ],
+    "build_log": "builds/verification-85/build.log",
+    "python_log": "builds/verification-85/python-tests.log"
+  },
+  "source_art_review": {
+    "approved_compositions": [
+      "Boss body, open/closed weak point and HUD",
+      "All four normal/Hard held-hero, hand and inspection-lens compositions"
+    ],
+    "registered_and_inspected_only": [
+      "All damage-stage and collapse source sheets/crops; full composed-stage and continuous transition review pending"
+    ],
+    "evidence": [
+      "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
+      "assets/world/spare-employee-dispenser/inspection-contract-v1.json",
+      "assets/world/first-call/background-manifest-v2.json"
+    ]
+  },
+  "remaining": [
+    "Live gameplay balance and boss duration for both heroes",
+    "Live animation, damage/collapse transitions, checkpoint stock-window occlusion and background seams",
+    "Subjective audio/music mix review",
+    "Actual running-build screenshots"
+  ],
+  "capture_gap": "No game window opened; preserve this build for an approved capture session. Source composites are not gameplay screenshots.",
+  "deferred": [
+    "Portal and all level-two production remain on hold"
+  ],
+  "diagnostics": "Existing sandbox user-log/editor-settings, macOS CA and shutdown-resource warnings; final suites have no script, parse, resource-load or assertion failures.",
+  "timestamp_kind": "Delivery record creation, not capture time",
+  "capture_time": null,
+  "source_commit": "4e16bc4"
+}
