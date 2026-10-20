@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 88 / 0.88.0",
-  "created_at": "2026-10-20T16:43:32.642400-07:00",
+  "build": "Prototype 89 / 0.89.0",
+  "created_at": "2026-10-20T16:50:06.863463-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, signature, archive, 9 relevant packaged suites and 34 Python tests passed; live visual review pending",
-  "app": "builds/Prototype-88/Drain Damage.app",
-  "archive": "builds/history/Prototype-88.zip",
-  "archive_sha256": "8b94029b0af46691891e17cfc83d68a64db18c0c4f29695b4da60ba2df67bc81",
-  "source_snapshot": "builds/source-88",
+  "status": "Export, signature, archive, 10 relevant packaged suites and 34 Python tests passed; live visual review pending",
+  "app": "builds/Prototype-89/Drain Damage.app",
+  "archive": "builds/history/Prototype-89.zip",
+  "archive_sha256": "cb406b2e489caee6358975242d41bb5c78f505c2d94935dc4c596629caa1faee",
+  "source_snapshot": "builds/source-89",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -19,30 +19,31 @@
     15110
   ],
   "changes": [
-    "Full-size frightened Tony/Sean poses in normal and Hard outfits, carried by a six-frame water/debris surge; portal crops the sprite without scaling",
-    "First five aftermath lines block; selected hero shouts UUAAAAAAAAAA!! during guarded 2.5-second pull, including skipped dialogue",
-    "Gratecrawler maximum and spawn HP increase from 24 to 72 in all difficulties: six Tony shots or four Sean shots; doubled size, 45px/s patrol and 2.5-second muck cadence preserved",
-    "Level-two gameplay remains held; partner stays outside on radio"
+    "Restored bottom wastewater across the full 15200-pixel route; draw extent follows canonical profile instead of stale 9600 cutoff",
+    "Existing water/flow/debris targets retained; entry 0..1440 preserved and approach stretched to full blockage at actual Clogfather arena x14150 instead of x8570",
+    "Pipe draws after room scenery and before ending wave. Integrated Skitterling skips opaque room-water base while keeping swimmers, splashes and attack warnings; standalone water unchanged",
+    "Prototype 88 Gratecrawler 72HP and full-size portal departure preserved; level-two gameplay remains held"
   ],
   "checks": {
-    "packaged_suites": 9,
+    "packaged_suites": 10,
     "status": "passed",
-    "results": "builds/verification-88/packaged-results.json",
+    "results": "builds/verification-89/packaged-results.json",
     "suites": [
       "build_version",
-      "clogfather_art",
       "clogfather_integration",
-      "dialogue",
-      "difficulty_actions",
       "first_level_ending",
-      "gratecrawler_patrol",
-      "hard_dialogue",
-      "role_combat_revision"
+      "role_combat_revision",
+      "skitterling_art",
+      "skitterling_integration",
+      "skitterling_water",
+      "wastewater_art",
+      "wastewater_profile",
+      "wastewater_route"
     ],
     "python_tests": 34,
-    "python_log": "builds/verification-88/python.log",
-    "build_log": "builds/verification-88/build.log",
-    "scope": "Both heroes and costumes, full-size portal clipping, dialogue/skip/pause/reset guards, actual weapon collision hit counts in all difficulties, patrol/muck behavior, boss integration and difficulty controls"
+    "python_log": "builds/verification-89/python.log",
+    "build_log": "builds/verification-89/build.log",
+    "scope": "Full viewport pipe coverage through extended route, monotonic world-position profile, backtracking/frozen clock, both checkpoint retries, restart, miniboss water/art/integration, boss, portal and 72HP combat regression"
   },
   "source_art_review": {
     "approved_compositions": [
@@ -62,10 +63,9 @@
     ]
   },
   "remaining": [
-    "Live full-size panic pose, water/debris motion, portal layering and loop transition review",
-    "Human Gratecrawler durability and boss-duration balance review",
-    "Existing collapse-frame continuity and checkpoint/background visual review",
-    "Subjective audio/music mix review",
+    "Live wastewater contrast and miniboss aquatic-effect layering review",
+    "Live full-size panic pose, water/debris motion and portal transition review",
+    "Human combat balance and subjective audio/music mix review",
     "Actual running-build screenshots"
   ],
   "capture_gap": "No game window opened; preserve this build for an approved capture session. Source composites are not gameplay screenshots.",
@@ -156,8 +156,8 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "18f5f61",
-  "previous_delivery": "storybook/087-difficulty-navigation/20261020-163046-capture-status.json",
+  "source_commit": "8ddb961",
+  "previous_delivery": "storybook/088-full-size-portal-departure/20261020-164319-capture-status.json",
   "publication": {
     "magazine_edition": 29,
     "status": "GitHub Pages deployment succeeded and live files verified",

@@ -2130,6 +2130,28 @@ no image capture occurred. Art confirmed October 20 source creation; its exact t
 
 [Source-composition archive](art-studies/20261020-164319-portal-departure/20261020-164319-archive-record.json).
 
+## 089 — Progressive wastewater across the extended level — October 20, 2026
+
+**Version:** Prototype 89 / 0.89.0; source commit `8ddb961`; signed app, ZIP and source snapshot preserved.
+
+Progressive bottom water and clog presentation now follows the extended 15200-pixel route and 14150 boss approach.
+The stale renderer limit and terminal profile are replaced while the opening 0–1440 section stays intact. Existing
+art and visual targets are reused. Pipe/wastewater draws after room scenery and before the ending wave.
+Only Skitterling's opaque water base is suppressed in the integrated route; aquatic attack effects and standalone
+water remain. Prototype 88 is preserved.
+
+**Validation:** Engineering reports ten exact packaged suites and thirty-four Python tests passing, plus signed-app
+and ZIP integrity checks. Coverage includes wastewater profile/art/route, Skitterling water/art/integration,
+Clogfather integration, ending, role combat and version checks.
+
+**Capture gap:** No game window opened or actual Prototype 89 screenshot was captured. Live water/clog progression
+and layer readability remain pending. No new artwork or source composition is represented as a gameplay capture.
+
+**Record created:** 2026-10-20T16:50:40-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](089-progressive-wastewater/20261020-165040-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
