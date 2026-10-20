@@ -949,11 +949,11 @@
         }
       },
       "health": {
-        "max_hp": 180,
-        "spawn_hp": 180,
-        "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
-        "runtime_max_hp": 180,
-        "runtime_note": "First-level profile:180HP, twice previous linear display size; replaces36HP opening variant.",
+        "max_hp": 135,
+        "spawn_hp": 135,
+        "status": "135 HP implemented in Prototype 84; validation and live-review status in handoffs/normal-density-refinement-delivery.json#prototype84",
+        "runtime_max_hp": 135,
+        "runtime_note": "First-level profile: 135 HP in all difficulties, reduced 25% from 180 HP; render scale remains 2.",
         "encounter_stage": "first_level",
         "stage_status": "User requested durable opening hazard",
         "role": "mobile aerial threat",
@@ -966,20 +966,20 @@
         },
         "visual_policy": "assets/bestiary/damage/health-visuals.json",
         "balance_policy": "assets/bestiary/balance-policy.json",
-        "rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",
+        "rationale": "12 Tony hits at 12 damage or 8 Sean hits at 18 damage; 1.76/1.68 seconds first-to-last firing plus travel and misses.",
         "hits_to_defeat": {
-          "heavy-plunger-launcher": 8,
-          "pressure-gun": 30,
-          "drain-snake": 23,
+          "heavy-plunger-launcher": 6,
+          "pressure-gun": 23,
+          "drain-snake": 17,
           "demolition-hammer": 3,
-          "pipe-wrench": 15,
+          "pipe-wrench": 12,
           "pipe-bomb-launcher": 3
         },
         "comparison_assumptions": "Base weapon catalog damage; first-level overrides compared separately. Full-health hits, no armor; melee may not reach flight.",
-        "comparison_balance_version": "durable-widow-2026-10-16",
+        "comparison_balance_version": "widow-health-2026-10-20",
         "first_level_hits_to_defeat": {
-          "pressure-gun": 15,
-          "heavy-plunger-launcher": 10
+          "pressure-gun": 12,
+          "heavy-plunger-launcher": 8
         }
       },
       "name": "The Hallowed Widow",
@@ -3898,15 +3898,15 @@
         "flyer": {
           "creature_id": null,
           "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
-          "max_hp": 180,
-          "spawn_hp": 180,
+          "max_hp": 135,
+          "spawn_hp": 135,
           "speed_pixels_per_second": 100,
           "contact_damage_player": 1,
           "entry_warning_seconds": 0.8,
           "path": "Fly forward until visible hero is within400px on either side; lock target during0.65s warning, dive0.8s, rise forward to original altitude over1s, pause stationary1s, then face hero and repeat. Within6px of horizontal center retain previous facing. Blocked diagonal recovery climbs vertically with swept collision.",
           "retirement": "Activated living Widow does not retire offscreen; remains a repeating threat until killed or attempt reset. Entry warnings may still cancel safely.",
           "render_scale": 2.0,
-          "balance_rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",
+          "balance_rationale": "12 Tony hits at 12 damage or 8 Sean hits at 18 damage; 25% less HP in every difficulty.",
           "aggro_distance_pixels": 400,
           "attack_warning_seconds": 0.65,
           "swoop_seconds": 0.8,
@@ -4072,7 +4072,7 @@
             16
           ],
           "collision": "one_way_top",
-          "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+          "role": "supported service deck; one-way body top, all projectiles pass through, supports behind play plane"
         },
         {
           "id": "exit-step-0",
@@ -4105,7 +4105,7 @@
             16
           ],
           "collision": "one_way_top",
-          "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+          "role": "supported service deck; one-way body top, all projectiles pass through, supports behind play plane"
         },
         {
           "id": "exit-step-1",
@@ -4138,7 +4138,7 @@
             16
           ],
           "collision": "one_way_top",
-          "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+          "role": "supported service deck; one-way body top, all projectiles pass through, supports behind play plane"
         },
         {
           "id": "exit-step-2",
@@ -4171,7 +4171,7 @@
             16
           ],
           "collision": "one_way_top",
-          "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+          "role": "supported service deck; one-way body top, all projectiles pass through, supports behind play plane"
         },
         {
           "id": "exit-step-3",
@@ -4204,7 +4204,7 @@
             16
           ],
           "collision": "one_way_top",
-          "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+          "role": "supported service deck; one-way body top, all projectiles pass through, supports behind play plane"
         },
         {
           "id": "exit-step-4",
@@ -4237,7 +4237,7 @@
             16
           ],
           "collision": "one_way_top",
-          "role": "supported service deck; supports behind play plane, no side/bottom projectile blocking except deck slab"
+          "role": "supported service deck; one-way body top, all projectiles pass through, supports behind play plane"
         },
         {
           "id": "exit-step-5",
@@ -4255,8 +4255,8 @@
         "Ground stays continuous. Low access/return plinths are60px obstacles, jumpable from floor; the lower route goes over these low steps but under every high deck. It is not a flat no-jump speedrun corridor.",
         "Deck y320 and16px thickness leave104px floor clearance, enough for72px hero art. No support/crate colliders in lower passage. Decorative legs are behind play plane and visibly recessed.",
         "Access edge to deck gap40px,rise60px; deck to return gap50px,drop60px.150/250px tops meet120px minimum.",
-        "One-way decks admit upward passage; gravity lands on top. Projectile-blocking slab must be thin and art-aligned. Do not reuse floor-to-top solid rectangle for decks.",
-        "Shooter foot anchor on deck; projectile emission and sightline must reach hero below with actual aim geometry, not shoot through deck. Place near edge and suppress occluded shots."
+        "One-way decks admit upward body passage and catch descending bodies. All player and enemy shots pass through. Authored solid plinths and floor block swept projectiles in every direction.",
+        "Shooter foot anchor stays on deck. Projectile emission and sightline pass through thin decks but remain blocked by solid plinths and floor."
       ],
       "timeline": [
         {
@@ -4471,7 +4471,7 @@
       "checks": [
         "Both heroes traverse every access/deck/return pair and pass beneath decks without visible head clipping",
         "At normal advancing play12 events fit near20s; rushing,camping,backtracking and jumping never create contact spawn or unbounded delayed burst",
-        "Shooter aiming never shoots through its own deck; attacks readable from lower lane",
+        "Shooter attacks pass through thin decks; solid scenery still suppresses occluded shots. Actor collision and spawn safety retain decks.",
         "All roles use shared damage/ownership and proposed1\u20133-hit ordinary profile, validated by Mechanics",
         "No old zone gate or all-killed condition interrupts this opening",
         "Report actual shots/misses/kills/last-spawn time/damage separately for both heroes",

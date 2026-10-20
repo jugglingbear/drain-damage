@@ -11,7 +11,8 @@ func run_checks() -> void:
 		for seed_value in range(100):
 			var plan := Plan.resolve(mode,seed_value)
 			assert(plan == Plan.resolve(mode,seed_value), "Seed must reproduce all choices")
-			assert(plan.opening.size() == 12 and plan.later.size() == (30 if mode == "normal" else 36))
+			assert(plan.opening.size() == (12 if mode == "easy" else 15))
+			assert(plan.later.size() == (43 if mode == "hard" else 34 if mode == "normal" else 36))
 			var previous := 0.0
 			for event in plan.opening:
 				assert(event.trigger > previous and event.trigger < 3120)
@@ -19,7 +20,7 @@ func run_checks() -> void:
 			var before := 0
 			var after := 0
 			previous = 0
-			for event in plan.later:
+			for event in plan.later.filter(func(e: Dictionary) -> bool: return not e.id.ends_with("-extra")):
 				assert(event.trigger > previous and event.trigger < event.end)
 				assert(event.spacing >= 0.65)
 				assert(event.owner_origin == (85.0 if event.trigger < 4650 else 4650.0))
@@ -27,7 +28,9 @@ func run_checks() -> void:
 				if event.owner_origin == 85: before += 1
 				else: after += 1
 			assert(before == 7 and after == (23 if mode == "normal" else 29))
-			assert(plan.later[7].trigger == 4700 and plan.later[7].side == 1)
+			var tail_id := "normal-route-08" if mode == "normal" else "wave-0-07"
+			var first_tail: Dictionary = plan.later.filter(func(e: Dictionary) -> bool: return e.id == tail_id)[0]
+			assert(first_tail.trigger == 4700 and first_tail.side == 1)
 			var arrangement := plan.duplicate(true)
 			arrangement.erase("seed")
 			if mode == "easy":
@@ -85,7 +88,7 @@ func run_checks() -> void:
 				assert(game.run_plan == arrangement and game.run_seed == 12345)
 				assert(game.lives == 2 and not game.dispenser.stocked and game.checkpoint_index == 0)
 				assert(game.enemies.is_empty() and game.actors.is_empty() and game.swarms.actors.is_empty())
-				var excluded_count := 12
+				var excluded_count: int = game.run_plan.opening.size()
 				for event in game.run_plan.later:
 					if mode == "normal" and (event.owner_origin < 4650 or (event.trigger >= 5610 and event.trigger < 7530)):
 						excluded_count += 1

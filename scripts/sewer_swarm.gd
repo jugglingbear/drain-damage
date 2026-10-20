@@ -136,7 +136,7 @@ func overlaps(actor: Dictionary, rect: Rect2) -> bool:
 
 func step(game: Node2D, delta: float) -> void:
 	hero_cooldown = maxf(0,hero_cooldown-delta)
-	var solids: Array[Rect2] = game.player_shot_solids()
+	var solids: Array[Rect2] = game.actor_solids()
 	for enemy: Dictionary in game.enemies:
 		enemy.swarm_cooldown = maxf(0,enemy.get("swarm_cooldown",0.0)-delta)
 	for actor in actors:

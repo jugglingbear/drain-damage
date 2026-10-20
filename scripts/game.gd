@@ -569,6 +569,9 @@ func step_gates(delta: float) -> void:
 func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: float) -> Dictionary:
 	return Level.move_body(position,motion,size,delta,Level.solids(mission.current_zone,gate_progress))
 
+func actor_solids() -> Array[Rect2]:
+	return Level.solids(mission.current_zone,gate_progress)
+
 func player_shot_solids() -> Array[Rect2]:
 	return Level.solids(mission.current_zone,gate_progress)
 
@@ -658,7 +661,7 @@ func step_combat(delta: float) -> void:
 				enemy.home - pursuit.patrol_range_pixels, enemy.home + pursuit.patrol_range_pixels)
 			dx = (next_x-enemy.pos.x) / maxf(delta,0.00001)
 		if not enemy.aggro: enemy.horizontal_speed = dx
-		var obstacles := player_shot_solids()
+		var obstacles := actor_solids()
 		var vy: float = enemy.get("vertical_speed",0.0)
 		var navigation := FlushfiendNavigation.velocity(Rect2(enemy.pos,Vector2(38,36)),
 			Vector2(dx,vy),enemy,delta,obstacles,move_player_body,GRAVITY,JUMP_SPEED)
@@ -1014,7 +1017,7 @@ func safe_entrance(x: float) -> bool:
 	if center+radius > floorf(camera_x)-24 and center-radius < floorf(camera_x)+984: return false
 	var body := Rect2(x,404,38,36)
 	# Never insert behind a closed shutter that would prevent reaching this encounter.
-	for solid in player_shot_solids():
+	for solid in actor_solids():
 		if solid.position.y >= FLOOR_Y: continue
 		if body.grow(12).intersects(solid): return false
 		if solid.size.y >= 260 and solid.position.x > minf(x,player.x) and solid.end.x < maxf(x,player.x):

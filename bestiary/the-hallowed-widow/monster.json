@@ -24,11 +24,11 @@
   },
   "damage_art_status": "Flight/hurt/death integrated; composed live-to-death visual review pending",
   "health": {
-    "max_hp": 180,
-    "spawn_hp": 180,
-    "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
-    "runtime_max_hp": 180,
-    "runtime_note": "First-level profile:180HP, twice previous linear display size; replaces36HP opening variant.",
+    "max_hp": 135,
+    "spawn_hp": 135,
+    "status": "135 HP implemented in Prototype 84; validation and live-review status in handoffs/normal-density-refinement-delivery.json#prototype84",
+    "runtime_max_hp": 135,
+    "runtime_note": "First-level profile: 135 HP in all difficulties, reduced 25% from 180 HP; render scale remains 2.",
     "encounter_stage": "first_level",
     "stage_status": "User requested durable opening hazard",
     "role": "mobile aerial threat",
@@ -41,20 +41,20 @@
     },
     "visual_policy": "assets/bestiary/damage/health-visuals.json",
     "balance_policy": "assets/bestiary/balance-policy.json",
-    "rationale": "15 Tony12-damage hits or10 Sean18-damage hits;2.24/2.16 seconds first-to-last firing plus travel and misses.",
+    "rationale": "12 Tony hits at 12 damage or 8 Sean hits at 18 damage; 1.76/1.68 seconds first-to-last firing plus travel and misses.",
     "hits_to_defeat": {
-      "heavy-plunger-launcher": 8,
-      "pressure-gun": 30,
-      "drain-snake": 23,
+      "heavy-plunger-launcher": 6,
+      "pressure-gun": 23,
+      "drain-snake": 17,
       "demolition-hammer": 3,
-      "pipe-wrench": 15,
+      "pipe-wrench": 12,
       "pipe-bomb-launcher": 3
     },
     "comparison_assumptions": "Base weapon catalog damage; first-level overrides compared separately. Full-health hits, no armor; melee may not reach flight.",
-    "comparison_balance_version": "durable-widow-2026-10-16",
+    "comparison_balance_version": "widow-health-2026-10-20",
     "first_level_hits_to_defeat": {
-      "pressure-gun": 15,
-      "heavy-plunger-launcher": 10
+      "pressure-gun": 12,
+      "heavy-plunger-launcher": 8
     }
   },
   "proposed_quote": {

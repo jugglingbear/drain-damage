@@ -81,6 +81,15 @@ static func resolve(mode: String, seed_value: int) -> Dictionary:
 	if mode == "normal":
 		later = normal_route(rng)
 		counts = [8,8,8,6]
+	if mode != "easy":
+		add_density_slots(opening,[0,5,10],100.0)
+		for event in opening:
+			if event.id.ends_with("-extra"): event.role = "runner"
+		add_density_slots(later,[0,3,23,24] if mode == "normal" else [1,3,5,8,10,28,32],60.0)
+		for event in later:
+			if event.id.ends_with("-extra"):
+				# A delayed addition can use the remaining safe segment, never spill across the boss room.
+				event.end = 4650.0 if event.owner_origin == 85 else 5610.0 if event.trigger < 5610 else 9450.0
 	return {"difficulty":mode,"seed":seed_value,"opening":opening,"later":later,"wave_counts":counts,
 		"crowd_cap":4 if mode == "easy" else 6 if mode == "normal" else 8,
 		"opening_spacing":1.1 if mode == "easy" else 0.8 if mode == "normal" else 0.6}
@@ -96,3 +105,14 @@ static func normal_route(rng: RandomNumberGenerator) -> Array[Dictionary]:
 			"wave":mini(index/8,3),"trigger":trigger,"owner_origin":owner,
 			"side":1.0,"spacing":0.8,"end":float(slot[2]),"enabled":true})
 	return events
+
+static func add_density_slots(events: Array[Dictionary], indices: Array, offset: float) -> void:
+	# Add to the authored baseline once; retain its RNG stream, species and checkpoint ownership.
+	var additions: Array[Dictionary] = []
+	for index in indices:
+		var event: Dictionary = events[index].duplicate(true)
+		event.id += "-extra"
+		event.trigger += offset
+		additions.append(event)
+	events.append_array(additions)
+	events.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.trigger < b.trigger)

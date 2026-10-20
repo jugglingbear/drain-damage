@@ -1,5 +1,8 @@
 extends SceneTree
 const Game = preload("res://scripts/integrated_first_call.gd")
+# Same continuous-forward/fire route against the preserved Prototype 83 PCK, seeds 7/42/913.
+const BASELINE_83 := {"easy":[[27,27,27],[26,26,26]],
+	"normal":[[26,26,27],[27,26,27]],"hard":[[34,34,34],[34,34,34]]}
 
 func _initialize() -> void:
 	call_deferred("run_checks")
@@ -74,7 +77,23 @@ func run_checks() -> void:
 				print("MODE ",mode," hero",hero," seed",seed_value," x",game.player.x,
 					" issued",game.trial_state.results().issued," waves",game.wave_spawned)
 				var swarm_report: Dictionary = game.swarm_schedule.report()
-				assert(swarm_report.issued == 9 and swarm_report.visible == 9)
+				var ordinary_issued: int = game.trial_state.results().issued
+				if mode != "normal":
+					for count in game.wave_spawned: ordinary_issued += count
+				var potential: int = swarm_report.potential
+				for event in game.run_plan.opening:
+					if event.enabled: potential += 1
+				for event in game.run_plan.later:
+					if event.enabled and (event.trigger < 5610 or event.trigger >= 7530): potential += 1
+				print("ENCOUNTERS ",JSON.stringify({"mode":mode,"hero":hero,"seed":seed_value,"hz":hz,
+					"potential":potential,"ordinary_issued":ordinary_issued,"swarm_issued":swarm_report.issued,
+					"total_issued":ordinary_issued+swarm_report.issued,
+					"not_issued":potential-ordinary_issued-swarm_report.issued}))
+				assert(swarm_report.issued == (9 if mode == "easy" else 13 if mode == "normal" else 11) and swarm_report.visible == swarm_report.issued)
+				var baseline: int = BASELINE_83[mode][hero][[7,42,913].find(seed_value)]
+				var actual: int = ordinary_issued+swarm_report.issued
+				assert(actual == baseline if mode == "easy" else actual >= ceili(baseline*1.25),
+					"Actual admitted count must meet the 25% increase over the identical Prototype 83 route")
 				print("SWARMS ",JSON.stringify({"mode":mode,"hero":hero,"seed":seed_value,
 					"summary":swarm_report,"ledger":game.swarm_schedule.ledger,"contact_hits":contact_hits,
 					"peak_population":peak_population,"peak_additions":peak_additions,

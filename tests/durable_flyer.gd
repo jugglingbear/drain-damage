@@ -16,13 +16,18 @@ func run_checks() -> void:
 		for person in game.Crew.EMPLOYEES:
 			game.employee = person
 			for direction in [-1,1]: check_cycle(game,direction)
-			check_hits_and_solids(game)
+			if path.ends_with("integrated_first_call.gd"):
+				for mode in ["easy","normal","hard"]:
+					game.difficulty = mode
+					check_hits_and_solids(game)
+				game.difficulty = "normal"
+			else: check_hits_and_solids(game)
 			check_blocked_recovery(game)
 			check_offscreen_and_reset(game)
 		game.actors.clear()
 		game.queue_free()
 		await process_frame
-	print("PASS: both routes/heroes/headings, repeated dives, stationary1s pause, retarget/tie, freeze/death/reset, bounds and15/10hits")
+	print("PASS: both routes/heroes/headings, repeated dives, stationary1s pause, retarget/tie, freeze/death/reset, bounds and12/8hits")
 	quit()
 
 func prepare(game: Node, direction: int = -1) -> Dictionary:
@@ -70,7 +75,7 @@ func check_frozen(game: Node, actor: Dictionary) -> void:
 
 func check_cycle(game: Node, direction: int) -> void:
 	var actor := prepare(game,direction)
-	assert(actor.hp == 180 and actor.max_hp == 180)
+	assert(actor.hp == 135 and actor.max_hp == 135)
 	assert(game.choose_home({"id":"opening-10","role":"aggressive_flyer"}) == Vector2.INF)
 	for cycle in range(3):
 		game.step_flyer(actor,STEP)
@@ -124,12 +129,12 @@ func check_hits_and_solids(game: Node) -> void:
 	assert(not game.move_flyer_clear(actor,Vector2(1400,410)))
 	assert(game.actor_rect(actor).end.y <= 320,"Full enlarged body cannot dive through a deck")
 	actor.feet = Vector2(1400,250)
-	var required := 15 if game.employee.id == "tony" else 10
+	var required := 12 if game.employee.id == "tony" else 8
 	for hit in range(required):
 		game.shots.append({"pos":Vector2(1350,250),"dir":Vector2.RIGHT,
 			"damage":game.weapon.damage,"speed":760,"range":320,"distance":0.0,"trial_id":"fixture"})
 		game.step_trial_shots(0.1)
-		assert(actor.hp == maxf(0,180-(hit+1)*game.weapon.damage))
+		assert(actor.hp == maxf(0,135-(hit+1)*game.weapon.damage))
 	assert(actor.hp == 0)
 
 func check_offscreen_and_reset(game: Node) -> void:
@@ -141,7 +146,7 @@ func check_offscreen_and_reset(game: Node) -> void:
 	actor.attack_target = actor.feet
 	actor.facing = 1
 	game.step_trial_actors(STEP)
-	assert(actor.hp == 180 and game.actors.has(actor),"Living active Widow must not retire behind camera")
+	assert(actor.hp == 135 and game.actors.has(actor),"Living active Widow must not retire behind camera")
 	actor.feet = Vector2(31,250)
 	actor.facing = -1
 	game.step_flyer(actor,1)

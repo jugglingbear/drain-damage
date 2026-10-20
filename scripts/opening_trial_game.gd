@@ -70,6 +70,11 @@ func resume_or_retry() -> void:
 func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: float) -> Dictionary:
 	return trial_level.move_body(position,motion,size,delta)
 
+func actor_solids() -> Array[Rect2]:
+	var solids := trial_level.actor_solids()
+	solids.append(Rect2(0,440,6000,100))
+	return solids
+
 func player_shot_solids() -> Array[Rect2]:
 	var solids := trial_level.projectile_solids()
 	solids.append(Rect2(0,440,6000,100))
@@ -132,7 +137,7 @@ func position_safe(feet: Vector2, role: String, activation := false) -> bool:
 	if body.grow(45 if activation else 100).intersects(Rect2(player,PLAYER_SIZE)): return false
 	for other in actors:
 		if other.hp > 0 and other.feet != feet and body.grow(12).intersects(actor_rect(other)): return false
-	for solid in player_shot_solids():
+	for solid in actor_solids():
 		if body.grow(-0.1).intersects(solid): return false
 	return true
 
@@ -294,7 +299,7 @@ func move_flyer_clear(actor: Dictionary, destination: Vector2) -> bool:
 	var shape := event_size("aggressive_flyer")
 	destination.x = clampf(destination.x,-shape.position.x,WORLD_WIDTH-shape.end.x)
 	var closest := 1.0
-	for solid in player_shot_solids():
+	for solid in actor_solids():
 		var expanded := Rect2(solid.position-shape.end,solid.size+shape.size)
 		var hit := segment_hit(actor.feet,destination,expanded)
 		if hit >= 0: closest = minf(closest,maxf(0,hit-0.001))

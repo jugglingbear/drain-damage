@@ -9,6 +9,8 @@ var wave_spawned: Array[int] = [0,0,0,0]
 var wave_bypassed: Array[int] = [0,0,0,0]
 var wave_clock := 0.0
 var next_wave_spawn := 0.0
+var last_wave_admission := -100.0
+var next_density_spawn := 0.0
 var retired_crowd := 0
 var route_progress := 0.0
 const DifficultyPlan = preload("res://scripts/difficulty_plan.gd")
@@ -62,6 +64,8 @@ func reset_observation() -> void:
 	wave_bypassed.fill(0)
 	wave_clock = 0
 	next_wave_spawn = 0
+	last_wave_admission = -100
+	next_density_spawn = 0
 	retired_crowd = 0
 	route_progress = respawn_origin
 	swarms.reset()
@@ -73,16 +77,15 @@ func reset_observation() -> void:
 	for item in layout.geometry:
 		if float(item.rect[0]) < OPENING_END - 500: kept.append(item)
 	layout.geometry = kept
-	for index in range(layout.timeline.size()):
-		var event: Dictionary = layout.timeline[index]
-		var resolved: Dictionary = run_plan.opening[index]
-		event.eligible_gameplay_second = 0.0
-		event.role = resolved.role
+	layout.timeline = []
+	for resolved in run_plan.opening:
 		for authored in trial_data.layout.timeline:
-			if authored.role == event.role:
-				event.warning_seconds = authored.warning_seconds
-				event.settle_seconds = authored.get("settle_seconds",0.0)
-				break
+			if authored.role != resolved.role: continue
+			var event: Dictionary = authored.duplicate(true)
+			event.id = resolved.id
+			event.eligible_gameplay_second = 0.0
+			layout.timeline.append(event)
+			break
 	if difficulty == "normal":
 		for resolved in run_plan.later:
 			for authored in trial_data.layout.timeline:
@@ -136,6 +139,11 @@ func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: 
 		if bounded.x != result.pos.x: result.velocity.x = 0
 		result.pos = bounded
 	return result
+
+func actor_solids() -> Array[Rect2]:
+	var solids := trial_level.actor_solids()
+	solids.append(Rect2(0,440,WORLD_WIDTH,100))
+	return solids
 
 func player_shot_solids() -> Array[Rect2]:
 	var solids := trial_level.projectile_solids()
@@ -192,6 +200,7 @@ func actor_world_limit() -> float:
 	return WORLD_WIDTH if difficulty == "normal" else super.actor_world_limit()
 
 func route_home(event: Dictionary) -> Vector2:
+	if event.get("id", "").ends_with("-extra") and event.role == "runner": return density_runner_home()
 	var home := Vector2.INF
 	if event.role == "perched_shooter":
 		for deck in trial_level.plinths:
@@ -220,6 +229,20 @@ func route_home(event: Dictionary) -> Vector2:
 	if home != Vector2.INF and route_clearance(home,event.role): return home
 	return Vector2.INF
 
+func density_runner_home() -> Vector2:
+	# Use existing floor and solid tops, with the same visible warning and predicted landing exclusion.
+	for offset in range(580,219,-20):
+		var x := player.x+offset
+		var heights: Array[float] = [440.0]
+		for solid in trial_level.plinths:
+			if x-19 >= solid.position.x and x+19 <= solid.end.x: heights.append(solid.position.y)
+		for height in heights:
+			var feet := Vector2(x,height)
+			if x >= camera_x+900 or not predicted_entry_clear(feet,"runner",0.6): continue
+			if position_safe(feet,"runner") and route_clearance(feet,"runner"):
+				return feet
+	return Vector2.INF
+
 func predicted_entry_clear(feet: Vector2, role: String, delay: float) -> bool:
 	var body := event_size(role)
 	body.position += feet
@@ -235,6 +258,7 @@ func route_clearance(feet: Vector2, role: String) -> bool:
 	return true
 
 func choose_home(event: Dictionary) -> Vector2:
+	if event.get("id", "").ends_with("-extra") and event.role == "runner": return density_runner_home()
 	if event.role == "perched_shooter":
 		# Any forward position on a visible deck is valid, not only its far edge.
 		for deck in trial_level.decks:
@@ -310,10 +334,19 @@ func step_encounters(delta: float) -> void:
 		if encounter_states[event.id] == "pending" and route_progress >= event.end:
 			encounter_states[event.id] = "bypassed"
 			wave_bypassed[event.wave] += 1
-	if wave_clock < next_wave_spawn or ordinary_population() >= crowd_limit(): return
+	if wave_clock < last_wave_admission+0.3 or ordinary_population() >= crowd_limit(): return
 	if respawn_origin >= DifficultyPlan.CHECKPOINT and wave_clock < 1.25: return
 	for event in run_plan.later:
 		if encounter_states[event.id] != "pending" or player.x < event.trigger: continue
+		var extra: bool = event.id.ends_with("-extra")
+		if wave_clock < (next_density_spawn if extra else next_wave_spawn): continue
+		if extra:
+			var extra_nearby := false
+			for enemy in enemies:
+				if enemy.get("encounter_id", "").ends_with("-extra") and enemy.hp > 0 \
+						and enemy.pos.x >= camera_x-160 and enemy.pos.x <= camera_x+1250:
+					extra_nearby = true
+			if extra_nearby: continue
 		var radius := entrance_radius()
 		var sides: Array = [event.side,-event.side]
 		if event.wave == 0 and event.owner_origin == DifficultyPlan.CHECKPOINT: sides = [1.0]
@@ -342,10 +375,12 @@ func step_encounters(delta: float) -> void:
 				enemies.append(enemy)
 				encounter_states[event.id] = "spawned"
 				wave_spawned[event.wave] += 1
-				next_wave_spawn = wave_clock+event.spacing
+				last_wave_admission = wave_clock
+				if extra: next_density_spawn = wave_clock+1.0
+				else: next_wave_spawn = wave_clock+event.spacing
 				return
 
-func route_pressure() -> int:
+func route_pressure(include_additions: bool = true) -> int:
 	# All warnings commit future pressure. Remote survivors still consume the global safety cap;
 	# local pressure counts them again as soon as they approach the view, without deleting them.
 	var count := 0
@@ -355,6 +390,9 @@ func route_pressure() -> int:
 	for actor in actors:
 		if actor.hp <= 0: continue
 		if actor.active and (actor_rect(actor).end.x < camera_x-160 or actor.feet.x > camera_x+1250): continue
+		if not include_additions and actor.event_id.ends_with("-extra"):
+			if actor.role == "perched_shooter": living_shooter = true
+			continue
 		count += 1
 		if actor.role == "perched_shooter": living_shooter = true
 	for swarm in swarms.actors:
@@ -375,13 +413,21 @@ func step_normal_route() -> void:
 			trial_state.mark_unavailable(event.id,"passed route window before safe entry")
 			encounter_states[event.id] = "bypassed"
 			wave_bypassed[resolved.wave] += 1
-	if player.x < OPENING_END or wave_clock < next_wave_spawn: return
-	if route_pressure() >= (3 if player.x < 4450 else 2): return
+	if player.x < OPENING_END or wave_clock < last_wave_admission+0.3: return
+	var local_target := 3 if player.x < 4450 else 2
+	var baseline_pressure := route_pressure(false)
+	var total_pressure := route_pressure()
 	if ordinary_population() >= crowd_limit(): return
 	if respawn_origin >= DifficultyPlan.CHECKPOINT and wave_clock < 1.25: return
 	for resolved in run_plan.later:
 		var event: Dictionary = states[resolved.id]
 		if event.state != "pending" or route_progress >= resolved.end or player.x < resolved.trigger: continue
+		# Extra encounters have one local pacing slot; all global threat and entry checks still apply.
+		var extra: bool = resolved.id.ends_with("-extra")
+		if wave_clock < (next_density_spawn if extra else next_wave_spawn): continue
+		if extra:
+			if total_pressure-baseline_pressure >= 1 or total_pressure >= local_target+1: continue
+		elif baseline_pressure >= local_target: continue
 		if trial_state.elapsed < retry_after.get(event.id,0.0): continue
 		var home := route_home(event)
 		if home == Vector2.INF and event.role in ["perched_shooter","floor_emerger"]:
@@ -407,7 +453,9 @@ func step_normal_route() -> void:
 		if not route_admitted.has(event.id):
 			route_admitted[event.id] = true
 			wave_spawned[resolved.wave] += 1
-		next_wave_spawn = wave_clock+resolved.spacing
+		last_wave_admission = wave_clock
+		if extra: next_density_spawn = wave_clock+1.0
+		else: next_wave_spawn = wave_clock+resolved.spacing
 		return
 
 func step_trial_shots(delta: float) -> void:

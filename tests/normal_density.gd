@@ -14,6 +14,20 @@ func run_checks() -> void:
 		var values: Array = []
 		for seed_value in range(100):
 			var plan := Plan.resolve(mode,seed_value)
+			var opening_added: int = plan.opening.filter(func(e: Dictionary) -> bool: return e.id.ends_with("-extra")).size()
+			var later_added: int = plan.later.filter(func(e: Dictionary) -> bool: return e.id.ends_with("-extra")).size()
+			assert(opening_added == (0 if mode == "easy" else 3))
+			assert(later_added == (0 if mode == "easy" else 4 if mode == "normal" else 7))
+			for event in plan.later:
+				if event.id.ends_with("-extra"):
+					assert(event.trigger < 5610 or event.trigger >= 7530)
+			plan.opening = plan.opening.filter(func(e: Dictionary) -> bool: return not e.id.ends_with("-extra"))
+			plan.later = plan.later.filter(func(e: Dictionary) -> bool: return not e.id.ends_with("-extra"))
+			if mode != "easy":
+				var baseline: int = plan.opening.size()+9
+				for event in plan.later:
+					if event.trigger < 5610 or event.trigger >= 7530: baseline += 1
+				assert(opening_added+later_added+(4 if mode == "normal" else 2) == ceili(baseline*0.25))
 			values.append(plan.opening if mode == "normal" else plan)
 		assert(JSON.stringify(values).sha256_text() == SIGNATURES[mode], "Preserve approved plans")
 	var game = Game.new()
@@ -24,7 +38,7 @@ func run_checks() -> void:
 	game.set_physics_process(false)
 	game.dialogue.finish()
 	game.dialogue.release_guard = 0
-	assert(game.trial_state.results().total == 42)
+	assert(game.trial_state.results().total == 49)
 	assert(game.actor_world_limit() == 9600)
 	# Remaining route roles have safe homes; replaced entries stay unavailable.
 	for slot in game.run_plan.later:
@@ -145,5 +159,5 @@ func run_checks() -> void:
 	game.queue_free()
 	await process_frame
 	await create_timer(0.3).timeout
-	print("PASS:100seed immutable plans,42event route,habitats/world bounds,canceled expiry,fallback and density backpressure")
+	print("PASS:100seed immutable plans,49event route,habitats/world bounds,canceled expiry,fallback and density backpressure")
 	quit()

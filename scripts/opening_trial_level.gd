@@ -46,7 +46,11 @@ func configure(layout: Dictionary) -> bool:
 	return true
 
 func projectile_solids() -> Array[Rect2]:
-	## Both faces of a deck block shots; one-way behavior applies only to moving bodies.
+	## Authored one_way_top decks pass projectiles; solid plinths block every direction.
+	return plinths.duplicate()
+
+func actor_solids() -> Array[Rect2]:
+	## Bodies, navigation and spawn safety retain both authored geometry classes.
 	var result: Array[Rect2] = plinths.duplicate()
 	result.append_array(decks)
 	return result
@@ -59,7 +63,7 @@ func move_body(position: Vector2, velocity: Vector2, size: Vector2, delta: float
 	# Bound displacement per sweep so diagonal movement cannot skip a thin deck corner.
 	var steps := maxi(1, int(ceil(velocity.length() * maxf(delta, 0.0) / MAX_STEP)))
 	var dt := maxf(delta, 0.0) / steps
-	var surfaces := projectile_solids()
+	var surfaces := actor_solids()
 	for step in range(steps):
 		var old := pos
 		var target_x := pos.x + vel.x * dt
@@ -109,7 +113,7 @@ func visible_grate(camera: float, player: Vector2, size: Vector2) -> Dictionary:
 		if pos.x < camera or pos.x + size.x > camera + VIEW_WIDTH: continue
 		if x - player.x < 180 or x - player.x > 420: continue
 		var blocked := false
-		for rect in projectile_solids():
+		for rect in actor_solids():
 			if Rect2(pos, size).intersects(rect): blocked = true
 		if not blocked: return {"pos": pos, "feet": Vector2(x, floor_y)}
 	return {}

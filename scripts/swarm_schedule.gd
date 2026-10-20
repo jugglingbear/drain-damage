@@ -13,12 +13,24 @@ const SLOTS := [
 	{"id":"terminal-west","home":Vector2(8720,330),"bounds":Rect2(8550,230,340,194),"owner":4650},
 	{"id":"terminal-east","home":Vector2(9240,330),"bounds":Rect2(9110,230,260,194),"owner":4650},
 ]
+const EXTRA_SLOTS := [
+	{"id":"service-middle","home":Vector2(3830,190),"bounds":Rect2(3670,130,320,120),"owner":85},
+	{"id":"terminal-entry","home":Vector2(8350,190),"bounds":Rect2(8190,130,320,120),"owner":4650},
+]
+const NORMAL_EXTRA_SLOTS := [
+	{"id":"opening-overhead-west","home":Vector2(1400,190),"bounds":Rect2(1240,130,320,120),"owner":85},
+	{"id":"opening-overhead-east","home":Vector2(2350,190),"bounds":Rect2(2190,130,320,120),"owner":85},
+]
+var slots: Array = []
 var ledger: Dictionary = {}
 var enabled := true
 
 func reset(host: Node2D) -> void:
 	ledger.clear()
-	for slot in SLOTS:
+	slots = SLOTS.duplicate(true)
+	if host.difficulty != "easy": slots.append_array(EXTRA_SLOTS)
+	if host.difficulty == "normal": slots.append_array(NORMAL_EXTRA_SLOTS)
+	for slot in slots:
 		ledger[slot.id] = {"state":"pending" if slot.owner >= host.respawn_origin else "excluded",
 			"issued":false,"visible":false,"defeated":false}
 	# Preserve the original actor's seed, timing and ordinary-budget contribution.
@@ -51,8 +63,8 @@ func step(host: Node2D) -> void:
 			or host.dialogue.active or host.dialogue.release_guard > 0 or host.won: return
 	if host.respawn_origin >= 4650 and host.wave_clock < 1.25: return
 	if host.player.x >= host.skitterling.QUIET and not host.skitterling.released: return
-	for index in range(SLOTS.size()):
-		var slot: Dictionary = SLOTS[index]
+	for index in range(slots.size()):
+		var slot: Dictionary = slots[index]
 		var entry: Dictionary = ledger[slot.id]
 		if entry.state != "pending" or slot.id == "original-service": continue
 		if slot.home.x >= host.skitterling.END and not host.skitterling.released: continue
@@ -73,7 +85,7 @@ func step(host: Node2D) -> void:
 		entry.issued = true
 
 func report() -> Dictionary:
-	var result := {"potential":SLOTS.size(),"issued":0,"visible":0,"defeated":0,"bypassed":0,"excluded":0}
+	var result := {"potential":slots.size(),"issued":0,"visible":0,"defeated":0,"bypassed":0,"excluded":0}
 	for entry in ledger.values():
 		for field in ["issued","visible","defeated"]:
 			if entry[field]: result[field] += 1

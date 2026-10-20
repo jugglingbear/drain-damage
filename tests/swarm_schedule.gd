@@ -23,16 +23,16 @@ func run_checks() -> void:
 	var game = prepare()
 	var schedule = game.swarm_schedule
 	assert(schedule.report().issued == 1 and game.swarms.actors[0].pos.x == 4400)
-	for slot in schedule.SLOTS:
+	for slot in schedule.slots:
 		var render_bounds: Rect2 = slot.bounds.grow(16)
 		assert(game.skitterling.allowed_body(render_bounds))
-		assert(game.swarms.clear_path(slot.home,slot.home,slot.bounds,game.player_shot_solids()),
+		assert(game.swarms.clear_path(slot.home,slot.home,slot.bounds,game.actor_solids()),
 			"Invalid initial swarm footprint: "+slot.id)
 		var actor: Dictionary = game.swarms.spawn(slot.home,slot.bounds,42)
 		for tick in range(600):
-			game.swarms.step_motion(actor,1.0/60,game.player_shot_solids())
+			game.swarms.step_motion(actor,1.0/60,game.actor_solids())
 			assert(slot.bounds.grow(-48).has_point(actor.pos))
-			for solid in game.player_shot_solids():
+			for solid in game.actor_solids():
 				assert(not solid.grow(48).has_point(actor.pos),"Swarm intersects solid: "+slot.id)
 	# No admission during pause/dialogue/dispenser/death or checkpoint grace.
 	for gate in ["pause","dialogue","dispenser","death"]:
@@ -53,7 +53,7 @@ func run_checks() -> void:
 	game.camera_x = 4330
 	game.wave_clock = 1.24
 	schedule.step(game)
-	assert(schedule.report().issued == 0 and schedule.report().excluded == 5)
+	assert(schedule.report().issued == 0 and schedule.report().excluded == 8)
 	game.wave_clock = 1.25
 	schedule.step(game)
 	assert(schedule.report().issued == 1 and game.swarms.actors[0].schedule_id == "pump-overhead")
@@ -103,8 +103,8 @@ func run_checks() -> void:
 			game.skitterling.entered = true
 		game.skitterling.released = x >= 7530
 		schedule.step(game)
-	assert(schedule.report().issued == 4 and schedule.report().visible == 4)
-	assert(schedule.report().excluded == 5)
+	assert(schedule.report().issued == 5 and schedule.report().visible == 5)
+	assert(schedule.report().excluded == 8)
 	# Expired invisible death remains cannot inflate actual visibility telemetry.
 	game.reset_observation()
 	game.player = Vector2(4650,394)
@@ -147,7 +147,7 @@ func admission(mode: String, hero: int, seed_value: int, enabled: bool) -> Dicti
 		assert(game.ordinary_population() <= game.run_plan.crowd_cap)
 	var result := {"events":game.trial_state.results().events,"later":game.encounter_states,
 		"waves":game.wave_spawned,"fallbacks":game.route_fallbacks}
-	if enabled: assert(game.swarm_schedule.report().issued == 9)
+	if enabled: assert(game.swarm_schedule.report().issued == (9 if mode == "easy" else 13 if mode == "normal" else 11))
 	game.queue_free()
 	await process_frame
 	return result
