@@ -35,7 +35,11 @@ Approved profiles, lore and gameplay advice remain; redundant small captions and
 `columns` elements flow text through ordered `[x, top, width, height]` boxes and reject unplaced text.
 Body copy is 10–11 points with compact leading. The issue remains eight pages, with all non-bosses before the bosses.
 Earlier editions and the pre-revision source are preserved in `guide-assets-v29/`.
-`current.pdf` matches edition 29. This is a local layout delivery; website publication is separate.
+`current.pdf` matches edition 29, now [published on GitHub Pages](https://jugglingbear.github.io/drain-damage/).
+The October 20 deployment succeeded, and the live eight-page PDF matches the approved SHA-256
+`8a600c41be2ad0e73b16720c0aa137078bb208002cf37d2ce29a86b3fce28a4a`.
+The article images and reciprocal Storybook links were verified after
+[deployment 39515674328](https://github.com/jugglingbear/drain-damage/actions/runs/39515674328).
 The historical page 6 gameplay captures still do not represent the current running build.
 
 ## Prototype 81 release review — October 19, 2026
