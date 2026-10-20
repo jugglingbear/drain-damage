@@ -1460,8 +1460,8 @@
         }
       },
       "health": {
-        "max_hp": 720,
-        "spawn_hp": 720,
+        "max_hp": 1080,
+        "spawn_hp": 1080,
         "runtime_max_hp": null,
         "encounter_stage": "first_mission_finale",
         "role": "stationary boss",
@@ -1477,80 +1477,84 @@
         },
         "visual_policy": "assets/bestiary/damage/health-visuals.json",
         "balance_policy": "assets/bestiary/balance-policy.json",
-        "rationale": "720 HP now requires 30 Sean plungers or 120 Tony pressure bolts. Sustained DPS is 24 versus 40; boss window/fight duration needs rebalancing after the starter-weapon nerf.",
+        "rationale": "Active first-level starters both sustain75DPS:90 Tony12-damage hits or60 Sean18-damage hits. Five-second windows; tune after both-hero playtests.",
         "hits_to_defeat": {
-          "heavy-plunger-launcher": 30,
-          "pressure-gun": 120,
-          "drain-snake": 90,
-          "demolition-hammer": 12,
-          "pipe-wrench": 60,
-          "pipe-bomb-launcher": 12
+          "heavy-plunger-launcher": 45,
+          "pressure-gun": 180,
+          "drain-snake": 135,
+          "demolition-hammer": 18,
+          "pipe-wrench": 90,
+          "pipe-bomb-launcher": 18
         },
         "comparison_assumptions": "Full damage against exposed weak point, no armor/upgrades/regeneration; all hits land. Counts do not include travel time, windup or overkill on summoned enemies.",
         "fight_duration_target_seconds": [
           40,
-          75
+          60
         ],
-        "duration_status": "Unvalidated target; reassess after Sean damage drops to 24 and starting weapon ranges become 320/480 pixels.",
-        "status": "Provisional design balance from Game Mechanics proposal; not implemented or playtested",
-        "runtime_note": "No boss encounter or runtime spawn; metadata registration only.",
-        "stage_status": "Proposed first mission finale",
+        "duration_status": "40\u201360s playtest aim; current starters12/.16 and18/.24; no guaranteed fight duration",
+        "status": "1080 HP implemented; headless combat and integration checks passed, human balance validation pending",
+        "runtime_note": "One rooted encounter in the first-level finale; sludge and acid only, weak-point damage during recovery.",
+        "stage_status": "First mission finale",
         "weapon_comparisons": [
           {
             "weapon_id": "pipe-wrench",
             "owner": "tony",
-            "hits": 60,
+            "hits": 90,
             "overkill_hp": 0,
             "windup_seconds": 0.06,
-            "minimum_continuous_exposure_seconds": 17.76
+            "minimum_continuous_exposure_seconds": 26.76
           },
           {
             "weapon_id": "drain-snake",
             "owner": "tony",
-            "hits": 90,
+            "hits": 135,
             "overkill_hp": 0,
             "windup_seconds": 0.06,
-            "minimum_continuous_exposure_seconds": 22.31
+            "minimum_continuous_exposure_seconds": 33.56
           },
           {
             "weapon_id": "pressure-gun",
             "owner": "tony",
-            "hits": 120,
+            "hits": 180,
             "overkill_hp": 0,
             "windup_seconds": 0.0,
-            "minimum_continuous_exposure_seconds": 17.85
+            "minimum_continuous_exposure_seconds": 26.85
           },
           {
             "weapon_id": "demolition-hammer",
             "owner": "sean",
-            "hits": 12,
+            "hits": 18,
             "overkill_hp": 0,
             "windup_seconds": 0.3,
-            "minimum_continuous_exposure_seconds": 16.8
+            "minimum_continuous_exposure_seconds": 25.8
           },
           {
             "weapon_id": "heavy-plunger-launcher",
             "owner": "sean",
-            "hits": 30,
+            "hits": 45,
             "overkill_hp": 0,
             "windup_seconds": 0.0,
-            "minimum_continuous_exposure_seconds": 29.0
+            "minimum_continuous_exposure_seconds": 44.0
           },
           {
             "weapon_id": "pipe-bomb-launcher",
             "owner": "sean",
-            "hits": 12,
+            "hits": 18,
             "overkill_hp": 0,
             "windup_seconds": 0.0,
-            "minimum_continuous_exposure_seconds": 22.0
+            "minimum_continuous_exposure_seconds": 34.0
           }
         ],
         "comparison_notes": "Only pressure gun and heavy plunger currently playable. Melee access requires low weak point; projectile accuracy and travel consume exposure time. Area attacks damage boss once per attack, never once per overlapping pipe. Counts exclude armor, misses, hazards, approach grace, and closed phases.",
-        "comparison_balance_version": "range-and-pursuit-2026-10-14"
+        "comparison_balance_version": "clogfather-2026-10-20",
+        "first_level_hits_to_defeat": {
+          "pressure-gun": 90,
+          "heavy-plunger-launcher": 60
+        }
       },
       "name": "The Clogfather",
       "damage_art": null,
-      "runtime_support": "hud_preview_only"
+      "runtime_support": "rooted_boss"
     },
     "sewer-fly-swarm": {
       "audio": {
@@ -3790,6 +3794,24 @@
           "peak_dbfs": -12,
           "sha256": "a228170baf11149e846393c2f1e729a4287578a9b5e9f3c2e32d520c5f3d6208",
           "loop": false
+        },
+        {
+          "cue_id": "inspect-servo",
+          "path": "assets/audio/sfx/spare-employee-dispenser-v1/grab-servo.wav",
+          "duration_seconds": 0.3,
+          "gain_db": -8,
+          "peak_dbfs": -12,
+          "sha256": "f1c8d564fa0f5923eaf5b6f399eca959ff49c673658b41ac4d53ca8d314df9de",
+          "loop": false
+        },
+        {
+          "cue_id": "inspect-scan",
+          "path": "assets/audio/sfx/spare-employee-dispenser-v1/scan-whirr.wav",
+          "duration_seconds": 0.38,
+          "gain_db": -9,
+          "peak_dbfs": -12,
+          "sha256": "bc8989be0666fcf23e8aeb9d0da652ee79e473eb03f281c731bff442847602d7",
+          "loop": false
         }
       ],
       "event_mapping": {
@@ -3822,6 +3844,12 @@
         ],
         "release": [
           "release-confirm"
+        ],
+        "inspection_arm_deploy": [
+          "inspect-servo"
+        ],
+        "inspect": [
+          "inspect-scan"
         ]
       }
     }

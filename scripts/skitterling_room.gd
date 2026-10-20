@@ -38,6 +38,15 @@ func reset(seed_value: int) -> void:
 func locked() -> bool:
 	return entered and not released
 
+func restore_completed() -> void:
+	# The second checkpoint owns progress beyond this room; retry must not resurrect its boss.
+	entered = true
+	released = true
+	kill_recorded = true
+	encounter.active = false
+	encounter.hp = 0
+	encounter.exit_open = true
+
 func frozen(host: Node2D) -> bool:
 	return host.paused or host.dialogue.active or host.dispenser.active or host.won or host.life_state != "alive"
 

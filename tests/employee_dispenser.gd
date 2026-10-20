@@ -28,7 +28,7 @@ func run_checks() -> void:
 				var visible := Rect2(dispenser.impact_point+dispenser.impact_bounds.position,
 					dispenser.impact_bounds.size)
 				assert(Rect2(Vector2.ZERO,viewport_size).encloses(visible))
-		assert(game.Level.CHECKPOINTS.size() == 1)
+		assert(game.Level.CHECKPOINTS == [4650.0,13800.0])
 		var checkpoint := Vector2(game.Level.CHECKPOINTS[0],394)
 		assert(checkpoint.x > 4500 and checkpoint.x < 4900)
 		assert(dispenser.stocked and dispenser.sleeping_frames(game.employee.id,0).size() == 1)
@@ -57,6 +57,7 @@ func run_checks() -> void:
 		game.health = 1
 		game.activate_checkpoint(0)
 		assert(dispenser.mode == "injured" and dispenser.stocked and not dispenser.can_skip)
+		assert(dispenser.arrival_health == 1 and dispenser.arrival_max_health == game.employee.max_health)
 		advance(game,1)
 		assert(dispenser.stocked and game.health == game.employee.max_health)
 		var clock_value: float = dispenser.elapsed
@@ -64,9 +65,9 @@ func run_checks() -> void:
 		advance(game,2)
 		assert(dispenser.elapsed == clock_value and dispenser.stocked)
 		game.set_paused(false)
-		advance(game,1.15)
+		advance(game,2.9)
 		assert(not dispenser.stocked and dispenser.dispenses == 1 and dispenser.overlay_visible())
-		advance(game,3.5)
+		advance(game,3.0)
 		assert(not dispenser.active and dispenser.finalizations == 1 and game.lives == 3)
 		assert(dispenser.events.count("impact") == 1 and dispenser.events.count("vend") == 1)
 		game.respawn_after_death()
@@ -88,7 +89,7 @@ func run_checks() -> void:
 		Input.action_release("dialogue_skip")
 		await process_frame
 		# Skips and watchdog finalize one replacement, never restock or replay a second clone.
-		for time in [0.2,1.0,1.95,2.5,3.8,4.7,5.2]:
+		for time in [0.2,1.0,1.95,2.5,3.8,4.7,5.2,6.5]:
 			game.reset_game()
 			game.health = 1
 			game.activate_checkpoint(0)
@@ -115,5 +116,5 @@ func run_checks() -> void:
 		await process_frame
 	title.queue_free()
 	await process_frame
-	print("PASS: both heroes, one midpoint checkpoint, full/injured/skip/death, single clone, empty arrivals and reset")
+	print("PASS: both heroes, independent route checkpoints, full/injured/skip/death, single clone, empty arrivals and reset")
 	quit()

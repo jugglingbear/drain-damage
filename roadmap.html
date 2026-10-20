@@ -75,7 +75,23 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 20, 2026 · Current build: Prototype 84 / 0.84.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 20, 2026 · Current build: Prototype 85 / 0.85.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 85 — Clogfather finale and checkpoint inspection:</strong>
+The first level now spans 15,200 logical pixels. The route from the Skitterling exit to the Clogfather approach is
+6,500 pixels, with five distinct new background sections and a second checkpoint at x13800. Retry preserves the defeated
+Skitterling and prior route progress. The rooted 1080 HP Clogfather uses sludge and acid attacks, a five-second exposed
+weak point, a continuous boss health bar, damage stages, a collapse sequence and dedicated music. The injured checkpoint
+now grabs and lifts the hero, inspects them with an opposite-side magnifying arm, shows their actual pre-heal HP, then
+crushes and throws them into the preserved bloody slide and replacement sequence. Each machine has its own spare employee.
+Healthy check-in, respawn timing and life accounting remain unchanged. Completion ends this level; portal and level-two
+production remain on hold.</p>
+<p>Export, ad-hoc signing and ZIP checks, 31 packaged suites and 34 Python tests pass. Coverage includes 18 earlier-route
+regressions, 12 extension traversals in both directions and six boss integration cases. Traversal bots restore HP for
+coverage; human balance and duration remain unverified. Body/HUD and held-hero source compositions are approved;
+full damage/collapse composition and live animation, checkpoint occlusion, background seams, audio mix and actual
+screenshots remain pending. The app, archive and source snapshot are preserved.
+<a href="handoffs/first-call-integration.json">Delivery evidence</a> ·
+<a href="design/first-call-action/level-proposal.json">Route and scope contract</a>.</p>
 <p><strong>Prototype 84 — projectile clearance and encounter balance:</strong>
 Thin one-way ledges pass player and enemy shots; solid blocks and floor still stop swept projectiles. Bodies retain
 platform collision. Normal/Hard add 25% eligible enemies rounded up, preserving all original encounters and boss counts.

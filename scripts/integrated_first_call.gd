@@ -1,12 +1,15 @@
 extends "res://scripts/opening_trial_game.gd"
-## Continuous opening replaces the first two rooms; campaign coordinates never change.
+## Continuous first-level route with authored boss rooms and checkpoint-owned progress.
 const SkitterlingRoom = preload("res://scripts/skitterling_room.gd")
 var skitterling := SkitterlingRoom.new()
+const ClogfatherRoom = preload("res://scripts/clogfather_room.gd")
+var clogfather := ClogfatherRoom.new()
+const ClogfatherRoute = preload("res://scripts/clogfather_route.gd")
 const SwarmSchedule = preload("res://scripts/swarm_schedule.gd")
 var swarm_schedule := SwarmSchedule.new()
 const OPENING_END := 3120.0
-var wave_spawned: Array[int] = [0,0,0,0]
-var wave_bypassed: Array[int] = [0,0,0,0]
+var wave_spawned: Array[int] = [0,0,0,0,0]
+var wave_bypassed: Array[int] = [0,0,0,0,0]
 var wave_clock := 0.0
 var next_wave_spawn := 0.0
 var last_wave_admission := -100.0
@@ -25,10 +28,19 @@ var next_opening_spawn := 0.0
 var opening_passed := false
 var route_admitted: Dictionary = {}
 var route_fallbacks: Dictionary = {}
+const BACKGROUND_MANIFEST := "res://assets/world/first-call/background-manifest-v2.json"
+var background_panels: Array = []
+var background_textures: Dictionary = {}
 
 func _ready() -> void:
 	super._ready()
 	skitterling.attach(self)
+	clogfather.attach(self)
+	if FileAccess.file_exists(BACKGROUND_MANIFEST):
+		var scenery: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(BACKGROUND_MANIFEST))
+		background_panels = scenery.panels
+		for panel: Dictionary in background_panels:
+			if not background_textures.has(panel.path): background_textures[panel.path] = load("res://"+panel.path)
 	# Base _ready dispatched reset_game, so the mixed geometry is already configured.
 
 func reset_game() -> void:
@@ -38,7 +50,9 @@ func reset_game() -> void:
 	dispenser.configure(difficulty == "hard")
 	run_seed = seed_override if seed_override >= 0 else randi()
 	run_plan = DifficultyPlan.resolve(difficulty,run_seed)
+	ClogfatherRoute.append_plan(run_plan)
 	respawn_origin = 85.0
+	if music_director != null: music_director.play_track("level")
 	super.reset_game()
 
 func reset_observation() -> void:
@@ -46,6 +60,8 @@ func reset_observation() -> void:
 	if rebuilding_respawn: return
 	super.reset_observation()
 	skitterling.reset(run_seed)
+	if respawn_origin >= ClogfatherRoom.CHECKPOINT: skitterling.restore_completed()
+	clogfather.reset(run_seed)
 	boss_hud.end_encounter()
 	opening_passed = respawn_origin >= OPENING_END
 	corpses.clear()
@@ -86,8 +102,8 @@ func reset_observation() -> void:
 			event.eligible_gameplay_second = 0.0
 			layout.timeline.append(event)
 			break
-	if difficulty == "normal":
-		for resolved in run_plan.later:
+	for resolved in run_plan.later:
+		if difficulty == "normal" or resolved.wave == 4:
 			for authored in trial_data.layout.timeline:
 				if authored.role != resolved.role: continue
 				var event: Dictionary = authored.duplicate(true)
@@ -97,8 +113,8 @@ func reset_observation() -> void:
 				break
 	var configured := trial_state.configure(layout, trial_data.balance, true)
 	assert(configured)
-	if difficulty == "normal":
-		for event in run_plan.later:
+	for event in run_plan.later:
+		if difficulty == "normal" or event.wave == 4:
 			if event.owner_origin < respawn_origin:
 				trial_state.mark_unavailable(event.id,"excluded by respawn ownership")
 	for event in run_plan.opening:
@@ -106,6 +122,8 @@ func reset_observation() -> void:
 			trial_state.mark_unavailable(event.id,"excluded by difficulty or respawn ownership")
 	trial_level.configure(layout)
 	trial_level.width = WORLD_WIDTH
+	trial_level.plinths.append_array(ClogfatherRoute.SOLIDS)
+	trial_level.decks.append_array(ClogfatherRoute.LEDGES)
 	for rect in Level.PROPS:
 		# Retain a descending 60px stair before the quiet boundary instead of a trapped floor pocket.
 		if rect == Rect2(5390,320,180,120):
@@ -125,17 +143,26 @@ func reset_observation() -> void:
 func respawn_after_death() -> void:
 	if lives <= 0: return
 	respawn_origin = respawn_point.x
+	if music_director != null: music_director.play_track("level")
 	reset_observation()
 	flushfiend_death_audio.stop()
 	swarm_audio.stop()
 	rebuilding_respawn = true
 	super.respawn_after_death()
 	rebuilding_respawn = false
+	if respawn_origin >= ClogfatherRoom.CHECKPOINT:
+		camera_x = clogfather.camera_position(player.x)
+
+func activate_checkpoint(index: int = 0) -> void:
+	super.activate_checkpoint(index)
+	if index == 1 and checkpoint_index == 1:
+		camera_x = clogfather.camera_position(player.x)
 
 func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: float) -> Dictionary:
 	var result := trial_level.move_body(position,motion,size,delta)
 	if size == PLAYER_SIZE:
 		var bounded := skitterling.constrain(result.pos,size)
+		bounded = clogfather.constrain(bounded,size)
 		if bounded.x != result.pos.x: result.velocity.x = 0
 		result.pos = bounded
 	return result
@@ -197,13 +224,15 @@ func issue_event() -> void:
 		return
 
 func actor_world_limit() -> float:
-	return WORLD_WIDTH if difficulty == "normal" else super.actor_world_limit()
+	return ClogfatherRoom.CONTAINMENT if difficulty == "normal" or player.x >= 9500 else super.actor_world_limit()
 
 func route_home(event: Dictionary) -> Vector2:
 	if event.get("id", "").ends_with("-extra") and event.role == "runner": return density_runner_home()
 	var home := Vector2.INF
 	if event.role == "perched_shooter":
-		for deck in trial_level.plinths:
+		var supports: Array[Rect2] = trial_level.plinths.duplicate()
+		supports.append_array(trial_level.decks)
+		for deck in supports:
 			if deck.position.x < OPENING_END: continue
 			for x in [deck.end.x-30,deck.get_center().x,deck.position.x+30]:
 				var feet := Vector2(x,deck.position.y)
@@ -252,6 +281,7 @@ func predicted_entry_clear(feet: Vector2, role: String, delay: float) -> bool:
 func route_clearance(feet: Vector2, role: String) -> bool:
 	var body := event_size(role)
 	body.position += feet
+	if body.end.x > ClogfatherRoom.CONTAINMENT: return false
 	if body.position.x < respawn_origin or not skitterling.allowed_body(body): return false
 	for checkpoint in Level.CHECKPOINTS:
 		if body.position.x < checkpoint+200 and body.end.x > checkpoint-200: return false
@@ -292,17 +322,21 @@ func _physics_process(delta: float) -> void:
 		if not skitterling.locked():
 			camera_x = move_toward(camera_x,clampf(player.x-320,0,WORLD_WIDTH-960),400*dt)
 		skitterling.advance(self,dt)
+		clogfather.advance(self,dt)
 		swarm_schedule.step(self)
 		issue_event()
 		step_trial_actors(dt)
 		skitterling.contain_prior(self)
+		clogfather.contain_prior(self)
 		# Base combat advances campaign bodies. One shared sweep below owns all shots.
 		var saved: Array[Dictionary] = shots
 		shots = []
 		step_combat(dt)
 		skitterling.contain_prior(self)
+		clogfather.contain_prior(self)
 		shots = saved
 		step_trial_shots(dt)
+		clogfather.contain_prior(self)
 		if life_state == "alive": swarms.step(self,minf(dt,0.1/count))
 		if life_state != "alive": break
 		step_encounters(dt)
@@ -311,7 +345,7 @@ func _physics_process(delta: float) -> void:
 		if player.x >= Level.CHECKPOINTS[checkpoint] and checkpoint > checkpoint_index:
 			activate_checkpoint(checkpoint)
 			if dispenser.active: return
-	if player.x >= 9450 and skitterling.encounter.exit_open: complete_job()
+	if player.x >= ClogfatherRoom.FINISH and clogfather.encounter.exit_open: complete_job()
 	for index in range(particles.size()-1,-1,-1):
 		particles[index].pos += particles[index].vel*delta
 		particles[index].vel.y += 350*delta
@@ -321,15 +355,16 @@ func _physics_process(delta: float) -> void:
 func step_encounters(delta: float) -> void:
 	wave_clock += delta
 	route_progress = maxf(route_progress,player.x)
+	if player.x >= ClogfatherRoom.QUIET: return
 	if player.x >= SkitterlingRoom.QUIET and not skitterling.released: return
-	if difficulty == "normal":
-		step_normal_route()
-		return
 	# Retire only well outside view, without kill credit or a visible disappearance.
 	for index in range(enemies.size()-1,-1,-1):
 		if enemies[index].pos.x+38 < camera_x-320:
 			enemies.remove_at(index)
 			retired_crowd += 1
+	if difficulty == "normal" or player.x >= 9500:
+		step_normal_route()
+		return
 	for event in run_plan.later:
 		if encounter_states[event.id] == "pending" and route_progress >= event.end:
 			encounter_states[event.id] = "bypassed"
@@ -408,6 +443,7 @@ func step_normal_route() -> void:
 	var states: Dictionary = {}
 	for event in trial_state.results().events: states[event.id] = event
 	for resolved in run_plan.later:
+		if not states.has(resolved.id): continue
 		var event: Dictionary = states[resolved.id]
 		if event.state == "pending" and route_progress >= resolved.end:
 			trial_state.mark_unavailable(event.id,"passed route window before safe entry")
@@ -420,6 +456,7 @@ func step_normal_route() -> void:
 	if ordinary_population() >= crowd_limit(): return
 	if respawn_origin >= DifficultyPlan.CHECKPOINT and wave_clock < 1.25: return
 	for resolved in run_plan.later:
+		if not states.has(resolved.id): continue
 		var event: Dictionary = states[resolved.id]
 		if event.state != "pending" or route_progress >= resolved.end or player.x < resolved.trigger: continue
 		# Extra encounters have one local pacing slot; all global threat and entry checks still apply.
@@ -470,6 +507,8 @@ func step_trial_shots(delta: float) -> void:
 		var enemy_target := -1
 		var swarm_target := -1
 		var boss_target := false
+		var clog_target := false
+		var clog_weak := false
 		for solid in player_shot_solids():
 			var hit := projectile_hit(start,end,solid,direction)
 			if hit >= 0: nearest = minf(nearest,hit)
@@ -500,11 +539,29 @@ func step_trial_shots(delta: float) -> void:
 				actor_target = -1
 				enemy_target = -1
 				swarm_target = -1
+		var clog_regions := [clogfather.target_rect(),clogfather.shell_rect()]
+		for region_index in range(clog_regions.size()):
+			var boss_rect: Rect2 = clog_regions[region_index]
+			if not boss_rect.has_area(): continue
+			var hit := projectile_hit(start,end,boss_rect,direction)
+			if hit >= 0 and hit < nearest:
+				nearest = hit
+				clog_target = true
+				clog_weak = region_index == 0
+				boss_target = false
+				actor_target = -1
+				enemy_target = -1
+				swarm_target = -1
 		shot.pos = end
 		shot.distance += travel
 		if nearest <= 1 or shot.distance >= shot.range:
-			if shot.has("trial_id"): trial_state.resolve_shot(shot.trial_id,actor_target >= 0 or enemy_target >= 0 or swarm_target >= 0 or boss_target)
-			if boss_target: skitterling.damage(self,int(shot.damage))
+			if shot.has("trial_id"): trial_state.resolve_shot(shot.trial_id,actor_target >= 0 or enemy_target >= 0 or swarm_target >= 0 or boss_target or clog_target)
+			if clog_target:
+				var point := start.lerp(end,nearest)
+				if clog_weak:
+					clogfather.damage(self,int(shot.damage),str(shot.get("trial_id","shot-%d" % shot_serial)))
+				else: clogfather.deflect(point)
+			elif boss_target: skitterling.damage(self,int(shot.damage))
 			elif swarm_target >= 0: swarms.damage(swarm_target,shot.damage)
 			elif enemy_target >= 0: damage_enemy(enemy_target,shot.damage,start.lerp(end,nearest))
 			elif actor_target >= 0:
@@ -523,8 +580,15 @@ func draw_progress() -> void:
 		Vector2(29,73),12,GOLD)
 
 func draw_environment() -> void:
-	for bay in range(maxi(0,int(camera_x/960)-1),mini(10,int(camera_x/960)+3)):
-		draw_asset(trial_data.environment.background,Rect2(bay*960,15,960,540))
+	if background_panels.is_empty():
+		for bay in range(maxi(0,int(camera_x/960)-1),mini(ceili(WORLD_WIDTH/960),int(camera_x/960)+3)):
+			draw_asset(trial_data.environment.background,Rect2(bay*960,15,960,540))
+	else:
+		var view := Rect2(camera_x,0,960,540)
+		for panel: Dictionary in background_panels:
+			var destination := region(panel.destination)
+			if not destination.intersects(view): continue
+			draw_texture_rect_region(background_textures[panel.path],destination,region(panel.source_rect))
 	for rect in trial_level.decks:
 		draw_asset(part("support"),Rect2(rect.position,Vector2(250,120)),Color(0.65,0.65,0.65))
 		draw_asset(part("deck"),rect)
@@ -534,7 +598,7 @@ func draw_environment() -> void:
 	for x in range(0,int(WORLD_WIDTH),480):
 		draw_asset(part("floor-fascia"),Rect2(x,440,480,100))
 	dispenser.draw_machines(self)
-	label_at("EXIT →",Vector2(9450,315),16,MINT)
+	if clogfather.encounter.exit_open: label_at("EXIT →",Vector2(ClogfatherRoom.FINISH,315),16,MINT)
 
 func _draw() -> void:
 	if trial_data.is_empty(): return
@@ -552,6 +616,7 @@ func _draw() -> void:
 				Vector2(clampf(actor.feet.x,camera_x+35,camera_x+925),minf(actor.feet.y,440)))
 		draw_actor(actor)
 	skitterling.draw_actor(self)
+	clogfather.draw(self)
 	if not dispenser.hides_hero() and (life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
 	for shot in shots:
 		# Reuse the existing original projectile presentation.
@@ -578,20 +643,25 @@ func _draw() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	skitterling.process_audio(self,delta)
+	clogfather.process_audio(self,delta)
 
 func hurt_player() -> void:
 	super.hurt_player()
 	player = skitterling.constrain(player,PLAYER_SIZE)
+	player = clogfather.constrain(player,PLAYER_SIZE)
 
 func set_paused(value: bool) -> void:
 	super.set_paused(value)
 	skitterling.audio.set_paused(value or life_state != "alive")
+	clogfather.audio.set_paused(value or life_state != "alive")
 
 func request_title() -> void:
 	if death_popup_locked: return
 	skitterling.audio.stop()
+	clogfather.audio.stop()
 	super.request_title()
 
 func _exit_tree() -> void:
 	skitterling.audio.dispose()
+	clogfather.audio.dispose()
 	super._exit_tree()

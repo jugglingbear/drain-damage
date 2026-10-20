@@ -15,6 +15,8 @@ var opacity := 1.0
 var policy: Dictionary
 var swarm_frame: Texture2D
 var swarm_fill: Texture2D
+var clogfather_skin: Dictionary = {}
+var clogfather_textures: Dictionary = {}
 const SWARM_FRAME_PATH := "res://assets/bestiary/cockroach-swarm/health-bar-v2/frame.png"
 const SWARM_FILL_PATH := "res://assets/bestiary/cockroach-swarm/health-bar-v2/fill.png"
 
@@ -25,6 +27,12 @@ func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	swarm_frame = load(SWARM_FRAME_PATH)
 	swarm_fill = load(SWARM_FILL_PATH)
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
+		"res://assets/bestiary/the-clogfather/runtime-manifest-v2.json"))
+	clogfather_skin = manifest.get("hud",{})
+	for value: Variant in clogfather_skin.values():
+		if value is Dictionary and value.has("path"):
+			clogfather_textures[value.path] = load("res://"+value.path)
 
 func begin_encounter(id: String) -> void:
 	var definition := Data.monster(id)
@@ -75,10 +83,13 @@ func tick(delta: float) -> void:
 	queue_redraw()
 
 func reserved_height() -> float:
-	return (110.0 if boss_id == "cockroach-swarm" else float(policy.reserved_band_pixels)) if active else 0.0
+	return (110.0 if boss_id in ["cockroach-swarm","clogfather"] else float(policy.reserved_band_pixels)) if active else 0.0
 
 func _draw() -> void:
 	if not active: return
+	if boss_id == "clogfather" and not clogfather_skin.is_empty():
+		draw_clogfather()
+		return
 	var width := float(policy.reference_viewport_pixels[0])
 	var bar_width: float = width * policy.width_fraction
 	var swarm := boss_id == "cockroach-swarm"
@@ -110,3 +121,27 @@ func draw_swarm_fill(bar: Rect2, fraction: float, tint: Color) -> void:
 	var source := Rect2(Vector2.ZERO, swarm_fill.get_size() * Vector2(amount, 1))
 	var target := Rect2(bar.position, bar.size * Vector2(amount, 1))
 	draw_texture_rect_region(swarm_fill, target, source, tint)
+
+func draw_clogfather() -> void:
+	modulate.a = opacity
+	draw_rect(Rect2(0,0,960,110),Color("101c2a"))
+	draw_clogfather_frame("track")
+	var fraction := hp/maximum
+	var fill := "fill_green" if fraction > .5 else "fill_yellow" if fraction > .25 else "fill_red"
+	draw_clogfather_frame(fill,trail,Color("f3b597"))
+	draw_clogfather_frame(fill,fraction)
+	draw_clogfather_frame("frame")
+	draw_string(ThemeDB.fallback_font,Vector2(0,clogfather_skin.name_baseline_y),boss_name.to_upper(),
+		HORIZONTAL_ALIGNMENT_CENTER,960,20,Color("ffe18d"))
+	draw_string(ThemeDB.fallback_font,Vector2(0,clogfather_skin.player_status_baseline_y),player_status,
+		HORIZONTAL_ALIGNMENT_CENTER,960,14,Color("fff6d5"))
+
+func draw_clogfather_frame(id: String, fraction := 1.0, tint := Color.WHITE) -> void:
+	if fraction <= 0 or not clogfather_skin.has(id): return
+	var part: Dictionary = clogfather_skin[id]
+	var source := Rect2(part.source_rect[0],part.source_rect[1],part.source_rect[2],part.source_rect[3])
+	var values: Array = clogfather_skin.aperture if id.begins_with("fill_") else part.destination
+	var destination := Rect2(values[0],values[1],values[2],values[3])
+	source.size.x *= clampf(fraction,0,1)
+	destination.size.x *= clampf(fraction,0,1)
+	draw_texture_rect_region(clogfather_textures[part.path],destination,source,tint)

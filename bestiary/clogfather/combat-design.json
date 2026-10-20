@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "clogfather-encounter",
   "name": "The Clogfather",
-  "updated": "2026-10-14",
-  "status": "Proposed encounter mechanics; no runtime implementation or playtest validation",
+  "updated": "2026-10-20",
+  "status": "Approved rooted boss and sludge/acid starting approach; current_implementation_contract supersedes initial numeric and optional-pattern proposals",
   "scope": "First mission boss; rooted giant fatberg with moving pipe mouths and extensions.",
   "canonical_metadata_note": "Bestiary owns monster.json and artwork. This encounter proposal is not registered as a playable creature. Promote accepted HP into monster.json.health before runtime integration; runtime must not read duplicate health values from this proposal.",
   "story_boundaries": [
@@ -43,7 +43,8 @@
       75
     ],
     "duration_status": "Unvalidated target; reassess after Sean damage drops to 24 and starting weapon ranges become 320/480 pixels.",
-    "comparison_balance_version": "range-and-pursuit-2026-10-14"
+    "comparison_balance_version": "range-and-pursuit-2026-10-14",
+    "status": "Historical720HP proposal; superseded by canonical1080HP candidate and current_implementation_contract2026-10-20"
   },
   "arena": {
     "viewport_reference_pixels": [
@@ -214,5 +215,58 @@
     "Pause, retry and death clear timers, hazards and summon state; optional valves cannot be spammed.",
     "Test both legacy and future damage scales separately; reject mismatched player-health configuration.",
     "Measure completion time with both plumbers before accepting 720 HP and the 40\u201375-second target."
-  ]
+  ],
+  "current_implementation_contract": {
+    "date": "2026-10-20",
+    "owner": "Engineering delivery; Game Mechanics isolated controller; Art assets/anchors; Level Design placement",
+    "health": "1080 HP initial playtest candidate, canonical monster.json source; no difficulty HP multiplier.",
+    "starters": {
+      "tony": {
+        "damage": 12,
+        "interval": 0.16,
+        "hits": 90
+      },
+      "sean": {
+        "damage": 18,
+        "interval": 0.24,
+        "hits": 60
+      }
+    },
+    "damage_to_player": 1,
+    "hero_reference": "Tony4HP/270px/s; Sean5HP/235px/s; shared1.5s hurt immunity",
+    "initial_patterns": [
+      "sludge_volley",
+      "ceiling_acid"
+    ],
+    "excluded_initial_scope": [
+      "summon_flushfiend",
+      "optional_valves"
+    ],
+    "loop": "Sludge warning0.9s locks hero-center aim from upper nozzle675,255;3 shots (4 in phase2/3),210px/s,.45s spacing, no homing. Wait all shots hit floor/wall or expire<=4s; approach0.8s; full5s low-mouth window, closing warning last0.75s. Then acid warning1.2s,2 full64px columns (3 in phase3),fall0.6s,puddle0.8s; clear; same grace/window. Alternate.",
+    "window": "Mouth unfolds during approach; becomes damageable for the full5s window. Body contact disabled for approach and recovery. No threshold truncation; phase advances after full window, lethal hit immediate.",
+    "geometry": "Room-local960x540,floor440,HUD0..110. Artroot810,440; shellRect(700,120,255,320); weakpointRect(626,377,48,42); sludge nozzle(675,255). Walkable/acid span0..700 covers both edges. Harmless rootwisps may extend left to615; configure geometry before start.",
+    "acid_safety": "Locked columns include splash width. Reserve connected corridor>=180px reachable at235px/s with0.15s reaction margin and actual hero width; at most35% floor marked. If no safe plan, skip pattern into recovery.",
+    "projectile_safety": "Separated low nonhoming sludge, no overlapping acid, swept collision exposure; caller handles one shared-invulnerability hit per tick. No invisible or offscreen instant hit.",
+    "retry": "Preboss checkpoint; full boss and selected hero HP,phase1,empty hazards/timers,normal life debit once. Keep completed Skitterling and earlier segments completed; suppress repeated banter.",
+    "death": "Clear danger immediately,nonlooping1.2s collapse,one boss_defeated event; progression outcome belongs to Storyboarding/Engineering.",
+    "api": "scripts/clogfather_encounter.gd provides reset/start/step/hit/drain_events/hurt_rects/snapshot; Engineering maps world coordinates, rendering, music and actual hero damage.",
+    "balance_validation": "Measure both heroes; target40\u201360s is a playtest aim, not guaranteed by HP. Current starters75DPS each; ideal1080HP firing14.24/14.16s before travel/misses.",
+    "art": "Existing source sheets need smooth pressure/sludge/acid/lowmouth open-close/hit/death and coherent health-stage compositing. Gross HUD must preserve readable continuous actual HP and existing green/yellow/red thresholds.",
+    "checkpoint": "World checkpoint13800; arena14150..15110,commit14230,completion15150 afterterminaldefeat. Engineering owns worldadapter; no portal ininitialdelivery.",
+    "phase_progression": "At thirds, update phase after complete recovery; retain sludge/acid alternation so successful damage does not skip acid entirely.",
+    "source_validation": {
+      "status": "Isolated controller tests passed; integrated route/render/audio/playtest pending Engineering",
+      "test": "tests/clogfather_encounter.gd",
+      "coverage": [
+        "60/120Hz timers and full5s windows",
+        "90Tony/60Sean successful hits with active cadence; both see acid before defeat",
+        "phase3 four-shot volley and three acid columns",
+        "50 deterministic acid plans including both walkable corners; reachable180px corridor and<=35% marked floor",
+        "pause in every attack/window state; no pauseddamage",
+        "deduplicated hit IDs; lethal death-only signal; one completion; full retryreset",
+        "no artwork/window/capture validation claimed"
+      ],
+      "log": "builds/verification-clogfather/mechanics.log"
+    }
+  }
 }

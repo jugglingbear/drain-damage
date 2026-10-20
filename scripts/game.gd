@@ -459,11 +459,12 @@ func activate_checkpoint(index: int = 0) -> void:
 	if index <= checkpoint_index or dispenser.active or life_state != "alive" or health <= 0 \
 		or lives <= 0 or dialogue.active: return
 	var kind := "injured" if health < employee.max_health else "full_health"
+	var previous_health := health
 	checkpoint_index = index
 	checkpoint_active = true
 	respawn_point = Vector2(Level.CHECKPOINTS[index], FLOOR_Y - PLAYER_SIZE.y)
 	health = employee.max_health
-	dispenser.start(self,kind,index)
+	dispenser.start(self,kind,index,previous_health)
 
 func complete_job() -> void:
 	if won:

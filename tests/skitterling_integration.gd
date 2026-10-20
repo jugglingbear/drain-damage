@@ -97,7 +97,8 @@ func check_midfight_retry() -> void:
 	game.checkpoint_active = true
 	game.checkpoint_index = 0
 	game.respawn_point = Vector2(4650,394)
-	game.dispenser.stocked = false
+	game.dispenser.checkpoint = 0
+	game.dispenser.consume_stock()
 	game.player = Vector2(6690,394)
 	game.invulnerable = 100
 	var room = game.skitterling

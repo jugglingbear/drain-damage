@@ -35,27 +35,17 @@ const OPENING: Array[Dictionary] = [
 ]
 
 const COMPLETION_TONY: Array[Dictionary] = [
-	{"who": "tony", "emotion": "neutral", "text": "I’m at the exit. Sean, you still on the radio?", "radio": false},
-	{"who": "sean", "emotion": "worried", "text": "Yeah. I was trying not to distract you. Are you coming out?", "radio": true},
-	{"who": "tony", "emotion": "happy", "text": "On my way, buddy. Thanks for staying with me.", "radio": false},
-	{"who": "bj", "emotion": "neutral", "text": "Before you leave, I have another service call.", "radio": false},
-	{"who": "tony", "emotion": "skeptical", "text": "Does the customer know what’s happening down here?", "radio": false},
-	{"who": "bj", "emotion": "neutral", "text": "The customer reported a toilet moving across the bathroom.", "radio": false},
-	{"who": "sean", "emotion": "worried", "text": "Can we tell them to shut the door?", "radio": true},
-	{"who": "tony", "emotion": "neutral", "text": "Good thinking. BJ, tell them to stay out. We’ll call when we’re on our way.", "radio": false},
-	{"who": "bj", "emotion": "neutral", "text": "I’ll mark you as available.", "radio": false},
+	{"who": "tony", "emotion": "neutral", "text": "It’s down. I’m still here.", "radio": false},
+	{"who": "sean", "emotion": "worried", "text": "Are you hurt?", "radio": true},
+	{"who": "tony", "emotion": "happy", "text": "I’ll check when I find a clean bit.", "radio": false},
+	{"who": "sean", "emotion": "neutral", "text": "I’ll get the hose.", "radio": true},
 ]
 
 const COMPLETION_SEAN: Array[Dictionary] = [
-	{"who": "sean", "emotion": "worried", "text": "Tony, I found the exit. Please tell me you’re outside.", "radio": false},
-	{"who": "tony", "emotion": "happy", "text": "I’m here, buddy. Come on out. We’ll check you over.", "radio": true},
-	{"who": "sean", "emotion": "neutral", "text": "I thought plumbing would involve fewer teeth.", "radio": false},
-	{"who": "tony", "emotion": "neutral", "text": "It usually does. You did well to get through that.", "radio": true},
-	{"who": "bj", "emotion": "neutral", "text": "There’s another customer waiting. Their toilet has moved into the hallway.", "radio": false},
-	{"who": "sean", "emotion": "surprised", "text": "Can’t we wait for it to leave the building?", "radio": false},
-	{"who": "tony", "emotion": "neutral", "text": "Someone could get hurt. BJ, tell them to keep clear. Give us a minute.", "radio": true},
-	{"who": "sean", "emotion": "worried", "text": "You’ll stay on the radio?", "radio": false},
-	{"who": "tony", "emotion": "happy", "text": "Of course I will.", "radio": true},
+	{"who": "sean", "emotion": "surprised", "text": "Tony? I think I got it.", "radio": false},
+	{"who": "tony", "emotion": "worried", "text": "Are you still in one piece?", "radio": true},
+	{"who": "sean", "emotion": "neutral", "text": "Yes. None of it’s clean.", "radio": false},
+	{"who": "tony", "emotion": "happy", "text": "We can work with that. You did well, buddy.", "radio": true},
 ]
 
 static func completion(employee_id: String) -> Array[Dictionary]:

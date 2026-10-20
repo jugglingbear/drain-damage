@@ -12,14 +12,14 @@
   "reference_reading": "User-supplied stills show readable horizontal combat lane, airborne pickups, several entry elevations and supported platforms. They do not establish measured spawn rates, enemy HP or exact first-20-second timing; opening description is user observation.",
   "baseline": {
     "layout": "scripts/first_call.gd: six gated zones,17 solid props,9600 pixels",
-    "tuning": "Current canonical Tony6 damage/0.15s; Sean24/1.0s;40HP Flushfiend gives7/2 hits. Sean2\u20133sec is perceived feel, not current configured interval.",
+    "tuning": "Current canonical Tony6 damage/0.15s; Sean24/1.0s;40HP Flushfiend gives7/2 hits. Sean2–3sec is perceived feel, not current configured interval.",
     "newer_content": "Septic Air Force is integrated per current handoff: slow non-hunting swarm. Do not repurpose it as an aggressive flying attacker. Eight-way aiming exists; use current code, not old horizontal-only baseline."
   },
   "recommendation": {
     "structure": "Continuous forward encounters punctuated by one midlevel set piece and the boss; replace six mandatory clear-all stops in the proposed revision. Preserve existing gate art for meaningful machinery set piece/boss lock, not every wave.",
     "density": "More fragile bodies and simultaneous roles, not simply more high-HP pursuers. Maintain escape lanes and distinct enemy projectile silhouettes.",
     "pacing": "First20s should establish four combat roles with staggered overlap, a visible pickup opportunity and terrain choice. Begin fighting within2s, no new mandatory tutorial.",
-    "length": "Retain9600 as planning envelope; target4\u20136min including initial40\u201360sec boss. Instrument human clears; shrink empty distance rather than pad HP. Boss60\u201390sec only later if attack variety warrants it.",
+    "length": "Retain9600 as planning envelope; target4–6min including initial40–60sec boss. Instrument human clears; shrink empty distance rather than pad HP. Boss60–90sec only later if attack variety warrants it.",
     "ordinary_total": [
       80,
       100
@@ -35,27 +35,27 @@
   },
   "first_twenty_seconds": [
     {
-      "time": "0\u20133",
-      "beat": "2 forward runners enter visible ground lane; immediate shots and1\u20133-hit kills. No rear damage before first forward enemy is readable."
+      "time": "0–3",
+      "beat": "2 forward runners enter visible ground lane; immediate shots and1–3-hit kills. No rear damage before first forward enemy is readable."
     },
     {
-      "time": "3\u20136",
+      "time": "3–6",
       "beat": "2 more forward runners and1 rear entrant with visible edge arrival cue; first low pipe step gives an optional elevated route."
     },
     {
-      "time": "6\u201310",
+      "time": "6–10",
       "beat": "1 perched shooter winds up a slow aimed shot while2 runners cross below. Pickup carrier traverses overhead; first reward is reachable from low platform or drops into clear floor."
     },
     {
-      "time": "10\u201314",
+      "time": "10–14",
       "beat": "2 floor-emerging enemies appear from distinct premarked grates and2 runners enter opposite side; do not mark the hero current landing point."
     },
     {
-      "time": "14\u201318",
+      "time": "14–18",
       "beat": "2 aggressive flyers cross distinct arcs plus1 ground runner; perched shooter fires only if projectile-pattern budget permits."
     },
     {
-      "time": "18\u201320",
+      "time": "18–20",
       "beat": "2 final runners and optional upper-route reward; briefly thin attack pressure while action continues into next space."
     }
   ],
@@ -178,7 +178,7 @@
     "floor_ceiling": "Use grate/vent movement or silhouette cue and fixed telegraphed landing; commit landing before attack, never home onto hero during descent.",
     "depth": "Animate background/foreground scale into a fixed play-plane destination. Harmless and untargetable before joining plane; clear landing marker and short settle before contact/shooting. Never obscure hero with giant foreground silhouette.",
     "budget": "All entry telegraphs/active bodies consume population budget; max1 depth entry at once. Cancel/reselect threatened landing if player occupies it.",
-    "timing": "Initial candidates0.6\u20130.9s warning,0.25\u20130.4s settle; Mechanics to validate against movement and projectile speeds."
+    "timing": "Initial candidates0.6–0.9s warning,0.25–0.4s settle; Mechanics to validate against movement and projectile speeds."
   },
   "progression": "Proposal supersedes old global kill-all rule only after implementation and story text agree. Finite encounters wake by forward progress. Do not require hunting every missed runner behind camera; resolve encounter retirement explicitly, never silently count retired bodies as kills. Boss defeat + exit finishes mission. Existing ending saying last of them must change if enemies may remain.",
   "clogfather": {
@@ -196,8 +196,8 @@
     "Build, capture with permission, human playtest and revise measured route pacing"
   ],
   "acceptance": [
-    "Ordinary baseline enemies need1\u20133 successful hits from BOTH starters for chosen profile; armor/boss exceptions explicit",
-    "No repeated2\u20133sec helpless firing gaps; test misses, firing while moving/aiming and perceived shot feedback",
+    "Ordinary baseline enemies need1–3 successful hits from BOTH starters for chosen profile; armor/boss exceptions explicit",
+    "No repeated2–3sec helpless firing gaps; test misses, firing while moving/aiming and perceived shot feedback",
     "Hero can take upper/lower route while attacked; perched enemies reachable with actual aiming/range",
     "Opening presents several roles without unavoidable crossfire or contact at spawn",
     "No all-clear door after every small wave; continuous run-and-gun flow demonstrated",
@@ -207,7 +207,7 @@
   "coordination": {
     "mechanics": "handoffs/first-level-run-and-gun-balance.json",
     "engineering": "handoffs/level-one-redesign-engineering.json",
-    "agreement": "Accept conservative6-visible/8-peak start and40\u201360sec boss trial.17 opening/90 total remain provisional. OptionA is recommended trial, not approved tuning. Engineering presents consolidated report when Art mockups arrive.",
+    "agreement": "Accept conservative6-visible/8-peak start and40–60sec boss trial.17 opening/90 total remain provisional. OptionA is recommended trial, not approved tuning. Engineering presents consolidated report when Art mockups arrive.",
     "opening_revision": "Engineering/Mechanics recommend12 for first playable comparison;17 remains denser variant,90 whole-route draft likewise provisional."
   },
   "opening_trial": {
@@ -216,35 +216,648 @@
     "reason": "Mechanics throughput review reserves time for misses/repositioning;17 is a stress-test option after the faster starters feel good. Original beat list illustrates17 variant, not required initial density.",
     "first_twenty_seconds": [
       {
-        "time": "0\u20133",
+        "time": "0–3",
         "count": 2,
         "roles": "forward runners"
       },
       {
-        "time": "3\u20136",
+        "time": "3–6",
         "count": 2,
         "roles": "forward runner and warned rear runner"
       },
       {
-        "time": "6\u201310",
+        "time": "6–10",
         "count": 2,
         "roles": "perched shooter and runner; pickup carrier is not hostile"
       },
       {
-        "time": "10\u201314",
+        "time": "10–14",
         "count": 2,
         "roles": "floor emerger and runner"
       },
       {
-        "time": "14\u201318",
+        "time": "14–18",
         "count": 2,
         "roles": "aggressive flyers on staggered arcs"
       },
       {
-        "time": "18\u201320",
+        "time": "18–20",
         "count": 2,
         "roles": "forward runners; pressure thins before next space"
       }
     ]
+  },
+  "current_scope_2026_10_20": {
+    "status": "Requested expansion; pre-integration design and art readiness review, not delivered gameplay",
+    "owner": "Engineering accountable for implementation/build delivery; Level Design owns route/scope, Mechanics combat contract, Art artwork, Audio cues.",
+    "user_direction": [
+      "Wider first-level background with less repetition",
+      "Extend combat after Skitterling roughly as far as start-to-Skitterling, then Clogfather finale",
+      "Dramatic boss music and an appropriately gross continuous health bar"
+    ],
+    "approved_checkpoint_change": "Sean explicitly approved a second checkpoint immediately before Clogfather on October 20; supersedes exactly-one-checkpoint requirement for this expansion.",
+    "route_proposal": {
+      "existing_skitterling_exit": 7650,
+      "additional_combat_distance_approx": 6500,
+      "boss_approach_approx": 14150,
+      "note": "Superseded by route_blockout implementation coordinates in this section; runtime validation pending."
+    },
+    "pacing_proposal": "Distinct maintenance, pump and collection-chamber sections with existing monster roles, supported platforms and short breathers; no new species assumed.",
+    "background_requirement": "Replace per-screen repeated image with connected wide scenery sections; Art owns authored assets, Engineering owns variable-width rendering and culling.",
+    "boss_baseline": "Approved rooted fatberg and initial sludge/acid approach; low weak-point recovery is the agreed starting recommendation. No summons/valves in first pass. Numeric tuning and exact bounds remain implementation work.",
+    "art_gaps": [
+      "Registered clean body and modular anchors",
+      "Damage-matched action animations and complete collapse",
+      "Attack warning/effect sprites",
+      "Boss chamber and gross readable HUD"
+    ],
+    "audio": "Backpressure and twelve cues exist; actual boss music registration/event integration and listening validation remain pending.",
+    "ending_boundary": "Boss defeat and segment completion only. Portal/level-two work remains on hold until Sean explicitly starts it.",
+    "pending_decisions": [
+      "Exact arena bounds and candidate HP validation",
+      "Reveal choreography and gross HUD presentation",
+      "Checkpoint diagnosis visual treatment"
+    ],
+    "validation": "No new build, runtime edits, game launch or gameplay captures in this planning update.",
+    "mechanics_recommendation": {
+      "first_pass": "Sludge volley then warned ceiling acid, separated by full five-second low-mouth vulnerability windows; omit summons and optional valves initially.",
+      "candidate_hp": 1080,
+      "candidate_status": "Mechanics playtest recommendation only; target 40–60 seconds measured with both heroes.",
+      "active_starter_hits": {
+        "tony": 90,
+        "sean": 60
+      },
+      "damage_to_player": 1,
+      "retry": "Full hero HP, normal life cost, reset Clogfather only; retain defeated Skitterling and prior-route progress."
+    },
+    "background_assessment": "Engineering confirms current 1672x941 source is nonseamless and repeats into 960x540 bays, capped at ten. Use ordered independently loadable wide sections with explicit joins; preserve floor y440 and current viewport.",
+    "art_recommendation": "Create progression board and actual-size boss composition before production; rooted pale fatberg against dark teal chamber, separate clean body/pipes, consistent damage-stage sockets, readable attack effects and continuous collapse. Gross frame can use grease, wipes, roots and corroded pipe ends; preserve clear continuous HP fill. Amber fill is Art suggestion only; existing green/yellow/red policy stays unless Sean selects an exception.",
+    "ownership_sequence": [
+      "Level Design route and arena blockout with Mechanics attack contract",
+      "Art composition and asset production; Audio existing track/event mapping",
+      "Engineering integration, both-hero/all-mode traversal and boss/retry checks, build delivery",
+      "Actual gameplay captures and subjective review under playtest permission rules"
+    ],
+    "approved_boss_direction": "Sean approved huge rooted Clogfather occupying most vertical space on screen right, smooth rather than jerky animation, and initial sludge/acid attack approach. Attacks may be revised after playtest.",
+    "checkpoint_animation_revision": {
+      "status": "Requested October 20; production assigned, not integrated",
+      "sequence": [
+        "Holding arm grabs and lifts selected hero",
+        "Second arm emerges from opposite machine side holding magnifying glass",
+        "Inspect held hero and visibly diagnose missing health",
+        "Holding hand crushes hero into bloody ball",
+        "Throw toward screen and preserve bloody impact/slide",
+        "Preserve existing same-hero clone dispensing"
+      ],
+      "diagnosis": "Partial health bar, exclamation marks and chibi reaction are suggested presentation, not final selected artwork. Use pre-heal HP fraction if displaying a health bar.",
+      "healthy_path": "Preserve existing healthy quick check-in; no false injured diagnosis. No change to death-respawn path or life accounting requested.",
+      "animation": "Readable smooth movement, shared anchors and consistent hero scale; coordinate revised timings instead of compressing added beats into jerky transitions.",
+      "ownership": "Art new arm/glass/held poses/diagnosis assets; Mechanics timing and safety contract; Engineering integration; Audio event synchronization.",
+      "agreed_timing_seconds": 6.8,
+      "diagnosis_interval_seconds": [
+        1.6,
+        2.4
+      ],
+      "timing_status": "Art/Mechanics agreement; seven-second safety ceiling. Runtime integration and live animation validation pending."
+    },
+    "route_blockout": {
+      "status": "Level Design implementation contract; coordinates selected under approved scope, physics/playtest validation required",
+      "coordinates": "World logical pixels; rectangles x,y,width,height; hero26x46; viewport960x540; floor440",
+      "preserve": "All geometry, encounters and Skitterling entry/exit through7650; retain existing continuation events/swarms through9380.",
+      "world_width": 15200,
+      "checkpoint_x": [
+        4650,
+        13800
+      ],
+      "post_skitterling_route": [
+        7650,
+        14150
+      ],
+      "quiet_approach": [
+        13710,
+        14150
+      ],
+      "arena": {
+        "origin": [
+          14150,
+          0
+        ],
+        "end_x": 15110,
+        "entry_commit_hero_left": 14230,
+        "camera_lock": [
+          14150,
+          0
+        ],
+        "hero_left_bounds": [
+          14230,
+          14824
+        ],
+        "shell_rect_local": [
+          700,
+          120,
+          255,
+          320
+        ],
+        "art_rect_local": [
+          625.68,
+          94.4,
+          368.64,
+          368.64
+        ],
+        "root_local": [
+          810,
+          440
+        ],
+        "weak_point_rect_local": [
+          626,
+          377,
+          48,
+          42
+        ],
+        "hud_reserved_height": 110,
+        "floor_clear_local": [
+          0,
+          440,
+          700,
+          100
+        ],
+        "geometry_note": "Final Mechanics/Art registration: root810,440; visual650..955/y120..440; shell700,120,255,320; harmless root wisps. Floor440/HUD110. Low weak point overrides shell projectile collision; contact damage disabled during recovery. Mechanics validated elevated-nozzle sludge/acid controller and reachable180px acid corridors; integrated movement/playtest remains Engineering responsibility.",
+        "art_registration": {
+          "source_canvas": [
+            512,
+            512
+          ],
+          "source_anchor": [
+            256,
+            480
+          ],
+          "scale": 0.72,
+          "main_visual_bounds": [
+            650,
+            120,
+            305,
+            320
+          ],
+          "harmless_root_wisps_min_x": 615,
+          "weak_point_center": [
+            650,
+            398
+          ],
+          "sludge_nozzle": [
+            675,
+            255
+          ],
+          "pipe_socket": [
+            752,
+            235
+          ]
+        }
+      },
+      "camera": {
+        "entry_blend_hero_x": [
+          13790,
+          14230
+        ],
+        "entry_blend_camera_x": [
+          13470,
+          14150
+        ],
+        "formula": "Position-based smoothstep, reversible before entry commit; no teleport or velocity reset. Camera locks at14150,0 through boss. Evaluate same function on checkpoint respawn to avoid snap.",
+        "post_defeat": "Unlock only after boss death; smooth follow toward world max14240, preserve continuity. Remove shell collision after safe collapse if hero must walk through wreckage."
+      },
+      "checkpoint": {
+        "x": 13800,
+        "machine_world_anchor": [
+          13864,
+          440
+        ],
+        "clear_floor": [
+          13680,
+          440,
+          1470,
+          100
+        ],
+        "retry": "Keep Skitterling defeated/released and earlier route excluded; reset Clogfather only. No ordinary actor/hazard may enter checkpoint/reveal region. Full run restart resets both bosses. Use current dispenser gameplay semantics."
+      },
+      "completion": {
+        "hero_x": 15150,
+        "requires": "Clogfather terminal defeat and collapse complete",
+        "old_exit_9450": "Remove completion/EXIT marker; keep route traversable.",
+        "portal": "None; level2 remains on hold."
+      },
+      "added_platforms": [
+        {
+          "id": "continuation-solid-9740",
+          "rect": [
+            9740,
+            380,
+            160,
+            60
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-9900",
+          "rect": [
+            9900,
+            320,
+            180,
+            120
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-10080",
+          "rect": [
+            10080,
+            380,
+            160,
+            60
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-11180",
+          "rect": [
+            11180,
+            380,
+            160,
+            60
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-11340",
+          "rect": [
+            11340,
+            320,
+            180,
+            120
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-11520",
+          "rect": [
+            11520,
+            380,
+            160,
+            60
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-12540",
+          "rect": [
+            12540,
+            380,
+            160,
+            60
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-12700",
+          "rect": [
+            12700,
+            320,
+            180,
+            120
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-solid-12880",
+          "rect": [
+            12880,
+            380,
+            160,
+            60
+          ],
+          "classification": "solid",
+          "art": "existing low-deck/pump matching height",
+          "projectiles": "blocked"
+        },
+        {
+          "id": "continuation-ledge-1",
+          "rect": [
+            10520,
+            320,
+            240,
+            16
+          ],
+          "classification": "one_way",
+          "projectiles": "pass_through",
+          "support": "decorative rear pipe bracket, no hidden solid collider"
+        },
+        {
+          "id": "continuation-ledge-2",
+          "rect": [
+            11940,
+            320,
+            240,
+            16
+          ],
+          "classification": "one_way",
+          "projectiles": "pass_through",
+          "support": "decorative rear pipe bracket, no hidden solid collider"
+        }
+      ],
+      "scenery_sections": [
+        {
+          "id": "return-service",
+          "span": [
+            7650,
+            9570
+          ]
+        },
+        {
+          "id": "pump-gallery",
+          "span": [
+            9570,
+            11490
+          ]
+        },
+        {
+          "id": "collector-feed",
+          "span": [
+            11490,
+            13410
+          ]
+        },
+        {
+          "id": "checkpoint-approach",
+          "span": [
+            13410,
+            14150
+          ]
+        },
+        {
+          "id": "clogfather-chamber",
+          "span": [
+            14150,
+            15200
+          ]
+        }
+      ],
+      "scenery_contract": "Ordered distinct panels; subdivide for texture limits, explicit seam overlaps; no stretch-to-960 repetition. Floor remains440; collision art aligned and thin ledges visibly distinct. Before7650 background refresh may vary imagery but cannot change geometry.",
+      "added_ordinary_events": [
+        {
+          "id": "clog-approach-01",
+          "trigger": 9500,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 10150,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-02",
+          "trigger": 9690,
+          "role": "floor_emerger",
+          "owner_origin": 4650,
+          "end": 10340,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-03",
+          "trigger": 9880,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 10530,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-04",
+          "trigger": 10070,
+          "role": "perched_shooter",
+          "owner_origin": 4650,
+          "end": 10720,
+          "side": 1,
+          "easy_enabled": false,
+          "preferred_support_id": "continuation-ledge-1"
+        },
+        {
+          "id": "clog-approach-05",
+          "trigger": 10260,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 10910,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-06",
+          "trigger": 10450,
+          "role": "aggressive_flyer",
+          "owner_origin": 4650,
+          "end": 11100,
+          "side": 1,
+          "easy_enabled": false
+        },
+        {
+          "id": "clog-approach-07",
+          "trigger": 10640,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 11290,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-08",
+          "trigger": 10830,
+          "role": "rear_runner",
+          "owner_origin": 4650,
+          "end": 11480,
+          "side": -1,
+          "easy_enabled": false
+        },
+        {
+          "id": "clog-approach-09",
+          "trigger": 11020,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 11670,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-10",
+          "trigger": 11210,
+          "role": "floor_emerger",
+          "owner_origin": 4650,
+          "end": 11860,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-11",
+          "trigger": 11400,
+          "role": "perched_shooter",
+          "owner_origin": 4650,
+          "end": 12050,
+          "side": 1,
+          "easy_enabled": false,
+          "preferred_support_id": "continuation-ledge-2"
+        },
+        {
+          "id": "clog-approach-12",
+          "trigger": 11590,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 12240,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-13",
+          "trigger": 11780,
+          "role": "aggressive_flyer",
+          "owner_origin": 4650,
+          "end": 12430,
+          "side": 1,
+          "easy_enabled": false
+        },
+        {
+          "id": "clog-approach-14",
+          "trigger": 11970,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 12620,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-15",
+          "trigger": 12160,
+          "role": "floor_emerger",
+          "owner_origin": 4650,
+          "end": 12810,
+          "side": 1,
+          "easy_enabled": false
+        },
+        {
+          "id": "clog-approach-16",
+          "trigger": 12350,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 13000,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-17",
+          "trigger": 12540,
+          "role": "perched_shooter",
+          "owner_origin": 4650,
+          "end": 13190,
+          "side": 1,
+          "easy_enabled": false,
+          "preferred_support_id": "continuation-solid-12700"
+        },
+        {
+          "id": "clog-approach-18",
+          "trigger": 12730,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 13380,
+          "side": 1,
+          "easy_enabled": true
+        },
+        {
+          "id": "clog-approach-19",
+          "trigger": 12920,
+          "role": "rear_runner",
+          "owner_origin": 4650,
+          "end": 13570,
+          "side": -1,
+          "easy_enabled": false
+        },
+        {
+          "id": "clog-approach-20",
+          "trigger": 13110,
+          "role": "runner",
+          "owner_origin": 4650,
+          "end": 13650,
+          "side": 1,
+          "easy_enabled": true
+        }
+      ],
+      "difficulty": "Easy uses12 enabled base additions. Normal/Hard use20 plus5 +25percent additions, once only, at base indices0,4,8,12,16 offset60; extras are runners, same ownership/end. Preserve84 existing arrays/RNG and safety caps; separate deterministic extension stream. No required kill gates; counts are scheduled potential, not guaranteed realized.",
+      "placement": "Support IDs are preferred homes, not permission to spawn visibly or overlap. Shooter emission must have line clearance. Floor emergers use open floor outside solids. Warn before admission; defer/expire safely rather than force an unsafe actor. Keep existing role-specific budgets.",
+      "new_swarms": [
+        {
+          "id": "clog-feed-west",
+          "home": [
+            10880,
+            330
+          ],
+          "bounds": [
+            10770,
+            230,
+            300,
+            194
+          ],
+          "owner": 4650
+        },
+        {
+          "id": "clog-feed-middle",
+          "home": [
+            12280,
+            330
+          ],
+          "bounds": [
+            12190,
+            230,
+            300,
+            194
+          ],
+          "owner": 4650
+        },
+        {
+          "id": "clog-feed-east",
+          "home": [
+            13380,
+            330
+          ],
+          "bounds": [
+            13250,
+            230,
+            300,
+            194
+          ],
+          "owner": 4650
+        }
+      ],
+      "containment": "Ordinary actors/projectiles and swarm footprints end at13650. No new triggers after13110. Do not visibly delete pursuers at checkpoint; contain at boundary, then retire only offscreen at arena entry. Boss cannot inherit queued route attacks.",
+      "verification": [
+        "Both heroes, all modes,60/120Hz traverse new steps both directions with actual movement",
+        "Perched shots clear supports; one-way ledges pass shots and solid blocks stop them",
+        "New checkpoint commits once and preserves defeated Skitterling across retries",
+        "No route enemies or shots enter boss arena or checkpoint sequence",
+        "Entry camera continuous at both blend endpoints, no scroll during boss",
+        "Boss defeat gates completion and opens physical path through former shell",
+        "Fresh/full restart, retry, pause and skip clear only correctly owned state"
+      ]
+    }
   }
 }

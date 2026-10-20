@@ -146,19 +146,19 @@
     {
       "id": "clogfather",
       "name": "The Clogfather",
-      "status": "Registered design and source artwork; no playable boss encounter",
+      "status": "Integrated first-level boss in Prototype 85; live playtest pending",
       "metadata": "bestiary/clogfather/monster.json",
-      "art": "assets/bestiary/the-clogfather/body-atlas-v1.png",
-      "animation_spec": "assets/bestiary/the-clogfather/animation-v1.json",
+      "art": "assets/bestiary/the-clogfather/rooted-body-v2.png",
+      "animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
       "damage_art": {
-        "image": "assets/bestiary/the-clogfather/damage-atlas-v1.png",
-        "spec": "assets/bestiary/the-clogfather/damage-v1.json",
-        "status": "Six static HP-stage source poses; attack variants and continuous collapse animation still need refinement"
+        "image": "assets/bestiary/the-clogfather/damage-body-v2.png",
+        "spec": "assets/bestiary/the-clogfather/runtime-manifest-v2.json",
+        "status": "Registered damage stages and six-frame collapse integrated; source sheets/crops inspected, composed-stage and live motion review pending"
       },
       "health": {
-        "max_hp": 720,
+        "max_hp": 1080,
         "visible_by_default": true,
-        "status": "Provisional design balance from Game Mechanics proposal; not implemented or playtested",
+        "status": "1080 HP implemented; human balance review pending",
         "source": "bestiary/clogfather/monster.json#health"
       },
       "marketing": {
@@ -170,10 +170,9 @@
         "tool": "Built-in image_gen"
       },
       "remaining": [
-        "Attack and damage compositing",
-        "Additional acid/summon/valve effects",
-        "Anchor and alpha cleanup",
-        "Animation validation and encounter implementation"
+        "Live motion, background readability and balance review",
+        "Listening review",
+        "Actual gameplay screenshots"
       ],
       "description": "A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.",
       "backstory": {
@@ -188,7 +187,7 @@
         "source": "bestiary/clogfather/monster.json#audio",
         "hit_variants": 1,
         "death_variants": 1,
-        "runtime_status": "Planned boss; no playable encounter",
+        "runtime_status": "Integrated bounded hit/death/attack cues and boss music; listening review pending",
         "listening_review": "pending"
       }
     },

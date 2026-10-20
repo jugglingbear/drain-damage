@@ -1,0 +1,449 @@
+{
+  "status": "Art source registered and composed hand/lens/hero clearance approved; live sequence review pending",
+  "machine_canvas": [
+    192,
+    192
+  ],
+  "machine_world_origin": "checkpointX-32,248",
+  "visible_cabinet": [
+    25.5,
+    27.6,
+    132.9,
+    164.4
+  ],
+  "holding_arm_mount": [
+    144,
+    95
+  ],
+  "inspection_arm_mount": [
+    26,
+    95
+  ],
+  "held_hero_feet": [
+    34,
+    105
+  ],
+  "inspection_lens_center": [
+    34,
+    47
+  ],
+  "hero_canvas": [
+    128,
+    128
+  ],
+  "hero_anchor": [
+    64,
+    104
+  ],
+  "hero_scale": "Preserve existing normal/Hard dispenser visual scale and identity",
+  "layers": [
+    "cabinet interior and sleeping stock",
+    "glass front",
+    "rear holding-arm segments",
+    "held hero",
+    "gripping fingers",
+    "inspection arm and transparent lens",
+    "diagnosis readout"
+  ],
+  "timing_seconds": {
+    "grab_lift": [
+      0,
+      0.8
+    ],
+    "inspection_arm_deploy": [
+      0.8,
+      1.2
+    ],
+    "inspect": [
+      1.2,
+      2.0
+    ],
+    "diagnosis_visible": [
+      1.6,
+      2.4
+    ],
+    "inspection_arm_retract": [
+      2.4,
+      2.65
+    ],
+    "compress": [
+      2.65,
+      3.15
+    ],
+    "throw": [
+      3.15,
+      3.65
+    ],
+    "impact": [
+      3.65,
+      3.85
+    ],
+    "slide_vend": [
+      3.85,
+      5.35
+    ],
+    "emerge": [
+      5.35,
+      5.8
+    ],
+    "look_left": [
+      5.8,
+      6.1
+    ],
+    "look_right": [
+      6.1,
+      6.4
+    ],
+    "shrug": [
+      6.4,
+      6.8
+    ]
+  },
+  "release_seconds": 6.8,
+  "watchdog_seconds": 7,
+  "diagnosis": "Runtime snapshots actual pre-heal HP; authored frame/icons only. Bubble, chibi and exclamation composition remain tentative; never bake a half-health value into artwork.",
+  "preserve": [
+    "healthy0.4s path",
+    "respawn1.9s path",
+    "existing bloody screen slide and vending",
+    "same hero identity",
+    "normal and Hard costumes",
+    "no extra life debit"
+  ],
+  "motion": "Continuous articulated arm transforms with authored hand pose transitions; stable pivots and transparent lens; no two-state flipping",
+  "review_needed": "Live motion, camera framing and stock-window occlusion during full sequence remain Engineering playtest checks.",
+  "parts": {
+    "holding_upper": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        0,
+        0,
+        720,
+        370
+      ],
+      "source_pivots": {
+        "mount": [
+          120,
+          220
+        ],
+        "elbow": [
+          620,
+          220
+        ]
+      },
+      "scale": 0.13,
+      "destination": [
+        0,
+        0,
+        93.60000000000001,
+        48.1
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "holding_fore": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        720,
+        0,
+        654,
+        370
+      ],
+      "source_pivots": {
+        "elbow": [
+          540,
+          220
+        ],
+        "wrist": [
+          55,
+          220
+        ]
+      },
+      "scale": 0.13,
+      "destination": [
+        0,
+        0,
+        85.02,
+        48.1
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "hand_open": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        0,
+        370,
+        720,
+        360
+      ],
+      "source_pivots": {
+        "wrist": [
+          610,
+          205
+        ],
+        "grip": [
+          220,
+          205
+        ]
+      },
+      "scale": 0.08,
+      "destination": [
+        0,
+        0,
+        57.6,
+        28.8
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "hand_grip": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        720,
+        370,
+        654,
+        360
+      ],
+      "source_pivots": {
+        "wrist": [
+          515,
+          210
+        ],
+        "grip": [
+          220,
+          210
+        ]
+      },
+      "scale": 0.08,
+      "destination": [
+        0,
+        0,
+        52.32,
+        28.8
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "inspection_segment": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        0,
+        730,
+        720,
+        415
+      ],
+      "source_pivots": {
+        "mount": [
+          105,
+          190
+        ],
+        "end": [
+          650,
+          190
+        ]
+      },
+      "scale": 0.075,
+      "destination": [
+        0,
+        0,
+        54.0,
+        31.125
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "magnifier": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        720,
+        730,
+        654,
+        415
+      ],
+      "source_pivots": {
+        "lens": [
+          250,
+          140
+        ],
+        "handle": [
+          515,
+          325
+        ]
+      },
+      "scale": 0.1,
+      "destination": [
+        0,
+        0,
+        65.4,
+        41.5
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    }
+  },
+  "grip_center": [
+    34,
+    67
+  ],
+  "clearance_notes": "Lens raised from provisional34,65 to34,47 to inspect face above chest grip34,67. Held feet34,105. Upper/fore lengths65/63 support reach from mount144,95. Inspection uses two copies of thin segment with continuous elbow routing; scale may extend modestly to reach lens without crossing grip. Verify composition.",
+  "diagnosis_art": {
+    "status": "Reuse approved existing industrial plate and authored track/fill; no speech bubble or chibi",
+    "frame": {
+      "path": "assets/title/dripping-menu-v1.png",
+      "source_rect": [
+        0,
+        0,
+        2172,
+        362
+      ],
+      "destination": [
+        -42,
+        -32,
+        152,
+        44
+      ]
+    },
+    "track": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        325,
+        1932,
+        48
+      ],
+      "destination": [
+        -25,
+        -9,
+        118,
+        9
+      ]
+    },
+    "fill": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        424,
+        1932,
+        48
+      ],
+      "destination": [
+        -25,
+        -9,
+        118,
+        9
+      ]
+    },
+    "aperture": [
+      -25,
+      -9,
+      118,
+      9
+    ],
+    "label_baseline": [
+      -25,
+      -13
+    ],
+    "text": "Actual pre-heal HP / maximum HP, live text",
+    "fraction": "Clamp pre_heal_hp / max_hp; never baked value",
+    "coordinate_space": "machine-local"
+  },
+  "hero_states": {
+    "normal": {
+      "tony": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "destination": [
+            12.25,
+            13.100000000000009,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2
+        }
+      },
+      "sean": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "destination": [
+            18.325000000000003,
+            13.100000000000009,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2
+        }
+      }
+    },
+    "hard": {
+      "tony": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "destination": [
+            12.175000000000004,
+            16.400000000000006,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2
+        }
+      },
+      "sean": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "destination": [
+            18.625,
+            16.10000000000001,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2
+        }
+      }
+    }
+  },
+  "hero_pose_notes": "Grab/held pose replaced for Tony and Sean, normal and Hard. Existing compress, ball, impact, slide and vend remain unchanged. Registered at common0.15 scale with feet104 and centered torso; source composition reviewed.",
+  "source_review": {
+    "path": "previews/clogfather-production-v2/checkpoint-source-review.png",
+    "kind": "Software source composition, not actual gameplay screenshot",
+    "result": "All four hero/costume combinations: dangling pose, chest grip, face behind transparent lens, separate opposite-side inspection arm readable. Existing cabinet stock/overlay omitted from study; runtime verification remains."
+  }
+}

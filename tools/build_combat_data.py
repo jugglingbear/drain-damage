@@ -104,6 +104,10 @@ def dispenser_data() -> dict[str, Any]:
                 validate_frames(child)
 
     validate_frames(art)
+    inspection = read("assets/world/spare-employee-dispenser/inspection-contract-v1.json")
+    validate_art_regions(inspection)
+    require(0 < inspection["release_seconds"] < inspection["watchdog_seconds"] <= 7,
+            "Inspection must release before its watchdog")
     for cue in audio["cues"]:
         path = ROOT / cue["path"]
         require(path.is_file(), f"Missing dispenser audio: {path}")
@@ -136,6 +140,20 @@ def validate_art_regions(value: Any) -> None:
     elif isinstance(value, list):
         for child in value:
             validate_art_regions(child)
+
+
+def validate_rooted_boss() -> None:
+    """Reject incomplete boss attack, damage, collapse, and HUD artwork before export."""
+    manifest = read("assets/bestiary/the-clogfather/runtime-manifest-v2.json")
+    required = {"body", "sludge_relaxed", "sludge_swell", "weak_closed", "weak_open", "drool",
+                "sludge_projectile_a", "sludge_projectile_b", "acid_warning", "acid_ceiling_warning",
+                "acid_drop", "acid_puddle", "weak_hit", "deflect"}
+    required.update(f"damage_body_{stage}" for stage in ("healthy", "mild", "moderate", "severe", "near_death"))
+    required.update(f"collapse_{index}" for index in range(6))
+    require(required <= manifest.get("frames", {}).keys(), "Missing rooted boss attack or animation artwork")
+    require({"frame", "track", "fill_green", "fill_yellow", "fill_red", "aperture"}
+            <= manifest.get("hud", {}).keys(), "Missing rooted boss health bar artwork")
+    validate_art_regions(manifest)
 
 
 def validate_compound_boss() -> None:
@@ -351,9 +369,12 @@ def build() -> dict[str, Any]:
             monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": None,
                                     "runtime_support": "compound_boss"}
             continue
-        if monster.get("runtime_support") == "hud_preview_only":
+        if monster.get("runtime_support") in ("hud_preview_only", "rooted_boss"):
+            if monster["runtime_support"] == "rooted_boss":
+                require(monster_id == "clogfather", "Unsupported rooted boss")
+                validate_rooted_boss()
             monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": None,
-                                    "runtime_support": "hud_preview_only"}
+                                    "runtime_support": monster["runtime_support"]}
             continue
         spec = read(monster["assets"]["damage_animation_spec"])
         require(spec["creature_id"] == monster_id, f"{monster_id}: mismatched damage spec")

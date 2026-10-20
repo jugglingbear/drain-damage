@@ -38,10 +38,11 @@ func run_checks() -> void:
 	game.set_physics_process(false)
 	game.dialogue.finish()
 	game.dialogue.release_guard = 0
-	assert(game.trial_state.results().total == 49)
-	assert(game.actor_world_limit() == 9600)
+	assert(game.trial_state.results().total == 74)
+	assert(game.actor_world_limit() == 13650)
 	# Remaining route roles have safe homes; replaced entries stay unavailable.
 	for slot in game.run_plan.later:
+		if slot.wave == 4: continue
 		game.reset_observation()
 		game.swarms.actors.clear()
 		game.skitterling.released = true
@@ -121,7 +122,7 @@ func run_checks() -> void:
 		game.camera_x = position-320
 		game.step_encounters(10)
 		assert(game.actors.is_empty() and game.enemies.is_empty())
-		assert(game.wave_spawned == [0,0,0,0])
+		assert(game.wave_spawned == [0,0,0,0,0])
 	for solid: Rect2 in game.trial_level.plinths:
 		assert(solid.end.x <= 5610 or solid.position.x >= 7530)
 	# Fallback borrows validated runner timing and cannot rewrite a warning or active actor.
@@ -143,7 +144,7 @@ func run_checks() -> void:
 			game.create_actor(item,Vector2(8100+game.actors.size()*60,440))
 	assert(game.route_pressure() == 2)
 	game.step_encounters(2)
-	assert(game.wave_spawned == [0,0,0,0])
+	assert(game.wave_spawned == [0,0,0,0,0])
 	game.reset_observation()
 	game.swarms.actors.clear()
 	game.player = Vector2(3500,394)

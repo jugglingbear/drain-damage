@@ -1,0 +1,23 @@
+{
+  "status": "Approved geometry; artwork production in progress; not a playable-delivery manifest",
+  "viewport": [960, 540],
+  "hud_reserved_y": [0, 110],
+  "floor_y": 440,
+  "prepared_canvas": [512, 512],
+  "prepared_anchor": [256, 480],
+  "runtime_scale": 0.72,
+  "runtime_destination_origin": [625.68, 94.4],
+  "root": [810, 440],
+  "main_visual_bounds": [650, 120, 305, 320],
+  "weak_point_bounds": [626, 377, 48, 42],
+  "sludge_socket": [752, 235],
+  "sludge_nozzle": [675, 255],
+  "root_wisps": "May extend to x615; harmless and not collision geometry",
+  "layers": ["rear pipe mounts", "rooted damage-stage body", "articulated sludge pipe", "low weak-point nozzle", "foreground drool and hit effects"],
+  "animation": "Continuous bounded deformation for heaving; independently articulated authored pipe parts; no per-frame opaque-bound rescaling. Damage layers keep matching attachment sockets. Authored collapse in-betweens required.",
+  "attacks": ["sludge", "acid"],
+  "not_in_scope": ["summons", "optional valves", "portal"],
+  "hud": "Separate transparent grease/wipes/root frame, empty track and fill. Preserve actual-HP green/yellow/red thresholds and immediate drain. Review at960x540.",
+  "production_order": ["rooted body and pipe/weak-point layers", "acid and sludge effects", "damage-compatible body stages and collapse", "HUD frame and tracks", "layered approach and dedicated boss chamber"],
+  "ownership": "Art owns images and asset registration; Engineering owns runtime/build; Mechanics owns damage and collider validation; Level Design owns route geometry"
+}

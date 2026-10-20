@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Gameplay contract for approved dispenser; runtime integration pending Engineering",
+  "status": "Current revision 2026-10-20 approved choreography; Engineering integration pending. Earlier top-level beats retained as historical contracts.",
   "owner": "Game Mechanics specification; Engineering runtime; Art and audio supplied separately",
   "approved_presentation": "Spare Employee Dispenser: injured hero compressed and thrown at screen; bloody cartoon SPLAT with X-eyed dead hero sliding down and leaving fading blood trail; intact same-hero clone emerges. BJ silent first use.",
   "timing": {
@@ -115,6 +115,112 @@
       "Maximum scale, off-center anchors and supported viewport sizes covered.",
       "Same sampled point used by throw end, impact and slide/trail start; no mid-animation jitter.",
       "No effect on gameplay RNG, checkpoint, lives, total timing or pause/skip cleanup."
+    ]
+  },
+  "current_revision": {
+    "date": "2026-10-20",
+    "authority": "Sean approval relayed by Level Design; Engineering owns delivery.",
+    "precedence": "This revision supersedes earlier scan-before-grab timings, historical checkpoint coordinates and preserve-kills-on-retry wording. Other cleanup, pause, input and cosmetic-impact contracts remain applicable.",
+    "status": "Mechanics and Art timing agreed; Engineering integration and live readability review pending",
+    "injured_target_seconds": 6.8,
+    "injured_hard_ceiling_seconds": 7.0,
+    "beats": [
+      {
+        "start": 0,
+        "end": 0.8,
+        "action": "Left holding arm grabs/lifts hero left of cabinet."
+      },
+      {
+        "start": 0.8,
+        "end": 1.2,
+        "action": "Opposite right arm deploys magnifier over cabinet to held hero."
+      },
+      {
+        "start": 1.2,
+        "end": 2.0,
+        "action": "Inspect held hero; diagnosis appears at1.6s."
+      },
+      {
+        "start": 2.0,
+        "end": 2.4,
+        "action": "Hold diagnosis and lens: pre-heal health/missingHP remain legible."
+      },
+      {
+        "start": 2.4,
+        "end": 2.65,
+        "action": "Magnifier withdraws without crossing stock window opaquely."
+      },
+      {
+        "start": 2.65,
+        "end": 3.15,
+        "action": "Original holding hand crushes hero."
+      },
+      {
+        "start": 3.15,
+        "end": 3.65,
+        "action": "Holding hand throws toward sampled safe screen point."
+      },
+      {
+        "start": 3.65,
+        "end": 3.85,
+        "action": "One synchronized bloody SPLAT and X-eyed impact."
+      },
+      {
+        "start": 3.85,
+        "end": 5.35,
+        "action": "Existing slide/blood fade overlaps vending."
+      },
+      {
+        "start": 5.35,
+        "end": 5.8,
+        "action": "Intact same-hero replacement emerges."
+      },
+      {
+        "start": 5.8,
+        "end": 6.1,
+        "action": "Look left."
+      },
+      {
+        "start": 6.1,
+        "end": 6.4,
+        "action": "Look right."
+      },
+      {
+        "start": 6.4,
+        "end": 6.8,
+        "action": "Shrug; HEALTH RESTORED / CHECKPOINT SAVED; natural release."
+      }
+    ],
+    "diagnosis": {
+      "snapshot": [
+        "selected_hero_id",
+        "arrival_hp",
+        "arrival_max_hp",
+        "missing_hp = max(0, arrival_max_hp-arrival_hp)"
+      ],
+      "capture": "Capture before atomic checkpoint/full-heal commit; never infer diagnosis from already healed HP.",
+      "display": "ARRIVAL HEALTH {arrival_hp}/{arrival_max_hp}; {missing_hp} HP MISSING; REPLACEMENT APPROVED",
+      "readability": "Show arrival-health/missingHP diagnosis continuously1.6\u20132.4s during inspection; at least0.8s. Do not recompute from healed HP.",
+      "completion": "HEALTH RESTORED / CHECKPOINT SAVED",
+      "hard_mode": "Interface diagnosis stays interface text; existing all-caps rule applies to Sean/Tony dialogue only."
+    },
+    "commit_and_lives": "Commit checkpoint and full selected max HP atomically at eligible entry. Crush is presentation only; never call death handler or debit lives. Normal retry debit remains exactly once.",
+    "short_paths": {
+      "healthy": "At full health, existing stamp/HEALTH FULL/CHECKPOINT SAVED in<=0.5s; no arms, magnifier, crush or clone consumption.",
+      "respawn": "Existing dispense-only in<=2s if stocked; spent machine uses existing short empty-arrival branch. No repeated diagnosis/crush.",
+      "stock": "Preserve one selected-hero clone per dispenser per run, no refill on death/retry. New checkpoint machines need independent stock state; healthy entry does not consume stock."
+    },
+    "checkpoint_scope": "Use authoritative runtime checkpoint table, not historical x3300/6660/8190. Existing first checkpoint4650; approved new pre-Clogfather checkpoint13800 in current Level Design blockout.",
+    "retry_reset": "Full reset of enemies/encounters owned by saved checkpoint segment; exclude earlier owned segments. Pre-Clogfather retry restores full boss HP and phase1 and clears hazards/adds/timers, while preserving defeated Skitterling and earlier progress. No older monsters chase from level start.",
+    "art_contract": "Separate holding and opposite magnifier arms; one hero anchor throughout lift/inspection/crush. Common scale and continuous interpolated movement. Reuse existing bloody impact/slide/vend, do not lengthen them to hide inspection. Art confirms sides/anchors; Engineering maps events and audio.",
+    "failure_paths": "Existing idempotent finalizer and7s watchdog, pause exclusions, first-full-sequence/session skip policy, safe exit and1.5s protection remain. Skip/watchdog/menu abort clears both arms, lens, diagnostic overlay, blood and sequence audio. Missing arm/art/audio cannot stall.",
+    "validation": [
+      "Both heroes at every positive injured HP; diagnosis uses exact pre-heal missing HP despite instant heal.",
+      "Healthy and spent-machine branches stay short and consume no extra clone/life.",
+      "First and new checkpoint stock independent; retry does not replenish either.",
+      "Pause/skip/watchdog/menu/restart in every beat clean all new layers and unlock exactly once.",
+      "Preboss death resets current encounter but never resurrects Skitterling or pre-checkpoint enemies.",
+      "Headless timing/logic checks plus permitted live readability/animation review; no visual completion claim from unit tests."
     ]
   }
 }

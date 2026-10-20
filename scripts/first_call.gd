@@ -1,7 +1,8 @@
 extends RefCounted
 ## Final authored collision footprints; source concept homes are deliberately not used.
-const WIDTH := 9600.0
-const CHECKPOINTS := [4650.0]
+const Finale = preload("res://scripts/clogfather_route.gd")
+const WIDTH := Finale.WORLD_WIDTH
+const CHECKPOINTS := [4650.0,Finale.CHECKPOINT]
 const GATES := [1390.0, 3070.0, 4750.0, 6430.0, 8110.0, 9380.0]
 const LANES := [Vector2(690, 1370), Vector2(2370, 3050), Vector2(4050, 4730),
 	Vector2(5750, 6410), Vector2(7410, 8090), Vector2(8570, 9360)]

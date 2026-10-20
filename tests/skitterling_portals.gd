@@ -79,7 +79,8 @@ func run_checks() -> void:
 		assert(room.released and room.encounter.state == "complete")
 		walk(game,-1,7510)
 		# A retry from inside the open exit clears portal/camera state using the real checkpoint policy, without refilling stock.
-		game.dispenser.stocked = false
+		game.dispenser.checkpoint = 0
+		game.dispenser.consume_stock()
 		game.health = 1
 		game.invulnerable = 0
 		game.hurt_player()

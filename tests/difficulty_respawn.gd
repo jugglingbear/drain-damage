@@ -82,7 +82,8 @@ func run_checks() -> void:
 			game.checkpoint_active = true
 			game.checkpoint_index = 0
 			game.respawn_point = Vector2(4650,394)
-			game.dispenser.stocked = false
+			game.dispenser.checkpoint = 0
+			game.dispenser.consume_stock()
 			for repeat in range(2):
 				game.respawn_after_death()
 				assert(game.run_plan == arrangement and game.run_seed == 12345)
@@ -163,11 +164,11 @@ func check_admission(game: Node) -> void:
 	game.camera_x = 7580
 	for index in range(cap): game.enemies.append(game.Data.spawn("toilet",Vector2(8100+index*40,404)))
 	game.step_encounters(2)
-	assert(game.enemies.size() == cap and game.wave_spawned == [0,0,0,0])
+	assert(game.enemies.size() == cap and game.wave_spawned == [0,0,0,0,0])
 	game.enemies.pop_back()
 	game.step_encounters(0)
 	if game.difficulty == "normal":
-		assert(game.crowd_population() == cap-1 and game.wave_spawned == [0,0,0,0])
+		assert(game.crowd_population() == cap-1 and game.wave_spawned == [0,0,0,0,0])
 		game.enemies.clear()
 		game.step_encounters(0)
 		assert(game.crowd_population() == 1 and game.wave_spawned.reduce(func(total: int, count: int) -> int: return total+count,0) == 1)
@@ -184,7 +185,8 @@ func check_lethal_path(game: Node, checkpoint: bool) -> void:
 		game.checkpoint_active = true
 		game.checkpoint_index = 0
 		game.respawn_point = Vector2(4650,394)
-		game.dispenser.stocked = false
+		game.dispenser.checkpoint = 0
+		game.dispenser.consume_stock()
 		# Isolate ordinary post-boss admission; encounter lifecycle is tested separately.
 		game.skitterling.released = true
 		game.player = Vector2(7900,394)

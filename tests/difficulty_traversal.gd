@@ -60,7 +60,7 @@ func run_checks() -> void:
 					peak_population = maxi(peak_population,game.crowd_population())
 					peak_additions = maxi(peak_additions,game.swarm_schedule.additional_population(game))
 					peak_projectiles = maxi(peak_projectiles,game.hostile_shots.size())
-					if game.won: break
+					if game.player.x >= 9450 and game.skitterling.encounter.exit_open: break
 					if game.dispenser.active: game.dispenser.tick(game,0.1)
 					var report: Dictionary = game.trial_state.results()
 					assert(report.shooters <= 3 and report.bullets <= 6 and report.patterns <= 3)
@@ -72,19 +72,19 @@ func run_checks() -> void:
 						if actor.hp > 0 and actor.role == "aggressive_flyer": widows += 1
 					assert(widows <= 1)
 					if widows > 0: assert(game.ordinary_population() <= 6)
-				if not game.won: print("STALLED ",mode," hero",hero," x",game.player," boss",game.skitterling.encounter.snapshot()," shots",game.shots.size()," aim",game.current_aim)
-				assert(game.won and game.player.x >= 9450)
+				if game.player.x < 9450: print("STALLED ",mode," hero",hero," x",game.player," boss",game.skitterling.encounter.snapshot()," shots",game.shots.size()," aim",game.current_aim)
+				assert(not game.won and game.player.x >= 9450, "The former exit continues toward Clogfather")
 				print("MODE ",mode," hero",hero," seed",seed_value," x",game.player.x,
 					" issued",game.trial_state.results().issued," waves",game.wave_spawned)
 				var swarm_report: Dictionary = game.swarm_schedule.report()
 				var ordinary_issued: int = game.trial_state.results().issued
 				if mode != "normal":
 					for count in game.wave_spawned: ordinary_issued += count
-				var potential: int = swarm_report.potential
+				var potential: int = swarm_report.potential-game.ClogfatherRoute.SWARMS.size()
 				for event in game.run_plan.opening:
 					if event.enabled: potential += 1
 				for event in game.run_plan.later:
-					if event.enabled and (event.trigger < 5610 or event.trigger >= 7530): potential += 1
+					if event.enabled and event.wave < 4 and (event.trigger < 5610 or event.trigger >= 7530): potential += 1
 				print("ENCOUNTERS ",JSON.stringify({"mode":mode,"hero":hero,"seed":seed_value,"hz":hz,
 					"potential":potential,"ordinary_issued":ordinary_issued,"swarm_issued":swarm_report.issued,
 					"total_issued":ordinary_issued+swarm_report.issued,

@@ -35,6 +35,12 @@
     ],
     "release": [
       "release-confirm"
+    ],
+    "inspection_arm_deploy": [
+      "inspect-servo"
+    ],
+    "inspect": [
+      "inspect-scan"
     ]
   },
   "timing_contract": {
@@ -158,6 +164,24 @@
       "peak_dbfs": -12,
       "sha256": "a228170baf11149e846393c2f1e729a4287578a9b5e9f3c2e32d520c5f3d6208",
       "loop": false
+    },
+    {
+      "cue_id": "inspect-servo",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/grab-servo.wav",
+      "duration_seconds": 0.3,
+      "gain_db": -8,
+      "peak_dbfs": -12,
+      "sha256": "f1c8d564fa0f5923eaf5b6f399eca959ff49c673658b41ac4d53ca8d314df9de",
+      "loop": false
+    },
+    {
+      "cue_id": "inspect-scan",
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/scan-whirr.wav",
+      "duration_seconds": 0.38,
+      "gain_db": -9,
+      "peak_dbfs": -12,
+      "sha256": "bc8989be0666fcf23e8aeb9d0da652ee79e473eb03f281c731bff442847602d7",
+      "loop": false
     }
   ],
   "engineering_contract": "handoffs/spare-employee-dispenser-engineering.json",
@@ -180,5 +204,18 @@
     "preservation": "All v1 WAVs, generator and reference remain intact; pre-revision handoff archived with v2 source."
   },
   "previous_reference_audio": "audio/sources/spare-employee-dispenser-v1/sequence-reference-5.5s.wav",
-  "reference_note": "Illustrative 5.5s preview at suggested gains; early confirmation at 5.12s. Runtime follows events."
+  "reference_note": "Illustrative 5.5s preview at suggested gains; early confirmation at 5.12s. Runtime follows events.",
+  "inspection_audio_revision": {
+    "date": "2026-10-20",
+    "status": "aliases_ready_runtime_integration_pending",
+    "source_manifest": "audio/sources/spare-employee-dispenser-v1/manifest.json",
+    "reuse": "Existing original servo .30s and scan .38s; distinct cue IDs lower gain without altering grab/scan/crush/splat/slide. No source PCM changes.",
+    "events": {
+      "inspection_arm_deploy": "inspect-servo once on lens deployment",
+      "inspect": "inspect-scan once when magnifier reaches inspection pose"
+    },
+    "timing": "Injured sequence only, after lift and before compress. Art markers provisional; Engineering owns final6.5\u20137s timing and bundle regeneration. Healthy.4s and respawn1.9s unchanged.",
+    "lifecycle": "Same existing dispenser voice ownership, pause, skip/reset/exit cleanup. No loop, diagnosis beep, glass break, or audio-driven delay.",
+    "validation": "Both original asset hashes match; gains-8/-9dB, nonloop; no audition."
+  }
 }

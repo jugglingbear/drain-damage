@@ -30,6 +30,7 @@ func reset(host: Node2D) -> void:
 	slots = SLOTS.duplicate(true)
 	if host.difficulty != "easy": slots.append_array(EXTRA_SLOTS)
 	if host.difficulty == "normal": slots.append_array(NORMAL_EXTRA_SLOTS)
+	slots.append_array(host.ClogfatherRoute.SWARMS)
 	for slot in slots:
 		ledger[slot.id] = {"state":"pending" if slot.owner >= host.respawn_origin else "excluded",
 			"issued":false,"visible":false,"defeated":false}
