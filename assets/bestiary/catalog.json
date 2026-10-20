@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17",
+  "updated": "2026-10-20",
   "creatures": [
     {
       "id": "toilet",
@@ -432,6 +432,12 @@
         "transitions": "tell settles phase0.1s,crouches0.2s,restores phase final0.1s; recovery settles0.1s,holds until0.8s,rises0.3s,restores phase0.1s",
         "preview": "previews/skitterling-gait-v1/20261019-144349-source-poses.png",
         "validation": "focused Art suite passed; opaque feet within0\u20133px offloor in inspectedsixposes atclock2; live review pending"
+      },
+      "alligator_animation_revision": {
+        "build": "Prototype 82 / 0.82.0",
+        "status": "Integrated for Prototype 82; sampled analytical composition approved by Art; live motion review pending.",
+        "source": "bestiary/cockroach-swarm/monster.json#game_art/alligator_animation_revision",
+        "remaining": "Live gait, foot sliding, gameplay-background contrast and GPU performance review; actual gameplay captures pending."
       }
     }
   ],

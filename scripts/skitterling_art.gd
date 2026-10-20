@@ -9,6 +9,8 @@ const ANCHOR := Vector2(192, 224)
 const CANVAS := Vector2i(384, 256)
 const CUTOFF := 240
 const COLLAPSE_SECONDS := .5
+const ALLIGATOR_GROUNDED := ["alligator_ready", "alligator_surface_recovery", "alligator_charge_tell",
+	"alligator_charge_turn", "alligator_charge", "alligator_jaw_recovery"]
 const STATE_ART := {
 	"rat_wall_approach":"rat_ground_scuttle", "rat_wall_climb":"rat_climb",
 	"rat_pounce_tell":"rat_claw_tell", "rat_pounce":"rat_claw_pounce",
@@ -81,6 +83,7 @@ func prepare() -> bool:
 			var key := str(sheet.id) + ":" + str(int(frame.id))
 			frames[key] = {"image":canvas, "textures":[ImageTexture.create_from_image(canvas)],
 				"bounds":Rect2(canvas.get_used_rect())}
+			if frame.has("anatomy"): frames[key].anatomy = frame.anatomy
 	roach_body.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
 	roach_front.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
 	roach_pipe.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
@@ -155,6 +158,8 @@ func _selection(snapshot: Dictionary, hold_idle := true) -> Dictionary:
 	if not STATE_ART.has(state): return {}
 	if state in ["rat_wall_approach", "rat_rush_setup", "rat_rush_tell", "rat_rush", "rat_rush_recovery"]:
 		return _ground_gait(snapshot)
+	# Combat bounds deliberately retain the prior authored selection and timing.
+	if hold_idle and state in ALLIGATOR_GROUNDED: return _alligator_ground_pose(snapshot)
 	var animation: String = STATE_ART[state]
 	var elapsed: float = snapshot.get("elapsed", 0.0)
 	var duration: float = Encounter.DURATIONS.get(state, 1.0)
@@ -195,6 +200,9 @@ func visible_bounds(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Rect2
 	var selection := _selection(snapshot)
 	if selection.is_empty(): return Rect2()
 	var bounds: Rect2 = frames[selection.key].bounds.merge(frames[selection.next_key].bounds).grow(RoachBody.EXTENT)
+	for pose: Dictionary in selection.get("overrides", {}).values():
+		bounds = bounds.merge(frames[pose.key].bounds.grow(RoachBody.EXTENT))
+		bounds = bounds.merge(frames[pose.next_key].bounds.grow(RoachBody.EXTENT))
 	if int(snapshot.get("facing", -1)) > 0:
 		bounds.position.x = CANVAS.x - bounds.end.x
 	var scale := rush_scale(snapshot)
@@ -212,7 +220,8 @@ func draw_boss(host: CanvasItem, snapshot: Dictionary, world_origin: Vector2, cl
 		roach_body.draw(host, selection.key, selection.next_key, selection.blend,
 			world_origin + Vector2(snapshot.position), int(snapshot.get("facing", -1)),
 			0.0 if state_is_still(snapshot) else clock, false, world_origin.y + 456, pipe_parameters(snapshot, world_origin),
-			str(snapshot.get("state", "")).begins_with("rat_"), rush_scale(snapshot))
+			str(snapshot.get("state", "")).begins_with("rat_") or snapshot.get("state") in ALLIGATOR_GROUNDED,
+			rush_scale(snapshot), selection.get("overrides", {}))
 
 	var state: String = snapshot.get("state", "idle")
 	if state == "rat_pipe_warning":
@@ -406,6 +415,47 @@ func visible_contact_regions(snapshot: Dictionary, world_origin := Vector2.ZERO,
 func rush_scale(_snapshot: Dictionary) -> float:
 	## Authored crouching changes posture, never whole-animal scale.
 	return 1.0
+
+func _alligator_ground_pose(snapshot: Dictionary) -> Dictionary:
+	var state: String = snapshot.state
+	var stride := float(body.get("alligator_ground_motion", {}).get("stride_distance_pixels", 120.0))
+	var phase := fposmod(float(snapshot.get("alligator_ground_distance", 0.0)) / stride, 1.0) * 6.0
+	var index := int(phase)
+	var jaw := _alligator_jaw_pose(snapshot)
+	return {"key":"alligator-run-source-v1:" + str(index),
+		"next_key":"alligator-run-source-v1:" + str((index + 1) % 6),
+		"blend":fposmod(phase, 1.0), "state":state,
+		"overrides":{"upper_jaw":jaw, "lower_jaw":jaw,
+			"torso_tail":{"key":"alligator-run-source-v1:0", "next_key":"alligator-run-source-v1:0", "blend":0.0}}}
+
+func _alligator_jaw_cycle(elapsed: float) -> Dictionary:
+	# Preserve the earlier .52-second snap rhythm, but separate opening, closure and recovery.
+	var time := fposmod(elapsed, .52)
+	var times := [0.0, .07, .11, .24, .32, .43, .52]
+	var ids := [3, 4, 5, 0, 1, 2, 3]
+	var index := 0
+	while index < times.size() - 2 and time >= times[index + 1]: index += 1
+	return {"key":"alligator-jaw-source-v1:" + str(ids[index]),
+		"next_key":"alligator-jaw-source-v1:" + str(ids[index + 1]),
+		"blend":inverse_lerp(times[index], times[index + 1], time)}
+
+func _alligator_jaw_pose(snapshot: Dictionary) -> Dictionary:
+	var state: String = snapshot.state
+	var elapsed := float(snapshot.get("elapsed", 0.0))
+	if state == "alligator_charge": return _alligator_jaw_cycle(elapsed)
+	if state in ["alligator_charge_turn", "alligator_jaw_recovery"]:
+		var last := _alligator_jaw_cycle(float(snapshot.get("alligator_snap_elapsed", 0.0)))
+		if elapsed < .1:
+			last.blend *= 1.0 - smoothstep(0, .1, elapsed)
+			return last
+		return {"key":last.key, "next_key":"alligator-jaw-source-v1:" + (
+			"3" if state == "alligator_charge_turn" else "0"), "blend":clampf((elapsed - .1) / .3, 0, 1)}
+	if state == "alligator_charge_tell":
+		var amount := clampf(elapsed / .65, 0, 1) * 3
+		var index := mini(2, int(amount))
+		return {"key":"alligator-jaw-source-v1:" + str(index),
+			"next_key":"alligator-jaw-source-v1:" + str(index + 1), "blend":amount - index}
+	return {"key":"alligator-jaw-source-v1:0", "next_key":"alligator-jaw-source-v1:0", "blend":0.0}
 
 func _ground_gait(snapshot: Dictionary) -> Dictionary:
 	var state: String = snapshot.state

@@ -1947,6 +1947,35 @@ no image capture occurred.
 
 [Capture status and focused verification](081-tougher-septic-air-force/20261019-145822-capture-status.json).
 
+## 082 — Alligator legs and jaws move independently — October 20, 2026
+
+**Version:** Prototype 82 / 0.82.0; preserved app, ZIP and source snapshot `builds/source-82`.
+
+Six authored alligator leg phases now follow actual charge travel at 96 pixels per cycle. Rest and pause hold the gait.
+Upper and lower jaws open, snap and recover independently on a 0.52-second visual cycle. Fixed torso and tail
+anchors and seven stable anatomical groups keep the 140 insects from migrating across the body during gait changes.
+Four drawing batches remain; health, speed, damage, warnings, attack events and legacy combat geometry are preserved.
+
+The source study retains an earlier rejected thin composition and the approved v3 before the final stable v4.
+Art approved v4's sampled shoulder/hip joins, continuous abdomen and tail, and separate jaws and feet. This approval
+covers software composition, not live gameplay motion.
+
+**Validation:** Engineering reports thirteen packaged suites and thirty-three Python tests passing, plus export,
+signing and archive checks. Phase selection, fractional gait wrap, transition continuity and pause/reset checks pass.
+Ninety-second controller comparisons at 60 and 120 Hz match Prototype 81 apart from new visual counters, with combat
+regions and events preserved. Full-route traversal was not rerun for this rendering-focused iteration.
+
+**Capture gap:** No game window opened or actual Prototype 82 screenshot was captured. Live motion, foot sliding,
+gameplay-background contrast and GPU performance remain pending. Preserve 81 and 82 for an approved comparison.
+
+[Final v4 software study](art-studies/20261020-115814-alligator-animation/20261020-120155-v4-study.json)
+records its own creation time and is not a gameplay capture; earlier study versions remain intact.
+
+**Record created:** 2026-10-20T12:03:28.468972-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](082-alligator-gait-and-jaws/20261020-120328-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

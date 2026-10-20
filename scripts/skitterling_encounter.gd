@@ -97,6 +97,8 @@ var _charge_leg := 0
 var _rat_move_index := 0
 var _rush_speed := 0.0
 var rat_ground_distance := 0.0
+var alligator_ground_distance := 0.0
+var alligator_snap_elapsed := 0.0
 var attack_target := Vector2.ZERO
 var wall_anchor := Vector2.ZERO
 var _tail_cycle := 0
@@ -128,6 +130,8 @@ func reset() -> void:
 	_rat_move_index = 0
 	_rush_speed = 0
 	rat_ground_distance = 0
+	alligator_ground_distance = 0
+	alligator_snap_elapsed = 0
 	_tail_cycle = 0
 	attack_target = Vector2.ZERO
 	wall_anchor = Vector2.ZERO
@@ -194,7 +198,9 @@ func snapshot() -> Dictionary:
 		"exit_open": exit_open, "frozen": _frozen, "throw_origins": throw_origins.duplicate(),
 		"swim_target": swim_target, "charge_end": charge_end, "throw_count": _released,
 		"volley_targets": volley_targets.duplicate(), "attack_target": attack_target, "wall_anchor": wall_anchor, "rush_speed": _rush_speed,
-		"rat_ground_distance": rat_ground_distance, "rat_move_index": _rat_move_index, "tail_bounds": _tail_rect()}
+		"rat_ground_distance": rat_ground_distance, "alligator_ground_distance": alligator_ground_distance,
+		"alligator_snap_elapsed": alligator_snap_elapsed,
+		"rat_move_index": _rat_move_index, "tail_bounds": _tail_rect()}
 
 func step(delta: float, hero_rect: Rect2, frozen := false) -> void:
 	_frozen = frozen
@@ -242,7 +248,9 @@ func _tick(dt: float) -> void:
 		if is_equal_approx(position.x, _destination.x): _enter("rat_rush_recovery")
 		return
 	if state == "alligator_charge":
+		alligator_snap_elapsed = elapsed
 		position.x = move_toward(position.x, charge_end, CHARGE_SPEED*dt)
+		alligator_ground_distance += absf(position.x-before.get_center().x)
 		_add_hurt(_jaw(before).merge(_jaw(body_rect())))
 		if is_equal_approx(position.x, charge_end):
 			_charge_leg += 1

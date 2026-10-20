@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-10-20T12:03:28.468972-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "timestamp_kind": "Delivery record creation, not capture time",
+  "capture_time": null,
+  "build": "Prototype 82 / 0.82.0",
+  "status": "Packaged verification passed; sampled v4 composition approved by Art; live review pending",
+  "app": "builds/Prototype-82/Drain Damage.app",
+  "archive": "builds/history/Prototype-82.zip",
+  "archive_sha256": "198c7983d67fb58a1d179db090ab921d7b0a4d9b975e9bbdbac8e01525c81d43",
+  "snapshot": "builds/source-82",
+  "changes": [
+    "Six authored leg phases follow actual charge travel at96px per gait cycle; pause/rest freeze the gait.",
+    "Separate upper/lower jaws open, close and recover on an explicit .52second visual cycle.",
+    "Fixed torso/tail anchors and stable anatomical insect groups replace cross-body gait morphing;140insects and four batched draws retained.",
+    "Readable insect body sizes preserve snout/feet and continuous abdomen; original art retained.",
+    "Legacy combat-art selection, HP, speed, damage, warning durations and attack events preserved."
+  ],
+  "checks": {
+    "packaged_suites": 13,
+    "python_tests": 33,
+    "results": "builds/verification-82/packaged-results.json",
+    "suites": [
+      "alligator_gait",
+      "alligator_art_motion",
+      "skitterling_art",
+      "skitterling_contact",
+      "skitterling_encounter",
+      "skitterling_portals",
+      "skitterling_combat_revision",
+      "skitterling_audio",
+      "skitterling_integration",
+      "boss_hud",
+      "build_version",
+      "skitterling_contact_dodge",
+      "skitterling_room_pressure"
+    ],
+    "animation": "Six phase selection; separate jaw/leg/torso groups; exact charge/turn/recovery continuity; fractional frame5\u21920 wrap; original combat bounds;30/60/120Hz odometer/pause/reset.",
+    "controller_parity": "90seconds at60/120Hz match Prototype81 snapshots excluding the two new visual counters, hurt regions and emitted events.",
+    "regressions": "Rat contact/dodges, room pressure, combat revision, art, encounter, portals, integration, audio, HUD and version.",
+    "export_signing_archive": "passed",
+    "scope": "Focused rendering/integration regressions; full-route traversal not rerun for82."
+  },
+  "source_study": "storybook/art-studies/20261020-115814-alligator-animation/20261020-120155-v4-study.json",
+  "source_study_review": "Art approved sampled v4 shoulder/hip joins, continuous abdomen/tail and separate jaws/feet. This is software composition, not gameplay capture. Earlier rejected thin composition and v3 are retained.",
+  "remaining": [
+    "Live motion and foot sliding",
+    "Gameplay-background contrast and GPU performance",
+    "Actual running Prototype82 screenshots"
+  ],
+  "capture_gap": "No game window opened; preserved81and82 for an approved comparison.",
+  "diagnostics": "Existing macOS CA/editor-settings/user-log and shutdown-resource warnings; final packaged checks have no script/parse/assertion failures."
+}

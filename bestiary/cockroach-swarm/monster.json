@@ -182,6 +182,25 @@
       "transitions": "tell settles phase0.1s,crouches0.2s,restores phase final0.1s; recovery settles0.1s,holds until0.8s,rises0.3s,restores phase0.1s",
       "preview": "previews/skitterling-gait-v1/20261019-144349-source-poses.png",
       "validation": "focused Art suite passed; opaque feet within0\u20133px offloor in inspectedsixposes atclock2; live review pending"
+    },
+    "alligator_animation_revision": {
+      "status": "Integrated for Prototype 82; sampled analytical composition approved by Art; live motion review pending.",
+      "source_sheets": [
+        "assets/bestiary/cockroach-swarm/alligator-run-source-v1.png",
+        "assets/bestiary/cockroach-swarm/alligator-jaw-source-v1.png"
+      ],
+      "dimensions_each": [
+        1536,
+        1024
+      ],
+      "prompts": "assets/bestiary/cockroach-swarm/alligator-animation-prompts-v1.json",
+      "manifest": "assets/bestiary/cockroach-swarm/runtime-manifest-v1.json",
+      "gait": "Six distance-driven phases at 96 px per cycle; independent six-phase jaw opening/closure/recovery cycle lasts .52 seconds.",
+      "registration": "Shared prepared jaw hinge (128, 190); jaw sheet contributes only upper and lower jaws.",
+      "anatomy": "140 insects allocated across upper jaw, lower jaw, near foreleg, near hindleg, far foreleg, far hindleg and torso/tail: 18/14/18/18/4/4/64.",
+      "validation": "Prepared anatomy populations and continuous state transitions pass source checks. Art approved sampled v4 composition and shoulder/hip joins; packaged checks recorded in delivery handoff.",
+      "remaining": "Live gait, foot sliding, gameplay-background contrast and GPU performance review; actual gameplay captures pending.",
+      "torso_tail": "Fixed authored run-frame0 anatomy with local insect writhing; no cross-body gait morph."
     }
   },
   "marketing": {
