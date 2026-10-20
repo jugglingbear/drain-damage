@@ -96,6 +96,31 @@ def image(path: str, x: float, y: float, width: float, height: float,
                     iw * factor, ih * factor, mask="auto")
 
 
+def columns(text: str, boxes: list[list[float]], size: float = 11, leading: float = 13,
+            color: str = INK) -> None:
+    """Flow article text through ordered boxes around independently placed artwork."""
+    style = ParagraphStyle("article", fontName="Body", fontSize=size, leading=leading,
+                           textColor=colors.HexColor("#" + color), allowWidows=0, allowOrphans=0)
+    remaining = [Paragraph(text, style)]
+    for x, top, width, height in boxes:
+        if not remaining:
+            break
+        block = remaining.pop(0)
+        _, needed = block.wrap(width, height)
+        if needed <= height:
+            block.drawOn(C, x, top - needed)
+            continue
+        parts = block.split(width, height)
+        if not parts:
+            remaining.insert(0, block)
+            continue
+        _, used = parts[0].wrap(width, height)
+        parts[0].drawOn(C, x, top - used)
+        remaining = parts[1:] + remaining
+    if remaining:
+        raise ValueError(f"Article exceeds its columns: {text[:60]}")
+
+
 def dots(x: int, y: int, width: int, height: int, color: str) -> None:
     C.setFillColor(colors.HexColor("#" + color))
     for dx in range(x, x + width, 9):
@@ -125,7 +150,8 @@ def draw_element(element: dict, number: int, section: str) -> None:
     if kind in {"text", "para"}:
         values["value"] = values.pop("text").replace("{page_number}", f"{number:02d}")
         values["value"] = values["value"].replace("{section}", section.upper())
-    functions = {"rect": rect, "text": text, "para": para, "image": image, "dots": dots, "burst": burst}
+    functions = {"rect": rect, "text": text, "para": para, "image": image, "dots": dots, "burst": burst,
+                 "columns": columns}
     if kind in functions:
         functions[kind](**values)
     elif kind in {"setStrokeColor", "setLineWidth", "circle", "line"}:

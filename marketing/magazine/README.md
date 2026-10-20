@@ -23,6 +23,21 @@ ordered pages, text, captions, image references and layout templates. The PDF is
 The renderer uses the macOS fonts configured in `layout.font_directory`. Change that path and the font filenames
 if building elsewhere. Shared header/footer templates use `{page_number}` and `{section}` placeholders.
 
+## Edition 29 article layouts — October 20, 2026
+
+Sean approved this layout direction: narrow columns, asymmetric artwork and a distinct layout for each article.
+
+The six interior pages now use individual editorial layouts informed by Sean's GamePro and Nintendo Power
+references: narrow flowing columns, offset portraits, an asymmetric two-page creature feature, inset screenshots,
+and a large Widow illustration anchoring the action study. Cover and back-cover advertisement are retained.
+Approved profiles, lore and gameplay advice remain; redundant small captions and repeated display headings are reduced.
+
+`columns` elements flow text through ordered `[x, top, width, height]` boxes and reject unplaced text.
+Body copy is 10–11 points with compact leading. The issue remains eight pages, with all non-bosses before the bosses.
+Earlier editions and the pre-revision source are preserved in `guide-assets-v29/`.
+`current.pdf` matches edition 29. This is a local layout delivery; website publication is separate.
+The historical page 6 gameplay captures still do not represent the current running build.
+
 ## Prototype 81 release review — October 19, 2026
 
 Edition 28 is retained for the fresh-Mac test release. Reviewed all reader-facing copy against the current
@@ -44,7 +59,7 @@ PDF SHA-256: `ecf54dd3e0cd5ec9c1d295de2fdf1cc46214d3714585ba0c2e606e5dd2fde76a`.
 ## Edition 28 cover line
 
 Replaced the redundant “Seven locals!” cover burst with “Creature Feature.”
-The eight-page issue retains edition 27’s alternating action layout; `current.pdf` matches edition 28.
+The eight-page issue retained edition 27’s alternating action layout; that delivery matched edition 28.
 Website publication remains pending.
 
 ## Edition 27 playful action gallery
