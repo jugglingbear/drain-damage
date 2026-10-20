@@ -31,6 +31,8 @@ const DifficultyScreen = preload("res://scripts/difficulty_screen.gd")
 var difficulty_copy: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/difficulty-ui.json"))
 var choosing_difficulty := false
 var difficulty_index := 1
+var difficulty_focus := 1
+var difficulty_stick := Vector2.ZERO
 var difficulty_hover := -1
 var confirm_blocked := false
 var selecting := false
@@ -112,7 +114,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var directional := false
 	if event is InputEventKey:
 		directional = event.pressed and not event.echo and event.physical_keycode in [
-			KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_W,KEY_A,KEY_S,KEY_D]
+			KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_W,KEY_A,KEY_S,KEY_D,KEY_TAB]
 	elif event is InputEventJoypadButton and event.button_index in [
 		JOY_BUTTON_DPAD_UP,JOY_BUTTON_DPAD_DOWN,JOY_BUTTON_DPAD_LEFT,JOY_BUTTON_DPAD_RIGHT]:
 		var token := "%d:%d" % [event.device,event.button_index]
@@ -125,10 +127,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			directional = true
 	elif event is InputEventJoypadMotion:
 		directional = event.axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y] and absf(event.axis_value) > 0.6
-	var before := Vector4i(menu_index,controls_page,selected,difficulty_index)
+	var before := Vector4i(menu_index,controls_page,selected,difficulty_focus)
 	var screen := Vector3i(int(showing_controls),int(selecting),int(choosing_difficulty))
 	handle_pre_game_input(event)
-	if directional and game == null and not starting and before != Vector4i(menu_index,controls_page,selected,difficulty_index) \
+	if directional and game == null and not starting and before != Vector4i(menu_index,controls_page,selected,difficulty_focus) \
 		and screen == Vector3i(int(showing_controls),int(selecting),int(choosing_difficulty)):
 		# The existing Master bus is the shared SFX route; music mute is independent.
 		if not AudioServer.is_bus_mute(AudioServer.get_bus_index(navigation_voice.bus)):
@@ -277,42 +279,62 @@ func is_confirm_event(event: InputEvent) -> bool:
 		or (event is InputEventJoypadButton and event.button_index in [JOY_BUTTON_A,JOY_BUTTON_START]) \
 		or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT)
 
+func focus_difficulty(control: int) -> void:
+	difficulty_focus = control
+	if control < 3: difficulty_index = control
+	difficulty_hover = -1
+
 func handle_difficulty(event: InputEvent) -> void:
-	var direction := 0
+	var direction := Vector2i.ZERO
+	var tab_direction := 0
 	var back := false
 	var confirm := false
 	if event is InputEventMouseMotion:
-		difficulty_hover = DifficultyScreen.row_at(event.position)
+		difficulty_hover = DifficultyScreen.control_at(event.position)
 	elif event is InputEventKey and event.pressed and not event.echo:
-		if event.physical_keycode in [KEY_UP,KEY_W]: direction = -1
-		if event.physical_keycode in [KEY_DOWN,KEY_S]: direction = 1
+		if event.physical_keycode in [KEY_UP,KEY_W]: direction.y = -1
+		if event.physical_keycode in [KEY_DOWN,KEY_S]: direction.y = 1
+		if event.physical_keycode in [KEY_LEFT,KEY_A]: direction.x = -1
+		if event.physical_keycode in [KEY_RIGHT,KEY_D]: direction.x = 1
+		if event.physical_keycode == KEY_TAB: tab_direction = -1 if event.shift_pressed else 1
 		back = event.physical_keycode == KEY_ESCAPE
 		confirm = is_confirm_event(event)
 	elif event is InputEventJoypadButton and event.pressed:
-		if event.button_index == JOY_BUTTON_DPAD_UP: direction = -1
-		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction = 1
+		if event.button_index == JOY_BUTTON_DPAD_UP: direction.y = -1
+		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction.y = 1
+		if event.button_index == JOY_BUTTON_DPAD_LEFT: direction.x = -1
+		if event.button_index == JOY_BUTTON_DPAD_RIGHT: direction.x = 1
 		back = event.button_index == JOY_BUTTON_B
 		confirm = is_confirm_event(event)
-	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_Y:
-		if absf(event.axis_value) < 0.25: stick_latched = false
-		elif absf(event.axis_value) > 0.6 and not stick_latched:
-			direction = int(signf(event.axis_value))
+	elif event is InputEventJoypadMotion and event.axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]:
+		if event.axis == JOY_AXIS_LEFT_X: difficulty_stick.x = event.axis_value
+		else: difficulty_stick.y = event.axis_value
+		if maxf(absf(difficulty_stick.x),absf(difficulty_stick.y)) < 0.25: stick_latched = false
+		elif maxf(absf(difficulty_stick.x),absf(difficulty_stick.y)) > 0.6 and not stick_latched:
+			if absf(difficulty_stick.x) > absf(difficulty_stick.y): direction.x = int(signf(difficulty_stick.x))
+			else: direction.y = int(signf(difficulty_stick.y))
 			stick_latched = true
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var row := DifficultyScreen.row_at(event.position)
-		if row >= 0: difficulty_index = row
-		back = DifficultyScreen.BACK.has_point(event.position)
-		confirm = DifficultyScreen.CONFIRM.has_point(event.position)
-	if direction != 0:
-		difficulty_index = posmod(difficulty_index+direction,3)
-		difficulty_hover = -1
+		var control := DifficultyScreen.control_at(event.position)
+		if control >= 0: focus_difficulty(control)
+		back = control == 3
+		confirm = control == 4
+	if tab_direction != 0:
+		focus_difficulty(posmod(difficulty_focus+tab_direction,5))
+	elif direction != Vector2i.ZERO:
+		focus_difficulty(DifficultyScreen.neighbor(difficulty_focus,direction))
+	if confirm and difficulty_focus == 3: back = true
 	if back:
 		choosing_difficulty = false
 		difficulty_hover = -1
 		selection_guard = 0.3
+		confirm_blocked = is_confirm_event(event)
 		stick_latched = false
 	elif confirm:
-		request_start()
+		if difficulty_focus < 3:
+			focus_difficulty(4)
+			confirm_blocked = true
+		else: request_start()
 
 func draw_selection() -> void:
 	draw_rect(Rect2(0, 0, 960, 540), Color("0d1526"))
@@ -381,6 +403,8 @@ func request_start() -> void:
 		return
 	if not choosing_difficulty:
 		choosing_difficulty = true
+		difficulty_focus = difficulty_index
+		difficulty_stick = Vector2.ZERO
 		difficulty_hover = -1
 		confirm_blocked = true
 		selection_guard = 0.3

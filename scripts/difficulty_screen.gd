@@ -40,6 +40,17 @@ static func row_at(point: Vector2) -> int:
 		if row_rect(index).has_point(point): return index
 	return -1
 
+static func control_at(point: Vector2) -> int:
+	if BACK.has_point(point): return 3
+	if CONFIRM.has_point(point): return 4
+	return row_at(point)
+
+static func neighbor(focus: int, direction: Vector2i) -> int:
+	if direction.x != 0: return 3 if direction.x < 0 else 4
+	if focus >= 3: return 2 if direction.y < 0 else 0
+	if direction.y < 0: return focus-1 if focus > 0 else 4
+	return focus+1 if focus < 2 else 4
+
 static func draw(host: Node2D) -> void:
 	host.draw_texture_rect(host.ART,Rect2(0,0,960,540),false)
 	host.draw_rect(Rect2(0,0,960,540),Color(0.05,0.08,0.15,0.90))
@@ -71,6 +82,8 @@ static func draw(host: Node2D) -> void:
 			if chosen:
 				host.draw_rect(rect,host.MINT,false,2)
 				host.caption(">",rect.position+Vector2(19,32),24,host.MINT)
+		if host.difficulty_focus == index:
+			host.draw_rect(rect.grow(4),host.GOLD,false,2)
 		host.caption(copy.options[index].label,label_origin(index,copy.options[index].label)+Vector2(0,state.offset),label_size(index),LABEL_COLOR)
-	Buttons.compact(host,BACK,copy.back,false,20)
-	Buttons.compact(host,CONFIRM,copy.confirm,false,20,host.selection_guard > 0 or host.confirm_blocked)
+	Buttons.compact(host,BACK,copy.back,host.difficulty_focus == 3,20)
+	Buttons.compact(host,CONFIRM,copy.confirm,host.difficulty_focus == 4,20,host.selection_guard > 0 or host.confirm_blocked)

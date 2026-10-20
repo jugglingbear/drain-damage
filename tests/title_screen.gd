@@ -66,6 +66,9 @@ func run_checks() -> void:
 		title.selection_guard = 0
 		title._unhandled_input(key(KEY_ENTER,false))
 		title._unhandled_input(key(KEY_ENTER))
+		assert(title.difficulty_focus == 4 and title.game == null, "Row confirmation focuses Start Job")
+		title._unhandled_input(key(KEY_ENTER,false))
+		title._unhandled_input(key(KEY_ENTER))
 		await process_frame
 		assert(title.music_director.requested == "level", "Gameplay requests the level track")
 		assert(title.game.employee.id == ["tony", "sean"][index])
@@ -106,6 +109,11 @@ func run_checks() -> void:
 		title._unhandled_input(pad)
 		assert(title.choosing_difficulty)
 		title.selection_guard = 0
+		pad.pressed = false
+		title._unhandled_input(pad)
+		pad.pressed = true
+		title._unhandled_input(pad)
+		assert(title.difficulty_focus == 4 and title.game == null)
 		pad.pressed = false
 		title._unhandled_input(pad)
 		pad.pressed = true
