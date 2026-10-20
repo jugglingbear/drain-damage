@@ -1,6 +1,6 @@
 {
   "id": "clogfather_portal_departure_v1",
-  "status": "Integrated in Prototype 86; packaged ending and dialogue checks passed, live presentation review pending",
+  "status": "Prototype88 full-scale flood departure integrated; packaged checks passed, live visual review pending",
   "authorization": "Sean direct October20 PM request authorizes first-level portal dialogue/art/necessary departure only. Level2 gameplay remains held.",
   "canonical_dialogue": "scripts/story_dialogue.gd",
   "api": "completion(employee_id)",
@@ -9,7 +9,7 @@
   "release": "After dialogue is inactive, awaiting_release is false and release guard is zero, begin the 2.5-second involuntary pull exactly once. Defer while paused; set completion only after departure.",
   "reset": "Cancel pending ending on death/reset/title; prevent stale callback/duplicate completion; preserve input release guards",
   "roles": "Selected hero enters; support remains outside and radio-only",
-  "boundary": "After suction/fade show Level two not yet playable; no level2 scene, flush, ride or new nonblocking overlay",
+  "boundary": "After full-size portal departure show Level two not yet playable; no level2 scene, flush, ride or new nonblocking overlay",
   "unknowns": [
     "Portal origin",
     "BJ knowledge",
@@ -22,7 +22,28 @@
     "Pause and held dismissal input cannot advance gameplay accidentally",
     "Reset/title during dialogue or suction clears pending state",
     "No ending before terminal boss defeat",
-    "Honest unimplemented-level2 UI after departure"
+    "Honest unimplemented-level2 UI after departure",
+    "Hero remains normal scale throughout pull until occluded, both heroes/costumes",
+    "Splayed pose and substantial water/debris surge readable; no tiny shrinking sprite",
+    "Current dialogue and skip paths preserve causal flood transition",
+    "First five lines block; sixth selected-hero shout appears during pull only, including skipped-dialogue path; reset clears caption"
   ],
-  "delivery": "handoffs/first-call-integration.json"
+  "delivery": "handoffs/first-call-integration.json",
+  "departure_revision": {
+    "source": "Sean direct screenshot feedback in Storyboarding, October20",
+    "dialogue": "Both branches establish water breaking through after Clogfather defeat and portal suction. Tony remains direct and frightened. Both end with selected hero shouting UUAAAAAAAAAA!!.",
+    "hero": "No shrinking. Keep normal hero scale with arms and legs splayed in a frightened involuntary pull; lose visibility by portal/water occlusion rather than scaling to a dot.",
+    "flow": "Huge wave of water and debris released because Clogfather no longer obstructs flow carries hero into portal. Make this causal release visible.",
+    "performance": "Exact selected-hero dialogue shout UUAAAAAAAAAA!! in both branches; splayed pose accompanies the pull. No separate voice recording commissioned by this text change.",
+    "ownership": "Art owns new poses and water/debris assets; Engineering owns integration, timing, tests and build. Storyboarding owns dialogue.",
+    "timing": "Engineering confirmed2.5-second pull after existing release guard; keep full-size pose and wave occlusion readable.",
+    "scope": "Both playable hero selections and applicable costumes; outside partner remains radio-only. Level2 gameplay held.",
+    "shout_presentation": {
+      "canonical_data": "Keep sixth selected-hero line UUAAAAAAAAAA!! in each completion branch.",
+      "blocking_dialogue": "Present first five lines only in existing portrait dialogue.",
+      "action_caption": "After dialogue ends/skips and release guard clears, show sixth line as brief world caption above full-size hero during2.5-second pull, synchronized with splayed pose and water/debris wave. Use existing game font; do not block action.",
+      "scope": "One ending-specific caption, not a generic level2 radio-overlay framework.",
+      "lifecycle": "Normal completion and skip both retain action caption; pause follows pull timing; reset/title clears caption and transition state."
+    }
+  }
 }

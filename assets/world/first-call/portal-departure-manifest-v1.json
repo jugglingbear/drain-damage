@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "status": "Source composition approved for all four hero/costume variants at mid-pull and half-entry; runtime integration and live motion review pending",
+  "provenance": "assets/world/first-call/portal-departure-prompts-v1.json",
+  "dimensions": {
+    "panic": [
+      1254,
+      1254
+    ],
+    "surge": [
+      1254,
+      1254
+    ]
+  },
+  "heroes": {
+    "normal": {
+      "tony": {
+        "path": "assets/world/first-call/portal-panic-v2.png",
+        "source_rect": [
+          0,
+          0,
+          638,
+          640
+        ],
+        "destination": [
+          23.86,
+          28.400000000000006,
+          76.56,
+          76.8
+        ],
+        "anchor": [
+          64,
+          104
+        ]
+      },
+      "sean": {
+        "path": "assets/world/first-call/portal-panic-v2.png",
+        "source_rect": [
+          638,
+          0,
+          616,
+          640
+        ],
+        "destination": [
+          28.240000000000002,
+          28.159999999999997,
+          73.92,
+          76.8
+        ],
+        "anchor": [
+          64,
+          104
+        ]
+      }
+    },
+    "hard": {
+      "tony": {
+        "path": "assets/world/first-call/portal-panic-v2.png",
+        "source_rect": [
+          0,
+          640,
+          638,
+          614
+        ],
+        "destination": [
+          23.440000000000005,
+          34.400000000000006,
+          76.56,
+          73.67999999999999
+        ],
+        "anchor": [
+          64,
+          104
+        ]
+      },
+      "sean": {
+        "path": "assets/world/first-call/portal-panic-v2.png",
+        "source_rect": [
+          638,
+          640,
+          616,
+          614
+        ],
+        "destination": [
+          27.880000000000003,
+          33.56,
+          73.92,
+          73.67999999999999
+        ],
+        "anchor": [
+          64,
+          104
+        ]
+      }
+    }
+  },
+  "surge_back": [
+    {
+      "path": "assets/world/first-call/portal-surge-v1.png",
+      "source_rect": [
+        0,
+        0,
+        1254,
+        209
+      ],
+      "destination": [
+        0,
+        300,
+        900,
+        165
+      ]
+    },
+    {
+      "path": "assets/world/first-call/portal-surge-v1.png",
+      "source_rect": [
+        0,
+        209,
+        1254,
+        209
+      ],
+      "destination": [
+        0,
+        300,
+        900,
+        165
+      ]
+    },
+    {
+      "path": "assets/world/first-call/portal-surge-v1.png",
+      "source_rect": [
+        0,
+        418,
+        1254,
+        209
+      ],
+      "destination": [
+        0,
+        300,
+        900,
+        165
+      ]
+    },
+    {
+      "path": "assets/world/first-call/portal-surge-v1.png",
+      "source_rect": [
+        0,
+        627,
+        1254,
+        209
+      ],
+      "destination": [
+        0,
+        300,
+        900,
+        165
+      ]
+    },
+    {
+      "path": "assets/world/first-call/portal-surge-v1.png",
+      "source_rect": [
+        0,
+        836,
+        1254,
+        209
+      ],
+      "destination": [
+        0,
+        300,
+        900,
+        165
+      ]
+    },
+    {
+      "path": "assets/world/first-call/portal-surge-v1.png",
+      "source_rect": [
+        0,
+        1045,
+        1254,
+        209
+      ],
+      "destination": [
+        0,
+        300,
+        900,
+        165
+      ]
+    }
+  ],
+  "surge_front": [],
+  "fps": 12,
+  "coordinate_space": "Heroes128x128 canvas footanchor64,104. Surge arena-local960x540.",
+  "motion": {
+    "duration_seconds": 2.5,
+    "hero_scale": "Constant normal runtime scale; no shrink or alpha disappearance",
+    "entry_plane_x": 820,
+    "target_feet": [
+      900,
+      355
+    ],
+    "occlusion": "Clip source and destination proportionally at entry plane; preserve pixel ratio",
+    "surge": "Crossfade adjacent source frames, behind hero; reveal with start of pull. Front foam omitted to keep panic silhouette legible."
+  },
+  "review_limits": [
+    "Source art is not actual gameplay capture",
+    "Continuous flood motion and portal crossing require runtime review"
+  ],
+  "registration": "Measured gutters x638/y640 preserve entire splayed boots and avoid adjacent-cell fragments; common0.12source scale.",
+  "source_review": {
+    "evidence": "previews/portal-departure-v1/contact.png",
+    "scope": "Software source compositions, not gameplay captures; constant-size poses, huge rear surge, legible faces, entry-plane clipping",
+    "bounds_checked": 10,
+    "remaining": "Live motion, loop transition and game layering/occlusion review"
+  }
+}

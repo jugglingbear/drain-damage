@@ -630,8 +630,9 @@ func _draw() -> void:
 	skitterling.draw_actor(self)
 	ending.draw_portal(self)
 	clogfather.draw(self)
+	ending.draw_surge(self,false)
 	if ending.state == "pull":
-		world_art.hero_aim_art.draw(self,ending.hero_scale())
+		ending.draw_hero(self)
 	elif ending.state != "complete" and not dispenser.hides_hero() \
 		and (life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
 	for shot in shots:
@@ -648,7 +649,9 @@ func _draw() -> void:
 	for particle in particles:
 		box(particle.pos.x,particle.pos.y,4,4,particle.color)
 	skitterling.draw_front(self)
+	ending.draw_surge(self,true)
 	draw_set_transform(Vector2.ZERO)
+	ending.draw_shout(self)
 	draw_hud()
 	dispenser.draw_overlay(self)
 	if paused or (won and not dialogue.active):

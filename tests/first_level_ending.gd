@@ -40,6 +40,18 @@ func run_checks() -> void:
 			game.player = Vector2(14630,394)
 			game.clogfather.encounter.exit_open = true
 			game.ending.begin(game)
+			if not check(game.dialogue.lines.size() == 5 and game.ending.panic_text == "UUAAAAAAAAAA!!",
+				"The selected hero's scream belongs to the moving pull, not a blocking sixth line"): return
+			var frame: Dictionary = game.ending.hero_frame(game)
+			var full: Dictionary = game.ending.clipped_hero(frame,Vector2(game.ending.PORTAL_PLANE-200,355))
+			for offset in [-100,-40,0,40,100]:
+				var visible: Dictionary = game.ending.clipped_hero(frame,Vector2(game.ending.PORTAL_PLANE+offset,355))
+				if not check(is_equal_approx(visible.target.size.y,full.target.size.y)
+					and is_equal_approx(visible.source.size.y,full.source.size.y),"Portal must never shrink hero height"): return
+				if visible.target.has_area():
+					if not check(is_equal_approx(visible.target.size.x/visible.source.size.x,
+						full.target.size.x/full.source.size.x),"Occlusion must crop pixels without rescaling"): return
+				if offset == 100 and not check(not visible.target.has_area(),"Hero must fully cross the aperture plane"): return
 			var start: Vector2 = game.player
 			game._physics_process(3)
 			if not check(game.player == start and not game.won,"Dialogue must hold suction and success"): return
@@ -53,6 +65,7 @@ func run_checks() -> void:
 			release(game)
 			game._physics_process(0)
 			game._physics_process(0.8)
+			if not check(game.ending.hero_scale() == 1.0,"Full-size departure contract changed"): return
 			if not check(game.player.x > start.x and not game.won,"Pull must move selected hero before success"): return
 			var held: Vector2 = game.player
 			game.set_paused(true)
@@ -63,12 +76,13 @@ func run_checks() -> void:
 			game._physics_process(1.7)
 			if not check(game.won and game.ending.state == "complete","Departure never completed"): return
 			if not check(game.player.is_equal_approx(game.ending.TARGET-game.PLAYER_SIZE*0.5),
-				"Departure target differs from portal center"): return
+				"Departure did not carry the full-size hero beyond the portal plane"): return
 			game.update_completion_button()
 			if not check(game.title_button.disabled,"Held input can dismiss completion immediately"): return
 			game.reset_game()
-			if not check(not game.ending.active() and not game.won,"Reset retained portal state"): return
+			if not check(not game.ending.active() and not game.won and game.ending.panic_text.is_empty(),
+				"Reset retained portal state or scream"): return
 			game.queue_free()
 			await process_frame
-	print("PASS: both heroes and costumes; dialogue/skip guard, single pull, pause, departure, completion guard and reset")
+	print("PASS: all four full-size hero poses, aperture cropping, moving scream, dialogue/skip guard, pause and reset")
 	quit()

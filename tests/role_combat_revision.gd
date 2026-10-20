@@ -52,7 +52,7 @@ func run_checks() -> void:
 		assert(game.hostile_shots.is_empty() and shooter.visible_age == 0)
 		var crawler := prepare(game,"floor_emerger",Vector2(600,440))
 		assert(game.event_size("floor_emerger") == Rect2(-34,-80,68,80))
-		assert(crawler.hp == 24 and crawler.max_hp == 24 and game.role_scale("floor_emerger") == 2)
+		assert(crawler.hp == 72 and crawler.max_hp == 72 and game.role_scale("floor_emerger") == 2)
 		for tick in range(hz*2):
 			crawler.age += dt
 			game.trial_state.advance(dt)
@@ -118,5 +118,32 @@ func run_checks() -> void:
 	assert(flyer.attack_state != "recover","Blocked recovery must not strand a living Widow")
 	game.queue_free()
 	await process_frame
-	print("PASS: shooter0.8/2.5 cadence,2x24HPcrawler, ballistic locked aim/pause/floor cleanup, bidirectional offscreen pursuit and blocked recovery")
+	for mode in ["easy","normal","hard"]:
+		for hero in [0,1]:
+			var trial = Game.new()
+			trial.difficulty = mode
+			trial.employee = trial.Crew.EMPLOYEES[hero]
+			trial.seed_override = 42
+			root.add_child(trial)
+			trial.hide()
+			trial.set_process(false)
+			trial.set_physics_process(false)
+			var crawler := prepare(trial,"floor_emerger",Vector2(600,440))
+			assert(crawler.hp == 72 and crawler.max_hp == 72)
+			assert(trial.weapon.damage == (12 if hero == 0 else 18))
+			var required := 6 if hero == 0 else 4
+			for hit in range(required):
+				trial.shots.append({"pos":Vector2(530,400),"dir":Vector2.RIGHT,
+					"damage":trial.weapon.damage,"speed":760,"distance":0.0,
+					"range":trial.weapon.projectile.max_travel_distance_pixels,"trial_id":"crawler-%d" % hit})
+				trial.step_trial_shots(0.1)
+				assert(trial.shots.is_empty())
+				assert(crawler.hp == maxi(0,72-(hit+1)*int(trial.weapon.damage)))
+			assert(crawler.hp == 0)
+			var fresh := prepare(trial,"floor_emerger",Vector2(600,440))
+			assert(fresh.hp == 72 and fresh.max_hp == 72,"Reset restores full Gratecrawler health")
+			trial.queue_free()
+			await process_frame
+	print("PASS: Gratecrawler 72 HP, six Tony/four Sean projectile hits and full reset in all three difficulties")
+	print("PASS: shooter0.8/2.5 cadence,2x72HPcrawler, ballistic locked aim/pause/floor cleanup, bidirectional offscreen pursuit and blocked recovery")
 	quit()

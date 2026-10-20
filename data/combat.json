@@ -2188,9 +2188,9 @@
         }
       },
       "health": {
-        "max_hp": 24,
-        "spawn_hp": 24,
-        "runtime_max_hp": 24,
+        "max_hp": 72,
+        "spawn_hp": 72,
+        "runtime_max_hp": 72,
         "encounter_stage": "First-level sewer opening",
         "role": "floor emerger",
         "bar": {
@@ -2198,29 +2198,29 @@
           "visible_by_default": false,
           "display": "continuous"
         },
-        "rationale": "Uses approved trial HP tier; validates pressure and emergence without retuning full level.",
+        "rationale": "Prototype 88 approved durability increase from 24 to 72 HP gives the enlarged muck thrower more time to attack. No armor or difficulty scaling; movement and attack cadence unchanged.",
         "trial_hits_to_defeat": {
-          "tony_pressure_12": 2,
-          "sean_plunger_18": 2
+          "tony_pressure_12": 6,
+          "sean_plunger_18": 4
         },
         "canonical_weapon_comparisons": {
-          "pressure-gun": 4,
-          "heavy-plunger-launcher": 1,
-          "pipe-wrench": 2,
-          "drain-snake": 3,
-          "demolition-hammer": 1,
-          "pipe-bomb-launcher": 1
+          "pressure-gun": 12,
+          "heavy-plunger-launcher": 3,
+          "pipe-wrench": 6,
+          "drain-snake": 9,
+          "demolition-hammer": 2,
+          "pipe-bomb-launcher": 2
         },
         "comparison_note": "Full damage/no armor/all hits land. Misses add shots; windup and range reduce practical DPS. Single-target comparisons do not count area collateral. Trial overrides apply only to starter weapons.",
         "hits_to_defeat": {
-          "pressure-gun": 4,
-          "heavy-plunger-launcher": 1,
-          "pipe-wrench": 2,
-          "drain-snake": 3,
-          "demolition-hammer": 1,
-          "pipe-bomb-launcher": 1
+          "pressure-gun": 12,
+          "heavy-plunger-launcher": 3,
+          "pipe-wrench": 6,
+          "drain-snake": 9,
+          "demolition-hammer": 2,
+          "pipe-bomb-launcher": 2
         },
-        "runtime_scope": "Continuous first-level opening"
+        "runtime_scope": "Active first-level floor-emerger profile; Prototype 88 packaged validation passed; live balance review pending"
       },
       "name": "Gratecrawler",
       "damage_art": null,
@@ -3913,8 +3913,8 @@
         "emerger": {
           "creature_id": null,
           "status": "Initial role tuning; Art/Level defines identity",
-          "max_hp": 24,
-          "spawn_hp": 24,
+          "max_hp": 72,
+          "spawn_hp": 72,
           "warning_seconds": 0.8,
           "emerge_seconds": 0.35,
           "settle_seconds": 0.3,
@@ -3927,7 +3927,8 @@
           "muck_warning_seconds": 0.3,
           "muck_flight_seconds": 1.0,
           "muck_gravity": 700,
-          "muck_radius_pixels": 12
+          "muck_radius_pixels": 12,
+          "balance_rationale": "Prototype 88: Sean approved three times the previous 24 HP. Six Tony hits at 12 damage or four Sean hits at 18 damage in every difficulty; size, patrol and muck cadence unchanged."
         },
         "flyer": {
           "creature_id": null,

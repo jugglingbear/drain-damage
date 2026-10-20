@@ -95,13 +95,8 @@ func muzzle(game: Node2D) -> Vector2:
 	var point: Array = selected_pose(game).muzzle
 	return world_transform(game) * Vector2(point[0], point[1])
 
-func draw(game: Node2D, visual_scale := 1.0) -> void:
+func draw(game: Node2D) -> void:
 	var base := world_transform(game)
-	if visual_scale != 1.0:
-		var feet: Vector2 = game.player+Vector2(13,46)
-		base.x *= visual_scale
-		base.y *= visual_scale
-		base.origin = feet-base.x*ANCHOR.x-base.y*ANCHOR.y
 	base.origin.x -= floorf(game.camera_x)
 	var layers: Array = [death_frame(game)] if game.life_state != "alive" else selected_pose(game).layers
 	for layer: Dictionary in layers:

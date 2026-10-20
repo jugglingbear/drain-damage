@@ -3,15 +3,15 @@
   "name": "Gratecrawler",
   "name_status": "Proposed working name, not user-approved canon",
   "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it crawls from warned floor grates, plods back and forth, and lobs aimed muck balls.",
-  "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+  "implementation_status": "Prototype 88 integrated; packaged validation passed, live review pending",
   "backstory": {
     "status": "pending",
     "text": ""
   },
   "health": {
-    "max_hp": 24,
-    "spawn_hp": 24,
-    "runtime_max_hp": 24,
+    "max_hp": 72,
+    "spawn_hp": 72,
+    "runtime_max_hp": 72,
     "encounter_stage": "First-level sewer opening",
     "role": "floor emerger",
     "bar": {
@@ -19,29 +19,29 @@
       "visible_by_default": false,
       "display": "continuous"
     },
-    "rationale": "Uses approved trial HP tier; validates pressure and emergence without retuning full level.",
+    "rationale": "Prototype 88 approved durability increase from 24 to 72 HP gives the enlarged muck thrower more time to attack. No armor or difficulty scaling; movement and attack cadence unchanged.",
     "trial_hits_to_defeat": {
-      "tony_pressure_12": 2,
-      "sean_plunger_18": 2
+      "tony_pressure_12": 6,
+      "sean_plunger_18": 4
     },
     "canonical_weapon_comparisons": {
-      "pressure-gun": 4,
-      "heavy-plunger-launcher": 1,
-      "pipe-wrench": 2,
-      "drain-snake": 3,
-      "demolition-hammer": 1,
-      "pipe-bomb-launcher": 1
+      "pressure-gun": 12,
+      "heavy-plunger-launcher": 3,
+      "pipe-wrench": 6,
+      "drain-snake": 9,
+      "demolition-hammer": 2,
+      "pipe-bomb-launcher": 2
     },
     "comparison_note": "Full damage/no armor/all hits land. Misses add shots; windup and range reduce practical DPS. Single-target comparisons do not count area collateral. Trial overrides apply only to starter weapons.",
     "hits_to_defeat": {
-      "pressure-gun": 4,
-      "heavy-plunger-launcher": 1,
-      "pipe-wrench": 2,
-      "drain-snake": 3,
-      "demolition-hammer": 1,
-      "pipe-bomb-launcher": 1
+      "pressure-gun": 12,
+      "heavy-plunger-launcher": 3,
+      "pipe-wrench": 6,
+      "drain-snake": 9,
+      "demolition-hammer": 2,
+      "pipe-bomb-launcher": 2
     },
-    "runtime_scope": "Continuous first-level opening"
+    "runtime_scope": "Active first-level floor-emerger profile; Prototype 88 packaged validation passed; live balance review pending"
   },
   "game_art": {
     "image": "assets/bestiary/opening-trial/gratecrawler-v1.png",
@@ -113,5 +113,12 @@
       "target_locked_at_fire": true,
       "core_radius": 12
     }
+  },
+  "prototype88_revision": {
+    "previous_hp": 24,
+    "max_hp": 72,
+    "spawn_hp": 72,
+    "multiplier": 3,
+    "status": "Packaged validation passed; live balance review pending"
   }
 }
