@@ -233,3 +233,8 @@ python3 -m http.server 8000 --directory builds/magazine-site
 ```
 
 Open `http://localhost:8000` in a browser. Generated site files stay in the ignored builds folder.
+
+Edition 30 is published with the [0.91.0 macOS demo](https://github.com/jugglingbear/drain-damage/releases/tag/v0.91.0).
+The [live magazine](https://jugglingbear.github.io/drain-damage/) PDF checksum and reciprocal Storybook links were
+verified on October 20, 2026. Publication evidence is recorded in
+[the release verification](../../dist/v0.91.0/macos-universal/publication-verification.json).

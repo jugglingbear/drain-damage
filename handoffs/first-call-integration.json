@@ -165,17 +165,29 @@
   "source_commit": "2c627a6",
   "previous_delivery": "storybook/090-gratecrawler-throw/20261020-170101-capture-status.json",
   "publication": {
-    "magazine_edition": 29,
-    "status": "GitHub Pages deployment succeeded and live files verified",
+    "magazine_edition": 30,
+    "status": "GitHub Pages deployment succeeded; live PDF checksum and reciprocal Storybook links verified",
     "url": "https://jugglingbear.github.io/drain-damage/",
-    "deployment_run": 39515674328,
-    "deployment_commit": "759f826",
-    "pdf_sha256": "8a600c41be2ad0e73b16720c0aa137078bb208002cf37d2ce29a86b3fce28a4a",
+    "deployment_run": 39521412752,
+    "deployment_commit": "8c722a5",
+    "pdf_sha256": "74bcbbb1755ae400df45aab5ac98dff1331c711ec4b4053967d4770bdd2fccb7",
     "pages": 8,
     "reciprocal_storybook_links": true
   },
   "dispenser_checkpoints": [
     4650,
     13800
-  ]
+  ],
+  "distribution": {
+    "version": "0.91.0",
+    "platform": "macOS universal",
+    "release_url": "https://github.com/jugglingbear/drain-damage/releases/tag/v0.91.0",
+    "status": "Published development/demo prerelease; GitHub Release and Git LFS download hashes verified",
+    "archive_sha256": "7783fcf4df342c29af4492cde49a4108c81665033dad9cf960aec19b857a50c3",
+    "packaged_suites": 28,
+    "standalone_headless_startup": "passed",
+    "manifest": "dist/v0.91.0/macos-universal/release-manifest.json",
+    "verification": "dist/v0.91.0/macos-universal/publication-verification.json",
+    "limits": "Ad-hoc signed, not notarized; fresh-machine 91, Intel, GPU/audio/controller and live visual review pending"
+  }
 }
