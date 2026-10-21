@@ -1,0 +1,235 @@
+{
+  "version": "0.91.0",
+  "kind": "macOS first-level development/demo prerelease",
+  "created_at": "2026-10-20T17:25:43.708247-07:00",
+  "source_commit": "2c627a6e917f3c1ccc39b0bf8ba415fead0fbdd4",
+  "architectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "declared_minimum_macos": {
+    "arm64": "13.0",
+    "x86_64": "11.0"
+  },
+  "minimum_os_tested": false,
+  "intel_execution_tested": false,
+  "fresh_machine_tested": false,
+  "historical_fresh_machine_evidence": {
+    "version": "0.81.0",
+    "source": "Sean confirmation relayed by Release coordination on October 20, 2026",
+    "system": "Apple Silicon, macOS 26.6.2",
+    "result": "Opened successfully after Open Anyway",
+    "limit": "Applies only to 0.81.0; no claim of fresh-machine 0.91.0 testing"
+  },
+  "signing": {
+    "type": "ad-hoc",
+    "developer_id": false,
+    "notarized": false,
+    "available_signing_identities": 0,
+    "strict_extracted_signature": "passed"
+  },
+  "tools": {
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "git_lfs": "3.8.0",
+    "host_macos": "26.6.2 (25G83)",
+    "host_architecture": "arm64"
+  },
+  "archive": {
+    "file": "Drain-Damage-0.91.0-macos-universal.zip",
+    "sha256": "7783fcf4df342c29af4492cde49a4108c81665033dad9cf960aec19b857a50c3",
+    "bytes": 326195315,
+    "contents": "Unmodified verified Prototype 91 app plus INSTALL.md"
+  },
+  "packaged_files": {
+    "Contents/Info.plist": "4fe87ee6aac4e99aa43cbb56287c3b1f587ec91acd712170fc209b8298d7a502",
+    "Contents/PkgInfo": "7e50a30efad50208a173203ced60818d693bb61266b75aa10927d1a2adce80cb",
+    "Contents/_CodeSignature/CodeResources": "36fb6a42a87553f5517c39ab0ef29338386b178a45e2cf2520c4bcc7379dfb21",
+    "Contents/MacOS/Drain Damage": "cf835bb3df300b72c0afc78aa0273c6af7650db940840f10e45cabffb93e92c4",
+    "Contents/Resources/icon.icns": "99863c5b67828191cb765d091d5267d613ad09b8dc3b87a1a3e59efa2ac01745",
+    "Contents/Resources/PrivacyInfo.xcprivacy": "0535353bb08c25b8ce5ed9ac7e442a5994f402e0f6cbc4bed668cfc63c2ceac3",
+    "Contents/Resources/GODOT_COPYRIGHT.txt": "cb1980c88089573bcacd7221d777c689bb8bbd778799f24c27fca0fe5f774d6d",
+    "Contents/Resources/Drain Damage.pck": "29dcdc9da55da1fb5c57ccda645cbe45d990482244324b888808089ebe0c0389"
+  },
+  "dependency_inspection": "Both Mach-O slices reference only /System/Library and /usr/lib paths; no Homebrew or developer-runtime dependency found.",
+  "validation": {
+    "candidate_sha256": "7783fcf4df342c29af4492cde49a4108c81665033dad9cf960aec19b857a50c3",
+    "pck_sha256": "29dcdc9da55da1fb5c57ccda645cbe45d990482244324b888808089ebe0c0389",
+    "harness": "Godot 4.7.2 editor binary, external scripts, exact extracted distribution PCK, headless; not GPU tests",
+    "suites": [
+      {
+        "suite": "clogfather_route",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "difficulty_respawn",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "skitterling_checkpoint",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "skitterling_integration",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "gratecrawler_throw",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "wastewater_route",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "build_version",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "clogfather_integration",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "dialogue",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "first_level_ending",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "hard_dialogue",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "clogfather_route_traversal",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "clogfather_high_weakpoint",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "swarm_schedule",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "clogfather_audio",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "skitterling_audio",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "music",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "creature_audio",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "difficulty_actions",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "pause_menu",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "wastewater_art",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "title_screen",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "wastewater_profile",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "clogfather_music",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "role_combat_revision",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "hero_death_audio",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "swarm_audio",
+        "pass": true,
+        "exit": 0
+      },
+      {
+        "suite": "difficulty_traversal",
+        "pass": true,
+        "exit": 0
+      }
+    ],
+    "standalone_startup": "Extracted release executable from /private/tmp with --headless --quit-after 3; exit 0",
+    "source_python_tests": 34,
+    "scope_note": "18 first-route cases and 12 forward/reverse extension cases use segmented/healed bots; not an uninterrupted normal-life human playthrough or balance acceptance."
+  },
+  "additional_checks": {
+    "archive_integrity": "passed",
+    "app_and_install_file_comparison": "passed",
+    "git_lfs_attributes": "filter=lfs diff=lfs merge=lfs",
+    "git_lfs_fsck": "passed"
+  },
+  "readiness": {
+    "marketing": "Edition 30 correction frozen; eight pages visually reviewed",
+    "art": "Source-region/provenance checks clear; live motion gaps retained",
+    "mechanics": "Exact-candidate regression gate passed; human balance pending",
+    "audio": "Creature cues/music source assets and provenance clear; live listening pending",
+    "storyboarding": "First-level demo narrative cleared; level two held"
+  },
+  "known_gaps": [
+    "Fresh-machine 0.91.0 first launch and Gatekeeper flow not exercised",
+    "Intel hardware and minimum macOS versions not exercised",
+    "Live GPU, controller pairing, sound output, animation transitions and human combat balance pending",
+    "Collapse-frame continuity, wastewater/portal/throw visual acceptance and actual 0.91.0 captures pending",
+    "Level two and wider campaign unfinished; dialogue intentionally text-only"
+  ],
+  "diagnostics": [
+    "Known sandbox user-log/macOS CA warnings and shutdown resource warnings; no script, parse, assertion or resource-load failures in passing suites"
+  ],
+  "lfs_quota": "Read-only usage API returned HTTP 404 with insufficient account scope; remaining quota unknown. No account scope, budget or paid-overage changes made.",
+  "magazine": {
+    "edition": 30,
+    "url": "https://jugglingbear.github.io/drain-damage/",
+    "pdf_url": "https://jugglingbear.github.io/drain-damage/magazine.pdf",
+    "sha256": "74bcbbb1755ae400df45aab5ac98dff1331c711ec4b4053967d4770bdd2fccb7",
+    "note": "Creature advice updated for Prototype 91; gameplay imagery remains historical."
+  }
+}

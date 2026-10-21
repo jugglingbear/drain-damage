@@ -6,8 +6,13 @@ Their employer’s working name is Mainframe Plumbing & Supply. The game title r
 
 ## Play
 
-Open `builds/Prototype-71/Drain Damage.app` in Finder. Godot is not required to play the exported app.
-This local prototype is ad-hoc signed, not notarized for public distribution.
+Download the [0.91.0 macOS development demo](https://github.com/jugglingbear/drain-damage/releases/tag/v0.91.0).
+Extract the ZIP and move **Drain Damage.app** to Applications. Godot is not required.
+See the [installation guide](dist/v0.91.0/macos-universal/INSTALL.md) for the first-launch Open Anyway procedure.
+The universal app is ad-hoc signed and not notarized. Local development builds remain in `builds/Prototype-91/`.
+
+The current demo covers the 15,200-pixel first level, including Skitterling, the Clogfather and the portal ending.
+Skitterling victory immediately saves a checkpoint beyond its exit. Level two and the wider campaign are unfinished.
 
 - Move: A/D or left/right arrows.
 - Jump: Space (controller A). Release early for a shorter jump.
@@ -458,9 +463,10 @@ request and does not authorize a full platform release or release-binary upload.
 
 ### Platform readiness
 
-- **macOS:** matching Godot export template, Apple Silicon support, codesign, and ZIP or DMG packaging.
-  Local exports and headless checks pass. Ad-hoc signing only; fresh-machine installation and Gatekeeper review
-  remain. Public distribution needs a signing/notarization decision.
+- **macOS:** 0.91.0 universal development/demo ZIP for Apple Silicon and Intel; ad-hoc signed, not notarized.
+  Automated extracted-package checks and standalone headless startup are recorded in the release manifest.
+  Sean confirmed 0.81.0 opened on a fresh Apple Silicon Mac with macOS 26.6.2 after Open Anyway; that evidence
+  applies only to 0.81.0. Fresh-machine 0.91.0, Intel, minimum-OS and live graphics/input/audio review remain pending.
 - **Windows:** matching export template, x86_64 preset, EXE/PCK ZIP, and optional signing. No preset or Windows
   runtime test yet. Verify controls, audio, installation, and antivirus behavior on Windows.
 - **Linux:** matching template, chosen x86_64/ARM64 preset, executable permissions, and archive. No preset or Linux
@@ -486,9 +492,9 @@ GitHub Release downloads may supplement that storage, not replace it. Verify `gi
 package, run `git lfs fsck`, and verify remote download hashes after pushing. Never include signing keys, credentials,
 provisioning profiles, or private references. Existing ignore rules still exclude tools, local builds, and secrets.
 
-Git LFS is installed and asset uploads to origin succeeded on October 16, 2026. Account quota remaining has not
-been verified. Before releasing, check the owner's billing usage and budget: GitHub Free/Pro currently include
-10 GiB each of LFS storage and download bandwidth; their per-file cap is 2 GB. Every changed binary version consumes
-its full size, and downloads consume bandwidth. Do not enable paid overages without authorization. See
+Git LFS is installed and release binaries are stored through it. The October 20, 2026 read-only billing request
+returned HTTP 404 with insufficient account scope, so remaining quota is unknown. No authentication scopes,
+budget settings or paid overages were enabled. Binary versions and downloads can consume storage and bandwidth;
+check account billing before future distribution changes. See
 [GitHub LFS billing](https://docs.github.com/en/billing/concepts/product-billing/git-lfs) and
 [LFS file limits](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).

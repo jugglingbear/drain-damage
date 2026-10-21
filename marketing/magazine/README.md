@@ -23,6 +23,17 @@ ordered pages, text, captions, image references and layout templates. The PDF is
 The renderer uses the macOS fonts configured in `layout.font_directory`. Change that path and the font filenames
 if building elsewhere. Shared header/footer templates use `{page_number}` and `{section}` placeholders.
 
+## Edition 30 distribution accuracy — October 20, 2026
+
+For Prototype 91 distribution, four creature paragraphs/tips are corrected: Sputtervalve fires without a charging
+warning, and Gratecrawler pauses to aim and throw muck from its hand. Edition 29's approved layout and artwork remain.
+Eight pages retained; `current.pdf` matches edition 30. Earlier editions and the pre-revision source are preserved.
+The historical page 6 screenshots are unchanged and are not evidence of current-build appearance.
+
+Release wording: “Includes Discharge Quarterly edition 30, with creature advice updated for Prototype 91.
+The magazine retains historical gameplay images.” Engineering owns final commit, push and website deployment.
+Local validation does not establish a live deployment or a fresh-Mac launch of Prototype 91.
+
 ## Edition 29 article layouts — October 20, 2026
 
 Sean approved this layout direction: narrow columns, asymmetric artwork and a distinct layout for each article.
