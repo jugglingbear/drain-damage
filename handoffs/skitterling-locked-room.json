@@ -1,6 +1,6 @@
 {
   "status": "User commissioned implementation; layout/tuning defaults proposed by Level Design for team integration",
-  "date": "2026-10-17",
+  "date": "2026-10-20",
   "creature_id": "cockroach-swarm",
   "display_name": "Skitterling",
   "supersedes": "Earlier optional7950..9150 scrollingarena recommendation and3second singletransform; preserve earlier handoff as history.",
@@ -23,10 +23,10 @@
       0
     ],
     "resume_route_x": 7530,
-    "temporary_level_exit_x": 9450,
+    "temporary_level_exit_x": 15200,
     "geometry": "Remove old5570..5730 plinth because it overlaps quietapproach; remove old6860/7020/7200 platform cluster inside room. Keep flatfloor440; no platform or monster in quiet5610..6570.",
     "entry": "Large traversablepipe conveys transition through quiet approach into sealed room. Set camera exactly once after entrance concealment; lockx/y throughout intro,fight,transitions,finaldeath. Rightpipe opens only after terminaldefeat.",
-    "ownership": "Checkpoint4650 owns encounter. On death reset phases/HP/ports/hazards/camera/doors; retainlives/clone stock/seed. No newcheckpoint.",
+    "ownership": "Checkpoint4650 owns unfinished encounter. Prototype91 automatically saves at terminal HP0, before death animation/exit; retry at7650 restores defeated Skitterling/open route. Save does not move/heal the hero or consume clone stock/lives. Automatic retry retains standard full health/immunity and consumes no dispenser stock. Later13800 dispenser checkpoint supersedes it; new game clears victory.",
     "isolation": "Suppress ordinary entries affecting quietapproach/room. At opaque pipe transition retire only fullyhidden prioractors/projectiles with no killcredit; prevent pursuit across pipe. Do not strand player waiting on distantWidow or visibly erase it.",
     "normal_schedule": "This authored boss sequence intentionally replaces conflicting densityslots in approach/room; preserve encounters before approach and resume safely beyond exit. Apply roomacross modes; modebalanceMechanics-owned.",
     "entry_threshold": 6570,
@@ -35,7 +35,8 @@
       394
     ],
     "exit_threshold": 7530,
-    "transition_detail": "Use authored opaque entrancepipe to conceal reposition tolocal96/camera6570; do not visibly teleport. Lock after entering, rightpipe passable onlyafterterminal, releasecamera atcompletion withsafeexitfollow."
+    "transition_detail": "Use authored opaque entrancepipe to conceal reposition tolocal96/camera6570; do not visibly teleport. Lock after entering, rightpipe passable onlyafterterminal, releasecamera atcompletion withsafeexitfollow.",
+    "post_victory_checkpoint_x": 7650
   },
   "art_layout": {
     "canvas": [

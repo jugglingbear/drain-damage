@@ -39,12 +39,14 @@ func locked() -> bool:
 	return entered and not released
 
 func restore_completed() -> void:
-	# The second checkpoint owns progress beyond this room; retry must not resurrect its boss.
+	# A saved victory owns progress beyond this room; retry must not resurrect its boss.
 	entered = true
 	released = true
 	kill_recorded = true
 	encounter.active = false
 	encounter.hp = 0
+	encounter.state = "complete"
+	encounter.phase = "alligator"
 	encounter.exit_open = true
 
 func frozen(host: Node2D) -> bool:
@@ -116,6 +118,9 @@ func flush_events(host: Node2D) -> void:
 	hit_actor.hp = encounter.hp
 	for event in encounter.drain_events():
 		if event == "hit": audio.play_hit(hit_actor,clock)
+		elif event == "terminal_death":
+			host.save_skitterling_checkpoint()
+			audio.event(event)
 		elif event == "exit_open":
 			if not kill_recorded:
 				kill_recorded = true

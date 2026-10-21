@@ -95,7 +95,7 @@ func run_checks() -> void:
 						excluded_count += 1
 				assert(game.trial_state.results().unavailable == excluded_count)
 				for event in game.run_plan.later:
-					assert(game.encounter_states[event.id] == ("pending" if event.enabled and event.owner_origin == 4650 and not (event.trigger >= 5610 and event.trigger < 7530) else "excluded"))
+					assert(game.encounter_states[event.id] == ("pending" if event.enabled and event.owner_origin >= 4650 and not (event.trigger >= 5610 and event.trigger < 7530) else "excluded"))
 				game.dispenser.cancel()
 				game.player = Vector2(4700,394)
 				game.camera_x = 4380
@@ -112,7 +112,7 @@ func run_checks() -> void:
 				game.step_encounters(0.1)
 				assert(game.crowd_population() == 1)
 				var admitted: Dictionary = game.actors[0] if mode == "normal" else game.enemies[0]
-				assert(admitted.hp == 24 and admitted.owner_origin == 4650)
+				assert(admitted.hp == 24 and admitted.owner_origin == 7650)
 				assert((admitted.feet.x if mode == "normal" else admitted.pos.x) >= 4650)
 				admitted.hp = 1
 			check_admission(game)

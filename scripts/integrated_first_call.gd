@@ -26,6 +26,7 @@ var run_plan: Dictionary = {}
 var encounter_states: Dictionary = {}
 var respawn_origin := 85.0
 var rebuilding_respawn := false
+var post_skitterling_checkpoint := false
 var next_opening_spawn := 0.0
 var opening_passed := false
 var route_admitted: Dictionary = {}
@@ -54,6 +55,10 @@ func reset_game() -> void:
 	run_seed = seed_override if seed_override >= 0 else randi()
 	run_plan = DifficultyPlan.resolve(difficulty,run_seed)
 	ClogfatherRoute.append_plan(run_plan)
+	for event in run_plan.later:
+		if event.trigger >= SkitterlingRoom.END:
+			event.owner_origin = Level.POST_SKITTERLING_CHECKPOINT
+	post_skitterling_checkpoint = false
 	respawn_origin = 85.0
 	if music_director != null: music_director.play_track("level")
 	super.reset_game()
@@ -63,7 +68,7 @@ func reset_observation() -> void:
 	if rebuilding_respawn: return
 	super.reset_observation()
 	skitterling.reset(run_seed)
-	if respawn_origin >= ClogfatherRoom.CHECKPOINT: skitterling.restore_completed()
+	if respawn_origin >= Level.POST_SKITTERLING_CHECKPOINT: skitterling.restore_completed()
 	clogfather.reset(run_seed)
 	ending.reset()
 	boss_hud.end_encounter()
@@ -152,10 +157,22 @@ func respawn_after_death() -> void:
 	flushfiend_death_audio.stop()
 	swarm_audio.stop()
 	rebuilding_respawn = true
+	# Victory saves progress without adding a vending machine or consuming existing clone stock.
+	var automatic := post_skitterling_checkpoint and respawn_point.x == Level.POST_SKITTERLING_CHECKPOINT
+	if automatic: checkpoint_active = false
 	super.respawn_after_death()
+	if automatic: checkpoint_active = true
 	rebuilding_respawn = false
 	if respawn_origin >= ClogfatherRoom.CHECKPOINT:
 		camera_x = clogfather.camera_position(player.x)
+
+func save_skitterling_checkpoint() -> void:
+	if not skitterling.entered or skitterling.encounter.hp > 0: return
+	post_skitterling_checkpoint = true
+	if respawn_point.x >= Level.POST_SKITTERLING_CHECKPOINT: return
+	checkpoint_active = true
+	checkpoint_index = maxi(checkpoint_index,0)
+	respawn_point = Vector2(Level.POST_SKITTERLING_CHECKPOINT,FLOOR_Y-PLAYER_SIZE.y)
 
 func activate_checkpoint(index: int = 0) -> void:
 	super.activate_checkpoint(index)

@@ -32,7 +32,8 @@ func reset(host: Node2D) -> void:
 	if host.difficulty == "normal": slots.append_array(NORMAL_EXTRA_SLOTS)
 	slots.append_array(host.ClogfatherRoute.SWARMS)
 	for slot in slots:
-		ledger[slot.id] = {"state":"pending" if slot.owner >= host.respawn_origin else "excluded",
+		var owner: float = host.Level.POST_SKITTERLING_CHECKPOINT if slot.home.x >= host.Level.POST_SKITTERLING_CHECKPOINT else slot.owner
+		ledger[slot.id] = {"state":"pending" if owner >= host.respawn_origin else "excluded",
 			"issued":false,"visible":false,"defeated":false}
 	# Preserve the original actor's seed, timing and ordinary-budget contribution.
 	for actor in host.swarms.actors:
