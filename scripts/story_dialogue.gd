@@ -36,7 +36,7 @@ const OPENING: Array[Dictionary] = [
 
 const COMPLETION_TONY: Array[Dictionary] = [
 	{"who": "tony", "emotion": "neutral", "text": "It’s down. All that backed-up water’s breaking through.", "radio": false},
-	{"who": "sean", "emotion": "worried", "text": "Something else with teeth?", "radio": true},
+	{"who": "sean", "emotion": "worried", "text": "Where’s all that water going?", "radio": true},
 	{"who": "tony", "emotion": "surprised", "text": "A portal. Everything’s being sucked into it!", "radio": false},
 	{"who": "sean", "emotion": "worried", "text": "Tony, get away from it!", "radio": true},
 	{"who": "tony", "emotion": "worried", "text": "I can’t get my footing. The water’s too strong!", "radio": false},
@@ -44,8 +44,8 @@ const COMPLETION_TONY: Array[Dictionary] = [
 ]
 
 const COMPLETION_SEAN: Array[Dictionary] = [
-	{"who": "sean", "emotion": "surprised", "text": "Tony, I got it! The water’s breaking through behind it!", "radio": false},
-	{"who": "tony", "emotion": "neutral", "text": "Leave it alone, buddy. Come back out.", "radio": true},
+	{"who": "sean", "emotion": "surprised", "text": "Tony, the Clogfather’s down! All that water’s breaking through!", "radio": false},
+	{"who": "tony", "emotion": "neutral", "text": "Get clear of the water, buddy. Head back the way you came.", "radio": true},
 	{"who": "sean", "emotion": "worried", "text": "There’s a portal! It’s sucking in the water and everything else!", "radio": false},
 	{"who": "tony", "emotion": "worried", "text": "Grab something bolted down!", "radio": true},
 	{"who": "sean", "emotion": "worried", "text": "The bolts are going past me!", "radio": false},
