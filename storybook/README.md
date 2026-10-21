@@ -2152,6 +2152,32 @@ no image capture occurred.
 
 [Capture status and verification](089-progressive-wastewater/20261020-165040-capture-status.json).
 
+## 090 — Gratecrawler throwing motion — October 20, 2026
+
+**Version:** Prototype 90 / 0.90.0; source commit `62fcce9`; app, ZIP and snapshot `builds/source-90` preserved.
+
+Gratecrawler pauses, faces the hero and locks its aim before throwing. Two 0.15-second windup poses lead to release
+from the authored hand at 0.3 seconds, followed by 0.12 seconds of follow-through and 0.18 seconds of recovery.
+It then resumes its original patrol direction. Four authored poses support left and mirrored right facings.
+
+Hit, death and offscreen events cancel pending throws; pause/reset behavior remains safe. Close targets cannot force
+a backward throw. Health stays at 72 HP, size at its doubled scale, speed at 45 and cadence at 2.5 seconds; the existing
+muck trajectory is retained. Boss gas and Septic Air Force ideas remain discussion-only, and level two remains held.
+
+**Validation:** Engineering reports all eleven suites passing against the final exact re-export and thirty-four
+Python tests passing, with signed app and ZIP verified. Checks cover throw/patrol behavior, role combat, creature audio,
+wastewater, Skitterling, Clogfather, the ending and version. Art approved the both-facing source composition.
+
+**Capture gap:** No game window opened or actual Prototype 90 screenshot was captured. Live pose transitions and
+hand-aligned projectile release remain pending. The archived facing study is source composition, not gameplay.
+
+**Record created:** 2026-10-20T17:01:01-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred. The source study's exact creation time is unknown; its archive time is recorded separately.
+
+[Capture status and verification](090-gratecrawler-throw/20261020-170101-capture-status.json).
+
+[Source facing study archive](art-studies/20261020-170101-gratecrawler-throw/20261020-170101-archive-record.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
