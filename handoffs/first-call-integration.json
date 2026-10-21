@@ -1,17 +1,18 @@
 {
   "schema_version": 1,
-  "build": "Prototype 90 / 0.90.0",
-  "created_at": "2026-10-20T17:00:22.924575-07:00",
+  "build": "Prototype 91 / 0.91.0",
+  "created_at": "2026-10-20T17:17:43.054091-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, signature, archive, 11 relevant packaged suites and 34 Python tests passed; live visual review pending",
-  "app": "builds/Prototype-90/Drain Damage.app",
-  "archive": "builds/history/Prototype-90.zip",
-  "archive_sha256": "e84431ed9a28c3a191b2f3586a366a2dee3d3338830bd0fc0cbad105e9bf98ae",
-  "source_snapshot": "builds/source-90",
+  "status": "Export, signature, archive, 12 relevant packaged suites and 34 Python tests passed; live visual review pending",
+  "app": "builds/Prototype-91/Drain Damage.app",
+  "archive": "builds/history/Prototype-91.zip",
+  "archive_sha256": "12e1ed6c9179cd1fcd3ab9b052408534a90f717acaa547cfd3476da3555d2cdc",
+  "source_snapshot": "builds/source-91",
   "world_width": 15200,
   "checkpoints": [
     4650,
+    7650,
     13800
   ],
   "boss_arena": [
@@ -19,33 +20,34 @@
     15110
   ],
   "changes": [
-    "Gratecrawler pauses and temporarily faces the player, commits aim at windup start and holds muck at its authored hand",
-    "Four authored poses: two 0.15-second windup frames, release from the extended hand at 0.3 seconds, 0.12-second follow-through and 0.18-second recovery; restore prior patrol direction after 0.6 seconds",
-    "Hits, death and offscreen cancellation prevent pending release; pause/reset safe. Targets behind the extended hand suppress backward shots through the body",
-    "72 HP, doubled size, 45 px/s patrol, muck damage, one-second ballistic flight and uninterrupted 2.5-second repeat cadence retained",
-    "Prototype 89 wastewater and Prototype 88 portal preserved. Boss hazard ideas remain discussion only; level-two gameplay held"
+    "Automatic post-Skitterling checkpoint saves at terminal HP0, before death animation/exit; safe retry x7650 restores defeated boss and unlocked route",
+    "Victory save does not teleport, heal or change lives/clone stock. Retry uses normal full health/immunity and no dispenser; later x13800 checkpoint supersedes it; new game clears saved victory",
+    "Post-room encounter and swarm ownership survives checkpoint retry without restoring prior opening enemies",
+    "Both ending conversations now respond coherently to the released water; six-line route and action scream contract unchanged",
+    "Prototype 90 hand throws, 89 water restoration and 88 portal preserved. Boss hazards remain discussion only; level-two gameplay held"
   ],
   "checks": {
-    "packaged_suites": 11,
+    "packaged_suites": 12,
     "status": "passed",
-    "results": "builds/verification-90/packaged-results.json",
+    "results": "builds/verification-91/final-results.json",
     "suites": [
       "build_version",
       "clogfather_integration",
-      "creature_audio",
+      "clogfather_route",
+      "dialogue",
+      "difficulty_respawn",
       "first_level_ending",
-      "gratecrawler_patrol",
       "gratecrawler_throw",
-      "role_combat_revision",
+      "hard_dialogue",
+      "skitterling_checkpoint",
       "skitterling_integration",
-      "wastewater_art",
-      "wastewater_profile",
+      "swarm_schedule",
       "wastewater_route"
     ],
     "python_tests": 34,
-    "python_log": "builds/verification-90/python.log",
-    "build_log": "builds/verification-90/build.log",
-    "scope": "Both patrol and throw facings, hero crossing after aim lock, exact mirrored hand release, planted feet and restored patrol, repeat cadence, hit/death/offscreen interruption, pause/reset, close-target rejection at 60/120Hz; water, bosses, portal, health and creature audio regressions"
+    "python_log": "builds/verification-91/python.log",
+    "build_log": "builds/verification-91/final-build.log",
+    "scope": "Ten checkpoint/runtime regression suites passed; after dialogue-only correction, dialogue/hard_dialogue/ending/version passed on final re-export. Includes both heroes/all modes, terminal/exit/farther death, repeated retries, stock/lives/health, downstream admissions, later checkpoint and new-game reset."
   },
   "source_art_review": {
     "approved_compositions": [
@@ -67,9 +69,8 @@
     ]
   },
   "remaining": [
-    "Live Gratecrawler pose transitions, hand release and resumed-patrol visual review",
-    "Live wastewater contrast and miniboss aquatic-effect layering review",
-    "Live full-size hero portal transition review",
+    "Live post-victory retry presentation and revised ending dialogue review",
+    "Live Gratecrawler hand-release animation and wastewater layering review",
     "Human combat balance and subjective audio/music mix review",
     "Actual running-build screenshots"
   ],
@@ -161,8 +162,8 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "62fcce9",
-  "previous_delivery": "storybook/089-progressive-wastewater/20261020-165040-capture-status.json",
+  "source_commit": "2c627a6",
+  "previous_delivery": "storybook/090-gratecrawler-throw/20261020-170101-capture-status.json",
   "publication": {
     "magazine_edition": 29,
     "status": "GitHub Pages deployment succeeded and live files verified",
@@ -172,5 +173,9 @@
     "pdf_sha256": "8a600c41be2ad0e73b16720c0aa137078bb208002cf37d2ce29a86b3fce28a4a",
     "pages": 8,
     "reciprocal_storybook_links": true
-  }
+  },
+  "dispenser_checkpoints": [
+    4650,
+    13800
+  ]
 }

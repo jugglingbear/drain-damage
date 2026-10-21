@@ -1,0 +1,39 @@
+{
+  "build": "Prototype91 / 0.91.0",
+  "created_at": "2026-10-20T17:18:22-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Delivery documentation creation, not capture time",
+  "capture_time": null,
+  "source_commit": "2c627a6",
+  "checkpoint_commit": "0f9bd65",
+  "status": "Packaged runtime checks pass; four affected checks pass on dialogue-only final re-export;34Python pass; signed app/ZIP/source preserved",
+  "app": "builds/Prototype-91/Drain Damage.app",
+  "archive": "builds/history/Prototype-91.zip",
+  "source_snapshot": "builds/source-91",
+  "archive_sha256": "12e1ed6c9179cd1fcd3ab9b052408534a90f717acaa547cfd3476da3555d2cdc",
+  "checks": {
+    "runtime_export_suites": 10,
+    "runtime_swarm_coverage": "18 paired admission runs",
+    "final_dialogue_only_reexport_checks": [
+      "dialogue",
+      "hard_dialogue",
+      "first_level_ending",
+      "build_version"
+    ],
+    "unique_suites_across_exports": 12,
+    "python_tests": 34,
+    "limitation": "Runtime unchanged between exports; do not claim all12 suites ran against final re-export."
+  },
+  "changes": [
+    "Automatic checkpoint commits at Skitterling terminalHP0 before death/exit animation; retry7650 beyond exit, boss remains defeated",
+    "Victory grants no teleport/heal/life/clone; retry uses existing fullHP/immunity without new dispenser stock",
+    "Existing4650/13800 machines retained; later13800 takes priority; newgame clears progress; postboss roster/swarm ownership retained",
+    "Both Clogfather endings now follow released-water setup coherently; stale teeth/leave-it-alone responses replaced"
+  ],
+  "remaining": [
+    "Human checkpoint/retry and dialogue-flow review",
+    "Actual running-build screenshots"
+  ],
+  "capture_gap": "No game window opened or actual capture; no new artwork."
+}

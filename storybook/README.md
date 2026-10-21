@@ -2178,6 +2178,34 @@ no image capture occurred. The source study's exact creation time is unknown; it
 
 [Source facing study archive](art-studies/20261020-170101-gratecrawler-throw/20261020-170101-archive-record.json).
 
+## 091 — Skitterling checkpoint and coherent ending dialogue — October 20, 2026
+
+**Version:** Prototype 91 / 0.91.0; final source `2c627a6`, checkpoint change `0f9bd65`;
+app, ZIP and source snapshot `builds/source-91` preserved.
+
+Skitterling's terminal zero HP now saves an automatic checkpoint before the 1.2-second death/exit sequence.
+Retry starts at 7650 beyond the exit and retains the defeated boss. Victory itself grants no teleport, healing,
+life or clone; retry uses existing full-health/immunity behavior without adding dispenser stock. The original
+4650/13800 machines remain, later checkpoint progress takes priority, and a new game clears saved progress.
+Post-boss roster and swarm ownership are retained for retry. Previously completed-boss restoration required 13800.
+
+Both Clogfather conversations now follow their water-release setup. In Tony's route, Sean asks where the water is
+going before Tony identifies the portal. In Sean's route, explicit boss defeat prompts Tony to advise getting clear
+of the water, replacing the disconnected “Leave it alone.” Five dialogue lines and the action scream remain intact.
+
+**Validation:** Engineering reports ten packaged runtime suites passing, including eighteen paired swarm-admission
+runs, and thirty-four Python tests passing. After the dialogue-only re-export, dialogue, Hard dialogue, ending and
+version checks pass against the final package. This is twelve unique suites across exports, not twelve suites all
+rerun against the final export; runtime was unchanged. Signed app and ZIP verification pass.
+
+**Capture gap:** No game window opened or actual Prototype 91 screenshot was captured. Human checkpoint/retry and
+dialogue-flow review remain pending. No new artwork is part of this iteration.
+
+**Record created:** 2026-10-20T17:18:22-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](091-skitterling-checkpoint-and-dialogue/20261020-171822-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
