@@ -1,0 +1,38 @@
+{
+  "build": "Prototype94 / 0.94.0",
+  "status": "15 exact final PCK suites and34Python pass; signature/archive/standalone pass; live review pending",
+  "created_at": "2026-10-23T11:23:49-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Planning documentation creation, not capture time",
+  "capture_time": null,
+  "source_commit": "add25b2",
+  "archive_sha256": "059fdb44799e778e28c5446e085925bfbcde110ff864843aa6b79f5e76e28bf2",
+  "direction": "Sean selected Art optionB right-side boss HUD; normal82px playerHUD preserved with pips/lives/name/weapon/kills/route",
+  "reason": "Earlier overlay proposal hid Skitterling right port at912,232",
+  "lifecycle": "Hold framing through Skitterling death/exit until released and Clogfather death/portal; reset on retry/newgame",
+  "remaining": [
+    "Live visual/text readability and framing review",
+    "Actual gameplay screenshots"
+  ],
+  "capture_gap": "No game window opened or actual capture; no foreground permission",
+  "excluded": "Dramatic boss-name entrance is separate concept only, not implemented in94",
+  "finalized_at": "2026-10-23T11:32:58-07:00",
+  "art_concept_commit": "18b5497",
+  "app": "builds/Prototype-94/Drain Damage.app",
+  "archive": "builds/history/Prototype-94.zip",
+  "source_snapshot": "builds/source-94",
+  "framing": "Delivered uniform world scale0.9 offset(0,54), full960world\u2192864 with96px right sidebar; all world layers aligned, UI unscaled; no combat geometry/camera change",
+  "skins": "Both registered art skins rotated; bottom fill, trail and names; meter z10 behind dialogue20 and pause30",
+  "checks": {
+    "packaged_suites": 15,
+    "python_tests": 34,
+    "results": "builds/verification-94/final-results.json",
+    "coverage": "All6hero/mode framing/GUI order/reset; bothboss combat/rightport/checkpoint/weakpoints/pressure/music/dialogue/pause/portal regressions"
+  },
+  "source_compositions": [
+    "design/boss-title-options/clogfather-persistent-v1.png",
+    "design/boss-title-options/skitterling-persistent-v1.png"
+  ],
+  "source_review": "Art and Engineering source-composition reviews, not gameplay captures"
+}

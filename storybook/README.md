@@ -2260,6 +2260,34 @@ no image capture occurred.
 
 [Capture status and final verification](093-clogfather-music/20261023-104607-capture-status.json).
 
+## 094 — Right-side boss HUD — October 23, 2026
+
+**Version:** Prototype 94 / 0.94.0; source commit `add25b2`; app, ZIP and snapshot `builds/source-94` preserved.
+
+Sean selected Art option B for a right-side boss HUD. The normal 82-pixel player HUD retains health pips, lives,
+name, weapon, kills and route. An earlier overlay proposal hid Skitterling's right port, so the delivered framing
+uniformly scales the 960-wide world to 864 at scale 0.9 and offset (0,54), leaving a dedicated 96-pixel sidebar.
+All world layers share the same aspect and alignment; UI stays unscaled. Combat geometry and camera behavior
+are unchanged. Both registered art skins use bottom fill, a damage trail and names. The meter draws at z10,
+behind dialogue at z20 and pause at z30.
+
+Framing persists through Skitterling death/exit until release and through Clogfather death/portal departure,
+then resets on retry/new game. The dramatic boss-name entrance is a separate concept, not part of this build.
+
+**Validation:** Engineering reports fifteen exact final PCK suites and thirty-four Python tests passing, plus
+signature, archive and standalone checks. All six hero/mode framing, GUI order and reset cases pass, alongside
+both-boss combat, right-port, checkpoint, weak-point, pressure, music, dialogue, pause and portal regressions.
+Art and Engineering reviewed the persistent HUD source compositions; those are not gameplay captures.
+The separate Art concept commit `18b5497` is preserved.
+
+**Capture gap:** No game window opened or actual Prototype 94 screenshot was captured. Foreground permission has not
+been given; live HUD readability, framing transitions and gameplay screenshots remain pending.
+
+**Record created:** 2026-10-23T11:23:49-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](094-right-side-boss-hud/20261023-112349-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

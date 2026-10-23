@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 93 / 0.93.0",
-  "created_at": "2026-10-23T10:49:54.442141-07:00",
+  "build": "Prototype 94 / 0.94.0",
+  "created_at": "2026-10-23T11:31:58.892177-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, signature, archive, standalone headless startup, 12 packaged suites and 34 Python tests passed; live listening pending",
-  "app": "builds/Prototype-93/Drain Damage.app",
-  "archive": "builds/history/Prototype-93.zip",
-  "archive_sha256": "4d3b89afd0d0a06de480cb0925d41cdabd2be8c47dd734adc95b6b550fa56db0",
-  "source_snapshot": "builds/source-93",
+  "status": "Export, signature, archive, standalone startup, 15 final packaged suites and34Python tests passed; live visual review pending",
+  "app": "builds/Prototype-94/Drain Damage.app",
+  "archive": "builds/history/Prototype-94.zip",
+  "archive_sha256": "059fdb44799e778e28c5446e085925bfbcde110ff864843aa6b79f5e76e28bf2",
+  "source_snapshot": "builds/source-94",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -20,35 +20,38 @@
     15110
   ],
   "changes": [
-    "Original48s Italian-inspired Pressure Tarantella replaces Clogfather Backpressure; old source retained",
-    "Measured normal music level increases from approximately-38.8 to-28.4LUFS; additional12dB duck protects authoritative attack/closing warnings,200ms recovery, nonstacked dialogue duck",
-    "Fixed host per-frame pause refresh attempting to resume completed fade; actual title/game/boss lifecycle regression added",
-    "Prototype92 gas/reinforcement combat and all prior gameplay retained",
-    "Sean reports Codex folder-rename bug filed; no submission pending"
+    "Approved optionB: separate right-side vertical boss meter for Skitterling and Clogfather; existing skins retained with registered90degree rotation and bottom-anchored cropped fill",
+    "Normal player HUD retains original health pips, life portraits, name, weapon, kills and route text; horizontal boss names fit sidebar",
+    "Uniform worldscale0.9+offset0,54 preserves entire960wide room in864px; right96px dedicated sidebar avoids rightpipe/body/weakpoint/attack obstruction without changing combat geometry or camera coordinates",
+    "All world layers/projectiles share framing; normalHUD/dialogue/pause remain unscaled; meter behind dialogue/pause; stable framing through death/exit/portal and reset on retry/newgame",
+    "Prototype93 music and92 pressure preserved; dramatic name reveal remains unapproved concept work, not implemented"
   ],
   "checks": {
-    "packaged_suites": 12,
+    "packaged_suites": 15,
     "status": "passed",
-    "results": "builds/verification-93/delivery-results.json",
-    "suites": [
-      "build_version",
-      "clogfather_audio",
-      "clogfather_integration",
-      "clogfather_music",
-      "clogfather_music_host",
-      "clogfather_pressure",
-      "clogfather_pressure_integration",
-      "first_level_ending",
-      "music",
-      "pause_menu",
-      "swarm_audio",
-      "title_screen"
-    ],
+    "results": "builds/verification-94/final-results.json",
     "python_tests": 34,
-    "python_log": "builds/verification-93/python.log",
-    "build_log": "builds/verification-93/build.log",
-    "scope": "Actual host entry/retry/pause/mute/gain/nonstacked warning duck/loop boundary/victory/title, isolated music/audio, pressure/controller/full integration, ending and menus.",
-    "standalone_headless_startup": "passed"
+    "python_log": "builds/verification-94/python.log",
+    "build_log": "builds/verification-94/final-build.log",
+    "scope": "Both vertical skins, source crops/HP trail/death/reset/name fitting; all6hero/mode worldmapping/fixedGUI/overlayorder; bothboss combat and portals/checkpoint/weakpoints/pressure; ending/music/dialogue/pause regressions.",
+    "standalone_headless_startup": "passed",
+    "suites": [
+      "boss_hud",
+      "boss_sidebar",
+      "build_version",
+      "clogfather_high_weakpoint",
+      "clogfather_integration",
+      "clogfather_music_host",
+      "clogfather_pressure_integration",
+      "dialogue",
+      "first_level_ending",
+      "hard_dialogue",
+      "pause_menu",
+      "skitterling_checkpoint",
+      "skitterling_combat_revision",
+      "skitterling_integration",
+      "skitterling_portals"
+    ]
   },
   "source_art_review": {
     "approved_compositions": [
@@ -56,7 +59,8 @@
       "Portal frame fit and common registration; corpse occlusion resolved with fade",
       "Four full-size panic poses with rear surge at mid-pull and half-entry; source compositions only",
       "Gratecrawler four throw poses in both facings, registered feet and held/released ball at authored hand",
-      "Gas warning and active cloud frames against existing boss body; high closed opening remains clear, gas clears before recovery"
+      "Gas warning and active cloud frames against existing boss body; high closed opening remains clear, gas clears before recovery",
+      "Right-side persistent meter layouts for both bosses using fullworld0.9 framing and original player HUD; source compositions only"
     ],
     "limitations": [
       "Source compositions are not running-game screenshots",
@@ -71,8 +75,8 @@
     ]
   },
   "remaining": [
-    "Live listening, device mix and perceived musical loop seam",
-    "Live Prototype92 gas/swarm readability and human fight-duration review",
+    "Live visual review of right-side HUD, world framing and text readability",
+    "Live music/device mix and Prototype92 gas/swarm/human fight-duration review",
     "Actual running-build screenshots"
   ],
   "capture_gap": "No game window opened; preserve this build for an approved capture session. Source composites are not gameplay screenshots.",
@@ -164,8 +168,8 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "95ea42c",
-  "previous_delivery": "storybook/092-clogfather-gas-and-reinforcements/20261023-101520-capture-status.json",
+  "source_commit": "add25b2",
+  "previous_delivery": "storybook/093-clogfather-music/20261023-104607-capture-status.json",
   "publication": {
     "magazine_edition": 30,
     "status": "GitHub Pages deployment succeeded; live PDF checksum and reciprocal Storybook links verified",
@@ -191,7 +195,7 @@
     "manifest": "dist/v0.91.0/macos-universal/release-manifest.json",
     "verification": "dist/v0.91.0/macos-universal/publication-verification.json",
     "limits": "Ad-hoc signed, not notarized; fresh-machine 91, Intel, GPU/audio/controller and live visual review pending",
-    "scope": "Previous0.91.0 public prerelease preserved; Prototype93 source and local build only"
+    "scope": "Previous0.91.0 public prerelease preserved; Prototype94 source and local build only"
   },
   "music_investigation": {
     "handoff": "handoffs/clogfather-audio.json",
@@ -203,5 +207,32 @@
       "builds/verification-93/fixed-lifecycle.log"
     ],
     "limits": "Numerical mix and loop checks do not establish listening approval or global clipping immunity; strongest tested boss-only aggregate peak bound-3.36dBFS."
+  },
+  "boss_hud_delivery": {
+    "manifest": "assets/ui/boss-hud-right-v1/manifest.json",
+    "concept_commit": "18b5497",
+    "source_compositions": [
+      "design/boss-title-options/clogfather-persistent-v1.png",
+      "design/boss-title-options/skitterling-persistent-v1.png"
+    ],
+    "clearance": "Unscaled overlay was unsafe: rightSkitterlingpipe912,232 and damagingbodyto928 intersectedcard894..952. Uniform framing maps these to820.8,262.8 and835.2, leaving sidebar clear.",
+    "normal_hud_rect": [
+      0,
+      0,
+      960,
+      82
+    ],
+    "world_scale": 0.9,
+    "world_offset": [
+      0,
+      54
+    ],
+    "sidebar_rect": [
+      864,
+      82,
+      96,
+      458
+    ],
+    "title_reveal": "Concepts preserved only; no entrance freeze/fade implemented."
   }
 }
