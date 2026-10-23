@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 94 / 0.94.0",
-  "created_at": "2026-10-23T11:31:58.892177-07:00",
+  "build": "Prototype 95 / 0.95.0",
+  "created_at": "2026-10-23T12:41:55.568588-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, signature, archive, standalone startup, 15 final packaged suites and34Python tests passed; live visual review pending",
-  "app": "builds/Prototype-94/Drain Damage.app",
-  "archive": "builds/history/Prototype-94.zip",
-  "archive_sha256": "059fdb44799e778e28c5446e085925bfbcde110ff864843aa6b79f5e76e28bf2",
-  "source_snapshot": "builds/source-94",
+  "status": "Export, signature, archive, standalone startup, 16 final packaged suites and 34 Python tests passed; live visual review pending",
+  "app": "builds/Prototype-95/Drain Damage.app",
+  "archive": "builds/history/Prototype-95.zip",
+  "archive_sha256": "7cf953d23bff209e24060550ed641640a6a4256ff68fd2eff7ae5c10b179bfce",
+  "source_snapshot": "builds/source-95",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -20,23 +20,23 @@
     15110
   ],
   "changes": [
-    "Approved optionB: separate right-side vertical boss meter for Skitterling and Clogfather; existing skins retained with registered90degree rotation and bottom-anchored cropped fill",
-    "Normal player HUD retains original health pips, life portraits, name, weapon, kills and route text; horizontal boss names fit sidebar",
-    "Uniform worldscale0.9+offset0,54 preserves entire960wide room in864px; right96px dedicated sidebar avoids rightpipe/body/weakpoint/attack obstruction without changing combat geometry or camera coordinates",
-    "All world layers/projectiles share framing; normalHUD/dialogue/pause remain unscaled; meter behind dialogue/pause; stable framing through death/exit/portal and reset on retry/newgame",
-    "Prototype93 music and92 pressure preserved; dramatic name reveal remains unapproved concept work, not implemented"
+    "Selected white Skitterling and goopy Clogfather title artwork centered at full-viewport (480,270), alpha-trimmed and proportionally fitted within 540x180.",
+    "0.4-second fade-in plus three fully visible seconds pause combat; gameplay resumes immediately when the 0.25-second fade-out begins. Music continues; encounter effects pause.",
+    "Once per boss per run; checkpoint retries skip seen titles, new game clears them. Held jump/fire must release before reuse. Pause menu and its release guard remain functional.",
+    "Persistent sidebar names removed with title delivery; Prototype94 vertical meters, full-world framing and normal player HUD retained. Prototype93 music and Prototype92 hazards preserved."
   ],
   "checks": {
-    "packaged_suites": 15,
+    "packaged_suites": 16,
     "status": "passed",
-    "results": "builds/verification-94/final-results.json",
+    "results": "builds/verification-95/final-results.json",
     "python_tests": 34,
-    "python_log": "builds/verification-94/python.log",
-    "build_log": "builds/verification-94/final-build.log",
-    "scope": "Both vertical skins, source crops/HP trail/death/reset/name fitting; all6hero/mode worldmapping/fixedGUI/overlayorder; bothboss combat and portals/checkpoint/weakpoints/pressure; ending/music/dialogue/pause regressions.",
+    "python_log": "builds/verification-95/python.log",
+    "build_log": "builds/verification-95/build.log",
+    "scope": "Both boss entrances across both heroes/all difficulties; exact timing, frozen world, pause, input release, retry/new-run, centering; HUD, combat, checkpoint, hazards, ending, music, dialogue and version regressions.",
     "standalone_headless_startup": "passed",
     "suites": [
       "boss_hud",
+      "boss_intro",
       "boss_sidebar",
       "build_version",
       "clogfather_high_weakpoint",
@@ -75,7 +75,7 @@
     ]
   },
   "remaining": [
-    "Live visual review of right-side HUD, world framing and text readability",
+    "Live visual review of centered title timing/readability, fade-out gameplay resumption and retained right-side HUD",
     "Live music/device mix and Prototype92 gas/swarm/human fight-duration review",
     "Actual running-build screenshots"
   ],
@@ -168,8 +168,8 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "add25b2",
-  "previous_delivery": "storybook/093-clogfather-music/20261023-104607-capture-status.json",
+  "source_commit": "4be6e43",
+  "previous_delivery": "storybook/094-right-side-boss-hud/",
   "publication": {
     "magazine_edition": 30,
     "status": "GitHub Pages deployment succeeded; live PDF checksum and reciprocal Storybook links verified",
@@ -195,7 +195,7 @@
     "manifest": "dist/v0.91.0/macos-universal/release-manifest.json",
     "verification": "dist/v0.91.0/macos-universal/publication-verification.json",
     "limits": "Ad-hoc signed, not notarized; fresh-machine 91, Intel, GPU/audio/controller and live visual review pending",
-    "scope": "Previous0.91.0 public prerelease preserved; Prototype94 source and local build only"
+    "scope": "Previous0.91.0 public prerelease preserved; Prototype95 source and local build only"
   },
   "music_investigation": {
     "handoff": "handoffs/clogfather-audio.json",
@@ -233,20 +233,19 @@
       96,
       458
     ],
-    "title_reveal": "Selected white Skitterling and goopy Clogfather lettering; revised full-viewport centering and timing confirmation pending. Not implemented in Prototype94.",
-    "pending_introduction_requirements": {
+    "title_reveal": "Implemented in Prototype95: selected white Skitterling and goopy Clogfather titles",
+    "introduction": {
+      "manifest": "assets/ui/boss-intro-v1/manifest.json",
+      "fade_in_seconds": 0.4,
+      "full_hold_seconds": 3,
+      "fade_out_seconds": 0.25,
+      "gameplay_resume": "fade_out_start",
       "visible_center": [
         480,
         270
       ],
-      "coordinate_space": "Full960x540 viewport; trim transparent padding before centering",
-      "selected_art": [
-        "design/boss-title-options/skitterling-infestation-v1.png",
-        "design/boss-title-options/clogfather-grease-v1.png"
-      ],
-      "persistent_name_policy": "Remove right-side boss-name text for both bosses only in the same delivery as the centered reveal. Retain vertical meters and unchanged normal player HUD. Prototype94 keeps names.",
-      "pause_resume": "Pause gameplay during introduction; resume immediately at fade-out start.",
-      "unresolved": "Three seconds including fade-in versus a full three-second hold after fade-in; revised mockup confirmation."
+      "repeat_policy": "Once per boss per run; skip checkpoint retry; clear on new game",
+      "persistent_sidebar_names": false
     }
   }
 }

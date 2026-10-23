@@ -2288,6 +2288,28 @@ no image capture occurred.
 
 [Capture status and final verification](094-right-side-boss-hud/20261023-112349-capture-status.json).
 
+## 095 — Boss title reveals — October 23, 2026
+
+**Version:** Prototype 95 / 0.95.0; source commit `4be6e43`; app, ZIP and snapshot `builds/source-95` preserved.
+
+The selected white S2 Skitterling title and goopy C1 Clogfather title appear centered on the full
+viewport. Timing is 0.4 seconds fading in, three seconds fully visible and 0.25 seconds fading out. Gameplay resumes
+when fade-out begins. Each boss reveal occurs once per run; checkpoint retries skip it and a new run resets it.
+
+Persistent sidebar names are removed while the vertical meters and Prototype 94 world framing remain.
+
+**Validation:** Engineering reports sixteen exact final PCK suites and thirty-four Python tests passing, plus export,
+ad-hoc signature, archive integrity and standalone headless startup checks. A regression fix preserves zero-delta
+exit/ending transitions.
+
+**Capture gap:** No game window opened or actual Prototype 95 screenshot was captured. Permission to open the game
+has not been given. Live title readability, timing and resumed-gameplay review remain pending.
+
+**Record created:** 2026-10-23T12:37:31-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](095-boss-title-reveals/20261023-123731-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
