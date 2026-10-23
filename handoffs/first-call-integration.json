@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 91 / 0.91.0",
-  "created_at": "2026-10-20T17:17:43.054091-07:00",
+  "build": "Prototype 92 / 0.92.0",
+  "created_at": "2026-10-23T10:21:18.840289-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, signature, archive, 12 relevant packaged suites and 34 Python tests passed; live visual review pending",
-  "app": "builds/Prototype-91/Drain Damage.app",
-  "archive": "builds/history/Prototype-91.zip",
-  "archive_sha256": "12e1ed6c9179cd1fcd3ab9b052408534a90f717acaa547cfd3476da3555d2cdc",
-  "source_snapshot": "builds/source-91",
+  "status": "Export, signature, archive, standalone headless startup, 15 packaged suites and 34 Python tests passed; live review pending",
+  "app": "builds/Prototype-92/Drain Damage.app",
+  "archive": "builds/history/Prototype-92.zip",
+  "archive_sha256": "4ec29aea29f4b277679b73a1a2e6ca422331bcf8867b9ba2063235e37e8638c7",
+  "source_snapshot": "builds/source-92",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -20,41 +20,46 @@
     15110
   ],
   "changes": [
-    "Automatic post-Skitterling checkpoint saves at terminal HP0, before death animation/exit; safe retry x7650 restores defeated boss and unlocked route",
-    "Victory save does not teleport, heal or change lives/clone stock. Retry uses normal full health/immunity and no dispenser; later x13800 checkpoint supersedes it; new game clears saved victory",
-    "Post-room encounter and swarm ownership survives checkpoint retry without restoring prior opening enemies",
-    "Both ending conversations now respond coherently to the released water; six-line route and action scream contract unchanged",
-    "Prototype 90 hand throws, 89 water restoration and 88 portal preserved. Boss hazards remain discussion only; level-two gameplay held"
+    "Clogfather alternates warned drifting gas and capped Septic Air Force waves after recovery, before original acid/volley",
+    "Full5s alternating low/high windows and0.8s approach,1080HP retained;1.2s warning,2s gas or3s reinforcements,.25s clear",
+    "One24HP swarm early, up to two later with geometry checks; no refill; actual projectiles and canonical hit/death cues",
+    "Reachable180px corridor, normal damage/immunity without control interruption; pause freezes and cleanup precedes original attacks/windows/death/reset",
+    "New authored gas sprites and reused bounded warning/emission/buzz cues; recent checkpoint,throw,water and portal features preserved"
   ],
   "checks": {
-    "packaged_suites": 12,
+    "packaged_suites": 15,
     "status": "passed",
-    "results": "builds/verification-91/final-results.json",
+    "results": "builds/verification-92/delivery-results.json",
+    "python_tests": 34,
+    "python_log": "builds/verification-92/python.log",
+    "build_log": "builds/verification-92/final-build.log",
+    "scope": "60/120Hz all phases/repeated cycles, both heroes/all modes, gas immunity, actual shared projectile sweep, swarm caps/corridor, pause/reset/death, full low/high windows, art/audio plus prior checkpoint/ending/throw/water regressions.",
+    "standalone_headless_startup": "passed",
     "suites": [
       "build_version",
+      "clogfather_art",
+      "clogfather_audio",
+      "clogfather_encounter",
+      "clogfather_high_weakpoint",
       "clogfather_integration",
-      "clogfather_route",
-      "dialogue",
-      "difficulty_respawn",
+      "clogfather_music",
+      "clogfather_pressure",
+      "clogfather_pressure_integration",
       "first_level_ending",
       "gratecrawler_throw",
-      "hard_dialogue",
       "skitterling_checkpoint",
-      "skitterling_integration",
+      "swarm_audio",
       "swarm_schedule",
       "wastewater_route"
-    ],
-    "python_tests": 34,
-    "python_log": "builds/verification-91/python.log",
-    "build_log": "builds/verification-91/final-build.log",
-    "scope": "Ten checkpoint/runtime regression suites passed; after dialogue-only correction, dialogue/hard_dialogue/ending/version passed on final re-export. Includes both heroes/all modes, terminal/exit/farther death, repeated retries, stock/lives/health, downstream admissions, later checkpoint and new-game reset."
+    ]
   },
   "source_art_review": {
     "approved_compositions": [
       "High opening across all five damage stages",
       "Portal frame fit and common registration; corpse occlusion resolved with fade",
       "Four full-size panic poses with rear surge at mid-pull and half-entry; source compositions only",
-      "Gratecrawler four throw poses in both facings, registered feet and held/released ball at authored hand"
+      "Gratecrawler four throw poses in both facings, registered feet and held/released ball at authored hand",
+      "Gas warning and active cloud frames against existing boss body; high closed opening remains clear, gas clears before recovery"
     ],
     "limitations": [
       "Source compositions are not running-game screenshots",
@@ -69,14 +74,14 @@
     ]
   },
   "remaining": [
-    "Live post-victory retry presentation and revised ending dialogue review",
-    "Live Gratecrawler hand-release animation and wastewater layering review",
-    "Human combat balance and subjective audio/music mix review",
+    "Live gas/swarm warning readability, motion and safe-route review",
+    "Human fight duration/balance and listening review",
     "Actual running-build screenshots"
   ],
   "capture_gap": "No game window opened; preserve this build for an approved capture session. Source composites are not gameplay screenshots.",
   "deferred": [
-    "Level-two gameplay, flush micro-level and log ride remain on hold; only first-level portal ending is implemented"
+    "Level-two gameplay, flush micro-level and log ride remain on hold; only first-level portal ending is implemented",
+    "Separate boss-music volume/unique-track investigation remains held"
   ],
   "diagnostics": "Existing sandbox user-log/editor-settings, macOS CA and shutdown-resource warnings; final packaged suites contain no script, parse, resource-load or assertion failures.",
   "historical_prototype27": {
@@ -162,8 +167,8 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "2c627a6",
-  "previous_delivery": "storybook/090-gratecrawler-throw/20261020-170101-capture-status.json",
+  "source_commit": "d5b887a",
+  "previous_delivery": "storybook/091-skitterling-checkpoint-and-dialogue/20261020-171822-capture-status.json",
   "publication": {
     "magazine_edition": 30,
     "status": "GitHub Pages deployment succeeded; live PDF checksum and reciprocal Storybook links verified",
@@ -188,6 +193,7 @@
     "standalone_headless_startup": "passed",
     "manifest": "dist/v0.91.0/macos-universal/release-manifest.json",
     "verification": "dist/v0.91.0/macos-universal/publication-verification.json",
-    "limits": "Ad-hoc signed, not notarized; fresh-machine 91, Intel, GPU/audio/controller and live visual review pending"
+    "limits": "Ad-hoc signed, not notarized; fresh-machine 91, Intel, GPU/audio/controller and live visual review pending",
+    "scope": "Previous0.91.0 public prerelease preserved; Prototype92 source and local build only"
   }
 }

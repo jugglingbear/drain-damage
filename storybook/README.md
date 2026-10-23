@@ -2206,6 +2206,34 @@ no image capture occurred.
 
 [Capture status and verification](091-skitterling-checkpoint-and-dialogue/20261020-171822-capture-status.json).
 
+## 092 — Clogfather gas and reinforcements — October 23, 2026
+
+**Version:** Prototype 92 / 0.92.0; source commit `d5b887a`; app, ZIP and snapshot `builds/source-92` preserved.
+
+Clogfather now alternates gas and reinforcement pressure after its weak-point windows. The
+sequence uses a 1.2-second warning, then either two seconds of drifting gas or three seconds of capped Septic Air
+Force pressure, followed by 0.25 seconds clear before the original acid/volley attacks. Full five-second alternating
+low/high windows and a 0.8-second clear approach remain. Clogfather health stays at 1080 HP.
+
+Reinforcements retain 24 HP, with a cap of one early and two later; arena geometry may admit fewer. No refill occurs,
+and all reinforcements clear before the next original attacks/window. Normal damage and invulnerability apply without
+interrupting movement or firing.
+
+**Validation:** Engineering reports fifteen exact final packaged suites and thirty-four Python tests passing, plus
+export, signature, archive and standalone headless checks. Coverage includes all pressure phases at 60/120 Hz, six
+hero/mode cases, damage/immunity/projectiles, pause/repeated waves/reset/death/windows, art/audio and prior
+checkpoint/ending/throw/water regressions. Gas artwork is delivered; its reviewed contact composition is source art,
+not evidence of live gameplay acceptance.
+
+**Capture gap:** No game window opened or actual Prototype 92 screenshot was captured. Foreground permission has not
+been given. Prototype 91 is preserved;
+live visuals, listening, human fight duration/balance and actual captures remain pending.
+
+**Record created:** 2026-10-23T10:15:20-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](092-clogfather-gas-and-reinforcements/20261023-101520-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
