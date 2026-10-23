@@ -96,16 +96,6 @@ func reserved_height() -> float:
 func rect(values: Array) -> Rect2:
 	return Rect2(values[0],values[1],values[2],values[3])
 
-func name_lines() -> PackedStringArray:
-	return PackedStringArray(["THE","CLOGFATHER"]) if boss_id == "clogfather" \
-		else PackedStringArray([boss_name.to_upper()])
-
-func name_font_size(line: String) -> int:
-	var size := 14
-	while size > 8 and ThemeDB.fallback_font.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x \
-			> float(definition.name_rect[2]): size -= 1
-	return size
-
 func fill_regions(part: Dictionary, fraction: float) -> Array[Rect2]:
 	var source := rect(part.source_rect)
 	var destination := rect(part.destination)
@@ -137,9 +127,3 @@ func _draw() -> void:
 	draw_part(fill,trail,Color("f3b597"))
 	draw_part(fill,fraction)
 	draw_part("frame")
-	var names := name_lines()
-	var area := rect(definition.name_rect)
-	for index in range(names.size()):
-		var baseline := area.position.y+16 if names.size() == 1 else area.position.y+12+index*14
-		draw_string(ThemeDB.fallback_font,Vector2(area.position.x,baseline),names[index],
-			HORIZONTAL_ALIGNMENT_CENTER,area.size.x,name_font_size(names[index]),Color("ffe18d"))

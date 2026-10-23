@@ -50,7 +50,7 @@ func restore_completed() -> void:
 	encounter.exit_open = true
 
 func frozen(host: Node2D) -> bool:
-	return host.paused or host.dialogue.active or host.dispenser.active or host.won or host.life_state != "alive"
+	return host.boss_intro.blocking() or host.paused or host.dialogue.active or host.dispenser.active or host.won or host.life_state != "alive"
 
 func process_audio(host: Node2D, delta: float) -> void:
 	audio.set_paused(frozen(host) or host.dialogue.release_guard > 0)

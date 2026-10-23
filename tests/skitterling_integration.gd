@@ -12,6 +12,7 @@ func run_checks() -> void:
 			game.employee = game.Crew.EMPLOYEES[hero]
 			game.seed_override = 42
 			root.add_child(game)
+			game.boss_intro.seen = {"cockroach-swarm": true, "clogfather": true}
 			game.set_process(false)
 			game.set_physics_process(false)
 			game.dialogue.finish()
@@ -89,6 +90,7 @@ func run_checks() -> void:
 func check_midfight_retry() -> void:
 	var game = Game.new()
 	root.add_child(game)
+	game.boss_intro.seen = {"cockroach-swarm": true, "clogfather": true}
 	game.set_process(false)
 	game.set_physics_process(false)
 	game.dialogue.finish()

@@ -6,6 +6,7 @@ func _initialize() -> void:
 func run_checks() -> void:
 	var game = load("res://scripts/integrated_first_call.gd").new()
 	root.add_child(game)
+	game.boss_intro.seen = {"cockroach-swarm": true, "clogfather": true}
 	game.set_process(false)
 	game.set_physics_process(false)
 	var dialogue = game.dialogue

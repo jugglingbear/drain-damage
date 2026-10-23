@@ -36,7 +36,7 @@
     }
   ],
   "ordinary_enemy_bars_default": false,
-  "boss_bar": "Named continuous vertical meter in dedicated right sidebar; ordinary enemy visibility toggle does not apply",
+  "boss_bar": "Continuous vertical meter in dedicated right sidebar; centered entrance artwork supplies name",
   "optional_setting": "Show enemy health bars",
   "exact_hp_and_damage_readouts": "Development only",
   "hit_feedback": {
@@ -51,10 +51,10 @@
   "boss_hud": {
     "approved_date": "2026-10-23",
     "requirement_status": "Sean selected right-side option B; normal player HUD retained",
-    "implementation_status": "Vertical skins and dedicated sidebar integrated in Prototype94; live visual review pending",
+    "implementation_status": "Prototype95: selected centered entrance titles and vertical meters integrated; live visual review pending",
     "anchor": "screen_right",
     "name_source": "monster.name",
-    "name_position": "Horizontal name above meter, wrapped and fitted within sidebar",
+    "name_position": "Centered entrance title only; no persistent sidebar name",
     "width_fraction": 0.8,
     "reference_viewport_pixels": [
       960,
@@ -71,9 +71,9 @@
       "trail_delay_seconds": 0.15,
       "trail_catchup_seconds": 0.35
     },
-    "style": "Heavy industrial frame, dark empty track, green/yellow/red health fill; readable boss name and visible accumulated empty space.",
+    "style": "Heavy industrial frame, dark empty track, green/yellow/red health fill; centered entrance name and visible accumulated empty space.",
     "numbers": "Exact HP and damage remain development-only by default",
-    "death": "Reach empty immediately at zero HP; retain name and empty bar for one second, then fade out.",
+    "death": "Reach empty immediately at zero HP; retain empty bar for one second, then fade out.",
     "reset": "Hide on leaving encounter; reset fill and trail from boss HP on retry.",
     "fill_colors": {
       "source": "Clamped actual current_hp / max_hp, independent of trailing damage fill and attack phases",

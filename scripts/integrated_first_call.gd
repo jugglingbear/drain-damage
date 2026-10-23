@@ -37,9 +37,13 @@ var background_textures: Dictionary = {}
 const BOSS_WORLD_SCALE := 0.9
 const BOSS_WORLD_OFFSET := Vector2(0,54)
 var boss_sidebar := false
+const BossIntro = preload("res://scripts/boss_intro.gd")
+var boss_intro := BossIntro.new()
+var intro_input_release := false
 
 func _ready() -> void:
 	super._ready()
+	add_child(boss_intro)
 	# These screen-space controls must never inherit the encounter world framing.
 	for overlay: CanvasItem in [boss_hud,dialogue,pause_menu]: overlay.set_as_top_level(true)
 	# Dialogue and pause controls must cover the meter when they occupy the right edge.
@@ -55,6 +59,8 @@ func _ready() -> void:
 	# Base _ready dispatched reset_game, so the mixed geometry is already configured.
 
 func reset_game() -> void:
+	boss_intro.reset(true)
+	intro_input_release = false
 	dialogue.hard_portraits = difficulty == "hard"
 	dialogue.hard_dialogue = difficulty == "hard"
 	world_art.hero_aim_art.configure(difficulty == "hard")
@@ -73,6 +79,8 @@ func reset_game() -> void:
 func reset_observation() -> void:
 	# Parent respawn calls this after restoring the hero/dispenser; reset once beforehand instead.
 	if rebuilding_respawn: return
+	boss_intro.reset()
+	intro_input_release = false
 	super.reset_observation()
 	skitterling.reset(run_seed)
 	if respawn_origin >= Level.POST_SKITTERLING_CHECKPOINT: skitterling.restore_completed()
@@ -328,15 +336,36 @@ func choose_home(event: Dictionary) -> Vector2:
 		return Vector2.INF
 	return super.choose_home(event)
 
+func begin_pending_boss_intro() -> bool:
+	var id := "clogfather" if clogfather.entered else "cockroach-swarm" if skitterling.locked() else ""
+	if id.is_empty() or not boss_intro.begin(id): return false
+	jump_buffer = 0
+	tone_time = 0
+	intro_input_release = true
+	sync_boss_presentation()
+	return true
+
+func step_player(delta: float) -> void:
+	if intro_input_release and not Input.is_action_pressed("shoot") and not Input.is_action_pressed("jump"):
+		intro_input_release = false
+	var locked: bool = dispenser.actions_locked
+	dispenser.actions_locked = locked or intro_input_release
+	super.step_player(delta)
+	dispenser.actions_locked = locked
+
 func _physics_process(delta: float) -> void:
 	if dispenser.just_finished:
 		dispenser.just_finished = false
 		return
+	if won or life_state != "alive": boss_intro.reset()
 	if dispenser.active or paused or won or life_state in ["game_over","death_popup"]: return
 	if life_state == "dying":
 		step_death(delta)
 		return
 	if dialogue.active or dialogue.release_guard > 0 or restart_guard_device >= 0: return
+	var was_blocking := boss_intro.blocking()
+	delta = boss_intro.advance(delta)
+	if boss_intro.blocking() or (was_blocking and delta <= 0): return
 	if ending.active():
 		ending.step(self,delta)
 		return
@@ -355,6 +384,7 @@ func _physics_process(delta: float) -> void:
 			camera_x = move_toward(camera_x,clampf(player.x-320,0,WORLD_WIDTH-960),400*dt)
 		skitterling.advance(self,dt)
 		clogfather.advance(self,dt)
+		if begin_pending_boss_intro(): return
 		swarm_schedule.step(self)
 		issue_event()
 		step_trial_actors(dt)
@@ -696,7 +726,11 @@ func _draw() -> void:
 
 func _process(delta: float) -> void:
 	sync_boss_presentation()
-	super._process(delta)
+	var frozen_intro := boss_intro.blocking()
+	if frozen_intro: dialogue.tick(delta,paused)
+	super._process(0.0 if frozen_intro else delta)
+	for sound in creature_audio.values(): sound.set_paused(paused or frozen_intro)
+	if frozen_intro: door_audio.set_paused(true)
 	if ending.state == "dialogue" and not paused: ending.clock += delta
 	skitterling.process_audio(self,delta)
 	clogfather.process_audio(self,delta)

@@ -38,7 +38,7 @@ func reset(seed_value: int) -> void:
 	art.reset()
 
 func frozen(host: Node2D) -> bool:
-	return host.paused or host.dialogue.active or host.dialogue.release_guard > 0 \
+	return host.boss_intro.blocking() or host.paused or host.dialogue.active or host.dialogue.release_guard > 0 \
 		or host.dispenser.active or host.won or host.life_state != "alive"
 
 func sync_music_warning(host: Node2D) -> void:

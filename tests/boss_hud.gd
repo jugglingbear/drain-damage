@@ -9,9 +9,6 @@ func run_checks() -> void:
 	root.add_child(hud)
 	for id in ["cockroach-swarm","clogfather"]:
 		hud.begin_encounter(id)
-		for line in hud.name_lines():
-			assert(ThemeDB.fallback_font.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,
-				hud.name_font_size(line)).x <= hud.definition.name_rect[2])
 		for part: Dictionary in hud.definition.skins[id].values():
 			if part.has("texture_key"):
 				assert(Rect2(Vector2.ZERO,hud.textures[part.texture_key].get_size()).encloses(hud.rect(part.source_rect)))
@@ -61,5 +58,5 @@ func run_checks() -> void:
 	await process_frame
 	hud.queue_free()
 	await process_frame
-	print("PASS: boss HUD damage trail, phase continuity, low HP, death fade, retry and vertical skins, fixed header and name fitting")
+	print("PASS: boss HUD damage trail, phase continuity, low HP, death fade, retry and vertical skins, fixed header without persistent names")
 	quit()

@@ -13,6 +13,7 @@ func run_checks() -> void:
 				game.difficulty = mode
 				game.seed_override = 42
 				root.add_child(game)
+				game.boss_intro.seen = {"cockroach-swarm": true, "clogfather": true}
 				game.hide()
 				game.set_process(false)
 				game.set_physics_process(false)

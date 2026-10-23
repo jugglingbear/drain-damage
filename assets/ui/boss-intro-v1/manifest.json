@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "Selected artwork and timing approved; source registration frozen; runtime validation pending",
+  "reference_viewport": [
+    960,
+    540
+  ],
+  "visible_title_center": [
+    480,
+    270
+  ],
+  "maximum_title_size": [
+    540,
+    180
+  ],
+  "frames": {
+    "cockroach-swarm": {
+      "path": "assets/ui/boss-intro-v1/skitterling-infestation-v1.png",
+      "source_rect": [
+        0,
+        7,
+        2164,
+        717
+      ],
+      "destination": [
+        210.0,
+        180.5406654343808,
+        540.0,
+        178.91866913123843
+      ],
+      "source_dimensions": [
+        2172,
+        724
+      ],
+      "original": "design/boss-title-options/skitterling-infestation-v1.png",
+      "prompt_id": "skitterling-infestation"
+    },
+    "clogfather": {
+      "path": "assets/ui/boss-intro-v1/clogfather-grease-v1.png",
+      "source_rect": [
+        0,
+        0,
+        2172,
+        724
+      ],
+      "destination": [
+        210.0,
+        180.0,
+        540.0,
+        180.0
+      ],
+      "source_dimensions": [
+        2172,
+        724
+      ],
+      "original": "design/boss-title-options/clogfather-grease-v1.png",
+      "prompt_id": "clogfather-grease"
+    }
+  },
+  "timing": {
+    "fade_in_seconds": 0.4,
+    "full_hold_seconds": 3.0,
+    "fade_out_seconds": 0.25,
+    "gameplay_resume": "fade_out_start"
+  },
+  "persistent_boss_name": false,
+  "name_removal_condition": "Remove persistent sidebar name when centered intro ships; retain health meter and normal player HUD.",
+  "provenance": {
+    "tool": "built-in image_gen",
+    "prompts": "design/boss-title-options/prompts-v1.json",
+    "processing": "Unmodified originals copied; source_rect trims transparent alpha padding; proportional destination centered on full viewport."
+  }
+}

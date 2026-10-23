@@ -30,6 +30,7 @@ func run_checks() -> void:
 			game.employee = game.Crew.EMPLOYEES[hero]
 			game.difficulty = mode
 			root.add_child(game)
+			game.boss_intro.seen = {"cockroach-swarm": true, "clogfather": true}
 			game.hide()
 			game.set_process(false)
 			game.set_physics_process(false)
