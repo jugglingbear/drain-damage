@@ -75,14 +75,20 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 23, 2026 · Current build: Prototype 92 / 0.92.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 23, 2026 · Current build: Prototype 93 / 0.93.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 93 — Clogfather music:</strong>
+Original 48-second “Pressure Tarantella” adds mandolin-like tremolo, accordion-like chords and low brass.
+Measured music level is about 10 dB higher; warning states duck it by 12 dB. Fixed repeated attempts to resume
+a completed music fade. The old track started in testing; complete silence was not reproduced.
+Export, signature, standalone startup, 12 packaged suites and 34 Python tests pass; live listening remains pending.
+The wider requirement for distinct boss themes remains open; this delivery covers the Clogfather.</p>
 <p><strong>Prototype 92 — Clogfather gas and reinforcements:</strong>
 Sean approved alternating drifting gas and small, capped Septic Air Force groups during the boss's closed phases.
 The existing acid, projectiles, 1,080 HP and alternating low/high weak-point opportunities remain the foundation.
 Gas uses ordinary damage and invulnerability, with a 1.2-second warning and reachable escape space.
 Full five-second weak-point windows remain clear; waves are capped at one early and two later, with no refill.
 The export, signature, archive, 15 packaged suites and 34 Python tests pass. Live visual, listening and fight-duration
-review remain pending. The separate music audit and level-two production remain held.</p>
+review remain pending. Clogfather music is updated in Prototype 93; level-two production remains held.</p>
 <p><strong>0.91.0 macOS development/demo distribution:</strong>
 Universal Apple Silicon/Intel ZIP with installation instructions, checksums, license notices and release manifest.
 The signed app is tested after extraction; first-level scope and pending human/GPU/Intel review are explicit.
@@ -431,7 +437,7 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
 <p class="meta">October 17: Sputtervalve name and pressure-valve design basis are approved (recovered user decision at 13:31 PDT); backstory remains pending. Body readability remains pending with Art. Target body scale is 1.5× around its foot anchor, with matching muzzle and body collision scaling; high-contrast repaint and clearance validation remain separate from the delivered Prototype 56 projectile correction.</p>
 <p class="meta">October 17: Art’s projectile visibility correction is delivered in Prototype 56: existing violet star at 64×64, anchor 40,32.5, bright core centered on its trajectory. Radius 4 and damage 1 remain unchanged. Packaged registration, collision and scenery sweeps pass; live visual review awaits permission. <a href="handoffs/sputtervalve-projectile-readability.json">Delivery and checks</a>.</p>
 <p class="meta">October 17: shooter-cap change delivered in Prototype 56: up to three live/reserved shooters, with six bullets and three attack patterns unchanged. No new spawn entries; scheduler and gameplay regressions pass.</p>
-<p class="meta">October 17: <a href="codex-folder-rename-bug-report.html">Codex folder-rename bug report</a> drafted locally, not submitted. Records the original-chat write-access audit, fresh-chat workaround, recovery impact, and unproven stale-permission hypothesis. Documentation-only report; no runtime change from the report itself.</p>
+<p class="meta">October 17: <a href="codex-folder-rename-bug-report.html">Codex folder-rename bug report</a> filed by Sean (confirmed October 23); no submission remains pending. Records the original-chat write-access audit, fresh-chat workaround, recovery impact, and unproven stale-permission hypothesis. Documentation-only report; no runtime change from the report itself.</p>
 <p class="meta">October 17: all eight original agents’ <a href="agent-context-archive/README.md">durable context archives</a> delivered for successor chats. Original-authored documents copied verbatim, with byte counts, SHA-256 verification, authoring provenance, import timestamps, and recovery limitations in the manifest. Engineering predecessor interview completed. Documentation only; no game build or runtime change.</p>
 <p class="meta"><strong>October 17 — difficulty delivery:</strong> Prototype 58 implements the approved screen and encounter-reset contract. The checkpoint-straddling wave has explicit ownership: seven baseline entries before 4650, one at 4700 after; that optional tail can expire safely during the 1.25-second active-control grace. Normal uses crowd cap 6 (previous integrated cap 8); this is initial tuning pending human balance review. Bigger-muscle/torn-workclothes Hard selection portraits are integrated. Body, aim, death, HUD and dispenser costume coverage remains Art work; nudity/censor-bar alternative rejected.</p>
 <p class="meta"><strong>October 17 — Hard costume refinement:</strong> Prototype 59 delivers the revised selection portraits with roughly half of each hero’s shirt gone. The lightly frayed v1 originals remain preserved in Prototype 58. Art continues the matching full gameplay costume set, preserving trousers, trade gear, Sean’s bib straps, character identities and all gameplay registration. That coverage shipped in Prototype 60 after crop and alpha review; historical Prototype 59 remains preserved.</p>

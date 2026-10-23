@@ -2234,6 +2234,32 @@ no image capture occurred.
 
 [Capture status and final verification](092-clogfather-gas-and-reinforcements/20261023-101520-capture-status.json).
 
+## 093 — Clogfather music and playback lifecycle — October 23, 2026
+
+**Version:** Prototype 93 / 0.93.0; source commit `95ea42c`; app, ZIP and snapshot `builds/source-93` preserved.
+
+Pressure Tarantella is an original 48-second, 160 BPM Italian-inspired Clogfather theme using synthetic mandolin-like
+tremolo, accordion-like voices, low brass and percussion. Measured effective loudness rises from -38.8 to -28.4 LUFS.
+Runtime gain is -16 dB; warnings add -12 dB ducking with immediate attack and 200 ms release. Dialogue ducking does
+not stack. Prototype 92 combat and build are preserved.
+
+**Diagnosis:** Engineering's baseline host starts the old music; complete silence has not been reproduced.
+Low audibility is a measured contributor. The confirmed completed-fade resume error from per-frame pause refresh
+is fixed; this does not establish that every reported silence case was reproduced.
+
+**Validation:** Engineering reports twelve exact exported suites and thirty-four Python tests passing, plus export,
+signature, archive and standalone checks. Actual-host entry, retry, pause, mute, loop wrap, warnings, victory and title
+checks pass. Subjective listening and perceived loop seam/mix acceptance remain separate from these checks.
+
+**Capture gap:** No game window opened or actual Prototype 93 screenshot was captured. Foreground permission has not
+been given. Prototype 92 is preserved;
+live listening, perceived loop seam/mix review and gameplay captures remain pending.
+
+**Record created:** 2026-10-23T10:46:07-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](093-clogfather-music/20261023-104607-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
