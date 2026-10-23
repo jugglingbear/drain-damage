@@ -1,9 +1,9 @@
 {
-  "status": "Two concepts per boss; awaiting Sean selection; reveal not authorized for implementation",
+  "status": "Selected S2 white and C1 goop; centered reveal and timing approved; Engineering integration pending",
   "created_at": "2026-10-23T11:27:15.919741-07:00",
   "kind": "Source artwork composites, not gameplay captures",
-  "comparison": "design/boss-title-options/comparison-v1.png",
-  "timing": "design/boss-title-options/timing-storyboard-v1.png",
+  "comparison": "design/boss-title-options/comparison-v3.png",
+  "timing": "design/boss-title-options/timing-storyboard-v3.png",
   "prompts": "design/boss-title-options/prompts-v1.json",
   "options": [
     "skitterling-chitin",
@@ -34,16 +34,30 @@
       96,
       458
     ],
-    "title_max_rect": [
-      35,
-      104,
+    "title_visible_center": [
+      480,
+      270
+    ],
+    "title_max_size": [
       540,
       180
-    ]
+    ],
+    "centering": "Trim transparent padding, fit proportionally, center visible bounds on FULL960x540 viewport;1920x1080 center960,540.",
+    "persistent_boss_name": false,
+    "boss_name_visibility": "Centered entrance reveal only; right sidebar contains health meter only.",
+    "name_removal_condition": "Remove persistent names when centered introduction ships; Prototype94 remains unchanged until paired integration."
   },
   "limitations": [
     "Static source poses; live moving threats and readability need gameplay review.",
-    "Upper-left title avoids current right boss sockets and floor; fade must be fast and no opaque veil persists on resume.",
-    "Normal player HUD retained; persistent names are fitted horizontal text, separate from reveal art."
-  ]
+    "Centered title can overlap threats during fade-out; short fade and live readability validation required. No opaque veil on resume.",
+    "Normal player HUD retained; no persistent boss name in sidebar."
+  ],
+  "selected_art": {
+    "skitterling": "skitterling-infestation-v1.png",
+    "clogfather": "clogfather-grease-v1.png"
+  },
+  "selection_date": "2026-10-23",
+  "timing_status": "Approved .4s fade-in +3s FULL hold +.25s fade-out; resume at fade-out start.",
+  "prior_layout": "v1 upper-left concepts preserved; superseded by Sean full-screen centering correction.",
+  "runtime_registration": "assets/ui/boss-intro-v1/manifest.json"
 }
