@@ -7,16 +7,25 @@ func _initialize() -> void:
 func run_checks() -> void:
 	var hud := HUD.new()
 	root.add_child(hud)
-	assert(hud.swarm_frame != null and hud.swarm_fill != null)
-	assert(hud.swarm_frame.get_size() == Vector2(1728, 112))
-	assert(hud.swarm_fill.get_size() == Vector2(1536, 40))
-	var frame_image := hud.swarm_frame.get_image()
-	for y in range(36, 76):
-		for x in range(96, 1632):
-			assert(frame_image.get_pixel(x, y).a == 0, "Frame must not obscure the HP boundary")
+	for id in ["cockroach-swarm","clogfather"]:
+		hud.begin_encounter(id)
+		for line in hud.name_lines():
+			assert(ThemeDB.fallback_font.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,
+				hud.name_font_size(line)).x <= hud.definition.name_rect[2])
+		for part: Dictionary in hud.definition.skins[id].values():
+			if part.has("texture_key"):
+				assert(Rect2(Vector2.ZERO,hud.textures[part.texture_key].get_size()).encloses(hud.rect(part.source_rect)))
+			assert(Rect2(864,82,96,458).encloses(hud.rect(part.destination)))
+		var fill: Dictionary = hud.definition.skins[id]["fill" if id == "cockroach-swarm" else "fill_green"]
+		var whole := hud.fill_regions(fill,1)
+		var quarter := hud.fill_regions(fill,.25)
+		assert(is_equal_approx(quarter[1].end.y,whole[1].end.y),"Remaining HP stays anchored at bottom")
+		assert(is_equal_approx(quarter[1].size.y,whole[1].size.y*.25))
+		assert(is_equal_approx(quarter[0].size.y,whole[0].size.y*.25),"Crop rather than squeeze")
+		assert(not hud.fill_regions(fill,0)[1].has_area())
 	hud.begin_encounter("cockroach-swarm")
 	assert(hud.active and hud.maximum == 1440 and hud.hp == 1440)
-	assert(hud.boss_id == "cockroach-swarm" and hud.reserved_height() == 110)
+	assert(hud.boss_id == "cockroach-swarm" and hud.reserved_height() == 0)
 	hud.player_status = "Tony   HP 5 / 5   LIVES 3"
 	await process_frame
 	hud.update_hp(900)
@@ -52,5 +61,5 @@ func run_checks() -> void:
 	await process_frame
 	hud.queue_free()
 	await process_frame
-	print("PASS: boss HUD damage trail, phase continuity, low HP, death fade, retry and default boss style")
+	print("PASS: boss HUD damage trail, phase continuity, low HP, death fade, retry and vertical skins, fixed header and name fitting")
 	quit()

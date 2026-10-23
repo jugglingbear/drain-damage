@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "status": "Art registration approved; runtime visual validation pending",
+  "skins": {
+    "clogfather": {
+      "frame": {
+        "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+        "source_rect": [
+          0,
+          0,
+          2172,
+          310
+        ],
+        "destination": [
+          902,
+          120,
+          42,
+          300
+        ],
+        "rotation_degrees": -90
+      },
+      "track": {
+        "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+        "source_rect": [
+          120,
+          325,
+          1932,
+          48
+        ],
+        "destination": [
+          918.40625,
+          154.0277778,
+          13.125,
+          231.9444444
+        ],
+        "rotation_degrees": -90
+      },
+      "fill_green": {
+        "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+        "source_rect": [
+          120,
+          424,
+          1932,
+          48
+        ],
+        "destination": [
+          918.40625,
+          154.0277778,
+          13.125,
+          231.9444444
+        ],
+        "rotation_degrees": -90
+      },
+      "fill_yellow": {
+        "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+        "source_rect": [
+          120,
+          522,
+          1932,
+          48
+        ],
+        "destination": [
+          918.40625,
+          154.0277778,
+          13.125,
+          231.9444444
+        ],
+        "rotation_degrees": -90
+      },
+      "fill_red": {
+        "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+        "source_rect": [
+          120,
+          620,
+          1932,
+          48
+        ],
+        "destination": [
+          918.40625,
+          154.0277778,
+          13.125,
+          231.9444444
+        ],
+        "rotation_degrees": -90
+      }
+    },
+    "cockroach-swarm": {
+      "frame": {
+        "path": "assets/bestiary/cockroach-swarm/health-bar-v2/frame.png",
+        "source_rect": [
+          0,
+          0,
+          1728,
+          112
+        ],
+        "destination": [
+          902,
+          120,
+          42,
+          300
+        ],
+        "rotation_degrees": -90
+      },
+      "track": {
+        "color": "#100d0b",
+        "destination": [
+          917,
+          136.6666667,
+          15,
+          266.6666667
+        ]
+      },
+      "fill": {
+        "path": "assets/bestiary/cockroach-swarm/health-bar-v2/fill.png",
+        "source_rect": [
+          0,
+          0,
+          1536,
+          40
+        ],
+        "destination": [
+          917,
+          136.6666667,
+          15,
+          266.6666667
+        ],
+        "rotation_degrees": -90
+      }
+    }
+  },
+  "name_rect": [
+    872,
+    86,
+    80,
+    32
+  ],
+  "rotation_contract": "Crop source, rotate counterclockwise90 degrees, then fit destination; destination is final screen-axis rectangle. Do not rotate destination coordinates again.",
+  "fill_contract": "Clip final destination and rotated texture from top by (1-fraction); retain bottom anchored. Draw track, fill, frame.",
+  "world_transform": {
+    "scale": 0.9,
+    "offset": [
+      0,
+      54
+    ]
+  },
+  "normal_hud_height": 82,
+  "source_art": "Existing approved horizontal artwork, no new generated assets",
+  "notes": [
+    "Keep names horizontal; THE above CLOGFATHER, SKITTERLING fit single line.",
+    "No reveal animation authorized by this manifest."
+  ]
+}

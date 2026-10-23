@@ -36,7 +36,7 @@
     }
   ],
   "ordinary_enemy_bars_default": false,
-  "boss_bar": "Named continuous health bar fixed at top center of screen, independent of ordinary enemy bar visibility",
+  "boss_bar": "Named continuous vertical meter in dedicated right sidebar; ordinary enemy visibility toggle does not apply",
   "optional_setting": "Show enemy health bars",
   "exact_hp_and_damage_readouts": "Development only",
   "hit_feedback": {
@@ -49,22 +49,22 @@
     "rapid_fire": "Ensure flash ends before the next normal Tony shot; do not require crossing a threshold."
   },
   "boss_hud": {
-    "approved_date": "2026-10-14",
-    "requirement_status": "Named top-of-screen boss bar approved; dimensions and animation timings are initial tuning",
-    "implementation_status": "Reusable HUD integrated; larger Living Swarm skin in Prototype77; visual review pending",
-    "anchor": "screen_top_center",
+    "approved_date": "2026-10-23",
+    "requirement_status": "Sean selected right-side option B; normal player HUD retained",
+    "implementation_status": "Vertical skins and dedicated sidebar integrated in Prototype94; live visual review pending",
+    "anchor": "screen_right",
     "name_source": "monster.name",
-    "name_position": "centered above bar",
+    "name_position": "Horizontal name above meter, wrapped and fitted within sidebar",
     "width_fraction": 0.8,
     "reference_viewport_pixels": [
       960,
       540
     ],
     "reference_bar_height_pixels": 20,
-    "layout": "Reserve a top HUD band; keep player HUD and telegraphed arena hazards clear; respect viewport safe margins.",
+    "layout": "Normal82px player HUD stays unscaled. Entire boss world uniformly scaled0.9 with offset0,54 into864x486, right96px dedicated sidebar; combat geometry/camera unchanged.",
     "visible_during": "Entire active boss encounter, including closed/invulnerable phases",
     "ordinary_enemy_toggle_applies": false,
-    "fill": "Clamp current_hp / max_hp to [0, 1], draining right to left; no artificial slow drain or refill between phases.",
+    "fill": "Remaining health anchored at bottom; top edge descends immediately with actual HP, with brief damage trail",
     "damage_feedback": {
       "actual_fill": "Update immediately on damage",
       "trailing_damage_fill": "Brief contrasting trail only",
@@ -102,33 +102,34 @@
       "accessibility": "Remaining bar length always communicates health independently of color"
     },
     "top_margin_pixels": 12,
-    "reserved_band_pixels": 80,
+    "reserved_band_pixels": 82,
     "death_hold_seconds": 1.0,
     "death_fade_seconds": 0.35,
     "encounter_styles": {
       "cockroach-swarm": {
         "style": "Living Swarm, selected by Sean on October 19, 2026",
         "fill": "Authored orange texture at every positive HP; dark depleted track; cockroach frame",
-        "fill_behavior": "Crop from the right immediately with HP; preserve brief tinted damage trail and existing death fade",
+        "fill_behavior": "Crop vertically from top with HP; bottom remains anchored; preserve trail and death fade",
         "frame": "assets/bestiary/cockroach-swarm/health-bar-v2/frame.png",
         "fill_texture": "assets/bestiary/cockroach-swarm/health-bar-v2/fill.png",
-        "status": "Larger18px rails integrated for Prototype77; visual review pending",
-        "reserved_band_pixels": 110,
-        "frame_destination": [
-          48,
-          28,
-          864,
-          56
-        ],
-        "fill_destination": [
-          96,
-          46,
-          768,
-          20
-        ],
-        "title_baseline": 22,
-        "player_status_baseline": 104
+        "status": "Vertical Living Swarm skin integrated in Prototype94; orange fill retained",
+        "reserved_band_pixels": 82
       }
+    },
+    "presentation": {
+      "world_scale": 0.9,
+      "world_offset": [
+        0,
+        54
+      ],
+      "sidebar_rect": [
+        864,
+        82,
+        96,
+        458
+      ],
+      "normal_hud_height": 82,
+      "hold": "Through Skitterling death/exit until room release and through Clogfather portal completion; reset on retry/new game."
     }
   }
 }

@@ -290,6 +290,10 @@ def build() -> dict[str, Any]:
     require(ceiling == 0 and len({s["id"] for s in states}) == 6, "Invalid damage stage IDs/coverage")
     require(type(policy["ordinary_enemy_bars_default"]) is bool, "Bar default must be boolean")
     number(policy["hit_feedback"], "suggested_flash_seconds", "hit_feedback")
+    vertical_hud = read("assets/ui/boss-hud-right-v1/manifest.json")
+    require({"clogfather", "cockroach-swarm"} <= vertical_hud.get("skins", {}).keys(),
+            "Missing vertical boss HUD skins")
+    validate_art_regions(vertical_hud)
     hud = policy["boss_hud"]
     require(number(hud, "width_fraction", "boss_hud") <= 1, "Boss bar width exceeds viewport")
     for field in ("reference_bar_height_pixels", "reserved_band_pixels", "death_hold_seconds", "death_fade_seconds"):

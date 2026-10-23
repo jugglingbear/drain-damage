@@ -34,9 +34,16 @@ var route_fallbacks: Dictionary = {}
 const BACKGROUND_MANIFEST := "res://assets/world/first-call/background-manifest-v2.json"
 var background_panels: Array = []
 var background_textures: Dictionary = {}
+const BOSS_WORLD_SCALE := 0.9
+const BOSS_WORLD_OFFSET := Vector2(0,54)
+var boss_sidebar := false
 
 func _ready() -> void:
 	super._ready()
+	# These screen-space controls must never inherit the encounter world framing.
+	for overlay: CanvasItem in [boss_hud,dialogue,pause_menu]: overlay.set_as_top_level(true)
+	# Dialogue and pause controls must cover the meter when they occupy the right edge.
+	boss_hud.z_index = 10
 	skitterling.attach(self)
 	clogfather.attach(self)
 	assert(ending.prepare(),"First-level portal art preparation failed")
@@ -70,6 +77,7 @@ func reset_observation() -> void:
 	skitterling.reset(run_seed)
 	if respawn_origin >= Level.POST_SKITTERLING_CHECKPOINT: skitterling.restore_completed()
 	clogfather.reset(run_seed)
+	sync_boss_presentation()
 	ending.reset()
 	boss_hud.end_encounter()
 	opening_passed = respawn_origin >= OPENING_END
@@ -629,6 +637,12 @@ func draw_environment() -> void:
 		draw_asset(part("floor-fascia"),Rect2(x,440,480,100))
 	dispenser.draw_machines(self)
 
+func sync_boss_presentation() -> void:
+	# Keep the full room visible, including the right pipe, through death and exit traversal.
+	boss_sidebar = clogfather.entered or skitterling.locked()
+	transform = Transform2D(0,Vector2.ONE*BOSS_WORLD_SCALE,0,BOSS_WORLD_OFFSET) \
+		if boss_sidebar else Transform2D.IDENTITY
+
 func _draw() -> void:
 	if trial_data.is_empty(): return
 	draw_set_transform(Vector2(-floorf(camera_x),0))
@@ -670,14 +684,18 @@ func _draw() -> void:
 	ending.draw_surge(self,true)
 	draw_set_transform(Vector2.ZERO)
 	ending.draw_shout(self)
+	draw_set_transform_matrix(transform.affine_inverse())
+	if boss_sidebar: box(864,82,96,458,INK)
 	draw_hud()
 	dispenser.draw_overlay(self)
+	draw_set_transform_matrix(transform.affine_inverse())
 	if paused or (won and not dialogue.active):
 		box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
 		if life_state in ["game_over","death_popup"]: draw_death_popup()
 		else: draw_pause_panel()
 
 func _process(delta: float) -> void:
+	sync_boss_presentation()
 	super._process(delta)
 	if ending.state == "dialogue" and not paused: ending.clock += delta
 	skitterling.process_audio(self,delta)
