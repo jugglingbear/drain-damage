@@ -1,6 +1,7 @@
 extends RefCounted
 ## Registered authored layers share arena coordinates and retain stable attachment points.
 const MANIFEST := "res://assets/bestiary/the-clogfather/runtime-manifest-v3.json"
+const GAS_MANIFEST := "res://assets/bestiary/the-clogfather/gas-manifest-v1.json"
 var definition: Dictionary = {}
 var textures: Dictionary = {}
 var opening := 0.0
@@ -11,6 +12,8 @@ var deflect_position := Vector2(700,300)
 
 func prepare() -> bool:
 	definition = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
+	var gas: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(GAS_MANIFEST))
+	definition.frames.merge(gas.frames)
 	for frame: Dictionary in definition.frames.values():
 		if not textures.has(frame.path): textures[frame.path] = load("res://"+frame.path)
 	return not textures.values().has(null)
@@ -79,6 +82,11 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 		if weak.has_area(): place(canvas,"weak_hit",origin,weak.get_center())
 	if deflect_flash > 0: place(canvas,"deflect",origin,deflect_position)
 	for warning: Rect2 in snapshot.warnings:
+		if snapshot.state == "pressure_warning":
+			if snapshot.pressure_kind == "gas":
+				place(canvas,"gas_warning_a" if int(clock*8)%2 == 0 else "gas_warning_b",
+					origin,warning.get_center())
+			continue
 		place(canvas,"acid_warning",origin,Vector2(warning.get_center().x,440))
 		if snapshot.state == "acid_warning":
 			place(canvas,"acid_ceiling_warning",origin,Vector2(warning.get_center().x,110))
@@ -86,6 +94,10 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 		if hazard.kind == "sludge":
 			var id := "sludge_projectile_a" if int(hazard.age*10)%2 == 0 else "sludge_projectile_b"
 			place(canvas,id,origin,hazard.pos,hazard.velocity.angle()+PI)
+		elif hazard.kind == "gas":
+			place(canvas,"gas_cloud_"+str(["a","b","c","d"][int(hazard.age*8)%4]),
+				origin,hazard.rect.get_center())
+			if hazard.age < 0.3: place(canvas,"gas_emit",origin,snapshot.nozzle)
 		else:
 			place(canvas,"acid_puddle" if snapshot.state == "acid_puddle" else "acid_drop",origin,hazard.pos)
 

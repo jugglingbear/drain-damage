@@ -38,7 +38,8 @@ func run_checks() -> void:
 			boss.step(4.9,HERO)
 			assert(boss.state == "recovery" and boss.phase == 1,"Threshold cannot truncate a window")
 			boss.step(0.11,HERO)
-			assert(boss.phase == 2 and boss.state == "acid_warning")
+			assert(boss.phase == 2 and boss.state == "pressure_warning")
+			advance_to(boss,"acid_warning",HERO,hz)
 			# Death bypasses every queued attack and emits only death, then one completion.
 			advance_to(boss,"recovery",HERO,hz)
 			boss.drain_events()
@@ -62,6 +63,7 @@ func run_checks() -> void:
 			boss.start(hero)
 			advance_to(boss,"recovery",hero)
 			boss.step(5.01,hero)
+			advance_to(boss,"acid_warning",hero)
 			assert(boss.state == "acid_warning")
 			assert(boss.warnings.size() == 2 and boss.safe_corridor.size.x == 180)
 			var marked_hero := false
@@ -99,6 +101,7 @@ func run_checks() -> void:
 		if final_phase.state == "recovery": break
 	assert(fired == 4)
 	final_phase.step(5.01,HERO)
+	advance_to(final_phase,"acid_warning")
 	assert(final_phase.state == "acid_warning" and final_phase.warnings.size() == 3)
 	for damage in [12,18]:
 		var boss = Boss.new()

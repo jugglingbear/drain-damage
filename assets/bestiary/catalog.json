@@ -152,7 +152,7 @@
     {
       "id": "clogfather",
       "name": "The Clogfather",
-      "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+      "status": "Integrated in Prototype 92; pressure checks passed, live review pending",
       "metadata": "bestiary/clogfather/monster.json",
       "art": "assets/bestiary/the-clogfather/rooted-body-v2.png",
       "animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
@@ -228,7 +228,31 @@
         },
         "ending": "Defeat reveals impossible opening; chosen hero involuntarily pulled inside while partner remains outside on radio. Level2 gameplay not implemented."
       },
-      "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending"
+      "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+      "prototype92_pressure": {
+        "status": "Integrated in Prototype 92; pressure checks passed, live review pending",
+        "warning_seconds": 1.2,
+        "gas_active_seconds": 2.0,
+        "reinforcement_active_seconds": 3.0,
+        "clear_seconds": 0.25,
+        "open_window_seconds": 5.0,
+        "approach_seconds": 0.8,
+        "safe_corridor_pixels": 180,
+        "reinforcement_id": "sewer-fly-swarm",
+        "reinforcement_hp": 24,
+        "reinforcement_cap_by_phase": [
+          1,
+          2,
+          2
+        ],
+        "policy": "Gas first, then reinforcements; after recovery and before next acid/volley. No refill. Clear before original attacks and windows, death and reset; pause freezes. Normal damage/immunity, no cough or control/fire interruption. Geometry may admit fewer swarms.",
+        "duration_note": "Adds 3.45s gas / 4.45s swarm activity between original cycles; human duration and readability review pending.",
+        "audio_provenance": [
+          "audio/sources/clogfather-v1/manifest.json",
+          "audio/sources/sewer-fly-buzz-v1/manifest.json"
+        ]
+      },
+      "gas_animation_spec": "assets/bestiary/the-clogfather/gas-manifest-v1.json"
     },
     {
       "id": "sewer-fly-swarm",

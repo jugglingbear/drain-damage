@@ -4,6 +4,8 @@ const Data = preload("res://scripts/combat_data.gd")
 const BASE := "res://assets/audio/sfx/clogfather-v1/"
 const CUES := {
 	"volley_warning": ["pressure-warning"], "acid_warning": ["acid-warning"],
+	"gas_warning": ["pressure-warning"], "gas_started": ["sludge-fire-b"],
+	"reinforcements_warning": ["groan-b"],
 	"projectile_spawn": ["sludge-fire-a", "sludge-fire-b"],
 	"projectile_hit": ["sludge-impact-a", "sludge-impact-b"],
 	"acid_impact": ["sludge-impact-a", "sludge-impact-b"],
@@ -59,7 +61,8 @@ func handle_events(events: Array) -> void:
 		if event == "attack_start":
 			voices[0].stop()
 			continue
-		if event in ["projectile_spawn", "acid_impact", "weak_point_open", "weak_point_closing"]:
+		if event in ["projectile_spawn", "acid_impact", "weak_point_open", "weak_point_closing",
+			"gas_started", "reinforcements_spawn"]:
 			voices[0].stop()
 		if not streams.has(event) or AudioServer.is_bus_mute(0): continue
 		var slot := 3

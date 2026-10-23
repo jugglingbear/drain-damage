@@ -17,12 +17,17 @@ var art := Art.new()
 var entered := false
 var kill_recorded := false
 var clock := 0.0
+var owner_host: Node2D
+var spawned_wave := -1
 
 func attach(host: Node2D) -> void:
+	owner_host = host
 	audio.attach(host)
 	assert(art.prepare(),"Clogfather art preparation failed")
 
 func reset(seed_value: int) -> void:
+	clear_reinforcements()
+	spawned_wave = -1
 	encounter.reset(seed_value)
 	audio.stop()
 	entered = false
@@ -81,11 +86,38 @@ func flush_events(host: Node2D) -> void:
 	var events := encounter.drain_events()
 	art.events(events)
 	audio.handle_events(events)
+	if events.has("pressure_cleared") or events.has("death_started") or events.has("boss_defeated"):
+		clear_reinforcements()
+	elif events.has("reinforcements_spawn"):
+		spawn_reinforcements(host)
 	if events.has("boss_defeated") and not kill_recorded:
 		kill_recorded = true
 		host.kills += 1
 		host.player_kills += 1
 		if host.music_director != null: host.music_director.play_track("level")
+
+func clear_reinforcements() -> void:
+	if not is_instance_valid(owner_host): return
+	for index in range(owner_host.swarms.actors.size()-1,-1,-1):
+		if owner_host.swarms.actors[index].get("clogfather_reinforcement",false):
+			owner_host.swarms.actors.remove_at(index)
+	if owner_host.swarms.actors.is_empty(): owner_host.swarm_audio.stop()
+
+func spawn_reinforcements(host: Node2D) -> void:
+	if encounter.state != "pressure_active" or encounter.pressure_kind != "reinforcements" \
+			or spawned_wave == encounter.pressure_wave: return
+	clear_reinforcements()
+	spawned_wave = encounter.pressure_wave
+	for request: Dictionary in encounter.reinforcement_requests:
+		var bounds: Rect2 = request.bounds
+		bounds.position += ORIGIN
+		var actor: Dictionary = host.swarms.spawn(request.center+ORIGIN,bounds,
+			host.run_seed+spawned_wave*31+host.swarms.actors.size())
+		actor.clogfather_reinforcement = true
+		actor.pressure_wave = spawned_wave
+		actor.additive = true
+		actor.contact_ready = false
+		host.swarms.actors.append(actor)
 
 func target_rect() -> Rect2:
 	var body := encounter.weak_point_rect()
@@ -98,6 +130,13 @@ func draw(host: Node2D) -> void:
 	if host.ending.active(): snapshot.remains_alpha = 1-smoothstep(0,0.8,host.ending.clock)
 	art.draw(host,snapshot,ORIGIN-Vector2(floorf(host.camera_x),0),clock)
 	host.draw_set_transform(Vector2(-floorf(host.camera_x),0))
+	if snapshot.state == "pressure_warning" and snapshot.pressure_kind == "reinforcements":
+		var animation: Dictionary = host.swarms.definition.animation.animations.hover
+		var source: Array = animation.frames[int(clock*8)%4].source_rect
+		for request: Dictionary in snapshot.reinforcement_requests:
+			host.draw_texture_rect_region(host.swarms.texture,
+				Rect2(request.center+ORIGIN-Vector2(64,64),Vector2(128,128)),
+				Rect2(source[0],source[1],source[2],source[3]),Color(1,1,1,0.4+0.2*sin(clock*12)))
 
 func shell_rect() -> Rect2:
 	var body := encounter.body_rect()

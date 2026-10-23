@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "status": "Source composition reviewed: sparse warnings and dense active gas readable at floorband; runtime/live review pending",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "provenance": "assets/bestiary/the-clogfather/gas-prompts-v1.json",
+  "fps": 8,
+  "frames": {
+    "gas_cloud_a": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        0,
+        128,
+        384,
+        320
+      ],
+      "destination": [
+        -70,
+        -50,
+        140,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    },
+    "gas_cloud_b": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        384,
+        128,
+        384,
+        320
+      ],
+      "destination": [
+        -70,
+        -50,
+        140,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    },
+    "gas_cloud_c": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        768,
+        128,
+        384,
+        320
+      ],
+      "destination": [
+        -70,
+        -50,
+        140,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    },
+    "gas_cloud_d": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        1152,
+        128,
+        384,
+        320
+      ],
+      "destination": [
+        -70,
+        -50,
+        140,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    },
+    "gas_warning_a": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        0,
+        576,
+        384,
+        384
+      ],
+      "destination": [
+        -70,
+        -50,
+        140,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    },
+    "gas_warning_b": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        384,
+        576,
+        384,
+        384
+      ],
+      "destination": [
+        -70,
+        -50,
+        140,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    },
+    "gas_emit": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        768,
+        576,
+        384,
+        384
+      ],
+      "destination": [
+        -28,
+        -20,
+        56,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    },
+    "gas_dissipate": {
+      "path": "assets/bestiary/the-clogfather/gas-v2.png",
+      "source_rect": [
+        1152,
+        576,
+        384,
+        384
+      ],
+      "destination": [
+        -70,
+        -50,
+        140,
+        100
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "destination relative to effect origin"
+    }
+  },
+  "core_rect": [
+    -50,
+    -32,
+    100,
+    64
+  ],
+  "visual_envelope": [
+    -70,
+    -50,
+    140,
+    100
+  ],
+  "runtime_contract": {
+    "center_y": 388,
+    "warning_seconds": 1.2,
+    "active_seconds": 2,
+    "clear_seconds": 0.25,
+    "drift_pixels_per_second": 30,
+    "safe_corridor_width": 180,
+    "emission": "Decorative nozzle puff only; hazard starts at warned flank, not along nozzle trajectory",
+    "weakpoint": "Pressure cleared before full five-second weak opening; no overlapping acid or projectile phase"
+  },
+  "animation": "Blend neighboring cloud frames continuously; warning uses sparse wisps, active uses dense illuminated core. Outer fringe is not damaging.",
+  "source_review": {
+    "evidence": "previews/clogfather-gas-v1/contact.png",
+    "kind": "Software source study, not gameplay capture",
+    "scope": "Warning A and active A/B/D at rightmost samplecenter620,388 with decorative nozzle emission; high closed weakpoint remains clear. Low opening is obscured while closed; clear cloud before recovery.",
+    "bounds": "Eight source regions validated; RGBA transparency preserved",
+    "remaining": "Live cloud blending, warning fairness and exact collision/readability review"
+  }
+}

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "clogfather-encounter",
   "name": "The Clogfather",
-  "updated": "2026-10-20",
-  "status": "Approved rooted boss and sludge/acid starting approach; current_implementation_contract supersedes initial numeric and optional-pattern proposals",
+  "updated": "2026-10-23",
+  "status": "Rooted boss with approved gas and Septic Air Force pressure in Prototype92; current implementation contract supersedes historical proposals",
   "scope": "First mission boss; rooted giant fatberg with moving pipe mouths and extensions.",
   "canonical_metadata_note": "Bestiary owns monster.json and artwork. This encounter proposal is not registered as a playable creature. Promote accepted HP into monster.json.health before runtime integration; runtime must not read duplicate health values from this proposal.",
   "story_boundaries": [
@@ -217,7 +217,7 @@
     "Measure completion time with both plumbers before accepting 720 HP and the 40\u201375-second target."
   ],
   "current_implementation_contract": {
-    "date": "2026-10-20",
+    "date": "2026-10-23",
     "owner": "Engineering delivery; Game Mechanics isolated controller; Art assets/anchors; Level Design placement",
     "health": "1080 HP initial playtest candidate, canonical monster.json source; no difficulty HP multiplier.",
     "starters": {
@@ -242,7 +242,7 @@
       "summon_flushfiend",
       "optional_valves"
     ],
-    "loop": "Sludge warning0.9s locks hero-center aim from upper nozzle675,255;3 shots (4 in phase2/3),210px/s,.45s spacing, no homing. Wait all shots hit floor/wall or expire<=4s; approach0.8s; full5s low-mouth window, closing warning last0.75s. Then acid warning1.2s,2 full64px columns (3 in phase3),fall0.6s,puddle0.8s; clear; same grace/window. Alternate.",
+    "loop": "Sludge warning0.9s locks hero-center aim from upper nozzle675,255;3 shots (4 in phase2/3),210px/s,.45s spacing, no homing. Wait all shots hit floor/wall or expire<=4s; approach0.8s; full5s low-mouth window, closing warning last0.75s. Then acid warning1.2s,2 full64px columns (3 in phase3),fall0.6s,puddle0.8s; clear; same grace/window. Alternate. After each recovery, alternate gas first and capped Septic Air Force pressure, clearing before next original attack.",
     "window": "Mouth unfolds during approach; becomes damageable for the full5s window. Body contact disabled for approach and recovery. No threshold truncation; phase advances after full window, lethal hit immediate.",
     "geometry": "Room-local960x540,floor440,HUD0..110. Artroot810,440; shellRect(700,120,255,320); weakpointRect(626,377,48,42); sludge nozzle(675,255). Walkable/acid span0..700 covers both edges. Harmless rootwisps may extend left to615; configure geometry before start.",
     "acid_safety": "Locked columns include splash width. Reserve connected corridor>=180px reachable at235px/s with0.15s reaction margin and actual hero width; at most35% floor marked. If no safe plan, skip pattern into recovery.",
@@ -267,6 +267,29 @@
         "no artwork/window/capture validation claimed"
       ],
       "log": "builds/verification-clogfather/mechanics.log"
+    },
+    "pressure": {
+      "status": "Integrated in Prototype 92; pressure checks passed, live review pending",
+      "warning_seconds": 1.2,
+      "gas_active_seconds": 2.0,
+      "reinforcement_active_seconds": 3.0,
+      "clear_seconds": 0.25,
+      "open_window_seconds": 5.0,
+      "approach_seconds": 0.8,
+      "safe_corridor_pixels": 180,
+      "reinforcement_id": "sewer-fly-swarm",
+      "reinforcement_hp": 24,
+      "reinforcement_cap_by_phase": [
+        1,
+        2,
+        2
+      ],
+      "policy": "Gas first, then reinforcements; after recovery and before next acid/volley. No refill. Clear before original attacks and windows, death and reset; pause freezes. Normal damage/immunity, no cough or control/fire interruption. Geometry may admit fewer swarms.",
+      "duration_note": "Adds 3.45s gas / 4.45s swarm activity between original cycles; human duration and readability review pending.",
+      "audio_provenance": [
+        "audio/sources/clogfather-v1/manifest.json",
+        "audio/sources/sewer-fly-buzz-v1/manifest.json"
+      ]
     }
   }
 }

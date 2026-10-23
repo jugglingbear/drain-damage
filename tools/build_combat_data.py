@@ -154,6 +154,10 @@ def validate_rooted_boss() -> None:
     require({"frame", "track", "fill_green", "fill_yellow", "fill_red", "aperture"}
             <= manifest.get("hud", {}).keys(), "Missing rooted boss health bar artwork")
     validate_art_regions(manifest)
+    gas = read("assets/bestiary/the-clogfather/gas-manifest-v1.json")
+    require({"gas_warning_a", "gas_warning_b", "gas_cloud_a", "gas_cloud_b", "gas_cloud_c",
+             "gas_cloud_d", "gas_emit"} <= gas.get("frames", {}).keys(), "Missing gas pressure artwork")
+    validate_art_regions(gas)
 
 
 def validate_compound_boss() -> None:

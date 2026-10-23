@@ -1,0 +1,16 @@
+{
+  "tool": "built-in imagegen",
+  "date": "2026-10-23",
+  "generations": [
+    {
+      "prompt": "Create a production transparent pixel-art effects atlas for Drain Damage, dark sewer action game. EXACTLY eight equal cells arranged4columns by2rows, generous transparent gutters. TOP ROW: four sequential close-spaced loop frames of one drifting foul sewer GAS CLOUD. Broad squat oval cloud width1.4timesheight, dense readable sickly yellow-green/dirty mustard core occupying middle70percentwidth and64percentheight, dark olive curled vapor pockets and luminous pale sulphur rim, soft semitransparent irregular fringes fading to complete transparency. Shape feels foul gaseous stink, with rolling lobes and tiny oily bubbles, not liquid splash, fire, skull, solid rock or magic orb. Four frames same center/extent, internal vapors flow gently LEFT; avoid drastic shape changes/flipbook. BOTTOM ROW lefttwo: warningcloud phaseA andB, same footprint but hollow translucent olive vapor outline and three brighter curling stink wisps; distinctly sparse and non-solid compared with active core, no icons/text. Bottom third: small nozzle emission puff blowing DOWN-LEFT, curved dirtygreen gaseousjet trailing up-right, semitransparent, no nozzle included. Bottom fourth: dissipatinggas remnant, vapor fragments fadingout. All8cells true transparent outsideeffects and betweenwisps, no dark or colored matte rectangle. Pixel-art game effects with intentional chunky highlights but semitransparent feathered outeredges; readable at140x100pixels for activecloud, core100x64. No scenery, enemies, lettering, gridlines, labels, symbols or extra props. Consistent colorsand scale allcloudframes, no rescaling betweenposes. Canvas1536x1024 landscape.",
+      "output": "assets/bestiary/the-clogfather/gas-source-v1.png",
+      "status": "Original preserved; edge containment revised"
+    },
+    {
+      "prompt": "Repair this exact8cell transparentgasatlas. Keep4columns2rows and1536x1024canvas. Every effect must be isolated WITHIN its384x512cell with atleast35pixels fully transparent left/right margin and60px transparent top/bottom margin. Currently somecloudswisps touch neighboringcell boundaries: shrink/recompose each wholeeffect modestly withinitscell and make outerwisps fullyfade before borders. Preserve fourtop activeclouds, bottomtwo sparsewarnings, down-leftemission anddissipation in sameorder. No solidmatte/greenbackground; truly alpha0 in gutters. Keep same sicklyyellowgreen pixel-artvapor, bright dense dangerouscore, softertransparent outerwisps. The center of each effect must align exactly atlocal192,256 in everycell; activecore approximately250wide160high, wholevisibleeffect310wide240high. Warning hollow andsparse. No newelements or text. All8cells consistentregistration, nothing touching edges.",
+      "reference": "assets/bestiary/the-clogfather/gas-source-v1.png",
+      "output": "assets/bestiary/the-clogfather/gas-v2.png"
+    }
+  ]
+}
