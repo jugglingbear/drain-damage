@@ -181,5 +181,41 @@
       "capture_gap": "No game window opened. Preserve83 for approved capture alongside earlier builds.",
       "diagnostics": "Existing user-log, CA/editor-settings and shutdown-resource warnings; final suites have no script/parse/assertion failures."
     }
+  },
+  "boss_hud_layout_options": {
+    "status": "Option B selected by Sean; Engineering owns integration/build; pending validation",
+    "date": "2026-10-23",
+    "owner": "Art / Bestiary",
+    "record": "design/boss-hud-options/proposal.json",
+    "comparison": "design/boss-hud-options/side-by-side.png",
+    "recommendation": "C: compact boss meter centered inside existing normal HUD",
+    "preserved": "Normal hero name, health pips, life portraits, weapon, kill count and route text",
+    "delivery": {
+      "A": {
+        "clogfather": "design/boss-hud-options/option-a-clogfather.png",
+        "skitterling": "design/boss-hud-options/option-a-skitterling.png"
+      },
+      "B": {
+        "clogfather": "design/boss-hud-options/option-b-clogfather.png",
+        "skitterling": "design/boss-hud-options/option-b-skitterling.png"
+      },
+      "C": {
+        "clogfather": "design/boss-hud-options/option-c-clogfather.png",
+        "skitterling": "design/boss-hud-options/option-c-skitterling.png"
+      }
+    },
+    "validation": "All six1920x1080 mockups and2160x970 comparison inspected; original source artwork unchanged. Static source compositions, not runtime screenshots.",
+    "selected_option": "B",
+    "selection_date": "2026-10-23",
+    "integration_caveat": "Resolve right-side Clogfather overlap while preserving normal player HUD and attack visibility.",
+    "runtime_registration": "assets/ui/boss-hud-right-v1/manifest.json",
+    "source_review": "Approved final0.9 worldscale+offset0,54; dedicated96pxsidebar; both persistent source compositions reviewed. Runtime validation Engineering-owned."
+  },
+  "boss_title_reveal_options": {
+    "status": "Four source concepts delivered; awaiting Sean choice; no reveal runtime implementation",
+    "proposal": "design/boss-title-options/proposal.json",
+    "comparison": "design/boss-title-options/comparison-v1.png",
+    "timing": "design/boss-title-options/timing-storyboard-v1.png",
+    "prompts": "design/boss-title-options/prompts-v1.json"
   }
 }

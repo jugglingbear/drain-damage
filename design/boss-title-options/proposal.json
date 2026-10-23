@@ -1,0 +1,49 @@
+{
+  "status": "Two concepts per boss; awaiting Sean selection; reveal not authorized for implementation",
+  "created_at": "2026-10-23T11:27:15.919741-07:00",
+  "kind": "Source artwork composites, not gameplay captures",
+  "comparison": "design/boss-title-options/comparison-v1.png",
+  "timing": "design/boss-title-options/timing-storyboard-v1.png",
+  "prompts": "design/boss-title-options/prompts-v1.json",
+  "options": [
+    "skitterling-chitin",
+    "skitterling-infestation",
+    "clogfather-grease",
+    "clogfather-oil"
+  ],
+  "recommendation": [
+    "skitterling-infestation",
+    "clogfather-grease"
+  ],
+  "timing_proposal": {
+    "fade_in": 0.4,
+    "full_hold": 3,
+    "fade_out": 0.25,
+    "resume": "at fade-out start",
+    "alternative": "three seconds total reveal: .4 fade in +2.6 hold"
+  },
+  "layout": {
+    "world_scale": 0.9,
+    "world_offset": [
+      0,
+      54
+    ],
+    "sidebar": [
+      864,
+      82,
+      96,
+      458
+    ],
+    "title_max_rect": [
+      35,
+      104,
+      540,
+      180
+    ]
+  },
+  "limitations": [
+    "Static source poses; live moving threats and readability need gameplay review.",
+    "Upper-left title avoids current right boss sockets and floor; fade must be fast and no opaque veil persists on resume.",
+    "Normal player HUD retained; persistent names are fitted horizontal text, separate from reveal art."
+  ]
+}
