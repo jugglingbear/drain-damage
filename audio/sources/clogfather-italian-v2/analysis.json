@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-23",
+  "measurements": {
+    "old_music": {
+      "path": "assets/audio/music/clogfather-backpressure-v1.ogg",
+      "player_gain_db": -18,
+      "bands": {
+        "full": {
+          "rms_dbfs_at_gain": -36.67,
+          "max_100ms_rms_dbfs_at_gain": -32.41
+        },
+        "80_500hz": {
+          "rms_dbfs_at_gain": -39.26,
+          "max_100ms_rms_dbfs_at_gain": -34.81
+        },
+        "500_3500hz": {
+          "rms_dbfs_at_gain": -51.79,
+          "max_100ms_rms_dbfs_at_gain": -44.61
+        }
+      },
+      "ebur128_summary": "Integrated loudness:\n    I:         -20.8 LUFS\n    Threshold: -30.8 LUFS\n\n  Loudness range:\n    LRA:         0.9 LU\n    Threshold: -40.8 LUFS\n    LRA low:   -21.2 LUFS\n    LRA high:  -20.3 LUFS\n\n  True peak:\n    Peak:       -6.0 dBFS"
+    },
+    "new_music": {
+      "path": "assets/audio/music/clogfather-italian-battle-v2.ogg",
+      "player_gain_db": -16,
+      "bands": {
+        "full": {
+          "rms_dbfs_at_gain": -27.88,
+          "max_100ms_rms_dbfs_at_gain": -24.32
+        },
+        "80_500hz": {
+          "rms_dbfs_at_gain": -31.98,
+          "max_100ms_rms_dbfs_at_gain": -27.51
+        },
+        "500_3500hz": {
+          "rms_dbfs_at_gain": -31.83,
+          "max_100ms_rms_dbfs_at_gain": -28.93
+        }
+      },
+      "ebur128_summary": "Integrated loudness:\n    I:         -12.4 LUFS\n    Threshold: -22.4 LUFS\n\n  Loudness range:\n    LRA:         1.5 LU\n    Threshold: -32.4 LUFS\n    LRA low:   -13.3 LUFS\n    LRA high:  -11.8 LUFS\n\n  True peak:\n    Peak:       -1.7 dBFS"
+    },
+    "pressure_warning": {
+      "path": "assets/audio/sfx/clogfather-v1/pressure-warning.wav",
+      "player_gain_db": -5,
+      "bands": {
+        "full": {
+          "rms_dbfs_at_gain": -28.08,
+          "max_100ms_rms_dbfs_at_gain": -26.23
+        },
+        "80_500hz": {
+          "rms_dbfs_at_gain": -29.28,
+          "max_100ms_rms_dbfs_at_gain": -27.24
+        },
+        "500_3500hz": {
+          "rms_dbfs_at_gain": -36.83,
+          "max_100ms_rms_dbfs_at_gain": -34.46
+        }
+      }
+    },
+    "acid_warning": {
+      "path": "assets/audio/sfx/clogfather-v1/acid-warning.wav",
+      "player_gain_db": -5,
+      "bands": {
+        "full": {
+          "rms_dbfs_at_gain": -32.27,
+          "max_100ms_rms_dbfs_at_gain": -30.44
+        },
+        "80_500hz": {
+          "rms_dbfs_at_gain": -37.4,
+          "max_100ms_rms_dbfs_at_gain": -35.3
+        },
+        "500_3500hz": {
+          "rms_dbfs_at_gain": -34.59,
+          "max_100ms_rms_dbfs_at_gain": -32.68
+        }
+      }
+    },
+    "reinforcement_warning": {
+      "path": "assets/audio/sfx/clogfather-v1/groan-b.wav",
+      "player_gain_db": -5,
+      "bands": {
+        "full": {
+          "rms_dbfs_at_gain": -26.36,
+          "max_100ms_rms_dbfs_at_gain": -24.35
+        },
+        "80_500hz": {
+          "rms_dbfs_at_gain": -29.61,
+          "max_100ms_rms_dbfs_at_gain": -27.46
+        },
+        "500_3500hz": {
+          "rms_dbfs_at_gain": -45.2,
+          "max_100ms_rms_dbfs_at_gain": -42.91
+        }
+      }
+    },
+    "swarm_maximum": {
+      "path": "assets/audio/sfx/sewer-fly-buzz-v1/swarm-loop.wav",
+      "player_gain_db": -8,
+      "bands": {
+        "full": {
+          "rms_dbfs_at_gain": -35.25,
+          "max_100ms_rms_dbfs_at_gain": -33.17
+        },
+        "80_500hz": {
+          "rms_dbfs_at_gain": -35.81,
+          "max_100ms_rms_dbfs_at_gain": -33.69
+        },
+        "500_3500hz": {
+          "rms_dbfs_at_gain": -45.74,
+          "max_100ms_rms_dbfs_at_gain": -43.91
+        }
+      }
+    },
+    "weapon_310hz": {
+      "peak_dbfs": -22.5,
+      "rms_dbfs": -24.74,
+      "duration_seconds": 0.055
+    },
+    "weapon_110hz": {
+      "peak_dbfs": -22.5,
+      "rms_dbfs": -24.74,
+      "duration_seconds": 0.055
+    }
+  },
+  "method": "FFmpeg ebur128 true peak at native rate; band RMS via two-pole high/lowpass and8kHz analysis decode. 100ms nonoverlapping block maxima are conservative time-density comparisons, not simultaneous perceptual masking measurements.",
+  "limitations": "No audition; warning masking and device variation require listening.",
+  "loop_validation": {
+    "decoded_frames": 1536000,
+    "expected_frames": 1536000,
+    "decoded_duration_seconds": 48.0,
+    "vorbis_boundary_step_dbfs": -47.74,
+    "max_internal_step_dbfs": -1.03,
+    "pcm_boundary_step": 588,
+    "pcm_internal_max_step": 29310,
+    "method": "Circular note tails and echo. Exact decoded48s with no extra silence; boundary step below internal musical transients. Perceptual seam not auditioned."
+  },
+  "mix_proposal": {
+    "runtime_gain_db": -16,
+    "warning_duck_additional_db": -12,
+    "warning_duck_scope": "Engineering approved: immediate -12dB duck during authoritative volley_warning, acid_warning, pressure_warning and last.75s recovery closing tell;200ms release to normal. Use greatest attenuation min(dialogue-4dB, warning-12dB), never additive. Freeze envelope while paused. No SFX gain changes.",
+    "normal_effective_lufs": -28.4,
+    "warning_effective_lufs": -40.4,
+    "old_effective_lufs": -38.8,
+    "audibility_change_lu": 10.4,
+    "normal_effective_true_peak_dbfs": -17.7,
+    "warning_margin": "At gain-28, music max100ms full-36.32/mid-40.93/low-39.51; acid warning max full-30.44/mid-32.68; pressure/groan low approx-27.3. Numeric margins do not certify perception.",
+    "other_sources": "Swarmmax RMS-35.25; weapon shot55ms RMS-24.74 peak-22.5. Strong shot transients remain competing sound; no unauthorized weapon/swarm changes.",
+    "status": "Engineering approved/frozen"
+  },
+  "reproducibility": {
+    "preview_sha256": "d8e9582fdf953a5e13d6329c92b3cc2acbcf5bf7b0d2a1b9b845d223a744b23f",
+    "pcm_repeated_render_matches": true,
+    "codec_note": "Vorbis container serial can vary across encoding; final frozen file SHA identifies exact delivery."
+  },
+  "aggregate_peak_bound": {
+    "method": "Conservative aligned absolute peak sum, not measured simultaneous gameplay. Three nonterminal boss voices at-17dBFS max each (warning/hurt/effect); death cancels others. Vorbis truepeak-1.7 plus musicgain-16; swarm renderedpeak-18 plusgain-8; one generated weapon tone amplitude.075.",
+    "normal_linear_sum": 0.6792,
+    "normal_dbfs_bound": -3.36,
+    "warning_duck_linear_sum": 0.5816,
+    "warning_duck_dbfs_bound": -4.71,
+    "scope_limit": "This bound excludes additional creature hit/death voices, hero hurt/death, doors/dispenser and other simultaneous sources. It does not certify global Master no-clipping under every game state. Engineering runtime stress test and permitted listening remain required."
+  }
+}

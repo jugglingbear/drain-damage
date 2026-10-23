@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "title": "Clogfather \u2014 Pressure Tarantella",
+  "date": "2026-10-23",
+  "bpm": 160,
+  "bars": 32,
+  "duration_seconds": 48.0,
+  "loop": true,
+  "runtime": "assets/audio/music/clogfather-italian-battle-v2.ogg",
+  "preview": "audio/sources/clogfather-italian-v2/italian-battle-v2-preview.wav",
+  "format": {
+    "sample_rate": 32000,
+    "channels": 1,
+    "source_pcm_bits": 16,
+    "runtime_codec": "Vorbis q6"
+  },
+  "provenance": "Original composition and deterministic sample-free synthesis; no borrowed melody, recordings, soundfonts or third-party instrument samples.",
+  "production": "Synthetic mandolin-like tremolo, reed/accordion-like chords, low brass-like support, kick/snare/tambourine-like percussion. Instrument approximations, not recordings.",
+  "composition": "New eight-bar syncopated D-minor/harmonic-minor motif, four arranged sections, dominant final bar resolving into first tonic. No Godfather theme reference.",
+  "loop_method": "Integer bars/beats, circular note tails and room echoes; no fade-to-silence seam.",
+  "generator": "audio/sources/clogfather-italian-v2/generate.py",
+  "generator_sha256": "c7f3f297ea86a6345687605b910fe4c9e2bdd77552f835689f457834e1560c55",
+  "runtime_sha256": "6a1e391b5ebb76b876623506dd93d844a9a411f8e9cbf1b22e7db2330ecaeb48",
+  "preview_sha256": "d8e9582fdf953a5e13d6329c92b3cc2acbcf5bf7b0d2a1b9b845d223a744b23f",
+  "pcm_boundary_step": 588,
+  "pcm_max_internal_step": 29310,
+  "status": "Frozen asset delivery; Engineering approved path48s/gain-16 and warningduck-12; runtime/listening pending",
+  "analysis": "audio/sources/clogfather-italian-v2/analysis.json",
+  "approved_runtime_gain_db": -16,
+  "approved_warning_duck_db": -12
+}

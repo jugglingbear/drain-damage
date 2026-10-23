@@ -27,6 +27,8 @@ func attach(host: Node2D) -> void:
 
 func reset(seed_value: int) -> void:
 	clear_reinforcements()
+	if is_instance_valid(owner_host) and owner_host.music_director != null:
+		owner_host.music_director.set_combat_warning(false)
 	spawned_wave = -1
 	encounter.reset(seed_value)
 	audio.stop()
@@ -39,7 +41,14 @@ func frozen(host: Node2D) -> bool:
 	return host.paused or host.dialogue.active or host.dialogue.release_guard > 0 \
 		or host.dispenser.active or host.won or host.life_state != "alive"
 
+func sync_music_warning(host: Node2D) -> void:
+	if host.music_director == null: return
+	var warning := encounter.state in ["volley_warning","acid_warning","pressure_warning"] \
+		or (encounter.state == "recovery" and encounter.elapsed >= 4.25)
+	host.music_director.set_combat_warning(entered and encounter.active and warning)
+
 func process_audio(host: Node2D, delta: float) -> void:
+	sync_music_warning(host)
 	audio.set_paused(frozen(host))
 	audio.tick(delta)
 
@@ -85,6 +94,7 @@ func flush_events(host: Node2D) -> void:
 	host.boss_hud.update_hp(encounter.hp)
 	var events := encounter.drain_events()
 	art.events(events)
+	sync_music_warning(host)
 	audio.handle_events(events)
 	if events.has("pressure_cleared") or events.has("death_started") or events.has("boss_defeated"):
 		clear_reinforcements()
