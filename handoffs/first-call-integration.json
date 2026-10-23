@@ -233,6 +233,20 @@
       96,
       458
     ],
-    "title_reveal": "Concepts preserved only; no entrance freeze/fade implemented."
+    "title_reveal": "Selected white Skitterling and goopy Clogfather lettering; revised full-viewport centering and timing confirmation pending. Not implemented in Prototype94.",
+    "pending_introduction_requirements": {
+      "visible_center": [
+        480,
+        270
+      ],
+      "coordinate_space": "Full960x540 viewport; trim transparent padding before centering",
+      "selected_art": [
+        "design/boss-title-options/skitterling-infestation-v1.png",
+        "design/boss-title-options/clogfather-grease-v1.png"
+      ],
+      "persistent_name_policy": "Remove right-side boss-name text for both bosses only in the same delivery as the centered reveal. Retain vertical meters and unchanged normal player HUD. Prototype94 keeps names.",
+      "pause_resume": "Pause gameplay during introduction; resume immediately at fade-out start.",
+      "unresolved": "Three seconds including fade-in versus a full three-second hold after fade-in; revised mockup confirmation."
+    }
   }
 }
