@@ -229,6 +229,11 @@ The project-local editor is in `.tools/Godot.app`. Import `project.godot` to edi
 The opening screen in `scripts/title_screen.gd` plays a repeating CC0 retro music cue.
 Music provenance, adaptation details, and the Storyboarding brief are in `audio/title-music.json`.
 The original recording and previous synthesized sting source are preserved under `audio/sources/`.
+
+[Open all weapon sound auditions](drain-damage-all-weapon-auditions.html) from the repository root.
+The self-contained page preserves every audition for later comparison. Prototype 97 uses T11 Water gush for Tony
+and S1 Suction pop for Sean, as selected by Sean; the original sources and all 34 WAVs remain under `audio/sources/`.
+
 For small agent-only previews, launch with `-- --agent-test`; normal launches remain maximized.
 Movement, combat, and synthesized sound are in `scripts/game.gd`.
 Authored terrain and solid-body collision are in `scripts/first_call.gd`; finite encounter accounting is in
