@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "title": "Clogfather \u2014 Festering Pressure",
+  "date": "2026-10-23",
+  "duration_seconds": 48.0,
+  "pulse_bpm": 80,
+  "loop": true,
+  "seed": 96023,
+  "runtime": "assets/audio/music/clogfather-festering-v3.ogg",
+  "runtime_sha256": "2962cb87de07176c6eefcd5f07b7af5dea035d2593fe568bc7b6c422bca4c433",
+  "preview": {
+    "path": "audio/sources/clogfather-festering-v3/preview.wav",
+    "duration_seconds": 48.0,
+    "peak_dbfs": -3,
+    "rms_dbfs": -15.29,
+    "sha256": "745f1c699f428abb9698a679d2f42db1043940f90891282a6a5b68b57b85872b",
+    "boundary_step_pcm": 129,
+    "max_internal_step_pcm": 1574
+  },
+  "cues": [
+    {
+      "path": "assets/audio/sfx/clogfather-festering-v3/ambient-roar.wav",
+      "duration_seconds": 1.65,
+      "peak_dbfs": -15,
+      "rms_dbfs": -26.15,
+      "sha256": "fc8ad46fb79656dfdd2ac5938148c69734bb75add3ec57887ea84b5fed6f061c",
+      "boundary_step_pcm": 0,
+      "max_internal_step_pcm": 717,
+      "cue_id": "ambient-roar",
+      "gain_db": -8,
+      "loop": false
+    },
+    {
+      "path": "assets/audio/sfx/clogfather-festering-v3/reactive-roar.wav",
+      "duration_seconds": 1.25,
+      "peak_dbfs": -15,
+      "rms_dbfs": -25.93,
+      "sha256": "6f445995e8030625a9b70c8be7bffebec83215b74f596a63f874e4eab19b51ab",
+      "boundary_step_pcm": 0,
+      "max_internal_step_pcm": 758,
+      "cue_id": "reactive-roar",
+      "gain_db": -6,
+      "loop": false
+    }
+  ],
+  "format": {
+    "sample_rate": 32000,
+    "channels": 1,
+    "pcm_bits": 16
+  },
+  "provenance": "Original deterministic sample-free composition/synthesis; no recordings, voices, soundfonts, borrowed melodies or third-party samples.",
+  "production": "Low beating clusters, pressure pulses, irregular wet resonances, scraping drone and filtered bubbling. Roars are synthetic pressure, not human or animal voices.",
+  "loop_method": "Periodic oscillators/modulation, wrapped grain tails and echoes; no end fade.",
+  "generator": "audio/sources/clogfather-festering-v3/generate.py",
+  "generator_sha256": "970a175b0ff1fe4888fb244d21ecac60522424e41dda0de6b1f73941da577a5f",
+  "status": "Frozen delivery candidate; focused headless tests pass; host/package/listening pending",
+  "runtime_gain_db": -10,
+  "warning_duck_db": -12,
+  "analysis": "audio/sources/clogfather-festering-v3/analysis.json"
+}

@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-23",
+  "measurements_at_runtime_gain": {
+    "music": {
+      "full": {
+        "rms_dbfs_at_gain": -25.27,
+        "max_100ms_rms_dbfs_at_gain": -20.08
+      },
+      "80_500hz": {
+        "rms_dbfs_at_gain": -32.75,
+        "max_100ms_rms_dbfs_at_gain": -27.71
+      },
+      "500_3500hz": {
+        "rms_dbfs_at_gain": -47.42,
+        "max_100ms_rms_dbfs_at_gain": -40.25
+      }
+    },
+    "ambient_roar": {
+      "full": {
+        "rms_dbfs_at_gain": -34.17,
+        "max_100ms_rms_dbfs_at_gain": -31.41
+      },
+      "80_500hz": {
+        "rms_dbfs_at_gain": -38.05,
+        "max_100ms_rms_dbfs_at_gain": -35.11
+      },
+      "500_3500hz": {
+        "rms_dbfs_at_gain": -48.53,
+        "max_100ms_rms_dbfs_at_gain": -45.92
+      }
+    },
+    "reactive_roar": {
+      "full": {
+        "rms_dbfs_at_gain": -31.95,
+        "max_100ms_rms_dbfs_at_gain": -29.69
+      },
+      "80_500hz": {
+        "rms_dbfs_at_gain": -34.07,
+        "max_100ms_rms_dbfs_at_gain": -31.56
+      },
+      "500_3500hz": {
+        "rms_dbfs_at_gain": -45.18,
+        "max_100ms_rms_dbfs_at_gain": -42.85
+      }
+    }
+  },
+  "ebur128": "Integrated loudness:\n    I:         -19.9 LUFS\n    Threshold: -29.9 LUFS\n\n  Loudness range:\n    LRA:         8.7 LU\n    Threshold: -39.9 LUFS\n    LRA low:   -25.2 LUFS\n    LRA high:  -16.6 LUFS\n\n  True peak:\n    Peak:       -2.9 dBFS",
+  "gain_db": -10,
+  "warning_duck_db": -12,
+  "effective_lufs": -29.9,
+  "effective_warning_lufs": -41.9,
+  "effective_true_peak_dbfs": -12.9,
+  "loop": {
+    "decoded_frames": 1536000,
+    "duration_seconds": 48.0,
+    "boundary_step_dbfs": -69.04,
+    "max_internal_step_dbfs": -25.91,
+    "construction": "Periodic frequencies/modulation with wrapped wet grains/echo. Exact48s, no fade or extra silence; perceptual seam unauditioned."
+  },
+  "warnings": "Retain authoritative warningduck-12, immediate attack/.2s release, min with dialogue-4 not additive. Roars preempted during full warning states.",
+  "aggregate_bound": "Conservative3bossnonterminalvoices each-17dBFS + musicTP-12.9 + swarmpeak-26 + oneweaponpeak-22.5 = -2.21dBFS. Excludes other creature/hero/door sources; not global no-clipping assurance. Roars peaks-23ambient/-21reactive are below replaced effects bound.",
+  "provenance": "Original procedural synthesis; no thirdparty samples. Previousv2hash verified untouched.",
+  "limitations": "No audition, perceived menace/wetness/mix not approved. Technical levels and source controls only."
+}

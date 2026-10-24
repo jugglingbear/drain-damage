@@ -17,7 +17,7 @@ func run_checks() -> void:
 	assert(director.current == "clogfather" and director.player.stream.loop)
 	assert(absf(director.player.stream.get_length()-48.0) < .02)
 	assert(is_equal_approx(director.player.volume_db,director.BOSS_GAIN_DB))
-	assert(director.CLOGFATHER.resource_path.ends_with("clogfather-italian-battle-v2.ogg"))
+	assert(director.CLOGFATHER.resource_path.ends_with("clogfather-festering-v3.ogg"))
 	assert(director.transition == null)
 	assert(director.get_child_count() == 1)
 	director.set_muted(true)

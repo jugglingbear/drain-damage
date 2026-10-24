@@ -3,10 +3,10 @@ extends Node
 
 const TITLE = preload("res://assets/audio/music/it-takes-a-hero-v1.ogg")
 const LEVEL = preload("res://assets/audio/music/hallow-quest-16-bit-v1.ogg")
-const CLOGFATHER = preload("res://assets/audio/music/clogfather-italian-battle-v2.ogg")
+const CLOGFATHER = preload("res://assets/audio/music/clogfather-festering-v3.ogg")
 const TITLE_GAIN_DB := -16.0
 const LEVEL_GAIN_DB := -20.0
-const BOSS_GAIN_DB := -16.0
+const BOSS_GAIN_DB := -10.0
 const WARNING_DUCK_DB := -12.0
 const FADE_SECONDS := 0.25
 var player := AudioStreamPlayer.new()

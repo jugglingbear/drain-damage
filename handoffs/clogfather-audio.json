@@ -129,12 +129,12 @@
   ],
   "music": {
     "id": "clogfather",
-    "title": "Pressure Tarantella",
-    "path": "assets/audio/music/clogfather-italian-battle-v2.ogg",
-    "duration_seconds": 48.0,
-    "bpm": 160,
+    "title": "Festering Pressure",
+    "path": "assets/audio/music/clogfather-festering-v3.ogg",
+    "duration_seconds": 48,
+    "bpm": 80,
     "loop": true,
-    "gain_db": -16,
+    "gain_db": -10,
     "provenance": "audio/sources/clogfather-italian-v2/manifest.json",
     "transition": "Use existing single-voice music director; switch on encounter start, stop on exit/defeat.",
     "retry": "Restart boss track on encounter retry; do not overlap Hallow Quest.",
@@ -175,6 +175,14 @@
       "collapse"
     ],
     "acid_impact": [
+      "sludge-impact-a",
+      "sludge-impact-b"
+    ],
+    "gas_destroyed": [
+      "sludge-impact-a",
+      "sludge-impact-b"
+    ],
+    "gas_damaged": [
       "sludge-impact-a",
       "sludge-impact-b"
     ]
@@ -261,5 +269,18 @@
     "transition": "Use existing single-voice music director; switch on encounter start, stop on exit/defeat.",
     "retry": "Restart boss track on encounter retry; do not overlap Hallow Quest.",
     "after_defeat": "Return to level music or silence per encounter owner; no victory/portal implication."
+  },
+  "festering_revision": {
+    "date": "2026-10-23",
+    "manifest": "audio/sources/clogfather-festering-v3/manifest.json",
+    "analysis": "audio/sources/clogfather-festering-v3/analysis.json",
+    "preview": "audio/sources/clogfather-festering-v3/preview.wav",
+    "status": "source_and_focused_tests_ready_host_build_pending",
+    "direction": "Dark pressure pulses, irregular wet bubbling and low beating drones, no jaunty lead/tarantella. Original synthetic roar variants.",
+    "presence_api": "set_presence(active,warning) before tick; active entered/encounteractive/hp>0, warning authoritative full warning state+closingtell. Pause separate to preserve timers.",
+    "roars": "Ambient10/12/14/11second cadence; phase_changed reactive; shared8second cooldown; effects slot3 only if free. Skip muted/blocked events, no backlog. Full warnings preemptroar; stop/death disablespresence. No perhit roar.",
+    "validation": "clogfather_audio andclogfather_music headless PASS; preserves4SFXvoices and1musicvoice; exact48s decode, loopstep-69.04dBFS; -19.9LUFS/-2.9dBTP source. Existing tests/music.gd regression also PASS.",
+    "gaps": "No audition or final approval of atmosphere/mix; bass-heavy material requires realdevice listening. Engineering owns host/build/roadmap.",
+    "gas_audio": "gas_destroyed and optionalgas_damaged reusewetimpact variants in effects slot3, shared.12s cooldown; neverstealwarning or active roar, no newassets."
   }
 }
