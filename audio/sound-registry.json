@@ -1,0 +1,1213 @@
+{
+  "schema_version": 1,
+  "sounds": [
+    {
+      "key": "creature/clogfather/hit",
+      "id": "DD-S0001",
+      "uuid": "9479bda9-be70-4f9d-bdd4-895547b47569",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "The Clogfather \u2014 hit",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/hurt.wav"
+      ],
+      "source": "bestiary/clogfather/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/clogfather/death",
+      "id": "DD-S0002",
+      "uuid": "66841442-0252-49c0-9117-0b358d24138f",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "The Clogfather \u2014 death",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/collapse.wav"
+      ],
+      "source": "bestiary/clogfather/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/cockroach-swarm/hit",
+      "id": "DD-S0003",
+      "uuid": "7c3334f9-3fd8-4f90-8576-145e37e12bed",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 hit",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v1/hit.wav"
+      ],
+      "source": "bestiary/cockroach-swarm/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/cockroach-swarm/death",
+      "id": "DD-S0004",
+      "uuid": "146c94df-cff4-4fc7-908a-11146e406b61",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 death",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v1/death.wav"
+      ],
+      "source": "bestiary/cockroach-swarm/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/toilet/hit",
+      "id": "DD-S0005",
+      "uuid": "acae4471-cff9-47a5-b660-bf9d1563aad5",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Flushfiend \u2014 hit",
+      "paths": [
+        "assets/audio/sfx/monster-damage-v1/flushfiend-hit.wav"
+      ],
+      "source": "bestiary/flushfiend/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/toilet/death",
+      "id": "DD-S0006",
+      "uuid": "73069771-2234-4e81-8c04-4455f391ec7a",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Flushfiend \u2014 death",
+      "paths": [
+        "assets/audio/sfx/flushfiend-shatter-v1/porcelain-break.wav"
+      ],
+      "source": "bestiary/flushfiend/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/gratecrawler/hit",
+      "id": "DD-S0007",
+      "uuid": "491b3f02-3be7-427b-82bf-d0c4cf92ab3e",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Gratecrawler \u2014 hit",
+      "paths": [
+        "assets/audio/sfx/monster-damage-v1/gratecrawler-hit.wav"
+      ],
+      "source": "bestiary/gratecrawler/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/gratecrawler/death",
+      "id": "DD-S0008",
+      "uuid": "f32b8de2-bebb-4e66-ae8c-1ecbb917dade",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Gratecrawler \u2014 death",
+      "paths": [
+        "assets/audio/sfx/monster-damage-v1/gratecrawler-death.wav"
+      ],
+      "source": "bestiary/gratecrawler/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/sewer-fly-swarm/hit",
+      "id": "DD-S0009",
+      "uuid": "890a2e57-93c1-4878-bc93-0119adc4302d",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Gnatastrophe \u2014 hit",
+      "paths": [
+        "assets/audio/sfx/monster-damage-v1/swarm-hit.wav"
+      ],
+      "source": "bestiary/sewer-flies/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/sewer-fly-swarm/death",
+      "id": "DD-S0010",
+      "uuid": "b3192099-e9de-47c5-979a-4d4570a62efb",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Gnatastrophe \u2014 death",
+      "paths": [
+        "assets/audio/sfx/monster-damage-v1/swarm-death.wav"
+      ],
+      "source": "bestiary/sewer-flies/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/sputtervalve/hit",
+      "id": "DD-S0011",
+      "uuid": "f17b25c2-5f5b-4f13-b462-9db0491cccdd",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Sputtervalve \u2014 hit",
+      "paths": [
+        "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+        "assets/audio/sfx/sputtervalve-v1/hit-b.wav"
+      ],
+      "source": "bestiary/sputtervalve/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/sputtervalve/death",
+      "id": "DD-S0012",
+      "uuid": "092168c2-6e42-4e00-8bb4-cb6118226a0c",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Sputtervalve \u2014 death",
+      "paths": [
+        "assets/audio/sfx/sputtervalve-v1/death.wav"
+      ],
+      "source": "bestiary/sputtervalve/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/spider/hit",
+      "id": "DD-S0013",
+      "uuid": "3e60fb6f-6447-4660-a0f1-a0615f64986a",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "The Hallowed Widow \u2014 hit",
+      "paths": [
+        "assets/audio/sfx/monster-damage-v1/widow-hit.wav"
+      ],
+      "source": "bestiary/the-hallowed-widow/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "creature/spider/death",
+      "id": "DD-S0014",
+      "uuid": "e1c16a3d-aeb1-4a75-85c4-6e4ee3536d1a",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "The Hallowed Widow \u2014 death",
+      "paths": [
+        "assets/audio/sfx/monster-damage-v1/widow-death.wav"
+      ],
+      "source": "bestiary/the-hallowed-widow/monster.json",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/swarm_entry",
+      "id": "DD-S0015",
+      "uuid": "3315cbca-f569-43dd-8ee9-6a6cb7c33c18",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 swarm entry",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/swarm-entry.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_assembly",
+      "id": "DD-S0016",
+      "uuid": "ba0abf30-4f75-436f-97de-ae06cf82997b",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat assembly",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/insect-shriek.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/assembly_layer",
+      "id": "DD-S0017",
+      "uuid": "f95d8372-03c0-43d4-8de0-84a087cef80f",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 assembly layer",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/assembly.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_bite_warning",
+      "id": "DD-S0018",
+      "uuid": "863efffd-0081-4dbb-8db3-ffbdacacc0c3",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat bite warning",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v1/rat-warning.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_pipe_hide",
+      "id": "DD-S0019",
+      "uuid": "980dc5e4-72f6-4c74-b7fc-668cb5cc097e",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat pipe hide",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/swarm-entry.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/pipe_warning",
+      "id": "DD-S0020",
+      "uuid": "9858ffd9-62a5-4b77-baaf-3884dbe0022e",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 pipe warning",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/pipe-warning.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/pipe_launch",
+      "id": "DD-S0021",
+      "uuid": "7bf178a9-f80a-4fc3-8bae-06054474ab37",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 pipe launch",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/pipe-launch.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/pipe_land",
+      "id": "DD-S0022",
+      "uuid": "58bcf08f-f6ca-4da8-8d61-82df8f59bb66",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 pipe land",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/landing.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_phase_defeat",
+      "id": "DD-S0023",
+      "uuid": "f4d598f5-bea6-4dd3-b526-d8f255931f98",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat phase defeat",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/rat-false-collapse.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/alligator_assembly",
+      "id": "DD-S0024",
+      "uuid": "667fcb66-7510-4f46-b149-d1bb6c47e05e",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 alligator assembly",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/assembly.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/alligator_jaw_warning",
+      "id": "DD-S0025",
+      "uuid": "d616a149-7d45-40ce-9173-48d52d009c11",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 alligator jaw warning",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v1/alligator-warning.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/water_dive",
+      "id": "DD-S0026",
+      "uuid": "2f8fffae-2e1b-4f4b-b939-0df7eea810d4",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 water dive",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/water-dive.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/water_emerge",
+      "id": "DD-S0027",
+      "uuid": "d99eb7d3-3cc5-4ad5-970d-8cb62bf0948b",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 water emerge",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/water-emerge.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/tail_warning",
+      "id": "DD-S0028",
+      "uuid": "4873236f-bc15-4c47-b5b2-ef143276cb8d",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 tail warning",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/tail-warning.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/debris_release",
+      "id": "DD-S0029",
+      "uuid": "b8e6abd4-5660-422c-976f-f4c4deead371",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 debris release",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/debris-release.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/debris_impact",
+      "id": "DD-S0030",
+      "uuid": "eec372c1-6cf1-4aca-b4d4-7295dfbc80be",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 debris impact",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/debris-impact.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/jaw_snap",
+      "id": "DD-S0031",
+      "uuid": "c8fd379c-5a05-4f95-a046-974505516b50",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 jaw snap",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/debris-release.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_climb",
+      "id": "DD-S0032",
+      "uuid": "be89df31-27b5-4aca-9264-71551ab1920a",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat climb",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/swarm-entry.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_pounce_warning",
+      "id": "DD-S0033",
+      "uuid": "9fd8bf92-95a8-472b-b2a0-6990f2780442",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat pounce warning",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v3/rat-insect-pounce-warning.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_pounce",
+      "id": "DD-S0034",
+      "uuid": "2410676b-c0c7-4c2e-ae9f-c13858cf1cb9",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat pounce",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/pipe-launch.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_pounce_land",
+      "id": "DD-S0035",
+      "uuid": "835185c0-3a38-470c-a936-d36aab6fa705",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat pounce land",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/landing.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_rush_warning",
+      "id": "DD-S0036",
+      "uuid": "23466dc1-33c4-4682-9d98-ef783f7c083b",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat rush warning",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v1/rat-warning.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/rat_rush",
+      "id": "DD-S0037",
+      "uuid": "78725de0-6ab4-4b6e-a6fc-5b219bccce22",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 rat rush",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/swarm-entry.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/alligator_tail_warning",
+      "id": "DD-S0038",
+      "uuid": "baa2968e-923c-4de6-89d1-2feba5f8e525",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 alligator tail warning",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/tail-warning.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/alligator_tail_sweep",
+      "id": "DD-S0039",
+      "uuid": "e2bbdd04-77e6-4e8d-ace6-746a3be2e27d",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 alligator tail sweep",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v2/debris-release.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/formed-loop",
+      "id": "DD-S0040",
+      "uuid": "b6c8549e-ccb4-4639-a1a3-cb11cbf335bd",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 formed-loop",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v1/formed-loop.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "skitterling/dispersed-loop",
+      "id": "DD-S0041",
+      "uuid": "a9b5d4dc-b746-4438-8be5-c4b68a6cf319",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Skitterling \u2014 dispersed-loop",
+      "paths": [
+        "assets/audio/sfx/cockroach-swarm-v1/dispersed-loop.wav"
+      ],
+      "source": "scripts/skitterling_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/volley_warning",
+      "id": "DD-S0042",
+      "uuid": "e15d0ebc-74ed-401d-ae33-3e306394c13a",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 volley warning",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/pressure-warning.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/acid_warning",
+      "id": "DD-S0043",
+      "uuid": "eba35f1d-f04c-431b-a6b2-c67c120f2cfb",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 acid warning",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/acid-warning.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/gas_warning",
+      "id": "DD-S0044",
+      "uuid": "1e06ad9a-1584-4f13-9ef1-5e14ecbdf315",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 gas warning",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/pressure-warning.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/gas_started",
+      "id": "DD-S0045",
+      "uuid": "7324edbd-ada4-4153-896f-2f223a12360c",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 gas started",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/sludge-fire-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/reinforcements_warning",
+      "id": "DD-S0046",
+      "uuid": "5bc0503a-962c-4b1c-b13b-7ed90b75df80",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 reinforcements warning",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/groan-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/projectile_spawn",
+      "id": "DD-S0047",
+      "uuid": "e6052fcb-9fb3-47c6-919b-0a896f8026fc",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 projectile spawn",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/sludge-fire-a.wav",
+        "assets/audio/sfx/clogfather-v1/sludge-fire-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/projectile_hit",
+      "id": "DD-S0048",
+      "uuid": "09eb6893-641f-4895-8471-95b5157675a7",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 projectile hit",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/sludge-impact-a.wav",
+        "assets/audio/sfx/clogfather-v1/sludge-impact-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/acid_impact",
+      "id": "DD-S0049",
+      "uuid": "104e13ff-a2f1-4488-8c32-16b6c9880578",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 acid impact",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/sludge-impact-a.wav",
+        "assets/audio/sfx/clogfather-v1/sludge-impact-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/gas_destroyed",
+      "id": "DD-S0050",
+      "uuid": "4c03a2a6-2139-4141-9f0a-ab30e5ca0bdd",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 gas destroyed",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/sludge-impact-a.wav",
+        "assets/audio/sfx/clogfather-v1/sludge-impact-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/gas_damaged",
+      "id": "DD-S0051",
+      "uuid": "72a21e4e-127f-42bb-bba4-5ff94d85d62e",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 gas damaged",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/sludge-impact-a.wav",
+        "assets/audio/sfx/clogfather-v1/sludge-impact-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/idle_optional",
+      "id": "DD-S0052",
+      "uuid": "91330e70-bb18-4e3d-8ece-525cae8921b9",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 idle optional",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/groan-b.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/major_stagger",
+      "id": "DD-S0053",
+      "uuid": "000d307e-077b-4637-9b8c-4862fe51215c",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 major stagger",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/groan-a.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/weak_point_open",
+      "id": "DD-S0054",
+      "uuid": "1cc08727-f236-4bf6-8802-7d4f45daff12",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 weak point open",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/weak-point-open.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/closed_shell_hit",
+      "id": "DD-S0055",
+      "uuid": "8c05782d-e7aa-4e9d-bd32-1d9abdd599a9",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 closed shell hit",
+      "paths": [
+        "assets/audio/sfx/clogfather-v1/armored-hit.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/ambient_roar",
+      "id": "DD-S0056",
+      "uuid": "c74bea79-04e4-4b3a-bcdf-af50e5b0bd89",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 ambient roar",
+      "paths": [
+        "assets/audio/sfx/clogfather-festering-v3/ambient-roar.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "clogfather/reactive_roar",
+      "id": "DD-S0057",
+      "uuid": "5a2e3c8e-5e24-4b8c-b0f1-348b22e3eae7",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Clogfather \u2014 reactive roar",
+      "paths": [
+        "assets/audio/sfx/clogfather-festering-v3/reactive-roar.wav"
+      ],
+      "source": "scripts/clogfather_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "hero_death_audio.gd/0",
+      "id": "DD-S0058",
+      "uuid": "7a07ae75-c502-4ba1-a3a1-b107b5441930",
+      "alternatives": [],
+      "section": "Hero sounds \u2014 Sean and Tony",
+      "name": "Sean and Tony \u2014 death flush \u2014 toilet-flush",
+      "paths": [
+        "assets/audio/sfx/player-death-flush-v1/toilet-flush.wav"
+      ],
+      "source": "scripts/hero_death_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "swarm_audio.gd/0",
+      "id": "DD-S0059",
+      "uuid": "cbbd6cd0-9e06-48a1-85a6-24d2f4cb4f79",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Gnatastrophe \u2014 ambient swarm \u2014 swarm-loop",
+      "paths": [
+        "assets/audio/sfx/sewer-fly-buzz-v1/swarm-loop.wav"
+      ],
+      "source": "scripts/swarm_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "flushfiend_death_audio.gd/0",
+      "id": "DD-S0060",
+      "uuid": "adb489bb-7232-4627-9f52-47ccfe3c65b5",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Flushfiend \u2014 porcelain shatter \u2014 porcelain-break",
+      "paths": [
+        "assets/audio/sfx/flushfiend-shatter-v1/porcelain-break.wav"
+      ],
+      "source": "scripts/flushfiend_death_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "door_audio.gd/0",
+      "id": "DD-S0061",
+      "uuid": "1f0b0e9c-e74a-4095-ad7d-b492a4a94582",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Progress door \u2014 latch",
+      "paths": [
+        "assets/audio/sfx/sliding-progress-door-v1/latch.wav"
+      ],
+      "source": "scripts/door_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "door_audio.gd/1",
+      "id": "DD-S0062",
+      "uuid": "541f3e14-3d03-487b-b4f0-31c36b8cb22e",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Progress door \u2014 motor-slide",
+      "paths": [
+        "assets/audio/sfx/sliding-progress-door-v1/motor-slide.wav"
+      ],
+      "source": "scripts/door_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "door_audio.gd/2",
+      "id": "DD-S0063",
+      "uuid": "21ad20c7-042a-405b-9c10-b1d486331907",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Progress door \u2014 end-stop",
+      "paths": [
+        "assets/audio/sfx/sliding-progress-door-v1/end-stop.wav"
+      ],
+      "source": "scripts/door_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "title_screen.gd/0",
+      "id": "DD-S0064",
+      "uuid": "2c58b09e-6834-4f53-adfb-bd15f47fa60c",
+      "alternatives": [],
+      "section": "Menus and shared sounds",
+      "name": "Menu navigation \u2014 wrench-clink",
+      "paths": [
+        "assets/audio/sfx/menu-navigation-v1/wrench-clink.wav"
+      ],
+      "source": "scripts/title_screen.gd",
+      "status": "current"
+    },
+    {
+      "key": "music_director.gd/0",
+      "id": "DD-S0065",
+      "uuid": "5cf2308c-a2a9-47df-b30f-db09af4476a3",
+      "alternatives": [],
+      "section": "Menus and shared sounds",
+      "name": "Music \u2014 it-takes-a-hero-v1",
+      "paths": [
+        "assets/audio/music/it-takes-a-hero-v1.ogg"
+      ],
+      "source": "scripts/music_director.gd",
+      "status": "current"
+    },
+    {
+      "key": "music_director.gd/1",
+      "id": "DD-S0066",
+      "uuid": "56ad2b26-be08-4d66-a826-33928daaf855",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Music \u2014 hallow-quest-16-bit-v1",
+      "paths": [
+        "assets/audio/music/hallow-quest-16-bit-v1.ogg"
+      ],
+      "source": "scripts/music_director.gd",
+      "status": "current"
+    },
+    {
+      "key": "music_director.gd/2",
+      "id": "DD-S0067",
+      "uuid": "cf47a586-1416-47ce-9979-173c714c4a33",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Music \u2014 clogfather-festering-v3",
+      "paths": [
+        "assets/audio/music/clogfather-festering-v3.ogg"
+      ],
+      "source": "scripts/music_director.gd",
+      "status": "current"
+    },
+    {
+      "key": "weapon/tony/shot",
+      "id": "DD-S0068",
+      "uuid": "921d4cb8-9fe0-4400-a1ff-af3f2d8b577c",
+      "alternatives": [
+        {
+          "id": "DD-S0068.1",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/T1.wav",
+          "name": "Quick spray (original T1)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/T1-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.2",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/T2.wav",
+          "name": "Pressure punch (original T2)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/T2-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.3",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/T3.wav",
+          "name": "Fine jet (original T3)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/T3-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.4",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/T4.wav",
+          "name": "Wet sputter (original T4)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/T4-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.5",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/T5.wav",
+          "name": "Hose pulse (original T5)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/T5-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.6",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/T6.wav",
+          "name": "Droplet snap (original T6)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/T6-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.7",
+          "path": "audio/sources/starter-weapons-audition-v1/water-round-2/T7.wav",
+          "name": "Splash jet (original T7)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/water-round-2/T7-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.8",
+          "path": "audio/sources/starter-weapons-audition-v1/water-round-2/T8.wav",
+          "name": "Bubbling squirt (original T8)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/water-round-2/T8-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.9",
+          "path": "audio/sources/starter-weapons-audition-v1/water-round-2/T9.wav",
+          "name": "Sloshing burst (original T9)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/water-round-2/T9-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.10",
+          "path": "audio/sources/starter-weapons-audition-v1/water-round-2/T10.wav",
+          "name": "Droplet spray (original T10)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/water-round-2/T10-repeat.wav"
+        },
+        {
+          "id": "DD-S0068.11",
+          "path": "audio/sources/starter-weapons-audition-v1/water-round-2/T11.wav",
+          "name": "Water gush (original T11)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/water-round-2/T11-repeat.wav"
+        }
+      ],
+      "section": "Weapon sounds",
+      "name": "Tony \u2014 starter weapon shot",
+      "paths": [
+        "assets/audio/sfx/starter-weapons-v1/tony-water-gush.wav"
+      ],
+      "source": "scripts/starter_weapon_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "weapon/sean/shot",
+      "id": "DD-S0069",
+      "uuid": "9789fc57-0ec3-4d4c-9560-97ac0c0a391a",
+      "alternatives": [
+        {
+          "id": "DD-S0069.1",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/S1.wav",
+          "name": "Suction pop (original S1)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/S1-repeat.wav"
+        },
+        {
+          "id": "DD-S0069.2",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/S2.wav",
+          "name": "Rubber thump (original S2)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/S2-repeat.wav"
+        },
+        {
+          "id": "DD-S0069.3",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/S3.wav",
+          "name": "Cup release (original S3)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/S3-repeat.wav"
+        },
+        {
+          "id": "DD-S0069.4",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/S4.wav",
+          "name": "Wet plop (original S4)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/S4-repeat.wav"
+        },
+        {
+          "id": "DD-S0069.5",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/S5.wav",
+          "name": "Springy plunger (original S5)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/S5-repeat.wav"
+        },
+        {
+          "id": "DD-S0069.6",
+          "path": "audio/sources/starter-weapons-audition-v1/samples/S6.wav",
+          "name": "Hollow punch (original S6)",
+          "repeated_path": "audio/sources/starter-weapons-audition-v1/samples/S6-repeat.wav"
+        }
+      ],
+      "section": "Weapon sounds",
+      "name": "Sean \u2014 starter weapon shot",
+      "paths": [
+        "assets/audio/sfx/starter-weapons-v1/sean-suction-pop.wav"
+      ],
+      "source": "scripts/starter_weapon_audio.gd",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/scan-whirr",
+      "id": "DD-S0070",
+      "uuid": "fe3a94f9-8e87-46e6-abf7-ab1544ed5f31",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 scan",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/scan-whirr.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/grab-servo",
+      "id": "DD-S0071",
+      "uuid": "1ac9bc22-8727-448a-8a2a-b22c8b89076f",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 grab",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/grab-servo.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/compression-squeak",
+      "id": "DD-S0072",
+      "uuid": "e97a6df4-d174-49d5-894e-6d958311299d",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 compress",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/compression-squeak.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/flick-whoosh",
+      "id": "DD-S0073",
+      "uuid": "46650a94-d1a0-40f9-ae5e-ce757682ad94",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 throw",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/flick-whoosh.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/screen-splat",
+      "id": "DD-S0074",
+      "uuid": "3be3b2db-1316-42e6-a1a3-f11c1eb82966",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 impact",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v2/screen-splat.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/screen-slide",
+      "id": "DD-S0075",
+      "uuid": "2765c000-98bd-47da-8acd-ac0839c044b6",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 slide",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v2/screen-slide.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/vending-motor",
+      "id": "DD-S0076",
+      "uuid": "636b06f4-bf6a-45fa-88d8-2c189c881920",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 vend",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/vending-motor.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/vending-clunk",
+      "id": "DD-S0077",
+      "uuid": "121f5df4-e04b-4678-b989-f303a5240f8d",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 emerge",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/vending-clunk.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/release-confirm",
+      "id": "DD-S0078",
+      "uuid": "e84e42ad-ddd1-4323-9d37-caf98c52b43f",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 release",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/release-confirm.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/checkpoint-stamp",
+      "id": "DD-S0079",
+      "uuid": "f47bb2ba-6eb3-48de-961d-c9abf6db63da",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 stamp",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/checkpoint-stamp.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/inspect-servo",
+      "id": "DD-S0080",
+      "uuid": "153412da-a48d-49ab-84c0-dae62769dadf",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 inspection_arm_deploy",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/grab-servo.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "dispenser/inspect-scan",
+      "id": "DD-S0081",
+      "uuid": "d04ced8d-fde8-463a-b0ce-b5fb3b87cfd7",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "Employee dispenser \u2014 inspect",
+      "paths": [
+        "assets/audio/sfx/spare-employee-dispenser-v1/scan-whirr.wav"
+      ],
+      "source": "data/combat.json#/dispenser/audio",
+      "status": "current"
+    },
+    {
+      "key": "tone/checkpoint",
+      "id": "DD-S0082",
+      "uuid": "d50e2675-30fe-45f0-be0d-de7b92f2105e",
+      "alternatives": [],
+      "section": "Level 1",
+      "name": "checkpoint",
+      "paths": [],
+      "source": "scripts/game.gd: play_tone / fill_audio",
+      "tone": [
+        540.0,
+        0.3
+      ],
+      "status": "current"
+    },
+    {
+      "key": "tone/Sean and Tony \u2014 jump",
+      "id": "DD-S0083",
+      "uuid": "c1cbfebd-823b-4546-8537-de836b249f8d",
+      "alternatives": [],
+      "section": "Hero sounds \u2014 Sean and Tony",
+      "name": "Sean and Tony \u2014 jump",
+      "paths": [],
+      "source": "scripts/game.gd: play_tone / fill_audio",
+      "tone": [
+        360.0,
+        0.08
+      ],
+      "status": "current"
+    },
+    {
+      "key": "tone/Sean and Tony \u2014 hurt",
+      "id": "DD-S0084",
+      "uuid": "12586de0-e8c1-481b-a41f-f193b9b58fcc",
+      "alternatives": [],
+      "section": "Hero sounds \u2014 Sean and Tony",
+      "name": "Sean and Tony \u2014 hurt",
+      "paths": [],
+      "source": "scripts/game.gd: play_tone / fill_audio",
+      "tone": [
+        65.0,
+        0.15
+      ],
+      "status": "current"
+    }
+  ]
+}
