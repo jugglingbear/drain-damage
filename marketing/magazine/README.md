@@ -30,7 +30,8 @@ The former name remains only in preserved historical editions, source snapshots 
 Stable creature IDs and artwork paths are unchanged. The approved layout and eight-page length remain intact;
 `current.pdf` matches edition 31. No pending Prototype 96 gameplay or music claims are included.
 Published in commit `d977865`, Pages run `40063150202`. Live PDF hash, edition/name and reciprocal Storybook links
-verified October 23. The final Storybook 96 redeployment link check awaits Engineering’s notification.
+verified October 23. Final Pages run `40063430106` succeeded for commit `c8e35a3`; live Storybook 096 and both navigation links
+were verified, with the edition 31 PDF hash unchanged.
 
 ## Edition 30 distribution accuracy — October 20, 2026
 
