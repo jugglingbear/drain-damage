@@ -29,7 +29,8 @@ Sean renamed the swarm Gnatastrophe. Current creature headings, lore and action 
 The former name remains only in preserved historical editions, source snapshots and dated edition-history notes.
 Stable creature IDs and artwork paths are unchanged. The approved layout and eight-page length remain intact;
 `current.pdf` matches edition 31. No pending Prototype 96 gameplay or music claims are included.
-Publication verification is pending Engineering’s coordinated commit and push.
+Published in commit `d977865`, Pages run `40063150202`. Live PDF hash, edition/name and reciprocal Storybook links
+verified October 23. The final Storybook 96 redeployment link check awaits Engineering’s notification.
 
 ## Edition 30 distribution accuracy — October 20, 2026
 

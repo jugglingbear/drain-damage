@@ -75,7 +75,14 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 23, 2026 · Current build: Prototype 95 / 0.95.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 23, 2026 · Current build: Prototype 96 / 0.96.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 96 — Clogfather pressure and Gnatastrophe:</strong>
+Preserve gentle Easy timing while increasing Normal and Hard pressure with double projectile rounds,
+faster shootable gas clouds and tighter acid escapes. Reinforcement waves must contain exactly two, four and eight
+Gnatastrophe swarms on Easy, Normal and Hard. Replace the jaunty music with menacing swamp atmosphere and sparse roars.
+Gnatastrophe is the approved current name for the existing swarm; stable IDs and historical originals remain intact.
+Integrated: 22 packaged regression suites, four final-export checks and 34 Python tests pass; export, signature, archive and startup verified.
+Magazine 31 is live. Human balance, listening, visual review and actual screenshots remain pending.</p>
 <p><strong>Prototype 95 — centered boss introductions:</strong>
 Selected white Skitterling and goopy Clogfather titles fade in for 0.4 seconds, hold fully visible for three seconds,
 then fade out over 0.25 seconds. Combat resumes at fade-out start. Titles appear once per boss per run;
@@ -98,7 +105,7 @@ a completed music fade. The old track started in testing; complete silence was n
 Export, signature, standalone startup, 12 packaged suites and 34 Python tests pass; live listening remains pending.
 The wider requirement for distinct boss themes remains open; this delivery covers the Clogfather.</p>
 <p><strong>Prototype 92 — Clogfather gas and reinforcements:</strong>
-Sean approved alternating drifting gas and small, capped Septic Air Force groups during the boss's closed phases.
+Sean approved alternating drifting gas and small, capped Gnatastrophe groups during the boss's closed phases.
 The existing acid, projectiles, 1,080 HP and alternating low/high weak-point opportunities remain the foundation.
 Gas uses ordinary damage and invulnerability, with a 1.2-second warning and reachable escape space.
 Full five-second weak-point windows remain clear; waves are capped at one early and two later, with no refill.
@@ -193,7 +200,7 @@ Sean's fresh Apple Silicon Mac on macOS 26.6.2. Extracted signature and headless
 including 18 full-route cases, pass. The app is ad-hoc signed and not notarized. Fresh-Mac opening, Intel/older macOS,
 live graphics/audio and human balance review remain unverified.
 <a href="https://github.com/jugglingbear/drain-damage/releases/tag/v0.81.0-test">Test download and installation guide</a>.</p>
-<p><strong>Prototype 81 — tougher Septic Air Force:</strong> Swarm health rises from 12 to 24 HP.
+<p><strong>Prototype 81 — tougher Gnatastrophe:</strong> Swarm health rises from 12 to 24 HP.
 Both active first-level starter weapons now take two hits: Sean leaves 6 HP after the first hit and Tony leaves 12.
 Seven focused packaged suites and 33 Python tests pass, including both heroes across all difficulties,
 hit/death audio, full reset and checkpoint spawning. Export, signing and ZIP checks pass.
@@ -282,7 +289,7 @@ retain all nine swarms; portal geometry/alpha/camera, health gates, upward hits/
 menu/navigation regressions pass. Export, signing, versions and ZIP integrity pass. Human balance, animation/camera feel,
 listening and clean screenshots remain pending; no game window opened.
 <a href="handoffs/skitterling-revision-delivery.json">Delivery and launch examples</a>.</p>
-<p><strong>Prototype 70 — more Septic Air Force:</strong> Eight additive swarm encounters join the original one:
+<p><strong>Prototype 70 — more Gnatastrophe:</strong> Eight additive swarm encounters join the original one:
 three in the opening, two across service areas, one overhead pump encounter and three after Skitterling. Eighteen
 packaged full-route runs saw all nine, compared with one in every matching Prototype 69 baseline run. New additions
 have their own two-actor budget, leaving existing monster plans and admission capacity intact. Visible harmless
@@ -350,7 +357,7 @@ opened; builds and capture backlog preserved. <a href="handoffs/normal-density-d
 <p><strong>Prototype 56 — visible Sputtervalve bolts:</strong> Existing violet-star artwork now draws at 64×64 with its bright core centered on the shot. Radius 4, damage 1, speed 150, cadence and warnings are unchanged. The prepared three-shooter cap is packaged without added spawns; six bullets and three patterns remain the limits. Eleven Python tests, five source Godot suites and six packaged suites pass; macOS export/signing pass. Actual visual review and storybook screenshots await permission. Body enlargement and contrast repaint remain pending.</p>
 <p><strong>Prototype 55 — selected app icon:</strong> Art’s porcelain-jaw/plunger design is integrated into the project and macOS app. Standard and Retina icon sizes are packaged into ICNS; exported bytes and version checks pass. Finder/Dock review and storybook screenshots await permission.</p>
 <p><strong>Prototype 54 — visible build version:</strong> A small high-contrast version badge now appears at the lower right of the title and gameplay screens. Project version is canonical and synchronized into macOS export metadata. Future explicit releases use coordinated readiness checks, platform-specific evidence, and Git LFS release packages; only macOS is currently supported. No multi-platform release is published. Visual review awaits permission.</p>
-<p><strong>Prototype 53 — swarm contact and Widow flight:</strong> Septic Air Force contact radius now matches most of its visible mass (48 pixels). The Widow climbs forward to its original altitude after a dive, maintaining heading and straight flight between attacks. Scenery collision remains enforced. Four packaged suites and nine Python tests pass; visual review and screenshots await permission.</p>
+<p><strong>Prototype 53 — swarm contact and Widow flight:</strong> Gnatastrophe contact radius now matches most of its visible mass (48 pixels). The Widow climbs forward to its original altitude after a dive, maintaining heading and straight flight between attacks. Scenery collision remains enforced. Four packaged suites and nine Python tests pass; visual review and screenshots await permission.</p>
 <p><strong>Prototype 52 — hero death flush:</strong> Audio’s three-second toilet flush plays once when Tony or
 Sean enters the dying state, including the final life. It replaces the short lethal-hit tone and does not play for
 ordinary hits, Flushfiend defeats or the dispenser gag. Manual pause suspends it; the automatic death popup and
@@ -443,7 +450,7 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
 <p>Prototype 18 integrates the current Drain Damage title/menu artwork and all 30 Tony, Sean, and BJ emotional portraits. Every completion dialogue line selects a named emotion; character selection shares the same atlas lookup. New gameplay enemies, weapon sheets, and marketing-only art are not presented as completed runtime features. Headless validation is complete; visual review and storybook captures await permission.</p>
 <p>October 14 approved capture follow-up: small preview and Prototype 16 title/basement screenshots saved in the storybook; test windows closed. Damage/death poses captured. Widow alignment remains provisional; brief hit flashes still need motion review.</p>
 <p><strong>Persistent visible aiming — integrated in Prototype 33:</strong> Sixteen Art-authored holds cover both heroes, with mirrored left variants. The runtime renderer and muzzle now use the same pose independently of firing. Provisional static holds replace the older walk/fire frames; locomotion/recoil animation and live visual approval remain open.</p>
-<p><strong>Septic Air Force — sewer-fly swarm:</strong> October 16: Sean selected <em>Septic Air Force</em> as the working swarm name. Revised aviation-themed lore is drafted; Gnatastrophe is saved as a possible future boss name only; <a href="handoffs/sewer-fly-story.json">editorial handoff</a> ready.  Tight, slow random swarm with no pursuit; contact harms heroes and monsters. Asymmetric swarm revision2 includes hover, four movement directions and death source frames for review. Prototype 39 integrates initial 12 HP tuning with corrected v3 slicing; live animation readability and balance remain pending. <a href="bestiary/sewer-flies/preview.html">Preview</a>.</p>
+<p><strong>Gnatastrophe — sewer-fly swarm:</strong> October 16: Sean selected <em>Gnatastrophe</em> as the working swarm name. Revised aviation-themed lore is drafted; Gnatastrophe is saved as a possible future boss name only; <a href="handoffs/sewer-fly-story.json">editorial handoff</a> ready.  Tight, slow random swarm with no pursuit; contact harms heroes and monsters. Asymmetric swarm revision2 includes hover, four movement directions and death source frames for review. Prototype 39 integrates initial 12 HP tuning with corrected v3 slicing; live animation readability and balance remain pending. <a href="bestiary/sewer-flies/preview.html">Preview</a>.</p>
 <p class="meta">Repository baseline: curated Prototype 52 source is organized into subsystem commits, with Git LFS for retained binary assets. Obsolete publication drafts and rejected artwork remain local; the game version is unchanged.</p>
 <p class="meta">Magazine publishing: GitHub Pages workflow renders the stable current PDF into a mobile-friendly HTML reader with an original PDF download. The initial GitHub Pages deployment succeeded and the public reader is live. Subsequent updates publish after the generated PDF is committed and pushed to main.</p>
 <p class="meta">October 16, 2026: local repository moved to /Users/sfoley/repos/drain_damage. Documentation, asset-reference paths, local cache references, and clean-build tool shortcuts updated; game version unchanged.</p>
@@ -543,7 +550,7 @@ No production or delegation requested. <a href="design-ideas.json">Saved idea no
 <li><strong>Three-foot pipe wrench</strong>: A large melee weapon swung like a sword.</li>
 <li><strong>Drain-machine cable special</strong>: Tony pulls out a drain machine and launches its cable across the screen. Powerful, strictly linear attack at his current elevation.</li>
 </ul><p>Also consider Contra-style floating weapon pickups. Decide regular weapons versus temporary pickups versus specials, exclusive character ownership, damage/range/cooldowns, and overlap with the existing wrench and drain snake. Tony suggested the drain-machine special for himself; the plunger wave’s owner remains unconfirmed. Full-screen specials do not change current starter-weapon ranges. <a href="weapons/tony-ideas.json">Full weapon discussion notes</a>.</p></li>
-<li><h3>Bestiary concept poster</h3><p>Delivered: <a href="bestiary/posters/implemented-and-imagined-v1.png">implemented and imagined poster</a> shows six implemented creatures, both Skitterling forms, 21 descriptive idea labels, and the planned Clogfather. Audited against the saved idea bank and predecessor notes. Concept art only; no gameplay or roster changes.</p></li>
+<li><h3>Historical bestiary concept poster — October 18</h3><p>Archived snapshot; roster, names and implementation labels are superseded. <a href="bestiary/posters/implemented-and-imagined-v1.png">implemented and imagined poster</a> shows six implemented creatures, both Skitterling forms, 21 descriptive idea labels, and the planned Clogfather. Audited against the saved idea bank and predecessor notes. Concept art only; no gameplay or roster changes.</p></li>
 <li><h3>Possible monsters and troublesome clients</h3><p>Bloody tampon, Sewer flies, Poop, Automaton made of pipes, Angry &quot;Karen&quot; clients, Rattlesnakes, Raptors with a glowing red aura, An angry drunk in a hotdog costume, Rat monster (design undecided), Alligator monster (design undecided), and Sean’s later-level walking bathtub with an undecided occupant and projectile type. These are brainstorming concepts, not confirmed roster entries; names, lore, artwork, and mechanics remain open. <a href="bestiary/monster-ideas.json">Bestiary idea notes</a>.</p></li>
 <li><h3>Hero art experiments and earlier mockup notes</h3><p>Required hero sprite coverage includes jumping/falling while aiming straight down and down-left/down-right, with proper grips and leg/muzzle clearance. These airborne poses remain pending beyond the standing mockup. Agreed follow-up: once the modular design is approved, establish a versioned hero sprite and animation standard for Tony, Sean and future heroes, with reusable templates, layer/anchor rules, animation coverage and validation criteria. Current mockup dimensions and fitting shortcuts are not a frozen production standard. October 15 mockup revision 3: corrected Sean’s backward rear-hand grip in the up-right pose; reassembled preview checked, approval pending. October 15 mockup revision 2: corrected oversized arms and raised aiming angles after Sean’s review. <a href="previews/modular-aim-contact-sheet.png">Revised contact sheet</a>; arm scale now stays fixed, with separate upward and diagonal poses. Head overlap and production grip cleanup remain; user approval pending. October 15: Sean approved a small modular-art mockup with Tony/pressure gun and Sean/heavy plunger. Six standing compositions now have an <a href="previews/modular-aim.html">interactive layer preview</a>, with mirrored left, layer toggles and grip/muzzle overlays. Source bounds, exclusive weapons, and identical body registration pass automated checks. The <a href="previews/modular-aim-contact-sheet.png">static contact sheet</a> has now been visually reviewed: body reuse and separate weapons demonstrate the approach, but upward poses obscure faces and arm/grip proportions need authored refinement. Next gate: refine those poses and recheck contact, occlusion and consistent pixel scale before animation or gameplay integration. Interactive browser review remains blocked by local-file policy; this is not production approval. Gameplay replacement and broader animation remain deferred. <a href="handoffs/modular-aim-prototype-contract.json">Prototype asset contract</a>. October 15: Art and Engineering recommend <a href="weapons/rendering-strategy.json">layered hero and weapon sprites</a> for the expanding arsenal: reusable locomotion, directional grip poses, separate weapons and hand overlays; bespoke poses for exceptional attacks. Initial modular standing assets are delivered for the two existing exclusive weapons; production assets and gameplay integration remain pending. </p></li>
 <li><h3>More places and personalities</h3><p>A luxury high-rise, a haunted restroom, and snooty fictional customers who underestimate the trades.</p></li>
@@ -637,7 +644,7 @@ pages were rendered and visually reviewed, including corrected crop boundaries a
 <p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v16.pdf">edition 16</a> completes a full
 reader-first editorial pass. Development terminology, technical art explanations, build identifiers and production
 notes are removed from reader-facing text, contents, captions, footers and credits. Plain-English preview labels
-retain honest qualifications. Approved profiles and lore, Septic Air Force and the dispenser feature remain intact.
+retain honest qualifications. Approved profiles and lore, Gnatastrophe and the dispenser feature remain intact.
 The no-jargon rule is saved in editable-source guidance and the magazine README. All 17 pages rendered and visually
 checked; full extracted text and metadata audited. Earlier editions remain preserved.</p>
 <p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v15.pdf">edition 15</a> adds a half-page
@@ -646,7 +653,7 @@ presented as a feature preview, with injured replacement, healthy check-in and d
 Art and implementation are in progress; no gameplay or new artwork is claimed. Text-led layout uses the canonical
 editable source and preserves all earlier editions. Art was consulted for future reuse of its delivered assets.</p>
 <p>October 16, 2026: <a href="marketing/magazine/discharge-quarterly-v14.pdf">edition 14</a> replaces the rejected
-Drain Brains name with Sean's selected working name, Septic Air Force, in the contents and page 12. Aviation-themed
+Drain Brains name with Sean's selected working name, Gnatastrophe, in the contents and page 12. Aviation-themed
 history remains explicitly draft. Preview notes now reflect Prototype 39 integration with live visual review pending;
 the image remains labeled a source-art sheet, not gameplay. All 17 pages rendered and checked. Editable JSON and
 previous editions are preserved; no new artwork or game changes.</p>
@@ -779,7 +786,7 @@ filters.forEach(button => button.addEventListener('click', () => {
     `Showing ${visible} ${visible === 1 ? 'milestone' : 'milestones'}${selected === 'all' ? ' across all tracks' : ''}.`;
 }));
 </script>
-<p>October 16 editorial update: replace the earlier swarm name in the next magazine revision with Septic Air Force. Revised draft lore is in the <a href="handoffs/sewer-fly-story.json">Storyboarding handoff</a>; publication update pending.</p>
+<p>October 16 editorial update: replace the earlier swarm name in the next magazine revision with Gnatastrophe. Revised draft lore is in the <a href="handoffs/sewer-fly-story.json">Storyboarding handoff</a>; publication update pending.</p>
 <p><strong>October 16 — opening cinematic:</strong> Sean requested a skippable visual story introduction, inspired by the dramatic opening he described in Contra III. Narrative beats, length, placement relative to character selection and the existing introduction, and production remain undecided. Notes are recorded in <a href="design/first-level-narrative.md">the first-level narrative brief</a>; no cinematic assets or runtime implementation are claimed.</p>
 <section><h2>First-level visual concepts — October 16</h2><p>Three original concept illustrations cover the busier basement opening, supported pump catwalks and Clogfather finale. <a href="handoffs/level-one-redesign-art.json">Art handoff and geometry caveats</a>. Proposed visuals only; exact reachable layout follows Level Design coordinates. No runtime changes or gameplay screenshots are claimed.</p></section>
 <section><h2>Dispenser glass-front art — October 16</h2><p>Delivered separate Tony-stocked and Sean-stocked vending-machine illustrations, each showing two sleeping clones, plus reusable sleeping sprite frames. <a href="handoffs/spare-employee-dispenser-glass-front-art.json">Artwork handoff</a>. Art-only revision; gameplay and magazine integration are pending, and magazine PDF generation remains on hold.</p></section>

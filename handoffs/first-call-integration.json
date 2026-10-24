@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 95 / 0.95.0",
-  "created_at": "2026-10-23T12:41:55.568588-07:00",
+  "build": "Prototype 96 / 0.96.0",
+  "created_at": "2026-10-23T21:42:09.916079-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "Export, signature, archive, standalone startup, 16 final packaged suites and 34 Python tests passed; live visual review pending",
-  "app": "builds/Prototype-95/Drain Damage.app",
-  "archive": "builds/history/Prototype-95.zip",
-  "archive_sha256": "7cf953d23bff209e24060550ed641640a6a4256ff68fd2eff7ae5c10b179bfce",
-  "source_snapshot": "builds/source-95",
+  "status": "22 packaged regression suites, four final-export checks, 34 Python tests, export/signature/archive/startup passed; human balance/listening/visual review pending",
+  "app": "builds/Prototype-96/Drain Damage.app",
+  "archive": "builds/history/Prototype-96.zip",
+  "archive_sha256": "9409c410e287bc36536ae14d7bae306ae6136fb156637e0222e26b54d77c4f4c",
+  "source_snapshot": "builds/source-96",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -20,38 +20,50 @@
     15110
   ],
   "changes": [
-    "Selected white Skitterling and goopy Clogfather title artwork centered at full-viewport (480,270), alpha-trimmed and proportionally fitted within 540x180.",
-    "0.4-second fade-in plus three fully visible seconds pause combat; gameplay resumes immediately when the 0.25-second fade-out begins. Music continues; encounter effects pause.",
-    "Once per boss per run; checkpoint retries skip seen titles, new game clears them. Held jump/fire must release before reuse. Pause menu and its release guard remain functional.",
-    "Persistent sidebar names removed with title delivery; Prototype94 vertical meters, full-world framing and normal player HUD retained. Prototype93 music and Prototype92 hazards preserved."
+    "Normal and Hard use two separately aimed and warned projectile rounds; Easy retains one. Full five-second low/high weak-point windows and1080HP remain.",
+    "Gas clouds Easy/Normal/Hard:1/4/6, warning1.2/.75/.55 seconds, active2/4/4.5 seconds, speed30/65/90. Five active-weapon hits each:60HP Tony,90HP Sean. Shared shots, flash/impact feedback, deduplication and immediate damage-region removal.",
+    "Exact2/4/8 Gnatastrophe reinforcements with1.2s warning and3/4/5s lifetime,24HP each,180px central escape. No refill, accumulation or hidden post-warning contact immunity. Acid warnings1.2/.9/.7s, escape widths180/140/120px; denser Normal/Hard columns.",
+    "Festering Pressure replaces jaunty music with dark bubbling atmosphere. Sparse10\u201314s ambient roars and shared8s reactive cooldown use existing four voices, warning priority, pause/mute/reset/disposal.",
+    "Current swarm name is Gnatastrophe; stable sewer-fly-swarm ID and historical originals preserved. Magazine31 published. Prototype95 introductions and HUD framing retained; weapon cues unchanged."
   ],
   "checks": {
-    "packaged_suites": 16,
+    "packaged_suites": 22,
     "status": "passed",
-    "results": "builds/verification-95/final-results.json",
+    "results": "builds/verification-96/final-results.json",
     "python_tests": 34,
-    "python_log": "builds/verification-95/python.log",
-    "build_log": "builds/verification-95/build.log",
-    "scope": "Both boss entrances across both heroes/all difficulties; exact timing, frozen world, pause, input release, retry/new-run, centering; HUD, combat, checkpoint, hazards, ending, music, dialogue and version regressions.",
+    "python_log": "builds/verification-96/python.log",
+    "build_log": "builds/verification-96/build.log",
+    "scope": "All modes and heroes; separately aimed rounds, gas hit/kill/expiry, exact reinforcement counts/contact, acid escape paths, music/roar lifecycle, intro/HUD/ending/checkpoint regressions.",
     "standalone_headless_startup": "passed",
     "suites": [
       "boss_hud",
       "boss_intro",
       "boss_sidebar",
       "build_version",
+      "clogfather_audio",
+      "clogfather_difficulty",
       "clogfather_high_weakpoint",
       "clogfather_integration",
+      "clogfather_music",
       "clogfather_music_host",
+      "clogfather_pressure",
       "clogfather_pressure_integration",
       "dialogue",
       "first_level_ending",
       "hard_dialogue",
+      "music",
       "pause_menu",
       "skitterling_checkpoint",
       "skitterling_combat_revision",
       "skitterling_integration",
-      "skitterling_portals"
-    ]
+      "skitterling_portals",
+      "swarm_health"
+    ],
+    "final_export_checks": {
+      "count": 4,
+      "results": "builds/verification-96/delivery-results.json",
+      "scope": "Final export changes only an embedded old-name layout note. Rechecked current names, version, both-boss introductions and actual pressure integration on this final package."
+    }
   },
   "source_art_review": {
     "approved_compositions": [
@@ -75,9 +87,9 @@
     ]
   },
   "remaining": [
-    "Live visual review of centered title timing/readability, fade-out gameplay resumption and retained right-side HUD",
-    "Live music/device mix and Prototype92 gas/swarm/human fight-duration review",
-    "Actual running-build screenshots"
+    "Human balance review of harder Normal/Hard attacks and escape timing",
+    "Listening review of Festering Pressure and roar/device mix",
+    "Live visual review and actual running-build screenshots"
   ],
   "capture_gap": "No game window opened; preserve this build for an approved capture session. Source composites are not gameplay screenshots.",
   "deferred": [
@@ -168,15 +180,15 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "4be6e43",
-  "previous_delivery": "storybook/094-right-side-boss-hud/",
+  "source_commit": "356bc0d",
+  "previous_delivery": "storybook/095-boss-title-reveals/",
   "publication": {
-    "magazine_edition": 30,
-    "status": "GitHub Pages deployment succeeded; live PDF checksum and reciprocal Storybook links verified",
+    "magazine_edition": 31,
+    "status": "Edition31 live PDF/name/hash and reciprocal links verified; Storybook96 redeployment follows delivery commit",
     "url": "https://jugglingbear.github.io/drain-damage/",
-    "deployment_run": 39521412752,
-    "deployment_commit": "8c722a5",
-    "pdf_sha256": "74bcbbb1755ae400df45aab5ac98dff1331c711ec4b4053967d4770bdd2fccb7",
+    "deployment_run": 40063150202,
+    "deployment_commit": "d977865",
+    "pdf_sha256": "534f537bcb13964c7d6562432071699c5131bfb2fadbf06b8a18f3dda01d2d96",
     "pages": 8,
     "reciprocal_storybook_links": true
   },
@@ -195,18 +207,14 @@
     "manifest": "dist/v0.91.0/macos-universal/release-manifest.json",
     "verification": "dist/v0.91.0/macos-universal/publication-verification.json",
     "limits": "Ad-hoc signed, not notarized; fresh-machine 91, Intel, GPU/audio/controller and live visual review pending",
-    "scope": "Previous0.91.0 public prerelease preserved; Prototype95 source and local build only"
+    "scope": "Previous0.91.0 public prerelease preserved; Prototype96 source and local build only"
   },
   "music_investigation": {
     "handoff": "handoffs/clogfather-audio.json",
-    "analysis": "audio/sources/clogfather-italian-v2/analysis.json",
-    "preview": "audio/sources/clogfather-italian-v2/italian-battle-v2-preview.wav",
-    "baseline": "Old music starts and playback advances at boss entry; complete silence not reproduced. Measured attenuation explains low audibility; completed-fade resume error separately reproduced and fixed.",
-    "evidence": [
-      "builds/verification-93/baseline-lifecycle.log",
-      "builds/verification-93/fixed-lifecycle.log"
-    ],
-    "limits": "Numerical mix and loop checks do not establish listening approval or global clipping immunity; strongest tested boss-only aggregate peak bound-3.36dBFS."
+    "analysis": "audio/sources/clogfather-festering-v3/analysis.json",
+    "preview": "audio/sources/clogfather-festering-v3/preview.wav",
+    "finding": "Sean rejected the jaunty track after95 playtest. New48s dark swamp loop, -19.9LUFS source, runtimegain-10dB, warningduck-12dB; measured loop seam-69.04dBFS.",
+    "limits": "No human listening acceptance claimed. Numerical checks do not establish perceived quality or global clipping immunity."
   },
   "boss_hud_delivery": {
     "manifest": "assets/ui/boss-hud-right-v1/manifest.json",
@@ -247,5 +255,7 @@
       "repeat_policy": "Once per boss per run; skip checkpoint retry; clear on new game",
       "persistent_sidebar_names": false
     }
-  }
+  },
+  "difficulty_delivery": "handoffs/clogfather-difficulty-mechanics.json",
+  "rename_audit": "handoffs/gnatastrophe-rename.json"
 }

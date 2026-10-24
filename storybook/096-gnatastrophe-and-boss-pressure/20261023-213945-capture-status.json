@@ -1,0 +1,109 @@
+{
+  "build": "Prototype96 / 0.96.0",
+  "status": "22 corrected-contact packaged regressions pass;4 checks pass on final layout-note-only re-export;34Python and export/signature/archive/standalone pass",
+  "created_at": "2026-10-23T21:39:45-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "timestamp_kind": "Planning documentation creation, not capture time",
+  "capture_time": null,
+  "source_commit": "356bc0d",
+  "archive_sha256": "9409c410e287bc36536ae14d7bae306ae6136fb156637e0222e26b54d77c4f4c",
+  "rename": "Current name Gnatastrophe; stable ID sewer-fly-swarm and history preserved",
+  "music": "48-second Festering Pressure loop; sparse10\u201314s roars,8s phase-roar cooldown, warning priority; listening review pending",
+  "difficulty_order": [
+    "Easy",
+    "Normal",
+    "Hard"
+  ],
+  "gas": {
+    "clouds": [
+      1,
+      4,
+      6
+    ],
+    "warning_seconds": [
+      1.2,
+      0.75,
+      0.55
+    ],
+    "lifetime_seconds": [
+      2,
+      4,
+      4.5
+    ],
+    "speed": [
+      30,
+      65,
+      90
+    ],
+    "health_note": "Five starter hits each;60HP againstTony/90HP againstSean"
+  },
+  "reinforcements": {
+    "counts": [
+      2,
+      4,
+      8
+    ],
+    "warning_seconds": 1.2,
+    "lifetime_seconds": [
+      3,
+      4,
+      5
+    ],
+    "health": 24,
+    "safe_corridor": 180,
+    "constraint": "No refill or hidden contact grace after warning"
+  },
+  "volleys": {
+    "easy": "One round,.9s warning/.45s spacing",
+    "normal": "Two separately aimed3-shot rounds,.7s warning/.35s spacing",
+    "hard": "Two separately aimed4-shot rounds,.55s warning/.25s spacing"
+  },
+  "acid": {
+    "warning_seconds": [
+      1.2,
+      0.9,
+      0.7
+    ],
+    "safe_lane_width": [
+      180,
+      140,
+      120
+    ],
+    "note": "More Normal/Hard columns"
+  },
+  "preserved": [
+    "Full5s low/high weak-point windows",
+    "1080bossHP",
+    "Prototype95 intro/HUD",
+    "Prototype95 build/history"
+  ],
+  "remaining": [
+    "Human listening and live visual/readability review",
+    "Human balance/duration review",
+    "Actual gameplay screenshots"
+  ],
+  "capture_gap": "No actual capture or game-opening permission; no game window opened",
+  "publication": "Marketing verified live edition31 after deployment40063150202:8pages, currentGnatastrophe name, former name absent, reciprocal links verified",
+  "finalized_at": "2026-10-23T21:41:55-07:00",
+  "audio_commit": "316861d",
+  "magazine_commit": "d977865",
+  "app": "builds/Prototype-96/Drain Damage.app",
+  "source_snapshot": "builds/source-96",
+  "archive": "builds/history/Prototype-96.zip",
+  "audio_preview": "audio/sources/clogfather-festering-v3/preview.wav",
+  "checks": {
+    "packaged_regressions": 22,
+    "regression_results": "builds/verification-96/final-results.json",
+    "exact_final_checks": [
+      "current_creature_names",
+      "clogfather_pressure_integration",
+      "boss_intro",
+      "build_version"
+    ],
+    "final_results": "builds/verification-96/delivery-results.json",
+    "python_tests": 34,
+    "export_difference": "Final export changed only an embedded old-name layout note; do not claim22 exact-final checks."
+  },
+  "magazine_live_sha256": "534f537bcb13964c7d6562432071699c5131bfb2fadbf06b8a18f3dda01d2d96"
+}

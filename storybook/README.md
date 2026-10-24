@@ -2310,6 +2310,40 @@ no image capture occurred.
 
 [Capture status and final verification](095-boss-title-reveals/20261023-123731-capture-status.json).
 
+## 096 — Gnatastrophe and stronger boss pressure — October 23, 2026
+
+**Version:** Prototype 96 / 0.96.0; source commit `356bc0d`; app, ZIP and snapshot `builds/source-96` preserved.
+
+The existing sewer-fly swarm is renamed Gnatastrophe; its stable ID and historical records remain intact.
+The new 48-second Festering Pressure loop replaces the jaunty boss track. Sparse roars use a 10–14-second interval
+and an eight-second phase-roar cooldown, with attack-warning priority. Listening acceptance remains pending.
+
+Easy/Normal/Hard gas tuning uses 1/4/6 clouds, 1.2/0.75/0.55-second warnings, 2/4/4.5-second lifetimes and
+30/65/90 movement speeds. Clouds take five starter hits each: 60 HP against Tony or 90 against Sean. Reinforcements
+number 2/4/8 with 24 HP, a 1.2-second warning, 3/4/5-second lifetime and a central 180-pixel safe corridor.
+They do not refill, and there is no hidden contact grace after the warning.
+
+Normal and Hard add two separately aimed rounds of three or four shots, with 0.7/0.55-second warnings and
+0.35/0.25-second spacing. Easy retains one round at 0.9/0.45. Acid warnings are 1.2/0.9/0.7 seconds with safe lanes
+180/140/120 pixels wide and more Normal/Hard columns. Full five-second low/high windows, 1080 boss HP and
+Prototype 95 title/HUD behavior remain.
+
+**Validation:** Engineering reports twenty-two packaged regressions passing on the corrected-contact build and
+thirty-four Python tests passing. The final export changed only an embedded old-name layout note; four checks
+(current creature names, pressure integration, boss intro and version) passed on that exact final export. Do not
+interpret this as twenty-two exact-final checks. Export, signature, archive and standalone checks pass.
+
+Audio commit `316861d` and magazine commit `d977865` accompany the feature. Magazine 31 deployment succeeded;
+Marketing verified the live eight-page PDF hash, Gnatastrophe naming and reciprocal links.
+
+**Capture gap:** No game window opened or actual Prototype 96 screenshot was captured. Live listening, readability,
+human balance/duration and gameplay captures remain pending. Preserve Prototype 95 and earlier chapters.
+
+**Record created:** 2026-10-23T21:39:45-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](096-gnatastrophe-and-boss-pressure/20261023-213945-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
