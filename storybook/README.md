@@ -2344,6 +2344,32 @@ no image capture occurred.
 
 [Capture status and final verification](096-gnatastrophe-and-boss-pressure/20261023-213945-capture-status.json).
 
+## 097 — Selected weapon sounds — October 23, 2026
+
+**Version:** Prototype 97 / 0.97.0; source commit `821d7e1`; app, ZIP and snapshot `builds/source-97` preserved.
+
+Sean selected T11 Watergush for Tony and S1 Suctionpop for Sean. Integration preserves the selected assets bit for bit.
+Tony uses three playback voices for a 0.4-second sound at a 0.16-second firing cadence; Sean uses one voice for a
+0.2-second sound at a 0.24-second cadence. Sounds play only for successful shots, with pause, mute, intro,
+death, reset, title and disposal behavior covered by checks.
+
+All 34 audition WAVs, both audition pages and source remain available for the real Tony's review.
+Prototype 96 is preserved. Selected file hashes were verified unchanged.
+
+**Validation:** Engineering reports eleven distinct packaged suites and thirty-four Python tests passing, plus export,
+signature, archive and startup checks. The selected-cue test corrected an idle-voice assertion and passed on the same
+PCK without a runtime change. Final results reconcile all eleven passes and preserve the initial fixture failure.
+Three Tony shots
+at 0.16-second cadence measured a cue-only peak of 0.407623 full scale, not a full-game mix result.
+
+**Capture gap:** No game window opened or actual Prototype 97 screenshot was captured. There is no new foreground
+authorization. Human in-game listening, balance, live visuals and actual captures remain pending.
+
+**Record created:** 2026-10-23T21:48:14-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and verification](097-selected-weapon-sounds/20261023-214814-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

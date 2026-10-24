@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "build": "Prototype 96 / 0.96.0",
-  "created_at": "2026-10-23T21:42:09.916079-07:00",
+  "build": "Prototype 97 / 0.97.0",
+  "created_at": "2026-10-23T21:50:14.944247-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
-  "status": "22 packaged regression suites, four final-export checks, 34 Python tests, export/signature/archive/startup passed; human balance/listening/visual review pending",
-  "app": "builds/Prototype-96/Drain Damage.app",
-  "archive": "builds/history/Prototype-96.zip",
-  "archive_sha256": "9409c410e287bc36536ae14d7bae306ae6136fb156637e0222e26b54d77c4f4c",
-  "source_snapshot": "builds/source-96",
+  "status": "11 final packaged suites,34Python tests,export/signature/archive/startup passed; live listening/visual review pending",
+  "app": "builds/Prototype-97/Drain Damage.app",
+  "archive": "builds/history/Prototype-97.zip",
+  "archive_sha256": "93635fd284eb61d714c73539523541810e1a71f9c913211cdf0c92a8d6401d50",
+  "source_snapshot": "builds/source-97",
   "world_width": 15200,
   "checkpoints": [
     4650,
@@ -20,50 +20,33 @@
     15110
   ],
   "changes": [
-    "Normal and Hard use two separately aimed and warned projectile rounds; Easy retains one. Full five-second low/high weak-point windows and1080HP remain.",
-    "Gas clouds Easy/Normal/Hard:1/4/6, warning1.2/.75/.55 seconds, active2/4/4.5 seconds, speed30/65/90. Five active-weapon hits each:60HP Tony,90HP Sean. Shared shots, flash/impact feedback, deduplication and immediate damage-region removal.",
-    "Exact2/4/8 Gnatastrophe reinforcements with1.2s warning and3/4/5s lifetime,24HP each,180px central escape. No refill, accumulation or hidden post-warning contact immunity. Acid warnings1.2/.9/.7s, escape widths180/140/120px; denser Normal/Hard columns.",
-    "Festering Pressure replaces jaunty music with dark bubbling atmosphere. Sparse10\u201314s ambient roars and shared8s reactive cooldown use existing four voices, warning priority, pause/mute/reset/disposal.",
-    "Current swarm name is Gnatastrophe; stable sewer-fly-swarm ID and historical originals preserved. Magazine31 published. Prototype95 introductions and HUD framing retained; weapon cues unchanged."
+    "Sean selected T11 Water gush for Tony and S1 Suction pop for Sean. Runtime WAVs match selected audition hashes exactly. One cue per successfully spawned shot; blocked shots and cooldown attempts remain silent.",
+    "Fixed pool of three Tony voices preserves0.4s tails at0.16s cadence; one Sean voice handles0.2s cue at0.24s cadence. Pause, master mute, boss introduction freeze, death, retry, reset and title/disposal semantics preserved.",
+    "All34 audition WAVs, comparison pages, generators and manifests preserved for Tony\u2019s later review.",
+    "Prototype96 mode-specific Clogfather pressure, Festering Pressure music/roars, Gnatastrophe rename and Prototype95 introductions/HUD retained."
   ],
   "checks": {
-    "packaged_suites": 22,
+    "packaged_suites": 11,
     "status": "passed",
-    "results": "builds/verification-96/final-results.json",
+    "results": "builds/verification-97/final-results.json",
     "python_tests": 34,
-    "python_log": "builds/verification-96/python.log",
-    "build_log": "builds/verification-96/build.log",
-    "scope": "All modes and heroes; separately aimed rounds, gas hit/kill/expiry, exact reinforcement counts/contact, acid escape paths, music/roar lifecycle, intro/HUD/ending/checkpoint regressions.",
+    "python_log": "builds/verification-97/python.log",
+    "build_log": "builds/verification-97/build.log",
+    "scope": "Selected weapon cues per actual shot across both heroes/all modes, blocked/cooldown silence, bounded overlap, pause/mute/intro/death/reset/disposal; boss pressure/combat, music, dialogue/pause/version/name regressions.",
     "standalone_headless_startup": "passed",
     "suites": [
-      "boss_hud",
       "boss_intro",
-      "boss_sidebar",
       "build_version",
       "clogfather_audio",
-      "clogfather_difficulty",
-      "clogfather_high_weakpoint",
       "clogfather_integration",
-      "clogfather_music",
       "clogfather_music_host",
-      "clogfather_pressure",
       "clogfather_pressure_integration",
+      "current_creature_names",
       "dialogue",
-      "first_level_ending",
-      "hard_dialogue",
-      "music",
       "pause_menu",
-      "skitterling_checkpoint",
-      "skitterling_combat_revision",
       "skitterling_integration",
-      "skitterling_portals",
-      "swarm_health"
-    ],
-    "final_export_checks": {
-      "count": 4,
-      "results": "builds/verification-96/delivery-results.json",
-      "scope": "Final export changes only an embedded old-name layout note. Rechecked current names, version, both-boss introductions and actual pressure integration on this final package."
-    }
+      "starter_weapon_audio"
+    ]
   },
   "source_art_review": {
     "approved_compositions": [
@@ -87,8 +70,8 @@
     ]
   },
   "remaining": [
-    "Human balance review of harder Normal/Hard attacks and escape timing",
-    "Listening review of Festering Pressure and roar/device mix",
+    "Live listening review of selected weapon sounds and full-game mix",
+    "Human balance review of Prototype96 Normal/Hard boss pressure",
     "Live visual review and actual running-build screenshots"
   ],
   "capture_gap": "No game window opened; preserve this build for an approved capture session. Source composites are not gameplay screenshots.",
@@ -180,8 +163,8 @@
     ]
   },
   "completion": "Automatic aftermath after terminal collapse, guarded dialogue, 2.5-second selected-hero portal pull, then first-level completion",
-  "source_commit": "356bc0d",
-  "previous_delivery": "storybook/095-boss-title-reveals/",
+  "source_commit": "821d7e1",
+  "previous_delivery": "storybook/096-gnatastrophe-and-boss-pressure/",
   "publication": {
     "magazine_edition": 31,
     "status": "Edition31 PDF hash/name and live Storybook096 plus reciprocal links verified after final deployment",
@@ -207,7 +190,7 @@
     "manifest": "dist/v0.91.0/macos-universal/release-manifest.json",
     "verification": "dist/v0.91.0/macos-universal/publication-verification.json",
     "limits": "Ad-hoc signed, not notarized; fresh-machine 91, Intel, GPU/audio/controller and live visual review pending",
-    "scope": "Previous0.91.0 public prerelease preserved; Prototype96 source and local build only"
+    "scope": "Public0.91.0 prerelease preserved; Prototype97 source and local build only"
   },
   "music_investigation": {
     "handoff": "handoffs/clogfather-audio.json",
@@ -257,5 +240,6 @@
     }
   },
   "difficulty_delivery": "handoffs/clogfather-difficulty-mechanics.json",
-  "rename_audit": "handoffs/gnatastrophe-rename.json"
+  "rename_audit": "handoffs/gnatastrophe-rename.json",
+  "weapon_audio_delivery": "handoffs/starter-weapon-audio.json"
 }
