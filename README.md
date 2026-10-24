@@ -11,8 +11,8 @@ The game is still being built, and learning how to make it is as much a part of 
   characters, creatures, and world.
 - **[Explore the storybook](https://jugglingbear.github.io/drain-damage/storybook/storybook.html)** — screenshots and
   milestones documenting how the game has evolved.
-- **[Listen to the sound auditions](audio/drain-damage-sound-auditions.html)** — a searchable library of game sounds
-  and alternatives. Download the HTML file and open it in a browser; the audio is included and works offline.
+- **[Listen to the sound auditions](https://jugglingbear.github.io/drain-damage/audio/drain-damage-sound-auditions.html)** — a searchable library of game sounds
+  and alternatives. Listen directly in your browser, or save the page to use it offline.
 
 ## Try the game
 

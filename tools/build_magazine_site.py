@@ -37,6 +37,10 @@ def build_site(destination: Path) -> None:
     shutil.copyfile(PDF, destination / 'magazine.pdf')
     shutil.copytree(ROOT / 'storybook', destination / 'storybook', dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns('.gdignore', '.DS_Store'))
+    audio_destination = destination / 'audio'
+    audio_destination.mkdir(exist_ok=True)
+    shutil.copyfile(ROOT / 'audio/drain-damage-sound-auditions.html',
+                    audio_destination / 'drain-damage-sound-auditions.html')
     figures = '\n'.join(
         f'<figure id="page-{n}"><img src="page-{n}.jpg" alt="Magazine page {n}" '
         f'loading="{"eager" if n == 1 else "lazy"}"><figcaption>Page {n} of {count}</figcaption></figure>'
@@ -63,6 +67,7 @@ footer{color:#bac3c9} @media(max-width:600px){main{padding:16px 0}header,footer{
 </style></head><body>
 <header><div class="masthead"><p>DRAIN DAMAGE</p>
 <div class="header-actions">
+<a class="repo-link" href="audio/drain-damage-sound-auditions.html">Sound auditions →</a>
 <a class="repo-link" href="storybook/storybook.html">Storybook →</a>
 <a class="repo-link" href="https://github.com/jugglingbear/drain-damage"
 aria-label="Drain Damage repository on GitHub">GitHub ↗</a></div></div><h1>__TITLE__</h1>

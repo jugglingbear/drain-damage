@@ -1,6 +1,7 @@
 # Game sound auditions
 
-Open [the portable sound page](drain-damage-sound-auditions.html) in a browser. It embeds the audio
+Open [the live sound page](https://jugglingbear.github.io/drain-damage/audio/drain-damage-sound-auditions.html)
+in a browser. It embeds the audio
 and works offline.
 Groups and sound tables start collapsed. Search by ID, character, action, or filename.
 For example, search `gnat`, then expand Gnatastrophe to open all its sound tables. Playback uses source volume, not the
@@ -74,3 +75,6 @@ No game behavior or mix is changed by building this page.
 The audio-auditions GitHub workflow runs the generator’s freshness check on pushes and pull requests. It fails when
 the committed HTML differs from regenerated output, including when audio bytes change at an existing path.
 Run the generator locally and include its output before pushing; CI verifies rather than making automatic commits.
+
+The existing GitHub Pages workflow publishes the committed HTML under `audio/` whenever that file changes on `main`.
+The repository file viewer shows source; use the live link above for browser playback.
