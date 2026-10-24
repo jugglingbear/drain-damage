@@ -163,6 +163,9 @@ def render(registry: dict[str, Any]) -> str:
              '<title>Drain Damage — sound auditions</title><style>' + style,
              'input,button {font:inherit;padding:9px;background:#243440;color:#edf2f5;border:1px solid #657784}',
              'code {user-select:all} nav a {margin-right:20px} td small {overflow-wrap:anywhere}',
+             'tr.current-sound {background:#183f30} tr.current-sound th {border-left:5px solid #70e5a0}',
+             '.in-game {display:inline-block;background:#9af0b9;color:#103222;font-size:.75rem;',
+             'font-weight:800;padding:3px 9px;border-radius:5px;margin-right:10px;letter-spacing:.05em}',
              '</style><header><div class="tag">Drain Damage · sound library</div><h1>Every game sound</h1>',
              '<p>Ask Audio for alternatives to an ID, for example <code>DD-S0001</code>. '
              'New candidates become <code>DD-S0001.1</code>, <code>DD-S0001.2</code>, and so on. '
@@ -208,8 +211,10 @@ def render(registry: dict[str, Any]) -> str:
                 for clip_id, label, path, payload in clips:
                     mime = "audio/ogg" if path.endswith(".ogg") else "audio/wav"
                     encoded = base64.b64encode(payload).decode("ascii")
-                    parts.append(f'<tr><th scope="row"><code>{esc(clip_id)}</code></th>'
-                                 f'<td>{esc(label)}<small>{esc(path)}</small></td><td>'
+                    row_class = ' class="current-sound"' if clip_id == identity else ""
+                    badge = '<span class="in-game">IN GAME</span> ' if clip_id == identity else ""
+                    parts.append(f'<tr{row_class}><th scope="row"><code>{esc(clip_id)}</code></th>'
+                                 f'<td>{badge}{esc(label)}<small>{esc(path)}</small></td><td>'
                                  f'<audio controls preload="none" aria-label="{esc(record["name"])} '
                                  f'{esc(clip_id)} {esc(label)}" src="data:{mime};base64,{encoded}"></audio></td></tr>')
                 parts.append('</tbody></table></div></details>')
