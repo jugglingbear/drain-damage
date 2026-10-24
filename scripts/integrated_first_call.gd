@@ -744,7 +744,9 @@ func _process(delta: float) -> void:
 	if frozen_intro: dialogue.tick(delta,paused)
 	super._process(0.0 if frozen_intro else delta)
 	for sound in creature_audio.values(): sound.set_paused(paused or frozen_intro)
-	if frozen_intro: door_audio.set_paused(true)
+	if frozen_intro:
+		door_audio.set_paused(true)
+		starter_weapon_audio.set_paused(true)
 	if ending.state == "dialogue" and not paused: ending.clock += delta
 	skitterling.process_audio(self,delta)
 	clogfather.process_audio(self,delta)

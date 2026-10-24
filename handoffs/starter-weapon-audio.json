@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-23",
+  "sean": {
+    "selected_id": "S1",
+    "name": "Suction pop",
+    "status": "Approved by Sean; integrated in Prototype97; live listening review pending",
+    "asset": "assets/audio/sfx/starter-weapons-v1/sean-suction-pop.wav",
+    "audition_source": "audio/sources/starter-weapons-audition-v1/samples/S1.wav",
+    "sha256": "1492b141a34f5abf7dad7f97468547a781ace53cfafe613a198479f425951606",
+    "duration_seconds": 0.2,
+    "format": "44100 Hz mono PCM16 WAV",
+    "suggested_gain_db": 0,
+    "provenance": "Original sample-free project synthesis; no third-party samples or attribution obligations.",
+    "recipe": "audio/sources/starter-weapons-audition-v1/generate.py",
+    "behavior": "Play one single-shot cue per successful Sean shot. Preserve SFX mute, pause and bounded voice cleanup. Do not use repeated demo as runtime cue.",
+    "max_voices": 1
+  },
+  "tony": {
+    "selected_id": "T11",
+    "name": "Water gush",
+    "status": "Approved by Sean; integrated in Prototype97; live listening review pending",
+    "asset": "assets/audio/sfx/starter-weapons-v1/tony-water-gush.wav",
+    "audition_source": "audio/sources/starter-weapons-audition-v1/water-round-2/T11.wav",
+    "sha256": "05a16df97ec9fc501b4da4bf7e1351f8f559db08590d59c11f2d93c4fd47fe99",
+    "duration_seconds": 0.4,
+    "format": "44100 Hz mono PCM16 WAV",
+    "suggested_gain_db": 0,
+    "provenance": "Original sample-free project synthesis; no third-party samples or attribution obligations.",
+    "recipe": "audio/sources/starter-weapons-audition-v1/water-round-2/generate.py",
+    "behavior": "One single-shot cue per successful Tony shot; bounded overlap preserves the 0.4-second tail at rapid fire. Preserve SFX mute, pause and cleanup. Do not use repeated demo.",
+    "max_voices": 3
+  },
+  "preservation": "Keep every audition sound, repeated demo, source, manifest and both audition tables for Tony to compare. Sean selected T11 and S1; Tony has not reviewed them yet.",
+  "validation": {
+    "status": "Selected-cue packaged test passed across both heroes/all modes; live listening review pending",
+    "overlap": "Three Tony shots at0.16s spacing peak0.407623 of full scale; scoped cue-only check, not full-game mix certification",
+    "log": "builds/verification-97/recheck-starter_weapon_audio.log"
+  },
+  "preserved_audition_wav_count": 34
+}

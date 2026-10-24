@@ -109,6 +109,8 @@ var shots: Array[Dictionary] = []
 var enemies: Array[Dictionary] = []
 var particles: Array[Dictionary] = []
 var music_director: Node
+const StarterWeaponAudio = preload("res://scripts/starter_weapon_audio.gd")
+var starter_weapon_audio := StarterWeaponAudio.new()
 var audio_player: AudioStreamPlayer
 var sound_playback: AudioStreamGeneratorPlayback
 var tone_time := 0.0
@@ -161,6 +163,7 @@ func _ready() -> void:
 	add_child(audio_player)
 	audio_player.play()
 	sound_playback = audio_player.get_stream_playback()
+	starter_weapon_audio.attach(self)
 	dialogue = Dialogue.new()
 	add_child(dialogue)
 	create_pause_menu()
@@ -208,6 +211,7 @@ func create_pause_menu() -> void:
 
 func set_paused(value: bool) -> void:
 	paused = value
+	starter_weapon_audio.set_paused(value)
 	door_audio.set_paused(value)
 	for sound in creature_audio.values(): sound.set_paused(value)
 	# The death popup pauses gameplay automatically, but lets the flush finish.
@@ -348,6 +352,7 @@ func _input(event: InputEvent) -> void:
 
 func request_title() -> void:
 	if death_popup_locked: return
+	starter_weapon_audio.stop()
 	door_audio.stop()
 	swarm_audio.stop()
 	for sound in creature_audio.values(): sound.stop()
@@ -359,6 +364,7 @@ func request_title() -> void:
 	title_requested.emit()
 
 func _exit_tree() -> void:
+	starter_weapon_audio.dispose()
 	door_audio.dispose()
 	swarm_audio.dispose()
 	for sound in creature_audio.values(): sound.dispose()
@@ -398,6 +404,7 @@ func _on_joy_connection_changed(_device: int, connected: bool) -> void:
 		set_paused(true)
 
 func reset_game() -> void:
+	starter_weapon_audio.stop()
 	dispenser.reset_stock()
 	door_audio.stop()
 	swarm_audio.stop()
@@ -494,6 +501,7 @@ func _process(delta: float) -> void:
 	dispenser.tick(self,delta)
 	dialogue.tick(delta, paused)
 	update_completion_button()
+	starter_weapon_audio.set_paused(paused or dialogue.active or dispenser.active or life_state != "alive" or won)
 	fill_audio()
 	if not paused and not dialogue.active and not dispenser.active and not dispenser.just_finished:
 		elapsed += delta
@@ -624,7 +632,7 @@ func step_player(delta: float) -> void:
 				"distance": 0.0, "range": weapon.projectile.max_travel_distance_pixels,
 				"fired_airborne": not grounded})
 		fire_timer = weapon.attack_interval_seconds
-		play_tone(310.0 if employee.id == "tony" else 110.0, 0.055)
+		if not blocked: starter_weapon_audio.play_shot(employee.id)
 
 func update_animation(delta: float) -> void:
 	var phase := "idle"
@@ -825,6 +833,7 @@ func hurt_player() -> void:
 		health = 0
 		lives -= 1
 		life_state = "dying"
+		starter_weapon_audio.stop()
 		tone_time = 0
 		hero_death_audio.play_death()
 		death_message = Story.choose_death_line()
@@ -860,6 +869,7 @@ func step_death(delta: float) -> void:
 	set_paused(true)
 
 func respawn_after_death() -> void:
+	starter_weapon_audio.stop()
 	for sound in creature_audio.values(): sound.stop()
 	if lives <= 0: return
 	life_state = "alive"
