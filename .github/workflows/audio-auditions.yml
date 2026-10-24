@@ -1,0 +1,24 @@
+name: Check audio auditions
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Fetch audio assets
+        run: git lfs pull --include="assets/audio/**,audio/**" --exclude=""
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Verify sound mappings, audio files and regenerated HTML
+        run: python3 tools/build_sound_auditions.py --check
+      - name: Test sound registry behavior
+        run: python3 -m unittest discover -s tests -p 'test_sound_auditions.py'

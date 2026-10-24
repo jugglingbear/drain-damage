@@ -128,6 +128,18 @@ before creating or editing Makefiles. These reusable conventions were brought ov
 self-documenting default help, source-order sections, orange headers, white target names, real tabs,
 inline descriptions, and emoji progress. Preserve the Godot toolchain used by this game.
 
+## Audio auditions and retention
+
+- Whenever sounds are created, replaced, remapped, or otherwise changed, update `audio/sound-registry.json` and rerun
+  `python3 tools/build_sound_auditions.py` before delivering the work. For changed runtime mappings, first run it with
+  `--refresh`. Include the regenerated `audio/drain-damage-sound-auditions.html` in the same delivery.
+- Keep all audition audio, including rejected candidates and repeated demonstrations, in the repository unless Sean
+  explicitly says otherwise. Preserve previous files before replacement; use versioned paths, never overwrite originals.
+- Register every audition under its permanent sound-slot ID with the next unused `.1`, `.2`, etc. suffix. Preserve
+  IDs, source/license metadata and generation prompts. Never delete or renumber candidates to reuse their suffixes.
+- Follow `audio/SOUND-AUDITIONS.md`. Run `python3 tools/build_sound_auditions.py --check` before delivery; it rejects
+  stale mappings, missing candidate files and HTML that does not reflect current audio bytes.
+
 ## Combat metadata maintenance
 
 - Every canonical creature profile, including bosses and mini-bosses, must define both hit and death audio references.
