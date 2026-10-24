@@ -37,7 +37,7 @@ func check_pressure(boss: RefCounted, hero: Rect2, dt: float, wave: int) -> void
 	assert(boss.reinforcement_requests == requests and boss.hurt_rects().is_empty())
 	boss.step(0,hero,false)
 	if kind == "reinforcements":
-		assert(requests.size() >= 1 and requests.size() <= (1 if boss.phase == 1 else 2))
+		assert(requests.size() == 2)
 		var ids: Dictionary = {}
 		for request in requests:
 			assert(not ids.has(request.id) and request.hp == 24)

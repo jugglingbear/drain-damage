@@ -3,7 +3,7 @@
   "id": "clogfather-encounter",
   "name": "The Clogfather",
   "updated": "2026-10-23",
-  "status": "Rooted boss with approved gas and Septic Air Force pressure in Prototype92; current implementation contract supersedes historical proposals",
+  "status": "Prototype96 integration: mode-specific pressure; live balance review pending",
   "scope": "First mission boss; rooted giant fatberg with moving pipe mouths and extensions.",
   "canonical_metadata_note": "Bestiary owns monster.json and artwork. This encounter proposal is not registered as a playable creature. Promote accepted HP into monster.json.health before runtime integration; runtime must not read duplicate health values from this proposal.",
   "story_boundaries": [
@@ -242,7 +242,7 @@
       "summon_flushfiend",
       "optional_valves"
     ],
-    "loop": "Sludge warning0.9s locks hero-center aim from upper nozzle675,255;3 shots (4 in phase2/3),210px/s,.45s spacing, no homing. Wait all shots hit floor/wall or expire<=4s; approach0.8s; full5s low-mouth window, closing warning last0.75s. Then acid warning1.2s,2 full64px columns (3 in phase3),fall0.6s,puddle0.8s; clear; same grace/window. Alternate. After each recovery, alternate gas first and capped Septic Air Force pressure, clearing before next original attack.",
+    "loop": "One Easy or two separately aimed Normal/Hard sludge rounds, each with a warning; alternating acid and pressure waves. Every attack clears before the unchanged0.8s approach and full5s alternating low/high weak-point window.",
     "window": "Mouth unfolds during approach; becomes damageable for the full5s window. Body contact disabled for approach and recovery. No threshold truncation; phase advances after full window, lethal hit immediate.",
     "geometry": "Room-local960x540,floor440,HUD0..110. Artroot810,440; shellRect(700,120,255,320); weakpointRect(626,377,48,42); sludge nozzle(675,255). Walkable/acid span0..700 covers both edges. Harmless rootwisps may extend left to615; configure geometry before start.",
     "acid_safety": "Locked columns include splash width. Reserve connected corridor>=180px reachable at235px/s with0.15s reaction margin and actual hero width; at most35% floor marked. If no safe plan, skip pattern into recovery.",
@@ -269,24 +269,105 @@
       "log": "builds/verification-clogfather/mechanics.log"
     },
     "pressure": {
-      "status": "Integrated in Prototype 92; pressure checks passed, live review pending",
-      "warning_seconds": 1.2,
-      "gas_active_seconds": 2.0,
-      "reinforcement_active_seconds": 3.0,
-      "clear_seconds": 0.25,
-      "open_window_seconds": 5.0,
-      "approach_seconds": 0.8,
-      "safe_corridor_pixels": 180,
+      "status": "Prototype96 implementation; live balance review pending",
+      "gas_clouds_by_mode": {
+        "easy": 1,
+        "normal": 4,
+        "hard": 6
+      },
+      "gas_warning_seconds_by_mode": {
+        "easy": 1.2,
+        "normal": 0.75,
+        "hard": 0.55
+      },
+      "gas_active_seconds_by_mode": {
+        "easy": 2,
+        "normal": 4,
+        "hard": 4.5
+      },
+      "gas_speed_pixels_per_second_by_mode": {
+        "easy": 30,
+        "normal": 65,
+        "hard": 90
+      },
+      "gas_health": "Encounter hazard:5 times active hero weapon damage,60HP forTony/90HP forSean; exactly5 hits each. No change to monsterHP or weaponDPS.",
+      "reinforcement_counts_by_mode": {
+        "easy": 2,
+        "normal": 4,
+        "hard": 8
+      },
+      "reinforcement_warning_seconds": 1.2,
+      "reinforcement_active_seconds_by_mode": {
+        "easy": 3,
+        "normal": 4,
+        "hard": 5
+      },
       "reinforcement_id": "sewer-fly-swarm",
       "reinforcement_hp": 24,
-      "reinforcement_cap_by_phase": [
-        1,
-        2,
-        2
+      "reinforcement_escape_corridor": [
+        300,
+        0,
+        180,
+        440
       ],
-      "policy": "Gas first, then reinforcements; after recovery and before next acid/volley. No refill. Clear before original attacks and windows, death and reset; pause freezes. Normal damage/immunity, no cough or control/fire interruption. Geometry may admit fewer swarms.",
-      "duration_note": "Adds 3.45s gas / 4.45s swarm activity between original cycles; human duration and readability review pending.",
+      "clear_seconds": 0.25,
+      "open_window_seconds": 5,
+      "approach_seconds": 0.8,
+      "policy": "Exact complete formations; no silent drops or refill. All expire before original attacks/windows and clear on death/reset. Normal damage and shared immunity; no cough/control interruption.",
+      "acid_warning_seconds_by_mode": {
+        "easy": 1.2,
+        "normal": 0.9,
+        "hard": 0.7
+      },
+      "acid_escape_width_by_mode": {
+        "easy": 180,
+        "normal": 140,
+        "hard": 120
+      },
+      "acid_column_targets_by_mode": {
+        "easy": [
+          2,
+          2,
+          3
+        ],
+        "normal": [
+          4,
+          4,
+          5
+        ],
+        "hard": [
+          5,
+          5,
+          6
+        ]
+      },
+      "acid_floor_coverage_limits": {
+        "easy": 0.35,
+        "normal": 0.5,
+        "hard": 0.6
+      },
+      "volley_rounds_by_mode": {
+        "easy": 1,
+        "normal": 2,
+        "hard": 2
+      },
+      "volley_warning_seconds_by_mode": {
+        "easy": 0.9,
+        "normal": 0.7,
+        "hard": 0.55
+      },
+      "volley_shot_spacing_by_mode": {
+        "easy": 0.45,
+        "normal": 0.35,
+        "hard": 0.25
+      },
+      "shots_per_round_by_phase": [
+        3,
+        4,
+        4
+      ],
       "audio_provenance": [
+        "audio/sources/clogfather-festering-v3/manifest.json",
         "audio/sources/clogfather-v1/manifest.json",
         "audio/sources/sewer-fly-buzz-v1/manifest.json"
       ]

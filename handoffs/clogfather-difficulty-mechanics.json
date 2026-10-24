@@ -1,0 +1,167 @@
+{
+  "status": "Source encounter checks passed; adapter, packaged and human balance validation pending",
+  "date": "2026-10-23",
+  "owner": "Game Mechanics",
+  "integration_owner": "Engineering",
+  "source": "scripts/clogfather_encounter.gd",
+  "tests": [
+    "tests/clogfather_pressure.gd",
+    "tests/clogfather_difficulty.gd"
+  ],
+  "preserved": {
+    "boss_hp": 1080,
+    "weak_point_window_seconds": 5,
+    "approach_seconds": 0.8,
+    "weak_point_order": "low/high alternating",
+    "pressure_clear_seconds": 0.25
+  },
+  "modes": {
+    "easy": {
+      "volley_shots_by_phase": [
+        3,
+        4,
+        4
+      ],
+      "volley_warning": 0.9,
+      "volley_spacing": 0.45,
+      "acid_warning": 1.2,
+      "acid_max_marks_by_phase": [
+        2,
+        2,
+        3
+      ],
+      "acid_coverage_cap": 0.35,
+      "acid_safe_lane": 180,
+      "gas_count": 1,
+      "gas_warning": 1.2,
+      "gas_active": 2,
+      "gas_speed": 30,
+      "gas_safe_lane": 180,
+      "reinforcements": 2,
+      "reinforcement_active": 3
+    },
+    "normal": {
+      "volley_shots_by_phase": [
+        6,
+        8,
+        8
+      ],
+      "volley_warning": 0.7,
+      "volley_spacing": 0.35,
+      "acid_warning": 0.9,
+      "acid_max_marks_by_phase": [
+        4,
+        4,
+        5
+      ],
+      "acid_coverage_cap": 0.5,
+      "acid_safe_lane": 140,
+      "gas_count": 4,
+      "gas_warning": 0.75,
+      "gas_active": 4,
+      "gas_speed": 65,
+      "gas_safe_lane": 140,
+      "reinforcements": 4,
+      "reinforcement_active": 4
+    },
+    "hard": {
+      "volley_shots_by_phase": [
+        6,
+        8,
+        8
+      ],
+      "volley_warning": 0.55,
+      "volley_spacing": 0.25,
+      "acid_warning": 0.7,
+      "acid_max_marks_by_phase": [
+        5,
+        5,
+        6
+      ],
+      "acid_coverage_cap": 0.6,
+      "acid_safe_lane": 120,
+      "gas_count": 6,
+      "gas_warning": 0.55,
+      "gas_active": 4.5,
+      "gas_speed": 90,
+      "gas_safe_lane": 120,
+      "reinforcements": 8,
+      "reinforcement_active": 5
+    }
+  },
+  "gas": {
+    "api": [
+      "configure_difficulty(mode, active_weapon_damage)",
+      "gas_targets() -> [{id,rect}]",
+      "hit_gas(id, amount, attack_id) -> accepted_damage"
+    ],
+    "hp": "5 * active weapon damage: Tony60 at12/hit; Sean90 at18/hit; exactly5 hits either hero. Explicit hero-calibrated hazard, not monster or weapon rebalance.",
+    "fields": [
+      "id",
+      "kind",
+      "rect",
+      "origin",
+      "bounds",
+      "age",
+      "velocity",
+      "hp",
+      "max_hp",
+      "flash"
+    ],
+    "events": [
+      "gas_warning",
+      "gas_started",
+      "gas_damaged",
+      "gas_destroyed",
+      "pressure_cleared"
+    ],
+    "feedback": "Nonlethal accepted hit emits gas_damaged and flash0.08s; lethal emits only gas_destroyed. Deduplicate attack per cloud. Pause freezes; immediate destroyed-core hurt cleanup.",
+    "motion": "100x64 core; 20px horizontal art allowance for140x100 visual. Bounded horizontal drift reverses at column edges. Normal two columns/two tiers, Hard two columns/three tiers; centersY388/286/184.",
+    "expiry": "All survivors expire at active phase end; no stacking into next pattern/weakpoint. Reset/terminal clear."
+  },
+  "reinforcements": {
+    "id": "sewer-fly-swarm",
+    "hp": 24,
+    "warning_seconds": 1.2,
+    "safe_lane": [
+      300,
+      0,
+      180,
+      440
+    ],
+    "left_bounds": [
+      80,
+      160,
+      204,
+      280
+    ],
+    "right_bounds": [
+      496,
+      160,
+      204,
+      280
+    ],
+    "hard_centers_x": [
+      128,
+      236,
+      544,
+      652
+    ],
+    "rows_y": [
+      224,
+      344
+    ],
+    "counts": "Exactly2/4/8 requests and actual simultaneous spawns, no fallback drops/refills/accumulation. Adapter responsible for fulfilling requests and purging tagged adds.",
+    "visual_note": "Same-flank hard centers108px apart:96px cores separated12px,128px artwork may overlap20px.64px visual stays outside safe lane. Floorward center can reach392."
+  },
+  "fairness": "Escape reach uses235px/s and0.15s reaction margin. Acid mark count is a maximum constrained by reachability, safe lane and coverage; gas/add counts are exact. All pressure precedes original next acid/volley, and clears before useful high jump window. No control interruption; normal hero damage invulnerability.",
+  "validation": {
+    "source_logs": [
+      "/tmp/dd96-clogfather_pressure.log",
+      "/tmp/dd96-clogfather_difficulty.log"
+    ],
+    "coverage": "Easy baseline cycles/allphases; all modes, active12/18 weapons,60/120Hz,five hero positions, doubled later-phase volleys, exact gas/add counts, five-hit/dedup/freeze, core/visual safe lanes, grounded reachable adds, reset/terminal.",
+    "remaining": "Engineering room/projectile/spawn/audio integration and packaged regression checks; human fight duration and difficulty review."
+  },
+  "volleys": "Easy one3/4-shot round; Normal/Hard two separately aimed3/4-shot rounds (6/8 total). First round clears fully, then retarget current hero with fresh mode-specific0.7/0.55s warning; each round locks aim through its shots. Approach/full5s window only after both rounds."
+}

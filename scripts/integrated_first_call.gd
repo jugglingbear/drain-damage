@@ -575,6 +575,7 @@ func step_trial_shots(delta: float) -> void:
 		var boss_target := false
 		var clog_target := false
 		var clog_weak := false
+		var gas_target := ""
 		for solid in player_shot_solids():
 			var hit := projectile_hit(start,end,solid,direction)
 			if hit >= 0: nearest = minf(nearest,hit)
@@ -618,11 +619,24 @@ func step_trial_shots(delta: float) -> void:
 				actor_target = -1
 				enemy_target = -1
 				swarm_target = -1
+		for target: Dictionary in clogfather.gas_targets():
+			var hit := projectile_hit(start,end,target.rect,direction)
+			if hit >= 0 and hit < nearest:
+				nearest = hit
+				gas_target = target.id
+				clog_target = false
+				boss_target = false
+				actor_target = -1
+				enemy_target = -1
+				swarm_target = -1
 		shot.pos = end
 		shot.distance += travel
 		if nearest <= 1 or shot.distance >= shot.range:
-			if shot.has("trial_id"): trial_state.resolve_shot(shot.trial_id,actor_target >= 0 or enemy_target >= 0 or swarm_target >= 0 or boss_target or clog_target)
-			if clog_target:
+			if shot.has("trial_id"): trial_state.resolve_shot(shot.trial_id,actor_target >= 0 or enemy_target >= 0 or swarm_target >= 0 or boss_target or clog_target or not gas_target.is_empty())
+			if not gas_target.is_empty():
+				clogfather.damage_gas(self,gas_target,int(shot.damage),
+					str(shot.get("trial_id","shot-%d" % shot_serial)))
+			elif clog_target:
 				var point := start.lerp(end,nearest)
 				if clog_weak:
 					var accepted := clogfather.damage(self,int(shot.damage),

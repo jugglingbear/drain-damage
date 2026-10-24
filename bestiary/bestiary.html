@@ -58,7 +58,7 @@ The Clogfather appears in a future-boss briefing. This screen-reading edition is
 profile-backed hit and defeat playback; canonical status is runtime integrated and source checks pass.
 Prototype 63 / 0.63.0 is delivered: twelve packaged suites and fifteen Python tests pass.
 Live listening and gameplay captures remain pending. The Clogfather is integrated in Prototype 85; live listening and gameplay acceptance remain pending.</p>
-<p>Flushfiend, the Hallowed Widow, Gratecrawler and Septic Air Force have one hit variant each.
+<p>Flushfiend, the Hallowed Widow, Gratecrawler and Gnatastrophe have one hit variant each.
 Sputtervalve retains its two hit variants. Each creature has one defeat sound; the existing porcelain shatter,
 Sputtervalve effects and Clogfather hurt/collapse assets are preserved.</p>
 <p><a href="../handoffs/monster-damage-audio.json">Audio coverage, provenance and integration status</a> ·
@@ -137,13 +137,16 @@ Frame-alignment polish, live fairness and actual gameplay visual review remain p
 <figure><a href="clogfather/marketing-v1.png"><img src="clogfather/marketing-v1.png" width="1254" height="1254"
 alt="The Clogfather, a colossal yellow fatberg with root tendrils, wet wipes and rusty pipe mouths"></a></figure>
 <div class="content"><div class="number">SPECIMEN 003 / ACCUMULATED CONSEQUENCES</div>
-<h2>The Clogfather</h2><p>Prototype 86 revision: recovery alternates between low and high openings; the high target is reachable with an ordinary jump and horizontal shot from either hero, and requires a shot fired while airborne. Defeat exposes an impossible portal that pulls the chosen hero inside while the partner remains outside on radio. Integrated and checked in the packaged build; live review pending. <a href="../assets/world/first-call/portal-manifest-v1.json">Portal animation source</a>.</p><span class="badge pending">Prototype 92 · Rooted first-level boss</span>
+<h2>The Clogfather</h2><p>Prototype 86 revision: recovery alternates between low and high openings; the high target is reachable with an ordinary jump and horizontal shot from either hero, and requires a shot fired while airborne. Defeat exposes an impossible portal that pulls the chosen hero inside while the partner remains outside on radio. Integrated and checked in the packaged build; live review pending. <a href="../assets/world/first-call/portal-manifest-v1.json">Portal animation source</a>.</p><span class="badge pending">Prototype 96 · Rooted first-level boss</span>
 <p>A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.</p>
+<p>Normal and Hard now use two separately aimed projectile rounds, faster shootable gas and tighter acid escapes.
+Gas clouds: 1/4/6; Gnatastrophe reinforcements: exactly 2/4/8 on Easy/Normal/Hard. Each cloud takes five active-weapon hits.
+Weak-point windows remain five seconds. Live balance and listening review are pending.</p>
 <p><strong>1080 HP implemented.</strong> Vertical boss meter visible by default in a dedicated right sidebar; normal player HUD retained.
 Prototype 95 introduces the boss with centered title artwork, replacing the persistent sidebar name.
 Human balance and live visual review remain pending.
 90 active Tony pressure hits or 60 active Sean plunger hits against the open weak point; misses and closed phases extend combat.</p>
-<p>Prototype 92 adds warned gas drifts and capped Septic Air Force groups between the original attack cycles.
+<p>Prototype 92 adds warned gas drifts and capped Gnatastrophe groups between the original attack cycles.
 Five-second weak-point windows and 1080 HP remain unchanged; packaged pressure checks passed, live review pending.
 <a href="../assets/bestiary/the-clogfather/gas-manifest-v1.json">Gas animation specification</a>.</p>
 <h3>Game sprites &amp; animation</h3><p><a href="clogfather/art-preview.html">Moving-parts and portal playback previews</a> ·
@@ -159,11 +162,11 @@ collapse and boss music are integrated; live visual, listening and gameplay acce
 This draft does not establish intentional summoning.</p></div></article>
 </div>
 <article id="sewer-flies"><div class="content"><span class="badge pending">Prototype 43 · double-size swarm with proximity buzz</span>
-<h2>Septic Air Force</h2>
+<h2>Gnatastrophe</h2>
 <p>A 48-pixel circular contact area covers most visible flies at the current 128-pixel display size.</p><p><strong>Working name selected by Sean.</strong> A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone’s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.</p>
 <div style="width:256px;height:256px;background-image:url('../assets/bestiary/sewer-flies/swarm-mockup-v2.png');background-size:1024px 1536px" role="img" aria-label="One hovering sewer fly swarm mockup"></div>
 <p>The runtime swarm uses a 128-pixel display and 48-pixel contact radius. Prototype 81 raises health from 12 to 24 HP: two hits from either current first-level starter weapon (Sean 18 damage, Tony 12). Seven focused packaged suites and 33 Python tests pass. Prototype 70 expands placement to nine potential first-level swarms, retaining the original x4400 encounter and adding eight authored slots. New swarms have a 0.8-second harmless introduction. Four later slots belong to checkpoint retries; the quiet approach and boss room at x5610–7530 remain empty. These are scheduled encounters, not nine simultaneous swarms. Prototype 70 packaged verification passed: 17 suites, 28 Python tests, and 18 full-route trials with all nine encounters issued and visible. Live visual, listening and fairness review remain pending. Seeded non-hunting flight, artwork, audio, shared contact cooldowns and finite death are retained. Prototype 43 adds a bounded proximity buzz for living swarms with pause/mute and exit cleanup; listening review pending. Corrected slicing validated; live readability and six damage-stage artwork remain pending. Draft backstory supplied; marketing portrait pending.</p>
-<h3>Backstory</h3><p><strong>Storyboarding draft.</strong> The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.</p>
+<h3>Backstory</h3><p><strong>Storyboarding draft.</strong> A maintenance crew first reported Gnatastrophe as a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.</p>
 <p><a href="sewer-flies/preview.html">Animated mockup</a> · <a href="../assets/bestiary/sewer-flies/swarm-mockup-v2.png">Sprite sheet</a> ·
 <a href="../assets/bestiary/sewer-flies/animation-v3.json">Animation information</a> · <a href="sewer-flies/monster.json">Metadata</a></p></div></article>
 <section class="notes" aria-labelledby="collection-notes">

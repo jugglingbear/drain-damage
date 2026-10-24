@@ -46,7 +46,7 @@ Human pacing and visual review are pending. Automated tests verify continuous pl
 checkpoint recovery, encounter accounting, open traversal and completion conditions. They do not establish survival balance.
 No game window is opened by headless tests.
 
-Prototype 70 adds eight Septic Air Force encounters to the existing swarm, distributed across the opening, service
+Prototype 70 adds eight Gnatastrophe encounters to the existing swarm, distributed across the opening, service
 route, overhead pump and three post-boss locations. These additions use a separate two-swarm capacity budget so they
 cannot displace ordinary monster admissions. New swarms have 0.8 seconds of visible harmless warning and hold contact
 while the hero occupies their initial footprint. Checkpoint retries restore four later encounters. The quiet approach

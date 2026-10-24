@@ -152,7 +152,7 @@
     {
       "id": "clogfather",
       "name": "The Clogfather",
-      "status": "Integrated in Prototype 92; pressure checks passed, live review pending",
+      "status": "Prototype96 mode-specific boss pressure; live review pending",
       "metadata": "bestiary/clogfather/monster.json",
       "art": "assets/bestiary/the-clogfather/rooted-body-v2.png",
       "animation_spec": "assets/bestiary/the-clogfather/runtime-manifest-v3.json",
@@ -252,11 +252,30 @@
           "audio/sources/sewer-fly-buzz-v1/manifest.json"
         ]
       },
-      "gas_animation_spec": "assets/bestiary/the-clogfather/gas-manifest-v1.json"
+      "gas_animation_spec": "assets/bestiary/the-clogfather/gas-manifest-v1.json",
+      "pressure_summary": {
+        "source": "bestiary/clogfather/monster.json#prototype96_pressure",
+        "gas_clouds": [
+          1,
+          4,
+          6
+        ],
+        "reinforcements": [
+          2,
+          4,
+          8
+        ],
+        "mode_order": [
+          "easy",
+          "normal",
+          "hard"
+        ],
+        "gas_hits": 5
+      }
     },
     {
       "id": "sewer-fly-swarm",
-      "name": "Septic Air Force",
+      "name": "Gnatastrophe",
       "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
       "status": "Integrated in Prototype70/0.70.0: nine potential first-level swarms. Automated packaged verification passed; live visual, listening and fairness review pending.",
       "metadata": "bestiary/sewer-flies/monster.json",
@@ -280,10 +299,10 @@
       },
       "backstory": {
         "status": "draft",
-        "text": "The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
-        "canon_note": "Name selected by Sean; revised history is a Storyboarding draft. Aviation language is comic metaphor, not military equipment or new attack behavior. No plot spoilers."
+        "text": "A maintenance crew first reported Gnatastrophe as a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
+        "canon_note": "Current name selected by Sean October 23; aviation-flavored history remains a Storyboarding draft, not new mechanics."
       },
-      "name_status": "Working name selected by Sean on 2026-10-16",
+      "name_status": "Renamed Gnatastrophe by Sean on 2026-10-23; stable ID retained",
       "renderer": "scripts/sewer_swarm.gd",
       "runtime_display_size": [
         128,

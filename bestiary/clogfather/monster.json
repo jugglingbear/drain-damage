@@ -5,7 +5,7 @@
   "name": "The Clogfather",
   "creature_type": "Rooted living fatberg boss",
   "description": "A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.",
-  "implementation_status": "Integrated in Prototype 92; pressure checks passed, live review pending",
+  "implementation_status": "Prototype96 mode-specific gas, double rounds, acid and Gnatastrophe pressure; live balance review pending",
   "design_status": "Giant fatberg identity approved; detailed anatomy, core appearance and combat tuning proposed",
   "backstory": {
     "status": "draft",
@@ -198,7 +198,7 @@
     "ending": "Defeat reveals impossible opening; chosen hero involuntarily pulled inside while partner remains outside on radio. Level2 gameplay not implemented."
   },
   "prototype92_pressure": {
-    "status": "Integrated in Prototype 92; pressure checks passed, live review pending",
+    "status": "Historical Prototype92 values, superseded by prototype96_pressure",
     "warning_seconds": 1.2,
     "gas_active_seconds": 2.0,
     "reinforcement_active_seconds": 3.0,
@@ -216,6 +216,110 @@
     "policy": "Gas first, then reinforcements; after recovery and before next acid/volley. No refill. Clear before original attacks and windows, death and reset; pause freezes. Normal damage/immunity, no cough or control/fire interruption. Geometry may admit fewer swarms.",
     "duration_note": "Adds 3.45s gas / 4.45s swarm activity between original cycles; human duration and readability review pending.",
     "audio_provenance": [
+      "audio/sources/clogfather-v1/manifest.json",
+      "audio/sources/sewer-fly-buzz-v1/manifest.json"
+    ]
+  },
+  "prototype96_pressure": {
+    "status": "Prototype96 implementation; live balance review pending",
+    "gas_clouds_by_mode": {
+      "easy": 1,
+      "normal": 4,
+      "hard": 6
+    },
+    "gas_warning_seconds_by_mode": {
+      "easy": 1.2,
+      "normal": 0.75,
+      "hard": 0.55
+    },
+    "gas_active_seconds_by_mode": {
+      "easy": 2,
+      "normal": 4,
+      "hard": 4.5
+    },
+    "gas_speed_pixels_per_second_by_mode": {
+      "easy": 30,
+      "normal": 65,
+      "hard": 90
+    },
+    "gas_health": "Encounter hazard:5 times active hero weapon damage,60HP forTony/90HP forSean; exactly5 hits each. No change to monsterHP or weaponDPS.",
+    "reinforcement_counts_by_mode": {
+      "easy": 2,
+      "normal": 4,
+      "hard": 8
+    },
+    "reinforcement_warning_seconds": 1.2,
+    "reinforcement_active_seconds_by_mode": {
+      "easy": 3,
+      "normal": 4,
+      "hard": 5
+    },
+    "reinforcement_id": "sewer-fly-swarm",
+    "reinforcement_hp": 24,
+    "reinforcement_escape_corridor": [
+      300,
+      0,
+      180,
+      440
+    ],
+    "clear_seconds": 0.25,
+    "open_window_seconds": 5,
+    "approach_seconds": 0.8,
+    "policy": "Exact complete formations; no silent drops or refill. All expire before original attacks/windows and clear on death/reset. Normal damage and shared immunity; no cough/control interruption.",
+    "acid_warning_seconds_by_mode": {
+      "easy": 1.2,
+      "normal": 0.9,
+      "hard": 0.7
+    },
+    "acid_escape_width_by_mode": {
+      "easy": 180,
+      "normal": 140,
+      "hard": 120
+    },
+    "acid_column_targets_by_mode": {
+      "easy": [
+        2,
+        2,
+        3
+      ],
+      "normal": [
+        4,
+        4,
+        5
+      ],
+      "hard": [
+        5,
+        5,
+        6
+      ]
+    },
+    "acid_floor_coverage_limits": {
+      "easy": 0.35,
+      "normal": 0.5,
+      "hard": 0.6
+    },
+    "volley_rounds_by_mode": {
+      "easy": 1,
+      "normal": 2,
+      "hard": 2
+    },
+    "volley_warning_seconds_by_mode": {
+      "easy": 0.9,
+      "normal": 0.7,
+      "hard": 0.55
+    },
+    "volley_shot_spacing_by_mode": {
+      "easy": 0.45,
+      "normal": 0.35,
+      "hard": 0.25
+    },
+    "shots_per_round_by_phase": [
+      3,
+      4,
+      4
+    ],
+    "audio_provenance": [
+      "audio/sources/clogfather-festering-v3/manifest.json",
       "audio/sources/clogfather-v1/manifest.json",
       "audio/sources/sewer-fly-buzz-v1/manifest.json"
     ]

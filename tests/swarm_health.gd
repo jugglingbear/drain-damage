@@ -51,5 +51,5 @@ func run_checks() -> void:
 			assert(game.swarms.actors[0].schedule_id == "pump-overhead" and game.lives == 2)
 			game.queue_free()
 			await process_frame
-	print("PASS: Septic Air Force two active-weapon hits, both heroes/all modes, one hit/death cue, full reset and checkpoint spawn")
+	print("PASS: Gnatastrophe two active-weapon hits, both heroes/all modes, one hit/death cue, full reset and checkpoint spawn")
 	quit()

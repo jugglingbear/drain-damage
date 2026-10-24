@@ -96,17 +96,17 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 			place(canvas,id,origin,hazard.pos,hazard.velocity.angle()+PI)
 		elif hazard.kind == "gas":
 			place(canvas,"gas_cloud_"+str(["a","b","c","d"][int(hazard.age*8)%4]),
-				origin,hazard.rect.get_center())
+				origin,hazard.rect.get_center(),0,Color(2,2,2) if hazard.get("flash",0.0) > 0 else Color.WHITE)
 			if hazard.age < 0.3: place(canvas,"gas_emit",origin,snapshot.nozzle)
 		else:
 			place(canvas,"acid_puddle" if snapshot.state == "acid_puddle" else "acid_drop",origin,hazard.pos)
 
-func place(canvas: Node2D, id: String, origin: Vector2, position: Vector2, rotation := 0.0) -> void:
+func place(canvas: Node2D, id: String, origin: Vector2, position: Vector2, rotation := 0.0, tint := Color.WHITE) -> void:
 	if not definition.frames.has(id): return
 	var part: Dictionary = definition.frames[id]
 	if str(part.get("coordinate_space","")).begins_with("destination relative"):
 		canvas.draw_set_transform(origin+position,rotation)
-		canvas.draw_texture_rect_region(textures[part.path],rect(part.destination),rect(part.source_rect))
+		canvas.draw_texture_rect_region(textures[part.path],rect(part.destination),rect(part.source_rect),tint)
 		canvas.draw_set_transform(origin)
 		return
 	var anchor: Array = part.anchor

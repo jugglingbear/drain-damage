@@ -49,6 +49,9 @@ func sync_music_warning(host: Node2D) -> void:
 
 func process_audio(host: Node2D, delta: float) -> void:
 	sync_music_warning(host)
+	audio.set_presence(entered and encounter.active and encounter.hp > 0 and not host.boss_intro.blocking(),
+		encounter.state in ["volley_warning","acid_warning","pressure_warning"]
+		or (encounter.state == "recovery" and encounter.elapsed >= 4.25))
 	audio.set_paused(frozen(host))
 	audio.tick(delta)
 
@@ -72,6 +75,7 @@ func advance(host: Node2D, delta: float) -> void:
 	if not entered and host.player.x >= COMMIT:
 		entered = true
 		host.skitterling.clear_prior(host,true)
+		encounter.configure_difficulty(host.difficulty,int(host.weapon.damage))
 		encounter.start(hero)
 		host.boss_hud.begin_encounter("clogfather")
 		if host.music_director != null: host.music_director.play_track("clogfather",true)
@@ -126,8 +130,22 @@ func spawn_reinforcements(host: Node2D) -> void:
 		actor.clogfather_reinforcement = true
 		actor.pressure_wave = spawned_wave
 		actor.additive = true
-		actor.contact_ready = false
+		# The complete encounter warning already grants time to leave the formation.
+		actor.contact_ready = true
 		host.swarms.actors.append(actor)
+
+func gas_targets() -> Array[Dictionary]:
+	var targets: Array[Dictionary] = []
+	for target: Dictionary in encounter.gas_targets():
+		var region: Rect2 = target.rect
+		region.position += ORIGIN
+		targets.append({"id":target.id,"rect":region})
+	return targets
+
+func damage_gas(host: Node2D, id: String, amount: int, attack_id: String) -> int:
+	var accepted := encounter.hit_gas(id,amount,attack_id)
+	flush_events(host)
+	return accepted
 
 func target_rect() -> Rect2:
 	var body := encounter.weak_point_rect()
