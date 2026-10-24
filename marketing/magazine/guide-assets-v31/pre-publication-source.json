@@ -1,0 +1,2609 @@
+{
+  "schema_version": 1,
+  "publication": {
+    "title": "Discharge Quarterly",
+    "game": "Drain Damage",
+    "edition": 30,
+    "date": "2026-10-20",
+    "subtitle": "The Official Journal of the Plumbing, Heating & Creature Containment Association",
+    "pdf_title": "DISCHARGE QUARTERLY - Edition 30 - Drain Damage",
+    "author": "Drain Damage / Marketing"
+  },
+  "output": "marketing/magazine/discharge-quarterly-v30.pdf",
+  "layout": {
+    "page_width": 612,
+    "page_height": 792,
+    "font_directory": "/System/Library/Fonts/Supplemental",
+    "fonts": {
+      "Display": "Impact.ttf",
+      "Body": "Arial Narrow.ttf",
+      "Bold": "Arial Narrow Bold.ttf",
+      "Italic": "Arial Narrow Italic.ttf",
+      "Condensed": "Arial Narrow Bold.ttf",
+      "Wide": "Arial Bold.ttf"
+    },
+    "templates": {}
+  },
+  "editorial_guidance": {
+    "audience": "People who love games; no technical background assumed.",
+    "rule": "No game-design or development terminology in reader-facing text, headings, captions, contents, credits or metadata.",
+    "keep_internal": "Build IDs, implementation status, technical art specifications and process notes belong in manifests and README only.",
+    "qualifications": "Picture captions should describe the subject, action, atmosphere or useful player information. Do not discuss development history, earlier versions, prototype status or production progress. Keep asset provenance and development qualifications in internal records only. Remove tentative preview-artwork and exploring-an-idea captions. Do not imply unfinished encounters are playable. Actual missing editorial content uses conspicuous TODOs.",
+    "preserve": "Approved profiles and lore, spoiler-free policy and current names. Do not imply unfinished encounters are playable.",
+    "writing_style": "Follow AGENTS.md Writing Style: Avoid Formulaic AI Copy. Use natural, varied sentences and specific observations. Avoid repeated paired fragments, formulaic contrasts and generic trailer language. Review all creative copy for repetitive rhetorical patterns before publication.",
+    "corporate_horror": "Imply the Spare Employee Dispenser's disturbing practices through corporate euphemisms and omissions. Do not disclose its lethal mechanism or describe bodily processing. Never refer to the viewer's screen or other fourth-wall-breaking presentation details in magazine copy.",
+    "pending_revision": "Edition 22 adds Gratecrawler and approved Sputtervalve using existing sprite artwork and descriptive copy. Only Gratecrawler remains a working name; origin lore pending for both. Clogfather stays descriptive only.",
+    "todos": "Actual unresolved editorial placeholders must say TODO: followed by the specific missing item. Use a conspicuous high-contrast box with bold type at least 18 pt, with sufficient space and no clipping. Never bury TODOs in small italic captions or replace them with vague caveats. Do not invent TODOs for existing artwork merely because gameplay is unfinished.",
+    "clogfather_revision": "First description preserved; redundant paragraph and idle inset replaced with Tony horror reaction.",
+    "disclaimers": "Do not add fictional-company, fictional-publication or non-affiliation disclaimers to reader-facing magazine content.",
+    "creature_order": "Five non-bosses first, then Skitterling miniboss, then Clogfather. No current playability claim for unintegrated encounters.",
+    "skitterling": "Skitterling is the official name, explicitly confirmed by Sean on 2026-10-17, unless he changes it. No working-name label. Existing conceptual art, no origin lore or fight-solution claims."
+  },
+  "pages": [
+    {
+      "id": "cover",
+      "number": 1,
+      "template": "custom",
+      "section": "Cover",
+      "elements": [
+        {
+          "id": "cover-001",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "111421"
+        },
+        {
+          "id": "cover-006",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v3/tony-sean-horde-cover-v2.png",
+          "x": 0,
+          "y": 0,
+          "width": 612,
+          "height": 792,
+          "crop": [
+            0,
+            0,
+            1024,
+            1325
+          ]
+        },
+        {
+          "id": "cover-007",
+          "type": "rect",
+          "x": 0,
+          "y": 770,
+          "w": 612,
+          "h": 22,
+          "color": "FFF000"
+        },
+        {
+          "id": "cover-008",
+          "type": "text",
+          "text": "DRAIN DAMAGE     /     SPECIAL CREATURE ISSUE     /     OCTOBER 2026",
+          "x": 20,
+          "y": 777,
+          "size": 11,
+          "color": "111421",
+          "font": "Bold"
+        },
+        {
+          "id": "cover-009",
+          "type": "text",
+          "text": "DISCHARGE",
+          "x": 24,
+          "y": 683,
+          "size": 83,
+          "color": "111421",
+          "font": "Display",
+          "angle": 0
+        },
+        {
+          "id": "cover-010",
+          "type": "text",
+          "text": "DISCHARGE",
+          "x": 22,
+          "y": 685,
+          "size": 83,
+          "color": "FFF000",
+          "font": "Display",
+          "angle": 0,
+          "outline": "FFFFFF",
+          "stroke_width": 0.35
+        },
+        {
+          "id": "cover-011",
+          "type": "text",
+          "text": "QUARTERLY",
+          "x": 27,
+          "y": 633,
+          "size": 49,
+          "color": "111421",
+          "font": "Display",
+          "angle": 0
+        },
+        {
+          "id": "cover-012",
+          "type": "text",
+          "text": "QUARTERLY",
+          "x": 25,
+          "y": 635,
+          "size": 49,
+          "color": "FFFFFF",
+          "font": "Display",
+          "angle": 0,
+          "outline": "FFFFFF",
+          "stroke_width": 0.35
+        },
+        {
+          "id": "cover-013",
+          "type": "rect",
+          "x": 26,
+          "y": 600,
+          "w": 380,
+          "h": 20,
+          "color": "E62A32"
+        },
+        {
+          "id": "cover-014",
+          "type": "text",
+          "text": "THE JOURNAL OF PLUMBING & CREATURE CONTAINMENT",
+          "x": 33,
+          "y": 606,
+          "size": 13,
+          "color": "FFFFFF",
+          "font": "Bold"
+        },
+        {
+          "id": "cover-015",
+          "type": "rect",
+          "x": 26,
+          "y": 237,
+          "w": 176,
+          "h": 108,
+          "color": "111421"
+        },
+        {
+          "id": "cover-016",
+          "type": "text",
+          "text": "MEET THE",
+          "x": 36,
+          "y": 319,
+          "size": 18,
+          "color": "FFFFFF",
+          "font": "Condensed"
+        },
+        {
+          "id": "cover-017",
+          "type": "text",
+          "text": "LOCALS!",
+          "x": 36,
+          "y": 284,
+          "size": 33,
+          "color": "111421",
+          "font": "Display",
+          "angle": 0
+        },
+        {
+          "id": "cover-018",
+          "type": "text",
+          "text": "LOCALS!",
+          "x": 34,
+          "y": 286,
+          "size": 33,
+          "color": "FFF000",
+          "font": "Display",
+          "angle": 0,
+          "outline": "FFFFFF",
+          "stroke_width": 0.35
+        },
+        {
+          "id": "cover-019",
+          "type": "para",
+          "text": "Find out what has been making all that noise in the basement.",
+          "x": 36,
+          "top": 278,
+          "width": 153,
+          "size": 10.5,
+          "color": "FFFFFF",
+          "max_height": 38,
+          "leading": 11.760000000000002
+        },
+        {
+          "id": "cover-020",
+          "type": "burst",
+          "cx": 519,
+          "cy": 537,
+          "radius": 63,
+          "color": "FFF000"
+        },
+        {
+          "id": "cover-021",
+          "type": "text",
+          "text": "CREATURE",
+          "x": 475,
+          "y": 548,
+          "size": 19,
+          "color": "E62A32",
+          "font": "Display",
+          "angle": -6
+        },
+        {
+          "id": "cover-022",
+          "type": "text",
+          "text": "FEATURE",
+          "x": 480,
+          "y": 517,
+          "size": 19,
+          "color": "111421",
+          "font": "Display",
+          "angle": -6
+        },
+        {
+          "id": "cover-023",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 173,
+          "color": "111421"
+        },
+        {
+          "id": "cover-024",
+          "type": "text",
+          "text": "MIND THE FIXTURES!",
+          "x": 25,
+          "y": 103,
+          "size": 47,
+          "color": "111421",
+          "font": "Display",
+          "angle": 2
+        },
+        {
+          "id": "cover-025",
+          "type": "text",
+          "text": "MIND THE FIXTURES!",
+          "x": 23,
+          "y": 105,
+          "size": 47,
+          "color": "FFF000",
+          "font": "Display",
+          "angle": 2,
+          "outline": "FFFFFF",
+          "stroke_width": 0.35
+        },
+        {
+          "id": "cover-026",
+          "type": "para",
+          "text": "Tony and Sean take on the basement nobody wants to inspect.",
+          "x": 28,
+          "top": 91,
+          "width": 370,
+          "size": 18,
+          "color": "FFFFFF",
+          "max_height": 45,
+          "leading": 20.160000000000004,
+          "font": "Bold"
+        },
+        {
+          "id": "cover-027",
+          "type": "rect",
+          "x": 433,
+          "y": 38,
+          "w": 151,
+          "h": 58,
+          "color": "E62A32"
+        },
+        {
+          "id": "cover-028",
+          "type": "text",
+          "text": "PLEASE COLLECT",
+          "x": 443,
+          "y": 74,
+          "size": 15,
+          "color": "FFFFFF",
+          "font": "Condensed"
+        },
+        {
+          "id": "cover-029",
+          "type": "text",
+          "text": "YOUR REPLACEMENT",
+          "x": 443,
+          "y": 53,
+          "size": 14,
+          "color": "FFF000",
+          "font": "Condensed"
+        },
+        {
+          "id": "cover-030",
+          "type": "text",
+          "text": "THE CREW  02     \u2022     CREATURE FEATURE  04     \u2022     ACTION GALLERY  07",
+          "x": 28,
+          "y": 16,
+          "size": 10,
+          "color": "FFFFFF",
+          "font": "Bold"
+        },
+        {
+          "id": "cover-issue-number",
+          "type": "text",
+          "text": "EDITION 30",
+          "x": 537,
+          "y": 15,
+          "size": 8,
+          "font": "Bold",
+          "color": "FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "crew",
+      "number": 2,
+      "template": "custom",
+      "section": "Meet the crew",
+      "elements": [
+        {
+          "id": "layout29-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "FFF8DF"
+        },
+        {
+          "id": "layout29-001",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-002",
+          "type": "para",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "top": 23,
+          "width": 400,
+          "max_height": 18,
+          "size": 7.5,
+          "leading": 8.7,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-003",
+          "type": "text",
+          "text": "02",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "font": "Display",
+          "color": "101B2D",
+          "angle": 0
+        },
+        {
+          "id": "layout29-004",
+          "type": "rect",
+          "x": 0,
+          "y": 692,
+          "w": 612,
+          "h": 100,
+          "color": "00BADA"
+        },
+        {
+          "id": "layout29-005",
+          "type": "text",
+          "text": "CLOCK IN!",
+          "x": 24,
+          "y": 724,
+          "size": 48,
+          "font": "Display",
+          "color": "101B2D",
+          "angle": 0
+        },
+        {
+          "id": "layout29-006",
+          "type": "para",
+          "text": "Tony is teaching Sean a trade that keeps getting stranger.",
+          "x": 240,
+          "top": 748,
+          "width": 340,
+          "max_height": 45,
+          "size": 13,
+          "leading": 15.079999999999998,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-007",
+          "type": "rect",
+          "x": 24,
+          "y": 49,
+          "w": 124,
+          "h": 625,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-008",
+          "type": "text",
+          "text": "03",
+          "x": 34,
+          "y": 647,
+          "size": 32,
+          "font": "Display",
+          "color": "FFF000",
+          "angle": 0
+        },
+        {
+          "id": "layout29-009",
+          "type": "text",
+          "text": "THE BOSS",
+          "x": 34,
+          "y": 619,
+          "size": 17,
+          "font": "Display",
+          "color": "FFFFFF",
+          "angle": 0
+        },
+        {
+          "id": "layout29-010",
+          "type": "para",
+          "text": "& the replacement plan",
+          "x": 34,
+          "top": 605,
+          "width": 102,
+          "max_height": 50,
+          "size": 10,
+          "leading": 11.6,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "layout29-011",
+          "type": "text",
+          "text": "04",
+          "x": 34,
+          "y": 530,
+          "size": 32,
+          "font": "Display",
+          "color": "FFF000",
+          "angle": 0
+        },
+        {
+          "id": "layout29-012",
+          "type": "text",
+          "text": "THE LOCALS",
+          "x": 34,
+          "y": 502,
+          "size": 17,
+          "font": "Display",
+          "color": "FFFFFF",
+          "angle": 0
+        },
+        {
+          "id": "layout29-013",
+          "type": "para",
+          "text": "Seven reasons to wear boots",
+          "x": 34,
+          "top": 488,
+          "width": 102,
+          "max_height": 50,
+          "size": 10,
+          "leading": 11.6,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "layout29-014",
+          "type": "text",
+          "text": "06",
+          "x": 34,
+          "y": 413,
+          "size": 32,
+          "font": "Display",
+          "color": "FFF000",
+          "angle": 0
+        },
+        {
+          "id": "layout29-015",
+          "type": "text",
+          "text": "ON THE JOB",
+          "x": 34,
+          "y": 385,
+          "size": 17,
+          "font": "Display",
+          "color": "FFFFFF",
+          "angle": 0
+        },
+        {
+          "id": "layout29-016",
+          "type": "para",
+          "text": "Tips + an action gallery",
+          "x": 34,
+          "top": 371,
+          "width": 102,
+          "max_height": 50,
+          "size": 10,
+          "leading": 11.6,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "layout29-017",
+          "type": "para",
+          "text": "IN THIS ISSUE",
+          "x": 34,
+          "top": 95,
+          "width": 102,
+          "max_height": 30,
+          "size": 11,
+          "leading": 12.76,
+          "color": "00BADA"
+        },
+        {
+          "id": "crew-022",
+          "type": "image",
+          "path": "marketing/hero-portraits/tony-hyperreal-v1.png",
+          "x": 166,
+          "y": 451,
+          "width": 236,
+          "height": 220,
+          "crop": [
+            0,
+            0,
+            1122,
+            1122
+          ]
+        },
+        {
+          "id": "layout29-019",
+          "type": "text",
+          "text": "TONY",
+          "x": 177,
+          "y": 462,
+          "size": 34,
+          "font": "Display",
+          "color": "FFF000",
+          "angle": 0
+        },
+        {
+          "id": "layout29-020",
+          "type": "para",
+          "text": "THE EXPERIENCED HAND",
+          "x": 414,
+          "top": 669,
+          "width": 174,
+          "max_height": 40,
+          "size": 14,
+          "leading": 16.24,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-021",
+          "type": "para",
+          "text": "Tony comes from four generations of plumbers and has spent decades installing, building, and keeping essential systems running. He takes the work seriously and makes time to teach Sean properly. A difficult job won't put him off. A large spider might slow him down a little.",
+          "x": 414,
+          "top": 623,
+          "width": 174,
+          "max_height": 150,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-022",
+          "type": "para",
+          "text": "TRADE ROOTS",
+          "x": 166,
+          "top": 440,
+          "width": 132,
+          "max_height": 20,
+          "size": 11,
+          "leading": 12.76,
+          "color": "1744B9"
+        },
+        {
+          "id": "layout29-023",
+          "type": "para",
+          "text": "Plumbing runs in Tony's family. He brings that accumulated knowledge to the job, along with the patience to explain what he's doing. Sean has a great deal to learn, and Tony intends to give him the chance.",
+          "x": 166,
+          "top": 420,
+          "width": 132,
+          "max_height": 128,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-024",
+          "type": "rect",
+          "x": 310,
+          "y": 320,
+          "w": 278,
+          "h": 107,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-025",
+          "type": "para",
+          "text": "TOOL TALK",
+          "x": 321,
+          "top": 415,
+          "width": 250,
+          "max_height": 20,
+          "size": 12,
+          "leading": 13.919999999999998,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-026",
+          "type": "para",
+          "text": "Tony's pressure gun fires quickly, so keep your aim steady and give yourself room when the creatures close in.",
+          "x": 321,
+          "top": 391,
+          "width": 121,
+          "max_height": 65,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-027",
+          "type": "para",
+          "text": "Sean's heavy plunger launcher hits hard. Make each shot count, and leave yourself room while he reloads.",
+          "x": 455,
+          "top": 391,
+          "width": 121,
+          "max_height": 65,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "crew-033",
+          "type": "image",
+          "path": "marketing/hero-portraits/sean-hyperreal-v1.png",
+          "x": 410,
+          "y": 55,
+          "width": 178,
+          "height": 250,
+          "crop": [
+            0,
+            0,
+            1122,
+            1122
+          ]
+        },
+        {
+          "id": "layout29-029",
+          "type": "text",
+          "text": "SEAN",
+          "x": 166,
+          "y": 286,
+          "size": 34,
+          "font": "Display",
+          "color": "E62A32",
+          "angle": 0
+        },
+        {
+          "id": "layout29-030",
+          "type": "para",
+          "text": "THE APPRENTICE",
+          "x": 166,
+          "top": 267,
+          "width": 230,
+          "max_height": 30,
+          "size": 12,
+          "leading": 13.919999999999998,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-031",
+          "type": "columns",
+          "text": "Sean wandered in looking for work and somehow ended up on Tony's crew. He's willing to help, although it's worth checking what he's holding before asking him to hand you a tool. Tony is showing him the ropes. There are quite a few ropes.<br/><br/>Sean arrived without much knowledge of plumbing. Tony took him on anyway. For now, enthusiasm is doing a lot of the work, and a patient teacher is keeping the rest moving.",
+          "boxes": [
+            [
+              166,
+              230,
+              110,
+              120
+            ],
+            [
+              288,
+              230,
+              110,
+              177
+            ]
+          ],
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        }
+      ]
+    },
+    {
+      "id": "management-maintenance",
+      "number": 3,
+      "template": "custom",
+      "section": "Management & maintenance",
+      "elements": [
+        {
+          "id": "layout29-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "EEF3E9"
+        },
+        {
+          "id": "layout29-001",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-002",
+          "type": "para",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "top": 23,
+          "width": 400,
+          "max_height": 18,
+          "size": 7.5,
+          "leading": 8.7,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-003",
+          "type": "text",
+          "text": "03",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "font": "Display",
+          "color": "101B2D",
+          "angle": 0
+        },
+        {
+          "id": "layout29-004",
+          "type": "rect",
+          "x": 24,
+          "y": 735,
+          "w": 564,
+          "h": 32,
+          "color": "E62A32"
+        },
+        {
+          "id": "layout29-005",
+          "type": "text",
+          "text": "COMPANY BUSINESS",
+          "x": 33,
+          "y": 743,
+          "size": 22,
+          "font": "Display",
+          "color": "FFFFFF",
+          "angle": 0
+        },
+        {
+          "id": "layout29-006",
+          "type": "text",
+          "text": "THE BOSS IS WATCHING.",
+          "x": 24,
+          "y": 690,
+          "size": 39,
+          "font": "Display",
+          "color": "101B2D",
+          "angle": 0
+        },
+        {
+          "id": "management-maintenance-011",
+          "type": "image",
+          "path": "marketing/billy-joe/server-room-v1.png",
+          "x": 24,
+          "y": 423,
+          "width": 170,
+          "height": 248,
+          "crop": null
+        },
+        {
+          "id": "layout29-008",
+          "type": "text",
+          "text": "BILLY-JOE",
+          "x": 211,
+          "y": 645,
+          "size": 25,
+          "font": "Display",
+          "color": "1744B9",
+          "angle": 0
+        },
+        {
+          "id": "layout29-009",
+          "type": "para",
+          "text": "CALL HIM BJ.",
+          "x": 435,
+          "top": 660,
+          "width": 150,
+          "max_height": 25,
+          "size": 12,
+          "leading": 13.919999999999998,
+          "color": "E62A32"
+        },
+        {
+          "id": "layout29-010",
+          "type": "columns",
+          "text": "Billy-Joe runs Mainframe Plumbing &amp; Supply from a beige server rack. Every plumbing company and distribution warehouse in the country answers to him, so asking for a different manager won't get you very far. Tony and Sean get their assignments from his green screen. BJ has plenty of work for them and very little interest in hearing why it might be unpleasant.<br/><br/>BJ speaks calmly, keeps the jobs coming, and expects his employees to get on with them. If you're hoping the smiling face means he's concerned about your welfare, you may want to ask a more specific question.",
+          "boxes": [
+            [
+              211,
+              619,
+              114,
+              180
+            ],
+            [
+              341,
+              619,
+              114,
+              210
+            ]
+          ],
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "management-maintenance-029",
+          "type": "image",
+          "path": "assets/world/spare-employee-dispenser/sean-v2.png",
+          "x": 471,
+          "y": 435,
+          "width": 117,
+          "height": 150,
+          "crop": [
+            0,
+            840,
+            418,
+            414
+          ]
+        },
+        {
+          "id": "layout29-012",
+          "type": "rect",
+          "x": 24,
+          "y": 388,
+          "w": 564,
+          "h": 25,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-013",
+          "type": "para",
+          "text": "BJ IS TAKING AN UNWELCOME INTEREST IN YOUR WORK.",
+          "x": 34,
+          "top": 407,
+          "width": 544,
+          "max_height": 25,
+          "size": 12,
+          "leading": 13.919999999999998,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-014",
+          "type": "text",
+          "text": "PLEASE COLLECT",
+          "x": 24,
+          "y": 348,
+          "size": 32,
+          "font": "Display",
+          "color": "008C70",
+          "angle": 0
+        },
+        {
+          "id": "layout29-015",
+          "type": "text",
+          "text": "YOUR REPLACEMENT",
+          "x": 24,
+          "y": 314,
+          "size": 32,
+          "font": "Display",
+          "color": "008C70",
+          "angle": 0
+        },
+        {
+          "id": "layout29-016",
+          "type": "para",
+          "text": "THE SPARE EMPLOYEE DISPENSER",
+          "x": 25,
+          "top": 296,
+          "width": 360,
+          "max_height": 24,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "management-maintenance-026",
+          "type": "image",
+          "path": "marketing/spare-employee-dispenser/tony-stocked-v1.png",
+          "x": 400,
+          "y": 93,
+          "width": 190,
+          "height": 263,
+          "crop": null
+        },
+        {
+          "id": "layout29-018",
+          "type": "columns",
+          "text": "Mainframe Plumbing &amp; Supply would like you to know that arrangements have been made. The Spare Employee Dispenser stands ready between service calls, its glass front offering a reassuring view of the company\u2019s preparations. There is rust around the hinges and something familiar about the occupants. The accompanying leaflet describes them as reserve personnel. It asks employees to respect their rest and directs all further questions to the same leaflet.<br/><br/>The leaflet is particularly clear on continuity of service. Your assignments will remain on the schedule, your tools will still be required, and your name will stay on the rota. Several paragraphs explain how much the company values an experienced employee. The section headed \u201cWhat this means for you\u201d refers back to those paragraphs. We would have preferred a little more detail, but the cabinet does appear to be well stocked.",
+          "boxes": [
+            [
+              24,
+              270,
+              112,
+              139
+            ],
+            [
+              149,
+              270,
+              112,
+              139
+            ],
+            [
+              274,
+              270,
+              112,
+              220
+            ]
+          ],
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-019",
+          "type": "para",
+          "text": "The company asks that reserve personnel not be disturbed.",
+          "x": 407,
+          "top": 83,
+          "width": 175,
+          "max_height": 45,
+          "size": 10,
+          "leading": 11.6,
+          "color": "E62A32"
+        }
+      ]
+    },
+    {
+      "id": "creature-field-guide-one",
+      "number": 4,
+      "template": "custom",
+      "section": "Creature feature / 1",
+      "elements": [
+        {
+          "id": "layout29-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "FFF8DF"
+        },
+        {
+          "id": "layout29-001",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-002",
+          "type": "para",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "top": 23,
+          "width": 400,
+          "max_height": 18,
+          "size": 7.5,
+          "leading": 8.7,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-003",
+          "type": "text",
+          "text": "04",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "font": "Display",
+          "color": "101B2D",
+          "angle": 0
+        },
+        {
+          "id": "layout29-004",
+          "type": "rect",
+          "x": 0,
+          "y": 704,
+          "w": 612,
+          "h": 88,
+          "color": "008C70"
+        },
+        {
+          "id": "layout29-005",
+          "type": "text",
+          "text": "MEET THE LOCALS",
+          "x": 24,
+          "y": 739,
+          "size": 37,
+          "font": "Display",
+          "color": "FFF000",
+          "angle": 0
+        },
+        {
+          "id": "layout29-006",
+          "type": "para",
+          "text": "CREATURE FIELD GUIDE / 01-03",
+          "x": 24,
+          "top": 725,
+          "width": 400,
+          "max_height": 20,
+          "size": 10,
+          "leading": 11.6,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "layout29-007",
+          "type": "text",
+          "text": "01 / FLUSHFIEND",
+          "x": 24,
+          "y": 670,
+          "size": 27,
+          "font": "Display",
+          "color": "1744B9",
+          "angle": 0
+        },
+        {
+          "id": "flush-portrait",
+          "type": "image",
+          "path": "bestiary/flushfiend/marketing-v1.png",
+          "x": 24,
+          "y": 431,
+          "width": 191,
+          "height": 221,
+          "crop": null
+        },
+        {
+          "id": "layout29-009",
+          "type": "columns",
+          "text": "This bad-tempered fixture has burning red eyes under a lid-like brow, ceramic teeth around its bowl, and short pipe legs. It patrols until a plumber gets too close, then closes the distance with a hop. The service appointment is unlikely to go as planned.",
+          "boxes": [
+            [
+              231,
+              646,
+              110,
+              90
+            ],
+            [
+              355,
+              646,
+              110,
+              120
+            ]
+          ],
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-010",
+          "type": "rect",
+          "x": 479,
+          "y": 437,
+          "w": 109,
+          "h": 217,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-011",
+          "type": "para",
+          "text": "SERVICE TIP",
+          "x": 487,
+          "top": 641,
+          "width": 94,
+          "max_height": 25,
+          "size": 12,
+          "leading": 13.919999999999998,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-012",
+          "type": "para",
+          "text": "Look for pipe legs, red eyes and teeth around the bowl. If it starts following you, the appointment has moved beyond routine maintenance.",
+          "x": 487,
+          "top": 614,
+          "width": 93,
+          "max_height": 165,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-013",
+          "type": "para",
+          "text": "Porcelain chips away until the fixture comes apart.",
+          "x": 24,
+          "top": 424,
+          "width": 191,
+          "max_height": 34,
+          "size": 9,
+          "leading": 10.44,
+          "color": "101B2D"
+        },
+        {
+          "id": "flush-detail-0",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 231,
+          "y": 467,
+          "width": 74,
+          "height": 67,
+          "crop": [
+            0,
+            0,
+            256,
+            235
+          ]
+        },
+        {
+          "id": "flush-detail-1",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 311,
+          "y": 467,
+          "width": 74,
+          "height": 70,
+          "crop": [
+            256,
+            960,
+            256,
+            255
+          ]
+        },
+        {
+          "id": "flush-detail-2",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 391,
+          "y": 467,
+          "width": 70,
+          "height": 65,
+          "crop": [
+            768,
+            1215,
+            256,
+            321
+          ]
+        },
+        {
+          "id": "layout29-017",
+          "type": "rect",
+          "x": 24,
+          "y": 381,
+          "w": 564,
+          "h": 3,
+          "color": "E62A32"
+        },
+        {
+          "id": "layout29-018",
+          "type": "text",
+          "text": "02 / THE HALLOWED WIDOW",
+          "x": 24,
+          "y": 351,
+          "size": 25,
+          "font": "Display",
+          "color": "DF1684",
+          "angle": 0
+        },
+        {
+          "id": "widow-portrait",
+          "type": "image",
+          "path": "bestiary/the-hallowed-widow/marketing-v1.png",
+          "x": 24,
+          "y": 166,
+          "width": 161,
+          "height": 175,
+          "crop": [
+            70,
+            0,
+            884,
+            1028
+          ]
+        },
+        {
+          "id": "layout29-020",
+          "type": "columns",
+          "text": "For years, the worst thing about a basement spider was losing sight of it. Then one sprouted wings and apparently started breeding. The Hallowed Widow is a huge, hairy nightmare with ivory fangs, white feathers, and a golden halo - every reassuring detail attached to the wrong animal. Early witnesses watched the floor. Later witnesses learned to watch the ceiling, too. Nobody knows where the wings came from. Religious and non-religious people alike have expressed concerns about what this implies for heaven.",
+          "boxes": [
+            [
+              199,
+              335,
+              119,
+              140
+            ],
+            [
+              331,
+              335,
+              112,
+              234
+            ]
+          ],
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "widow-detail-0",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 212,
+          "y": 104,
+          "width": 83,
+          "height": 80,
+          "crop": [
+            40,
+            0,
+            430,
+            510
+          ]
+        },
+        {
+          "id": "layout29-022",
+          "type": "rect",
+          "x": 24,
+          "y": 52,
+          "w": 419,
+          "h": 43,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-023",
+          "type": "para",
+          "text": "<b>Tony:</b> \"I was hoping spiders went somewhere else when they died.\"",
+          "x": 33,
+          "top": 87,
+          "width": 400,
+          "max_height": 35,
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "widow-detail-1",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 33,
+          "y": 100,
+          "width": 80,
+          "height": 55,
+          "crop": [
+            475,
+            100,
+            560,
+            412
+          ]
+        },
+        {
+          "id": "widow-detail-2",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 120,
+          "y": 100,
+          "width": 65,
+          "height": 55,
+          "crop": [
+            1040,
+            150,
+            490,
+            362
+          ]
+        },
+        {
+          "id": "layout29-026",
+          "type": "rect",
+          "x": 457,
+          "y": 49,
+          "w": 131,
+          "h": 323,
+          "color": "D7EBE1"
+        },
+        {
+          "id": "layout29-027",
+          "type": "text",
+          "text": "03 /",
+          "x": 466,
+          "y": 350,
+          "size": 21,
+          "font": "Display",
+          "color": "1744B9",
+          "angle": 0
+        },
+        {
+          "id": "layout29-028",
+          "type": "text",
+          "text": "GRATECRAWLER",
+          "x": 466,
+          "y": 325,
+          "size": 16,
+          "font": "Display",
+          "color": "1744B9",
+          "angle": 0
+        },
+        {
+          "id": "layout29-029",
+          "type": "para",
+          "text": "WORKING NAME",
+          "x": 466,
+          "top": 313,
+          "width": 112,
+          "max_height": 18,
+          "size": 8,
+          "leading": 9.28,
+          "color": "1744B9"
+        },
+        {
+          "id": "grate-pose",
+          "type": "image",
+          "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+          "x": 472,
+          "y": 201,
+          "width": 108,
+          "height": 100,
+          "crop": [
+            768,
+            0,
+            384,
+            512
+          ]
+        },
+        {
+          "id": "layout29-031",
+          "type": "para",
+          "text": "A rusty drain strainer sits in this sludge creature\u2019s back, above a mouth full of porcelain teeth. It climbs from a grate and patrols the floor. Watch its hands: it pauses, faces you and throws a ball of muck before moving on.",
+          "x": 466,
+          "top": 197,
+          "width": 113,
+          "max_height": 130,
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-032",
+          "type": "para",
+          "text": "<b>Service tip:</b> Move as its hand rises. The muck arcs toward where you were.",
+          "x": 466,
+          "top": 90,
+          "width": 113,
+          "max_height": 45,
+          "size": 9,
+          "leading": 10.44,
+          "color": "101B2D"
+        }
+      ]
+    },
+    {
+      "id": "creature-field-guide-two",
+      "number": 5,
+      "template": "custom",
+      "section": "Creature feature / 2",
+      "elements": [
+        {
+          "id": "layout29-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "EDF3F4"
+        },
+        {
+          "id": "layout29-001",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-002",
+          "type": "para",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "top": 23,
+          "width": 400,
+          "max_height": 18,
+          "size": 7.5,
+          "leading": 8.7,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-003",
+          "type": "text",
+          "text": "05",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "font": "Display",
+          "color": "101B2D",
+          "angle": 0
+        },
+        {
+          "id": "layout29-004",
+          "type": "text",
+          "text": "THE INSPECTION CONTINUES",
+          "x": 24,
+          "y": 747,
+          "size": 32,
+          "font": "Display",
+          "color": "1744B9",
+          "angle": 0
+        },
+        {
+          "id": "layout29-005",
+          "type": "rect",
+          "x": 24,
+          "y": 724,
+          "w": 564,
+          "h": 3,
+          "color": "E62A32"
+        },
+        {
+          "id": "layout29-006",
+          "type": "text",
+          "text": "04 / SPUTTERVALVE",
+          "x": 24,
+          "y": 692,
+          "size": 22,
+          "font": "Display",
+          "color": "DF1684",
+          "angle": 0
+        },
+        {
+          "id": "sputter-pose",
+          "type": "image",
+          "path": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+          "x": 24,
+          "y": 506,
+          "width": 101,
+          "height": 170,
+          "crop": [
+            0,
+            0,
+            384,
+            512
+          ]
+        },
+        {
+          "id": "layout29-008",
+          "type": "para",
+          "text": "That angry face belongs to a pressure valve bolted firmly in place. Its outlet spits violet shots without a charging warning. It cannot follow you, but it can aim at you, so standing in front of it is still a poor idea.",
+          "x": 137,
+          "top": 675,
+          "width": 132,
+          "max_height": 145,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-009",
+          "type": "rect",
+          "x": 24,
+          "y": 445,
+          "w": 245,
+          "h": 51,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-010",
+          "type": "para",
+          "text": "<b>Service tip:</b> Keep moving past the outlet. Don\u2019t wait for a charge warning before dodging.",
+          "x": 32,
+          "top": 486,
+          "width": 230,
+          "max_height": 42,
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-011",
+          "type": "text",
+          "text": "05 / SEPTIC AIR FORCE",
+          "x": 288,
+          "y": 692,
+          "size": 22,
+          "font": "Display",
+          "color": "1744B9",
+          "angle": 0
+        },
+        {
+          "id": "layout29-012",
+          "type": "columns",
+          "text": "The Septic Air Force earned its name when a maintenance crew found a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
+          "boxes": [
+            [
+              288,
+              675,
+              137,
+              109
+            ],
+            [
+              439,
+              675,
+              149,
+              157
+            ]
+          ],
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "swarm-pose",
+          "type": "image",
+          "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+          "x": 461,
+          "y": 450,
+          "width": 105,
+          "height": 75,
+          "crop": [
+            0,
+            0,
+            256,
+            256
+          ]
+        },
+        {
+          "id": "layout29-014",
+          "type": "para",
+          "text": "The flies drift without hunting. Crossing their path hurts plumbers and monsters alike.",
+          "x": 288,
+          "top": 502,
+          "width": 150,
+          "max_height": 58,
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-015",
+          "type": "rect",
+          "x": 24,
+          "y": 426,
+          "w": 564,
+          "h": 3,
+          "color": "E62A32"
+        },
+        {
+          "id": "layout29-016",
+          "type": "text",
+          "text": "06 / SKITTERLING",
+          "x": 24,
+          "y": 396,
+          "size": 28,
+          "font": "Display",
+          "color": "DF1684",
+          "angle": 0
+        },
+        {
+          "id": "skitter-diptych",
+          "type": "image",
+          "path": "bestiary/cockroach-swarm/marketing-concepts-v1.png",
+          "x": 24,
+          "y": 178,
+          "width": 316,
+          "height": 211,
+          "crop": null
+        },
+        {
+          "id": "layout29-018",
+          "type": "columns",
+          "text": "A cockroach crossing the floor is bad enough. Skitterling begins with hundreds, crawling over one another until the heap takes on a shape you recognize. Even then, nothing holds still. Legs and antennae keep moving across its body, and every part of the silhouette is another insect trying to find its place.",
+          "boxes": [
+            [
+              357,
+              378,
+              108,
+              110
+            ],
+            [
+              479,
+              378,
+              109,
+              191
+            ]
+          ],
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-019",
+          "type": "rect",
+          "x": 24,
+          "y": 158,
+          "w": 564,
+          "h": 3,
+          "color": "E62A32"
+        },
+        {
+          "id": "layout29-020",
+          "type": "text",
+          "text": "07 / THE CLOGFATHER",
+          "x": 24,
+          "y": 128,
+          "size": 25,
+          "font": "Display",
+          "color": "E62A32",
+          "angle": 0
+        },
+        {
+          "id": "layout29-021",
+          "type": "columns",
+          "text": "A colossal living fatberg of congealed grease, wet wipes, roots, and things nobody should have flushed. Wedged into the collection chamber beneath headquarters, it heaves against the pipework and spits the accumulated consequences back at anyone approaching.",
+          "boxes": [
+            [
+              24,
+              111,
+              171,
+              46
+            ],
+            [
+              209,
+              111,
+              171,
+              68
+            ]
+          ],
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "boss-portrait",
+          "type": "image",
+          "path": "bestiary/clogfather/marketing-v1.png",
+          "x": 442,
+          "y": 44,
+          "width": 146,
+          "height": 146,
+          "crop": null
+        },
+        {
+          "id": "boss-reaction",
+          "type": "image",
+          "path": "marketing/character-reactions/tony-clogfather-horror-v1.png",
+          "x": 382,
+          "y": 42,
+          "width": 58,
+          "height": 92,
+          "crop": null
+        }
+      ]
+    },
+    {
+      "id": "on-the-job",
+      "number": 6,
+      "template": "custom",
+      "section": "On the job",
+      "elements": [
+        {
+          "id": "layout29-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "101421"
+        },
+        {
+          "id": "layout29-001",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "layout29-002",
+          "type": "para",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "top": 23,
+          "width": 400,
+          "max_height": 18,
+          "size": 7.5,
+          "leading": 8.7,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "layout29-003",
+          "type": "text",
+          "text": "06",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "font": "Display",
+          "color": "FFFFFF",
+          "angle": 0
+        },
+        {
+          "id": "layout29-004",
+          "type": "text",
+          "text": "SERVICE CALL!",
+          "x": 24,
+          "y": 724,
+          "size": 49,
+          "font": "Display",
+          "color": "FFF000",
+          "angle": 0
+        },
+        {
+          "id": "layout29-005",
+          "type": "para",
+          "text": "LEAVE YOURSELF ROOM BEFORE THE FLUSHFIEND STARTS HOPPING.",
+          "x": 27,
+          "top": 710,
+          "width": 550,
+          "max_height": 28,
+          "size": 12,
+          "leading": 13.919999999999998,
+          "color": "00BADA"
+        },
+        {
+          "id": "on-the-job-011",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v1/toilet-action-1.png",
+          "x": 24,
+          "y": 458,
+          "width": 369,
+          "height": 208,
+          "crop": [
+            0,
+            63,
+            960,
+            541
+          ]
+        },
+        {
+          "id": "layout29-007",
+          "type": "rect",
+          "x": 24,
+          "y": 456,
+          "w": 369,
+          "h": 2,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-008",
+          "type": "para",
+          "text": "<b>Leave room for the hop</b> before lining up another shot.",
+          "x": 24,
+          "top": 445,
+          "width": 369,
+          "max_height": 30,
+          "size": 10,
+          "leading": 11.6,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-009",
+          "type": "text",
+          "text": "ON YOUR TOES",
+          "x": 411,
+          "y": 650,
+          "size": 21,
+          "font": "Display",
+          "color": "00BADA",
+          "angle": 0
+        },
+        {
+          "id": "layout29-010",
+          "type": "columns",
+          "text": "A moving fixture is your cue to back away. By the time it reaches your boots, you will want more room than you left yourself.<br/><br/><b>FIELD TIP:</b> Keep some clear floor behind you. A wall is a poor escape route.",
+          "boxes": [
+            [
+              411,
+              630,
+              177,
+              175
+            ]
+          ],
+          "size": 11,
+          "leading": 12.76,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "layout29-011",
+          "type": "text",
+          "text": "DON'T LET IT",
+          "x": 24,
+          "y": 385,
+          "size": 26,
+          "font": "Display",
+          "color": "00BADA",
+          "angle": 0
+        },
+        {
+          "id": "layout29-012",
+          "type": "text",
+          "text": "CLOSE THE GAP.",
+          "x": 24,
+          "y": 357,
+          "size": 26,
+          "font": "Display",
+          "color": "00BADA",
+          "angle": 0
+        },
+        {
+          "id": "layout29-013",
+          "type": "columns",
+          "text": "The toilet follows Sean and hurts him when it catches him. After a hit, you have a brief chance to get clear before it can hurt you again. Use it.<br/><br/>Tony can keep the pressure on with quick shots. Sean needs a little more breathing room between heavy plungers. Either way, standing still gives the teeth time to catch up.<br/><br/>Watch the floor ahead as well as the creature behind. You need room for the next shot, the next landing and whatever the building has decided to do next.",
+          "boxes": [
+            [
+              24,
+              337,
+              123,
+              105
+            ],
+            [
+              162,
+              337,
+              123,
+              105
+            ],
+            [
+              300,
+              337,
+              123,
+              105
+            ]
+          ],
+          "size": 11,
+          "leading": 12.76,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "on-the-job-023",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v1/toilet-encounter-01.png",
+          "x": 438,
+          "y": 277,
+          "width": 150,
+          "height": 121,
+          "crop": [
+            0,
+            63,
+            960,
+            541
+          ]
+        },
+        {
+          "id": "layout29-015",
+          "type": "para",
+          "text": "<b>Keep moving</b> while Sean reloads.",
+          "x": 438,
+          "top": 273,
+          "width": 150,
+          "max_height": 44,
+          "size": 10,
+          "leading": 11.6,
+          "color": "FFF000"
+        },
+        {
+          "id": "on-the-job-025",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v1/toilet-encounter-03.png",
+          "x": 300,
+          "y": 46,
+          "width": 288,
+          "height": 162,
+          "crop": [
+            0,
+            63,
+            960,
+            541
+          ]
+        },
+        {
+          "id": "layout29-017",
+          "type": "text",
+          "text": "ON THE MOVE",
+          "x": 24,
+          "y": 190,
+          "size": 24,
+          "font": "Display",
+          "color": "00BADA",
+          "angle": 0
+        },
+        {
+          "id": "layout29-018",
+          "type": "para",
+          "text": "Keep some clear floor behind you.",
+          "x": 24,
+          "top": 162,
+          "width": 230,
+          "max_height": 65,
+          "size": 18,
+          "leading": 20.88,
+          "color": "FFF000"
+        }
+      ]
+    },
+    {
+      "id": "action-gallery",
+      "number": 7,
+      "template": "custom",
+      "section": "Caught in action",
+      "elements": [
+        {
+          "id": "layout29-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "FFF8DF"
+        },
+        {
+          "id": "layout29-001",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-002",
+          "type": "para",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "top": 23,
+          "width": 400,
+          "max_height": 18,
+          "size": 7.5,
+          "leading": 8.7,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-003",
+          "type": "text",
+          "text": "07",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "font": "Display",
+          "color": "101B2D",
+          "angle": 0
+        },
+        {
+          "id": "layout29-004",
+          "type": "rect",
+          "x": 0,
+          "y": 690,
+          "w": 612,
+          "h": 102,
+          "color": "FFF000"
+        },
+        {
+          "id": "layout29-005",
+          "type": "text",
+          "text": "CAUGHT IN ACTION!",
+          "x": 24,
+          "y": 735,
+          "size": 43,
+          "font": "Display",
+          "color": "008C70",
+          "angle": 1
+        },
+        {
+          "id": "layout29-006",
+          "type": "para",
+          "text": "A CLOSER LOOK AT WHO'S CAUSING ALL THE TROUBLE.",
+          "x": 24,
+          "top": 715,
+          "width": 550,
+          "max_height": 25,
+          "size": 12,
+          "leading": 13.919999999999998,
+          "color": "101B2D"
+        },
+        {
+          "id": "layout29-007",
+          "type": "text",
+          "text": "TONY & SEAN",
+          "x": 24,
+          "y": 650,
+          "size": 27,
+          "font": "Display",
+          "color": "1744B9",
+          "angle": 0
+        },
+        {
+          "id": "layout29-008",
+          "type": "para",
+          "text": "Tony and Sean have rather different ideas about how much force a job needs.",
+          "x": 24,
+          "top": 632,
+          "width": 120,
+          "max_height": 105,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "action-gallery-026",
+          "type": "image",
+          "path": "assets/sprites/tony-v1.png",
+          "x": 151,
+          "y": 541,
+          "width": 110,
+          "height": 110,
+          "crop": [
+            0,
+            0,
+            314,
+            627
+          ]
+        },
+        {
+          "id": "action-gallery-027",
+          "type": "image",
+          "path": "assets/sprites/tony-v1.png",
+          "x": 265,
+          "y": 565,
+          "width": 105,
+          "height": 105,
+          "crop": [
+            314,
+            0,
+            313,
+            627
+          ]
+        },
+        {
+          "id": "action-gallery-028",
+          "type": "image",
+          "path": "assets/sprites/sean-v2.png",
+          "x": 380,
+          "y": 537,
+          "width": 112,
+          "height": 112,
+          "crop": [
+            0,
+            0,
+            314,
+            627
+          ]
+        },
+        {
+          "id": "action-gallery-029",
+          "type": "image",
+          "path": "assets/sprites/sean-v2.png",
+          "x": 493,
+          "y": 566,
+          "width": 94,
+          "height": 94,
+          "crop": [
+            314,
+            0,
+            313,
+            627
+          ]
+        },
+        {
+          "id": "layout29-013",
+          "type": "rect",
+          "x": 24,
+          "y": 516,
+          "w": 564,
+          "h": 2,
+          "color": "1744B9"
+        },
+        {
+          "id": "layout29-014",
+          "type": "text",
+          "text": "WING TROUBLE",
+          "x": 24,
+          "y": 478,
+          "size": 28,
+          "font": "Display",
+          "color": "008C70",
+          "angle": 0
+        },
+        {
+          "id": "layout29-015",
+          "type": "para",
+          "text": "The Widow dives, rises and pauses above you before turning for another pass. Keep watching after the first swoop.",
+          "x": 24,
+          "top": 458,
+          "width": 112,
+          "max_height": 150,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "action-gallery-034",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 143,
+          "y": 290,
+          "width": 247,
+          "height": 231,
+          "crop": [
+            40,
+            0,
+            430,
+            510
+          ]
+        },
+        {
+          "id": "action-gallery-035",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 385,
+          "y": 396,
+          "width": 94,
+          "height": 94,
+          "crop": [
+            475,
+            100,
+            560,
+            412
+          ]
+        },
+        {
+          "id": "action-gallery-036",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 487,
+          "y": 370,
+          "width": 96,
+          "height": 96,
+          "crop": [
+            1040,
+            150,
+            490,
+            362
+          ]
+        },
+        {
+          "id": "action-gallery-037",
+          "type": "image",
+          "path": "assets/bestiary/flying-spider-atlas-v2.png",
+          "x": 467,
+          "y": 260,
+          "width": 112,
+          "height": 112,
+          "crop": [
+            40,
+            520,
+            450,
+            500
+          ]
+        },
+        {
+          "id": "layout29-020",
+          "type": "text",
+          "text": "NO FLIGHT PLAN",
+          "x": 24,
+          "y": 278,
+          "size": 23,
+          "font": "Display",
+          "color": "DF1684",
+          "angle": 0
+        },
+        {
+          "id": "layout29-021",
+          "type": "para",
+          "text": "The Septic Air Force keeps close company. Try not to join the formation.",
+          "x": 24,
+          "top": 258,
+          "width": 112,
+          "max_height": 100,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "action-gallery-038",
+          "type": "image",
+          "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+          "x": 151,
+          "y": 214,
+          "width": 62,
+          "height": 62,
+          "crop": [
+            0,
+            0,
+            256,
+            256
+          ]
+        },
+        {
+          "id": "action-gallery-039",
+          "type": "image",
+          "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+          "x": 223,
+          "y": 235,
+          "width": 74,
+          "height": 74,
+          "crop": [
+            256,
+            0,
+            256,
+            256
+          ]
+        },
+        {
+          "id": "action-gallery-040",
+          "type": "image",
+          "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+          "x": 305,
+          "y": 193,
+          "width": 81,
+          "height": 81,
+          "crop": [
+            512,
+            0,
+            256,
+            256
+          ]
+        },
+        {
+          "id": "action-gallery-041",
+          "type": "image",
+          "path": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+          "x": 391,
+          "y": 217,
+          "width": 64,
+          "height": 64,
+          "crop": [
+            768,
+            0,
+            256,
+            256
+          ]
+        },
+        {
+          "id": "layout29-026",
+          "type": "rect",
+          "x": 24,
+          "y": 173,
+          "w": 564,
+          "h": 2,
+          "color": "E62A32"
+        },
+        {
+          "id": "layout29-027",
+          "type": "text",
+          "text": "PORCELAIN PROBLEMS",
+          "x": 325,
+          "y": 140,
+          "size": 24,
+          "font": "Display",
+          "color": "E62A32",
+          "angle": 0
+        },
+        {
+          "id": "layout29-028",
+          "type": "para",
+          "text": "From a bad-tempered fixture to an expensive pile of broken porcelain.",
+          "x": 439,
+          "top": 120,
+          "width": 149,
+          "max_height": 72,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "action-gallery-030",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 24,
+          "y": 48,
+          "width": 90,
+          "height": 90,
+          "crop": [
+            0,
+            0,
+            256,
+            235
+          ]
+        },
+        {
+          "id": "action-gallery-031",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 119,
+          "y": 67,
+          "width": 88,
+          "height": 88,
+          "crop": [
+            512,
+            470,
+            256,
+            240
+          ]
+        },
+        {
+          "id": "action-gallery-032",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 217,
+          "y": 42,
+          "width": 98,
+          "height": 98,
+          "crop": [
+            256,
+            960,
+            256,
+            255
+          ]
+        },
+        {
+          "id": "action-gallery-033",
+          "type": "image",
+          "path": "assets/bestiary/damage/flushfiend-damage-v1.png",
+          "x": 326,
+          "y": 45,
+          "width": 88,
+          "height": 88,
+          "crop": [
+            768,
+            1215,
+            256,
+            321
+          ]
+        }
+      ]
+    },
+    {
+      "id": "back-cover",
+      "number": 8,
+      "template": "custom",
+      "section": "Mainframe employee notice",
+      "elements": [
+        {
+          "id": "back-cover-001",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "008C70"
+        },
+        {
+          "id": "back-cover-006",
+          "type": "rect",
+          "x": 16,
+          "y": 16,
+          "w": 580,
+          "h": 760,
+          "color": "FFF000"
+        },
+        {
+          "id": "back-cover-007",
+          "type": "rect",
+          "x": 24,
+          "y": 24,
+          "w": 564,
+          "h": 744,
+          "color": "111421"
+        },
+        {
+          "id": "back-cover-008",
+          "type": "text",
+          "text": "MAINFRAME PLUMBING & SUPPLY",
+          "x": 44,
+          "y": 729,
+          "size": 23,
+          "color": "FFF000",
+          "font": "Condensed"
+        },
+        {
+          "id": "back-cover-009",
+          "type": "rect",
+          "x": 44,
+          "y": 715,
+          "w": 524,
+          "h": 1,
+          "color": "00BADA"
+        },
+        {
+          "id": "back-cover-010",
+          "type": "text",
+          "text": "WE VALUE",
+          "x": 45,
+          "y": 638,
+          "size": 64,
+          "color": "111421",
+          "font": "Display",
+          "angle": 0
+        },
+        {
+          "id": "back-cover-011",
+          "type": "text",
+          "text": "WE VALUE",
+          "x": 43,
+          "y": 640,
+          "size": 64,
+          "color": "FFFFFF",
+          "font": "Display",
+          "angle": 0,
+          "outline": "FFFFFF",
+          "stroke_width": 0.35
+        },
+        {
+          "id": "back-cover-012",
+          "type": "text",
+          "text": "OUR STAFF.",
+          "x": 45,
+          "y": 574,
+          "size": 64,
+          "color": "111421",
+          "font": "Display",
+          "angle": 0
+        },
+        {
+          "id": "back-cover-013",
+          "type": "text",
+          "text": "OUR STAFF.",
+          "x": 43,
+          "y": 576,
+          "size": 64,
+          "color": "FFFFFF",
+          "font": "Display",
+          "angle": 0,
+          "outline": "FFFFFF",
+          "stroke_width": 0.35
+        },
+        {
+          "id": "back-cover-014",
+          "type": "rect",
+          "x": 44,
+          "y": 522,
+          "w": 522,
+          "h": 38,
+          "color": "E62A32"
+        },
+        {
+          "id": "back-cover-015",
+          "type": "text",
+          "text": "THAT IS WHY WE KEEP SPARES.",
+          "x": 56,
+          "y": 531,
+          "size": 24,
+          "color": "FFF000",
+          "font": "Condensed"
+        },
+        {
+          "id": "back-cover-016",
+          "type": "image",
+          "path": "marketing/spare-employee-dispenser/sean-stocked-v1.png",
+          "x": 207,
+          "y": 230,
+          "width": 211,
+          "height": 269,
+          "crop": null
+        },
+        {
+          "id": "back-cover-017",
+          "type": "text",
+          "text": "INJURED?",
+          "x": 46,
+          "y": 467,
+          "size": 21,
+          "color": "00BADA",
+          "font": "Display"
+        },
+        {
+          "id": "back-cover-018",
+          "type": "para",
+          "text": "Please report for replacement. Your next service call is still waiting.",
+          "x": 46,
+          "top": 455,
+          "width": 144,
+          "size": 13,
+          "color": "FFFFFF",
+          "max_height": 94,
+          "leading": 14.560000000000002
+        },
+        {
+          "id": "back-cover-019",
+          "type": "text",
+          "text": "FEELING FINE?",
+          "x": 435,
+          "y": 383,
+          "size": 18,
+          "color": "00BADA",
+          "font": "Display"
+        },
+        {
+          "id": "back-cover-020",
+          "type": "para",
+          "text": "Check in as you are, then get back to work.",
+          "x": 435,
+          "top": 368,
+          "width": 126,
+          "size": 13,
+          "color": "FFFFFF",
+          "max_height": 72,
+          "leading": 14.560000000000002
+        },
+        {
+          "id": "back-cover-021",
+          "type": "image",
+          "path": "assets/world/spare-employee-dispenser/sean-v2.png",
+          "x": 439,
+          "y": 197,
+          "width": 99,
+          "height": 94,
+          "crop": [
+            0,
+            840,
+            418,
+            414
+          ]
+        },
+        {
+          "id": "back-cover-022",
+          "type": "rect",
+          "x": 44,
+          "y": 186,
+          "w": 524,
+          "h": 1,
+          "color": "00BADA"
+        },
+        {
+          "id": "back-cover-023",
+          "type": "para",
+          "text": "The Spare Employee Dispenser.<br/><b>Your name is already on the schedule.</b>",
+          "x": 45,
+          "top": 169,
+          "width": 520,
+          "size": 17,
+          "color": "FFFFFF",
+          "max_height": 49,
+          "leading": 19.040000000000003
+        },
+        {
+          "id": "back-cover-024",
+          "type": "text",
+          "text": "NO JOB TOO SHITTY.",
+          "x": 44,
+          "y": 73,
+          "size": 34,
+          "color": "FFF000",
+          "font": "Display"
+        }
+      ]
+    }
+  ],
+  "design_guidance": {
+    "format": "Eight-page 1990s editorial magazine. Distinct article layouts, narrow flowing columns, asymmetric artwork and inset captions; avoid repeated horizontal cards.",
+    "creatures": "Seven creatures in two dense pages: five non-bosses before both bosses.",
+    "references": "User-supplied Nintendo Power / GamePro spreads; layouts reinterpreted with original game artwork.",
+    "action_gallery": "Asymmetric action study with a dominant Widow image, offset sprite sequences and narrow caption columns."
+  }
+}
