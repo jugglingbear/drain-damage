@@ -255,6 +255,20 @@ func dispose() -> void:
 	music.dispose()
 	radio.clear()
 
+func draw_bowl_actors(host: Node2D) -> void:
+	for item: Dictionary in hazards: art.shadows(host,self,item)
+	var ordered := hazards.duplicate()
+	ordered.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return project(a.pos).y < project(b.pos).y)
+	for item: Dictionary in ordered: art.debris(host,self,item)
+	var submerging := clock >= 40.0
+	# The opaque throat patch belongs behind an active swimmer, even at the front of the bowl.
+	# Only the scripted down-hole descent intentionally puts that patch over the hero.
+	if not submerging: art.draw_named(host,"drain_front",project(Vector2.ZERO))
+	if host.invulnerable <= 0 or int(clock*12)%2 == 0 or state != "bowl": art.swimmer(host,self)
+	if submerging:
+		art.draw_named(host,"drain_front",project(Vector2.ZERO))
+		art.draw_frame(host,art.frame_at("burble",clock-40),project(Vector2.ZERO))
+
 func draw(host: Node2D) -> void:
 	host.draw_set_transform(Vector2.ZERO)
 	if clock >= 43:
@@ -267,17 +281,7 @@ func draw(host: Node2D) -> void:
 	if clock >= 43:
 		art.landing(host,self)
 	else:
-		for item: Dictionary in hazards: art.shadows(host,self,item)
-		var drawables: Array[Dictionary] = [{"hero":true,"pos":position}]
-		for item: Dictionary in hazards: drawables.append({"hero":false,"pos":item.pos,"item":item})
-		drawables.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return project(a.pos).y < project(b.pos).y)
-		for drawable: Dictionary in drawables:
-			if drawable.hero:
-				if host.invulnerable <= 0 or int(clock*12)%2 == 0 or state != "bowl": art.swimmer(host,self)
-			else: art.debris(host,self,drawable.item)
-		art.draw_named(host,"drain_front",project(Vector2.ZERO))
-		if clock >= 40:
-			art.draw_frame(host,art.frame_at("burble",clock-40),project(Vector2.ZERO))
+		draw_bowl_actors(host)
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("THE FLUSH",Vector2(24,27),22,host.MINT)
 	host.label_at("Swim: arrows / stick   Dodge the falling objects",Vector2(24,52),14,host.GOLD)

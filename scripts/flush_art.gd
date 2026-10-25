@@ -27,15 +27,20 @@ func draw_frame(host: Node2D, frame: Dictionary, offset := Vector2.ZERO, tint :=
 	if frame.has("layers"):
 		for layer: Dictionary in frame.layers: draw_frame(host,layer,offset,tint,clip_bottom)
 		return
-	var source: Rect2 = host.region(frame.source_rect)
-	var target: Rect2 = host.region(frame.destination)
+	var region := clipped_region(frame,offset,clip_bottom)
+	if region.is_empty(): return
+	host.draw_texture_rect_region(textures[frame.path],region.target,region.source,tint)
+
+func clipped_region(frame: Dictionary, offset := Vector2.ZERO, clip_bottom := INF) -> Dictionary:
+	var source := Rect2(frame.source_rect[0],frame.source_rect[1],frame.source_rect[2],frame.source_rect[3])
+	var target := Rect2(frame.destination[0],frame.destination[1],frame.destination[2],frame.destination[3])
 	target.position += offset
-	if target.position.y >= clip_bottom: return
+	if target.position.y >= clip_bottom: return {}
 	if target.end.y > clip_bottom:
 		var fraction := (clip_bottom-target.position.y)/target.size.y
 		source.size.y *= fraction
 		target.size.y *= fraction
-	host.draw_texture_rect_region(textures[frame.path],target,source,tint)
+	return {"source":source,"target":target}
 
 func draw_named(host: Node2D, id: String, offset := Vector2.ZERO, tint := Color.WHITE) -> void:
 	draw_frame(host,manifest.frames[id],offset,tint)
