@@ -32,7 +32,8 @@ The advertisement moves to page 9, and the contents rail includes the new featur
 
 Artwork and exact prompts: `marketing/flush-feature/manifest-v1.json` and `prompts-v1.json`.
 Standalone feature: `flush-feature-v32.pdf`; full-page preview: `guide-assets-v32/flush-feature-v32.png`.
-`current.pdf` matches edition 32. Engineering owns commit, push and Pages publication; live verification pending.
+`current.pdf` matches edition 32. Published in commit `06386af`, Pages run `40161568123`. Live nine-page PDF hash, new feature image, all nine
+labels and reciprocal Storybook links verified October 24, 2026.
 The magazine does not establish Prototype 100 integration or current gameplay capture coverage.
 
 ## Edition 31 Gnatastrophe — October 23, 2026

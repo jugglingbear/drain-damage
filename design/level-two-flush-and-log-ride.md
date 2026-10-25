@@ -4,7 +4,8 @@
 
 **Owner:** Storyboarding owns narrative; Engineering owns the authorized short flush implementation.
 
-**Status:** October 24: short playable flush delivered in Prototype 98 and revised for swimming in Prototype 99.
+**Status:** October 24: short playable flush delivered in Prototype 98, with swimming and presentation revisions
+through Prototype 100.
 Full log ride and level three remain deferred.
 
 ## Current production scope
@@ -16,9 +17,14 @@ examples below for this delivery. Exact runtime implementation remains Engineeri
 
 Sean's Prototype 98 playtest revised the flush to chest-deep swimming and dodging only: Tony uses freestyle,
 Sean uses breaststroke, and no weapons, firing or jumping are available during the flush. Animated water accelerates,
-eight kinds of objects fall with shadow warnings, and the final descent into the drain uses occlusion and fading burbling.
-The [current integration record](../handoffs/first-call-integration.json) documents Prototype 99 and its checks.
-Live animation, listening and human balance review remain pending. The ride proposals below are still deferred.
+nine kinds of objects fall with shadow warnings. The final descent into the drain uses occlusion and fading burbling.
+Prototype 100 adds a recessed funnel, persistent floating-object damage, a shrinking movement area and 26/48/85
+falling objects on Easy/Normal/Hard. Control and damage end together at 35 seconds. Sean lands seated astride a short
+board; Tony stands in a surfing pose. The partner's chat window moves during the partner's response. The selected
+45-second “Air Running Out” arrangement follows the flush clock and ends at the landing.
+The [current integration record](../handoffs/first-call-integration.json) documents validation and limitations.
+Live animation, listening, human balance review and occasional planning hitches remain open. The ride proposals below
+are still deferred.
 
 Only the selected hero enters. Support stays outside on radio; portal origin and BJ involvement remain unresolved.
 The harmless landing completes the flush and ends at an honest “Log ride under construction” boundary. The full ride,

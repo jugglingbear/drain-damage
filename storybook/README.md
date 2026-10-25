@@ -2428,6 +2428,38 @@ no image capture occurred.
 
 [Capture status and final verification](099-swimming-flush/20261024-204953-capture-status.json).
 
+## 100 — Flush dialogue continuity and debris — October 24, 2026
+
+**Build:** Prototype 100 / 0.100.0, source `7dd7252beab25f174205b5327ef7346814600671`, preserved in `builds/source-100`.
+Art: `6ffbe9b`; score: `46b14e3`.
+
+The hero requests chat-window relocation; the partner's reply and portrait slide together at 5.9–6.7 seconds and remain
+until eight seconds. The funnel is recessed 60 pixels; the 110-pixel board supports Sean's straddle and Tony's surfing
+poses in both costumes. Nine debris props include an 80-pixel hamster. Rain totals are 26/48/85; floating debris remains
+damaging while steering, bounds shrink to 90–210, and control/damage end at 35 seconds. Selected Air Running Out
+(0094.2) now uses the 45-second arrangement 0094.6, with clock/lifecycle/duck tests.
+
+**Validation:** All 22 final exact-package suites pass; the result manifest and log paths were checked. Engineering
+reports 41 Python tests, codesign, ZIP, startup and actual APP direct LEVEL=2 Tony Normal / LEVEL=2-landing Sean Hard
+pass. The final packaged escape checks cover 18 cases plus same-ledger idle counterfactuals; source coverage adds 38
+policy replays and unit checks. Guided routes take zero damage; adaptive idle counts are 5/7/10, and active-pocket cases
+require movement. Recovery following a prior hit remains distinct from strict clean routes.
+
+**Performance gap:** Stress planning reaches 314.390 ms; guided quiet median/max are 14.860/30.589 ms. Optimization
+remains follow-up work. These results do not establish 60 fps.
+
+**Capture gap:** No game window, actual gameplay capture or human listening review is reported.
+Visual/readability/balance review remains pending. Preserve v00.99.00 and earlier originals. Art source review covers
+107 bounds and four landing alpha compositions; source artwork is not gameplay evidence.
+
+**Independent publications:** Magazine 32 is reported live at `06386af`. Rejected audio 0092/0093 remains preserved;
+proposed 0094 auditions were published at `69466a3` before the final arrangement was selected and integrated.
+
+**Record created:** 2026-10-24T21:17:01-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization time and the verified archive SHA-256 are in the metadata.
+
+[Build evidence and capture status](100-flush-continuity-and-debris/20261024-211701-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

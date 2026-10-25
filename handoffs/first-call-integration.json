@@ -1,24 +1,64 @@
 {
   "schema_version": 1,
-  "build": "Prototype 99 / 0.99.0",
-  "created_at": "2026-10-24T20:56:33.999890-07:00",
+  "build": "Prototype 100 / 0.100.0",
+  "created_at": "2026-10-24T21:50:58.632685-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "c5bf3f1",
-  "asset_commit": "f0f16f5",
-  "status": "17 final packaged suites and 40 Python tests pass; export/signature/archive/startup/direct entries verified; live quality review pending",
-  "app": "builds/Prototype-99/Drain Damage.app",
-  "archive": "builds/history/Prototype-99.zip",
-  "archive_sha256": "d4743e9ba99445ceaae5ef0fde53e597a03126ba77899fa8163391ce876ddee6",
-  "source_snapshot": "builds/source-99",
-  "previous_build_preserved": "Prototype 98 app, ZIP and builds/source-98 remain intact",
-  "changes": [
-    "Chest-deep, unarmed authored swimming: Tony freestyle and Sean breaststroke, eight poses each in normal and Hard costumes. No fire, projectiles, weapon sounds or jump evasion; later loadout preserved.",
-    "Eight authored water phases at 16fps crossfade; surface rotation increases 0.8 to 4 radians/second, animation phase speed 1 to 1.8.",
-    "Eight seeded prop types fall vertically with locked warning/shadow anchors; visible height min(220,impact screen Y-124). All props unbreakable; 0.35s impact damage then harmless floating advection.",
-    "Cohort radius sampled once from hero radius clamped190..285; full groups relocate before warning rather than cap-dropping.",
-    "35\u201336 control fade, 35\u201340 spiral, 40\u201343 downward translation/waterline and drain-lip clipping plus three-second suction burble; landing43\u201345, existing line45\u201348. No full ride."
+  "source_commit": "7dd7252beab25f174205b5327ef7346814600671",
+  "asset_commits": [
+    "6ffbe9b",
+    "46b14e3"
   ],
+  "status": "22 final packaged suites and 41 Python tests pass; ready for prototype review with documented planning hitches and human/capture gaps",
+  "app": "builds/Prototype-100/Drain Damage.app",
+  "archive": "builds/history/Prototype-100.zip",
+  "archive_sha256": "c06ed89bff700ef2c86678c7a9da89eac72742dd1e4f877de46116c17051d057",
+  "source_snapshot": "builds/source-100",
+  "previous_build_preserved": "Prototype 99 app, ZIP and source snapshot remain intact, along with earlier builds",
+  "changes": [
+    "Playable hero explicitly requests moving the chat window; partner portrait/name/reply remain together throughout the move.",
+    "Eight authored concave water phases stay registered to a 60-screen-pixel recessed throat; hero, props, warnings and shadows share the surface projection.",
+    "Short 110px board with authored unarmed Tony standing surf and Sean seated astride poses, normal/Hard; shared settle/bob/tilt on both landing entries.",
+    "Nine retained seeded debris types include an 80px-wide non-graphic dead hamster with size-aware warning, swept contact and swallow radius.",
+    "Persistent floating contact damage uses shared 1.5s immunity; full steering and harm both stop at35. No firing or jumping.",
+    "Movement annulus smoothly shrinks during8..35 from162..316.8 to90..210; deliberate escape routes preserve full wave counts.",
+    "Selected Air Running Out expands to45 seconds; one non-looping voice follows simulation clock, pauses, seeks after mute, restarts on retry, ducks for radio/burble and skips direct landing."
+  ],
+  "radio_dialogue": {
+    "tony": [
+      {
+        "who": "tony",
+        "text": "Sean, move your chat window down!",
+        "at": 2.5,
+        "duration": 2
+      },
+      {
+        "who": "sean",
+        "text": "Oh! Sorry. How\u2019s that?",
+        "at": 4.5,
+        "duration": 3.5
+      }
+    ],
+    "sean": [
+      {
+        "who": "sean",
+        "text": "Tony, move your chat window! I can\u2019t see!",
+        "at": 2.5,
+        "duration": 2
+      },
+      {
+        "who": "tony",
+        "text": "Sure, buddy. Down here?",
+        "at": 4.5,
+        "duration": 3.5
+      }
+    ]
+  },
+  "radio_move_seconds": [
+    5.9,
+    6.7
+  ],
+  "partner_response_visible_until": 8,
   "rain": {
     "interval": [
       8,
@@ -27,132 +67,90 @@
     "easy": {
       "waves": 10,
       "fall_seconds": 2.7,
-      "concurrent_stages": [
-        1,
+      "stages": [
         2,
-        2
+        3,
+        3
       ],
-      "total": 16
+      "total": 26
     },
     "normal": {
       "waves": 12,
       "fall_seconds": 2.25,
-      "concurrent_stages": [
-        2,
-        3,
-        4
-      ],
-      "total": 36
-    },
-    "hard": {
-      "waves": 15,
-      "fall_seconds": 1.8,
-      "concurrent_stages": [
+      "stages": [
         3,
         4,
         5
       ],
-      "total": 60
-    },
-    "stage_boundaries": [
-      8,
-      17,
-      26
-    ],
-    "stage_rule": "Applies at next cohort start",
-    "props": [
-      "corn",
-      "poop logs",
-      "pennies",
-      "car keys",
-      "dice",
-      "buttons",
-      "safety pins",
-      "tampons"
-    ]
-  },
-  "flow": {
-    "easy": {
-      "total_speed": [
-        40,
-        105
-      ],
-      "inward_speed": [
-        8,
-        45
-      ]
-    },
-    "normal": {
-      "total_speed": [
-        50,
-        125
-      ],
-      "inward_speed": [
-        10,
-        55
-      ]
+      "total": 48
     },
     "hard": {
-      "total_speed": [
-        60,
-        145
+      "waves": 15,
+      "fall_seconds": 1.8,
+      "stages": [
+        4,
+        6,
+        7
       ],
-      "inward_speed": [
-        12,
-        65
-      ]
+      "total": 85
     },
-    "units": "world pixels/second; smoothstep ramp0..35; tangential component preserves total cap",
-    "drain": "Harmless final current rises toward300 total/230 inward by40; visible hero follows spiral then descends under the lip."
+    "types": 9,
+    "hamster_radius": 40,
+    "ordinary_radius": 22,
+    "hero_radius": 14
+  },
+  "planner": {
+    "method": "Verify a deliberate old-hazard route first; place complete incoming cohort only when all its 120Hz swept contacts against the fixed route are absent. Reuse prior route only with matching state and actual resimulation.",
+    "recovery": "Only baseline-confirmed prior-warning unavoidable contact; simulate actual shared immunity and all old hazards. Incoming contact must be zero even while immune. Recovery is labeled separately from zero-damage proof.",
+    "scope": "120Hz physical substeps at 60/120Hz outer cadence; sampled tests are not a universal human-difficulty guarantee.",
+    "quiet_guided_median_ms": 14.86,
+    "quiet_guided_max_ms": 30.589,
+    "worst_sampled_stress_ms": 314.39,
+    "remaining": "Optimize off-witness planning stalls; no smooth 60 fps claim. Do not weaken collision/count guarantees."
   },
   "audio": {
-    "suction_burble": "DD-S0091 / preserved candidate DD-S0091.1",
-    "break_cue": "Retired active mapping; original files and candidate preserved",
-    "voices": 5,
-    "validation": "Freshness check passes; no subjective listening approval"
-  },
-  "playtest_commands": {
-    "flush": "make run LEVEL=2 HERO=tony DIFFICULTY=normal",
-    "landing": "make run LEVEL=2-landing HERO=sean DIFFICULTY=hard"
+    "music": "DD-S0094 / selected DD-S0094.2 / full arrangement DD-S0094.6",
+    "asset": "assets/audio/music/flush-air-running-out-v1.ogg",
+    "duration_seconds": 45,
+    "gain_db": -8,
+    "radio_duck_db": -8,
+    "burble_duck_db": -6,
+    "duck_rule": "strongest, not stacked",
+    "voices": "five effects plus one music",
+    "current_slots": 91,
+    "rejected_slots": "DD-S0092/0093 retired; originals and all auditions retained",
+    "listening_review": false
   },
   "checks": {
-    "packaged_suites": 17,
-    "results": "builds/verification-99/final-results.json",
-    "python_tests": 40,
-    "python_log": "builds/verification-99/python.log",
-    "build_log": "builds/verification-99/build.log",
-    "scheduler_matrix": "180 cases:20seeds x3policies x3modes, exact counts/all8 types/no rejected cohorts; NOT no-hit proof",
-    "keyboard_escape": "12 actual Game replays:both heroes/all modes at60/120Hz, seed913, no health loss and zero inherited contacts",
-    "proof_limit": "Solver carries prior input for0.15s then discrete eight-way/zero controls, same movement integration and swept relative checks. Existing previous-wave contacts during reaction are classified inherited; no universal no-hit guarantee. Human readability and response remain untested.",
-    "idle_damage_totals_over_20_seeds": {
-      "easy": 24,
-      "normal": 59,
-      "hard": 59
-    },
-    "scope": "Flush lifecycle/no fire/no jump, impact immunity, floating retention, paused suction, loadout reset, portal entry, both direct entries and Level1 boss/pause/dialogue/audio/name/version regressions.",
-    "standalone_headless_startup": "passed",
-    "signature_archive": "passed"
+    "packaged_suites": 22,
+    "results": "builds/verification-100/final-results.json",
+    "python_tests": 41,
+    "python_log": "builds/verification-100/python.log",
+    "build_log": "builds/verification-100/build.log",
+    "packaged_escape": "18 hero-speed/mode/seed cases plus identical-ledger idle counterfactuals, zero guided damage",
+    "source_matrix": "38 guided/policy cases plus 18 counterfactuals and unit checks; details in Level Design handoff",
+    "direct_entries": "Actual exported app: Level2 Tony Normal and Level2-landing Sean Hard passed headlessly",
+    "signature_archive_startup": "passed"
   },
   "source_art_review": {
-    "status": "Art source composition/frame bounds/occlusion review passed; not running-game visual validation",
-    "manifest": "assets/world/level-two-flush-v2/manifest.json",
-    "previews": "assets/world/level-two-flush-v2/source-previews/",
-    "registered_animation_frames": 48
+    "status": "107 source regions and four alpha landing compositions verified; not running-game visual review",
+    "manifest": "assets/world/level-two-flush-v3/manifest.json"
   },
   "limitations": [
-    "No Prototype99 game window opened or actual gameplay screenshot. Live animation quality, accelerated water continuity, warning readability, control feel, audio recognizability/mix and human difficulty review remain pending.",
-    "Full log ride and Level3 remain deferred.",
-    "Headless logs retain environment certificate/user-log and shutdown resource warnings; passing suites contain no script/parse failures."
+    "Occasional off-witness planning hitches up to 314.390ms in sampled stress cases remain a documented prototype performance gap.",
+    "No game window or actual gameplay screenshot captured; human animation, balance and listening review pending.",
+    "Full log ride and Level 3 remain deferred.",
+    "Headless logs retain environment user-log/certificate/editor-settings and shutdown-resource warnings; passing suites have no script/parse failures."
   ],
   "capture_gap": {
-    "chapter": "storybook/099-swimming-flush/",
+    "chapter": "storybook/100-flush-continuity-and-debris/",
     "actual_capture": false,
-    "reason": "No new game-window authorization; original builds retained for later capture."
+    "reason": "No new game-window authorization; original builds preserved for later capture"
   },
   "contributors": [
-    "handoffs/level-two-flush-art-v2.json",
-    "handoffs/level-two-flush-audio-v2.json",
-    "handoffs/level-two-flush-layout-v2.json",
-    "handoffs/level-two-flush-mechanics-v2.json"
+    "handoffs/level-two-flush-art-v3.json",
+    "handoffs/level-two-flush-layout-v3.json",
+    "handoffs/level-two-flush-mechanics-v3.json",
+    "handoffs/flush-countdown-music.json"
   ]
 }
