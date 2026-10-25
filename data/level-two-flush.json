@@ -1,12 +1,12 @@
 {
   "layout": {
-    "schema_version": 2,
-    "id": "level-two-flush-v2",
+    "schema_version": 3,
+    "id": "level-two-flush-v3",
     "date": "2026-10-24",
-    "status": "Prototype99 implementation contract; runtime validation pending",
-    "owner": "Engineering delivery; Level Design waves/patterns; Mechanics flow/collision; Art assets",
-    "supersedes": "levels/level-two-flush.json debris schedule; preserve Prototype98 original",
-    "scope": "Short flush only; all eight prop types, continuous falling cohorts, increasing flow; full ride deferred",
+    "status": "Prototype100 contract candidate; awaiting integrated persistent-float safety validation",
+    "owner": "Engineering delivery; Level Design schedule/geometry; Mechanics movement/damage; Art appearance",
+    "supersedes": "Prototype99 scheduling and short impact-only danger; preserve all v2 source files",
+    "scope": "Short flush only; no firing, weapons, jumping or full downstream ride",
     "geometry": {
       "coordinate_space": "Unprojected circular plane radius360; screen=center+(world.x,world.y*140/360); hero position is feet anchor with planar collision radius14",
       "bowl_center": [
@@ -29,10 +29,6 @@
         820,
         350
       ],
-      "playable_normalized_radius": [
-        0.45,
-        0.88
-      ],
       "hero_spawn": [
         480,
         400.8
@@ -46,7 +42,7 @@
         65,
         25.28
       ],
-      "boundary_behavior": "Clamp hero center to annulus before drain; no contact damage or death at boundary",
+      "boundary_behavior": "Use annulus contract shrinking bounds; no lethal edge",
       "hud_safe_rect": [
         0,
         0,
@@ -67,7 +63,6 @@
       ],
       "projection_y": 0.3888888888888889,
       "world_radius": 360,
-      "maximum_projected_jump_height": 33.64,
       "landing_hero_feet": [
         480,
         385
@@ -88,86 +83,86 @@
       "dice",
       "button",
       "safetypin",
-      "tampon"
+      "tampon",
+      "dead_hamster"
     ],
-    "prop_collision_radius_world": 22,
     "hero_collision_radius_world": 14,
     "difficulty": {
       "easy": {
         "waves": [
           {
-            "id": "flush-v2-easy-01",
+            "id": "flush-v3-easy-01",
             "at": 8.0,
             "duration": 2.7,
-            "count": 1
+            "count": 2
           },
           {
-            "id": "flush-v2-easy-02",
+            "id": "flush-v3-easy-02",
             "at": 10.7,
             "duration": 2.7,
-            "count": 1
+            "count": 2
           },
           {
-            "id": "flush-v2-easy-03",
+            "id": "flush-v3-easy-03",
             "at": 13.4,
             "duration": 2.7,
-            "count": 1
+            "count": 2
           },
           {
-            "id": "flush-v2-easy-04",
+            "id": "flush-v3-easy-04",
             "at": 16.1,
             "duration": 2.7,
-            "count": 1
+            "count": 2
           },
           {
-            "id": "flush-v2-easy-05",
+            "id": "flush-v3-easy-05",
             "at": 18.8,
             "duration": 2.7,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-easy-06",
+            "id": "flush-v3-easy-06",
             "at": 21.5,
             "duration": 2.7,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-easy-07",
+            "id": "flush-v3-easy-07",
             "at": 24.2,
             "duration": 2.7,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-easy-08",
+            "id": "flush-v3-easy-08",
             "at": 26.9,
             "duration": 2.7,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-easy-09",
+            "id": "flush-v3-easy-09",
             "at": 29.6,
             "duration": 2.7,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-easy-10",
+            "id": "flush-v3-easy-10",
             "at": 32.3,
             "duration": 2.7,
-            "count": 2
+            "count": 3
           }
         ],
         "count_stages": [
           {
             "at": 8,
-            "count": 1
+            "count": 2
           },
           {
             "at": 17,
-            "count": 2
+            "count": 3
           },
           {
             "at": 26,
-            "count": 2
+            "count": 3
           }
         ],
         "flow": {
@@ -182,95 +177,96 @@
           "inward_speed_end": 45,
           "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
           "minimum_net_steering_speed": 130
-        }
+        },
+        "total_spawn_count": 26
       },
       "normal": {
         "waves": [
           {
-            "id": "flush-v2-normal-01",
+            "id": "flush-v3-normal-01",
             "at": 8.0,
             "duration": 2.25,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-normal-02",
+            "id": "flush-v3-normal-02",
             "at": 10.25,
             "duration": 2.25,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-normal-03",
+            "id": "flush-v3-normal-03",
             "at": 12.5,
             "duration": 2.25,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-normal-04",
+            "id": "flush-v3-normal-04",
             "at": 14.75,
             "duration": 2.25,
-            "count": 2
+            "count": 3
           },
           {
-            "id": "flush-v2-normal-05",
+            "id": "flush-v3-normal-05",
             "at": 17.0,
             "duration": 2.25,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-normal-06",
+            "id": "flush-v3-normal-06",
             "at": 19.25,
             "duration": 2.25,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-normal-07",
+            "id": "flush-v3-normal-07",
             "at": 21.5,
             "duration": 2.25,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-normal-08",
+            "id": "flush-v3-normal-08",
             "at": 23.75,
             "duration": 2.25,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-normal-09",
+            "id": "flush-v3-normal-09",
             "at": 26.0,
             "duration": 2.25,
-            "count": 4
+            "count": 5
           },
           {
-            "id": "flush-v2-normal-10",
+            "id": "flush-v3-normal-10",
             "at": 28.25,
             "duration": 2.25,
-            "count": 4
+            "count": 5
           },
           {
-            "id": "flush-v2-normal-11",
+            "id": "flush-v3-normal-11",
             "at": 30.5,
             "duration": 2.25,
-            "count": 4
+            "count": 5
           },
           {
-            "id": "flush-v2-normal-12",
+            "id": "flush-v3-normal-12",
             "at": 32.75,
             "duration": 2.25,
-            "count": 4
+            "count": 5
           }
         ],
         "count_stages": [
           {
             "at": 8,
-            "count": 2
-          },
-          {
-            "at": 17,
             "count": 3
           },
           {
-            "at": 26,
+            "at": 17,
             "count": 4
+          },
+          {
+            "at": 26,
+            "count": 5
           }
         ],
         "flow": {
@@ -285,113 +281,114 @@
           "inward_speed_end": 55,
           "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
           "minimum_net_steering_speed": 110
-        }
+        },
+        "total_spawn_count": 48
       },
       "hard": {
         "waves": [
           {
-            "id": "flush-v2-hard-01",
+            "id": "flush-v3-hard-01",
             "at": 8.0,
             "duration": 1.8,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-hard-02",
+            "id": "flush-v3-hard-02",
             "at": 9.8,
             "duration": 1.8,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-hard-03",
+            "id": "flush-v3-hard-03",
             "at": 11.6,
             "duration": 1.8,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-hard-04",
+            "id": "flush-v3-hard-04",
             "at": 13.4,
             "duration": 1.8,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-hard-05",
+            "id": "flush-v3-hard-05",
             "at": 15.2,
             "duration": 1.8,
-            "count": 3
+            "count": 4
           },
           {
-            "id": "flush-v2-hard-06",
+            "id": "flush-v3-hard-06",
             "at": 17.0,
             "duration": 1.8,
-            "count": 4
+            "count": 6
           },
           {
-            "id": "flush-v2-hard-07",
+            "id": "flush-v3-hard-07",
             "at": 18.8,
             "duration": 1.8,
-            "count": 4
+            "count": 6
           },
           {
-            "id": "flush-v2-hard-08",
+            "id": "flush-v3-hard-08",
             "at": 20.6,
             "duration": 1.8,
-            "count": 4
+            "count": 6
           },
           {
-            "id": "flush-v2-hard-09",
+            "id": "flush-v3-hard-09",
             "at": 22.4,
             "duration": 1.8,
-            "count": 4
+            "count": 6
           },
           {
-            "id": "flush-v2-hard-10",
+            "id": "flush-v3-hard-10",
             "at": 24.2,
             "duration": 1.8,
-            "count": 4
+            "count": 6
           },
           {
-            "id": "flush-v2-hard-11",
+            "id": "flush-v3-hard-11",
             "at": 26.0,
             "duration": 1.8,
-            "count": 5
+            "count": 7
           },
           {
-            "id": "flush-v2-hard-12",
+            "id": "flush-v3-hard-12",
             "at": 27.8,
             "duration": 1.8,
-            "count": 5
+            "count": 7
           },
           {
-            "id": "flush-v2-hard-13",
+            "id": "flush-v3-hard-13",
             "at": 29.6,
             "duration": 1.8,
-            "count": 5
+            "count": 7
           },
           {
-            "id": "flush-v2-hard-14",
+            "id": "flush-v3-hard-14",
             "at": 31.4,
             "duration": 1.8,
-            "count": 5
+            "count": 7
           },
           {
-            "id": "flush-v2-hard-15",
+            "id": "flush-v3-hard-15",
             "at": 33.2,
             "duration": 1.8,
-            "count": 5
+            "count": 7
           }
         ],
         "count_stages": [
           {
             "at": 8,
-            "count": 3
-          },
-          {
-            "at": 17,
             "count": 4
           },
           {
+            "at": 17,
+            "count": 6
+          },
+          {
             "at": 26,
-            "count": 5
+            "count": 7
           }
         ],
         "flow": {
@@ -406,73 +403,178 @@
           "inward_speed_end": 65,
           "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
           "minimum_net_steering_speed": 90
-        }
+        },
+        "total_spawn_count": 85
       }
+    },
+    "annulus": {
+      "space": "Unprojected world-plane hero-center radii",
+      "start_time": 8,
+      "end_time": 35,
+      "curve": "smoothstep: s=u*u*(3-2*u), u=clamp((t-8)/27,0,1)",
+      "inner_start": 162,
+      "inner_end": 90,
+      "outer_start": 316.8,
+      "outer_end": 210,
+      "minimum_width": 120,
+      "boundary_rule": "Project hero onto current annulus after integrating current and steering each substep. Clamp only radial position; retain tangential control. Shrinking bounds cannot be resisted by outward input. Do not damage at boundary or teleport across angles.",
+      "pocket_center_radius": "(inner(t)+outer(t))/2",
+      "safe_pocket_radius_world": 48,
+      "pocket_boundary_margin_min": 12,
+      "maximum_outer_radius_reduction": 106.8,
+      "drain_clearance_min": 11
+    },
+    "visual_funnel": {
+      "depth_screen_pixels": 60,
+      "center_screen": [
+        480,
+        360
+      ],
+      "physics": "World circleR360 and baseprojection140/360 remain unchanged. Funnel drawing is separate from physical annulus; Engineering aligns displayed hero, props, rings and shadows to the same visual surface.",
+      "rule": "Do not derive collision from decorative funnel pixels or move physics origin to rendered apex."
     },
     "scheduler": {
       "type": "seeded_cohorts",
       "rng": "Dedicated RNG from run seed plus fixed salt99002; never consume level1 or unrelated RNG. Same runseed+same hero path gives same placements.",
-      "type_bag": "Fisher-Yates shuffle of all8 IDs. Consume one only when prop actually spawns. Refill only afterall8 consumed. Same retry seed resets bag/wave state. No cap-dependent discard.",
-      "occupancy": "Wave count is the exact number of simultaneously falling props from spawn through impact, including initial visible warnings. Exclude water floats/splashes. Maximum five. Spawn the next cohort immediately after the previous cohort lands. No shooting, destruction, early refill or missing-count exceptions.",
-      "wave_boundary": "At exactboundary resolve prior impacts before spawningnextcohort; never six-plus falling objects. Counts change atfirstwave whoseat>=stageboundary.",
+      "type_bag": "Fisher-Yates shuffle of all nine IDs. Peek the exact cohort types before planning size-aware positions. Consume entries only when the complete cohort actually spawns. Failed candidate search cannot discard or replace a type. Refill after all nine are consumed; retry resets dedicated seed, bag and wave state.",
+      "occupancy": "Exact scheduled simultaneous falling cohort, now up to seven. Floating objects do not consume falling slots and may not be silently deleted to satisfy any cap.",
+      "wave_boundary": "At each exact wave boundary, resolve the previous cohort landing before spawning the next cohort. Falling occupancy must equal the scheduled count and never exceed seven; persistent water floats do not count as falling objects.",
       "late_frame": "Use fixed/substepped simulation or swepttime processing; do not skip elapsed cohorts or silently discard spawns on cap. No framebased RNG.",
       "phase_end": "At35 disable damage and clearwarning/projectiletokens before finalimpact. Preserve lastcohort visiblylanding asharmless floatingprops, allfloatsdrainunderwatercurrent during35..43. No silentvisualdeletion."
     },
     "fall": {
-      "height_screen_pixels": "min(220, impact_screen_y - 124): reserve HUD64 plus conservative prop upper extent52 plus margin8. Use Art anchor-aware bounds and increase clearance if any rendered prop exceeds52. Entire sprite must be visible from spawn; duration remains unchanged.",
+      "height_screen_pixels": "For each prop, min(220, impact_screen_y - (64 + actual rendered upper extent above its anchor +8)). Use Art anchor-aware bounds; conservative full64px hamster extent requires initial foot y>=136. Keep wave duration unchanged across sizes.",
       "warning_seconds": "Entire visiblefall equals wave.duration (minimum1.8s); emphasisfirst0.6s",
-      "impact_ring": "Fixed announced predictedlandingcenter fromcommit, full combined36worldradius projectedellipse; never retargethero",
+      "impact_ring": "Fixed announced predicted landing center from commitment. Project each prop-specific hero-expanded radius (ordinary36, hamster54) into its warning ellipse. Never retarget or resize after warning.",
       "dynamic_shadow": "Shadow at same fixed plane anchor as impact ring; scale/opacity increases continuously during descent and matches impact.",
       "trajectory": "Vertical fall at fixed announced world-plane anchor. No airborne planar advection or hero tracking. Water floating starts only after impact.",
-      "landing": "Atimpact setprop plane position exactlytarget; begin sameprogressiveflowadvection aswater.",
-      "damage_seconds": 0.35,
+      "landing": "Begin persistent floating collision and same water flow immediately at impact, except final t35 impact which is harmless.",
       "damage": 1,
-      "after_damage": "Floating debris remainsvisible/collidableonlyasMechanicsdefines; no continuedcontactdamage after.35. Driftinto drainorretireoffscreen; boundvisualcount withoutdroppingstilldangerousobjects.",
-      "jump_clearance_world_z": 24,
       "weapon_policy": "No weapons or firing during the flush, per Sean. Every prop is avoided through swimming/dodging; no breakable or soft-shooting behavior."
     },
-    "pattern": {
-      "slots": 8,
-      "slot_angle_step_degrees": 45,
-      "seeded_rotation": "Uniform0..2pi percohort; shuffle eligibleindices withsame dedicatedRNG.",
-      "reserved_slots": 3,
-      "reserved_slot_rule": "Choose nearestgrid directionto a reachablehero-safe pocket; exclude thatslot andbothneighbors. Choose wave.count distinctslots fromother5. Full cohort placedatomically.",
-      "safe_pocket_radius_world": 48,
-      "candidate_pocket_radius_world": 240,
-      "candidate_search": "Try8slotcenters inseededorder biasednearhero; ifunsafe rotategrid towardhero beforewarning andresamplewholepattern. Neverrelocatealreadyannouncedobjects.",
-      "reaction_seconds": 0.15,
-      "combined_impact_radius_world": 36,
-      "max_postimpact_drift_world": 50.75,
-      "safety": "Check fullhero path inannulus162..316.8 againstprevious.35simpactfootprints andnewpredictedimpact+flow-sweptfootprints. Use currentactualflow andminnet130/110/90. Warningrings expanded36world; safe pocket mustremainclear by48+36+maxdrift134.75Hard. A sectorlabel alone isnotproof.",
-      "no_drop_fallback": "Ifcandidate fails, relocate fullcohort beforeannouncement using reserved corridor aroundcurrenthero; do not reducecount,discardbagentries orsilentlydelaypast35. If no validfullcohort canbeconstructed, reportvalidationfailure and revise pattern beforedelivery; do notshipunavoidablepattern.",
-      "slot_radius_world": {
-        "source": "clamp(hero_world_position.length(),190,285)",
-        "minimum": 190,
-        "maximum": 285,
-        "sample_time": "Once at cohort commitment, before any warning or falling sprite appears",
-        "locked": "All cohort impact points and rings keep this radius through landing; never resample during descent."
-      }
+    "floating": {
+      "damage": "All floating props are damaging throughout active gameplay until swallowed or t35. No expiry of danger after impact; no harmless decorative leftovers during active phase.",
+      "movement": "Use identical progressive inward/swirl field as water; deterministic per simulation tick, never track hero.",
+      "capture_world_radius": 65,
+      "capture_rule": "Retire only when the entire contact disk fits within physical drain radius65: center<=65-prop_radius (ordinary43, hamster25). Align visible swallowing with removal. At35 disable damage while retaining visuals until swallowed. Never use a cap or lifetime to delete a dangerous float.",
+      "shared_immunity_seconds": 1.5,
+      "damage_per_contact_batch": 1,
+      "collision": "Swept hero/float relative motion; at most one damage for simultaneous overlaps, no per-object stacked burst.",
+      "transition": "At35 disable all damage and manual control in the same state change. Keep floats visible as harmless objects spiraling into drain; no earlier immunity/control fade."
     },
+    "pattern": {
+      "slots": 12,
+      "slot_angle_step_degrees": 30,
+      "reserved_slots": 5,
+      "max_eligible_slots": 7,
+      "reserved_rule": "Reserve the chosen pocket slot and two neighbors on each side. Assign the already-peeked mixed-size cohort to the other seven slots with seeded permutation. All nine types share the bag.",
+      "radius_at_commit": "For each assigned prop: clamp(hero_world_radius, inner(impact_time)+prop_radius, outer(impact_time)-prop_radius). Ordinary radius22; hamster40.",
+      "impact_time": "cohort.at + cohort.duration",
+      "locking": "Sample impact radius/positions only at cohort commitment, before any visible warning. Lock rings/landing points throughout descent. Use future bounds at impact so shrinking region cannot invalidate an announced landing.",
+      "pocket": "A time-varying path within future annulus, not one static disk. Use midpoint radius and48-world safe disk as candidate, then validate actual swept paths.",
+      "reaction_seconds": 0.15,
+      "safety": "Simulate all existing persistent floats, all announced future impacts and shrinking bounds through candidate cohort landing and escape. Use actual current and minimum net steering130/110/90. Preserve reachable continuation into next cohort; a safe endpoint or five reserved slots alone is insufficient. Use each existing and future prop radius, including hamster54 hero-expanded and102 pocket clearance. Never plan as ordinary22 and assign large art afterward.",
+      "no_drop": "Relocate entire new pattern before warning until safe; never lower count, consume a type without spawning, erase old dangerous floats or backlog past35. If no full-count safe pattern exists, treat as validation failure and revise layout before release.",
+      "combined_collision_radius_world": "hero14 + each prop radius: ordinary36, hamster54",
+      "mixed_size_spacing": "Require pairwise impact-center separation>=sum of prop radii. A cohort may contain two hamsters across a bag boundary; place them at least two30-degree slots apart when their radial positions would overlap at neighboring slots. Reassign slots before warning, without dropping or substituting types.",
+      "recovery_admission": {
+        "authorization": "Engineering explicitly approved this distinction after baseline-confirmed prior-warning contact at11.6s in idle Hard seed0.",
+        "primary": "Require strict zero-contact continuation for all extant and incoming hazards through35; no immunity or inherited-ID exemption.",
+        "eligibility": "If strict search fails, confirm old-only contact during the common eligible continuation prefix or unchanged-input reaction. A new-cohort-created trap is not eligible.",
+        "verification": "Simulate actual current shared immunity and one-point hits for every old and new float continuously. Compare candidate against best verified old-only continuation and paired old-only replay using candidate controls. Candidate future hit count must exceed neither baseline.",
+        "record": "admission=recovery, starting_immunity, baseline_hits, paired_baseline_hits, projected_hits, witness_start/end and commands. Never label recovery a zero-damage proof.",
+        "failure": "If neither strict nor baseline-bounded recovery succeeds, block and report validation failure without consuming types or silently dropping the cohort. Death ends an attempt legitimately.",
+        "comparison": "Among evaluated old-only routes use minimum verified damage. Incoming contact must be zero against exact chosen route, so paired old-only and combined damage are identical by construction. Recovery is not a survival guarantee beyond a lethal old hit; runtime death ends the attempt."
+      },
+      "reaction_continuation": {
+        "eligibility": "Immediately previous committed witness from same attempt, mode and hero speed;120Hz boundary phase within numerical tolerance1e-5 index units; actual position within0.01px; at least18 commands remain.",
+        "behavior": "Use those next18 commands as candidate reaction prefix for all strict, old-only, recovery and paired proofs. Resimulate actual position and every collision; never override live player input. Otherwise hold prior input for0.15s.",
+        "provenance": "Ledger stores witness positions, mode, hero_speed, used_continuation and reaction_source. Reset clears eligibility."
+      },
+      "route_first_admission": "Verify old-debris route first from actual state with common reaction prefix; place full incoming cohort only when every120Hz impact/sweep is contact-free against that fixed route, regardless of immunity. Try other placements before another old route. Eligible full prior witness may be resimulated first. No physical feedback from props to hero/current is assumed.",
+      "active_pocket_route": "Old-hazard-free route tails integrate purposeful analytic120Hz steering toward candidate-angle/mid-annulus pocket through35, preserving reaction/fixed commands. Do not pad passive zero-input drift: future placements must reward active escape. Full prior route reuse originates from this active route."
+    },
+    "controls": "Swimming/dodging only. Full manual steering and damage both remain active through t<35; neither fades early. Fire and jump inputs have no gameplay effect.",
     "acceptance": [
-      "All8 IDsactuallyspawn ineachmode, notjustpresentincatalog",
-      "Replayfixedseed/input givesidenticalwave/type/impactrecords",
-      "Fallingcounts match everywave andneverexceed5; no capdrop",
-      "Prop/shadow convergeonannouncedimpact atboundary; entirefallingspritevisiblebelowHUD fromspawn",
-      "Bothheroes canescape eachcommittedwave includingpreviousimpacts andmaxflow",
-      "Pause andintrohold freezephysics,fall,flow andwarningclocks",
-      "All dangersclear at35, safe landingfeet480,385 at45, nofullride",
-      "Captureactualintegratedrain/safeescape andverifyperceptualreadability underpermissionrules",
-      "Fire/weapon inputs produce no attacks, projectiles or prop damage during the flush",
-      "Every cohort retains its exact scheduled falling count until impact; all props are dodge-only",
-      "All prop sprites start fully visible with initial foot y>=124 for a maximum52px upper extent",
-      "Idle inner-edge runs must be checked separately: adaptive radius removes fixed radial immunity but does not by itself prove steering is necessary."
+      "Exact wave counts26/48/85; all nine types actually spawn in each mode, no capped or lost objects",
+      "Every landed visible prop retains danger until physical drain capture or t35",
+      "Simultaneous overlapping floats deal at most one health loss per shared1.5s immunity window",
+      "Held outward input cannot exceed current shrinking outer radius; late radius <=210",
+      "No jumping/firing can bypass hazards",
+      "Runtime swept-path search includes all persistent floats, new landings, shrinking walls and future flow",
+      "Warning rings remain fixed and align with actual surface landing despite visual funnel depth",
+      "Last cohort lands harmlessly at35; damage and manual control switch off together; floats remain visible into suction",
+      "Retry, pause and radio hold freeze/reset all queues, bag, bounds, damage and transition state",
+      "Full log ride remains deferred; landing feet480,385",
+      "Every mode actually spawns all nine types; type bag is peeked before size-aware layout",
+      "Hamster uses40 world contact radius,54 warning/contact expansion,102 pocket clearance and25 swallow threshold",
+      "Mixed-size impact disks do not overlap; bag-boundary double hamsters are placed without omission"
     ],
-    "controls": "Swimming and dodging only during the flush. Fire and weapon actions are disabled; all eight prop types are unbreakable dodge hazards. No weapon effects or projectile spawns."
+    "prop_profiles": {
+      "corn": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "pooplog": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "penny": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "carkeys": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "dice": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "button": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "safetypin": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "tampon": {
+        "collision_radius_world": 22,
+        "hero_expanded_radius_world": 36,
+        "safe_pocket_clearance_world": 84,
+        "swallow_center_radius_world": 43
+      },
+      "dead_hamster": {
+        "collision_radius_world": 40,
+        "hero_expanded_radius_world": 54,
+        "safe_pocket_clearance_world": 102,
+        "swallow_center_radius_world": 25,
+        "art_dimensions_reference": [
+          80,
+          64
+        ]
+      }
+    }
   },
   "story": {
     "id": "level_two_flush_story_v1",
     "date": "2026-10-24",
-    "status": "Final narrative handoff for Prototype98 implementation; not runtime validated or separately user-approved exact wording",
+    "status": "Prototype100 radio continuity correction supplied for Engineering integration; runtime validation pending",
     "authorization": "PM relayed Sean starts short playable Level2 flush. Full log ride and level3 remain deferred.",
     "owner": "Storyboarding narrative; Engineering runtime/radio integration",
     "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
@@ -491,22 +593,22 @@
         },
         {
           "at": 2.5,
-          "who": "sean",
+          "who": "tony",
           "emotion": "worried",
-          "text": "Tony? Can you hear me?",
+          "text": "Sean, move your chat window down!",
           "duration": 2,
-          "radio": true,
+          "radio": false,
           "gag": true,
           "event": "arrival",
           "gag_action": "hold_center"
         },
         {
           "at": 4.5,
-          "who": "tony",
-          "emotion": "worried",
-          "text": "Your face! Down! I can\u2019t see!",
+          "who": "sean",
+          "emotion": "surprised",
+          "text": "Oh! Sorry. How\u2019s that?",
           "duration": 3.5,
-          "radio": false,
+          "radio": true,
           "gag": true,
           "event": "arrival",
           "gag_action": "slide_bottom",
@@ -565,22 +667,22 @@
         },
         {
           "at": 2.5,
-          "who": "tony",
+          "who": "sean",
           "emotion": "worried",
-          "text": "Are you hurt, buddy?",
+          "text": "Tony, move your chat window! I can\u2019t see!",
           "duration": 2,
-          "radio": true,
+          "radio": false,
           "gag": true,
           "event": "arrival",
           "gag_action": "hold_center"
         },
         {
           "at": 4.5,
-          "who": "sean",
-          "emotion": "worried",
-          "text": "Move your face down! I can\u2019t see!",
+          "who": "tony",
+          "emotion": "neutral",
+          "text": "Sure, buddy. Down here?",
           "duration": 3.5,
-          "radio": false,
+          "radio": true,
           "gag": true,
           "event": "arrival",
           "gag_action": "slide_bottom",
@@ -621,7 +723,7 @@
     "events": {
       "arrival": {
         "trigger": "0s safe bowl arrival; three lines finish by8s",
-        "gag": "Support panel centered at2.5; hero complaint at4.5; slide whole panel bottom during complaint lineclock1.4\u20132.2 (absolute5.9\u20136.7). One shared gag instance, not one per marked line.",
+        "gag": "At0s selected hero arrival; at2.5s selected hero explicitly requests chat-window relocation with hold_center. At4.5s remote partner replies with slide_bottom. Keep that partner portrait, name and reply visible throughout whole-panel slide at reply lineclock1.4\u20132.2 (absolute5.9\u20136.7), then through line end8s. Do not substitute selected-hero portrait/text during motion. One shared gag instance.",
         "safety": "No hazards before8; steering/current allowed. Any lingering center panel or dialogue hold delays hazard admission until clear. Gag-seen set at first arrival; newrun clears."
       },
       "flush": {
@@ -655,7 +757,8 @@
       "Gag relocates whole panel and never repeats on checkpoint retry",
       "Nonblocking timed lines pause/resume and cancel on death/reset/title",
       "No queue overlap at drain/landing",
-      "Survival completion after harmless drain/landing, then honest construction boundary; no ride gameplay"
+      "Survival completion after harmless drain/landing, then honest construction boundary; no ride gameplay",
+      "Both routes: hero requests chat window move; opposite partner replies and remains the visible portrait/name/text during slide at5.9\u20136.7s; complete before8s hazards"
     ],
     "landing_routes": {
       "tony": [
@@ -1153,46 +1256,165 @@
         "coordinate_space": "local"
       },
       "drain_back": {
-        "path": "assets/world/level-two-flush-v2/drain-v2.png",
-        "source_rect": [
-          25,
-          45,
-          810,
-          415
-        ],
-        "destination": [
-          -65,
-          -25.28,
-          130,
-          50.56
-        ],
-        "anchor": [
-          0,
-          0
-        ],
-        "duration_seconds": 0.0833333333,
-        "coordinate_space": "local"
+        "layers": [],
+        "note": "Dark recessed throat is already opaque in each water phase; no raised porcelain overlay."
       },
       "drain_front": {
-        "path": "assets/world/level-two-flush-v2/drain-v2.png",
+        "path": "assets/world/level-two-flush-v3/water-v3.png",
         "source_rect": [
-          860,
-          180,
-          775,
-          280
+          336,
+          188.1,
+          162,
+          22.95
         ],
         "destination": [
           -65,
-          -8,
+          8,
           130,
-          34
+          36
         ],
         "anchor": [
           0,
           0
         ],
-        "duration_seconds": 0.0833333333,
-        "coordinate_space": "local"
+        "coordinate_space": "local",
+        "duration_seconds": 0.0625,
+        "note": "Registered lower throat/foreground water from the same funnel, replacing separate bright crescent that read like a raised ring."
+      },
+      "landing_board": {
+        "path": "assets/world/level-two-flush-v3/accessories-v1.png",
+        "source_rect": [
+          37,
+          168,
+          695,
+          231
+        ],
+        "destination": [
+          -55,
+          -12.5,
+          110,
+          25
+        ],
+        "anchor": [
+          0,
+          0
+        ],
+        "coordinate_space": "local",
+        "duration_seconds": 0.0625
+      },
+      "dead_hamster": {
+        "path": "assets/world/level-two-flush-v3/dead-hamster-v1.png",
+        "source_rect": [
+          361,
+          343,
+          768,
+          549
+        ],
+        "destination": [
+          -40,
+          -45.75,
+          80,
+          57.1875
+        ],
+        "anchor": [
+          0,
+          0
+        ],
+        "coordinate_space": "local",
+        "duration_seconds": 0.0625,
+        "collision_reference": {
+          "world_contact_radius": 40,
+          "hero_expanded_radius": 54,
+          "anchor": "body center water-contact line",
+          "visible_width": 80,
+          "visible_height": 57.1875,
+          "upper_extent": 45.75,
+          "note": "Height includes body above water and is not inverse-projected into contact radius."
+        }
+      },
+      "landing_tony_normal": {
+        "path": "assets/world/level-two-flush-v3/landing-v2.png",
+        "source_rect": [
+          0,
+          0,
+          768,
+          514
+        ],
+        "destination": [
+          -72.76923076923077,
+          -75.3076923076923,
+          129.96923076923076,
+          86.9846153846154
+        ],
+        "anchor": [
+          0,
+          0
+        ],
+        "coordinate_space": "local",
+        "duration_seconds": 0.0625
+      },
+      "landing_tony_hard": {
+        "path": "assets/world/level-two-flush-v3/landing-v2.png",
+        "source_rect": [
+          0,
+          514,
+          768,
+          510
+        ],
+        "destination": [
+          -71.66666666666666,
+          -71.0,
+          128.0,
+          85.0
+        ],
+        "anchor": [
+          0,
+          0
+        ],
+        "coordinate_space": "local",
+        "duration_seconds": 0.0625
+      },
+      "landing_sean_normal": {
+        "path": "assets/world/level-two-flush-v3/landing-v2.png",
+        "source_rect": [
+          768,
+          0,
+          768,
+          550
+        ],
+        "destination": [
+          -66.88709677419355,
+          -76.29032258064517,
+          136.25806451612902,
+          97.58064516129033
+        ],
+        "anchor": [
+          0,
+          0
+        ],
+        "coordinate_space": "local",
+        "duration_seconds": 0.0625
+      },
+      "landing_sean_hard": {
+        "path": "assets/world/level-two-flush-v3/landing-v2.png",
+        "source_rect": [
+          768,
+          550,
+          768,
+          474
+        ],
+        "destination": [
+          -66.88709677419355,
+          -66.17741935483872,
+          136.25806451612902,
+          84.09677419354838
+        ],
+        "anchor": [
+          0,
+          0
+        ],
+        "coordinate_space": "local",
+        "duration_seconds": 0.0625
       }
     },
     "geometry": {
@@ -1958,178 +2180,1090 @@
       "water": {
         "loop": true,
         "fps": 16,
-        "space": "authored projected ellipse; optional additional rotation only by unflattening to source circle then reprojecting",
-        "interpolation": "Crossfade consecutive authored surfaces during frame interval; changing surface frames remain primary motion.",
         "frames": [
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              0,
-              0,
-              768,
-              256
-            ],
-            "destination": [
-              -385.8563535911602,
-              -177.24770642201835,
-              763.756906077348,
-              328.8073394495413
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  16,
+                  11,
+                  320,
+                  172
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  336,
+                  11,
+                  162,
+                  172
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  498,
+                  11,
+                  322,
+                  172
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  16,
+                  183,
+                  320,
+                  51
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  336,
+                  183,
+                  162,
+                  51
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  498,
+                  183,
+                  322,
+                  51
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              768,
-              0,
-              768,
-              256
-            ],
-            "destination": [
-              -378.86896551724135,
-              -177.24770642201835,
-              762.703448275862,
-              328.8073394495413
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  11,
+                  320,
+                  172
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1172,
+                  11,
+                  162,
+                  172
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1334,
+                  11,
+                  323,
+                  172
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  183,
+                  320,
+                  51
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1172,
+                  183,
+                  162,
+                  51
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1334,
+                  183,
+                  323,
+                  51
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              0,
-              256,
-              768,
-              256
-            ],
-            "destination": [
-              -384.82758620689657,
-              -166.84931506849315,
-              762.703448275862,
-              327.30593607305934
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  16,
+                  244,
+                  319,
+                  168
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  335,
+                  244,
+                  164,
+                  168
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  499,
+                  244,
+                  322,
+                  168
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  16,
+                  412,
+                  319,
+                  57
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  335,
+                  412,
+                  164,
+                  57
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  499,
+                  412,
+                  322,
+                  57
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              768,
-              256,
-              768,
-              256
-            ],
-            "destination": [
-              -378.8950276243094,
-              -168.12785388127853,
-              763.756906077348,
-              327.30593607305934
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  244,
+                  320,
+                  170
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1172,
+                  244,
+                  163,
+                  170
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1335,
+                  244,
+                  322,
+                  170
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  414,
+                  320,
+                  55
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1172,
+                  414,
+                  163,
+                  55
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1335,
+                  414,
+                  322,
+                  55
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              0,
-              512,
-              768,
-              256
-            ],
-            "destination": [
-              -385.8563535911602,
-              -155.13513513513513,
-              763.756906077348,
-              322.8828828828829
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  16,
+                  479,
+                  321,
+                  170
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  337,
+                  479,
+                  161,
+                  170
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  498,
+                  479,
+                  322,
+                  170
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  16,
+                  649,
+                  321,
+                  55
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  337,
+                  649,
+                  161,
+                  55
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  498,
+                  649,
+                  322,
+                  55
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              768,
-              512,
-              768,
-              256
-            ],
-            "destination": [
-              -378.86896551724135,
-              -155.06726457399105,
-              762.703448275862,
-              321.43497757847535
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  480,
+                  321,
+                  169
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1173,
+                  480,
+                  160,
+                  169
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1333,
+                  480,
+                  324,
+                  169
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  649,
+                  321,
+                  55
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1173,
+                  649,
+                  160,
+                  55
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1333,
+                  649,
+                  324,
+                  55
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              0,
-              768,
-              768,
-              256
-            ],
-            "destination": [
-              -384.8618784530387,
-              -150.1818181818182,
-              763.756906077348,
-              325.8181818181818
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  15,
+                  713,
+                  320,
+                  169
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  335,
+                  713,
+                  165,
+                  169
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  500,
+                  713,
+                  319,
+                  169
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  15,
+                  882,
+                  320,
+                  52
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  335,
+                  882,
+                  165,
+                  52
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  500,
+                  882,
+                  319,
+                  52
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/water-v1.png",
-            "source_rect": [
-              768,
-              768,
-              768,
-              256
-            ],
-            "destination": [
-              -378.86896551724135,
-              -148.86877828054298,
-              762.703448275862,
-              324.3438914027149
+            "layers": [
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  713,
+                  319,
+                  169
+                ],
+                "destination": [
+                  -360,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1171,
+                  713,
+                  164,
+                  169
+                ],
+                "destination": [
+                  -65,
+                  -140,
+                  130,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1335,
+                  713,
+                  322,
+                  169
+                ],
+                "destination": [
+                  65,
+                  -140,
+                  295,
+                  200
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  852,
+                  882,
+                  319,
+                  53
+                ],
+                "destination": [
+                  -360,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1171,
+                  882,
+                  164,
+                  53
+                ],
+                "destination": [
+                  -65,
+                  60,
+                  130,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              },
+              {
+                "path": "assets/world/level-two-flush-v3/water-v3.png",
+                "source_rect": [
+                  1335,
+                  882,
+                  322,
+                  53
+                ],
+                "destination": [
+                  65,
+                  60,
+                  295,
+                  80
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.0625,
-            "coordinate_space": "local"
+            "duration_seconds": 0.0625
           }
-        ]
+        ],
+        "interpolation": "Crossfade successive authored phases. Do not rotate the projected funnel.",
+        "registration": "Six continuous texture patches: two vertical bands and three horizontal bands fix throat at0,60 and width130 while preserving720x280 outer ellipse."
       },
       "splash": {
         "loop": false,
@@ -2274,53 +3408,53 @@
         "fps": 10,
         "frames": [
           {
-            "path": "assets/world/level-two-flush-v2/drain-v2.png",
+            "path": "assets/world/level-two-flush-v3/accessories-v1.png",
             "source_rect": [
-              25,
-              475,
-              810,
-              415
+              48,
+              572,
+              670,
+              384
             ],
             "destination": [
-              -65,
-              -25.28,
-              130,
-              50.56
+              -42,
+              -25,
+              84,
+              40
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.1,
-            "coordinate_space": "local"
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
           },
           {
-            "path": "assets/world/level-two-flush-v2/drain-v2.png",
+            "path": "assets/world/level-two-flush-v3/accessories-v1.png",
             "source_rect": [
-              840,
-              475,
-              810,
-              415
+              816,
+              555,
+              669,
+              406
             ],
             "destination": [
-              -65,
-              -25.28,
-              130,
-              50.56
+              -42,
+              -25,
+              84,
+              40
             ],
             "anchor": [
               0,
               0
             ],
-            "duration_seconds": 0.1,
-            "coordinate_space": "local"
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
           }
         ]
       }
     },
     "revision": {
       "schema_version": 1,
-      "status": "Frozen authored source delivery for Prototype99; frame registration and source compositions reviewed; runtime motion/readability validation pending",
+      "status": "Frozen Art delivery for Prototype100; source alpha compositions inspected,107 registered regions pass; runtime validation owned by Engineering",
       "reference_viewport": [
         960,
         540
@@ -3041,178 +4175,1090 @@
         "water": {
           "loop": true,
           "fps": 16,
-          "space": "authored projected ellipse; optional additional rotation only by unflattening to source circle then reprojecting",
-          "interpolation": "Crossfade consecutive authored surfaces during frame interval; changing surface frames remain primary motion.",
           "frames": [
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                0,
-                0,
-                768,
-                256
-              ],
-              "destination": [
-                -385.8563535911602,
-                -177.24770642201835,
-                763.756906077348,
-                328.8073394495413
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    16,
+                    11,
+                    320,
+                    172
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    336,
+                    11,
+                    162,
+                    172
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    498,
+                    11,
+                    322,
+                    172
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    16,
+                    183,
+                    320,
+                    51
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    336,
+                    183,
+                    162,
+                    51
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    498,
+                    183,
+                    322,
+                    51
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                768,
-                0,
-                768,
-                256
-              ],
-              "destination": [
-                -378.86896551724135,
-                -177.24770642201835,
-                762.703448275862,
-                328.8073394495413
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    11,
+                    320,
+                    172
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1172,
+                    11,
+                    162,
+                    172
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1334,
+                    11,
+                    323,
+                    172
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    183,
+                    320,
+                    51
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1172,
+                    183,
+                    162,
+                    51
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1334,
+                    183,
+                    323,
+                    51
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                0,
-                256,
-                768,
-                256
-              ],
-              "destination": [
-                -384.82758620689657,
-                -166.84931506849315,
-                762.703448275862,
-                327.30593607305934
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    16,
+                    244,
+                    319,
+                    168
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    335,
+                    244,
+                    164,
+                    168
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    499,
+                    244,
+                    322,
+                    168
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    16,
+                    412,
+                    319,
+                    57
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    335,
+                    412,
+                    164,
+                    57
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    499,
+                    412,
+                    322,
+                    57
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                768,
-                256,
-                768,
-                256
-              ],
-              "destination": [
-                -378.8950276243094,
-                -168.12785388127853,
-                763.756906077348,
-                327.30593607305934
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    244,
+                    320,
+                    170
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1172,
+                    244,
+                    163,
+                    170
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1335,
+                    244,
+                    322,
+                    170
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    414,
+                    320,
+                    55
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1172,
+                    414,
+                    163,
+                    55
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1335,
+                    414,
+                    322,
+                    55
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                0,
-                512,
-                768,
-                256
-              ],
-              "destination": [
-                -385.8563535911602,
-                -155.13513513513513,
-                763.756906077348,
-                322.8828828828829
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    16,
+                    479,
+                    321,
+                    170
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    337,
+                    479,
+                    161,
+                    170
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    498,
+                    479,
+                    322,
+                    170
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    16,
+                    649,
+                    321,
+                    55
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    337,
+                    649,
+                    161,
+                    55
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    498,
+                    649,
+                    322,
+                    55
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                768,
-                512,
-                768,
-                256
-              ],
-              "destination": [
-                -378.86896551724135,
-                -155.06726457399105,
-                762.703448275862,
-                321.43497757847535
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    480,
+                    321,
+                    169
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1173,
+                    480,
+                    160,
+                    169
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1333,
+                    480,
+                    324,
+                    169
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    649,
+                    321,
+                    55
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1173,
+                    649,
+                    160,
+                    55
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1333,
+                    649,
+                    324,
+                    55
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                0,
-                768,
-                768,
-                256
-              ],
-              "destination": [
-                -384.8618784530387,
-                -150.1818181818182,
-                763.756906077348,
-                325.8181818181818
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    15,
+                    713,
+                    320,
+                    169
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    335,
+                    713,
+                    165,
+                    169
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    500,
+                    713,
+                    319,
+                    169
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    15,
+                    882,
+                    320,
+                    52
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    335,
+                    882,
+                    165,
+                    52
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    500,
+                    882,
+                    319,
+                    52
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/water-v1.png",
-              "source_rect": [
-                768,
-                768,
-                768,
-                256
-              ],
-              "destination": [
-                -378.86896551724135,
-                -148.86877828054298,
-                762.703448275862,
-                324.3438914027149
+              "layers": [
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    713,
+                    319,
+                    169
+                  ],
+                  "destination": [
+                    -360,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1171,
+                    713,
+                    164,
+                    169
+                  ],
+                  "destination": [
+                    -65,
+                    -140,
+                    130,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1335,
+                    713,
+                    322,
+                    169
+                  ],
+                  "destination": [
+                    65,
+                    -140,
+                    295,
+                    200
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    852,
+                    882,
+                    319,
+                    53
+                  ],
+                  "destination": [
+                    -360,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1171,
+                    882,
+                    164,
+                    53
+                  ],
+                  "destination": [
+                    -65,
+                    60,
+                    130,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                },
+                {
+                  "path": "assets/world/level-two-flush-v3/water-v3.png",
+                  "source_rect": [
+                    1335,
+                    882,
+                    322,
+                    53
+                  ],
+                  "destination": [
+                    65,
+                    60,
+                    295,
+                    80
+                  ],
+                  "anchor": [
+                    0,
+                    0
+                  ],
+                  "coordinate_space": "local",
+                  "duration_seconds": 0.0625
+                }
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.0625,
-              "coordinate_space": "local"
+              "duration_seconds": 0.0625
             }
-          ]
+          ],
+          "interpolation": "Crossfade successive authored phases. Do not rotate the projected funnel.",
+          "registration": "Six continuous texture patches: two vertical bands and three horizontal bands fix throat at0,60 and width130 while preserving720x280 outer ellipse."
         },
         "splash": {
           "loop": false,
@@ -3357,46 +5403,46 @@
           "fps": 10,
           "frames": [
             {
-              "path": "assets/world/level-two-flush-v2/drain-v2.png",
+              "path": "assets/world/level-two-flush-v3/accessories-v1.png",
               "source_rect": [
-                25,
-                475,
-                810,
-                415
+                48,
+                572,
+                670,
+                384
               ],
               "destination": [
-                -65,
-                -25.28,
-                130,
-                50.56
+                -42,
+                -25,
+                84,
+                40
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.1,
-              "coordinate_space": "local"
+              "coordinate_space": "local",
+              "duration_seconds": 0.0625
             },
             {
-              "path": "assets/world/level-two-flush-v2/drain-v2.png",
+              "path": "assets/world/level-two-flush-v3/accessories-v1.png",
               "source_rect": [
-                840,
-                475,
-                810,
-                415
+                816,
+                555,
+                669,
+                406
               ],
               "destination": [
-                -65,
-                -25.28,
-                130,
-                50.56
+                -42,
+                -25,
+                84,
+                40
               ],
               "anchor": [
                 0,
                 0
               ],
-              "duration_seconds": 0.1,
-              "coordinate_space": "local"
+              "coordinate_space": "local",
+              "duration_seconds": 0.0625
             }
           ]
         }
@@ -3655,59 +5701,177 @@
           "coordinate_space": "local"
         },
         "drain_back": {
-          "path": "assets/world/level-two-flush-v2/drain-v2.png",
-          "source_rect": [
-            25,
-            45,
-            810,
-            415
-          ],
-          "destination": [
-            -65,
-            -25.28,
-            130,
-            50.56
-          ],
-          "anchor": [
-            0,
-            0
-          ],
-          "duration_seconds": 0.0833333333,
-          "coordinate_space": "local"
+          "layers": [],
+          "note": "Dark recessed throat is already opaque in each water phase; no raised porcelain overlay."
         },
         "drain_front": {
-          "path": "assets/world/level-two-flush-v2/drain-v2.png",
+          "path": "assets/world/level-two-flush-v3/water-v3.png",
           "source_rect": [
-            860,
-            180,
-            775,
-            280
+            336,
+            188.1,
+            162,
+            22.95
           ],
           "destination": [
             -65,
-            -8,
+            8,
             130,
-            34
+            36
           ],
           "anchor": [
             0,
             0
           ],
-          "duration_seconds": 0.0833333333,
-          "coordinate_space": "local"
+          "coordinate_space": "local",
+          "duration_seconds": 0.0625,
+          "note": "Registered lower throat/foreground water from the same funnel, replacing separate bright crescent that read like a raised ring."
+        },
+        "landing_board": {
+          "path": "assets/world/level-two-flush-v3/accessories-v1.png",
+          "source_rect": [
+            37,
+            168,
+            695,
+            231
+          ],
+          "destination": [
+            -55,
+            -12.5,
+            110,
+            25
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local",
+          "duration_seconds": 0.0625
+        },
+        "dead_hamster": {
+          "path": "assets/world/level-two-flush-v3/dead-hamster-v1.png",
+          "source_rect": [
+            361,
+            343,
+            768,
+            549
+          ],
+          "destination": [
+            -40,
+            -45.75,
+            80,
+            57.1875
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local",
+          "duration_seconds": 0.0625,
+          "collision_reference": {
+            "world_contact_radius": 40,
+            "hero_expanded_radius": 54,
+            "anchor": "body center water-contact line",
+            "visible_width": 80,
+            "visible_height": 57.1875,
+            "upper_extent": 45.75,
+            "note": "Height includes body above water and is not inverse-projected into contact radius."
+          }
+        },
+        "landing_tony_normal": {
+          "path": "assets/world/level-two-flush-v3/landing-v2.png",
+          "source_rect": [
+            0,
+            0,
+            768,
+            514
+          ],
+          "destination": [
+            -72.76923076923077,
+            -75.3076923076923,
+            129.96923076923076,
+            86.9846153846154
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local",
+          "duration_seconds": 0.0625
+        },
+        "landing_tony_hard": {
+          "path": "assets/world/level-two-flush-v3/landing-v2.png",
+          "source_rect": [
+            0,
+            514,
+            768,
+            510
+          ],
+          "destination": [
+            -71.66666666666666,
+            -71.0,
+            128.0,
+            85.0
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local",
+          "duration_seconds": 0.0625
+        },
+        "landing_sean_normal": {
+          "path": "assets/world/level-two-flush-v3/landing-v2.png",
+          "source_rect": [
+            768,
+            0,
+            768,
+            550
+          ],
+          "destination": [
+            -66.88709677419355,
+            -76.29032258064517,
+            136.25806451612902,
+            97.58064516129033
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local",
+          "duration_seconds": 0.0625
+        },
+        "landing_sean_hard": {
+          "path": "assets/world/level-two-flush-v3/landing-v2.png",
+          "source_rect": [
+            768,
+            550,
+            768,
+            474
+          ],
+          "destination": [
+            -66.88709677419355,
+            -66.17741935483872,
+            136.25806451612902,
+            84.09677419354838
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local",
+          "duration_seconds": 0.0625
         }
       },
       "background_reuse": "assets/world/level-two-flush-v1/manifest.json",
-      "prompts": "assets/world/level-two-flush-v2/prompts.json",
+      "prompts": "assets/world/level-two-flush-v3/prompts.json",
       "draw_order": [
         "existing bowl",
-        "authored animated water",
-        "drain_back",
+        "authored projected funnel phases",
         "prop shadows and warnings",
-        "falling/surface props and swimmers sorted by waterline Y",
-        "animated chest waterline",
-        "drain_front over descending hero",
-        "impact splash/burble",
+        "depth-sorted swimmers and debris",
+        "chest waterline",
+        "matching lower-throat foreground occlusion",
+        "burble/splash",
         "HUD/radio"
       ],
       "hero_rules": [
@@ -3719,24 +5883,608 @@
         "Clip swimmer source at local chest Y0, then draw waterlineforeground; during descent keep clipatdrainY0 while loweringbody behindlip."
       ],
       "animation_limits": [
-        "Authored8frame loops require real runtime visual review; source generation alone does not establish smoothness.",
-        "Crossfade water frames to avoid hard surface popping; keep hero arms crisp rather than ghosted.",
-        "Water destinations vary slightly to normalize the visible outer ellipse perframe; honor eachdestination, not a constant rawcellrectangle."
+        "Eight authored water phases need runtime continuity review; crossfade, never rotate projected funnel.",
+        "Water source cell edges contain low-alpha foam noise; significant silhouette stays inside registered boundaries.",
+        "Six source rectangles meet exactly at shared target boundaries; no gaps or overlapping destination areas.",
+        "Landing uses original v2 generated poses; later v3 attempt has tighter row clearance and is preserved unused."
       ],
       "collision_note": "Canonical mechanics remain Engineering/LevelDesign-owned. Sprite dimensions do not change collision. Props may exceed core with decorative keys/string.",
       "validation": {
-        "registered_animation_frames": 48,
-        "object_entries": 14,
-        "source_bounds": "PASS",
-        "animation_crop_edge_alpha_max": 7,
-        "source_reviews": [
-          "source-previews/contact.png",
-          "source-previews/swim-frames.png",
-          "source-previews/descent.png"
+        "status": "Source bounds and contact compositions checked; actual gameplay pending",
+        "water_measurements": [
+          {
+            "cell": [
+              0,
+              0,
+              836,
+              235
+            ],
+            "visible_bounds": [
+              16,
+              11,
+              820,
+              234
+            ],
+            "throat_source": [
+              336,
+              183.0,
+              498
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          },
+          {
+            "cell": [
+              836,
+              0,
+              1671,
+              235
+            ],
+            "visible_bounds": [
+              852,
+              11,
+              1657,
+              234
+            ],
+            "throat_source": [
+              1172,
+              183.0,
+              1334
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          },
+          {
+            "cell": [
+              0,
+              235,
+              836,
+              470
+            ],
+            "visible_bounds": [
+              16,
+              244,
+              821,
+              469
+            ],
+            "throat_source": [
+              335,
+              412.5,
+              499
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          },
+          {
+            "cell": [
+              836,
+              235,
+              1671,
+              470
+            ],
+            "visible_bounds": [
+              852,
+              244,
+              1657,
+              469
+            ],
+            "throat_source": [
+              1172,
+              413.5,
+              1335
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          },
+          {
+            "cell": [
+              0,
+              470,
+              836,
+              706
+            ],
+            "visible_bounds": [
+              16,
+              479,
+              820,
+              704
+            ],
+            "throat_source": [
+              337,
+              649.0,
+              498
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          },
+          {
+            "cell": [
+              836,
+              470,
+              1671,
+              706
+            ],
+            "visible_bounds": [
+              852,
+              480,
+              1657,
+              704
+            ],
+            "throat_source": [
+              1173,
+              649.0,
+              1333
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          },
+          {
+            "cell": [
+              0,
+              706,
+              836,
+              941
+            ],
+            "visible_bounds": [
+              15,
+              713,
+              819,
+              934
+            ],
+            "throat_source": [
+              335,
+              881.5,
+              500
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          },
+          {
+            "cell": [
+              836,
+              706,
+              1671,
+              941
+            ],
+            "visible_bounds": [
+              852,
+              713,
+              1657,
+              935
+            ],
+            "throat_source": [
+              1171,
+              882.0,
+              1335
+            ],
+            "throat_destination": [
+              -65,
+              60,
+              65
+            ]
+          }
         ],
-        "loops": "Four eight-frame source GIFs at12fps provided; not actual gameplay captures.",
-        "limits": "Motion continuity is source-reviewed by frame sequence; smoothness at runtime and under accelerating rotation is not yet validated."
+        "landing_extents": {
+          "tony": {
+            "normal": [
+              -72.431,
+              11.338
+            ],
+            "hard": [
+              -70.5,
+              10.833
+            ]
+          },
+          "sean": {
+            "normal": [
+              -59.435,
+              15.968
+            ],
+            "hard": [
+              -60.145,
+              15.435
+            ]
+          }
+        },
+        "retained_swim_art": "v2 eight-frame hero sheets remain unchanged",
+        "retained_debris_art": "v2 eight debris frames remain unchanged; ninth hamster added",
+        "drain_front": "Matching funnel-water patch; separate crescent source preserved unused.",
+        "registered_regions": 107,
+        "source_previews": [
+          "source-previews/funnel.png",
+          "source-previews/landing-contact.png",
+          "source-previews/funnel-phases.gif"
+        ]
+      },
+      "surface_depth_pixels": 60,
+      "drain_center": [
+        480,
+        360
+      ],
+      "landing": {
+        "tony": {
+          "normal": {
+            "rear": [],
+            "front": [
+              {
+                "path": "assets/world/level-two-flush-v3/landing-v2.png",
+                "source_rect": [
+                  0,
+                  0,
+                  768,
+                  514
+                ],
+                "destination": [
+                  -72.76923076923077,
+                  -75.3076923076923,
+                  129.96923076923076,
+                  86.9846153846154
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
+            ],
+            "contact_anchor": [
+              0,
+              0
+            ],
+            "screen_anchor": [
+              480,
+              385
+            ],
+            "composite_includes_board": true,
+            "pose": "standing surfing",
+            "visible_local_extents_y": [
+              -72.431,
+              11.338
+            ],
+            "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+          },
+          "hard": {
+            "rear": [],
+            "front": [
+              {
+                "path": "assets/world/level-two-flush-v3/landing-v2.png",
+                "source_rect": [
+                  0,
+                  514,
+                  768,
+                  510
+                ],
+                "destination": [
+                  -71.66666666666666,
+                  -71.0,
+                  128.0,
+                  85.0
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
+            ],
+            "contact_anchor": [
+              0,
+              0
+            ],
+            "screen_anchor": [
+              480,
+              385
+            ],
+            "composite_includes_board": true,
+            "pose": "standing surfing",
+            "visible_local_extents_y": [
+              -70.5,
+              10.833
+            ],
+            "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+          }
+        },
+        "sean": {
+          "normal": {
+            "rear": [],
+            "front": [
+              {
+                "path": "assets/world/level-two-flush-v3/landing-v2.png",
+                "source_rect": [
+                  768,
+                  0,
+                  768,
+                  550
+                ],
+                "destination": [
+                  -66.88709677419355,
+                  -76.29032258064517,
+                  136.25806451612902,
+                  97.58064516129033
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
+            ],
+            "contact_anchor": [
+              0,
+              0
+            ],
+            "screen_anchor": [
+              480,
+              385
+            ],
+            "composite_includes_board": true,
+            "pose": "seated astride; far leg occluded, near leg in front",
+            "visible_local_extents_y": [
+              -59.435,
+              15.968
+            ],
+            "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+          },
+          "hard": {
+            "rear": [],
+            "front": [
+              {
+                "path": "assets/world/level-two-flush-v3/landing-v2.png",
+                "source_rect": [
+                  768,
+                  550,
+                  768,
+                  474
+                ],
+                "destination": [
+                  -66.88709677419355,
+                  -66.17741935483872,
+                  136.25806451612902,
+                  84.09677419354838
+                ],
+                "anchor": [
+                  0,
+                  0
+                ],
+                "coordinate_space": "local",
+                "duration_seconds": 0.0625
+              }
+            ],
+            "contact_anchor": [
+              0,
+              0
+            ],
+            "screen_anchor": [
+              480,
+              385
+            ],
+            "composite_includes_board": true,
+            "pose": "seated astride; far leg occluded, near leg in front",
+            "visible_local_extents_y": [
+              -60.145,
+              15.435
+            ],
+            "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+          }
+        }
+      },
+      "landing_rules": [
+        "Use standalone landing_board only during approach before composite appears.",
+        "At landing, replace board with rider+board composite at same shared contact anchor480,385.",
+        "Unarmed. Normal for Easy/Normal; torn costume for Hard. Static source poses; runtime bob/tilt supplies settling.",
+        "43\u201345 second approach/settle and direct45 entry are Engineering-owned; no source claims of runtime validation."
+      ]
+    },
+    "surface_depth_pixels": 60,
+    "drain_center": [
+      480,
+      360
+    ],
+    "landing": {
+      "tony": {
+        "normal": {
+          "rear": [],
+          "front": [
+            {
+              "path": "assets/world/level-two-flush-v3/landing-v2.png",
+              "source_rect": [
+                0,
+                0,
+                768,
+                514
+              ],
+              "destination": [
+                -72.76923076923077,
+                -75.3076923076923,
+                129.96923076923076,
+                86.9846153846154
+              ],
+              "anchor": [
+                0,
+                0
+              ],
+              "coordinate_space": "local",
+              "duration_seconds": 0.0625
+            }
+          ],
+          "contact_anchor": [
+            0,
+            0
+          ],
+          "screen_anchor": [
+            480,
+            385
+          ],
+          "composite_includes_board": true,
+          "pose": "standing surfing",
+          "visible_local_extents_y": [
+            -72.431,
+            11.338
+          ],
+          "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+        },
+        "hard": {
+          "rear": [],
+          "front": [
+            {
+              "path": "assets/world/level-two-flush-v3/landing-v2.png",
+              "source_rect": [
+                0,
+                514,
+                768,
+                510
+              ],
+              "destination": [
+                -71.66666666666666,
+                -71.0,
+                128.0,
+                85.0
+              ],
+              "anchor": [
+                0,
+                0
+              ],
+              "coordinate_space": "local",
+              "duration_seconds": 0.0625
+            }
+          ],
+          "contact_anchor": [
+            0,
+            0
+          ],
+          "screen_anchor": [
+            480,
+            385
+          ],
+          "composite_includes_board": true,
+          "pose": "standing surfing",
+          "visible_local_extents_y": [
+            -70.5,
+            10.833
+          ],
+          "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+        }
+      },
+      "sean": {
+        "normal": {
+          "rear": [],
+          "front": [
+            {
+              "path": "assets/world/level-two-flush-v3/landing-v2.png",
+              "source_rect": [
+                768,
+                0,
+                768,
+                550
+              ],
+              "destination": [
+                -66.88709677419355,
+                -76.29032258064517,
+                136.25806451612902,
+                97.58064516129033
+              ],
+              "anchor": [
+                0,
+                0
+              ],
+              "coordinate_space": "local",
+              "duration_seconds": 0.0625
+            }
+          ],
+          "contact_anchor": [
+            0,
+            0
+          ],
+          "screen_anchor": [
+            480,
+            385
+          ],
+          "composite_includes_board": true,
+          "pose": "seated astride; far leg occluded, near leg in front",
+          "visible_local_extents_y": [
+            -59.435,
+            15.968
+          ],
+          "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+        },
+        "hard": {
+          "rear": [],
+          "front": [
+            {
+              "path": "assets/world/level-two-flush-v3/landing-v2.png",
+              "source_rect": [
+                768,
+                550,
+                768,
+                474
+              ],
+              "destination": [
+                -66.88709677419355,
+                -66.17741935483872,
+                136.25806451612902,
+                84.09677419354838
+              ],
+              "anchor": [
+                0,
+                0
+              ],
+              "coordinate_space": "local",
+              "duration_seconds": 0.0625
+            }
+          ],
+          "contact_anchor": [
+            0,
+            0
+          ],
+          "screen_anchor": [
+            480,
+            385
+          ],
+          "composite_includes_board": true,
+          "pose": "seated astride; far leg occluded, near leg in front",
+          "visible_local_extents_y": [
+            -60.145,
+            15.435
+          ],
+          "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+        }
       }
-    }
+    },
+    "landing_rules": [
+      "Use standalone landing_board only during approach before composite appears.",
+      "At landing, replace board with rider+board composite at same shared contact anchor480,385.",
+      "Unarmed. Normal for Easy/Normal; torn costume for Hard. Static source poses; runtime bob/tilt supplies settling.",
+      "43\u201345 second approach/settle and direct45 entry are Engineering-owned; no source claims of runtime validation."
+    ]
+  },
+  "music": {
+    "path": "assets/audio/music/flush-air-running-out-v1.ogg",
+    "gain_db": -8,
+    "duration_seconds": 45,
+    "loop": false
   }
 }

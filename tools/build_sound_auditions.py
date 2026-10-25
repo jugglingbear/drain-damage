@@ -92,6 +92,10 @@ def discover() -> dict[str, dict[str, Any]]:
             continue  # Swimming has no breakable props; retain the old slot and audition as retired.
         add(f"level-two-flush/{cue['event']}", "Level 2", f"The Flush — {cue['event'].replace('_', ' ')}",
             [cue["path"]], "data/level-two-flush.json#/audio")
+    flush = json.loads((ROOT / "data/level-two-flush.json").read_text())
+    if "music" in flush:
+        add("proposed-flush/countdown-music", "Level 2", "The Flush — Air Running Out music",
+            [flush["music"]["path"]], "data/level-two-flush.json#/music")
     return slots
 
 

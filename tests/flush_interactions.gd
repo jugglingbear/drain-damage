@@ -26,10 +26,12 @@ func checks() -> void:
 	assert(game.health == health-1,"Shared immunity prevents repeated contact damage")
 	flush.clock = 10.36
 	game.invulnerable = 0
-	flush.debris.advance(flush,game,0)
-	assert(game.health == health-1,"Floating debris becomes harmless after its impact window")
-	flush.clock = 35
+	flush.debris.advance(flush,game,0.36)
+	assert(game.health == health-2,"Floating debris remains harmful after its splash animation")
+	flush.clock = 35.1
+	game.invulnerable = 0
 	flush.debris.advance(flush,game,0.1)
+	assert(game.health == health-2,"Damage ends when automatic descent removes control")
 	assert(flush.hazards.size() == 1 and item.pos.length() < 250,"Final drain retains and pulls floating objects")
 	flush.audio.advance(0.1,false,true,true)
 	assert(flush.audio.voices.size() == 5 and flush.audio.voices.current.playing)
@@ -48,6 +50,10 @@ func checks() -> void:
 	flush.enter_landing(game)
 	assert(flush.audio.voices.values().all(func(voice: AudioStreamPlayer) -> bool: return not voice.playing or voice == flush.audio.voices.radio))
 	flush.begin(game,true)
+	flush.clock = 34.99
+	flush.position = Vector2(180,0)
+	flush.tick(game,0.02,Vector2.RIGHT,false,false)
+	assert(flush.drain_origin.is_equal_approx(Vector2(180,0)),"Outward input cannot move the automatic descent")
 	flush.clock = 39.99
 	flush.state = "drain"
 	var burbles: int = flush.audio.starts.get("suction_burble",0)
@@ -69,5 +75,5 @@ func checks() -> void:
 	assert(not flush.active and game.weapon.id == weapon_id)
 	game.queue_free()
 	await process_frame
-	print("PASS: flush shared contact immunity, harmless drifting debris, bounded audio, paused suction and preserved loadout")
+	print("PASS: persistent float damage, shared immunity, automatic descent, bounded audio and preserved loadout")
 	quit()

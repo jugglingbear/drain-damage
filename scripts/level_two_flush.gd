@@ -5,6 +5,7 @@ const Audio = preload("res://scripts/level_two_flush_audio.gd")
 const Flow = preload("res://scripts/flush_flow.gd")
 const Debris = preload("res://scripts/flush_debris.gd")
 const Art = preload("res://scripts/flush_art.gd")
+const Music = preload("res://scripts/flush_music.gd")
 const CONTENT := "res://data/level-two-flush.json"
 var definition: Dictionary = {}
 var debris := Debris.new()
@@ -30,8 +31,8 @@ var hazards: Array[Dictionary] = []
 var shots: Array[Dictionary] = []
 var announced: Dictionary = {}
 var audio := Audio.new()
+var music := Music.new()
 var radio := Radio.new()
-var textures: Dictionary = {}
 var damage_taken := 0
 var shots_fired := 0
 var input_guard := true
@@ -40,8 +41,7 @@ func attach(host: Node2D) -> void:
 	definition = JSON.parse_string(FileAccess.get_file_as_string(CONTENT))
 	host.add_child(radio)
 	audio.attach(host,definition.audio.cues)
-	for frame: Dictionary in definition.art.frames.values():
-		if not textures.has(frame.path): textures[frame.path] = load("res://"+str(frame.path))
+	music.attach(host,definition.music)
 	art.configure(definition.art)
 	radio.transmission.connect(func() -> void: audio.play("radio_chirp"))
 
@@ -56,6 +56,7 @@ func reset() -> void:
 	announced.clear()
 	radio.clear()
 	audio.stop()
+	music.stop()
 
 func center() -> Vector2:
 	return Vector2(definition.layout.geometry.bowl_center[0],definition.layout.geometry.bowl_center[1])
@@ -64,12 +65,31 @@ func projection() -> float:
 	var radii: Array = definition.layout.geometry.water_radii
 	return float(radii[1])/float(radii[0])
 
+func surface_depth(point: Vector2) -> float:
+	var fraction := clampf(point.length()/360.0,0,1)
+	return float(definition.art.get("surface_depth_pixels",0))*pow(1.0-fraction,2)
+
 func project(point: Vector2) -> Vector2:
-	return center()+Vector2(point.x,point.y*projection())
+	return center()+Vector2(point.x,point.y*projection()+surface_depth(point))
 
 func unproject(point: Vector2) -> Vector2:
 	var relative := point-center()
-	return Vector2(relative.x,relative.y/projection())
+	# Depth changes only presentation; invert the monotonic vertical map for explicit screen anchors.
+	var low := -720.0
+	var high := 720.0
+	for iteration in range(32):
+		var middle := (low+high)*0.5
+		if middle*projection()+surface_depth(Vector2(relative.x,middle)) < relative.y: low = middle
+		else: high = middle
+	return Vector2(relative.x,(low+high)*0.5)
+
+func surface_transform(point: Vector2) -> Transform2D:
+	var gradient := Vector2.ZERO
+	if point.length() > 0.001 and point.length() < 360:
+		gradient = point.normalized()*(-2.0*float(definition.art.get("surface_depth_pixels",0))
+			*(1.0-point.length()/360.0)/360.0)
+	# Existing ellipse effects already include the base Y projection; add only the local depth slope.
+	return Transform2D(Vector2(1,gradient.x),Vector2(0,1+gradient.y/projection()),project(point))
 
 func begin(host: Node2D, retry := false) -> void:
 	active = true
@@ -77,7 +97,8 @@ func begin(host: Node2D, retry := false) -> void:
 	clock = 0
 	landing_clock = 0
 	checkpoint_saved = false
-	position = unproject(Vector2(definition.layout.geometry.hero_spawn[0],definition.layout.geometry.hero_spawn[1]))
+	var spawn: Array = definition.layout.geometry.hero_spawn
+	position = Vector2(float(spawn[0])-center().x,(float(spawn[1])-center().y)/projection())
 	aim = Vector2.RIGHT
 	jump_height = 0
 	jump_velocity = 0
@@ -94,8 +115,10 @@ func begin(host: Node2D, retry := false) -> void:
 	sink_depth = 0
 	last_steering = Vector2.ZERO
 	debris.configure(definition.layout,host.difficulty,host.run_seed)
+	debris.render_frames = definition.art.frames
 	hazards = debris.items
 	audio.stop()
+	music.stop()
 	radio.configure(definition.story.routes[host.employee.id],host.difficulty == "hard",retry or gag_seen)
 	gag_seen = true
 	host.won = false
@@ -137,6 +160,7 @@ func enter_landing(host: Node2D) -> void:
 	hazards.clear()
 	shots.clear()
 	audio.stop()
+	music.stop()
 	var lines: Array = definition.story.landing_routes[host.employee.id].duplicate(true)
 	var at := 0.0
 	for line: Dictionary in lines:
@@ -172,8 +196,6 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 			shots.clear()
 			audio.play("flush_surge")
 		if clock < 40:
-			drain_origin += steering.limit_length()*float(host.employee.move_speed)*delta*(1.0-smoothstep(35.0,36.0,clock))
-			drain_origin = drain_origin.limit_length(316.8)
 			var progress := smoothstep(35.0,40.0,clock)
 			position = drain_origin.rotated((clock-35.0)*1.8)*(1.0-progress)
 		else:
@@ -214,6 +236,9 @@ func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool) ->
 func process_audio(host: Node2D, delta: float) -> void:
 	audio.advance(delta,host.paused or host.life_state != "alive",active and clock < 43 and host.life_state == "alive",
 		not radio.current.is_empty(),clampf(clock/35.0,0,1))
+	music.advance(clock,delta,host.paused or input_guard,
+		active and clock < 45 and host.life_state == "alive" and not host.won,
+		not radio.current.is_empty(),audio.voices.panic.playing)
 	radio.visible = active and host.life_state == "alive" and not host.paused and not host.won
 
 func finish(host: Node2D) -> void:
@@ -221,37 +246,38 @@ func finish(host: Node2D) -> void:
 	host.won = true
 	radio.clear()
 	audio.stop()
+	music.stop()
 	host.dialogue.awaiting_release = true
 	host.dialogue.release_guard = 0.2
 
 func dispose() -> void:
 	audio.dispose()
+	music.dispose()
 	radio.clear()
 
 func draw(host: Node2D) -> void:
 	host.draw_set_transform(Vector2.ZERO)
 	if clock >= 43:
 		draw_frame(host,"landing")
-		draw_frame(host,"log")
 	else:
 		draw_frame(host,"bowl_top")
 		draw_frame(host,"bowl")
 		art.water(host,self)
-		art.draw_named(host,"drain_back",center())
+		art.draw_named(host,"drain_back",project(Vector2.ZERO))
 	if clock >= 43:
-		host.world_art.hero_aim_art.draw(host)
+		art.landing(host,self)
 	else:
 		for item: Dictionary in hazards: art.shadows(host,self,item)
 		var drawables: Array[Dictionary] = [{"hero":true,"pos":position}]
 		for item: Dictionary in hazards: drawables.append({"hero":false,"pos":item.pos,"item":item})
-		drawables.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return a.pos.y < b.pos.y)
+		drawables.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return project(a.pos).y < project(b.pos).y)
 		for drawable: Dictionary in drawables:
 			if drawable.hero:
 				if host.invulnerable <= 0 or int(clock*12)%2 == 0 or state != "bowl": art.swimmer(host,self)
 			else: art.debris(host,self,drawable.item)
-		art.draw_named(host,"drain_front",center())
+		art.draw_named(host,"drain_front",project(Vector2.ZERO))
 		if clock >= 40:
-			art.draw_frame(host,art.frame_at("burble",clock-40),center())
+			art.draw_frame(host,art.frame_at("burble",clock-40),project(Vector2.ZERO))
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("THE FLUSH",Vector2(24,27),22,host.MINT)
 	host.label_at("Swim: arrows / stick   Dodge the falling objects",Vector2(24,52),14,host.GOLD)
@@ -269,7 +295,4 @@ func draw(host: Node2D) -> void:
 		else: host.draw_pause_panel()
 
 func draw_frame(host: Node2D, id: String, offset := Vector2.ZERO, tint := Color.WHITE) -> void:
-	var frame: Dictionary = definition.art.frames[id]
-	var destination: Rect2 = host.region(frame.destination)
-	destination.position += offset
-	host.draw_texture_rect_region(textures[frame.path],destination,host.region(frame.source_rect),tint)
+	art.draw_named(host,id,offset,tint)

@@ -14,13 +14,48 @@ def read(path: str) -> dict[str, Any]:
     return json.loads((ROOT / path).read_text())
 
 
+def validate_radio_gag(story: dict[str, Any]) -> None:
+    """Keep the relocation attached to the responding partner within the safe opening."""
+    for hero, partner in (("tony", "sean"), ("sean", "tony")):
+        route = story["routes"][hero]
+        requests = [line for line in route if line.get("gag_action") == "hold_center"]
+        replies = [line for line in route if line.get("gag_action") == "slide_bottom"]
+        if len(requests) != 1 or len(replies) != 1:
+            raise ValueError(f"Expected one window request and response: {hero}")
+        request, reply = requests[0], replies[0]
+        if request["who"] != hero or request["radio"] or "chat window" not in request["text"].lower():
+            raise ValueError(f"Playable hero must request the chat window move: {hero}")
+        if reply["who"] != partner or not reply["radio"]:
+            raise ValueError(f"Partner must own the moving reply and portrait: {hero}")
+        start, end = reply["slide_line_seconds"]
+        if (request["at"] + request["duration"] != reply["at"] or not 0 <= start < end < reply["duration"]
+                or reply["at"] + reply["duration"] > 8):
+            raise ValueError(f"Window response must finish moving during the safe opening: {hero}")
+
+
+def artwork_frames(value: Any) -> list[dict[str, Any]]:
+    """Collect leaf frames, including layered surfaces and composed landing poses."""
+    if isinstance(value, list):
+        return [frame for child in value for frame in artwork_frames(child)]
+    if isinstance(value, dict):
+        if all(key in value for key in ("path", "source_rect", "destination")):
+            return [value]
+        return [frame for child in value.values() for frame in artwork_frames(child)]
+    return []
+
+
 def build() -> dict[str, Any]:
     """Reject incomplete audio or unsafe timing before producing exportable data."""
-    layout = read("levels/level-two-flush-v2.json")
+    layout = read("levels/level-two-flush-v3.json")
     story = read("handoffs/level-two-flush-story.json")
+    validate_radio_gag(story)
     audio = read("handoffs/level-two-flush-audio.json")
     audio["cues"] = [cue for cue in audio["cues"] if cue["event"] != "debris_break"]
     audio["cues"].append(read("handoffs/level-two-flush-audio-v2.json")["cue"])
+    score = read("handoffs/flush-countdown-music.json")
+    if hashlib.sha256((ROOT / score["asset"]).read_bytes()).hexdigest() != score["sha256"]:
+        raise ValueError("Flush score hash mismatch")
+    music = {"path": score["asset"], "gain_db": score["gain_db"], "duration_seconds": 45, "loop": False}
     for cue in audio["cues"]:
         payload = (ROOT / cue["path"]).read_bytes()
         if hashlib.sha256(payload).hexdigest() != cue["sha256"]:
@@ -28,7 +63,7 @@ def build() -> dict[str, Any]:
     for mode in ("easy", "normal", "hard"):
         boundary = 8.0
         for wave in layout["difficulty"][mode]["waves"]:
-            if abs(wave["at"] - boundary) > 1e-6 or not 1 <= wave["count"] <= 5 or wave["duration"] < 1.8:
+            if abs(wave["at"] - boundary) > 1e-6 or not 1 <= wave["count"] <= 7 or wave["duration"] < 1.8:
                 raise ValueError(f"Unsafe or discontinuous falling cohort: {wave['id']}")
             boundary += wave["duration"]
         if abs(boundary - 35.0) > 1e-6:
@@ -42,18 +77,22 @@ def build() -> dict[str, Any]:
     art["frames"].update(revision["frames"])
     art["animations"] = revision["animations"]
     art["revision"] = revision
-    frames = list(art["frames"].values())
+    revision = read("assets/world/level-two-flush-v3/manifest.json")
+    art["frames"].update(revision["frames"])
+    art["animations"].update(revision["animations"])
+    for key in ("surface_depth_pixels", "drain_center", "landing", "landing_rules"):
+        art[key] = revision[key]
+    art["revision"] = revision
     for key in ("water", "tony_normal", "tony_hard", "sean_normal", "sean_hard"):
         animation = art["animations"][key]
         if len(animation["frames"]) < 8 or animation["fps"] <= 0:
             raise ValueError(f"Missing authored animation phases: {key}")
-        frames.extend(animation["frames"])
-    for frame in frames:
+    for frame in artwork_frames(art):
         if not (ROOT / frame["path"]).is_file():
             raise ValueError(f"Missing artwork: {frame['path']}")
         if any(value <= 0 for value in frame["source_rect"][2:] + frame["destination"][2:]):
             raise ValueError(f"Empty artwork rectangle: {frame['path']}")
-    return {"layout": layout, "story": story, "audio": audio, "art": art}
+    return {"layout": layout, "story": story, "audio": audio, "art": art, "music": music}
 
 
 if __name__ == "__main__":

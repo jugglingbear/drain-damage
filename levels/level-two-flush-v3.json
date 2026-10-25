@@ -1,0 +1,572 @@
+{
+  "schema_version": 3,
+  "id": "level-two-flush-v3",
+  "date": "2026-10-24",
+  "status": "Prototype100 contract candidate; awaiting integrated persistent-float safety validation",
+  "owner": "Engineering delivery; Level Design schedule/geometry; Mechanics movement/damage; Art appearance",
+  "supersedes": "Prototype99 scheduling and short impact-only danger; preserve all v2 source files",
+  "scope": "Short flush only; no firing, weapons, jumping or full downstream ride",
+  "geometry": {
+    "coordinate_space": "Unprojected circular plane radius360; screen=center+(world.x,world.y*140/360); hero position is feet anchor with planar collision radius14",
+    "bowl_center": [
+      480,
+      300
+    ],
+    "water_radii": [
+      360,
+      140
+    ],
+    "water_bounds": [
+      120,
+      160,
+      720,
+      280
+    ],
+    "rim_art_bounds": [
+      70,
+      100,
+      820,
+      350
+    ],
+    "hero_spawn": [
+      480,
+      400.8
+    ],
+    "hero_collision_radius": 14,
+    "drain_center": [
+      480,
+      300
+    ],
+    "drain_visual_radii": [
+      65,
+      25.28
+    ],
+    "boundary_behavior": "Use annulus contract shrinking bounds; no lethal edge",
+    "hud_safe_rect": [
+      0,
+      0,
+      960,
+      64
+    ],
+    "radio_safe_rect": [
+      0,
+      450,
+      960,
+      90
+    ],
+    "landing_log_rect": [
+      330,
+      380,
+      300,
+      52
+    ],
+    "projection_y": 0.3888888888888889,
+    "world_radius": 360,
+    "landing_hero_feet": [
+      480,
+      385
+    ]
+  },
+  "timeline": {
+    "duration": 45,
+    "safe_until": 8,
+    "drain_start": 35,
+    "landing_start": 43
+  },
+  "clock": "Active gameplay clock. Three short arrival/gag lines run during the safe playable0..8s phase. Any remaining blocking overlay holds the clock at8s and prevents hazards until dismissed. Pause freezes all clocks. Retry skips gag text but retains0..8s calm phase.",
+  "props": [
+    "corn",
+    "pooplog",
+    "penny",
+    "carkeys",
+    "dice",
+    "button",
+    "safetypin",
+    "tampon",
+    "dead_hamster"
+  ],
+  "hero_collision_radius_world": 14,
+  "difficulty": {
+    "easy": {
+      "waves": [
+        {
+          "id": "flush-v3-easy-01",
+          "at": 8.0,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v3-easy-02",
+          "at": 10.7,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v3-easy-03",
+          "at": 13.4,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v3-easy-04",
+          "at": 16.1,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v3-easy-05",
+          "at": 18.8,
+          "duration": 2.7,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-easy-06",
+          "at": 21.5,
+          "duration": 2.7,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-easy-07",
+          "at": 24.2,
+          "duration": 2.7,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-easy-08",
+          "at": 26.9,
+          "duration": 2.7,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-easy-09",
+          "at": 29.6,
+          "duration": 2.7,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-easy-10",
+          "at": 32.3,
+          "duration": 2.7,
+          "count": 3
+        }
+      ],
+      "count_stages": [
+        {
+          "at": 8,
+          "count": 2
+        },
+        {
+          "at": 17,
+          "count": 3
+        },
+        {
+          "at": 26,
+          "count": 3
+        }
+      ],
+      "flow": {
+        "ramp_seconds": [
+          0,
+          35
+        ],
+        "curve": "smoothstep",
+        "total_speed_start": 40,
+        "total_speed_end": 105,
+        "inward_speed_start": 8,
+        "inward_speed_end": 45,
+        "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
+        "minimum_net_steering_speed": 130
+      },
+      "total_spawn_count": 26
+    },
+    "normal": {
+      "waves": [
+        {
+          "id": "flush-v3-normal-01",
+          "at": 8.0,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-normal-02",
+          "at": 10.25,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-normal-03",
+          "at": 12.5,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-normal-04",
+          "at": 14.75,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v3-normal-05",
+          "at": 17.0,
+          "duration": 2.25,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-normal-06",
+          "at": 19.25,
+          "duration": 2.25,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-normal-07",
+          "at": 21.5,
+          "duration": 2.25,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-normal-08",
+          "at": 23.75,
+          "duration": 2.25,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-normal-09",
+          "at": 26.0,
+          "duration": 2.25,
+          "count": 5
+        },
+        {
+          "id": "flush-v3-normal-10",
+          "at": 28.25,
+          "duration": 2.25,
+          "count": 5
+        },
+        {
+          "id": "flush-v3-normal-11",
+          "at": 30.5,
+          "duration": 2.25,
+          "count": 5
+        },
+        {
+          "id": "flush-v3-normal-12",
+          "at": 32.75,
+          "duration": 2.25,
+          "count": 5
+        }
+      ],
+      "count_stages": [
+        {
+          "at": 8,
+          "count": 3
+        },
+        {
+          "at": 17,
+          "count": 4
+        },
+        {
+          "at": 26,
+          "count": 5
+        }
+      ],
+      "flow": {
+        "ramp_seconds": [
+          0,
+          35
+        ],
+        "curve": "smoothstep",
+        "total_speed_start": 50,
+        "total_speed_end": 125,
+        "inward_speed_start": 10,
+        "inward_speed_end": 55,
+        "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
+        "minimum_net_steering_speed": 110
+      },
+      "total_spawn_count": 48
+    },
+    "hard": {
+      "waves": [
+        {
+          "id": "flush-v3-hard-01",
+          "at": 8.0,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-hard-02",
+          "at": 9.8,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-hard-03",
+          "at": 11.6,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-hard-04",
+          "at": 13.4,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-hard-05",
+          "at": 15.2,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v3-hard-06",
+          "at": 17.0,
+          "duration": 1.8,
+          "count": 6
+        },
+        {
+          "id": "flush-v3-hard-07",
+          "at": 18.8,
+          "duration": 1.8,
+          "count": 6
+        },
+        {
+          "id": "flush-v3-hard-08",
+          "at": 20.6,
+          "duration": 1.8,
+          "count": 6
+        },
+        {
+          "id": "flush-v3-hard-09",
+          "at": 22.4,
+          "duration": 1.8,
+          "count": 6
+        },
+        {
+          "id": "flush-v3-hard-10",
+          "at": 24.2,
+          "duration": 1.8,
+          "count": 6
+        },
+        {
+          "id": "flush-v3-hard-11",
+          "at": 26.0,
+          "duration": 1.8,
+          "count": 7
+        },
+        {
+          "id": "flush-v3-hard-12",
+          "at": 27.8,
+          "duration": 1.8,
+          "count": 7
+        },
+        {
+          "id": "flush-v3-hard-13",
+          "at": 29.6,
+          "duration": 1.8,
+          "count": 7
+        },
+        {
+          "id": "flush-v3-hard-14",
+          "at": 31.4,
+          "duration": 1.8,
+          "count": 7
+        },
+        {
+          "id": "flush-v3-hard-15",
+          "at": 33.2,
+          "duration": 1.8,
+          "count": 7
+        }
+      ],
+      "count_stages": [
+        {
+          "at": 8,
+          "count": 4
+        },
+        {
+          "at": 17,
+          "count": 6
+        },
+        {
+          "at": 26,
+          "count": 7
+        }
+      ],
+      "flow": {
+        "ramp_seconds": [
+          0,
+          35
+        ],
+        "curve": "smoothstep",
+        "total_speed_start": 60,
+        "total_speed_end": 145,
+        "inward_speed_start": 12,
+        "inward_speed_end": 65,
+        "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
+        "minimum_net_steering_speed": 90
+      },
+      "total_spawn_count": 85
+    }
+  },
+  "annulus": {
+    "space": "Unprojected world-plane hero-center radii",
+    "start_time": 8,
+    "end_time": 35,
+    "curve": "smoothstep: s=u*u*(3-2*u), u=clamp((t-8)/27,0,1)",
+    "inner_start": 162,
+    "inner_end": 90,
+    "outer_start": 316.8,
+    "outer_end": 210,
+    "minimum_width": 120,
+    "boundary_rule": "Project hero onto current annulus after integrating current and steering each substep. Clamp only radial position; retain tangential control. Shrinking bounds cannot be resisted by outward input. Do not damage at boundary or teleport across angles.",
+    "pocket_center_radius": "(inner(t)+outer(t))/2",
+    "safe_pocket_radius_world": 48,
+    "pocket_boundary_margin_min": 12,
+    "maximum_outer_radius_reduction": 106.8,
+    "drain_clearance_min": 11
+  },
+  "visual_funnel": {
+    "depth_screen_pixels": 60,
+    "center_screen": [
+      480,
+      360
+    ],
+    "physics": "World circleR360 and baseprojection140/360 remain unchanged. Funnel drawing is separate from physical annulus; Engineering aligns displayed hero, props, rings and shadows to the same visual surface.",
+    "rule": "Do not derive collision from decorative funnel pixels or move physics origin to rendered apex."
+  },
+  "scheduler": {
+    "type": "seeded_cohorts",
+    "rng": "Dedicated RNG from run seed plus fixed salt99002; never consume level1 or unrelated RNG. Same runseed+same hero path gives same placements.",
+    "type_bag": "Fisher-Yates shuffle of all nine IDs. Peek the exact cohort types before planning size-aware positions. Consume entries only when the complete cohort actually spawns. Failed candidate search cannot discard or replace a type. Refill after all nine are consumed; retry resets dedicated seed, bag and wave state.",
+    "occupancy": "Exact scheduled simultaneous falling cohort, now up to seven. Floating objects do not consume falling slots and may not be silently deleted to satisfy any cap.",
+    "wave_boundary": "At each exact wave boundary, resolve the previous cohort landing before spawning the next cohort. Falling occupancy must equal the scheduled count and never exceed seven; persistent water floats do not count as falling objects.",
+    "late_frame": "Use fixed/substepped simulation or swepttime processing; do not skip elapsed cohorts or silently discard spawns on cap. No framebased RNG.",
+    "phase_end": "At35 disable damage and clearwarning/projectiletokens before finalimpact. Preserve lastcohort visiblylanding asharmless floatingprops, allfloatsdrainunderwatercurrent during35..43. No silentvisualdeletion."
+  },
+  "fall": {
+    "height_screen_pixels": "For each prop, min(220, impact_screen_y - (64 + actual rendered upper extent above its anchor +8)). Use Art anchor-aware bounds; conservative full64px hamster extent requires initial foot y>=136. Keep wave duration unchanged across sizes.",
+    "warning_seconds": "Entire visiblefall equals wave.duration (minimum1.8s); emphasisfirst0.6s",
+    "impact_ring": "Fixed announced predicted landing center from commitment. Project each prop-specific hero-expanded radius (ordinary36, hamster54) into its warning ellipse. Never retarget or resize after warning.",
+    "dynamic_shadow": "Shadow at same fixed plane anchor as impact ring; scale/opacity increases continuously during descent and matches impact.",
+    "trajectory": "Vertical fall at fixed announced world-plane anchor. No airborne planar advection or hero tracking. Water floating starts only after impact.",
+    "landing": "Begin persistent floating collision and same water flow immediately at impact, except final t35 impact which is harmless.",
+    "damage": 1,
+    "weapon_policy": "No weapons or firing during the flush, per Sean. Every prop is avoided through swimming/dodging; no breakable or soft-shooting behavior."
+  },
+  "floating": {
+    "damage": "All floating props are damaging throughout active gameplay until swallowed or t35. No expiry of danger after impact; no harmless decorative leftovers during active phase.",
+    "movement": "Use identical progressive inward/swirl field as water; deterministic per simulation tick, never track hero.",
+    "capture_world_radius": 65,
+    "capture_rule": "Retire only when the entire contact disk fits within physical drain radius65: center<=65-prop_radius (ordinary43, hamster25). Align visible swallowing with removal. At35 disable damage while retaining visuals until swallowed. Never use a cap or lifetime to delete a dangerous float.",
+    "shared_immunity_seconds": 1.5,
+    "damage_per_contact_batch": 1,
+    "collision": "Swept hero/float relative motion; at most one damage for simultaneous overlaps, no per-object stacked burst.",
+    "transition": "At35 disable all damage and manual control in the same state change. Keep floats visible as harmless objects spiraling into drain; no earlier immunity/control fade."
+  },
+  "pattern": {
+    "slots": 12,
+    "slot_angle_step_degrees": 30,
+    "reserved_slots": 5,
+    "max_eligible_slots": 7,
+    "reserved_rule": "Reserve the chosen pocket slot and two neighbors on each side. Assign the already-peeked mixed-size cohort to the other seven slots with seeded permutation. All nine types share the bag.",
+    "radius_at_commit": "For each assigned prop: clamp(hero_world_radius, inner(impact_time)+prop_radius, outer(impact_time)-prop_radius). Ordinary radius22; hamster40.",
+    "impact_time": "cohort.at + cohort.duration",
+    "locking": "Sample impact radius/positions only at cohort commitment, before any visible warning. Lock rings/landing points throughout descent. Use future bounds at impact so shrinking region cannot invalidate an announced landing.",
+    "pocket": "A time-varying path within future annulus, not one static disk. Use midpoint radius and48-world safe disk as candidate, then validate actual swept paths.",
+    "reaction_seconds": 0.15,
+    "safety": "Simulate all existing persistent floats, all announced future impacts and shrinking bounds through candidate cohort landing and escape. Use actual current and minimum net steering130/110/90. Preserve reachable continuation into next cohort; a safe endpoint or five reserved slots alone is insufficient. Use each existing and future prop radius, including hamster54 hero-expanded and102 pocket clearance. Never plan as ordinary22 and assign large art afterward.",
+    "no_drop": "Relocate entire new pattern before warning until safe; never lower count, consume a type without spawning, erase old dangerous floats or backlog past35. If no full-count safe pattern exists, treat as validation failure and revise layout before release.",
+    "combined_collision_radius_world": "hero14 + each prop radius: ordinary36, hamster54",
+    "mixed_size_spacing": "Require pairwise impact-center separation>=sum of prop radii. A cohort may contain two hamsters across a bag boundary; place them at least two30-degree slots apart when their radial positions would overlap at neighboring slots. Reassign slots before warning, without dropping or substituting types.",
+    "recovery_admission": {
+      "authorization": "Engineering explicitly approved this distinction after baseline-confirmed prior-warning contact at11.6s in idle Hard seed0.",
+      "primary": "Require strict zero-contact continuation for all extant and incoming hazards through35; no immunity or inherited-ID exemption.",
+      "eligibility": "If strict search fails, confirm old-only contact during the common eligible continuation prefix or unchanged-input reaction. A new-cohort-created trap is not eligible.",
+      "verification": "Simulate actual current shared immunity and one-point hits for every old and new float continuously. Compare candidate against best verified old-only continuation and paired old-only replay using candidate controls. Candidate future hit count must exceed neither baseline.",
+      "record": "admission=recovery, starting_immunity, baseline_hits, paired_baseline_hits, projected_hits, witness_start/end and commands. Never label recovery a zero-damage proof.",
+      "failure": "If neither strict nor baseline-bounded recovery succeeds, block and report validation failure without consuming types or silently dropping the cohort. Death ends an attempt legitimately.",
+      "comparison": "Among evaluated old-only routes use minimum verified damage. Incoming contact must be zero against exact chosen route, so paired old-only and combined damage are identical by construction. Recovery is not a survival guarantee beyond a lethal old hit; runtime death ends the attempt."
+    },
+    "reaction_continuation": {
+      "eligibility": "Immediately previous committed witness from same attempt, mode and hero speed;120Hz boundary phase within numerical tolerance1e-5 index units; actual position within0.01px; at least18 commands remain.",
+      "behavior": "Use those next18 commands as candidate reaction prefix for all strict, old-only, recovery and paired proofs. Resimulate actual position and every collision; never override live player input. Otherwise hold prior input for0.15s.",
+      "provenance": "Ledger stores witness positions, mode, hero_speed, used_continuation and reaction_source. Reset clears eligibility."
+    },
+    "route_first_admission": "Verify old-debris route first from actual state with common reaction prefix; place full incoming cohort only when every120Hz impact/sweep is contact-free against that fixed route, regardless of immunity. Try other placements before another old route. Eligible full prior witness may be resimulated first. No physical feedback from props to hero/current is assumed.",
+    "active_pocket_route": "Old-hazard-free route tails integrate purposeful analytic120Hz steering toward candidate-angle/mid-annulus pocket through35, preserving reaction/fixed commands. Do not pad passive zero-input drift: future placements must reward active escape. Full prior route reuse originates from this active route."
+  },
+  "controls": "Swimming/dodging only. Full manual steering and damage both remain active through t<35; neither fades early. Fire and jump inputs have no gameplay effect.",
+  "acceptance": [
+    "Exact wave counts26/48/85; all nine types actually spawn in each mode, no capped or lost objects",
+    "Every landed visible prop retains danger until physical drain capture or t35",
+    "Simultaneous overlapping floats deal at most one health loss per shared1.5s immunity window",
+    "Held outward input cannot exceed current shrinking outer radius; late radius <=210",
+    "No jumping/firing can bypass hazards",
+    "Runtime swept-path search includes all persistent floats, new landings, shrinking walls and future flow",
+    "Warning rings remain fixed and align with actual surface landing despite visual funnel depth",
+    "Last cohort lands harmlessly at35; damage and manual control switch off together; floats remain visible into suction",
+    "Retry, pause and radio hold freeze/reset all queues, bag, bounds, damage and transition state",
+    "Full log ride remains deferred; landing feet480,385",
+    "Every mode actually spawns all nine types; type bag is peeked before size-aware layout",
+    "Hamster uses40 world contact radius,54 warning/contact expansion,102 pocket clearance and25 swallow threshold",
+    "Mixed-size impact disks do not overlap; bag-boundary double hamsters are placed without omission"
+  ],
+  "prop_profiles": {
+    "corn": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "pooplog": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "penny": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "carkeys": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "dice": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "button": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "safetypin": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "tampon": {
+      "collision_radius_world": 22,
+      "hero_expanded_radius_world": 36,
+      "safe_pocket_clearance_world": 84,
+      "swallow_center_radius_world": 43
+    },
+    "dead_hamster": {
+      "collision_radius_world": 40,
+      "hero_expanded_radius_world": 54,
+      "safe_pocket_clearance_world": 102,
+      "swallow_center_radius_world": 25,
+      "art_dimensions_reference": [
+        80,
+        64
+      ]
+    }
+  }
+}

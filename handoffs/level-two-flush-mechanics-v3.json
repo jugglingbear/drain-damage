@@ -1,0 +1,281 @@
+{
+  "schema_version": 3,
+  "updated": "2026-10-24",
+  "timezone": "America/Los_Angeles",
+  "status": "Agreed Prototype 100 numeric contract; runtime escape, packaged and human validation pending",
+  "owner": "Game Mechanics",
+  "integration_owner": "Engineering",
+  "layout_owner": "Level Design",
+  "scope": "Balance revision of the same 45-second flush and safe landing. Mechanics owns this file only.",
+  "supersedes": "handoffs/level-two-flush-mechanics-v2.json for counts, moving bounds, persistent float damage and control cutoff. Earlier revisions remain historical.",
+  "sources": [
+    "levels/level-two-flush-v3.json",
+    "handoffs/level-two-flush-layout-v3.json"
+  ],
+  "preserved": {
+    "steering_speed_world": {
+      "tony": 270,
+      "sean": 235
+    },
+    "controls": "Normalize diagonal swimming. Ignore jump and fire; no airborne immunity, attacks, shots or held weapon art. Preserve selected weapon/loadout outside this scene and release guards at entry/exit.",
+    "world_geometry": "World bowl radius360 and hero radius14; each prop uses its own authored world contact radius. Use world coordinates for movement and collision, never a blanket prop radius or sprite-height inverse projection.",
+    "presentation": "Art v3 concave funnel depth 60 is a rendering parameter, not a world-distance, collision or speed multiplier. Engineering and Art own the exact projection and clipping map.",
+    "flow": "Retain shared Prototype 99 time-varying field for hero and floats: smoothstep(0,35,time), clockwise tangent and inward component, one combined speed cap.",
+    "flow_modes": {
+      "easy": {
+        "total_start": 40,
+        "total_end": 105,
+        "inward_start": 8,
+        "inward_end": 45
+      },
+      "normal": {
+        "total_start": 50,
+        "total_end": 125,
+        "inward_start": 10,
+        "inward_end": 55
+      },
+      "hard": {
+        "total_start": 60,
+        "total_end": 145,
+        "inward_start": 12,
+        "inward_end": 65
+      }
+    },
+    "types": [
+      "corn",
+      "pooplog",
+      "penny",
+      "carkeys",
+      "dice",
+      "button",
+      "safetypin",
+      "tampon",
+      "dead_hamster"
+    ],
+    "type_bag": "Seeded shuffle of all nine types, including dead_hamster. Peek/assign upcoming types before planning their footprints; consume entries only when the complete cohort actually spawns. A rejected candidate must not advance the bag or silently replace a hamster. Counts remain26/48/85. All props are unbreakable.",
+    "fall": "Fixed world XY through descent. Locked warning ring and shadow beneath the prop; no post-warning retarget. Advection starts after impact. Keep the entire sprite below HUD using the actual v3 projected impact position and authored upper extent."
+  },
+  "moving_annulus": {
+    "start_seconds": 8,
+    "end_seconds": 35,
+    "progress": "u=clamp((time-8)/27,0,1); s=u*u*(3-2*u)",
+    "inner_radius_world": {
+      "start": 162,
+      "end": 90,
+      "formula": "162-72*s"
+    },
+    "outer_radius_world": {
+      "start": 316.8,
+      "end": 210,
+      "formula": "316.8-106.8*s"
+    },
+    "modes": "Identical bounds in all modes; counts and current distinguish difficulty.",
+    "application": "Apply current and normalized input, then enforce the bounds for the new simulation time. Solver and runtime use the same function. Clamp only the radius, preserving angle; boundary correction does not inflict damage or stun.",
+    "forced_inward": "Even continuously outward steering cannot keep a hero beyond the shrinking outer radius. By time 35 the maximum reachable radius has moved inward 106.8 world pixels.",
+    "minimum_width_world": 120,
+    "safe_pocket_radius_world": 48,
+    "safe_pocket_center": "Midpoint of inner and outer bounds at each predicted time; 239.4 initially and 150 at time 35. The safe region moves with the annulus, rather than remaining at world radius 240.",
+    "maximum_boundary_speed_world_per_second": {
+      "inner": 4,
+      "outer": 5.933333333333334
+    },
+    "world_drain_radius": 65,
+    "final_hero_body_clearance_from_drain_world": 11,
+    "limits": "Width and speed checks establish geometric room only; persistent hazards still require actual trajectory validation. A reserved sector is not a permanent safe zone."
+  },
+  "schedule": {
+    "calm_seconds": [
+      0,
+      8
+    ],
+    "rain_seconds": [
+      8,
+      35
+    ],
+    "stage_changes_seconds": [
+      8,
+      17,
+      26
+    ],
+    "stage_selection": "Use the stage containing cohort start, with changes taking effect at the next cohort boundary.",
+    "cohort_start": "8 + index * fall_seconds; cohorts tile 27 seconds exactly; final impact at 35.",
+    "modes": {
+      "easy": {
+        "cohorts": 10,
+        "fall_seconds": 2.7,
+        "falling_counts_by_stage": [
+          2,
+          3,
+          3
+        ],
+        "total_props": 26,
+        "previous_total": 16,
+        "increase_percent": 62.5
+      },
+      "normal": {
+        "cohorts": 12,
+        "fall_seconds": 2.25,
+        "falling_counts_by_stage": [
+          3,
+          4,
+          5
+        ],
+        "total_props": 48,
+        "previous_total": 36,
+        "increase_percent": 33.333333333333336
+      },
+      "hard": {
+        "cohorts": 15,
+        "fall_seconds": 1.8,
+        "falling_counts_by_stage": [
+          4,
+          6,
+          7
+        ],
+        "total_props": 85,
+        "previous_total": 60,
+        "increase_percent": 41.666666666666664
+      }
+    },
+    "maximum_simultaneously_falling": 7,
+    "visible_counts": "Resolve old impacts before committing the next cohort. Count only visible descending props as falling, not landed props or hidden warnings. Never cap all visible floats at seven.",
+    "formation": {
+      "angular_slots": 12,
+      "step_degrees": 30,
+      "reserved_contiguous_slots": 5,
+      "eligible_slots": 7,
+      "selection": "Peek exact cohort types first, then orient reserved sector around a reachable moving pocket. Shuffle/select exact count from seven eligible slots and validate each assigned footprint, all existing floats and the full route before atomic commit.",
+      "impact_radius_world": "For each assigned prop radius r, clamp(actual_hero_radius_at_commit, inner_radius(impact_time)+r, outer_radius(impact_time)-r). Ordinary r22; hamster r40. Mixed cohorts may have different radial placements.",
+      "locking": "Evaluate predicted impact-time bounds once before the warning. Lock every target through descent; do not follow the subsequently moving hero or annulus.",
+      "failure": "Search alternative whole formations before commitment. Use explicit baseline-confirmed recovery only as specified in escape_validation. Never drop objects, shorten tells, consume unspawned bag entries, teleport announced hazards or create delayed bursts. Unresolved planning failure must fail validation. Normal death stops the attempt and does not require remaining scheduled spawns.",
+      "pairwise_clearance": "At commitment, require distance between each pair of incoming impact centers >= sum of their prop radii. Across a nine-type bag boundary a cohort can contain two hamsters; place them at least60 degrees apart, then verify actual pairwise disk distance. Never discard a duplicate hamster or change the bag to evade this check. Existing-float conflicts remain part of swept route validation, not a rule deleting prior hazards."
+    }
+  },
+  "float_contact": {
+    "damage_per_hit": 1,
+    "shared_invulnerability_seconds": 1.5,
+    "activation": "A falling prop is harmless until its exact water-impact time. At impact it becomes a persistent contact hazard, including when stationary relative to the hero.",
+    "expiry": "No 0.35-second expiry. Every landed prop remains dangerous until wholly swallowed by the drain or stage time reaches 35, whichever happens first.",
+    "drain_capture_rule": "Retire contact only when center_radius<=65\u2212prop_radius: ordinary43, hamster25. Align visual clipping with swallowing. At35 all contact is disabled but visuals remain for suction; never remove hazards merely for a display cap.",
+    "advection": "Same shared current as the hero. First impact sample is the locked anchor; advance from there only for time after impact. Solver and runtime must agree at this boundary.",
+    "collision": "Use swept relative world-plane contact over the harmful portion of each step. Split a step at impact, drain capture and time 35 so neither pre-impact nor post-cutoff travel can hurt.",
+    "simultaneous": "Aggregate all overlapping prop contacts into at most one health debit per physics step. Successful contact starts the same shared 1.5-second hero immunity; no per-prop bypass or stacked damage.",
+    "repeat": "Remaining in contact after immunity expires may cause another one-point hit. Floating props are not decorative after the first contact and do not disappear when they hit.",
+    "death": "Stop damage processing after a lethal hit; use the existing single life-debit/death path. Do not complete the flush or apply additional contacts while dying.",
+    "final_cohort": "The final impact at exactly 35 is harmless. The transition disables damage before evaluating contacts at or after 35.",
+    "contact_radius_world": "14 + each item.prop_radius_world: ordinary36, hamster54."
+  },
+  "escape_validation": {
+    "reaction_seconds": 0.15,
+    "controls": "Use actual normalized eight-way commands plus zero and actual hero speed. During the initial0.15s reaction window, preserve prior input unless validated prior-witness continuation applies below. Runtime and witness use120Hz simulation steps; test outer60/120Hz with the same120Hz substeps. Unsplit60Hz is not equivalent.",
+    "moving_geometry": "Use time-varying inner/outer radii and the same clamp as runtime, including forced inward displacement. A fixed-radius route or endpoint alone is insufficient.",
+    "hazard_lifetime": "Predict every assigned/landed prop using its own radius through its own full-swallow threshold or time35. Check incoming props from exact impact onward. Do not use the ordinary36 contact or43 retirement for the hamster.",
+    "horizon": "A candidate needs a continuing escape from the current state through all committed hazards, up to their swallowing or time 35. A short lookahead is acceptable only with a validated continuation; holding a pocket for 0.35 seconds does not establish escape from persistent floats.",
+    "immunity": "Normal gameplay honors current shared immunity. A claimed no-damage escape test starts with zero immunity and checks health throughout; it must not rely on injected invulnerability.",
+    "inherited_contacts": "Never permanently exclude an old float or collision ID. A prior-warning unavoidable contact can qualify for explicit recovery only through the baseline procedure below; it is not a zero-contact or zero-damage witness.",
+    "scope": "Clear reserved slots and the minimum 120-wide annulus are candidate construction aids, not mathematical proof of every seeded state. Existing Prototype 99 geometric and replay results do not validate this revision.",
+    "primary_planner": "Try the strict zero-contact planner first. Recovery is a separately labeled fallback only after confirming that a previously announced hazard causes unavoidable contact during the unchanged reaction window; mere candidate-search failure is not enough.",
+    "recovery": {
+      "authorization": "Engineering adopted this policy for Prototype100; Level Design implements planner and tests.",
+      "eligibility": "From identical actual start position, time, selected reaction prefix and current immunity, omit the proposed incoming cohort and simulate every already announced/landed hazard. Confirm unavoidable prior-warning contact under that prefix. Record hazard ID/time. Do not infer inevitability from failure of one candidate route.",
+      "baseline": "Choose the best verified old-hazards-only baseline among the evaluated continuations, under the same actual start, selected reaction prefix and supported controls. Simulate actual health, damage1, shared1.5-second immunity, every per-prop contact/retirement, moving bounds and current. Store commands, hit events, comparison horizon and search coverage; do not imply a global optimum beyond that coverage.",
+      "candidate": "Simulate the complete incoming cohort plus every old hazard from the same start and selected reaction prefix over the same horizon. Use actual current immunity and normal damage rules; never grant immunity, remove a float or exempt an ID to make a route pass.",
+      "acceptance": "Candidate continuation may not add health-debit events beyond the verified old-hazards-only baseline. Compare like horizons and actual hit counts; preserve event times/IDs for audit. This is damage-taking recovery, not strict no-contact proof.",
+      "ledger": "Record admission=recovery, baseline/projected hit counts, initial and charged-hit immunity, witness commands, baseline reason/contact, event times/IDs, matched horizon and outcome. Keep strict-witness and recovery evidence separate.",
+      "death": "A lethal contact ends the attempt through normal death/life-debit handling. Stop further spawning/collision planning for that attempt. Full scheduled totals are required only for completed surviving attempts, not after death.",
+      "failure": "If baseline eligibility or candidate comparison fails, report the planning failure explicitly. Do not silently drop the group, change the bag, pretend the state was safe or broaden the recovery exemption."
+    },
+    "prior_witness_continuation": {
+      "reason": "A new cohort must not interrupt an existing dodge of an older warning. Continuing previously available commands does not require reacting to the new cohort, whose impact is at least1.8s away.",
+      "eligibility": "Use the immediately preceding committed witness in the same attempt, hero speed, mode and120Hz timeline. Align its position sample to the exact current simulation boundary, without rounding to a neighboring time. Require actual position within0.01 world units and at least18 remaining commands. Never use stale pre-retry/teleport or unrelated witnesses.",
+      "reaction_prefix": "If eligible, use the next18 commands of that prior witness as the fixed initial0.15s prefix. Otherwise retain the previous steering command for all18 steps and apply existing strict/recovery rules.",
+      "revalidation": "Position tolerance admits a candidate prefix, not a safety proof. Resimulate all18 commands from actual current position and actual hazards; check every swept contact and time-varying bound. A matching point alone cannot justify skipping collision validation.",
+      "baseline_consistency": "Use the identical chosen prefix and actual starting state for strict search, old-only baseline and candidate recovery comparison. Do not choose different prefixes to improve the comparison.",
+      "ledger": "Store witness boundary positions and command/time alignment, prefix source and matched index. Preserve provenance so tests distinguish continuing an existing maneuver from reacting early to the new wave.",
+      "player_control": "This is planning and witness evidence only. Do not override live player input or claim the player will follow the witness; a deviating player may legitimately take damage.",
+      "tests": "Replay consecutive waves following the prior witness and verify no artificial reaction interruption. Also test deviation beyond0.01, off-grid time, stale/reset witness and insufficient remaining commands use prior-input fallback. Recheck within-tolerance perturbed positions against actual collisions."
+    }
+  },
+  "timeline": {
+    "0_to_8": "Keep the harmless opening swimming/current and existing radio gag. Any blocking overlay freezes active gameplay clocks.",
+    "8_to_35": "More dense visible cohorts, persistent floating contact and smooth annulus contraction. Full steering authority remains available.",
+    "at_35": "Atomically disable damage, steering and warning rings. No one-second input fade. Retain floating props for harmless visible suction; no health/life debit and no teleport purge.",
+    "35_to_40": "Harmless scripted spiral, fixed camera.",
+    "40_to_43": "Downward translation and water/drain clipping. Existing suction_burble starts once at 40 and plays its natural three seconds; no audio remapping or retiming in this contract.",
+    "43_to_45": "Safe landing transition; feet at screen (480,385). At 45 latch existing landing completion once, then existing safe landing dialogue/skip. No full ride extension."
+  },
+  "lifecycle": {
+    "entry": "Carry selected hero, difficulty, health, lives and loadout; no free heal.",
+    "pause": "Freeze stage clock, contraction, falls, contact timers, flow, suction and audio. No wall-clock catch-up or accumulating damage during pause.",
+    "retry": "One life debit through normal death. Restart this flush with full health and standard three-second immunity, same attempt seed, clock zero and empty debris/contact/solver state. Restore initial annulus. Keep eight-second warmup and skip repeated gag.",
+    "game_over_retry": "Standard three lives/full health at flush start; no return to Clogfather unless explicit New Game.",
+    "exit_cleanup": "Clear hazards, warnings, contact state and witnesses on exit, reset or New Game. Stop scene audio according to existing ownership; do not alter global weapon or movement tuning.",
+    "mute": "Silence without changing gameplay timing."
+  },
+  "acceptance": [
+    "Exact counts26/48/85, at most3/5/7 falling by mode, all nine types including dead_hamster, no dropped cohorts; deterministic seed/input replay and no bag advance on rejected patterns.",
+    "At 8/21.5/35 outer radius is 316.8/263.4/210 and inner radius 162/126/90; continuously outward input obeys contraction for both heroes at 60/120 Hz.",
+    "An isolated landed prop still causes damage well beyond 0.35 seconds; continuous overlap causes no more than one hit per shared immunity interval; multiple simultaneous overlaps cause only one hit.",
+    "Every float stays harmful until its per-prop swallow threshold (ordinary43, hamster25) or time35; sweep impact/capture/cutoff boundaries and tangential crossings. Hamster contact54, warning54 and pocket clearance102 must agree with its radius40.",
+    "Fixed-seed runtime witness replays for both heroes and all modes at outer60/120Hz with120Hz simulation substeps start with zero immunity and preserve health. Report seed coverage and all solver failures honestly.",
+    "Separately compare idle and continuously outward-held runs with active dodging; do not treat schedule counts or injected health as evidence of challenge or survivability.",
+    "Pause, lethal contact, retry and New Game reset timers/bounds/props correctly; no hidden firing/jump immunity; loadout preserved.",
+    "At35 no steering or damage remains, surviving props stay visible, nonlethal suction and landing occur at existing boundaries.",
+    "Engineering updates roadmap and delivery evidence with actual build state. Actual screenshots and human difficulty/readability review remain pending until an approved session.",
+    "Validate mixed ordinary/hamster formations, hamster between radius25 and43 still present, body-scale contact near54, full nine-type bag, and entire80x64 artwork below HUD. Art confirms footprint/anchor registration before visual acceptance.",
+    "Exercise a cohort crossing the nine-type bag boundary with two hamsters: retain both, separate by at least60 degrees, verify pairwise radius-sum clearance and preserve the exact scheduled count.",
+    "Test baseline-confirmed missed-warning recovery separately: identical start/reaction/current immunity, all old contacts retained, no extra candidate hits over verified baseline, explicit ledger label, normal lethal termination and no full-count assertion after death. Strict zero-immunity/no-damage witness tests remain unchanged.",
+    "At a new wave, eligible prior-witness continuation retains the next18 already available commands, checked from actual state. Deviated/stale/off-grid states use prior-input fallback. Baseline and recovery use the same prefix; no live input override or unvalidated positional tolerance."
+  ],
+  "validation": {
+    "contract_checks": "PASS: JSON, all 37 cohort start/count/duration/total comparisons against Level Design v3, exact final impact35, percentage increases, and 2701 annulus samples for width/pocket/drain clearance; analytical maximum boundary speeds checked. These are contract checks, not runtime collision proof.",
+    "runtime": "Pending Engineering integration and replay evidence; no game code edited by Mechanics.",
+    "build_and_capture": "Engineering owns build, roadmap and capture records. This contract does not claim a new playable build or actual screenshots.",
+    "level_design_evidence": "Level Design reports 23,544 fresh-cohort geometric cases passed; its handoff explicitly excludes accumulated persistent-float trajectories. No inherited Prototype99 safety claim.",
+    "hamster_revision": "PASS: nine unique type IDs; 113442 fresh endpoint checks across2701 annulus times, two footprints, three legal impact radii and seven eligible slots. Minimum pocket clearance slack96.4943 worldpx. This tests static fresh endpoints only, not advection, route safety or accumulated floats. Art confirms source body fits radius40; final gameplay registration and runtime visual checks pending.",
+    "level_design_hamster_evidence": "Level Design reports47088 fresh-cohort geometry cases passed and mixed seven-slot assignments with zero to two hamsters checked. Adjacent hamsters may overlap at the inner bound; require at least60-degree separation plus exact pairwise radius-sum clearance. Final hamster radial placement130..170 fits. This is not accumulated-float runtime safety or Art registration approval.",
+    "simulation_rate_limit": "Level Design reports an unsplit60Hz replay divergence (Easy, speed270, seed1, hit26.4167). Production acceptance uses120Hz simulation substeps at outer60/120Hz. Flow bounds tests at direct60/120Hz establish bounds only, not equivalence of collision/witness trajectories."
+  },
+  "prop_footprints": {
+    "units": "Authored world-plane collision disks. Sprite pixels describe presentation, not an automatic world-radius conversion.",
+    "ordinary": {
+      "type_ids": [
+        "corn",
+        "pooplog",
+        "penny",
+        "carkeys",
+        "dice",
+        "button",
+        "safetypin",
+        "tampon"
+      ],
+      "prop_radius_world": 22,
+      "hero_expanded_contact_radius_world": 36,
+      "safe_pocket_center_clearance_world": 84,
+      "full_swallow_center_radius_world": 43
+    },
+    "dead_hamster": {
+      "type_id": "dead_hamster",
+      "target_render_size_pixels": [
+        80,
+        64
+      ],
+      "prop_radius_world": 40,
+      "hero_expanded_contact_radius_world": 54,
+      "safe_pocket_center_clearance_world": 102,
+      "full_swallow_center_radius_world": 25,
+      "art_registration": "Art inspected source alpha bounds768x549: at80px visible width, uniform scale gives57.19px height within80x64 envelope. Compact oval body and limp paws fit radius40 with no large appendage overhang. Proposed water-contact anchor is horizontal center near80% visible height; final gameplay asset registration remains pending Art delivery.",
+      "art_destination_rect_pixels": [
+        -40,
+        -45.75,
+        80,
+        57.19
+      ]
+    },
+    "warning": "Draw the hero-expanded danger footprint per prop: ordinary36, hamster54 world radius. Project its perimeter with the same funnel surface map as the prop anchor. Keep warning fixed from commitment through impact.",
+    "shadow": "Use Art-authored body footprint/anchor; shadow is visually distinct from hero-expanded warning. Align both at the announced impact point.",
+    "solver": "Use 14+prop_radius for swept relative collision and 48+14+prop_radius for whole-pocket clearance. Preserve each item radius through prediction, collision, ledger and retirement.",
+    "swallow": "Full physical swallow requires center_radius+prop_radius<=65. Ordinary threshold43; hamster25. At35 disable collision but retain visual suction until swallowed.",
+    "fall_visibility": "Use actual registered top extent with HUD64 and margin8. Art proposes hamster top extent45.75px; if final registration matches, minimum initial foot y is117.75. Retain conservative64px upper extent/foot136 until the delivered manifest confirms this anchor. Do not stretch the sprite to fill80x64; preserve uniform scale."
+  }
+}

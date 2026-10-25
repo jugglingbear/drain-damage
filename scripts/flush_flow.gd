@@ -26,7 +26,13 @@ static func advect(point: Vector2, time: float, delta: float, flow: Dictionary) 
 static func visual_speed(time: float) -> float:
 	return lerpf(0.8,4.0,clampf(time/43.0,0,1))
 
+## Hero-center bounds at the supplied simulation time; the two components are inner and outer radii.
+static func annulus(time: float) -> Vector2:
+	var progress := smoothstep(8.0,35.0,time)
+	return Vector2(lerpf(162.0,90.0,progress),lerpf(316.8,210.0,progress))
+
 static func swim(point: Vector2, input: Vector2, speed: float, time: float, delta: float, flow: Dictionary) -> Vector2:
 	point += (input.limit_length()*speed+velocity(point,time,flow))*delta
-	if point == Vector2.ZERO: point = Vector2.RIGHT*162.0
-	return point.normalized()*clampf(point.length(),162.0,316.8)
+	var bounds := annulus(time)
+	if point == Vector2.ZERO: point = Vector2.RIGHT*bounds.x
+	return point.normalized()*clampf(point.length(),bounds.x,bounds.y)

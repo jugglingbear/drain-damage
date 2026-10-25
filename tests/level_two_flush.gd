@@ -54,7 +54,7 @@ func checks() -> void:
 			assert(game.won)
 			assert(game.flush.hazards.is_empty() and game.flush.shots_fired == 0)
 			assert(game.flush.debris.safety_failures == 0)
-			assert(game.flush.debris.spawned == {"easy":16,"normal":36,"hard":60}[mode])
+			assert(game.flush.debris.spawned == {"easy":26,"normal":48,"hard":85}[mode])
 			assert(game.weapon.id == weapon_id)
 			game.reset_game()
 			assert(game.flush.active and game.health == game.employee.max_health and game.lives == 3)

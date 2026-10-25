@@ -807,6 +807,7 @@ func hurt_player() -> void:
 		if life_state != "alive":
 			flush.radio.clear()
 			flush.audio.stop()
+			flush.music.stop()
 		return
 	player = skitterling.constrain(player,PLAYER_SIZE)
 	player = clogfather.constrain(player,PLAYER_SIZE)

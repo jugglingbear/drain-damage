@@ -38,7 +38,7 @@ func advance(clock: float, delta: float, frozen: bool) -> void:
 		# Optional late reactions are dropped rather than building a distracting backlog.
 		if clock > float(line.at)+float(line.get("duration",4.0)): continue
 		current = line
-		line_clock = 0
+		line_clock = maxf(0,clock-float(line.at))
 		transmissions += 1
 		var event := str(line.get("event","landing"))
 		if event != last_event:
@@ -51,23 +51,37 @@ func clear() -> void:
 	entries.clear()
 	queue_redraw()
 
-func _draw() -> void:
-	if current.is_empty(): return
+func presentation() -> Dictionary:
+	if current.is_empty(): return {}
 	var destination := Vector2(110,452)
+	var scale := 1.0
+	var progress := 1.0
 	if current.get("gag",false):
-		var progress := 0.0 if current.get("gag_action","") == "hold_center" else smoothstep(1.4,2.2,line_clock)
+		progress = 0.0
+		# Only the authored partner response can relocate its own portrait and dialogue.
+		if current.get("gag_action","") == "slide_bottom":
+			var interval: Array = current.slide_line_seconds
+			progress = smoothstep(float(interval[0]),float(interval[1]),line_clock)
 		destination = Vector2(110,220).lerp(destination,progress)
-		var scale := lerpf(1.18,1.0,progress)
-		draw_set_transform(Vector2(480,261)*(1-scale),0,Vector2.ONE*scale)
+		scale = lerpf(1.18,1.0,progress)
+	return {"who":current.who,"emotion":current.emotion,"text":current.text,
+		"portrait":Portraits.expression(str(current.who),str(current.emotion),hard_mode),
+		"destination":destination,"scale":scale,"progress":progress}
+
+func _draw() -> void:
+	var view := presentation()
+	if view.is_empty(): return
+	var destination: Vector2 = view.destination
+	var scale: float = view.scale
+	draw_set_transform(Vector2(480,261)*(1-scale),0,Vector2.ONE*scale)
 	var panel := Rect2(destination,Vector2(740,82))
 	draw_rect(panel,Color("101d29"))
 	draw_rect(panel,Color("90d7cb"),false,2)
-	var portrait := Portraits.expression(str(current.who),str(current.emotion),hard_mode)
-	draw_texture_rect(portrait,Rect2(destination+Vector2(7,6),Vector2(70,70)),false)
-	var speaker := str(current.who).capitalize()
+	draw_texture_rect(view.portrait,Rect2(destination+Vector2(7,6),Vector2(70,70)),false)
+	var speaker := str(view.who).capitalize()
 	draw_string(ThemeDB.fallback_font,destination+Vector2(90,23),speaker,HORIZONTAL_ALIGNMENT_LEFT,-1,17,
 		Color("ffcf7e"))
-	var text := str(current.text)
+	var text := str(view.text)
 	if hard_mode: text = text.to_upper()
 	draw_multiline_string(ThemeDB.fallback_font,destination+Vector2(90,45),text,
 		HORIZONTAL_ALIGNMENT_LEFT,630,17,2,Color("edf2f5"))

@@ -1,0 +1,340 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "source": "levels/level-two-flush-v3.json",
+  "status": "Active-pocket route-first version frozen for Engineering packaging; sampled correctness/balance pass, stress-case planning hitch explicitly retained as prototype limitation",
+  "scope": "Engineering assigned runtime debris scheduler, scheduler/escape tests, v3 layout and this handoff; no shared runtime, build, roadmap or commits",
+  "decisions": [
+    "26/48/85 props, exact same27-second rain span and visible readable descent durations",
+    "Shrinking annulus162..316.8 to90..210 maintains120 minimum width; midpoint pocket follows shrink",
+    "All visible landed props remain dangerous until fully swallowed or35; no jump/fire",
+    "Visual funnel depth60/apex480,360 is not a physics-origin change"
+  ],
+  "validation": {
+    "fresh_cohort_geometric_cases": 23544,
+    "minimum_spare_clearance_world": 103.2,
+    "times": "8..35 in0.25s steps, three start radii,24 angles,all modes",
+    "path": "33-point radial candidate within time-varying annulus;48-radius pocket clear of new impacts plus36 combined collision. Max wave escape distance within mode minimum net steering after0.15s reaction.",
+    "width": "Annulus width>=120; pocket radial margin>=12",
+    "maximum_outer_shrink_speed_world": 5.9333333333,
+    "maximum_inner_shrink_speed_world": 4,
+    "forced_outer_reduction_world": 106.8,
+    "wave_totals": {
+      "easy": 26,
+      "normal": 48,
+      "hard": 85
+    },
+    "important_limit": "Earlier geometric checks cover fresh cohorts only. Runtime replay evidence follows below; sampled runs are not an exhaustive guarantee for every player trajectory."
+  },
+  "remaining": "Engineering exact packaged checks, actual Art/HUD/death/reset verification and permitted capture; off-witness planning performance follow-up, no60fps claim",
+  "ninth_prop_revision": {
+    "prop_id": "dead_hamster",
+    "collision_radius_world": 40,
+    "warning_contact_radius_world": 54,
+    "pocket_clearance_world": 102,
+    "swallow_center_radius_world": 25,
+    "final_impact_center_radius_interval": [
+      130,
+      170
+    ],
+    "minimum_initial_foot_y_conservative": 136,
+    "fresh_geometry_cases_passed": 47088,
+    "minimum_spare_clearance_world": 96.494,
+    "mixed_size_rule": "Peek cohort types before planning; pairwise impact clearance; separate two hamsters across bag boundary by at least60degrees if needed.",
+    "unchanged": "Counts26/48/85 and shrinking annulus90..210 unchanged.",
+    "limits": "Fresh-cohort geometry was followed by the sampled persistent-float runtime checks below; actual Art manifest and packaged rendering remain Engineering validation.",
+    "nonoverlapping_seven_slot_mixed_layouts_checked": 2553
+  },
+  "runtime_recovery_decision": {
+    "owner": "Engineering",
+    "counterexample": "Idle Hard seed0 speed235 at11.6s: hero130.9539,-89.29588 overlaps prior hard-02-6 at142.3764,-110.949 by11.5187worldpixels. All immediate baseline-only directions contact; no new cohort present.",
+    "decision": "Explicit separately labeled baseline-bounded recovery; no permanent collider exemption or deletion.",
+    "initial_evidence": "Hard seed0 both speeds: recovery witness replay completes85 props/all9 types, exactly1 actual hit from original ignored warning. Strict trajectories remain separate."
+  },
+  "runtime_validation": {
+    "date": "2026-10-24",
+    "engine": "Godot 4.7.2 headless on this Mac",
+    "layout": "FLUSH_LAYOUT=levels/level-two-flush-v3.json",
+    "strict": "18 cases: all3 modes, speeds235/270, seeds0-2,60Hz outer/120Hz physics; zero guided hits, full26/48/85 scheduled counts/all9types/HUD/occupancy. Every case exercises full prior-route reuse.",
+    "idle": "6 adaptive live-idle seed0 cases: full counts/types; Easy5/5, Normal7/7, Hard10/10 hits at235/270.",
+    "outward": "6 seed0 cases: full counts/types,1 hit in every case.",
+    "recovery": "2 Hard seed0 cases with explicit old-contact fixture at8s to guarantee recovery coverage:85 scheduled props/all9types, exactly1 fixture hit, recovery admission asserted; projected/baseline and actual replay interval bounds pass. Fixture is test-only and does not count as scheduled debris.",
+    "unit": "Exact impact and swept collision, full swallow per size, persistent hazards, harmless visible cutoff, shared immunity, strict rejection of inherited contact, peek conservation, deterministic cohort/witness/bag and mixed separation. Hazard-free full horizon and immunity decay; pending future impact prevents early shortcut. Prior-witness continuation matching/perturbed/deviated/off-grid/speed/short-tail/reset cases, actual-contact revalidation, proof-only cutoff crossing retention and future-prop exclusion. Incoming exactimpact rejection without immunity exemption, fixed-route isolation and full-horizon requirement. Guided replay asserts full prior-route reuse is exercised. Active hazard-free tail requires nonzero steering and finishes within48px of adaptive pocket.",
+    "limits": "Coverage host has100000HP to test complete rain after mistakes; does not establish mortal-hero balance or integrated death/reset correctness. Standalone HUD uses conservative extents; Engineering attaches actual Art frames. Direct unsplit60Hz physics is not supported by120Hz witness replay.",
+    "environment_warning": "Godot macOS certificate warning appears; tests exit0.",
+    "rotation": "6 seed0 cases: full counts/types; Easy1/1, Normal3/3, Hard3/3 hits."
+  },
+  "planning_performance": {
+    "measurement": "Final sequential headless suite after Engineering stopped lifecycle work to avoid known CPU contention. Monotonic wallclock around advance calls admitting waves, not an isolated system benchmark. PASS text and absence of GDScript errors checked as well as exit status.",
+    "strict_222_waves_ms": {
+      "median": 14.86,
+      "max": 30.589
+    },
+    "idle_74_waves_ms": {
+      "median": 12.043,
+      "max": 28.726
+    },
+    "outward_74_waves_ms": {
+      "median": 32.336,
+      "max": 314.39
+    },
+    "recovery_30_waves_ms": {
+      "median": 17.151,
+      "max": 24.593
+    },
+    "optimization": "Verified zero-hit baseline early exit; stop hazard scoring only after all old and incoming props physically retire, with witness padded through35; reuse Flow force/bounds for candidate controls; prune candidates only on nonnegative score lower bounds and reuse selected contact result. Runtime collision/advection remains120Hz. Analytic eight-way primary input when no hazard within110 clearance or landing within0.25s; full nine-choice scoring near hazards. Actual chosen route still checked against all floats at120Hz. Single-option commands skip irrelevant clearance scoring. Packed swept-frame cache per exact starting hazard snapshot/flow/cutoff eligibility is reused across hero-angle searches, baseline/recovery and paired replay when identical. Cache clears every wave/reset. Planner-only unreachable disks use0.25 margin after retaining crossing segments; physical runtime remains unchanged. Full-lifetime search fallback retains feasible routes when pruned steering reaches a local dead end. Route-first decomposition replaces repeated all-hazard solves: verify old-only route, test each full incoming placement against fixed120Hz positions with zero contact even during immunity. Matching entire prior witness is resimulated as first fast path. Incoming checks begin at first possible impact interval and stop proof-only unreachable disks after their crossing sweep.",
+    "blocker": "Owner decision: freeze for prototype review with314.39ms stress-case planning gap explicitly recorded as follow-up; do not claim60fps or hitch-free play. No more tuning in this delivery.",
+    "rotation_74_waves_ms": {
+      "median": 35.491,
+      "max": 115.01
+    },
+    "rejected_optimization": "30Hz held control decisions caused strict Easy235 seed2 replay damage at18.875 shortly after new cohort reaction lock. Reverted; no relaxation of collision proof or reaction interval.",
+    "baseline_preserved": "Ignored scratch holds prearchitecture flush_debris-continuation-verified.gd and intermediate routefirst/reuse baselines.",
+    "active_tail": "Purposeful analytic steering through35 replaces passive drift padding; initial18-step reaction and fixed prior commands preserved. Guided median14.86ms; off-route placement/search can still be slow."
+  },
+  "reaction_continuation": {
+    "approval": "Engineering and Mechanics approved continuation of immediately prior verified escape during new-cohort reaction window.",
+    "contract": "See levels/level-two-flush-v3.json pattern.reaction_continuation.",
+    "reason": "Repeated constant-input reaction on each new warning could invalidate a maneuver already responding to old debris. Prior witness prefix is only eligible at matching time/state; actual collisions are always rechecked.",
+    "runtime": "No live input override. Ledger includes witness_positions, used_continuation, reaction_source, mode and hero_speed.",
+    "test_evidence": "Final18 strict sampled replays zero damage;20 arbitrary/recovery replays full cohorts, original damage expectations preserved."
+  },
+  "proof_only_retirement": {
+    "condition": "Landed radius+(14+prop_radius)+0.25 < inner hero bound at completed120Hz step, valid initial hero annulus, inward floor>=8. Retain crossing sweep before omission on future steps.",
+    "proof": "Inner bound shrinks at most4px/s; inward debris drift at least8/10/12 so gap increases. Margin covers120Hz chord sag and rounding.",
+    "limits": "Only proof_retired on copied cache hazards; runtime item.retired/visuals/collisions continue to real swallow or35. Future impacts not omitted. Full-lifetime fallback if pruned controller fails."
+  },
+  "route_first_architecture": {
+    "owner_approval": "Engineering with Mechanics agreement",
+    "method": "Old-only strict or baseline-confirmed recovery route is resimulated from actual state; incoming placements must have zero contacts against exact fixed positions through35/capture or validated unreachable proof boundary. Counts, bag and mixed spacing retained.",
+    "recovery": "Minimum hits among evaluated old routes, early stop at zero lower bound. No new contacts means combined and paired old-only hit counts identical by construction, not a separate paired solve.",
+    "metadata": "proof_strategy=old-route-then-incoming, incoming_contacts=0, reused_previous_route; existing reaction, hit, mode/speed and position provenance retained.",
+    "assumptions": "Props do not physically push hero or alter current. Recovery hit projection does not guarantee survival after lethal old damage. Runtime owns actual death.",
+    "balance_gap": "Passive-drift regression corrected with purposeful pocket tail; all18 exact guided-ledger idle counterfactuals take hits while guided replay takeszero. Sampled evidence, not universal balance guarantee.",
+    "active_route": "After old hazards become unreachable, integrate toward moving midpoint/pocket through35 rather than zero drift. Fixed/reactive prefixes retain authority."
+  },
+  "fixed_ledger_counterfactual": {
+    "method": "Replay exact committed guided ledger impact positions/types/times with zero input and no replanning. Runtime swept collisions/current/shared immunity unchanged;100000HP fixture preserves complete coverage.",
+    "units": "World pixels over0..35s. Travel is accumulated physical path length including current; displacement is start-to-end distance; endpoint separation compares guided and idle final positions.",
+    "records": [
+      {
+        "mode": "easy",
+        "speed": 235.0,
+        "seed": 0,
+        "guided_damage": 0,
+        "idle_damage": 5,
+        "guided_travel": 3535.28,
+        "idle_travel": 2373.09,
+        "guided_displacement": 108.75,
+        "idle_displacement": 169.67,
+        "endpoint_separation": 62.94
+      },
+      {
+        "mode": "easy",
+        "speed": 235.0,
+        "seed": 1,
+        "guided_damage": 0,
+        "idle_damage": 7,
+        "guided_travel": 3535.28,
+        "idle_travel": 2373.09,
+        "guided_displacement": 108.75,
+        "idle_displacement": 169.67,
+        "endpoint_separation": 62.94
+      },
+      {
+        "mode": "easy",
+        "speed": 235.0,
+        "seed": 2,
+        "guided_damage": 0,
+        "idle_damage": 8,
+        "guided_travel": 3470.46,
+        "idle_travel": 2373.09,
+        "guided_displacement": 178.25,
+        "idle_displacement": 169.67,
+        "endpoint_separation": 95.33
+      },
+      {
+        "mode": "easy",
+        "speed": 270.0,
+        "seed": 0,
+        "guided_damage": 0,
+        "idle_damage": 5,
+        "guided_travel": 3797.48,
+        "idle_travel": 2373.09,
+        "guided_displacement": 110.18,
+        "idle_displacement": 169.67,
+        "endpoint_separation": 61.28
+      },
+      {
+        "mode": "easy",
+        "speed": 270.0,
+        "seed": 1,
+        "guided_damage": 0,
+        "idle_damage": 7,
+        "guided_travel": 3797.48,
+        "idle_travel": 2373.09,
+        "guided_displacement": 110.18,
+        "idle_displacement": 169.67,
+        "endpoint_separation": 61.28
+      },
+      {
+        "mode": "easy",
+        "speed": 270.0,
+        "seed": 2,
+        "guided_damage": 0,
+        "idle_damage": 8,
+        "guided_travel": 3704.69,
+        "idle_travel": 2373.09,
+        "guided_displacement": 179.35,
+        "idle_displacement": 169.67,
+        "endpoint_separation": 95.22
+      },
+      {
+        "mode": "normal",
+        "speed": 235.0,
+        "seed": 0,
+        "guided_damage": 0,
+        "idle_damage": 4,
+        "guided_travel": 3789.56,
+        "idle_travel": 2853.41,
+        "guided_displacement": 135.52,
+        "idle_displacement": 326.89,
+        "endpoint_separation": 235.84
+      },
+      {
+        "mode": "normal",
+        "speed": 235.0,
+        "seed": 1,
+        "guided_damage": 0,
+        "idle_damage": 3,
+        "guided_travel": 3789.56,
+        "idle_travel": 2853.41,
+        "guided_displacement": 135.52,
+        "idle_displacement": 326.89,
+        "endpoint_separation": 235.84
+      },
+      {
+        "mode": "normal",
+        "speed": 235.0,
+        "seed": 2,
+        "guided_damage": 0,
+        "idle_damage": 3,
+        "guided_travel": 3789.55,
+        "idle_travel": 2853.41,
+        "guided_displacement": 247.42,
+        "idle_displacement": 326.89,
+        "endpoint_separation": 236.07
+      },
+      {
+        "mode": "normal",
+        "speed": 270.0,
+        "seed": 0,
+        "guided_damage": 0,
+        "idle_damage": 4,
+        "guided_travel": 4190.57,
+        "idle_travel": 2853.41,
+        "guided_displacement": 136.62,
+        "idle_displacement": 326.89,
+        "endpoint_separation": 234.83
+      },
+      {
+        "mode": "normal",
+        "speed": 270.0,
+        "seed": 1,
+        "guided_damage": 0,
+        "idle_damage": 3,
+        "guided_travel": 4190.57,
+        "idle_travel": 2853.41,
+        "guided_displacement": 136.62,
+        "idle_displacement": 326.89,
+        "endpoint_separation": 234.83
+      },
+      {
+        "mode": "normal",
+        "speed": 270.0,
+        "seed": 2,
+        "guided_damage": 0,
+        "idle_damage": 5,
+        "guided_travel": 4135.59,
+        "idle_travel": 2853.41,
+        "guided_displacement": 247.84,
+        "idle_displacement": 326.89,
+        "endpoint_separation": 235.38
+      },
+      {
+        "mode": "hard",
+        "speed": 235.0,
+        "seed": 0,
+        "guided_damage": 0,
+        "idle_damage": 8,
+        "guided_travel": 3861.08,
+        "idle_travel": 3334.3,
+        "guided_displacement": 204.49,
+        "idle_displacement": 275.09,
+        "endpoint_separation": 96.91
+      },
+      {
+        "mode": "hard",
+        "speed": 235.0,
+        "seed": 1,
+        "guided_damage": 0,
+        "idle_damage": 7,
+        "guided_travel": 3861.08,
+        "idle_travel": 3334.3,
+        "guided_displacement": 204.49,
+        "idle_displacement": 275.09,
+        "endpoint_separation": 96.91
+      },
+      {
+        "mode": "hard",
+        "speed": 235.0,
+        "seed": 2,
+        "guided_damage": 0,
+        "idle_damage": 12,
+        "guided_travel": 3869.97,
+        "idle_travel": 3334.3,
+        "guided_displacement": 313.74,
+        "idle_displacement": 275.09,
+        "endpoint_separation": 60.7
+      },
+      {
+        "mode": "hard",
+        "speed": 270.0,
+        "seed": 0,
+        "guided_damage": 0,
+        "idle_damage": 10,
+        "guided_travel": 4329.69,
+        "idle_travel": 3334.3,
+        "guided_displacement": 203.33,
+        "idle_displacement": 275.09,
+        "endpoint_separation": 98.21
+      },
+      {
+        "mode": "hard",
+        "speed": 270.0,
+        "seed": 1,
+        "guided_damage": 0,
+        "idle_damage": 7,
+        "guided_travel": 4329.69,
+        "idle_travel": 3334.3,
+        "guided_displacement": 203.33,
+        "idle_displacement": 275.09,
+        "endpoint_separation": 98.21
+      },
+      {
+        "mode": "hard",
+        "speed": 270.0,
+        "seed": 2,
+        "guided_damage": 0,
+        "idle_damage": 12,
+        "guided_travel": 4313.22,
+        "idle_travel": 3334.3,
+        "guided_displacement": 314.45,
+        "idle_displacement": 275.09,
+        "endpoint_separation": 61.1
+      }
+    ]
+  }
+}

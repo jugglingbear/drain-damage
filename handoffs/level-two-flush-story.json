@@ -1,7 +1,7 @@
 {
   "id": "level_two_flush_story_v1",
   "date": "2026-10-24",
-  "status": "Final narrative handoff for Prototype98 implementation; not runtime validated or separately user-approved exact wording",
+  "status": "Prototype100 radio continuity correction supplied for Engineering integration; runtime validation pending",
   "authorization": "PM relayed Sean starts short playable Level2 flush. Full log ride and level3 remain deferred.",
   "owner": "Storyboarding narrative; Engineering runtime/radio integration",
   "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
@@ -20,22 +20,22 @@
       },
       {
         "at": 2.5,
-        "who": "sean",
+        "who": "tony",
         "emotion": "worried",
-        "text": "Tony? Can you hear me?",
+        "text": "Sean, move your chat window down!",
         "duration": 2,
-        "radio": true,
+        "radio": false,
         "gag": true,
         "event": "arrival",
         "gag_action": "hold_center"
       },
       {
         "at": 4.5,
-        "who": "tony",
-        "emotion": "worried",
-        "text": "Your face! Down! I can’t see!",
+        "who": "sean",
+        "emotion": "surprised",
+        "text": "Oh! Sorry. How’s that?",
         "duration": 3.5,
-        "radio": false,
+        "radio": true,
         "gag": true,
         "event": "arrival",
         "gag_action": "slide_bottom",
@@ -94,22 +94,22 @@
       },
       {
         "at": 2.5,
-        "who": "tony",
+        "who": "sean",
         "emotion": "worried",
-        "text": "Are you hurt, buddy?",
+        "text": "Tony, move your chat window! I can’t see!",
         "duration": 2,
-        "radio": true,
+        "radio": false,
         "gag": true,
         "event": "arrival",
         "gag_action": "hold_center"
       },
       {
         "at": 4.5,
-        "who": "sean",
-        "emotion": "worried",
-        "text": "Move your face down! I can’t see!",
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "Sure, buddy. Down here?",
         "duration": 3.5,
-        "radio": false,
+        "radio": true,
         "gag": true,
         "event": "arrival",
         "gag_action": "slide_bottom",
@@ -150,7 +150,7 @@
   "events": {
     "arrival": {
       "trigger": "0s safe bowl arrival; three lines finish by8s",
-      "gag": "Support panel centered at2.5; hero complaint at4.5; slide whole panel bottom during complaint lineclock1.4–2.2 (absolute5.9–6.7). One shared gag instance, not one per marked line.",
+      "gag": "At0s selected hero arrival; at2.5s selected hero explicitly requests chat-window relocation with hold_center. At4.5s remote partner replies with slide_bottom. Keep that partner portrait, name and reply visible throughout whole-panel slide at reply lineclock1.4–2.2 (absolute5.9–6.7), then through line end8s. Do not substitute selected-hero portrait/text during motion. One shared gag instance.",
       "safety": "No hazards before8; steering/current allowed. Any lingering center panel or dialogue hold delays hazard admission until clear. Gag-seen set at first arrival; newrun clears."
     },
     "flush": {
@@ -184,7 +184,8 @@
     "Gag relocates whole panel and never repeats on checkpoint retry",
     "Nonblocking timed lines pause/resume and cancel on death/reset/title",
     "No queue overlap at drain/landing",
-    "Survival completion after harmless drain/landing, then honest construction boundary; no ride gameplay"
+    "Survival completion after harmless drain/landing, then honest construction boundary; no ride gameplay",
+    "Both routes: hero requests chat window move; opposite partner replies and remains the visible portrait/name/text during slide at5.9–6.7s; complete before8s hazards"
   ],
   "landing_routes": {
     "tony": [
