@@ -2370,6 +2370,32 @@ no image capture occurred.
 
 [Capture status and verification](097-selected-weapon-sounds/20261023-214814-capture-status.json).
 
+## 098 — Playable level two flush — October 24, 2026
+
+**Version:** Prototype 98 / 0.98.0; source commit `c1da269`, assets `8e25ce8`;
+app, ZIP and snapshot `builds/source-98` preserved.
+
+The Clogfather portal now leads into a 45-second playable flush, followed by a three-second landing reaction and an
+honest “Log ride under construction” boundary. The selected hero navigates current, debris, jumps and soft plugs.
+The timed portrait dialogue includes the safe center-to-bottom gag, supported by new Art and Audio.
+The full log ride is not implemented.
+
+Direct entry supports `make run LEVEL=2` and `make run LEVEL=2-landing`, each with `HERO`, `DIFFICULTY` and `SEED`.
+These entry points do not imply permission to launch a game window.
+
+**Validation:** Engineering reports all fifteen distinct exact packaged suites and forty Python tests passing, plus
+export, codesign, ZIP integrity and standalone headless startup checks. Coverage includes flush interactions, launch
+for both heroes/all modes, portal and prior regressions. Both actual `make run-check` selectors pass on the packaged
+app; their flush and landing logs are preserved with the final results.
+
+**Capture gap:** No game window opened or actual Prototype 98 screenshot was captured. Live controls, readability,
+animation, listening and human balance review remain pending. Preserve builds 97 and 98 for later approved captures.
+
+**Record created:** 2026-10-24T19:48:26-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](098-level-two-flush/20261024-194826-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

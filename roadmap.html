@@ -65,7 +65,7 @@ now use one accountable owner, focused specialist contributions and concise link
 coordination only; it does not change gameplay or delivery checks.</p>
 <header>
 <p class="meta">Project documentation: the <a href="README.md">README</a> now introduces the experiment and its magazine, storybook and sound library. Technical setup and preserved prototype notes live in <a href="docs/DEVELOPMENT.md">docs/</a>.</p>
-<p class="meta">Sound review tooling: <a href="https://jugglingbear.github.io/drain-damage/audio/drain-damage-sound-auditions.html">all-game audio auditions</a> now provides permanent sound IDs, preserved alternatives, collapsed searchable groups, green IN GAME rows, and an audio freshness check. Runtime remains Prototype 97; Level 2 audio is unassigned.</p>
+<p class="meta">Sound review tooling: <a href="https://jugglingbear.github.io/drain-damage/audio/drain-damage-sound-auditions.html">all-game audio auditions</a> now provides permanent sound IDs, preserved alternatives, collapsed searchable groups, green IN GAME rows, and an audio freshness check. Prototype 98 integrates six Level 2 cues (DD-S0085–DD-S0090), with retained originals and audition candidates.</p>
 <div class="kicker">DRAIN DAMAGE / DEVELOPMENT ROADMAP</div>
 <h1>From three angry toilets<br>to a real adventure.</h1>
 <p>Build delivery policy: integrated game changes receive a new build and a readiness update with the version,
@@ -77,7 +77,16 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 23, 2026 · Current build: Prototype 97 / 0.97.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 24, 2026 · Current build: Prototype 98 / 0.98.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 98 — playable short flush and log landing:</strong>
+The Clogfather portal now leads into a 45-second oversized porcelain bowl with current, jumpable debris,
+shootable soft plugs and partner radio. Surviving reaches a three-second landing line, then the
+“Log ride under construction” boundary. Both heroes and all difficulties are supported; health/lives carry in,
+retries stay in the bowl, and pause/mute apply. Fifteen packaged suites and 40 Python tests pass.
+Use <code>make run LEVEL=2</code> for the flush or <code>make run LEVEL=2-landing</code> for the post-flush landing;
+add <code>HERO=tony|sean DIFFICULTY=easy|normal|hard</code>. No prior save or boss completion is needed.
+Full log-ride production remains deferred. Live visual/listening/balance review and actual screenshots are pending.
+<a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
 <p><strong>Prototype 97 — selected starter-weapon sounds:</strong>
 Sean selected T11 Water gush for Tony and S1 Suction pop for Sean. Each successful shot plays the chosen single cue.
 Three fixed Tony voices preserve overlapping water tails; Sean uses one voice. Pause, mute and lifecycle cleanup apply.
@@ -524,12 +533,12 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
 <section class="phase" data-status="ideas" id="phase-ideas">
 <div class="phase-head"><span class="number">+</span><div>
 <span class="badge ideas">ideas</span><h2>Ideas for future discussion</h2>
-<p><strong>October 20 — level two proposal on hold:</strong>
-<a href="design/level-two-flush-and-log-ride.md">Flush micro-level, poop-log ride and radio dialogue proposal</a>
-records the selected direction and open design decisions. Finish the first-level Clogfather, then wait for Sean's
-explicit instruction to PM before any level-two delegation or production. Completion alone does not release the hold.
-Sean has separately authorized the first-level portal art, aftermath dialogue and departure presentation for Prototype 86;
-that exception does not release level-two gameplay production.</p>
+<p><strong>October 24 — short Level 2 flush production authorized:</strong>
+Sean asked PM to begin the short flush section. Engineering owns the playable first pass, with original Art, Audio,
+Storyboarding, Mechanics and Level Design contributions. Scope: roughly 45 seconds in an oversized porcelain bowl,
+nonblocking partner radio, survival-driven drain completion and a log-landing checkpoint boundary.
+The short flush and landing boundary are integrated in Prototype 98. The full log ride and Level 3 remain deferred.
+See <a href="design/level-two-flush-and-log-ride.md">the scope and proposal</a>. No game-window permission is implied.</p>
 <p><strong>October 20 — campaign setting direction:</strong> Sean specified that only level one should use a basement/sewer
 setting. Later levels must have distinctly different settings. Destinations, sequence and production scope remain undecided;
 earlier location proposals are references, not an approved itinerary.</p>
