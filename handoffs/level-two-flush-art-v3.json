@@ -1,0 +1,85 @@
+{
+  "status": "Frozen source delivery; runtime integration/checks/build pending Engineering",
+  "created_at": "2026-10-24T21:25:01.147560-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "owner": "Art / Bestiary",
+  "integration_owner": "Engineering",
+  "manifest": "assets/world/level-two-flush-v3/manifest.json",
+  "prompts": "assets/world/level-two-flush-v3/prompts.json",
+  "changes": [
+    "Eight fixed projected concave funnel phases with recessed throat at480,360 and60px depth.",
+    "Continuous six-patch registration keeps720x280 outer ellipse and130px throat width.",
+    "Matching lower-throat water patch replaces porcelain ring; independent crescent source remains unused.",
+    "110px short-board landing composites: Tony standing and Sean astride, normal and torn Hard variants.",
+    "Unarmed riders maintain uniform scale, baked foot/seat contact and leg occlusion.",
+    "Standalone110x25 approach board; dead hamster80x57.1875 visible size within80x64 envelope."
+  ],
+  "landing_schema": "landing[hero][normal|hard]={rear:[],front:[frame],contact_anchor:[0,0],screen_anchor:[480,385],composite_includes_board:true}",
+  "landing_contract": "Use single shared transform. Standalone approach board is replaced by composite, not drawn twice.43\u201345 settling and direct45 entry handled by Engineering.",
+  "hamster": {
+    "path": "assets/world/level-two-flush-v3/dead-hamster-v1.png",
+    "source_rect": [
+      361,
+      343,
+      768,
+      549
+    ],
+    "destination": [
+      -40,
+      -45.75,
+      80,
+      57.1875
+    ],
+    "anchor": [
+      0,
+      0
+    ],
+    "coordinate_space": "local",
+    "duration_seconds": 0.0625,
+    "collision_reference": {
+      "world_contact_radius": 40,
+      "hero_expanded_radius": 54,
+      "anchor": "body center water-contact line",
+      "visible_width": 80,
+      "visible_height": 57.1875,
+      "upper_extent": 45.75,
+      "note": "Height includes body above water and is not inverse-projected into contact radius."
+    }
+  },
+  "validation": {
+    "source_bounds": "PASS107 regions",
+    "alpha_composition": "Inspected all four costumes on actual landing backdrop; no rectangular glow.",
+    "funnel": "Inspected source composition; no raised ring. Patch boundaries meet exactly.",
+    "landing_extents": {
+      "tony": {
+        "normal": [
+          -72.431,
+          11.338
+        ],
+        "hard": [
+          -70.5,
+          10.833
+        ]
+      },
+      "sean": {
+        "normal": [
+          -59.435,
+          15.968
+        ],
+        "hard": [
+          -60.145,
+          15.435
+        ]
+      }
+    },
+    "evidence": "assets/world/level-two-flush-v3/source-previews/validation.json"
+  },
+  "remaining": [
+    "Runtime animation/crossfade and suction occlusion review.",
+    "Headless integration/build checks by Engineering.",
+    "Actual gameplay captures under existing playtest permission rules."
+  ],
+  "preservation": "v1/v2 originals unchanged. All v3 generation attempts and exact prompts preserved. Source previews explicitly are not game captures.",
+  "shared_records": "Engineering owns same-delivery roadmap/build/storybook capture backlog updates; Art did not edit shared runtime or documentation."
+}
