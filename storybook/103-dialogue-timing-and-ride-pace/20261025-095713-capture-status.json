@@ -1,0 +1,30 @@
+{
+  "build": "Prototype103 / 0.103.0",
+  "status": "Built and validated; actual capture and human feedback pending",
+  "created_at": "2026-10-25T09:57:13-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "capture_time": null,
+  "source_commit": "52a4b66714a49c8780188e3d1177073189bf3c4c",
+  "archive_sha256": "8e4626f333999d597c71cc5e4824b65826562ce9114b60104bbf4e2b1a518e49",
+  "scope": [
+    "Double all15 current flush dialogue durations, wording unchanged",
+    "26-second calm prelude; original45-second physics sequence; landing71, six-second line then ride77",
+    "Ride damage one HP per obstacle; gap recovery",
+    "Confirmed source pace225px/s versus180 (+25%);36seconds versus45, same8100distance, obstacle positions and counts8/12/16. Hero steering axes unchanged x160/y140."
+  ],
+  "dialogue": "Timing only authorized; no new or rewritten dialogue integrated.",
+  "remaining": [
+    "Actual gameplay captures",
+    "Human pace/readability/recovery feedback and listening"
+  ],
+  "capture_gap": "No actual capture or game-window permission; preserve earlier entries.",
+  "reported_checks": "All15 final packaged suites and seven Python tests pass.18 course witnesses at225px/s over36seconds take no damage; both heroes/all modes covered. Reading test verifies15 doubled durations without overlap over77seconds. Recovery and six collision-timing cases pass. Signature/archive/both actual direct entries verified by Engineering; archive SHA and15 result/log paths independently checked.",
+  "finalized_at": "2026-10-25T10:03:37-07:00",
+  "ride_commit": "502d45d",
+  "archive_path": "builds/history/Prototype-103.zip",
+  "app_path": "builds/Prototype-103/Drain Damage.app",
+  "source_snapshot": "builds/source-103",
+  "source_snapshot_status": "Engineering confirms1489 files complete; source marker independently verified.",
+  "audio": "94 slots fresh per Engineering; audio bytes unchanged."
+}

@@ -70,9 +70,10 @@
     "ride_jump": "shared hero jump; accepted grounded jump only",
     "ride_landed": "landing; board returns to supported water at z0, never gap fall",
     "ride_hit": "One ride_impact for accepted nonlethal support/barrier/gap damage; immune contacts silent; per-obstacle traversal latch prevents repeats.",
-    "ride_fell": "Nonlethal gap recovery keeps ride current running and uses ride_impact only if1HP damage accepted; no death or landing cue. Lethal gap outcome stops ride voices and uses existing shared death once.",
+    "ride_fell": "Only a lethal gap contact uses shared death once and stops ride voices.",
     "ride_checkpoint": "existing host checkpoint policy once on first commit, not retry",
-    "ride_finished": "Stop current once at actual successful course endpoint; duration-independent, no new music/stinger."
+    "ride_finished": "Stop current once at actual successful course endpoint; duration-independent, no new music/stinger.",
+    "ride_recovered": "Nonlethal gap recovery keeps current running; accepted1HP plays ride_impact, immune contact is silent, no landing/death cue."
   },
   "priority": "Lethal outcome suppresses contact/hurt/jump/landing and uses shared death once. Accepted nonlethal damage uses ride_impact instead of hurt tone; suppress same-frame landing. Immune/repeated contact emits neither impact nor death.",
   "voices": "Two ride voices maximum: current bed and shared landing/impact voice. Existing one hero oscillator and one death voice reused; never allocate per event. Contact cooldown0.12s plus semantic dedup.",
@@ -83,10 +84,10 @@
   "validation": "Existing current-loop/debris-impact/death-flush file hashes match provenance and all3 decode with ffmpeg. Existing jump/hurt generator semantics inspected. No listening, gameforeground or new runtime test claimed. Mechanics confirms water-contact landing, so reused original sludge-impact-a replaces dry landing proposal; hash recorded and ffmpeg decode passed.",
   "remaining": "Engineering runtime lifecycle checks, build/roadmap and subjective listening.",
   "pace_revision_103": {
-    "status": "Candidate225px/s/36s course traversal; Engineering validation pending",
+    "status": "225px/s and36-second course validated in source; final packaged delivery recorded in first-call-integration.json",
     "preservation": "Original course distance retained. Water loop stays pitch1 and gain-12; no playback-rate or music changes.",
     "clock": "Ride audio depends on active/paused state and accepted contacts, not45s timer. Stop at actual completion. Flush prelude/music/landing77s sequence is separate.",
     "review": "Read-only current ride contact branch and two-voice helper inspected. Lethal branch exits before impact, nonlethal clears host tone, traversal latch covers immune entry, gap recovery does not play landing. Helper has no duration-dependent playback.",
-    "remaining": "Runtime source still showed clock>=45 at inspection; Engineering must update endpoint to intended course/duration and test36s completion. Audio assets/mappings unchanged."
+    "remaining": "Human listening review; runtime endpoint now reads the canonical course duration. Audio assets and mappings unchanged."
   }
 }

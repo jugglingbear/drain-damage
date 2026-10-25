@@ -48,6 +48,17 @@ Sean requested review before any dialogue changes. The
 until he approves it. Existing landing and flush dialogue remains unchanged. Teaching cues must also be readable
 through the environment; no obstacle may require reading a radio line to survive.
 
+## October 25 playtest revision
+
+Prototype 103 doubles all 15 existing flush dialogue durations without changing wording. Calm staging moves hazard
+onset to 34 seconds, automatic drain to 61, and landing to 71; the landing line lasts six seconds and the ride begins
+at 77. The original 45-second physics/score timeline runs after a 26-second calm prelude, without faster hazards or music.
+
+The same ride course now runs at 225 pixels/second instead of 180, taking 36 seconds instead of 45. Steering remains
+160 horizontally and 140 between banks for both heroes. Obstacle counts remain 8/12/16. Each obstacle traversal can
+cost one HP, with shared immunity and a contact latch; nonlethal gap contact recovers in place. Only depleted HP causes
+normal death and landing-checkpoint retry. Human review of pace and recovery feedback remains pending.
+
 ## Selected direction
 
 - Alternate standard 2D platforming levels with levels that use a different format. The full campaign order is open.

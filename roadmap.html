@@ -77,13 +77,23 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 25, 2026 · Current build: Prototype 102 / 0.102.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 25, 2026 · Current build: Prototype 103 / 0.103.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Prototype 103 — gentler damage, faster ride and longer reading time:</strong> Each obstacle crossing
+costs one HP, including recoverable gaps; shared immunity and contact latches prevent repeated damage from lingering
+on one obstacle. Only depleted HP causes death. The same course runs 25% faster at 225 pixels/second and lasts 36
+seconds instead of 45. Steering remains 160 horizontally and 140 between banks; counts stay 8/12/16.
+All 15 existing flush dialogue durations double without wording changes. Calm staging puts hazards at 34 seconds,
+drain at 61, landing at 71 and ride entry at 77. The original 45-second music plays from 26–71 without speed changes.
+All 15 packaged suites and 7 Python tests pass, including 18 damage-free course witnesses, recovery and reading-time
+checks. Signed archive and both direct entries verify; Prototype 102 is preserved. No game window was opened.
+Human pace, reading comfort, recovery feedback and listening review remain pending.
+<a href="handoffs/first-call-integration.json">Current delivery evidence</a>.</p>
 <p><strong>Prototype 102 — first playable ride stretch:</strong> The existing landing exchange now leads into
 45 seconds of forced-forward riding. Steer between banks and within the view, jump low barriers and gaps, and steer
 around tall supports. Easy/Normal/Hard have 8/12/16 authored obstacles with advance cues and a safe teaching stretch.

@@ -2513,6 +2513,34 @@ entries and originals are preserved.
 
 [Build evidence and capture status](102-first-ride-slice/20261025-093606-capture-status.json).
 
+## 103 — Dialogue timing and ride pace — October 25, 2026
+
+**Build:** Prototype 103 / 0.103.0, source `52a4b66714a49c8780188e3d1177073189bf3c4c`, ride commit `502d45d`.
+Engineering confirms 1,489 source snapshot files complete. Archive SHA-256 and source marker independently verified;
+v00.102.00 app, ZIP and source are preserved.
+
+All 15 existing flush dialogue lines receive twice the reading time. Wording, speakers, emotions and radio flags remain
+unchanged. A 26-second calm prelude preserves the original 45-second physics sequence; landing occurs at presentation
+second 71 and its six-second line leads to the ride at second 77. These times exclude pauses. No new or rewritten
+dialogue is included; earlier audit proposals remain separate.
+
+The ride runs at 225 pixels/second instead of 180 (+25%), completing the same 8,100-distance course in 36 seconds
+instead of 45. Obstacle positions and Easy/Normal/Hard counts 8/12/16 are unchanged. Both heroes retain steering speeds
+x160/y140. Obstacle damage is one HP, with gap recovery.
+
+**Validation:** All 15 final packaged suites and seven Python tests pass. The result manifest and log paths were
+checked. Eighteen course witnesses pass at the new pace with no damage, covering both heroes/all modes. Reading tests
+verify all doubled durations without overlap over the 77-second timeline; recovery and six collision-timing cases pass.
+Engineering verified signature/archive and both actual direct entries. Audio has 94 fresh slots with unchanged bytes.
+
+**Capture gap:** No actual game window or gameplay capture. Human pace, readability, recovery feedback and listening
+remain pending; automated witnesses do not replace that review.
+
+**Record created:** 2026-10-25T09:57:13-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization and archive identity are in the metadata.
+
+[Build evidence and capture status](103-dialogue-timing-and-ride-pace/20261025-095713-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

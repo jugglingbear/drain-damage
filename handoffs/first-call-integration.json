@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "build": "Prototype 102 / 0.102.0",
-  "created_at": "2026-10-25T09:43:36.534203-07:00",
+  "build": "Prototype 103 / 0.103.0",
+  "created_at": "2026-10-25T10:03:08.545928-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "0530ff725000a79e4dcfae5df556cfab02cfe628",
+  "source_commit": "52a4b66714a49c8780188e3d1177073189bf3c4c",
   "asset_commit": "7ccdabd",
-  "status": "Ready for prototype review:13 packaged suites and7 Python tests pass; human visual/listening review pending",
-  "app": "builds/Prototype-102/Drain Damage.app",
-  "archive": "builds/history/Prototype-102.zip",
-  "archive_sha256": "791fa1f9152f8d882741870bc537482c01cd53476ae769063bd96832523b541f",
-  "source_snapshot": "builds/source-102",
-  "source_snapshot_files": 1480,
-  "previous_build_preserved": "Prototype 101 app, ZIP and source snapshot remain intact; prior builds preserved",
+  "status": "Ready for prototype review:15 packaged suites and7 Python tests pass; human visual/listening review pending",
+  "app": "builds/Prototype-103/Drain Damage.app",
+  "archive": "builds/history/Prototype-103.zip",
+  "archive_sha256": "8e4626f333999d597c71cc5e4824b65826562ce9114b60104bbf4e2b1a518e49",
+  "source_snapshot": "builds/source-103",
+  "source_snapshot_files": 1489,
+  "previous_build_preserved": "Prototype 102 app, ZIP and source snapshot remain intact; prior builds preserved",
   "changes": [
-    "Existing flush and landing exchange lead into a 45-second forced-forward ride; selected hero only, Sean astride/Tony surfing on the retained short board.",
-    "Bank steering and within-view positioning, 1.2-second jumps with water-plane shadow, tall supports to steer around, low barriers to jump and gaps to clear.",
-    "Authored deterministic Easy/Normal/Hard courses contain 8/12/16 obstacles, with calm teaching and finish stretches and concurrent advance warnings.",
-    "Post-flush checkpoint survives death and game-over retry; health/lives/loadout, pause, mute and no-firing behavior are preserved.",
-    "New original course, obstacle and cue artwork; three ride-context audio mappings reuse preserved original cues. No new dialogue integrated."
+    "Ride contacts cost one HP per obstacle traversal, including gaps. Shared1.5s immunity and per-ID latch prevent frame-by-frame or delayed repeated damage.",
+    "Nonlethal gap contact keeps the current anchor, applies a0.6s recovery bounce/splash and clears the failed jump. Controls/scroll continue; only depletedHP triggers normal death and checkpoint retry.",
+    "Ride speed increases180 to225px/s (+25%); same8100px course and fixed obstacle world positions now complete in36s instead45. Counts8/12/16 and jump1.2s/72px unchanged.",
+    "Ride steering remains160px/s horizontal and140px/s between banks for both heroes;18 route witnesses prove available damage-free paths.",
+    "All15 current flush dialogue durations exactly doubled, with text/speaker/emotion/radio flags unchanged.26s calm prelude preserves45s physics and score; hazards34, drain61, landing71, six-second line thenride77."
   ],
   "controls": {
     "steer": "Arrows/stick; up/down across banks, left/right within view",
@@ -32,18 +32,21 @@
     "behavior": "Both reach the ride; landing entry retains the approved short landing exchange. Death/retry starts the safe ride lead-in, without replaying flush."
   },
   "checks": {
-    "source_suites": 13,
-    "packaged_suites_passed": 13,
-    "packaged_suites_total": 13,
-    "results": "builds/verification-102/final-results.json",
+    "source_suites": 15,
+    "packaged_suites_passed": 15,
+    "packaged_suites_total": 15,
+    "results": "builds/verification-103/final-results.json",
     "course_witnesses": 18,
-    "course_result": "Both heroes, all modes, fixed x180/300/650 through real steering and four jumps: no health/life loss, 45-second completion.",
+    "course_result": "Both heroes/all modes at x180/300/650: four jumps, no health/life loss,36-second completion.",
     "collision_timing_cases": 6,
     "python_tests": 7,
-    "python_log": "builds/verification-102/python.log",
-    "direct_entries": "Exported Level2 Tony Normal and Level2-landing Sean Hard passed headlessly",
+    "python_log": "builds/verification-103/python.log",
+    "direct_entries": "Exported Level2 Sean Hard and Level2-landing Tony Normal passed headlessly",
     "signature_archive": "passed",
-    "audio_freshness": "94 sound slots passed"
+    "audio_freshness": "94 slots refreshed/rebuilt/checked; audio bytes unchanged",
+    "reading_duration_lines": 15,
+    "wording_preservation": "builds/verification-103/dialogue-preservation.txt",
+    "recovery": "All obstacle types, slow/repeated contact, immune entry, different subsequent hazards, lowHP and checkpoint retry for both heroes/all modes"
   },
   "audio": {
     "current": "DD-S0095",
@@ -54,13 +57,13 @@
     "flush_score": "Unchanged45-second Air Running Out"
   },
   "limitations": [
-    "No game window or actual gameplay screenshot captured; human motion, cue readability, gap alignment, balance and listening review pending.",
+    "No game window or actual gameplay capture; human pace, reading comfort, recovery feedback, visual alignment and listening review pending.",
     "The full ride, combat and Level3 are not delivered. New dialogue remains unapproved.",
     "Existing flush planner random-seed placement failure and off-route hitches remain unchanged; deterministic test success is not a universal seed guarantee.",
     "Headless logs retain environment log/certificate/editor-settings and shutdown-resource warnings."
   ],
   "capture_gap": {
-    "chapter": "storybook/102-first-ride-slice/",
+    "chapter": "storybook/103-dialogue-timing-and-ride-pace/",
     "actual_capture": false,
     "reason": "No game-window permission; source art compositions are not gameplay screenshots"
   },
@@ -69,6 +72,43 @@
     "handoffs/level-two-ride-layout.json",
     "handoffs/level-two-ride-mechanics.json",
     "handoffs/level-two-ride-audio.json",
-    "handoffs/level-two-ride-story.json"
-  ]
+    "handoffs/level-two-ride-story.json",
+    "handoffs/level-two-flush-story.json",
+    "handoffs/flush-countdown-music.json"
+  ],
+  "ride_commit": "502d45d",
+  "flush_timing": {
+    "calm_prelude_seconds": 26,
+    "hazards_start": 34,
+    "drain_start": 61,
+    "burble": [
+      66,
+      69
+    ],
+    "landing_start": 71,
+    "landing_line_seconds": 6,
+    "ride_start": 77,
+    "music": [
+      26,
+      71
+    ],
+    "physics_duration": 45,
+    "pause": "All times use active simulation/presentation time, not paused wall time"
+  },
+  "ride_pace": {
+    "old_scroll_px_s": 180,
+    "scroll_px_s": 225,
+    "old_duration_s": 45,
+    "duration_s": 36,
+    "distance_px": 8100,
+    "horizontal_steer_px_s": 160,
+    "bank_steer_px_s": 140,
+    "jump_seconds": 1.2,
+    "jump_height_px": 72,
+    "counts": {
+      "easy": 8,
+      "normal": 12,
+      "hard": 16
+    }
+  }
 }

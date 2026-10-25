@@ -56,13 +56,20 @@ make run LEVEL=2-landing HERO=sean DIFFICULTY=hard
 ```
 
 Both entries initialize a fresh run without a prior save. Either accepts `HERO=tony|sean`,
-`DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the existing landing dialogue, then starts the 45-second ride slice.
+`DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the existing landing dialogue,
+then starts the 36-second ride slice.
 Steer with arrows/stick; up/down moves between banks and left/right shifts within the view. Space/A jumps.
 Steer around tall supports, jump low barriers and clear gaps. The landing shadow marks the board’s water-plane position.
 Ride deaths restart at the landing checkpoint without replaying the flush. Easy/Normal/Hard have 8/12/16 obstacles.
+The ride advances at 225 pixels/second (25% faster than Prototype 102). Steering remains 160 pixels/second
+horizontally and 140 between banks. Each obstacle crossing can cost one HP; gaps recover in place with brief feedback
+instead of forcing death. Shared immunity prevents clustered hits; only depleted HP costs a life.
 This first slice has no combat; the full ride and later stages remain unfinished.
 During the flush, steer to swim and dodge; firing and jumping are disabled. Tony uses freestyle and Sean uses
 breaststroke. Weapons remain equipped for later gameplay but cannot fire in this sequence.
+Flush dialogue has doubled reading time with unchanged wording: hazards start at 34 seconds, the automatic drain at
+61, and landing at 71. The six-second landing line leads into the ride at 77. The original 45-second score plays
+from 26 through 71 seconds without changing speed. Pause freezes these times.
 Use `make run-check` with the same selectors to verify initialization without opening a window.
 
 ## Where things live
