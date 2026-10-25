@@ -23,12 +23,24 @@ ordered pages, text, captions, image references and layout templates. The PDF is
 The renderer uses the macOS fonts configured in `layout.font_directory`. Change that path and the font filenames
 if building elsewhere. Shared header/footer templates use `{page_number}` and `{section}` placeholders.
 
+## Edition 32 flush feature — October 24, 2026
+
+Adds page 8, “It All Ends up in the Same Place Anyway...”, with Art’s original toilet-vortex concept in the center
+and all nine debris sprites around it. The hamster is displayed at twice the ordinary sprite box size. The central
+illustration is explicitly labeled concept art. The short blurb introduces the flush without unrelated plot details.
+The advertisement moves to page 9, and the contents rail includes the new feature. Earlier editions are preserved.
+
+Artwork and exact prompts: `marketing/flush-feature/manifest-v1.json` and `prompts-v1.json`.
+Standalone feature: `flush-feature-v32.pdf`; full-page preview: `guide-assets-v32/flush-feature-v32.png`.
+`current.pdf` matches edition 32. Engineering owns commit, push and Pages publication; live verification pending.
+The magazine does not establish Prototype 100 integration or current gameplay capture coverage.
+
 ## Edition 31 Gnatastrophe — October 23, 2026
 
 Sean renamed the swarm Gnatastrophe. Current creature headings, lore and action captions use the official name.
 The former name remains only in preserved historical editions, source snapshots and dated edition-history notes.
 Stable creature IDs and artwork paths are unchanged. The approved layout and eight-page length remain intact;
-`current.pdf` matches edition 31. No pending Prototype 96 gameplay or music claims are included.
+that delivery matched edition 31. No pending Prototype 96 gameplay or music claims are included.
 Published in commit `d977865`, Pages run `40063150202`. Live PDF hash, edition/name and reciprocal Storybook links
 verified October 23. Final Pages run `40063430106` succeeded for commit `c8e35a3`; live Storybook 096 and both navigation links
 were verified, with the edition 31 PDF hash unchanged.

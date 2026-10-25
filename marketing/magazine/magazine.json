@@ -3,13 +3,13 @@
   "publication": {
     "title": "Discharge Quarterly",
     "game": "Drain Damage",
-    "edition": 31,
-    "date": "2026-10-23",
+    "edition": 32,
+    "date": "2026-10-24",
     "subtitle": "The Official Journal of the Plumbing, Heating & Creature Containment Association",
-    "pdf_title": "DISCHARGE QUARTERLY - Edition 31 - Drain Damage",
+    "pdf_title": "DISCHARGE QUARTERLY - Edition 32 - Drain Damage",
     "author": "Drain Damage / Marketing"
   },
-  "output": "marketing/magazine/discharge-quarterly-v31.pdf",
+  "output": "marketing/magazine/discharge-quarterly-v32.pdf",
   "layout": {
     "page_width": 612,
     "page_height": 792,
@@ -329,7 +329,7 @@
         {
           "id": "cover-issue-number",
           "type": "text",
-          "text": "EDITION 31",
+          "text": "EDITION 32",
           "x": 537,
           "y": 15,
           "size": 8,
@@ -718,6 +718,38 @@
           "size": 10.5,
           "leading": 12.18,
           "color": "101B2D"
+        },
+        {
+          "id": "contents-flush-number",
+          "type": "text",
+          "text": "08",
+          "x": 34,
+          "y": 280,
+          "size": 32,
+          "font": "Display",
+          "color": "FFF000"
+        },
+        {
+          "id": "contents-flush-title",
+          "type": "text",
+          "text": "THE FLUSH",
+          "x": 34,
+          "y": 252,
+          "size": 17,
+          "font": "Display",
+          "color": "FFFFFF"
+        },
+        {
+          "id": "contents-flush-caption",
+          "type": "para",
+          "text": "An unusual inventory",
+          "x": 34,
+          "top": 238,
+          "width": 102,
+          "size": 10,
+          "leading": 11.6,
+          "max_height": 40,
+          "color": "FFFFFF"
         }
       ]
     },
@@ -2379,8 +2411,354 @@
       ]
     },
     {
-      "id": "back-cover",
+      "id": "flush-feature",
       "number": 8,
+      "template": "custom",
+      "section": "It All Ends up in the Same Place Anyway...",
+      "elements": [
+        {
+          "id": "flush-paper",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "FFF8DF"
+        },
+        {
+          "id": "flush-top-rule",
+          "type": "rect",
+          "x": 24,
+          "y": 773,
+          "w": 564,
+          "h": 4,
+          "color": "008C70"
+        },
+        {
+          "id": "flush-title",
+          "type": "para",
+          "text": "It All Ends up in the Same Place Anyway...",
+          "x": 24,
+          "top": 757,
+          "width": 564,
+          "size": 32,
+          "leading": 35,
+          "max_height": 78,
+          "font": "Display",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-concept",
+          "type": "image",
+          "path": "marketing/flush-feature/toilet-vortex-concept-v1.png",
+          "x": 162,
+          "y": 260,
+          "width": 288,
+          "height": 288
+        },
+        {
+          "id": "flush-concept-caption",
+          "type": "para",
+          "text": "CONCEPT ART / THE FLUSH",
+          "x": 204,
+          "top": 251,
+          "width": 215,
+          "size": 8.5,
+          "leading": 10,
+          "max_height": 15,
+          "font": "Bold",
+          "color": "008C70"
+        },
+        {
+          "id": "flush-corn",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            32,
+            125,
+            343,
+            295
+          ],
+          "x": 280.0,
+          "y": 624.0,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-corn",
+          "type": "text",
+          "text": "Corn kernels",
+          "x": 283.44287109375,
+          "y": 610.0,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-poop_log",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            416,
+            130,
+            338,
+            274
+          ],
+          "x": 437.48296437320215,
+          "y": 567.8506663485547,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-poop_log",
+          "type": "text",
+          "text": "Poop logs",
+          "x": 445.64556202945215,
+          "y": 553.8506663485547,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-penny",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            810,
+            122,
+            297,
+            298
+          ],
+          "x": 521.2778994879909,
+          "y": 425.6755626400633,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-penny",
+          "type": "text",
+          "text": "Pennies",
+          "x": 533.1253115973659,
+          "y": 411.6755626400633,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-car_keys",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            1163,
+            66,
+            352,
+            402
+          ],
+          "x": 492.1762239271875,
+          "y": 264.0,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-car_keys",
+          "type": "text",
+          "text": "Car keys",
+          "x": 502.7909700209375,
+          "y": 250.0,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-dice",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            37,
+            553,
+            347,
+            364
+          ],
+          "x": 363.79493511478887,
+          "y": 158.473771011382,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-dice",
+          "type": "text",
+          "text": "Dice",
+          "x": 382.00123394291387,
+          "y": 144.473771011382,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-button",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            447,
+            606,
+            277,
+            279
+          ],
+          "x": 196.2050648852112,
+          "y": 158.47377101138198,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-button",
+          "type": "text",
+          "text": "Buttons",
+          "x": 208.2700062914612,
+          "y": 144.47377101138198,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-safety_pin",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            801,
+            553,
+            320,
+            353
+          ],
+          "x": 67.8237760728125,
+          "y": 264.0,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-safety_pin",
+          "type": "text",
+          "text": "Safety pins",
+          "x": 74.1362760728125,
+          "y": 250.0,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-dead_hamster",
+          "type": "image",
+          "path": "marketing/flush-feature/dead-hamster-source-v1.png",
+          "crop": [
+            361,
+            343,
+            768,
+            549
+          ],
+          "x": 12.722100512009035,
+          "y": 399.67556264006333,
+          "width": 104,
+          "height": 104
+        },
+        {
+          "id": "label-dead_hamster",
+          "type": "text",
+          "text": "Dead hamster",
+          "x": 40.319268480759035,
+          "y": 385.67556264006333,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-tampon",
+          "type": "image",
+          "path": "assets/world/level-two-flush-v2/props-v1.png",
+          "crop": [
+            1205,
+            549,
+            288,
+            415
+          ],
+          "x": 122.51703562679782,
+          "y": 567.8506663485547,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "id": "label-tampon",
+          "type": "text",
+          "text": "Tampons",
+          "x": 132.11444773617282,
+          "y": 553.8506663485547,
+          "size": 9,
+          "font": "Bold",
+          "color": "1744B9"
+        },
+        {
+          "id": "flush-copy-rule",
+          "type": "rect",
+          "x": 24,
+          "y": 127,
+          "w": 564,
+          "h": 2,
+          "color": "DF1684"
+        },
+        {
+          "id": "flush-blurb",
+          "type": "columns",
+          "text": "Somebody has pulled the handle, and the contents of this toilet have stopped respecting personal space. Corn, car keys and everything else are circling the same drain. Keep swimming and watch what the current brings around. Tony and Sean have dealt with blockages before, but this time one of them is in the bowl. The dead hamster is unlikely to offer much advice.",
+          "boxes": [
+            [
+              24,
+              115,
+              270,
+              39
+            ],
+            [
+              318,
+              115,
+              270,
+              70
+            ]
+          ],
+          "size": 11,
+          "leading": 13,
+          "color": "101B2D"
+        },
+        {
+          "id": "flush-footer-rule",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "flush-footer",
+          "type": "text",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "y": 13,
+          "size": 7.5,
+          "font": "Bold",
+          "color": "101B2D"
+        },
+        {
+          "id": "flush-number",
+          "type": "text",
+          "text": "08",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "font": "Display",
+          "color": "101B2D"
+        }
+      ]
+    },
+    {
+      "id": "back-cover",
+      "number": 9,
       "template": "custom",
       "section": "Mainframe employee notice",
       "elements": [
