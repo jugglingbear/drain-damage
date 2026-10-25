@@ -2,18 +2,22 @@
 
 **Date:** October 20, 2026 (America/Los_Angeles)
 
-**Owner:** Storyboarding. Project Manager holds the proposal for later scheduling.
+**Owner:** Storyboarding owns narrative; Engineering owns the authorized short flush implementation.
 
-**Status:** Direction selected; production on hold. Detailed mechanics, timing and dialogue remain proposals.
+**Status:** October 24: short playable flush and its radio presentation authorized for Prototype 98.
+Full log ride and level three remain deferred.
 
-## Release condition
+## Current production scope
 
-Sean's later October 20 request through PM authorizes the first-level post-Clogfather portal dialogue,
-portal artwork and necessary involuntary-departure presentation for Prototype 86. This is a narrow exception.
+On October 24, PM relayed Sean's explicit start of the short level-two flush. Engineering may implement the roughly
+45-second playable bowl sequence, both hero radio routes, safe one-time overlay relocation gag and log landing.
+The [final flush script and event contract](../handoffs/level-two-flush-story.json) supersedes the draft arrival/gag
+examples below for this delivery. Exact runtime implementation remains Engineering's responsibility.
 
-Level-two gameplay, flush/log-ride production and the new radio overlay system remain on hold until Sean personally
-tells PM to start them. Finishing the Clogfather or showing the portal does not release that hold.
-PM may delegate the authorized first-level ending work only; future level-two responsibilities below remain unassigned.
+Only the selected hero enters. Support stays outside on radio; portal origin and BJ involvement remain unresolved.
+The harmless landing completes the flush and ends at an honest “Log ride under construction” boundary. The full ride,
+its obstacle/wave systems and level three remain deferred; their descriptions below are future proposals.
+Earlier first-level portal authorization remains in effect. No game-opening permission follows from this scope.
 
 ## Selected direction
 
@@ -206,10 +210,10 @@ is authorized by this exception. Portal cause, destination details and BJ's invo
 See [the ending contract](../handoffs/clogfather-portal-story.json) and canonical
 [dialogue data](../scripts/story_dialogue.gd). Earlier dialogue examples in this proposal remain future candidates.
 
-## Future responsibilities after Sean releases the hold
+## Responsibilities for current and future work
 
-PM remains accountable for scheduling and resolving dependencies. The following describes future contributions,
-not assignments, start signals or requests for work now.
+PM coordinates scope and Engineering owns the active short flush integration. The responsibilities below apply to
+that authorized slice only; full ride and level-three work still require a later start instruction.
 
 - Storyboarding: final route-specific aftermath, radio scripts, triggers and story continuity.
 - Level Design: bowl geometry, ride layout, obstacle patterns, wave triggers and checkpoints.

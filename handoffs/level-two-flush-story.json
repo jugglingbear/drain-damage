@@ -1,0 +1,209 @@
+{
+  "id": "level_two_flush_story_v1",
+  "date": "2026-10-24",
+  "status": "Final narrative handoff for Prototype98 implementation; not runtime validated or separately user-approved exact wording",
+  "authorization": "PM relayed Sean starts short playable Level2 flush. Full log ride and level3 remain deferred.",
+  "owner": "Storyboarding narrative; Engineering runtime/radio integration",
+  "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
+  "target_playable_seconds": 45,
+  "routes": {
+    "tony": [
+      {
+        "at": 0,
+        "who": "tony",
+        "emotion": "surprised",
+        "text": "Sean, I’m in a giant toilet!",
+        "duration": 2.5,
+        "radio": false,
+        "gag": false,
+        "event": "arrival"
+      },
+      {
+        "at": 2.5,
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Tony? Can you hear me?",
+        "duration": 2,
+        "radio": true,
+        "gag": true,
+        "event": "arrival",
+        "gag_action": "hold_center"
+      },
+      {
+        "at": 4.5,
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Your face! Down! I can’t see!",
+        "duration": 3.5,
+        "radio": false,
+        "gag": true,
+        "event": "arrival",
+        "gag_action": "slide_bottom",
+        "slide_line_seconds": [
+          1.4,
+          2.2
+        ]
+      },
+      {
+        "at": 8,
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Somebody pulled the handle!",
+        "duration": 3,
+        "radio": false,
+        "event": "flush"
+      },
+      {
+        "at": 11,
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Can you stop it?",
+        "duration": 2.5,
+        "radio": true,
+        "event": "flush"
+      },
+      {
+        "at": 13.5,
+        "who": "tony",
+        "emotion": "worried",
+        "text": "With what? My professional reputation?!",
+        "duration": 3.5,
+        "radio": false,
+        "event": "flush"
+      },
+      {
+        "at": 35,
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Here we go—!",
+        "duration": 2,
+        "radio": false,
+        "event": "drain"
+      }
+    ],
+    "sean": [
+      {
+        "at": 0,
+        "who": "sean",
+        "emotion": "surprised",
+        "text": "Tony? This is a giant toilet!",
+        "duration": 2.5,
+        "radio": false,
+        "gag": false,
+        "event": "arrival"
+      },
+      {
+        "at": 2.5,
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Are you hurt, buddy?",
+        "duration": 2,
+        "radio": true,
+        "gag": true,
+        "event": "arrival",
+        "gag_action": "hold_center"
+      },
+      {
+        "at": 4.5,
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Move your face down! I can’t see!",
+        "duration": 3.5,
+        "radio": false,
+        "gag": true,
+        "event": "arrival",
+        "gag_action": "slide_bottom",
+        "slide_line_seconds": [
+          1.4,
+          2.2
+        ]
+      },
+      {
+        "at": 8,
+        "who": "sean",
+        "emotion": "worried",
+        "text": "It’s flushing! I’m still in here!",
+        "duration": 3,
+        "radio": false,
+        "event": "flush"
+      },
+      {
+        "at": 11,
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Keep clear of the falling stuff, buddy.",
+        "duration": 3,
+        "radio": true,
+        "event": "flush"
+      },
+      {
+        "at": 35,
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Here we go—!",
+        "duration": 2,
+        "radio": false,
+        "event": "drain"
+      }
+    ]
+  },
+  "events": {
+    "arrival": {
+      "trigger": "0s safe bowl arrival; three lines finish by8s",
+      "gag": "Support panel centered at2.5; hero complaint at4.5; slide whole panel bottom during complaint lineclock1.4–2.2 (absolute5.9–6.7). One shared gag instance, not one per marked line.",
+      "safety": "No hazards before8; steering/current allowed. Any lingering center panel or dialogue hold delays hazard admission until clear. Gag-seen set at first arrival; newrun clears."
+    },
+    "flush": {
+      "trigger": "8s debris phase start; short route-specific exchange, no accumulated queue"
+    },
+    "drain": {
+      "trigger": "35s safe automatic drain phase through43; short shout only"
+    },
+    "landing": {
+      "trigger": "35–45 drain/landing are harmless. Retain flush-start retry anchor until survival completion; no separate43s checkpoint required. After actual landing at45, show one3s line in safe hold, then construction boundary at48s without manual pause.",
+      "boundary": "Log ride under construction; Return to Main Menu; no ride simulation"
+    },
+    "retry": {
+      "rule": "Retain full0–8s calm movement warmup on every retry; skip arrival/gag text only. Reset hazard seed/schedule and clock to0. Never jump directly to8s pressure. Preserve per-run gag-seen flag; newrun clears."
+    }
+  },
+  "radio_ui": {
+    "nonblocking": true,
+    "default_placement": "bottom, clear of controls/HUD and current action; top fallback if necessary",
+    "portraits": "Existing portrait library; compact740x82 panel at110,452 with70px portrait/text17, subject to Engineering fit checks. HUD0..64; radio zone450..540.",
+    "static": "Brief chirp at connection/event start only, not every line; Audio owns cue selection and audition-registry updates if needed",
+    "queue": "Only current event sequence; no accumulating stale event queue. Cancel on death/reset/title; higher-priority drain/landing replaces obsolete speech. Timer uses gameplay time and pauses with game.",
+    "skip": "Skip arrival snaps panel bottom; never enables hazards before safe8s boundary unless Mechanics approves retry/skip warmup. Skip landing reaches construction boundary safely.",
+    "retry": "Checkpoint retry cancels all pending lines; preserve per-run gag-seen; new run clears event/gag flags",
+    "readability": "Durations explicit per line; do not truncate for combat. Gate arrival before hazards and place remaining short exchanges in safe intervals.",
+    "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero."
+  },
+  "validation_required": [
+    "Both heroes and semantic portraits/radio flags",
+    "Arrival/gag harmless within0–8s of45s total; relocation complete before hazards",
+    "Gag relocates whole panel and never repeats on checkpoint retry",
+    "Nonblocking timed lines pause/resume and cancel on death/reset/title",
+    "No queue overlap at drain/landing",
+    "Survival completion after harmless drain/landing, then honest construction boundary; no ride gameplay"
+  ],
+  "landing_routes": {
+    "tony": [
+      {
+        "who": "tony",
+        "emotion": "surprised",
+        "text": "Sean. I’m riding a turd.",
+        "duration": 3,
+        "radio": false
+      }
+    ],
+    "sean": [
+      {
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Please tell me this is a log.",
+        "duration": 3,
+        "radio": false
+      }
+    ]
+  }
+}

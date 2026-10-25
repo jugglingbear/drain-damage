@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-24",
+  "status": "Audio assets frozen; Engineering integration, registry and audition-page generation pending",
+  "owner": "Audio assets; Engineering runtime and combined delivery",
+  "source_manifest": "audio/sources/level-two-flush-v1/manifest.json",
+  "cues": [
+    {
+      "event": "current_loop",
+      "path": "assets/audio/sfx/level-two-flush-v1/current-loop.wav",
+      "duration_seconds": 4.0,
+      "loop": true,
+      "gain_db": -10,
+      "peak_dbfs": -18.0,
+      "rms_dbfs": -31.42,
+      "boundary_step_dbfs": -37.46,
+      "sha256": "6ed21c256f45b0a5929a8efc6c0014fc4e4d3d0e938d45abd9691163f2dfc088"
+    },
+    {
+      "event": "flush_onset",
+      "path": "assets/audio/sfx/level-two-flush-v1/flush-onset.wav",
+      "duration_seconds": 1.2,
+      "loop": false,
+      "gain_db": -6,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -25.35,
+      "boundary_step_dbfs": -90.31,
+      "sha256": "1eb825636ad3ae3c30325cbfdc65777fbf6b0fbb7fb406992b82474bc6ee74a4"
+    },
+    {
+      "event": "flush_surge",
+      "path": "assets/audio/sfx/level-two-flush-v1/flush-surge.wav",
+      "duration_seconds": 3.0,
+      "loop": false,
+      "gain_db": -8,
+      "peak_dbfs": -14.0,
+      "rms_dbfs": -27.1,
+      "boundary_step_dbfs": -90.31,
+      "sha256": "ef694f5fce49e6382cba4a57cef58bf3158abc80adb8d77d1299a09f8dabc3c5"
+    },
+    {
+      "event": "debris_impact",
+      "path": "assets/audio/sfx/level-two-flush-v1/debris-impact.wav",
+      "duration_seconds": 0.32,
+      "loop": false,
+      "gain_db": -6,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -27.89,
+      "boundary_step_dbfs": -90.31,
+      "sha256": "bea452160138c76b8d95642f9129db7d6a457b2dd1510105abbe8bc0ace3e24f"
+    },
+    {
+      "event": "debris_break",
+      "path": "assets/audio/sfx/level-two-flush-v1/debris-break.wav",
+      "duration_seconds": 0.48,
+      "loop": false,
+      "gain_db": -6,
+      "peak_dbfs": -14.0,
+      "rms_dbfs": -33.7,
+      "boundary_step_dbfs": -90.31,
+      "sha256": "e83d826b0e6d6631effb05a5cee1becbf91f519f04baceea7d42fe6147fd40ee"
+    },
+    {
+      "event": "radio_chirp",
+      "path": "assets/audio/sfx/level-two-flush-v1/radio-chirp.wav",
+      "duration_seconds": 0.13,
+      "loop": false,
+      "gain_db": -4,
+      "peak_dbfs": -18.0,
+      "rms_dbfs": -22.61,
+      "boundary_step_dbfs": -90.31,
+      "sha256": "0f77a50005137355c187515f5d2a6264342f19d36f6f641a908f4ce69fe3dc23"
+    }
+  ],
+  "events": {
+    "current_loop": "Start once on active bowl entry, one looping voice, fade in/out over 0.25s; stop at chute/log checkpoint.",
+    "flush_onset": "One-shot at full-flush phase transition, never per frame or per current-strength update.",
+    "flush_surge": "One-shot on chute entry/final pull; do not restart continuously or loop.",
+    "debris_impact": "Debris landing or player impact; one shared effect voice, throttle at least 0.12s.",
+    "debris_break": "Successful soft obstruction destruction once, prioritize over impact in same frame.",
+    "radio_chirp": "Once per radio transmission/exchange, not each character or text line; minimum 0.5s cooldown."
+  },
+  "lifecycle": "Suggested four fixed voices: current bed, flush accent, debris, radio. New onset/surge may replace previous flush accent. Pause all; honor SFX mute; stop and clear on death/retry/title/scene exit/disposal. No muted-event backlog.",
+  "radio_mix": "During radio overlay duck current and flush accent an additional 8dB, restore over 0.2s. Chirp before transmission text/voice; no voice recording supplied. Keep impact/weapon cues bounded. Device mix remains unreviewed.",
+  "loop_import": "current-loop.wav only: enable forward loop across full 128000 frames. Other WAVs must not loop. Circular overlap already baked in; no restart gaps.",
+  "candidate_registration": "Six initial candidates named by event; Engineering allocates new permanent slot IDs and next suffixes, preserves these exact source assets, registers candidates, refreshes runtime mappings, rebuilds audio/drain-damage-sound-auditions.html and runs --check. Audio does not edit shared registry/helper.",
+  "validation": "All six WAVs decode with ffmpeg; Python syntax and 120-column/trailing-whitespace checks pass. Exact hashes/levels/seam measurements in manifest. No playback or subjective approval.",
+  "preservation": "Keep all six original WAVs and this recipe; future revisions use new versioned paths. Existing death flush remains unchanged.",
+  "limitations": "Numerical loop boundary check does not establish perceived seamlessness. Runtime, lifecycle tests, mixing, build and roadmap remain Engineering work."
+}

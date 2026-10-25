@@ -1,0 +1,35 @@
+{
+  "status": "Art delivery complete and frozen; Engineering98 integration pending",
+  "owner": "Art / Bestiary",
+  "created_at": "2026-10-24T19:21:00.946325-07:00",
+  "manifest": "assets/world/level-two-flush-v1/manifest.json",
+  "prompts": "assets/world/level-two-flush-v1/prompts.json",
+  "preview": "previews/level-two-flush-v1/contact.png",
+  "scope": "45-second flush and small log landing only; no full ride or new monsters",
+  "geometry_source": "levels/level-two-flush.json",
+  "hero_reuse": "Approved upright billboard reuse of current normal/Hard hero sprites; shadow anchors water contact. Source preview normal poses only; actual runtime weapon/Hard appearance requires visual review.",
+  "validation": {
+    "source_crops": 10,
+    "bounds": "PASS",
+    "sprite_edge_alpha_max": {
+      "hard": 1,
+      "soft": 1,
+      "log": 1,
+      "warning": 1,
+      "shadow": 7,
+      "current": 1,
+      "splash": 1
+    },
+    "review": "Both hero billboard source compositions and both landing scenes inspected. Shadow faint alpha fringe acceptable; no solid neighboring cell contamination."
+  },
+  "remaining": [
+    "Engineering integration/build and animation checks",
+    "Approved actual gameplay capture; source preview is not a screenshot",
+    "Live current-motion, warning and jump readability review"
+  ],
+  "files": [
+    "assets/world/level-two-flush-v1/",
+    "previews/level-two-flush-v1/",
+    "handoffs/level-two-flush-art.json"
+  ]
+}

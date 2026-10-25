@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "status": "Art source registered and composition approved for short slice; frozen for Engineering integration; runtime visual validation pending",
+  "reference_viewport": [
+    960,
+    540
+  ],
+  "frames": {
+    "bowl": {
+      "path": "assets/world/level-two-flush-v1/bowl-v2.png",
+      "source_rect": [
+        0,
+        0,
+        1671,
+        941
+      ],
+      "destination": [
+        0,
+        30,
+        960,
+        540
+      ],
+      "coordinate_space": "screen"
+    },
+    "bowl_top": {
+      "path": "assets/world/level-two-flush-v1/bowl-v2.png",
+      "source_rect": [
+        0,
+        0,
+        1671,
+        60
+      ],
+      "destination": [
+        0,
+        0,
+        960,
+        30
+      ],
+      "coordinate_space": "screen"
+    },
+    "landing": {
+      "path": "assets/world/level-two-flush-v1/landing-v1.png",
+      "source_rect": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "destination": [
+        0,
+        0,
+        960,
+        540
+      ],
+      "coordinate_space": "screen"
+    },
+    "hard": {
+      "path": "assets/world/level-two-flush-v1/props-v1.png",
+      "source_rect": [
+        170,
+        60,
+        580,
+        520
+      ],
+      "destination": [
+        -24,
+        -36,
+        48,
+        44
+      ],
+      "coordinate_space": "local"
+    },
+    "soft": {
+      "path": "assets/world/level-two-flush-v1/props-v1.png",
+      "source_rect": [
+        920,
+        90,
+        520,
+        490
+      ],
+      "destination": [
+        -24,
+        -36,
+        48,
+        44
+      ],
+      "coordinate_space": "local"
+    },
+    "log": {
+      "path": "assets/world/level-two-flush-v1/props-v1.png",
+      "source_rect": [
+        40,
+        640,
+        930,
+        320
+      ],
+      "destination": [
+        330,
+        380,
+        300,
+        52
+      ],
+      "coordinate_space": "screen"
+    },
+    "warning": {
+      "path": "assets/world/level-two-flush-v1/effects-v1.png",
+      "source_rect": [
+        25,
+        100,
+        760,
+        310
+      ],
+      "destination": [
+        -40,
+        -16,
+        80,
+        32
+      ],
+      "coordinate_space": "local"
+    },
+    "shadow": {
+      "path": "assets/world/level-two-flush-v1/effects-v1.png",
+      "source_rect": [
+        830,
+        130,
+        690,
+        260
+      ],
+      "destination": [
+        -16,
+        -6,
+        32,
+        12
+      ],
+      "coordinate_space": "local"
+    },
+    "current": {
+      "path": "assets/world/level-two-flush-v1/effects-v1.png",
+      "source_rect": [
+        20,
+        540,
+        920,
+        400
+      ],
+      "destination": [
+        -360,
+        -140,
+        720,
+        280
+      ],
+      "coordinate_space": "local"
+    },
+    "splash": {
+      "path": "assets/world/level-two-flush-v1/effects-v1.png",
+      "source_rect": [
+        1010,
+        600,
+        440,
+        340
+      ],
+      "destination": [
+        -22,
+        -25,
+        44,
+        34
+      ],
+      "coordinate_space": "local"
+    }
+  },
+  "geometry": {
+    "center": [
+      480,
+      300
+    ],
+    "water_radii": [
+      360,
+      140
+    ],
+    "projection_y": 0.3888888888888889,
+    "drain_radii": [
+      65,
+      25.28
+    ],
+    "safe_bands": {
+      "hud_bottom": 64,
+      "radio_top": 450
+    }
+  },
+  "drawing_notes": [
+    "Draw bowl_top then bowl; viewport clips bottom30px of bowl. Background includes extra decorative water outside playable ellipse.",
+    "Background drain lip aligns approximately480,300 after30px verticaloffset; gameplay uses canonical LevelDesign geometry.",
+    "current localorigin is bowlcenter; modulate lowopacity .12.. .22. Smooth source-circle rotation before yprojection only; never rotate flattened ellipse in screen space.",
+    "Hard/soft upright oblique props extend above footprint; collision remains22worldradius projectedto22x8.56. Warning80x32 includes padding around36x14 projectedclearance.",
+    "Draw floor shadow/warning first, debris/hero sortedbyfootY, splasheslast; radio staysoutsidewater.",
+    "Landing scene only: draw landing then log at330,380,300,52, hero footcenter480,385. No fullride implied."
+  ],
+  "hero_reuse": {
+    "approved": true,
+    "style": "Existing hero sprites as upright billboard characters in oblique environment; same body dimensions/costumes, foot shadow communicates surface contact.",
+    "source": "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+    "constraints": [
+      "Use current normal/Hard runtime selection, never flatten hero vertically with waterprojection.",
+      "Preserve recognizable faces and weapons; player collisioncenter projects separatelyfromartfootpoint.",
+      "Agent source preview only; live oblique readability still requires validation."
+    ]
+  },
+  "collision_source": "levels/level-two-flush.json",
+  "provenance": "assets/world/level-two-flush-v1/prompts.json",
+  "preserved_original": "assets/world/level-two-flush-v1/bowl-source-v1.png",
+  "source_preview": "previews/level-two-flush-v1/contact.png",
+  "validation": {
+    "source_crops": 10,
+    "bounds": "PASS",
+    "sprite_edge_alpha_max": {
+      "hard": 1,
+      "soft": 1,
+      "log": 1,
+      "warning": 1,
+      "shadow": 7,
+      "current": 1,
+      "splash": 1
+    },
+    "review": "Both hero billboard source compositions and both landing scenes inspected. Shadow faint alpha fringe acceptable; no solid neighboring cell contamination."
+  }
+}

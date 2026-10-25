@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-24",
+  "timezone": "America/Los_Angeles",
+  "status": "Agreed mechanics and Level Design contract for Prototype 98; runtime integration and playtesting pending",
+  "owner": "Game Mechanics",
+  "integration_owner": "Engineering",
+  "geometry_owner": "Level Design",
+  "scope": "Short Level 2 flush only. No full log ride, new monster roster, Level 3, or additional weapon system.",
+  "sources": [
+    "levels/level-two-flush.json",
+    "handoffs/level-two-flush-layout.json",
+    "design/level-two-flush-and-log-ride.md"
+  ],
+  "authority_note": "Engineering relayed Sean approval through PM on October24; activates this short flush only and supersedes the older proposal hold for this scope.",
+  "coordinates": {
+    "logical_viewport": [
+      960,
+      540
+    ],
+    "world_circle_radius": 360,
+    "screen_center": [
+      480,
+      300
+    ],
+    "outer_screen_radii": [
+      360,
+      140
+    ],
+    "projection": "screen = Vector2(480 + world.x, 300 + world.y * 140/360 - jump_height * 140/360)",
+    "hero_render_anchor": "Feet at projected world position; existing selected-hero art, no sprite shrink workaround",
+    "annulus_hero_center_radius_fraction": [
+      0.45,
+      0.88
+    ],
+    "spawn_world": [
+      0,
+      259.2
+    ],
+    "spawn_screen": [
+      480,
+      400.8
+    ],
+    "drain_world_radius": 65,
+    "drain_screen_radii": [
+      65,
+      25.2777777778
+    ],
+    "hero_collision_radius_world": 14,
+    "debris_collision_radius_world": 22,
+    "combined_collision_radius_world": 36,
+    "hud_screen_band": [
+      0,
+      64
+    ],
+    "radio_screen_band": [
+      450,
+      540
+    ],
+    "jump_clearance": "Upper playable foot176.8 minus46px hero body minus33.64px projected peak remains97.16px, clear of HUD64."
+  },
+  "timeline": {
+    "clock": "45 seconds of simulation; pause/death/blocking dialogue freeze it. No wall-clock progression. A harmless landing conversation can extend presentation after45.",
+    "stages": [
+      {
+        "start": 0,
+        "end": 8,
+        "name": "calm arrival",
+        "damage": false,
+        "controls": "Steer, jump and fire; gentle current. Three short radio lines and center-to-bottom gag may run here."
+      },
+      {
+        "start": 8,
+        "end": 35,
+        "name": "warned debris survival",
+        "damage": true,
+        "controls": "Steer, jump and fire normally; no kill quota."
+      },
+      {
+        "start": 35,
+        "end": 43,
+        "name": "automatic drain",
+        "damage": false,
+        "controls": "Clear every hazard/warning/projectile, then controlled inward spiral; disable damaging collisions. No obstruction/kill gate."
+      },
+      {
+        "start": 43,
+        "end": 45,
+        "name": "safe landing",
+        "damage": false,
+        "controls": "Finish on the authored static landing/log prop. No ride gameplay starts."
+      }
+    ],
+    "overlay_guard": "Never start damaging stage while center gag or blocking text obscures play. Pause at8 if required until it clears; do not accumulate delayed hazard backlog.",
+    "completion": "Alive at35 unlocks guaranteed harmless drain and landing; at45 latch flush_survived once. Landing exchange runs in safe terminal hold. Completion/next prototype boundary follows dialogue or skip. No enemies must be killed."
+  },
+  "movement": {
+    "steering": "Existing keyboard/controller directional actions steer XY in unprojected world plane. Normalize diagonals; screen up maps negative worldY. Keep fixed camera and character facing from last horizontal steering.",
+    "hero_speed_world_per_second": {
+      "tony": 270,
+      "sean": 235
+    },
+    "current": "Clockwise tangential plus mild inward drift, summed as one vector capped by mode. No screen rotation. Reduce to35% during calm stage, ramp toward full cap during survival. Clamp annulus gently without edge damage or instant death.",
+    "maximum_current_world_per_second": {
+      "easy": 40,
+      "normal": 60,
+      "hard": 80
+    },
+    "minimum_net_steering_for_safety_solver": 155,
+    "reason": "Slowest hero235 minus hardest opposing current80 leaves155worldpixels/second. Match Level Design path validation; never exceed current caps or assume projected screen distance is world distance.",
+    "jump": {
+      "impulse": 465,
+      "gravity": 1250,
+      "height_axis": "Independent positive Z; no change to XY steering/current while airborne",
+      "airtime_seconds": 0.744,
+      "peak_world_height": 86.49,
+      "peak_projected_height": 33.635,
+      "input": "Existing jump press/buffer; no double jump",
+      "low_debris_clearance_world_height": 24,
+      "collision": "Low debris does not hit when Z>24; jumping does not ignore any future explicitly airborne volume."
+    }
+  },
+  "weapons": {
+    "preserve": "Selected hero, current active weapon identity, projectile speed, cadence, damage and range. Do not use older canonical weapon damage in place of active level tuning.",
+    "active_starters": {
+      "tony": {
+        "damage": 12,
+        "interval_seconds": 0.16,
+        "range_world": 320
+      },
+      "sean": {
+        "damage": 18,
+        "interval_seconds": 0.24,
+        "range_world": 480
+      }
+    },
+    "aim": "Use existing separate aim inputs if available; otherwise last nonzero normalized eight-way steering is persistent world-plane aim. Render transformed muzzle/direction consistently; do not alter range by screen projection.",
+    "soft_debris": {
+      "hp": 24,
+      "hits": {
+        "tony": 2,
+        "sean": 2
+      },
+      "target_window": "When incoming soft debris is physically visible during its warning/fall and while active; never require firing at an invisible marker. Destroy once, immediately remove collision, consume normal projectile, no required kills."
+    },
+    "hard_debris": "Porcelain is dodge/jump-only. Ordinary shots stop at the visible hard obstacle; no damage to it."
+  },
+  "hazards": {
+    "schedule_owner": "levels/level-two-flush.json",
+    "counts": {
+      "easy": 9,
+      "normal": 12,
+      "hard": 16
+    },
+    "scheduled_interval_seconds": [
+      9,
+      32
+    ],
+    "warning_seconds": {
+      "easy": 1.6,
+      "normal": 1.4,
+      "hard": 1.2
+    },
+    "active_lifetime_seconds": 0.6,
+    "maximum_simultaneous_damaging": {
+      "easy": 1,
+      "normal": 1,
+      "hard": 2
+    },
+    "placement": "Warning and landing use the same locked world center. No tracking after tell starts. No persistent puddles.",
+    "safety": "Before warning and before activation, prove an annulus-valid reachable safe pocket with48px clearance budget, using combined36px hero/debris footprint and155px/s net movement after0.15s reaction margin. Test all overlapping pending/active hazards, current direction and boundaries. Defer within stage or skip an unsafe event; never dump backlog, trap the hero, or delay completion.",
+    "rng": "Retain attempt seed across retries for learnable patterns; no undocumented difficulty scaling.",
+    "damage": "One health per accepted contact through shared normal1.5s invulnerability. Two Hard overlaps cannot bypass cooldown. No added control interruption or instant kills."
+  },
+  "health_lives_retry": {
+    "entry": "Carry selected hero, difficulty, remaining health and lives from Level1. No free entry heal or life award. Remove all Level1 hazards/projectiles/boss audio before transfer.",
+    "anchor": "Flush start is the new attempt anchor; death never sends the hero back to Clogfather.",
+    "death": "Use normal death/popup flow and exactly one existing life debit; freeze flush timer and hazards.",
+    "continue": "Reset complete flush attempt: timer0, seed retained, all hazards/shots/current transient state cleared, spawn restored, full hero health and normal3s invulnerability. Preserve remaining lives.",
+    "retry_intro": "Skip repeated arrival/gag dialogue but retain the entire0..8 calm movement warmup. Do not jump clock directly to8.",
+    "game_over_retry": "Restart this flush attempt with standard new-run3lives/fullhealth and same chosen hero/difficulty; explicit New Game/menu can restart campaign normally.",
+    "checkpoint": "No mid-flush dispenser or clone consumption. No additional43s checkpoint required because35..45 is already harmless. Survived/completed flag is single-fire at45; boundary after landing dialogue/skip."
+  },
+  "integration_checks": [
+    "Both heroes and all3 difficulties; normalized diagonal speed, projection and jump/HUD clearance",
+    "45-second stage boundaries at60/120Hz; pause/blocking overlay/death freeze and dismissal input guard",
+    "Guaranteed safe pocket at inner/outer annulus and every hazard placement, including Hard overlap and current opposition",
+    "Two actual weapon hits destroy visible soft debris; hard debris remains; jump clears low debris; no invisible lingering hurt after destruction",
+    "Entry carries health/lives; death debits once; repeated retry resets entire attempt and preserves seed; GameOver retry stays in flush",
+    "At35 all harm clears; no mandatory kills; safe drain/landing reaches single completion at45 and no full ride starts"
+  ],
+  "remaining": "Engineering runtime and packaged checks, Art-authored visuals, Audio-assigned cues with registry/audition updates, Storyboarding final dialogue; human steering/aim/readability/balance review and actual captures."
+}

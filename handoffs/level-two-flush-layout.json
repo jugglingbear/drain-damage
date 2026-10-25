@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "status": "Geometry and schedule delivered for Engineering98; integration pending",
+  "source": "levels/level-two-flush.json",
+  "owner": "Level Design",
+  "authorization": "Engineering relayed PM/Sean explicit start for short Level2 flush; fullride excluded",
+  "supersedes": "Old held prototype geometry only for this authorized microlevel; unrelated later-level plans remain unassigned",
+  "geometry_decision": "Final center480,300/radii360,140 replaces preliminary270/170 after Mechanics found jump/HUD overlap. Bottom440 unchanged, projected full jump33.64 and46pxhero leave upperhero97.16 belowHUD64. All owners notified.",
+  "files_owned": [
+    "levels/level-two-flush.json",
+    "handoffs/level-two-flush-layout.json"
+  ],
+  "validation": {
+    "status": "JSON, event bounds and sampled geometry checks passed; runtime and visual validation pending",
+    "sampled_reachable_escape_cases": 7992,
+    "method": "Every warning,3startingradii,72angles:155px/s minimum net control,0.15sreaction,48worldradius safe disk outside36combined impact footprints;21samples along straight path stay within annulus. Includes temporally adjacent warning footprints conservatively.",
+    "limits": "Sampled sufficient paths, not exhaustive proof or current-integrated runtime simulation; runtime must still skip unsafe event.",
+    "hud": "Top of46pxhero atouterupperannulus/fullprojectedjump97.16 exceeds HUD64."
+  },
+  "dependencies": [
+    "Mechanics movement/safety contract aligned to final projection and14world hero radius",
+    "Art original bowl/props/landing assets",
+    "Engineering runtime, roadmap, tests, build and capture bookkeeping"
+  ]
+}
