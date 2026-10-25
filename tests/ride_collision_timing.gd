@@ -40,23 +40,23 @@ func _initialize() -> void:
 	ride.tick(host,STEP,Vector2.ZERO,false)
 	assert(host.health == 3 and ride.events.get("hit",0) == 0)
 	host.free()
-	# Continuous overlap becomes harmful exactly at expiry; age new immunity through the remainder.
+	# First contact while immune latches the obstacle; expiry cannot cause a deferred hit.
 	host = Host.new()
 	ride = model([obstacle("continuous","support",300)])
 	host.invulnerable = 0.006
 	ride.tick(host,STEP,Vector2.ZERO,false)
-	assert(host.health == 2 and ride.events.hit == 1)
-	assert(absf(host.invulnerable-(1.5-(STEP-0.006))) < 0.000001)
+	assert(host.health == 3 and ride.events.get("hit",0) == 0)
+	assert(host.invulnerable == 0)
 	host.free()
-	# An earlier support hit occurs before a gap becomes unsupported at landing, regardless of array order.
+	# An earlier support hit grants immunity before the later gap recovery, regardless of array order.
 	host = Host.new()
 	ride = model([obstacle("gap","gap",300),obstacle("support","support",357.36)])
 	ride.jump_age = 1.2-0.006
 	ride.tick(host,STEP,Vector2.ZERO,false)
-	assert(ride.events.hit == 1 and ride.events.fall == 1 and host.lives == 2)
-	assert(ride.hit_ids.has("support") and ride.events.get("landed",0) == 0)
+	assert(ride.events.hit == 1 and ride.events.recovered == 1 and host.lives == 3)
+	assert(ride.hit_ids.has("support") and host.health == 2)
 	ride.tick(host,STEP,Vector2.ZERO,false)
-	assert(host.lives == 2 and ride.events.fall == 1)
+	assert(host.lives == 3 and ride.events.recovered == 1 and host.health == 2)
 	host.free()
 	# A low barrier becomes harmful on descent, not when its planar overlap began.
 	host = Host.new()
@@ -67,13 +67,13 @@ func _initialize() -> void:
 	assert(ride.hit_ids.has("support") and not ride.hit_ids.has("barrier"))
 	assert(host.life_state == "dying" and host.lives == 2)
 	host.free()
-	# Landing at the exact step endpoint while overlapping a gap is a fall, not a successful landing.
+	# Exact endpoint landing over a gap triggers normal damage and recovery, never forced death.
 	host = Host.new()
 	ride = model([obstacle("gap","gap",300)])
 	ride.jump_age = 1.2-STEP
 	ride.tick(host,STEP,Vector2.ZERO,false)
-	assert(host.life_state == "dying" and ride.events.fall == 1)
-	assert(ride.events.get("landed",0) == 0 and not ride.complete)
+	assert(host.life_state == "alive" and host.health == 2 and host.lives == 3)
+	assert(ride.events.recovered == 1 and not ride.complete)
 	host.free()
 	# On ascent, immunity outlasting the below-barrier portion must not create a hit above the barrier.
 	host = Host.new()
@@ -83,5 +83,5 @@ func _initialize() -> void:
 	ride.tick(host,STEP,Vector2.ZERO,false)
 	assert(host.health == 3,"Immunity expiry after ascending clearance must not create a barrier hit")
 	host.free()
-	print("PASS: ride harmful-time ordering, exact gap landing, immunity expiry and ascending clearance")
+	print("PASS: ride harmful-time ordering, exact gap recovery, immune traversal latch and ascending clearance")
 	quit()

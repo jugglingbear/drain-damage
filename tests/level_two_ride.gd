@@ -60,8 +60,18 @@ func checks() -> void:
 			# Full footprint gap detection: center still outside, front over unsupported water.
 			ride.begin(game)
 			ride.course.obstacles = [hazard("gap",350)]
-			game.invulnerable = 10
+			game.invulnerable = 0
+			game.health = 2
 			var lives: int = game.lives
+			game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
+			assert(game.life_state == "alive" and game.health == 1 and game.lives == lives)
+			assert(ride.events.recovered == 1 and not ride.events.has("fall"))
+			for frame in range(240): game.flush.tick(game,1.0/120,Vector2.LEFT,false,false)
+			assert(game.health == 1 and game.lives == lives)
+			# A distinct unprotected contact at one HP still uses the normal death/checkpoint path.
+			ride.begin(game)
+			ride.course.obstacles = [hazard("gap",350)]
+			game.invulnerable = 0
 			game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
 			assert(game.life_state == "dying" and game.lives == lives-1 and ride.events.fall == 1)
 			game.flush.tick(game,1,Vector2.ZERO,false,false)
@@ -74,10 +84,10 @@ func checks() -> void:
 			game.reset_game()
 			assert(game.flush.state == "ride" and game.lives == 3 and ride.clock == 0)
 			ride.course.obstacles = []
-			ride.clock = 44.99
+			ride.clock = ride.duration-0.01
 			game.flush.tick(game,0.02,Vector2.ZERO,false,false)
 			assert(game.won and ride.complete and ride.events.finished == 1)
 			game.queue_free()
 			await process_frame
-	print("PASS: ride swept contacts, both heroes/all modes, movement/jump, no firing, pause, damage, gap death, checkpoint/game-over retry and finish")
+	print("PASS: ride swept contacts, both heroes/all modes, movement/jump, no firing, pause, damage, nonlethal gap recovery, depleted-HP death, checkpoint/game-over retry and finish")
 	quit()

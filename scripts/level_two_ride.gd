@@ -7,6 +7,10 @@ var course: Dictionary = {}
 var art := Art.new()
 var audio := Audio.new()
 var clock := 0.0
+var scroll_speed := 225.0
+var duration := 36.0
+var x_speed := 160.0
+var bank_speed := 140.0
 var position := Vector2(300,330)
 var jump_age := -1.0
 var jump_height := 0.0
@@ -14,6 +18,8 @@ var cooldown := 0.0
 var complete := false
 var events: Dictionary = {}
 var hit_ids: Dictionary = {}
+var contact_latches: Dictionary = {}
+var recovery_clock := 0.0
 
 func attach(host: Node2D) -> void:
 	definition = JSON.parse_string(FileAccess.get_file_as_string("res://data/level-two-ride.json"))
@@ -22,6 +28,10 @@ func attach(host: Node2D) -> void:
 
 func begin(host: Node2D) -> void:
 	var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride.json"))
+	scroll_speed = float(layout.scroll_speed)
+	duration = float(layout.duration)
+	x_speed = float(layout.validation_physics.x_steer_speed)
+	bank_speed = float(layout.validation_physics.bank_steer_speed)
 	course = {"obstacles":[]}
 	for source: Dictionary in layout.obstacles:
 		if host.difficulty not in source.modes: continue
@@ -38,6 +48,8 @@ func begin(host: Node2D) -> void:
 	complete = false
 	events.clear()
 	hit_ids.clear()
+	contact_latches.clear()
+	recovery_clock = 0
 	audio.stop()
 	host.won = false
 	host.grounded = true
@@ -84,9 +96,9 @@ func obstacle_rect(obstacle: Dictionary) -> Rect2:
 
 func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 	if complete or host.paused or host.life_state != "alive": return
-	var dt := minf(delta,45.0-clock)
+	var dt := minf(delta,duration-clock)
 	if dt <= 0: return
-	var start := position+Vector2(clock*180.0,0)
+	var start := position+Vector2(clock*scroll_speed,0)
 	var old_age := jump_age
 	cooldown = maxf(0,cooldown-dt)
 	if jumping and jump_age < 0 and cooldown <= 0:
@@ -95,25 +107,26 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 		host.play_tone(360.0,0.08)
 		events.jump = int(events.get("jump",0))+1
 	var input := steering.limit_length()
-	position += Vector2(input.x*160.0,input.y*140.0)*dt
+	position += Vector2(input.x*x_speed,input.y*bank_speed)*dt
 	position.x = clampf(position.x,180,650)
 	position.y = clampf(position.y,260,400)
 	clock += dt
-	var finish := position+Vector2(clock*180.0,0)
-	var initial_immunity: float = host.invulnerable
+	var finish := position+Vector2(clock*scroll_speed,0)
+	recovery_clock = maxf(0,recovery_clock-dt)
 	host.hurt_time = maxf(0,host.hurt_time-dt)
 	var damaged := false
 	var contacts: Array[Dictionary] = []
 	for obstacle: Dictionary in course.obstacles:
+		if contact_latches.has(obstacle.id):
+			if finish.x-45 > float(obstacle.world_x)+float(obstacle.width)*0.5:
+				contact_latches.erase(obstacle.id)
+			continue
 		var rect := obstacle_rect(obstacle).grow_individual(45,14,45,14)
 		var interval := overlap_interval(start,finish,rect)
 		if interval.x < 0: continue
 		for unsafe: Vector2 in unsafe_intervals(str(obstacle.kind),old_age,dt,interval):
-			var contact_at := unsafe.x
-			if obstacle.kind != "gap":
-				contact_at = maxf(contact_at,initial_immunity/dt)
-				if contact_at > unsafe.y: continue
-			contacts.append({"obstacle":obstacle,"at":contact_at})
+			contacts.append({"obstacle":obstacle,"at":unsafe.x})
+			break
 	contacts.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return a.at < b.at)
 	var processed_time := 0.0
 	for contact: Dictionary in contacts:
@@ -121,24 +134,25 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 		host.invulnerable = maxf(0,host.invulnerable-(event_time-processed_time))
 		processed_time = event_time
 		var obstacle: Dictionary = contact.obstacle
-		if obstacle.kind == "gap":
-			# Fall owns one normal death transition; immunity cannot supply missing water support.
-			host.invulnerable = 0
-			host.health = 1
-			host.hurt_player()
-			events.fall = int(events.get("fall",0))+1
-			audio.stop()
-			return
+		# One contact owns the whole traversal, including immune entry and slow forward movement.
+		contact_latches[obstacle.id] = true
 		if host.invulnerable <= 0:
 			host.hurt_player()
 			damaged = true
 			hit_ids[obstacle.id] = true
 			events.hit = int(events.get("hit",0))+1
 			if host.life_state != "alive":
+				if obstacle.kind == "gap": events.fall = int(events.get("fall",0))+1
 				audio.stop()
 				return
 			host.tone_time = 0
 			audio.play("ride_impact")
+		if obstacle.kind == "gap":
+			# Recover on the same water-plane anchor; a forward teleport can exceed the screen bounds.
+			recovery_clock = 0.6
+			events.recovered = int(events.get("recovered",0))+1
+			jump_age = -1
+			cooldown = 0.15
 	host.invulnerable = maxf(0,host.invulnerable-(dt-processed_time))
 	if jump_age >= 0:
 		jump_age += dt
@@ -149,7 +163,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 			events.landed = int(events.get("landed",0))+1
 	jump_height = height(jump_age)
 	sync_hero(host)
-	if clock >= 45:
+	if clock >= duration:
 		complete = true
 		host.won = true
 		audio.stop()
@@ -167,7 +181,7 @@ func process_audio(host: Node2D, delta: float) -> void:
 func draw(host: Node2D, flush: RefCounted) -> void:
 	host.draw_set_transform(Vector2.ZERO)
 	if art.manifest.is_empty(): return
-	var scroll := clock*180.0
+	var scroll := clock*scroll_speed
 	draw_strip(host,"course_far",scroll*0.35)
 	draw_strip(host,"course_water",scroll)
 	var drawables: Array[Dictionary] = [{"hero":true,"y":position.y}]
@@ -186,10 +200,12 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 			if not falling: art.draw_named(host,"shadow",position,Color(1,1,1,1-jump_height/144.0))
 			if host.invulnerable <= 0 or int(clock*12)%2 == 0:
 				var pose: Dictionary = flush.art.manifest.landing[host.employee.id]["hard" if host.difficulty == "hard" else "normal"]
+				var recovery_bounce := sin(recovery_clock/0.6*PI)*20.0
 				var fall_progress := clampf(float(host.death_time),0,1) if falling else 0.0
-				host.draw_set_transform(position-Vector2(0,jump_height)+Vector2(0,sin(clock*3)*1.5+fall_progress*90),sin(clock*2.1)*0.025)
+				host.draw_set_transform(position-Vector2(0,jump_height)+Vector2(0,sin(clock*3)*1.5+fall_progress*90-recovery_bounce),sin(clock*2.1)*0.025)
 				for frame: Dictionary in pose.front: flush.art.draw_frame(host,frame,Vector2.ZERO,Color(1,1,1,1-fall_progress))
 				host.draw_set_transform(Vector2.ZERO)
+			if recovery_clock > 0: art.draw_named(host,"splash",position)
 		else:
 			art.draw_named(host,str(drawable.obstacle.kind),Vector2(drawable.x,drawable.y))
 	draw_strip(host,"course_near",scroll)
@@ -198,7 +214,7 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	host.label_at("Steer: arrows / stick   Jump: Space / A",Vector2(24,52),14,host.GOLD)
 	host.label_at("%s  HP %d/%d  LIVES %d" % [host.employee.name,host.health,host.employee.max_health,host.lives],
 		Vector2(550,27),16,host.GOLD)
-	host.label_at("%.0f / 45 s" % clock,Vector2(800,52),14,host.MINT)
+	host.label_at("%.0f / %.0f s" % [clock,duration],Vector2(800,52),14,host.MINT)
 	draw_preview(host,scroll)
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:

@@ -38,15 +38,18 @@ func checks() -> void:
 			game.flush.enter_ride(game)
 			game.flush.input_guard = false
 			var ride = game.flush.ride
+			if ride.scroll_speed != 225 or ride.duration != 36:
+				fail("Runtime did not load225px/s36s course")
+				return
 			# Fixed-bound witnesses start at the chosen allowed anchor; all subsequent motion is input-driven.
 			ride.position.x = float(witness.anchor_x)
 			var health: int = game.health
 			var lives: int = game.lives
 			var weapon: String = game.weapon.id
 			var next_jump := 0
-			for frame in range(5401):
+			for frame in range(ceili(float(ride.duration)*120)+1):
 				if ride.complete: break
-				var dt := minf(1.0/120,45.0-float(ride.clock))
+				var dt := minf(1.0/120,float(ride.duration)-float(ride.clock))
 				var steer_y := clampf((target_y(witness,ride.clock+dt)-ride.position.y)/(140.0*dt),-1,1)
 				var jump := false
 				if next_jump < witness.jump_presses.size() and ride.clock+dt >= float(witness.jump_presses[next_jump].at):
@@ -64,7 +67,7 @@ func checks() -> void:
 				fail("Ride witness changed weapon or fired")
 				return
 			print("PASS RIDE ",game.employee.name," ",witness.mode," x",witness.anchor_x,
-				" no damage;4 jumps;45s completion")
+				" no damage;4 jumps;",ride.duration,"s completion")
 			cases += 1
 			game.queue_free()
 			await process_frame
