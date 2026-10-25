@@ -21,6 +21,8 @@ var last_steering := Vector2.ZERO
 var active := false
 var state := "idle"
 var clock := 0.0
+var prelude_remaining := 0.0
+var prelude_duration := 26.0
 var landing_clock := 0.0
 var gag_seen := false
 var checkpoint_saved := false
@@ -41,6 +43,7 @@ var input_guard := true
 
 func attach(host: Node2D) -> void:
 	definition = JSON.parse_string(FileAccess.get_file_as_string(CONTENT))
+	prelude_duration = float(definition.story.timing.calm_prelude_seconds)
 	host.add_child(radio)
 	audio.attach(host,definition.audio.cues)
 	music.attach(host,definition.music)
@@ -55,6 +58,7 @@ func reset() -> void:
 	gag_seen = false
 	checkpoint_saved = false
 	clock = 0
+	prelude_remaining = 0
 	hazards.clear()
 	shots.clear()
 	announced.clear()
@@ -99,6 +103,7 @@ func begin(host: Node2D, retry := false) -> void:
 	active = true
 	state = "bowl"
 	clock = 0
+	prelude_remaining = prelude_duration
 	landing_clock = 0
 	checkpoint_saved = false
 	var spawn: Array = definition.layout.geometry.hero_spawn
@@ -156,6 +161,7 @@ func enter_landing(host: Node2D) -> void:
 	# Shared by survival completion and the direct post-flush playtest entry.
 	state = "landing"
 	clock = 45.0
+	prelude_remaining = 0
 	landing_clock = 0.0
 	checkpoint_saved = true
 	position = unproject(Vector2(480,385))
@@ -201,7 +207,21 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 		radio.advance(landing_clock,delta,false)
 		if radio.next_index >= radio.entries.size() and radio.current.is_empty(): enter_ride(host)
 		return
+	if prelude_remaining > 0:
+		var reading_delta := minf(delta,prelude_remaining)
+		prelude_remaining = maxf(0,prelude_remaining-reading_delta)
+		if prelude_remaining < 0.000001: prelude_remaining = 0
+		water_clock += reading_delta
+		swim_clock += reading_delta*(1.0 if steering.length() > 0.1 else 0.35)
+		host.invulnerable = maxf(0,host.invulnerable-reading_delta)
+		host.hurt_time = maxf(0,host.hurt_time-reading_delta)
+		move_hero(host,reading_delta,steering,false)
+		sync_hero(host)
+		radio.advance(prelude_duration-prelude_remaining,reading_delta,false)
+		delta -= reading_delta
+		if delta <= 0.000001: return
 	clock = minf(45.0,clock+delta)
+	if 45.0-clock < 0.000001: clock = 45.0
 	water_clock += delta*lerpf(1.0,1.8,clampf(clock/43.0,0,1))
 	swirl_angle += Flow.visual_speed(clock)*delta
 	swim_clock += delta*(1.0 if steering.length() > 0.1 else 0.35)
@@ -233,7 +253,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 		# Swimming owns this sequence: neither held nor tapped attack/jump inputs create effects.
 		debris.advance(self,host,delta)
 	sync_hero(host)
-	radio.advance(clock,delta,false)
+	radio.advance(clock+prelude_duration,delta,false)
 	if clock >= 8 and not announced.has("onset"):
 		announced.onset = true
 		audio.play("flush_onset")
@@ -256,10 +276,10 @@ func process_audio(host: Node2D, delta: float) -> void:
 	if state == "ride":
 		ride.process_audio(host,delta)
 		return
-	audio.advance(delta,host.paused or host.life_state != "alive",active and clock < 43 and host.life_state == "alive",
+	audio.advance(delta,host.paused or input_guard or host.life_state != "alive",active and clock < 43 and host.life_state == "alive",
 		not radio.current.is_empty(),clampf(clock/35.0,0,1))
 	music.advance(clock,delta,host.paused or input_guard,
-		active and clock < 45 and host.life_state == "alive" and not host.won,
+		active and prelude_remaining <= 0 and clock < 45 and host.life_state == "alive" and not host.won,
 		not radio.current.is_empty(),audio.voices.panic.playing)
 	radio.visible = active and host.life_state == "alive" and not host.paused and not host.won
 
@@ -313,7 +333,7 @@ func draw(host: Node2D) -> void:
 	host.label_at("Ready to ride: arrows / stick, Space / A to jump" if state == "landing" else "Swim: arrows / stick   Dodge the falling objects",Vector2(24,52),14,host.GOLD)
 	host.label_at("%s  HP %d/%d  LIVES %d" % [host.employee.name,host.health,host.employee.max_health,host.lives],
 		Vector2(550,27),16,host.GOLD)
-	host.label_at("%.0f / 45 s" % clock,Vector2(800,52),14,host.MINT)
+	host.label_at("%.0f / 71 s" % (clock+prelude_duration-prelude_remaining),Vector2(800,52),14,host.MINT)
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:
 		host.box(0,0,960,540,Color(0.03,0.07,0.12,0.88))

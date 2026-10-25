@@ -16,6 +16,7 @@ def read(path: str) -> dict[str, Any]:
 
 def validate_radio_gag(story: dict[str, Any]) -> None:
     """Keep the relocation attached to the responding partner within the safe opening."""
+    safe_until = float(story["timing"]["calm_prelude_seconds"]) + 8.0
     for hero, partner in (("tony", "sean"), ("sean", "tony")):
         route = story["routes"][hero]
         requests = [line for line in route if line.get("gag_action") == "hold_center"]
@@ -29,7 +30,7 @@ def validate_radio_gag(story: dict[str, Any]) -> None:
             raise ValueError(f"Partner must own the moving reply and portrait: {hero}")
         start, end = reply["slide_line_seconds"]
         if (request["at"] + request["duration"] != reply["at"] or not 0 <= start < end < reply["duration"]
-                or reply["at"] + reply["duration"] > 8):
+                or reply["at"] + reply["duration"] > safe_until):
             raise ValueError(f"Window response must finish moving during the safe opening: {hero}")
 
 
@@ -68,10 +69,17 @@ def build() -> dict[str, Any]:
             boundary += wave["duration"]
         if abs(boundary - 35.0) > 1e-6:
             raise ValueError(f"Rain must end at 35 seconds: {mode}")
+    safe_until = float(story["timing"]["calm_prelude_seconds"]) + 8.0
     for hero in ("tony", "sean"):
+        previous_end = 0.0
         for line in story["routes"][hero]:
-            if line.get("gag") and line["at"] + line["duration"] > 8:
-                raise ValueError("The center overlay must clear before hazards")
+            if line["at"] < previous_end or line["duration"] <= 0:
+                raise ValueError(f"Overlapping or empty radio line: {hero}")
+            previous_end = line["at"] + line["duration"]
+            if line.get("event") in ("arrival", "flush") and previous_end > safe_until:
+                raise ValueError("Opening dialogue must finish before hazards")
+            if line.get("event") == "drain" and previous_end > story["timing"]["landing_start"]:
+                raise ValueError("Drain dialogue must finish before landing")
     art = read("assets/world/level-two-flush-v1/manifest.json")
     revision = read("assets/world/level-two-flush-v2/manifest.json")
     art["frames"].update(revision["frames"])

@@ -18,6 +18,9 @@ func checks() -> void:
 			var flush = game.flush
 			flush.input_guard = false
 			flush.process_audio(game,0.01)
+			assert(not flush.music.voice.playing)
+			flush.prelude_remaining = 0
+			flush.process_audio(game,0.01)
 			assert(flush.music.voice.playing)
 			var presentation: Dictionary = flush.art.landing_presentation(game.employee.id,mode == "hard",2.0)
 			assert(presentation.pose.composite_includes_board)

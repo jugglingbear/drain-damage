@@ -47,12 +47,12 @@ func checks() -> void:
 			assert(game.starter_weapon_audio.starts == shot_starts and game.weapon.id == weapon_id)
 			game.flush.begin(game,true)
 			# Survival alone reaches the landing; test-only invulnerability isolates timing from balance.
-			for frame in range(5401):
+			for frame in range(8521):
 				game.invulnerable = 10
 				game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
 			assert(game.flush.clock == 45 and game.flush.checkpoint_saved and not game.won)
 			assert(not game.flush.radio.current.is_empty())
-			for frame in range(361): game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
+			for frame in range(721): game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
 			assert(not game.won and game.flush.state == "ride")
 			assert(game.flush.hazards.is_empty() and game.flush.shots_fired == 0)
 			assert(game.flush.debris.safety_failures == 0)

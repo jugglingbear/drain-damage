@@ -12,6 +12,7 @@ func checks() -> void:
 	game.set_physics_process(false)
 	game.begin_level_two()
 	var flush = game.flush
+	flush.prelude_remaining = 0
 	flush.clock = 10
 	flush.position = Vector2(250,0)
 	var item := {"id":"impact-test","prop":"corn","at":8.0,"duration":2.0,"impact_at":10.0,
@@ -50,6 +51,7 @@ func checks() -> void:
 	flush.enter_landing(game)
 	assert(flush.audio.voices.values().all(func(voice: AudioStreamPlayer) -> bool: return not voice.playing or voice == flush.audio.voices.radio))
 	flush.begin(game,true)
+	flush.prelude_remaining = 0
 	flush.clock = 34.99
 	flush.position = Vector2(180,0)
 	flush.tick(game,0.02,Vector2.RIGHT,false,false)

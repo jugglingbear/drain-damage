@@ -17,5 +17,39 @@
   "lifecycle": "Pause track with paused simulation; mute must preserve timeline position without restarting or backlog. If stopping muted playback for efficiency, seek current gameplay elapsed time on unmute. Stop/dispose on death/title/sceneexit; restart on retry. Music completion must not drive gameplay phase timing.",
   "preservation": "All five22s auditions and old source hashes unchanged; full45s PCM registered as0094.6, original0094.2 retained.",
   "engineering_remaining": "Human listening/mix review; runtime synchronization, lifecycle, packaged checks and permanent-slot freshness pass.",
-  "validation": "Decoded Vorbis exactly1440000frames/45s at32kmono; measured-21.06LUFS/-4.87dBTP; source syntax/hygiene and originals hashes pass. Subjective listening and in-game mix not verified."
+  "validation": "Decoded Vorbis exactly1440000frames/45s at32kmono; measured-21.06LUFS/-4.87dBTP; source syntax/hygiene and originals hashes pass. Subjective listening and in-game mix not verified.",
+  "timing_revision_103": {
+    "status": "Proposed103 timing reviewed by Audio; Engineering runtime implementation and tests pending",
+    "date": "2026-10-25",
+    "prelude_seconds": 26,
+    "music_duration_seconds": 45,
+    "clocks": "Wall times below mean active unpaused sequence time, not real elapsed time. Prelude/dialogue clock advances0\u201326 while simulation/music clock remains0; then music_time=sequence_time-26.",
+    "anchors": {
+      "arrival_dialogue": [
+        0,
+        16
+      ],
+      "flush_exchange": [
+        16,
+        34
+      ],
+      "music_start": 26,
+      "hazards_start": 34,
+      "drain_start": 61,
+      "suction_burble": [
+        66,
+        69
+      ],
+      "music_closing_hit": 69,
+      "music_end_and_landing_dialogue_start": 71,
+      "landing_dialogue_end_and_ride_start": 77
+    },
+    "music_phases": "Quiet intro26\u201334, main34\u201351, layered51\u201361, peak61\u201369, closing69\u201371. Original45s bytes/pitch/fade unchanged.",
+    "prelude_gate": "Explicitly pass active=false to music.advance during prelude. time=0 alone is insufficient: current helper starts whenever active. At sequence26 enable once and pass simulation/music clock0, never wall clock26.",
+    "water": "One steady current voice throughout prelude, pitch1 and progression0. Keep radio ducking during text. Continue same voice into simulation; no stop/restart at26. Natural existing stop at simulation43/sequence69 may use a brief50\u2013100ms gain release to avoid a noise cut; optional runtime fade only, no new asset required.",
+    "pause_mute_retry": "Freeze both sequence and simulation clocks during pause/input guard. Music unmute seeks simulation time only after26; before26 stays silent. Full flush retry resets both clocks and dedup; direct landing checkpoint skips prelude/flushmusic/suction and plays landing dialogue only.",
+    "priority": "Existing music strongest-of radio8dB/panic6dB duck remains correct. Radio16\u201334 overlaps quiet intro26\u201334 naturally. Do not stretch radio chirps with text duration; one chirp per exchange. Suppress outgoing boss/level music during calm prelude.",
+    "end": "Music reaches natural end71; landing voice/text71\u201377 needs no extra music or extended fade. At ride entry stop old flush voices before starting ride current; no doubled bed.",
+    "review_scope": "Read-only inspection of current flush_music.gd, level_two_flush.gd, flush_radio.gd and flush audio helper. No updated runtime executed. Asset SHA verified unchanged."
+  }
 }
