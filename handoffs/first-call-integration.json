@@ -1,156 +1,41 @@
 {
   "schema_version": 1,
-  "build": "Prototype 100 / 0.100.0",
-  "created_at": "2026-10-24T21:50:58.632685-07:00",
+  "build": "Prototype 101 / 0.101.0",
+  "created_at": "2026-10-25T09:31:35.314605-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "7dd7252beab25f174205b5327ef7346814600671",
-  "asset_commits": [
-    "6ffbe9b",
-    "46b14e3"
-  ],
-  "status": "22 final packaged suites and 41 Python tests pass; ready for prototype review with documented planning hitches and human/capture gaps",
-  "app": "builds/Prototype-100/Drain Damage.app",
-  "archive": "builds/history/Prototype-100.zip",
-  "archive_sha256": "c06ed89bff700ef2c86678c7a9da89eac72742dd1e4f877de46116c17051d057",
-  "source_snapshot": "builds/source-100",
-  "previous_build_preserved": "Prototype 99 app, ZIP and source snapshot remain intact, along with earlier builds",
+  "source_commit": "534b4b9b0c161c06fc4d1b52d92f9e990597eab4",
+  "test_commit": "7285705",
+  "status": "Focused visibility fix built and packaged; nine deterministic packaged suites pass; visual review and planner limitations remain",
+  "app": "builds/Prototype-101/Drain Damage.app",
+  "archive": "builds/history/Prototype-101.zip",
+  "archive_sha256": "67213cc6bb3dfb5bba359f2f8c96add364603bea89c913ccbde5e53fe2d88f80",
+  "source_snapshot": "builds/source-101",
+  "previous_build_preserved": "Prototype 100 app, archive and source snapshot remain intact",
+  "baseline": "Prototype 100 gameplay, assets, audio, dialogue and planning are unchanged; historical delivery at ae67791:handoffs/first-call-integration.json",
   "changes": [
-    "Playable hero explicitly requests moving the chat window; partner portrait/name/reply remain together throughout the move.",
-    "Eight authored concave water phases stay registered to a 60-screen-pixel recessed throat; hero, props, warnings and shadows share the surface projection.",
-    "Short 110px board with authored unarmed Tony standing surf and Sean seated astride poses, normal/Hard; shared settle/bob/tilt on both landing entries.",
-    "Nine retained seeded debris types include an 80px-wide non-graphic dead hamster with size-aware warning, swept contact and swallow radius.",
-    "Persistent floating contact damage uses shared 1.5s immunity; full steering and harm both stop at35. No firing or jumping.",
-    "Movement annulus smoothly shrinks during8..35 from162..316.8 to90..210; deliberate escape routes preserve full wave counts.",
-    "Selected Air Running Out expands to45 seconds; one non-looping voice follows simulation clock, pauses, seeks after mute, restarts on retry, ducks for radio/burble and skips direct landing."
+    "Active swimmers draw after opaque drain foreground and debris so the upper body remains visible.",
+    "Chest waterline clipping is preserved; at seconds 40\u201343 the hero still descends behind the drain lip."
   ],
-  "radio_dialogue": {
-    "tony": [
-      {
-        "who": "tony",
-        "text": "Sean, move your chat window down!",
-        "at": 2.5,
-        "duration": 2
-      },
-      {
-        "who": "sean",
-        "text": "Oh! Sorry. How\u2019s that?",
-        "at": 4.5,
-        "duration": 3.5
-      }
-    ],
-    "sean": [
-      {
-        "who": "sean",
-        "text": "Tony, move your chat window! I can\u2019t see!",
-        "at": 2.5,
-        "duration": 2
-      },
-      {
-        "who": "tony",
-        "text": "Sure, buddy. Down here?",
-        "at": 4.5,
-        "duration": 3.5
-      }
-    ]
-  },
-  "radio_move_seconds": [
-    5.9,
-    6.7
-  ],
-  "partner_response_visible_until": 8,
-  "rain": {
-    "interval": [
-      8,
-      35
-    ],
-    "easy": {
-      "waves": 10,
-      "fall_seconds": 2.7,
-      "stages": [
-        2,
-        3,
-        3
-      ],
-      "total": 26
-    },
-    "normal": {
-      "waves": 12,
-      "fall_seconds": 2.25,
-      "stages": [
-        3,
-        4,
-        5
-      ],
-      "total": 48
-    },
-    "hard": {
-      "waves": 15,
-      "fall_seconds": 1.8,
-      "stages": [
-        4,
-        6,
-        7
-      ],
-      "total": 85
-    },
-    "types": 9,
-    "hamster_radius": 40,
-    "ordinary_radius": 22,
-    "hero_radius": 14
-  },
-  "planner": {
-    "method": "Verify a deliberate old-hazard route first; place complete incoming cohort only when all its 120Hz swept contacts against the fixed route are absent. Reuse prior route only with matching state and actual resimulation.",
-    "recovery": "Only baseline-confirmed prior-warning unavoidable contact; simulate actual shared immunity and all old hazards. Incoming contact must be zero even while immune. Recovery is labeled separately from zero-damage proof.",
-    "scope": "120Hz physical substeps at 60/120Hz outer cadence; sampled tests are not a universal human-difficulty guarantee.",
-    "quiet_guided_median_ms": 14.86,
-    "quiet_guided_max_ms": 30.589,
-    "worst_sampled_stress_ms": 314.39,
-    "remaining": "Optimize off-witness planning stalls; no smooth 60 fps claim. Do not weaken collision/count guarantees."
-  },
-  "audio": {
-    "music": "DD-S0094 / selected DD-S0094.2 / full arrangement DD-S0094.6",
-    "asset": "assets/audio/music/flush-air-running-out-v1.ogg",
-    "duration_seconds": 45,
-    "gain_db": -8,
-    "radio_duck_db": -8,
-    "burble_duck_db": -6,
-    "duck_rule": "strongest, not stacked",
-    "voices": "five effects plus one music",
-    "current_slots": 91,
-    "rejected_slots": "DD-S0092/0093 retired; originals and all auditions retained",
-    "listening_review": false
-  },
   "checks": {
-    "packaged_suites": 22,
-    "results": "builds/verification-100/final-results.json",
-    "python_tests": 41,
-    "python_log": "builds/verification-100/python.log",
-    "build_log": "builds/verification-100/build.log",
-    "packaged_escape": "18 hero-speed/mode/seed cases plus identical-ledger idle counterfactuals, zero guided damage",
-    "source_matrix": "38 guided/policy cases plus 18 counterfactuals and unit checks; details in Level Design handoff",
-    "direct_entries": "Actual exported app: Level2 Tony Normal and Level2-landing Sean Hard passed headlessly",
-    "signature_archive_startup": "passed"
-  },
-  "source_art_review": {
-    "status": "107 source regions and four alpha landing compositions verified; not running-game visual review",
-    "manifest": "assets/world/level-two-flush-v3/manifest.json"
+    "packaged_suites": 9,
+    "visibility_cases": 12288,
+    "results": "builds/verification-101/final-results.json",
+    "lifecycle_recheck": "builds/verification-101/lifecycle-seed42-results.json",
+    "lifecycle_seed": 42,
+    "direct_entries": "Exported Level2 Sean Hard and Level2-landing Tony Normal passed headlessly",
+    "signature_archive": "passed",
+    "audio_freshness": "91 slots passed; no audio changes"
   },
   "limitations": [
-    "Occasional off-witness planning hitches up to 314.390ms in sampled stress cases remain a documented prototype performance gap.",
-    "No game window or actual gameplay screenshot captured; human animation, balance and listening review pending.",
-    "Full log ride and Level 3 remain deferred.",
-    "Headless logs retain environment user-log/certificate/editor-settings and shutdown-resource warnings; passing suites have no script/parse failures."
+    "Initial uncontrolled-random-seed lifecycle run failed normal cohort07 placement. Fixed-seed42 lifecycle passes; original failure remains recorded, with no universal-seed guarantee or planner fix claimed.",
+    "Prototype100 off-route planner hitches remain unchanged.",
+    "No game window opened or actual gameplay screenshots captured; human visual review pending."
   ],
   "capture_gap": {
-    "chapter": "storybook/100-flush-continuity-and-debris/",
+    "chapter": "storybook/101-active-swimmer-visibility/",
     "actual_capture": false,
-    "reason": "No new game-window authorization; original builds preserved for later capture"
+    "reason": "No foreground game permission; both builds preserved"
   },
-  "contributors": [
-    "handoffs/level-two-flush-art-v3.json",
-    "handoffs/level-two-flush-layout-v3.json",
-    "handoffs/level-two-flush-mechanics-v3.json",
-    "handoffs/flush-countdown-music.json"
-  ]
+  "next_scope": "Authorized 30\u201360second movement-only ride slice is separate subsequent work; full ride, combat and Level3 remain deferred."
 }
