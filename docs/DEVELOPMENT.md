@@ -58,6 +58,8 @@ make run LEVEL=2-landing HERO=sean DIFFICULTY=hard
 Both entries initialize a fresh run without a prior save. Either accepts `HERO=tony|sean`,
 `DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the landing dialogue and
 “Log ride under construction” boundary; the full log ride is not playable yet.
+During the flush, steer to swim and dodge; firing and jumping are disabled. Tony uses freestyle and Sean uses
+breaststroke. Weapons remain equipped for later gameplay but cannot fire in this sequence.
 Use `make run-check` with the same selectors to verify initialization without opening a window.
 
 ## Where things live

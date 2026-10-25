@@ -14,27 +14,25 @@ func checks() -> void:
 	var flush = game.flush
 	flush.clock = 10
 	flush.position = Vector2(250,0)
-	var hard := {"id":"test-hard","at":8.0,"warning_seconds":1.0,"lifetime_seconds":20.0,
-		"radius_pixels":22.0,"kind":"hard","pos":Vector2(250,0),"hp":999999}
-	flush.hazards.append(hard)
+	var item := {"id":"impact-test","prop":"corn","at":8.0,"duration":2.0,"impact_at":10.0,
+		"pos":Vector2(250,0),"impact_pos":Vector2(250,0),"height":150.0,"impacted":false}
+	flush.hazards.append(item)
 	game.invulnerable = 0
-	flush.jump_height = 25
 	var health: int = game.health
-	flush.step_hazards(game,0)
-	assert(game.health == health,"Jump clearance avoids low debris")
-	flush.jump_height = 0
-	flush.step_hazards(game,0)
-	assert(game.health == health-1,"Grounded contact takes exactly one damage")
-	flush.step_hazards(game,0)
+	flush.debris.next_wave = flush.definition.layout.difficulty.normal.waves.size()
+	flush.debris.advance(flush,game,0)
+	assert(game.health == health-1,"Water impact takes exactly one damage")
+	flush.debris.advance(flush,game,0)
 	assert(game.health == health-1,"Shared immunity prevents repeated contact damage")
-	flush.shots.append({"pos":Vector2(200,0),"dir":Vector2.RIGHT,"distance":0.0})
-	flush.step_shots(game,0.2)
-	assert(hard.hp == 999999 and flush.shots.is_empty(),"Hard debris absorbs shots without breaking")
-	flush.hazards.clear()
-	flush.move_hero(game,0.1,Vector2.ZERO,true)
-	assert(flush.jump_height > 24 and not flush.position.is_equal_approx(Vector2(250,0)))
+	flush.clock = 10.36
+	game.invulnerable = 0
+	flush.debris.advance(flush,game,0)
+	assert(game.health == health-1,"Floating debris becomes harmless after its impact window")
+	flush.clock = 35
+	flush.debris.advance(flush,game,0.1)
+	assert(flush.hazards.size() == 1 and item.pos.length() < 250,"Final drain retains and pulls floating objects")
 	flush.audio.advance(0.1,false,true,true)
-	assert(flush.audio.voices.size() == 4 and flush.audio.voices.current.playing)
+	assert(flush.audio.voices.size() == 5 and flush.audio.voices.current.playing)
 	var audio_clock: float = flush.audio.clock
 	flush.audio.advance(1,true,true,true)
 	assert(flush.audio.clock == audio_clock and flush.audio.voices.current.stream_paused)
@@ -49,7 +47,27 @@ func checks() -> void:
 	assert(flush.audio.voices.current.playing)
 	flush.enter_landing(game)
 	assert(flush.audio.voices.values().all(func(voice: AudioStreamPlayer) -> bool: return not voice.playing or voice == flush.audio.voices.radio))
+	flush.begin(game,true)
+	flush.clock = 39.99
+	flush.state = "drain"
+	var burbles: int = flush.audio.starts.get("suction_burble",0)
+	flush.tick(game,0.02,Vector2.ZERO,true,true)
+	assert(flush.sink_depth > 0 and flush.audio.starts.suction_burble == burbles+1)
+	var depth: float = flush.sink_depth
+	var water: float = flush.water_clock
+	game.set_paused(true)
+	flush.tick(game,1,Vector2.ONE,true,true)
+	assert(flush.sink_depth == depth and flush.water_clock == water)
+	game.set_paused(false)
+	for frame in range(360): flush.tick(game,1.0/120,Vector2.ZERO,true,true)
+	assert(flush.sink_depth == 1 and flush.audio.starts.suction_burble == burbles+1)
+	assert(flush.shots_fired == 0 and game.shots.is_empty())
+	assert(game.life_state == "alive" and game.lives == 3)
+	var weapon_id: String = game.weapon.id
+	flush.reset()
+	game.reset_game()
+	assert(not flush.active and game.weapon.id == weapon_id)
 	game.queue_free()
 	await process_frame
-	print("PASS: flush jump clearance, shared contact immunity, hard debris, current and bounded pause/mute audio")
+	print("PASS: flush shared contact immunity, harmless drifting debris, bounded audio, paused suction and preserved loadout")
 	quit()

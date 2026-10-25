@@ -62,9 +62,7 @@ The page includes current mapped audio and reset-phase previews of the three syn
 oscillator's carried phase can differ. All 17 existing weapon candidates and their repeated demonstrations are
 registered under the weapon slots.
 Other historical source archives remain preserved; register further candidates under the relevant slot when auditioning
-them. The older [weapon auditions](../drain-damage-all-weapon-auditions.html) also remain available. Level 2 has no
-assigned
-sounds yet.
+them. The older [weapon auditions](../drain-damage-all-weapon-auditions.html) also remain available. Level 2 includes the flush current, onset, surge, debris, radio and suction-burble cues.
 Add future sections to the generator's `SECTIONS` and assign their slots when those levels are implemented.
 
 The older `audio/catalog.json` tracks delivery history and is incomplete; use this registry for current audition IDs.

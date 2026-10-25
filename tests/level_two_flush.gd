@@ -37,23 +37,12 @@ func checks() -> void:
 			game.respawn_after_death()
 			assert(game.health == game.employee.max_health and game.lives == 1 and game.flush.clock == 0)
 			assert(game.flush.radio.entries.all(func(line: Dictionary) -> bool: return line.event != "arrival"))
-			# Actual cadence must produce two accepted hits, without requiring any kill to finish.
-			game.flush.position = Vector2(250,0)
-			game.flush.aim = Vector2.RIGHT
-			game.flush.clock = 8
-			var target := {"id":"test-soft","at":0.0,"warning_seconds":0.0,"lifetime_seconds":20.0,
-				"radius_pixels":22.0,"kind":"soft","pos":Vector2(290,0),"hp":24}
-			game.flush.hazards.clear()
-			game.flush.hazards.append(target)
-			game.invulnerable = 10
-			game.flush.tick(game,0.04,Vector2.ZERO,false,true)
-			game.flush.tick(game,0.04,Vector2.ZERO,false,true)
-			assert(game.flush.shots_fired == 1 and target.hp == 24-game.weapon.damage)
-			for frame in range(50):
-				# Hold the firing lane to isolate weapon cadence from current-driven aim drift.
-				game.flush.position = Vector2(250,0)
-				game.flush.tick(game,0.01,Vector2.ZERO,false,true)
-			assert(target.hp <= 0 and game.flush.hazards.is_empty())
+			# Held attacks and jump cannot create weapons, effects or invisible evasion while swimming.
+			var weapon_id: String = game.weapon.id
+			var shot_starts: Dictionary = game.starter_weapon_audio.starts.duplicate()
+			for frame in range(120): game.flush.tick(game,1.0/120,Vector2.RIGHT,true,true)
+			assert(game.flush.shots.is_empty() and game.flush.shots_fired == 0 and game.flush.jump_height == 0)
+			assert(game.starter_weapon_audio.starts == shot_starts and game.weapon.id == weapon_id)
 			game.flush.begin(game,true)
 			# Survival alone reaches the landing; test-only invulnerability isolates timing from balance.
 			for frame in range(5401):
@@ -64,6 +53,9 @@ func checks() -> void:
 			for frame in range(361): game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
 			assert(game.won)
 			assert(game.flush.hazards.is_empty() and game.flush.shots_fired == 0)
+			assert(game.flush.debris.safety_failures == 0)
+			assert(game.flush.debris.spawned == {"easy":16,"normal":36,"hard":60}[mode])
+			assert(game.weapon.id == weapon_id)
 			game.reset_game()
 			assert(game.flush.active and game.health == game.employee.max_health and game.lives == 3)
 			game.queue_free()

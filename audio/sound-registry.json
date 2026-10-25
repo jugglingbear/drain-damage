@@ -1302,7 +1302,7 @@
         "assets/audio/sfx/level-two-flush-v1/debris-break.wav"
       ],
       "source": "data/level-two-flush.json#/audio",
-      "status": "current"
+      "status": "retired"
     },
     {
       "key": "level-two-flush/radio_chirp",
@@ -1319,6 +1319,27 @@
       "name": "The Flush \u2014 radio chirp",
       "paths": [
         "assets/audio/sfx/level-two-flush-v1/radio-chirp.wav"
+      ],
+      "source": "data/level-two-flush.json#/audio",
+      "status": "current"
+    },
+    {
+      "key": "level-two-flush/suction_burble",
+      "id": "DD-S0091",
+      "uuid": "5028364c-0616-4453-90ab-1c01f30ec696",
+      "alternatives": [
+        {
+          "id": "DD-S0091.1",
+          "path": "assets/audio/sfx/level-two-flush-v2/suction-burble.wav",
+          "label": "Original panicked suction burble",
+          "provenance": "Original deterministic sample-free synthesis; no human recordings, voice models or third-party samples. Fictional nonverbal effect, not an imitation of Tony, Sean or another person.",
+          "generation_prompt": "Generic panicked burbling/drowning scream fading away while the fictional hero is pulled down the drain and disappears. Three seconds, no dialogue, no actual person voice imitation."
+        }
+      ],
+      "section": "Level 2",
+      "name": "The Flush \u2014 suction burble",
+      "paths": [
+        "assets/audio/sfx/level-two-flush-v2/suction-burble.wav"
       ],
       "source": "data/level-two-flush.json#/audio",
       "status": "current"

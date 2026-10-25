@@ -86,7 +86,10 @@ def discover() -> dict[str, dict[str, Any]]:
         add(key, section, name, [], "scripts/game.gd: play_tone / fill_audio")
         slots[key]["tone"] = [float(frequency), float(duration)]
     flush_audio = json.loads((ROOT / "handoffs/level-two-flush-audio.json").read_text())
+    flush_audio["cues"].append(json.loads((ROOT / "handoffs/level-two-flush-audio-v2.json").read_text())["cue"])
     for cue in flush_audio["cues"]:
+        if cue["event"] == "debris_break":
+            continue  # Swimming has no breakable props; retain the old slot and audition as retired.
         add(f"level-two-flush/{cue['event']}", "Level 2", f"The Flush — {cue['event'].replace('_', ' ')}",
             [cue["path"]], "data/level-two-flush.json#/audio")
     return slots
