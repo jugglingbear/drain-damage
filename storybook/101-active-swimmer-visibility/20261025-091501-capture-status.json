@@ -11,19 +11,19 @@
   "evidence_boundary": "Engineering reports supplied screenshot shows Prototype100 defect, not Prototype101. Desktop-containing screenshot is not imported as a game-only capture.",
   "remaining": [
     "Uncontrolled-seed planner failure; deterministic seed42 pass does not resolve it",
-    "Actual game-only capture and human visual verification",
-    "Source snapshot completion confirmation"
+    "Actual game-only capture and human visual verification"
   ],
   "capture_gap": "No game-window or capture permission; no Prototype101 gameplay screenshot. Preserve Prototype100 originals.",
-  "source_checks": "Eight focused packaged suites pass, including 12,288 visibility cases. Ninth lifecycle suite passes with seed42 for both heroes/all modes. Initial uncontrolled-seed Normal cohort07 planner failure remains open; no universal seed guarantee. Seed pin is test-only, separate commit pending identification.",
+  "source_checks": "Eight focused packaged suites pass, including 12,288 visibility cases. Ninth lifecycle suite passes with seed42 for both heroes/all modes. Initial uncontrolled-seed Normal cohort07 planner failure remains open; no universal seed guarantee. Seed pin is test-only, separate commit 7285705.",
   "finalized_at": "2026-10-25T09:31:52-07:00",
   "app_path": "builds/Prototype-101/Drain Damage.app",
   "archive_path": "builds/history/Prototype-101.zip",
   "source_snapshot": "builds/source-101",
-  "source_snapshot_status": "Directory exists; Engineering reports snapshot preservation underway, completeness not independently verified",
+  "source_snapshot_status": "Engineering confirms complete: 1450 files hydrated. SOURCE-COMMIT.txt independently checked against runtime source.",
   "validation_records": [
     "builds/verification-101/final-results.json",
     "builds/verification-101/lifecycle-seed42-results.json"
   ],
-  "delivery_checks": "Engineering reports signature/archive and both direct entries pass. Archive SHA independently verified."
+  "delivery_checks": "Engineering reports signature/archive and both direct entries pass. Archive SHA independently verified.",
+  "test_only_seed_pin_commit": "7285705"
 }

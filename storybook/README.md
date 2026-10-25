@@ -2463,7 +2463,8 @@ Finalization time and the verified archive SHA-256 are in the metadata.
 ## 101 — Active swimmer visibility — October 25, 2026
 
 **Build:** Prototype 101 / 0.101.0, runtime source `534b4b9b0c161c06fc4d1b52d92f9e990597eab4`. Archive SHA-256
-independently verified; app and source snapshot directory exist. Snapshot completeness awaits Engineering confirmation.
+independently verified; app and source snapshot directory exist. Engineering confirms all 1,450 snapshot files hydrated;
+the source marker was checked.
 
 The active swimmer is drawn after debris and drain foreground, fixing concealment by the opaque water patch around 20
 seconds. Chest clipping and the waterline remain; scripted submersion at 40–43 seconds stays behind the lip. Existing
@@ -2472,7 +2473,7 @@ assets and dialogue are unchanged. Ride work is not part of this build.
 **Validation:** Nine deterministic packaged suites pass: eight focused suites include 12,288 visibility cases; the ninth
 lifecycle suite passes with seed 42 for both heroes and all modes. Engineering reports signature/archive and both direct
 entries pass. The original result manifest retains the initial lifecycle failure; the separate seed-42 result records
-the passing rerun. The seed pin is test-only and will have a separate commit.
+the passing rerun. The test-only seed pin is recorded in commit 7285705.
 
 **Open gap:** The initial uncontrolled-seed lifecycle run failed at Normal cohort07 in the planner. Fixing the test seed
 makes verification reproducible; it does not fix or disprove that planner failure and is not a universal seed guarantee.
