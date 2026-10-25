@@ -62,6 +62,7 @@ func _ready() -> void:
 	# Base _ready dispatched reset_game, so the mixed geometry is already configured.
 
 func reset_game() -> void:
+	var retry_ride := flush.active and flush.checkpoint_saved
 	var retry_flush := flush.active
 	flush.reset()
 	boss_intro.reset(true)
@@ -80,7 +81,9 @@ func reset_game() -> void:
 	respawn_origin = 85.0
 	if music_director != null: music_director.play_track("level")
 	super.reset_game()
-	if retry_flush: flush.begin(self)
+	if retry_flush:
+		flush.begin(self)
+		if retry_ride: flush.enter_ride(self)
 
 func reset_observation() -> void:
 	# Parent respawn calls this after restoring the hero/dispenser; reset once beforehand instead.
@@ -174,9 +177,11 @@ func reset_observation() -> void:
 func respawn_after_death() -> void:
 	if flush.active:
 		if lives <= 0: return
+		var retry_ride := flush.checkpoint_saved
 		health = employee.max_health
 		invulnerable = 3.0
 		flush.begin(self,true)
+		if retry_ride: flush.enter_ride(self)
 		return
 	if lives <= 0: return
 	respawn_origin = respawn_point.x
@@ -808,6 +813,7 @@ func hurt_player() -> void:
 			flush.radio.clear()
 			flush.audio.stop()
 			flush.music.stop()
+			flush.ride.audio.stop()
 		return
 	player = skitterling.constrain(player,PLAYER_SIZE)
 	player = clogfather.constrain(player,PLAYER_SIZE)
@@ -846,7 +852,8 @@ func step_death(delta: float) -> void:
 	death_popup_guard = 0.35
 	resume_button.disabled = true
 	title_button.disabled = true
-	resume_button.text = "Retry Flush" if lives == 0 else "Continue at Bowl"
+	resume_button.text = ("Retry Ride" if lives == 0 else "Continue at Landing") if flush.checkpoint_saved \
+		else ("Retry Flush" if lives == 0 else "Continue at Bowl")
 	resume_button.position = Vector2(245,326)
 	title_button.position = Vector2(245,416)
 	style_pause_buttons()

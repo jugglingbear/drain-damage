@@ -5,6 +5,8 @@ const Audio = preload("res://scripts/level_two_flush_audio.gd")
 const Flow = preload("res://scripts/flush_flow.gd")
 const Debris = preload("res://scripts/flush_debris.gd")
 const Art = preload("res://scripts/flush_art.gd")
+const Ride = preload("res://scripts/level_two_ride.gd")
+var ride := Ride.new()
 const Music = preload("res://scripts/flush_music.gd")
 const CONTENT := "res://data/level-two-flush.json"
 var definition: Dictionary = {}
@@ -43,9 +45,11 @@ func attach(host: Node2D) -> void:
 	audio.attach(host,definition.audio.cues)
 	music.attach(host,definition.music)
 	art.configure(definition.art)
+	ride.attach(host)
 	radio.transmission.connect(func() -> void: audio.play("radio_chirp"))
 
 func reset() -> void:
+	ride.audio.stop()
 	active = false
 	state = "idle"
 	gag_seen = false
@@ -170,17 +174,32 @@ func enter_landing(host: Node2D) -> void:
 	radio.advance(0,0,false)
 	sync_hero(host)
 
+func enter_ride(host: Node2D) -> void:
+	state = "ride"
+	checkpoint_saved = true
+	radio.clear()
+	audio.stop()
+	music.stop()
+	ride.begin(host)
+	input_guard = true
+
 func sync_hero(host: Node2D) -> void:
+	if state == "ride":
+		ride.sync_hero(host)
+		return
 	host.player = project(position)-Vector2(13,46)-Vector2(0,jump_height*projection())
 	host.current_aim = aim
 	host.grounded = jump_height <= 0
 
 func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing: bool) -> void:
 	if not active or host.paused or host.life_state != "alive" or host.won: return
+	if state == "ride":
+		ride.tick(host,delta,steering,_jumping)
+		return
 	if state == "landing":
 		landing_clock += delta
 		radio.advance(landing_clock,delta,false)
-		if radio.next_index >= radio.entries.size() and radio.current.is_empty(): finish(host)
+		if radio.next_index >= radio.entries.size() and radio.current.is_empty(): enter_ride(host)
 		return
 	clock = minf(45.0,clock+delta)
 	water_clock += delta*lerpf(1.0,1.8,clampf(clock/43.0,0,1))
@@ -234,6 +253,9 @@ func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool) ->
 	host.animation_time += delta
 
 func process_audio(host: Node2D, delta: float) -> void:
+	if state == "ride":
+		ride.process_audio(host,delta)
+		return
 	audio.advance(delta,host.paused or host.life_state != "alive",active and clock < 43 and host.life_state == "alive",
 		not radio.current.is_empty(),clampf(clock/35.0,0,1))
 	music.advance(clock,delta,host.paused or input_guard,
@@ -251,6 +273,7 @@ func finish(host: Node2D) -> void:
 	host.dialogue.release_guard = 0.2
 
 func dispose() -> void:
+	ride.audio.dispose()
 	audio.dispose()
 	music.dispose()
 	radio.clear()
@@ -270,6 +293,9 @@ func draw_bowl_actors(host: Node2D) -> void:
 		art.draw_frame(host,art.frame_at("burble",clock-40),project(Vector2.ZERO))
 
 func draw(host: Node2D) -> void:
+	if state == "ride":
+		ride.draw(host,self)
+		return
 	host.draw_set_transform(Vector2.ZERO)
 	if clock >= 43:
 		draw_frame(host,"landing")
@@ -284,7 +310,7 @@ func draw(host: Node2D) -> void:
 		draw_bowl_actors(host)
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("THE FLUSH",Vector2(24,27),22,host.MINT)
-	host.label_at("Swim: arrows / stick   Dodge the falling objects",Vector2(24,52),14,host.GOLD)
+	host.label_at("Ready to ride: arrows / stick, Space / A to jump" if state == "landing" else "Swim: arrows / stick   Dodge the falling objects",Vector2(24,52),14,host.GOLD)
 	host.label_at("%s  HP %d/%d  LIVES %d" % [host.employee.name,host.health,host.employee.max_health,host.lives],
 		Vector2(550,27),16,host.GOLD)
 	host.label_at("%.0f / 45 s" % clock,Vector2(800,52),14,host.MINT)
