@@ -2,11 +2,12 @@
 
 **Date:** October 20, 2026 (America/Los_Angeles)
 
-**Owner:** Storyboarding owns narrative; Engineering owns the authorized short flush implementation.
+**Owner:** Storyboarding owns narrative; Engineering owns the authorized flush and first ride slice.
 
 **Status:** October 24: short playable flush delivered in Prototype 98, with swimming and presentation revisions
 through Prototype 100.
-Full log ride and level three remain deferred.
+October 25: Engineering relays PM authorization for the first 30–60 seconds of the ride. Full ride and level three
+remain deferred. New dialogue requires Sean’s review before integration.
 
 ## Current production scope
 
@@ -23,13 +24,29 @@ falling objects on Easy/Normal/Hard. Control and damage end together at 35 secon
 board; Tony stands in a surfing pose. The partner's chat window moves during the partner's response. The selected
 45-second “Air Running Out” arrangement follows the flush clock and ends at the landing.
 The [current integration record](../handoffs/first-call-integration.json) documents validation and limitations.
-Live animation, listening, human balance review and occasional planning hitches remain open. The ride proposals below
-are still deferred.
+Live animation, listening, human balance review and occasional planning hitches remain open.
+The October 25 authorization below covers only the first movement-and-dodging ride slice.
 
 Only the selected hero enters. Support stays outside on radio; portal origin and BJ involvement remain unresolved.
-The harmless landing completes the flush and ends at an honest “Log ride under construction” boundary. The full ride,
-its obstacle/wave systems and level three remain deferred; their descriptions below are future proposals.
+The harmless landing completes the flush and preserves its checkpoint. The existing landing exchange leads into the
+first ride slice; a ride retry returns here without replaying the flush. Full-course waves and level three remain deferred.
 Earlier first-level portal authorization remains in effect. No game-opening permission follows from this scope.
+
+## October 25 authorized ride slice
+
+Engineering relays Sean’s approval through PM for 30–60 seconds of forced-forward riding after the flush.
+The slice covers movement and dodging: steer around tall supports, jump low barriers and clear gaps. Preserve the
+landing checkpoint so a ride failure does not repeat the flush. Only the selected hero rides; the partner remains on
+radio. Use calm teaching stretches and the existing compact overlay, with no new overlay gag.
+
+This authorization supersedes the ride hold above only for this short slice. The full 3–4-minute ride, level three
+and combat remain deferred; weapon behavior beyond this slice is undecided. Earlier combat and wave suggestions
+below are future proposals, not requirements for this delivery.
+
+Sean requested review before any dialogue changes. The
+[ride dialogue proposal](../handoffs/level-two-ride-story.json) is explicitly unapproved and must not be integrated
+until he approves it. Existing landing and flush dialogue remains unchanged. Teaching cues must also be readable
+through the environment; no obstacle may require reading a radio line to survive.
 
 ## Selected direction
 
@@ -224,8 +241,8 @@ See [the ending contract](../handoffs/clogfather-portal-story.json) and canonica
 
 ## Responsibilities for current and future work
 
-PM coordinates scope and Engineering owns the active short flush integration. The responsibilities below apply to
-that authorized slice only; full ride and level-three work still require a later start instruction.
+PM coordinates scope and Engineering owns the flush and first ride slice. The responsibilities below apply to
+those authorized slices; full ride, combat and level-three work still require a later start instruction.
 
 - Storyboarding: final route-specific aftermath, radio scripts, triggers and story continuity.
 - Level Design: bowl geometry, ride layout, obstacle patterns, wave triggers and checkpoints.

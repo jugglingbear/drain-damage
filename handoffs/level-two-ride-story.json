@@ -1,0 +1,101 @@
+{
+  "id": "level_two_ride_story_proposal_v1",
+  "date": "2026-10-25",
+  "status": "Proposed dialogue only; awaiting Sean approval; do not integrate",
+  "implementation_authorized": false,
+  "scope_authorization": "Engineering relays Sean via PM: 30–60-second forced-forward ride slice, movement/dodging only; three obstacle types; landing checkpoint preserved. Dialogue separately awaits direct review.",
+  "unchanged": "Existing flush, landing, first-level dialogue and overlay gag remain unchanged.",
+  "deferred": [
+    "Full 3–4-minute ride",
+    "Level three",
+    "Combat",
+    "Weapon decisions beyond this slice"
+  ],
+  "presentation": "Existing compact radio overlay in calm stretches before obstacles. No new gag. Timing depends on readable layout; pause with gameplay, cancel stale lines on failure/retry. Preserve landing checkpoint. Partner has no visual feed.",
+  "routes": {
+    "tony": [
+      {
+        "beat": "steer",
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "Pipe supports ahead. I’ve got room to go around.",
+        "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "jump",
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Low pipe across the water. I’m going over it.",
+        "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "gap",
+        "who": "tony",
+        "emotion": "surprised",
+        "text": "Sean, the channel ends!",
+        "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "gap_reply",
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Can you make the jump?",
+        "radio": true,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "gap_answer",
+        "who": "tony",
+        "emotion": "worried",
+        "text": "I’ll let you know when I land.",
+        "radio": false,
+        "status": "proposed_not_approved"
+      }
+    ],
+    "sean": [
+      {
+        "beat": "steer",
+        "who": "sean",
+        "emotion": "worried",
+        "text": "There are supports sticking out of the water!",
+        "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "steer_reply",
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "Take the open side, buddy.",
+        "radio": true,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "jump",
+        "who": "sean",
+        "emotion": "worried",
+        "text": "There’s a pipe right across my path!",
+        "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "jump_reply",
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Can you jump it?",
+        "radio": true,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "gap",
+        "who": "sean",
+        "emotion": "surprised",
+        "text": "There’s a gap! Why is there a gap?!",
+        "radio": false,
+        "status": "proposed_not_approved"
+      }
+    ]
+  }
+}

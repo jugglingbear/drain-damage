@@ -1,41 +1,74 @@
 {
   "schema_version": 1,
-  "build": "Prototype 101 / 0.101.0",
-  "created_at": "2026-10-25T09:31:35.314605-07:00",
+  "build": "Prototype 102 / 0.102.0",
+  "created_at": "2026-10-25T09:43:36.534203-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "534b4b9b0c161c06fc4d1b52d92f9e990597eab4",
-  "test_commit": "7285705",
-  "status": "Focused visibility fix built and packaged; nine deterministic packaged suites pass; visual review and planner limitations remain",
-  "app": "builds/Prototype-101/Drain Damage.app",
-  "archive": "builds/history/Prototype-101.zip",
-  "archive_sha256": "67213cc6bb3dfb5bba359f2f8c96add364603bea89c913ccbde5e53fe2d88f80",
-  "source_snapshot": "builds/source-101",
-  "previous_build_preserved": "Prototype 100 app, archive and source snapshot remain intact",
-  "baseline": "Prototype 100 gameplay, assets, audio, dialogue and planning are unchanged; historical delivery at ae67791:handoffs/first-call-integration.json",
+  "source_commit": "0530ff725000a79e4dcfae5df556cfab02cfe628",
+  "asset_commit": "7ccdabd",
+  "status": "Ready for prototype review:13 packaged suites and7 Python tests pass; human visual/listening review pending",
+  "app": "builds/Prototype-102/Drain Damage.app",
+  "archive": "builds/history/Prototype-102.zip",
+  "archive_sha256": "791fa1f9152f8d882741870bc537482c01cd53476ae769063bd96832523b541f",
+  "source_snapshot": "builds/source-102",
+  "source_snapshot_files": 1480,
+  "previous_build_preserved": "Prototype 101 app, ZIP and source snapshot remain intact; prior builds preserved",
   "changes": [
-    "Active swimmers draw after opaque drain foreground and debris so the upper body remains visible.",
-    "Chest waterline clipping is preserved; at seconds 40\u201343 the hero still descends behind the drain lip."
+    "Existing flush and landing exchange lead into a 45-second forced-forward ride; selected hero only, Sean astride/Tony surfing on the retained short board.",
+    "Bank steering and within-view positioning, 1.2-second jumps with water-plane shadow, tall supports to steer around, low barriers to jump and gaps to clear.",
+    "Authored deterministic Easy/Normal/Hard courses contain 8/12/16 obstacles, with calm teaching and finish stretches and concurrent advance warnings.",
+    "Post-flush checkpoint survives death and game-over retry; health/lives/loadout, pause, mute and no-firing behavior are preserved.",
+    "New original course, obstacle and cue artwork; three ride-context audio mappings reuse preserved original cues. No new dialogue integrated."
   ],
+  "controls": {
+    "steer": "Arrows/stick; up/down across banks, left/right within view",
+    "jump": "Space/A",
+    "fire": "Disabled in this movement-only slice; later weapon decision remains open"
+  },
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "save_required": false,
+    "behavior": "Both reach the ride; landing entry retains the approved short landing exchange. Death/retry starts the safe ride lead-in, without replaying flush."
+  },
   "checks": {
-    "packaged_suites": 9,
-    "visibility_cases": 12288,
-    "results": "builds/verification-101/final-results.json",
-    "lifecycle_recheck": "builds/verification-101/lifecycle-seed42-results.json",
-    "lifecycle_seed": 42,
-    "direct_entries": "Exported Level2 Sean Hard and Level2-landing Tony Normal passed headlessly",
+    "source_suites": 13,
+    "packaged_suites_passed": 13,
+    "packaged_suites_total": 13,
+    "results": "builds/verification-102/final-results.json",
+    "course_witnesses": 18,
+    "course_result": "Both heroes, all modes, fixed x180/300/650 through real steering and four jumps: no health/life loss, 45-second completion.",
+    "collision_timing_cases": 6,
+    "python_tests": 7,
+    "python_log": "builds/verification-102/python.log",
+    "direct_entries": "Exported Level2 Tony Normal and Level2-landing Sean Hard passed headlessly",
     "signature_archive": "passed",
-    "audio_freshness": "91 slots passed; no audio changes"
+    "audio_freshness": "94 sound slots passed"
+  },
+  "audio": {
+    "current": "DD-S0095",
+    "landing": "DD-S0096",
+    "impact": "DD-S0097",
+    "shared_hero": "DD-S0083 jump, DD-S0084 hurt and DD-S0058 death retained",
+    "new_audio_bytes": false,
+    "flush_score": "Unchanged45-second Air Running Out"
   },
   "limitations": [
-    "Initial uncontrolled-random-seed lifecycle run failed normal cohort07 placement. Fixed-seed42 lifecycle passes; original failure remains recorded, with no universal-seed guarantee or planner fix claimed.",
-    "Prototype100 off-route planner hitches remain unchanged.",
-    "No game window opened or actual gameplay screenshots captured; human visual review pending."
+    "No game window or actual gameplay screenshot captured; human motion, cue readability, gap alignment, balance and listening review pending.",
+    "The full ride, combat and Level3 are not delivered. New dialogue remains unapproved.",
+    "Existing flush planner random-seed placement failure and off-route hitches remain unchanged; deterministic test success is not a universal seed guarantee.",
+    "Headless logs retain environment log/certificate/editor-settings and shutdown-resource warnings."
   ],
   "capture_gap": {
-    "chapter": "storybook/101-active-swimmer-visibility/",
+    "chapter": "storybook/102-first-ride-slice/",
     "actual_capture": false,
-    "reason": "No foreground game permission; both builds preserved"
+    "reason": "No game-window permission; source art compositions are not gameplay screenshots"
   },
-  "next_scope": "Authorized 30\u201360second movement-only ride slice is separate subsequent work; full ride, combat and Level3 remain deferred."
+  "contributors": [
+    "handoffs/level-two-ride-art.json",
+    "handoffs/level-two-ride-layout.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/level-two-ride-audio.json",
+    "handoffs/level-two-ride-story.json"
+  ]
 }

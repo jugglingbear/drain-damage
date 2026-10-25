@@ -1,0 +1,28 @@
+{
+  "build": "Prototype102 / 0.102.0",
+  "status": "Built and validated: all 13 final packaged suites pass; gameplay capture and human visual review pending",
+  "created_at": "2026-10-25T09:36:06-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "capture_time": null,
+  "source_commit": "0530ff725000a79e4dcfae5df556cfab02cfe628",
+  "archive_sha256": "791fa1f9152f8d882741870bc537482c01cd53476ae769063bd96832523b541f",
+  "scope": "45-second forced-forward ride slice; bank steering, movement within view and jump. Three obstacle types: tall supports, low barriers, gaps. Reported Easy/Normal/Hard counts 8/12/16.",
+  "dialogue": "Existing landing dialogue unchanged; all new dialogue unapproved and excluded from integration.",
+  "reported_checks": "13 source suites and seven Python tests pass per Engineering. All 13 final packaged suites pass, including 18 real course witnesses and six collision-timing cases. Both actual app direct entries pass. Final result manifest and log paths independently checked; runner exit0 reported.",
+  "remaining": [
+    "Actual gameplay capture and human visual review"
+  ],
+  "capture_gap": "No game-window permission or actual capture. Preserve earlier entries.",
+  "scope_boundary": "No full ride, combat or level-three delivery claim.",
+  "asset_commit": "7ccdabd",
+  "archive_path": "builds/history/Prototype-102.zip",
+  "app_path": "builds/Prototype-102/Drain Damage.app",
+  "source_snapshot": "builds/source-102",
+  "source_snapshot_status": "Engineering confirms 1480 files complete; source marker independently verified.",
+  "art_evidence": "17 frames and four source compositions reviewed; not gameplay captures.",
+  "audio_evidence": "Engineering reports 94 sound slots fresh; 0095/0096/0097 reuse existing files.",
+  "finalized_at": "2026-10-25T09:44:08-07:00",
+  "test_uid_only_commit": "a7b9a02",
+  "validation_record": "builds/verification-102/final-results.json"
+}

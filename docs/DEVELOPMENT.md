@@ -56,8 +56,11 @@ make run LEVEL=2-landing HERO=sean DIFFICULTY=hard
 ```
 
 Both entries initialize a fresh run without a prior save. Either accepts `HERO=tony|sean`,
-`DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the landing dialogue and
-“Log ride under construction” boundary; the full log ride is not playable yet.
+`DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the existing landing dialogue, then starts the 45-second ride slice.
+Steer with arrows/stick; up/down moves between banks and left/right shifts within the view. Space/A jumps.
+Steer around tall supports, jump low barriers and clear gaps. The landing shadow marks the board’s water-plane position.
+Ride deaths restart at the landing checkpoint without replaying the flush. Easy/Normal/Hard have 8/12/16 obstacles.
+This first slice has no combat; the full ride and later stages remain unfinished.
 During the flush, steer to swim and dodge; firing and jumping are disabled. Tony uses freestyle and Sean uses
 breaststroke. Weapons remain equipped for later gameplay but cannot fire in this sequence.
 Use `make run-check` with the same selectors to verify initialization without opening a window.

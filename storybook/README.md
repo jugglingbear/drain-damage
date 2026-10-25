@@ -2486,6 +2486,33 @@ Finalization time and archive identity are in the metadata.
 
 [Build evidence and capture status](101-active-swimmer-visibility/20261025-091501-capture-status.json).
 
+## 102 — First ride slice — October 25, 2026
+
+**Status:** Prototype 102 / 0.102.0 built and validated; gameplay capture and human visual review pending.
+
+The first ride slice provides 45 seconds of forced-forward movement, with bank steering, movement within the view and
+jumping. Tall supports require steering, low barriers require jumping, and gaps must be cleared. Reported
+Easy/Normal/Hard obstacle counts are 8/12/16. The landing checkpoint is preserved.
+
+**Dialogue:** Existing landing dialogue remains unchanged. New dialogue has not been approved and is excluded from
+integration. This entry does not claim the full ride, combat or level three.
+
+**Build evidence received:** Source `0530ff725000a79e4dcfae5df556cfab02cfe628`, assets `7ccdabd`; app exported and
+signed. Archive SHA-256 and source snapshot marker independently verified. Engineering confirms 1,480 snapshot files,
+13 passing source suites and seven Python tests. All thirteen final packaged suites pass, including 18 real
+course witnesses and six collision-timing cases. Both actual app direct entries pass. The final result manifest and log
+paths were checked. Runner exit 0 is reported; test-UID-only commit: `a7b9a02`.
+
+Art review covers 17 frames and four source compositions, not gameplay captures. Engineering reports 94 audio slots
+fresh, with 0095/0096/0097 reusing existing files. No new dialogue is integrated; v00.101.00 is preserved.
+
+**Capture gap:** No game-window permission or actual gameplay capture. Human visual review remains pending; earlier
+entries and originals are preserved.
+
+**Record created:** 2026-10-25T09:36:06-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+
+[Build evidence and capture status](102-first-ride-slice/20261025-093606-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
