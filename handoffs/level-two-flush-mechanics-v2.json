@@ -1,0 +1,200 @@
+{
+  "schema_version": 2,
+  "updated": "2026-10-24",
+  "timezone": "America/Los_Angeles",
+  "status": "Agreed Prototype99 mechanics contract; runtime and human validation pending",
+  "owner": "Game Mechanics",
+  "integration_owner": "Engineering",
+  "layout_owner": "Level Design",
+  "scope": "Revise the same45-second flush and safe Level2-landing endpoint. No full ride, new roster or narrative expansion.",
+  "supersedes": "handoffs/level-two-flush-mechanics.json only where specified; Prototype98 remains historical evidence.",
+  "sources": [
+    "levels/level-two-flush-v2.json",
+    "handoffs/level-two-flush-layout-v2.json"
+  ],
+  "geometry": {
+    "center_screen": [
+      480,
+      300
+    ],
+    "circle_radius_world": 360,
+    "projection_y": 0.3888888888888889,
+    "water_radii_screen": [
+      360,
+      140
+    ],
+    "hero_radius_world": 14,
+    "prop_damage_radius_world": 22,
+    "combined_contact_radius_world": 36,
+    "hero_center_annulus_world": [
+      162,
+      316.8
+    ],
+    "safe_pocket_radius_world": 48,
+    "hud_bottom_screen": 64,
+    "radio_top_screen": 450,
+    "camera": "Fixed oblique, no camera rotation; normalize diagonal world steering before projection.",
+    "impact_slot_radius_world": "clamp(hero_world_position.length(),190,285), sampled once before cohort warning/spawn; locked through impact"
+  },
+  "swimming": {
+    "presentation": "Chest-deep waterline; Art-authored Tony freestyle and Sean breaststroke. Mask lower body with water surface; preserve selected hero, with no held weapons or weapon HUD.",
+    "steering_speed_world": {
+      "tony": 270,
+      "sean": 235
+    },
+    "jump": "Ignore jump during the flush: chest-deep authored swimming only, no hop, dive or hidden airborne immunity. Preserve global jump outside this scene.",
+    "shooting": "Ignore fire and emit no weapons, projectiles, attack animation or shot cues during flush. Hide weapon HUD/held weapon art. Preserve selected weapon/loadout for later scenes; entry/exit input guard waits for fire/jump release so held inputs cannot leak across transitions."
+  },
+  "flow": {
+    "field": "For nonzero position p: outward=p.normalized(); clockwise_tangent=Vector2(-outward.y,outward.x); flow=tangent*tangential_speed-outward*inward_speed. Use one combined vector, never apply cap per axis.",
+    "ramp": "t=clamp(stage_clock/35,0,1); interpolate total cap and inward speed start\u2192end, tangent=sqrt(total_cap^2-inward_speed^2). Same time-varying field for hero and floating props. Starts immediately during harmless gag and strengthens continuously.",
+    "modes": {
+      "easy": {
+        "total_start": 40,
+        "total_end": 105,
+        "inward_start": 8,
+        "inward_end": 45,
+        "tangent_end": 94.86832980505137,
+        "minimum_net_sean": 130
+      },
+      "normal": {
+        "total_start": 50,
+        "total_end": 125,
+        "inward_start": 10,
+        "inward_end": 55,
+        "tangent_end": 112.24972160321825,
+        "minimum_net_sean": 110
+      },
+      "hard": {
+        "total_start": 60,
+        "total_end": 145,
+        "inward_start": 12,
+        "inward_end": 65,
+        "tangent_end": 129.6148139681572,
+        "minimum_net_sean": 90
+      }
+    },
+    "hero_boundary": "Until35 clamp hero center gently into annulus; inward flow is visible but drain/edge cannot kill. No input interruption or flow-induced stun.",
+    "airborne_props": "FINAL Engineering decision: fixed worldXY during vertical fall, not advected or retargeted in air. Locked impact ring and actual shadow stay exactly below object. Floating props advect after impact. This supersedes interim airborne-flow proposals."
+  },
+  "schedule": {
+    "calm": [
+      0,
+      8
+    ],
+    "rain": [
+      8,
+      35
+    ],
+    "stage_changes": [
+      8,
+      17,
+      26
+    ],
+    "modes": {
+      "easy": {
+        "cohorts": 10,
+        "fall_seconds": 2.7,
+        "falling_counts_by_stage": [
+          1,
+          2,
+          2
+        ],
+        "total_committed_props": 16
+      },
+      "normal": {
+        "cohorts": 12,
+        "fall_seconds": 2.25,
+        "falling_counts_by_stage": [
+          2,
+          3,
+          4
+        ],
+        "total_committed_props": 36
+      },
+      "hard": {
+        "cohorts": 15,
+        "fall_seconds": 1.8,
+        "falling_counts_by_stage": [
+          3,
+          4,
+          5
+        ],
+        "total_committed_props": 60
+      }
+    },
+    "cohort_start": "8 + cohort_index * mode.fall_seconds; final impact exactly35. Spawn exact stage count at each cohort boundary. Whole count is committed atomically after safety planning.",
+    "types": [
+      "corn",
+      "pooplog",
+      "penny",
+      "carkeys",
+      "dice",
+      "button",
+      "safetypin",
+      "tampon"
+    ],
+    "type_bag": "Seeded shuffle of all8 types; consume only on actual spawn, refill shuffled bag when exhausted. Every seed uses all8 in each completed first bag. Never discard scheduled types due to a cap.",
+    "actual_falling_definition": "Every committed falling prop is visible and descending from cohort start, including the early tell. Count neither hidden timers nor landed props as falling. At most5 actual falling at once.",
+    "destruction": "All eight props are unbreakable during flush. Exact cohort count remains visible and falling through impact; no shooting gaps, replacement or early despawn.",
+    "no_drops": "Reposition/replan the entire upcoming formation BEFORE showing any warnings, preserving its count and type bag. Once announced, never move a target, silently drop props or accumulate a delayed burst. If no safe full formation is found, report validation failure; do not claim this seed passed.",
+    "formation": "Eight candidate angular slots at adaptive world radius clamp(hero_world_position.length(),190,285), sampled once before cohort warning/spawn. Reserve3 contiguous slots around a reachable radius240 escape pocket; use1\u20135 other slots with seeded rotation/permutation. Lock radius and positions through impact. Engineering validates footprints and paths against actual hero state and previous impacts."
+  },
+  "fall_impact_float": {
+    "fall_duration": "Entire cohort is the visible warning/descent:2.7/2.25/1.8seconds. No hidden prewarning; keep locked impact ring and water shadow readable throughout.",
+    "initial_screen_height": "min(220, projected_impact_y -124): HUD64 + maximum upper sprite extent52 +8px margin. Upper slot y204.8 gives80.8px drop. Increase margin for larger artwork; never count a clipped/hidden prop as actual visible fall. Cohort duration remains unchanged.",
+    "vertical_curve": "For normalized age u: height=initial_height*(1-u*u); screen sprite centered above its fixed planar anchor. Shadow stays at anchor and tightens/darkens as height approaches0. Never use screen distance for world collision.",
+    "impact_window_seconds": 0.35,
+    "damage": "One shared normal contact hit,1.5s hero invulnerability. Falling objects do not cause contact damage before water impact. Swimming/dodging is the only avoidance; no jump or fire immunity.",
+    "float": "On landing, immediately advect in shared swirl/inward field. Only first.35s afloat can hurt; afterwards decorative but still visible and unbreakable. At most5 newly damaging impacts may overlap the next cohort of at most5 harmless falling props.",
+    "retention": "Keep every floating prop for visible circulation and suction; no cap disappearance or early destruction. Draw warnings/readable hazards above decorative clutter.",
+    "final_cohort": "Impact at35 is explicitly harmless because drain transition takes priority over collision evaluation."
+  },
+  "escape_validation": {
+    "reaction_seconds": 0.15,
+    "available_travel_after_reaction": {
+      "easy": 331.50000000000006,
+      "normal": 231.0,
+      "hard": 148.5
+    },
+    "method": "Simulate a time-parameterized world-plane path from actual hero state, with current and inner/outer annulus boundaries, to a safe radius48 pocket. Check all future cohort impact footprints and previously landed props during their remaining.35s damaging advection. Do not accept a clear endpoint whose path crosses the inner forbidden disk or an active impact.",
+    "pattern_relocation": "Evaluate complete rotated/reordered patterns before commit. Keep escape pocket near hero; do not require travel across the bowl. Use weakest hero and hardest opposing current. Do not require jumping/shooting for the guaranteed basic escape.",
+    "math_evidence": "Sean235 minus totalHard145 leaves90worldpx/s; Hard1.8tell minus.15reaction gives148.5px. A separate1001-radius check of radial-then-arc travel to a48px disk within a60degree sector offset35degrees gives119.716px worst path in annulus162..316.8. This is a geometric sanity bound, not proof of any seeded8-slot pattern or previous-impact path; actual formation simulation remains required.",
+    "keyboard_note": "Test actual normalized eight-way controls as well as analog input. Do not assume arbitrary-direction analog steering proves keyboard escape.",
+    "layout_evidence": "Level Design reports43,200 conditional geometric cases with0 exclusions/failures across old/new impact radii190/210/240/265/285,8 previous-grid rotations,hero radii162/240/316.8,15degree angles,3modes and33-point paths. Includes48 safe pocket, prior-impact expansion by full current cap*.35, and net130/110/90 after.15reaction. This is not runtime flow or no-input survival evidence."
+  },
+  "timeline": {
+    "0_to_8": "Harmless swimming/current plus existing safe intro gag; no falling harmful objects. Any blocking overlay freezes active clock; do not run hazards behind text.",
+    "8_to_35": "Continuous visible cohorts as above, increasingly strong flow.",
+    "at_35": "Atomically disable all impact damage and remove warning rings, retaining every prop visibly floating/inward. Fire/jump remain ignored. No health/life change and no kill gate.",
+    "35_to_43": "Guaranteed harmless scripted suction. Fade steering authority1\u21920 over35..36. Spiral35..40 toward drain, then downward translation and water/drain clipping40..43. Keep fixed camera. Floating props remain visibly advected into drain; no teleport purge at35. Engineering owns kinematics aligned with Art registration.",
+    "submerge": "40..43: translate hero downward and clip against authored water/drain layers until fully hidden at43. This is successful suction, not death; no life debit. Landing follows43..45.",
+    "drowning_gurgle_cue": {
+      "target_seconds": 3.0,
+      "start_stage_seconds": 40,
+      "end_stage_seconds": 43,
+      "event": "suction_burble",
+      "semantics": "Emit once at40 and play the existing delivered3.0-second cue to its natural end43. No retiming or pitch change. Nonlethal suction cue, not death. Pause freezes playback with scene; mute silences without changing progression; reset stops it. Audio owns registry and audition consistency."
+    },
+    "43_to_45": "Safe authored transition/landing; reappear with feet at screen480,385 on landing prop. No steering/firing hazards or full ride. At45 latch existing level2/log_landed completion once; landing line runs45..48 in safe LEVEL2/2-landing hold, with existing skip behavior."
+  },
+  "state_preservation": {
+    "entry": "Carry hero/difficulty/health/lives into flush, no free heal/life.",
+    "death_retry": "Existing one-life debit/death popup; resume flush start with fullhealth and3s immunity, same attemptseed, clock0, all prior props/shots/flow transient state cleared. Retain8s calm movement but skip repeated intro gag.",
+    "game_over": "Retry flush only with standard3lives/fullhealth; never return to Clogfather unless explicit NewGame.",
+    "pause": "Freeze stage, falls, impacts, advection, suction and audio. No wall-clock catch-up.",
+    "mute": "Existing mute behavior; gameplay timing unchanged.",
+    "terminal": "No success while dying/game-over; suction success does not damage/heal or consume clones. LEVEL2/2-landing behavior preserved."
+  },
+  "validation_required": [
+    "Actual visible falling count and full8-type bag for every completed seed; no silent cap drops",
+    "All cohorts exactly tile8..35; all last impacts harmless, no backlog",
+    "Both heroes/three modes/60and120Hz current ramps and actual eight-way escape through all prior impact paths",
+    "Shadow/impact/prop converge and upper props visible belowHUD atspawn",
+    "Fire/jump inputs produce no action or immunity; weapon HUD hidden and loadout retained; shared impact invulnerability preserved",
+    "At35 damageoff but survivors remainvisible; staged suction hideshero once and lands45 withoutlifedebit",
+    "Pause/mute/death/retry/newgame clear/resume correct actors,timers and audio"
+  ],
+  "remaining": "Runtime solver and full seed verification, Art swimming/prop rendering and clipping, Integration of the existing Audio3.0s suction cue, packaged tests and human readability/difficulty review. No runtime files edited by Mechanics.",
+  "authority_correction": "Latest Sean request: no weapons during flush. Engineering implementation decision: ignore jump too; authored chest-deep swimming/dodging only. Supersedes all earlier shootable-prop/hop proposals in this revision."
+}

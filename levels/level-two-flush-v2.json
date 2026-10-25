@@ -1,0 +1,470 @@
+{
+  "schema_version": 2,
+  "id": "level-two-flush-v2",
+  "date": "2026-10-24",
+  "status": "Prototype99 implementation contract; runtime validation pending",
+  "owner": "Engineering delivery; Level Design waves/patterns; Mechanics flow/collision; Art assets",
+  "supersedes": "levels/level-two-flush.json debris schedule; preserve Prototype98 original",
+  "scope": "Short flush only; all eight prop types, continuous falling cohorts, increasing flow; full ride deferred",
+  "geometry": {
+    "coordinate_space": "Unprojected circular plane radius360; screen=center+(world.x,world.y*140/360); hero position is feet anchor with planar collision radius14",
+    "bowl_center": [
+      480,
+      300
+    ],
+    "water_radii": [
+      360,
+      140
+    ],
+    "water_bounds": [
+      120,
+      160,
+      720,
+      280
+    ],
+    "rim_art_bounds": [
+      70,
+      100,
+      820,
+      350
+    ],
+    "playable_normalized_radius": [
+      0.45,
+      0.88
+    ],
+    "hero_spawn": [
+      480,
+      400.8
+    ],
+    "hero_collision_radius": 14,
+    "drain_center": [
+      480,
+      300
+    ],
+    "drain_visual_radii": [
+      65,
+      25.28
+    ],
+    "boundary_behavior": "Clamp hero center to annulus before drain; no contact damage or death at boundary",
+    "hud_safe_rect": [
+      0,
+      0,
+      960,
+      64
+    ],
+    "radio_safe_rect": [
+      0,
+      450,
+      960,
+      90
+    ],
+    "landing_log_rect": [
+      330,
+      380,
+      300,
+      52
+    ],
+    "projection_y": 0.3888888888888889,
+    "world_radius": 360,
+    "maximum_projected_jump_height": 33.64,
+    "landing_hero_feet": [
+      480,
+      385
+    ]
+  },
+  "timeline": {
+    "duration": 45,
+    "safe_until": 8,
+    "drain_start": 35,
+    "landing_start": 43
+  },
+  "clock": "Active gameplay clock. Three short arrival/gag lines run during the safe playable0..8s phase. Any remaining blocking overlay holds the clock at8s and prevents hazards until dismissed. Pause freezes all clocks. Retry skips gag text but retains0..8s calm phase.",
+  "props": [
+    "corn",
+    "pooplog",
+    "penny",
+    "carkeys",
+    "dice",
+    "button",
+    "safetypin",
+    "tampon"
+  ],
+  "prop_collision_radius_world": 22,
+  "hero_collision_radius_world": 14,
+  "difficulty": {
+    "easy": {
+      "waves": [
+        {
+          "id": "flush-v2-easy-01",
+          "at": 8.0,
+          "duration": 2.7,
+          "count": 1
+        },
+        {
+          "id": "flush-v2-easy-02",
+          "at": 10.7,
+          "duration": 2.7,
+          "count": 1
+        },
+        {
+          "id": "flush-v2-easy-03",
+          "at": 13.4,
+          "duration": 2.7,
+          "count": 1
+        },
+        {
+          "id": "flush-v2-easy-04",
+          "at": 16.1,
+          "duration": 2.7,
+          "count": 1
+        },
+        {
+          "id": "flush-v2-easy-05",
+          "at": 18.8,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-easy-06",
+          "at": 21.5,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-easy-07",
+          "at": 24.2,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-easy-08",
+          "at": 26.9,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-easy-09",
+          "at": 29.6,
+          "duration": 2.7,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-easy-10",
+          "at": 32.3,
+          "duration": 2.7,
+          "count": 2
+        }
+      ],
+      "count_stages": [
+        {
+          "at": 8,
+          "count": 1
+        },
+        {
+          "at": 17,
+          "count": 2
+        },
+        {
+          "at": 26,
+          "count": 2
+        }
+      ],
+      "flow": {
+        "ramp_seconds": [
+          0,
+          35
+        ],
+        "curve": "smoothstep",
+        "total_speed_start": 40,
+        "total_speed_end": 105,
+        "inward_speed_start": 8,
+        "inward_speed_end": 45,
+        "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
+        "minimum_net_steering_speed": 130
+      }
+    },
+    "normal": {
+      "waves": [
+        {
+          "id": "flush-v2-normal-01",
+          "at": 8.0,
+          "duration": 2.25,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-normal-02",
+          "at": 10.25,
+          "duration": 2.25,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-normal-03",
+          "at": 12.5,
+          "duration": 2.25,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-normal-04",
+          "at": 14.75,
+          "duration": 2.25,
+          "count": 2
+        },
+        {
+          "id": "flush-v2-normal-05",
+          "at": 17.0,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-normal-06",
+          "at": 19.25,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-normal-07",
+          "at": 21.5,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-normal-08",
+          "at": 23.75,
+          "duration": 2.25,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-normal-09",
+          "at": 26.0,
+          "duration": 2.25,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-normal-10",
+          "at": 28.25,
+          "duration": 2.25,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-normal-11",
+          "at": 30.5,
+          "duration": 2.25,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-normal-12",
+          "at": 32.75,
+          "duration": 2.25,
+          "count": 4
+        }
+      ],
+      "count_stages": [
+        {
+          "at": 8,
+          "count": 2
+        },
+        {
+          "at": 17,
+          "count": 3
+        },
+        {
+          "at": 26,
+          "count": 4
+        }
+      ],
+      "flow": {
+        "ramp_seconds": [
+          0,
+          35
+        ],
+        "curve": "smoothstep",
+        "total_speed_start": 50,
+        "total_speed_end": 125,
+        "inward_speed_start": 10,
+        "inward_speed_end": 55,
+        "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
+        "minimum_net_steering_speed": 110
+      }
+    },
+    "hard": {
+      "waves": [
+        {
+          "id": "flush-v2-hard-01",
+          "at": 8.0,
+          "duration": 1.8,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-hard-02",
+          "at": 9.8,
+          "duration": 1.8,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-hard-03",
+          "at": 11.6,
+          "duration": 1.8,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-hard-04",
+          "at": 13.4,
+          "duration": 1.8,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-hard-05",
+          "at": 15.2,
+          "duration": 1.8,
+          "count": 3
+        },
+        {
+          "id": "flush-v2-hard-06",
+          "at": 17.0,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-hard-07",
+          "at": 18.8,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-hard-08",
+          "at": 20.6,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-hard-09",
+          "at": 22.4,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-hard-10",
+          "at": 24.2,
+          "duration": 1.8,
+          "count": 4
+        },
+        {
+          "id": "flush-v2-hard-11",
+          "at": 26.0,
+          "duration": 1.8,
+          "count": 5
+        },
+        {
+          "id": "flush-v2-hard-12",
+          "at": 27.8,
+          "duration": 1.8,
+          "count": 5
+        },
+        {
+          "id": "flush-v2-hard-13",
+          "at": 29.6,
+          "duration": 1.8,
+          "count": 5
+        },
+        {
+          "id": "flush-v2-hard-14",
+          "at": 31.4,
+          "duration": 1.8,
+          "count": 5
+        },
+        {
+          "id": "flush-v2-hard-15",
+          "at": 33.2,
+          "duration": 1.8,
+          "count": 5
+        }
+      ],
+      "count_stages": [
+        {
+          "at": 8,
+          "count": 3
+        },
+        {
+          "at": 17,
+          "count": 4
+        },
+        {
+          "at": 26,
+          "count": 5
+        }
+      ],
+      "flow": {
+        "ramp_seconds": [
+          0,
+          35
+        ],
+        "curve": "smoothstep",
+        "total_speed_start": 60,
+        "total_speed_end": 145,
+        "inward_speed_start": 12,
+        "inward_speed_end": 65,
+        "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
+        "minimum_net_steering_speed": 90
+      }
+    }
+  },
+  "scheduler": {
+    "type": "seeded_cohorts",
+    "rng": "Dedicated RNG from run seed plus fixed salt99002; never consume level1 or unrelated RNG. Same runseed+same hero path gives same placements.",
+    "type_bag": "Fisher-Yates shuffle of all8 IDs. Consume one only when prop actually spawns. Refill only afterall8 consumed. Same retry seed resets bag/wave state. No cap-dependent discard.",
+    "occupancy": "Wave count is the exact number of simultaneously falling props from spawn through impact, including initial visible warnings. Exclude water floats/splashes. Maximum five. Spawn the next cohort immediately after the previous cohort lands. No shooting, destruction, early refill or missing-count exceptions.",
+    "wave_boundary": "At exactboundary resolve prior impacts before spawningnextcohort; never six-plus falling objects. Counts change atfirstwave whoseat>=stageboundary.",
+    "late_frame": "Use fixed/substepped simulation or swepttime processing; do not skip elapsed cohorts or silently discard spawns on cap. No framebased RNG.",
+    "phase_end": "At35 disable damage and clearwarning/projectiletokens before finalimpact. Preserve lastcohort visiblylanding asharmless floatingprops, allfloatsdrainunderwatercurrent during35..43. No silentvisualdeletion."
+  },
+  "fall": {
+    "height_screen_pixels": "min(220, impact_screen_y - 124): reserve HUD64 plus conservative prop upper extent52 plus margin8. Use Art anchor-aware bounds and increase clearance if any rendered prop exceeds52. Entire sprite must be visible from spawn; duration remains unchanged.",
+    "warning_seconds": "Entire visiblefall equals wave.duration (minimum1.8s); emphasisfirst0.6s",
+    "impact_ring": "Fixed announced predictedlandingcenter fromcommit, full combined36worldradius projectedellipse; never retargethero",
+    "dynamic_shadow": "Shadow at same fixed plane anchor as impact ring; scale/opacity increases continuously during descent and matches impact.",
+    "trajectory": "Vertical fall at fixed announced world-plane anchor. No airborne planar advection or hero tracking. Water floating starts only after impact.",
+    "landing": "Atimpact setprop plane position exactlytarget; begin sameprogressiveflowadvection aswater.",
+    "damage_seconds": 0.35,
+    "damage": 1,
+    "after_damage": "Floating debris remainsvisible/collidableonlyasMechanicsdefines; no continuedcontactdamage after.35. Driftinto drainorretireoffscreen; boundvisualcount withoutdroppingstilldangerousobjects.",
+    "jump_clearance_world_z": 24,
+    "weapon_policy": "No weapons or firing during the flush, per Sean. Every prop is avoided through swimming/dodging; no breakable or soft-shooting behavior."
+  },
+  "pattern": {
+    "slots": 8,
+    "slot_angle_step_degrees": 45,
+    "seeded_rotation": "Uniform0..2pi percohort; shuffle eligibleindices withsame dedicatedRNG.",
+    "reserved_slots": 3,
+    "reserved_slot_rule": "Choose nearestgrid directionto a reachablehero-safe pocket; exclude thatslot andbothneighbors. Choose wave.count distinctslots fromother5. Full cohort placedatomically.",
+    "safe_pocket_radius_world": 48,
+    "candidate_pocket_radius_world": 240,
+    "candidate_search": "Try8slotcenters inseededorder biasednearhero; ifunsafe rotategrid towardhero beforewarning andresamplewholepattern. Neverrelocatealreadyannouncedobjects.",
+    "reaction_seconds": 0.15,
+    "combined_impact_radius_world": 36,
+    "max_postimpact_drift_world": 50.75,
+    "safety": "Check fullhero path inannulus162..316.8 againstprevious.35simpactfootprints andnewpredictedimpact+flow-sweptfootprints. Use currentactualflow andminnet130/110/90. Warningrings expanded36world; safe pocket mustremainclear by48+36+maxdrift134.75Hard. A sectorlabel alone isnotproof.",
+    "no_drop_fallback": "Ifcandidate fails, relocate fullcohort beforeannouncement using reserved corridor aroundcurrenthero; do not reducecount,discardbagentries orsilentlydelaypast35. If no validfullcohort canbeconstructed, reportvalidationfailure and revise pattern beforedelivery; do notshipunavoidablepattern.",
+    "slot_radius_world": {
+      "source": "clamp(hero_world_position.length(),190,285)",
+      "minimum": 190,
+      "maximum": 285,
+      "sample_time": "Once at cohort commitment, before any warning or falling sprite appears",
+      "locked": "All cohort impact points and rings keep this radius through landing; never resample during descent."
+    }
+  },
+  "acceptance": [
+    "All8 IDsactuallyspawn ineachmode, notjustpresentincatalog",
+    "Replayfixedseed/input givesidenticalwave/type/impactrecords",
+    "Fallingcounts match everywave andneverexceed5; no capdrop",
+    "Prop/shadow convergeonannouncedimpact atboundary; entirefallingspritevisiblebelowHUD fromspawn",
+    "Bothheroes canescape eachcommittedwave includingpreviousimpacts andmaxflow",
+    "Pause andintrohold freezephysics,fall,flow andwarningclocks",
+    "All dangersclear at35, safe landingfeet480,385 at45, nofullride",
+    "Captureactualintegratedrain/safeescape andverifyperceptualreadability underpermissionrules",
+    "Fire/weapon inputs produce no attacks, projectiles or prop damage during the flush",
+    "Every cohort retains its exact scheduled falling count until impact; all props are dodge-only",
+    "All prop sprites start fully visible with initial foot y>=124 for a maximum52px upper extent",
+    "Idle inner-edge runs must be checked separately: adaptive radius removes fixed radial immunity but does not by itself prove steering is necessary."
+  ],
+  "controls": "Swimming and dodging only during the flush. Fire and weapon actions are disabled; all eight prop types are unbreakable dodge hazards. No weapon effects or projectile spawns."
+}

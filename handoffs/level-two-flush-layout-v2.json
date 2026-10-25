@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "status": "Delivered numeric contract; structural and sampled geometric escape checks pass, runtime validation pending",
+  "source": "levels/level-two-flush-v2.json",
+  "scope": "Only these twoJSON files; no runtime/shared docs/commits",
+  "decision": "Exact27s tiling:Easy10x2.7,Normal12x2.25,Hard15x1.8; counts1/2/2,2/3/4,3/4/5 at8/17/26 withchangesatnextwave. Fixedimpactring plusadvectedfall/dynamicshadow, thenfloatingflow. Final Engineering revision uses vertical fixed-plane fall, anchored shadow, then water-flow advection afterimpact; clamp initialheight to keep fullspritevisible belowHUD.",
+  "validation": {
+    "escape_cases_passed": 4320,
+    "starting_samples_inside_conservative_previous_danger_excluded": 0,
+    "seeded_rotations": 20,
+    "sampled_start_radii": [
+      162,
+      240,
+      316.8
+    ],
+    "sampled_start_angle_step_degrees": 15,
+    "assumptions": "Previous five-slot pattern leaves three slots nearest surviving hero. Conservatively expand old impacts by full mode maxflow*.35s. Candidate48radius pocket and33point straightpath remainannulus/clear, under130/110/90 minimum net steering after.15reaction. Testnewfive-slot pattern asstrongerbound forallmodes.",
+    "limits": "Conditional geometric candidate check; excludes alreadyoverlapped startingstates and doesnot simulate actualfield trajectories, collisions or controls. Runtime must validate eachcohort acrosspreviousimpactwindow.",
+    "structural": "All waves tile8..35 exactly, counts1..5, eachmodehas>=8spawns for fulltypebag;45sphaseboundariesandlandingfoot480,385checked."
+  },
+  "remaining": "Runtime fullpath safety withactualcurrent/previousimpact, actualall8typeadmission andvisiblemotion, packagedtests/build remainEngineering responsibility",
+  "user_correction": "Sean explicitly requires swimming/dodging only, no fire/weapons. All eight props are unbreakable dodge hazards. Exact counts persist through each fall; no earned shooting gaps. Initial prop foot y>=124 reserves HUD64+52px sprite+8px margin.",
+  "adaptive_radius_revision": {
+    "reason": "Engineering found fixed244.8 impact radius left idle inner-edge hero162 outside danger.",
+    "policy": "Sample clamp(hero radius,190,285) once per cohort before warning; no retarget after commitment.",
+    "validation": {
+      "passed": 43200,
+      "excluded": 0,
+      "failures": 0,
+      "previous_and_new_radii": [
+        190,
+        210,
+        240,
+        265,
+        285
+      ],
+      "seeds": 8,
+      "hero_radii": [
+        162,
+        240,
+        316.8
+      ],
+      "angle_step_degrees": 15,
+      "method": "Same conditional radial240 safe-pocket check as original; cross-product old/new radii,33 path samples, full mode cap*.35 prior-impact expansion and minnet130/110/90 after.15reaction.",
+      "limits": "Sampled conditional escape geometry only; does not establish actual flow fairness or defeat idle avoidance. Engineering reruns actual runtime paths and idle comparison."
+    }
+  }
+}

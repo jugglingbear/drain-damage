@@ -1,0 +1,43 @@
+{
+  "status": "Art source complete and frozen for Engineering99; runtime validation pending",
+  "owner": "Art / Bestiary",
+  "created_at": "2026-10-24T20:46:23.410852-07:00",
+  "manifest": "assets/world/level-two-flush-v2/manifest.json",
+  "prompts": "assets/world/level-two-flush-v2/prompts.json",
+  "scope": [
+    "Eight changing authoredwaterphases",
+    "Tony freestyle eightframes normal/Hard",
+    "Sean breaststroke eightframes normal/Hard",
+    "Eight fallingprops",
+    "Fourframeforegroundwaterline, twoimpactsplashframes, shadowwarning",
+    "Deepdrainback/frontoccluder andtwo burbleframes"
+  ],
+  "source_previews": "assets/world/level-two-flush-v2/source-previews",
+  "validation": {
+    "registered_animation_frames": 48,
+    "object_entries": 14,
+    "source_bounds": "PASS",
+    "animation_crop_edge_alpha_max": 7,
+    "source_reviews": [
+      "source-previews/contact.png",
+      "source-previews/swim-frames.png",
+      "source-previews/descent.png"
+    ],
+    "loops": "Four eight-frame source GIFs at12fps provided; not actual gameplay captures.",
+    "limits": "Motion continuity is source-reviewed by frame sequence; smoothness at runtime and under accelerating rotation is not yet validated."
+  },
+  "preservation": "Prototype98 unchanged; initial clippedTony source and initialdrain preserved as versionedoriginals, unusedby currentmanifest.",
+  "runtime_requirements": [
+    "Unarmed; no weapons/attacks duringflush",
+    "Water16fps consecutiveframecrossfade; optionalprogressiveswirl in unflattenedcircleplane",
+    "Swimmers12fps crisp withchestY0clip andwaterlineforeground",
+    "Drain descent40\u201360pxbehindlip, clipnotfade; disappearbeforelanding",
+    "Use normalassetsEasy/Normal andtornassetsHard"
+  ],
+  "remaining": [
+    "Engineering integration/build/regressions",
+    "Live fastwaterloop/swimcontinuity/propwarnings/descentreadability review",
+    "Actualgameplaycaptures underpermissionrules"
+  ],
+  "file_ownership": "Only assets/world/level-two-flush-v2/** and thishandoff edited; no commits orsharedruntime/docsedits."
+}

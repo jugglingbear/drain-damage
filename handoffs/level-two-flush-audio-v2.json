@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-24",
+  "status": "Audio frozen; Engineering owns runtime/registry/audition page integration",
+  "cue": {
+    "event": "suction_burble",
+    "path": "assets/audio/sfx/level-two-flush-v2/suction-burble.wav",
+    "duration_seconds": 3.0,
+    "frames": 96000,
+    "format": "32000 Hz mono PCM16 WAV",
+    "loop": false,
+    "gain_db": -4,
+    "attack_seconds": 0.045,
+    "fade": {
+      "start_seconds": 1.4,
+      "end_seconds": 3.0,
+      "curve": "squared amplitude"
+    },
+    "peak_dbfs": -12.0,
+    "rms_dbfs": -26.29,
+    "sha256": "f2e604c2f285157efbc62571dc8a481f1e8be03ab08f64e2c7c4f86b38fa79cd",
+    "generation_brief": "Generic panicked burbling/drowning scream fading away while the fictional hero is pulled down the drain and disappears. Three seconds, no dialogue, no actual person voice imitation.",
+    "provenance": "Original deterministic sample-free synthesis; no human recordings, voice models or third-party samples. Fictional nonverbal effect, not an imitation of Tony, Sean or another person.",
+    "rights": "Project-generated material; no third-party sample license or attribution obligations.",
+    "generator": "audio/sources/level-two-flush-v2/generate.py",
+    "generator_sha256": "2767fde7c2669dcb180e8e1f973e10acb496d53c54ef555b04566c0839a83804",
+    "status": "First pass; no subjective listening approval."
+  },
+  "sync": "Emit suction_burble once when final visible downward pull begins, suggested t=40s. Natural completion t=43s. Trigger from actual phase transition; do not restart per frame. Align final disappearance with cue end, or retime the trigger rather than changing playback speed.",
+  "lifecycle": "One bounded voice. Stop on retry, death, title, scene exit and disposal; pause/resume with game. Honor SFX mute with no delayed backlog. Do not reuse player-death event: this is level progression.",
+  "mix": "Suggested gain -4dB gives source peak -16dBFS at runtime. Duck current/surge additional 6dB during this cue; radio retains priority with another 8dB reduction or avoid radio overlap. No global clipping or perceptual clarity claim.",
+  "swirl_guidance": "Reuse current-loop; optional gradual pitch 1.0 to 1.15 and gain -10 to -7dB before pull, then duck during burble and fade out on disappearance. No new swirl asset. Avoid pitch changes to burble so 3s sync remains exact.",
+  "candidate_registration": "DD-S0091 absent in registry at Audio inspection. DD-S0091.1 is suggested only, not reserved; Engineering must verify next free slot/suffix and register preserved cue, refresh mappings, regenerate audio/drain-damage-sound-auditions.html and run --check before delivery.",
+  "validation": "ffmpeg decode passed; exact 96000 frames, mono PCM16 at32kHz; zero first/last samples; syntax/120-column/hygiene passed. All six v1 hashes unchanged. No foreground playback or listening.",
+  "limitations": "Synthetic approximation may read as cartoon/electronic; panic/burbling recognizability and synchronization require listening/visual review. No person voice imitation or dialogue."
+}
