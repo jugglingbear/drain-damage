@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-24",
+  "status": "Full arrangement ready; Engineering integration/build pending",
+  "permanent_slot": "DD-S0094",
+  "selected_audition": "DD-S0094.2",
+  "full_arrangement_candidate": "DD-S0094.6",
+  "asset": "assets/audio/music/flush-air-running-out-v1.ogg",
+  "sha256": "acba943d99d799275e4f1b0e68965f6a3ff67a79e920ca986d652cf9652a407f",
+  "preview": "audio/sources/flush-air-running-out-v1/air-running-out-45s.wav",
+  "duration_seconds": 45,
+  "loop": false,
+  "gain_db": -8,
+  "analysis": "audio/sources/flush-air-running-out-v1/analysis.json",
+  "source_manifest": "audio/sources/flush-air-running-out-v1/manifest.json",
+  "sync": "Start at flush gameplay timeline0, synchronized with simulation clock; safe intro0\u20138, rising main8\u201325, layered25\u201335, peak35\u201343, closing43\u201345. Stop at45. Do not loop or time-stretch. Retry from0; entering landing checkpoint directly must not replay flush music.",
+  "mix": "Use existing music bus/mute ownership, one music voice; replace outgoing level/boss music rather than overlap. Gain-8dB. Duck an additional8dB during radio and6dB during suction burble, choose strongest active duck rather than stacking, restore0.2s. Music duck must not reduce radio/burble themselves.",
+  "lifecycle": "Pause track with paused simulation; mute must preserve timeline position without restarting or backlog. If stopping muted playback for efficiency, seek current gameplay elapsed time on unmute. Stop/dispose on death/title/sceneexit; restart on retry. Music completion must not drive gameplay phase timing.",
+  "preservation": "All five22s auditions and old source hashes unchanged; full45s PCM registered as0094.6, original0094.2 retained.",
+  "engineering_remaining": "Runtime integration and same-slot discovery mapping preserving0094/UUID; refresh registry, regenerate canonical audition HTML and --check after mapping changes; lifecycle/sync tests, build, roadmap/storybook. No shared runtime files edited by Audio.",
+  "validation": "Decoded Vorbis exactly1440000frames/45s at32kmono; measured-21.06LUFS/-4.87dBTP; source syntax/hygiene and originals hashes pass. Subjective listening and in-game mix not verified."
+}

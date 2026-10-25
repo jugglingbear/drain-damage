@@ -1,0 +1,53 @@
+{
+  "title": "Air Running Out \u2014 full flush arrangement",
+  "selected_audition": "DD-S0094.2",
+  "duration_seconds": 45.0,
+  "loop": false,
+  "gain_db": -8,
+  "preview": "audio/sources/flush-air-running-out-v1/air-running-out-45s.wav",
+  "runtime": "assets/audio/music/flush-air-running-out-v1.ogg",
+  "preview_sha256": "b3f703686900ffd9d45c1265b5e05d6511bd75e96d266a873c336e18fc5c91b9",
+  "runtime_sha256": "acba943d99d799275e4f1b0e68965f6a3ff67a79e920ca986d652cf9652a407f",
+  "generation_brief": "Expand selected DD-S0094.2 Air Running Out into a newly arranged 45-second cue, not slowed audio. 0\u20138 quiet ticking/bass; 8\u201325 main figure accelerates; 25\u201335 add percussion/high notes; 35\u201343 peak urgency during drain pull; 43\u201345 closing hit and fade at landing. Preserve original melody/timbres and all audition files. Original sample-free composition.",
+  "phases": [
+    [
+      0,
+      8,
+      132,
+      140
+    ],
+    [
+      8,
+      25,
+      140,
+      178
+    ],
+    [
+      25,
+      35,
+      178,
+      208
+    ],
+    [
+      35,
+      43,
+      208,
+      226
+    ]
+  ],
+  "motif_semitones": [
+    0,
+    6,
+    1,
+    8,
+    3,
+    7,
+    2,
+    6
+  ],
+  "source_recipe": "audio/sources/flush-countdown-auditions-v1/generate.py",
+  "source_recipe_sha256": "9d81170f677e4e389106a68ce01e37150030da2ae9b1f5e56a32b1d179ac9bd4",
+  "generator_sha256": "e8bf4d3337a0bac96828ac0d06d1c0db127c276125dbf3b939caeae0d0415d3a",
+  "provenance": "Original deterministic composition and synthesis. Uses preserved original oscillator recipe from the approved audition; no borrowed melody, recordings or third-party samples.",
+  "status": "Approved direction; full arrangement supplied for Engineering integration/listening review."
+}

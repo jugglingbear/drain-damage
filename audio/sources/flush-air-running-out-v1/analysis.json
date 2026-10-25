@@ -1,0 +1,53 @@
+{
+  "decoded_frames": 1440000,
+  "duration_seconds": 45,
+  "sample_rate": 32000,
+  "channels": 1,
+  "integrated_lufs": -21.06,
+  "true_peak_dbfs": -4.87,
+  "loudness_range_lu": 12.4,
+  "measurement": "ffmpeg loudnorm input metrics on decoded Vorbis; no normalization filter applied to asset",
+  "runtime_gain_db": -8,
+  "expected_runtime_integrated_lufs": -29.06,
+  "expected_runtime_true_peak_dbfs": -12.87,
+  "segments": [
+    {
+      "start": 0,
+      "end": 8,
+      "rms_dbfs": -29.42,
+      "peak_dbfs": -15.03
+    },
+    {
+      "start": 8,
+      "end": 25,
+      "rms_dbfs": -21.22,
+      "peak_dbfs": -7.06
+    },
+    {
+      "start": 25,
+      "end": 35,
+      "rms_dbfs": -19.69,
+      "peak_dbfs": -6.35
+    },
+    {
+      "start": 35,
+      "end": 43,
+      "rms_dbfs": -18.55,
+      "peak_dbfs": -5.03
+    },
+    {
+      "start": 43,
+      "end": 45,
+      "rms_dbfs": -27.58,
+      "peak_dbfs": -5.14
+    },
+    {
+      "start": 44.9,
+      "end": 45,
+      "rms_dbfs": -94.12,
+      "peak_dbfs": -83.52
+    }
+  ],
+  "last_sample": 0.0,
+  "listening": "Not auditioned; timing and signal measurements only."
+}
