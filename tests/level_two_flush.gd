@@ -9,6 +9,8 @@ func checks() -> void:
 	for hero in [0,1]:
 		for mode in ["easy","normal","hard"]:
 			var game = Game.new()
+			# Keep this lifecycle regression reproducible; seeded planner stress has its own suite.
+			game.seed_override = 42
 			game.employee = game.Crew.EMPLOYEES[hero]
 			game.difficulty = mode
 			root.add_child(game)
