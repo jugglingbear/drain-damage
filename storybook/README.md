@@ -2396,6 +2396,38 @@ no image capture occurred.
 
 [Capture status and final verification](098-level-two-flush/20261024-194826-capture-status.json).
 
+## 099 — Swimming through the flush — October 24, 2026
+
+**Version:** Prototype 99 / 0.99.0; all seventeen distinct exact packaged suites passed.
+Source `c5bf3f1`, assets `f0f16f5`; app, ZIP and snapshot `builds/source-99` preserved.
+
+Following Sean's playtest, the flush changes to chest-deep, unarmed swimming: Tony uses freestyle and Sean uses
+breaststroke, with eight authored poses for normal and Hard costumes. Jumping and firing are disabled during the
+flush while the stored loadout is preserved. Eight water phases at 16 fps crossfade through an accelerating swirl,
+with stronger inward pull.
+
+Corn, poop logs, pennies, car keys, dice, buttons, safety pins and tampons fall from above with shadow warnings
+between seconds 8 and 35. Easy/Normal/Hard use 1–2/2–4/3–5 concurrent props and totals of 16/36/60. Impact radius
+is locked when the warning begins; floating debris moves with the current.
+
+The ending spirals from seconds 35–40, lowers the hero behind water/drain clipping with a three-second burble at
+40–43, lands at 43–45 and shows the landing line at 45–48. Both direct flush and landing launch selectors remain.
+These changes are integrated and verified in the final package.
+
+**Validation:** Export, signature, ZIP, startup, both actual Make checks and forty Python tests pass.
+The separate 180-seed/path matrix verifies cohort counts, all prop types and no dropped events; it does not prove
+all paths avoid damage. Twelve actual Game escape cases cover both heroes/all modes at 60/120 Hz with seed 913,
+zero health loss and zero inherited prior contacts. Idle paths take some intended hits. All seventeen distinct exact packaged suites pass.
+Art approved the source compositions, not live gameplay animation.
+
+**Capture gap:** No Prototype 99 game window opened or actual screenshot was captured. Live swimming, water,
+debris/drain readability, listening and balance review remain pending. Preserve Prototype 98.
+
+**Record created:** 2026-10-24T20:49:53-07:00 (`America/Los_Angeles`, UTC offset -07:00);
+no image capture occurred.
+
+[Capture status and final verification](099-swimming-flush/20261024-204953-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

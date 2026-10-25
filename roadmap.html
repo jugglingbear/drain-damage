@@ -65,7 +65,7 @@ now use one accountable owner, focused specialist contributions and concise link
 coordination only; it does not change gameplay or delivery checks.</p>
 <header>
 <p class="meta">Project documentation: the <a href="README.md">README</a> now introduces the experiment and its magazine, storybook and sound library. Technical setup and preserved prototype notes live in <a href="docs/DEVELOPMENT.md">docs/</a>.</p>
-<p class="meta">Sound review tooling: <a href="https://jugglingbear.github.io/drain-damage/audio/drain-damage-sound-auditions.html">all-game audio auditions</a> now provides permanent sound IDs, preserved alternatives, collapsed searchable groups, green IN GAME rows, and an audio freshness check. Prototype 98 integrates six Level 2 cues (DD-S0085–DD-S0090), with retained originals and audition candidates.</p>
+<p class="meta">Sound review tooling: <a href="https://jugglingbear.github.io/drain-damage/audio/drain-damage-sound-auditions.html">all-game audio auditions</a> now provides permanent sound IDs, preserved alternatives, collapsed searchable groups, green IN GAME rows, and an audio freshness check. Prototype 99 adds suction burble DD-S0091. The unused break cue is retired from active mappings; all originals and candidates remain preserved.</p>
 <div class="kicker">DRAIN DAMAGE / DEVELOPMENT ROADMAP</div>
 <h1>From three angry toilets<br>to a real adventure.</h1>
 <p>Build delivery policy: integrated game changes receive a new build and a readiness update with the version,
@@ -77,7 +77,19 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 24, 2026 · Current build: Prototype 98 / 0.98.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 24, 2026 · Current build: Prototype 99 / 0.99.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 99 — swimming-only flush revision:</strong>
+Tony swims freestyle and Sean uses breaststroke with authored eight-pose normal/Hard loops, a fixed chest waterline,
+and no weapons, firing or jumping. Eight animated water phases crossfade beneath increasing swirl and inward flow.
+Corn, poop logs, pennies, car keys, dice, buttons, safety pins and tampons fall visibly onto fixed shadow warnings.
+From seconds 8–35, Easy has 1–2 concurrent falls (16 total), Normal 2–4 (36), and Hard 3–5 (60).
+Landed debris drifts inward. The hero spirals to the drain at 35–40, descends behind the water and lip at 40–43 with
+fading burbling, then reaches the existing landing boundary. Both direct Make entries remain available.
+Seventeen exact packaged suites and 40 Python tests pass; 180 seeded scheduler cases verify counts/types/no dropped groups,
+and twelve keyboard replays at 60/120 Hz complete without damage for both heroes/all modes (seed 913).
+Export, signature, archive, startup and direct entries pass. Source compositions are reviewed; live animation quality,
+readability, audio mix, human balance and actual screenshots remain pending. Prototype 98 is preserved.
+<a href="handoffs/first-call-integration.json">Delivery evidence and limitations</a>.</p>
 <p><strong>Prototype 98 — playable short flush and log landing:</strong>
 The Clogfather portal now leads into a 45-second oversized porcelain bowl with current, jumpable debris,
 shootable soft plugs and partner radio. Surviving reaches a three-second landing line, then the
@@ -537,7 +549,7 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
 Sean asked PM to begin the short flush section. Engineering owns the playable first pass, with original Art, Audio,
 Storyboarding, Mechanics and Level Design contributions. Scope: roughly 45 seconds in an oversized porcelain bowl,
 nonblocking partner radio, survival-driven drain completion and a log-landing checkpoint boundary.
-The short flush and landing boundary are integrated in Prototype 98. The full log ride and Level 3 remain deferred.
+The short flush and landing boundary were integrated in Prototype 98 and revised for swimming in Prototype 99. The full log ride and Level 3 remain deferred.
 See <a href="design/level-two-flush-and-log-ride.md">the scope and proposal</a>. No game-window permission is implied.</p>
 <p><strong>October 20 — campaign setting direction:</strong> Sean specified that only level one should use a basement/sewer
 setting. Later levels must have distinctly different settings. Destinations, sequence and production scope remain undecided;

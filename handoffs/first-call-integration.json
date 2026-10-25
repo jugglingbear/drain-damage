@@ -1,55 +1,158 @@
 {
   "schema_version": 1,
-  "build": "Prototype 98 / 0.98.0",
-  "created_at": "2026-10-24T19:49:34.693705-07:00",
+  "build": "Prototype 99 / 0.99.0",
+  "created_at": "2026-10-24T20:56:33.999890-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "c1da269",
-  "status": "15 final packaged suites and 40 Python tests pass; export/signature/archive/startup verified; live review pending",
-  "app": "builds/Prototype-98/Drain Damage.app",
-  "archive": "builds/history/Prototype-98.zip",
-  "archive_sha256": "b6fe7af49cda97226603c3081510c15a5851b8b29cdd12e1d9177dceeed9b347",
-  "source_snapshot": "builds/source-98",
+  "source_commit": "c5bf3f1",
+  "asset_commit": "f0f16f5",
+  "status": "17 final packaged suites and 40 Python tests pass; export/signature/archive/startup/direct entries verified; live quality review pending",
+  "app": "builds/Prototype-99/Drain Damage.app",
+  "archive": "builds/history/Prototype-99.zip",
+  "archive_sha256": "d4743e9ba99445ceaae5ef0fde53e597a03126ba77899fa8163391ce876ddee6",
+  "source_snapshot": "builds/source-99",
+  "previous_build_preserved": "Prototype 98 app, ZIP and builds/source-98 remain intact",
   "changes": [
-    "Existing Clogfather portal enters 45-second oversized porcelain flush, followed by a three-second landing line and construction boundary.",
-    "Current, jumpable hard debris, two-hit soft plugs, partner radio and six original audio cues; both heroes and all modes supported.",
-    "Entry preserves health/lives; death debits one life; retries restart the bowl without repeating the opening gag.",
-    "Independent direct flush and post-flush landing entries require no prior save or boss completion."
+    "Chest-deep, unarmed authored swimming: Tony freestyle and Sean breaststroke, eight poses each in normal and Hard costumes. No fire, projectiles, weapon sounds or jump evasion; later loadout preserved.",
+    "Eight authored water phases at 16fps crossfade; surface rotation increases 0.8 to 4 radians/second, animation phase speed 1 to 1.8.",
+    "Eight seeded prop types fall vertically with locked warning/shadow anchors; visible height min(220,impact screen Y-124). All props unbreakable; 0.35s impact damage then harmless floating advection.",
+    "Cohort radius sampled once from hero radius clamped190..285; full groups relocate before warning rather than cap-dropping.",
+    "35\u201336 control fade, 35\u201340 spiral, 40\u201343 downward translation/waterline and drain-lip clipping plus three-second suction burble; landing43\u201345, existing line45\u201348. No full ride."
   ],
+  "rain": {
+    "interval": [
+      8,
+      35
+    ],
+    "easy": {
+      "waves": 10,
+      "fall_seconds": 2.7,
+      "concurrent_stages": [
+        1,
+        2,
+        2
+      ],
+      "total": 16
+    },
+    "normal": {
+      "waves": 12,
+      "fall_seconds": 2.25,
+      "concurrent_stages": [
+        2,
+        3,
+        4
+      ],
+      "total": 36
+    },
+    "hard": {
+      "waves": 15,
+      "fall_seconds": 1.8,
+      "concurrent_stages": [
+        3,
+        4,
+        5
+      ],
+      "total": 60
+    },
+    "stage_boundaries": [
+      8,
+      17,
+      26
+    ],
+    "stage_rule": "Applies at next cohort start",
+    "props": [
+      "corn",
+      "poop logs",
+      "pennies",
+      "car keys",
+      "dice",
+      "buttons",
+      "safety pins",
+      "tampons"
+    ]
+  },
+  "flow": {
+    "easy": {
+      "total_speed": [
+        40,
+        105
+      ],
+      "inward_speed": [
+        8,
+        45
+      ]
+    },
+    "normal": {
+      "total_speed": [
+        50,
+        125
+      ],
+      "inward_speed": [
+        10,
+        55
+      ]
+    },
+    "hard": {
+      "total_speed": [
+        60,
+        145
+      ],
+      "inward_speed": [
+        12,
+        65
+      ]
+    },
+    "units": "world pixels/second; smoothstep ramp0..35; tangential component preserves total cap",
+    "drain": "Harmless final current rises toward300 total/230 inward by40; visible hero follows spiral then descends under the lip."
+  },
+  "audio": {
+    "suction_burble": "DD-S0091 / preserved candidate DD-S0091.1",
+    "break_cue": "Retired active mapping; original files and candidate preserved",
+    "voices": 5,
+    "validation": "Freshness check passes; no subjective listening approval"
+  },
   "playtest_commands": {
     "flush": "make run LEVEL=2 HERO=tony DIFFICULTY=normal",
     "landing": "make run LEVEL=2-landing HERO=sean DIFFICULTY=hard"
   },
   "checks": {
-    "packaged_suites": 15,
-    "status": "passed",
-    "results": "builds/verification-98/final-results.json",
+    "packaged_suites": 17,
+    "results": "builds/verification-99/final-results.json",
     "python_tests": 40,
-    "python_log": "builds/verification-98/python.log",
-    "build_log": "builds/verification-98/build.log",
+    "python_log": "builds/verification-99/python.log",
+    "build_log": "builds/verification-99/build.log",
+    "scheduler_matrix": "180 cases:20seeds x3policies x3modes, exact counts/all8 types/no rejected cohorts; NOT no-hit proof",
+    "keyboard_escape": "12 actual Game replays:both heroes/all modes at60/120Hz, seed913, no health loss and zero inherited contacts",
+    "proof_limit": "Solver carries prior input for0.15s then discrete eight-way/zero controls, same movement integration and swept relative checks. Existing previous-wave contacts during reaction are classified inherited; no universal no-hit guarantee. Human readability and response remain untested.",
+    "idle_damage_totals_over_20_seeds": {
+      "easy": 24,
+      "normal": 59,
+      "hard": 59
+    },
+    "scope": "Flush lifecycle/no fire/no jump, impact immunity, floating retention, paused suction, loadout reset, portal entry, both direct entries and Level1 boss/pause/dialogue/audio/name/version regressions.",
     "standalone_headless_startup": "passed",
-    "make_entries": [
-      "builds/verification-98/make-flush.log",
-      "builds/verification-98/make-landing.log"
-    ],
-    "scope": "Both heroes/all modes, portal entry, survival-only finish, full landing reading time, life carry/retry, shot cadence, hard debris, jump clearance, contact immunity, audio pause/mute, existing boss/pause/dialogue/name/version regressions."
+    "signature_archive": "passed"
+  },
+  "source_art_review": {
+    "status": "Art source composition/frame bounds/occlusion review passed; not running-game visual validation",
+    "manifest": "assets/world/level-two-flush-v2/manifest.json",
+    "previews": "assets/world/level-two-flush-v2/source-previews/",
+    "registered_animation_frames": 48
   },
   "limitations": [
-    "No foreground game or actual gameplay capture. Live visual, audio mix and difficulty balance review pending.",
-    "Full log ride and Level 3 are not implemented. Landing is the current playable boundary.",
-    "Art final landing foot registration (480,385) supersedes layout draft center (480,360); runtime follows Art.",
-    "Headless logs retain environment certificate/user-log warnings and shutdown resource warnings; no script/parse failures in passing suites."
+    "No Prototype99 game window opened or actual gameplay screenshot. Live animation quality, accelerated water continuity, warning readability, control feel, audio recognizability/mix and human difficulty review remain pending.",
+    "Full log ride and Level3 remain deferred.",
+    "Headless logs retain environment certificate/user-log and shutdown resource warnings; passing suites contain no script/parse failures."
   ],
   "capture_gap": {
-    "chapter": "storybook/098-level-two-flush/",
+    "chapter": "storybook/099-swimming-flush/",
     "actual_capture": false,
-    "reason": "No game-window permission; original builds retained for later capture."
+    "reason": "No new game-window authorization; original builds retained for later capture."
   },
   "contributors": [
-    "handoffs/level-two-flush-mechanics.json",
-    "handoffs/level-two-flush-layout.json",
-    "handoffs/level-two-flush-story.json",
-    "handoffs/level-two-flush-audio.json",
-    "handoffs/level-two-flush-art.json"
+    "handoffs/level-two-flush-art-v2.json",
+    "handoffs/level-two-flush-audio-v2.json",
+    "handoffs/level-two-flush-layout-v2.json",
+    "handoffs/level-two-flush-mechanics-v2.json"
   ]
 }

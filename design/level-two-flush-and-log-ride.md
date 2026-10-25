@@ -4,7 +4,7 @@
 
 **Owner:** Storyboarding owns narrative; Engineering owns the authorized short flush implementation.
 
-**Status:** October 24: short playable flush and its radio presentation authorized for Prototype 98.
+**Status:** October 24: short playable flush delivered in Prototype 98 and revised for swimming in Prototype 99.
 Full log ride and level three remain deferred.
 
 ## Current production scope
@@ -13,6 +13,12 @@ On October 24, PM relayed Sean's explicit start of the short level-two flush. En
 45-second playable bowl sequence, both hero radio routes, safe one-time overlay relocation gag and log landing.
 The [final flush script and event contract](../handoffs/level-two-flush-story.json) supersedes the draft arrival/gag
 examples below for this delivery. Exact runtime implementation remains Engineering's responsibility.
+
+Sean's Prototype 98 playtest revised the flush to chest-deep swimming and dodging only: Tony uses freestyle,
+Sean uses breaststroke, and no weapons, firing or jumping are available during the flush. Animated water accelerates,
+eight kinds of objects fall with shadow warnings, and the final descent into the drain uses occlusion and fading burbling.
+The [current integration record](../handoffs/first-call-integration.json) documents Prototype 99 and its checks.
+Live animation, listening and human balance review remain pending. The ride proposals below are still deferred.
 
 Only the selected hero enters. Support stays outside on radio; portal origin and BJ involvement remain unresolved.
 The harmless landing completes the flush and ends at an honest “Log ride under construction” boundary. The full ride,
