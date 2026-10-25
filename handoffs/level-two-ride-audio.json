@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-25",
+  "status": "Audio handoff and canonical ride audition discovery frozen; Engineering runtime/build validation pending",
+  "owner": "Audio cue recommendations; Engineering runtime/discovery/registry/build",
+  "scope": "First30\u201360s movement/dodging log ride only. No new music, no new audition assets. Flush45s track unchanged.",
+  "cues": [
+    {
+      "event": "current_loop",
+      "path": "assets/audio/sfx/level-two-flush-v1/current-loop.wav",
+      "duration_seconds": 4.0,
+      "loop": true,
+      "gain_db": -12,
+      "peak_dbfs": -18.0,
+      "rms_dbfs": -31.42,
+      "boundary_step_dbfs": -37.46,
+      "sha256": "6ed21c256f45b0a5929a8efc6c0014fc4e4d3d0e938d45abd9691163f2dfc088",
+      "trigger": "Once on active ride entry; steady pitch1, one looping bed. Stop on death or completion.",
+      "provenance": "Original deterministic sample-free synthesis; no third-party recordings or attribution obligations.",
+      "source_manifest": "audio/sources/level-two-flush-v1/manifest.json"
+    },
+    {
+      "event": "ride_land",
+      "path": "assets/audio/sfx/clogfather-v1/sludge-impact-a.wav",
+      "duration_seconds": 0.34,
+      "loop": false,
+      "gain_db": -14,
+      "sha256": "2c3d1b17da3182ad0f56b121b4e585156450ee8f876e003db786d97c198d8dda",
+      "trigger": "ride_landed only: board returns to supported water; quiet reused wet impact, no landing on gap failure.",
+      "provenance": "Original deterministic sample-free synthesis; no third-party recordings or attribution obligations.",
+      "source_manifest": "handoffs/clogfather-audio.json"
+    },
+    {
+      "event": "ride_impact",
+      "path": "assets/audio/sfx/level-two-flush-v1/debris-impact.wav",
+      "duration_seconds": 0.32,
+      "loop": false,
+      "gain_db": -8,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -27.89,
+      "boundary_step_dbfs": -90.31,
+      "sha256": "bea452160138c76b8d95642f9129db7d6a457b2dd1510105abbe8bc0ace3e24f",
+      "trigger": "Once per accepted barrier collision; debounce by obstacle/contact ID and damage invulnerability.",
+      "provenance": "Original deterministic sample-free synthesis; no third-party recordings or attribution obligations.",
+      "source_manifest": "audio/sources/level-two-flush-v1/manifest.json"
+    }
+  ],
+  "shared_hero_events": {
+    "jump": {
+      "existing_id": "DD-S0083",
+      "frequency_hz": 360,
+      "duration_seconds": 0.08,
+      "implementation": "Reuse game.play_tone; accepted jump only, never held-input or rejected jump."
+    },
+    "hurt": {
+      "existing_id": "DD-S0084",
+      "frequency_hz": 65,
+      "duration_seconds": 0.15,
+      "implementation": "Reuse game.play_tone for accepted nonlethal damage only; if landing/jump same frame, hurt wins."
+    },
+    "death": {
+      "existing_id": "DD-S0058",
+      "asset": "assets/audio/sfx/player-death-flush-v1/toilet-flush.wav",
+      "gain_db": -3,
+      "implementation": "Existing HeroDeathAudio once on alive-to-dead transition; suppress hurt for lethal result. Do not replay on popup.",
+      "provenance": "rubberduck CC0-1.0 recording, existing processed cue; handoffs/player-death-flush-audio.json contains source/license/hashes."
+    }
+  },
+  "event_contract": {
+    "ride_started": "current_loop",
+    "ride_jump": "shared hero jump; accepted grounded jump only",
+    "ride_landed": "landing; board returns to supported water at z0, never gap fall",
+    "ride_hit": "accepted nonlethal support/low-barrier damage; prefer existing hurt, avoid double layering impact",
+    "ride_fell": "once; stop ride bed/contact, existing death cue owns lethal outcome; never play landing",
+    "ride_checkpoint": "existing host checkpoint policy once on first commit, not retry",
+    "ride_finished": "stop/fade current once at successful45s endpoint; no new music/stinger"
+  },
+  "priority": "Death overrides impact/hurt/jump/landing. Nonlethal damage may use existing hurt instead of layering impact; choose one contact accent. Landing lower priority than impact. No splash for unsupported gap failure unless a new cue is separately approved.",
+  "voices": "Two ride voices maximum: current bed and shared landing/impact voice. Existing one hero oscillator and one death voice reused; never allocate per event. Contact cooldown0.12s plus semantic dedup.",
+  "lifecycle": "Pause all voices and cooldown clock with simulation. Mute drops one-shots immediately, never queues them; current may resume when active/unmuted. Retry clears dedup/cooldowns/stops stale voices and restarts bed only when ride active. Stop/dispose bed/contact on death/title/scene exit/finish. Existing death voice follows its established lifecycle; do not stop it immediately when ride stops on death.",
+  "loop": "Current full128000frames at32kHz forward loop, runtime duplicate so shared original import metadata remains unchanged; pitch1 fixed. Fade bed in/out0.25s where lifecycle permits; hard stop on reset/exit.",
+  "checkpoint": "No new checkpoint/finish stinger requested; reuse existing host checkpoint policy only if an actual checkpoint event occurs. Do not replay45s flush music when retrying ride checkpoint.",
+  "registry": "Canonical data/level-two-ride.json discovered; registry refreshed and auditionHTML rebuilt. Sharedhero IDs unchanged; three new ride-context IDs assigned. Freshness and six focused tests pass.",
+  "validation": "Existing current-loop/debris-impact/death-flush file hashes match provenance and all3 decode with ffmpeg. Existing jump/hurt generator semantics inspected. No listening, gameforeground or new runtime test claimed. Mechanics confirms water-contact landing, so reused original sludge-impact-a replaces dry landing proposal; hash recorded and ffmpeg decode passed.",
+  "remaining": "Engineering runtime lifecycle checks, build/roadmap and subjective listening."
+}

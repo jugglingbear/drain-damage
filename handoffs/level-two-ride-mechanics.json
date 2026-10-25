@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-25",
+  "timezone": "America/Los_Angeles",
+  "owner": "Game Mechanics",
+  "integration_owner": "Engineering",
+  "layout_owner": "Level Design",
+  "status": "Agreed numeric mechanics contract with Level Design; course and runtime validation pending",
+  "scope": "First45-second post-flush ride only. Selected hero on110px board; Sean astride, Tony surfing. No weapons, enemies or downstream expansion.",
+  "sources": [
+    "levels/level-two-ride.json",
+    "handoffs/level-two-ride-layout.json"
+  ],
+  "geometry": {
+    "viewport": [
+      960,
+      540
+    ],
+    "water_y": [
+      230,
+      430
+    ],
+    "anchor_x_bounds": [
+      180,
+      650
+    ],
+    "anchor_y_bounds": [
+      260,
+      400
+    ],
+    "spawn_anchor": [
+      300,
+      330
+    ],
+    "suggested_lane_centers_y": [
+      280,
+      330,
+      380
+    ],
+    "visual_board_width": 110,
+    "board_contact_half_extents": [
+      45,
+      14
+    ],
+    "coordinate_rule": "Anchor is board water-plane center. Collision footprint90x28 is independent of above-water rider silhouette. Jump changes visual elevation only; shadow stays at water-plane anchor. Art supplies final pose/registration; no sprite stretch."
+  },
+  "movement": {
+    "duration_seconds": 45,
+    "forward_scroll_speed": 180,
+    "within_view_x_speed": 160,
+    "bank_y_speed": 140,
+    "inputs": "Left/right shift anchor within view; up/down move toward upper/lower bank. Normalize two-axis input before multiplying x160/y140. Clamp anchor bounds after movement. Same physics for both heroes and all modes.",
+    "course_coordinate": "World course x = accumulated forward scroll + screen anchor x. Obstacles project at world_x\u2212scroll. Left input slows relative crossing to20px/s; right increases it to340px/s. No stopping/reversing course, no camera rotation.",
+    "pause": "Pause freezes scroll, steering, jump, warnings, hazards, damage timers and audio; no catch-up.",
+    "fire": "Ignore fire/weapon actions throughout ride, preserve loadout for later scenes. Release guards prevent held transition inputs firing or auto-jumping."
+  },
+  "jump": {
+    "duration_seconds": 1.2,
+    "height": 72,
+    "curve": "z=4*72*u*(1\u2212u), u=clamp(jump_age/1.2,0,1). Grounded z0 outside jump.",
+    "landing_cooldown_seconds": 0.15,
+    "input": "Accept a fresh jump press while grounded, alive, active and cooldown0. No double jump, held repeat or coyote extension in this slice. Steering remains available in air.",
+    "shadow": "Render board/rider at water anchor minus z; shadow remains on water anchor and changes opacity/size. Collision uses planar footprint plus z, never screen-render position.",
+    "release": "A jump on landing dialogue dismissal is not accepted until input is released and pressed again."
+  },
+  "obstacles": {
+    "support": {
+      "rule": "Support footprint is hazardous at every jump height; steer around in bank direction. Swept board AABB versus support AABB; jumping never clears it. Not a rideable platform.",
+      "layout": "Never block the entire permitted bank range. Leave a reachable gap at least board depth28 plus24px maneuver margin. Validate approaches from current reachable states, not merely one static lane.",
+      "impact": "One normal hit, no attach/stand behavior. Do not stop forward scroll or permanently pin the hero. Collision is a contact hazard; hurt feedback and shared immunity allow the course to continue."
+    },
+    "low_barrier": {
+      "maximum_scroll_width": 24,
+      "clearance_height": 28,
+      "rule": "Swept planar overlap causes damage only while z<28. At z>=28 board clears barrier. Full-width barriers are permitted only with adequate warning and feasible jump timing.",
+      "timing": "At neutral x, expanded crossing width24+90=114 takes0.6334s. Jump is above28 for approximately0.9381s. Subdivide analytically at threshold crossings or use swept time checks, not endpoint-only z."
+    },
+    "gap": {
+      "maximum_scroll_width": 60,
+      "rule": "Gap may span all water. If any board footprint overlaps unsupported water while z<=0, begin a fall. Take off before leading edge enters, land after trailing edge clears. Never use center-only gap collision.",
+      "timing": "At neutral x, maximum expanded crossing60+90=150 takes0.8334s, below1.2s airborne duration. Neutral/right input is the intended crossing; holding left can slow the board enough to fail. Course validation must prove a real jump solution, not safety for every input.",
+      "failure": "Normal fall death: one life debit through existing death state, no double HP/contact debit, restart landing checkpoint. Damage immunity does not turn a gap into supported water. No successful landing cue during a fall."
+    }
+  },
+  "damage": {
+    "contact_damage": 1,
+    "shared_immunity_seconds": 1.5,
+    "simultaneous": "Aggregate simultaneous support/barrier overlaps into at most one health debit. Successful nonlethal contact starts shared immunity. Lethal contact or gap fall enters normal death once; no additional collision or completion afterward.",
+    "recovery": "Nonlethal contact keeps ride movement/jump state, with hurt feedback and bounded audio. No automatic health refill, obstacle deletion or course skip. Gap fall is a death, not a teleport rescue.",
+    "collision_order": "Process swept contacts and unsupported-water transitions within each simulation step in time order. If death occurs, stop the attempt before later contacts/finish. Exact jump landing over a gap counts as a fall."
+  },
+  "checkpoint": {
+    "commit": "Preserve the existing post-flush landing checkpoint before ride begins. Natural landing and direct landing entry reach the same ready state. Carry current health/lives; no free heal on first arrival.",
+    "retry": "Death debits one life once, then restore full hero HP and course clock0 at landing checkpoint with standard3s immunity and cleared obstacles/jump/cooldown. Preserve selected hero/difficulty/loadout and deterministic course. Never replay flush or Clogfather.",
+    "game_over": "Retry starts this ride checkpoint with standard3lives/fullHP; explicit New Game retains normal game-start behavior.",
+    "dialogue": "Do not repeat long arrival/flush gag on retry. Begin with safe course lead-in after existing landing dialogue/ready boundary.",
+    "finish": "At45 after surviving final collision interval, latch ride completion once into a safe endpoint. No new narrative or next stage implied."
+  },
+  "difficulty": {
+    "shared": "Physics, jump, contact damage and collision sizes identical across modes/heroes. Difficulty changes obstacle density and preview, not hidden hitboxes.",
+    "easy": {
+      "obstacle_count": 8,
+      "minimum_actionable_warning_seconds": 2.4
+    },
+    "normal": {
+      "obstacle_count": 12,
+      "minimum_actionable_warning_seconds": 2.0
+    },
+    "hard": {
+      "obstacle_count": 16,
+      "minimum_actionable_warning_seconds": 1.6
+    },
+    "course": "Initial0..5s and final42..45s are clear. First collision no earlier than7s. At least3s between required jump gates, measured at reference anchor x300; validate alternate legal x positions separately. Supports can fill intervening steering beats only if a real combined route exists.",
+    "warning": "Measure actionable warning against fastest reachable approach, not just screen appearance at reference x. A marker/preview must expose obstacle type and safe lane/jump requirement before the minimum lead time. No silent obstacle pop-in near forward x650.",
+    "randomness": "First playable course is deterministic per mode with authored obstacle placements. Do not introduce random repositioning or adaptive hitboxes without separate validation.",
+    "layout_agreement": {
+      "jump_gates_seconds": [
+        11,
+        15,
+        29,
+        34
+      ],
+      "support_width": 48,
+      "support_upper_y": [
+        230,
+        325
+      ],
+      "support_lower_y": [
+        335,
+        430
+      ],
+      "safe_bank_targets_y": [
+        370,
+        290
+      ],
+      "reference_anchor_x": 300,
+      "first_support_seconds": 7.5,
+      "last_hard_support_seconds": 40.8,
+      "last_support_clears_leftmost_anchor_seconds": 41.85
+    }
+  },
+  "audio_events": {
+    "ride_started": "Water/current loop starts once.",
+    "ride_jump": "Accepted jump only.",
+    "ride_landed": "Successful board contact with supported water, never gap fall.",
+    "ride_hit": "Successful nonlethal support/barrier hit only.",
+    "ride_fell": "Gap fall begins once; existing death system owns lethal cue to avoid duplicate death playback.",
+    "ride_checkpoint": "First landing checkpoint commit only.",
+    "ride_finished": "Successful45s completion once; stop current loop.",
+    "ownership": "Audio maps provenanced existing cues; Engineering final event naming. No new music requested."
+  },
+  "acceptance": [
+    "Both heroes/all modes complete deterministic course through real movement/jump inputs with no injected immunity or damage bypass.",
+    "Test exact jump start/end and height28 crossing against support/low-barrier/gap rules; sweep high relative speed and long outer frames using fixed simulation substeps.",
+    "Board footprint rather than rider art/center determines gaps; neutral/right valid crossing, deliberately late or left-slowed jump can fail.",
+    "Supports cannot be jumped; low barriers can; bank steering route and no impossible full-width support wall.",
+    "No first arrival heal, death life debit once, fullHP checkpoint retry at course0, no flush replay; pause/resume/held-input guards/reset/finish idempotence.",
+    "Exact counts8/12/16 with calm lead/end, actionable warning from forwardmost approach and tested combined obstacle routes.",
+    "Engineering integrates/builds and updates roadmap; Art owns rider/obstacle artwork, Audio owns cue mappings. No new build or screenshots claimed by this contract."
+  ],
+  "validation": {
+    "status": "Contract arithmetic and Level Design runtime course witnesses passed; Engineering integration/build and human review pending.",
+    "jump_above28_seconds": 0.938083151964686,
+    "gap_neutral_crossing_seconds": 0.8333333333333334,
+    "barrier_neutral_crossing_seconds": 0.6333333333333333,
+    "course_evidence": {
+      "owner": "Level Design",
+      "record": "handoffs/level-two-ride-layout.json",
+      "test": "tests/ride_course.gd",
+      "reported_cases": 18,
+      "coverage": "Both heroes, all three modes, reference screen x180/300/650; actual Game.flush.tick, no hits/falls, four jumps, completion45s.",
+      "minimum_support_clearance": 31,
+      "minimum_barrier_crossing_height": 51.944,
+      "minimum_gap_crossing_height": 37.278,
+      "timing": "First obstacle7.5 keeps earliest legal-x contact after5; last Hard obstacle40.8 clears41.85."
+    },
+    "warning_resolution": "Resolved in source per Engineering and Level Design review: draw_preview shows concurrent warnings at each authored warning_at, replacing nearest-only display; authored right-edge icons are used when the manifest is ready. Integrated visual readability remains pending; this source resolution does not claim human visual acceptance."
+  }
+}

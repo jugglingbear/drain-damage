@@ -1,0 +1,644 @@
+{
+  "schema_version": 1,
+  "status": "Frozen Art delivery for first45-second playable ride slice; runtime/build validation Engineering-owned",
+  "reference_viewport": [
+    960,
+    540
+  ],
+  "frames": {
+    "course_far": {
+      "path": "assets/world/level-two-ride-v1/course-v1.png",
+      "source_rect": [
+        0,
+        0,
+        1672,
+        360
+      ],
+      "destination": [
+        0,
+        0,
+        960,
+        230
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "course_water": {
+      "path": "assets/world/level-two-ride-v1/course-v1.png",
+      "source_rect": [
+        0,
+        360,
+        1672,
+        322
+      ],
+      "destination": [
+        0,
+        230,
+        960,
+        200
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "course_near": {
+      "path": "assets/world/level-two-ride-v1/course-v1.png",
+      "source_rect": [
+        0,
+        682,
+        1672,
+        259
+      ],
+      "destination": [
+        0,
+        430,
+        960,
+        110
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "background": {
+      "layers": [
+        {
+          "path": "assets/world/level-two-ride-v1/course-v1.png",
+          "source_rect": [
+            0,
+            0,
+            1672,
+            360
+          ],
+          "destination": [
+            0,
+            0,
+            960,
+            230
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local"
+        },
+        {
+          "path": "assets/world/level-two-ride-v1/course-v1.png",
+          "source_rect": [
+            0,
+            360,
+            1672,
+            322
+          ],
+          "destination": [
+            0,
+            230,
+            960,
+            200
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local"
+        },
+        {
+          "path": "assets/world/level-two-ride-v1/course-v1.png",
+          "source_rect": [
+            0,
+            682,
+            1672,
+            259
+          ],
+          "destination": [
+            0,
+            430,
+            960,
+            110
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local"
+        }
+      ]
+    },
+    "support": {
+      "path": "assets/world/level-two-ride-v1/obstacles-v1.png",
+      "source_rect": [
+        156,
+        30,
+        401,
+        968
+      ],
+      "destination": [
+        -40.829875518672196,
+        -107.86458333333333,
+        79.86721991701245,
+        191.58333333333331
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "contact_footprint": [
+        -24,
+        -47.5,
+        48,
+        95
+      ],
+      "note": "Collider center is origin; water/foam overhang is decorative. Tall support extends above footprint."
+    },
+    "low_barrier": {
+      "path": "assets/world/level-two-ride-v1/obstacles-v1.png",
+      "source_rect": [
+        634,
+        56,
+        242,
+        939
+      ],
+      "destination": [
+        -32.64,
+        -100.9163802978236,
+        58.08,
+        215.12027491408935
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "contact_footprint": [
+        -12,
+        -100,
+        24,
+        200
+      ],
+      "note": "Collider center is origin; water/foam overhang is decorative. Tall support extends above footprint."
+    },
+    "gap": {
+      "path": "assets/world/level-two-ride-v1/obstacles-v1.png",
+      "source_rect": [
+        1017,
+        51,
+        426,
+        947
+      ],
+      "destination": [
+        -50.75,
+        -105.33333333333333,
+        106.5,
+        210.44444444444443
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "contact_footprint": [
+        -30,
+        -100,
+        60,
+        200
+      ],
+      "note": "Collider center is origin; water/foam overhang is decorative. Tall support extends above footprint."
+    },
+    "cue_support": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        223,
+        22,
+        384,
+        370
+      ],
+      "destination": [
+        -20.0,
+        -20.0,
+        40,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "cue_barrier": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        921,
+        22,
+        385,
+        374
+      ],
+      "destination": [
+        -20.0,
+        -20.0,
+        40,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "cue_gap": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        221,
+        413,
+        390,
+        375
+      ],
+      "destination": [
+        -20.0,
+        -20.0,
+        40,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "jump_ready": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        959,
+        449,
+        310,
+        300
+      ],
+      "destination": [
+        -16.0,
+        -16.0,
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "shadow": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        31,
+        890,
+        704,
+        85
+      ],
+      "destination": [
+        -50.0,
+        -10.0,
+        100,
+        20
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "splash": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        816,
+        825,
+        684,
+        159
+      ],
+      "destination": [
+        -60.0,
+        -14.0,
+        120,
+        28
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "rider_tony_normal": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        0,
+        0,
+        768,
+        514
+      ],
+      "destination": [
+        -72.76923076923077,
+        -75.3076923076923,
+        129.96923076923076,
+        86.9846153846154
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    },
+    "rider_tony_hard": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        0,
+        514,
+        768,
+        510
+      ],
+      "destination": [
+        -71.66666666666666,
+        -71.0,
+        128.0,
+        85.0
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    },
+    "rider_sean_normal": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        768,
+        0,
+        768,
+        550
+      ],
+      "destination": [
+        -66.88709677419355,
+        -76.29032258064517,
+        136.25806451612902,
+        97.58064516129033
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    },
+    "rider_sean_hard": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        768,
+        550,
+        768,
+        474
+      ],
+      "destination": [
+        -66.88709677419355,
+        -66.17741935483872,
+        136.25806451612902,
+        84.09677419354838
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    }
+  },
+  "animations": {},
+  "landing": {
+    "tony": {
+      "normal": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              0,
+              0,
+              768,
+              514
+            ],
+            "destination": [
+              -72.76923076923077,
+              -75.3076923076923,
+              129.96923076923076,
+              86.9846153846154
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "standing surfing",
+        "visible_local_extents_y": [
+          -72.431,
+          11.338
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      },
+      "hard": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              0,
+              514,
+              768,
+              510
+            ],
+            "destination": [
+              -71.66666666666666,
+              -71.0,
+              128.0,
+              85.0
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "standing surfing",
+        "visible_local_extents_y": [
+          -70.5,
+          10.833
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      }
+    },
+    "sean": {
+      "normal": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              768,
+              0,
+              768,
+              550
+            ],
+            "destination": [
+              -66.88709677419355,
+              -76.29032258064517,
+              136.25806451612902,
+              97.58064516129033
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "seated astride; far leg occluded, near leg in front",
+        "visible_local_extents_y": [
+          -59.435,
+          15.968
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      },
+      "hard": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              768,
+              550,
+              768,
+              474
+            ],
+            "destination": [
+              -66.88709677419355,
+              -66.17741935483872,
+              136.25806451612902,
+              84.09677419354838
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "seated astride; far leg occluded, near leg in front",
+        "visible_local_extents_y": [
+          -60.145,
+          15.435
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      }
+    }
+  },
+  "course": {
+    "tile_width": 960,
+    "water_y": [
+      230,
+      430
+    ],
+    "repeat": "Alternate horizontally mirrored tiles; edge colors then meet exactly.",
+    "water_motion": "Continuously translate course_water separately from banks. No alternating still states.",
+    "background_compatibility": "frames.background is three layers. For separate water motion draw course_far,course_water,course_near individually."
+  },
+  "mechanics_reference": {
+    "support": [
+      48,
+      95
+    ],
+    "low_barrier": [
+      24,
+      200
+    ],
+    "gap": [
+      60,
+      200
+    ],
+    "jump_seconds": 1.2,
+    "jump_height": 72,
+    "board_footprint": [
+      90,
+      28
+    ]
+  },
+  "rider_rules": [
+    "Reuse v3 normal/Hard poses unchanged, shared transform for body and110px board.",
+    "Ground shadow stays at surface anchor while whole composite rises during jump.",
+    "No weapons. Authored static pose plus continuous movement/bob/tilt for first playable slice."
+  ],
+  "cue_rules": [
+    "Three distinct cues at40px. Support=steer; beam/gap=jump.",
+    "Show concurrent warnings when required; do not overwrite one with another.",
+    "Keep cues outside HUD top64 and lower radio, next to corresponding water lane."
+  ],
+  "prompts": "assets/world/level-two-ride-v1/prompts.json",
+  "provenance": "Original generated artwork; source cropping/registration and preview composition only. Existing v3 rider artwork reused.",
+  "runtime_review_pending": [
+    "Scrolling seam cadence and repeated architecture.",
+    "Depth-sort tall supports and rider.",
+    "Warning readability at actual display scale.",
+    "Jump shadow and gap visual/collision alignment."
+  ],
+  "validation": {
+    "source_bounds": "PASS17 frame keys",
+    "source_composition": "All four hero/costume variants inspected at960x540; no rectangular alpha backgrounds.",
+    "evidence": "assets/world/level-two-ride-v1/source-previews/validation.json",
+    "preview": "assets/world/level-two-ride-v1/source-previews/contact.png"
+  }
+}

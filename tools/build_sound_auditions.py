@@ -96,6 +96,12 @@ def discover() -> dict[str, dict[str, Any]]:
     if "music" in flush:
         add("proposed-flush/countdown-music", "Level 2", "The Flush — Air Running Out music",
             [flush["music"]["path"]], "data/level-two-flush.json#/music")
+    ride_path = ROOT / "data/level-two-ride.json"
+    if ride_path.exists():
+        ride = json.loads(ride_path.read_text())
+        for cue in ride.get("audio", {}).get("cues", []):
+            add(f"level-two-ride/{cue['event']}", "Level 2", f"Log ride — {cue['event'].replace('_', ' ')}",
+                [cue["path"]], "data/level-two-ride.json#/audio")
     return slots
 
 

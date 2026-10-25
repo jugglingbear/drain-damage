@@ -1,0 +1,57 @@
+{
+  "status": "Frozen authored art delivery; integration/build pending Engineering",
+  "created_at": "2026-10-25T09:40:31.902683-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "owner": "Art / Bestiary",
+  "integration_owner": "Engineering",
+  "manifest": "assets/world/level-two-ride-v1/manifest.json",
+  "prompts": "assets/world/level-two-ride-v1/prompts.json",
+  "sources": [
+    "course-v1.png",
+    "obstacles-v1.png",
+    "cues-v1.png"
+  ],
+  "runtime_contract": {
+    "frames": [
+      "course_far",
+      "course_water",
+      "course_near",
+      "background",
+      "support",
+      "low_barrier",
+      "gap",
+      "cue_support",
+      "cue_barrier",
+      "cue_gap",
+      "jump_ready",
+      "shadow",
+      "splash",
+      "rider_tony_normal",
+      "rider_tony_hard",
+      "rider_sean_normal",
+      "rider_sean_hard"
+    ],
+    "course": "Three960px-wide strips: far0..230, water230..430, near430..540. Alternate mirrored horizontal tiles. Continuous scrolling water; no frame alternation.",
+    "obstacles": "Centered support48x95; low_barrier24x200; gap60x200. Tall support extends upward; foam is decorative overhang.",
+    "rider": "Reuse frozen v3 Tony surfing/Sean astride normal+Hard. Shared transform including110px board, surface shadow separate. No new limb animation in first slice.",
+    "cues": "Three40px warning badges plus32px jump-ready; concurrent warning timing owned by Engineering.",
+    "jump": "Final1.2second duration,72px height; mechanics-owned."
+  },
+  "validation": {
+    "source_bounds": "PASS17 frame keys",
+    "source_composition": "All four hero/costume variants inspected at960x540; no rectangular alpha backgrounds.",
+    "evidence": "assets/world/level-two-ride-v1/source-previews/validation.json",
+    "preview": "assets/world/level-two-ride-v1/source-previews/contact.png"
+  },
+  "remaining": [
+    "Scrolling seam cadence and repeated architecture.",
+    "Depth-sort tall supports and rider.",
+    "Warning readability at actual display scale.",
+    "Jump shadow and gap visual/collision alignment.",
+    "Headless packaged tests/export owned by Engineering.",
+    "Actual game screenshots under playtest permission rules."
+  ],
+  "shared_records": "Engineering owns roadmap/build and storybook capture backlog in same integration; no shared runtime edits from Art.",
+  "preserved": "Prototype101 and all earlier art unchanged; source prompts and originals retained."
+}
