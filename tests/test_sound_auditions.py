@@ -50,6 +50,31 @@ class SoundAuditionsTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 MODULE.validate(self.registry, self.slots)
 
+    def test_proposed_retained_rendered_and_promoted_without_id_change(self) -> None:
+        proposed = copy.deepcopy(self.registry["sounds"][0])
+        proposed.update(key="proposed/effort", id="DD-S0092", status="proposed",
+                        uuid="c672832c-5a50-4261-9ee3-e5195c91c353")
+        proposed["alternatives"] = [dict(id="DD-S0092.1", name="Synthetic effort",
+                                       path="audio/sources/bowl-ambience-auditions-v1/DD-S0092.1.wav")]
+        self.registry["sounds"].append(proposed)
+        MODULE.refresh(self.registry, self.slots)
+        MODULE.validate(self.registry, self.slots)
+        self.assertEqual(proposed["status"], "proposed")
+        page = MODULE.render({"sounds": [proposed]})
+        self.assertIn("PROPOSED — NOT IN GAME", page)
+        self.assertIn("DD-S0092.1", page)
+        self.assertNotIn('<span class="in-game">IN GAME</span>', page)
+        self.slots[proposed["key"]] = dict(section=MODULE.SECTIONS[0], name="Effort",
+                                          paths=[proposed["alternatives"][0]["path"]], source="test")
+        MODULE.refresh(self.registry, self.slots)
+        MODULE.validate(self.registry, self.slots)
+        self.assertEqual(proposed["id"], "DD-S0092")
+        self.assertEqual(proposed["status"], "current")
+        self.assertIn('<span class="in-game">IN GAME</span>', MODULE.render(self.registry))
+        proposed["status"] = "proposed"
+        with self.assertRaises(ValueError):
+            MODULE.validate(self.registry, self.slots)
+
     def test_live_catalog_and_tone_preview(self) -> None:
         registry = json.loads(MODULE.REGISTRY.read_text())
         MODULE.validate(registry, MODULE.discover())
@@ -77,7 +102,7 @@ class SoundAuditionsTests(unittest.TestCase):
         audit = PageAudit()
         audit.feed(page)
         self.assertEqual(audit.expanded, 0)
-        self.assertEqual(audit.slots, len(MODULE.discover()))
+        self.assertEqual(audit.slots, sum(r["status"] in ("current", "proposed") for r in registry["sounds"]))
         self.assertGreater(audit.groups, 5)
         self.assertIn("Gnatastrophe", page)
         weapons = [r for r in registry["sounds"] if r["key"].startswith("weapon/")]

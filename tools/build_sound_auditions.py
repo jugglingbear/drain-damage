@@ -108,7 +108,7 @@ def refresh(registry: dict[str, Any], slots: dict[str, dict[str, Any]]) -> None:
             next_number += 1
         by_key[key].update(slot, status="current")
     for record in records:
-        if record["key"] not in slots:
+        if record["key"] not in slots and record.get("status") != "proposed":
             record["status"] = "retired"
 
 
@@ -126,6 +126,8 @@ def validate(registry: dict[str, Any], slots: dict[str, dict[str, Any]]) -> None
                 raise ValueError(f"Duplicate ID: {identity}")
             identities.add(identity)
         uuid.UUID(record["uuid"])
+        if record["status"] == "proposed" and (record["paths"] or "tone" in record):
+            raise ValueError("Proposed slots must contain alternatives only, not current audio")
         paths = list(record["paths"])
         for alternative in record["alternatives"]:
             identity = alternative["id"]
@@ -187,7 +189,7 @@ def render(registry: dict[str, Any]) -> str:
     parts.append('</nav></header>')
     for index, section in enumerate(SECTIONS):
         parts.append(f'<section id="section-{index}"><h2>{esc(section)}</h2>')
-        records = [r for r in registry["sounds"] if r["section"] == section and r["status"] == "current"]
+        records = [r for r in registry["sounds"] if r["section"] == section and r["status"] in ("current", "proposed")]
         if not records:
             parts.append('<p>No sounds assigned yet. This level is not implemented.</p></section>')
             continue
@@ -201,6 +203,8 @@ def render(registry: dict[str, Any]) -> str:
                 identity = record["id"]
                 parts.append(f'<details class="sound-slot"><summary><code>{esc(identity)}</code> · '
                              f'{esc(record["name"])} · {len(record["alternatives"])} alternatives</summary>')
+                if record["status"] == "proposed":
+                    parts.append('<p><strong>PROPOSED — NOT IN GAME</strong> · Auditions only.</p>')
                 parts.append(f'<p><small>{esc(record["source"])} · Global UUID: {esc(record["uuid"])}</small></p>')
                 parts.append('<div class="table-wrap"><table><thead><tr><th>ID</th><th>Version</th>'
                              '<th>Listen</th></tr></thead><tbody>')
