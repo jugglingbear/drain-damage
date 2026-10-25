@@ -9,7 +9,7 @@ func run_checks() -> void:
 	assert(Launch.parse([]).is_empty())
 	assert(Launch.parse(["--agent-test"]).is_empty())
 	assert(Launch.parse(["--list-playtest-targets"]).list)
-	for arguments in [["--level=2"],["--boss=clogfather"],["--miniboss=none"],
+	for arguments in [["--level=3"],["--boss=clogfather"],["--miniboss=none"],
 		["--level=1","--boss=clogfather"],["--level=1","--level=1"],["--level="],
 		["--hero=sean"],["--level=1","--hero=unknown"],["--level=1","--difficulty=unknown"],
 		["--level=1","--seed=-1"],["--level=1","--seed=2147483648"],["--unknown"],
@@ -35,7 +35,14 @@ func run_checks() -> void:
 				assert(game.health == game.employee.max_health and game.lives == 3 and game.dispenser.stocked)
 				assert(not game.dialogue.active and not game.dispenser.active and game.dialogue.release_guard == 0)
 				assert(game.skitterling.encounter.hp == game.skitterling.Encounter.MAX_HP and not game.skitterling.entered)
-				if target.kind == "level":
+				if target.id == "2":
+					assert(game.flush.active and game.flush.clock == 0 and game.checkpoint_index == 3)
+				elif target.id == "2-landing":
+					assert(game.flush.active and game.flush.state == "landing" and game.flush.clock == 45)
+					assert(game.flush.checkpoint_saved and game.flush.hazards.is_empty() and not game.won)
+					assert(game.flush.project(game.flush.position).is_equal_approx(Vector2(480,385)))
+					assert(not game.flush.radio.current.is_empty() and game.flush.landing_clock == 0)
+				elif target.kind == "level":
 					assert(game.player.x == 85 and game.checkpoint_index == -1 and game.respawn_origin == 85)
 				else:
 					assert(game.player.x == 6410 and game.checkpoint_index == 0 and game.respawn_origin == 4650)

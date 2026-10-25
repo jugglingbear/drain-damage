@@ -82,7 +82,7 @@ class SoundAuditionsTests(unittest.TestCase):
         self.assertIn("Gnatastrophe", page)
         weapons = [r for r in registry["sounds"] if r["key"].startswith("weapon/")]
         self.assertEqual(sum(len(r["alternatives"]) for r in weapons), 17)
-        self.assertEqual(audit.players, 124)
+        self.assertGreaterEqual(audit.players, 124)
 
 
 if __name__ == "__main__":

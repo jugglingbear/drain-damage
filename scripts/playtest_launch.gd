@@ -60,6 +60,9 @@ static func initialize(game: Node2D, target: Dictionary) -> void:
 	game.dialogue.release_guard = 0
 	game.dispenser.cancel()
 	game.dispenser.just_finished = false
+	if target.initializer in ["level-two-flush","level-two-landing"]:
+		game.begin_level_two()
+		if target.initializer == "level-two-landing": game.flush.enter_landing(game)
 	if target.initializer == "skitterling-approach":
 		# Rebuild checkpoint ownership before placing the hero at the real walk-in approach.
 		game.checkpoint_active = true
@@ -85,4 +88,5 @@ static func summary(game: Node2D, options: Dictionary) -> Dictionary:
 		"checkpoint":game.checkpoint_index,"respawn_origin":game.respawn_origin,
 		"boss_state":game.skitterling.encounter.state,"boss_hp":game.skitterling.encounter.hp,
 		"weapon":game.weapon.id,"health":game.health,"lives":game.lives,
-		"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}
+		"flush_state":game.flush.state,"flush_clock":game.flush.clock,
+		"landing_checkpoint":game.flush.checkpoint_saved,"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}

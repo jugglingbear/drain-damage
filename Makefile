@@ -73,7 +73,7 @@ build-windows: ## Planned: Windows executable (not configured yet)
 	@printf '❌ Windows pending: add export template and Windows preset, then test on Windows.\n' >&2
 	@exit 1
 
-run: combat-data ## Play normally, or select LEVEL=1 / MINIBOSS=skitterling (see run-targets)
+run: combat-data ## Play normally, or LEVEL=2 for flush, LEVEL=2-landing for post-flush landing (see run-targets)
 	@python3 tools/run_game.py
 
 run-preview: combat-data ## Play in a small agent-test window; accepts the same selectors as run
@@ -91,3 +91,4 @@ editor: check ## Open this project in the Godot editor
 
 combat-data: ## Validate canonical combat JSON and generate exportable data
 	@python3 tools/build_combat_data.py
+	@python3 tools/build_flush_data.py

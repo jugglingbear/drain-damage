@@ -1,5 +1,5 @@
 extends RefCounted
-## The portal ends this playable level; it never starts the held second-level proposal.
+## The portal preserves its departure presentation, then hands the selected hero to Level 2.
 const MANIFEST := "res://assets/world/first-call/portal-manifest-v1.json"
 const DEPARTURE_MANIFEST := "res://assets/world/first-call/portal-departure-manifest-v1.json"
 const PORTAL_PLANE := 14970.0
@@ -73,7 +73,7 @@ func step(host: Node2D, delta: float) -> void:
 	host.animation_time += delta
 	if pull_clock >= PULL_SECONDS:
 		state = "complete"
-		host.won = true
+		host.begin_level_two()
 		host.dialogue.awaiting_release = true
 		host.dialogue.release_guard = 0.2
 

@@ -1,8 +1,37 @@
 {
   "targets": [
-    {"kind": "level", "id": "1", "name": "First Call", "initializer": "level-one"},
-    {"kind": "miniboss", "id": "skitterling", "name": "Skitterling", "initializer": "skitterling-approach"}
+    {
+      "kind": "level",
+      "id": "1",
+      "name": "First Call",
+      "initializer": "level-one"
+    },
+    {
+      "kind": "miniboss",
+      "id": "skitterling",
+      "name": "Skitterling",
+      "initializer": "skitterling-approach"
+    },
+    {
+      "kind": "level",
+      "id": "2",
+      "name": "The Flush",
+      "initializer": "level-two-flush"
+    },
+    {
+      "kind": "level",
+      "id": "2-landing",
+      "name": "Post-flush log landing (full ride under construction)",
+      "initializer": "level-two-landing"
+    }
   ],
-  "heroes": ["tony", "sean"],
-  "difficulties": ["easy", "normal", "hard"]
+  "heroes": [
+    "tony",
+    "sean"
+  ],
+  "difficulties": [
+    "easy",
+    "normal",
+    "hard"
+  ]
 }

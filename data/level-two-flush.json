@@ -1,0 +1,1054 @@
+{
+  "layout": {
+    "schema_version": 1,
+    "id": "level-two-flush",
+    "date": "2026-10-24",
+    "timezone": "America/Los_Angeles",
+    "status": "Level Design contract for Prototype98 integration; not yet gameplay validated",
+    "owner": "Engineering delivery; Level Design geometry/schedule; Mechanics movement/safety; Art assets",
+    "scope": "Short survival flush and automatic log-landing boundary only; no full downstream ride or mandatory enemy kills",
+    "viewport": [
+      960,
+      540
+    ],
+    "camera": {
+      "fixed": true,
+      "rotation_degrees": 0
+    },
+    "geometry": {
+      "coordinate_space": "Unprojected circular plane radius360; screen=center+(world.x,world.y*140/360); hero position is feet anchor with planar collision radius14",
+      "bowl_center": [
+        480,
+        300
+      ],
+      "water_radii": [
+        360,
+        140
+      ],
+      "water_bounds": [
+        120,
+        160,
+        720,
+        280
+      ],
+      "rim_art_bounds": [
+        70,
+        100,
+        820,
+        350
+      ],
+      "playable_normalized_radius": [
+        0.45,
+        0.88
+      ],
+      "hero_spawn": [
+        480,
+        400.8
+      ],
+      "hero_collision_radius": 14,
+      "drain_center": [
+        480,
+        300
+      ],
+      "drain_visual_radii": [
+        65,
+        25.28
+      ],
+      "boundary_behavior": "Clamp hero center to annulus before drain; no contact damage or death at boundary",
+      "hud_safe_rect": [
+        0,
+        0,
+        960,
+        64
+      ],
+      "radio_safe_rect": [
+        0,
+        450,
+        960,
+        90
+      ],
+      "landing_hero_center": [
+        480,
+        360
+      ],
+      "landing_log_rect": [
+        330,
+        380,
+        300,
+        52
+      ],
+      "projection_y": 0.3888888888888889,
+      "world_radius": 360,
+      "maximum_projected_jump_height": 33.64
+    },
+    "duration_seconds": 45,
+    "clock": "Active gameplay clock. Three short arrival/gag lines run during the safe playable0..8s phase. Any remaining blocking overlay holds the clock at8s and prevents hazards until dismissed. Pause freezes all clocks. Retry skips gag text but retains0..8s calm phase.",
+    "phases": [
+      {
+        "id": "teach",
+        "start": 0,
+        "end": 8,
+        "damage_enabled": false
+      },
+      {
+        "id": "debris",
+        "start": 8,
+        "end": 35,
+        "damage_enabled": true
+      },
+      {
+        "id": "automatic_drain",
+        "start": 35,
+        "end": 43,
+        "damage_enabled": false
+      },
+      {
+        "id": "log_landing",
+        "start": 43,
+        "end": 45,
+        "damage_enabled": false
+      }
+    ],
+    "difficulty": {
+      "easy": {
+        "max_simultaneous_damaging_debris": 1,
+        "hazards": [
+          {
+            "id": "flush-easy-01",
+            "at": 9.0,
+            "kind": "soft",
+            "angle_radians": 1.5707963267948966,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-02",
+            "at": 11.7,
+            "kind": "hard",
+            "angle_radians": 0.0,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-03",
+            "at": 14.4,
+            "kind": "soft",
+            "angle_radians": 3.141592653589793,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-04",
+            "at": 17.1,
+            "kind": "soft",
+            "angle_radians": 4.71238898038469,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-05",
+            "at": 19.8,
+            "kind": "hard",
+            "angle_radians": 0.7853981633974483,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-06",
+            "at": 22.5,
+            "kind": "soft",
+            "angle_radians": 3.9269908169872414,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-07",
+            "at": 25.2,
+            "kind": "soft",
+            "angle_radians": 2.356194490192345,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-08",
+            "at": 27.9,
+            "kind": "hard",
+            "angle_radians": 5.497787143782138,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-easy-09",
+            "at": 30.6,
+            "kind": "soft",
+            "angle_radians": 1.5707963267948966,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.6,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          }
+        ]
+      },
+      "normal": {
+        "max_simultaneous_damaging_debris": 1,
+        "hazards": [
+          {
+            "id": "flush-normal-01",
+            "at": 9.0,
+            "kind": "soft",
+            "angle_radians": 1.5707963267948966,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-02",
+            "at": 11.0,
+            "kind": "hard",
+            "angle_radians": 0.0,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-03",
+            "at": 13.0,
+            "kind": "soft",
+            "angle_radians": 3.141592653589793,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-04",
+            "at": 15.0,
+            "kind": "soft",
+            "angle_radians": 4.71238898038469,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-05",
+            "at": 17.0,
+            "kind": "hard",
+            "angle_radians": 0.7853981633974483,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-06",
+            "at": 19.0,
+            "kind": "soft",
+            "angle_radians": 3.9269908169872414,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-07",
+            "at": 21.0,
+            "kind": "soft",
+            "angle_radians": 2.356194490192345,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-08",
+            "at": 23.0,
+            "kind": "hard",
+            "angle_radians": 5.497787143782138,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-09",
+            "at": 25.0,
+            "kind": "soft",
+            "angle_radians": 1.5707963267948966,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-10",
+            "at": 27.0,
+            "kind": "soft",
+            "angle_radians": 3.141592653589793,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-11",
+            "at": 29.0,
+            "kind": "hard",
+            "angle_radians": 0.0,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-normal-12",
+            "at": 31.0,
+            "kind": "soft",
+            "angle_radians": 4.71238898038469,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.4,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          }
+        ]
+      },
+      "hard": {
+        "max_simultaneous_damaging_debris": 2,
+        "hazards": [
+          {
+            "id": "flush-hard-01",
+            "at": 9.0,
+            "kind": "soft",
+            "angle_radians": 1.5707963267948966,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-02",
+            "at": 10.45,
+            "kind": "hard",
+            "angle_radians": 0.0,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-03",
+            "at": 11.9,
+            "kind": "soft",
+            "angle_radians": 3.141592653589793,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-04",
+            "at": 13.35,
+            "kind": "soft",
+            "angle_radians": 4.71238898038469,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-05",
+            "at": 14.8,
+            "kind": "hard",
+            "angle_radians": 0.7853981633974483,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-06",
+            "at": 16.25,
+            "kind": "soft",
+            "angle_radians": 3.9269908169872414,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-07",
+            "at": 17.7,
+            "kind": "soft",
+            "angle_radians": 2.356194490192345,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-08",
+            "at": 19.15,
+            "kind": "hard",
+            "angle_radians": 5.497787143782138,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-09",
+            "at": 20.6,
+            "kind": "soft",
+            "angle_radians": 1.5707963267948966,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-10",
+            "at": 22.05,
+            "kind": "soft",
+            "angle_radians": 3.141592653589793,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-11",
+            "at": 23.5,
+            "kind": "hard",
+            "angle_radians": 0.0,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-12",
+            "at": 24.95,
+            "kind": "soft",
+            "angle_radians": 4.71238898038469,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-13",
+            "at": 26.4,
+            "kind": "soft",
+            "angle_radians": 0.7853981633974483,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-14",
+            "at": 27.85,
+            "kind": "hard",
+            "angle_radians": 3.9269908169872414,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-15",
+            "at": 29.3,
+            "kind": "soft",
+            "angle_radians": 2.356194490192345,
+            "radius_fraction": 0.68,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          },
+          {
+            "id": "flush-hard-16",
+            "at": 30.75,
+            "kind": "soft",
+            "angle_radians": 5.497787143782138,
+            "radius_fraction": 0.76,
+            "warning_seconds": 1.2,
+            "lifetime_seconds": 0.6,
+            "radius_pixels": 22
+          }
+        ]
+      }
+    },
+    "hazard_rules": {
+      "positions": "angle/radius_fraction define fixed unprojected center atR360; project y by140/360. No retargeting after warning.",
+      "collision": "World-plane hero14+hazard22 gives36 combined footprint. Use projected elliptical warning of36worldradius. Jump clearance via Mechanics projected-height contract. One damage and shared invulnerability.",
+      "soft_paper": "24HP, both starter weapons can break; shooting is optional.",
+      "hard_porcelain": "Distinct intact hard material; dodge/jump, not required shooting",
+      "safety": "Before warning commits verify a reachable safe disk radius48world within annulus, clear of combined36world impact footprints, using min235-currentcap (Hard155), reactionbuffer0.15s and actual planned current. Test full path rather than straight endpoint through inner forbidden disk. Skip unsafe event without backlog; never move an already warned footprint.",
+      "minimum_net_steering_speed_reference": 155,
+      "overlap": "Do not overlap same-position warnings/impacts. Spawn caps count live damaging objects; pending warnings must also pass combined future-impact safety.",
+      "deadline": "No hazard may remain damaging at35s. Clear all pending warnings, projectiles and contacts before automatic drain.",
+      "visual_layers": "Warnings/shadows projected onto water; billboard hero height46 and projected jumpmax33.64 leave top>=97.16, belowHUD64. Art rim must not obscure playable edge.",
+      "completion": "At45s emit log_landed exactly once if alive; no kill quota. Dead/game-over cannot complete.",
+      "retry": "Full attempt restart under Mechanics life/health rules; no mid-bowl checkpoint. Log landing is next-stage boundary, not an implemented ride.",
+      "jump_clearance": "Mechanics owns airborne threshold; all debris is low and jumpable. Do not use raw screen distance for world collision."
+    },
+    "art_contract": "Separate bowl, drain/current layers, hard porcelain, soft paper, warning/impact effects and landing log. Art owns all authored images; no generated substitute by Engineering.",
+    "validation_required": [
+      "Both heroes/all difficulties can steer every direction at inner/outer ellipse limits",
+      "Actual slowed movement/current preserves at least one reachable safe pocket for each emitted warning",
+      "Pause never consumes warning time; unfinished blocking intro holds at8s before hazards; retry retains calm phase",
+      "Hard and soft silhouettes and warnings readable at960x540",
+      "Jump and shot collision follow visible impact footprints",
+      "At35s no pending or active damage, automatic drain cannot hurt hero",
+      "Retry clears all events and45s completion emits once; no game-over completion",
+      "No full ride or invented enemies/story outcome beyond landing"
+    ],
+    "timeline": {
+      "duration": 45,
+      "safe_until": 8,
+      "drain_start": 35,
+      "landing_start": 43
+    }
+  },
+  "story": {
+    "id": "level_two_flush_story_v1",
+    "date": "2026-10-24",
+    "status": "Final narrative handoff for Prototype98 implementation; not runtime validated or separately user-approved exact wording",
+    "authorization": "PM relayed Sean starts short playable Level2 flush. Full log ride and level3 remain deferred.",
+    "owner": "Storyboarding narrative; Engineering runtime/radio integration",
+    "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
+    "target_playable_seconds": 45,
+    "routes": {
+      "tony": [
+        {
+          "at": 0,
+          "who": "tony",
+          "emotion": "surprised",
+          "text": "Sean, I\u2019m in a giant toilet!",
+          "duration": 2.5,
+          "radio": false,
+          "gag": false,
+          "event": "arrival"
+        },
+        {
+          "at": 2.5,
+          "who": "sean",
+          "emotion": "worried",
+          "text": "Tony? Can you hear me?",
+          "duration": 2,
+          "radio": true,
+          "gag": true,
+          "event": "arrival",
+          "gag_action": "hold_center"
+        },
+        {
+          "at": 4.5,
+          "who": "tony",
+          "emotion": "worried",
+          "text": "Your face! Down! I can\u2019t see!",
+          "duration": 3.5,
+          "radio": false,
+          "gag": true,
+          "event": "arrival",
+          "gag_action": "slide_bottom",
+          "slide_line_seconds": [
+            1.4,
+            2.2
+          ]
+        },
+        {
+          "at": 8,
+          "who": "tony",
+          "emotion": "worried",
+          "text": "Somebody pulled the handle!",
+          "duration": 3,
+          "radio": false,
+          "event": "flush"
+        },
+        {
+          "at": 11,
+          "who": "sean",
+          "emotion": "worried",
+          "text": "Can you stop it?",
+          "duration": 2.5,
+          "radio": true,
+          "event": "flush"
+        },
+        {
+          "at": 13.5,
+          "who": "tony",
+          "emotion": "worried",
+          "text": "With what? My professional reputation?!",
+          "duration": 3.5,
+          "radio": false,
+          "event": "flush"
+        },
+        {
+          "at": 35,
+          "who": "tony",
+          "emotion": "worried",
+          "text": "Here we go\u2014!",
+          "duration": 2,
+          "radio": false,
+          "event": "drain"
+        }
+      ],
+      "sean": [
+        {
+          "at": 0,
+          "who": "sean",
+          "emotion": "surprised",
+          "text": "Tony? This is a giant toilet!",
+          "duration": 2.5,
+          "radio": false,
+          "gag": false,
+          "event": "arrival"
+        },
+        {
+          "at": 2.5,
+          "who": "tony",
+          "emotion": "worried",
+          "text": "Are you hurt, buddy?",
+          "duration": 2,
+          "radio": true,
+          "gag": true,
+          "event": "arrival",
+          "gag_action": "hold_center"
+        },
+        {
+          "at": 4.5,
+          "who": "sean",
+          "emotion": "worried",
+          "text": "Move your face down! I can\u2019t see!",
+          "duration": 3.5,
+          "radio": false,
+          "gag": true,
+          "event": "arrival",
+          "gag_action": "slide_bottom",
+          "slide_line_seconds": [
+            1.4,
+            2.2
+          ]
+        },
+        {
+          "at": 8,
+          "who": "sean",
+          "emotion": "worried",
+          "text": "It\u2019s flushing! I\u2019m still in here!",
+          "duration": 3,
+          "radio": false,
+          "event": "flush"
+        },
+        {
+          "at": 11,
+          "who": "tony",
+          "emotion": "worried",
+          "text": "Keep clear of the falling stuff, buddy.",
+          "duration": 3,
+          "radio": true,
+          "event": "flush"
+        },
+        {
+          "at": 35,
+          "who": "sean",
+          "emotion": "worried",
+          "text": "Here we go\u2014!",
+          "duration": 2,
+          "radio": false,
+          "event": "drain"
+        }
+      ]
+    },
+    "events": {
+      "arrival": {
+        "trigger": "0s safe bowl arrival; three lines finish by8s",
+        "gag": "Support panel centered at2.5; hero complaint at4.5; slide whole panel bottom during complaint lineclock1.4\u20132.2 (absolute5.9\u20136.7). One shared gag instance, not one per marked line.",
+        "safety": "No hazards before8; steering/current allowed. Any lingering center panel or dialogue hold delays hazard admission until clear. Gag-seen set at first arrival; newrun clears."
+      },
+      "flush": {
+        "trigger": "8s debris phase start; short route-specific exchange, no accumulated queue"
+      },
+      "drain": {
+        "trigger": "35s safe automatic drain phase through43; short shout only"
+      },
+      "landing": {
+        "trigger": "35\u201345 drain/landing are harmless. Retain flush-start retry anchor until survival completion; no separate43s checkpoint required. After actual landing at45, show one3s line in safe hold, then construction boundary at48s without manual pause.",
+        "boundary": "Log ride under construction; Return to Main Menu; no ride simulation"
+      },
+      "retry": {
+        "rule": "Retain full0\u20138s calm movement warmup on every retry; skip arrival/gag text only. Reset hazard seed/schedule and clock to0. Never jump directly to8s pressure. Preserve per-run gag-seen flag; newrun clears."
+      }
+    },
+    "radio_ui": {
+      "nonblocking": true,
+      "default_placement": "bottom, clear of controls/HUD and current action; top fallback if necessary",
+      "portraits": "Existing portrait library; compact740x82 panel at110,452 with70px portrait/text17, subject to Engineering fit checks. HUD0..64; radio zone450..540.",
+      "static": "Brief chirp at connection/event start only, not every line; Audio owns cue selection and audition-registry updates if needed",
+      "queue": "Only current event sequence; no accumulating stale event queue. Cancel on death/reset/title; higher-priority drain/landing replaces obsolete speech. Timer uses gameplay time and pauses with game.",
+      "skip": "Skip arrival snaps panel bottom; never enables hazards before safe8s boundary unless Mechanics approves retry/skip warmup. Skip landing reaches construction boundary safely.",
+      "retry": "Checkpoint retry cancels all pending lines; preserve per-run gag-seen; new run clears event/gag flags",
+      "readability": "Durations explicit per line; do not truncate for combat. Gate arrival before hazards and place remaining short exchanges in safe intervals.",
+      "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero."
+    },
+    "validation_required": [
+      "Both heroes and semantic portraits/radio flags",
+      "Arrival/gag harmless within0\u20138s of45s total; relocation complete before hazards",
+      "Gag relocates whole panel and never repeats on checkpoint retry",
+      "Nonblocking timed lines pause/resume and cancel on death/reset/title",
+      "No queue overlap at drain/landing",
+      "Survival completion after harmless drain/landing, then honest construction boundary; no ride gameplay"
+    ],
+    "landing_routes": {
+      "tony": [
+        {
+          "who": "tony",
+          "emotion": "surprised",
+          "text": "Sean. I\u2019m riding a turd.",
+          "duration": 3,
+          "radio": false
+        }
+      ],
+      "sean": [
+        {
+          "who": "sean",
+          "emotion": "worried",
+          "text": "Please tell me this is a log.",
+          "duration": 3,
+          "radio": false
+        }
+      ]
+    }
+  },
+  "audio": {
+    "date": "2026-10-24",
+    "status": "Audio assets frozen; Engineering integration, registry and audition-page generation pending",
+    "owner": "Audio assets; Engineering runtime and combined delivery",
+    "source_manifest": "audio/sources/level-two-flush-v1/manifest.json",
+    "cues": [
+      {
+        "event": "current_loop",
+        "path": "assets/audio/sfx/level-two-flush-v1/current-loop.wav",
+        "duration_seconds": 4.0,
+        "loop": true,
+        "gain_db": -10,
+        "peak_dbfs": -18.0,
+        "rms_dbfs": -31.42,
+        "boundary_step_dbfs": -37.46,
+        "sha256": "6ed21c256f45b0a5929a8efc6c0014fc4e4d3d0e938d45abd9691163f2dfc088"
+      },
+      {
+        "event": "flush_onset",
+        "path": "assets/audio/sfx/level-two-flush-v1/flush-onset.wav",
+        "duration_seconds": 1.2,
+        "loop": false,
+        "gain_db": -6,
+        "peak_dbfs": -12.0,
+        "rms_dbfs": -25.35,
+        "boundary_step_dbfs": -90.31,
+        "sha256": "1eb825636ad3ae3c30325cbfdc65777fbf6b0fbb7fb406992b82474bc6ee74a4"
+      },
+      {
+        "event": "flush_surge",
+        "path": "assets/audio/sfx/level-two-flush-v1/flush-surge.wav",
+        "duration_seconds": 3.0,
+        "loop": false,
+        "gain_db": -8,
+        "peak_dbfs": -14.0,
+        "rms_dbfs": -27.1,
+        "boundary_step_dbfs": -90.31,
+        "sha256": "ef694f5fce49e6382cba4a57cef58bf3158abc80adb8d77d1299a09f8dabc3c5"
+      },
+      {
+        "event": "debris_impact",
+        "path": "assets/audio/sfx/level-two-flush-v1/debris-impact.wav",
+        "duration_seconds": 0.32,
+        "loop": false,
+        "gain_db": -6,
+        "peak_dbfs": -12.0,
+        "rms_dbfs": -27.89,
+        "boundary_step_dbfs": -90.31,
+        "sha256": "bea452160138c76b8d95642f9129db7d6a457b2dd1510105abbe8bc0ace3e24f"
+      },
+      {
+        "event": "debris_break",
+        "path": "assets/audio/sfx/level-two-flush-v1/debris-break.wav",
+        "duration_seconds": 0.48,
+        "loop": false,
+        "gain_db": -6,
+        "peak_dbfs": -14.0,
+        "rms_dbfs": -33.7,
+        "boundary_step_dbfs": -90.31,
+        "sha256": "e83d826b0e6d6631effb05a5cee1becbf91f519f04baceea7d42fe6147fd40ee"
+      },
+      {
+        "event": "radio_chirp",
+        "path": "assets/audio/sfx/level-two-flush-v1/radio-chirp.wav",
+        "duration_seconds": 0.13,
+        "loop": false,
+        "gain_db": -4,
+        "peak_dbfs": -18.0,
+        "rms_dbfs": -22.61,
+        "boundary_step_dbfs": -90.31,
+        "sha256": "0f77a50005137355c187515f5d2a6264342f19d36f6f641a908f4ce69fe3dc23"
+      }
+    ],
+    "events": {
+      "current_loop": "Start once on active bowl entry, one looping voice, fade in/out over 0.25s; stop at chute/log checkpoint.",
+      "flush_onset": "One-shot at full-flush phase transition, never per frame or per current-strength update.",
+      "flush_surge": "One-shot on chute entry/final pull; do not restart continuously or loop.",
+      "debris_impact": "Debris landing or player impact; one shared effect voice, throttle at least 0.12s.",
+      "debris_break": "Successful soft obstruction destruction once, prioritize over impact in same frame.",
+      "radio_chirp": "Once per radio transmission/exchange, not each character or text line; minimum 0.5s cooldown."
+    },
+    "lifecycle": "Suggested four fixed voices: current bed, flush accent, debris, radio. New onset/surge may replace previous flush accent. Pause all; honor SFX mute; stop and clear on death/retry/title/scene exit/disposal. No muted-event backlog.",
+    "radio_mix": "During radio overlay duck current and flush accent an additional 8dB, restore over 0.2s. Chirp before transmission text/voice; no voice recording supplied. Keep impact/weapon cues bounded. Device mix remains unreviewed.",
+    "loop_import": "current-loop.wav only: enable forward loop across full 128000 frames. Other WAVs must not loop. Circular overlap already baked in; no restart gaps.",
+    "candidate_registration": "Six initial candidates named by event; Engineering allocates new permanent slot IDs and next suffixes, preserves these exact source assets, registers candidates, refreshes runtime mappings, rebuilds audio/drain-damage-sound-auditions.html and runs --check. Audio does not edit shared registry/helper.",
+    "validation": "All six WAVs decode with ffmpeg; Python syntax and 120-column/trailing-whitespace checks pass. Exact hashes/levels/seam measurements in manifest. No playback or subjective approval.",
+    "preservation": "Keep all six original WAVs and this recipe; future revisions use new versioned paths. Existing death flush remains unchanged.",
+    "limitations": "Numerical loop boundary check does not establish perceived seamlessness. Runtime, lifecycle tests, mixing, build and roadmap remain Engineering work."
+  },
+  "art": {
+    "schema_version": 1,
+    "status": "Art source registered and composition approved for short slice; frozen for Engineering integration; runtime visual validation pending",
+    "reference_viewport": [
+      960,
+      540
+    ],
+    "frames": {
+      "bowl": {
+        "path": "assets/world/level-two-flush-v1/bowl-v2.png",
+        "source_rect": [
+          0,
+          0,
+          1671,
+          941
+        ],
+        "destination": [
+          0,
+          30,
+          960,
+          540
+        ],
+        "coordinate_space": "screen"
+      },
+      "bowl_top": {
+        "path": "assets/world/level-two-flush-v1/bowl-v2.png",
+        "source_rect": [
+          0,
+          0,
+          1671,
+          60
+        ],
+        "destination": [
+          0,
+          0,
+          960,
+          30
+        ],
+        "coordinate_space": "screen"
+      },
+      "landing": {
+        "path": "assets/world/level-two-flush-v1/landing-v1.png",
+        "source_rect": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "destination": [
+          0,
+          0,
+          960,
+          540
+        ],
+        "coordinate_space": "screen"
+      },
+      "hard": {
+        "path": "assets/world/level-two-flush-v1/props-v1.png",
+        "source_rect": [
+          170,
+          60,
+          580,
+          520
+        ],
+        "destination": [
+          -24,
+          -36,
+          48,
+          44
+        ],
+        "coordinate_space": "local"
+      },
+      "soft": {
+        "path": "assets/world/level-two-flush-v1/props-v1.png",
+        "source_rect": [
+          920,
+          90,
+          520,
+          490
+        ],
+        "destination": [
+          -24,
+          -36,
+          48,
+          44
+        ],
+        "coordinate_space": "local"
+      },
+      "log": {
+        "path": "assets/world/level-two-flush-v1/props-v1.png",
+        "source_rect": [
+          40,
+          640,
+          930,
+          320
+        ],
+        "destination": [
+          330,
+          380,
+          300,
+          52
+        ],
+        "coordinate_space": "screen"
+      },
+      "warning": {
+        "path": "assets/world/level-two-flush-v1/effects-v1.png",
+        "source_rect": [
+          25,
+          100,
+          760,
+          310
+        ],
+        "destination": [
+          -40,
+          -16,
+          80,
+          32
+        ],
+        "coordinate_space": "local"
+      },
+      "shadow": {
+        "path": "assets/world/level-two-flush-v1/effects-v1.png",
+        "source_rect": [
+          830,
+          130,
+          690,
+          260
+        ],
+        "destination": [
+          -16,
+          -6,
+          32,
+          12
+        ],
+        "coordinate_space": "local"
+      },
+      "current": {
+        "path": "assets/world/level-two-flush-v1/effects-v1.png",
+        "source_rect": [
+          20,
+          540,
+          920,
+          400
+        ],
+        "destination": [
+          -360,
+          -140,
+          720,
+          280
+        ],
+        "coordinate_space": "local"
+      },
+      "splash": {
+        "path": "assets/world/level-two-flush-v1/effects-v1.png",
+        "source_rect": [
+          1010,
+          600,
+          440,
+          340
+        ],
+        "destination": [
+          -22,
+          -25,
+          44,
+          34
+        ],
+        "coordinate_space": "local"
+      }
+    },
+    "geometry": {
+      "center": [
+        480,
+        300
+      ],
+      "water_radii": [
+        360,
+        140
+      ],
+      "projection_y": 0.3888888888888889,
+      "drain_radii": [
+        65,
+        25.28
+      ],
+      "safe_bands": {
+        "hud_bottom": 64,
+        "radio_top": 450
+      }
+    },
+    "drawing_notes": [
+      "Draw bowl_top then bowl; viewport clips bottom30px of bowl. Background includes extra decorative water outside playable ellipse.",
+      "Background drain lip aligns approximately480,300 after30px verticaloffset; gameplay uses canonical LevelDesign geometry.",
+      "current localorigin is bowlcenter; modulate lowopacity .12.. .22. Smooth source-circle rotation before yprojection only; never rotate flattened ellipse in screen space.",
+      "Hard/soft upright oblique props extend above footprint; collision remains22worldradius projectedto22x8.56. Warning80x32 includes padding around36x14 projectedclearance.",
+      "Draw floor shadow/warning first, debris/hero sortedbyfootY, splasheslast; radio staysoutsidewater.",
+      "Landing scene only: draw landing then log at330,380,300,52, hero footcenter480,385. No fullride implied."
+    ],
+    "hero_reuse": {
+      "approved": true,
+      "style": "Existing hero sprites as upright billboard characters in oblique environment; same body dimensions/costumes, foot shadow communicates surface contact.",
+      "source": "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+      "constraints": [
+        "Use current normal/Hard runtime selection, never flatten hero vertically with waterprojection.",
+        "Preserve recognizable faces and weapons; player collisioncenter projects separatelyfromartfootpoint.",
+        "Agent source preview only; live oblique readability still requires validation."
+      ]
+    },
+    "collision_source": "levels/level-two-flush.json",
+    "provenance": "assets/world/level-two-flush-v1/prompts.json",
+    "preserved_original": "assets/world/level-two-flush-v1/bowl-source-v1.png",
+    "source_preview": "previews/level-two-flush-v1/contact.png",
+    "validation": {
+      "source_crops": 10,
+      "bounds": "PASS",
+      "sprite_edge_alpha_max": {
+        "hard": 1,
+        "soft": 1,
+        "log": 1,
+        "warning": 1,
+        "shadow": 7,
+        "current": 1,
+        "splash": 1
+      },
+      "review": "Both hero billboard source compositions and both landing scenes inspected. Shadow faint alpha fringe acceptable; no solid neighboring cell contamination."
+    }
+  }
+}

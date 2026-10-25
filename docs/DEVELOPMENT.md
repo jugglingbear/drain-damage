@@ -41,6 +41,25 @@ Close the game before rebuilding its app. Agents must follow [the project instru
 permission before opening or foregrounding the game for a playtest. A build or documentation update
 is not launch permission.
 
+## Direct Level 2 playtests
+
+Start the flush sequence without completing Level 1:
+
+```sh
+make run LEVEL=2 HERO=tony DIFFICULTY=normal
+```
+
+Skip the flush and start at the post-flush log landing:
+
+```sh
+make run LEVEL=2-landing HERO=sean DIFFICULTY=hard
+```
+
+Both entries initialize a fresh run without a prior save. Either accepts `HERO=tony|sean`,
+`DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the landing dialogue and
+“Log ride under construction” boundary; the full log ride is not playable yet.
+Use `make run-check` with the same selectors to verify initialization without opening a window.
+
 ## Where things live
 
 - `scripts/` contains game logic; `project.godot` defines the project and canonical version.

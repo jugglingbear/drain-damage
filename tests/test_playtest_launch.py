@@ -30,8 +30,13 @@ class PlaytestLaunchTests(unittest.TestCase):
                                                  "DIFFICULTY": "hard", "SEED": "913"}),
                          ["--miniboss=skitterling", "--hero=sean", "--difficulty=hard", "--seed=913"])
 
+    def test_distinct_flush_and_landing_entries(self) -> None:
+        for target in ("2", "2-landing"):
+            self.assertEqual(launch.launch_arguments({"LEVEL": target, "HERO": "sean", "DIFFICULTY": "hard"}),
+                             [f"--level={target}", "--hero=sean", "--difficulty=hard", "--seed=42"])
+
     def test_invalid_unimplemented_and_conflicting_selectors(self) -> None:
-        for values in [{"LEVEL": "2"}, {"BOSS": "clogfather"}, {"MINIBOSS": "unknown"},
+        for values in [{"LEVEL": "3"}, {"BOSS": "clogfather"}, {"MINIBOSS": "unknown"},
                        {"LEVEL": "1", "MINIBOSS": "skitterling"}, {"HERO": "sean"},
                        {"LEVEL": "1", "HERO": "someone"}, {"LEVEL": "1", "DIFFICULTY": "extreme"},
                        {"LEVEL": "1", "SEED": "-1"}, {"LEVEL": "1", "SEED": "2147483648"},

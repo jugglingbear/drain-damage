@@ -9,6 +9,8 @@ var ending := FirstLevelEnding.new()
 const ClogfatherRoute = preload("res://scripts/clogfather_route.gd")
 const SwarmSchedule = preload("res://scripts/swarm_schedule.gd")
 var swarm_schedule := SwarmSchedule.new()
+const Flush = preload("res://scripts/level_two_flush.gd")
+var flush := Flush.new()
 const OPENING_END := 3120.0
 var wave_spawned: Array[int] = [0,0,0,0,0]
 var wave_bypassed: Array[int] = [0,0,0,0,0]
@@ -44,6 +46,7 @@ var intro_input_release := false
 func _ready() -> void:
 	super._ready()
 	add_child(boss_intro)
+	flush.attach(self)
 	# These screen-space controls must never inherit the encounter world framing.
 	for overlay: CanvasItem in [boss_hud,dialogue,pause_menu]: overlay.set_as_top_level(true)
 	# Dialogue and pause controls must cover the meter when they occupy the right edge.
@@ -59,6 +62,8 @@ func _ready() -> void:
 	# Base _ready dispatched reset_game, so the mixed geometry is already configured.
 
 func reset_game() -> void:
+	var retry_flush := flush.active
+	flush.reset()
 	boss_intro.reset(true)
 	intro_input_release = false
 	dialogue.hard_portraits = difficulty == "hard"
@@ -75,6 +80,7 @@ func reset_game() -> void:
 	respawn_origin = 85.0
 	if music_director != null: music_director.play_track("level")
 	super.reset_game()
+	if retry_flush: flush.begin(self)
 
 func reset_observation() -> void:
 	# Parent respawn calls this after restoring the hero/dispenser; reset once beforehand instead.
@@ -166,6 +172,12 @@ func reset_observation() -> void:
 	gate_progress.fill(1)
 
 func respawn_after_death() -> void:
+	if flush.active:
+		if lives <= 0: return
+		health = employee.max_health
+		invulnerable = 3.0
+		flush.begin(self,true)
+		return
 	if lives <= 0: return
 	respawn_origin = respawn_point.x
 	if music_director != null: music_director.play_track("level")
@@ -354,6 +366,21 @@ func step_player(delta: float) -> void:
 	dispenser.actions_locked = locked
 
 func _physics_process(delta: float) -> void:
+	if flush.active:
+		if paused or won or life_state in ["death_popup","game_over"]: return
+		if life_state == "dying":
+			step_death(delta)
+			return
+		if dialogue.release_guard > 0 or restart_guard_device >= 0: return
+		if flush.input_guard:
+			if restart_inputs_held() or Input.is_action_pressed("shoot") or Input.is_action_pressed("jump"): return
+			flush.input_guard = false
+		var steering := Input.get_vector("left","right","aim_up","aim_down")
+		var count := maxi(1,ceili(delta*120))
+		for index in range(count):
+			flush.tick(self,delta/count,steering,Input.is_action_just_pressed("jump") and index == 0,
+				Input.is_action_pressed("shoot"))
+		return
 	if dispenser.just_finished:
 		dispenser.just_finished = false
 		return
@@ -682,12 +709,19 @@ func draw_environment() -> void:
 	dispenser.draw_machines(self)
 
 func sync_boss_presentation() -> void:
+	if flush.active:
+		boss_sidebar = false
+		transform = Transform2D.IDENTITY
+		return
 	# Keep the full room visible, including the right pipe, through death and exit traversal.
 	boss_sidebar = clogfather.entered or skitterling.locked()
 	transform = Transform2D(0,Vector2.ONE*BOSS_WORLD_SCALE,0,BOSS_WORLD_OFFSET) \
 		if boss_sidebar else Transform2D.IDENTITY
 
 func _draw() -> void:
+	if flush.active:
+		flush.draw(self)
+		return
 	if trial_data.is_empty(): return
 	draw_set_transform(Vector2(-floorf(camera_x),0))
 	draw_environment()
@@ -748,8 +782,11 @@ func _process(delta: float) -> void:
 		door_audio.set_paused(true)
 		starter_weapon_audio.set_paused(true)
 	if ending.state == "dialogue" and not paused: ending.clock += delta
-	skitterling.process_audio(self,delta)
-	clogfather.process_audio(self,delta)
+	if flush.active:
+		flush.process_audio(self,delta)
+	else:
+		skitterling.process_audio(self,delta)
+		clogfather.process_audio(self,delta)
 
 func draw_pause_panel() -> void:
 	if not won or ending.state != "complete":
@@ -765,21 +802,51 @@ func draw_pause_panel() -> void:
 
 func hurt_player() -> void:
 	super.hurt_player()
+	if flush.active:
+		flush.sync_hero(self)
+		if life_state != "alive":
+			flush.radio.clear()
+			flush.audio.stop()
+		return
 	player = skitterling.constrain(player,PLAYER_SIZE)
 	player = clogfather.constrain(player,PLAYER_SIZE)
 
 func set_paused(value: bool) -> void:
 	super.set_paused(value)
+	if flush.active: flush.process_audio(self,0.0)
 	skitterling.audio.set_paused(value or life_state != "alive")
 	clogfather.audio.set_paused(value or life_state != "alive")
 
 func request_title() -> void:
 	if death_popup_locked: return
+	flush.reset()
 	skitterling.audio.stop()
 	clogfather.audio.stop()
 	super.request_title()
 
 func _exit_tree() -> void:
+	flush.dispose()
 	skitterling.audio.dispose()
 	clogfather.audio.dispose()
 	super._exit_tree()
+
+func begin_level_two() -> void:
+	flush.begin(self)
+
+func step_death(delta: float) -> void:
+	if not flush.active:
+		super.step_death(delta)
+		return
+	if paused or life_state != "dying": return
+	death_time += delta
+	if death_time < 1.0: return
+	life_state = "game_over" if lives == 0 else "death_popup"
+	death_popup_locked = true
+	death_popup_guard = 0.35
+	resume_button.disabled = true
+	title_button.disabled = true
+	resume_button.text = "Retry Flush" if lives == 0 else "Continue at Bowl"
+	resume_button.position = Vector2(245,326)
+	title_button.position = Vector2(245,416)
+	style_pause_buttons()
+	set_paused(true)

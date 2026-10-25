@@ -85,6 +85,10 @@ def discover() -> dict[str, dict[str, Any]]:
         key = f"tone/{name}"
         add(key, section, name, [], "scripts/game.gd: play_tone / fill_audio")
         slots[key]["tone"] = [float(frequency), float(duration)]
+    flush_audio = json.loads((ROOT / "handoffs/level-two-flush-audio.json").read_text())
+    for cue in flush_audio["cues"]:
+        add(f"level-two-flush/{cue['event']}", "Level 2", f"The Flush — {cue['event'].replace('_', ' ')}",
+            [cue["path"]], "data/level-two-flush.json#/audio")
     return slots
 
 

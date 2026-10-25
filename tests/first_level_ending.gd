@@ -75,11 +75,11 @@ func run_checks() -> void:
 			game.set_paused(false)
 			release(game)
 			game._physics_process(1.7)
-			if not check(game.won and game.ending.state == "complete","Departure never completed"): return
-			if not check(game.player.is_equal_approx(game.ending.TARGET-game.PLAYER_SIZE*0.5),
+			if not check(game.flush.active and not game.won and game.ending.state == "complete","Departure never completed"): return
+			if not check(game.flush.clock == 0 and game.flush.input_guard,
 				"Departure did not carry the full-size hero beyond the portal plane"): return
-			game.update_completion_button()
-			if not check(game.title_button.disabled,"Held input can dismiss completion immediately"): return
+			if not check(game.dialogue.release_guard > 0,"Held input can leak into Level 2"): return
+			game.flush.reset()
 			game.reset_game()
 			if not check(not game.ending.active() and not game.won and game.ending.panic_text.is_empty(),
 				"Reset retained portal state or scream"): return

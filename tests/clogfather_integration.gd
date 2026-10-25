@@ -158,7 +158,8 @@ func run_checks() -> void:
 			unlock(game)
 			game._physics_process(0)
 			game._physics_process(2.5)
-			if not check(game.won and game.ending.state == "complete","portal departure did not complete level"): return
+			if not check(game.flush.active and not game.won and game.ending.state == "complete","portal departure did not start Level 2"): return
+			game.flush.reset()
 			game.reset_game()
 			unlock(game)
 			if not check(game.checkpoint_index == -1 and game.respawn_point.x == 85 and game.lives == 3
