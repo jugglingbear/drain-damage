@@ -334,3 +334,18 @@ Departing artwork persists independently of collision cleanup through the three-
 Screenshot freeze is opt-in through `SCREENSHOT_MODE=1`; controller Y freezes without adding pause UI.
 These changes are included in Prototype 107; the preserved Prototype 106 app retains its earlier behavior.
 Actual visual review of the revised platforms, pit occlusion and screenshot mode remains pending.
+
+## Prototype 108 slalom, breach and rest jumps
+
+The slalom now uses visibly connected far-wall and near-wall baffles plus a center blocker at 520-pixel spacing.
+The original implementation reused identical frontal pedestal images and lacked the center blocker. Its abstract
+lane-coverage checks did not establish visible wall attachment. Imported texture coverage and actual input routes
+now supplement the collision checks.
+
+Elbow-Pipe Breach uses a supported pipe stump followed by a 700-pixel lower-channel pit with cascading water.
+The safe route is along the far bank. Pipe contact costs one HP; unsupported pit contact causes one normal death.
+The rest branch now accepts grounded jump presses and advances flight/cooldown continuously, including across the
+three-second rest boundary. It does not repeat held input or buffer airborne presses.
+
+The approved float-arm wall mount is a follow-up, separate from the frozen Prototype 108 export. Mixed-course,
+brush-curtain and giant hungry-head boss work remain plans rather than implemented gameplay.

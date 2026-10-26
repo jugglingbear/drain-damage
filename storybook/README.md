@@ -2644,6 +2644,37 @@ Finalization and archive identity are in the metadata.
 
 [Local build evidence and capture status](107-ride-visual-feedback/20261026-155802-capture-status.json).
 
+## 108 — Slalom and lower channel — October 26, 2026
+
+**Build:** Prototype 108 / 0.108.0 validated locally, runtime source `3cf2b59444e92d53a885487e2705e005d4ff4dd8`. Archive
+SHA-256 and source marker independently verified. Engineering confirms 1,667 tracked snapshot files plus marker;
+v00.107.00 is preserved.
+
+Encounter 01 replaces identical freestanding far/near frames with visible wall connections and a center weave at 520
+spacing. Encounter 02 adds a real lower-channel pit/cascade and far-bank route. Pipe contact costs one HP; pit falls
+cost one life.
+
+The rest branch previously ignored jump presses and airborne advancement. Fresh grounded jumps now work during rests and
+continue across encounter boundaries, while the rest duration remains exactly three seconds. Real Space/A held-input,
+release and resume checks pass.
+
+**Validation:** All 34 exact packaged suites pass; the manifest and log paths were checked. Engineering reports eight
+Python tests, 99 audio slots at freeze, exported encounter01 Tony with screenshot mode on and encounter02 Sean Hard,
+strict codesign and ZIP checks pass. Encounter01 coverage includes 1,083 alpha samples, 5,076 lanes and 162 weaves with
+±50 ms variation. These checks are not actual gameplay captures.
+
+**Scope boundary:** Encounter06 wall mounting remains pending follow-up and is not delivered here. Encounters03/04, the
+mixed course and boss remain plan-only.
+
+**Capture gap:** No actual captures or human visual review. Wall connections, center weave, cascade/far route and
+rest-jump continuity still need visual verification. Edition33 publication hold remains; no commit or push by
+Storyboarding.
+
+**Record created:** 2026-10-26T16:11:30-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization and archive identity are in the metadata.
+
+[Local build evidence and capture status](108-slalom-and-lower-channel/20261026-161130-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

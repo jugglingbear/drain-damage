@@ -61,6 +61,8 @@ then starts the ten-encounter ride showcase. Start directly at an encounter with
 Steer with arrows/stick; up/down moves between banks and left/right shifts within the view. Space/A jumps.
 The ride advances at 560 pixels/second, with horizontal/bank steering at 400/350 pixels/second.
 Regular jumps last 0.6 seconds, reach 54 pixels and have a 0.1-second landing cooldown.
+Prototype 108 accepts fresh grounded jump presses during safe rests and carries flight across encounter boundaries.
+Holding Space/A does not repeat jumps; airborne/cooldown presses are not queued.
 Each encounter ends with three full seconds without hazards or next-encounter warnings.
 Deaths and retries resume the current encounter without replaying the flush.
 In Prototype 107, every true pit or unsupported-gap fall costs one life and visibly descends
@@ -102,7 +104,7 @@ metadata and delivery records before relying on them.
 
 ## Screenshot freeze
 
-Prototype 107 and the source launcher accept an opt-in screenshot flag; Prototype 106 does not include it.
+Prototype 108 and the source launcher accept an opt-in screenshot flag; Prototype 106 does not include it.
 
 ```sh
 make run LEVEL=2-landing SCREENSHOT_MODE=1
@@ -114,4 +116,18 @@ animations, dialogue, particles and audio pause together. Focus loss leaves the 
 Ordinary pause/death menus retain their existing controls; capture mode does not replace an already-open menu.
 The flag also works with other launch targets or an ordinary `make run SCREENSHOT_MODE=1` start.
 Use `SCREENSHOT_MODE=0` or omit it for unchanged controls. Only `0` and `1` are accepted.
-To use the preserved export, add `APP="builds/Prototype-107/Drain Damage.app"` to the command.
+To use the preserved export, add `APP="builds/Prototype-108/Drain Damage.app"` to the command.
+
+## Prototype 108 encounter corrections
+
+`LEVEL=2-01` uses visible far-wall, near-wall and center structures with matching collision surfaces. The safe weave
+moves near, far, then near again; the structures are spaced 520 pixels apart. Neutral horizontal steering keeps the
+tested approach timing. The safe-route tests allow 50 milliseconds of early or late bank-change input.
+
+`LEVEL=2-02` routes along the far bank around a broken lower channel. The pipe occupies x2320–2500 and costs one HP
+on contact; the pit occupies x2520–3220, y300–430 and costs a life on an unsupported fall. Target bank y270 leaves
+16 pixels of full-board clearance. The cascade is animated; its artwork, rims and collision bounds are registered.
+The earliest visible pipe approach at the rightmost anchor is about 2.90 seconds; safe rests remain three seconds.
+
+The float-arm wall attachment is a pending follow-up. Mixed-course pacing, brush-curtain redesign and the new final
+boss remain proposals; Prototype 108 does not implement them. Human visual and controller review remains pending.

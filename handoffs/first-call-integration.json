@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
-  "build": "Prototype 107 / 0.107.0",
-  "created_at": "2026-10-26T16:00:07.840355-07:00",
+  "build": "Prototype 108 / 0.108.0",
+  "created_at": "2026-10-26T16:23:22.523018-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "e49bf21197921fa8921df7e58e70e7b47a8284a6",
-  "status": "Ready locally:26 packaged suites,8 Python checks and99-slot audio freshness pass; edition33 publication hold remains.",
-  "app": "builds/Prototype-107/Drain Damage.app",
-  "archive": "builds/history/Prototype-107.zip",
-  "archive_sha256": "f367bfdaa8a57acfd0702c23a550fe9cdcdf534cc2792cc8844b034d1db20592",
-  "source_snapshot": "builds/source-107",
-  "source_snapshot_files": 1610,
-  "previous_build_preserved": "Prototype106 and earlier apps, archives and source snapshots preserved",
+  "source_commit": "3cf2b59444e92d53a885487e2705e005d4ff4dd8",
+  "status": "Ready locally:34 packaged suites,8 Python checks,99 runtime audio slots and signed archive verify. Edition33 publication hold remains.",
+  "app": "builds/Prototype-108/Drain Damage.app",
+  "archive": "builds/history/Prototype-108.zip",
+  "archive_sha256": "dc85f8def2388dd21b15e14bf310e4912fd00a6003a9fc3883086e4d75c6d49d",
+  "source_snapshot": "builds/source-108",
+  "source_snapshot_files": 1667,
+  "previous_build_preserved": "Prototype107 and earlier apps, archives and source snapshots preserved",
   "changes": [
-    "Departing props retain independent visual clocks until full transformed artwork/shadows/decorations leave the viewport; safe rests remain3seconds.",
-    "Cap islands and broken basins use dimensional authored top/face/shadow layers with unchanged landable top rectangles; prior art preserved.",
-    "Every true pit/unsupported-gap fall costs one life, regardlessHP; existinghero+board descends at failedposition for1second beforedeathUI, clippedatpitbottom andoccludedbysoliddecklayers. Ordinarysolid/overhead/spikehits remain1HP; normalwater safe.",
-    "Ramp narrowed acrossbanks to100px (visible280..380/fullboardcenter294..366), preservingapproved200pxrun/40rise andascent/launchangles. Noedgeboost,snaporlateacquisition.",
-    "Opt-in SCREENSHOT_MODE=1 usescontrollerY tofreeze/resume withoutpauseoverlay, retainingHUD. Gameplaytree/audiofreeze andcontrolrelease/focusguards; disabledbydefault."
+    "Slalom uses distinct far-wall and near-wall baffles plus center blocker at520px spacing; exact visible water-plane surfaces match collision rectangles and bank seams. Earlier identical frontal pedestal art and missingcenter corrected.",
+    "Elbow-Pipe Breach now has supportedpipe x2320..2500/y320..430 followedby realpit x2520..3220/y300..430; safe far-banktarget270 leaves16px fullboardmargin. Pipehit1HP precedes unsupportedpitdeath.",
+    "Authored8phase16fps waterfall curtains crossfade; all animationframebounds retained through visual lifetime, solidrimlayers occlude pitfall.",
+    "Fresh grounded Space/controllerA jumps now accepted duringrests; sharedair/cooldownadvance preservesflightacross3s boundary. Noheldrepeat orairborne/cooldownbuffer.",
+    "Other isolated encounters,560speed,3srests,approvedramp,screenshotmode and earlierfeedbackfixes preserved."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
@@ -25,32 +25,37 @@
     "direct": "make run LEVEL=2-01 (through2-10)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-landing SCREENSHOT_MODE=1 APP=\"builds/Prototype-107/Drain Damage.app\""
+    "screenshot_export": "make run LEVEL=2-01 SCREENSHOT_MODE=1 APP=\"builds/Prototype-108/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02"
   },
   "checks": {
-    "packaged_suites_passed": 26,
-    "packaged_suites_total": 26,
-    "results": "builds/verification-107/final-results.json",
-    "routes": "54 model routes/540 encounters;6 full integrated routes/60encounters, bothheroes/allmodes.",
-    "failures": "972 authored failure cases including216 misalignedrampcases; focusedexactboundary/ascent-exit tests pass.",
-    "presentation": "40visual/resttransitions plus18 actualhostpitfall/death/retrycases; artworkbounds andrigidregistrationchecks.",
-    "screenshot": "Six gameplaycontexts,held/releasedY,focus,pausemenu/audio/timerfreeze; exportedCLI confirmsflagbothonandoff.",
+    "packaged_suites_passed": 34,
+    "packaged_suites_total": 34,
+    "results": "builds/verification-108/final-results.json",
+    "slalom": "5076 all141lane straight/repeatedjump trajectories;162 safeweaves with +/-50ms bankinput offsets;1296 heldhorizontal/jump boundary cases;1083 importedtexture samples pluswallseams.",
+    "breach": "216 center/near straight/jump failures;126boundaryroutes and11 fastestjumpattempts; actualhostfall checks include02; authoredcascadeframes/bounds/rimordering pass.",
+    "routes": "54 model fullroutes/540encounters plus6full integratedroutes; updated972general failurecases pass.",
+    "rest_jump": "18modelhero/mode/fps configurations andrealnativephysics Space/A tests forbothheroes acrossrest/boundary/held/release/pause.",
     "python_tests": 8,
-    "python_log": "builds/verification-107/python.log",
-    "audio_freshness": "99slots pass",
+    "python_log": "builds/verification-108/python.log",
+    "audio_freshness": "99runtime slots checked atfreeze; separate proposedboss auditions are not runtime108.",
+    "exported_entries": "2-01TonyNormal screenshotmodeon and2-02SeanHard screenshotmodeoff pass.",
     "signature_archive": "codesign strict and ZIP integrity pass",
-    "markdown": "Whitespace check passed; Markdownlint unavailable in environment (npm DNS)."
+    "markdown": "Whitespace checks pass; Markdownlint unavailable in environment."
   },
   "capture_gap": {
     "actual_capture": false,
-    "chapter": "storybook/107-ride-visual-feedback/",
-    "reason": "No foreground capture permission; source compositions and headless tests are not runtime visual acceptance."
+    "chapter": "storybook/108-slalom-and-lower-channel/",
+    "reason": "No foreground capture permission. Source compositions inspected; runtime visual acceptance remains pending."
   },
   "limitations": [
-    "Human visual review of deck volume,fall occlusion/narrowramp andcontroller screenshotfreeze remains pending.",
-    "Nominal model/art registration checks do not prove pixel-perfect irregular board contact.",
-    "Existing Godot user-settings/log/certificate and shutdown resource warnings persist; all26 suites pass.",
-    "Full ride/later stages remain unfinished."
+    "Livevisual review ofwallconnections,cascade/pitrimfall andcontrollerfeel remains pending.",
+    "Neutral-horizontal weave is tested; full-right simultaneousbank input tightens the window and is not promised as a clean route.",
+    "Earliest02pipeapproach atx650 is2.902seconds ratherthanfull3seconds; hazard-free rests remain exactly3seconds.",
+    "06fixedfarwallfloatmount is approved but pending a separate follow-up, not included in108.",
+    "03mixedcourse,04brush redesign andgiantfinalboss are plans/concepts/auditions only, notimplemented.",
+    "ExistingGodot settings/log/certificate andshutdownwarnings persist; all34suites pass."
   ],
   "contributors": [
     "handoffs/level-two-ride-showcase-layout.json",
@@ -58,5 +63,9 @@
     "handoffs/level-two-ride-mechanics.json",
     "handoffs/ride-obstacle-auditions.json"
   ],
-  "publication_hold": "Do not push main: local edition33 magazine is not authorized for publication."
+  "publication_hold": "Do not push main: local edition33 magazine is not authorized for publication.",
+  "pending_followup": {
+    "approved": "06floatarm fixedfarwallmount andcontinuousrod, preserveballcollider/motion; Art preparesseparateassets/registration.",
+    "not_implemented": "Mixedcourse/brush/boss proposals remain separate; bosssoundsauditionsonly."
+  }
 }

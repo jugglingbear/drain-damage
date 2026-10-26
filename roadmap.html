@@ -77,12 +77,22 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 26, 2026 · Current build: Prototype 107 / 0.107.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 26, 2026 · Current build: Prototype 108 / 0.108.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
+<a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Prototype 108 — slalom, channel breach and rest jumps (ready locally):</strong>
+The slalom now visibly connects to both walls and includes a center blocker, with matching collision surfaces and
+520-pixel spacing. The broken lower-channel breach has animated cascading water, a real lethal pit and a safe
+far-bank route. Fresh grounded jumps work during rests and carry across encounter boundaries without held repeats.
+All 34 packaged suites, eight Python checks, 99 runtime audio slots, direct exported entries and the signed archive
+verify. Tests include 5,076 straight/jump slalom attempts, 162 safe weaves with 50-millisecond input offsets, imported
+texture coverage and actual Space/controller A input. Prototype 107 is preserved. Runtime visual review remains
+pending. The approved float-arm wall attachment is a separate follow-up; mixed-course pacing, brush redesign and
+final-boss concepts/auditions remain proposals. The edition 33 publication hold still prevents pushing main.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
 <p><strong>Prototype 107 — ride feedback fixes (ready locally):</strong>
 Departing props retain their full artwork, shadows and moving decorations until offscreen. Cap islands and broken
