@@ -1,5 +1,5 @@
 {
-  "status": "Integrated in locally delivered Prototype107;26 packaged suites pass. Actual visual review pending; edition33 publication hold remains.",
+  "status": "01/02 revised source art frozen; runtime validation pending Engineering",
   "created_at": "2026-10-26T13:21:37.031005-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
@@ -12,7 +12,65 @@
     "source_composition": "Ten source plates and four hero/costume ramp contact sequences inspected.",
     "evidence": "assets/world/ride-showcase-v1/source-previews/validation.json",
     "preview": "assets/world/ride-showcase-v1/source-previews/contact.png",
-    "ramp_preview": "assets/world/ride-showcase-v1/source-previews/ramp-contact.png"
+    "ramp_preview": "assets/world/ride-showcase-v1/source-previews/ramp-contact.png",
+    "revision_01_02": {
+      "status": "Source region bounds and five opaque collision planes PASS; actual runtime pending",
+      "alpha_checks": [
+        {
+          "path": "assets/world/ride-showcase-v1/slalom-baffles-v2.png",
+          "source_rect": [
+            270,
+            200,
+            150,
+            580
+          ],
+          "alpha_min": 250
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/slalom-baffles-v2.png",
+          "source_rect": [
+            695,
+            160,
+            175,
+            610
+          ],
+          "alpha_min": 247
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/slalom-baffles-v2.png",
+          "source_rect": [
+            1080,
+            395,
+            280,
+            200
+          ],
+          "alpha_min": 249
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            300,
+            710,
+            240,
+            100
+          ],
+          "alpha_min": 250
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            450,
+            180,
+            650,
+            155
+          ],
+          "alpha_min": 251
+        }
+      ],
+      "slalom_preview": "assets/world/ride-showcase-v1/source-previews/slalom-v2.png",
+      "elbow_preview": "assets/world/ride-showcase-v1/source-previews/elbow-v2.png",
+      "water_preview": "assets/world/ride-showcase-v1/source-previews/elbow-water-review.gif"
+    }
   },
   "contract": {
     "frames": [
@@ -168,5 +226,31 @@
     "draw_order": "Shadow, front apron/underside, top. Entire deck before rider; no raised colliding rim.",
     "diagnosis": "Prior registration discarded dimensional trim and front faces. New source depicts cleanout housing and basin underside; retain apron geometry rather than cropping to top alone.",
     "fall_occlusion": "Redraw solid front face and top after falling rider; shadow has occludes_fall=false."
+  },
+  "slalom_revision": {
+    "status": "Source art revision; runtime review pending",
+    "frames": [
+      "valve_wall_far_v2",
+      "valve_wall_near_v2",
+      "valve_center_v2"
+    ],
+    "layout_x": [
+      2600,
+      3120,
+      3640
+    ],
+    "center_depth": 80,
+    "previous_frames_preserved": true,
+    "prompts": "assets/world/ride-showcase-v1/prompts-slalom-v2.json"
+  },
+  "elbow_revision": {
+    "status": "Source art and eight-phase water delivered; runtime validation pending",
+    "frames": [
+      "elbow_pipe_v2",
+      "elbow_pit_v2"
+    ],
+    "animation": "breach_waterfall",
+    "prompts": "assets/world/ride-showcase-v1/prompts-elbow-v2.json",
+    "rule": "Pit and water never extend above y300. Broken near face extends below430 only. Separate solid pipe precedes pit by20px."
   }
 }
