@@ -1,0 +1,2442 @@
+{
+  "schema_version": 1,
+  "status": "Frozen authored source delivery; runtime integration and acceptance pending Engineering",
+  "reference_viewport": [
+    960,
+    540
+  ],
+  "frames": {
+    "course_far": {
+      "path": "assets/world/level-two-ride-v1/course-v1.png",
+      "source_rect": [
+        0,
+        0,
+        1672,
+        360
+      ],
+      "destination": [
+        0,
+        0,
+        960,
+        230
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "course_water": {
+      "path": "assets/world/level-two-ride-v1/course-v1.png",
+      "source_rect": [
+        0,
+        360,
+        1672,
+        322
+      ],
+      "destination": [
+        0,
+        230,
+        960,
+        200
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "course_near": {
+      "path": "assets/world/level-two-ride-v1/course-v1.png",
+      "source_rect": [
+        0,
+        682,
+        1672,
+        259
+      ],
+      "destination": [
+        0,
+        430,
+        960,
+        110
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "background": {
+      "layers": [
+        {
+          "path": "assets/world/level-two-ride-v1/course-v1.png",
+          "source_rect": [
+            0,
+            0,
+            1672,
+            360
+          ],
+          "destination": [
+            0,
+            0,
+            960,
+            230
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local"
+        },
+        {
+          "path": "assets/world/level-two-ride-v1/course-v1.png",
+          "source_rect": [
+            0,
+            360,
+            1672,
+            322
+          ],
+          "destination": [
+            0,
+            230,
+            960,
+            200
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local"
+        },
+        {
+          "path": "assets/world/level-two-ride-v1/course-v1.png",
+          "source_rect": [
+            0,
+            682,
+            1672,
+            259
+          ],
+          "destination": [
+            0,
+            430,
+            960,
+            110
+          ],
+          "anchor": [
+            0,
+            0
+          ],
+          "coordinate_space": "local"
+        }
+      ]
+    },
+    "support": {
+      "path": "assets/world/level-two-ride-v1/obstacles-v1.png",
+      "source_rect": [
+        156,
+        30,
+        401,
+        968
+      ],
+      "destination": [
+        -40.829875518672196,
+        -107.86458333333333,
+        79.86721991701245,
+        191.58333333333331
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "contact_footprint": [
+        -24,
+        -47.5,
+        48,
+        95
+      ],
+      "note": "Collider center is origin; water/foam overhang is decorative. Tall support extends above footprint."
+    },
+    "low_barrier": {
+      "path": "assets/world/level-two-ride-v1/obstacles-v1.png",
+      "source_rect": [
+        634,
+        56,
+        242,
+        939
+      ],
+      "destination": [
+        -32.64,
+        -100.9163802978236,
+        58.08,
+        215.12027491408935
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "contact_footprint": [
+        -12,
+        -100,
+        24,
+        200
+      ],
+      "note": "Collider center is origin; water/foam overhang is decorative. Tall support extends above footprint."
+    },
+    "gap": {
+      "path": "assets/world/level-two-ride-v1/obstacles-v1.png",
+      "source_rect": [
+        1017,
+        51,
+        426,
+        947
+      ],
+      "destination": [
+        -50.75,
+        -105.33333333333333,
+        106.5,
+        210.44444444444443
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "contact_footprint": [
+        -30,
+        -100,
+        60,
+        200
+      ],
+      "note": "Collider center is origin; water/foam overhang is decorative. Tall support extends above footprint."
+    },
+    "cue_support": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        223,
+        22,
+        384,
+        370
+      ],
+      "destination": [
+        -20.0,
+        -20.0,
+        40,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "cue_barrier": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        921,
+        22,
+        385,
+        374
+      ],
+      "destination": [
+        -20.0,
+        -20.0,
+        40,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "cue_gap": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        221,
+        413,
+        390,
+        375
+      ],
+      "destination": [
+        -20.0,
+        -20.0,
+        40,
+        40
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "jump_ready": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        959,
+        449,
+        310,
+        300
+      ],
+      "destination": [
+        -16.0,
+        -16.0,
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "shadow": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        31,
+        890,
+        704,
+        85
+      ],
+      "destination": [
+        -50.0,
+        -10.0,
+        100,
+        20
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "splash": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        816,
+        825,
+        684,
+        159
+      ],
+      "destination": [
+        -60.0,
+        -14.0,
+        120,
+        28
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "rider_tony_normal": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        0,
+        0,
+        768,
+        514
+      ],
+      "destination": [
+        -72.76923076923077,
+        -75.3076923076923,
+        129.96923076923076,
+        86.9846153846154
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    },
+    "rider_tony_hard": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        0,
+        514,
+        768,
+        510
+      ],
+      "destination": [
+        -71.66666666666666,
+        -71.0,
+        128.0,
+        85.0
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    },
+    "rider_sean_normal": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        768,
+        0,
+        768,
+        550
+      ],
+      "destination": [
+        -66.88709677419355,
+        -76.29032258064517,
+        136.25806451612902,
+        97.58064516129033
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    },
+    "rider_sean_hard": {
+      "path": "assets/world/level-two-flush-v3/landing-v2.png",
+      "source_rect": [
+        768,
+        550,
+        768,
+        474
+      ],
+      "destination": [
+        -66.88709677419355,
+        -66.17741935483872,
+        136.25806451612902,
+        84.09677419354838
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local",
+      "duration_seconds": 0.0625
+    },
+    "valve_baffle": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/solids-v1.png",
+          "source_rect": [
+            49,
+            590,
+            360,
+            303
+          ],
+          "destination": [
+            -48,
+            -57.5,
+            96,
+            115
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/solids-v1.png",
+          "source_rect": [
+            28,
+            63,
+            433,
+            527
+          ],
+          "destination": [
+            -54,
+            -189,
+            108,
+            131.5
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "valve_baffle_near": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/solids-v1.png",
+          "source_rect": [
+            49,
+            590,
+            360,
+            303
+          ],
+          "destination": [
+            -48,
+            -57.5,
+            96,
+            115
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/solids-v1.png",
+          "source_rect": [
+            28,
+            63,
+            433,
+            527
+          ],
+          "destination": [
+            -54,
+            -189,
+            108,
+            131.5
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "elbow_breach": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/solids-v1.png",
+          "source_rect": [
+            473,
+            620,
+            527,
+            273
+          ],
+          "destination": [
+            -70,
+            -60,
+            140,
+            120
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/solids-v1.png",
+          "source_rect": [
+            570,
+            205,
+            535,
+            415
+          ],
+          "destination": [
+            -44.2,
+            -170.2,
+            142.1,
+            110.2
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "chain_plug": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/overhead-v1.png",
+          "source_rect": [
+            354,
+            530,
+            62,
+            479
+          ],
+          "destination": [
+            -6,
+            -200,
+            12,
+            95
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/overhead-v1.png",
+          "source_rect": [
+            98,
+            12,
+            575,
+            422
+          ],
+          "destination": [
+            -50,
+            -121.5,
+            100,
+            115
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "brush_curtain": {
+      "path": "assets/world/ride-showcase-v1/overhead-v1.png",
+      "source_rect": [
+        856,
+        12,
+        628,
+        478
+      ],
+      "destination": [
+        -60,
+        -156.5,
+        120,
+        150
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "brush_curtain_near": {
+      "path": "assets/world/ride-showcase-v1/overhead-v1.png",
+      "source_rect": [
+        856,
+        12,
+        628,
+        478
+      ],
+      "destination": [
+        -60,
+        -156.5,
+        120,
+        150
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "float_arm": {
+      "path": "assets/world/ride-showcase-v1/overhead-v1.png",
+      "source_rect": [
+        844,
+        711,
+        644,
+        87
+      ],
+      "destination": [
+        -185,
+        -38,
+        150,
+        20.26
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "float_ball": {
+      "path": "assets/world/ride-showcase-v1/solids-v1.png",
+      "source_rect": [
+        1091,
+        521,
+        432,
+        367
+      ],
+      "destination": [
+        -50,
+        -60,
+        100,
+        90
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "loose_flange": {
+      "path": "assets/world/ride-showcase-v1/hazards-ramp-v1.png",
+      "source_rect": [
+        106,
+        47,
+        89,
+        921
+      ],
+      "destination": [
+        -12,
+        -118,
+        24,
+        218
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "spiked_grate": {
+      "path": "assets/world/ride-showcase-v1/hazards-ramp-v1.png",
+      "source_rect": [
+        399,
+        22,
+        325,
+        944
+      ],
+      "destination": [
+        -36,
+        -132,
+        72,
+        232
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "ramp_surface": {
+      "path": "assets/world/ride-showcase-v1/hazards-ramp-v1.png",
+      "source_rect": [
+        825,
+        183,
+        644,
+        650
+      ],
+      "destination": [
+        -100,
+        -100,
+        200,
+        200
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "ramp_fascia": {
+      "path": "assets/world/ride-showcase-v1/solids-v1.png",
+      "source_rect": [
+        548,
+        713,
+        370,
+        170
+      ],
+      "destination": [
+        -100,
+        60,
+        200,
+        40
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "launch_ramp": {
+      "path": "assets/world/ride-showcase-v1/hazards-ramp-v1.png",
+      "source_rect": [
+        825,
+        183,
+        644,
+        650
+      ],
+      "destination": [
+        -100,
+        -100,
+        200,
+        200
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "cleanout_deck_330": {
+      "path": "assets/world/ride-showcase-v1/decks-v1.png",
+      "source_rect": [
+        81,
+        168,
+        641,
+        190
+      ],
+      "destination": [
+        -165.0,
+        -80.0,
+        330,
+        160
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "cleanout_deck_360": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            81,
+            168,
+            525,
+            190
+          ],
+          "destination": [
+            -180.0,
+            -80.0,
+            270.2808112324493,
+            160
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            546,
+            168,
+            60,
+            190
+          ],
+          "destination": [
+            90.28081123244931,
+            -80.0,
+            30,
+            160
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            606,
+            168,
+            116,
+            190
+          ],
+          "destination": [
+            120.28081123244931,
+            -80.0,
+            59.71918876755069,
+            160
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "basin_deck_360": {
+      "path": "assets/world/ride-showcase-v1/decks-v1.png",
+      "source_rect": [
+        841,
+        193,
+        636,
+        152
+      ],
+      "destination": [
+        -180.0,
+        -50.0,
+        360,
+        100
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "basin_deck_390": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            841,
+            193,
+            521,
+            152
+          ],
+          "destination": [
+            -195.0,
+            -50.0,
+            294.9056603773585,
+            100
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            1302,
+            193,
+            60,
+            152
+          ],
+          "destination": [
+            99.90566037735852,
+            -50.0,
+            30,
+            100
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            1362,
+            193,
+            115,
+            152
+          ],
+          "destination": [
+            129.90566037735852,
+            -50.0,
+            65.09433962264148,
+            100
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "catch_basin": {
+      "path": "assets/world/ride-showcase-v1/decks-v1.png",
+      "source_rect": [
+        837,
+        624,
+        647,
+        201
+      ],
+      "destination": [
+        -232.5,
+        -100.0,
+        465,
+        200
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "long_pit": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            27,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            -270.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -254.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -154.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -54.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            46.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            146.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            10.56,
+            264
+          ],
+          "destination": [
+            246.0,
+            -100,
+            8,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            745,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            254.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "ordinary_gap_1080": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            27,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            -540.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -524.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -424.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -324.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -224.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -124.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -24.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            76.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            176.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            276.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            376.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            63.36,
+            264
+          ],
+          "destination": [
+            476.0,
+            -100,
+            48,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            745,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            524.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "ordinary_gap_1170": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            27,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            -585.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -569.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -469.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -369.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -269.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -169.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -69.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            31.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            131.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            231.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            331.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            431.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            50.16,
+            264
+          ],
+          "destination": [
+            531.0,
+            -100,
+            38,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            745,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            569.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "ordinary_gap": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            27,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            -540.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -524.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -424.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -324.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -224.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -124.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            -24.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            76.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            176.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            276.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            132.0,
+            264
+          ],
+          "destination": [
+            376.0,
+            -100,
+            100,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            280,
+            596,
+            63.36,
+            264
+          ],
+          "destination": [
+            476.0,
+            -100,
+            48,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/decks-v1.png",
+          "source_rect": [
+            745,
+            596,
+            41,
+            264
+          ],
+          "destination": [
+            524.0,
+            -100,
+            16,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "plug_shadow": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        31,
+        890,
+        704,
+        85
+      ],
+      "destination": [
+        -50.0,
+        -57.5,
+        100,
+        115
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "brush_shadow": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        31,
+        890,
+        704,
+        85
+      ],
+      "destination": [
+        -60.0,
+        -57.5,
+        120,
+        115
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    },
+    "float_sweep_shadow": {
+      "path": "assets/world/level-two-ride-v1/cues-v1.png",
+      "source_rect": [
+        31,
+        890,
+        704,
+        85
+      ],
+      "destination": [
+        -50.0,
+        -55.0,
+        100,
+        110
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "coordinate_space": "local"
+    }
+  },
+  "animations": {},
+  "landing": {
+    "tony": {
+      "normal": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              0,
+              0,
+              768,
+              514
+            ],
+            "destination": [
+              -72.76923076923077,
+              -75.3076923076923,
+              129.96923076923076,
+              86.9846153846154
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "standing surfing",
+        "visible_local_extents_y": [
+          -72.431,
+          11.338
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      },
+      "hard": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              0,
+              514,
+              768,
+              510
+            ],
+            "destination": [
+              -71.66666666666666,
+              -71.0,
+              128.0,
+              85.0
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "standing surfing",
+        "visible_local_extents_y": [
+          -70.5,
+          10.833
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      }
+    },
+    "sean": {
+      "normal": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              768,
+              0,
+              768,
+              550
+            ],
+            "destination": [
+              -66.88709677419355,
+              -76.29032258064517,
+              136.25806451612902,
+              97.58064516129033
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "seated astride; far leg occluded, near leg in front",
+        "visible_local_extents_y": [
+          -59.435,
+          15.968
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      },
+      "hard": {
+        "rear": [],
+        "front": [
+          {
+            "path": "assets/world/level-two-flush-v3/landing-v2.png",
+            "source_rect": [
+              768,
+              550,
+              768,
+              474
+            ],
+            "destination": [
+              -66.88709677419355,
+              -66.17741935483872,
+              136.25806451612902,
+              84.09677419354838
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "coordinate_space": "local",
+            "duration_seconds": 0.0625
+          }
+        ],
+        "contact_anchor": [
+          0,
+          0
+        ],
+        "screen_anchor": [
+          480,
+          385
+        ],
+        "composite_includes_board": true,
+        "pose": "seated astride; far leg occluded, near leg in front",
+        "visible_local_extents_y": [
+          -60.145,
+          15.435
+        ],
+        "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+      }
+    }
+  },
+  "course": {
+    "tile_width": 960,
+    "water_y": [
+      230,
+      430
+    ],
+    "repeat": "Alternate horizontally mirrored tiles; edge colors then meet exactly.",
+    "water_motion": "Continuously translate course_water separately from banks. No alternating still states.",
+    "background_compatibility": "frames.background is three layers. For separate water motion draw course_far,course_water,course_near individually."
+  },
+  "mechanics_reference": {
+    "source": "levels/level-two-ride-showcase.json",
+    "board_collider": [
+      90,
+      28
+    ],
+    "board_visual": 110,
+    "normal_jump_seconds": 0.6,
+    "normal_jump_apex": 54
+  },
+  "rider_rules": [
+    "Use existing four composites; do not draw a second board.",
+    "Subtract rider_contacts pivot, rotate whole composite using render_pitch.",
+    "Place at bank-render_height. Ground shadow remains on water."
+  ],
+  "prompts": "assets/world/ride-showcase-v1/prompts.json",
+  "provenance": "Original generated artwork; source cropping/registration and preview composition only. Existing v3 rider artwork reused.",
+  "runtime_review_pending": [
+    "All ten actual encounter captures and visibility.",
+    "Overhead depth sorting and shadows.",
+    "Ramp contact and launch at every bank.",
+    "Pit edge/support alignment and deck landing."
+  ],
+  "validation": {
+    "source_bounds": "PASS 219 sampled regions across 42 frame keys",
+    "source_composition": "Ten source plates and four hero/costume ramp contact sequences inspected.",
+    "evidence": "assets/world/ride-showcase-v1/source-previews/validation.json",
+    "preview": "assets/world/ride-showcase-v1/source-previews/contact.png",
+    "ramp_preview": "assets/world/ride-showcase-v1/source-previews/ramp-contact.png"
+  },
+  "id": "ride-showcase-v1",
+  "created_at": "2026-10-26T13:20:13.510380-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "bank_variants": {
+    "valve_baffle": {
+      "far": "valve_baffle",
+      "near": "valve_baffle_near"
+    },
+    "brush_curtain": {
+      "far": "brush_curtain",
+      "near": "brush_curtain_near"
+    }
+  },
+  "bank_variant_rule": "Select near for mirror_bank true. Never vertically flip upright artwork.",
+  "size_variants": {
+    "ordinary_gap": {
+      "1080": "ordinary_gap_1080",
+      "1170": "ordinary_gap_1170"
+    }
+  },
+  "rider_contacts": {
+    "tony": {
+      "normal": [
+        0,
+        10.66
+      ],
+      "hard": [
+        0,
+        10.33
+      ]
+    },
+    "sean": {
+      "normal": [
+        0,
+        13.66
+      ],
+      "hard": [
+        0,
+        13.31
+      ]
+    }
+  },
+  "rider_contact_notes": "Local underside support plane from opaque board lobes; Sean near boot is excluded. Subtract contact before applying shared rotation. Organic board ends curve upward.",
+  "ramp": {
+    "render_mode": "quadratic_strips",
+    "run": 200,
+    "rise": 40,
+    "depth": 200,
+    "surface_frame": "ramp_surface",
+    "fascia_frame": "ramp_fascia",
+    "profile": "h(s)=40*(s/200)^2",
+    "strip_width": 1,
+    "surface_mapping": "For s in [0,200], draw material column at local x=s-100, y=-100-h(s), depth200. Fascia fills near edge y=100-h(s)..100.",
+    "contact": "Rigid110px chord: solve halfX so (2*halfX)^2+(h(center+halfX)-h(center-halfX))^2=110^2; use endpoint height mean and chord angle. Flat before entry, tangent after lip.",
+    "launch_center_x": 2600,
+    "flight_seconds": 1.25,
+    "flight_pitch_blend_seconds": 0.12,
+    "launch_calibration_status": "Projected rigid110 chord finalized by Mechanics; runtime visual acceptance remains pending.",
+    "launch_height": 41.3266857377191,
+    "launch_vertical_speed": 194.661962783556,
+    "ballistic_coefficient": 182.178649098985,
+    "gravity": 364.35729819797,
+    "apex": 93.3268514296899
+  },
+  "overhead": {
+    "bottom_z": 64,
+    "shadow_frames": {
+      "chain_plug": "plug_shadow",
+      "brush_curtain": "brush_shadow",
+      "brush_curtain_near": "brush_shadow"
+    },
+    "rule": "Shadows at water anchor; bodies already elevated64. Do not subtract64 again."
+  },
+  "decoration": {
+    "float_arm": "Decorative, draw behind float, socket follows ball. Do not imply a damaging arm without collision model.",
+    "float_sweep_shadow": "Full +/-25 swept lane; draw at base y285, not moving center."
+  },
+  "collision_registration": {
+    "valve_baffle": {
+      "core": [
+        -48,
+        -57.5,
+        96,
+        115
+      ],
+      "note": "Porcelain base fills lane; stem decorative above core. Near variant stays upright."
+    },
+    "elbow_breach": {
+      "core": [
+        -70,
+        -60,
+        140,
+        120
+      ]
+    },
+    "chain_plug": {
+      "core": [
+        -50,
+        -57.5,
+        100,
+        115
+      ],
+      "bottom_z": 64,
+      "shadow": "plug_shadow"
+    },
+    "brush_curtain": {
+      "core": [
+        -60,
+        -57.5,
+        120,
+        115
+      ],
+      "bottom_z": 64,
+      "shadow": "brush_shadow"
+    },
+    "loose_flange": {
+      "core": [
+        -12,
+        -100,
+        24,
+        200
+      ],
+      "clearance": 18
+    },
+    "float_ball": {
+      "core": [
+        -50,
+        -30,
+        100,
+        60
+      ],
+      "sweep_y": 25,
+      "arm_collision": false
+    },
+    "cleanout_deck_330": {
+      "support": [
+        -165,
+        -80,
+        330,
+        160
+      ]
+    },
+    "cleanout_deck_360": {
+      "support": [
+        -180,
+        -80,
+        360,
+        160
+      ]
+    },
+    "basin_deck_360": {
+      "support": [
+        -180,
+        -50,
+        360,
+        100
+      ]
+    },
+    "basin_deck_390": {
+      "support": [
+        -195,
+        -50,
+        390,
+        100
+      ]
+    },
+    "spiked_grate": {
+      "core": [
+        -36,
+        -100,
+        72,
+        200
+      ],
+      "clearance": 32
+    },
+    "launch_ramp": {
+      "surface": [
+        -100,
+        -100,
+        200,
+        200
+      ],
+      "rise": 40
+    },
+    "long_pit": {
+      "unsupported": [
+        -270,
+        -100,
+        540,
+        200
+      ]
+    },
+    "catch_basin": {
+      "support": [
+        -232.5,
+        -100,
+        465,
+        200
+      ]
+    }
+  },
+  "sources": [
+    {
+      "path": "assets/world/ride-showcase-v1/solids-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "assets/world/ride-showcase-v1/overhead-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "assets/world/ride-showcase-v1/decks-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "assets/world/ride-showcase-v1/hazards-ramp-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    }
+  ]
+}

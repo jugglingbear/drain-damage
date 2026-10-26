@@ -1,0 +1,144 @@
+{
+  "status": "Frozen authored source delivery; runtime integration and acceptance pending Engineering",
+  "created_at": "2026-10-26T13:21:37.031005-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "owner": "Art / Bestiary",
+  "integration_owner": "Engineering",
+  "manifest": "assets/world/ride-showcase-v1/manifest.json",
+  "prompts": "assets/world/ride-showcase-v1/prompts.json",
+  "validation": {
+    "source_bounds": "PASS 219 sampled regions across 42 frame keys",
+    "source_composition": "Ten source plates and four hero/costume ramp contact sequences inspected.",
+    "evidence": "assets/world/ride-showcase-v1/source-previews/validation.json",
+    "preview": "assets/world/ride-showcase-v1/source-previews/contact.png",
+    "ramp_preview": "assets/world/ride-showcase-v1/source-previews/ramp-contact.png"
+  },
+  "contract": {
+    "frames": [
+      "course_far",
+      "course_water",
+      "course_near",
+      "background",
+      "support",
+      "low_barrier",
+      "gap",
+      "cue_support",
+      "cue_barrier",
+      "cue_gap",
+      "jump_ready",
+      "shadow",
+      "splash",
+      "rider_tony_normal",
+      "rider_tony_hard",
+      "rider_sean_normal",
+      "rider_sean_hard",
+      "valve_baffle",
+      "valve_baffle_near",
+      "elbow_breach",
+      "chain_plug",
+      "brush_curtain",
+      "brush_curtain_near",
+      "float_arm",
+      "float_ball",
+      "loose_flange",
+      "spiked_grate",
+      "ramp_surface",
+      "ramp_fascia",
+      "launch_ramp",
+      "cleanout_deck_330",
+      "cleanout_deck_360",
+      "basin_deck_360",
+      "basin_deck_390",
+      "catch_basin",
+      "long_pit",
+      "ordinary_gap_1080",
+      "ordinary_gap_1170",
+      "ordinary_gap",
+      "plug_shadow",
+      "brush_shadow",
+      "float_sweep_shadow"
+    ],
+    "bank_variants": {
+      "valve_baffle": {
+        "far": "valve_baffle",
+        "near": "valve_baffle_near"
+      },
+      "brush_curtain": {
+        "far": "brush_curtain",
+        "near": "brush_curtain_near"
+      }
+    },
+    "size_variants": {
+      "ordinary_gap": {
+        "1080": "ordinary_gap_1080",
+        "1170": "ordinary_gap_1170"
+      }
+    },
+    "rider_contacts": {
+      "tony": {
+        "normal": [
+          0,
+          10.66
+        ],
+        "hard": [
+          0,
+          10.33
+        ]
+      },
+      "sean": {
+        "normal": [
+          0,
+          13.66
+        ],
+        "hard": [
+          0,
+          13.31
+        ]
+      }
+    },
+    "ramp": {
+      "render_mode": "quadratic_strips",
+      "run": 200,
+      "rise": 40,
+      "depth": 200,
+      "surface_frame": "ramp_surface",
+      "fascia_frame": "ramp_fascia",
+      "profile": "h(s)=40*(s/200)^2",
+      "strip_width": 1,
+      "surface_mapping": "For s in [0,200], draw material column at local x=s-100, y=-100-h(s), depth200. Fascia fills near edge y=100-h(s)..100.",
+      "contact": "Rigid110px chord: solve halfX so (2*halfX)^2+(h(center+halfX)-h(center-halfX))^2=110^2; use endpoint height mean and chord angle. Flat before entry, tangent after lip.",
+      "launch_center_x": 2600,
+      "flight_seconds": 1.25,
+      "flight_pitch_blend_seconds": 0.12,
+      "launch_calibration_status": "Projected rigid110 chord finalized by Mechanics; runtime visual acceptance remains pending.",
+      "launch_height": 41.3266857377191,
+      "launch_vertical_speed": 194.661962783556,
+      "ballistic_coefficient": 182.178649098985,
+      "gravity": 364.35729819797,
+      "apex": 93.3268514296899
+    },
+    "overhead": {
+      "bottom_z": 64,
+      "shadow_frames": {
+        "chain_plug": "plug_shadow",
+        "brush_curtain": "brush_shadow",
+        "brush_curtain_near": "brush_shadow"
+      },
+      "rule": "Shadows at water anchor; bodies already elevated64. Do not subtract64 again."
+    }
+  },
+  "remaining": [
+    "All ten actual encounter captures and visibility.",
+    "Overhead depth sorting and shadows.",
+    "Ramp contact and launch at every bank.",
+    "Pit edge/support alignment and deck landing."
+  ],
+  "limits": [
+    "Static source plates are not gameplay captures.",
+    "Original organic boards have rounded lobes; contact uses their supporting underside envelope.",
+    "Existing concept plates remain marketing/concept art and are not rendered as runtime obstacles."
+  ],
+  "preserved": "All earlier source art and concept revisions preserved.",
+  "shared_records": "Engineering owns roadmap, build checks, and storybook actual capture/backlog in this integration."
+}
