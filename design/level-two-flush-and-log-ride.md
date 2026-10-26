@@ -81,7 +81,8 @@ one-HP contact damage with gap recovery remain unchanged.
 
 ## Selected direction
 
-- Alternate standard 2D platforming levels with levels that use a different format. The full campaign order is open.
+- Alternate Earth levels (odd-numbered) with fantastical levels (even-numbered), as decided October 26.
+  Alternate gameplay formats remain the selected direction; exact later mechanics and locations are open.
 - Level two begins with a short flush micro-level, approximately 30–60 seconds, followed by a poop-log ride.
 - The ride uses forced forward progression, water as its surface, up/down and left/right movement, jumps,
   obstacles to dodge or attack, raised platforms and triggered enemy waves.
@@ -96,8 +97,12 @@ one-HP contact damage with gap recovery remain unchanged.
 
 ## Story treatment
 
-The favored story direction is an involuntary portal crossing after the Clogfather, an oversized plumbing world
-for level two, and a return to the real world for level three. Exact events and the return destination remain open.
+The confirmed October 26 structure alternates Earth and fantastical levels. BJ assigns the Earth-basement job in
+level one; the Clogfather aftermath pulls the selected hero into the fantastical flush and poop-board ride in level two.
+The ending of level two returns the hero to Earth for level three. Exact return events and location remain open.
+Subsequent levels continue alternating dimensions. A possible collision of the dimensions at the finale is tentative,
+not established lore. This decision adds no dialogue or implementation authorization.
+See the [campaign structure decision](first-level-narrative.md#october-26-campaign-structure-decision).
 
 Proposed sequence:
 

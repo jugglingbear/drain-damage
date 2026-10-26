@@ -4,10 +4,27 @@
 
 **Owner:** Storyboarding. Handoff to Level Design and Engineering; no runtime implementation claimed here.
 
+## October 26 campaign structure decision
+
+Sean selected alternating dimensions as the campaign structure. Odd-numbered levels take place on Earth in our
+dimension; even-numbered levels take place in a wild fantastical dimension. This pattern continues toward the finale.
+Earth settings remain recognizable places despite the game's monsters and absurd plumbing action.
+
+- Level one: BJ gives the team a job in an ordinary Earth basement. Defeating the Clogfather releases the backed-up
+  water and pulls the selected hero through the portal; the partner remains outside on radio.
+- Level two: the fantastical giant-toilet flush and poop-board ride. Its ending returns the hero to Earth.
+- Level three: an Earth setting distinct from the first basement. The specific location and job remain undecided.
+- Subsequent levels alternate Earth and fantastical settings; their jobs, locations and crossing mechanisms are open.
+
+A collision between the Earth and fantastical dimensions near the end is a tentative idea, not an approved ending.
+Do not establish its cause, the portal's origin, BJ's responsibility or the final antagonist through this decision.
+This records narrative direction only; it does not authorize new dialogue, levels, artwork or runtime work.
+The earlier selected-hero-only rule remains in effect; “the team” does not establish two heroes entering together.
+
 ## October 20 future transition direction
 
 Sean favors the selected hero being sucked through the Clogfather portal into a giant-toilet flush and poop-log ride,
-with the other hero remaining outside on radio. Return to the real world is proposed for level three.
+with the other hero remaining outside on radio. Return to Earth for level three is now confirmed by the October 26 decision.
 The [level-two proposal](level-two-flush-and-log-ride.md) supersedes the earlier walk-away portal sketches below
 for future planning. Those sketches are historical alternatives, not instructions to implement both endings.
 
@@ -98,7 +115,7 @@ No runtime delivery is claimed by this narrative update; use Engineering's final
 - Final visual timing and validation of the authorized first-level portal departure.
 - Final character-specific boss/reveal dialogue once actual implemented events are known.
 - Source of the living fatberg, portal destination, and relationship to BJ's later corruption.
-- Second-level destination. Earlier locations remain candidates, not an agreed itinerary.
+- Specific later-level locations and transition mechanisms; the alternating dimensional structure is now decided.
 
 ## Opening cinematic note — October 16, 2026
 
