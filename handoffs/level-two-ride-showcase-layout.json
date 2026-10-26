@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "status": "Layout and model route validation complete; build and visual validation pending Engineering",
+  "files": [
+    "levels/level-two-ride-showcase.json",
+    "tests/ride_showcase_course.gd",
+    "tests/ride_showcase_failures.gd"
+  ],
+  "sources": [
+    "design/ride-obstacle-concepts-v1/proposal.json",
+    "assets/world/ride-showcase-v1/manifest.json",
+    "scripts/ride_showcase_model.gd"
+  ],
+  "contract": {
+    "order": "All ten concepts, 2-01 through 2-10; latest bank-connected slalom and spike grate",
+    "speed": 560,
+    "steering": [
+      400,
+      350
+    ],
+    "normal_jump_seconds": 0.6,
+    "normal_jump_apex": 54,
+    "rest": "Three full seconds with no hazards or next warnings after all shapes, full board, motion extents, jump, ramp, recovery and contacts clear.",
+    "difficulty": "Same geometry for easy, normal and hard; route witnesses stored per encounter.",
+    "ramp": {
+      "run": 200,
+      "rise": 40,
+      "profile": "h(s)=40*(s/200)^2",
+      "launch_contact": "board center at lip",
+      "flight_duration": 1.25,
+      "launch_vertical_speed": 194.661962783556,
+      "gravity": 364.35729819797,
+      "launch_height": 41.3266857377191,
+      "apex": 93.3268514296899,
+      "screen_x_locked_during_surface_and_flight": true,
+      "support_model": "Rigid 110px board; solve projected horizontal half-width for rotated endpoint contact. Flat before entry, quadratic run, tangent continuation beyond lip.",
+      "ballistic_quadratic_coefficient": 182.178649098985,
+      "center_height_derivative_at_lip": 0.34761064782777856,
+      "pitch_blend_seconds": 0.12
+    }
+  },
+  "validation": {
+    "full_routes": 54,
+    "encounter_traversals": 540,
+    "heroes": [
+      "tony",
+      "sean"
+    ],
+    "modes": [
+      "easy",
+      "normal",
+      "hard"
+    ],
+    "screen_x_anchors": [
+      180,
+      300,
+      650
+    ],
+    "frame_rates": [
+      30,
+      60,
+      120
+    ],
+    "damage_on_routes": 0,
+    "failure_exploit_cases": 252,
+    "constant_slalom_lanes_blocked": 141,
+    "failure_coverage": "All ten careless routes; edge slalom attempts; both overhead heads; full-board deck straddles; ramp missed by ordinary jump with maximum forward steering; lingering jump delays rest.",
+    "minimum_measured_clearance_pixels": {
+      "1": {
+        "bank_clearance": 21.0
+      },
+      "10": {
+        "landing_x_clearance": 70.66650390625,
+        "landing_y_clearance": 86.0
+      },
+      "2": {
+        "bank_clearance": 21.0
+      },
+      "3": {
+        "bank_clearance": 21.0
+      },
+      "4": {
+        "bank_clearance": 21.0
+      },
+      "5": {
+        "vertical_clearance": 7.05423175478944
+      },
+      "6": {
+        "bank_clearance": 26.0
+      },
+      "7": {
+        "landing_x_clearance": 46.333251953125,
+        "landing_y_clearance": 66.0
+      },
+      "8": {
+        "landing_x_clearance": 47.0,
+        "landing_y_clearance": 36.0
+      },
+      "9": {
+        "vertical_clearance": 3.74980370819902
+      }
+    },
+    "measurement_scope": "Input-driven model routes. Barrier clearance interpolated over outer-frame overlap; float bank clearance uses full sweep envelope; deck margins sampled at landing event time. These are route witnesses, not human readability approval.",
+    "ordinary_long_pit_proof": {
+      "required_full_board_distance": 630,
+      "maximum_ordinary_jump_distance": 576,
+      "shortfall": 54
+    },
+    "logs": [
+      ".godot/level-design-scratch/ride-showcase-course.log",
+      ".godot/level-design-scratch/ride-showcase-failures.log"
+    ],
+    "per_anchor_frame_rate_margins": "MARGINS records in course log include all 54 configurations.",
+    "environment_notes": "Godot macOS certificate warning is present; explicit PASS results checked, no script errors."
+  },
+  "remaining": [
+    "Engineering packaged integration/build checks and roadmap delivery status.",
+    "Approved visual/playtest session and actual gameplay storybook captures; art contact previews are not gameplay captures."
+  ],
+  "ownership": "Level Design freezes geometry and two tests. Mechanics owns model and physics. Art owns manifest and sprites. Engineering owns runtime wrapper, build and roadmap."
+}

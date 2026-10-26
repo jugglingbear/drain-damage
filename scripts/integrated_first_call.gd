@@ -64,6 +64,7 @@ func _ready() -> void:
 func reset_game() -> void:
 	var retry_ride := flush.active and flush.checkpoint_saved
 	var retry_flush := flush.active
+	var ride_checkpoint: int = flush.ride.checkpoint_index
 	flush.reset()
 	boss_intro.reset(true)
 	intro_input_release = false
@@ -83,7 +84,7 @@ func reset_game() -> void:
 	super.reset_game()
 	if retry_flush:
 		flush.begin(self)
-		if retry_ride: flush.enter_ride(self)
+		if retry_ride: flush.enter_ride(self,ride_checkpoint)
 
 func reset_observation() -> void:
 	# Parent respawn calls this after restoring the hero/dispenser; reset once beforehand instead.
@@ -178,10 +179,11 @@ func respawn_after_death() -> void:
 	if flush.active:
 		if lives <= 0: return
 		var retry_ride := flush.checkpoint_saved
+		var ride_checkpoint: int = flush.ride.checkpoint_index
 		health = employee.max_health
 		invulnerable = 3.0
 		flush.begin(self,true)
-		if retry_ride: flush.enter_ride(self)
+		if retry_ride: flush.enter_ride(self,ride_checkpoint)
 		return
 	if lives <= 0: return
 	respawn_origin = respawn_point.x
@@ -838,6 +840,7 @@ func _exit_tree() -> void:
 	super._exit_tree()
 
 func begin_level_two() -> void:
+	flush.ride.checkpoint_index = 0
 	flush.begin(self)
 
 func step_death(delta: float) -> void:
@@ -852,7 +855,7 @@ func step_death(delta: float) -> void:
 	death_popup_guard = 0.35
 	resume_button.disabled = true
 	title_button.disabled = true
-	resume_button.text = ("Retry Ride" if lives == 0 else "Continue at Landing") if flush.checkpoint_saved \
+	resume_button.text = ("Retry Encounter" if lives == 0 else "Continue at Encounter") if flush.checkpoint_saved \
 		else ("Retry Flush" if lives == 0 else "Continue at Bowl")
 	resume_button.position = Vector2(245,326)
 	title_button.position = Vector2(245,416)

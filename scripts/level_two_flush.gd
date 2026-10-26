@@ -53,6 +53,7 @@ func attach(host: Node2D) -> void:
 
 func reset() -> void:
 	ride.audio.stop()
+	ride.checkpoint_index = 0
 	active = false
 	state = "idle"
 	gag_seen = false
@@ -180,13 +181,13 @@ func enter_landing(host: Node2D) -> void:
 	radio.advance(0,0,false)
 	sync_hero(host)
 
-func enter_ride(host: Node2D) -> void:
+func enter_ride(host: Node2D, encounter_index := -1) -> void:
 	state = "ride"
 	checkpoint_saved = true
 	radio.clear()
 	audio.stop()
 	music.stop()
-	ride.begin(host)
+	ride.begin(host,encounter_index)
 	input_guard = true
 
 func sync_hero(host: Node2D) -> void:

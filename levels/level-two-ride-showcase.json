@@ -1,0 +1,556 @@
+{
+  "schema_version": 1,
+  "id": "level-two-ride-showcase",
+  "date": "2026-10-26",
+  "status": "106 layout frozen; 54 full model routes and 252 failure/exploit cases passed; packaged and visual review owned by Engineering",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "scope": "All ten selected concepts in order; isolated multipart encounters; no enemies/weapons.",
+  "scroll_speed": 560,
+  "x_speed": 400,
+  "bank_speed": 350,
+  "geometry": {
+    "view_size": [
+      960,
+      540
+    ],
+    "water_y": [
+      230,
+      430
+    ],
+    "rider_x": [
+      180,
+      650
+    ],
+    "rider_y": [
+      260,
+      400
+    ],
+    "spawn": [
+      300,
+      330
+    ],
+    "board_half_extents": [
+      45,
+      14
+    ],
+    "board_visual_width": 110
+  },
+  "jump": {
+    "duration": 0.6,
+    "apex": 54,
+    "cooldown": 0.1
+  },
+  "ramp": {
+    "run": 200,
+    "rise": 40,
+    "profile": "h(s)=40*(s/200)^2",
+    "launch_contact": "board center at lip",
+    "flight_duration": 1.25,
+    "launch_vertical_speed": 194.661962783556,
+    "gravity": 364.35729819797,
+    "launch_height": 41.3266857377191,
+    "apex": 93.3268514296899,
+    "screen_x_locked_during_surface_and_flight": true,
+    "support_model": "Rigid 110px board; solve projected horizontal half-width for rotated endpoint contact. Flat before entry, quadratic run, tangent continuation beyond lip.",
+    "ballistic_quadratic_coefficient": 182.178649098985,
+    "center_height_derivative_at_lip": 0.34761064782777856,
+    "pitch_blend_seconds": 0.12
+  },
+  "head_heights": {
+    "tony": 84,
+    "sean": 72
+  },
+  "rest": {
+    "duration": 3.0,
+    "start_rule": "All obstacle far edges including motion extents pass board trailing edge at leftmost anchor180; no active jump/ramp/recovery/contact latch remains.",
+    "during": "No active hazards, current obstacle list empty, no next encounter warnings. Next encounter initializes only after three full seconds.",
+    "minimum_clear_scroll_rule": "encounter_scroll > encounter.end_x +45 -180, plus all lingering states cleared."
+  },
+  "difficulty": "All ten encounters and full geometry retained on every difficulty; no concept thinning.",
+  "art_manifest": "assets/world/ride-showcase-v1/manifest.json",
+  "source_concepts": "design/ride-obstacle-concepts-v1/proposal.json",
+  "encounters": [
+    {
+      "id": "2-01",
+      "concept_id": 1,
+      "title": "Valve-Stem Slalom",
+      "action_hint": "Weave around all three valve bases.",
+      "obstacles": [
+        {
+          "id": "valve-a",
+          "kind": "support",
+          "x": 2600.0,
+          "y": 287.5,
+          "width": 96,
+          "depth": 115,
+          "art_id": "valve_baffle"
+        },
+        {
+          "id": "valve-b",
+          "kind": "support",
+          "x": 3300.0,
+          "y": 372.5,
+          "width": 96,
+          "depth": 115,
+          "art_id": "valve_baffle",
+          "mirror_bank": true
+        },
+        {
+          "id": "valve-c",
+          "kind": "support",
+          "x": 4000.0,
+          "y": 287.5,
+          "width": 96,
+          "depth": 115,
+          "art_id": "valve_baffle"
+        }
+      ],
+      "end_x": 4048.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 2200,
+            "target_y": 380
+          },
+          {
+            "at_world_x": 2800,
+            "target_y": 280
+          },
+          {
+            "at_world_x": 3500,
+            "target_y": 380
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-02",
+      "concept_id": 2,
+      "title": "Elbow-Pipe Breach",
+      "action_hint": "Steer toward the near bank around the pipe.",
+      "obstacles": [
+        {
+          "id": "elbow",
+          "kind": "support",
+          "x": 2600.0,
+          "y": 290.0,
+          "width": 140,
+          "depth": 120,
+          "art_id": "elbow_breach"
+        }
+      ],
+      "end_x": 2670.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 2200,
+            "target_y": 385
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-03",
+      "concept_id": 3,
+      "title": "Chain-Hung Plug",
+      "action_hint": "Steer around the hanging plug; do not jump.",
+      "obstacles": [
+        {
+          "id": "plug",
+          "kind": "overhead",
+          "x": 2600.0,
+          "y": 287.5,
+          "width": 100,
+          "depth": 115,
+          "art_id": "chain_plug",
+          "bottom_z": 64
+        }
+      ],
+      "end_x": 2650.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 2200,
+            "target_y": 380
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-04",
+      "concept_id": 4,
+      "title": "Drain-Brush Curtain",
+      "action_hint": "Weave through the open lanes beneath the brushes.",
+      "obstacles": [
+        {
+          "id": "brush-a",
+          "kind": "overhead",
+          "x": 2600.0,
+          "y": 287.5,
+          "width": 120,
+          "depth": 115,
+          "art_id": "brush_curtain",
+          "bottom_z": 64
+        },
+        {
+          "id": "brush-b",
+          "kind": "overhead",
+          "x": 3400.0,
+          "y": 372.5,
+          "width": 120,
+          "depth": 115,
+          "art_id": "brush_curtain",
+          "bottom_z": 64,
+          "mirror_bank": true
+        }
+      ],
+      "end_x": 3460.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 2200,
+            "target_y": 380
+          },
+          {
+            "at_world_x": 2800,
+            "target_y": 280
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-05",
+      "concept_id": 5,
+      "title": "Loose Flange Hop",
+      "action_hint": "Jump across both low rims in one hop.",
+      "obstacles": [
+        {
+          "id": "flange-front",
+          "kind": "low_barrier",
+          "x": 2600,
+          "y": 330,
+          "width": 24,
+          "depth": 200,
+          "art_id": "loose_flange",
+          "clearance": 18
+        },
+        {
+          "id": "flange-back",
+          "kind": "low_barrier",
+          "x": 2696,
+          "y": 330,
+          "width": 24,
+          "depth": 200,
+          "art_id": "loose_flange",
+          "clearance": 18
+        }
+      ],
+      "end_x": 2708.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1800,
+            "target_y": 330
+          }
+        ],
+        "jump_press_world_x": [
+          2480
+        ],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-06",
+      "concept_id": 6,
+      "title": "Float-Arm Sweep",
+      "action_hint": "Use the clear near-bank lane around the sweeping float.",
+      "obstacles": [
+        {
+          "id": "float",
+          "kind": "support",
+          "x": 2600,
+          "y": 285,
+          "width": 100,
+          "depth": 60,
+          "art_id": "float_ball",
+          "motion": {
+            "axis": "y",
+            "amplitude": 25,
+            "period": 2.4,
+            "phase": 0
+          }
+        }
+      ],
+      "end_x": 2650.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 2200,
+            "target_y": 380
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-07",
+      "concept_id": 7,
+      "title": "Cleanout-Cap Islands",
+      "action_hint": "Land the whole board on each cap before the next hop.",
+      "obstacles": [
+        {
+          "id": "cap-water-gap",
+          "kind": "gap",
+          "x": 3140.0,
+          "y": 330.0,
+          "width": 1080,
+          "depth": 200,
+          "art_id": "ordinary_gap"
+        },
+        {
+          "id": "cap-entry",
+          "kind": "deck",
+          "x": 2675.0,
+          "y": 330.0,
+          "width": 330,
+          "depth": 160,
+          "art_id": "cleanout_deck_330"
+        },
+        {
+          "id": "cap-middle",
+          "kind": "deck",
+          "x": 3125.0,
+          "y": 330.0,
+          "width": 330,
+          "depth": 160,
+          "art_id": "cleanout_deck_330"
+        },
+        {
+          "id": "cap-exit",
+          "kind": "deck",
+          "x": 3590.0,
+          "y": 330.0,
+          "width": 360,
+          "depth": 160,
+          "art_id": "cleanout_deck_360"
+        }
+      ],
+      "end_x": 3770.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1800,
+            "target_y": 330
+          }
+        ],
+        "jump_press_world_x": [
+          2732,
+          3182
+        ],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-08",
+      "concept_id": 8,
+      "title": "Broken-Basin Hopscotch",
+      "action_hint": "Jump and steer onto each staggered porcelain slab.",
+      "obstacles": [
+        {
+          "id": "basin-water-gap",
+          "kind": "gap",
+          "x": 3185.0,
+          "y": 330.0,
+          "width": 1170,
+          "depth": 200,
+          "art_id": "ordinary_gap"
+        },
+        {
+          "id": "basin-entry",
+          "kind": "deck",
+          "x": 2690.0,
+          "y": 280.0,
+          "width": 360,
+          "depth": 100,
+          "art_id": "basin_deck_360"
+        },
+        {
+          "id": "basin-middle",
+          "kind": "deck",
+          "x": 3170.0,
+          "y": 380.0,
+          "width": 360,
+          "depth": 100,
+          "art_id": "basin_deck_360",
+          "mirror_bank": true
+        },
+        {
+          "id": "basin-exit",
+          "kind": "deck",
+          "x": 3665.0,
+          "y": 280.0,
+          "width": 390,
+          "depth": 100,
+          "art_id": "basin_deck_390"
+        }
+      ],
+      "end_x": 3860.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1800,
+            "target_y": 280
+          },
+          {
+            "at_world_x": 2762,
+            "target_y": 380
+          },
+          {
+            "at_world_x": 3242,
+            "target_y": 280
+          }
+        ],
+        "jump_press_world_x": [
+          2762,
+          3242
+        ],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-09",
+      "concept_id": 9,
+      "title": "Buckled Drain Grate",
+      "action_hint": "Jump above the tallest metal spikes.",
+      "obstacles": [
+        {
+          "id": "spikes",
+          "kind": "low_barrier",
+          "x": 2600,
+          "y": 330,
+          "width": 72,
+          "depth": 200,
+          "art_id": "spiked_grate",
+          "clearance": 32
+        }
+      ],
+      "end_x": 2636.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1800,
+            "target_y": 330
+          }
+        ],
+        "jump_press_world_x": [
+          2432
+        ],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-10",
+      "concept_id": 10,
+      "title": "Emergency Flume Launch",
+      "action_hint": "Stay grounded on the ramp for the long-pit launch.",
+      "obstacles": [
+        {
+          "id": "launch-ramp",
+          "kind": "ramp",
+          "x": 2500.0,
+          "y": 330.0,
+          "width": 200,
+          "depth": 200,
+          "art_id": "launch_ramp",
+          "rise": 40,
+          "launch_x": 2600,
+          "surface_profile": "quadratic",
+          "run": 200
+        },
+        {
+          "id": "fatal-long-pit",
+          "kind": "long_pit",
+          "x": 2915.0,
+          "y": 330.0,
+          "width": 540,
+          "depth": 200,
+          "art_id": "long_pit"
+        },
+        {
+          "id": "catch-basin",
+          "kind": "deck",
+          "x": 3417.5,
+          "y": 330.0,
+          "width": 465,
+          "depth": 200,
+          "art_id": "catch_basin"
+        }
+      ],
+      "end_x": 3650.0,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1800,
+            "target_y": 330
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    }
+  ],
+  "validation_limits": [
+    "No runtime/play-ready claim until actual model route and exploit tests pass.",
+    "Only encounter10 long_pit is lethal on unsupported contact; ordinary collisions retain normal damage/latch recovery."
+  ]
+}

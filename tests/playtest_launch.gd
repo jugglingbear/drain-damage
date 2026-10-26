@@ -15,20 +15,22 @@ func run_checks() -> void:
 		["--level=1","--seed=-1"],["--level=1","--seed=2147483648"],["--unknown"],
 		["--verify-playtest-launch"],["--list-playtest-targets","--level=1"]]:
 		assert(Launch.parse(PackedStringArray(arguments)).has("error"),"Invalid launch must fail clearly")
-	for target in Launch.registry().targets:
-		for hero in [0,1]:
-			for mode in ["easy","normal","hard"]:
+	for hero in [0,1]:
+		for mode in ["easy","normal","hard"]:
+			var game = Game.new()
+			game.employee = game.Crew.EMPLOYEES[hero]
+			game.difficulty = mode
+			game.seed_override = 913
+			root.add_child(game)
+			game.hide()
+			game.set_process(false)
+			game.set_physics_process(false)
+			for target in Launch.registry().targets:
 				var options := Launch.parse(PackedStringArray(["--%s=%s" % [target.kind,target.id],
 					"--hero="+["tony","sean"][hero],"--difficulty="+mode,"--seed=913"]))
 				assert(not options.has("error"))
-				var game = Game.new()
-				game.employee = game.Crew.EMPLOYEES[hero]
-				game.difficulty = mode
-				game.seed_override = options.seed
-				root.add_child(game)
-				game.hide()
-				game.set_process(false)
-				game.set_physics_process(false)
+				game.flush.reset()
+				game.reset_game()
 				Launch.initialize(game,target)
 				assert(game.employee.id == options.hero and game.run_seed == 913 and game.difficulty == mode)
 				assert(game.weapon.damage == (12 if hero == 0 else 18))
@@ -42,6 +44,12 @@ func run_checks() -> void:
 					assert(game.flush.checkpoint_saved and game.flush.hazards.is_empty() and not game.won)
 					assert(game.flush.project(game.flush.position).is_equal_approx(Vector2(480,385)))
 					assert(not game.flush.radio.current.is_empty() and game.flush.landing_clock == 0)
+				elif target.initializer == "ride-encounter":
+					assert(game.flush.active and game.flush.state == "ride" and game.flush.checkpoint_saved)
+					assert(game.flush.ride.encounter_index == int(target.encounter_index))
+					assert(game.flush.ride.phase == "encounter" and game.flush.ride.clock == 0)
+					game.respawn_after_death()
+					assert(game.flush.ride.encounter_index == int(target.encounter_index))
 				elif target.kind == "level":
 					assert(game.player.x == 85 and game.checkpoint_index == -1 and game.respawn_origin == 85)
 				else:
@@ -50,7 +58,7 @@ func run_checks() -> void:
 					game.respawn_after_death()
 					assert(game.player.x == 4650 and not game.skitterling.entered and game.run_seed == 913)
 					assert(game.swarm_schedule.report().excluded == {"easy":5,"normal":8,"hard":6}[mode] and not game.dispenser.stocked)
-				game.queue_free()
-				await process_frame
+			game.queue_free()
+			await process_frame
 	print("PASS: launch registry, invalid/conflicting/unimplemented targets, both heroes/all difficulties and checkpoint reset")
 	quit()
