@@ -23,13 +23,13 @@ func checks() -> void:
 			game.flush.enter_landing(game)
 			game.flush.enter_ride(game)
 			var ride = game.flush.ride
-			assert(ride.scroll_speed == 280.0 and absf(ride.duration-8100.0/280.0) < 0.00001)
+			assert(ride.scroll_speed == 560.0 and absf(ride.duration-8100.0/560.0) < 0.00001)
 			var lives: int = game.lives
 			for kind in ["gap","support","low_barrier"]:
 				ride.begin(game)
 				ride.position = Vector2(650,330)
 				var long_obstacle := obstacle("slow",kind,700)
-				long_obstacle.width = 300.0
+				long_obstacle.width = 1200.0
 				ride.course.obstacles = [long_obstacle]
 				game.health = 3
 				game.invulnerable = 0
@@ -76,5 +76,5 @@ func checks() -> void:
 			assert(ride.complete and game.won and ride.clock == ride.duration)
 			game.queue_free()
 			await process_frame
-	print("PASS: ride104 all obstacle traversal latches, bounded in-place gap recovery, shared immunity, later hazards and HP-only checkpoint death for both heroes/all modes")
+	print("PASS: ride105 all obstacle traversal latches, bounded in-place gap recovery, shared immunity, later hazards and HP-only checkpoint death for both heroes/all modes")
 	quit()

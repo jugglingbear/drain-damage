@@ -7,10 +7,11 @@ var course: Dictionary = {}
 var art := Art.new()
 var audio := Audio.new()
 var clock := 0.0
-var scroll_speed := 280.0
-var duration := 8100.0/280.0
-var x_speed := 200.0
-var bank_speed := 175.0
+var scroll_speed := 560.0
+var duration := 8100.0/560.0
+var approach_speed := 560.0
+var x_speed := 400.0
+var bank_speed := 350.0
 var position := Vector2(300,330)
 var jump_age := -1.0
 var jump_height := 0.0
@@ -29,6 +30,7 @@ func attach(host: Node2D) -> void:
 func begin(host: Node2D) -> void:
 	var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride.json"))
 	scroll_speed = float(layout.scroll_speed)
+	approach_speed = scroll_speed
 	duration = float(layout.duration)
 	x_speed = float(layout.validation_physics.x_steer_speed)
 	bank_speed = float(layout.validation_physics.bank_steer_speed)
@@ -106,12 +108,14 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 		old_age = 0
 		host.play_tone(360.0,0.08)
 		events.jump = int(events.get("jump",0))+1
+	var previous_x := position.x
 	var input := steering.limit_length()
 	position += Vector2(input.x*x_speed,input.y*bank_speed)*dt
 	position.x = clampf(position.x,180,650)
 	position.y = clampf(position.y,260,400)
 	clock += dt
 	var finish := position+Vector2(clock*scroll_speed,0)
+	approach_speed = scroll_speed+(position.x-previous_x)/dt
 	recovery_clock = maxf(0,recovery_clock-dt)
 	host.hurt_time = maxf(0,host.hurt_time-dt)
 	var damaged := false
@@ -245,6 +249,7 @@ func draw_preview(host: Node2D, scroll: float) -> void:
 		var cue: String = {"support":"cue_support","low_barrier":"cue_barrier","gap":"cue_gap"}[obstacle.kind]
 		art.draw_named(host,cue,Vector2(910,250+row*48))
 		var distance := float(obstacle.world_x)-float(obstacle.width)*0.5-scroll-position.x-45
-		if obstacle.kind != "support" and jump_age < 0 and distance > 0 and distance < 55:
+		# Keep the final jump cue readable as forward pace and horizontal steering change.
+		if obstacle.kind != "support" and jump_age < 0 and cooldown <= 0 and distance > 0 and distance < approach_speed*0.2:
 			art.draw_named(host,"jump_ready",position+Vector2(0,-110))
 		row += 1

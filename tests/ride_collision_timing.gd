@@ -34,7 +34,7 @@ func model(obstacles: Array) -> RefCounted:
 	ride.duration = float(layout.duration)
 	ride.x_speed = float(layout.validation_physics.x_steer_speed)
 	ride.bank_speed = float(layout.validation_physics.bank_steer_speed)
-	assert(ride.scroll_speed == 280 and ride.x_speed == 200 and ride.bank_speed == 175)
+	assert(ride.scroll_speed == 560 and ride.x_speed == 400 and ride.bank_speed == 350)
 	ride.course = {"obstacles":obstacles}
 	return ride
 

@@ -38,8 +38,8 @@ func checks() -> void:
 			game.flush.enter_ride(game)
 			game.flush.input_guard = false
 			var ride = game.flush.ride
-			if ride.scroll_speed != 280 or not is_equal_approx(ride.duration,8100.0/280.0) or ride.x_speed != 200 or ride.bank_speed != 175:
-				fail("Runtime did not load104pace andride steering")
+			if ride.scroll_speed != 560 or not is_equal_approx(ride.duration,8100.0/560.0) or ride.x_speed != 400 or ride.bank_speed != 350:
+				fail("Runtime did not load105pace andride steering")
 				return
 			# Fixed-bound witnesses start at the chosen allowed anchor; all subsequent motion is input-driven.
 			ride.position.x = float(witness.anchor_x)

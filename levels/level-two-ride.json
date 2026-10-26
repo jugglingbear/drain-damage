@@ -4,11 +4,11 @@
   "date": "2026-10-26",
   "owner": "Level Design",
   "integration_owner": "Engineering",
-  "status": "Prototype104280px/s layout validated;18 real-runtime routes pass;8100px worldcourse preserved",
-  "scope": "First playable8100px forced-forward ride, approximately28.93seconds; selected hero, no enemies or weapons.",
-  "duration": 28.928571428571427,
+  "status": "Prototype105560px/s layout validated;18 real-runtime routes pass; all8100px course geometry preserved",
+  "scope": "First playable8100px forced-forward ride, approximately14.46seconds; selected hero, no enemies or weapons.",
+  "duration": 14.464285714285714,
   "reference_x": 300,
-  "scroll_speed": 280,
+  "scroll_speed": 560,
   "position_rule": "Obstacle center x = reference_x + scroll_speed * (crossing_time - ride_clock). All times use active ride clock; pause freezes it.",
   "geometry": {
     "view_size": [
@@ -51,8 +51,8 @@
   },
   "mechanics_reference": "handoffs/level-two-ride-mechanics.json",
   "validation_physics": {
-    "x_steer_speed": 200,
-    "bank_steer_speed": 175,
+    "x_steer_speed": 400,
+    "bank_steer_speed": 350,
     "jump_duration": 1.2,
     "jump_height": 72,
     "low_barrier_clear_height": 28,
@@ -120,27 +120,27 @@
   "phases": [
     {
       "from": 0.0,
-      "to": 3.214286,
+      "to": 1.607143,
       "purpose": "Calm steering/jump practice; no possible hazard contact."
     },
     {
-      "from": 3.214286,
-      "to": 10.928571,
+      "from": 1.607143,
+      "to": 5.4642855,
       "purpose": "Teach support steering, low-barrier jump, then full-board gap."
     },
     {
-      "from": 10.928571,
-      "to": 22.5,
+      "from": 5.4642855,
+      "to": 11.25,
       "purpose": "Combine known steering transitions with spaced jump gates."
     },
     {
-      "from": 22.5,
-      "to": 27.0,
+      "from": 11.25,
+      "to": 13.5,
       "purpose": "Final readable slalom; no new obstacle type."
     },
     {
-      "from": 27.0,
-      "to": 28.928571428571427,
+      "from": 13.5,
+      "to": 14.464285714285714,
       "purpose": "All obstacles cleared at every allowed anchor; safe finish."
     }
   ],
@@ -149,7 +149,7 @@
       "id": "ride-01",
       "kind": "support",
       "bank": "upper",
-      "crossing_time": 4.821428571428571,
+      "crossing_time": 2.4107142857142856,
       "width": 48,
       "y_min": 230,
       "y_max": 325,
@@ -164,20 +164,25 @@
         400
       ],
       "recommended_anchor_y": 356,
-      "earliest_contact_any_anchor": 3.325,
-      "latest_clear_any_anchor": 5.496429,
+      "earliest_contact_any_anchor": 1.6625,
+      "latest_clear_any_anchor": 2.748214,
       "warning_at": {
-        "easy": 0.925,
-        "normal": 1.325,
-        "hard": 1.725
+        "easy": 0,
+        "normal": 0,
+        "hard": 0.0625
       },
-      "instruction": "steer_lower"
+      "instruction": "steer_lower",
+      "actual_warning_lead": {
+        "easy": 1.6625,
+        "normal": 1.6625,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-02",
       "kind": "support",
       "bank": "lower",
-      "crossing_time": 5.785714285714286,
+      "crossing_time": 2.892857142857143,
       "width": 48,
       "y_min": 335,
       "y_max": 430,
@@ -191,19 +196,23 @@
         321
       ],
       "recommended_anchor_y": 304,
-      "earliest_contact_any_anchor": 4.289286,
-      "latest_clear_any_anchor": 6.460714,
+      "earliest_contact_any_anchor": 2.144643,
+      "latest_clear_any_anchor": 3.230357,
       "warning_at": {
-        "normal": 2.289286,
-        "hard": 2.689286
+        "normal": 0.144643,
+        "hard": 0.544643
       },
-      "instruction": "steer_upper"
+      "instruction": "steer_upper",
+      "actual_warning_lead": {
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-03",
       "kind": "low_barrier",
       "bank": "full",
-      "crossing_time": 7.071428571428571,
+      "crossing_time": 3.5357142857142856,
       "width": 24,
       "y_min": 230,
       "y_max": 430,
@@ -215,20 +224,25 @@
       "asset_role": "low_crossbar",
       "safe_anchor_y": null,
       "recommended_anchor_y": null,
-      "earliest_contact_any_anchor": 5.617857,
-      "latest_clear_any_anchor": 7.703571,
+      "earliest_contact_any_anchor": 2.808929,
+      "latest_clear_any_anchor": 3.851786,
       "warning_at": {
-        "easy": 3.217857,
-        "normal": 3.617857,
-        "hard": 4.017857
+        "easy": 0.408929,
+        "normal": 0.808929,
+        "hard": 1.208929
       },
-      "instruction": "jump"
+      "instruction": "jump",
+      "actual_warning_lead": {
+        "easy": 2.4,
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-04",
       "kind": "support",
       "bank": "upper",
-      "crossing_time": 8.357142857142858,
+      "crossing_time": 4.178571428571429,
       "width": 48,
       "y_min": 230,
       "y_max": 325,
@@ -241,18 +255,21 @@
         400
       ],
       "recommended_anchor_y": 356,
-      "earliest_contact_any_anchor": 6.860714,
-      "latest_clear_any_anchor": 9.032143,
+      "earliest_contact_any_anchor": 3.430357,
+      "latest_clear_any_anchor": 4.516071,
       "warning_at": {
-        "hard": 5.260714
+        "hard": 1.830357
       },
-      "instruction": "steer_lower"
+      "instruction": "steer_lower",
+      "actual_warning_lead": {
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-05",
       "kind": "gap",
       "bank": "full",
-      "crossing_time": 9.642857142857142,
+      "crossing_time": 4.821428571428571,
       "width": 60,
       "y_min": 230,
       "y_max": 430,
@@ -264,20 +281,25 @@
       "asset_role": "water_course_gap",
       "safe_anchor_y": null,
       "recommended_anchor_y": null,
-      "earliest_contact_any_anchor": 8.125,
-      "latest_clear_any_anchor": 10.339286,
+      "earliest_contact_any_anchor": 4.0625,
+      "latest_clear_any_anchor": 5.169643,
       "warning_at": {
-        "easy": 5.725,
-        "normal": 6.125,
-        "hard": 6.525
+        "easy": 1.6625,
+        "normal": 2.0625,
+        "hard": 2.4625
       },
-      "instruction": "jump"
+      "instruction": "jump",
+      "actual_warning_lead": {
+        "easy": 2.4,
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-06",
       "kind": "support",
       "bank": "upper",
-      "crossing_time": 11.571428571428571,
+      "crossing_time": 5.785714285714286,
       "width": 48,
       "y_min": 230,
       "y_max": 325,
@@ -291,19 +313,23 @@
         400
       ],
       "recommended_anchor_y": 356,
-      "earliest_contact_any_anchor": 10.075,
-      "latest_clear_any_anchor": 12.246429,
+      "earliest_contact_any_anchor": 5.0375,
+      "latest_clear_any_anchor": 6.123214,
       "warning_at": {
-        "normal": 8.075,
-        "hard": 8.475
+        "normal": 3.0375,
+        "hard": 3.4375
       },
-      "instruction": "steer_lower"
+      "instruction": "steer_lower",
+      "actual_warning_lead": {
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-07",
       "kind": "support",
       "bank": "lower",
-      "crossing_time": 12.857142857142858,
+      "crossing_time": 6.428571428571429,
       "width": 48,
       "y_min": 335,
       "y_max": 430,
@@ -318,20 +344,25 @@
         321
       ],
       "recommended_anchor_y": 304,
-      "earliest_contact_any_anchor": 11.360714,
-      "latest_clear_any_anchor": 13.532143,
+      "earliest_contact_any_anchor": 5.680357,
+      "latest_clear_any_anchor": 6.766071,
       "warning_at": {
-        "easy": 8.960714,
-        "normal": 9.360714,
-        "hard": 9.760714
+        "easy": 3.280357,
+        "normal": 3.680357,
+        "hard": 4.080357
       },
-      "instruction": "steer_upper"
+      "instruction": "steer_upper",
+      "actual_warning_lead": {
+        "easy": 2.4,
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-08",
       "kind": "support",
       "bank": "lower",
-      "crossing_time": 14.785714285714286,
+      "crossing_time": 7.392857142857143,
       "width": 48,
       "y_min": 335,
       "y_max": 430,
@@ -345,19 +376,23 @@
         321
       ],
       "recommended_anchor_y": 304,
-      "earliest_contact_any_anchor": 13.289286,
-      "latest_clear_any_anchor": 15.460714,
+      "earliest_contact_any_anchor": 6.644643,
+      "latest_clear_any_anchor": 7.730357,
       "warning_at": {
-        "normal": 11.289286,
-        "hard": 11.689286
+        "normal": 4.644643,
+        "hard": 5.044643
       },
-      "instruction": "steer_upper"
+      "instruction": "steer_upper",
+      "actual_warning_lead": {
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-09",
       "kind": "support",
       "bank": "upper",
-      "crossing_time": 16.071428571428573,
+      "crossing_time": 8.035714285714286,
       "width": 48,
       "y_min": 230,
       "y_max": 325,
@@ -372,20 +407,25 @@
         400
       ],
       "recommended_anchor_y": 356,
-      "earliest_contact_any_anchor": 14.575,
-      "latest_clear_any_anchor": 16.746429,
+      "earliest_contact_any_anchor": 7.2875,
+      "latest_clear_any_anchor": 8.373214,
       "warning_at": {
-        "easy": 12.175,
-        "normal": 12.575,
-        "hard": 12.975
+        "easy": 4.8875,
+        "normal": 5.2875,
+        "hard": 5.6875
       },
-      "instruction": "steer_lower"
+      "instruction": "steer_lower",
+      "actual_warning_lead": {
+        "easy": 2.4,
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-10",
       "kind": "support",
       "bank": "lower",
-      "crossing_time": 17.357142857142858,
+      "crossing_time": 8.678571428571429,
       "width": 48,
       "y_min": 335,
       "y_max": 430,
@@ -398,18 +438,21 @@
         321
       ],
       "recommended_anchor_y": 304,
-      "earliest_contact_any_anchor": 15.860714,
-      "latest_clear_any_anchor": 18.032143,
+      "earliest_contact_any_anchor": 7.930357,
+      "latest_clear_any_anchor": 9.016071,
       "warning_at": {
-        "hard": 14.260714
+        "hard": 6.330357
       },
-      "instruction": "steer_upper"
+      "instruction": "steer_upper",
+      "actual_warning_lead": {
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-11",
       "kind": "low_barrier",
       "bank": "full",
-      "crossing_time": 18.642857142857142,
+      "crossing_time": 9.321428571428571,
       "width": 24,
       "y_min": 230,
       "y_max": 430,
@@ -421,20 +464,25 @@
       "asset_role": "low_crossbar",
       "safe_anchor_y": null,
       "recommended_anchor_y": null,
-      "earliest_contact_any_anchor": 17.189286,
-      "latest_clear_any_anchor": 19.275,
+      "earliest_contact_any_anchor": 8.594643,
+      "latest_clear_any_anchor": 9.6375,
       "warning_at": {
-        "easy": 14.789286,
-        "normal": 15.189286,
-        "hard": 15.589286
+        "easy": 6.194643,
+        "normal": 6.594643,
+        "hard": 6.994643
       },
-      "instruction": "jump"
+      "instruction": "jump",
+      "actual_warning_lead": {
+        "easy": 2.4,
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-12",
       "kind": "support",
       "bank": "upper",
-      "crossing_time": 20.571428571428573,
+      "crossing_time": 10.285714285714286,
       "width": 48,
       "y_min": 230,
       "y_max": 325,
@@ -447,18 +495,21 @@
         400
       ],
       "recommended_anchor_y": 356,
-      "earliest_contact_any_anchor": 19.075,
-      "latest_clear_any_anchor": 21.246429,
+      "earliest_contact_any_anchor": 9.5375,
+      "latest_clear_any_anchor": 10.623214,
       "warning_at": {
-        "hard": 17.475
+        "hard": 7.9375
       },
-      "instruction": "steer_lower"
+      "instruction": "steer_lower",
+      "actual_warning_lead": {
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-13",
       "kind": "gap",
       "bank": "full",
-      "crossing_time": 21.857142857142858,
+      "crossing_time": 10.928571428571429,
       "width": 60,
       "y_min": 230,
       "y_max": 430,
@@ -470,20 +521,25 @@
       "asset_role": "water_course_gap",
       "safe_anchor_y": null,
       "recommended_anchor_y": null,
-      "earliest_contact_any_anchor": 20.339286,
-      "latest_clear_any_anchor": 22.553571,
+      "earliest_contact_any_anchor": 10.169643,
+      "latest_clear_any_anchor": 11.276786,
       "warning_at": {
-        "easy": 17.939286,
-        "normal": 18.339286,
-        "hard": 18.739286
+        "easy": 7.769643,
+        "normal": 8.169643,
+        "hard": 8.569643
       },
-      "instruction": "jump"
+      "instruction": "jump",
+      "actual_warning_lead": {
+        "easy": 2.4,
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-14",
       "kind": "support",
       "bank": "upper",
-      "crossing_time": 23.785714285714285,
+      "crossing_time": 11.892857142857142,
       "width": 48,
       "y_min": 230,
       "y_max": 325,
@@ -497,19 +553,23 @@
         400
       ],
       "recommended_anchor_y": 356,
-      "earliest_contact_any_anchor": 22.289286,
-      "latest_clear_any_anchor": 24.460714,
+      "earliest_contact_any_anchor": 11.144643,
+      "latest_clear_any_anchor": 12.230357,
       "warning_at": {
-        "normal": 20.289286,
-        "hard": 20.689286
+        "normal": 9.144643,
+        "hard": 9.544643
       },
-      "instruction": "steer_lower"
+      "instruction": "steer_lower",
+      "actual_warning_lead": {
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-15",
       "kind": "support",
       "bank": "lower",
-      "crossing_time": 25.071428571428573,
+      "crossing_time": 12.535714285714286,
       "width": 48,
       "y_min": 335,
       "y_max": 430,
@@ -524,20 +584,25 @@
         321
       ],
       "recommended_anchor_y": 304,
-      "earliest_contact_any_anchor": 23.575,
-      "latest_clear_any_anchor": 25.746429,
+      "earliest_contact_any_anchor": 11.7875,
+      "latest_clear_any_anchor": 12.873214,
       "warning_at": {
-        "easy": 21.175,
-        "normal": 21.575,
-        "hard": 21.975
+        "easy": 9.3875,
+        "normal": 9.7875,
+        "hard": 10.1875
       },
-      "instruction": "steer_upper"
+      "instruction": "steer_upper",
+      "actual_warning_lead": {
+        "easy": 2.4,
+        "normal": 2.0,
+        "hard": 1.6
+      }
     },
     {
       "id": "ride-16",
       "kind": "support",
       "bank": "upper",
-      "crossing_time": 26.22857142857142,
+      "crossing_time": 13.11428571428571,
       "width": 48,
       "y_min": 230,
       "y_max": 325,
@@ -550,28 +615,32 @@
         400
       ],
       "recommended_anchor_y": 356,
-      "earliest_contact_any_anchor": 24.732143,
-      "latest_clear_any_anchor": 26.903571,
+      "earliest_contact_any_anchor": 12.366071,
+      "latest_clear_any_anchor": 13.451786,
       "warning_at": {
-        "hard": 23.132143
+        "hard": 10.766071
       },
-      "instruction": "steer_lower"
+      "instruction": "steer_lower",
+      "actual_warning_lead": {
+        "hard": 1.6
+      }
     }
   ],
   "warning_contract": {
     "offscreen_cues": "Right-edge authored kind/bank cue begins at warning_at, even before obstacle art enters view. Minimum lead uses earliest contact at x650, not reference crossing.",
     "jump_ready": "Current-anchor-relative leading edge and landing shadow, not a fixed countdown to reference_x. Hold neutral or right during a gap jump; left can deliberately stall forward clearance.",
     "readability": "Art must distinguish tall unjumpable supports, low jumpable bars, and a missing-water gap. Keep critical cues inside water region and outside radio/HUD.",
-    "no_surprise": "Do not spawn, retarget, accelerate or change bank after warning. All listed events are fixed before ride begins."
+    "no_surprise": "Do not spawn, retarget, accelerate or change bank after warning. All listed events are fixed before ride begins.",
+    "opening_exception": "Cue starts clamp to rideclock0; earliest first contact1.6625s caps Easy/Normal opening lead, and secondEasy lead is2.144643s. Later nominal2.4/2/1.6 leads remain. actual_warning_lead records each case; no hidden pre-roll."
   },
   "checkpoint": {
     "entry": "Existing safe flush landing checkpoint; direct ride entry starts course clock0 at spawn.",
     "death_retry": "Normal life debit/full-health retry at ride clock0, never replay flush; preserve selected hero/difficulty.",
     "gap_failure": "Unsupported full-board overlap while grounded is normal1HP contact under shared1.5s immunity; only actual HP depletion causes death. Nonlethal or immune contact recovers in place with0.6s visual bounce, cancels the failed jump and applies0.15s cooldown. No teleport, course skip or clock pause.",
-    "finish": "At course distance8100px (approximately28.93s) safe completion; no invented Level3 destination or transition.",
+    "finish": "At course distance8100px (approximately14.46s) safe completion; no invented Level3 destination or transition.",
     "obstacle_contact_latch": "First harmful contact latches each obstacle ID until the board fully passes it, even on immune entry; no deferred hit. Bank sidestep alone does not clear the latch. Reset/retry clears all latches; other obstacles remain active under shared immunity."
   },
-  "witness_policy": "Neutral horizontal input; steer toward356 for upper supports or304 for lower supports; center each1.2s jump on obstacle crossing at current fixed anchor. Full board footprint remains airborne over gaps.",
+  "witness_policy": "Neutral horizontal input; steer toward356 for upper supports or304 for lower supports. Use authored staggered takeoffs respecting1.2s airtime plus0.15s cooldown; full board airborne over gaps. Closely spaced first two jumps cannot both use centered takeoffs.",
   "limitations": [
     "No promise every input is safe: left steering slows relative gap clearance.",
     "Sampled geometric proof is not human playtest or integrated runtime validation.",
@@ -588,8 +657,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 4.821428571428571,
-          "warning_at": 0.925
+          "reference_crossing_time": 2.4107142857142856,
+          "warning_at": 0,
+          "actual_warning_lead": 1.6625
         },
         {
           "id": "ride-03",
@@ -599,8 +669,9 @@
           "width": 24,
           "depth": 200,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 7.071428571428571,
-          "warning_at": 3.217857
+          "reference_crossing_time": 3.5357142857142856,
+          "warning_at": 0.408929,
+          "actual_warning_lead": 2.4
         },
         {
           "id": "ride-05",
@@ -610,8 +681,9 @@
           "width": 60,
           "depth": 200,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 9.642857142857142,
-          "warning_at": 5.725
+          "reference_crossing_time": 4.821428571428571,
+          "warning_at": 1.6625,
+          "actual_warning_lead": 2.4
         },
         {
           "id": "ride-07",
@@ -621,8 +693,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 12.857142857142858,
-          "warning_at": 8.960714
+          "reference_crossing_time": 6.428571428571429,
+          "warning_at": 3.280357,
+          "actual_warning_lead": 2.4
         },
         {
           "id": "ride-09",
@@ -632,8 +705,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 16.071428571428573,
-          "warning_at": 12.175
+          "reference_crossing_time": 8.035714285714286,
+          "warning_at": 4.8875,
+          "actual_warning_lead": 2.4
         },
         {
           "id": "ride-11",
@@ -643,8 +717,9 @@
           "width": 24,
           "depth": 200,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 18.642857142857142,
-          "warning_at": 14.789286
+          "reference_crossing_time": 9.321428571428571,
+          "warning_at": 6.194643,
+          "actual_warning_lead": 2.4
         },
         {
           "id": "ride-13",
@@ -654,8 +729,9 @@
           "width": 60,
           "depth": 200,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 21.857142857142858,
-          "warning_at": 17.939286
+          "reference_crossing_time": 10.928571428571429,
+          "warning_at": 7.769643,
+          "actual_warning_lead": 2.4
         },
         {
           "id": "ride-15",
@@ -665,8 +741,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2.4,
-          "reference_crossing_time": 25.071428571428573,
-          "warning_at": 21.175
+          "reference_crossing_time": 12.535714285714286,
+          "warning_at": 9.3875,
+          "actual_warning_lead": 2.4
         }
       ]
     },
@@ -680,8 +757,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 4.821428571428571,
-          "warning_at": 1.325
+          "reference_crossing_time": 2.4107142857142856,
+          "warning_at": 0,
+          "actual_warning_lead": 1.6625
         },
         {
           "id": "ride-02",
@@ -691,8 +769,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 5.785714285714286,
-          "warning_at": 2.289286
+          "reference_crossing_time": 2.892857142857143,
+          "warning_at": 0.144643,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-03",
@@ -702,8 +781,9 @@
           "width": 24,
           "depth": 200,
           "warning_seconds": 2,
-          "reference_crossing_time": 7.071428571428571,
-          "warning_at": 3.617857
+          "reference_crossing_time": 3.5357142857142856,
+          "warning_at": 0.808929,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-05",
@@ -713,8 +793,9 @@
           "width": 60,
           "depth": 200,
           "warning_seconds": 2,
-          "reference_crossing_time": 9.642857142857142,
-          "warning_at": 6.125
+          "reference_crossing_time": 4.821428571428571,
+          "warning_at": 2.0625,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-06",
@@ -724,8 +805,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 11.571428571428571,
-          "warning_at": 8.075
+          "reference_crossing_time": 5.785714285714286,
+          "warning_at": 3.0375,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-07",
@@ -735,8 +817,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 12.857142857142858,
-          "warning_at": 9.360714
+          "reference_crossing_time": 6.428571428571429,
+          "warning_at": 3.680357,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-08",
@@ -746,8 +829,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 14.785714285714286,
-          "warning_at": 11.289286
+          "reference_crossing_time": 7.392857142857143,
+          "warning_at": 4.644643,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-09",
@@ -757,8 +841,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 16.071428571428573,
-          "warning_at": 12.575
+          "reference_crossing_time": 8.035714285714286,
+          "warning_at": 5.2875,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-11",
@@ -768,8 +853,9 @@
           "width": 24,
           "depth": 200,
           "warning_seconds": 2,
-          "reference_crossing_time": 18.642857142857142,
-          "warning_at": 15.189286
+          "reference_crossing_time": 9.321428571428571,
+          "warning_at": 6.594643,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-13",
@@ -779,8 +865,9 @@
           "width": 60,
           "depth": 200,
           "warning_seconds": 2,
-          "reference_crossing_time": 21.857142857142858,
-          "warning_at": 18.339286
+          "reference_crossing_time": 10.928571428571429,
+          "warning_at": 8.169643,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-14",
@@ -790,8 +877,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 23.785714285714285,
-          "warning_at": 20.289286
+          "reference_crossing_time": 11.892857142857142,
+          "warning_at": 9.144643,
+          "actual_warning_lead": 2.0
         },
         {
           "id": "ride-15",
@@ -801,8 +889,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 2,
-          "reference_crossing_time": 25.071428571428573,
-          "warning_at": 21.575
+          "reference_crossing_time": 12.535714285714286,
+          "warning_at": 9.7875,
+          "actual_warning_lead": 2.0
         }
       ]
     },
@@ -816,8 +905,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 4.821428571428571,
-          "warning_at": 1.725
+          "reference_crossing_time": 2.4107142857142856,
+          "warning_at": 0.0625,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-02",
@@ -827,8 +917,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 5.785714285714286,
-          "warning_at": 2.689286
+          "reference_crossing_time": 2.892857142857143,
+          "warning_at": 0.544643,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-03",
@@ -838,8 +929,9 @@
           "width": 24,
           "depth": 200,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 7.071428571428571,
-          "warning_at": 4.017857
+          "reference_crossing_time": 3.5357142857142856,
+          "warning_at": 1.208929,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-04",
@@ -849,8 +941,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 8.357142857142858,
-          "warning_at": 5.260714
+          "reference_crossing_time": 4.178571428571429,
+          "warning_at": 1.830357,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-05",
@@ -860,8 +953,9 @@
           "width": 60,
           "depth": 200,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 9.642857142857142,
-          "warning_at": 6.525
+          "reference_crossing_time": 4.821428571428571,
+          "warning_at": 2.4625,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-06",
@@ -871,8 +965,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 11.571428571428571,
-          "warning_at": 8.475
+          "reference_crossing_time": 5.785714285714286,
+          "warning_at": 3.4375,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-07",
@@ -882,8 +977,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 12.857142857142858,
-          "warning_at": 9.760714
+          "reference_crossing_time": 6.428571428571429,
+          "warning_at": 4.080357,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-08",
@@ -893,8 +989,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 14.785714285714286,
-          "warning_at": 11.689286
+          "reference_crossing_time": 7.392857142857143,
+          "warning_at": 5.044643,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-09",
@@ -904,8 +1001,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 16.071428571428573,
-          "warning_at": 12.975
+          "reference_crossing_time": 8.035714285714286,
+          "warning_at": 5.6875,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-10",
@@ -915,8 +1013,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 17.357142857142858,
-          "warning_at": 14.260714
+          "reference_crossing_time": 8.678571428571429,
+          "warning_at": 6.330357,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-11",
@@ -926,8 +1025,9 @@
           "width": 24,
           "depth": 200,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 18.642857142857142,
-          "warning_at": 15.589286
+          "reference_crossing_time": 9.321428571428571,
+          "warning_at": 6.994643,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-12",
@@ -937,8 +1037,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 20.571428571428573,
-          "warning_at": 17.475
+          "reference_crossing_time": 10.285714285714286,
+          "warning_at": 7.9375,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-13",
@@ -948,8 +1049,9 @@
           "width": 60,
           "depth": 200,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 21.857142857142858,
-          "warning_at": 18.739286
+          "reference_crossing_time": 10.928571428571429,
+          "warning_at": 8.569643,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-14",
@@ -959,8 +1061,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 23.785714285714285,
-          "warning_at": 20.689286
+          "reference_crossing_time": 11.892857142857142,
+          "warning_at": 9.544643,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-15",
@@ -970,8 +1073,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 25.071428571428573,
-          "warning_at": 21.975
+          "reference_crossing_time": 12.535714285714286,
+          "warning_at": 10.1875,
+          "actual_warning_lead": 1.6
         },
         {
           "id": "ride-16",
@@ -981,8 +1085,9 @@
           "width": 48,
           "depth": 95,
           "warning_seconds": 1.6,
-          "reference_crossing_time": 26.22857142857142,
-          "warning_at": 23.132143
+          "reference_crossing_time": 13.11428571428571,
+          "warning_at": 10.766071,
+          "actual_warning_lead": 1.6
         }
       ]
     }

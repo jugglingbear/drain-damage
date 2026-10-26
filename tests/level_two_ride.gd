@@ -40,9 +40,16 @@ func checks() -> void:
 			game.set_paused(false)
 			game.flush.tick(game,0.1,Vector2.ONE,true,true)
 			assert(ride.jump_height > 0 and ride.position.x > 300 and ride.position.y > 330)
+			assert(is_equal_approx(ride.approach_speed,ride.scroll_speed+ride.x_speed/sqrt(2.0)))
 			assert(game.health == 2 and game.weapon.id == weapon and game.flush.shots_fired == 0)
 			for frame in range(144): game.flush.tick(game,1.0/120,Vector2.ZERO,false,true)
 			assert(ride.jump_age < 0 and ride.events.jump == 1 and ride.events.landed == 1)
+			# Cue timing follows actual relative motion, including a clamped horizontal bound.
+			ride.position.x = 650
+			ride.tick(game,0.01,Vector2.RIGHT,false)
+			assert(is_equal_approx(ride.approach_speed,ride.scroll_speed))
+			ride.tick(game,0.01,Vector2.LEFT,false)
+			assert(is_equal_approx(ride.approach_speed,ride.scroll_speed-ride.x_speed))
 			# An all-height support is not cleared by a jump; overlapping hazards debit once.
 			ride.begin(game)
 			ride.course.obstacles = [hazard("support",300),hazard("support",300)]

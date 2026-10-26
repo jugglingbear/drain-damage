@@ -4,8 +4,8 @@
   "owner": "Level Design",
   "integration_owner": "Engineering",
   "source": "levels/level-two-ride.json",
-  "status": "Prototype104280px/s layout and18 runtime witnesses validated; frozen for Engineering packaging",
-  "scope": "8100px ride at280px/s (28.928571s), no enemies/weapons; layout/handoff/runtime witness only",
+  "status": "Prototype105560px/s layout and18 runtime witnesses validated; frozen for Engineering HUD/packaging checks",
+  "scope": "8100px ride at560px/s (14.464286s), no enemies/weapons; assignedlayout/handoff/test only",
   "mechanics": "handoffs/level-two-ride-mechanics.json",
   "schema": "Authored obstacles+modes/crossing_time/y_min/y_max; courses[mode] is synchronized normalized CENTER-anchor view.",
   "validation": {
@@ -17,23 +17,28 @@
       "hard": 16
     },
     "minimum_support_clearance": 17.0,
-    "barrier_minimum_overlap_height": 63.711734693877546,
-    "gap_minimum_overlap_height": 57.650510204081634,
-    "jump_gate_spacing": 2.5714285714285716,
+    "barrier_minimum_overlap_height": 67.39221938775506,
+    "gap_minimum_overlap_height": 65.23405612244899,
+    "jump_gate_spacing": 1.2857142857142858,
     "jump_duration": 1.2,
-    "earliest_any_contact": 3.325,
-    "latest_any_clear": 26.903571,
+    "earliest_any_contact": 1.6625,
+    "latest_any_clear": 13.451786,
     "warning_leads": {
       "easy": 2.4,
       "normal": 2,
       "hard": 1.6
     },
-    "rightward_jump_note": "Relative speed480 gives150/480=.3125s full-gap crossing; leftward80 requires1.875s and can deliberately fail the1.2s jump.",
-    "minimum_bank_transfer_raw_slack": 0.17428571428571427,
+    "rightward_jump_note": "Relative right960 gives150/960=.15625s full-gap crossing; left160 requires.9375s within1.2s airtime but takeoff timing and moving-anchor approach still matter.",
+    "minimum_bank_transfer_raw_slack": 0.08714285714285713,
     "bank_target_y": [
       304,
       356
-    ]
+    ],
+    "minimum_takeoff_spacing": 1.3857142857142857,
+    "bank_timing_allowance": {
+      "before_next_contact": 0.05,
+      "after_prior_clear": 0.025
+    }
   },
   "witnesses": [
     {
@@ -45,29 +50,29 @@
       ],
       "bank_transitions": [
         {
-          "at": 4.755,
-          "until": 4.9035714285714285,
+          "at": 2.3775,
+          "until": 2.4517857142857142,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 12.642142857142858,
-          "until": 12.939285714285715,
+          "at": 6.321071428571429,
+          "until": 6.4696428571428575,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 15.856428571428573,
-          "until": 16.153571428571432,
+          "at": 7.9282142857142865,
+          "until": 8.076785714285716,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 24.856428571428573,
-          "until": 25.153571428571432,
+          "at": 12.428214285714287,
+          "until": 12.576785714285716,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
@@ -75,32 +80,32 @@
       ],
       "jump_presses": [
         {
-          "at": 6.9,
-          "land_at": 8.1,
+          "at": 3.1,
+          "land_at": 4.3,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 9.471428571428572,
-          "land_at": 10.67142857142857,
+          "at": 4.485714285714286,
+          "land_at": 5.685714285714286,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 18.47142857142857,
-          "land_at": 19.67142857142857,
+          "at": 8.885714285714286,
+          "land_at": 10.085714285714285,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 21.685714285714283,
-          "land_at": 22.885714285714283,
+          "at": 10.592857142857142,
+          "land_at": 11.792857142857141,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 2.3242857142857147
+      "minimum_steer_start_after_previous_support_clear": 1.1621428571428574
     },
     {
       "mode": "easy",
@@ -111,29 +116,29 @@
       ],
       "bank_transitions": [
         {
-          "at": 4.326428571428571,
-          "until": 4.475,
+          "at": 2.1632142857142855,
+          "until": 2.2375,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 12.213571428571429,
-          "until": 12.510714285714286,
+          "at": 6.1067857142857145,
+          "until": 6.255357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 15.427857142857144,
-          "until": 15.725000000000001,
+          "at": 7.713928571428572,
+          "until": 7.862500000000001,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 24.427857142857142,
-          "until": 24.725,
+          "at": 12.213928571428571,
+          "until": 12.3625,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
@@ -141,32 +146,32 @@
       ],
       "jump_presses": [
         {
-          "at": 6.4714285714285715,
-          "land_at": 7.671428571428572,
+          "at": 2.8857142857142857,
+          "land_at": 4.085714285714285,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 9.042857142857143,
-          "land_at": 10.242857142857142,
+          "at": 4.271428571428571,
+          "land_at": 5.4714285714285715,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 18.04285714285714,
-          "land_at": 19.24285714285714,
+          "at": 8.67142857142857,
+          "land_at": 9.87142857142857,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 21.257142857142856,
-          "land_at": 22.457142857142856,
+          "at": 10.378571428571428,
+          "land_at": 11.578571428571427,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 2.3242857142857147
+      "minimum_steer_start_after_previous_support_clear": 1.1621428571428574
     },
     {
       "mode": "easy",
@@ -177,29 +182,29 @@
       ],
       "bank_transitions": [
         {
-          "at": 3.0764285714285715,
-          "until": 3.225,
+          "at": 1.5382142857142858,
+          "until": 1.6125,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 10.963571428571429,
-          "until": 11.260714285714286,
+          "at": 5.4817857142857145,
+          "until": 5.630357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 14.177857142857142,
-          "until": 14.475,
+          "at": 7.088928571428571,
+          "until": 7.2375,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 23.177857142857142,
-          "until": 23.475,
+          "at": 11.588928571428571,
+          "until": 11.7375,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
@@ -207,32 +212,32 @@
       ],
       "jump_presses": [
         {
-          "at": 5.2214285714285715,
-          "land_at": 6.421428571428572,
+          "at": 2.2607142857142857,
+          "land_at": 3.4607142857142854,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 7.792857142857143,
-          "land_at": 8.992857142857142,
+          "at": 3.6464285714285714,
+          "land_at": 4.8464285714285715,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 16.79285714285714,
-          "land_at": 17.99285714285714,
+          "at": 8.04642857142857,
+          "land_at": 9.24642857142857,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 20.007142857142856,
-          "land_at": 21.207142857142856,
+          "at": 9.753571428571428,
+          "land_at": 10.953571428571427,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 2.324285714285713
+      "minimum_steer_start_after_previous_support_clear": 1.1621428571428565
     },
     {
       "mode": "normal",
@@ -243,43 +248,43 @@
       ],
       "bank_transitions": [
         {
-          "at": 4.755,
-          "until": 4.9035714285714285,
+          "at": 2.3775,
+          "until": 2.4517857142857142,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 5.570714285714287,
-          "until": 5.867857142857144,
+          "at": 2.7853571428571433,
+          "until": 2.933928571428572,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 11.356428571428571,
-          "until": 11.653571428571428,
+          "at": 5.678214285714286,
+          "until": 5.826785714285714,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 12.642142857142858,
-          "until": 12.939285714285715,
+          "at": 6.321071428571429,
+          "until": 6.4696428571428575,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 15.856428571428573,
-          "until": 16.153571428571432,
+          "at": 7.9282142857142865,
+          "until": 8.076785714285716,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 24.856428571428573,
-          "until": 25.153571428571432,
+          "at": 12.428214285714287,
+          "until": 12.576785714285716,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
@@ -287,32 +292,32 @@
       ],
       "jump_presses": [
         {
-          "at": 6.9,
-          "land_at": 8.1,
+          "at": 3.1,
+          "land_at": 4.3,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 9.471428571428572,
-          "land_at": 10.67142857142857,
+          "at": 4.485714285714286,
+          "land_at": 5.685714285714286,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 18.47142857142857,
-          "land_at": 19.67142857142857,
+          "at": 8.885714285714286,
+          "land_at": 10.085714285714285,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 21.685714285714283,
-          "land_at": 22.885714285714283,
+          "at": 10.592857142857142,
+          "land_at": 11.792857142857141,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 0.07428571428571473
+      "minimum_steer_start_after_previous_support_clear": 0.037142857142857366
     },
     {
       "mode": "normal",
@@ -323,43 +328,43 @@
       ],
       "bank_transitions": [
         {
-          "at": 4.326428571428571,
-          "until": 4.475,
+          "at": 2.1632142857142855,
+          "until": 2.2375,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 5.142142857142858,
-          "until": 5.439285714285715,
+          "at": 2.571071428571429,
+          "until": 2.7196428571428575,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 10.927857142857142,
-          "until": 11.225,
+          "at": 5.463928571428571,
+          "until": 5.6125,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 12.213571428571429,
-          "until": 12.510714285714286,
+          "at": 6.1067857142857145,
+          "until": 6.255357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 15.427857142857144,
-          "until": 15.725000000000001,
+          "at": 7.713928571428572,
+          "until": 7.862500000000001,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 24.427857142857142,
-          "until": 24.725,
+          "at": 12.213928571428571,
+          "until": 12.3625,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
@@ -367,32 +372,32 @@
       ],
       "jump_presses": [
         {
-          "at": 6.4714285714285715,
-          "land_at": 7.671428571428572,
+          "at": 2.8857142857142857,
+          "land_at": 4.085714285714285,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 9.042857142857143,
-          "land_at": 10.242857142857142,
+          "at": 4.271428571428571,
+          "land_at": 5.4714285714285715,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 18.04285714285714,
-          "land_at": 19.24285714285714,
+          "at": 8.67142857142857,
+          "land_at": 9.87142857142857,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 21.257142857142856,
-          "land_at": 22.457142857142856,
+          "at": 10.378571428571428,
+          "land_at": 11.578571428571427,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 0.07428571428571473
+      "minimum_steer_start_after_previous_support_clear": 0.037142857142857366
     },
     {
       "mode": "normal",
@@ -403,43 +408,43 @@
       ],
       "bank_transitions": [
         {
-          "at": 3.0764285714285715,
-          "until": 3.225,
+          "at": 1.5382142857142858,
+          "until": 1.6125,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 3.8921428571428573,
-          "until": 4.189285714285715,
+          "at": 1.9460714285714287,
+          "until": 2.0946428571428575,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 9.677857142857142,
-          "until": 9.975,
+          "at": 4.838928571428571,
+          "until": 4.9875,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 10.963571428571429,
-          "until": 11.260714285714286,
+          "at": 5.4817857142857145,
+          "until": 5.630357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 14.177857142857142,
-          "until": 14.475,
+          "at": 7.088928571428571,
+          "until": 7.2375,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 23.177857142857142,
-          "until": 23.475,
+          "at": 11.588928571428571,
+          "until": 11.7375,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
@@ -447,32 +452,32 @@
       ],
       "jump_presses": [
         {
-          "at": 5.2214285714285715,
-          "land_at": 6.421428571428572,
+          "at": 2.2607142857142857,
+          "land_at": 3.4607142857142854,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 7.792857142857143,
-          "land_at": 8.992857142857142,
+          "at": 3.6464285714285714,
+          "land_at": 4.8464285714285715,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 16.79285714285714,
-          "land_at": 17.99285714285714,
+          "at": 8.04642857142857,
+          "land_at": 9.24642857142857,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 20.007142857142856,
-          "land_at": 21.207142857142856,
+          "at": 9.753571428571428,
+          "land_at": 10.953571428571427,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 0.07428571428571429
+      "minimum_steer_start_after_previous_support_clear": 0.037142857142857144
     },
     {
       "mode": "hard",
@@ -483,64 +488,64 @@
       ],
       "bank_transitions": [
         {
-          "at": 4.755,
-          "until": 4.9035714285714285,
+          "at": 2.3775,
+          "until": 2.4517857142857142,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 5.570714285714287,
-          "until": 5.867857142857144,
+          "at": 2.7853571428571433,
+          "until": 2.933928571428572,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 8.142142857142858,
-          "until": 8.439285714285715,
+          "at": 4.071071428571429,
+          "until": 4.2196428571428575,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 12.642142857142858,
-          "until": 12.939285714285715,
+          "at": 6.321071428571429,
+          "until": 6.4696428571428575,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 15.856428571428573,
-          "until": 16.153571428571432,
+          "at": 7.9282142857142865,
+          "until": 8.076785714285716,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 17.142142857142858,
-          "until": 17.439285714285717,
+          "at": 8.571071428571429,
+          "until": 8.719642857142858,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 20.356428571428573,
-          "until": 20.653571428571432,
+          "at": 10.178214285714287,
+          "until": 10.326785714285716,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 24.856428571428573,
-          "until": 25.153571428571432,
+          "at": 12.428214285714287,
+          "until": 12.576785714285716,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 26.013571428571424,
-          "until": 26.310714285714283,
+          "at": 13.006785714285712,
+          "until": 13.155357142857142,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
@@ -548,32 +553,32 @@
       ],
       "jump_presses": [
         {
-          "at": 6.9,
-          "land_at": 8.1,
+          "at": 3.1,
+          "land_at": 4.3,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 9.471428571428572,
-          "land_at": 10.67142857142857,
+          "at": 4.485714285714286,
+          "land_at": 5.685714285714286,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 18.47142857142857,
-          "land_at": 19.67142857142857,
+          "at": 8.885714285714286,
+          "land_at": 10.085714285714285,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 21.685714285714283,
-          "land_at": 22.885714285714283,
+          "at": 10.592857142857142,
+          "land_at": 11.792857142857141,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 0.07428571428571473
+      "minimum_steer_start_after_previous_support_clear": 0.037142857142857366
     },
     {
       "mode": "hard",
@@ -584,64 +589,64 @@
       ],
       "bank_transitions": [
         {
-          "at": 4.326428571428571,
-          "until": 4.475,
+          "at": 2.1632142857142855,
+          "until": 2.2375,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 5.142142857142858,
-          "until": 5.439285714285715,
+          "at": 2.571071428571429,
+          "until": 2.7196428571428575,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 7.713571428571429,
-          "until": 8.010714285714286,
+          "at": 3.8567857142857145,
+          "until": 4.005357142857143,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 12.213571428571429,
-          "until": 12.510714285714286,
+          "at": 6.1067857142857145,
+          "until": 6.255357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 15.427857142857144,
-          "until": 15.725000000000001,
+          "at": 7.713928571428572,
+          "until": 7.862500000000001,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 16.713571428571427,
-          "until": 17.010714285714286,
+          "at": 8.356785714285714,
+          "until": 8.505357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 19.927857142857142,
-          "until": 20.225,
+          "at": 9.963928571428571,
+          "until": 10.1125,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 24.427857142857142,
-          "until": 24.725,
+          "at": 12.213928571428571,
+          "until": 12.3625,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 25.584999999999994,
-          "until": 25.882142857142853,
+          "at": 12.792499999999997,
+          "until": 12.941071428571426,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
@@ -649,32 +654,32 @@
       ],
       "jump_presses": [
         {
-          "at": 6.4714285714285715,
-          "land_at": 7.671428571428572,
+          "at": 2.8857142857142857,
+          "land_at": 4.085714285714285,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 9.042857142857143,
-          "land_at": 10.242857142857142,
+          "at": 4.271428571428571,
+          "land_at": 5.4714285714285715,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 18.04285714285714,
-          "land_at": 19.24285714285714,
+          "at": 8.67142857142857,
+          "land_at": 9.87142857142857,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 21.257142857142856,
-          "land_at": 22.457142857142856,
+          "at": 10.378571428571428,
+          "land_at": 11.578571428571427,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 0.07428571428571473
+      "minimum_steer_start_after_previous_support_clear": 0.037142857142857366
     },
     {
       "mode": "hard",
@@ -685,64 +690,64 @@
       ],
       "bank_transitions": [
         {
-          "at": 3.0764285714285715,
-          "until": 3.225,
+          "at": 1.5382142857142858,
+          "until": 1.6125,
           "from_y": 330.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 3.8921428571428573,
-          "until": 4.189285714285715,
+          "at": 1.9460714285714287,
+          "until": 2.0946428571428575,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 6.463571428571429,
-          "until": 6.760714285714286,
+          "at": 3.2317857142857145,
+          "until": 3.380357142857143,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 10.963571428571429,
-          "until": 11.260714285714286,
+          "at": 5.4817857142857145,
+          "until": 5.630357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 14.177857142857142,
-          "until": 14.475,
+          "at": 7.088928571428571,
+          "until": 7.2375,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 15.463571428571429,
-          "until": 15.760714285714286,
+          "at": 7.7317857142857145,
+          "until": 7.880357142857143,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 18.677857142857142,
-          "until": 18.975,
+          "at": 9.338928571428571,
+          "until": 9.4875,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
         },
         {
-          "at": 23.177857142857142,
-          "until": 23.475,
+          "at": 11.588928571428571,
+          "until": 11.7375,
           "from_y": 356.0,
           "to_y": 304.0,
           "input_y": -1
         },
         {
-          "at": 24.334999999999994,
-          "until": 24.632142857142853,
+          "at": 12.167499999999997,
+          "until": 12.316071428571426,
           "from_y": 304.0,
           "to_y": 356.0,
           "input_y": 1
@@ -750,32 +755,32 @@
       ],
       "jump_presses": [
         {
-          "at": 5.2214285714285715,
-          "land_at": 6.421428571428572,
+          "at": 2.2607142857142857,
+          "land_at": 3.4607142857142854,
           "obstacle_id": "ride-03",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.3922193877551
         },
         {
-          "at": 7.792857142857143,
-          "land_at": 8.992857142857142,
+          "at": 3.6464285714285714,
+          "land_at": 4.8464285714285715,
           "obstacle_id": "ride-05",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244899
         },
         {
-          "at": 16.79285714285714,
-          "land_at": 17.99285714285714,
+          "at": 8.04642857142857,
+          "land_at": 9.24642857142857,
           "obstacle_id": "ride-11",
-          "minimum_overlap_height": 63.711734693877546
+          "minimum_overlap_height": 67.39221938775506
         },
         {
-          "at": 20.007142857142856,
-          "land_at": 21.207142857142856,
+          "at": 9.753571428571428,
+          "land_at": 10.953571428571427,
           "obstacle_id": "ride-13",
-          "minimum_overlap_height": 57.650510204081634
+          "minimum_overlap_height": 65.23405612244905
         }
       ],
       "minimum_support_clearance": 17.0,
-      "minimum_steer_start_after_previous_support_clear": 0.07428571428571429
+      "minimum_steer_start_after_previous_support_clear": 0.037142857142857144
     }
   ],
   "art_contract": {
@@ -795,7 +800,8 @@
     "state": "Art confirmed final24x200/60x200/48x95 and110rider; generation/manifest in progress; earlier16/40 superseded."
   },
   "remaining": [
-    "Human faster-pace/control/visual warning review and actual captures under permission rules."
+    "Engineering packaged105delivery.",
+    "Human hectic-pace/control/warning review and actual captures under permission rules."
   ],
   "limits": "Witness is an available solution, not guarantee for arbitrary input. All four jump gates preserve full board footprint. No runtime or roadmap edits by Level Design.",
   "runtime_validation": {
@@ -803,18 +809,18 @@
     "cases": 18,
     "entry": "Real integrated Game -> flush landing -> ride; subsequent movements through flush.tick at120Hz, analog bank inputs and four press-edge jumps.",
     "matrix": "Tony/Sean x Easy/Normal/Hard x fixed horizontal anchors180/300/650.",
-    "result": "All18 complete8100px in28.928571s at280px/s, originalhealth/lives, no harmful contact, four jumps, weapon unchanged and zero shots.",
+    "result": "All18 complete8100px in14.464286s at560px/s with originalhealth/lives, no harmful contact, four distinct jumps, weapon unchanged and zero shots.",
     "anchor_setup": "Horizontal extremes initialized at start to validate fullallowedview; no teleport or route-position injection after start. Bank movement is runtime input-driven.",
-    "evidence": ".godot/level-design-scratch/ride-course-280-validation.log",
+    "evidence": ".godot/level-design-scratch/ride-course-560-validation.log",
     "environment_notes": "Godot macOS certificate/log warnings and one ObjectDB leak warning at process exit. No GDScript errors; explicit18PASS records and finalPASS, exit0.",
     "limits": "Headless automated solution; not human readability/art inspection, arbitrary-input promise, or packaged build validation.",
-    "pace_assertion": "Test asserts runtime280px/s,8100/280 duration, ride-only x200/y175; analog bank inputs use runtimebank_speed."
+    "pace_assertion": "Test asserts actual runtime560px/s,8100/560duration and ride-onlyx400/y350; staggered authored takeoffs clear1.2s airtime plus0.15s cooldown."
   },
   "warning_display_issue": {
     "owner": "Engineering",
-    "finding": "Concurrent per-obstacle gating uses104warning_at values recomputedfrom earliestx650contact; lead lengths2.4/2.0/1.6 unchanged.",
+    "finding": "105 initial warnings clamp0: firstEasy/Normalactuallead1.6625s, secondEasy2.144643s; later nominalleads retained. Concurrentcue maximum3Easy/4Normal/5Hard.",
     "required": "Show authored offscreen cues for every upcoming obstacle whosewarning_at has arrived, or equivalent queue preservingfullmodelead. Keep next-action text distinct from concurrentpreview.",
-    "status": "Resolved in Engineering source: read-only review confirms draw_preview iterates all uncleared obstacles and gates each by warning_at[mode], with concurrent rows. Authored cue icons and visual readability remain pending."
+    "status": "Engineering confirms5cueicons fit viewport (ride has no radio panel); text90..178 stays belowHUD64. Source jump_ready now gates cooldown<=0 and grounded state, with actual clamped approachspeed. No geometry/layout change needed; human visual review remains."
   },
   "recovery_revision_103": {
     "authority": "Confirmed Engineering/Mechanics implementation of Sean correction; canonical mechanics handoff.",
@@ -871,5 +877,29 @@
     "steering_rationale": "Oldy140 leaves.100s raw tightest transfer slack, below existing.15s timing allowance. y175 leaves.174286s with17pxclearance; x200 matches25percent ride-only response increase.",
     "unchanged": "World obstacle positions, footprints, counts, jump, damage, traversal latches and recovery. Level1/flush movement unaffected.",
     "evidence": "Continuous18-case proof and actualGame.flush.tick18-case replay bothPASS; geometry/worldpositions/counts/jump/recovery comparedagainst225-source. JSON/whitespacePASS. ExistingObjectDBexitwarning retained in runtime notes."
+  },
+  "pace_revision_105": {
+    "scroll_speed": 560,
+    "duration": 14.464285714285714,
+    "course_distance": 8100,
+    "prior_scroll_speed": 280,
+    "ride_axis_speeds": [
+      400,
+      350
+    ],
+    "jump_preserved": [
+      1.2,
+      72
+    ],
+    "cooldown_preserved": 0.15,
+    "takeoff_offsets": {
+      "low_barrier": -0.65,
+      "gap": -0.55
+    },
+    "timing": "Closestcenter spacing1.285714 is below1.35 jump-plus-cooldown; staggered presses1.385714 apart retain physics with.035714s surplus.",
+    "steering": "Same17pxclearance, raw tightestbank slack.087143s; prior.15s guard impossible atdoublepace, current.075s allowance documented.",
+    "opening_warning_exception": "Firstcontact1.6625s:Easy/Normalcueclamped0, actuallead1.6625. SecondEasyactuallead2.144643. Laternominalleadspreserved; no pre-roll/delay.",
+    "unchanged": "Allworldpositions/footprints/counts, damage/traversal-latch/recovery/jump rules. No Level1/flush movement changes.",
+    "evidence": "Continuous18case geometry and realGame.flush.tick18case replay PASS. Worldpositions, footprints, counts, jump and damage/latch/recovery compared unchanged; JSON/whitespace checked. Prior104 evidence is historical."
   }
 }
