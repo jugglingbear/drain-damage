@@ -104,7 +104,7 @@ metadata and delivery records before relying on them.
 
 ## Screenshot freeze
 
-Prototype 108 and the source launcher accept an opt-in screenshot flag; Prototype 106 does not include it.
+Prototype 109 and the source launcher accept an opt-in screenshot flag; Prototype 106 does not include it.
 
 ```sh
 make run LEVEL=2-landing SCREENSHOT_MODE=1
@@ -116,7 +116,7 @@ animations, dialogue, particles and audio pause together. Focus loss leaves the 
 Ordinary pause/death menus retain their existing controls; capture mode does not replace an already-open menu.
 The flag also works with other launch targets or an ordinary `make run SCREENSHOT_MODE=1` start.
 Use `SCREENSHOT_MODE=0` or omit it for unchanged controls. Only `0` and `1` are accepted.
-To use the preserved export, add `APP="builds/Prototype-108/Drain Damage.app"` to the command.
+To use the preserved export, add `APP="builds/Prototype-109/Drain Damage.app"` to the command.
 
 ## Prototype 108 encounter corrections
 
@@ -129,5 +129,7 @@ on contact; the pit occupies x2520–3220, y300–430 and costs a life on an uns
 16 pixels of full-board clearance. The cascade is animated; its artwork, rims and collision bounds are registered.
 The earliest visible pipe approach at the rightmost anchor is about 2.90 seconds; safe rests remain three seconds.
 
-The float-arm wall attachment is a pending follow-up. Mixed-course pacing, brush-curtain redesign and the new final
+Prototype 109 anchors the float arm to the far wall at y220, clips the mount at the waterline and keeps the rod
+connected throughout its sweep. The ball collider and movement are unchanged; mount and rod remain decorative.
+Mixed-course pacing, brush-curtain redesign and the new final
 boss remain proposals; Prototype 108 does not implement them. Human visual and controller review remains pending.

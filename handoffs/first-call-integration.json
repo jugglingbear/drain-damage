@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
-  "build": "Prototype 108 / 0.108.0",
-  "created_at": "2026-10-26T16:23:22.523018-07:00",
+  "build": "Prototype 109 / 0.109.0",
+  "created_at": "2026-10-26T16:32:15.164307-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "3cf2b59444e92d53a885487e2705e005d4ff4dd8",
-  "status": "Ready locally:34 packaged suites,8 Python checks,99 runtime audio slots and signed archive verify. Edition33 publication hold remains.",
-  "app": "builds/Prototype-108/Drain Damage.app",
-  "archive": "builds/history/Prototype-108.zip",
-  "archive_sha256": "dc85f8def2388dd21b15e14bf310e4912fd00a6003a9fc3883086e4d75c6d49d",
-  "source_snapshot": "builds/source-108",
-  "source_snapshot_files": 1667,
-  "previous_build_preserved": "Prototype107 and earlier apps, archives and source snapshots preserved",
+  "source_commit": "d702e6e657857cd2f3b1b9adc099c61f4faef613",
+  "status": "Ready locally:35 packaged suites,8 Python checks,99 runtime audio slots and signed archive verify. Edition33 publication hold remains.",
+  "app": "builds/Prototype-109/Drain Damage.app",
+  "archive": "builds/history/Prototype-109.zip",
+  "archive_sha256": "cd4a4b990a2cc46efc7b9ea942dbeee1418f34ce0260f7f4c4d3e6bb1831a670",
+  "source_snapshot": "builds/source-109",
+  "source_snapshot_files": 1675,
+  "previous_build_preserved": "Prototype108 and earlier apps, archives and source snapshots preserved",
   "changes": [
-    "Slalom uses distinct far-wall and near-wall baffles plus center blocker at520px spacing; exact visible water-plane surfaces match collision rectangles and bank seams. Earlier identical frontal pedestal art and missingcenter corrected.",
-    "Elbow-Pipe Breach now has supportedpipe x2320..2500/y320..430 followedby realpit x2520..3220/y300..430; safe far-banktarget270 leaves16px fullboardmargin. Pipehit1HP precedes unsupportedpitdeath.",
-    "Authored8phase16fps waterfall curtains crossfade; all animationframebounds retained through visual lifetime, solidrimlayers occlude pitfall.",
-    "Fresh grounded Space/controllerA jumps now accepted duringrests; sharedair/cooldownadvance preservesflightacross3s boundary. Noheldrepeat orairborne/cooldownbuffer.",
-    "Other isolated encounters,560speed,3srests,approvedramp,screenshotmode and earlierfeedbackfixes preserved."
+    "Encounter06 fixedwallpivot atworldy220 replaceswaterpivot257; authoredmountclippedatwaterline230.",
+    "Authoredshaft telescopes150.48..162.37px betweenfixedpivot andmovingballsocket; separateendpointjoints retainrigidsize.",
+    "Fullvisualbounds includemount/shaft/joints/shadow; farwallassemblydrawsbehindrider, ballretainsdepthsorting.",
+    "Ballcollision100x60 andmotionbase285/amplitude25/period2.4 unchanged. Rodandmountdecorative.",
+    "Prototype108slalom,breach,restjump andearlierfeedbackfixes preserved."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
@@ -25,35 +25,36 @@
     "direct": "make run LEVEL=2-01 (through2-10)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-01 SCREENSHOT_MODE=1 APP=\"builds/Prototype-108/Drain Damage.app\"",
+    "screenshot_export": "make run LEVEL=2-06 SCREENSHOT_MODE=1 APP=\"builds/Prototype-109/Drain Damage.app\"",
     "slalom": "make run LEVEL=2-01",
-    "breach": "make run LEVEL=2-02"
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06"
   },
   "checks": {
-    "packaged_suites_passed": 34,
-    "packaged_suites_total": 34,
-    "results": "builds/verification-108/final-results.json",
+    "packaged_suites_passed": 35,
+    "packaged_suites_total": 35,
+    "results": "builds/verification-109/final-results.json",
     "slalom": "5076 all141lane straight/repeatedjump trajectories;162 safeweaves with +/-50ms bankinput offsets;1296 heldhorizontal/jump boundary cases;1083 importedtexture samples pluswallseams.",
     "breach": "216 center/near straight/jump failures;126boundaryroutes and11 fastestjumpattempts; actualhostfall checks include02; authoredcascadeframes/bounds/rimordering pass.",
     "routes": "54 model fullroutes/540encounters plus6full integratedroutes; updated972general failurecases pass.",
     "rest_jump": "18modelhero/mode/fps configurations andrealnativephysics Space/A tests forbothheroes acrossrest/boundary/held/release/pause.",
     "python_tests": 8,
-    "python_log": "builds/verification-108/python.log",
+    "python_log": "builds/verification-109/python.log",
     "audio_freshness": "99runtime slots checked atfreeze; separate proposedboss auditions are not runtime108.",
-    "exported_entries": "2-01TonyNormal screenshotmodeon and2-02SeanHard screenshotmodeoff pass.",
+    "exported_entries": "2-06TonyNormal screenshotmodeon passes",
     "signature_archive": "codesign strict and ZIP integrity pass",
-    "markdown": "Whitespace checks pass; Markdownlint unavailable in environment."
+    "markdown": "Whitespace checks pass; Markdownlint unavailable in environment.",
+    "float_mount": "481fullsweeppositions verifyfixedwallpivot,continuousshaftends,rigidjoints,wallclip,visualboundsandunchangedcollider."
   },
   "capture_gap": {
     "actual_capture": false,
-    "chapter": "storybook/108-slalom-and-lower-channel/",
-    "reason": "No foreground capture permission. Source compositions inspected; runtime visual acceptance remains pending."
+    "chapter": "storybook/109-float-wall-mount/",
+    "reason": "Source study inspected; noforeground gamecapture/livevisualacceptance."
   },
   "limitations": [
-    "Livevisual review ofwallconnections,cascade/pitrimfall andcontrollerfeel remains pending.",
+    "Livevisualreview ofwallattachment/rodcontinuity andearlierencounterchanges remainspending.",
     "Neutral-horizontal weave is tested; full-right simultaneousbank input tightens the window and is not promised as a clean route.",
     "Earliest02pipeapproach atx650 is2.902seconds ratherthanfull3seconds; hazard-free rests remain exactly3seconds.",
-    "06fixedfarwallfloatmount is approved but pending a separate follow-up, not included in108.",
     "03mixedcourse,04brush redesign andgiantfinalboss are plans/concepts/auditions only, notimplemented.",
     "ExistingGodot settings/log/certificate andshutdownwarnings persist; all34suites pass."
   ],
@@ -61,11 +62,14 @@
     "handoffs/level-two-ride-showcase-layout.json",
     "handoffs/ride-showcase-art.json",
     "handoffs/level-two-ride-mechanics.json",
-    "handoffs/ride-obstacle-auditions.json"
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json"
   ],
   "publication_hold": "Do not push main: local edition33 magazine is not authorized for publication.",
-  "pending_followup": {
-    "approved": "06floatarm fixedfarwallmount andcontinuousrod, preserveballcollider/motion; Art preparesseparateassets/registration.",
-    "not_implemented": "Mixedcourse/brush/boss proposals remain separate; bosssoundsauditionsonly."
-  }
+  "proposals_not_implemented": [
+    "Mixedcourse",
+    "Brushcurtainredesign",
+    "Backgrounddestructivehazards",
+    "Hungryheadfinalboss"
+  ]
 }

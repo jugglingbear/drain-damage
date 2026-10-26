@@ -2675,6 +2675,32 @@ Finalization and archive identity are in the metadata.
 
 [Local build evidence and capture status](108-slalom-and-lower-channel/20261026-161130-capture-status.json).
 
+## 109 — Float wall mount — October 26, 2026
+
+**Build:** Prototype 109 / 0.109.0 validated locally, runtime source `d702e6e657857cd2f3b1b9adc099c61f4faef613`. Archive
+SHA-256 and source marker independently verified. Engineering confirms 1,675 tracked snapshot files plus marker;
+v00.108.00 is preserved.
+
+Encounter 06 now uses a fixed wall pivot at world y220, with the mount clipped at230. An authored telescoping rod
+continuously connects to the moving ball socket. The rod is decorative; the ball remains 100×60 with motion centered
+at285, amplitude25 and a 2.4-second period. Artwork is under assets/world/float-wall-mount-v2.
+
+**Validation:** All 35 packaged suites pass; the result manifest and log paths were checked. Engineering reports eight
+Python tests, 99-slot runtime audio freshness, exported2-06 Tony with screenshot mode on, strict codesign and ZIP
+integrity pass. Checks cover 481 sweep positions for mounting, shaft/socket connection, rigid joint, clipping and
+collider behavior.
+
+**Capture gap:** No actual gameplay capture or live visual acceptance. Source studies and sweep checks do not establish
+visual quality in motion. The screenshot-mode launch check is not a capture. Mounting and socket continuity remain on
+the visual-review backlog.
+
+**Publication:** Local delivery only; publication hold remains. No commit or push by Storyboarding.
+
+**Record created:** 2026-10-26T16:28:12-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization and archive identity are in the metadata.
+
+[Local build evidence and capture status](109-float-wall-mount/20261026-162812-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

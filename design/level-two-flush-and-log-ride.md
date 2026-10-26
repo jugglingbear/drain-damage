@@ -349,3 +349,10 @@ three-second rest boundary. It does not repeat held input or buffer airborne pre
 
 The approved float-arm wall mount is a follow-up, separate from the frozen Prototype 108 export. Mixed-course,
 brush-curtain and giant hungry-head boss work remain plans rather than implemented gameplay.
+
+## Prototype 109 float-arm attachment
+
+The float sweep now has an authored wall mount at y220, clipped at the y230 waterline. A telescoping shaft connects
+that fixed pivot to the moving ball socket; endpoint hardware retains its original dimensions. The ball still follows
+y285 ±25 over a 2.4-second cycle with its 100×60 collider. The rod and mount are decorative. This corrects the previous
+pivot at y257, which appeared to float on the water. Prototype 108 remains preserved; live visual review is pending.
