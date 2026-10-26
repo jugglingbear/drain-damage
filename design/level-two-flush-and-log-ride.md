@@ -59,6 +59,15 @@ The same ride course now runs at 225 pixels/second instead of 180, taking 36 sec
 cost one HP, with shared immunity and a contact latch; nonlethal gap contact recovers in place. Only depleted HP causes
 normal death and landing-checkpoint retry. Human review of pace and recovery feedback remains pending.
 
+## October 26 pace and HUD revision
+
+Prototype 104 increases the ride to 280 pixels/second, completing the same 8,100-pixel course in 28.93 seconds.
+Ride-only steering increases to 200 horizontally and 175 between banks; jump timing and collision geometry remain
+unchanged. The tightest authored bank transfer retains 0.174 seconds of spare time. Warning leads remain
+2.4/2.0/1.6 seconds for Easy/Normal/Hard, recalculated against the faster approach. Damage and recovery rules remain.
+Flush timing and music are unchanged. Shared health markers and selected-hero life portraits now serve all gameplay,
+including flush, landing and ride; numeric-only substitutes require Sean's explicit approval.
+
 ## Selected direction
 
 - Alternate standard 2D platforming levels with levels that use a different format. The full campaign order is open.

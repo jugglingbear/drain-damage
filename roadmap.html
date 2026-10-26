@@ -77,13 +77,20 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 25, 2026 · Current build: Prototype 103 / 0.103.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 26, 2026 · Current build: Prototype 104 / 0.104.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Prototype 104 — faster ride and shared health/lives display:</strong>
+The ride advances at 280 pixels/second, up from 225, over the same 8,100-pixel course in 28.93 seconds.
+Ride steering increases from 160/140 to 200/175 pixels/second. Shared health markers and selected-hero life portraits
+replace numeric status in flush, landing and ride; Level 1 and boss encounters retain the same indicators.
+Obstacle damage, gap recovery, jump geometry, flush dialogue timing and music remain unchanged.
+All 19 packaged suites and 7 Python tests pass, including 18 damage-free course routes and HUD/life-cycle checks.
+The signed app and archive are ready; Prototype 103 is preserved. Human pace/HUD review and gameplay capture remain pending.</p>
 <p><strong>Prototype 103 — gentler damage, faster ride and longer reading time:</strong> Each obstacle crossing
 costs one HP, including recoverable gaps; shared immunity and contact latches prevent repeated damage from lingering
 on one obstacle. Only depleted HP causes death. The same course runs 25% faster at 225 pixels/second and lasts 36

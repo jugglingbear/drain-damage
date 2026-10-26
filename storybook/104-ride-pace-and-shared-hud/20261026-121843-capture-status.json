@@ -1,0 +1,26 @@
+{
+  "build": "Prototype104 / 0.104.0",
+  "status": "Built and validated; human visual review and gameplay captures pending",
+  "created_at": "2026-10-26T12:18:43-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "capture_time": null,
+  "source_commit": "86c8bc9bb5051caa17bf0dabc996b1aeb483ab43",
+  "archive_sha256": "64649d278efb13be699e183b59cabd2c6df783d4e25090ba47270273436e01c2",
+  "scope": [
+    "LD/Mechanics confirmed: scroll280 versus225px/s (+24.44%), same8100px course28.928571seconds versus36; ride-only steering x200/y175 versus160/140 (+25%); jump1.2seconds/72px unchanged.",
+    "Shared draw_vitals extracted from Level1 and reused in flush/landing/ride. Boss/miniboss retain Level1 header; packaged HUD audit passes. Engineering reports global requirement added to AGENTS.",
+    "Flush timing and audio unchanged"
+  ],
+  "remaining": [
+    "Actual gameplay capture and human visual review"
+  ],
+  "capture_gap": "No foreground or capture permission; no actual gameplay capture. Preserve Prototype103 and earlier originals.",
+  "archive_path": "builds/history/Prototype-104.zip",
+  "app_path": "builds/Prototype-104/Drain Damage.app",
+  "source_snapshot": "builds/source-104",
+  "source_snapshot_status": "Engineering confirms1490 hydrated files complete; source marker independently verified.",
+  "reported_checks": "All19 final packaged suites pass, exit0, including18 real course witnesses, gameplay_vitals, hero_lifecycle, boss_hud/sidebar and all15 prior103 suites. Seven Python tests, both direct entries, signature and archive checks pass per Engineering. Final manifest and log paths independently checked.",
+  "finalized_at": "2026-10-26T12:22:28-07:00",
+  "validation_record": "builds/verification-104/final-results.json"
+}

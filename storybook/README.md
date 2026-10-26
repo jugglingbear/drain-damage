@@ -2541,6 +2541,33 @@ Finalization and archive identity are in the metadata.
 
 [Build evidence and capture status](103-dialogue-timing-and-ride-pace/20261025-095713-capture-status.json).
 
+## 104 — Ride pace and shared HUD — October 26, 2026
+
+**Build:** Prototype 104 / 0.104.0, source `86c8bc9bb5051caa17bf0dabc996b1aeb483ab43`. Engineering confirms 1,490
+hydrated snapshot files. Archive SHA-256 and source marker independently verified; v00.103.00 app, archive and source
+are preserved.
+
+Ride scroll speed rises to 280 pixels/second from 225 (+24.44%). The unchanged 8,100-pixel course takes 28.928571
+seconds instead of 36. Ride-only steering increases to x200/y175 from x160/y140 (+25%). Jump duration and height remain
+1.2 seconds and 72 pixels.
+
+Shared health markers and selected-hero life portraits replace the numeric health/lives line in the flush, landing and
+ride. The common vitals drawing comes from level one; boss and miniboss views retain that shared header. Flush timing
+and audio are unchanged.
+
+**Validation:** All 19 final packaged suites pass with exit 0, including 18 real course witnesses, gameplay vitals, hero
+lifecycle, boss HUD/sidebar and all 15 prior v00.103.00 suites. The final result manifest and log paths were
+independently checked. Engineering reports seven Python tests, both actual direct entries, signature and archive checks
+pass.
+
+**Capture gap:** No actual game-window capture or human visual review. HUD readability, faster-ride feel and
+presentation remain to be assessed in play; automated checks do not replace that review.
+
+**Record created:** 2026-10-26T12:18:43-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization time and archive identity are in the metadata.
+
+[Build evidence and capture status](104-ride-pace-and-shared-hud/20261026-121843-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact
