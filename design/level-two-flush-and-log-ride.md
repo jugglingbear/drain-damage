@@ -318,3 +318,19 @@ Only the mandatory-ramp long pit forces death on failure. Ordinary obstacles ret
 The authoritative course is `levels/level-two-ride-showcase.json`. These isolated tests do not establish final pacing.
 Runtime visual review and actual gameplay captures remain pending; nominal support geometry tests cannot prove
 pixel-perfect contact with the irregular board artwork. Flush dialogue and timing remain unchanged.
+
+## Prototype 107 feedback integration
+
+Sean's October 26 feedback supersedes the earlier nonlethal ordinary-gap rule: every actual pit or unsupported-gap
+fall costs one life through the checkpoint death flow. Solid, overhead and spike hits remain one HP. Normal riding
+water remains safe. The hero and board descend at the failed position before the death menu, with island surfaces
+and faces occluding the fall. All existing poses are retained.
+
+The approved ramp ascent, pitch and launch remain unchanged. Its bank-axis depth is now 100 pixels, leaving a visible
+lane from 280 to 380 and a full-board center range from 294 to 366. Misalignment cannot snap onto or acquire a boost.
+Cap islands and broken basins have revised dimensional faces; their landable top rectangles remain unchanged.
+Departing artwork persists independently of collision cleanup through the three-second safe rest.
+
+Screenshot freeze is opt-in through `SCREENSHOT_MODE=1`; controller Y freezes without adding pause UI.
+These changes are included in Prototype 107; the preserved Prototype 106 app retains its earlier behavior.
+Actual visual review of the revised platforms, pit occlusion and screenshot mode remains pending.

@@ -2617,6 +2617,33 @@ originals.
 
 [Local build evidence and capture status](106-isolated-ride-encounters/20261026-130712-capture-status.json).
 
+## 107 — Ride visual feedback — October 26, 2026
+
+**Build:** Prototype 107 / 0.107.0 validated for local delivery, runtime source
+`e49bf21197921fa8921df7e58e70e7b47a8284a6`. Archive SHA-256 and source marker independently verified. Engineering
+confirms 1,610 tracked snapshot files plus the source marker; v00.106.00 is preserved.
+
+Departing props remain until their full visual bounds leave the screen. Encounters 07/08 gain dimensional deck faces
+while retaining support tops. All pit falls cost one life and show composited hero-and-board descent with rim occlusion.
+Ramp bank depth is 100, preserving the approved curve.
+
+Opt-in SCREENSHOT_MODE=1 lets controller Y freeze the scene with its normal HUD and no added pause overlay. Mode checks
+do not constitute actual captures or permission to foreground the game.
+
+**Validation:** All 26 exact packaged suites pass; the manifest and log paths were independently checked. Engineering
+reports eight Python tests, 99-slot audio freshness, strict codesign and ZIP integrity pass. Exported CLI entries pass
+with screenshot mode on for 2-landing Tony and off for 2-10 Sean Hard.
+
+**Evidence gap:** No actual gameplay capture or live visual verification. Automated/model evidence does not establish
+visual contact, descent or deck readability; human review remains pending.
+
+**Publication:** Local delivery only. Edition 33 remains under the publication hold; no push or commit by Storyboarding.
+
+**Record created:** 2026-10-26T15:58:02-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization and archive identity are in the metadata.
+
+[Local build evidence and capture status](107-ride-visual-feedback/20261026-155802-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

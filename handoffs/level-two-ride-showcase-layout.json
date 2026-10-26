@@ -3,7 +3,7 @@
   "date": "2026-10-26",
   "owner": "Level Design",
   "integration_owner": "Engineering",
-  "status": "Narrow ramp feedback batch validated in model; no export/build/package/push, Prototype 106 preserved",
+  "status": "Integrated in locally delivered Prototype107;26 packaged suites pass. Actual visual review pending; edition33 publication hold remains.",
   "files": [
     "levels/level-two-ride-showcase.json",
     "tests/ride_showcase_course.gd",
@@ -157,11 +157,10 @@
     ],
     "per_anchor_frame_rate_margins": "MARGINS records in course log include all 54 configurations.",
     "environment_notes": "Godot macOS certificate warning is present; explicit PASS results checked, no script errors.",
-    "retry_scope": "Model begin(host, checkpoint_index) verified; production death animation and wrapper retry remain Engineering integration checks.",
+    "retry_scope": "Model retry plus packaged actual-host death/presentation/checkpoint checks pass in Prototype107; live visual review remains pending.",
     "final_model_rerun": "Both authored suites rerun after Mechanics final narrow-ramp freeze including unboosted ballistic ascent exit; 54 safe routes and 972 failure cases pass."
   },
   "remaining": [
-    "Engineering source integration checks and roadmap feedback-batch status; no build/export/package/push during hold.",
     "Art dimensional island/basin faces retain exact landable bounds; visual verification and gameplay captures remain pending an approved session."
   ],
   "ownership": "Level Design freezes geometry and two tests. Mechanics owns model and physics. Art owns manifest and sprites. Engineering owns runtime wrapper, build and roadmap."

@@ -63,9 +63,12 @@ The ride advances at 560 pixels/second, with horizontal/bank steering at 400/350
 Regular jumps last 0.6 seconds, reach 54 pixels and have a 0.1-second landing cooldown.
 Each encounter ends with three full seconds without hazards or next-encounter warnings.
 Deaths and retries resume the current encounter without replaying the flush.
-Ordinary obstacles and gaps cost one HP, with shared immunity and gap recovery. Only missing the mandatory-ramp
-long pit forces a life loss. The ramp launches automatically from grounded contact, locks horizontal steering
-through flight, and permits bank steering. Flight lasts 1.25 seconds and peaks about 93.33 pixels above water.
+In Prototype 107, every true pit or unsupported-gap fall costs one life and visibly descends
+before the death menu. Ordinary solid/overhead/spike hits remain one HP; normal riding water is safe.
+The preserved Prototype 106 app still has its earlier nonlethal ordinary-gap policy. The ramp launches automatically
+from grounded contact, locks horizontal steering through flight, and permits bank steering. Flight lasts 1.25 seconds and peaks about 93.33 pixels above water.
+The Prototype 107 ramp is 100 pixels across the banks: visible edges 280–380, with full-board center support
+294–366. Poor alignment misses the boost; the approved ascent curve and angles are unchanged.
 All ten encounters use the same course in every mode. Shared health/life markers remain visible.
 This movement-only showcase has no combat; the full ride and later stages remain unfinished.
 Actual gameplay screenshots and visual ramp-contact review remain pending.
@@ -96,3 +99,19 @@ material stay out of commits.
 [The former README](development-history.md) preserves detailed prototype notes, older setup explanations, credits,
 and release procedures. Its dated gameplay claims are historical and sometimes superseded. Consult current canonical
 metadata and delivery records before relying on them.
+
+## Screenshot freeze
+
+Prototype 107 and the source launcher accept an opt-in screenshot flag; Prototype 106 does not include it.
+
+```sh
+make run LEVEL=2-landing SCREENSHOT_MODE=1
+```
+
+With the flag set, controller Y (the top face button) freezes the current gameplay scene without adding a pause menu,
+dimmer or buttons. The normal HUD remains visible. Press Y again and release the controls to resume. Gameplay,
+animations, dialogue, particles and audio pause together. Focus loss leaves the scene frozen until Y is pressed again.
+Ordinary pause/death menus retain their existing controls; capture mode does not replace an already-open menu.
+The flag also works with other launch targets or an ordinary `make run SCREENSHOT_MODE=1` start.
+Use `SCREENSHOT_MODE=0` or omit it for unchanged controls. Only `0` and `1` are accepted.
+To use the preserved export, add `APP="builds/Prototype-107/Drain Damage.app"` to the command.

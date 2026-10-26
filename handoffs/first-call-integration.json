@@ -1,52 +1,55 @@
 {
   "schema_version": 1,
-  "build": "Prototype 106 / 0.106.0",
-  "created_at": "2026-10-26T13:32:36.292469-07:00",
+  "build": "Prototype 107 / 0.107.0",
+  "created_at": "2026-10-26T16:00:07.840355-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "dc1ad7e57de87c005e356e599106b6a5454e581c",
-  "status": "Ready locally; 23 packaged suites and 7 Python checks pass. GitHub push held for edition33.",
-  "app": "builds/Prototype-106/Drain Damage.app",
-  "archive": "builds/history/Prototype-106.zip",
-  "archive_sha256": "33a3deee849eb5a336950c84e62234362afd0cc8a1e8ec1d6394ab91eb10c5d9",
-  "source_snapshot": "builds/source-106",
-  "source_snapshot_files": 1586,
-  "previous_build_preserved": "Prototype105 and earlier apps, archives and snapshots preserved",
+  "source_commit": "e49bf21197921fa8921df7e58e70e7b47a8284a6",
+  "status": "Ready locally:26 packaged suites,8 Python checks and99-slot audio freshness pass; edition33 publication hold remains.",
+  "app": "builds/Prototype-107/Drain Damage.app",
+  "archive": "builds/history/Prototype-107.zip",
+  "archive_sha256": "f367bfdaa8a57acfd0702c23a550fe9cdcdf534cc2792cc8844b034d1db20592",
+  "source_snapshot": "builds/source-107",
+  "source_snapshot_files": 1610,
+  "previous_build_preserved": "Prototype106 and earlier apps, archives and source snapshots preserved",
   "changes": [
-    "Ten ordered isolated obstacle encounters at560px/s, followed by3full danger-free seconds each.",
-    "Regularjump0.6s/54px, cooldown0.1s. Grounded mandatoryramp launch1.25s/apex93.326851px; horizontal steering locked through flight, bank steering available.",
-    "Per-encounter death/retry checkpoints and direct2-01 through2-10 entries.",
-    "Ordinary obstacles/gaps1HP with shared immunity/recovery; mandatoryramp longpit alone forces death on failure.",
-    "Authored artwork for all10 concepts, uprightbankvariants/full-boardislands/visiblegratespikes.",
-    "Approved .1 cues DD-S0098 through DD-S0102 integrated; .2 alternatives retained.",
-    "Flush dialogue/timing, sharedvitals and weaponloadout preserved."
+    "Departing props retain independent visual clocks until full transformed artwork/shadows/decorations leave the viewport; safe rests remain3seconds.",
+    "Cap islands and broken basins use dimensional authored top/face/shadow layers with unchanged landable top rectangles; prior art preserved.",
+    "Every true pit/unsupported-gap fall costs one life, regardlessHP; existinghero+board descends at failedposition for1second beforedeathUI, clippedatpitbottom andoccludedbysoliddecklayers. Ordinarysolid/overhead/spikehits remain1HP; normalwater safe.",
+    "Ramp narrowed acrossbanks to100px (visible280..380/fullboardcenter294..366), preservingapproved200pxrun/40rise andascent/launchangles. Noedgeboost,snaporlateacquisition.",
+    "Opt-in SCREENSHOT_MODE=1 usescontrollerY tofreeze/resume withoutpauseoverlay, retainingHUD. Gameplaytree/audiofreeze andcontrolrelease/focusguards; disabledbydefault."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
     "direct": "make run LEVEL=2-01 (through2-10)",
-    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard"
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-landing SCREENSHOT_MODE=1 APP=\"builds/Prototype-107/Drain Damage.app\""
   },
   "checks": {
-    "packaged_suites_passed": 23,
-    "packaged_suites_total": 23,
-    "results": "builds/verification-106/final-results.json",
-    "routes": "54 model routes/540encounters plus6 full game routes; bothheroes/allmodes,3anchors,30/60/120Hz in model matrix",
-    "failures": "252 failure/exploitcases,141straight slalomlanes blocked",
-    "python_tests": 7,
+    "packaged_suites_passed": 26,
+    "packaged_suites_total": 26,
+    "results": "builds/verification-107/final-results.json",
+    "routes": "54 model routes/540 encounters;6 full integrated routes/60encounters, bothheroes/allmodes.",
+    "failures": "972 authored failure cases including216 misalignedrampcases; focusedexactboundary/ascent-exit tests pass.",
+    "presentation": "40visual/resttransitions plus18 actualhostpitfall/death/retrycases; artworkbounds andrigidregistrationchecks.",
+    "screenshot": "Six gameplaycontexts,held/releasedY,focus,pausemenu/audio/timerfreeze; exportedCLI confirmsflagbothonandoff.",
+    "python_tests": 8,
+    "python_log": "builds/verification-107/python.log",
     "audio_freshness": "99slots pass",
-    "signature_archive": "codesign strict verification and ZIP integrity pass",
-    "harness_correction": "Failure suite rerun with external course fixture because test files are excluded from export."
+    "signature_archive": "codesign strict and ZIP integrity pass",
+    "markdown": "Whitespace check passed; Markdownlint unavailable in environment (npm DNS)."
   },
   "capture_gap": {
     "actual_capture": false,
-    "chapter": "storybook/106-isolated-ride-encounters/",
-    "reason": "No approved foreground session; source studies are not gameplay captures."
+    "chapter": "storybook/107-ride-visual-feedback/",
+    "reason": "No foreground capture permission; source compositions and headless tests are not runtime visual acceptance."
   },
   "limitations": [
-    "Actual visual playtesting and irregular-board pixelcontact inspection pending. Nominal rigid geometry checks are not pixel-perfect artwork proof.",
-    "Isolated showcase routes establish feasibility, not final human pacing/balance.",
-    "Existing Godot user-settings/log and certificate warnings persist; package suites pass.",
+    "Human visual review of deck volume,fall occlusion/narrowramp andcontroller screenshotfreeze remains pending.",
+    "Nominal model/art registration checks do not prove pixel-perfect irregular board contact.",
+    "Existing Godot user-settings/log/certificate and shutdown resource warnings persist; all26 suites pass.",
     "Full ride/later stages remain unfinished."
   ],
   "contributors": [

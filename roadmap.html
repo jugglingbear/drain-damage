@@ -77,12 +77,22 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 26, 2026 · Current build: Prototype 106 / 0.106.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 26, 2026 · Current build: Prototype 107 / 0.107.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
+<a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Prototype 107 — ride feedback fixes (ready locally):</strong>
+Departing props retain their full artwork, shadows and moving decorations until offscreen. Cap islands and broken
+basins now have dimensional faces while retaining the same landing bounds. Every true pit fall costs one life and
+shows the hero and board descending behind solid rims before the death menu. Ordinary obstacle hits remain one HP.
+The ramp is narrower across the banks (100 pixels), preserving the approved ascent curve and angles; poor alignment
+misses the boost. Optional SCREENSHOT_MODE=1 lets controller Y freeze gameplay and audio without adding pause UI.
+All 26 packaged suites, eight Python checks, 99 audio slots, both exported screenshot-flag states and the signed ZIP
+verify. Prototype 106 is preserved. Actual gameplay captures, controller feel and visual fall/platform review remain
+pending. Changes are committed locally; the separate edition 33 publication hold still prevents pushing main.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
 <p><strong>Prototype 106 — isolated obstacle showcase (ready locally):</strong>
 All ten approved ride concepts now run as ordered encounters at 560 pixels/second, with three full danger-free
