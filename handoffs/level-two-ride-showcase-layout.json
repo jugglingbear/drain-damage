@@ -3,7 +3,7 @@
   "date": "2026-10-26",
   "owner": "Level Design",
   "integration_owner": "Engineering",
-  "status": "Integrated in locally delivered Prototype107;26 packaged suites pass. Actual visual review pending; edition33 publication hold remains.",
+  "status": "108 slalom and breach layout/model checks passed; new art collision-plane bounds match; Engineering combined integration/build and visual acceptance pending",
   "files": [
     "levels/level-two-ride-showcase.json",
     "tests/ride_showcase_course.gd",
@@ -108,10 +108,10 @@
     "damage_on_routes": 0,
     "failure_exploit_cases": 972,
     "constant_slalom_lanes_blocked": 141,
-    "failure_coverage": "All ten careless routes across both heroes, all three modes, three anchors and frame rates; slalom edges; overhead heads; island/basin missed jumps and full-board edge falls; missed ramp; every fatal case checks one life only, no recovery, dead-state guard and safe same-encounter model restart. Narrow ramp adds 216 bank-miss checks: outer lanes and 1px board overhang at either edge must not boost or snap; pit death and retry checks follow.",
+    "failure_coverage": "972 authored failures include revised01 slalom and02 pipe-then-pit; additional dedicated01/02 matrices and review tests listed in revisions.",
     "minimum_measured_clearance_pixels": {
       "1": {
-        "bank_clearance": 21.0
+        "bank_clearance": 16.0
       },
       "10": {
         "landing_x_clearance": 70.66650390625,
@@ -119,7 +119,7 @@
         "ramp_bank_clearance": 36.0
       },
       "2": {
-        "bank_clearance": 21.0
+        "bank_clearance": 36.0
       },
       "3": {
         "bank_clearance": 21.0
@@ -128,7 +128,7 @@
         "bank_clearance": 21.0
       },
       "5": {
-        "vertical_clearance": 7.05423175478944
+        "vertical_clearance": 9.20898293300534
       },
       "6": {
         "bank_clearance": 26.0
@@ -138,11 +138,11 @@
         "landing_y_clearance": 66.0
       },
       "8": {
-        "landing_x_clearance": 47.0,
+        "landing_x_clearance": 46.333251953125,
         "landing_y_clearance": 36.0
       },
       "9": {
-        "vertical_clearance": 3.74980370819902
+        "vertical_clearance": 3.24806526459732
       }
     },
     "measurement_scope": "Input-driven model routes. Barrier clearance interpolated over outer-frame overlap; float bank clearance uses full sweep envelope; deck margins sampled at landing event time. These are route witnesses, not human readability approval.",
@@ -152,8 +152,10 @@
       "shortfall": 54
     },
     "logs": [
-      ".godot/level-design-scratch/ride-showcase-course.log",
-      ".godot/level-design-scratch/ride-showcase-failures.log"
+      ".godot/level-design-scratch/ride_showcase_course-108.log",
+      ".godot/level-design-scratch/ride_showcase_failures-108.log",
+      ".godot/level-design-scratch/ride_slalom_layout-108.log",
+      ".godot/level-design-scratch/ride_elbow_layout-108.log"
     ],
     "per_anchor_frame_rate_margins": "MARGINS records in course log include all 54 configurations.",
     "environment_notes": "Godot macOS certificate warning is present; explicit PASS results checked, no script errors.",
@@ -161,7 +163,262 @@
     "final_model_rerun": "Both authored suites rerun after Mechanics final narrow-ramp freeze including unboosted ballistic ascent exit; 54 safe routes and 972 failure cases pass."
   },
   "remaining": [
-    "Art dimensional island/basin faces retain exact landable bounds; visual verification and gameplay captures remain pending an approved session."
+    "Engineering final source/render/actual-host review and authorized108 build.",
+    "No foreground/gameplay capture or publication push authorized.",
+    "Mixed-course and oversized04brush proposals remain unapproved and unimplemented."
   ],
-  "ownership": "Level Design freezes geometry and two tests. Mechanics owns model and physics. Art owns manifest and sprites. Engineering owns runtime wrapper, build and roadmap."
+  "ownership": "Level Design freezes geometry and two tests. Mechanics owns model and physics. Art owns manifest and sprites. Engineering owns runtime wrapper, build and roadmap.",
+  "slalom_revision": {
+    "reason": "107 reused the same frontal pedestal image for far and near footprints and lacked a center blocker. Numeric bank contact did not show a wall connection. Prior141-lane check was interval coverage, not actual input trajectories or visual weave acceptance.",
+    "geometry_source": "levels/level-two-ride-showcase.json encounter2-01",
+    "spacing": 520,
+    "bank_clearances": [
+      21,
+      21,
+      16
+    ],
+    "raw_transition_seconds": 0.5535714285714286,
+    "maximum_bank_move_seconds": 0.34285714285714286,
+    "raw_slack_seconds": 0.21071428571428574,
+    "witness_turn_clearance_seconds": 0.0625,
+    "witness_arrival_margin_seconds": 0.14821428571428572,
+    "limitation": "Validated neutral horizontal input at560 scroll. Holding forward while reversing bank is not guaranteed safe; release forward to steer. Center blocks prior280 lane but offers either side with deliberate adjustment.",
+    "validation": {
+      "actual_straight_and_repeated_jump_routes": 5076,
+      "integer_lanes": [
+        260,
+        400
+      ],
+      "heroes": [
+        "tony",
+        "sean"
+      ],
+      "modes": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "anchors": [
+        180,
+        300,
+        650
+      ],
+      "safe_weave_timing_routes": 162,
+      "timing_offsets_seconds": [
+        -0.05,
+        0,
+        0.05
+      ],
+      "frame_rates": [
+        30,
+        60,
+        120
+      ]
+    },
+    "tests": [
+      "tests/ride_slalom_layout.gd",
+      "tests/ride_slalom_review.gd"
+    ],
+    "art": "Art frozen: source-previews/slalom-v2.png includes all three views. Exact collision-plane bounds checked by layout tests; Art reports alpha>=247 across all five01/02 collision planes."
+  },
+  "breach_revision": {
+    "geometry_source": "levels/level-two-ride-showcase.json encounter2-02",
+    "pipe_bounds": [
+      2320,
+      320,
+      2500,
+      430
+    ],
+    "pit_bounds": [
+      2520,
+      300,
+      3220,
+      430
+    ],
+    "safe_center_y": "260 <= y < 286",
+    "witness_y": 270,
+    "pit_bank_clearance": 16,
+    "pipe_first_contact_to_pit_seconds": 0.35714285714285715,
+    "earliest_approach_seconds": 2.9017857142857144,
+    "preview_note": "Earliest x650 pipe contact2.902s after stage start; authored3s warning is capped by this approach. Three-second inter-encounter rest remains intact.",
+    "validation": "216 center/near straight and repeated-jump routes: one nonlethal pipe hit then one pit death; 54 complete course routes pass. Mechanics independently checks exact far-lane boundary and fastest jumps.",
+    "jump_proof": {
+      "needed": 790,
+      "maximum": 576
+    },
+    "tests": [
+      "tests/ride_elbow_layout.gd",
+      "tests/ride_breach_review.gd"
+    ],
+    "art": "Art frozen: source-previews/elbow-v2.png and interpolated waterfall GIF show the far route. Exact collision-plane bounds checked by layout tests; Engineering owns animated render acceptance."
+  },
+  "proposed_mixed_course": {
+    "status": "Plan only; Sean approval required before replacing isolated showcase or its three-second rests",
+    "owner": "Level Design",
+    "integration_owner": "Engineering",
+    "current_03": "Far/top-bank hanging plug remains appropriate. Overhead describes vertical clearance, not bank position. bottom_z64 obstructs both Tony84 and Sean72 heads, so jump does not bypass; use near-bank solids to create opposite-side pressure.",
+    "example_order": [
+      {
+        "x": 2600,
+        "piece": "far wall baffle",
+        "target_y": 380
+      },
+      {
+        "x": 3120,
+        "piece": "near wall baffle",
+        "target_y": 280
+      },
+      {
+        "x": 3640,
+        "piece": "center valve",
+        "target_y": 400
+      },
+      {
+        "x": 4200,
+        "piece": "far-bank overhead plug",
+        "target_y": 380
+      },
+      {
+        "x": 4720,
+        "piece": "near-bank wall baffle",
+        "target_y": 280
+      },
+      {
+        "x": 5500,
+        "piece": "full-bank flange hop",
+        "target_y": 330
+      },
+      {
+        "x": [
+          6600,
+          7680
+        ],
+        "piece": "existing cap-island chain translated4000px; deliberate full-board landings",
+        "target_y": 330
+      },
+      {
+        "x": [
+          8400,
+          8600
+        ],
+        "piece": "narrow ramp, followed by long pit8645..9185",
+        "target_y": 330
+      }
+    ],
+    "difficulty_proposal": "Hard uses520px dense reversal spacing; Normal650 and Easy800 for those reversals. Preserve coherent silhouettes, hazard footprints and jump commitments. No random unseen lane swaps or higher speed. Tune after input-driven witnesses and human testing. These are nominal reversal spacings, not uniform throughout. Reflow every downstream segment from the previous segment end while preserving transition budgets; example absolute coordinates apply to Hard only.",
+    "timing": {
+      "hard_reversal_clear_seconds": 0.5535714285714286,
+      "largest_bank_move_seconds": 0.34285714285714286,
+      "raw_slack_seconds": 0.21071428571428574,
+      "plug_clear_world_x": 4295,
+      "flange_jump_world_x": 5332,
+      "plug_clear_to_jump_seconds": 1.8517857142857144,
+      "near_baffle_clear_to_jump_seconds": 0.9053571428571429,
+      "final_cap_landing_world_x": 7518,
+      "ramp_front_contact_world_x": 8345,
+      "landing_to_ramp_seconds": 1.4767857142857144
+    },
+    "fairness_rules": [
+      "Advance silhouettes and directional cues before the commitment; no blind lethal pit.",
+      "No overhead in intended jump envelope or landing deck. For a100px plug then24px flange,700px center separation gives.979s clear traversal, exceeding approximately.698s combined reverse/decision/cooldown/ascent budget.",
+      "Require whole-board landing and ramp bank support, not center-only. No hidden wall or shadow collision.",
+      "No constant clean lane: far and near blockers cover all lanes; movement and hopping are required. A hit is a failure even if immunity allows survival.",
+      "Numbers assume neutral horizontal input at560 scroll; sustained forward+diagonal needs separate witnesses, not an unverified universal-feasibility claim."
+    ],
+    "validation_required": [
+      "Both heroes and all modes; 30/60/120Hz, all starting anchors, actual straight/jump attempts, head heights, reversal timing and continuous mixed sequence.",
+      "Art silhouette/footprint correspondence and visible ceiling mounts; Engineering actual-host death/checkpoint and visual capture."
+    ],
+    "implementation": "No mixed runtime/layout changes made."
+  },
+  "proposed_brush_revision": {
+    "status": "Plan only; not approved for implementation",
+    "sources": [
+      "design/ride-obstacle-concepts-v1/04-drain-brush-curtain.png",
+      "design/ride-obstacle-concepts-v1/proposal.json",
+      "levels/level-two-ride-showcase.json encounter2-04"
+    ],
+    "prior_plan": "Original proposal explicitly called for hanging brushes/cables with readable open lanes. Runtime layout reduced this to two120x115 overhead curtain groups800px apart; it never specified the giant individual mounted cylinders shown in the concept. Thus a plan existed but its visual scale/individual staging was not carried through.",
+    "proposal": "Three oversized individual cylindrical brushes on visible ceiling rails/mounts, bristles extending close to water; alternate far, near, then center. Keep isolated encounter and three-second rest.",
+    "planning_envelopes": [
+      {
+        "x": 2600,
+        "y": 287.5,
+        "width": 140,
+        "depth": 115
+      },
+      {
+        "x": 3160,
+        "y": 372.5,
+        "width": 140,
+        "depth": 115
+      },
+      {
+        "x": 3720,
+        "y": 330,
+        "width": 140,
+        "depth": 80
+      }
+    ],
+    "bottom_z_proposal": 16,
+    "visual_height_guidance": "Propose bottom16 above water. Far brush180px body leaves screen91.5..271.5; near220px body136.5..356.5, with visible rods/mounts above. Art reviewing; keep HUD clear.",
+    "route": [
+      {
+        "at_world_x": 2200,
+        "target_y": 380
+      },
+      {
+        "at_world_x": 2760,
+        "target_y": 280
+      },
+      {
+        "at_world_x": 3320,
+        "target_y": 400
+      }
+    ],
+    "bank_clearances": [
+      21,
+      21,
+      16
+    ],
+    "timing": {
+      "spacing": 560,
+      "full_board_clear_gap": 330,
+      "clear_seconds": 0.5892857142857143,
+      "maximum_bank_move_seconds": 0.34285714285714286,
+      "raw_slack_seconds": 0.24642857142857144
+    },
+    "collision_contract": "Envelope is planning only. Final collision follows visible dense bristle silhouette/core; rounded transparent corners, shadows, rods and mounts do not create invisible barriers. Far/near bristles visibly close their bank routes. Both heads and jump heights remain obstructed where bristles are present.",
+    "pending": "Sean approval before artwork/layout implementation; final dense-bristle registration or shape-aware collision review required.",
+    "mechanics_review": "Planning envelopes/timing accepted:45px after previous full-board clearance before second turn;93px before next contact after completed turn. Cylindrical collision needs opaque envelope or shape-aware review before implementation.",
+    "art_review": {
+      "status": "Art accepts proposal dimensions; no implementation authorized",
+      "body_screen_y": {
+        "far": [
+          91.5,
+          271.5
+        ],
+        "near": [
+          136.5,
+          356.5
+        ],
+        "center": [
+          114,
+          314
+        ]
+      },
+      "body_heights": {
+        "far": 180,
+        "near": 220,
+        "center": 200
+      },
+      "mount_screen_y": [
+        64,
+        80
+      ],
+      "suspension": "Rods from y70 to each body top; keep HUD clear.",
+      "shadow": "Exactly the planned140x115/80 water footprint; shadow is not a collider.",
+      "collision": "Prefer dense bristle skirt visibly covering full danger footprint. If rounded silhouette leaves gaps, require shape-aware collision review rather than an invisible rectangular box."
+    }
+  }
 }

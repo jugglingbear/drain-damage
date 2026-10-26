@@ -55,12 +55,12 @@ func checks() -> void:
 						for frame in range(20*hz):
 							if model.phase != "encounter" or host.life_state != "alive": break
 							model.tick(host,dt,Vector2.ZERO,false)
-						if index in [6,7]:
+						if index in [1,6,7]:
 							if not verify_fall_and_retry(host,model,index,dt): return
 						else:
 							if not require(host.health < 100 and host.lives == 3,
 								"Careless solid route bypassed encounter%s" % [index+1]): return
-							if index in [1,2,4,5,8]:
+							if index in [2,4,5,8]:
 								if not require(host.health == 99,"Single traversal must debit exactly 1HP"): return
 						failures_checked += 1
 						host.free()

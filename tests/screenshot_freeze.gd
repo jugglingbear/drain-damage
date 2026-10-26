@@ -31,7 +31,7 @@ func checks() -> void:
 	game.add_child(capture)
 	var count := 0
 	for target: Dictionary in Launch.registry().targets:
-		if target.id not in ["1","skitterling","2","2-landing","2-06","2-10"]: continue
+		if target.id not in ["1","skitterling","2","2-landing","2-02","2-06","2-10"]: continue
 		game.flush.reset()
 		game.reset_game()
 		Launch.initialize(game,target)
@@ -63,5 +63,5 @@ func checks() -> void:
 	capture.resume()
 	game.queue_free()
 	await process_frame
-	print("PASS: screenshot flag parsing, six gameplay contexts frozen without pause UI, audio, edge/release/focus guards")
+	print("PASS: screenshot flag parsing, seven gameplay contexts frozen without pause UI, audio, edge/release/focus guards")
 	quit()

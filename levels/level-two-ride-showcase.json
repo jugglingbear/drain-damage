@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "level-two-ride-showcase",
   "date": "2026-10-26",
-  "status": "Feedback batch validated: bank-depth100 ramp, 54 safe routes and 972 failure cases; build hold remains",
+  "status": "108 slalom and breach layout/model validation complete; Engineering owns combined build and visual acceptance",
   "owner": "Level Design",
   "integration_owner": "Engineering",
   "scope": "All ten selected concepts in order; isolated multipart encounters; no enemies/weapons.",
@@ -81,38 +81,37 @@
       "id": "2-01",
       "concept_id": 1,
       "title": "Valve-Stem Slalom",
-      "action_hint": "Weave around all three valve bases.",
+      "action_hint": "Weave past the wall baffles, then steer around the center valve.",
       "obstacles": [
         {
           "id": "valve-a",
           "kind": "support",
-          "x": 2600.0,
+          "x": 2600,
           "y": 287.5,
-          "width": 96,
+          "width": 120,
           "depth": 115,
-          "art_id": "valve_baffle"
+          "art_id": "valve_wall_far_v2"
         },
         {
           "id": "valve-b",
           "kind": "support",
-          "x": 3300.0,
+          "x": 3120,
           "y": 372.5,
-          "width": 96,
+          "width": 120,
           "depth": 115,
-          "art_id": "valve_baffle",
-          "mirror_bank": true
+          "art_id": "valve_wall_near_v2"
         },
         {
           "id": "valve-c",
           "kind": "support",
-          "x": 4000.0,
-          "y": 287.5,
-          "width": 96,
-          "depth": 115,
-          "art_id": "valve_baffle"
+          "x": 3640,
+          "y": 330,
+          "width": 120,
+          "depth": 80,
+          "art_id": "valve_center_v2"
         }
       ],
-      "end_x": 4048.0,
+      "end_x": 3700,
       "rest_after_seconds": 3.0,
       "warning_seconds": 3.0,
       "witness": {
@@ -123,12 +122,12 @@
             "target_y": 380
           },
           {
-            "at_world_x": 2800,
+            "at_world_x": 2740,
             "target_y": 280
           },
           {
-            "at_world_x": 3500,
-            "target_y": 380
+            "at_world_x": 3260,
+            "target_y": 400
           }
         ],
         "jump_press_world_x": [],
@@ -140,27 +139,36 @@
       "id": "2-02",
       "concept_id": 2,
       "title": "Elbow-Pipe Breach",
-      "action_hint": "Steer toward the near bank around the pipe.",
+      "action_hint": "Steer along the far bank above the broken pipe and waterfall pit.",
       "obstacles": [
         {
           "id": "elbow",
           "kind": "support",
-          "x": 2600.0,
-          "y": 290.0,
-          "width": 140,
-          "depth": 120,
-          "art_id": "elbow_breach"
+          "x": 2410,
+          "y": 375,
+          "width": 180,
+          "depth": 110,
+          "art_id": "elbow_pipe_v2"
+        },
+        {
+          "id": "elbow-pit",
+          "kind": "gap",
+          "x": 2870,
+          "y": 365,
+          "width": 700,
+          "depth": 130,
+          "art_id": "elbow_pit_v2"
         }
       ],
-      "end_x": 2670.0,
+      "end_x": 3220,
       "rest_after_seconds": 3.0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
         "bank_targets": [
           {
-            "at_world_x": 2200,
-            "target_y": 385
+            "at_world_x": 1900,
+            "target_y": 270
           }
         ],
         "jump_press_world_x": [],

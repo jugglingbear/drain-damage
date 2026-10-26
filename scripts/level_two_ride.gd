@@ -69,6 +69,9 @@ func visual_bounds(obstacle: Dictionary) -> Rect2:
 		bounds = bounds.merge(frame_bounds(frames.float_sweep_shadow,Transform2D(0,base)))
 		var arm := Transform2D(atan2((point-base).y,150),base+Vector2(-185,-28))
 		bounds = bounds.merge(frame_bounds(frames.float_arm,arm*Transform2D(0,Vector2(185,28))))
+	for overlay: Dictionary in obstacle_art.manifest.get("obstacle_overlays",{}).get(id,[]):
+		for frame: Dictionary in obstacle_art.manifest.animations[str(overlay.animation)].frames:
+			bounds = bounds.merge(frame_bounds(frame,Transform2D(0,point)))
 	return bounds
 
 func prune_departed_visuals() -> void:
@@ -186,6 +189,20 @@ func draw_obstacle(host: Node2D, obstacle: Dictionary) -> void:
 		return
 	assert(obstacle_art.manifest.frames.has(id),"Missing calibrated obstacle art: "+id)
 	obstacle_art.draw_named(host,id,point)
+	draw_obstacle_overlays(host,obstacle,false)
+
+func draw_obstacle_overlays(host: Node2D, obstacle: Dictionary, foreground: bool) -> void:
+	var id := obstacle_frame_id(obstacle)
+	for overlay: Dictionary in obstacle_art.manifest.get("obstacle_overlays",{}).get(id,[]):
+		if bool(overlay.get("foreground",false)) != foreground: continue
+		var animation: Dictionary = obstacle_art.manifest.animations[str(overlay.animation)]
+		var age := visual_age(obstacle)
+		var blend := fposmod(age*float(animation.fps),1.0) if bool(overlay.get("interpolate",animation.get("interpolate",false))) else 0.0
+		obstacle_art.draw_frame(host,obstacle_art.frame_at(str(overlay.animation),age),
+			obstacle_position(obstacle),Color(1,1,1,1-blend))
+		if blend > 0:
+			obstacle_art.draw_frame(host,obstacle_art.frame_at(str(overlay.animation),age+1.0/float(animation.fps)),
+				obstacle_position(obstacle),Color(1,1,1,blend))
 
 func rider_transform(host: Node2D) -> Transform2D:
 	var falling: bool = host.life_state != "alive" and events.has("fall")
@@ -267,8 +284,11 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	if host.life_state != "alive" and events.has("fall"):
 		# Solid island tops and sidewalls occlude the descending composite at its failed position.
 		for obstacle: Dictionary in visual_obstacles:
-			if obstacle.kind == "deck":
-				draw_fall_occluder(host,obstacle_art.manifest.frames[obstacle_frame_id(obstacle)],obstacle_position(obstacle))
+			var frame: Dictionary = obstacle_art.manifest.frames[obstacle_frame_id(obstacle)]
+			if obstacle.kind == "deck" or bool(frame.get("has_fall_occlusion",false)):
+				draw_fall_occluder(host,frame,obstacle_position(obstacle))
+	for obstacle: Dictionary in visual_obstacles:
+		if visual_bounds(obstacle).intersects(VIEWPORT,true): draw_obstacle_overlays(host,obstacle,true)
 	draw_strip(host,"course_near",scroll)
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)

@@ -258,7 +258,7 @@
     "encounters": {
       "rest_seconds": 3,
       "rest_start": "All multipart extents pass leftmost anchor180 minus half-board45, and jump/ramp/recovery/contact latches clear.",
-      "rest_state": "No obstacle actors or next warnings until three full seconds expire.",
+      "rest_state": "No obstacle actors or next warnings until three full seconds expire; steering and grounded jumping remain active. Flight/cooldown advance during rest, and an airborne jump continues into the next encounter without extending rest.",
       "checkpoint": "Current encounter index retries directly, no flush replay; begin resets anchor300,330."
     },
     "validation": {
@@ -284,6 +284,159 @@
       "pit_policy": "PASS48 combinations of bothheroes/allmodes/gap+long_pit/HP1+5/immunity0+1: one guarded death, no recovery event/bounce, no repeated life debit, direct same-stage reset. PASS18 ordinary impact combinations nonlethal; normal water safe; full-board edge falls fatal; ramp and transformed support checks pass.",
       "fall_position": "PASS rightward960px/s exact unsupported edge: worldx305 at5/960seconds; position/scroll stay frozen under later movement/jump input, one life only.",
       "narrow_ramp": "PASS42 bothhero/3anchor/7bank cases including exact294/366 successes and293.99/366.01 failures; no bank autosnap. Sideways ascent exit and return cannot reacquire boost; pit death follows. Full focused physics suite passes."
+    }
+  },
+  "slalom_revision108": {
+    "status": "Focused physics and final collision/render source registration review pass",
+    "layout": "levels/level-two-ride-showcase.json",
+    "geometry": {
+      "centers_x": [
+        2600,
+        3120,
+        3640
+      ],
+      "far_near_size": [
+        120,
+        115
+      ],
+      "center_size": [
+        120,
+        80
+      ],
+      "center_y": 330
+    },
+    "margins": {
+      "bank_clearance": [
+        21,
+        21,
+        16
+      ],
+      "clear_travel_pixels": 310,
+      "neutral_clear_seconds": 0.5535714285714286,
+      "maximum_bank_move_seconds": 0.34285714285714286,
+      "neutral_raw_slack_seconds": 0.21071428571428574,
+      "authored_turn_after_previous_clear_seconds": 0.0625,
+      "authored_bank_complete_before_next_contact_seconds": 0.14821428571428572
+    },
+    "validation": {
+      "test": "tests/ride_slalom_review.gd",
+      "cases": 1296,
+      "result": "PASS actual held-left/right plus repeated jump/no-jump at critical bank edges and \u00b1.01 offsets, both heroes/all modes/three anchors. Every unsteered route takes damage, no fall/life loss; per-traversal hit IDs match accepted hits.",
+      "scope": "Level Design separately owns all141integer-bank held-straight matrix and clean steering witnesses.",
+      "limits": "Static source and headless physics verified; live visual clarity remains pending.",
+      "level_design_report": "PASS5076 straight/repeated-jump routes and162 safe weaves with\u00b150ms timing variants; exact Art collision-plane mapping asserted."
+    },
+    "preserved": "No model changes; support blocks all jump heights, ordinary1HP/sharedimmunity/latches and3srests retained.",
+    "art_registration": {
+      "status": "PASS direct source-image and manifest review",
+      "bounds": "All five collision_plane destination rectangles and collision_registration cores exactly match authored obstacle widths/depths; renderer draws each at model obstacle_position.",
+      "source_alpha_ranges": {
+        "valve_wall_far_v2": [
+          250,
+          254
+        ],
+        "valve_wall_near_v2": [
+          247,
+          254
+        ],
+        "valve_center_v2": [
+          249,
+          254
+        ],
+        "elbow_pipe_v2": [
+          250,
+          253
+        ],
+        "elbow_pit_v2": [
+          251,
+          254
+        ]
+      },
+      "interpretation": "No transparent gaps in collision-plane source rectangles; near-opaque pixels, not strictly alpha255. Decorative height and bank connectors remain outside collision footprints.",
+      "limits": "Static source registration review; live visual clarity and waterfall motion remain Engineering/Art validation."
+    }
+  },
+  "breach_revision108": {
+    "status": "Focused physics and final collision/render source registration review pass",
+    "pipe": {
+      "x": [
+        2320,
+        2500
+      ],
+      "y": [
+        320,
+        430
+      ],
+      "contact": "Normal1HP; observable before pit"
+    },
+    "pit": {
+      "x": [
+        2520,
+        3220
+      ],
+      "y": [
+        300,
+        430
+      ],
+      "safe_board_center_y": "260 <= y <286; exact286 touches pit and falls",
+      "route_y": 270,
+      "bank_clearance": 16
+    },
+    "timing": {
+      "route_turn_world_x": 1900,
+      "worst_bank_move_seconds": 0.37142857142857144,
+      "time_to_pipe_seconds": 0.6696428571428571,
+      "worst_spare_seconds": 0.29821428571428565,
+      "first_pipe_preview_at_anchor650_seconds": 2.9017857142857144,
+      "note": "Earliest pipe preview2.901786s is shorter than nominal3s warning. Full3s encounter rests remain unchanged."
+    },
+    "validation": {
+      "test": "tests/ride_breach_review.gd",
+      "boundary_cases": 126,
+      "result": "PASS bothheroes/allmodes/3anchors;285.99safe and286fatal. Pipe impact leaves4HP/alive/3lives, then pit death bypasses fresh impact immunity and costs one life.11 fastest normal-jump attempts cannot clear700px pit.",
+      "limits": "Static source and headless physics verified; live visual clarity remains pending.",
+      "level_design_report": "PASS216 center/near cases with pipe1HP then fatal pit and exact Art bounds; combined54 complete routes/972 failures pass."
+    },
+    "preserved": "No model changes, other encounters/ramp unchanged.",
+    "art_registration": {
+      "status": "PASS direct source-image and manifest review",
+      "bounds": "All five collision_plane destination rectangles and collision_registration cores exactly match authored obstacle widths/depths; renderer draws each at model obstacle_position.",
+      "source_alpha_ranges": {
+        "valve_wall_far_v2": [
+          250,
+          254
+        ],
+        "valve_wall_near_v2": [
+          247,
+          254
+        ],
+        "valve_center_v2": [
+          249,
+          254
+        ],
+        "elbow_pipe_v2": [
+          250,
+          253
+        ],
+        "elbow_pit_v2": [
+          251,
+          254
+        ]
+      },
+      "interpretation": "No transparent gaps in collision-plane source rectangles; near-opaque pixels, not strictly alpha255. Decorative height and bank connectors remain outside collision footprints.",
+      "limits": "Static source registration review; live visual clarity and waterfall motion remain Engineering/Art validation."
+    }
+  },
+  "rest_jump_revision108": {
+    "status": "Source implementation and focused checks pass; Engineering owns actual input integration/build",
+    "source": "scripts/ride_showcase_model.gd",
+    "behavior": "Rest accepts grounded jump edges and advances flight, landing, cooldown and render pose through the shared motion helper. Rest lasts exactly3seconds; next encounter starts even while jumping and preserves airborne progress.",
+    "input_contract": "tick jumping remains an already-just-pressed pulse. Consumed only on first simulation substep; airborne/cooldown presses are discarded, never buffered. Host owns held-button/pause-resume/cutscene entry guards.",
+    "validation": {
+      "test": "tests/ride_rest_jump.gd",
+      "cases": 18,
+      "coverage": "Bothheroes/allmodes at30/60/120Hz: rest jump, normal landing/cooldown, discarded airborne/cooldown edge, no single-edge repeats, exact3s rest and airborne boundary continuity, pause/death guards.",
+      "regression": "tests/ride_showcase_physics.gd PASS after shared motion refactor."
     }
   }
 }
