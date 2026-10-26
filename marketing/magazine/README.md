@@ -23,6 +23,15 @@ ordered pages, text, captions, image references and layout templates. The PDF is
 The renderer uses the macOS fonts configured in `layout.font_directory`. Change that path and the font filenames
 if building elsewhere. Shared header/footer templates use `{page_number}` and `{section}` placeholders.
 
+## Edition 33 Industrial Trade advertisement — October 26, 2026
+
+Sean selected Industrial Trade. Page 9 now uses the refined photographic advertisement as a full-page image.
+The nine-page issue preserves all interior pages; the cover edition number advances to 33.
+Earlier PDFs and all six ad concepts remain preserved. `current.pdf` matches edition 33.
+Rendered back-cover inspection and page-stream checks pass. External publication remains pending.
+The selected image is approximately 130 dpi at page size, with lettering embedded in the artwork.
+Selection, source and checks are recorded in `guide-assets-v33/provenance.json`.
+
 ## Edition 32 flush feature — October 24, 2026
 
 Adds page 8, “It All Ends up in the Same Place Anyway...”, with Art’s original toilet-vortex concept in the center
@@ -32,7 +41,7 @@ The advertisement moves to page 9, and the contents rail includes the new featur
 
 Artwork and exact prompts: `marketing/flush-feature/manifest-v1.json` and `prompts-v1.json`.
 Standalone feature: `flush-feature-v32.pdf`; full-page preview: `guide-assets-v32/flush-feature-v32.png`.
-`current.pdf` matches edition 32. Published in commit `06386af`, Pages run `40161568123`. Live nine-page PDF hash, new feature image, all nine
+Edition 32 was published in commit `06386af`, Pages run `40161568123`. Live nine-page PDF hash, new feature image, all nine
 labels and reciprocal Storybook links verified October 24, 2026.
 The magazine does not establish Prototype 100 integration or current gameplay capture coverage.
 
