@@ -18,10 +18,14 @@ SELECTORS = ("LEVEL", "MINIBOSS", "BOSS")
 
 def launch_arguments(environment: dict[str, str]) -> list[str]:
     """Resolve one implemented target, keeping ordinary unselected launches unchanged."""
+    screenshot = environment.get("SCREENSHOT_MODE", "0") or "0"
+    if screenshot not in ("0", "1"):
+        raise ValueError("SCREENSHOT_MODE must be 0 or 1.")
+    extras = ["--screenshot-mode=1"] if screenshot == "1" else []
     selected = [key for key in SELECTORS if environment.get(key)]
     tuning = [key for key in ("HERO", "DIFFICULTY", "SEED") if environment.get(key)]
     if not selected and not tuning:
-        return []
+        return extras
     if len(selected) != 1:
         raise ValueError("Choose exactly one LEVEL, MINIBOSS or BOSS selector.")
     kind = selected[0]
@@ -37,13 +41,13 @@ def launch_arguments(environment: dict[str, str]) -> list[str]:
         raise ValueError(f"Unknown DIFFICULTY={difficulty}; choose easy, normal or hard.")
     if not seed.isascii() or not seed.isdecimal() or not 0 <= int(seed) <= 2147483647:
         raise ValueError("SEED must be an integer from 0 through 2147483647.")
-    return [f"--{kind.lower()}={target}", f"--hero={hero}", f"--difficulty={difficulty}", f"--seed={seed}"]
+    return [f"--{kind.lower()}={target}", f"--hero={hero}", f"--difficulty={difficulty}", f"--seed={seed}", *extras]
 
 
 def command(environment: dict[str, str], preview: bool = False, check: bool = False) -> list[str]:
     """Build argv for a source editor or an explicitly selected macOS app bundle."""
     arguments = launch_arguments(environment)
-    if check and not arguments:
+    if check and not any(environment.get(key) for key in SELECTORS):
         raise ValueError("run-check needs a LEVEL, MINIBOSS or BOSS selector.")
     if environment.get("APP"):
         app = Path(environment["APP"]).expanduser().resolve()

@@ -19,7 +19,7 @@ static func parse(arguments: PackedStringArray) -> Dictionary:
 			continue
 		var parts := argument.trim_prefix("--").split("=",true,1)
 		if not argument.begins_with("--") or parts.size() != 2 \
-				or parts[0] not in ["level","miniboss","boss","hero","difficulty","seed"]:
+				or parts[0] not in ["level","miniboss","boss","hero","difficulty","seed","screenshot-mode"]:
 			return {"error":"Unknown playtest argument: "+argument}
 		if values.has(parts[0]) or parts[1].is_empty(): return {"error":"Duplicate or empty option: "+parts[0]}
 		values[parts[0]] = parts[1]
@@ -29,9 +29,12 @@ static func parse(arguments: PackedStringArray) -> Dictionary:
 	if listing:
 		return {"error":"Target listing cannot be combined with launch options."} if not values.is_empty() \
 			or verify else {"list":true}
+	var screenshot: String = values.get("screenshot-mode","0")
+	if screenshot not in ["0","1"]: return {"error":"Screenshot mode must be 0 or 1."}
+	values.erase("screenshot-mode")
 	if selectors.is_empty():
 		return {"error":"Choose exactly one level, miniboss or boss selector."} if not values.is_empty() \
-			or verify else {}
+			or verify else ({"screenshot_mode":true} if screenshot == "1" else {})
 	if selectors.size() != 1: return {"error":"Choose exactly one level, miniboss or boss selector."}
 	var data := registry()
 	var target: Dictionary = {}
@@ -46,7 +49,7 @@ static func parse(arguments: PackedStringArray) -> Dictionary:
 	var seed_text: String = values.get("seed","42")
 	if not seed_text.is_valid_int() or int(seed_text) < 0 or int(seed_text) > 2147483647:
 		return {"error":"Seed must be an integer from0 through2147483647."}
-	return {"target":target,"hero":hero,"difficulty":difficulty,"seed":int(seed_text),"verify":verify}
+	return {"target":target,"hero":hero,"difficulty":difficulty,"seed":int(seed_text),"verify":verify,"screenshot_mode":screenshot == "1"}
 
 static func listing() -> String:
 	var lines: PackedStringArray = ["Implemented playtest targets:"]
@@ -91,4 +94,5 @@ static func summary(game: Node2D, options: Dictionary) -> Dictionary:
 		"weapon":game.weapon.id,"health":game.health,"lives":game.lives,
 		"flush_state":game.flush.state,"flush_clock":game.flush.clock,
 		"ride_encounter":game.flush.ride.encounter_index+1,"ride_phase":game.flush.ride.phase,
+		"screenshot_mode":game.has_node("ScreenshotFreeze"),
 		"landing_checkpoint":game.flush.checkpoint_saved,"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}

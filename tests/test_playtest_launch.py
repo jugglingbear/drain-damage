@@ -46,6 +46,16 @@ class PlaytestLaunchTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             launch.command({}, check=True)
 
+    def test_screenshot_mode(self) -> None:
+        self.assertEqual(launch.launch_arguments({"SCREENSHOT_MODE": "1"}), ["--screenshot-mode=1"])
+        self.assertEqual(launch.launch_arguments({"SCREENSHOT_MODE": "0"}), [])
+        self.assertIn("--screenshot-mode=1", launch.command({"LEVEL": "2-landing", "SCREENSHOT_MODE": "1"}))
+        for value in ("true", "yes", "2", "1;echo nope"):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                launch.launch_arguments({"SCREENSHOT_MODE": value})
+        with self.assertRaises(ValueError):
+            launch.command({"SCREENSHOT_MODE": "1"}, check=True)
+
     def test_packaged_path_and_headless_arguments(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             app = Path(directory) / "Example Game.app"

@@ -43,6 +43,8 @@ var game: Node2D
 var clock := 0.0
 var muted := false
 var starting := false
+var screenshot_mode := false
+const ScreenshotFreeze = preload("res://scripts/screenshot_freeze.gd")
 var music: AudioStreamPlayer
 const NAVIGATION_CUE = preload("res://assets/audio/sfx/menu-navigation-v1/wrench-clink.wav")
 var navigation_voice := AudioStreamPlayer.new()
@@ -59,6 +61,7 @@ func _ready() -> void:
 		print(PlaytestLaunch.listing())
 		get_tree().quit()
 		return
+	screenshot_mode = bool(launch.get("screenshot_mode",false))
 	if not Crew.Data.load_data():
 		get_tree().quit(1)
 		return
@@ -428,6 +431,11 @@ func start_game(launch: Dictionary = {}) -> void:
 	game.show_enemy_health_bars = show_enemy_health_bars
 	game.title_requested.connect(return_to_title, CONNECT_DEFERRED)
 	add_child(game)
+	if screenshot_mode:
+		var freeze := ScreenshotFreeze.new()
+		freeze.name = "ScreenshotFreeze"
+		freeze.host = game
+		game.add_child(freeze)
 	# Only a fresh run enters here; retries and checkpoint respawns never replay the opening.
 	if launch.has("target"):
 		PlaytestLaunch.initialize(game,launch.target)

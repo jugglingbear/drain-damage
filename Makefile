@@ -8,7 +8,7 @@ else
 GODOT ?= $(if $(wildcard .tools/godot),.tools/godot,godot)
 endif
 MAC_APP := builds/Drain Damage.app
-export GODOT LEVEL MINIBOSS BOSS HERO DIFFICULTY SEED APP
+export GODOT LEVEL MINIBOSS BOSS HERO DIFFICULTY SEED APP SCREENSHOT_MODE
 INSTALL_FLAGS ?=
 
 .PHONY: help install install-check install-plan check build build-all build-macos build-android build-ios build-windows run run-preview run-targets run-check editor combat-data
@@ -73,7 +73,7 @@ build-windows: ## Planned: Windows executable (not configured yet)
 	@printf '❌ Windows pending: add export template and Windows preset, then test on Windows.\n' >&2
 	@exit 1
 
-run: combat-data ## Play normally, or LEVEL=2 for flush, LEVEL=2-landing for post-flush landing (see run-targets)
+run: combat-data ## Play; optional LEVEL=2-landing and SCREENSHOT_MODE=1 (controller Y freezes without overlays)
 	@python3 tools/run_game.py
 
 run-preview: combat-data ## Play in a small agent-test window; accepts the same selectors as run
