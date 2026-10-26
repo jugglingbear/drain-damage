@@ -65,10 +65,13 @@ func visual_bounds(obstacle: Dictionary) -> Rect2:
 	var shadow: String = str(obstacle_art.manifest.get("overhead",{}).get("shadow_frames",{}).get(id,""))
 	if not shadow.is_empty(): bounds = bounds.merge(frame_bounds(frames[shadow],Transform2D(0,point)))
 	if id == "float_ball":
-		var base := Vector2(float(obstacle.x)-visual_age(obstacle)*scroll_speed,float(obstacle.y))
-		bounds = bounds.merge(frame_bounds(frames.float_sweep_shadow,Transform2D(0,base)))
-		var arm := Transform2D(atan2((point-base).y,150),base+Vector2(-185,-28))
-		bounds = bounds.merge(frame_bounds(frames.float_arm,arm*Transform2D(0,Vector2(185,28))))
+		var assembly := float_assembly(obstacle)
+		bounds = bounds.merge(frame_bounds(frames.float_sweep_shadow,Transform2D(0,assembly.base)))
+		for part: Dictionary in assembly.parts:
+			var part_bounds := frame_bounds(frames[part.id],part.transform)
+			if part.has("clip_bottom"):
+				part_bounds.size.y = maxf(0,minf(part_bounds.end.y,float(part.clip_bottom))-part_bounds.position.y)
+			bounds = bounds.merge(part_bounds)
 	for overlay: Dictionary in obstacle_art.manifest.get("obstacle_overlays",{}).get(id,[]):
 		for frame: Dictionary in obstacle_art.manifest.animations[str(overlay.animation)].frames:
 			bounds = bounds.merge(frame_bounds(frame,Transform2D(0,point)))
@@ -174,12 +177,34 @@ func draw_obstacle_shadow(host: Node2D, obstacle: Dictionary) -> void:
 	var shadow: String = str(obstacle_art.manifest.get("overhead",{}).get("shadow_frames",{}).get(id,""))
 	if not shadow.is_empty(): obstacle_art.draw_named(host,shadow,obstacle_position(obstacle))
 	if id == "float_ball":
-		var base := Vector2(float(obstacle.x)-visual_age(obstacle)*scroll_speed,float(obstacle.y))
-		obstacle_art.draw_named(host,"float_sweep_shadow",base)
-		var offset := obstacle_position(obstacle)-base
-		host.draw_set_transform(base+Vector2(-185,-28),atan2(offset.y,150))
-		obstacle_art.draw_named(host,"float_arm",Vector2(185,28))
+		var assembly := float_assembly(obstacle)
+		obstacle_art.draw_named(host,"float_sweep_shadow",assembly.base)
+		for part: Dictionary in assembly.parts:
+			if part.has("clip_bottom"):
+				host.draw_set_transform(Vector2.ZERO)
+				obstacle_art.draw_frame(host,obstacle_art.manifest.frames[part.id],
+					part.transform.origin,Color.WHITE,float(part.clip_bottom))
+			else:
+				host.draw_set_transform_matrix(part.transform)
+				obstacle_art.draw_named(host,part.id)
 		host.draw_set_transform(Vector2.ZERO)
+
+func float_assembly(obstacle: Dictionary) -> Dictionary:
+	var spec: Dictionary = obstacle_art.manifest.float_wall_mount
+	var base := Vector2(float(obstacle.x)-visual_age(obstacle)*scroll_speed,float(obstacle.y))
+	var offset: Array = spec.mount_pivot_relative_base
+	var pivot := base+Vector2(offset[0],offset[1])
+	var socket_offset: Array = spec.ball_socket_relative_moving_ball
+	var socket := obstacle_position(obstacle)+Vector2(socket_offset[0],socket_offset[1])
+	var delta := socket-pivot
+	var angle := delta.angle()
+	# Telescope only the authored shaft; wall hardware and endpoint joints retain their dimensions.
+	var shaft := Transform2D(angle,Vector2(delta.length()/150.0,1),0,pivot)
+	return {"base":base,"pivot":pivot,"socket":socket,"span":delta.length(),"parts":[
+		{"id":"float_wall_mount_v2","transform":Transform2D(0,pivot),"clip_bottom":float(spec.wall_clip_y)},
+		{"id":"float_rod_shaft_v2","transform":shaft},
+		{"id":"float_rod_pivot_v2","transform":Transform2D(angle,pivot)},
+		{"id":"float_rod_socket_v2","transform":Transform2D(angle,socket)}]}
 
 func draw_obstacle(host: Node2D, obstacle: Dictionary) -> void:
 	var point := obstacle_position(obstacle)
