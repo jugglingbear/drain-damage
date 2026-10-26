@@ -1,24 +1,25 @@
 {
   "schema_version": 1,
-  "build": "Prototype 104 / 0.104.0",
-  "created_at": "2026-10-26T12:21:25.392080-07:00",
+  "build": "Prototype 105 / 0.105.0",
+  "created_at": "2026-10-26T12:33:33.447594-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "86c8bc9bb5051caa17bf0dabc996b1aeb483ab43",
+  "source_commit": "7d6608d9d868ed79d7cd8f83ac518d76a638965f",
   "asset_commit": "7ccdabd",
-  "status": "Prototype 104 ready for review: 19 packaged suites and 7 Python tests pass; human visual review pending",
-  "app": "builds/Prototype-104/Drain Damage.app",
-  "archive": "builds/history/Prototype-104.zip",
-  "archive_sha256": "64649d278efb13be699e183b59cabd2c6df783d4e25090ba47270273436e01c2",
-  "source_snapshot": "builds/source-104",
-  "source_snapshot_files": 1490,
-  "previous_build_preserved": "Prototype 103 app, ZIP and source snapshot remain intact; earlier builds preserved",
+  "status": "Prototype 105 ready for review: 19 packaged suites and 7 Python tests pass; human hectic-pace review pending",
+  "app": "builds/Prototype-105/Drain Damage.app",
+  "archive": "builds/history/Prototype-105.zip",
+  "archive_sha256": "c5a74afc89be0729bff4d833019bf41eaaa62be8dbbc90e38f8853fd68eafc6a",
+  "source_snapshot": "builds/source-105",
+  "source_snapshot_files": 1491,
+  "previous_build_preserved": "Prototype 104 app, ZIP and source snapshot remain intact; earlier builds preserved",
   "changes": [
-    "Ride forward speed increases from 225 to 280 px/s (+24.44%); the same 8100px course takes 28.93s instead of 36s.",
-    "Ride-only horizontal/bank steering increases from 160/140 to 200/175 px/s (+25%). Jump remains 1.2s/72px and obstacle counts remain 8/12/16.",
-    "Flush, landing and ride use the shared Level 1 health markers and selected-hero life portraits. Level 1, mini-boss and boss retain their existing visual indicators. This is the game-wide standard in AGENTS.md.",
-    "One-HP contact damage, 1.5s immunity, contact latches, gap recovery and depleted-HP death remain unchanged.",
-    "Flush dialogue wording, doubled timing, prelude, hazards and music are unchanged from Prototype 103."
+    "Ride speed exactly doubles from 280 to 560 px/s; the same 8100px slice takes 14.464286s instead of 28.928571s. Water, environment and obstacles share the faster progression.",
+    "Ride-only horizontal/bank steering doubles from 200/175 to 400/350 px/s. All obstacle positions, footprints and counts 8/12/16 remain unchanged.",
+    "Jump duration 1.2s, height72px and cooldown0.15s remain unchanged; staggered takeoffs pass the closest pair. Minimum bank-transfer slack is 0.087143s, intentionally tighter.",
+    "Opening warnings clamp to ride start: first Easy/Normal actual lead1.6625s, second Easy2.144643s. Later leads remain2.4/2.0/1.6s; no added pre-roll.",
+    "Final jump-ready cue scales with actual approach speed for a0.2s lead and respects cooldown. Up to five concurrent Hard icons fit in the viewport.",
+    "One-HP damage, immunity, latches, gap recovery, shared visual vitals, flush dialogue/timing and audio remain unchanged."
   ],
   "controls": {
     "steer": "Arrows/stick; up/down across banks, left/right within view",
@@ -34,12 +35,12 @@
   "checks": {
     "packaged_suites_passed": 19,
     "packaged_suites_total": 19,
-    "results": "builds/verification-104/final-results.json",
+    "results": "builds/verification-105/final-results.json",
     "course_witnesses": 18,
-    "course_result": "18 packaged real-input witnesses pass both heroes/all modes at x180/300/650: no health/life loss, four jumps, 28.928571s completion.",
+    "course_result": "18 packaged real-input routes pass both heroes/all modes at x180/300/650: no health/life loss, four jumps, 14.464286s completion.",
     "collision_timing_cases": 6,
     "python_tests": 7,
-    "python_log": "builds/verification-104/python.log",
+    "python_log": "builds/verification-105/python.log",
     "direct_entries": "Exported Level2 Sean Hard and Level2-landing Tony Normal passed headlessly",
     "signature_archive": "passed",
     "audio_freshness": "94 slots checked; no audio bytes or mappings changed",
@@ -59,7 +60,7 @@
     "The first ride slice has no combat; full ride and later levels remain unfinished."
   ],
   "capture_gap": {
-    "chapter": "storybook/104-ride-pace-and-shared-hud/",
+    "chapter": "storybook/105-double-speed-ride/",
     "actual_capture": false,
     "reason": "No game-window permission; source art compositions are not gameplay screenshots"
   },
@@ -92,13 +93,13 @@
     "pause": "All times use active simulation/presentation time, not paused wall time"
   },
   "ride_pace": {
-    "old_scroll_px_s": 225,
-    "scroll_px_s": 280,
-    "old_duration_s": 36,
-    "duration_s": 28.928571428571427,
+    "old_scroll_px_s": 280,
+    "scroll_px_s": 560,
+    "old_duration_s": 28.928571428571427,
+    "duration_s": 14.464285714285714,
     "distance_px": 8100,
-    "horizontal_steer_px_s": 200,
-    "bank_steer_px_s": 175,
+    "horizontal_steer_px_s": 400,
+    "bank_steer_px_s": 350,
     "jump_seconds": 1.2,
     "jump_height_px": 72,
     "counts": {
@@ -111,6 +112,11 @@
       "normal": 2.0,
       "hard": 1.6
     },
-    "tightest_bank_transfer_margin_seconds": 0.1742857142857143
+    "tightest_bank_transfer_margin_seconds": 0.08714285714285713,
+    "opening_warning_exceptions": {
+      "first_easy_normal_s": 1.6625,
+      "second_easy_s": 2.1446428571428573
+    },
+    "closest_jump_press_separation_s": 1.3857142857142857
   }
 }

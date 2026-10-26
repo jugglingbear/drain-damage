@@ -112,8 +112,8 @@
       "obstacle_count": 16,
       "minimum_actionable_warning_seconds": 1.6
     },
-    "course": "104 crossing times halve; same world obstacles. Clear lead0..900/560 and tail7560/560..8100/560. Warning leads2.4/2.0/1.6s stay unchanged, clamped to course start when necessary; early threats need preview before movement if lead cannot otherwise fit.",
-    "warning": "Measure actionable warning against fastest reachable approach, not just screen appearance at reference x. A marker/preview must expose obstacle type and safe lane/jump requirement before the minimum lead time. No silent obstacle pop-in near forward x650.",
+    "course": "Same world obstacles and halved104 crossing times. Clear lead0..900/560 and tail7560/560..8100/560. Warning targets unchanged except the explicitly approved opening clamping exception; no prestart hold or added course duration.",
+    "warning": "Concurrent authored cues retain target lead2.4/2.0/1.6s where available. Engineering-approved105 opening exception: negative warning times clamp to course start0, without added hold. Earliest first cue lead1.6625s; second Easy opening cue2.144643s. These are shorter than target, not full-lead compliance.",
     "randomness": "First playable course is deterministic per mode with authored obstacle placements. Do not introduce random repositioning or adaptive hitboxes without separate validation.",
     "layout_agreement": {
       "jump_gates_seconds": [
@@ -162,7 +162,7 @@
     "Prototype103: all obstacles including gaps cost at most1HP per shared contact window; nonlethal recovery does not debit lives, teleport out of bounds, skip course obstacles or replay the flush. Already-immune contact cannot force damage/death."
   ],
   "validation": {
-    "status": "105 contract alignment and source recovery/timing tests pass; Level Design full-course witnesses, first-warning resolution and Engineering packaged/human checks remain separate.",
+    "status": "105 source and packaged recovery/timing checks and 18 full-course witnesses pass. Human hectic-pace and warning review pending.",
     "jump_above28_seconds": 0.938083151964686,
     "gap_neutral_crossing_seconds": 0.26785714285714285,
     "barrier_neutral_crossing_seconds": 0.20357142857142857,
@@ -171,24 +171,25 @@
       "record": "handoffs/level-two-ride-layout.json",
       "test": "tests/ride_course.gd",
       "reported_cases": 18,
-      "coverage": "Both heroes, all three modes, screen x180/300/650; actual runtime280px/s with x200/y175, no hits/falls, four jumps, full8100px completion at28.928571s.",
+      "coverage": "Bothheroes/allmodes/x180/300/650 at560scroll/x400/y350, no hits, four jumps, full8100px completion14.464286s.",
       "minimum_support_clearance": 17,
-      "tightest_raw_bank_transfer_slack_seconds": 0.174286,
-      "timing": "Earliest contact3.325s; last clears26.903571s. Warning leads unchanged.",
-      "limits": "Historical104 evidence only; does not validate105 exactdouble pace."
+      "tightest_raw_bank_transfer_slack_seconds": 0.087143,
+      "timing_guard_seconds": 0.075,
+      "jump_timing": "Barrier takeoff center\u2212.65/gap center\u2212.55; firstpair separation1.385714;1.2s72height/.15cooldown unchanged.",
+      "limits": "Reported source runtime evidence, not packaged-build or human balance/readability approval."
     },
     "warning_resolution": "Resolved in source per Engineering and Level Design review: draw_preview shows concurrent warnings at each authored warning_at, replacing nearest-only display; authored right-edge icons are used when the manifest is ready. Integrated visual readability remains pending; this source resolution does not claim human visual acceptance.",
     "revision103": "PASS tests/ride_recovery.gd at225px/s: all obstacle traversal latches, immune entry, distinct later obstacle, in-place recovery, HP-only checkpoint death/reset and runtime.duration completion at36s for both heroes/allmodes. tests/ride_collision_timing.gd also passes. Packaged build/visual checks pending.",
-    "speed_revision": "105 exact560scroll/400x/350bank source recovery/timing pass; unchanged8100px/counts/jump1.2s72/cooldown.15 and flush timing. Staggered firstpair jumps under Level Design full-course validation.",
+    "speed_revision": "105560scroll/400x/350bank source recovery/timing and18 course witnesses pass; full8100px/counts retained, jump1.2s72/.15 unchanged and flush untouched.",
     "faster_course_arithmetic": {
       "tightest_bank_transfer_available_seconds": 0.2357142857142857,
       "bank_transfer_required_seconds": 0.14857142857142858,
       "bank_clearance_world": 17,
       "raw_transfer_slack_seconds": 0.08714285714285713,
-      "limit": "Raw slack0.087143s is narrower than104. Previous0.15s timingguard is not preserved; runtime feasibility does not prove human comfort."
+      "limit": "Level Design reports18 runtime witnesses pass with0.075s timingguard; raw bank slack0.087143s is narrower than104. Previous0.15s guard is not preserved; human comfort remains unverified."
     },
     "revision104": "PASS tests/ride_recovery.gd bothheroes/allmodes at280px/s,200/175 steering and8100/280 duration. Synthetic300px obstacle keeps overlap active beyond1.5s, verifying one-hit traversal latch rather than accidentally passing because faster motion already cleared a normal obstacle. Later distinct hit, immune entry, normal HP-only death, checkpoint/reset and exact duration completion pass. Timing suite explicitly loads current layout physics (not class fallback defaults) and passes all six regressions.",
     "revision105": "PASS source tests/ride_recovery.gd bothheroes/allmodes at560scroll/400x/350bank and14.464286s. Synthetic1200px obstacle remains overlapping after2s despite screen clamp, proving traversal latch beyond shared1.5s immunity. Immune entry, simultaneouscontacts, distinct later damage, HP-only death/checkpointreset and exact configured finish pass. Six timing regressions load actual105 physics and pass.",
-    "first_warning_gap": "At forwardbound650 earliestcontact1.6625s is shorter than Easy2.4/Normal2.0 lead. Engineering notified: prestart preview requires at least0.7375s/0.3375s respectively, or explicitly reduced firstlead. No automatic claim that clamping warning_at0 preserves requested lead."
+    "first_warning_resolution": "Engineering approved clamping opening cues to0 without extra hold: earliest first lead1.6625s; second Easy2.144643s. Record shortened leads honestly; this resolves implementation policy, not human readability acceptance."
   }
 }

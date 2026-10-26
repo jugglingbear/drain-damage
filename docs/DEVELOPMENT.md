@@ -57,14 +57,16 @@ make run LEVEL=2-landing HERO=sean DIFFICULTY=hard
 
 Both entries initialize a fresh run without a prior save. Either accepts `HERO=tony|sean`,
 `DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the existing landing dialogue,
-then starts the approximately 29-second ride slice.
+then starts the approximately 14.46-second ride slice.
 Steer with arrows/stick; up/down moves between banks and left/right shifts within the view. Space/A jumps.
 Steer around tall supports, jump low barriers and clear gaps. The landing shadow marks the board’s water-plane position.
 Ride deaths restart at the landing checkpoint without replaying the flush. Easy/Normal/Hard have 8/12/16 obstacles.
-The ride advances at 280 pixels/second (24.4% faster than Prototype 103). Ride steering is 200 pixels/second
-horizontally and 175 between banks. Each obstacle crossing can cost one HP; gaps recover in place with brief feedback
+The ride advances at 560 pixels/second (exactly twice Prototype 104). Ride steering is 400 pixels/second
+horizontally and 350 between banks. Each obstacle crossing can cost one HP; gaps recover in place with brief feedback
 instead of forcing death. Shared immunity prevents clustered hits; only depleted HP costs a life.
 Every playable sequence uses the shared health markers and selected-hero life portraits, including flush and ride.
+At double speed, the earliest opening contact is 1.6625 seconds; the first cue starts immediately. Later warnings
+retain their normal lead times. The final jump cue uses actual approach speed to retain a 0.2-second lead.
 This first slice has no combat; the full ride and later stages remain unfinished.
 During the flush, steer to swim and dodge; firing and jumping are disabled. Tony uses freestyle and Sean uses
 breaststroke. Weapons remain equipped for later gameplay but cannot fire in this sequence.

@@ -2568,6 +2568,31 @@ Finalization time and archive identity are in the metadata.
 
 [Build evidence and capture status](104-ride-pace-and-shared-hud/20261026-121843-capture-status.json).
 
+## 105 — Double-speed ride — October 26, 2026
+
+**Build:** Prototype 105 / 0.105.0, source `7d6608d9d868ed79d7cd8f83ac518d76a638965f`. Engineering confirms 1,491
+snapshot files. Archive SHA-256 and source marker independently verified; v00.104.00 is preserved.
+
+Ride scroll is exactly doubled from 280 to 560 pixels/second. The unchanged 8,100-pixel course lasts 14.464286 seconds;
+ride-only steering axes double to 400/350. All 8/12/16 obstacles and world geometry remain. Jump duration/height and
+cooldown stay at 1.2 seconds/72 pixels and 0.15 seconds. Shared vitals, flush timing and audio are unchanged.
+
+Routes use staggered takeoffs; minimum bank slack is 0.087143 seconds. Opening cue onset is clamped to zero: first
+Easy/Normal lead is 1.6625 seconds, and second Easy is 2.144643 seconds. Later authored leads are 2.4/2/1.6 seconds.
+There is no pre-roll. The jump-ready cue uses actual approach speed times 0.2 seconds and is hidden during cooldown.
+
+**Validation:** All 19 final packaged suites pass with exit 0, including 18 actual course witnesses and recovery, timing
+and shared-HUD checks. The result manifest and log paths were independently checked. Engineering reports seven Python
+tests, both exported direct entries, signature/ZIP and 94-slot audio freshness pass.
+
+**Capture gap:** No actual gameplay capture or human review. The hectic feel, narrow steering margin and opening-warning
+readability still need play feedback; automated routes do not establish human readability.
+
+**Record created:** 2026-10-26T12:29:21-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization and archive identity are in the metadata.
+
+[Build evidence and capture status](105-double-speed-ride/20261026-122921-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

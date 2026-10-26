@@ -68,6 +68,17 @@ unchanged. The tightest authored bank transfer retains 0.174 seconds of spare ti
 Flush timing and music are unchanged. Shared health markers and selected-hero life portraits now serve all gameplay,
 including flush, landing and ride; numeric-only substitutes require Sean's explicit approval.
 
+## October 26 double-speed request
+
+Prototype 105 runs at exactly twice Prototype 104's ride speed: 560 pixels/second over the same 8,100-pixel course,
+completing in 14.46 seconds. Ride steering increases to 400 horizontally and 350 between banks. Obstacles and world
+geometry remain intact. All 18 source routes pass with staggered takeoffs and unchanged 1.2-second jumps,
+72-pixel height and 0.15-second cooldown. Bank-transfer spare time narrows to 0.087 seconds. The opening cue starts
+immediately, with 1.6625 seconds before earliest contact; later warning leads remain unchanged.
+The final jump cue uses actual approach speed for a 0.2-second lead and respects jump cooldown.
+All 19 packaged suites pass. Flush, audio, shared vitals and
+one-HP contact damage with gap recovery remain unchanged.
+
 ## Selected direction
 
 - Alternate standard 2D platforming levels with levels that use a different format. The full campaign order is open.
