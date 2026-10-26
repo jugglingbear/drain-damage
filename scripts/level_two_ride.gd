@@ -8,6 +8,8 @@ var obstacle_art := Art.new()
 var audio := Audio.new()
 var audio_definition: Dictionary = {}
 var mechanism_cycle := -1
+var visual_obstacles: Array[Dictionary] = []
+const VIEWPORT := Rect2(0,0,960,540)
 
 func attach(host: Node2D) -> void:
 	audio_definition = JSON.parse_string(FileAccess.get_file_as_string("res://data/level-two-ride.json"))
@@ -17,15 +19,73 @@ func attach(host: Node2D) -> void:
 		obstacle_art.configure(JSON.parse_string(FileAccess.get_file_as_string(SHOWCASE_ART)))
 
 func begin(host: Node2D, index := -1) -> void:
+	visual_obstacles.clear()
 	super.begin(host,checkpoint_index if index < 0 else index)
 	audio.stop()
 	mechanism_cycle = -1
+
+func _start_encounter(index: int) -> void:
+	super._start_encounter(index)
+	# Visuals own their world clock; collision teardown and the next encounter cannot reset them.
+	for obstacle: Dictionary in course.obstacles:
+		var visual := obstacle.duplicate(true)
+		visual["visual_started"] = clock
+		visual_obstacles.append(visual)
+
+func visual_age(obstacle: Dictionary) -> float:
+	return clock-float(obstacle.visual_started) if obstacle.has("visual_started") else encounter_clock
+
+func obstacle_position(obstacle: Dictionary) -> Vector2:
+	if not obstacle.has("visual_started"): return super.obstacle_position(obstacle)
+	var age := visual_age(obstacle)
+	return Vector2(float(obstacle.x)-age*scroll_speed,float(obstacle.y))+motion_offset(obstacle,age)
+
+func frame_bounds(frame: Dictionary, transform: Transform2D) -> Rect2:
+	if frame.has("layers"):
+		var bounds := Rect2()
+		for layer: Dictionary in frame.layers:
+			var next := frame_bounds(layer,transform)
+			bounds = bounds.merge(next) if bounds.has_area() else next
+		return bounds
+	var d: Array = frame.destination
+	return transform*Rect2(float(d[0]),float(d[1]),float(d[2]),float(d[3]))
+
+func visual_bounds(obstacle: Dictionary) -> Rect2:
+	var point := obstacle_position(obstacle)
+	var id := obstacle_frame_id(obstacle)
+	var frames: Dictionary = obstacle_art.manifest.frames
+	var bounds: Rect2
+	if id == "launch_ramp":
+		var width := float(obstacle.width)
+		var depth := float(obstacle.depth)
+		var rise := float(obstacle.get("rise",40))
+		bounds = Rect2(point-Vector2(width*0.5,depth*0.5+rise),Vector2(width,depth+rise))
+	else:
+		bounds = frame_bounds(frames[id],Transform2D(0,point))
+	var shadow: String = str(obstacle_art.manifest.get("overhead",{}).get("shadow_frames",{}).get(id,""))
+	if not shadow.is_empty(): bounds = bounds.merge(frame_bounds(frames[shadow],Transform2D(0,point)))
+	if id == "float_ball":
+		var base := Vector2(float(obstacle.x)-visual_age(obstacle)*scroll_speed,float(obstacle.y))
+		bounds = bounds.merge(frame_bounds(frames.float_sweep_shadow,Transform2D(0,base)))
+		var arm := Transform2D(atan2((point-base).y,150),base+Vector2(-185,-28))
+		bounds = bounds.merge(frame_bounds(frames.float_arm,arm*Transform2D(0,Vector2(185,28))))
+	return bounds
+
+func prune_departed_visuals() -> void:
+	for i in range(visual_obstacles.size()-1,-1,-1):
+		var obstacle: Dictionary = visual_obstacles[i]
+		var motion: Dictionary = obstacle.get("motion",{})
+		# Keep a conservative margin for moving/rotating decorations that could swing back into view.
+		var margin := absf(float(motion.get("amplitude",0)))*2
+		if obstacle_frame_id(obstacle) == "float_ball": margin += 400
+		if visual_bounds(obstacle).end.x+margin < 0: visual_obstacles.remove_at(i)
 
 func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 	if host.paused or host.life_state != "alive" or complete: return
 	var before := events.duplicate()
 	var previous_encounter := encounter_index
 	super.tick(host,delta,steering,jumping)
+	prune_departed_visuals()
 	if host.life_state != "alive" or complete:
 		audio.stop()
 		return
@@ -111,7 +171,7 @@ func draw_obstacle_shadow(host: Node2D, obstacle: Dictionary) -> void:
 	var shadow: String = str(obstacle_art.manifest.get("overhead",{}).get("shadow_frames",{}).get(id,""))
 	if not shadow.is_empty(): obstacle_art.draw_named(host,shadow,obstacle_position(obstacle))
 	if id == "float_ball":
-		var base := Vector2(float(obstacle.x)-encounter_scroll,float(obstacle.y))
+		var base := Vector2(float(obstacle.x)-visual_age(obstacle)*scroll_speed,float(obstacle.y))
 		obstacle_art.draw_named(host,"float_sweep_shadow",base)
 		var offset := obstacle_position(obstacle)-base
 		host.draw_set_transform(base+Vector2(-185,-28),atan2(offset.y,150))
@@ -120,7 +180,6 @@ func draw_obstacle_shadow(host: Node2D, obstacle: Dictionary) -> void:
 
 func draw_obstacle(host: Node2D, obstacle: Dictionary) -> void:
 	var point := obstacle_position(obstacle)
-	if point.x+float(obstacle.width)*0.5 < -200 or point.x-float(obstacle.width)*0.5 > 1160: return
 	var id := obstacle_frame_id(obstacle)
 	if id == "launch_ramp":
 		draw_ramp(host,obstacle,point)
@@ -130,9 +189,42 @@ func draw_obstacle(host: Node2D, obstacle: Dictionary) -> void:
 
 func rider_transform(host: Node2D) -> Transform2D:
 	var falling: bool = host.life_state != "alive" and events.has("fall")
-	var fall_depth := clampf(float(host.death_time),0,1)*90 if falling else 0.0
+	var fall_depth := pow(clampf(float(host.death_time),0,1),2)*260 if falling else 0.0
 	var recovery_bounce := sin(recovery_clock/0.6*PI)*20.0
 	return Transform2D(render_pitch,position+Vector2(0,-render_height+fall_depth-recovery_bounce))
+
+func fall_clip_bottom() -> float:
+	for obstacle: Dictionary in course.obstacles:
+		if obstacle.id == str(last_event.get("obstacle_id","")) and obstacle.kind in ["gap","long_pit"]:
+			return float(obstacle.y)+float(obstacle.depth)*0.5
+	return 540.0
+
+func draw_falling_frame(host: Node2D, frame: Dictionary, transform: Transform2D, tint: Color) -> void:
+	if frame.has("layers"):
+		for layer: Dictionary in frame.layers: draw_falling_frame(host,layer,transform,tint)
+		return
+	var d: Array = frame.destination
+	var target := Rect2(d[0],d[1],d[2],d[3])
+	var polygon := PackedVector2Array([target.position,Vector2(target.end.x,target.position.y),
+		target.end,Vector2(target.position.x,target.end.y)])
+	polygon = transform*polygon
+	var bottom := fall_clip_bottom()
+	var clipped := Geometry2D.intersect_polygons(polygon,PackedVector2Array([
+		Vector2(0,0),Vector2(960,0),Vector2(960,bottom),Vector2(0,bottom)]))
+	var texture: Texture2D = host.flush.art.textures[frame.path]
+	var source := Rect2(frame.source_rect[0],frame.source_rect[1],frame.source_rect[2],frame.source_rect[3])
+	for piece: PackedVector2Array in clipped:
+		var uv := PackedVector2Array()
+		for point: Vector2 in piece:
+			var local := transform.affine_inverse()*point
+			uv.append((source.position+(local-target.position)/target.size*source.size)/texture.get_size())
+		host.draw_polygon(piece,PackedColorArray([tint]),uv,texture)
+
+func draw_fall_occluder(host: Node2D, frame: Dictionary, point: Vector2) -> void:
+	if not bool(frame.get("occludes_fall",true)): return
+	if frame.has("layers"):
+		for layer: Dictionary in frame.layers: draw_fall_occluder(host,layer,point)
+	else: obstacle_art.draw_frame(host,frame,point)
 
 func draw_rider(host: Node2D, flush: RefCounted) -> void:
 	var falling: bool = host.life_state != "alive" and events.has("fall")
@@ -143,8 +235,12 @@ func draw_rider(host: Node2D, flush: RefCounted) -> void:
 		var registration: Array = obstacle_art.manifest.get("rider_contacts",{}).get(host.employee.id,{}).get(mode,[0,0])
 		host.draw_set_transform_matrix(rider_transform(host))
 		var offset := -Vector2(registration[0],registration[1])
-		var alpha := 1.0-clampf(float(host.death_time),0,1) if falling else 1.0
-		for frame: Dictionary in pose.front: flush.art.draw_frame(host,frame,offset,Color(1,1,1,alpha))
+		var alpha := 1.0-clampf((float(host.death_time)-0.75)/0.25,0,1) if falling else 1.0
+		for frame: Dictionary in pose.front:
+			if falling:
+				host.draw_set_transform(Vector2.ZERO)
+				draw_falling_frame(host,frame,rider_transform(host)*Transform2D(0,offset),Color(1,1,1,alpha))
+			else: flush.art.draw_frame(host,frame,offset,Color(1,1,1,alpha))
 		host.draw_set_transform(Vector2.ZERO)
 	if recovery_clock > 0: art.draw_named(host,"splash",position)
 
@@ -154,7 +250,8 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	draw_strip(host,"course_far",scroll*0.35)
 	draw_strip(host,"course_water",scroll)
 	var foreground: Array[Dictionary] = []
-	for obstacle: Dictionary in course.obstacles:
+	for obstacle: Dictionary in visual_obstacles:
+		if not visual_bounds(obstacle).intersects(VIEWPORT,true): continue
 		draw_obstacle_shadow(host,obstacle)
 		if obstacle.kind in ["support","overhead"]:
 			foreground.append(obstacle)
@@ -167,6 +264,11 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 			rider_drawn = true
 		draw_obstacle(host,obstacle)
 	if not rider_drawn: draw_rider(host,flush)
+	if host.life_state != "alive" and events.has("fall"):
+		# Solid island tops and sidewalls occlude the descending composite at its failed position.
+		for obstacle: Dictionary in visual_obstacles:
+			if obstacle.kind == "deck":
+				draw_fall_occluder(host,obstacle_art.manifest.frames[obstacle_frame_id(obstacle)],obstacle_position(obstacle))
 	draw_strip(host,"course_near",scroll)
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)

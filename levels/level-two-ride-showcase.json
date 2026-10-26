@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "level-two-ride-showcase",
   "date": "2026-10-26",
-  "status": "106 layout frozen; 54 full model routes and 252 failure/exploit cases passed; packaged and visual review owned by Engineering",
+  "status": "Feedback batch validated: bank-depth100 ramp, 54 safe routes and 972 failure cases; build hold remains",
   "owner": "Level Design",
   "integration_owner": "Engineering",
   "scope": "All ten selected concepts in order; isolated multipart encounters; no enemies/weapons.",
@@ -55,7 +55,13 @@
     "support_model": "Rigid 110px board; solve projected horizontal half-width for rotated endpoint contact. Flat before entry, quadratic run, tangent continuation beyond lip.",
     "ballistic_quadratic_coefficient": 182.178649098985,
     "center_height_derivative_at_lip": 0.34761064782777856,
-    "pitch_blend_seconds": 0.12
+    "pitch_blend_seconds": 0.12,
+    "bank_depth": 100,
+    "supported_center_y": [
+      294,
+      366
+    ],
+    "bank_support_rule": "Entire 28px board depth must stay supported; leaving during ascent cancels launch without snapping or reacquisition."
   },
   "head_heights": {
     "tony": 84,
@@ -498,7 +504,7 @@
       "id": "2-10",
       "concept_id": 10,
       "title": "Emergency Flume Launch",
-      "action_hint": "Stay grounded on the ramp for the long-pit launch.",
+      "action_hint": "Line up with the narrow ramp and stay grounded for the launch.",
       "obstacles": [
         {
           "id": "launch-ramp",
@@ -506,7 +512,7 @@
           "x": 2500.0,
           "y": 330.0,
           "width": 200,
-          "depth": 200,
+          "depth": 100,
           "art_id": "launch_ramp",
           "rise": 40,
           "launch_x": 2600,
@@ -551,6 +557,13 @@
   ],
   "validation_limits": [
     "No runtime/play-ready claim until actual model route and exploit tests pass.",
-    "Only encounter10 long_pit is lethal on unsupported contact; ordinary collisions retain normal damage/latch recovery."
-  ]
+    "All unsupported gap and long_pit falls cost one life through normal death/checkpoint flow, even during immunity. Solid, overhead and spike collisions retain ordinary damage; normal ride water is safe."
+  ],
+  "fall_policy": {
+    "gap": "normal_death_one_life",
+    "long_pit": "normal_death_one_life",
+    "ordinary_water": "safe",
+    "checkpoint": "same_encounter",
+    "solid_damage": 1
+  }
 }

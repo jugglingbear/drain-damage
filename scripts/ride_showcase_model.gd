@@ -28,6 +28,7 @@ var jump_apex: float:
 	get: return active_jump_apex
 var cooldown := 0.0
 var boosted := false
+var ballistic := false
 var ramp_active := false
 var active_ramp: Dictionary = {}
 var render_height := 0.0
@@ -58,6 +59,7 @@ func begin(host: Node2D, index := 0) -> void:
 	cooldown = 0
 	recovery_clock = 0
 	boosted = false
+	ballistic = false
 	ramp_active = false
 	active_ramp.clear()
 	render_height = 0
@@ -90,7 +92,7 @@ func sync_hero(_host: Node2D) -> void:
 
 func height(age: float) -> float:
 	if age < 0 or age >= active_jump_duration: return 0
-	if boosted: return maxf(0,launch_height+launch_velocity*age-launch_gravity*age*age)
+	if ballistic: return maxf(0,launch_height+launch_velocity*age-launch_gravity*age*age)
 	var u := age/active_jump_duration
 	return 4*active_jump_apex*u*(1-u)
 
@@ -154,7 +156,7 @@ func _vertical_spans(kind: String, obstacle: Dictionary, age: float, dt: float, 
 	if threshold < 0: return [overlap] if above else []
 	var ascent: float
 	var descent: float
-	if boosted:
+	if ballistic:
 		var discriminant := launch_velocity*launch_velocity+4*launch_gravity*(launch_height-threshold)
 		var root := sqrt(maxf(0,discriminant))
 		ascent = ((launch_velocity-root)/(2*launch_gravity)-age)/dt
@@ -217,6 +219,7 @@ func _launch(ramp := false) -> void:
 	active_jump_apex = 54
 	jump_age = 0
 	boosted = ramp
+	ballistic = ramp
 	if ramp:
 		var x := position.x+encounter_scroll
 		_ramp_pose(x)
@@ -262,11 +265,29 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 
 func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramps := true) -> void:
 	var old_age := jump_age
+	var start_position := position
 	var a := position+Vector2(encounter_scroll,0)
 	var input := steering.limit_length()
 	var movement := Vector2(0 if boosted or ramp_active else input.x*x_speed,input.y*bank_speed)*dt
 	var next_position := (position+movement).clamp(Vector2(180,260),Vector2(650,400))
 	var b := next_position+Vector2(encounter_scroll+scroll_speed*dt,0)
+	# Losing full bank support cannot retain or reacquire the automatic ramp launch.
+	if ramp_active:
+		var bank_min := float(active_ramp.y)-float(active_ramp.depth)*0.5+HALF.y
+		var bank_max := float(active_ramp.y)+float(active_ramp.depth)*0.5-HALF.y
+		if next_position.y < bank_min or next_position.y > bank_max:
+			# Leaving the side drops naturally to the water; it never grants the long-pit boost.
+			ramp_active = false
+			boosted = false
+			launch_height = render_height
+			launch_velocity = 0
+			launch_gravity = 181.128
+			launch_pitch = render_pitch
+			active_jump_duration = sqrt(launch_height/launch_gravity)
+			active_jump_apex = launch_height
+			ballistic = active_jump_duration > EPS
+			jump_age = 0 if ballistic else -1
+			old_age = jump_age
 	# Split entry and lip events exactly, so the entire attached composite follows one surface pose.
 	if ramp_active:
 		var lip := float(active_ramp.get("launch_x",float(active_ramp.x)+float(active_ramp.width)*0.5))
@@ -280,16 +301,22 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 			_launch(true)
 			_step(host,dt,steering,false,false)
 			return
-	elif check_ramps and jump_age < 0:
+	elif check_ramps:
 		var ramp: Dictionary = {}
 		var ramp_at := 2.0
 		for obstacle: Dictionary in course.obstacles:
 			if obstacle.kind != "ramp" or used_ramps.has(obstacle.id): continue
-			var rect := obstacle_rect(obstacle).grow_individual(55,0,55,0)
-			var interval := overlap_interval(a,b,rect)
-			if interval.x >= 0 and interval.x < ramp_at:
+			var rect := obstacle_rect(obstacle)
+			var entry_x := rect.position.x-55
+			if a.x > entry_x or b.x < entry_x or b.x <= a.x: continue
+			var at := (entry_x-a.x)/(b.x-a.x)
+			var bank := lerpf(a.y,b.y,at)
+			used_ramps[obstacle.id] = true
+			if jump_age >= 0 or rect.size.y < HALF.y*2: continue
+			if bank-HALF.y < rect.position.y or bank+HALF.y > rect.end.y: continue
+			if at < ramp_at:
 				ramp = obstacle
-				ramp_at = interval.x
+				ramp_at = at
 		if not ramp.is_empty():
 			if ramp_at > EPS: _step(host,dt*ramp_at,steering,false,false)
 			if host.life_state != "alive": return
@@ -324,14 +351,20 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 		if not spans.is_empty(): contacts.append({"obstacle":obstacle,"at":spans[0].x})
 	contacts.sort_custom(func(left: Dictionary,right: Dictionary) -> bool: return left.at < right.at)
 	var processed := 0.0
-	var recovered := false
 	for contact in contacts:
 		var event_time := float(contact.at)*dt
 		host.invulnerable = maxf(0,host.invulnerable-(event_time-processed))
 		processed = event_time
 		var obstacle: Dictionary = contact.obstacle
-		if obstacle.kind == "long_pit":
+		if obstacle.kind in ["gap","long_pit"]:
 			if host.life_state == "alive":
+				# Freeze at the actual unsupported contact, not the end of this simulation substep.
+				position = start_position.lerp(next_position,float(contact.at))
+				clock -= dt-event_time
+				encounter_scroll -= scroll_speed*(dt-event_time)
+				encounter_clock += event_time
+				jump_height = 0
+				render_height = 0
 				host.health = 1
 				host.invulnerable = 0
 				host.hurt_player()
@@ -343,13 +376,6 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 			hit_ids[obstacle.id] = true
 			emit_event("hit",str(obstacle.id))
 			if host.life_state != "alive": return
-		if obstacle.kind == "gap":
-			recovery_clock = 0.6
-			jump_age = -1
-			boosted = false
-			cooldown = 0.15
-			recovered = true
-			emit_event("recovered",str(obstacle.id))
 	host.invulnerable = maxf(0,host.invulnerable-(dt-processed))
 	encounter_clock += dt
 	recovery_clock = maxf(0,recovery_clock-dt)
@@ -359,13 +385,14 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 		if jump_age+EPS >= active_jump_duration:
 			jump_age = -1
 			boosted = false
+			ballistic = false
 			cooldown = 0.10
 			emit_event("landed")
 	jump_height = height(jump_age)
 	render_height = jump_height
 	if ramp_active:
 		_ramp_pose(position.x+encounter_scroll)
-	elif boosted:
+	elif ballistic:
 		var tangent := -atan2(launch_velocity-2*launch_gravity*jump_age,scroll_speed)
 		render_pitch = lerpf(launch_pitch,tangent,clampf(jump_age/0.12,0,1))
 		# Level the rigid composite before contact instead of snapping its angle on the landing frame.
@@ -373,9 +400,6 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 		render_pitch *= settling*settling*(3-2*settling)
 	else:
 		render_pitch = 0
-	if recovered:
-		jump_height = 0
-		render_height = 0
 	if _encounter_clear():
 		phase = "rest"
 		rest_remaining = 3.0

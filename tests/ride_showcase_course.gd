@@ -35,6 +35,10 @@ func measure_margin(model: RefCounted, record: Dictionary, start: Vector2, old_a
 		old_clock: float, landed_before: int, pressed: bool, dt: float) -> void:
 	if model.phase != "encounter": return
 	var finish: Vector2 = model.position+Vector2(model.encounter_scroll,0)
+	if model.ramp_active:
+		var ramp: Dictionary = model.active_ramp
+		lower_margin(record,"ramp_bank_clearance",
+			float(ramp.depth)*0.5-absf(model.position.y-float(ramp.y))-14)
 	for obstacle: Dictionary in model.course.obstacles:
 		if obstacle.kind not in ["support","overhead","low_barrier"]: continue
 		var left := float(obstacle.x)-float(obstacle.width)*0.5-45

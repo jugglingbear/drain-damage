@@ -2,6 +2,7 @@ extends SceneTree
 const Model = preload("res://scripts/ride_showcase_model.gd")
 class Host extends Node2D:
 	var employee := {"id":"sean"}
+	var difficulty := "normal"
 	var health := 5
 	var lives := 3
 	var invulnerable := 0.0
@@ -46,26 +47,67 @@ func run_checks() -> void:
 	model.tick(host,1,Vector2.ZERO,false)
 	assert(host.health == 5 and not model.events.has("hit"))
 	host.free()
-	# Ordinary gaps recover in place; only long_pit bypasses immunity and costs a life.
-	for kind in ["gap","long_pit"]:
-		pair = setup([obstacle("water",kind,320,80)])
-		host = pair[0]; model = pair[1]
-		host.invulnerable = 1
-		model.tick(host,.1,Vector2.ZERO,false)
-		if kind == "gap":
-			assert(host.health == 5 and host.lives == 3 and model.events.recovered == 1)
-			assert(model.position == Vector2(300,330))
-		else:
-			assert(host.lives == 2 and host.life_state == "dead" and model.events.fall == 1)
-			model.tick(host,1,Vector2.ZERO,false)
-			assert(host.lives == 2)
-		host.free()
+	# Every unsupported gap/pit fall uses normal death once, regardless of HP or impact immunity.
+	for hero in ["sean","tony"]:
+		for mode in ["easy","normal","hard"]:
+			for kind in ["gap","long_pit"]:
+				for hp in [1,5]:
+					for immunity in [0.0,1.0]:
+						pair = setup([obstacle("water",kind,320,80)])
+						host = pair[0]; model = pair[1]
+						host.employee.id = hero
+						host.difficulty = mode
+						host.health = hp
+						host.invulnerable = immunity
+						model.tick(host,.1,Vector2.ZERO,false)
+						assert(host.lives == 2 and host.life_state == "dead" and model.events.fall == 1)
+						assert(not model.events.has("recovered") and model.recovery_clock == 0)
+						model.tick(host,1,Vector2.ZERO,false)
+						assert(host.lives == 2)
+						model.definition.encounters.append({"id":"retry","obstacles":[obstacle("retry-gap",kind,2600,100)]})
+						host.health = 5
+						host.life_state = "alive"
+						model.begin(host,1)
+						assert(model.checkpoint_index == 1 and model.position == Vector2(300,330))
+						assert(model.events.get("fall",0) == 0 and host.lives == 2)
+						host.free()
+	# Ordinary water is safe; solid, overhead and spike impacts remain normal nonlethal damage.
+	for hero in ["sean","tony"]:
+		for mode in ["easy","normal","hard"]:
+			for kind in ["support","overhead","low_barrier"]:
+				var impact := obstacle("impact",kind,300,100)
+				impact.bottom_z = 64
+				pair = setup([impact])
+				host = pair[0]; model = pair[1]
+				host.employee.id = hero
+				host.difficulty = mode
+				model.tick(host,.01,Vector2.ZERO,false)
+				assert(host.health == 4 and host.lives == 3 and host.life_state == "alive")
+				host.free()
+	pair = setup([obstacle("distant","support",3000,20)])
+	host = pair[0]; model = pair[1]
+	model.tick(host,1,Vector2.ZERO,false)
+	assert(host.health == 5 and host.lives == 3 and not model.events.has("fall"))
+	host.free()
+	# Fatal contact freezes the exact failed water-plane position for the wrapper's falling animation.
+	pair = setup([obstacle("edge","gap",400,100)])
+	host = pair[0]; model = pair[1]
+	model.tick(host,.1,Vector2.RIGHT,false)
+	assert(host.life_state == "dead" and model.events.fall == 1)
+	assert(absf(model.position.x+model.encounter_scroll-305) < .001)
+	assert(absf(model.clock-5.0/960.0) < .00001)
+	var frozen_position: Vector2 = model.position
+	var frozen_scroll: float = model.encounter_scroll
+	model.tick(host,1,Vector2.RIGHT,true)
+	assert(model.position == frozen_position and model.encounter_scroll == frozen_scroll and host.lives == 2)
+	host.free()
 	# Full-footprint deck containment, not a center-only overlap.
 	for width in [80,100]:
 		pair = setup([obstacle("water","gap",300,200),obstacle("deck","deck",300,width)])
 		host = pair[0]; model = pair[1]
 		model.tick(host,.001,Vector2.ZERO,false)
-		assert(host.health == (4 if width == 80 else 5))
+		assert(host.health == (0 if width == 80 else 5))
+		assert(host.lives == (2 if width == 80 else 3))
 		host.free()
 	# Both head envelopes hit low ceilings while grounded; jump cannot bypass overhead.
 	for hero in ["sean","tony"]:
@@ -211,5 +253,32 @@ func run_checks() -> void:
 	print("RAMP EXACT height=",model.launch_height," velocity=",model.launch_velocity,
 		" coefficient=",model.launch_gravity," peak=",model.active_jump_apex)
 	host.free()
-	print("PASS: showcase traversal immunity, gap recovery/fatal pit, full deck, heads, multipart rest, ramp continuity and missed ramp")
+	# Narrow ramp requires the whole board inside its actual bank footprint, including at the edges.
+	var narrow_ramp := ramp.duplicate(true)
+	narrow_ramp.depth = 100
+	var narrow_course := [narrow_ramp,obstacle("pit","long_pit",2915,540),obstacle("catch","deck",3417.5,465)]
+	for hero in ["sean","tony"]:
+		for anchor in [180,300,650]:
+			for bank in [260.0,293.99,294.0,330.0,366.0,366.01,400.0]:
+				pair = setup(narrow_course)
+				host = pair[0]; model = pair[1]
+				host.employee.id = hero
+				model.position = Vector2(anchor,bank)
+				model.tick(host,7,Vector2.ZERO,false)
+				var aligned: bool = bank >= 294 and bank <= 366
+				assert(host.life_state == ("alive" if aligned else "dead"))
+				assert(model.events.get("ramp",0) == (1 if aligned else 0))
+				assert(absf(model.position.y-bank) < .001)
+				host.free()
+	# Sliding off during ascent cancels eligibility; steering back cannot reacquire it.
+	pair = setup(narrow_course)
+	host = pair[0]; model = pair[1]
+	while not model.ramp_active: model.tick(host,.005,Vector2.ZERO,false)
+	model.tick(host,.25,Vector2.DOWN,false)
+	assert(not model.ramp_active and model.events.get("ramp",0) == 0)
+	model.tick(host,.2,Vector2.UP,false)
+	model.tick(host,2,Vector2.ZERO,false)
+	assert(host.life_state == "dead" and model.events.get("ramp",0) == 0)
+	host.free()
+	print("PASS: showcase traversal immunity, fatal unsupported gaps/pits, full deck, heads, multipart rest, ramp continuity and missed ramp")
 	quit()

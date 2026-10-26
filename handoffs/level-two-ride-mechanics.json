@@ -5,7 +5,7 @@
   "owner": "Game Mechanics",
   "integration_owner": "Engineering",
   "layout_owner": "Level Design",
-  "status": "Prototype106 locally delivered; current_revision is authoritative. Earlier fields retained as105 history.",
+  "status": "Source-only pit policy update: all unsupported gap/pit falls cost one life; focused physics pass; build/export/publication held",
   "scope": "Prototype106 isolated ten-encounter showcase. current_revision is authoritative; pre-existing top-level geometry/course/jump/validation fields retain Prototype105 historical context.",
   "sources": [
     "levels/level-two-ride.json",
@@ -198,7 +198,7 @@
   "current_revision": {
     "prototype": 106,
     "date": "2026-10-26",
-    "status": "Packaged physics,54 authored routes and252 failure controls pass; actual visual review remains pending.",
+    "status": "Post-106 source-only feedback change; all actual gap/pit falls fatal. Prototype106 preserved; no build/export/package/push authorized.",
     "supersedes": "Earlier course duration, obstacle counts and 1.2s jump fields in this record describe Prototype105. Prototype106 uses isolated ten-encounter showcase defined below.",
     "source": "scripts/ride_showcase_model.gd",
     "layout": "levels/level-two-ride-showcase.json",
@@ -225,7 +225,21 @@
         3185
       ],
       "neutral_landing_center": 3300,
-      "board_trailing_clearance": 70
+      "board_trailing_clearance": 70,
+      "bank_alignment": {
+        "depth": 100,
+        "center_y": 330,
+        "visible_bank_interval": [
+          280,
+          380
+        ],
+        "full_board_center_interval": [
+          294,
+          366
+        ],
+        "centered_margin": 36,
+        "rule": "Full28px board depth must fit at grounded front entry and throughout ascent. Missed or airborne entry consumes ramp eligibility; no late side entry/autosnap. Losing bank support drops naturally to water without a boost and cannot reacquire the ramp; subsequent unsupported pit contact costs one life. Longitudinal run, curve and aligned launch/pitch unchanged."
+      }
     },
     "collision": {
       "board": [
@@ -236,9 +250,10 @@
         "tony": 84,
         "sean": 72
       },
-      "ordinary": "One HP per shared1.5s immunity; per-obstacle traversal latch also on immune entry; gaps recover in place.",
-      "fatal": "Only long_pit bypasses immunity and invokes normal death once; one life debit.",
-      "deck": "Whole board must fit a single deck at contact time; moving sweep uses sinusoid curvature envelope."
+      "ordinary": "Solid/support, overhead and low-barrier/spike impacts retain1HP/shared1.5s immunity and per-traversal latch. Normal ride water is safe.",
+      "fatal": "Every unsupported gap or long_pit contact bypasses impact immunity and invokes normal death once, costing one life and retrying the current encounter. Includes missed island/basin jumps and ramp misses. Supersedes earlier ordinary-gap1HP recovery policy.",
+      "deck": "Whole board must fit a single deck at contact time; moving sweep uses sinusoid curvature envelope.",
+      "fall_presentation": "Model freezes board water-plane position, scroll and clock at exact swept unsupported contact; render height resets to water-plane0 and fall event fires once. Dead ticks ignore input. Engineering owns downward composite animation, rim/deck occlusion and delaying death UI; no core death-timing change made by Mechanics."
     },
     "encounters": {
       "rest_seconds": 3,
@@ -248,23 +263,27 @@
     },
     "validation": {
       "physics": "tests/ride_showcase_physics.gd PASS",
-      "integration": "tests/ride_showcase_integration.gd PASS:60 entries, pause/death/game-over retry/loadout",
+      "integration": "Earlier60-entry integration pass; Engineering owns post-policy actual-host death/checkpoint verification.",
       "limits": "No foreground launch, screenshot, packaged-build or human readability claim.",
       "landing": "PASS eight combinations:60/120Hz, both heroes, banks260/400; includes landing frame with height step <=265px/s and pitch step <=5rad/s; zero final height/pitch, no damage.",
       "authored_course": {
         "reported_by": "Level Design",
         "test": "tests/ride_showcase_course.gd",
         "result": "Level Design reports post-projected-width correction PASS54 complete routes/540 encounters, both heroes/all modes/anchors180,300,650 at30,60,120Hz, without damage.",
-        "log": "/tmp/ride-showcase-course.log"
+        "log": "/tmp/ride-showcase-course.log",
+        "status": "Level Design reports final narrow-ramp/fatal-gap model PASS54 safe complete routes/540 encounters."
       },
       "rendered_contact": "PASS every world-pixel center2345..2600: nominal rigid support Transform2D endpoints\u00b155 match surface within.001px; interior support samples never clip. This validates model geometry, not opaque artwork pixels: Art confirms rounded/lumpy board ends rise above the underside envelope. Live rendered clipping/hover review remains pending.",
       "authored_failures": {
         "reported_by": "Level Design",
         "test": "tests/ride_showcase_failures.gd",
-        "cases": 252,
-        "status": "PASS after projected-board correction",
+        "cases": 972,
+        "status": "Level Design reports final frozen narrow-ramp/fatal-gap model PASS972 failures; build hold preserved.",
         "evidence": "handoffs/level-two-ride-showcase-layout.json"
-      }
+      },
+      "pit_policy": "PASS48 combinations of bothheroes/allmodes/gap+long_pit/HP1+5/immunity0+1: one guarded death, no recovery event/bounce, no repeated life debit, direct same-stage reset. PASS18 ordinary impact combinations nonlethal; normal water safe; full-board edge falls fatal; ramp and transformed support checks pass.",
+      "fall_position": "PASS rightward960px/s exact unsupported edge: worldx305 at5/960seconds; position/scroll stay frozen under later movement/jump input, one life only.",
+      "narrow_ramp": "PASS42 bothhero/3anchor/7bank cases including exact294/366 successes and293.99/366.01 failures; no bank autosnap. Sideways ascent exit and return cannot reacquire boost; pit death follows. Full focused physics suite passes."
     }
   }
 }
