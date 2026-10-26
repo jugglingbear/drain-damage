@@ -2524,6 +2524,86 @@
         }
       ],
       "has_fall_occlusion": true
+    },
+    "float_wall_mount_v2": {
+      "path": "assets/world/float-wall-mount-v2/mount-rod-v2.png",
+      "source_rect": [
+        31,
+        12,
+        372,
+        520
+      ],
+      "destination": [
+        -44.1,
+        -67.95,
+        55.8,
+        78
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "float_rod_shaft_v2": {
+      "path": "assets/world/float-wall-mount-v2/mount-rod-v2.png",
+      "source_rect": [
+        649,
+        470,
+        678,
+        45
+      ],
+      "destination": [
+        0,
+        -3.5,
+        150,
+        7
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "float_rod_pivot_v2": {
+      "path": "assets/world/float-wall-mount-v2/mount-rod-v2.png",
+      "source_rect": [
+        528,
+        446,
+        124,
+        96
+      ],
+      "destination": [
+        -8.8,
+        -7.2,
+        18.6,
+        14.4
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "float_rod_socket_v2": {
+      "path": "assets/world/float-wall-mount-v2/mount-rod-v2.png",
+      "source_rect": [
+        1320,
+        435,
+        192,
+        124
+      ],
+      "destination": [
+        -16,
+        -9.3,
+        28.8,
+        18.6
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
     }
   },
   "animations": {
@@ -4078,5 +4158,25 @@
     "animation": "breach_waterfall",
     "prompts": "assets/world/ride-showcase-v1/prompts-elbow-v2.json",
     "rule": "Pit and water never extend above y300. Broken near face extends below430 only. Separate solid pipe precedes pit by20px."
+  },
+  "float_wall_mount": {
+    "status": "Integrated in Prototype109; visual review pending",
+    "mount_pivot_relative_base": [
+      -185,
+      -65
+    ],
+    "mount_world_y": 220,
+    "ball_socket_relative_moving_ball": [
+      -35,
+      -28
+    ],
+    "rod_span": [
+      150.48,
+      162.37
+    ],
+    "render": "Fixedmount then telescoping shaft between fixedpivot and movingballsocket; rotate separate end joints aroundsame endpoints. Only shaft length varies, endpoint art keeps size. Drawbehindrider; ball depthsort unchanged.",
+    "collision": "Ball only, unchanged100x60 at285+/-25. Rod and mount decorative.",
+    "preserves": "Frozen108manifest/art untouched.",
+    "wall_clip_y": 230
   }
 }
