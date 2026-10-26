@@ -1,5 +1,5 @@
 extends RefCounted
-## A steady current bed and one contact voice reuse the preserved source cues.
+## Three bounded voices separate current, contact and moving mechanisms.
 var voices: Dictionary = {}
 var cues: Dictionary = {}
 var frozen := false
@@ -7,7 +7,7 @@ var cooldown := 0.0
 var starts: Dictionary = {}
 
 func attach(host: Node, definitions: Array) -> void:
-	for id in ["current", "contact"]:
+	for id in ["current", "contact", "mechanism"]:
 		var voice := AudioStreamPlayer.new()
 		host.add_child(voice)
 		voices[id] = voice
@@ -19,14 +19,15 @@ func attach(host: Node, definitions: Array) -> void:
 
 func play(event: String) -> void:
 	if frozen or AudioServer.is_bus_mute(0) or not cues.has(event): return
-	var current := event == "current_loop"
-	if not current and cooldown > 0: return
-	var voice: AudioStreamPlayer = voices.current if current else voices.contact
+	var channel := "current" if event == "current_loop" else "mechanism" if event == "hinge_move" else "contact"
+	if channel == "contact" and cooldown > 0: return
+	if channel == "mechanism" and voices.mechanism.playing: return
+	var voice: AudioStreamPlayer = voices[channel]
 	voice.stream = cues[event].stream
 	voice.volume_db = cues[event].gain
 	voice.play()
 	starts[event] = int(starts.get(event,0))+1
-	if not current: cooldown = 0.12
+	if channel == "contact": cooldown = 0.12
 
 func advance(delta: float, paused: bool, active: bool) -> void:
 	frozen = paused
@@ -37,6 +38,10 @@ func advance(delta: float, paused: bool, active: bool) -> void:
 	if paused: return
 	cooldown = maxf(0,cooldown-delta)
 	if not voices.current.playing: play("current_loop")
+
+func stop_mechanism() -> void:
+	voices.mechanism.stop()
+	voices.mechanism.stream_paused = false
 
 func stop() -> void:
 	for voice: AudioStreamPlayer in voices.values():

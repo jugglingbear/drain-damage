@@ -40,6 +40,56 @@
         "trigger": "Once per accepted barrier collision; debounce by obstacle/contact ID and damage invulnerability.",
         "provenance": "Original deterministic sample-free synthesis; no third-party recordings or attribution obligations.",
         "source_manifest": "audio/sources/level-two-flush-v1/manifest.json"
+      },
+      {
+        "event": "metal_impact",
+        "path": "assets/audio/sfx/ride-obstacles-v1/metal_impact.wav",
+        "duration_seconds": 0.32,
+        "loop": false,
+        "gain_db": -6,
+        "source": "audio/alternatives/DD-S0098/DD-S0098.1.wav",
+        "sha256": "efa38ef68e36fc559795678c2b7a7f40c4c425f5f5be876597232bd5f0113430",
+        "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json"
+      },
+      {
+        "event": "porcelain_contact",
+        "path": "assets/audio/sfx/ride-obstacles-v1/porcelain_contact.wav",
+        "duration_seconds": 0.28,
+        "loop": false,
+        "gain_db": -6,
+        "source": "audio/alternatives/DD-S0099/DD-S0099.1.wav",
+        "sha256": "e4a63aefe68dd46b8549a7d4be3ab582efc6953588ce4eb2e0031744b3149b19",
+        "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json"
+      },
+      {
+        "event": "soft_contact",
+        "path": "assets/audio/sfx/ride-obstacles-v1/soft_contact.wav",
+        "duration_seconds": 0.3,
+        "loop": false,
+        "gain_db": -6,
+        "source": "audio/alternatives/DD-S0100/DD-S0100.1.wav",
+        "sha256": "ee3e548c41b1f95b99ab205c3a06af733c865ba067a0234ed6ee3bb8e780df50",
+        "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json"
+      },
+      {
+        "event": "hinge_move",
+        "path": "assets/audio/sfx/ride-obstacles-v1/hinge_move.wav",
+        "duration_seconds": 0.65,
+        "loop": false,
+        "gain_db": -8,
+        "source": "audio/alternatives/DD-S0101/DD-S0101.1.wav",
+        "sha256": "51a48ec2f8ee73e60da0574dbe5a884ed887c6e191eab2c5d79178ca0645dfe2",
+        "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json"
+      },
+      {
+        "event": "water_launch",
+        "path": "assets/audio/sfx/ride-obstacles-v1/water_launch.wav",
+        "duration_seconds": 0.7,
+        "loop": false,
+        "gain_db": -6,
+        "source": "audio/alternatives/DD-S0102/DD-S0102.1.wav",
+        "sha256": "7e6dc569a4f148ac190ce0e051d16d2c43681a11de3fdcabac0781a6abb969d8",
+        "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json"
       }
     ]
   },
@@ -77,22 +127,22 @@
     "coordinate_rule": "Anchor is board water-plane center. Collision footprint90x28 is independent of above-water rider silhouette. Jump changes visual elevation only; shadow stays at water-plane anchor. Art supplies final pose/registration; no sprite stretch."
   },
   "movement": {
-    "duration_seconds": 14.464285714285714,
     "forward_scroll_speed": 560,
     "within_view_x_speed": 400,
     "bank_y_speed": 350,
     "inputs": "Left/right shift anchor within view; up/down move toward upper/lower bank. Normalize two-axis input before multiplying x400/y350. Clamp anchor bounds after movement. Same physics for both heroes and all modes.",
-    "course_coordinate": "World course x = accumulated forward scroll + screen anchor x. Obstacles project at world_x minus scroll. Left input slows relative crossing to 160px/s; right increases it to 960px/s. No stopping or reversing the course. Preserve all existing world obstacle positions: Prototype 104 crossing times are halved.",
+    "course_coordinate": "World x = encounter scroll + screen anchor x. Ten isolated encounters; three seconds danger-free after each clears.",
     "pause": "Pause freezes scroll, steering, jump, warnings, hazards, damage timers and audio; no catch-up.",
     "fire": "Ignore fire/weapon actions throughout ride, preserve loadout for later scenes. Release guards prevent held transition inputs firing or auto-jumping."
   },
   "jump": {
-    "duration_seconds": 1.2,
-    "height": 72,
-    "curve": "z=4*72*u*(1\u2212u), u=clamp(jump_age/1.2,0,1). Grounded z0 outside jump.",
-    "landing_cooldown_seconds": 0.15,
+    "duration_seconds": 0.6,
+    "height": 54,
+    "curve": "z=4*54*u*(1-u), u=clamp(jump_age/0.6,0,1). Ramp trajectory is defined by the showcase model.",
+    "landing_cooldown_seconds": 0.1,
     "input": "Accept a fresh jump press while grounded, alive, active and cooldown0. No double jump, held repeat or coyote extension in this slice. Steering remains available in air.",
     "shadow": "Render board/rider at water anchor minus z; shadow remains on water anchor and changes opacity/size. Collision uses planar footprint plus z, never screen-render position.",
     "release": "A jump on landing dialogue dismissal is not accepted until input is released and pressed again."
-  }
+  },
+  "course_source": "levels/level-two-ride-showcase.json"
 }

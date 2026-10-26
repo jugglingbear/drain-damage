@@ -1,6 +1,6 @@
 {
   "date": "2026-10-26",
-  "status": "Ten proposed auditions only; no runtime selection/integration",
+  "status": "Audio layer and canonical cue definitions implemented; Engineering obstacle routing and combined build pending",
   "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json",
   "obstacles": [
     {
@@ -208,8 +208,72 @@
       "sha256": "d670bfee01f6754104c2d3a3314e85a91675f502e6b20c00afb29ebb5fe1a77f"
     }
   ],
-  "event_notes": "Current model hit/landed/recovered/ramp with obstacle01\u201310 identifies intent only; no mappings changed. Metal/porcelain contact/landing; soft contact for plug/brush/float; mechanism for06motion; water for02spray/10launch. Static01v2/09v2 have no movement cue.03plug/04brush static: chain0101.2 is future option only.",
-  "bounded_recommendation": "After selection only: one contact voice per accepted damage/landing, respect1.5s immunity and traversal latch. No contact sound for immune repeats. Movement proposals are finite one-shots per sweep start, not loops; stop/pause on rest/death/pause/exit, drop muted events. No per-frame replay or ambient scheduling authorized.",
+  "event_notes": "Use existing hit/landed/recovered/ramp plus obstacle01\u201310 material identity. Metal/porcelain contact, soft plug/brush/float contact, hinge sweep-start for06, water ramp launch10;02spray only if a discrete intentional event exists. Static01v2/09v2 have no movement cue;03/04 remain static and chain0101.2 remains unused.",
+  "bounded_recommendation": "One contact cue per accepted event, suppress immune/repeated traversal and lethal contact accents; shared death takes priority. Avoid doubling generic hurt/impact with new cue. Hinge is finite per sweep-start, stop/pause on rest/death/pause/exit and drop muted events. Water launch once per accepted ramp trigger. No per-frame replay or background random scheduling.",
   "validation": "Ten ffmpeg decodes, PCM32kmono16 headers/durations/zero endpoints and SHA checks pass. Python syntax/120-column/hygiene pass. Material realism, preference and game mix not listened to.",
-  "publication": "No commit/push by Audio; edition33 hold remains. Engineering owns final commit coordination and roadmap."
+  "publication": "No commit/push by Audio; edition33 hold remains. Engineering owns final commit coordination and roadmap.",
+  "authorization": {
+    "date": "2026-10-26",
+    "request": "Alright, those seem like a good start. Let's hand them off to engineering to integrate",
+    "variant_policy": "Sean approved set, not individual variants. Audio proposed first option per family as initial defaults; preserve all second options."
+  },
+  "integration_defaults": [
+    {
+      "id": "DD-S0098.1",
+      "path": "audio/alternatives/DD-S0098/DD-S0098.1.wav",
+      "sha256": "efa38ef68e36fc559795678c2b7a7f40c4c425f5f5be876597232bd5f0113430",
+      "gain_db": -6,
+      "loop": false
+    },
+    {
+      "id": "DD-S0099.1",
+      "path": "audio/alternatives/DD-S0099/DD-S0099.1.wav",
+      "sha256": "e4a63aefe68dd46b8549a7d4be3ab582efc6953588ce4eb2e0031744b3149b19",
+      "gain_db": -6,
+      "loop": false
+    },
+    {
+      "id": "DD-S0100.1",
+      "path": "audio/alternatives/DD-S0100/DD-S0100.1.wav",
+      "sha256": "ee3e548c41b1f95b99ab205c3a06af733c865ba067a0234ed6ee3bb8e780df50",
+      "gain_db": -6,
+      "loop": false
+    },
+    {
+      "id": "DD-S0101.1",
+      "path": "audio/alternatives/DD-S0101/DD-S0101.1.wav",
+      "sha256": "51a48ec2f8ee73e60da0574dbe5a884ed887c6e191eab2c5d79178ca0645dfe2",
+      "gain_db": -8,
+      "loop": false
+    },
+    {
+      "id": "DD-S0102.1",
+      "path": "audio/alternatives/DD-S0102/DD-S0102.1.wav",
+      "sha256": "7e6dc569a4f148ac190ce0e051d16d2c43681a11de3fdcabac0781a6abb969d8",
+      "gain_db": -6,
+      "loop": false
+    }
+  ],
+  "engineering_remaining": "Integrate default variants using appropriate runtime asset paths, preserve all audition sources, promote same permanent slots/UUIDs without renumbering, update discovery/mappings, --refresh/rebuild/--check catalog, run lifecycle/accepted-event tests and build. Update roadmap; respect existing magazine publication hold.",
+  "audio_layer_delivery": {
+    "helper": "scripts/level_two_ride_audio.gd",
+    "voices": [
+      "current",
+      "contact",
+      "mechanism"
+    ],
+    "api": "play(event); hinge_move uses mechanism voice with no overlap restart; stop_mechanism() stops on rest/offscreen. Contact events use existing0.12s cooldown. stop/dispose clear all three.",
+    "runtime_assets": "assets/audio/sfx/ride-obstacles-v1/",
+    "canonical": "data/level-two-ride.json#/audio/cues",
+    "events": [
+      "metal_impact",
+      "porcelain_contact",
+      "soft_contact",
+      "hinge_move",
+      "water_launch"
+    ],
+    "validation": "Headless tests/ride_audio.gd passes material routing, channel independence, finite cues, pause/mute/drop/restart/stop/dispose. Six Python audition tests and99-slot freshness check pass. Godot reports existing user-log permission/CA warnings and19 ObjectDB instances at exit; not a clean leak-check result.",
+    "registry": "0098\u20130102 IDs/UUIDs/alternatives retained while keys migrated to canonical level-two-ride events. No audition overwritten.",
+    "remaining": "Engineering wrapper accepted-event routing/death priority/mechanism cycle tests and combined build/roadmap. No foreground/audio listening."
+  }
 }
