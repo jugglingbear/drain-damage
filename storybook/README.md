@@ -2593,6 +2593,30 @@ Finalization and archive identity are in the metadata.
 
 [Build evidence and capture status](105-double-speed-ride/20261026-122921-capture-status.json).
 
+## 106 — Isolated ride encounters — October 26, 2026
+
+**Status:** Prototype 106 / 0.106.0 validated for local delivery. Engineering identifies runtime source dc1ad7e and
+confirms 1,586 hydrated snapshot files. All 23 packaged suites pass after a failure-fixture path correction and rerun,
+plus seven Python tests, 99 audio slots, codesign and ZIP integrity, per Engineering. Archive SHA-256 independently
+verified. Actual captures and visual contact proof remain pending.
+
+Ten isolated ride encounters run at 560 pixels/second with three full danger-free seconds between encounters. Each has a
+checkpoint and direct start, 2-01 through 2-10. The regular jump is 0.6 seconds and 54 pixels with a 0.1-second
+cooldown. The mandatory ramp lasts 1.25 seconds with a 93.326851-pixel apex and nominal rigid-board contact. Only the
+long pit is fatal; ordinary contacts cost one HP with recovery.
+
+Approved audio candidates 0098.1–0102.1 are integrated; .2 alternatives remain preserved. No new dialogue is included.
+
+**Capture gap:** No actual gameplay captures or visual contact proof. Model/contact values do not establish how the
+board and hero look in motion. Human readability and play review remain pending; preserve v00.105.00 and earlier
+originals.
+
+**Publication:** Local delivery only. Edition 33 remains under the publication hold; no push is authorized.
+
+**Record created:** 2026-10-26T13:07:12-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+
+[Local build evidence and capture status](106-isolated-ride-encounters/20261026-130712-capture-status.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

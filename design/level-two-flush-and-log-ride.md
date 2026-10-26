@@ -307,3 +307,14 @@ artwork, runtime build, playtest request or specialist delivery deadline.
 - [Preserved riding-stage references](idea-sources/level-two-2026-10-20/manifest.json).
 
 The supplied reference images are internal design references, not original artwork or game deliverables.
+
+## Prototype 106 isolated encounter showcase
+
+The ride now presents the ten approved obstacle concepts in order at 560 pixels/second, with three full
+hazard-free seconds after each encounter clears. Checkpoints and `LEVEL=2-01` through `LEVEL=2-10` support testing.
+Regular jumps last 0.6 seconds with a 54-pixel apex and 0.1-second cooldown. The final grounded ramp automatically
+launches a 1.25-second flight with a nominal 93.33-pixel apex; bank steering remains available.
+Only the mandatory-ramp long pit forces death on failure. Ordinary obstacles retain one-HP damage and recovery.
+The authoritative course is `levels/level-two-ride-showcase.json`. These isolated tests do not establish final pacing.
+Runtime visual review and actual gameplay captures remain pending; nominal support geometry tests cannot prove
+pixel-perfect contact with the irregular board artwork. Flush dialogue and timing remain unchanged.

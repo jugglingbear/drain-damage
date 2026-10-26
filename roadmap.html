@@ -77,19 +77,23 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 26, 2026 · Current build: Prototype 105 / 0.105.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 26, 2026 · Current build: Prototype 106 / 0.106.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
-<p><strong>October 26 — ride obstacle concepts and jump research (design only):</strong>
-Art is preparing 6–12 obstacle concepts, including water protrusions, overhead dodge hazards, island hops and a
-mandatory ramp before a lethal long gap. Mechanics is researching ordinary Battletoads bike-jump timing and preparing
-proposals for tighter jumps. These are concepts and research, not approved game additions or jump tuning.
-The approved 560-pixel/second pace and Prototype 105 remain unchanged. A lethal ramp gap would be a specific proposed
-exception to the one-HP damage policy; ordinary barriers retain their existing damage and recovery rules.</p>
+<p><strong>Prototype 106 — isolated obstacle showcase (ready locally):</strong>
+All ten approved ride concepts now run as ordered encounters at 560 pixels/second, with three full danger-free
+seconds after each encounter and no next-encounter warnings during rests. Regular jumps last 0.6 seconds at 54px;
+the automatic mandatory ramp launches a 1.25-second flight. Encounter checkpoints and direct entries 2-01 through
+2-10 are available. Ordinary obstacles cost one HP; only the mandatory-ramp long pit forces death on failure.
+The five approved first audio candidates are integrated and alternatives retained. All 23 packaged suites,
+seven Python checks and the 99-slot audio catalog check pass. The signed app, archive and source snapshot are
+preserved alongside Prototype 105. Actual gameplay capture, visual ramp contact and human pacing review remain
+pending. GitHub push is held because edition 33 publication is not authorized.
+<a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
 <p><strong>Prototype 105 — double-speed ride:</strong> Sean requested exactly twice the ride speed:
 560 pixels/second over the same 8,100-pixel course, about 14.46 seconds. Ride steering doubles to 400/350 pixels/second; all obstacles and jump physics remain unchanged. Flush timing, shared vitals and damage/recovery rules remain unchanged.
 All 19 packaged suites and 7 Python tests pass, including 18 damage-free routes. Opening warnings begin immediately
@@ -612,6 +616,11 @@ Storyboarding, Mechanics and Level Design contributions. Scope: roughly 45 secon
 nonblocking partner radio, survival-driven drain completion and a log-landing checkpoint boundary.
 The short flush and landing boundary were integrated in Prototype 98, revised for swimming in Prototype 99 and updated with denser debris, a recessed funnel, riding poses and synchronized music in Prototype 100. The full log ride and Level 3 remain deferred.
 See <a href="design/level-two-flush-and-log-ride.md">the scope and proposal</a>. No game-window permission is implied.</p>
+<p><strong>October 26 — confirmed narrative structure:</strong> Levels alternate Earth (odd-numbered) and a fantastical
+dimension (even-numbered). BJ assigns the Earth-basement job in level one; the Clogfather portal leads to the giant-toilet
+flush and poop-board ride in level two, whose ending returns the selected hero to Earth for level three. Later locations
+and transitions remain open. A collision of dimensions at the finale is tentative. This is narrative direction, not
+additional implementation or dialogue approval. <a href="design/first-level-narrative.md#october-26-campaign-structure-decision">Campaign decision</a>.</p>
 <p><strong>October 20 — campaign setting direction:</strong> Sean specified that only level one should use a basement/sewer
 setting. Later levels must have distinctly different settings. Destinations, sequence and production scope remain undecided;
 earlier location proposals are references, not an approved itinerary.</p>

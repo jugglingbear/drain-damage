@@ -57,17 +57,18 @@ make run LEVEL=2-landing HERO=sean DIFFICULTY=hard
 
 Both entries initialize a fresh run without a prior save. Either accepts `HERO=tony|sean`,
 `DIFFICULTY=easy|normal|hard`, and optional `SEED=42`. The landing entry shows the existing landing dialogue,
-then starts the approximately 14.46-second ride slice.
+then starts the ten-encounter ride showcase. Start directly at an encounter with `LEVEL=2-01` through `LEVEL=2-10`.
 Steer with arrows/stick; up/down moves between banks and left/right shifts within the view. Space/A jumps.
-Steer around tall supports, jump low barriers and clear gaps. The landing shadow marks the board’s water-plane position.
-Ride deaths restart at the landing checkpoint without replaying the flush. Easy/Normal/Hard have 8/12/16 obstacles.
-The ride advances at 560 pixels/second (exactly twice Prototype 104). Ride steering is 400 pixels/second
-horizontally and 350 between banks. Each obstacle crossing can cost one HP; gaps recover in place with brief feedback
-instead of forcing death. Shared immunity prevents clustered hits; only depleted HP costs a life.
-Every playable sequence uses the shared health markers and selected-hero life portraits, including flush and ride.
-At double speed, the earliest opening contact is 1.6625 seconds; the first cue starts immediately. Later warnings
-retain their normal lead times. The final jump cue uses actual approach speed to retain a 0.2-second lead.
-This first slice has no combat; the full ride and later stages remain unfinished.
+The ride advances at 560 pixels/second, with horizontal/bank steering at 400/350 pixels/second.
+Regular jumps last 0.6 seconds, reach 54 pixels and have a 0.1-second landing cooldown.
+Each encounter ends with three full seconds without hazards or next-encounter warnings.
+Deaths and retries resume the current encounter without replaying the flush.
+Ordinary obstacles and gaps cost one HP, with shared immunity and gap recovery. Only missing the mandatory-ramp
+long pit forces a life loss. The ramp launches automatically from grounded contact, locks horizontal steering
+through flight, and permits bank steering. Flight lasts 1.25 seconds and peaks about 93.33 pixels above water.
+All ten encounters use the same course in every mode. Shared health/life markers remain visible.
+This movement-only showcase has no combat; the full ride and later stages remain unfinished.
+Actual gameplay screenshots and visual ramp-contact review remain pending.
 During the flush, steer to swim and dodge; firing and jumping are disabled. Tony uses freestyle and Sean uses
 breaststroke. Weapons remain equipped for later gameplay but cannot fire in this sequence.
 Flush dialogue has doubled reading time with unchanged wording: hazards start at 34 seconds, the automatic drain at
