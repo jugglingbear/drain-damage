@@ -250,6 +250,9 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 			# Safe rest has no collision/warning actors; movement remains responsive.
 			position += steering.limit_length()*Vector2(x_speed,bank_speed)*dt
 			position = position.clamp(Vector2(180,260),Vector2(650,400))
+			if pressed and jump_age < 0 and cooldown <= 0:
+				_launch()
+			_advance_air_motion(dt)
 			if rest_remaining <= EPS:
 				if encounter_index+1 >= definition.encounters.size():
 					complete = true
@@ -378,6 +381,14 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 			if host.life_state != "alive": return
 	host.invulnerable = maxf(0,host.invulnerable-(dt-processed))
 	encounter_clock += dt
+	_advance_air_motion(dt)
+	if _encounter_clear():
+		phase = "rest"
+		rest_remaining = 3.0
+		course = {"obstacles":[]}
+		emit_event("rest_started")
+
+func _advance_air_motion(dt: float) -> void:
 	recovery_clock = maxf(0,recovery_clock-dt)
 	cooldown = maxf(0,cooldown-dt)
 	if jump_age >= 0:
@@ -400,11 +411,6 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 		render_pitch *= settling*settling*(3-2*settling)
 	else:
 		render_pitch = 0
-	if _encounter_clear():
-		phase = "rest"
-		rest_remaining = 3.0
-		course = {"obstacles":[]}
-		emit_event("rest_started")
 
 func _encounter_clear() -> bool:
 	if ramp_active or jump_age >= 0 or recovery_clock > EPS or not contact_latches.is_empty(): return false
