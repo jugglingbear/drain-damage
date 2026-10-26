@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-26",
+  "status": "Ten proposed auditions only; no runtime selection/integration",
+  "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json",
+  "obstacles": [
+    {
+      "id": 1,
+      "name": "Valve-Stem Slalom",
+      "proposed_families": [
+        "DD-S0098"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Elbow-Pipe Breach",
+      "proposed_families": [
+        "DD-S0098",
+        "DD-S0102"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Chain-Hung Plug",
+      "proposed_families": [
+        "DD-S0100"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Drain-Brush Curtain",
+      "proposed_families": [
+        "DD-S0100"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Loose Flange Hop",
+      "proposed_families": [
+        "DD-S0098"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Float-Arm Sweep",
+      "proposed_families": [
+        "DD-S0101",
+        "DD-S0100"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Cleanout-Cap Islands",
+      "proposed_families": [
+        "DD-S0098"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Broken-Basin Hopscotch",
+      "proposed_families": [
+        "DD-S0099"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Buckled Drain Grate",
+      "proposed_families": [
+        "DD-S0098"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Emergency Flume Launch",
+      "proposed_families": [
+        "DD-S0102"
+      ]
+    }
+  ],
+  "choices": [
+    {
+      "id": "DD-S0098.1",
+      "slot": "DD-S0098",
+      "family": "Metal impact",
+      "name": "Damped pipe knock",
+      "intended_use": "Impact: valve01v2, elbow02, flange05, cap07, spike grate09v2.",
+      "path": "audio/alternatives/DD-S0098/DD-S0098.1.wav",
+      "duration_seconds": 0.32,
+      "loop": false,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -27.42,
+      "sha256": "efa38ef68e36fc559795678c2b7a7f40c4c425f5f5be876597232bd5f0113430"
+    },
+    {
+      "id": "DD-S0098.2",
+      "slot": "DD-S0098",
+      "family": "Metal impact",
+      "name": "Bright grate clang",
+      "intended_use": "Impact: valve01v2, elbow02, flange05, cap07, spike grate09v2.",
+      "path": "audio/alternatives/DD-S0098/DD-S0098.2.wav",
+      "duration_seconds": 0.55,
+      "loop": false,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -27.28,
+      "sha256": "f3817267e0be4ee2079ad31b20be7489bac90940ff60389f3fc0061e42f450a0"
+    },
+    {
+      "id": "DD-S0099.1",
+      "slot": "DD-S0099",
+      "family": "Porcelain contact",
+      "name": "Solid ceramic clack",
+      "intended_use": "Landing/impact: broken basin08; porcelain facing if present on cap07.",
+      "path": "audio/alternatives/DD-S0099/DD-S0099.1.wav",
+      "duration_seconds": 0.28,
+      "loop": false,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -28.12,
+      "sha256": "e4a63aefe68dd46b8549a7d4be3ab582efc6953588ce4eb2e0031744b3149b19"
+    },
+    {
+      "id": "DD-S0099.2",
+      "slot": "DD-S0099",
+      "family": "Porcelain contact",
+      "name": "Hollow basin knock",
+      "intended_use": "Landing/impact: broken basin08; porcelain facing if present on cap07.",
+      "path": "audio/alternatives/DD-S0099/DD-S0099.2.wav",
+      "duration_seconds": 0.45,
+      "loop": false,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -28.04,
+      "sha256": "b16917b5200927d64a21cf53715d81a566ea663e88380a18068cca83d8510567"
+    },
+    {
+      "id": "DD-S0100.1",
+      "slot": "DD-S0100",
+      "family": "Soft contact",
+      "name": "Rubber cup thump",
+      "intended_use": "Impact: rubber plug03, brush curtain04, float body06.",
+      "path": "audio/alternatives/DD-S0100/DD-S0100.1.wav",
+      "duration_seconds": 0.3,
+      "loop": false,
+      "peak_dbfs": -10.27,
+      "rms_dbfs": -24.0,
+      "sha256": "ee3e548c41b1f95b99ab205c3a06af733c865ba067a0234ed6ee3bb8e780df50"
+    },
+    {
+      "id": "DD-S0100.2",
+      "slot": "DD-S0100",
+      "family": "Soft contact",
+      "name": "Bristle scrape",
+      "intended_use": "Impact: rubber plug03, brush curtain04, float body06.",
+      "path": "audio/alternatives/DD-S0100/DD-S0100.2.wav",
+      "duration_seconds": 0.48,
+      "loop": false,
+      "peak_dbfs": -12.81,
+      "rms_dbfs": -24.0,
+      "sha256": "2c7e6144857abc6c0b6fb6aba255b8a294a2b22d8f39770aca15c56971b0cb8e"
+    },
+    {
+      "id": "DD-S0101.1",
+      "slot": "DD-S0101",
+      "family": "Float-arm movement",
+      "name": "Short hinge creak",
+      "intended_use": "Movement: float06 sweep start; chain03 only if moving (future option).",
+      "path": "audio/alternatives/DD-S0101/DD-S0101.1.wav",
+      "duration_seconds": 0.65,
+      "loop": false,
+      "peak_dbfs": -16.32,
+      "rms_dbfs": -24.0,
+      "sha256": "51a48ec2f8ee73e60da0574dbe5a884ed887c6e191eab2c5d79178ca0645dfe2"
+    },
+    {
+      "id": "DD-S0101.2",
+      "slot": "DD-S0101",
+      "family": "Float-arm movement",
+      "name": "Chain and hinge rattle",
+      "intended_use": "Movement: float06 sweep start; chain03 only if moving (future option).",
+      "path": "audio/alternatives/DD-S0101/DD-S0101.2.wav",
+      "duration_seconds": 0.8,
+      "loop": false,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -26.18,
+      "sha256": "36d2a105efdee752757efe686a60a894296a25d79fcc195d5806985c320a1af5"
+    },
+    {
+      "id": "DD-S0102.1",
+      "slot": "DD-S0102",
+      "family": "Flume launch",
+      "name": "Rising water rush",
+      "intended_use": "Movement: successful ramp10 launch; existing approved wet landing remains available.",
+      "path": "audio/alternatives/DD-S0102/DD-S0102.1.wav",
+      "duration_seconds": 0.7,
+      "loop": false,
+      "peak_dbfs": -11.19,
+      "rms_dbfs": -24.0,
+      "sha256": "7e6dc569a4f148ac190ce0e051d16d2c43681a11de3fdcabac0781a6abb969d8"
+    },
+    {
+      "id": "DD-S0102.2",
+      "slot": "DD-S0102",
+      "family": "Flume launch",
+      "name": "Gushing launch pulse",
+      "intended_use": "Movement: successful ramp10 launch; existing approved wet landing remains available.",
+      "path": "audio/alternatives/DD-S0102/DD-S0102.2.wav",
+      "duration_seconds": 0.85,
+      "loop": false,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -24.33,
+      "sha256": "d670bfee01f6754104c2d3a3314e85a91675f502e6b20c00afb29ebb5fe1a77f"
+    }
+  ],
+  "event_notes": "Current model hit/landed/recovered/ramp with obstacle01\u201310 identifies intent only; no mappings changed. Metal/porcelain contact/landing; soft contact for plug/brush/float; mechanism for06motion; water for02spray/10launch. Static01v2/09v2 have no movement cue.03plug/04brush static: chain0101.2 is future option only.",
+  "bounded_recommendation": "After selection only: one contact voice per accepted damage/landing, respect1.5s immunity and traversal latch. No contact sound for immune repeats. Movement proposals are finite one-shots per sweep start, not loops; stop/pause on rest/death/pause/exit, drop muted events. No per-frame replay or ambient scheduling authorized.",
+  "validation": "Ten ffmpeg decodes, PCM32kmono16 headers/durations/zero endpoints and SHA checks pass. Python syntax/120-column/hygiene pass. Material realism, preference and game mix not listened to.",
+  "publication": "No commit/push by Audio; edition33 hold remains. Engineering owns final commit coordination and roadmap."
+}
