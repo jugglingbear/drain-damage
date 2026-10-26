@@ -1,5 +1,5 @@
 {
-  "status": "Frozen authored source delivery; runtime integration and acceptance pending Engineering",
+  "status": "Dimensional deck source revisions delivered; BUILD HOLD; runtime validation pending",
   "created_at": "2026-10-26T13:21:37.031005-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-0700",
@@ -8,7 +8,7 @@
   "manifest": "assets/world/ride-showcase-v1/manifest.json",
   "prompts": "assets/world/ride-showcase-v1/prompts.json",
   "validation": {
-    "source_bounds": "PASS 219 sampled regions across 42 frame keys",
+    "source_bounds": "PASS 227 sampled regions across 42 frame keys",
     "source_composition": "Ten source plates and four hero/costume ramp contact sequences inspected.",
     "evidence": "assets/world/ride-showcase-v1/source-previews/validation.json",
     "preview": "assets/world/ride-showcase-v1/source-previews/contact.png",
@@ -101,12 +101,12 @@
       "render_mode": "quadratic_strips",
       "run": 200,
       "rise": 40,
-      "depth": 200,
+      "depth": 100,
       "surface_frame": "ramp_surface",
       "fascia_frame": "ramp_fascia",
       "profile": "h(s)=40*(s/200)^2",
       "strip_width": 1,
-      "surface_mapping": "For s in [0,200], draw material column at local x=s-100, y=-100-h(s), depth200. Fascia fills near edge y=100-h(s)..100.",
+      "surface_mapping": "Source material remains200x200. Runtime maps bank depth to obstacle.depth=100: local y=-50-h(s)..50-h(s). Fascia fills near edge y=50-h(s)..50.",
       "contact": "Rigid110px chord: solve halfX so (2*halfX)^2+(h(center+halfX)-h(center-halfX))^2=110^2; use endpoint height mean and chord angle. Flat before entry, tangent after lip.",
       "launch_center_x": 2600,
       "flight_seconds": 1.25,
@@ -116,7 +116,15 @@
       "launch_vertical_speed": 194.661962783556,
       "ballistic_coefficient": 182.178649098985,
       "gravity": 364.35729819797,
-      "apex": 93.3268514296899
+      "apex": 93.3268514296899,
+      "bank_edges": [
+        280,
+        380
+      ],
+      "full_board_center_range": [
+        294,
+        366
+      ]
     },
     "overhead": {
       "bottom_z": 64,
@@ -140,5 +148,25 @@
     "Existing concept plates remain marketing/concept art and are not rendered as runtime obstacles."
   ],
   "preserved": "All earlier source art and concept revisions preserved.",
-  "shared_records": "Engineering owns roadmap, build checks, and storybook actual capture/backlog in this integration."
+  "shared_records": "Engineering owns roadmap, build checks, and storybook actual capture/backlog in this integration.",
+  "deck_revision": {
+    "status": "Source revision delivered; BUILD HOLD, runtime review pending",
+    "created_at": "2026-10-26T15:26:33.768931-07:00",
+    "prompts": "assets/world/ride-showcase-v1/prompts-decks-v2.json",
+    "previous_registration": "assets/world/ride-showcase-v1/deck-registration-v1.json",
+    "frames": [
+      "cleanout_deck_330",
+      "cleanout_deck_360",
+      "basin_deck_360",
+      "basin_deck_390"
+    ],
+    "top_support_changed": false,
+    "front_extension": {
+      "cleanout": 56,
+      "basin": 70
+    },
+    "draw_order": "Shadow, front apron/underside, top. Entire deck before rider; no raised colliding rim.",
+    "diagnosis": "Prior registration discarded dimensional trim and front faces. New source depicts cleanout housing and basin underside; retain apron geometry rather than cropping to top alone.",
+    "fall_occlusion": "Redraw solid front face and top after falling rider; shadow has occludes_fall=false."
+  }
 }
