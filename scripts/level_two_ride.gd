@@ -7,10 +7,10 @@ var course: Dictionary = {}
 var art := Art.new()
 var audio := Audio.new()
 var clock := 0.0
-var scroll_speed := 225.0
-var duration := 36.0
-var x_speed := 160.0
-var bank_speed := 140.0
+var scroll_speed := 280.0
+var duration := 8100.0/280.0
+var x_speed := 200.0
+var bank_speed := 175.0
 var position := Vector2(300,330)
 var jump_age := -1.0
 var jump_height := 0.0
@@ -212,8 +212,7 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("THE RIDE",Vector2(24,27),22,host.MINT)
 	host.label_at("Steer: arrows / stick   Jump: Space / A",Vector2(24,52),14,host.GOLD)
-	host.label_at("%s  HP %d/%d  LIVES %d" % [host.employee.name,host.health,host.employee.max_health,host.lives],
-		Vector2(550,27),16,host.GOLD)
+	host.draw_vitals(Vector2(550,10))
 	host.label_at("%.0f / %.0f s" % [clock,duration],Vector2(800,52),14,host.MINT)
 	draw_preview(host,scroll)
 	host.BuildVersion.draw(host)

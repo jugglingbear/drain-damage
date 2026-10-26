@@ -38,8 +38,8 @@ func checks() -> void:
 			game.flush.enter_ride(game)
 			game.flush.input_guard = false
 			var ride = game.flush.ride
-			if ride.scroll_speed != 225 or ride.duration != 36:
-				fail("Runtime did not load225px/s36s course")
+			if ride.scroll_speed != 280 or not is_equal_approx(ride.duration,8100.0/280.0) or ride.x_speed != 200 or ride.bank_speed != 175:
+				fail("Runtime did not load104pace andride steering")
 				return
 			# Fixed-bound witnesses start at the chosen allowed anchor; all subsequent motion is input-driven.
 			ride.position.x = float(witness.anchor_x)
@@ -50,7 +50,7 @@ func checks() -> void:
 			for frame in range(ceili(float(ride.duration)*120)+1):
 				if ride.complete: break
 				var dt := minf(1.0/120,float(ride.duration)-float(ride.clock))
-				var steer_y := clampf((target_y(witness,ride.clock+dt)-ride.position.y)/(140.0*dt),-1,1)
+				var steer_y := clampf((target_y(witness,ride.clock+dt)-ride.position.y)/(float(ride.bank_speed)*dt),-1,1)
 				var jump := false
 				if next_jump < witness.jump_presses.size() and ride.clock+dt >= float(witness.jump_presses[next_jump].at):
 					jump = true

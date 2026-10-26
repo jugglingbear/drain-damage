@@ -23,19 +23,22 @@ func checks() -> void:
 			game.flush.enter_landing(game)
 			game.flush.enter_ride(game)
 			var ride = game.flush.ride
-			assert(ride.scroll_speed == 225.0 and ride.duration == 36.0)
+			assert(ride.scroll_speed == 280.0 and absf(ride.duration-8100.0/280.0) < 0.00001)
 			var lives: int = game.lives
 			for kind in ["gap","support","low_barrier"]:
 				ride.begin(game)
 				ride.position = Vector2(650,330)
-				ride.course.obstacles = [obstacle("slow",kind,700)]
+				var long_obstacle := obstacle("slow",kind,700)
+				long_obstacle.width = 300.0
+				ride.course.obstacles = [long_obstacle]
 				game.health = 3
 				game.invulnerable = 0
-				# Left steering slows relative travel enough to keep this overlap beyond immunity.
+				# Synthetic long obstacle keeps overlap beyond immunity even as ride speed changes.
 				for frame in range(240): ride.tick(game,STEP,Vector2.LEFT,false)
 				assert(game.health == 2 and game.lives == lives and game.life_state == "alive")
 				assert(ride.events.hit == 1 and ride.course.obstacles.size() == 1)
 				assert(absf(ride.clock-2.0) < 0.00001 and absf(ride.position.x-maxf(180.0,650.0-2.0*ride.x_speed)) < 0.01)
+				assert(ride.contact_latches.has("slow"),"Long overlap must still be active after immunity expires")
 				if kind == "gap": assert(ride.events.recovered == 1)
 				# A distinct obstacle can still hurt after immunity; recovery is not global protection.
 				var world_x: float = ride.position.x+ride.clock*ride.scroll_speed
@@ -73,5 +76,5 @@ func checks() -> void:
 			assert(ride.complete and game.won and ride.clock == ride.duration)
 			game.queue_free()
 			await process_frame
-	print("PASS: ride103 all obstacle traversal latches, bounded in-place gap recovery, shared immunity, later hazards and HP-only checkpoint death for both heroes/all modes")
+	print("PASS: ride104 all obstacle traversal latches, bounded in-place gap recovery, shared immunity, later hazards and HP-only checkpoint death for both heroes/all modes")
 	quit()

@@ -1001,13 +1001,17 @@ func draw_hud() -> void:
 	box(28, 80, 904, 1, Color("365752"))
 	label_at("DRAIN DAMAGE", Vector2(28, 31), 22, MINT)
 	label_at(employee.weapon, Vector2(29, 53), 13, Color("a7b9be"))
-	label_at(employee.name, Vector2(630, 30), 14, GOLD)
-	label_at("LIVES", Vector2(630, 63), 12, GOLD)
-	world_art.hero_aim_art.draw_lives(self, Vector2(684, 43))
-	for index in range(employee.max_health):
-		box(684 + index * 18, 17, 12, 13, Color("ef9270") if index < health else Color("344552"))
+	draw_vitals()
 	draw_progress()
 	BuildVersion.draw(self)
+
+func draw_vitals(origin := Vector2(630,17)) -> void:
+	label_at(employee.name, origin+Vector2(0,13), 14, GOLD)
+	label_at("LIVES", origin+Vector2(0,46), 12, GOLD)
+	world_art.hero_aim_art.draw_lives(self, origin+Vector2(54,26))
+	for index in range(employee.max_health):
+		box(origin.x+54+index*18, origin.y, 12, 13,
+			Color("ef9270") if index < health else Color("344552"))
 
 func draw_progress() -> void:
 	label_at("CLEARED  %d / 30" % kills, Vector2(800, 30), 16, MINT)

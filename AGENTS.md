@@ -68,6 +68,13 @@
 - If a build fails, report the failure and do not describe it as ready to play.
 - Building does not authorize opening or foregrounding the game; keep the playtest permission rules above.
 
+## Gameplay health and lives HUD
+
+- Use the shared `draw_vitals` HUD throughout all gameplay, including levels, bosses, flush, landing and ride.
+- Show one health marker per selected hero maximum HP, filled for current HP, and one selected-hero head per life.
+- Preserve these visual indicators across damage, death, retry and transitions. Numeric-only substitutes require
+  Sean's explicit approval; new modes inherit this standard unless he requests an exception.
+
 ## Roadmap maintenance
 
 - Keep `roadmap.html` current whenever work is added, completed, changed, deferred, or reprioritized.

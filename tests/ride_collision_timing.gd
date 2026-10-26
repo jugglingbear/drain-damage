@@ -29,6 +29,12 @@ func obstacle(id: String, kind: String, x: float) -> Dictionary:
 
 func model(obstacles: Array) -> RefCounted:
 	var ride := Ride.new()
+	var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride.json"))
+	ride.scroll_speed = float(layout.scroll_speed)
+	ride.duration = float(layout.duration)
+	ride.x_speed = float(layout.validation_physics.x_steer_speed)
+	ride.bank_speed = float(layout.validation_physics.bank_steer_speed)
+	assert(ride.scroll_speed == 280 and ride.x_speed == 200 and ride.bank_speed == 175)
 	ride.course = {"obstacles":obstacles}
 	return ride
 

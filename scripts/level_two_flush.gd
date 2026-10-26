@@ -331,8 +331,7 @@ func draw(host: Node2D) -> void:
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("THE FLUSH",Vector2(24,27),22,host.MINT)
 	host.label_at("Ready to ride: arrows / stick, Space / A to jump" if state == "landing" else "Swim: arrows / stick   Dodge the falling objects",Vector2(24,52),14,host.GOLD)
-	host.label_at("%s  HP %d/%d  LIVES %d" % [host.employee.name,host.health,host.employee.max_health,host.lives],
-		Vector2(550,27),16,host.GOLD)
+	host.draw_vitals(Vector2(550,10))
 	host.label_at("%.0f / 71 s" % (clock+prelude_duration-prelude_remaining),Vector2(800,52),14,host.MINT)
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:
