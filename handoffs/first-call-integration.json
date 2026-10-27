@@ -1,22 +1,23 @@
 {
   "schema_version": 1,
-  "build": "Prototype 113 / 0.113.0",
-  "created_at": "2026-10-26T18:52:09.410593-07:00",
+  "build": "Prototype 114 / 0.114.0",
+  "created_at": "2026-10-26T20:51:27.585470-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "6fe9c5a0ae271ae116b2cca6b2135f2826bbc58e",
-  "status": "Ready locally: 46 packaged suites, 42 Python tests, 100 audio slots, exported entries and signed archive verify. Basin clarity visual acceptance pending; no game window opened.",
-  "app": "builds/Prototype-113/Drain Damage.app",
-  "archive": "builds/history/Prototype-113.zip",
-  "archive_sha256": "b23e029bf266a822a061c66d011783af115b73c3d86ea8dcacac5234f204f672",
-  "source_snapshot": "builds/source-113",
-  "source_snapshot_files": 1862,
-  "previous_build_preserved": "Prototype112 app, archive, source and captures preserved; all earlier builds retained.",
+  "source_commit": "5ef852c679bbf1cddb56dfb9ae98c327a56fef6c",
+  "status": "Ready locally: 48 packaged suites, 42 Python tests, 100 audio slots, exported entries and signed archive verify. Strainer/water visual acceptance pending; no game window opened.",
+  "app": "builds/Prototype-114/Drain Damage.app",
+  "archive": "builds/history/Prototype-114.zip",
+  "archive_sha256": "d24fe55023a0a7b9c91d055c47d3ae110cf05f0171a3bb053f53a0af54de9edf",
+  "source_snapshot": "builds/source-114",
+  "source_snapshot_files": 1879,
+  "previous_build_preserved": "Prototype113 app, archive and source preserved; all earlier builds retained.",
   "changes": [
-    "Basin vertical apron and bowl use Art-approved dark tint #737a80; horizontal landing tops and all collision geometry remain unchanged.",
-    "Shared authored-frame renderer applies the same tint in normal and fall-occlusion passes.",
-    "Existing contact shadow is centered on the ground anchor and resized from100x20 to90x28, matching the board support footprint.",
-    "No camera projection, control mapping, physics policy, audio, encounter order or timing changes."
+    "The same full-size basket rides a ceiling rail into view, holds visibly for0.9s, winds up, then strikes fully onscreen at3.10s. Pit activation is synchronized; hoist clears by3.25s.",
+    "Late Hermite travel keeps the whole basket and winch onscreen and meets the fixed target continuously. Both heroes remain clear at every horizontal anchor.",
+    "Whole-channel water flows independently of world scroll. Authored sparse ripples and inward foam use the continuous simulation clock, preserving pause/freeze and encounter transitions.",
+    "New exact-boundary dark openings replace waterfall panels, with shallow inner walls and thin irregular wet rims. Authored transparency is normalized once and cached; original assets remain intact.",
+    "560 ride speed, zero explicit rests, collision footprints, hero controls and camera remain unchanged."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
@@ -24,39 +25,41 @@
     "direct": "make run LEVEL=2-01 (through 2-13)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-113/Drain Damage.app\"",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-114/Drain Damage.app\"",
     "slalom": "make run LEVEL=2-01",
     "breach": "make run LEVEL=2-02",
     "float_sweep": "make run LEVEL=2-06",
-    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-113/Drain Damage.app\"",
-    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-113/Drain Damage.app\"",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-114/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-114/Drain Damage.app\"",
     "brushes": "make run LEVEL=2-04",
-    "strainers": "make run LEVEL=2-12 (or 2-13)",
-    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-113/Drain Damage.app\""
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-114/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-114/Drain Damage.app\""
   },
   "checks": {
-    "packaged_suites_passed": 46,
-    "packaged_suites_total": 46,
-    "results": "builds/verification-113/final-results.json",
-    "basin_support": "96 actual model grounded/landing cases across both heroes and encounters07/08, including exact safe/unsafe bank boundaries.",
+    "packaged_suites_passed": 48,
+    "packaged_suites_total": 48,
+    "results": "builds/verification-114/final-results.json",
+    "strainer_visibility": "216 direct/zero-rest entry cases,36720 actual-wrapper poses across both heroes/all modes/anchors/frame rates. Full basket/winch visible; collision/visual envelope separation.",
+    "water": "Prepared alpha retains transparent gaps and visible marks; exact pit cores opaque; independent flow,pause and zero-rest continuity; cached textures stable.",
+    "performance": "Source check:10000 four-row water layout evaluations in23.3ms; seven prepared textures. Initialization about5.96s including game/art loading. Headless CPU evidence, not GPU frame-rate acceptance.",
     "python_tests": 42,
-    "python_log": "builds/verification-113/python.log",
+    "python_log": "builds/verification-114/python.log",
     "audio_freshness": "100 slots fresh; no audio changes.",
-    "exported_entries": "2-08 Sean Hard screenshot mode on;2-07 Tony Normal screenshot mode off.",
+    "exported_entries": "2-12 Sean Hard screenshot mode on;2-13 Tony Normal screenshot mode off.",
     "signature_archive": "codesign strict and ZIP integrity pass",
     "whitespace": "git diff --check passed"
   },
   "capture_gap": {
     "actual_capture": false,
-    "metadata": "storybook/113-basin-landing-clarity/20261026-185209-capture-status.json",
+    "metadata": "storybook/114-visible-strainers-and-flowing-water/20261026-205127-capture-status.json",
     "remaining": "Actual rendered before/after review and subjective clarity acceptance; build preserved for later capture."
   },
   "limitations": [
     "No new game window or screenshot. Headless checks do not establish visual acceptance.",
-    "Full-board containment still applies: visible partial overlap does not establish support; underside remains decorative.",
+    "Headless geometry and CPU checks do not establish visual seam quality, motion readability or GPU performance.",
     "Prior normal-paced new-obstacle and subjective sound acceptance gaps remain.",
     "Camera assessment is feasibility only; no camera prototype implemented.",
-    "Existing Godot settings/log/certificate and shutdown warnings persist. No push under edition33 publication hold."
+    "Existing Godot settings/log/certificate and shutdown warnings persist. Publication approved; remote push/deployment status recorded separately."
   ],
   "contributors": [
     "handoffs/level-two-ride-showcase-layout.json",
@@ -69,7 +72,7 @@
     "handoffs/giant-brush-v2-art.json",
     "handoffs/ceiling-strainer-v1-art.json"
   ],
-  "publication_hold": "Do not push main: local edition33 magazine is not authorized for publication.",
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
   "proposals_not_implemented": [
     "Mixed course",
     "General oblique camera projection",

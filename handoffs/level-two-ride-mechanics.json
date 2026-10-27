@@ -617,5 +617,33 @@
     "build": "Prototype 112 / 0.112.0",
     "record": "handoffs/first-call-integration.json",
     "status": "Zero-rest transitions and all 13 encounters pass final packaged checks; fall opening and near-face fixes verified with actual rendered spot checks."
+  },
+  "strainer_readability_review113": {
+    "status": "Concrete rendering-contract consultation; no model/runtime edits by Mechanics",
+    "recommendation": {
+      "recognition_pose": "Full140x92 basket staged at screen center800/bottom210; left730 gives25px beyond maximum visual board front705. Show at least.9s before windup.",
+      "impact": 3.1,
+      "clear": 3.25,
+      "raised_bottom_screen_y": 110,
+      "impact_bounds": [
+        794,
+        934
+      ],
+      "target": "Existing worldx2600 remains fixed; basket moves to it, no hero tracking."
+    },
+    "separation_proof": {
+      "method": "Conservative full-frame140x92 bounds with smoothstep hoist, sampled every.00001s from3.10 through3.25; global hero head envelope starts at122 (260\u221254\u221284).",
+      "single_lane_min_horizontal_clearance_while_bottom_at_or_below_hero_envelope": 16.1328,
+      "two_lane_min_horizontal_clearance_while_bottom_at_or_below_hero_envelope": 14.7832,
+      "interpretation": "While basket could overlap hero vertically it remains right of the hero; when it moves closer it is already above the global head envelope. An early valid jump does not require the basket to have fully retracted first.",
+      "other_parts": "Existing chains stay within\u00b164 and above basket bottom; existing winch bottom86. New rail/rigging overhang must be checked separately."
+    },
+    "travel_options": {
+      "longer": ".35s Hermite800\u2192864 from2.75 to3.10, velocities0\u2192\u2212560: center peak882.433, basket right952.433 fits; attached180wide winch right972.433 clips12.433.",
+      "shorter": ".15s Hermite from2.95 to3.10: x=800+276u\u00b2\u2212212u\u00b3; center peak869.303, basket right939.303, winch right959.303 all fit.",
+      "choice": "Engineering/Art own choreography choice; maintain continuous position/velocity into world-scrolled target."
+    },
+    "activation": "Generic activates_at already supports3.10 exactly; Level Design owns metadata timing update. No new hand/cage damage collider.",
+    "limits": "Analytical source-frame envelope proof, not a final runtime/helper or opaque-pixel visual regression. Engineering must verify actual assembly and both poses/jump offsets; do not claim16px minimum for both lane variants."
   }
 }

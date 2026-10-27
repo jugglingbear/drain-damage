@@ -77,13 +77,41 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 26, 2026 · Current build: Prototype 113 / 0.113.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 26, 2026 · Current build: Prototype 114 / 0.114.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Level 2 depth hazards and hungry-head final boss — plan only:</strong>
+Concept work explores hazards mounted in the background that reach into the riding lane or break the channel,
+and a huge hungry head that emerges from shadow, lunges at the hero or bites away track to leave a persistent pit.
+The Maintenance Hand is now approved and delivered separately as encounter 11 in Prototype 110. Proposed attacks lock a readable cue for at least one second without retargeting,
+reserve an opposite-bank refuge, and distinguish direct attacks from early track destruction. Concepts and sound
+auditions are being developed; direct damage, defeat or weak-point mechanics, arena and checkpoint rules remain open.
+The boss and camera changes remain plans only. The Maintenance Hand, giant brushes and ceiling-strainer variants are approved and delivered below.
+<a href="design/level-two-depth-concepts-v1/index.html">Five concept proposals ready for review</a>;
+<a href="handoffs/level-two-ride-showcase-layout.json">candidate dimensions and validation gates</a>.</p>
+<p id="camera-perspective-prototype"><strong>Proposed — reversible fixed-angle camera-perspective prototype:</strong>
+Future work only; implementation is not authorized and no camera prototype exists yet. Explore a small, fixed oblique
+2D projection in an isolated test, with a toggle back to the current view. Project all world layers consistently,
+including surfaces, raised actors, shadows, warnings, clipping and culling; keep the HUD flat.
+Acceptance requires clear landing surfaces and gap boundaries, projected collision alignment, readable warning cues,
+and predictable steering and jumping for both heroes. Compare world-relative and screen-relative controls before
+choosing a mapping. Art review must identify views that the existing sprites cannot represent.
+True 3D yaw or pitch is a larger rendering and artwork project. Animated camera movement and difficulty-specific
+angles require later decisions after the fixed-angle experiment passes review.
+<a href="handoffs/level-two-ride-showcase-layout.json">Camera feasibility assessment</a>
+(<code>proposed_depth_and_final_boss.ram_camera_review.engineering_assessment</code>).</p>
+<p><strong>Prototype 114 — visible strainer strikes and flowing water (ready locally):</strong>
+The full-size basket is visible before its windup, strikes fully onscreen at 3.10 seconds, and clears by 3.25.
+The strike opens the same fatal footprint. Continuous channel ripples and inward foam replace static water and
+rectangular waterfall inserts, with dark openings and thin wet rims. Ride speed remains 560 with no explicit rests.
+All 48 packaged suites, 42 Python tests, 100 audio slots, exported entries and signed archive verify.
+Actual moving-water readability, seams and GPU performance remain pending visual review; no game window opened.
+Prototype 113 and earlier builds are preserved. Camera perspective remains proposed future work.
+<a href="handoffs/first-call-integration.json">Delivery evidence and capture gap</a>.</p>
 <p><strong>Prototype 113 — clearer basin landing surfaces (ready locally):</strong>
 Basin fronts are darker so the unchanged horizontal tops stand apart from their vertical undersides. The contact
 shadow matches the board's support footprint. No collision, camera, control or timing changes are included.
@@ -699,6 +727,10 @@ special attacks, weapons, creatures and hazards. Sean is tentatively interested 
 tradeoffs; no hero assignment or final values are approved. These are discussion prompts, not scheduled requirements,
 roster additions or implementation authorization. Source screenshots and earlier overlapping ideas are preserved.</p>
 <ul class="tasks">
+<li><h3>Optional duck/crouch button</h3><p>October 26: a playtester suggested ducking or crouching in Level 1
+and potentially future 2D side-scrolling levels without up/down lane movement. Sean is undecided. This excludes the
+current Level 2 landing/ride controls and is not approved or scheduled for implementation, artwork or rebalance.
+<a href="design-ideas.json">Saved playtester suggestion</a>.</p></li>
 <li><h3>Shade Tree Plumbing</h3><p>October 20: Sean suggested a later level where Mainframe Plumbing faces
 Shade Tree Plumbing and shadow versions of the heroes. Optional inspiration; setting, lore and encounters remain open.
 No production or delegation requested. <a href="design-ideas.json">Saved idea notes</a>.</p></li>

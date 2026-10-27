@@ -727,7 +727,7 @@
       ]
     },
     "strainer_lane_options": {
-      "status": "Approved112 source layout/art registration checks passed; Engineering integration/build pending",
+      "status": "113readability source/helper tests passed; Engineering build and humanvisual acceptance pending",
       "proposal": "Destroy one or two of three readable top/middle/bottom support lanes, offering a choice of bank dodge or jump; do not default every strike to full-channel destruction.",
       "validation": {
         "safe_routes": 594,
@@ -757,21 +757,78 @@
         }
       ],
       "timeline": {
-        "warning": 1.25,
-        "break": 2.9,
-        "clear_jump_volume": 3.05
+        "recognition_start": 1.25,
+        "recognition_end": 2.15,
+        "windup_end": 2.75,
+        "drop_start": 2.75,
+        "carrier_travel_start": 2.95,
+        "break": 3.1,
+        "clear_jump_volume": 3.25
       },
       "routes": {
         "dodge": "Far y270 both; near y390 only singlemiddle variant",
         "jump": "Middle y330, worldtakeoff2432, \u00b150ms input offsets validated"
       },
-      "visibility": "At2.90 only54/140 travel pixels visible at right edge; persistent warning required. No addedimpactdamage collider; cage clears jump volume by3.05.",
+      "visibility": "113 replacespartialedgeimpact with fullyvisible stagedmechanism andimpact. Actualruntime validationpendingEngineering.",
       "manifest": "assets/world/ceiling-strainer-v1/manifest.json",
       "tests": [
         "tests/ride_strainer_layout.gd"
       ],
-      "registration": "Exact140x60/130 core masks and2.90activation agree with art manifest; both variants support tested dodge/jump routes.",
-      "art_handoff": "handoffs/ceiling-strainer-v1-art.json"
+      "registration": "Holecore bounds unchanged; activation now3.10 in agreed113contract, replacing2.90. Engineering synchronizes JSON andart/runtime timeline.",
+      "art_handoff": "handoffs/ceiling-strainer-v1-art.json",
+      "readability_revision": {
+        "reason": "112strainer entered the screen at almost the same time as impact; a text warning did not let the player recognize the mechanism or action.",
+        "staging": "The SAME full140x92 basket enters fromscreenx1100 to800 during1.0..1.25, then hangs atx800,bottom210 (bounds730..870,118..210) for.90s. Visiblewindup raisesbottom210\u2192180 during2.15..2.75; drop2.75..3.10. No ghostpreview or miniature recognitionpose.",
+        "carrier": "Holdscreenx800 until2.95; Hermite travel over.15s with x=800+276u^2-212u^3 reaches864 at3.10 withvelocity-560, joining the fixedworld2600 target continuously. Maxcenter869.303; fullbasketright939.303 and180pxwinchright959.303 fit960viewport.",
+        "impact": "At3.10 basketbounds794..934 arefullyvisible. Floorbreak/activation exactlysynchronous; targetworld2600 and140x60/130 holebounds unchanged.",
+        "hoist": "3.10..3.25 raisesbasketbottom to110, then followsworldmotion. No cage collider/directdamage added.",
+        "safety": "Replace blanketclear-before-takeoff assertion with actualhorizontal ORvertical separation: conservativefullbasket bounds retain at least16.1328px(one-lane) or14.7832px(two-lane) beyondvisualhero front705 while basketbottom>=highestjumphead122. Afterwards it is abovejumpvolume. Chains staywithin\u00b164 andabovebasketbottom; winchbottom86.",
+        "proof_scope": "Mechanics analytical bounds and216 actual wrapper entry cases/36720 assembly poses pass. Human visualreadability acceptance remains pending.",
+        "required_checks": [
+          "Both12/13,bothheroes,allplayeranchors,directentry andprecedingzero-rest transition.",
+          "Measure fullbasket andwinch onscreenbounds/alpha duringrecognition andimpact; textwarning isnot visibility evidence.",
+          "Actualhelperhoist versus early/intended/late jumps, with horizontal orvertical separation, plusflooractivation andmissedjump deaths.",
+          "Whole-track flowingwater and blendedpit art mustpreserve exact lethalboundary; no speed/rest/camera change."
+        ],
+        "art": "Rail/trolley and replacementwater/rims supplied byArt in assets/world/ride-water-break-v1/manifest.json; continuouschains andsamebasket.",
+        "validation": {
+          "test": "tests/ride_strainer_visibility.gd",
+          "log": ".godot/level-design-scratch/ride_strainer_visibility-113.log",
+          "status": "PASS actual helper/wrapper bounds checks",
+          "entry_cases": 216,
+          "assembly_poses": 36720,
+          "entries": [
+            "direct12",
+            "direct13",
+            "zero-rest11\u219212",
+            "zero-rest12\u219213"
+          ],
+          "heroes": [
+            "tony",
+            "sean"
+          ],
+          "modes": [
+            "easy",
+            "normal",
+            "hard"
+          ],
+          "anchors": [
+            180,
+            300,
+            650
+          ],
+          "frame_rates": [
+            30,
+            60,
+            120
+          ],
+          "recognition": "Actual full140x92 basket with alpha1 on screen for.9s, plus fully visiblewinch andvisible rail; no text-based proxy.",
+          "impact": "Exact3.10 assembly checked for full visibility.",
+          "hoist": "All assembly frame bounds disjoint from conservativefullhero/jump envelope; sampled minimumhorizontalgap19px whilebasketbelowhighesthead. Analytical minimum14.7832 remains distinct fromsampled19.",
+          "scope": "Actual helper/frame transforms and Game wrapper entry paths; not a GPU screenshot or human visual acceptance.",
+          "warnings": "Existing user-log/certificate warnings and3 ObjectDB instances reported atshutdown; no script errors."
+        }
+      }
     },
     "maintenance_hand_poc": {
       "status": "Delivered locally in Prototype110 per Engineering delivery record; gameplay capture and human readability review remain pending.",
