@@ -1,0 +1,409 @@
+{
+  "status": "Authored source; runtime integration and actual visual acceptance pending",
+  "frames": {
+    "surface_ripples": {
+      "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+      "source_rect": [
+        24,
+        65,
+        1488,
+        125
+      ],
+      "destination": [
+        0,
+        0,
+        744,
+        62.5
+      ],
+      "role": "surface_ripples"
+    },
+    "surface_swirl": {
+      "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+      "source_rect": [
+        24,
+        870,
+        1488,
+        105
+      ],
+      "destination": [
+        0,
+        0,
+        744,
+        52.5
+      ],
+      "role": "surface_swirl"
+    },
+    "inflow_foam": {
+      "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+      "source_rect": [
+        26,
+        558,
+        1484,
+        105
+      ],
+      "destination": [
+        0,
+        0,
+        742,
+        12
+      ],
+      "role": "inward_foam",
+      "occludes_fall": false
+    },
+    "strainer_rail": {
+      "path": "assets/world/ride-water-break-v1/rail-parts-v1.png",
+      "source_rect": [
+        110,
+        184,
+        1300,
+        128
+      ],
+      "destination": [
+        0,
+        0,
+        325,
+        32
+      ],
+      "role": "tileable_rail_center"
+    },
+    "strainer_rail_left": {
+      "path": "assets/world/ride-water-break-v1/rail-parts-v1.png",
+      "source_rect": [
+        12,
+        163,
+        100,
+        164
+      ],
+      "destination": [
+        -25,
+        0,
+        25,
+        41
+      ],
+      "role": "rail_end"
+    },
+    "strainer_rail_right": {
+      "path": "assets/world/ride-water-break-v1/rail-parts-v1.png",
+      "source_rect": [
+        1424,
+        163,
+        100,
+        164
+      ],
+      "destination": [
+        0,
+        0,
+        25,
+        41
+      ],
+      "role": "rail_end"
+    },
+    "strainer_gap_60": {
+      "layers": [
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            710,
+            1400,
+            100
+          ],
+          "destination": [
+            -70,
+            -30,
+            140,
+            60
+          ],
+          "role": "lethal_pit_plane",
+          "collision_plane": true,
+          "occludes_fall": false,
+          "force_opaque": true,
+          "modulate": "#202830"
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            395,
+            1400,
+            100
+          ],
+          "destination": [
+            -70,
+            -30,
+            140,
+            9
+          ],
+          "role": "recessed_far_wall",
+          "occludes_fall": false
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            -70,
+            -33,
+            140,
+            3
+          ],
+          "role": "wet_far_lip",
+          "occludes_fall": false
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            -74,
+            -30,
+            4,
+            60
+          ],
+          "role": "wet_left_lip",
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            70,
+            -30,
+            4,
+            60
+          ],
+          "role": "wet_right_lip",
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            -74,
+            30,
+            148,
+            6
+          ],
+          "role": "wet_near_lip",
+          "occludes_fall": true
+        }
+      ],
+      "has_fall_occlusion": true
+    },
+    "strainer_gap_130": {
+      "layers": [
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            710,
+            1400,
+            100
+          ],
+          "destination": [
+            -70,
+            -65,
+            140,
+            130
+          ],
+          "role": "lethal_pit_plane",
+          "collision_plane": true,
+          "occludes_fall": false,
+          "force_opaque": true,
+          "modulate": "#202830"
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            395,
+            1400,
+            100
+          ],
+          "destination": [
+            -70,
+            -65,
+            140,
+            9
+          ],
+          "role": "recessed_far_wall",
+          "occludes_fall": false
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            -70,
+            -68,
+            140,
+            3
+          ],
+          "role": "wet_far_lip",
+          "occludes_fall": false
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            -74,
+            -65,
+            4,
+            130
+          ],
+          "role": "wet_left_lip",
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            70,
+            -65,
+            4,
+            130
+          ],
+          "role": "wet_right_lip",
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-water-break-v1/water-parts-v2.png",
+          "source_rect": [
+            60,
+            260,
+            1400,
+            55
+          ],
+          "destination": [
+            -74,
+            65,
+            148,
+            6
+          ],
+          "role": "wet_near_lip",
+          "occludes_fall": true
+        }
+      ],
+      "has_fall_occlusion": true
+    }
+  },
+  "animations": {},
+  "obstacle_overlays": {
+    "strainer_gap_60": [],
+    "strainer_gap_130": []
+  },
+  "collision_registration": {
+    "strainer_gap_60": {
+      "core": [
+        -70,
+        -30,
+        140,
+        60
+      ],
+      "world_rect": [
+        2530,
+        300,
+        140,
+        60
+      ]
+    },
+    "strainer_gap_130": {
+      "core": [
+        -70,
+        -65,
+        140,
+        130
+      ],
+      "world_rect": [
+        2530,
+        300,
+        140,
+        130
+      ]
+    }
+  },
+  "flow": {
+    "channel_rect": [
+      0,
+      230,
+      960,
+      200
+    ],
+    "surface_frames": [
+      "surface_ripples",
+      "surface_swirl"
+    ],
+    "native_scale": 0.5,
+    "tile_period_x": 744,
+    "speed_x": -34,
+    "secondary_speed_x": -19,
+    "secondary_y_amplitude": 2,
+    "secondary_y_period_seconds": 3.7,
+    "clock": "continuous simulation time; freeze on pause; independent of world scroll",
+    "seam": "Source is not proven mathematically seamless. Repeat sparse patches with 24px horizontal edge alpha feather, offset second row by372; do not mirror.",
+    "surface_opacity": 0.45,
+    "alpha_cutoff": 0.7,
+    "alpha_remap": "discard below cutoff, remap remaining alpha smoothly; preserves source files",
+    "foam": {
+      "frame": "inflow_foam",
+      "speed_x": -34,
+      "height": 8,
+      "far_destination": "inside first8px of hole; curls toward void",
+      "near_destination": "flip vertically inside last8px of hole",
+      "side_destination": "rotate to point inward; clip to8px edge band",
+      "occludes_fall": false
+    },
+    "void": "Force opaque only within exact collision rectangle using source texture; no opaque surrounding panel",
+    "ordering": "surface below holes; void then recessed wall then edge foam then thin solid lips; never full-depth waterfall",
+    "alpha_preparation": "Once on load, region alpha_out=clamp((alpha_in-179)/76,0,1), RGB unchanged; preserve originals. Core only force alpha255."
+  },
+  "rail": {
+    "center": "strainer_rail",
+    "left": "strainer_rail_left",
+    "right": "strainer_rail_right",
+    "tile_width": 325,
+    "groove_y": 17,
+    "connection": "Existing winch upper housing centered over groove. Rail behind trolley, chains remain connected to basket eyes.",
+    "timing": "Engineering/LD own latest staging; no timing override supplied"
+  },
+  "prompts": "assets/world/ride-water-break-v1/prompts.json",
+  "notes": [
+    "Old source assets preserved.",
+    "Source art alpha includes soft glow; runtime cutoff required for ripple/foam/rail outer regions.",
+    "Only solid near/side lips occlude falling hero.",
+    "No new camera projection.",
+    "Void texture requires dark modulation #202830: unmodulated texture has vertical grain that repeats the panel illusion. Actual animated gameplay acceptance remains pending."
+  ]
+}
