@@ -77,13 +77,22 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 26, 2026 · Current build: Prototype 109 / 0.109.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 26, 2026 · Current build: Prototype 110 / 0.110.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Prototype 110 — Maintenance Hand proof of concept (ready locally):</strong>
+Encounter 11 adds a background-mounted hand that breaks a 140×200 full-width hole in the channel, requiring an
+ordinary jump. A warning begins at 1.25 seconds, the floor breaks at 2.90, and the reaching hand clears the jump
+path by 3.05 before retracting. The impact starts partly offscreen (54 of 140 pixels visible), so the edge warning
+remains important and live readability review is pending. No horizontal lock or slowdown is added. The previous
+ten encounters and full three-second rests are preserved. Direct entry: <code>LEVEL=2-11</code>.
+All 38 packaged suites, eight Python checks, 99 runtime audio slots, direct exported entry and the signed archive
+verify. Prototype 109 is preserved. Actual gameplay capture remains pending; changes stay local under the edition 33
+publication hold. <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
 <p><strong>Prototype 109 — fixed float-arm wall attachment (ready locally):</strong>
 Encounter 06 now has a fixed far-wall pivot at y220 and an authored telescoping shaft that remains connected to the
 moving ball. The wall mount is clipped at the waterline; endpoint hardware keeps its size. Ball movement and its

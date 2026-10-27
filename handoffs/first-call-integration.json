@@ -1,75 +1,80 @@
 {
   "schema_version": 1,
-  "build": "Prototype 109 / 0.109.0",
-  "created_at": "2026-10-26T16:32:15.164307-07:00",
+  "build": "Prototype 110 / 0.110.0",
+  "created_at": "2026-10-26T17:25:41.083513-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "d702e6e657857cd2f3b1b9adc099c61f4faef613",
-  "status": "Ready locally:35 packaged suites,8 Python checks,99 runtime audio slots and signed archive verify. Edition33 publication hold remains.",
-  "app": "builds/Prototype-109/Drain Damage.app",
-  "archive": "builds/history/Prototype-109.zip",
-  "archive_sha256": "cd4a4b990a2cc46efc7b9ea942dbeee1418f34ce0260f7f4c4d3e6bb1831a670",
-  "source_snapshot": "builds/source-109",
-  "source_snapshot_files": 1675,
-  "previous_build_preserved": "Prototype108 and earlier apps, archives and source snapshots preserved",
+  "source_commit": "f7b5079514661b9354076313d82b4deed747c3e9",
+  "status": "Ready locally: 38 packaged suites, 8 Python checks, 99 runtime audio slots and signed archive verify. Visual review/capture pending; edition 33 publication hold remains.",
+  "app": "builds/Prototype-110/Drain Damage.app",
+  "archive": "builds/history/Prototype-110.zip",
+  "archive_sha256": "1b473624b4e560aade67b368aa67afbb45886f73579c1039615581ebaadae22e",
+  "source_snapshot": "builds/source-110",
+  "source_snapshot_files": 1688,
+  "previous_build_preserved": "Prototype 109 and earlier apps, archives and source snapshots preserved",
   "changes": [
-    "Encounter06 fixedwallpivot atworldy220 replaceswaterpivot257; authoredmountclippedatwaterline230.",
-    "Authoredshaft telescopes150.48..162.37px betweenfixedpivot andmovingballsocket; separateendpointjoints retainrigidsize.",
-    "Fullvisualbounds includemount/shaft/joints/shadow; farwallassemblydrawsbehindrider, ballretainsdepthsorting.",
-    "Ballcollision100x60 andmotionbase285/amplitude25/period2.4 unchanged. Rodandmountdecorative.",
-    "Prototype108slalom,breach,restjump andearlierfeedbackfixes preserved."
+    "Append Maintenance Hand encounter 11, direct LEVEL=2-11; preserve existing ten encounters, 560 pace and full three-second rests.",
+    "Warning starts at 1.25 seconds; impact opens a permanent 140 by 200 full-bank pit at 2.90. An ordinary jump is required; banking cannot bypass it.",
+    "Authored hatch, articulated forearm and rigid fist poses animate the strike and lift. Reaching arm clears y120 by 3.05, then retracts by 3.65.",
+    "Pit visual and collision activation share the exact impact timestamp; persistent rims and interpolated cascade retain fall occlusion.",
+    "No horizontal lock, automatic slowdown, extra hand damage collider or new audio mapping. Existing jump/landing sounds remain.",
+    "Encounter count display and completion text now reflect the configured course length."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
-    "direct": "make run LEVEL=2-01 (through2-10)",
+    "direct": "make run LEVEL=2-01 (through 2-11)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-06 SCREENSHOT_MODE=1 APP=\"builds/Prototype-109/Drain Damage.app\"",
+    "screenshot_export": "make run LEVEL=2-11 SCREENSHOT_MODE=1 APP=\"builds/Prototype-110/Drain Damage.app\"",
     "slalom": "make run LEVEL=2-01",
     "breach": "make run LEVEL=2-02",
-    "float_sweep": "make run LEVEL=2-06"
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-110/Drain Damage.app\""
   },
   "checks": {
-    "packaged_suites_passed": 35,
-    "packaged_suites_total": 35,
-    "results": "builds/verification-109/final-results.json",
+    "packaged_suites_passed": 38,
+    "packaged_suites_total": 38,
+    "results": "builds/verification-110/final-results.json",
     "slalom": "5076 all141lane straight/repeatedjump trajectories;162 safeweaves with +/-50ms bankinput offsets;1296 heldhorizontal/jump boundary cases;1083 importedtexture samples pluswallseams.",
     "breach": "216 center/near straight/jump failures;126boundaryroutes and11 fastestjumpattempts; actualhostfall checks include02; authoredcascadeframes/bounds/rimordering pass.",
-    "routes": "54 model fullroutes/540encounters plus6full integratedroutes; updated972general failurecases pass.",
+    "routes": "54 model full routes / 594 encounters and 6 full integrated routes; all 11 encounters and full rests pass.",
     "rest_jump": "18modelhero/mode/fps configurations andrealnativephysics Space/A tests forbothheroes acrossrest/boundary/held/release/pause.",
     "python_tests": 8,
-    "python_log": "builds/verification-109/python.log",
-    "audio_freshness": "99runtime slots checked atfreeze; separate proposedboss auditions are not runtime108.",
-    "exported_entries": "2-06TonyNormal screenshotmodeon passes",
+    "python_log": "builds/verification-110/python.log",
+    "audio_freshness": "99 runtime slots checked; proposed boss auditions remain separate from runtime.",
+    "exported_entries": "2-11 Tony Normal with screenshot mode enabled passes",
     "signature_archive": "codesign strict and ZIP integrity pass",
     "markdown": "Whitespace checks pass; Markdownlint unavailable in environment.",
-    "float_mount": "481fullsweeppositions verifyfixedwallpivot,continuousshaftends,rigidjoints,wallclip,visualboundsandunchangedcollider."
+    "float_mount": "481fullsweeppositions verifyfixedwallpivot,continuousshaftends,rigidjoints,wallclip,visualboundsandunchangedcollider.",
+    "maintenance_hand": "501 wrapper poses verify full reaching-arm clearance and culling, activation, pause and retry; 324 physics cases; 486 safe layout variants with input offsets and 162 missed-jump deaths/retries."
   },
   "capture_gap": {
     "actual_capture": false,
-    "chapter": "storybook/109-float-wall-mount/",
-    "reason": "Source study inspected; noforeground gamecapture/livevisualacceptance."
+    "chapter": "storybook/110-maintenance-hand/",
+    "reason": "No foreground game capture or live visual acceptance. Authored source preview is not runtime evidence."
   },
   "limitations": [
-    "Livevisualreview ofwallattachment/rodcontinuity andearlierencounterchanges remainspending.",
-    "Neutral-horizontal weave is tested; full-right simultaneousbank input tightens the window and is not promised as a clean route.",
-    "Earliest02pipeapproach atx650 is2.902seconds ratherthanfull3seconds; hazard-free rests remain exactly3seconds.",
-    "03mixedcourse,04brush redesign andgiantfinalboss are plans/concepts/auditions only, notimplemented.",
-    "ExistingGodot settings/log/certificate andshutdownwarnings persist; all34suites pass."
+    "Impact shows only 54 of 140 pit pixels at the right edge. Text warning begins at 1.25 seconds; the world-mounted hand enters view later. Actual readability and animation review remain pending.",
+    "Held-left steering cannot clear the full pit with an ordinary jump; there is no automatic horizontal lock or slowdown.",
+    "Live visual review of earlier ride changes also remains pending.",
+    "Mixed-course pacing, brush redesign, ceiling strainers, camera projection and hungry-head boss remain proposals; no implementation in this build.",
+    "Existing Godot user-settings/log/certificate and shutdown warnings persist; all 38 suites pass."
   ],
   "contributors": [
     "handoffs/level-two-ride-showcase-layout.json",
     "handoffs/ride-showcase-art.json",
     "handoffs/level-two-ride-mechanics.json",
     "handoffs/ride-obstacle-auditions.json",
-    "assets/world/float-wall-mount-v2/proposed-registration.json"
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json"
   ],
   "publication_hold": "Do not push main: local edition33 magazine is not authorized for publication.",
   "proposals_not_implemented": [
-    "Mixedcourse",
-    "Brushcurtainredesign",
-    "Backgrounddestructivehazards",
-    "Hungryheadfinalboss"
+    "Mixed course",
+    "Brush curtain redesign",
+    "Ceiling strainer variants",
+    "Oblique camera projection",
+    "Hungry-head final boss"
   ]
 }

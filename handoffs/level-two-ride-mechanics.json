@@ -438,5 +438,141 @@
       "coverage": "Bothheroes/allmodes at30/60/120Hz: rest jump, normal landing/cooldown, discarded airborne/cooldown edge, no single-edge repeats, exact3s rest and airborne boundary continuity, pause/death guards.",
       "regression": "tests/ride_showcase_physics.gd PASS after shared motion refactor."
     }
+  },
+  "proposed_depth_boss_consult": {
+    "status": "PLAN ONLY; mechanics, damage, defeat and new runtime behavior not approved",
+    "owner": "Level Design; consolidated proposal in handoffs/level-two-ride-showcase-layout.json",
+    "date": "2026-10-26",
+    "projection": "Screen-height background face is illustrative; only registered projected jaw/hand volume threatens the rider. Telegraph future impact region visibly; no collision inferred from face bounds.",
+    "tell": {
+      "total_proposed_seconds": 1.5,
+      "minimum_final_locked_seconds": 1.0,
+      "tracking": "Choose lane/target once, then no retargeting toward a dodge; separate planning and committed phases visibly."
+    },
+    "attack_types": [
+      {
+        "type": "Hero lunge",
+        "support": "Track remains intact",
+        "damage": "OPEN:1HP/shared immunity recommended for consideration versus explicit fatal-bite alternative. No approval assumed."
+      },
+      {
+        "type": "Early track bite",
+        "support": "Opens a visibly cut world-attached pit ahead; falling remains fatal under approved gap policy",
+        "proposed_footprint": [
+          520,
+          115
+        ],
+        "bank_options": [
+          [
+            230,
+            345
+          ],
+          [
+            315,
+            430
+          ]
+        ],
+        "opposite_safe_centers": [
+          380,
+          280
+        ],
+        "full_board_clearance": 21,
+        "jump_limit": "520+90=610px exceeds fastest normal-hop576px; require bank dodge.",
+        "warning": "Persistent directional lane/edge cue before strike; full pit cannot be claimed visible for1.2s from rightmost rider.",
+        "entry_buffer_proposal": "For minimum.2s at conservative960relative speed choose192px ahead of maximum board front695, giving screen entry887 at impact; only73px entry lip initially visible, remainder needs edge cue. Neutral560 contact lead.342857s. Lock this bound-based entry before impact, never chase hero.",
+        "persistence": "Pit/rim/waterfall remain world-attached until fully behind every permitted board anchor; never heal under a rider."
+      },
+      {
+        "type": "Optional hand smash",
+        "proposed_pit_footprint": [
+          140,
+          80
+        ],
+        "center_y": 330,
+        "safe_centers": [
+          260,
+          400
+        ],
+        "clearance": 16,
+        "jump": "Hand impact volume blocks jumping during strike; after visible withdrawal140px pit plus90pxboard takes.410714s at560, leaving.189286s normal-hop window.",
+        "direct_damage": "OPEN; ordinary1HP suggested for discussion, not approved."
+      }
+    ],
+    "fairness": "One committed head/hand attack at a time; reserve a fully supported opposite-bank route through approach, impact and pit clearance. No overhead or solid hazard may close refuge or intended landing. Apply both hero head envelopes84/72; ordinary movement/jump timing shared.",
+    "open_final_fight": [
+      "Bait or jam a bite into an authored fixture to expose a weak point",
+      "A deliberate new weapon/reflection window requiring separate weapon/input approval",
+      "Environmental or survival-based defeat without assuming automatic firing"
+    ],
+    "open_balance": "Number of cycles, HP, weak-point duration, exclusive-weapon fairness, contact damage/fatality and final exit remain decisions for Sean.",
+    "boundary": "Existing isolated encounters and3s rests unchanged; Art concept generation and Audio auditions are separate authorizations, not runtime integration."
+  },
+  "maintenance_hand_poc": {
+    "status": "Approved POC: dynamic-gap model and focused source tests pass; Engineering owns integration/delivery and Art visual registration",
+    "owner": "Engineering; Level Design owns appended encounter11 metadata and routes",
+    "geometry": {
+      "gap_center": [
+        2600,
+        330
+      ],
+      "gap_size": [
+        140,
+        200
+      ],
+      "world_bounds": [
+        2530,
+        230,
+        140,
+        200
+      ],
+      "rule": "Full bank footprint requires jumping; no lane edge bypass, no automatic horizontal lock."
+    },
+    "timeline": {
+      "warning_start": 1.25,
+      "impact_and_gap_activation": 2.9,
+      "contact_plane_clear": 3.05,
+      "source": "Latest Level Design contract, supported by Art .15s wrist/finger lift recommendation; Engineering final phase freeze/integration authoritative.",
+      "visibility": "At impact pit spans screen906..1046:54px visible, rest offscreen. Persistent right-edge/lane cue is essential; do not claim full visible smash/withdraw preview."
+    },
+    "jump": {
+      "duration": 0.6,
+      "apex": 54,
+      "nominal_world_takeoff": 2432,
+      "neutral_valid_takeoff_open_interval": [
+        2379,
+        2485
+      ],
+      "landing_center": 2768,
+      "landing_trailing_clearance": 53,
+      "neutral_timing_window": 0.18928571428571428,
+      "earliest_valid_takeoff_at_anchor650": 3.0875,
+      "first_window_hand_clear_buffer": 0.03750000000000009,
+      "hero_clearance": "Hand and forearm must leave projected rider volume; conservative Tony head84+hop54=138, Sean72+54=126. No added hand damage volume in POC.",
+      "horizontal_input": "Neutral intended route. Right/diagonal jumps use actual clamp-aware displacement. Held left can shorten hop and fail; no hidden speed rescue."
+    },
+    "api": "Obstacle activates_at defaults0. Swept collision interval begins exactly at activation fraction within simulation step; already airborne board remains safe until unsupported landing. Wrapper synchronizes visible break to same encounter-clock timestamp.",
+    "validation": {
+      "test": "tests/ride_hand_physics.gd",
+      "routes": 324,
+      "result": "PASS bothheroes/allmodes/3anchors/3framerates/3banks jump versus nojump; everybankmiss fatal. Exact within-step activation, no pre-impact/deferred damage, airborne floorbreak/landing, six clamp-aware right/diagonal jumps and held-left failure pass.",
+      "regression": "Rest-jump and full showcase physics suites pass after activation change.",
+      "limits": "No actual running visual/hand trajectory clearance or packaged build claim.",
+      "level_design_report": {
+        "status": "PASS; reported by Level Design after final timing/geometry freeze",
+        "whole_routes": 54,
+        "encounter_traversals": 594,
+        "safe_hand_routes": 486,
+        "safe_variants": "Neutral/right/diagonal with\u00b150ms timing variants",
+        "missed_jump_death_retry_cases": 162,
+        "existing_failure_cases": 972,
+        "limits": "Source proof; Art/Engineering still verify actual hand/forearm clearance138px and visual readability."
+      }
+    },
+    "preserved": "Existing10 encounters, normaljump/ramp rules,3srests, death/fall guard and other plan-only boss/strainer work unchanged.",
+    "integration_delivery": {
+      "build": "Prototype 110 / 0.110.0",
+      "record": "handoffs/first-call-integration.json",
+      "status": "38 packaged suites pass, including actual wrapper clearance bounds. Live visual review remains pending."
+    }
   }
 }

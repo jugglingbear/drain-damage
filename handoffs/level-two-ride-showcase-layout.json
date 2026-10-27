@@ -3,7 +3,7 @@
   "date": "2026-10-26",
   "owner": "Level Design",
   "integration_owner": "Engineering",
-  "status": "108 slalom and breach layout/model checks passed; new art collision-plane bounds match; Engineering combined integration/build and visual acceptance pending",
+  "status": "Hand POC encounter11 layout/model validation complete; Engineering owns combined build and visual acceptance",
   "files": [
     "levels/level-two-ride-showcase.json",
     "tests/ride_showcase_course.gd",
@@ -85,7 +85,7 @@
   },
   "validation": {
     "full_routes": 54,
-    "encounter_traversals": 540,
+    "encounter_traversals": 594,
     "heroes": [
       "tony",
       "sean"
@@ -163,9 +163,9 @@
     "final_model_rerun": "Both authored suites rerun after Mechanics final narrow-ramp freeze including unboosted ballistic ascent exit; 54 safe routes and 972 failure cases pass."
   },
   "remaining": [
-    "Engineering final source/render/actual-host review and authorized108 build.",
+    "Engineering hand animation/actual-host integration, actual clearance validation and authorized build; preserve109.",
     "No foreground/gameplay capture or publication push authorized.",
-    "Mixed-course and oversized04brush proposals remain unapproved and unimplemented."
+    "Final boss, strainer variants, mixed course and oversized04brush remain planning only."
   ],
   "ownership": "Level Design freezes geometry and two tests. Mechanics owns model and physics. Art owns manifest and sprites. Engineering owns runtime wrapper, build and roadmap.",
   "slalom_revision": {
@@ -420,5 +420,263 @@
       "shadow": "Exactly the planned140x115/80 water footprint; shadow is not a collider.",
       "collision": "Prefer dense bristle skirt visibly covering full danger footprint. If rounded silhouette leaves gaps, require shape-aware collision review rather than an invisible rectangular box."
     }
+  },
+  "proposed_depth_and_final_boss": {
+    "status": "Maintenance Hand proof of concept authorized; boss and other destructive hazards remain proposals. Exact hand integration contract pending coordination.",
+    "owner": "Level Design",
+    "contributors": {
+      "Art": "Versioned concept options, depth layers, footprint registration and reference interpretation",
+      "Game Mechanics": "Target commitment, full-board/head constraints and feasibility review",
+      "Audio": "Hunger and material-crunch auditions only",
+      "Engineering": "Approved06 wall-pivot fix; future integration/build/roadmap owner"
+    },
+    "approved_separate_work": "06 wall-mounted float arm visual correction preserves current ball motion/collider and routes. It is not authorization for new destructive hazards or boss implementation.",
+    "visual_reference": {
+      "source": "User-supplied Screenshot 2026-10-26 at 4.15.17 PM",
+      "interpretation": "Balding, bearded human head likeness, exaggerated into an enormous hungry creature with an impossibly wide mouth. Identity/name/backstory not inferred.",
+      "asset_owner": "Art preserves reference/provenance with concepts; temporary source path is not a durable runtime asset."
+    },
+    "depth_contract": [
+      "Background equipment is attached to visible wall brackets, ceiling rails, pipes or architecture. Show the pivot and full trajectory into the riding plane.",
+      "Separate background silhouette, projected target cue, moving attack body, contact-plane collision, broken support rim and below-channel waterfall layers.",
+      "Shadow and cue communicate the eventual danger footprint; they cause no damage. Only declared contact phases collide, using both hero heads and full90x28 board support.",
+      "Water remains safe where the channel still supports it. A broken channel shows missing structure, a dark drop, fractured edges and continuous falling water, not an unexplained dark water patch.",
+      "Destruction persists in world coordinates until the entire hole and visual rim clear the course; no timed healing under a rider. Pause/reset/checkpoint must synchronize geometry, effects and audio."
+    ],
+    "boss_direction": {
+      "scale": "Approximately full play-area height below64px HUD; huge mouth can extend beyond frame, but registered dangerous contact remains readable and escapable.",
+      "presence": "Occasional background silhouette and hunger sounds establish the threat before the final encounter. Early appearances teach one attack at a time; they do not silently start the final boss fight.",
+      "attack_types": [
+        {
+          "id": "hero_lunge",
+          "proposal": "Head emerges from shadow, opens mouth, locks a projected lane, then lunges at the hero over intact track. Retreat exposes expression/recovery.",
+          "track_damage": "None for this attack variant so a proposed ordinary bite is not secretly followed by an instant fatal fall.",
+          "direct_damage": "Open: ordinary1HP/shared immunity recommended for first teaching attacks; instant fatal bite is a separate Sean decision."
+        },
+        {
+          "id": "early_track_bite",
+          "proposal": "A visibly early lunge bites the supporting channel ahead instead of the hero. Teeth cut the announced footprint, leaving a persistent real hole and waterfall.",
+          "danger": "Unsupported fall is lethal under the existing pit rule. Do not conceal this with an ordinary-hit label.",
+          "lead": "At least1.0s committed lane cue before impact. Candidate fixed screen entry887 gives192px beyond maximum board front695, >=.2s at maximum relative960 and.343s at neutral560. Only73px entry lip is initially visible; persistent edge/lane cue must show the rest of the520px pit. Set target once; do not retarget to preserve this buffer."
+        }
+      ],
+      "composition": "Sean prefers huge head on RIGHT and player on LEFT. Mouth spans the head width and opens absurdly large, like Pac-Man, almost exceeding the original head silhouette. Finalboss implementation remains unapproved."
+    },
+    "candidate_bite_geometry": {
+      "width": 520,
+      "depth": 115,
+      "bank_options": {
+        "far": [
+          230,
+          345
+        ],
+        "near": [
+          315,
+          430
+        ]
+      },
+      "safe_opposite_center_y": [
+        380,
+        280
+      ],
+      "full_board_margin": 21,
+      "center_lane_rejected": "A115px center-bank bite would leave only6px clearance at playable edges.",
+      "jump_policy": "Tall jaw volume cannot be jumped through. A520px hole plus90px board requires610px travel; normal maximum forward hop is576px, so this hole requires bank avoidance.",
+      "target_projection": "Use a committed screen-plane target while winding up, not a static world mark that scrolls560px away in1s. At impact convert the exact cut mask to world coordinates using current scroll; afterward it moves with the track. No homing or target changes after lock. For hero-lunge, clamp520px-wide target center260..700 so its whole projected zone fits960 viewport. Early track-bite is a separate ahead-of-player mask starting887, with explicit offscreen indication.",
+      "telegraph": "Candidate1.5\u20132.5s background emergence then >=1.0s locked, unmistakable lane cue; durations are proposals.",
+      "dodge_budget": "120px bank reversal takes.343s at350. With.2s decision allowance,1.0s lock leaves.457s nominal margin. Both heroes share steering. Held forward/diagonal needs separate validation.",
+      "screen_visibility_limit": "At x650 an entering world hazard has only.473s until board contact at560. Do not claim a1s fully visible hole. Keep projected lane warning and edge cue readable before world entry; verify no blind lethal commitment."
+    },
+    "optional_depth_hazards": [
+      {
+        "id": "maintenance_hand",
+        "status": "Earlier optional center-pit concept superseded for authorized POC by required-jump full-bank gap; see maintenance_hand_poc.",
+        "mount": "Huge hand/arm emerges from a visible background wall opening or mechanism.",
+        "tell": "Fixed projected footprint and cracks for >=1s; never chase the dodging player after lock.",
+        "candidate_footprint": "140x80 centered bank330; routes260/400 leave16px board margin.",
+        "impact": "Hand volume blocks jumping during the strike. Direct impact damage remains open.",
+        "aftermath": "After visible withdrawal, a small real pit remains. Full-board crossing230/560=.411s fits normal.6s jump with.189s theoretical timing window; actual takeoff/landing validation still required."
+      },
+      {
+        "id": "wall_driven_ram",
+        "status": "Alternative concept only",
+        "mount": "Wall-mounted pressure ram on a visible fixed support.",
+        "tell_response": "Pressure buildup and a fixed trajectory cue announce a one-bank strike; steer to the opposite bank.",
+        "consequence": "Ram retracts leaving visibly damaged support; hole dimensions, impact damage and inclusion remain undecided."
+      },
+      {
+        "id": "ceiling_strainer_drop",
+        "status": "Alternative concept only",
+        "mount": "Heavy strainer on a visible ceiling winch and cables.",
+        "tell_response": "Rattling winch and fixed shadow announce the landing zone; dodge before descent.",
+        "consequence": "Rebound could expose damaged channel/pit. No new hazard or damage rule approved."
+      }
+    ],
+    "encounter_composition": [
+      "Reserve a reachable opposite-bank refuge and its approach/exit. Never combine a head commitment with a hand strike or another obstacle closing that refuge. Reserve the refuge until the entire hole passes, not merely until the head retreats.",
+      "Do not attack through an existing jump, island landing or ramp commitment unless a separate full-sequence proof establishes a safe response. Do not invalidate a previously signaled safe landing.",
+      "Recurring sightings teach anticipation, lane lock and track damage separately. The final fight combines learned attacks with deliberately reserved recovery windows; isolated showcase three-second rests remain unchanged.",
+      "Proposed final encounter is a scrolling chase arena at560 with a curated supply of intact track and fixtures. A fixed arena or speed change is an alternative requiring approval, not assumed."
+    ],
+    "defeat_options": [
+      {
+        "option": "Bait and environmental jam",
+        "proposal": "Lure a committed bite into a clearly signaled heavy fixture or valve assembly. Recovery exposes a vulnerability or advances environmental defeat.",
+        "tradeoff": "Fits the existing steering/jump ride without enabling weapons; requires fixtures, hit feedback and a clear reason the fixture hurts or jams the mouth."
+      },
+      {
+        "option": "Exposed-mouth weapon window",
+        "proposal": "After a missed bite, a visible mouth weak point can be attacked briefly.",
+        "tradeoff": "Ride currently disables firing; enabling combat, hero weapon parity, boss HP and targeting would need explicit design and implementation approval."
+      },
+      {
+        "option": "Survival into a trap",
+        "proposal": "Survive a finite chase and steer the boss into a prepared environmental trap.",
+        "tradeoff": "No new shooting loop, but player agency must be clear so victory is more than a hidden timer."
+      }
+    ],
+    "open_decisions": [
+      "Boss name, personality/backstory and final likeness treatment.",
+      "Direct bite/hand impact damage versus instant death; hero-lunge and track-bite separation.",
+      "Defeat option, weak point, number of cycles/HP and victory transition.",
+      "Scrolling chase versus fixed arena, checkpoint location and retry restoration of destroyed track.",
+      "Which depth hazards to include; the giant hand is optional.",
+      "Concept selection, final silhouette/contact masks and telegraph audiovisual choices."
+    ],
+    "validation_before_implementation_acceptance": [
+      "Actual target lock and no retargeting; bounds visible and synchronized with collision.",
+      "Both heroes/all modes/anchors/frame rates; full-board bank dodge, jump attempts, horizontal/diagonal controls and reaction offsets.",
+      "Persistent holes, waterfalls, offscreen retirement, pause/death/reset and one-life guard.",
+      "No unavoidable unions of active hazards; test reachability from prior commitments, not only a fresh centered spawn.",
+      "Art registration and actual gameplay captures, clearly distinguished from concepts."
+    ],
+    "audio_brief": "Separate hunger performances from timing-critical inhale/jaw cue. Candidate anticipation1.0s+, short crunch.3\u2013.8s, retreat/chew1\u20132s. Auditions do not select runtime mappings.",
+    "idea_bank": "Reviewed relevant optional environment ideas; none added as approved work. This proposal does not silently include optional steam/electrical hazards.",
+    "implementation": "No boss, destructive hazard, mixed-course or new death/defeat implementation performed.",
+    "mechanics_review": "Game Mechanics accepted separated hero/track attacks, >=1s locked cue, bank margins, no-retargeting and fixed887 early-track entry buffer. Numbers remain proposed design constraints, not runtime proof.",
+    "concept_gallery": {
+      "status": "Five illustrative concept plates delivered; selection and implementation unapproved",
+      "gallery": "design/level-two-depth-concepts-v1/index.html",
+      "metadata": "design/level-two-depth-concepts-v1/proposal.json",
+      "prompts": "design/level-two-depth-concepts-v1/prompts.json",
+      "contact_sheet": "design/level-two-depth-concepts-v1/contact-sheet.png",
+      "concepts": [
+        "Background Hunger",
+        "Track-Eating Bite",
+        "Maintenance Hand (optional)",
+        "Wall-Driven Ram (optional)",
+        "Ceiling Strainer Drop (optional)"
+      ],
+      "limitations": [
+        "Illustrative concepts, not runtime screenshots or registered collision proof.",
+        "Maintenance Hand lower-panel near/far labels beside left/right arrows are incorrect for the bank axis; canonical bank direction is screen y.",
+        "Track-bite plate does not establish ahead-of-player timing or offscreen warning placement.",
+        "Hero/board scale references may differ from current game sprites."
+      ]
+    },
+    "strainer_lane_options": {
+      "status": "Planning only",
+      "proposal": "Destroy one or two of three readable top/middle/bottom support lanes, offering a choice of bank dodge or jump; do not default every strike to full-channel destruction.",
+      "validation": "Final masks must leave a full-board-supported escape corridor and visible commitment cues; screen y is the bank axis."
+    },
+    "maintenance_hand_poc": {
+      "status": "Layout and model tests passed; Art/runtime integration and actual visual acceptance pending Engineering",
+      "accountable_integration_owner": "Engineering",
+      "layout_owner": "Level Design",
+      "mechanics_contributor": "Game Mechanics",
+      "art_owner": "Art / Bestiary",
+      "required": "Visible hand destroys supporting track and leaves a real persistent hole that requires jumping; bank dodge alone must not bypass.",
+      "candidate_gap": {
+        "width": 140,
+        "depth": 200,
+        "center": [
+          2600,
+          330
+        ],
+        "bounds": [
+          2530,
+          230,
+          2670,
+          430
+        ]
+      },
+      "nominal_jump_proof": {
+        "full_board_distance": 230,
+        "speed": 560,
+        "crossing_seconds": 0.4107142857142857,
+        "jump_seconds": 0.6,
+        "timing_window_seconds": 0.18928571428571428,
+        "takeoff_world_x": 2432,
+        "landing_world_x": 2768,
+        "entry_and_landing_margin": 53
+      },
+      "controls": "No implicit x-lock or changed steering. Intended route uses neutral horizontal input; sustained backward160relative cannot clear210px in.6s and is not guaranteed safe.",
+      "placement": "Appended isolated encounter2-11; existing ten IDs and three-second rests preserved.",
+      "timing": {
+        "warning_at": 1.25,
+        "impact_and_gap_activation_at": 2.9,
+        "contact_plane_clear_at": 3.05,
+        "earliest_valid_neutral_takeoff": 3.0875,
+        "intended_earliest_takeoff": 3.182142857142857,
+        "visible_pit_width_at_impact": 54,
+        "remaining_pit_width_offscreen": 86,
+        "clearance": "Contact components above138px hero+jump envelope; forearm may continue smooth retreat without crossing rider. No hand contact-damage collider in this POC."
+      },
+      "visibility": "Large background hand and persistent right-edge warning precede impact. At impact only54/140px of the hole is visible; no claim of a fully visible smash at every anchor. Engineering/Art must validate actual composition.",
+      "activation": "Gap inactive before2.90 and active exactly when visible track breaks; world hole persists afterward. Mechanics clips swept collision to within-step activation instant.",
+      "tests": [
+        "tests/ride_hand_layout.gd",
+        "tests/ride_hand_physics.gd",
+        "tests/ride_showcase_course.gd"
+      ],
+      "validation": {
+        "safe_jump_variants": 486,
+        "missed_jump_death_and_retry_cases": 162,
+        "original_failure_regression_cases": 972,
+        "full_course_runs": 54,
+        "encounter_traversals": 594,
+        "hero_modes": "Both heroes, all three modes",
+        "anchors": [
+          180,
+          300,
+          650
+        ],
+        "frame_rates": [
+          30,
+          60,
+          120
+        ],
+        "airborne_inputs": [
+          "neutral",
+          "right",
+          "right+bank diagonal"
+        ],
+        "takeoff_offsets_seconds": [
+          -0.05,
+          0,
+          0.05
+        ],
+        "minimum_measured_gap_edge_height": 22.4895533604433,
+        "scope": "Source model/input validation; not a packaged-build or actual hand animation clearance claim.",
+        "logs": [
+          ".godot/level-design-scratch/ride_showcase_course-hand.log",
+          ".godot/level-design-scratch/ride_hand_layout-hand-final.log",
+          ".godot/level-design-scratch/ride_showcase_failures-hand-final.log"
+        ]
+      },
+      "art_delivery": {
+        "manifest": "assets/world/maintenance-hand-poc-v1/manifest.json",
+        "handoff": "handoffs/maintenance-hand-art.json",
+        "status": "Authored source delivered; actual runtime clearance pending Engineering",
+        "registration": "140x200 pit matches2530..2670/230..430; warning1.25, impact2.90, clear3.05; retreat continues to3.65.",
+        "clearance_target": "All reaching hand/arm pixels at or above screen/world y120 by3.05; root100, lifted wrist70 plus50px curled fist.",
+        "limitation": "Source study and component transforms are not actual gameplay or animation-clearance proof."
+      }
+    }
+  },
+  "integration_delivery": {
+    "build": "Prototype 110 / 0.110.0",
+    "record": "handoffs/first-call-integration.json",
+    "status": "Maintenance Hand appended and verified with 38 packaged suites; proposed boss/camera/strainer plans remain unimplemented."
   }
 }
