@@ -11,6 +11,7 @@ var audio := Audio.new()
 var audio_definition: Dictionary = {}
 var mechanism_cycle := -1
 var visual_obstacles: Array[Dictionary] = []
+const FALL_DURATION := 1.35
 const VIEWPORT := Rect2(0,0,960,540)
 
 func attach(host: Node2D) -> void:
@@ -105,6 +106,9 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 	prune_departed_visuals()
 	if host.life_state != "alive" or complete:
 		audio.stop()
+		if int(events.get("fall",0)) > int(before.get("fall",0)):
+			host.hero_death_audio.stop()
+			audio.play("fall_panic")
 		return
 	if int(events.get("jump",0)) > int(before.get("jump",0)): host.play_tone(360.0,0.08)
 	if int(events.get("hit",0)) > int(before.get("hit",0)):
@@ -144,7 +148,8 @@ func sync_hero(host: Node2D) -> void:
 	host.current_aim = Vector2.RIGHT
 
 func process_audio(host: Node2D, delta: float) -> void:
-	audio.advance(delta,host.paused,not complete and host.life_state == "alive")
+	audio.advance(delta,host.paused,not complete and host.life_state == "alive",
+		host.life_state == "dying" and events.has("fall"))
 
 func draw_strip(host: Node2D, id: String, scroll: float) -> void:
 	var first := int(floor(scroll/960.0))
@@ -262,15 +267,48 @@ func draw_obstacle_overlays(host: Node2D, obstacle: Dictionary, foreground: bool
 
 func rider_transform(host: Node2D) -> Transform2D:
 	var falling: bool = host.life_state != "alive" and events.has("fall")
-	var fall_depth := pow(clampf(float(host.death_time),0,1),2)*260 if falling else 0.0
+	var fall_depth := pow(maxf(0,minf(float(host.death_time),FALL_DURATION)-0.10),2)*460 if falling else 0.0
 	var recovery_bounce := sin(recovery_clock/0.6*PI)*20.0
-	return Transform2D(render_pitch,position+Vector2(0,-render_height+fall_depth-recovery_bounce))
+	var anchor := position
+	if falling:
+		var gap := failed_gap()
+		if not gap.is_empty():
+			var center := obstacle_position(gap)
+			var inset := minf(55,float(gap.width)*0.5)
+			var inside_x := clampf(position.x,center.x-float(gap.width)*0.5+inset,
+				center.x+float(gap.width)*0.5-inset)
+			# Leading-edge failure can leave the board center outside the hole. Carry it over the lip
+			# continuously before it drops, without moving the frozen gameplay/checkpoint position.
+			anchor.x = lerpf(position.x,inside_x,smoothstep(0,0.22,float(host.death_time)))
+	return Transform2D(render_pitch,anchor+Vector2(0,-render_height+fall_depth-recovery_bounce))
 
-func fall_clip_bottom() -> float:
+func failed_gap() -> Dictionary:
 	for obstacle: Dictionary in course.obstacles:
 		if obstacle.id == str(last_event.get("obstacle_id","")) and obstacle.kind in ["gap","long_pit"]:
-			return float(obstacle.y)+float(obstacle.depth)*0.5
-	return 540.0
+			return obstacle
+	return {}
+
+func fall_clip_bottom() -> float:
+	var gap := failed_gap()
+	return float(gap.y)+float(gap.depth)*0.5 if not gap.is_empty() else 540.0
+
+func falling_polygons(frame: Dictionary, transform: Transform2D, elapsed := 0.0) -> Array[PackedVector2Array]:
+	var d: Array = frame.destination
+	var target := Rect2(d[0],d[1],d[2],d[3])
+	var polygon := PackedVector2Array([target.position,Vector2(target.end.x,target.position.y),
+		target.end,Vector2(target.position.x,target.end.y)])
+	polygon = transform*polygon
+	var bottom := fall_clip_bottom()
+	var left := 0.0
+	var right := 960.0
+	var gap := failed_gap()
+	if not gap.is_empty():
+		var center := obstacle_position(gap)
+		var entered := smoothstep(0.12,0.28,elapsed)
+		left = lerpf(0,maxf(0,center.x-float(gap.width)*0.5),entered)
+		right = lerpf(960,minf(960,center.x+float(gap.width)*0.5),entered)
+	return Geometry2D.intersect_polygons(polygon,PackedVector2Array([
+		Vector2(left,0),Vector2(right,0),Vector2(right,bottom),Vector2(left,bottom)]))
 
 func draw_falling_frame(host: Node2D, frame: Dictionary, transform: Transform2D, tint: Color) -> void:
 	if frame.has("layers"):
@@ -278,12 +316,7 @@ func draw_falling_frame(host: Node2D, frame: Dictionary, transform: Transform2D,
 		return
 	var d: Array = frame.destination
 	var target := Rect2(d[0],d[1],d[2],d[3])
-	var polygon := PackedVector2Array([target.position,Vector2(target.end.x,target.position.y),
-		target.end,Vector2(target.position.x,target.end.y)])
-	polygon = transform*polygon
-	var bottom := fall_clip_bottom()
-	var clipped := Geometry2D.intersect_polygons(polygon,PackedVector2Array([
-		Vector2(0,0),Vector2(960,0),Vector2(960,bottom),Vector2(0,bottom)]))
+	var clipped := falling_polygons(frame,transform,float(host.death_time))
 	var texture: Texture2D = host.flush.art.textures[frame.path]
 	var source := Rect2(frame.source_rect[0],frame.source_rect[1],frame.source_rect[2],frame.source_rect[3])
 	for piece: PackedVector2Array in clipped:
@@ -293,22 +326,34 @@ func draw_falling_frame(host: Node2D, frame: Dictionary, transform: Transform2D,
 			uv.append((source.position+(local-target.position)/target.size*source.size)/texture.get_size())
 		host.draw_polygon(piece,PackedColorArray([tint]),uv,texture)
 
-func draw_fall_occluder(host: Node2D, frame: Dictionary, point: Vector2) -> void:
-	if not bool(frame.get("occludes_fall",true)): return
+func fall_occluding_frames(frame: Dictionary, near_edge := -INF) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	if not bool(frame.get("occludes_fall",true)): return result
 	if frame.has("layers"):
-		for layer: Dictionary in frame.layers: draw_fall_occluder(host,layer,point)
-	else: obstacle_art.draw_frame(host,frame,point)
+		for layer: Dictionary in frame.layers: result.append_array(fall_occluding_frames(layer,near_edge))
+	elif float(frame.destination[1]) >= near_edge:
+		# Adjacent island tops must not blanket the initial fall at a leading-edge contact.
+		result.append(frame)
+	return result
+
+func draw_fall_occluder(host: Node2D, frame: Dictionary, point: Vector2, near_edge := -INF) -> void:
+	for layer: Dictionary in fall_occluding_frames(frame,near_edge):
+		obstacle_art.draw_frame(host,layer,point)
+
+func rider_visible(host: Node2D) -> bool:
+	# Death freezes the ride clock: never freeze a fatal fall on the hidden damage-blink phase.
+	return host.life_state != "alive" or host.invulnerable <= 0 or int(clock*12)%2 == 0
 
 func draw_rider(host: Node2D, flush: RefCounted) -> void:
 	var falling: bool = host.life_state != "alive" and events.has("fall")
 	if not falling: art.draw_named(host,"shadow",position,Color(1,1,1,clampf(1-render_height/200.0,0.2,1)))
-	if host.invulnerable <= 0 or int(clock*12)%2 == 0:
+	if rider_visible(host):
 		var mode := "hard" if host.difficulty == "hard" else "normal"
 		var pose: Dictionary = flush.art.manifest.landing[host.employee.id][mode]
 		var registration: Array = obstacle_art.manifest.get("rider_contacts",{}).get(host.employee.id,{}).get(mode,[0,0])
 		host.draw_set_transform_matrix(rider_transform(host))
 		var offset := -Vector2(registration[0],registration[1])
-		var alpha := 1.0-clampf((float(host.death_time)-0.75)/0.25,0,1) if falling else 1.0
+		var alpha := 1.0
 		for frame: Dictionary in pose.front:
 			if falling:
 				host.draw_set_transform(Vector2.ZERO)
@@ -343,7 +388,8 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 		for obstacle: Dictionary in visual_obstacles:
 			var frame: Dictionary = obstacle_art.manifest.frames[obstacle_frame_id(obstacle)]
 			if obstacle_active(obstacle) and (obstacle.kind == "deck" or bool(frame.get("has_fall_occlusion",false))):
-				draw_fall_occluder(host,frame,obstacle_position(obstacle))
+				draw_fall_occluder(host,frame,obstacle_position(obstacle),
+					float(obstacle.depth)*0.5 if obstacle.kind == "deck" else -INF)
 	for obstacle: Dictionary in visual_obstacles:
 		if visual_bounds(obstacle).intersects(VIEWPORT,true): draw_obstacle_overlays(host,obstacle,true)
 	draw_strip(host,"course_near",scroll)

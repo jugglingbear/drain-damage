@@ -10,7 +10,7 @@ func checks() -> void:
 	var audio := Audio.new()
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/level-two-ride.json"))
 	audio.attach(host,data.audio.cues)
-	assert(audio.voices.size() == 3)
+	assert(audio.voices.size() == 4)
 	audio.advance(0.1,false,true)
 	assert(audio.voices.current.playing and audio.starts.current_loop == 1)
 	assert(audio.voices.current.pitch_scale == 1)
@@ -66,5 +66,5 @@ func checks() -> void:
 	audio = null
 	host.queue_free()
 	await process_frame
-	print("PASS: three bounded ride voices, material routing, independent mechanism, pause/mute/drop/reset/disposal")
+	print("PASS: four bounded ride voices, material routing, independent mechanism, pause/mute/drop/reset/disposal")
 	quit()

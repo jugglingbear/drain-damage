@@ -849,7 +849,8 @@ func step_death(delta: float) -> void:
 		return
 	if paused or life_state != "dying": return
 	death_time += delta
-	if death_time < 1.0: return
+	var duration: float = flush.ride.FALL_DURATION if flush.state == "ride" and flush.ride.events.has("fall") else 1.0
+	if death_time < duration: return
 	life_state = "game_over" if lives == 0 else "death_popup"
 	death_popup_locked = true
 	death_popup_guard = 0.35

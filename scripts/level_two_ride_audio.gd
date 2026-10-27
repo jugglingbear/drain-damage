@@ -1,5 +1,5 @@
 extends RefCounted
-## Three bounded voices separate current, contact and moving mechanisms.
+## Bounded ride voices keep fatal falls separate from current, contacts and mechanisms.
 var voices: Dictionary = {}
 var cues: Dictionary = {}
 var frozen := false
@@ -7,7 +7,7 @@ var cooldown := 0.0
 var starts: Dictionary = {}
 
 func attach(host: Node, definitions: Array) -> void:
-	for id in ["current", "contact", "mechanism"]:
+	for id in ["current", "contact", "mechanism", "fatal"]:
 		var voice := AudioStreamPlayer.new()
 		host.add_child(voice)
 		voices[id] = voice
@@ -19,7 +19,7 @@ func attach(host: Node, definitions: Array) -> void:
 
 func play(event: String) -> void:
 	if frozen or AudioServer.is_bus_mute(0) or not cues.has(event): return
-	var channel := "current" if event == "current_loop" else "mechanism" if event == "hinge_move" else "contact"
+	var channel := "fatal" if event == "fall_panic" else "current" if event == "current_loop" else "mechanism" if event == "hinge_move" else "contact"
 	if channel == "contact" and cooldown > 0: return
 	if channel == "mechanism" and voices.mechanism.playing: return
 	var voice: AudioStreamPlayer = voices[channel]
@@ -29,12 +29,16 @@ func play(event: String) -> void:
 	starts[event] = int(starts.get(event,0))+1
 	if channel == "contact": cooldown = 0.12
 
-func advance(delta: float, paused: bool, active: bool) -> void:
+func advance(delta: float, paused: bool, active: bool, falling := false) -> void:
 	frozen = paused
 	for voice: AudioStreamPlayer in voices.values(): voice.stream_paused = paused
-	if AudioServer.is_bus_mute(0) or not active:
+	if AudioServer.is_bus_mute(0) or (not active and not falling):
 		for voice: AudioStreamPlayer in voices.values(): voice.stop()
 		return
+	if falling:
+		for channel in ["current","contact","mechanism"]: voices[channel].stop()
+		return
+	voices.fatal.stop()
 	if paused: return
 	cooldown = maxf(0,cooldown-delta)
 	if not voices.current.playing: play("current_loop")

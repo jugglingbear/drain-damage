@@ -1,0 +1,60 @@
+extends SceneTree
+const Game = preload("res://scripts/integrated_first_call.gd")
+const Freeze = preload("res://scripts/screenshot_freeze.gd")
+
+func _initialize() -> void: call_deferred("checks")
+
+func checks() -> void:
+	for hero in [0,1]:
+		var game = Game.new()
+		game.employee = game.Crew.EMPLOYEES[hero]
+		root.add_child(game)
+		game.hide()
+		game.set_process(false)
+		game.set_physics_process(false)
+		game.begin_level_two()
+		var capture := Freeze.new()
+		capture.host = game
+		game.add_child(capture)
+		for index in [1,6,7,9,10]:
+			game.reset_game()
+			game.flush.enter_ride(game,index)
+			var ride = game.flush.ride
+			var before: int = ride.audio.starts.get("fall_panic",0)
+			ride.audio.play("ride_land")
+			ride.course.obstacles = [{"id":"fatal","kind":"gap","x":300,"y":330,"width":140,"depth":200}]
+			ride.tick(game,0.01,Vector2.ZERO,false)
+			assert(game.life_state == "dying" and game.lives == 2)
+			assert(ride.audio.starts.fall_panic == before+1,"Contact cooldown cannot suppress panic")
+			assert(ride.audio.voices.fatal.playing and not game.hero_death_audio.voice.playing)
+			for channel in ["current","contact","mechanism"]: assert(not ride.audio.voices[channel].playing)
+			ride.process_audio(game,0.1)
+			assert(ride.audio.voices.fatal.playing)
+			game.set_paused(true)
+			assert(ride.audio.voices.fatal.stream_paused)
+			game.step_death(2)
+			assert(game.death_time == 0)
+			game.set_paused(false)
+			assert(not ride.audio.voices.fatal.stream_paused)
+			capture.begin_freeze()
+			assert(capture.frozen and ride.audio.voices.fatal.stream_paused)
+			capture.resume()
+			assert(not ride.audio.voices.fatal.stream_paused)
+			AudioServer.set_bus_mute(0,true)
+			ride.process_audio(game,0)
+			assert(not ride.audio.voices.fatal.playing)
+			AudioServer.set_bus_mute(0,false)
+			ride.process_audio(game,0.2)
+			ride.tick(game,0.5,Vector2.ONE,true)
+			assert(ride.audio.starts.fall_panic == before+1,"Unmute/dead ticks must not replay the fall")
+			game.step_death(ride.FALL_DURATION-0.01)
+			assert(game.life_state == "dying" and not game.pause_menu.visible)
+			game.step_death(0.02)
+			assert(game.life_state == "death_popup" and not ride.audio.voices.fatal.playing)
+			game.respawn_after_death()
+			assert(game.life_state == "alive" and game.flush.ride.encounter_index == index)
+			assert(not ride.audio.voices.fatal.playing)
+		game.queue_free()
+		await process_frame
+	print("PASS:10 both-hero all-pit fatal voice lifecycles: once, cooldown priority, ordinary death voice suppression, pause/freeze/mute/retry/UI")
+	quit()

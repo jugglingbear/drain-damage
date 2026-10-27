@@ -17,7 +17,7 @@ func checks() -> void:
 			var capture := Freeze.new()
 			capture.host = game
 			game.add_child(capture)
-			for index in [1,6,7,9]:
+			for index in [1,6,7,9,10]:
 				game.reset_game()
 				game.begin_level_two()
 				game.flush.enter_ride(game,index)
@@ -40,7 +40,7 @@ func checks() -> void:
 				assert(ride.fall_clip_bottom() == float(gap.y)+float(gap.depth)*0.5)
 				game.step_death(0.25)
 				var quarter: Vector2 = ride.rider_transform(game).origin
-				assert(quarter.x == start.x and quarter.y > start.y+15)
+				assert(quarter.x == start.x and quarter.y > start.y+9)
 				assert(not game.pause_menu.visible and game.life_state == "dying")
 				capture.begin_freeze()
 				assert(paused and capture.frozen)
@@ -52,10 +52,12 @@ func checks() -> void:
 				ride.tick(game,1,Vector2.ONE,true)
 				assert(ride.position == failed and game.lives == 2)
 				game.step_death(0.26)
+				assert(game.life_state == "dying" and not game.pause_menu.visible)
+				game.step_death(0.35)
 				assert(game.life_state == "death_popup" and game.pause_menu.visible and game.lives == 2)
 				game.respawn_after_death()
 				assert(game.flush.ride.encounter_index == index and game.life_state == "alive")
 			game.queue_free()
 			await process_frame
-	print("PASS:24 authored pit falls, both heroes/all modes, downward progression before UI, clip rim, freeze, single life and checkpoint")
+	print("PASS:30 authored pit falls, both heroes/all modes, downward progression before UI, clip rim, freeze, single life and checkpoint")
 	quit()

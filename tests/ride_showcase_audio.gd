@@ -53,7 +53,9 @@ func checks() -> void:
 	ride.course.obstacles = [{"id":"fatal","kind":"long_pit","x":300,"y":330,"width":100,"depth":200}]
 	ride.tick(game,.01,Vector2.ZERO,false)
 	assert(game.life_state == "dying")
-	for voice in ride.audio.voices.values(): assert(not voice.playing,"Death stops ride layers")
+	for channel in ["current","contact","mechanism"]:
+		assert(not ride.audio.voices[channel].playing,"Death stops ordinary ride layers")
+	assert(ride.audio.starts.fall_panic == 1 and ride.audio.voices.fatal.playing)
 	game.queue_free()
 	await process_frame
 	print("PASS: material event routing, silent immune contacts, bounded visible mechanism, rest cleanup, ramp launch and death priority")
