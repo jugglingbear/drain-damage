@@ -1,0 +1,124 @@
+{
+  "created_at": "2026-10-26T16:30:40.966535-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "status": "Five concept proposals; no runtime boss or hazard implementation",
+  "owner": "Art / Bestiary",
+  "plan_owner": "Level Design",
+  "integration_owner": "Engineering",
+  "concepts": [
+    {
+      "id": 1,
+      "title": "Background Hunger",
+      "file": "01-background-hunger.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "description": "A huge head emerges from the wall shadows, commits to one lane, then lunges over intact track. Direct-hit consequences remain undecided.",
+      "status": "Concept only; not implemented",
+      "kind": "boss attack proposal"
+    },
+    {
+      "id": 2,
+      "title": "Track-Eating Bite",
+      "file": "02-track-eating-bite-game-style-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "description": "An early bite removes track ahead, leaving a persistent pit and waterfalls. The opposite bank remains open; a lane and edge warning must persist when the new hole is offscreen.",
+      "status": "Concept only; not implemented",
+      "kind": "boss attack proposal",
+      "previous_versions": [
+        "02-track-eating-bite.png"
+      ],
+      "revision": "Game-compatible sprite-style study; giant head-wide opening mouth, headright/playerleft. Not runtime art."
+    },
+    {
+      "id": 3,
+      "title": "Maintenance Hand",
+      "file": "03-maintenance-hand.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "description": "Optional giant hand reaches from a background hatch, strikes a marked center area, then withdraws to reveal a small pit. Impact rules and inclusion remain unapproved.",
+      "status": "Proof of concept authorized; full-bank jump-required destruction under team design",
+      "kind": "optional hazard proposal"
+    },
+    {
+      "id": 4,
+      "title": "Wall-Driven Ram",
+      "file": "04-wall-driven-ram.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "description": "Optional wall-mounted pressure ram strikes one bank and retracts, leaving damaged support. The visible mechanism establishes where the hazard comes from.",
+      "status": "Concept only; not implemented",
+      "kind": "optional hazard proposal"
+    },
+    {
+      "id": 5,
+      "title": "Ceiling Strainer Drop",
+      "file": "05-ceiling-strainer-drop.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "description": "Optional heavy strainer hangs from visible chains, drops onto a warned bank zone, and is hoisted away from the broken floor.",
+      "status": "Concept only; not implemented",
+      "kind": "optional hazard proposal"
+    }
+  ],
+  "prompts": "design/level-two-depth-concepts-v1/prompts.json",
+  "reference": {
+    "reviewed": true,
+    "features": "Bald crown, sparse side hair, broad face, full light brown/graying beard and moustache, brow/nose/cheek proportions.",
+    "identity": "Not inferred",
+    "source": "User supplied photo at 2026-10-26 16:15; used only for boss face concepts."
+  },
+  "mechanics_proposals": {
+    "warning_seconds": 1.5,
+    "minimum_fixed_target_seconds": 1.0,
+    "jaw_footprint": [
+      520,
+      115
+    ],
+    "jaw_lane": "Far230..345 or near315..430; never entire channel or115-deep centered footprint.",
+    "head_hitbox": "Large illustrative head silhouette is not collision bounds. Only declared jaw contact plane is dangerous.",
+    "track_bite": "Open ahead of player, not immediate pit under a hero who just took damage. Keep edge/lane pointer when offscreen.",
+    "persistent_damage": "Broken support stays visibly broken with matching pit/rim/waterfall.",
+    "optional_hand_footprint": [
+      140,
+      80
+    ],
+    "refuge": "One committed attack at a time; no simultaneous obstruction of designated safe lane."
+  },
+  "open_decisions": [
+    "Boss name and story",
+    "Boss defeat mechanism",
+    "Direct bite/hand impact damage versus fatality",
+    "Which optional hazards to include",
+    "Final timing and geometry after playable testing"
+  ],
+  "limitations": [
+    "Generated plates are illustrative, not registered runtime screenshots or collision diagrams.",
+    "Some hero poses and board designs vary from existing game sprites; these are scale references only.",
+    "Maintenance Hand lower panel labels near/far beside left/right arrows; do not use those labels as a bank-axis diagram. Canonical bank axis is screen y.",
+    "Track-bite plate shows outcome, not exact required ahead-of-player timing or offscreen cue placement."
+  ],
+  "plan_record": "handoffs/level-two-ride-showcase-layout.json#proposed_depth_and_final_boss",
+  "user_direction": {
+    "boss": "Head right, player left; head-wide Pac-Man-like mouth opening almost larger than closed head. Plan only.",
+    "hand": "Implement proof of concept currentLevel2; destroys track and requires jumping.",
+    "ram_camera": "Engineering feasibility consultation; no camera implementation yet.",
+    "strainer": "Explore holes spanning one or two of three bank lanes; dodge or jump."
+  },
+  "archival_status_note": {
+    "date": "2026-10-26",
+    "note": "Original proposal statuses retained as creation-time history. Maintenance Hand implemented110; strainers implemented112 and revised114. Boss and wall ram remain proposals.",
+    "current_delivery": "handoffs/first-call-integration.json"
+  }
+}
