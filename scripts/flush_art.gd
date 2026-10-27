@@ -24,6 +24,8 @@ func frame_at(id: String, time: float) -> Dictionary:
 
 func draw_frame(host: Node2D, frame: Dictionary, offset := Vector2.ZERO, tint := Color.WHITE,
 		clip_bottom := INF) -> void:
+	# Keep authored surface shading identical in normal and fall-occlusion passes.
+	tint *= Color(str(frame.get("tint","ffffff")))
 	if frame.has("layers"):
 		for layer: Dictionary in frame.layers: draw_frame(host,layer,offset,tint,clip_bottom)
 		return
