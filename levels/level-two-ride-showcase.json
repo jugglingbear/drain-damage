@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "level-two-ride-showcase",
   "date": "2026-10-26",
-  "status": "108 slalom and breach layout/model validation complete; Engineering owns combined build and visual acceptance",
+  "status": "Eleven-encounter hand POC layout/model tests pass; Engineering integration/art/visual acceptance pending",
   "owner": "Level Design",
   "integration_owner": "Engineering",
   "scope": "All ten selected concepts in order; isolated multipart encounters; no enemies/weapons.",
@@ -558,6 +558,49 @@
           }
         ],
         "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-11",
+      "concept_id": 11,
+      "title": "Maintenance Hand",
+      "action_hint": "Watch the hand break the channel, then jump the hole.",
+      "obstacles": [
+        {
+          "id": "hand-break",
+          "kind": "gap",
+          "x": 2600,
+          "y": 330,
+          "width": 140,
+          "depth": 200,
+          "art_id": "maintenance_hand_gap",
+          "activates_at": 2.9
+        }
+      ],
+      "end_x": 2670,
+      "rest_after_seconds": 3.0,
+      "warning_seconds": 3.0,
+      "hand_timeline": {
+        "warning_at": 1.25,
+        "impact_at": 2.9,
+        "jump_volume_clear_at": 3.05,
+        "target_world_x": 2600,
+        "target_world_y": 330,
+        "note": "Persistent right-edge cue; impact near half visible at right edge for earliest rider, tail remains offscreen. No horizontal lock or speed change."
+      },
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1800,
+            "target_y": 330
+          }
+        ],
+        "jump_press_world_x": [
+          2432
+        ],
         "horizontal_input": 0,
         "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
       }

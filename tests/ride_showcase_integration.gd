@@ -16,7 +16,7 @@ func checks() -> void:
 			game.hide()
 			game.set_process(false)
 			game.set_physics_process(false)
-			for index in range(10):
+			for index in range(11):
 				game.flush.reset()
 				game.reset_game()
 				var target: Dictionary = {}
@@ -48,5 +48,5 @@ func checks() -> void:
 				assert(game.flush.radio.current.is_empty() and not game.flush.music.voice.playing)
 			game.queue_free()
 			await process_frame
-	print("PASS: 60 integrated encounter entries, pause, death checkpoint, game-over retry, no flush replay or loadout change")
+	print("PASS: 66 integrated encounter entries, pause, death checkpoint, game-over retry, no flush replay or loadout change")
 	quit()

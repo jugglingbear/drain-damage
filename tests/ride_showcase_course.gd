@@ -40,18 +40,19 @@ func measure_margin(model: RefCounted, record: Dictionary, start: Vector2, old_a
 		lower_margin(record,"ramp_bank_clearance",
 			float(ramp.depth)*0.5-absf(model.position.y-float(ramp.y))-14)
 	for obstacle: Dictionary in model.course.obstacles:
-		if obstacle.kind not in ["support","overhead","low_barrier"]: continue
+		if obstacle.kind not in ["support","overhead","low_barrier"] and not (obstacle.kind == "gap"
+			and model.encounter_index == 10): continue
 		var left := float(obstacle.x)-float(obstacle.width)*0.5-45
 		var right := float(obstacle.x)+float(obstacle.width)*0.5+45
 		var enter := maxf(0,(left-start.x)/(finish.x-start.x))
 		var leave := minf(1,(right-start.x)/(finish.x-start.x))
 		if enter > leave: continue
-		if obstacle.kind == "low_barrier":
+		if obstacle.kind == "low_barrier" or (obstacle.kind == "gap" and model.encounter_index == 10):
 			var age := 0.0 if pressed else old_age
 			for fraction in [enter,leave]:
 				var u: float = (age+fraction*dt)/0.6
 				var z: float = 216*u*(1-u) if age >= 0 and u <= 1 else 0
-				lower_margin(record,"vertical_clearance",z-float(obstacle.clearance))
+				lower_margin(record,"vertical_clearance",z-float(obstacle.get("clearance",0)))
 		else:
 			var y0 := lerpf(start.y,finish.y,enter)
 			var y1 := lerpf(start.y,finish.y,leave)
@@ -130,8 +131,8 @@ func checks() -> void:
 								rest_count += 1
 							if not require(model.course.obstacles.is_empty() and model.jump_age < 0 and not model.ramp_active
 								and model.recovery_clock <= 0 and model.contact_latches.is_empty(),"Rest contains active hazard/state"): return
-					if not require(model.complete and host.won and rest_count == 10 and model.events.get("jump",0) == 6
-						and model.events.get("ramp",0) == 1,"Showcase did not finish10 encounters/10rests/6hops/1boost"): return
+					if not require(model.complete and host.won and rest_count == 11 and model.events.get("jump",0) == 7
+						and model.events.get("ramp",0) == 1,"Showcase did not finish11 encounters/11rests/7hops/1boost"): return
 					if not require(float(model.last_event.clock)-rest_start >= 3.0-0.000001,"Final rest shorter than3s"): return
 					for record: Dictionary in margins.values():
 						for value in record.values():
@@ -140,5 +141,5 @@ func checks() -> void:
 					print("PASS SHOWCASE ",hero," ",mode," x",anchor," hz",hz," seconds",snappedf(model.clock,0.001))
 					passed += 1
 					host.free()
-	print("PASS: ",passed," complete showcase routes;540 encounter traversals, full3s rests and no damage")
+	print("PASS: ",passed," complete showcase routes;594 encounter traversals, full3s rests and no damage")
 	quit()

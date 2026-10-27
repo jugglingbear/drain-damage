@@ -347,6 +347,10 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 			continue
 		var interval := _relative_interval(obstacle,a,b,encounter_clock,dt)
 		if interval.x < 0: continue
+		# A destructible floor becomes unsupported at the same timestamp as its visible impact.
+		var activation_fraction := (float(obstacle.get("activates_at",0))-encounter_clock)/dt
+		if activation_fraction > interval.y: continue
+		interval.x = maxf(interval.x,activation_fraction)
 		var spans := _vertical_spans(kind,obstacle,old_age,dt,interval,hero_head_height(host))
 		if kind in ["gap","long_pit"]:
 			for deck: Dictionary in course.obstacles:

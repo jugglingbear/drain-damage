@@ -2,6 +2,8 @@ extends "res://scripts/ride_showcase_model.gd"
 ## Showcase presentation uses the same calibrated obstacle and rider anchors as the simulation.
 const Audio = preload("res://scripts/level_two_ride_audio.gd")
 const Art = preload("res://scripts/flush_art.gd")
+const Hand = preload("res://scripts/ride_maintenance_hand.gd")
+const HAND_ART := "res://assets/world/maintenance-hand-poc-v1/manifest.json"
 const SHOWCASE_ART := "res://assets/world/ride-showcase-v1/manifest.json"
 var art := Art.new()
 var obstacle_art := Art.new()
@@ -16,7 +18,13 @@ func attach(host: Node2D) -> void:
 	audio.attach(host,audio_definition.audio.cues)
 	art.configure(JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-ride-v1/manifest.json")))
 	if FileAccess.file_exists(SHOWCASE_ART):
-		obstacle_art.configure(JSON.parse_string(FileAccess.get_file_as_string(SHOWCASE_ART)))
+		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHOWCASE_ART))
+		var hand: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(HAND_ART))
+		for key in ["frames","animations","obstacle_overlays"]:
+			manifest[key].merge(hand[key])
+		manifest["hand_parts"] = hand.hand_parts
+		manifest["hand_timeline"] = hand.timeline
+		obstacle_art.configure(manifest)
 
 func begin(host: Node2D, index := -1) -> void:
 	visual_obstacles.clear()
@@ -72,6 +80,9 @@ func visual_bounds(obstacle: Dictionary) -> Rect2:
 			if part.has("clip_bottom"):
 				part_bounds.size.y = maxf(0,minf(part_bounds.end.y,float(part.clip_bottom))-part_bounds.position.y)
 			bounds = bounds.merge(part_bounds)
+	if id == "maintenance_hand_gap":
+		for part: Dictionary in hand_assembly(obstacle).parts:
+			bounds = bounds.merge(frame_bounds(frames[part.id],part.transform))
 	for overlay: Dictionary in obstacle_art.manifest.get("obstacle_overlays",{}).get(id,[]):
 		for frame: Dictionary in obstacle_art.manifest.animations[str(overlay.animation)].frames:
 			bounds = bounds.merge(frame_bounds(frame,Transform2D(0,point)))
@@ -206,17 +217,37 @@ func float_assembly(obstacle: Dictionary) -> Dictionary:
 		{"id":"float_rod_pivot_v2","transform":Transform2D(angle,pivot)},
 		{"id":"float_rod_socket_v2","transform":Transform2D(angle,socket)}]}
 
+func hand_assembly(obstacle: Dictionary) -> Dictionary:
+	return Hand.assembly(obstacle_art.manifest,obstacle_position(obstacle),visual_age(obstacle))
+
+func obstacle_active(obstacle: Dictionary) -> bool:
+	return visual_age(obstacle) >= float(obstacle.get("activates_at",0))
+
+func draw_hand(host: Node2D, obstacle: Dictionary) -> void:
+	for part: Dictionary in hand_assembly(obstacle).parts:
+		host.draw_set_transform_matrix(part.transform)
+		obstacle_art.draw_named(host,part.id,Vector2.ZERO,Color(1,1,1,part.alpha))
+	host.draw_set_transform(Vector2.ZERO)
+
 func draw_obstacle(host: Node2D, obstacle: Dictionary) -> void:
 	var point := obstacle_position(obstacle)
 	var id := obstacle_frame_id(obstacle)
 	if id == "launch_ramp":
 		draw_ramp(host,obstacle,point)
 		return
+	if not obstacle_active(obstacle):
+		if id == "maintenance_hand_gap" and visual_age(obstacle) >= float(obstacle_art.manifest.hand_timeline.warning):
+			obstacle_art.draw_named(host,"hand_cracks",point)
+		return
 	assert(obstacle_art.manifest.frames.has(id),"Missing calibrated obstacle art: "+id)
 	obstacle_art.draw_named(host,id,point)
 	draw_obstacle_overlays(host,obstacle,false)
+	if id == "maintenance_hand_gap":
+		var debris_alpha := 1.0-clampf((visual_age(obstacle)-float(obstacle.activates_at))/0.12,0,1)
+		if debris_alpha > 0: obstacle_art.draw_named(host,"hand_collapse",point,Color(1,1,1,debris_alpha))
 
 func draw_obstacle_overlays(host: Node2D, obstacle: Dictionary, foreground: bool) -> void:
+	if not obstacle_active(obstacle): return
 	var id := obstacle_frame_id(obstacle)
 	for overlay: Dictionary in obstacle_art.manifest.get("obstacle_overlays",{}).get(id,[]):
 		if bool(overlay.get("foreground",false)) != foreground: continue
@@ -298,6 +329,7 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 		if obstacle.kind in ["support","overhead"]:
 			foreground.append(obstacle)
 		else: draw_obstacle(host,obstacle)
+		if obstacle_frame_id(obstacle) == "maintenance_hand_gap": draw_hand(host,obstacle)
 	foreground.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return obstacle_position(a).y < obstacle_position(b).y)
 	var rider_drawn := false
 	for obstacle: Dictionary in foreground:
@@ -310,7 +342,7 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 		# Solid island tops and sidewalls occlude the descending composite at its failed position.
 		for obstacle: Dictionary in visual_obstacles:
 			var frame: Dictionary = obstacle_art.manifest.frames[obstacle_frame_id(obstacle)]
-			if obstacle.kind == "deck" or bool(frame.get("has_fall_occlusion",false)):
+			if obstacle_active(obstacle) and (obstacle.kind == "deck" or bool(frame.get("has_fall_occlusion",false))):
 				draw_fall_occluder(host,frame,obstacle_position(obstacle))
 	for obstacle: Dictionary in visual_obstacles:
 		if visual_bounds(obstacle).intersects(VIEWPORT,true): draw_obstacle_overlays(host,obstacle,true)
@@ -319,18 +351,26 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	host.label_at("RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)
 	host.label_at("Steer: arrows / stick   Jump: Space / A",Vector2(24,52),14,host.GOLD)
 	host.draw_vitals(Vector2(550,10))
-	host.label_at("%02d / 10" % (encounter_index+1),Vector2(830,52),14,host.MINT)
+	host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(830,52),14,host.MINT)
 	if phase == "rest":
 		host.label_at("REST — %.1f s" % rest_remaining,Vector2(24,92),22,host.MINT)
 	elif phase == "encounter":
 		host.label_at("%02d  %s" % [encounter_index+1,str(encounter.get("title",""))],Vector2(24,92),22,host.GOLD)
 		host.label_at(str(encounter.get("action_hint","")),Vector2(24,117),16,host.MINT)
+	if phase == "encounter" and encounter.has("hand_timeline"):
+		var warning := float(encounter.hand_timeline.warning_at)
+		var pit: Dictionary = course.obstacles[0]
+		if encounter_clock >= warning and obstacle_position(pit).x+float(pit.width)*0.5 > position.x-HALF.x:
+			host.label_at("TRACK BREAK AHEAD →" if not obstacle_active(pit) else "JUMP THE FULL-WIDTH GAP →",
+				Vector2(580,155),18,host.GOLD)
+			if obstacle_position(pit).x+float(pit.width)*0.5 > 960:
+				host.label_at("Far edge is still offscreen",Vector2(650,178),14,host.MINT)
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:
 		host.box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
 		if host.life_state in ["death_popup","game_over"]: host.draw_death_popup()
 		elif host.won:
 			host.label_at("OBSTACLE TEST COMPLETE",Vector2(270,195),28,host.GOLD)
-			host.label_at("All ten encounters finished",Vector2(330,230),21,host.MINT)
+			host.label_at("All %d encounters finished" % definition.encounters.size(),Vector2(330,230),21,host.MINT)
 			host.draw_pause_plates()
 		else: host.draw_pause_panel()

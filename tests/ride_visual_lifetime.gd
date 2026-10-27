@@ -15,7 +15,7 @@ func checks() -> void:
 	for hero in [0,1]:
 		game.employee = game.Crew.EMPLOYEES[hero]
 		for anchor in [180.0,650.0]:
-			for index in range(10):
+			for index in range(11):
 				game.life_state = "alive"
 				game.flush.enter_ride(game,index)
 				ride.position = Vector2(anchor,330)
@@ -42,7 +42,7 @@ func checks() -> void:
 				assert(not ride.visual_obstacles.has(last),"Offscreen old prop must not respawn")
 				checked += 1
 	# Every authored footprint, including shadows and the rotated sweep arm, at both horizontal edges.
-	for index in range(10):
+	for index in range(11):
 		game.flush.enter_ride(game,index)
 		for visual: Dictionary in ride.visual_obstacles:
 			for phase in [0.0,0.6,1.2,1.8]:
