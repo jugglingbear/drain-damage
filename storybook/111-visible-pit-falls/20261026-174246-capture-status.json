@@ -1,0 +1,69 @@
+{
+  "build": "Prototype111 / 0.111.0",
+  "status": "GPU review found remaining encounter07 opening bug; not visually fixed",
+  "created_at": "2026-10-26T17:42:46-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "capture_time": null,
+  "source_commit": "32604643d2c60ec24a8702eeb59def7894dc2c00",
+  "archive_sha256": "aa602610f9cd38c84cab20eabbc0b192b7de1de8861f8f28e19e9701e9225b66",
+  "scope": [
+    "Fix rider disappearance reported in110 encounters02/07; applies to02/07/08/10/11",
+    "Root cause: frozen invulnerability blink and island top overpainting initial edge fall",
+    "Always-visible fatal rider, no alpha fade; inward carry0.22seconds then accelerated descent, gradual pit-local clipping, near island face only rather than entire deck top; UI waits1.35seconds",
+    "Once-per-fall1.2second CC0 fall_panic dedicated voice, pause/freeze/mute/retry lifecycle; normal death flush suppressed"
+  ],
+  "reported_checks": "40/40 packaged suites pass, zero failures; eight Python tests,100 audio freshness, exported02 Tony Normal screenshot mode on and07 Sean Hard mode off, strict codesign and ZIP pass per Engineering. New coverage:216 imported opaque silhouettes,30 actual-host pit deaths,10 fatal voice cases. Archive SHA/source marker/40 suite entries and log paths independently verified.",
+  "remaining": [
+    "Encounter07 wrong-opening bug; correction planned for112",
+    "Human listening review"
+  ],
+  "capture_gap": "Five actual approved window captures archived; encounter07 remains visually unfixed. Captures are controlled frame inspection, not unassisted playthrough. Listening review unconfirmed.",
+  "finalized_at": "2026-10-26T17:45:41-07:00",
+  "archive_path": "builds/history/Prototype-111.zip",
+  "app_path": "builds/Prototype-111/Drain Damage.app",
+  "source_snapshot": "builds/source-111",
+  "source_snapshot_status": "Engineering confirms1834 tracked hydrated files; source marker independently verified.",
+  "validation_record": "builds/verification-111/final-results.json",
+  "occlusion_limit": "Hero descends below viewport mathematically, but foreground lip progressively hides it. No claim of visible travel through opaque near bank.",
+  "review_findings": "Engineering reports actual GPU review:02 frames at0/.30/.50 show progressive lip descent;07 initial fall descends onto solid island cap because carry targets whole pit. Preserve111 as review iteration; root correction subtracts deck rectangles and selects nearest unsupported opening for112.",
+  "capture_session": "storybook/111-visible-pit-falls/20261026-175212-capture-session.json",
+  "captures": [
+    {
+      "path": "/Users/sfoley/repos/drain_damage/storybook/111-visible-pit-falls/20261026-175212-02-tony-fall-000.png",
+      "captured_at": "2026-10-27T00:52:12.809Z",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "label": "02-tony-fall-000"
+    },
+    {
+      "path": "/Users/sfoley/repos/drain_damage/storybook/111-visible-pit-falls/20261026-175223-02-tony-fall-030.png",
+      "captured_at": "2026-10-27T00:52:23.729Z",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "label": "02-tony-fall-030"
+    },
+    {
+      "path": "/Users/sfoley/repos/drain_damage/storybook/111-visible-pit-falls/20261026-175242-02-tony-fall-050.png",
+      "captured_at": "2026-10-27T00:52:42.234Z",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "label": "02-tony-fall-050"
+    },
+    {
+      "path": "/Users/sfoley/repos/drain_damage/storybook/111-visible-pit-falls/20261026-175252-07-sean-approach.png",
+      "captured_at": "2026-10-27T00:52:52.153Z",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "label": "07-sean-approach"
+    },
+    {
+      "path": "/Users/sfoley/repos/drain_damage/storybook/111-visible-pit-falls/20261026-175336-07-sean-fall-000.png",
+      "captured_at": "2026-10-27T00:53:36.825Z",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "label": "07-sean-fall-000"
+    }
+  ],
+  "capture_method": "Approved CUA game-window screenshots of exact exported PCK running in script-capable Godot 4.7.2; deterministic actual physics fatal entry then inspected death-time frames; not an unassisted playthrough."
+}

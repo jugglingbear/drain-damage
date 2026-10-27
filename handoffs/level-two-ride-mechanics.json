@@ -256,9 +256,9 @@
       "fall_presentation": "Model freezes board water-plane position, scroll and clock at exact swept unsupported contact; render height resets to water-plane0 and fall event fires once. Dead ticks ignore input. Engineering owns downward composite animation, rim/deck occlusion and delaying death UI; no core death-timing change made by Mechanics."
     },
     "encounters": {
-      "rest_seconds": 3,
-      "rest_start": "All multipart extents pass leftmost anchor180 minus half-board45, and jump/ramp/recovery/contact latches clear.",
-      "rest_state": "No obstacle actors or next warnings until three full seconds expire; steering and grounded jumping remain active. Flight/cooldown advance during rest, and an airborne jump continues into the next encounter without extending rest.",
+      "rest_seconds": 0,
+      "rest_start": "Superseded for currentPrototype112: no explicit rest; transition as soon as physical hazards/latches clear, without waiting for jump or cooldown.",
+      "rest_state": "Current zero-rest rides retain normal approach distance and continuous jumping across encounter boundaries. Earlier3s records are historical.",
       "checkpoint": "Current encounter index retries directly, no flush replay; begin resets anchor300,330."
     },
     "validation": {
@@ -574,5 +574,48 @@
       "record": "handoffs/first-call-integration.json",
       "status": "38 packaged suites pass, including actual wrapper clearance bounds. Live visual review remains pending."
     }
+  },
+  "camera_tilt_feasibility": {
+    "status": "Research/design only; no camera, difficulty or wall-ram implementation approval inferred",
+    "approach": "Keep deterministic world-plane collisions and apply one shared render projection to track, holes, decks, attack masks, shadows, hand targets and rider support anchors. HUD stays screen-fixed.",
+    "controls": "Recommend preserving along-track left/right and across-bank up/down. Screen-relative control is a separate choice requiring inverse projection and new speed/clamp proofs; never silently remap by difficulty.",
+    "height": "Jump elevation and hero head envelopes remain a separate vertical axis. Authored perspective artwork may need Art adaptation; rotating only background or warping a finished screenshot cannot establish correct contact.",
+    "limits": "Tilt can reduce visible lane width, hide a refuge, shorten warning visibility or occlude tall threats even when world collision outcomes are unchanged. Start with static mild candidate; dynamic tilt/difficulty coupling remains unapproved.",
+    "acceptance": [
+      "Same world replay and collision outcomes at zero tilt and candidate projection",
+      "All visible danger/support masks and actual contact anchors share the transform",
+      "Both hero head envelopes, far/near refuges and pit edges remain readable at all allowed anchors",
+      "Measure projected safe-lane width and cue lead time; do not assume old viewport margins",
+      "Evaluate controller direction expectations and reduced-motion choice before dynamic camera work"
+    ]
+  },
+  "zero_rest_revision112": {
+    "status": "Approved source implementation and focused checks pass; Engineering owns next build; Prototype111 unchanged",
+    "source": "scripts/ride_showcase_model.gd",
+    "behavior": "Current13 encounters set explicit rest0. Next encounter starts immediately when physical obstacle extents and contact latches clear, even while airborne; normal/ballistic jump state and cooldown carry across. Normal approach positions remain, not a mixed course.",
+    "api": "encounter_started_at is stable global-clock start timestamp; encounter_started counter retained; zero-rest transitions emit no rest_started. Positive explicitly configured rest fixtures retain their legacy landing boundary.",
+    "holds": "Physical ramp support, outstanding recovery/contact latch or obstacle extent not yet behind leftmost board anchor can hold transition. A jump or cooldown cannot hold a zero-rest transition.",
+    "validation": {
+      "test": "tests/ride_zero_rest.gd",
+      "cases": 18,
+      "coverage": "Bothheroes at30/60/120Hz with normalflight/ballisticflight/cooldown; measured75px fixture clear at75/560 plus<=1/120seconds; single edge crosses boundary once, no stale hazard teardown.",
+      "regressions": "18 positive-rest jump cases and324 hand-jump/miss cases pass. Initial hand fixture expected landing before positive-rest and exposed compatibility regression; restored positive-rest semantics, final rerun passes.",
+      "layout": {
+        "reported_by": "Level Design",
+        "status": "Frozen source geometry; primary matrices pass",
+        "whole_routes": 54,
+        "encounter_traversals": 702,
+        "cadence": "No explicit rests; each stage starts within one simulation step of physical clearance.",
+        "brush": "5076 straight/jump attempts and162 safe weaves\u00b150ms pass; art registration/alpha passes.",
+        "strainer": "594 safe dodge/jump cases and270 fatal cases pass, including285.9safe/286fatal boundary.",
+        "other": "972 existing failures and hand486safe/162miss cases pass. Slalom compatibility index-exit rerun still in progress when reported."
+      }
+    },
+    "camera": "Feasibility only; no tilt, difficulty coupling or wall-ram implementation included."
+  },
+  "integration_delivery": {
+    "build": "Prototype 112 / 0.112.0",
+    "record": "handoffs/first-call-integration.json",
+    "status": "Zero-rest transitions and all 13 encounters pass final packaged checks; fall opening and near-face fixes verified with actual rendered spot checks."
   }
 }

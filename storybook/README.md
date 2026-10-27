@@ -2731,6 +2731,134 @@ Finalization and archive identity are in the metadata.
 
 [Local build evidence and capture status](110-maintenance-hand/20261026-172232-capture-status.json).
 
+## 111 — Visible pit falls — October 26, 2026
+
+**Build:** Prototype 111 / 0.111.0 built and ready for visual review, not visually accepted. Runtime source
+`32604643d2c60ec24a8702eeb59def7894dc2c00`; archive SHA-256 and source marker independently verified. Engineering
+confirms 1,834 tracked hydrated snapshot files; v00.110.00 is preserved.
+
+Sean's v00.110.00 pit-disappearance report in encounters02/07 exposed a frozen invulnerability blink and island-top
+overpainting at the initial edge fall. The correction applies to02/07/08/10/11: suppress the blink and alpha fade during
+fatal falls, carry inward for 0.22 seconds, then accelerate descent with gradual pit-local clipping. Only the near
+island face occludes the fall; the death UI waits 1.35 seconds.
+
+A dedicated once-per-fall 1.2-second CC0 fall_panic voice follows pause, freeze, mute and retry lifecycle behavior; the
+normal death flush is suppressed.
+
+**Validation:** All 40 packaged suites pass with zero failures; the manifest and log paths were checked. Engineering
+reports eight Python tests, 100-slot audio freshness, exported02 Tony Normal with screenshot mode on and07 Sean Hard
+with it off, strict codesign and ZIP checks pass. New coverage includes 216 imported opaque silhouettes, 30 actual-host
+pit deaths and 10 fatal-voice cases.
+
+**Visual limitation:** The hero mathematically descends below the viewport, while the foreground lip progressively hides
+the body. This does not mean the hero visibly travels through the opaque near bank. Silhouette/source checks and
+actual-host logic tests are not GPU captures or visual acceptance.
+
+**GPU review finding:** Actual GPU review found a remaining encounter07 bug: the underlying pit includes solid islands,
+so whole-pit carry sends Sean onto the cap. Encounter02 frames at0/.30/.50 show progressive lip descent. Encounter07
+approach and initial-fall captures document the failed opening. This build is a review iteration, not visually fixed.
+Capture metadata and labeled images are now archived below; the original app/archive/source remain unchanged.
+
+**Record created:** 2026-10-26T17:42:46-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+Finalization and archive identity are in the metadata.
+
+[Local build evidence and capture status](111-visible-pit-falls/20261026-174246-capture-status.json).
+
+### Approved GPU review captures
+
+Approved actual game-window captures of the exact v00.111.00 exported PCK running in script-capable Godot 4.7.2.
+Actual physics established fatal entry; death-time frames were then inspected under controlled timing. This was not an
+unassisted playthrough. Captured October 26, 2026, 17:52:12–17:53:36 America/Los_Angeles (UTC−07:00).
+The 02 sequence shows progressive lip descent; the 07 images document the setup of the remaining wrong-opening bug.
+
+![Figure 1: Encounter02 Tony, fall time0.00s](111-visible-pit-falls/20261026-175212-02-tony-fall-000.png)
+
+Encounter02 Tony, fall time0.00s: rider visible at the opening.
+
+![Figure 2: Encounter02 Tony, fall time0.30s](111-visible-pit-falls/20261026-175223-02-tony-fall-030.png)
+
+Encounter02 Tony, fall time0.30s: rider descends into the opening.
+
+![Figure 3: Encounter02 Tony, fall time0.50s](111-visible-pit-falls/20261026-175242-02-tony-fall-050.png)
+
+Encounter02 Tony, fall time0.50s: near lip progressively occludes the rider.
+
+![Figure 4: Encounter07 Sean approach](111-visible-pit-falls/20261026-175252-07-sean-approach.png)
+
+Encounter07 Sean approach: solid island caps border the opening.
+
+![Figure 5: Encounter07 Sean, fall time0.00s](111-visible-pit-falls/20261026-175336-07-sean-fall-000.png)
+
+Encounter07 Sean, fall time0.00s: cap-edge setup of the wrong-opening failure found during review. This frame alone does not show the later descent.
+
+[Exact capture timestamps and method](111-visible-pit-falls/20261026-175212-capture-session.json).
+
+## 112 — Pit openings and ride obstacles — October 26, 2026
+
+**Status:** Prototype 112 / 0.112.0 validated locally, runtime source221e9608c40763975b43acb343201b54068aa32c. All45
+final packaged suites pass; an obsolete no-carry pit assertion was updated and its42-case recheck passed, with the
+initial attempt retained. Eight Python tests,100 audio freshness, exported12 Sean Hard screenshot mode on/13 Tony Normal
+off, strict signing and ZIP checks pass per Engineering. Archive SHA-256/source marker independently verified;1,860
+source files confirmed. Controlled rendered fall spot checks are confirmed; full-paced brush/strainer and subjective
+audio acceptance remain pending. Test window closed.
+
+The opening correction subtracts solid deck rectangles from the pit and selects the nearest unsupported opening for
+fatal carry. It follows the actual v00.111.00 encounter07 review failure, where the rider descended onto an island cap.
+Approved brushes, strainers and zero rests join this delivery; integration is included in this local build.
+
+**Capture gap:** Approved rendered fall spot checks are now archived below; full-paced human acceptance remains pending. Preserve v00.111.00 app, archive,
+source and review captures unchanged.
+
+**Record created:** 2026-10-26T17:56:31-07:00 (`America/Los_Angeles`, UTC offset -07:00), not a capture time.
+
+[Local build and capture evidence](112-pit-openings-and-ride-obstacles/20261026-175631-capture-status.json).
+
+### Controlled GPU fall review
+
+Rendered fall spot checks confirm in-gap descent in07 and corrected near-face ordering in08, with visible falls in10–13.
+The first three images use preserved review-1.pck; captures from18:03:18 use the corrected rebuilt PCK. Actual physics
+established fatal entry before controlled death-time inspection in Godot4.7.2. This is not an unassisted playthrough.
+Full-paced brush/strainer human review and subjective audio acceptance remain pending; all45 final packaged suites pass.
+
+![Review frame 1](112-pit-openings-and-ride-obstacles/20261026-175929-07-sean-fall-030.png)
+
+Review1:07 Sean at0.30s, descending in the gap rather than onto the cap.
+
+![Review frame 2](112-pit-openings-and-ride-obstacles/20261026-180001-07-sean-fall-065.png)
+
+Review1:07 Sean at0.65s, further descent with foreground-lip occlusion.
+
+![Review frame 3](112-pit-openings-and-ride-obstacles/20261026-180021-08-sean-hard-fall-040.png)
+
+Before correction, review1:08 Sean Hard at0.40s; basin near face incorrectly hides most of the body.
+
+![Review frame 4](112-pit-openings-and-ride-obstacles/20261026-180318-08-sean-hard-near-edge-corrected-040.png)
+
+Corrected rebuilt PCK:08 Sean Hard at0.40s; body remains visible in front of the near face.
+
+![Review frame 5](112-pit-openings-and-ride-obstacles/20261026-180339-10-tony-hard-fall-040.png)
+
+Corrected rebuilt PCK:10 Tony Hard at0.40s, visible fall.
+
+![Review frame 6](112-pit-openings-and-ride-obstacles/20261026-180352-11-tony-fall-040.png)
+
+Corrected rebuilt PCK:11 Tony at0.40s, visible fall.
+
+![Review frame 7](112-pit-openings-and-ride-obstacles/20261026-180409-12-sean-fall-030.png)
+
+Corrected rebuilt PCK:12 Sean at0.30s, visible fall in the new brush encounter.
+
+![Review frame 8](112-pit-openings-and-ride-obstacles/20261026-180423-13-tony-fall-040.png)
+
+Corrected rebuilt PCK:13 Tony at0.40s, visible fall in the new strainer encounter.
+
+![Review frame 9](112-pit-openings-and-ride-obstacles/20261026-180441-13-tony-death-menu-after-fall.png)
+
+Corrected rebuilt PCK:13 death menu after the fall, showing two lives remaining. Capture reported18:04:41 LA; detailed
+session metadata update pending.
+
+[Capture method, revision boundaries and timestamps](112-pit-openings-and-ride-obstacles/20261026-175929-capture-session.json).
+
 ## Future chapters
 
 Each delivered iteration gets its own numbered folder, dated entry, and fresh screenshots. Earlier chapters stay intact

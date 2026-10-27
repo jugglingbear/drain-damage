@@ -77,12 +77,34 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 26, 2026 · Current build: Prototype 110 / 0.110.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 26, 2026 · Current build: Prototype 112 / 0.112.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
 verify. An initial random-seed lifecycle run hit a cohort-placement failure; the fixed-seed check passes, but that
 planner limitation remains open. Prototype 100 is preserved. Actual gameplay capture and visual review remain pending.
+<a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Prototype 112 — pit openings, giant brushes and strainers (ready locally):</strong>
+Falls now target actual empty space between islands, with near-edge faces drawn behind the falling hero. User-approved
+rendered captures verify progressive descent across the ride pit types and the delayed one-life death menu.
+Encounter 04 has three individually mounted giant brushes; new encounters 12 and 13 offer one- and two-lane strainer
+holes that allow a dodge or ordinary jump. All explicit three-second rests are removed, preserving normal approaches,
+telegraphs and airborne jump continuity. Direct entries extend through <code>LEVEL=2-13</code>.
+All 45 final packaged suites, eight Python checks, 100 audio slots, new exported entries and the signed archive verify.
+The 13-encounter model route takes about 69.5 seconds. Earlier builds and the failed review frames are preserved.
+Normal-paced new-obstacle readability and subjective sound acceptance remain pending. Camera tilt, wall ram, mixed
+course and hungry-head boss remain proposals. Nothing is pushed under the edition 33 publication hold.
+<a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
+<p><strong>Prototype 111 — shared pit-fall repair (review iteration; remaining island bug found):</strong>
+Fixes a frozen damage-blink phase that could hide the hero throughout a fatal fall, plus island tops masking the
+initial edge fall. All ride pits now keep the hero opaque, carry the board continuously into the opening, and use
+accelerated descent with progressive lip clipping. Pit death menus wait 1.35 seconds. A dedicated recorded panic cue
+plays once, with pause, freeze, mute and retry cleanup. Ordinary obstacle damage remains one HP.
+All 40 packaged suites, eight Python checks, 100 audio slots, direct entries 02 and 07, and the signed archive verify.
+Checks include 216 imported silhouette sequences, 30 actual-host pit deaths and ten fatal-audio lifecycle cases.
+Actual review confirmed the 02 descent but found 07 targeting the whole pit beneath solid islands. Captures preserve that finding; Prototype 112 corrects it. Listening acceptance remains pending.
+The foreground bank hides the descending hero naturally; visible movement through that opaque wall is not claimed.
+Prototype 110 is preserved, and nothing is pushed under the edition 33 publication hold.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>
 <p><strong>Prototype 110 — Maintenance Hand proof of concept (ready locally):</strong>
 Encounter 11 adds a background-mounted hand that breaks a 140×200 full-width hole in the channel, requiring an

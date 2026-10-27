@@ -3,7 +3,7 @@
   "date": "2026-10-26",
   "owner": "Level Design",
   "integration_owner": "Engineering",
-  "status": "Hand POC encounter11 layout/model validation complete; Engineering owns combined build and visual acceptance",
+  "status": "112 Level Design source delivery frozen:13encounters, zero explicit rest, giant brushes and two strainer variants; Engineering delivery pending",
   "files": [
     "levels/level-two-ride-showcase.json",
     "tests/ride_showcase_course.gd",
@@ -15,7 +15,7 @@
     "scripts/ride_showcase_model.gd"
   ],
   "contract": {
-    "order": "All ten concepts, 2-01 through 2-10; latest bank-connected slalom and spike grate",
+    "order": "Thirteen isolated encounters: original1..11 preserved,04 giantbrush revision,12/13 one/two-lane strainers.",
     "speed": 560,
     "steering": [
       400,
@@ -23,7 +23,7 @@
     ],
     "normal_jump_seconds": 0.6,
     "normal_jump_apex": 54,
-    "rest": "Three full seconds with no hazards or next warnings after all shapes, full board, motion extents, jump, ramp, recovery and contacts clear.",
+    "rest": "Zero explicit rest. Start next encounter as soon as prior physical bounds clear; carry jump and cooldown into its normal safe approach.",
     "difficulty": "Same geometry for easy, normal and hard; route witnesses stored per encounter.",
     "ramp": {
       "run": 200,
@@ -81,11 +81,99 @@
         1,
         34
       ]
+    },
+    "rest_revision": {
+      "status": "Approved zero-rest source model and13-encounter route tests passed",
+      "intent": "Avoid stacking a three-second hold with the next encounter approach. Keep560 speed and viable advance cues; no automatic approval for continuous mixed-course design.",
+      "validation": "Measure actual end-to-next-warning/contact timelines and ensure no overlapping attacks or invalid carried jumps.",
+      "measured_stage_durations_seconds": [
+        6.36666666666677,
+        5.51666666666653,
+        4.49166666666641,
+        6.53333333333296,
+        4.59999999999974,
+        4.49166666666641,
+        6.4916666666663,
+        6.65833333333295,
+        4.46666666666641,
+        6.28333333333298,
+        4.53333333333308,
+        4.53333333333389
+      ],
+      "transition_hold_bound_seconds": 0.008333333333333333,
+      "approach_to_first_hazard_bounds": [
+        {
+          "id": "2-01",
+          "x650_seconds": 3.294642857142857,
+          "x180_seconds": 4.133928571428571
+        },
+        {
+          "id": "2-02",
+          "x650_seconds": 2.9017857142857144,
+          "x180_seconds": 3.7410714285714284
+        },
+        {
+          "id": "2-03",
+          "x650_seconds": 3.3125,
+          "x180_seconds": 4.151785714285714
+        },
+        {
+          "id": "2-04",
+          "x650_seconds": 3.2767857142857144,
+          "x180_seconds": 4.116071428571429
+        },
+        {
+          "id": "2-05",
+          "x650_seconds": 3.380357142857143,
+          "x180_seconds": 4.2196428571428575
+        },
+        {
+          "id": "2-06",
+          "x650_seconds": 3.3125,
+          "x180_seconds": 4.151785714285714
+        },
+        {
+          "id": "2-07",
+          "x650_seconds": 3.4017857142857144,
+          "x180_seconds": 4.241071428571429
+        },
+        {
+          "id": "2-08",
+          "x650_seconds": 3.4017857142857144,
+          "x180_seconds": 4.241071428571429
+        },
+        {
+          "id": "2-09",
+          "x650_seconds": 3.3375,
+          "x180_seconds": 4.176785714285714
+        },
+        {
+          "id": "2-10",
+          "x650_seconds": 3.0267857142857144,
+          "x180_seconds": 3.8660714285714284
+        },
+        {
+          "id": "2-11",
+          "x650_seconds": 3.2767857142857144,
+          "x180_seconds": 4.116071428571429
+        },
+        {
+          "id": "2-12",
+          "x650_seconds": 3.2767857142857144,
+          "x180_seconds": 4.116071428571429
+        },
+        {
+          "id": "2-13",
+          "x650_seconds": 3.2767857142857144,
+          "x180_seconds": 4.116071428571429
+        }
+      ],
+      "note": "Approach bounds are geometric earliest x-overlap, not guaranteed damage or a claim the entire object is visible. Existing cue timelines remain; no extra3s hold."
     }
   },
   "validation": {
     "full_routes": 54,
-    "encounter_traversals": 594,
+    "encounter_traversals": 702,
     "heroes": [
       "tony",
       "sean"
@@ -152,20 +240,24 @@
       "shortfall": 54
     },
     "logs": [
-      ".godot/level-design-scratch/ride_showcase_course-108.log",
-      ".godot/level-design-scratch/ride_showcase_failures-108.log",
-      ".godot/level-design-scratch/ride_slalom_layout-108.log",
-      ".godot/level-design-scratch/ride_elbow_layout-108.log"
+      ".godot/level-design-scratch/ride_showcase_course-112.log",
+      ".godot/level-design-scratch/ride_showcase_failures-112.log",
+      ".godot/level-design-scratch/ride_strainer_layout-112.log",
+      ".godot/level-design-scratch/ride_hand_layout-112.log",
+      ".godot/level-design-scratch/ride_brush_layout-112.log",
+      ".godot/level-design-scratch/ride_brush_registration-112.log",
+      ".godot/level-design-scratch/ride_slalom_layout-112.log"
     ],
     "per_anchor_frame_rate_margins": "MARGINS records in course log include all 54 configurations.",
     "environment_notes": "Godot macOS certificate warning is present; explicit PASS results checked, no script errors.",
     "retry_scope": "Model retry plus packaged actual-host death/presentation/checkpoint checks pass in Prototype107; live visual review remains pending.",
-    "final_model_rerun": "Both authored suites rerun after Mechanics final narrow-ramp freeze including unboosted ballistic ascent exit; 54 safe routes and 972 failure cases pass."
+    "final_model_rerun": "Both authored suites rerun after Mechanics final narrow-ramp freeze including unboosted ballistic ascent exit; 54 safe routes and 972 failure cases pass.",
+    "slalom_zero_rest_regression": "5076 actualstraight/jump attempts and162safeweaves pass after adapting isolated-stage completion checks to immediate next-stage transitions."
   },
   "remaining": [
-    "Engineering hand animation/actual-host integration, actual clearance validation and authorized build; preserve109.",
-    "No foreground/gameplay capture or publication push authorized.",
-    "Final boss, strainer variants, mixed course and oversized04brush remain planning only."
+    "Engineering actual-render/host/lifecycle tests and authorized112build.",
+    "Human visual/readability review and actual captures remain pending.",
+    "Mixed course, camera production effects, wallram and finalboss remain proposals."
   ],
   "ownership": "Level Design freezes geometry and two tests. Mechanics owns model and physics. Art owns manifest and sprites. Engineering owns runtime wrapper, build and roadmap.",
   "slalom_revision": {
@@ -329,10 +421,12 @@
       "Both heroes and all modes; 30/60/120Hz, all starting anchors, actual straight/jump attempts, head heights, reversal timing and continuous mixed sequence.",
       "Art silhouette/footprint correspondence and visible ceiling mounts; Engineering actual-host death/checkpoint and visual capture."
     ],
-    "implementation": "No mixed runtime/layout changes made."
+    "implementation": "No mixed runtime/layout changes made.",
+    "decision_needed": "Approve a separate continuous mixed-course prototype and its difficulty pacing; do not replace the isolated test course implicitly.",
+    "recommendation": "Keep03 plug on the far/top bank and create difficulty through alternating near/far/center hazards plus jump commitments. Preserve the isolated showcase as a test option; validate the hard mixed sequence before wider rollout."
   },
   "proposed_brush_revision": {
-    "status": "Plan only; not approved for implementation",
+    "status": "Approved112 source layout/art registration checks passed; Engineering integration/build pending",
     "sources": [
       "design/ride-obstacle-concepts-v1/04-drain-brush-curtain.png",
       "design/ride-obstacle-concepts-v1/proposal.json",
@@ -361,7 +455,7 @@
       }
     ],
     "bottom_z_proposal": 16,
-    "visual_height_guidance": "Propose bottom16 above water. Far brush180px body leaves screen91.5..271.5; near220px body136.5..356.5, with visible rods/mounts above. Art reviewing; keep HUD clear.",
+    "visual_height_guidance": "Projected front bottom = anchorY + bankDepth/2 -16. Overall bristle body heights180/220/200 end there; rigid ceiling rods begin at70. This supersedes earlier center-bottom projection.",
     "route": [
       {
         "at_world_x": 2200,
@@ -389,22 +483,22 @@
       "raw_slack_seconds": 0.24642857142857144
     },
     "collision_contract": "Envelope is planning only. Final collision follows visible dense bristle silhouette/core; rounded transparent corners, shadows, rods and mounts do not create invisible barriers. Far/near bristles visibly close their bank routes. Both heads and jump heights remain obstructed where bristles are present.",
-    "pending": "Sean approval before artwork/layout implementation; final dense-bristle registration or shape-aware collision review required.",
+    "pending": "Engineering actual rendering/head clearance/lifecycle and build checks; no further layout approval required.",
     "mechanics_review": "Planning envelopes/timing accepted:45px after previous full-board clearance before second turn;93px before next contact after completed turn. Cylindrical collision needs opaque envelope or shape-aware review before implementation.",
     "art_review": {
       "status": "Art accepts proposal dimensions; no implementation authorized",
       "body_screen_y": {
         "far": [
-          91.5,
-          271.5
+          149,
+          329
         ],
         "near": [
-          136.5,
-          356.5
+          194,
+          414
         ],
         "center": [
-          114,
-          314
+          154,
+          354
         ]
       },
       "body_heights": {
@@ -419,10 +513,50 @@
       "suspension": "Rods from y70 to each body top; keep HUD clear.",
       "shadow": "Exactly the planned140x115/80 water footprint; shadow is not a collider.",
       "collision": "Prefer dense bristle skirt visibly covering full danger footprint. If rounded silhouette leaves gaps, require shape-aware collision review rather than an invisible rectangular box."
-    }
+    },
+    "decision_needed": "None for the proposed three-brush implementation; validate geometry/art before delivery.",
+    "recommendation": "Approve the far/near/center three-brush prototype, keeping the isolated encounter and three-second rest; Art and Mechanics resolve silhouette registration before integration.",
+    "validation": {
+      "constant_lane_jump_attempts": 5076,
+      "safe_weave_timing_variants": 162,
+      "timing_offsets_seconds": [
+        -0.05,
+        0,
+        0.05
+      ],
+      "all_integer_bank_coordinates": [
+        260,
+        400
+      ],
+      "heroes": [
+        "tony",
+        "sean"
+      ],
+      "modes": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "anchors": [
+        180,
+        300,
+        650
+      ],
+      "frame_rates_safe_routes": [
+        30,
+        60,
+        120
+      ],
+      "art_registration": "Water-plane core and16px projected core match actual layered frame; every source pixel in collision core alpha>=.95. Source previews inspected, not gameplay captures.",
+      "tests": [
+        "tests/ride_brush_layout.gd"
+      ],
+      "manifest": "assets/world/giant-brush-v2/manifest.json"
+    },
+    "art_handoff": "handoffs/giant-brush-v2-art.json"
   },
   "proposed_depth_and_final_boss": {
-    "status": "Maintenance Hand proof of concept authorized; boss and other destructive hazards remain proposals. Exact hand integration contract pending coordination.",
+    "status": "Hand POC delivered110; giantbrush and one/two-lane strainer implementation approved for112 with source tests and Art frozen. Boss, ram and productioncamera remain proposals.",
     "owner": "Level Design",
     "contributors": {
       "Art": "Versioned concept options, depth layers, footprint registration and reference interpretation",
@@ -536,12 +670,30 @@
       }
     ],
     "open_decisions": [
-      "Boss name, personality/backstory and final likeness treatment.",
-      "Direct bite/hand impact damage versus instant death; hero-lunge and track-bite separation.",
-      "Defeat option, weak point, number of cycles/HP and victory transition.",
-      "Scrolling chase versus fixed arena, checkpoint location and retry restoration of destroyed track.",
-      "Which depth hazards to include; the giant hand is optional.",
-      "Concept selection, final silhouette/contact masks and telegraph audiovisual choices."
+      {
+        "choice": "Boss defeat mechanism",
+        "recommendation": "Start with baiting a bite into a visible heavy fixture/jam, fitting the existing steering-and-jump ride. Choose exposed-mouth shooting only if enabling ride combat is desired; survival into a trap is the other option."
+      },
+      {
+        "choice": "Direct boss bite consequences",
+        "recommendation": "Use ordinary1HP/shared immunity over intact track; keep early track-bites separate and pit falls lethal. Instant-fatal direct bites need an explicit choice."
+      },
+      {
+        "choice": "Final encounter format and retry",
+        "recommendation": "Prototype a scrolling chase with the head right/player left and a checkpoint immediately before it; reset destroyed track on retry. Fixed arena, speed changes or new camera projection remain alternatives."
+      },
+      {
+        "choice": "Boss name and story",
+        "recommendation": "Keep the boss unnamed until Sean selects a name and Storyboarding supplies the characterization; approved visual direction does not need to be chosen again."
+      },
+      {
+        "choice": "Audio selections",
+        "recommendation": "Choose from Audio audition candidates separately; generation of auditions does not select runtime mappings."
+      },
+      {
+        "choice": "Wall ram and production camera effects",
+        "recommendation": "Brushes and strainer variants are already approved. Ram inclusion and general camera-tilt production effects remain separate decisions after feasibility review."
+      }
     ],
     "validation_before_implementation_acceptance": [
       "Actual target lock and no retargeting; bounds visible and synchronized with collision.",
@@ -552,10 +704,10 @@
     ],
     "audio_brief": "Separate hunger performances from timing-critical inhale/jaw cue. Candidate anticipation1.0s+, short crunch.3\u2013.8s, retreat/chew1\u20132s. Auditions do not select runtime mappings.",
     "idea_bank": "Reviewed relevant optional environment ideas; none added as approved work. This proposal does not silently include optional steam/electrical hazards.",
-    "implementation": "No boss, destructive hazard, mixed-course or new death/defeat implementation performed.",
+    "implementation": "Maintenance Hand POC is delivered in Prototype110. No final boss, wall ram, strainer, mixed-course, brush redesign or camera change is implemented.",
     "mechanics_review": "Game Mechanics accepted separated hero/track attacks, >=1s locked cue, bank margins, no-retargeting and fixed887 early-track entry buffer. Numbers remain proposed design constraints, not runtime proof.",
     "concept_gallery": {
-      "status": "Five illustrative concept plates delivered; selection and implementation unapproved",
+      "status": "Concept gallery delivered; Maintenance Hand POC selected and delivered separately; other implementations remain unapproved.",
       "gallery": "design/level-two-depth-concepts-v1/index.html",
       "metadata": "design/level-two-depth-concepts-v1/proposal.json",
       "prompts": "design/level-two-depth-concepts-v1/prompts.json",
@@ -563,7 +715,7 @@
       "concepts": [
         "Background Hunger",
         "Track-Eating Bite",
-        "Maintenance Hand (optional)",
+        "Maintenance Hand (POC delivered)",
         "Wall-Driven Ram (optional)",
         "Ceiling Strainer Drop (optional)"
       ],
@@ -575,12 +727,54 @@
       ]
     },
     "strainer_lane_options": {
-      "status": "Planning only",
+      "status": "Approved112 source layout/art registration checks passed; Engineering integration/build pending",
       "proposal": "Destroy one or two of three readable top/middle/bottom support lanes, offering a choice of bank dodge or jump; do not default every strike to full-channel destruction.",
-      "validation": "Final masks must leave a full-board-supported escape corridor and visible commitment cues; screen y is the bank axis."
+      "validation": {
+        "safe_routes": 594,
+        "fatal_routes": 270,
+        "configuration": "Both heroes, allmodes,3anchors,30/60/120Hz; exactfarboundary286 fatal,285.9 safe"
+      },
+      "decision_needed": "No further approval needed for one/two-lane prototypes; choose and validate concrete masks with Mechanics and Art.",
+      "recommendation": "Prototype both variants with clear top/middle/bottom lane markings, preserving a real dodge route as well as a jump option.",
+      "geometry": [
+        {
+          "id": "2-12",
+          "bounds": [
+            2530,
+            300,
+            2670,
+            360
+          ]
+        },
+        {
+          "id": "2-13",
+          "bounds": [
+            2530,
+            300,
+            2670,
+            430
+          ]
+        }
+      ],
+      "timeline": {
+        "warning": 1.25,
+        "break": 2.9,
+        "clear_jump_volume": 3.05
+      },
+      "routes": {
+        "dodge": "Far y270 both; near y390 only singlemiddle variant",
+        "jump": "Middle y330, worldtakeoff2432, \u00b150ms input offsets validated"
+      },
+      "visibility": "At2.90 only54/140 travel pixels visible at right edge; persistent warning required. No addedimpactdamage collider; cage clears jump volume by3.05.",
+      "manifest": "assets/world/ceiling-strainer-v1/manifest.json",
+      "tests": [
+        "tests/ride_strainer_layout.gd"
+      ],
+      "registration": "Exact140x60/130 core masks and2.90activation agree with art manifest; both variants support tested dodge/jump routes.",
+      "art_handoff": "handoffs/ceiling-strainer-v1-art.json"
     },
     "maintenance_hand_poc": {
-      "status": "Layout and model tests passed; Art/runtime integration and actual visual acceptance pending Engineering",
+      "status": "Delivered locally in Prototype110 per Engineering delivery record; gameplay capture and human readability review remain pending.",
       "accountable_integration_owner": "Engineering",
       "layout_owner": "Level Design",
       "mechanics_contributor": "Game Mechanics",
@@ -610,7 +804,7 @@
         "landing_world_x": 2768,
         "entry_and_landing_margin": 53
       },
-      "controls": "No implicit x-lock or changed steering. Intended route uses neutral horizontal input; sustained backward160relative cannot clear210px in.6s and is not guaranteed safe.",
+      "controls": "No implicit x-lock or changed steering. Intended route uses neutral horizontal input; sustained backward160relative cannot clear230px in.6s and is not guaranteed safe.",
       "placement": "Appended isolated encounter2-11; existing ten IDs and three-second rests preserved.",
       "timing": {
         "warning_at": 1.25,
@@ -671,12 +865,38 @@
         "registration": "140x200 pit matches2530..2670/230..430; warning1.25, impact2.90, clear3.05; retreat continues to3.65.",
         "clearance_target": "All reaching hand/arm pixels at or above screen/world y120 by3.05; root100, lifted wrist70 plus50px curled fist.",
         "limitation": "Source study and component transforms are not actual gameplay or animation-clearance proof."
+      },
+      "delivery_evidence": "handoffs/first-call-integration.json"
+    },
+    "ram_camera_review": {
+      "status": "Feasibility consultation only; no implementation approval",
+      "decision_needed": "Decide whether to prototype the wall ram and a controlled2D perspective effect after reviewing the feasibility tradeoff; consultation did not authorize implementation.",
+      "recommendation": "If pursuing the effect, start with a separate reversible2D composition prototype, not a true3D rewrite. Retain current camera for approved encounters.",
+      "feasibility": "Art relays Engineering: true camera yaw would require projection/3D rework; a controlled2D perspective effect is feasible if world geometry and cues share the transform while HUD stays flat.",
+      "scope": "General camera-tilt feasibility study, potentially for difficulty or obstacle presentation; not limited to wall ram. Production camera or difficulty effects remain unapproved, as does the ram itself.",
+      "engineering_assessment": {
+        "basis": [
+          "scripts/level_two_ride.gd",
+          "scripts/ride_showcase_model.gd"
+        ],
+        "current_renderer": "Node2D manually draws a 960x540 scene. Bank position, horizontal travel and jumping height are separate simulation quantities, with authored 2D depth sorting and clipping.",
+        "true_camera": "A Camera2D rotation only rolls the image in its plane; it cannot reveal new side views. True yaw/pitch needs 3D geometry or a new projection/content pipeline and appropriate authored views. Highest scope and regression risk.",
+        "controlled_2d": "A reversible oblique presentation is feasible. Centralize world-to-screen projection for floor geometry, raised actors, shadows, collision outlines, warnings, clipping and culling. Keep HUD/menu coordinates flat. Existing sprite fronts cannot reveal missing sides; Art review is required.",
+        "controls": "Decide and test world-relative versus screen-relative steering before production. Screen-relative controls need the inverse projection; preserve input magnitude, clamp behavior and jump timing. Avoid changing that mapping mid-jump.",
+        "fairness": "Measure projected hazard lead time, lane widths, readable landing areas and visibility at both horizontal clamps. A changed camera must not conceal fatal gaps or shorten warning acceptance silently. Preserve locked attack targets.",
+        "difficulty": "Difficulty-specific tilt is a presentation proposal, not an approved rebalance. Validate both heroes, all difficulties and normal versus hard poses before assigning any angle to a mode.",
+        "prototype_options": [
+          "Lowest scope: fixed small oblique projection in an isolated optional test, with reversible toggle and collision overlay.",
+          "Higher scope: smoothly change projection only in safe approach intervals; test motion discomfort and never reinterpret a held input mid-hazard.",
+          "Largest scope: true 3D/projection rewrite with new viewpoints, lighting/occlusion and revised assets."
+        ],
+        "recommendation": "If separately approved, prototype the fixed 2D option first and retain the current view as the comparison. No camera, difficulty or ram behavior is implemented in Prototype 112."
       }
     }
   },
   "integration_delivery": {
-    "build": "Prototype 110 / 0.110.0",
+    "build": "Prototype 112 / 0.112.0",
     "record": "handoffs/first-call-integration.json",
-    "status": "Maintenance Hand appended and verified with 38 packaged suites; proposed boss/camera/strainer plans remain unimplemented."
+    "status": "13 encounters, giant brushes, two strainers and zero explicit rests integrated. Final 45 packaged suites pass; actual rendered fall spot checks captured. Paced obstacle and audio acceptance remain pending."
   }
 }
