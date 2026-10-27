@@ -654,7 +654,7 @@
         140,
         60
       ],
-      "activates_at": 2.9
+      "activates_at": 3.1
     },
     "strainer_gap_130": {
       "core": [
@@ -669,7 +669,7 @@
         140,
         130
       ],
-      "activates_at": 2.9
+      "activates_at": 3.1
     }
   },
   "strainer_parts": {
@@ -699,7 +699,7 @@
         -84
       ]
     ],
-    "clear_basket_bottom_world_y": 118,
+    "clear_basket_bottom_world_y": 110,
     "clear_eye_offsets": [
       [
         -30.5,
@@ -714,9 +714,9 @@
   },
   "timeline": {
     "warning": 1.25,
-    "impact": 2.9,
-    "clear": 3.05,
-    "rule": "Pit and visible break activate synchronously; persist after cage hoists. Keep partial-offscreen edge warning; do not claim full impact onscreen."
+    "impact": 3.1,
+    "clear": 3.25,
+    "rule": "Visible traveller recognition1.25\u20132.15, windup2.15\u20132.75, drop2.75\u20133.10; impact opens pit; clear3.25."
   },
   "prompts": "assets/world/ceiling-strainer-v1/prompts.json",
   "notes": [

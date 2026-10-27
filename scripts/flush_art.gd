@@ -2,6 +2,7 @@ extends RefCounted
 ## Authored frame animation, waterline clipping and actual fall height share the simulation's anchors.
 var manifest: Dictionary = {}
 var textures: Dictionary = {}
+static var prepared_textures: Dictionary = {}
 
 func configure(data: Dictionary) -> void:
 	manifest = data
@@ -15,6 +16,32 @@ func load_frame(frame: Dictionary) -> void:
 		for layer: Dictionary in frame.layers: load_frame(layer)
 		return
 	if not textures.has(frame.path): textures[frame.path] = load("res://"+str(frame.path))
+	if frame.has("alpha_cutoff") or bool(frame.get("force_opaque",false)):
+		prepare_texture(frame)
+
+func prepare_texture(frame: Dictionary) -> void:
+	# Normalize authored transparency once, never in the render loop; original files stay intact.
+	var key := str(frame.path)+str(frame.source_rect)+str(frame.get("alpha_cutoff",0))+str(frame.get("force_opaque",false))+str(frame.get("edge_feather",0))
+	if not prepared_textures.has(key):
+		var s: Array = frame.source_rect
+		var source: Image = textures[frame.path].get_image()
+		if source.is_compressed(): source.decompress()
+		var cropped := source.get_region(Rect2i(s[0],s[1],s[2],s[3]))
+		cropped.convert(Image.FORMAT_RGBA8)
+		var bytes := cropped.get_data()
+		var cutoff := float(frame.get("alpha_cutoff",0))
+		var feather := float(frame.get("edge_feather",0))*cropped.get_width()/float(frame.destination[2])
+		for pixel in range(cropped.get_width()*cropped.get_height()):
+			var alpha := 1.0 if bool(frame.get("force_opaque",false)) else clampf((bytes[pixel*4+3]/255.0-cutoff)/(1-cutoff),0,1)
+			if feather > 0:
+				var x := pixel%cropped.get_width()
+				alpha *= clampf(minf(x,cropped.get_width()-1-x)/feather,0,1)
+			bytes[pixel*4+3] = int(round(alpha*255))
+		var image := Image.create_from_data(cropped.get_width(),cropped.get_height(),false,Image.FORMAT_RGBA8,bytes)
+		prepared_textures[key] = ImageTexture.create_from_image(image)
+	frame["runtime_texture_key"] = key
+	frame["runtime_source_rect"] = [0,0,frame.source_rect[2],frame.source_rect[3]]
+	textures[key] = prepared_textures[key]
 
 func frame_at(id: String, time: float) -> Dictionary:
 	var animation: Dictionary = manifest.animations[id]
@@ -25,16 +52,17 @@ func frame_at(id: String, time: float) -> Dictionary:
 func draw_frame(host: Node2D, frame: Dictionary, offset := Vector2.ZERO, tint := Color.WHITE,
 		clip_bottom := INF) -> void:
 	# Keep authored surface shading identical in normal and fall-occlusion passes.
-	tint *= Color(str(frame.get("tint","ffffff")))
+	tint *= Color(str(frame.get("tint",frame.get("modulate","ffffff"))))
 	if frame.has("layers"):
 		for layer: Dictionary in frame.layers: draw_frame(host,layer,offset,tint,clip_bottom)
 		return
 	var region := clipped_region(frame,offset,clip_bottom)
 	if region.is_empty(): return
-	host.draw_texture_rect_region(textures[frame.path],region.target,region.source,tint)
+	host.draw_texture_rect_region(textures[frame.get("runtime_texture_key",frame.path)],region.target,region.source,tint)
 
 func clipped_region(frame: Dictionary, offset := Vector2.ZERO, clip_bottom := INF) -> Dictionary:
-	var source := Rect2(frame.source_rect[0],frame.source_rect[1],frame.source_rect[2],frame.source_rect[3])
+	var s: Array = frame.get("runtime_source_rect",frame.source_rect)
+	var source := Rect2(s[0],s[1],s[2],s[3])
 	var target := Rect2(frame.destination[0],frame.destination[1],frame.destination[2],frame.destination[3])
 	target.position += offset
 	if target.position.y >= clip_bottom: return {}

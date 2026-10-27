@@ -19,12 +19,12 @@ func checks() -> void:
 		for step in range(401):
 			ride.clock = step/100.0
 			var assembly: Dictionary = ride.hazard_assembly(obstacle)
-			assert(ride.obstacle_active(obstacle) == (ride.clock >= 2.9))
+			assert(ride.obstacle_active(obstacle) == (ride.clock >= 3.10))
 			var bounds: Rect2 = ride.visual_bounds(obstacle)
 			for part: Dictionary in assembly.parts:
 				var box: Rect2 = ride.frame_bounds(frames[part.id],part.transform)
 				assert(bounds.grow(.001).encloses(box))
-				if ride.clock >= 3.05: assert(box.end.y <= 118.001,"Hoisted assembly clears Tony's highest hop")
+				if ride.clock >= 3.25: assert(box.end.y <= 110.001,"Hoisted assembly clears Tony's highest hop")
 				if part.id == "strainer_chain":
 					assert((part.transform*Vector2.ZERO).is_equal_approx(part.start))
 					assert((part.transform*Vector2(0,100)).is_equal_approx(part.end))

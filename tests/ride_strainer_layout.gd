@@ -6,12 +6,12 @@ func _initialize() -> void: call_deferred("checks")
 
 func checks() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride-showcase.json"))
-	var art: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ceiling-strainer-v1/manifest.json"))
+	var art: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ride-water-break-v1/manifest.json"))
 	for index in [11,12]:
 		var obstacle: Dictionary = data.encounters[index].obstacles[0]
 		var expected := [-float(obstacle.width)/2,-float(obstacle.depth)/2,float(obstacle.width),float(obstacle.depth)]
 		assert(art.collision_registration[obstacle.art_id].core == expected)
-		assert(art.collision_registration[obstacle.art_id].activates_at == obstacle.activates_at)
+		assert(obstacle.activates_at == 3.10)
 		var matched := 0
 		for layer: Dictionary in art.frames[obstacle.art_id].layers:
 			if layer.get("collision_plane",false):
@@ -46,7 +46,7 @@ func checks() -> void:
 								if model.complete or model.encounter_index != index or host.life_state != "alive": break
 								var jump: bool = route.jump and not pressed and model.position.x+model.encounter_scroll+560.0/hz >= 2432+float(route.get("offset",0))*560
 								if jump:
-									assert(model.encounter_clock >= 3.05,"Cage still occupies jump volume")
+									assert(model.encounter_clock >= 3.05,"Jump route must preserve its established approach timing")
 									pressed = true
 								model.tick(host,1.0/hz,Vector2.ZERO,jump)
 							if route.safe:

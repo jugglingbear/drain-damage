@@ -4,6 +4,7 @@ const Audio = preload("res://scripts/level_two_ride_audio.gd")
 const Art = preload("res://scripts/flush_art.gd")
 const Strainer = preload("res://scripts/ride_ceiling_strainer.gd")
 const Hand = preload("res://scripts/ride_maintenance_hand.gd")
+const Water = preload("res://scripts/ride_water.gd")
 const HAND_ART := "res://assets/world/maintenance-hand-poc-v1/manifest.json"
 const SHOWCASE_ART := "res://assets/world/ride-showcase-v1/manifest.json"
 var art := Art.new()
@@ -36,6 +37,13 @@ func attach(host: Node2D) -> void:
 			if extra.has("strainer_parts"):
 				manifest["strainer_parts"] = extra.strainer_parts
 				manifest["strainer_timeline"] = extra.timeline
+		var water: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ride-water-break-v1/manifest.json"))
+		for id in ["surface_ripples","surface_swirl","inflow_foam","strainer_rail","strainer_rail_left","strainer_rail_right"]:
+			water.frames[id]["alpha_cutoff"] = 179.0/255
+			if id.begins_with("surface_"): water.frames[id]["edge_feather"] = 12.0
+		for key in ["frames","animations","obstacle_overlays"]:
+			manifest[key].merge(water[key],true)
+		manifest["flow"] = water.flow
 		obstacle_art.configure(manifest)
 
 func begin(host: Node2D, index := -1) -> void:
@@ -261,6 +269,9 @@ func draw_obstacle(host: Node2D, obstacle: Dictionary) -> void:
 			obstacle_art.draw_named(host,"hand_cracks",point)
 		return
 	assert(obstacle_art.manifest.frames.has(id),"Missing calibrated obstacle art: "+id)
+	if id.begins_with("strainer_gap_"):
+		Water.gap(host,obstacle_art,obstacle_art.manifest.frames[id],point,float(obstacle.depth),clock)
+		return
 	obstacle_art.draw_named(host,id,point)
 	draw_obstacle_overlays(host,obstacle,false)
 	if id == "maintenance_hand_gap":
@@ -417,7 +428,8 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	host.draw_set_transform(Vector2.ZERO)
 	var scroll := clock*scroll_speed
 	draw_strip(host,"course_far",scroll*0.35)
-	draw_strip(host,"course_water",scroll)
+	draw_strip(host,"course_water",scroll+clock*34)
+	Water.surface(host,obstacle_art,clock,scroll)
 	var foreground: Array[Dictionary] = []
 	for obstacle: Dictionary in visual_obstacles:
 		if not visual_bounds(obstacle).intersects(VIEWPORT,true): continue
