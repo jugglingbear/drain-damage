@@ -1,0 +1,690 @@
+{
+  "status": "Authored source delivery; integration and actual runtime clearance pending",
+  "created_at": "2026-10-26T16:54:31.793374-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-0700",
+  "frames": {
+    "hand_hatch": {
+      "path": "assets/world/maintenance-hand-poc-v1/hand-parts-v1.png",
+      "source_rect": [
+        1090,
+        568,
+        419,
+        421
+      ],
+      "destination": [
+        -58,
+        -58,
+        116,
+        116
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "fixed_background_mount"
+    },
+    "hand_forearm": {
+      "path": "assets/world/maintenance-hand-poc-v1/hand-parts-v1.png",
+      "source_rect": [
+        25,
+        620,
+        1010,
+        310
+      ],
+      "destination": [
+        0,
+        -20,
+        300,
+        40
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "articulated_forearm"
+    },
+    "hand_contact": {
+      "path": "assets/world/maintenance-hand-poc-v1/hand-parts-v1.png",
+      "source_rect": [
+        130,
+        8,
+        567,
+        525
+      ],
+      "destination": [
+        -70,
+        0,
+        140,
+        200
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "contact_fist"
+    },
+    "hand_curled": {
+      "path": "assets/world/maintenance-hand-poc-v1/hand-parts-v1.png",
+      "source_rect": [
+        934,
+        8,
+        527,
+        534
+      ],
+      "destination": [
+        -35,
+        0,
+        70,
+        50
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "foreshortened_lifted_fist"
+    },
+    "maintenance_hand_gap": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            450,
+            180,
+            650,
+            155
+          ],
+          "destination": [
+            -70,
+            -100,
+            140,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "role": "lethal_pit_plane",
+          "collision_plane": true,
+          "occludes_fall": false
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            110,
+            130,
+            100,
+            190
+          ],
+          "destination": [
+            -82,
+            -100,
+            12,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "role": "broken_left_rim",
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            1310,
+            130,
+            110,
+            190
+          ],
+          "destination": [
+            70,
+            -100,
+            12,
+            200
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "role": "broken_right_rim",
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            200,
+            350,
+            1100,
+            85
+          ],
+          "destination": [
+            -82,
+            100,
+            164,
+            18
+          ],
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "role": "broken_near_rim",
+          "occludes_fall": true
+        }
+      ],
+      "has_fall_occlusion": true
+    },
+    "hand_cracks": {
+      "path": "assets/world/maintenance-hand-poc-v1/break-phases-v1.png",
+      "source_rect": [
+        208,
+        35,
+        142,
+        350
+      ],
+      "destination": [
+        -70,
+        -100,
+        140,
+        200
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "preimpact_cracks"
+    },
+    "hand_collapse": {
+      "path": "assets/world/maintenance-hand-poc-v1/break-phases-v1.png",
+      "source_rect": [
+        1070,
+        20,
+        430,
+        450
+      ],
+      "destination": [
+        -90,
+        -110,
+        180,
+        220
+      ],
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ],
+      "role": "temporary_break_debris"
+    }
+  },
+  "animations": {
+    "hand_cascade": {
+      "fps": 16,
+      "loop": true,
+      "interpolate": true,
+      "frames": [
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                65,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                1217,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        },
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                449,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                65,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        },
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                833,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                449,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        },
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                1217,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                833,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        },
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                65,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                1217,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        },
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                449,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                65,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        },
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                833,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                449,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        },
+        {
+          "layers": [
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                1217,
+                524,
+                260,
+                490
+              ],
+              "destination": [
+                -65,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            },
+            {
+              "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+              "source_rect": [
+                833,
+                12,
+                260,
+                490
+              ],
+              "destination": [
+                0,
+                -100,
+                65,
+                190
+              ],
+              "coordinate_space": "local",
+              "anchor": [
+                0,
+                0
+              ],
+              "role": "falling_water"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "obstacle_overlays": {
+    "maintenance_hand_gap": [
+      {
+        "animation": "hand_cascade",
+        "foreground": false
+      }
+    ]
+  },
+  "collision_registration": {
+    "maintenance_hand_gap": {
+      "core": [
+        -70,
+        -100,
+        140,
+        200
+      ],
+      "world_rect": [
+        2530,
+        230,
+        140,
+        200
+      ],
+      "activates_at": 2.9
+    }
+  },
+  "hand_parts": {
+    "hatch": "hand_hatch",
+    "forearm": "hand_forearm",
+    "contact": "hand_contact",
+    "curled": "hand_curled",
+    "root_relative_pit": [
+      -300,
+      -230
+    ],
+    "root_world_y": 100,
+    "warning_wrist_relative_pit": [
+      0,
+      -260
+    ],
+    "contact_wrist_relative_pit": [
+      0,
+      -100
+    ],
+    "clear_wrist_relative_pit": [
+      0,
+      -260
+    ],
+    "forearm_source_endpoints": [
+      [
+        25,
+        775
+      ],
+      [
+        1035,
+        775
+      ]
+    ],
+    "forearm_thickness": 40,
+    "transform": "Connect forearm centerline from fixed root to moving wrist. Scale length only; rotate entire segment. Fist remains wrist-relative.",
+    "clearance": "At3.05 use curled pose only, wristworldy70; fist bottom120. Forearm rooty100/wristy70 plus20px normal halfwidth stays <=120. Hatch is backgroundwall decoration, not reaching hand.",
+    "hand_damage_collider": false
+  },
+  "timeline": {
+    "warning": 1.25,
+    "impact": 2.9,
+    "clear": 3.05,
+    "retreat_end": 3.65,
+    "approach": "Reveal hatch/curled hand above channel with continuous forearm and edge warning.",
+    "slam": "Ease wrist toward contact during2.65..2.90; contact pose appears atstrike.",
+    "lift": "2.90..3.05 lift wrist and crossfade contact to curled pose; contact alpha MUSTreach0 by3.05.",
+    "destruction": "At2.90 activate pit and show temporary collapse overlay for<=.12s, fadingout. Underlying opaque lethal plane appears synchronously, remains forever.",
+    "retreat": "3.05..3.65 retract wrist toward root, retaining lower edge<=120. No whole-arm snap.",
+    "cue": "Persistent right-edge/full-bank warning starts1.25; impact only54/140px visible atnormal scroll. Do not imply entirepit is onscreen."
+  },
+  "prompts": "assets/world/maintenance-hand-poc-v1/prompts.json",
+  "preserved": "Earlier builds and artwork unchanged; Engineering owns runtime files.",
+  "limitations": [
+    "Rigid source components with transform/crossfade animation, not validated runtime animation.",
+    "Source study uses proposed transform math; actual in-game clearance must be checked.",
+    "POC hand has no damage collider; permanent pit is lethal and requires jump."
+  ],
+  "validation": {
+    "source_bounds": "PASS 26 regions",
+    "clearance_target": "All reaching hand/arm pixels <=worldy120 at3.05; runtime pending"
+  }
+}

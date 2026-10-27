@@ -1,0 +1,27 @@
+{
+  "owner": "Art / Bestiary",
+  "integration_owner": "Engineering",
+  "manifest": "assets/world/maintenance-hand-poc-v1/manifest.json",
+  "status": "Authored source delivery; integration and actual runtime clearance pending",
+  "timeline": {
+    "warning": 1.25,
+    "impact": 2.9,
+    "clear": 3.05,
+    "retreat_end": 3.65,
+    "approach": "Reveal hatch/curled hand above channel with continuous forearm and edge warning.",
+    "slam": "Ease wrist toward contact during2.65..2.90; contact pose appears atstrike.",
+    "lift": "2.90..3.05 lift wrist and crossfade contact to curled pose; contact alpha MUSTreach0 by3.05.",
+    "destruction": "At2.90 activate pit and show temporary collapse overlay for<=.12s, fadingout. Underlying opaque lethal plane appears synchronously, remains forever.",
+    "retreat": "3.05..3.65 retract wrist toward root, retaining lower edge<=120. No whole-arm snap.",
+    "cue": "Persistent right-edge/full-bank warning starts1.25; impact only54/140px visible atnormal scroll. Do not imply entirepit is onscreen."
+  },
+  "validation": {
+    "source_bounds": "PASS 26 regions",
+    "clearance_target": "All reaching hand/arm pixels <=worldy120 at3.05; runtime pending"
+  },
+  "remaining": [
+    "Rigid source components with transform/crossfade animation, not validated runtime animation.",
+    "Source study uses proposed transform math; actual in-game clearance must be checked.",
+    "POC hand has no damage collider; permanent pit is lethal and requires jump."
+  ]
+}
