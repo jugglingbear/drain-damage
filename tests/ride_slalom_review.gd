@@ -28,11 +28,12 @@ func checks() -> void:
 							host.employee.id = hero
 							host.difficulty = mode
 							var model := Model.new()
-							model.definition = template.definition
+							model.definition = template.definition.duplicate(true)
+							model.definition.encounters = [model.definition.encounters[0]]
 							model.begin(host)
 							model.position = Vector2(anchor,bank)
 							for frame in range(1200):
-								if model.phase != "encounter" or host.life_state != "alive": break
+								if model.encounter_index != 0 or host.life_state != "alive": break
 								model.tick(host,1.0/60,Vector2(horizontal,0),jump)
 							assert(model.events.get("hit",0) > 0 and host.health < 5,
 								"Held horizontal/jumping found a clean unsteered slalom route")

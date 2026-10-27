@@ -53,7 +53,7 @@ func checks() -> void:
 						host.invulnerable = 0.75 if index in [6,7] else 0.0
 						var model = pair[1]
 						for frame in range(20*hz):
-							if model.phase != "encounter" or host.life_state != "alive": break
+							if model.encounter_index != index or host.life_state != "alive": break
 							model.tick(host,dt,Vector2.ZERO,false)
 						if index in [1,6,7]:
 							if not verify_fall_and_retry(host,model,index,dt): return
@@ -72,7 +72,7 @@ func checks() -> void:
 						host.invulnerable = 0.0
 						var model = pair[1]
 						for frame in range(20*hz):
-							if model.phase != "encounter" or host.life_state != "alive": break
+							if model.encounter_index != 0 or host.life_state != "alive": break
 							model.tick(host,dt,Vector2.ZERO,false)
 						if not require(host.health < 100,"Straight slalom bank-edge bypass"): return
 						failures_checked += 1
@@ -125,17 +125,6 @@ func checks() -> void:
 						if not verify_fall_and_retry(host,model,9,dt): return
 						failures_checked += 1
 						host.free()
-	# Rest cannot begin while a late jump persists after the last multipart shape clears.
-	var pair := setup("tony",300,0,330)
-	var host = pair[0]
-	var model = pair[1]
-	model.encounter_scroll = float(model.encounter.end_x)+45-180-1
-	model.encounter_clock = model.encounter_scroll/560.0
-	model.tick(host,1.0/120,Vector2.ZERO,true)
-	if not require(model.phase == "encounter" and model.jump_age >= 0,"Rest skipped lingering jump"): return
-	model.tick(host,0.7,Vector2.ZERO,false)
-	if not require(model.phase == "rest" and model.course.obstacles.is_empty(),"Rest failed after lingering state cleared"): return
-	host.free()
 	# Expanded intervals cover every possible constant bank coordinate, not only three examples.
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride-showcase.json"))
 	for y in range(260,401):
@@ -144,5 +133,5 @@ func checks() -> void:
 			blocked = blocked or absf(y-float(obstacle.y)) <= float(obstacle.depth)*0.5+14
 		if not require(blocked,"Uncovered straight slalom lane"): return
 	if not require(540+90 > (560+400)*0.6,"Ordinary jump can clear long pit"): return
-	print("PASS: ",failures_checked," authored failure/exploit cases;all10 concepts,both heads,all3 modes,3anchors,3frame rates;141 straight slalom lanes blocked;lingering rest checked")
+	print("PASS: ",failures_checked," authored failure/exploit cases;all10 concepts,both heads,all3 modes,3anchors,3frame rates;141 straight slalom lanes blocked;zero-rest course tested separately")
 	quit()

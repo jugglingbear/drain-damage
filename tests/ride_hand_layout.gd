@@ -24,13 +24,13 @@ func checks() -> void:
 							var trigger: float = 2600-travel*0.5+offset*560
 							var pressed := false
 							for frame in range(15*hz):
-								if model.phase != "encounter": break
+								if model.encounter_index != 10 or model.complete: break
 								var jump: bool = not pressed and model.position.x+model.encounter_scroll+560*dt >= trigger
 								if jump:
 									assert(model.encounter_clock >= 3.05,"Hand overlaps the authored jump")
 									pressed = true
 								model.tick(host,dt,air_input if jump or model.jump_age >= 0 else Vector2.ZERO,jump)
-							assert(model.phase == "rest" and host.health == 5 and host.lives == 3)
+							assert(model.encounter_index == 11 and host.health == 5 and host.lives == 3)
 							assert(model.events.get("jump",0) == 1 and model.events.get("fall",0) == 0)
 							host.free()
 							safe += 1

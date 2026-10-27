@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "level-two-ride-showcase",
   "date": "2026-10-26",
-  "status": "Eleven-encounter hand POC layout/model tests pass; Engineering integration/art/visual acceptance pending",
+  "status": "112 layout and source tests frozen:13encounters, zero explicit rest, giantbrushes andstrainer variants; Engineering build/visual acceptance pending",
   "owner": "Level Design",
   "integration_owner": "Engineering",
   "scope": "All ten selected concepts in order; isolated multipart encounters; no enemies/weapons.",
@@ -68,10 +68,10 @@
     "sean": 72
   },
   "rest": {
-    "duration": 3.0,
-    "start_rule": "All obstacle far edges including motion extents pass board trailing edge at leftmost anchor180; no active jump/ramp/recovery/contact latch remains.",
-    "during": "No active hazards, current obstacle list empty, no next encounter warnings. Next encounter initializes only after three full seconds.",
-    "minimum_clear_scroll_rule": "encounter_scroll > encounter.end_x +45 -180, plus all lingering states cleared."
+    "duration": 0,
+    "start_rule": "Transition immediately after all physical obstacle bounds clear; carry ongoing jump and cooldown into the next safe approach.",
+    "during": "No rest phase at zero duration; next encounter starts immediately with its normal approach and cues.",
+    "minimum_clear_scroll_rule": "encounter_scroll > encounter.end_x +45 -180, including motion extents; airborne motion and cooldown carry across the transition."
   },
   "difficulty": "All ten encounters and full geometry retained on every difficulty; no concept thinning.",
   "art_manifest": "assets/world/ride-showcase-v1/manifest.json",
@@ -112,7 +112,7 @@
         }
       ],
       "end_x": 3700,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -161,7 +161,7 @@
         }
       ],
       "end_x": 3220,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -194,7 +194,7 @@
         }
       ],
       "end_x": 2650.0,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -213,32 +213,41 @@
       "id": "2-04",
       "concept_id": 4,
       "title": "Drain-Brush Curtain",
-      "action_hint": "Weave through the open lanes beneath the brushes.",
+      "action_hint": "Weave between the three ceiling brushes; stay out of the bristles.",
       "obstacles": [
         {
-          "id": "brush-a",
+          "id": "brush_far_v2",
           "kind": "overhead",
-          "x": 2600.0,
+          "x": 2600,
           "y": 287.5,
-          "width": 120,
+          "width": 140,
           "depth": 115,
-          "art_id": "brush_curtain",
-          "bottom_z": 64
+          "art_id": "brush_far_v2",
+          "bottom_z": 16
         },
         {
-          "id": "brush-b",
+          "id": "brush_near_v2",
           "kind": "overhead",
-          "x": 3400.0,
+          "x": 3160,
           "y": 372.5,
-          "width": 120,
+          "width": 140,
           "depth": 115,
-          "art_id": "brush_curtain",
-          "bottom_z": 64,
-          "mirror_bank": true
+          "art_id": "brush_near_v2",
+          "bottom_z": 16
+        },
+        {
+          "id": "brush_center_v2",
+          "kind": "overhead",
+          "x": 3720,
+          "y": 330,
+          "width": 140,
+          "depth": 80,
+          "art_id": "brush_center_v2",
+          "bottom_z": 16
         }
       ],
-      "end_x": 3460.0,
-      "rest_after_seconds": 3.0,
+      "end_x": 3790,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -248,8 +257,12 @@
             "target_y": 380
           },
           {
-            "at_world_x": 2800,
+            "at_world_x": 2760,
             "target_y": 280
+          },
+          {
+            "at_world_x": 3320,
+            "target_y": 400
           }
         ],
         "jump_press_world_x": [],
@@ -285,7 +298,7 @@
         }
       ],
       "end_x": 2708.0,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -325,7 +338,7 @@
         }
       ],
       "end_x": 2650.0,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -384,7 +397,7 @@
         }
       ],
       "end_x": 3770.0,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -447,7 +460,7 @@
         }
       ],
       "end_x": 3860.0,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -491,7 +504,7 @@
         }
       ],
       "end_x": 2636.0,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -547,7 +560,7 @@
         }
       ],
       "end_x": 3650.0,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -580,7 +593,7 @@
         }
       ],
       "end_x": 2670,
-      "rest_after_seconds": 3.0,
+      "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "hand_timeline": {
         "warning_at": 1.25,
@@ -603,6 +616,106 @@
         ],
         "horizontal_input": 0,
         "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      }
+    },
+    {
+      "id": "2-12",
+      "concept_id": 12,
+      "title": "Strainer: Middle Lane",
+      "action_hint": "Dodge along the far bank or jump the broken channel.",
+      "obstacles": [
+        {
+          "id": "strainer-gap-12",
+          "kind": "gap",
+          "x": 2600,
+          "y": 330,
+          "width": 140,
+          "depth": 60,
+          "art_id": "strainer_gap_60",
+          "activates_at": 2.9
+        }
+      ],
+      "end_x": 2670,
+      "rest_after_seconds": 0,
+      "warning_seconds": 3,
+      "strainer_timeline": {
+        "warning_at": 1.25,
+        "impact_at": 2.9,
+        "jump_volume_clear_at": 3.05
+      },
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1900,
+            "target_y": 270
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      },
+      "alternative_witness": {
+        "bank_targets": [
+          {
+            "at_world_x": 1900,
+            "target_y": 330
+          }
+        ],
+        "jump_press_world_x": [
+          2432
+        ],
+        "horizontal_input": 0
+      }
+    },
+    {
+      "id": "2-13",
+      "concept_id": 13,
+      "title": "Strainer: Two Lanes",
+      "action_hint": "Dodge along the far bank or jump the broken channel.",
+      "obstacles": [
+        {
+          "id": "strainer-gap-13",
+          "kind": "gap",
+          "x": 2600,
+          "y": 365,
+          "width": 140,
+          "depth": 130,
+          "art_id": "strainer_gap_130",
+          "activates_at": 2.9
+        }
+      ],
+      "end_x": 2670,
+      "rest_after_seconds": 0,
+      "warning_seconds": 3,
+      "strainer_timeline": {
+        "warning_at": 1.25,
+        "impact_at": 2.9,
+        "jump_volume_clear_at": 3.05
+      },
+      "witness": {
+        "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
+        "bank_targets": [
+          {
+            "at_world_x": 1900,
+            "target_y": 270
+          }
+        ],
+        "jump_press_world_x": [],
+        "horizontal_input": 0,
+        "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."
+      },
+      "alternative_witness": {
+        "bank_targets": [
+          {
+            "at_world_x": 1900,
+            "target_y": 330
+          }
+        ],
+        "jump_press_world_x": [
+          2432
+        ],
+        "horizontal_input": 0
       }
     }
   ],

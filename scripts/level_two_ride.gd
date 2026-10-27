@@ -2,6 +2,7 @@ extends "res://scripts/ride_showcase_model.gd"
 ## Showcase presentation uses the same calibrated obstacle and rider anchors as the simulation.
 const Audio = preload("res://scripts/level_two_ride_audio.gd")
 const Art = preload("res://scripts/flush_art.gd")
+const Strainer = preload("res://scripts/ride_ceiling_strainer.gd")
 const Hand = preload("res://scripts/ride_maintenance_hand.gd")
 const HAND_ART := "res://assets/world/maintenance-hand-poc-v1/manifest.json"
 const SHOWCASE_ART := "res://assets/world/ride-showcase-v1/manifest.json"
@@ -25,6 +26,16 @@ func attach(host: Node2D) -> void:
 			manifest[key].merge(hand[key])
 		manifest["hand_parts"] = hand.hand_parts
 		manifest["hand_timeline"] = hand.timeline
+		for path in ["res://assets/world/giant-brush-v2/manifest.json","res://assets/world/ceiling-strainer-v1/manifest.json"]:
+			var extra: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+			for key in ["frames","animations","obstacle_overlays"]:
+				if not manifest.has(key): manifest[key] = {}
+				manifest[key].merge(extra.get(key,{}))
+			if extra.has("overhead"):
+				manifest.overhead.shadow_frames.merge(extra.overhead.shadow_frames)
+			if extra.has("strainer_parts"):
+				manifest["strainer_parts"] = extra.strainer_parts
+				manifest["strainer_timeline"] = extra.timeline
 		obstacle_art.configure(manifest)
 
 func begin(host: Node2D, index := -1) -> void:
@@ -81,8 +92,8 @@ func visual_bounds(obstacle: Dictionary) -> Rect2:
 			if part.has("clip_bottom"):
 				part_bounds.size.y = maxf(0,minf(part_bounds.end.y,float(part.clip_bottom))-part_bounds.position.y)
 			bounds = bounds.merge(part_bounds)
-	if id == "maintenance_hand_gap":
-		for part: Dictionary in hand_assembly(obstacle).parts:
+	if id == "maintenance_hand_gap" or id.begins_with("strainer_gap_"):
+		for part: Dictionary in hazard_assembly(obstacle).parts:
 			bounds = bounds.merge(frame_bounds(frames[part.id],part.transform))
 	for overlay: Dictionary in obstacle_art.manifest.get("obstacle_overlays",{}).get(id,[]):
 		for frame: Dictionary in obstacle_art.manifest.animations[str(overlay.animation)].frames:
@@ -228,8 +239,13 @@ func hand_assembly(obstacle: Dictionary) -> Dictionary:
 func obstacle_active(obstacle: Dictionary) -> bool:
 	return visual_age(obstacle) >= float(obstacle.get("activates_at",0))
 
+func hazard_assembly(obstacle: Dictionary) -> Dictionary:
+	if obstacle_frame_id(obstacle).begins_with("strainer_gap_"):
+		return Strainer.assembly(obstacle_art.manifest,obstacle_position(obstacle),float(obstacle.depth),visual_age(obstacle))
+	return hand_assembly(obstacle)
+
 func draw_hand(host: Node2D, obstacle: Dictionary) -> void:
-	for part: Dictionary in hand_assembly(obstacle).parts:
+	for part: Dictionary in hazard_assembly(obstacle).parts:
 		host.draw_set_transform_matrix(part.transform)
 		obstacle_art.draw_named(host,part.id,Vector2.ZERO,Color(1,1,1,part.alpha))
 	host.draw_set_transform(Vector2.ZERO)
@@ -271,15 +287,13 @@ func rider_transform(host: Node2D) -> Transform2D:
 	var recovery_bounce := sin(recovery_clock/0.6*PI)*20.0
 	var anchor := position
 	if falling:
-		var gap := failed_gap()
-		if not gap.is_empty():
-			var center := obstacle_position(gap)
-			var inset := minf(55,float(gap.width)*0.5)
-			var inside_x := clampf(position.x,center.x-float(gap.width)*0.5+inset,
-				center.x+float(gap.width)*0.5-inset)
-			# Leading-edge failure can leave the board center outside the hole. Carry it over the lip
-			# continuously before it drops, without moving the frozen gameplay/checkpoint position.
-			anchor.x = lerpf(position.x,inside_x,smoothstep(0,0.22,float(host.death_time)))
+		var opening := fall_opening()
+		if opening.has_area():
+			var inset := Vector2(minf(55,opening.size.x*0.5),minf(14,opening.size.y*0.5))
+			var inside := position.clamp(opening.position+inset,opening.end-inset)
+			# The collision pit may extend UNDER islands. Move into its actual unsupported opening,
+			# never through a solid deck, while retaining the frozen gameplay/checkpoint position.
+			anchor = position.lerp(inside,smoothstep(0,0.22,float(host.death_time)))
 	return Transform2D(render_pitch,anchor+Vector2(0,-render_height+fall_depth-recovery_bounce))
 
 func failed_gap() -> Dictionary:
@@ -288,9 +302,41 @@ func failed_gap() -> Dictionary:
 			return obstacle
 	return {}
 
-func fall_clip_bottom() -> float:
+func fall_opening() -> Rect2:
 	var gap := failed_gap()
-	return float(gap.y)+float(gap.depth)*0.5 if not gap.is_empty() else 540.0
+	if gap.is_empty(): return Rect2()
+	var center := obstacle_position(gap)
+	var size := Vector2(float(gap.width),float(gap.depth))
+	var openings: Array[Rect2] = [Rect2(center-size*0.5,size)]
+	for deck: Dictionary in course.obstacles:
+		if deck.kind != "deck": continue
+		var deck_size := Vector2(float(deck.width),float(deck.depth))
+		var solid := Rect2(obstacle_position(deck)-deck_size*0.5,deck_size)
+		var remaining: Array[Rect2] = []
+		for region: Rect2 in openings:
+			var overlap := region.intersection(solid)
+			if not overlap.has_area():
+				remaining.append(region)
+				continue
+			for piece in [Rect2(region.position,Vector2(overlap.position.x-region.position.x,region.size.y)),
+				Rect2(Vector2(overlap.end.x,region.position.y),Vector2(region.end.x-overlap.end.x,region.size.y)),
+				Rect2(Vector2(overlap.position.x,region.position.y),Vector2(overlap.size.x,overlap.position.y-region.position.y)),
+				Rect2(Vector2(overlap.position.x,overlap.end.y),Vector2(overlap.size.x,region.end.y-overlap.end.y))]:
+				if piece.has_area(): remaining.append(piece)
+		openings = remaining
+	var chosen := Rect2()
+	var distance := INF
+	for region: Rect2 in openings:
+		var next := position.distance_squared_to(position.clamp(region.position,region.end))
+		if next < distance:
+			distance = next
+			chosen = region
+	return chosen
+
+func fall_clip_bottom(elapsed := INF) -> float:
+	var opening := fall_opening()
+	if not opening.has_area(): return 540.0
+	return lerpf(maxf(position.y+14,opening.end.y),opening.end.y,smoothstep(0.12,0.28,elapsed))
 
 func falling_polygons(frame: Dictionary, transform: Transform2D, elapsed := 0.0) -> Array[PackedVector2Array]:
 	var d: Array = frame.destination
@@ -298,15 +344,14 @@ func falling_polygons(frame: Dictionary, transform: Transform2D, elapsed := 0.0)
 	var polygon := PackedVector2Array([target.position,Vector2(target.end.x,target.position.y),
 		target.end,Vector2(target.position.x,target.end.y)])
 	polygon = transform*polygon
-	var bottom := fall_clip_bottom()
+	var bottom := fall_clip_bottom(elapsed)
 	var left := 0.0
 	var right := 960.0
-	var gap := failed_gap()
-	if not gap.is_empty():
-		var center := obstacle_position(gap)
+	var opening := fall_opening()
+	if opening.has_area():
 		var entered := smoothstep(0.12,0.28,elapsed)
-		left = lerpf(0,maxf(0,center.x-float(gap.width)*0.5),entered)
-		right = lerpf(960,minf(960,center.x+float(gap.width)*0.5),entered)
+		left = lerpf(0,maxf(0,opening.position.x),entered)
+		right = lerpf(960,minf(960,opening.end.x),entered)
 	return Geometry2D.intersect_polygons(polygon,PackedVector2Array([
 		Vector2(left,0),Vector2(right,0),Vector2(right,bottom),Vector2(left,bottom)]))
 
@@ -335,6 +380,12 @@ func fall_occluding_frames(frame: Dictionary, near_edge := -INF) -> Array[Dictio
 		# Adjacent island tops must not blanket the initial fall at a leading-edge contact.
 		result.append(frame)
 	return result
+
+func deck_occludes_fall(obstacle: Dictionary) -> bool:
+	var opening := fall_opening()
+	var front := obstacle_position(obstacle).y+float(obstacle.depth)*0.5
+	# A fall over the NEAR edge is in front of the deck's face, not behind that wall.
+	return opening.position.y < front-EPS
 
 func draw_fall_occluder(host: Node2D, frame: Dictionary, point: Vector2, near_edge := -INF) -> void:
 	for layer: Dictionary in fall_occluding_frames(frame,near_edge):
@@ -374,7 +425,8 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 		if obstacle.kind in ["support","overhead"]:
 			foreground.append(obstacle)
 		else: draw_obstacle(host,obstacle)
-		if obstacle_frame_id(obstacle) == "maintenance_hand_gap": draw_hand(host,obstacle)
+		if obstacle_frame_id(obstacle) == "maintenance_hand_gap" or obstacle_frame_id(obstacle).begins_with("strainer_gap_"):
+			draw_hand(host,obstacle)
 	foreground.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return obstacle_position(a).y < obstacle_position(b).y)
 	var rider_drawn := false
 	for obstacle: Dictionary in foreground:
@@ -387,7 +439,8 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 		# Solid island tops and sidewalls occlude the descending composite at its failed position.
 		for obstacle: Dictionary in visual_obstacles:
 			var frame: Dictionary = obstacle_art.manifest.frames[obstacle_frame_id(obstacle)]
-			if obstacle_active(obstacle) and (obstacle.kind == "deck" or bool(frame.get("has_fall_occlusion",false))):
+			if obstacle_active(obstacle) and (deck_occludes_fall(obstacle) if obstacle.kind == "deck"
+				else bool(frame.get("has_fall_occlusion",false))):
 				draw_fall_occluder(host,frame,obstacle_position(obstacle),
 					float(obstacle.depth)*0.5 if obstacle.kind == "deck" else -INF)
 	for obstacle: Dictionary in visual_obstacles:
@@ -403,11 +456,12 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	elif phase == "encounter":
 		host.label_at("%02d  %s" % [encounter_index+1,str(encounter.get("title",""))],Vector2(24,92),22,host.GOLD)
 		host.label_at(str(encounter.get("action_hint","")),Vector2(24,117),16,host.MINT)
-	if phase == "encounter" and encounter.has("hand_timeline"):
-		var warning := float(encounter.hand_timeline.warning_at)
+	if phase == "encounter" and (encounter.has("hand_timeline") or encounter.has("strainer_timeline")):
+		var warning := float(encounter.get("hand_timeline",encounter.get("strainer_timeline",{})).warning_at)
 		var pit: Dictionary = course.obstacles[0]
 		if encounter_clock >= warning and obstacle_position(pit).x+float(pit.width)*0.5 > position.x-HALF.x:
-			host.label_at("TRACK BREAK AHEAD →" if not obstacle_active(pit) else "JUMP THE FULL-WIDTH GAP →",
+			var response := "DODGE FAR OR JUMP →" if encounter.has("strainer_timeline") else "JUMP THE FULL-WIDTH GAP →"
+			host.label_at("TRACK BREAK AHEAD →" if not obstacle_active(pit) else response,
 				Vector2(580,155),18,host.GOLD)
 			if obstacle_position(pit).x+float(pit.width)*0.5 > 960:
 				host.label_at("Far edge is still offscreen",Vector2(650,178),14,host.MINT)

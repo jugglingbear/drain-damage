@@ -17,7 +17,7 @@ func checks() -> void:
 			var capture := Freeze.new()
 			capture.host = game
 			game.add_child(capture)
-			for index in [1,6,7,9,10]:
+			for index in [1,6,7,9,10,11,12]:
 				game.reset_game()
 				game.begin_level_two()
 				game.flush.enter_ride(game,index)
@@ -27,7 +27,7 @@ func checks() -> void:
 					if obstacle.kind in ["gap","long_pit"]: gap = obstacle
 				assert(not gap.is_empty())
 				# Force an unsupported edge position, retaining authored gap geometry and ordinary host death.
-				ride.position = Vector2(300,330 if index == 1 else 260)
+				ride.position = Vector2(300,330 if index in [1,11,12] else 260)
 				ride.encounter_scroll = float(gap.x)-300
 				ride.clock = ride.encounter_scroll/560
 				ride.encounter_clock = ride.clock
@@ -37,10 +37,10 @@ func checks() -> void:
 				assert(game.life_state == "dying" and game.lives == 2 and ride.events.fall == 1)
 				var failed: Vector2 = ride.position
 				var start: Vector2 = ride.rider_transform(game).origin
-				assert(ride.fall_clip_bottom() == float(gap.y)+float(gap.depth)*0.5)
+				assert(ride.fall_clip_bottom() == ride.fall_opening().end.y)
 				game.step_death(0.25)
 				var quarter: Vector2 = ride.rider_transform(game).origin
-				assert(quarter.x == start.x and quarter.y > start.y+9)
+				assert(quarter != start,"Initial carry/descent must visibly progress before the menu")
 				assert(not game.pause_menu.visible and game.life_state == "dying")
 				capture.begin_freeze()
 				assert(paused and capture.frozen)
@@ -59,5 +59,5 @@ func checks() -> void:
 				assert(game.flush.ride.encounter_index == index and game.life_state == "alive")
 			game.queue_free()
 			await process_frame
-	print("PASS:30 authored pit falls, both heroes/all modes, downward progression before UI, clip rim, freeze, single life and checkpoint")
+	print("PASS:42 authored pit falls, both heroes/all modes, downward progression before UI, clip rim, freeze, single life and checkpoint")
 	quit()

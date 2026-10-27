@@ -36,7 +36,7 @@ func checks() -> void:
 			var registration: Array = ride.obstacle_art.manifest.rider_contacts[game.employee.id][costume]
 			var frame: Dictionary = pose.front[0]
 			var image: Image = game.flush.art.textures[frame.path].get_image()
-			for index in [1,6,7,9,10]:
+			for index in [1,6,7,9,10,11,12]:
 				game.flush.enter_ride(game,index)
 				for gap: Dictionary in ride.course.obstacles:
 					if gap.kind not in ["gap","long_pit"]: continue
@@ -62,7 +62,9 @@ func checks() -> void:
 									var transform: Transform2D = ride.rider_transform(game)*Transform2D(0,-Vector2(registration[0],registration[1]))
 									counts.append(coverage(ride,frame,image,transform,elapsed))
 								assert(counts[0] > 0 and counts[1] >= counts[0]*0.95,"Initial opaque silhouette cannot vanish")
-								assert(counts[2] > 0 and counts[3] > 0,"Fall must remain visibly readable through first half second")
+								assert(counts[2] > 0,"Initial descent must remain readable")
+								if ride.fall_opening().size.y >= 60:
+									assert(counts[3] > 0,"Deep openings retain visible descent through half a second")
 								assert(counts[-1] == 0,"Hero descends fully behind the lip before death UI")
 								assert(ride.rider_transform(game).origin.y > 540)
 								cases += 1

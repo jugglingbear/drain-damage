@@ -15,7 +15,7 @@ func checks() -> void:
 	for hero in [0,1]:
 		game.employee = game.Crew.EMPLOYEES[hero]
 		for anchor in [180.0,650.0]:
-			for index in range(11):
+			for index in range(13):
 				game.life_state = "alive"
 				game.flush.enter_ride(game,index)
 				ride.position = Vector2(anchor,330)
@@ -28,21 +28,20 @@ func checks() -> void:
 				var last: Dictionary = ride.visual_obstacles[-1]
 				var before: Vector2 = ride.obstacle_position(last)
 				ride.tick(game,1.0/120,Vector2.ZERO,false)
-				assert(ride.phase == "rest" and ride.course.obstacles.is_empty())
-				assert(ride.visual_obstacles.has(last),"Visible final prop must survive collision teardown")
+				assert(ride.phase != "rest" and ride.rest_remaining == 0)
+				assert(ride.complete if index == 12 else ride.encounter_index == index+1)
+				assert(ride.visual_obstacles.has(last),"Visible final prop survives immediate encounter transition")
 				assert(ride.visual_bounds(last).intersects(ride.VIEWPORT,true))
-				ride.tick(game,0.1,Vector2.ZERO,false)
-				assert(ride.obstacle_position(last).x < before.x-50,"Departing visuals continue scrolling in rest")
-				assert(game.life_state == "alive" and ride.course.obstacles.is_empty())
-				var remaining: float = ride.rest_remaining
-				ride.tick(game,remaining-0.001,Vector2.ZERO,false)
-				assert(ride.phase == "rest","Full three-second rest preserved")
-				ride.tick(game,0.002,Vector2.ZERO,false)
-				assert(ride.phase != "rest")
-				assert(not ride.visual_obstacles.has(last),"Offscreen old prop must not respawn")
+				if not ride.complete:
+					ride.tick(game,0.1,Vector2.ZERO,false)
+					assert(ride.obstacle_position(last).x < before.x-50,"Departing visuals keep their world clock")
+					assert(game.life_state == "alive")
+					ride.clock += 3
+					ride.prune_departed_visuals()
+					assert(not ride.visual_obstacles.has(last),"Offscreen old prop must not respawn")
 				checked += 1
 	# Every authored footprint, including shadows and the rotated sweep arm, at both horizontal edges.
-	for index in range(11):
+	for index in range(13):
 		game.flush.enter_ride(game,index)
 		for visual: Dictionary in ride.visual_obstacles:
 			for phase in [0.0,0.6,1.2,1.8]:
@@ -74,5 +73,5 @@ func checks() -> void:
 	assert(not ride.visual_obstacles.has(retained),"Explicit retry clears the prior visual run")
 	game.queue_free()
 	await process_frame
-	print("PASS: ",checked," visual/rest transitions; all authored edge footprints/moving phases; independent origins and retry cleanup")
+	print("PASS: ",checked," zero-rest visual transitions; all authored edge footprints/moving phases; independent origins and retry cleanup")
 	quit()

@@ -17,10 +17,10 @@ func checks() -> void:
 					model.begin(host,1)
 					model.position = Vector2(anchor,bank)
 					for frame in range(1200):
-						if model.phase != "encounter" or host.life_state != "alive": break
+						if model.encounter_index != 1 or host.life_state != "alive": break
 						model.tick(host,1.0/60,Vector2.ZERO,false)
 					if bank < 286:
-						assert(host.health == 5 and host.lives == 3 and model.phase == "rest")
+						assert(host.health == 5 and host.lives == 3 and model.encounter_index == 2)
 					else:
 						assert(host.life_state == "dead" and host.lives == 2 and model.events.fall == 1)
 						model.tick(host,1,Vector2.RIGHT,true)

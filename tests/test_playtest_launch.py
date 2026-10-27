@@ -31,7 +31,7 @@ class PlaytestLaunchTests(unittest.TestCase):
                          ["--miniboss=skitterling", "--hero=sean", "--difficulty=hard", "--seed=913"])
 
     def test_distinct_flush_and_landing_entries(self) -> None:
-        for target in ("2", "2-landing", *(f"2-{number:02d}" for number in range(1, 12))):
+        for target in ("2", "2-landing", *(f"2-{number:02d}" for number in range(1, 14))):
             self.assertEqual(launch.launch_arguments({"LEVEL": target, "HERO": "sean", "DIFFICULTY": "hard"}),
                              [f"--level={target}", "--hero=sean", "--difficulty=hard", "--seed=42"])
 

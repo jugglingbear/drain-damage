@@ -12,6 +12,7 @@ var checkpoint_index := 0
 var phase := "encounter"
 var rest_remaining := 0.0
 var encounter_clock := 0.0
+var encounter_started_at := 0.0
 var encounter_scroll := 0.0
 var clock := 0.0
 var scroll_speed := 560.0
@@ -81,6 +82,7 @@ func _start_encounter(index: int) -> void:
 	phase = "encounter"
 	rest_remaining = 0
 	encounter_clock = 0
+	encounter_started_at = clock
 	encounter_scroll = 0
 	contact_latches.clear()
 	hit_ids.clear()
@@ -254,12 +256,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 				_launch()
 			_advance_air_motion(dt)
 			if rest_remaining <= EPS:
-				if encounter_index+1 >= definition.encounters.size():
-					complete = true
-					phase = "complete"
-					host.won = true
-					emit_event("finished")
-				else: _start_encounter(encounter_index+1)
+				_advance_encounter(host)
 		else:
 			_step(host,dt,steering,pressed)
 		remaining -= dt
@@ -387,10 +384,22 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 	encounter_clock += dt
 	_advance_air_motion(dt)
 	if _encounter_clear():
-		phase = "rest"
-		rest_remaining = 3.0
-		course = {"obstacles":[]}
-		emit_event("rest_started")
+		rest_remaining = _rest_duration()
+		if rest_remaining <= EPS:
+			_advance_encounter(host)
+		else:
+			phase = "rest"
+			course = {"obstacles":[]}
+			emit_event("rest_started")
+
+func _advance_encounter(host: Node2D) -> void:
+	if encounter_index+1 >= definition.encounters.size():
+		complete = true
+		phase = "complete"
+		host.won = true
+		emit_event("finished")
+	else:
+		_start_encounter(encounter_index+1)
 
 func _advance_air_motion(dt: float) -> void:
 	recovery_clock = maxf(0,recovery_clock-dt)
@@ -416,8 +425,14 @@ func _advance_air_motion(dt: float) -> void:
 	else:
 		render_pitch = 0
 
+func _rest_duration() -> float:
+	var rest: Dictionary = definition.get("rest",{})
+	return maxf(0,float(encounter.get("rest_after_seconds",rest.get("duration",3.0))))
+
 func _encounter_clear() -> bool:
-	if ramp_active or jump_age >= 0 or recovery_clock > EPS or not contact_latches.is_empty(): return false
+	# Legacy positive-rest fixtures retain their quiet landing boundary; zero-rest rides never wait for flight.
+	if _rest_duration() > EPS and jump_age >= 0: return false
+	if ramp_active or recovery_clock > EPS or not contact_latches.is_empty(): return false
 	for obstacle: Dictionary in course.obstacles:
 		var motion: Dictionary = obstacle.get("motion",{})
 		var max_x := absf(float(motion.get("amplitude",0))) if motion.get("axis","") == "x" else 0.0

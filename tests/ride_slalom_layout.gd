@@ -30,9 +30,9 @@ func checks() -> void:
 						model.begin(host)
 						model.position = Vector2(anchor,y)
 						for frame in range(15*60):
-							if model.phase != "encounter": break
+							if model.encounter_index != 0 or model.complete: break
 							model.tick(host,1.0/60,Vector2.ZERO,hopping and model.jump_age < 0 and model.cooldown <= 0)
-						assert(model.phase == "rest")
+						assert(model.encounter_index == 1)
 						assert(host.health < 100 and model.events.get("hit",0) > 0,
 							"Clean straight/jump bypass: %s %s x%s y%s jump%s" % [hero,mode,anchor,y,hopping])
 						assert(host.lives == 3)
@@ -51,14 +51,14 @@ func checks() -> void:
 						model.begin(host)
 						model.position.x = anchor
 						for frame in range(15*hz):
-							if model.phase != "encounter": break
+							if model.encounter_index != 0 or model.complete: break
 							var target := 330.0
 							var dt: float = 1.0/hz
 							var next_x: float = model.position.x+model.encounter_scroll+560*dt
 							for waypoint: Dictionary in model.encounter.witness.bank_targets:
 								if next_x >= float(waypoint.at_world_x)+timing_offset*560: target = waypoint.target_y
 							model.tick(host,dt,Vector2(0,clampf((target-model.position.y)/(350*dt),-1,1)),false)
-						assert(model.phase == "rest" and host.health == 5 and model.events.get("hit",0) == 0,
+						assert(model.encounter_index == 1 and host.health == 5 and model.events.get("hit",0) == 0,
 							"Weave failed timing offset%s Hz%s" % [timing_offset,hz])
 						host.free()
 						safe_routes += 1

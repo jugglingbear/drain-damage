@@ -1,5 +1,5 @@
 extends SceneTree
-## Input-driven showcase routes, multipart rests and authored-geometry exploit checks.
+## Input-driven showcase routes, immediate stage transitions and measured clearance.
 const Model = preload("res://scripts/ride_showcase_model.gd")
 
 class Host extends Node2D:
@@ -90,8 +90,8 @@ func checks() -> void:
 					model.position.x = anchor
 					var stage := -1
 					var next_jump := 0
-					var rest_start := -1.0
-					var rest_count := 0
+					var stage_started := 0.0
+					var transitions := []
 					var margins := {}
 					for frame in range(180*hz):
 						if model.complete: break
@@ -100,11 +100,13 @@ func checks() -> void:
 						var jump := false
 						if model.encounter_index != stage:
 							if stage >= 0:
-								if not require(rest_start >= 0 and float(model.last_event.clock)-rest_start >= 3.0-0.000001,
-									"Next encounter started before full3s rest"): return
+								var duration: float = float(model.encounter_started_at)-stage_started
+								var expected: float = (float(model.definition.encounters[stage].end_x)-135)/560
+								if not require(absf(duration-expected) <= 1.0/120+0.00001,"Extra hold in transition"): return
+								transitions.append(duration)
+							stage_started = float(model.encounter_started_at)
 							stage = model.encounter_index
 							next_jump = 0
-							rest_start = -1
 						if model.phase == "encounter":
 							var route: Dictionary = model.encounter.witness
 							var next_x: float = model.position.x+model.encounter_scroll+model.scroll_speed*dt
@@ -125,15 +127,14 @@ func checks() -> void:
 						if not require(host.health == 5 and host.lives == 3 and host.life_state == "alive",
 							"Route hit %s/%s/x%s/%sHz encounter%s scroll%s last%s" %
 							[hero,mode,anchor,hz,model.encounter_index+1,model.encounter_scroll,model.last_event]): return
-						if model.phase == "rest":
-							if rest_start < 0:
-								rest_start = float(model.last_event.clock)
-								rest_count += 1
-							if not require(model.course.obstacles.is_empty() and model.jump_age < 0 and not model.ramp_active
-								and model.recovery_clock <= 0 and model.contact_latches.is_empty(),"Rest contains active hazard/state"): return
-					if not require(model.complete and host.won and rest_count == 11 and model.events.get("jump",0) == 7
-						and model.events.get("ramp",0) == 1,"Showcase did not finish11 encounters/11rests/7hops/1boost"): return
-					if not require(float(model.last_event.clock)-rest_start >= 3.0-0.000001,"Final rest shorter than3s"): return
+						if not require(model.phase != "rest","Explicit rest remains"): return
+					if not require(model.complete and host.won and model.events.get("encounter_started",0) == 13
+						and model.events.get("jump",0) == 7 and model.events.get("ramp",0) == 1,
+						"Course did not finish13 encounters/7hops/1boost"): return
+					var final_expected: float = (float(model.encounter.end_x)-135)/560
+					if not require(absf(float(model.last_event.clock)-stage_started-final_expected) <= 1.0/120+0.00001,
+						"Final stage contains an extra hold"): return
+					print("TRANSITIONS ",JSON.stringify({"hero":hero,"anchor":anchor,"hz":hz,"durations":transitions}))
 					for record: Dictionary in margins.values():
 						for value in record.values():
 							if not require(float(value) > 0,"Nonpositive measured route clearance"): return
@@ -141,5 +142,5 @@ func checks() -> void:
 					print("PASS SHOWCASE ",hero," ",mode," x",anchor," hz",hz," seconds",snappedf(model.clock,0.001))
 					passed += 1
 					host.free()
-	print("PASS: ",passed," complete showcase routes;594 encounter traversals, full3s rests and no damage")
+	print("PASS: ",passed," complete showcase routes;702 encounter traversals, zero explicit rests and no damage")
 	quit()
