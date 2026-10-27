@@ -1,0 +1,731 @@
+{
+  "status": "Frozen authored source delivery; runtime validation pending",
+  "frames": {
+    "strainer_basket": {
+      "path": "assets/world/ceiling-strainer-v1/parts-v1.png",
+      "source_rect": [
+        39,
+        18,
+        726,
+        485
+      ],
+      "destination": [
+        -70,
+        -92,
+        140,
+        92
+      ],
+      "role": "basket",
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "strainer_basket_clear": {
+      "path": "assets/world/ceiling-strainer-v1/parts-v1.png",
+      "source_rect": [
+        39,
+        18,
+        726,
+        485
+      ],
+      "destination": [
+        -35,
+        -40,
+        70,
+        40
+      ],
+      "role": "receded_basket",
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "strainer_winch": {
+      "path": "assets/world/ceiling-strainer-v1/parts-v1.png",
+      "source_rect": [
+        794,
+        78,
+        720,
+        290
+      ],
+      "destination": [
+        -90,
+        -20,
+        180,
+        36
+      ],
+      "role": "fixed_ceiling_winch",
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "strainer_chain": {
+      "path": "assets/world/ceiling-strainer-v1/parts-v1.png",
+      "source_rect": [
+        200,
+        515,
+        48,
+        350
+      ],
+      "destination": [
+        -3,
+        0,
+        6,
+        100
+      ],
+      "role": "chain_segment",
+      "coordinate_space": "local",
+      "anchor": [
+        0,
+        0
+      ]
+    },
+    "strainer_gap_60": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            450,
+            180,
+            650,
+            155
+          ],
+          "destination": [
+            -70,
+            -30.0,
+            140,
+            60
+          ],
+          "role": "lethal_pit_plane",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "collision_plane": true,
+          "occludes_fall": false
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            110,
+            130,
+            100,
+            190
+          ],
+          "destination": [
+            -80,
+            -30.0,
+            10,
+            60
+          ],
+          "role": "solid_left_rim",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            1310,
+            130,
+            110,
+            190
+          ],
+          "destination": [
+            70,
+            -30.0,
+            10,
+            60
+          ],
+          "role": "solid_right_rim",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ceiling-strainer-v1/parts-v1.png",
+          "source_rect": [
+            800,
+            505,
+            713,
+            181
+          ],
+          "destination": [
+            -80,
+            30.0,
+            160,
+            18
+          ],
+          "role": "solid_near_rim",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "occludes_fall": true
+        }
+      ],
+      "has_fall_occlusion": true
+    },
+    "strainer_gap_130": {
+      "layers": [
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            450,
+            180,
+            650,
+            155
+          ],
+          "destination": [
+            -70,
+            -65.0,
+            140,
+            130
+          ],
+          "role": "lethal_pit_plane",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "collision_plane": true,
+          "occludes_fall": false
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            110,
+            130,
+            100,
+            190
+          ],
+          "destination": [
+            -80,
+            -65.0,
+            10,
+            130
+          ],
+          "role": "solid_left_rim",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-breach-v2.png",
+          "source_rect": [
+            1310,
+            130,
+            110,
+            190
+          ],
+          "destination": [
+            70,
+            -65.0,
+            10,
+            130
+          ],
+          "role": "solid_right_rim",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "occludes_fall": true
+        },
+        {
+          "path": "assets/world/ceiling-strainer-v1/parts-v1.png",
+          "source_rect": [
+            800,
+            505,
+            713,
+            181
+          ],
+          "destination": [
+            -80,
+            65.0,
+            160,
+            18
+          ],
+          "role": "solid_near_rim",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ],
+          "occludes_fall": true
+        }
+      ],
+      "has_fall_occlusion": true
+    }
+  },
+  "animations": {
+    "strainer_water_60": {
+      "fps": 16,
+      "loop": true,
+      "interpolate": true,
+      "frames": [
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            65,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            449,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            833,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            1217,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            65,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            449,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            833,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            1217,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -30.0,
+            130,
+            60
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "strainer_water_130": {
+      "fps": 16,
+      "loop": true,
+      "interpolate": true,
+      "frames": [
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            65,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            449,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            833,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            1217,
+            12,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            65,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            449,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            833,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        },
+        {
+          "path": "assets/world/ride-showcase-v1/elbow-waterfall-v2.png",
+          "source_rect": [
+            1217,
+            524,
+            260,
+            490
+          ],
+          "destination": [
+            -65,
+            -65.0,
+            130,
+            130
+          ],
+          "role": "downward_water",
+          "coordinate_space": "local",
+          "anchor": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "obstacle_overlays": {
+    "strainer_gap_60": [
+      {
+        "animation": "strainer_water_60",
+        "foreground": false
+      }
+    ],
+    "strainer_gap_130": [
+      {
+        "animation": "strainer_water_130",
+        "foreground": false
+      }
+    ]
+  },
+  "collision_registration": {
+    "strainer_gap_60": {
+      "core": [
+        -70,
+        -30.0,
+        140,
+        60
+      ],
+      "world_rect": [
+        2530,
+        300.0,
+        140,
+        60
+      ],
+      "activates_at": 2.9
+    },
+    "strainer_gap_130": {
+      "core": [
+        -70,
+        -65.0,
+        140,
+        130
+      ],
+      "world_rect": [
+        2530,
+        300.0,
+        140,
+        130
+      ],
+      "activates_at": 2.9
+    }
+  },
+  "strainer_parts": {
+    "basket": "strainer_basket",
+    "clear_basket": "strainer_basket_clear",
+    "winch": "strainer_winch",
+    "chain": "strainer_chain",
+    "winch_world_y": 70,
+    "pulley_offsets": [
+      [
+        -43,
+        0
+      ],
+      [
+        43,
+        0
+      ]
+    ],
+    "impact_basket_bottom": "obstacle.y + obstacle.depth/2",
+    "impact_eye_offsets": [
+      [
+        -61,
+        -84
+      ],
+      [
+        61,
+        -84
+      ]
+    ],
+    "clear_basket_bottom_world_y": 118,
+    "clear_eye_offsets": [
+      [
+        -30.5,
+        -36.5
+      ],
+      [
+        30.5,
+        -36.5
+      ]
+    ],
+    "render": "Keep chains connected from fixed pulley to basket eyes while basket drops/hoists. Clear frame recedes in depth, bottom118 by3.05. No cage collider."
+  },
+  "timeline": {
+    "warning": 1.25,
+    "impact": 2.9,
+    "clear": 3.05,
+    "rule": "Pit and visible break activate synchronously; persist after cage hoists. Keep partial-offscreen edge warning; do not claim full impact onscreen."
+  },
+  "prompts": "assets/world/ceiling-strainer-v1/prompts.json",
+  "notes": [
+    "One middle lane or middle+near lanes; far lane stays open.",
+    "Both variants permit dodge or normal jump; source art does not establish runtime feasibility."
+  ],
+  "validation": {
+    "source_bounds": "PASS 28 registered regions",
+    "source_preview": "assets/world/ceiling-strainer-v1/source-previews/contact.png",
+    "kind": "Static source study, not actual gameplay capture"
+  }
+}
