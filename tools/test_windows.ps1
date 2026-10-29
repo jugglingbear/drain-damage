@@ -8,7 +8,7 @@ foreach ($file in $manifest.files.PSObject.Properties) {
 }
 $logs = Join-Path $PSScriptRoot ('test-results-' + (Get-Date -Format 'yyyyMMdd-HHmmss'))
 New-Item -ItemType Directory -Path $logs | Out-Null
-foreach ($target in @('1', '2', '2-landing', '2-12', '2-13')) {
+foreach ($target in @('1', '2', '2-landing', '2.1', '2-12', '2-13')) {
     foreach ($hero in @('tony', 'sean')) {
         $log = Join-Path $logs "$target-$hero.log"
         $arguments = @('--headless', '--log-file', "`"$log`"", '--', "--level=$target",

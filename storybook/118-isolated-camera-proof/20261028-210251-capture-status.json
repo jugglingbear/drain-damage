@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 118 / 0.118.0",
+  "created_at": "2026-10-28T21:02:51.025544-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "source_commit": "f0a418e",
+  "status": "Isolated Level2.1 proof packaged on Mac and Windows; headless checks pass. Actual rendered visual review and native Windows performance pending.",
+  "app": "builds/Prototype-118/Drain Damage.app",
+  "archive": "builds/history/Prototype-118.zip",
+  "archive_sha256": "93a235db9195193b369878d37625cab8bd0e5f2ee96608dc3286cb653be82885",
+  "source_snapshot": "builds/source-118",
+  "source_snapshot_files": 2610,
+  "previous_build_preserved": "Prototype117 and earlier apps, archives and snapshots preserved.",
+  "changes": [
+    "Separate LEVEL=2.1 scene with authored material textures on real porcelain slab, brass ellipse, round opening, flowing water and ramp geometry; current Level2 remains selectable.",
+    "World-space fixed120Hz model and footprint-aware swept circular-hole collision; raised surface support, jump and gravity ramp-exit fall are independent of camera.",
+    "Orthographic fixed50degree pitch and bounded0/20degree yaw comparison from safe water; 1.2second turn briefly locks movement, pause freezes turn. Existing movement/jump controls and flat shared draw_vitals retained.",
+    "Both heroes reuse approved existing illustrated composites with explicit baked-board perspective limitation. Real shadow casting, inward rim flow and downward wall flow use the same model clock.",
+    "Windows package checks include the isolated proof as a sixth destination. Concept originals and comparison study preserved separately; no full-level migration."
+  ],
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-118/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-118/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-118/Drain Damage.app\"",
+    "brushes": "make run LEVEL=2-04",
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-118/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-118/Drain Damage.app\"",
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-118/Drain Damage.app\""
+  },
+  "checks": {
+    "python_tests": 44,
+    "source_suites": [
+      "camera_test_model",
+      "camera_test_integration",
+      "playtest_launch"
+    ],
+    "packaged_suites": [
+      "camera_test_model",
+      "camera_test_integration"
+    ],
+    "model_coverage": "30/60/120/144Hz trajectory/death invariance, half-footprint/ellipse support, rounded-corner hole sweep, jump clearance, ramp descent/exit and death reset.",
+    "integration_coverage": "Both heroes, normal/hard artwork, authored materials, independent old entry, bounded camera turn, pause freeze, one-life hole death and retry.",
+    "audio_freshness": "100 slots checked",
+    "signature_archive": "Mac strict codesign and both ZIP CRC checks pass; Windows PE and six host PCK initialization checks pass.",
+    "limitations": "Headless tests do not validate rendered appearance, frame rate or native Windows execution. Markdown linter and PowerShell unavailable."
+  },
+  "capture_gap": {
+    "actual_capture": false,
+    "metadata": "storybook/118-isolated-camera-proof/20261028-210251-capture-status.json",
+    "remaining": "Approved capture at both camera angles for both heroes, contact/occlusion/seam review and native Windows testing."
+  },
+  "limitations": [
+    "No foreground launch, actual gameplay screenshots or real GPU/performance acceptance.",
+    "Hero composites include painted board; billboard contact/foreshortening and shadow appearance need visual review.",
+    "Material tile seams and concept fidelity are unvalidated; basin fixture detail absent.",
+    "Safe surrounding water differs from lethal basin-island encounter; raised slabs auto-step, no underside/side-wall collision, ramp uses center height and half-footprint support.",
+    "Camera turns deliberately pause movement; player-controlled360rotation and full migration remain unapproved.",
+    "Production brush04 silhouette and strainer12/13 round-hole defects are not fixed by this separate proof.",
+    "Existing shutdown resource warnings remain."
+  ],
+  "contributors": [
+    "handoffs/level-two-ride-showcase-layout.json",
+    "handoffs/ride-showcase-art.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json",
+    "audio/sources/ride-fall-panic-v1/manifest.json",
+    "handoffs/giant-brush-v2-art.json",
+    "handoffs/ceiling-strainer-v1-art.json",
+    "assets/world/level-two-camera-test-v1/manifest.json",
+    "scripts/camera_test_model.gd",
+    "design/level-two-camera-concepts-v1/concept.json"
+  ],
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
+  "proposals_not_implemented": [
+    "Full-level/game camera migration",
+    "Level1 camera proof",
+    "Wall ram gameplay",
+    "Hungry-head final boss"
+  ],
+  "windows_export": {
+    "date": "2026-10-28",
+    "version": "0.118.0",
+    "architecture": "x86_64",
+    "archive": "builds/Drain-Damage-0.118.0-windows-x86_64-20261029-040023-189909Z.zip",
+    "archive_sha256": "f414296e7d5e50fd8c99570d56ca194144ec12c3bf6c8df1457524298add1b7c",
+    "status": "Cross-exported on macOS; Windows-native validation pending. No VM or Windows machine used.",
+    "checks": [
+      "44 Python tests",
+      "x86_64 PE and ZIP integrity",
+      "Six exported PCK initialization checks on macOS including2.1",
+      "100 sound slots current"
+    ],
+    "known_limitations": [
+      "Unsigned Windows executable",
+      "Existing verification shutdown resource warnings recorded in manifest",
+      "PowerShell script not executed; no PowerShell available on this Mac",
+      "Markdown lint unavailable locally",
+      "No Windows gameplay capture; capture after native test permission"
+    ],
+    "commands": [
+      "make build-windows",
+      "make build-all"
+    ],
+    "instructions": "docs/DEVELOPMENT.md#windows-exports-and-testing"
+  },
+  "source_dirty_at_build": true,
+  "capture_time": null
+}

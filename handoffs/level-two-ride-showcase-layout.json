@@ -926,7 +926,7 @@
       "delivery_evidence": "handoffs/first-call-integration.json"
     },
     "ram_camera_review": {
-      "status": "Approved isolated Level 2.1 camera proof; full migration unapproved",
+      "status": "Approved isolated proof packaged as Prototype118; visual acceptance and full migration decision pending",
       "decision_needed": "Review the isolated Level 2.1 proof before authorizing broader conversion.",
       "recommendation": "Shared camera-ready simple 3D environment surfaces and extrusions with authored textures and illustrated sprite actors; orthographic camera with bounded yaw/pitch and fixed-view fallback.",
       "feasibility": "Preserve the gameplay model where possible, but introduce explicit world travel, bank depth and elevation coordinates. Existing screen-like coordinates, clipping and flush projection require adapters. Rotation capability does not establish content readiness at every angle.",
@@ -947,7 +947,7 @@
           "Smaller alternative: custom fixed-angle shared 2D projection; limited rotation and unseen-side representation. This is no longer the sole recommendation."
         ],
         "recommendation": "Shared camera-ready simple 3D environment surfaces and extrusions with authored textures and illustrated sprite actors; orthographic camera with bounded yaw/pitch and fixed-view fallback.",
-        "implementation_status": "Sean approved standalone Level 2.1 — Camera Test, separate entry from current Level 2. Runtime/model/art work in progress; no foreground launch authorized.",
+        "implementation_status": "LEVEL=2.1 isolated scene implemented and packaged. Fixed50degree pitch,0/20yaw comparison on safe water; headless coverage passes. No foreground visual review yet; no full conversion authorized.",
         "proof_slices": [
           "Immediate approved scope: Level 2.1 basin, brass cleanout platform, round hole, flowing water and ramp.",
           "Representative Level 1 slice remains a proposed later gate, outside immediate authorization."

@@ -422,7 +422,7 @@ func start_game(launch: Dictionary = {}) -> void:
 	navigation_voice.stop()
 	held_navigation_buttons.clear()
 	music_director.play_track("level")
-	game = GAME.new()
+	game = load("res://scenes/level_two_camera_test.tscn").instantiate() if launch.get("target",{}).get("initializer","") == "camera-test" else GAME.new()
 	if launch.has("target"): game.seed_override = launch.seed
 	game.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	game.music_director = music_director

@@ -136,6 +136,25 @@ connected throughout its sweep. The ball collider and movement are unchanged; mo
 Mixed-course pacing, brush-curtain redesign and the new final
 boss remain proposals; Prototype 108 does not implement them. Human visual and controller review remains pending.
 
+## Level 2.1 camera proof
+
+Launch the isolated comparison course with either hero:
+
+```sh
+make run LEVEL=2.1 HERO=sean
+```
+
+The existing Level 2 entries remain available. This proof contains a raised porcelain slab, brass platform,
+round opening with flowing water, and ramp. Move with the existing arrows/WASD/stick and jump with Space/A.
+C, controller RB, or the camera button toggles between fixed 0-degree and 20-degree yaw views from safe water.
+Movement pauses for the 1.2-second comparison turn; Escape pauses the whole test. A fall costs one life and uses
+normal retry controls. The interface stays flat while the world camera turns.
+
+This is a presentation and contact proof, not a converted production level. Surrounding water is safe; the round
+opening is lethal. Slabs auto-step, the ramp uses a center-height contact model, and the reused hero image includes
+its painted board. Tile seams, sprite foreshortening, actual graphics performance and native Windows rendering
+still require visual review. Full-level migration remains unapproved.
+
 ## Windows exports and testing
 
 On the Mac, run `make build-windows`, or `make build-all` to produce both platform exports.
@@ -151,7 +170,7 @@ and `Test-Windows.ps1`. These build products are ignored by Git; attach the ZIP 
 `make build-all` builds both platforms but does not create or publish a GitHub Release.
 
 Before packaging, the builder rejects unresolved LFS assets, mismatched templates, export errors, invalid x86_64 PE
-headers, and invalid resource packs. It initializes five destinations from the exported PCK using the host Godot
+headers, and invalid resource packs. It initializes six destinations from the exported PCK using the host Godot
 engine. Those checks verify exported resource availability and initialization; they do not execute Windows machine code.
 The manifest records the source commit, dirty working-tree state, host checks, and pending Windows validation.
 
@@ -166,7 +185,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Test-Windows.ps1
 ```
 
 This invocation applies the script policy only to that PowerShell process. The script checks package hashes,
-launches the Windows executable headlessly for both heroes across five destinations, requires success markers,
+launches the Windows executable headlessly for both heroes across six destinations, requires success markers,
 and saves logs in a timestamped `test-results-*` folder. Each launch has a two-minute timeout.
 The existing verification path can report resources still in use during shutdown after its success marker.
 These warnings remain in the logs and manifest; other errors fail the checks.

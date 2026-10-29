@@ -70,7 +70,7 @@ def build() -> Path:
             validate_pe(executable)
         # This exercises exported resources on the build host, not the Windows executable.
         shutdown_warnings: list[str] = []
-        for target in ('1', '2', '2-landing', '2-12', '2-13'):
+        for target in ('1', '2', '2-landing', '2.1', '2-12', '2-13'):
             result = subprocess.run(
                 [str(godot), '--headless', '--main-pack', str(pck), '--', f'--level={target}',
                  '--hero=sean', '--difficulty=hard', '--seed=42', '--verify-playtest-launch'],
@@ -99,7 +99,7 @@ def build() -> Path:
             'source_commit': run(['git', 'rev-parse', 'HEAD']),
             'working_tree_dirty': bool(run(['git', 'status', '--porcelain'])),
             'created_at_utc': stamp, 'signed': False, 'windows_runtime_tested': False,
-            'host_resource_pack_checks': ['1', '2', '2-landing', '2-12', '2-13'],
+            'host_resource_pack_checks': ['1', '2', '2-landing', '2.1', '2-12', '2-13'],
             'known_shutdown_warnings': shutdown_warnings,
             'files': {file.name: sha256(file) for file in sorted(folder.iterdir()) if file.is_file()},
         }

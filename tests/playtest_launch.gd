@@ -26,6 +26,8 @@ func run_checks() -> void:
 			game.set_process(false)
 			game.set_physics_process(false)
 			for target in Launch.registry().targets:
+				# Isolated 3D proof requires its own scene; covered by camera_test_integration.gd.
+				if target.initializer == "camera-test": continue
 				var options := Launch.parse(PackedStringArray(["--%s=%s" % [target.kind,target.id],
 					"--hero="+["tony","sean"][hero],"--difficulty="+mode,"--seed=913"]))
 				assert(not options.has("error"))

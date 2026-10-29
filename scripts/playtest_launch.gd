@@ -95,4 +95,5 @@ static func summary(game: Node2D, options: Dictionary) -> Dictionary:
 		"flush_state":game.flush.state,"flush_clock":game.flush.clock,
 		"ride_encounter":game.flush.ride.encounter_index+1,"ride_phase":game.flush.ride.phase,
 		"screenshot_mode":game.has_node("ScreenshotFreeze"),
+		"camera_test":game.get_script().resource_path == "res://scripts/camera_test_game.gd",
 		"landing_checkpoint":game.flush.checkpoint_saved,"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}
