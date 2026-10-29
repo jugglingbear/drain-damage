@@ -68,6 +68,31 @@
 - If a build fails, report the failure and do not describe it as ready to play.
 - Building does not authorize opening or foregrounding the game; keep the playtest permission rules above.
 
+## Windows testing and cross-machine work
+
+- Start with [Windows export and test instructions](docs/DEVELOPMENT.md#windows-exports-and-testing)
+  and the current delivery record in `handoffs/first-call-integration.json`. Discover the local checkout path;
+  do not reuse Mac absolute paths or assume Mac chats, tools, credentials or permissions transferred with Git.
+- Check the branch, commit and working-tree changes before updating the checkout. Preserve local work and hydrate
+  Git LFS assets before source-based checks. Use a separate `codex/` branch for Windows fixes.
+- The current dependency bootstrap supports macOS/Linux hosts, not native Windows setup. Do not assume
+  `make install` or the Mac packaging commands work in Windows. Use the exported Windows package for initial tests;
+  record any additional native development setup explicitly.
+- Build ZIPs under `builds/` are ignored by Git and do not arrive with a clone or pull. Obtain the intended ZIP
+  and checksum separately, extract the complete package, and keep its EXE and PCK together. Record the version,
+  archive checksum, manifest source commit and dirty-tree flag so results identify the exact tested build.
+- Run the package's `Test-Windows.ps1` using the documented PowerShell command. Retain its timestamped logs,
+  failures and shutdown warnings. This checks package hashes and native headless initialization for both heroes;
+  it does not verify rendering, audio, input, performance or full gameplay.
+- Follow successful headless checks with an approved visual playtest of menus, both heroes, Level 1, flush,
+  landing and ride, keyboard/controller input, audio, window/fullscreen behavior and frame pacing. The playtest
+  permission and screenshot rules above and below apply on Windows too.
+- Record Windows version, CPU architecture, GPU/driver, tested controls, reproduction steps and observed results.
+  Distinguish real Windows hardware from Windows ARM emulation or a VM. Update the existing delivery record and
+  roadmap with evidence and remaining gaps; never mark Windows validated solely from Mac-side export checks.
+- Share fixes and durable test findings through Git commits and review. Cross-machine chat access is not assumed;
+  follow the consultation scope above rather than treating a new Windows project as the same app project ID.
+
 ## Gameplay health and lives HUD
 
 - Use the shared `draw_vitals` HUD throughout all gameplay, including levels, bosses, flush, landing and ride.
