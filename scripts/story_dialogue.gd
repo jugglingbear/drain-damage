@@ -31,7 +31,7 @@ const OPENING: Array[Dictionary] = [
 	{"who": "sean", "emotion": "happy", "text": "I brought a wrench."},
 	{"who": "tony", "emotion": "neutral", "text": "That’s a tire iron, buddy. We’ll get you sorted."},
 	{"who": "tony", "emotion": "worried", "text": "BJ, is there anyone down there?"},
-	{"who": "bj", "emotion": "happy", "text": "Not yet. Head on down."},
+	{"who": "bj", "emotion": "happy", "text": "Possibly. If you find anyone, remind them their break is over."},
 ]
 
 const COMPLETION_TONY: Array[Dictionary] = [
