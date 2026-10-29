@@ -5,7 +5,7 @@
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
   "source_commit": "d9ec256",
-  "status": "65% pit-overlap threshold verified; macOS and Windows exports pass. New visual capture and native Windows testing pending.",
+  "status": "65% pit-overlap threshold verified; macOS and Windows exports pass. Native Windows testing pending; no storybook capture required for this bug fix.",
   "app": "builds/Prototype-126/Drain Damage.app",
   "archive": "builds/history/Prototype-126.zip",
   "source_snapshot": "builds/source-126",
@@ -48,7 +48,8 @@
   },
   "capture_gap": {
     "actual_capture": false,
-    "remaining": "Capture safe 64% overlap and lethal 65% crossing in an approved session; preserve126 build."
+    "required": false,
+    "reason": "Routine bug fix; Sean limits storybook captures to meaningful milestones as of October 28, 2026."
   },
   "limitations": [
     "Native Windows rendering untested.",

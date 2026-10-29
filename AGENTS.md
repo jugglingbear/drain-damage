@@ -131,9 +131,12 @@
 
 ## Development storybook
 
-The user wants screenshots of every iteration to tell the story of the game's graphics and capabilities.
+The storybook records meaningful milestones in the game's graphics and capabilities: new features, significant
+new artwork, new bosses, new levels, and comparable major updates.
 
-- For each delivered game iteration, capture actual screenshots of the running build before replacing it.
+- For milestone deliveries, capture actual screenshots of the running build before replacing it.
+- Routine bug fixes, tuning and minor corrections do not require storybook entries, captures or capture-backlog items.
+  Visual verification may still be needed for testing; it does not create a storybook obligation.
 - Save original PNG or JPEG captures in `storybook/NNN-short-title/`, using the next three-digit iteration number.
 - Keep earlier captures and entries intact; never overwrite an earlier iteration with newer artwork.
 - Include a representative gameplay view and additional views when needed to show a new feature or milestone.
