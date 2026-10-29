@@ -16,13 +16,15 @@ class ProjectVersionTests(TestCase):
             root = Path(directory)
             (root / 'project.godot').write_text('[application]\nconfig/version="1.2.3"\n')
             preset = root / 'export_presets.cfg'
-            preset.write_text('application/version="0.1.0"\napplication/short_version="0.1.0"\n')
+            preset.write_text('application/version="0.1.0"\napplication/short_version="0.1.0"\n'
+                              'application/file_version="0.1.0.0"\napplication/product_version="0.1.0.0"\n')
             with patch.object(sync_project_version, 'ROOT', root):
                 with self.assertRaises(ValueError):
                     sync_project_version.sync_version(check=True)
                 self.assertEqual(sync_project_version.sync_version(), '1.2.3')
                 self.assertEqual(sync_project_version.sync_version(check=True), '1.2.3')
             self.assertEqual(preset.read_text().count('"1.2.3"'), 2)
+            self.assertEqual(preset.read_text().count('"1.2.3.0"'), 2)
 
     def test_invalid_version_leaves_export_unchanged(self) -> None:
         with TemporaryDirectory() as directory:

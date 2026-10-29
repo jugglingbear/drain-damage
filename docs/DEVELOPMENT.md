@@ -21,8 +21,8 @@ Python 3.10+, Git, Git LFS, and Make are required. `make install-plan` previews 
 through an existing supported package manager. Use `bash tools/install.sh --system` if Make is not installed.
 The installer pins tools using `tools/godot-lock.json` and does not launch the game.
 
-macOS is the supported export target. Other platform exports remain future work. The Mac app is ad-hoc signed,
-not notarized; see the release's installation notes for first-launch instructions.
+macOS and Windows x86_64 exports are configured. Windows runtime validation is still pending. The Mac app is
+ad-hoc signed and not notarized; Windows exports are unsigned. See each package's installation notes.
 
 ## Useful commands
 
@@ -30,6 +30,8 @@ not notarized; see the release's installation notes for first-launch instruction
 | --- | --- |
 | `make help` | List available commands |
 | `make build-macos` | Export and verify the Mac app |
+| `make build-windows` | Cross-export, check resources, and ZIP Windows x86_64 |
+| `make build-all` | Build both platforms sequentially on macOS |
 | `make run` | Launch current source |
 | `make editor` | Open the Godot editor |
 | `make run-targets` | List available direct playtest destinations |
@@ -133,3 +135,41 @@ Prototype 109 anchors the float arm to the far wall at y220, clips the mount at 
 connected throughout its sweep. The ball collider and movement are unchanged; mount and rod remain decorative.
 Mixed-course pacing, brush-curtain redesign and the new final
 boss remain proposals; Prototype 108 does not implement them. Human visual and controller review remains pending.
+
+## Windows exports and testing
+
+On the Mac, run `make build-windows`, or `make build-all` to produce both platform exports.
+Windows export also works with a pinned Linux Godot editor selected through `GODOT`; Linux host execution is untested.
+`make install` stages checksum-verified Windows templates locally alongside the host tools. The Windows build target
+also installs those templates if missing. No VM, Wine, Windows SDK, signing certificate, or Windows machine is
+required for these unsigned exports. Godot embeds the existing game icon and synchronized Windows version metadata.
+
+The game version remains canonical in `project.godot`. Windows file/product versions append `.0` to that version.
+Each Windows build writes a new timestamped folder, ZIP, and SHA-256 file under `builds/`, preserving earlier builds.
+The ZIP contains the EXE, separate PCK, console companion, Godot license notice, instructions, a file-hash manifest,
+and `Test-Windows.ps1`. These build products are ignored by Git; attach the ZIP and checksum to a release when publishing.
+`make build-all` builds both platforms but does not create or publish a GitHub Release.
+
+Before packaging, the builder rejects unresolved LFS assets, mismatched templates, export errors, invalid x86_64 PE
+headers, and invalid resource packs. It initializes five destinations from the exported PCK using the host Godot
+engine. Those checks verify exported resource availability and initialization; they do not execute Windows machine code.
+The manifest records the source commit, dirty working-tree state, host checks, and pending Windows validation.
+
+On a Windows x86_64 machine, extract the whole ZIP and launch `Drain Damage.exe`. Keep the PCK beside it.
+There is no need to clone this large repository or install Godot, Python, or Git just to play the exported build.
+The unsigned executable may produce a Windows reputation warning; no publisher certificate is included.
+
+For automated native initialization checks, open PowerShell in the extracted folder and run:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Test-Windows.ps1
+```
+
+This invocation applies the script policy only to that PowerShell process. The script checks package hashes,
+launches the Windows executable headlessly for both heroes across five destinations, requires success markers,
+and saves logs in a timestamped `test-results-*` folder. Each launch has a two-minute timeout.
+The existing verification path can report resources still in use during shutdown after its success marker.
+These warnings remain in the logs and manifest; other errors fail the checks.
+Native execution and PowerShell behavior remain unverified until run on Windows.
+Follow with a visual check of menus, both heroes, Level 1, the flush, the ride, sound, keyboard/controller input,
+fullscreen/window behavior, and frame pacing. A headless pass does not establish those results.

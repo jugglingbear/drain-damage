@@ -45,7 +45,9 @@ else
 	@exit 1
 endif
 
-build-all: build-macos ## Build all currently supported exports (macOS only)
+build-all: build-macos build-windows ## Build macOS and Windows exports on this Mac
+
+.NOTPARALLEL: build-all
 
 build-macos: check combat-data ## Export and ad-hoc sign the standalone Mac app
 	@test "$(HOST_OS)" = Darwin || { printf '❌ Mac packaging requires macOS.\n' >&2; exit 1; }
@@ -69,9 +71,9 @@ build-ios: ## Planned: iOS Xcode project (not configured yet)
 	@printf '❌ iOS pending: add Xcode, export template, signing and iOS preset first.\n' >&2
 	@exit 1
 
-build-windows: ## Planned: Windows executable (not configured yet)
-	@printf '❌ Windows pending: add export template and Windows preset, then test on Windows.\n' >&2
-	@exit 1
+build-windows: check combat-data ## Export and package Windows x86_64 (no Windows host needed)
+	@printf '📦 Exporting and packaging Windows x86_64…\n'
+	@python3 -m tools.build_windows
 
 run: combat-data ## Play; optional LEVEL=2-landing and SCREENSHOT_MODE=1 (controller Y freezes without overlays)
 	@python3 tools/run_game.py

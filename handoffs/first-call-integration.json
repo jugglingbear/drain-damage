@@ -78,5 +78,33 @@
     "General oblique camera projection",
     "Wall ram gameplay",
     "Hungry-head final boss"
-  ]
+  ],
+  "windows_export": {
+    "date": "2026-10-28",
+    "version": "0.114.0",
+    "architecture": "x86_64",
+    "archive": "builds/Drain-Damage-0.114.0-windows-x86_64-20261028-215516-114074Z.zip",
+    "archive_sha256": "42ca2b69c31bef2efcb4bf9579a66b1fa9d383897641575621587da87063c787",
+    "status": "Cross-exported on macOS; Windows-native validation pending. No VM or Windows machine used.",
+    "checks": [
+      "44 Python tests",
+      "PE architecture and embedded product/version metadata",
+      "ZIP CRC and member SHA-256",
+      "Five exported PCK initialization checks on macOS",
+      "100 audio slots current",
+      "Dependency readiness and version sync"
+    ],
+    "known_limitations": [
+      "Unsigned Windows executable",
+      "Existing verification shutdown resource warnings recorded in manifest",
+      "PowerShell script not executed; no PowerShell available on this Mac",
+      "Markdown lint unavailable locally",
+      "No Windows gameplay capture; capture after native test permission"
+    ],
+    "commands": [
+      "make build-windows",
+      "make build-all"
+    ],
+    "instructions": "docs/DEVELOPMENT.md#windows-exports-and-testing"
+  }
 }

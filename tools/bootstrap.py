@@ -100,11 +100,14 @@ def editor_ok(path: Path) -> bool:
 
 
 def template_paths(tools: Path, family: str, arch: str) -> dict[str, Path]:
-    """Stage only matching host templates; native exports still require configured presets."""
-    if family == "macos":
-        return {"macos.zip": tools / "macos.zip"}
+    """Stage host templates and Windows cross-export templates in project-local storage."""
     base = tools / "export_templates" / (VERSION + ".stable")
-    return {name: base / name for name in (f"linux_debug.{arch}", f"linux_release.{arch}")}
+    targets = {name: base / name for name in LOCK["template_members"] if name.startswith("windows_")}
+    if family == "macos":
+        targets["macos.zip"] = tools / "macos.zip"
+    else:
+        targets.update({name: base / name for name in (f"linux_debug.{arch}", f"linux_release.{arch}")})
+    return targets
 
 
 def install_editor(tools: Path, family: str, arch: str) -> None:
@@ -191,7 +194,7 @@ def bootstrap(check: bool = False, dry_run: bool = False) -> int:
     templates_ready = all(path.is_file() and sha256(path) == LOCK["template_members"][name]
                           for name, path in targets.items())
     pointers = missing_lfs()
-    print(f"Host: {family}/{arch}; pinned Godot {VERSION}; native exports: macOS only")
+    print(f"Host: {family}/{arch}; pinned Godot {VERSION}; exports: macOS (Mac host), Windows x86_64")
     print(f"Editor: {'ready' if editor_ready else 'missing/conflicting'}; "
           f"templates: {'ready' if templates_ready else 'missing/conflicting'}; LFS pointers: {len(pointers)}")
     if check or dry_run:
@@ -213,7 +216,8 @@ def bootstrap(check: bool = False, dry_run: bool = False) -> int:
         remaining = missing_lfs()
         if remaining:
             raise ValueError(f"Unresolved LFS pointers remain ({len(remaining)}); inspect git lfs status.")
-    print("Local dependencies ready. No game was launched. Run make check or make build on macOS.")
+    print("Local dependencies ready. No game was launched. "
+          "Run make check, make build-macos on macOS, or make build-windows.")
     return 0
 
 

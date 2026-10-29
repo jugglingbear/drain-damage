@@ -1,4 +1,4 @@
-"""Synchronize macOS export versions with the canonical Godot project version."""
+"""Synchronize macOS and Windows export versions with the canonical Godot project version."""
 
 from __future__ import annotations
 
@@ -22,6 +22,10 @@ def sync_version(check: bool = False) -> str:
                             lambda item: f'{item.group(1)}="{version}"', original, flags=re.MULTILINE)
     if count != 2:
         raise ValueError('Expected both macOS export version fields.')
+    updated, windows_count = re.subn(r'^(application/(?:file_version|product_version))="[^"]*"$',
+                                    lambda item: f'{item.group(1)}="{version}.0"', updated, flags=re.MULTILINE)
+    if windows_count != 2:
+        raise ValueError('Expected both Windows export version fields.')
     if check and updated != original:
         raise ValueError('Export version differs from project.godot; run tools/sync_project_version.py.')
     if not check and updated != original:
