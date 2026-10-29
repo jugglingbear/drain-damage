@@ -1,20 +1,18 @@
 {
   "schema_version": 1,
-  "build": "Prototype 122 / 0.122.0",
-  "created_at": "2026-10-28T21:55:38.705906-07:00",
+  "build": "Prototype 123 / 0.123.0",
+  "created_at": "2026-10-28T21:59:38.659330-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "cba9552",
-  "status": "Half-footprint falls verified in source and exported Mac package; actual small-window camera captures inspected. Windows cross-export verified; native Windows pending.",
-  "app": "builds/Prototype-122/Drain Damage.app",
-  "archive": "builds/history/Prototype-122.zip",
-  "source_snapshot": "builds/source-122",
-  "previous_build_preserved": "Prototype121 and earlier builds and source snapshots preserved.",
+  "source_commit": "e95eb27",
+  "status": "Ramp foundation implemented and built; visual acceptance pending explicit small-window permission.",
+  "app": "builds/Prototype-123/Drain Damage.app",
+  "archive": "builds/history/Prototype-123.zip",
+  "source_snapshot": "builds/source-123",
+  "previous_build_preserved": "Prototype122 and earlier builds preserved.",
   "changes": [
-    "Camera hole requires exact half-area board/circle overlap, swept through the actual curved opening.",
-    "Ride gaps and long pits require half footprint overlap; decks support at half overlap, including landings.",
-    "Flush drain uses registered14px swimmer disk with conservative projected area bounds; scripted35second capture and planner remain consistent.",
-    "Actual source-runtime partial-overlap survival and one-life threshold aftermath captured and inspected."
+    "Extend Level2.1 ramp side and end faces toY=-.6 beneath the translucent water.",
+    "Reuse authored ramp_side texture with consistent world-space scale; top slope and physics unchanged."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
@@ -22,53 +20,34 @@
     "direct": "make run LEVEL=2-01 (through 2-13)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-122/Drain Damage.app\"",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-123/Drain Damage.app\"",
     "slalom": "make run LEVEL=2-01",
     "breach": "make run LEVEL=2-02",
     "float_sweep": "make run LEVEL=2-06",
-    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-122/Drain Damage.app\"",
-    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-122/Drain Damage.app\"",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-123/Drain Damage.app\"",
     "brushes": "make run LEVEL=2-04",
-    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-122/Drain Damage.app\"",
-    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-122/Drain Damage.app\"",
-    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-122/Drain Damage.app\""
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-123/Drain Damage.app\""
   },
   "checks": {
     "source_suites": [
-      "camera_test_model",
-      "camera_test_integration",
-      "ride_showcase_physics",
-      "ride_basin_support",
-      "ride_showcase_integration",
-      "ride_landing_material",
-      "ride_hand_physics",
-      "ride_fall_opening",
-      "flush_drain_death",
-      "flush_planner_drain",
-      "flush_scheduler",
-      "flush_escape"
+      "camera_test_integration"
     ],
-    "python_tests": 44,
-    "audio_freshness": "100 slots current",
-    "threshold_cases": "Rim/corner grazes,49% safe/51% lethal, curved sweeps,30/60/120/144Hz, jump/landing, retry and one life.",
-    "flush_precision": "Certified lower bound>=50%; independent sampled onset50.28\u201350.65%; unresolved slivers safe.",
-    "flush_performance": "Warm worst2.940ms; four-refinement11.868ms; tested straddling death tick1.863ms.222 planner waves max43.547ms; guided replays no damage.",
-    "limitations": "Known CA/resource shutdown warnings; native Windows not run.",
     "packaged_suites": [
-      "camera_test_integration",
-      "ride_showcase_physics",
-      "flush_drain_death"
-    ]
+      "camera_test_integration"
+    ],
+    "limitations": "Actual ramp rendering not yet inspected; known shutdown ObjectDB warnings."
   },
   "capture_gap": {
-    "actual_capture": true,
-    "metadata": "storybook/122-half-footprint-falls/captures.json",
-    "remaining": "Camera source-runtime captures only; ride/flush variants headless-tested; native Windows visual verification pending."
+    "actual_capture": false,
+    "metadata": "storybook/123-submerged-ramp/20261028-215938-capture-status.json",
+    "remaining": "Approved small-window inspection at both camera angles."
   },
   "limitations": [
-    "Flush boundary refinement conservative and subpixel; exact50% may remain safe until a small extra overlap.",
-    "Existing artwork, camera-proof geometry and renderer limitations remain.",
-    "Native Windows execution untested."
+    "Visual acceptance pending; do not treat headless tests as visual validation.",
+    "Native Windows testing pending."
   ],
   "contributors": [
     "handoffs/level-two-ride-showcase-layout.json",
@@ -92,10 +71,10 @@
     "Hungry-head final boss"
   ],
   "windows_export": {
-    "version": "0.122.0",
-    "archive": "builds/Drain-Damage-0.122.0-windows-x86_64-20261029-045516-056668Z.zip",
-    "archive_sha256": "d7fb716431f695959c64d77f7f1ef00465b703d6515e809b207fbc4733016edb",
-    "status": "Six host resource-pack startup checks, PE/ZIP checks pass; native Windows pending."
+    "version": "0.123.0",
+    "archive": "builds/Drain-Damage-0.123.0-windows-x86_64-20261029-045903-761253Z.zip",
+    "archive_sha256": "2ad0d5e6bb1122ab4e786144fb2949041eed1f49d446caea3add6ed424ee3670",
+    "status": "Cross-export and six host resource-pack checks pass; native Windows pending."
   },
   "source_dirty_at_build": true,
   "previous_visual_review": {
@@ -109,5 +88,5 @@
     ],
     "next": "Agree a concrete composition with Art before presentation revision; actual rendered review required. No full migration authorized."
   },
-  "archive_sha256": "db3b8043048900919ecd38e43a3c5fa6b5e14db5628f9cbd5fbeb1c5f90405b1"
+  "archive_sha256": "d6407e912f8b84fd1555c86966ebd7b4b301e51e85f92864eb37a4509e124dc3"
 }

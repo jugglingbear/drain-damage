@@ -97,9 +97,21 @@ static func ramp(parent: Node3D, bounds: Rect2, rise: float, top: Material, side
 	var a := bounds.position
 	var b := bounds.end
 	quad(parent,[Vector3(a.x,0,a.y),Vector3(b.x,rise,a.y),Vector3(b.x,rise,b.y),Vector3(a.x,0,b.y)],top)
+	# Extend the foundation beneath the water; the playable top remains exactly the model slope.
+	var bottom := -.6
+	var faces: Array = []
 	for z in [a.y,b.y]:
-		quad(parent,[Vector3(a.x,0,z),Vector3(b.x,rise,z),Vector3(b.x,0,z),Vector3(a.x,0,z)],side)
-	quad(parent,[Vector3(b.x,rise,a.y),Vector3(b.x,rise,b.y),Vector3(b.x,0,b.y),Vector3(b.x,0,a.y)],side)
+		faces.append([Vector3(a.x,0,z),Vector3(b.x,rise,z),Vector3(b.x,bottom,z),Vector3(a.x,bottom,z)])
+	faces.append([Vector3(b.x,rise,a.y),Vector3(b.x,rise,b.y),Vector3(b.x,bottom,b.y),Vector3(b.x,bottom,a.y)])
+	faces.append([Vector3(a.x,0,b.y),Vector3(a.x,0,a.y),Vector3(a.x,bottom,a.y),Vector3(a.x,bottom,b.y)])
+	for face: Array in faces:
+		var corners: Array[Vector3] = []
+		var uvs: Array[Vector2] = []
+		var origin := Vector2(face[0].x,face[0].z)
+		for point: Vector3 in face:
+			corners.append(point)
+			uvs.append(Vector2(origin.distance_to(Vector2(point.x,point.z)),-point.y)/1.5)
+		quad(parent,corners,side,uvs)
 
 static func inflow_ring(parent: Node3D, center: Vector2, radius: float, material: Material) -> void:
 	var vertices := PackedVector3Array()
