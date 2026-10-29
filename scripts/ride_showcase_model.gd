@@ -131,6 +131,40 @@ static func overlap_interval(start: Vector2, finish: Vector2, rect: Rect2) -> Ve
 			if enter > leave: return Vector2(-1,-1)
 	return Vector2(enter,leave)
 
+static func support_fraction(point: Vector2, rect: Rect2) -> float:
+	var overlap := Rect2(point-HALF,HALF*2).intersection(rect)
+	return overlap.get_area()/(HALF.x*HALF.y*4) if overlap.has_area() else 0.0
+
+func area_support_interval(a: Vector2, b: Vector2, rect: Rect2, minimum: float) -> Vector2:
+	var span := overlap_interval(a,b,rect.grow_individual(HALF.x,HALF.y,HALF.x,HALF.y))
+	if span.x < 0: return span
+	if support_fraction(a.lerp(b,span.x),rect)+EPS >= minimum and support_fraction(a.lerp(b,span.y),rect)+EPS >= minimum:
+		return span
+	# Rectangle overlap area along a line has one supported interval; find its peak then both crossings.
+	var low := span.x
+	var high := span.y
+	for iteration in range(32):
+		var left := lerpf(low,high,1.0/3)
+		var right := lerpf(low,high,2.0/3)
+		if support_fraction(a.lerp(b,left),rect) < support_fraction(a.lerp(b,right),rect): low = left
+		else: high = right
+	var peak := (low+high)*0.5
+	if support_fraction(a.lerp(b,peak),rect)+EPS < minimum: return Vector2(-1,-1)
+	low = span.x
+	high = peak
+	for iteration in range(32):
+		var middle := (low+high)*0.5
+		if support_fraction(a.lerp(b,middle),rect)+EPS >= minimum: high = middle
+		else: low = middle
+	var enter := high
+	low = peak
+	high = span.y
+	for iteration in range(32):
+		var middle := (low+high)*0.5
+		if support_fraction(a.lerp(b,middle),rect)+EPS >= minimum: low = middle
+		else: high = middle
+	return Vector2(enter,low)
+
 func _relative_interval(obstacle: Dictionary, a: Vector2, b: Vector2, time: float, dt: float, supported := false) -> Vector2:
 	var rect := obstacle_rect(obstacle)
 	# Bound sinusoid curvature for both hazard expansion and full-board deck containment.
@@ -140,6 +174,10 @@ func _relative_interval(obstacle: Dictionary, a: Vector2, b: Vector2, time: floa
 		pad = absf(float(motion.get("amplitude",0)))*pow(TAU/maxf(.01,float(motion.get("period",2))),2)*dt*dt/8
 	var extent := HALF+Vector2.ONE*pad
 	if supported:
+		var minimum := float(obstacle.get("minimum_support_fraction",1.0))
+		if minimum < 1.0:
+			return area_support_interval(a-motion_offset(obstacle,time),b-motion_offset(obstacle,time+dt),
+				rect.grow(-pad),minimum)
 		if rect.size.x < extent.x*2 or rect.size.y < extent.y*2: return Vector2(-1,-1)
 		rect = rect.grow_individual(-extent.x,-extent.y,-extent.x,-extent.y)
 	else:
@@ -419,7 +457,8 @@ func _advance_air_motion(dt: float) -> void:
 			for obstacle: Dictionary in course.obstacles:
 				if obstacle.kind != "deck": continue
 				var size := Vector2(float(obstacle.width),float(obstacle.depth))
-				if Rect2(obstacle_position(obstacle)-size*0.5,size).encloses(board):
+				var support := Rect2(obstacle_position(obstacle)-size*0.5,size)
+				if support_fraction(board.get_center(),support)+EPS >= float(obstacle.get("minimum_support_fraction",1.0)):
 					landing_material = str(obstacle.get("landing_material","metal"))
 					break
 			emit_event("landed")

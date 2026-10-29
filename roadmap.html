@@ -77,7 +77,7 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 28, 2026 · Current build: Prototype 116 / 0.116.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 28, 2026 · Current build: Prototype 117 / 0.117.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
@@ -96,20 +96,28 @@ are archived with IDs and files retained. Pitch recipe is preserved for future a
 The boss and camera changes remain plans only. The Maintenance Hand, giant brushes and ceiling-strainer variants are approved and delivered below.
 <a href="design/level-two-depth-concepts-v1/index.html">Five concept proposals ready for review</a>;
 <a href="handoffs/level-two-ride-showcase-layout.json">candidate dimensions and validation gates</a>.</p>
-<p id="camera-perspective-prototype"><strong>Proposed — reversible fixed-angle camera-perspective prototype:</strong>
-Future work only; implementation is not authorized and no camera prototype exists yet. Explore a small, fixed oblique
-2D projection in an isolated test, with a toggle back to the current view. Project all world layers consistently,
-including surfaces, raised actors, shadows, warnings, clipping and culling; keep the HUD flat.
-Acceptance requires clear landing surfaces and gap boundaries, projected collision alignment, readable warning cues,
-and predictable steering and jumping for both heroes. Compare world-relative and screen-relative controls before
-choosing a mapping. Art review must identify views that the existing sprites cannot represent.
-True 3D yaw or pitch is a larger rendering and artwork project. Animated camera movement and difficulty-specific
-angles require later decisions after the fixed-angle experiment passes review.
-<a href="handoffs/level-two-ride-showcase-layout.json">Camera feasibility assessment</a>
+<p id="camera-perspective-prototype"><strong>Approved isolated proof — Level 2.1 Camera Test:</strong>
+Sean approved a standalone Level 2.1 comparison entry; full-level and full-game migration remain unapproved. The preferred approach is simple 3D
+surfaces and extrusions with authored textures and illustrated sprite actors, viewed through a shared orthographic
+camera with bounded yaw/pitch and a fixed-view fallback. This supersedes the earlier fixed-angle 2D-only recommendation;
+a custom 2D projection remains a smaller, constrained alternative.
+Immediate scope: Level 2.1 basin, brass cleanout platform, round hole, flowing water and ramp.
+A representative Level 1 proof remains proposed later work, outside this immediate authorization.
+First match the fixed view, then test two modest angles and eased changes in safe intervals. Preserve level-relative
+controls, flat HUD/dialogue and gameplay simulation where possible; coordinate and rendering adapters are required.
+Side faces and sprite-facing coverage must support the allowed angles. Round openings, projected ellipses, collision
+and downward water inflow must agree, without invisible rectangular corner deaths. Validate both heroes, replays,
+support boundaries, jump clearance, occlusion, pause/retry and Mac/native Windows performance, followed by approved
+visual review before a migration decision. Full rotation and player camera control remain separate decisions.
+Previously approved basin support and green-stripe fixes continue independently.
+<a href="handoffs/level-two-ride-showcase-layout.json">Current camera feasibility and acceptance plan</a>
 (<code>proposed_depth_and_final_boss.ram_camera_review.engineering_assessment</code>).</p>
-<p><strong>Active defect fixes — October 28:</strong> Next: basin support remains safe while at least half the board
-footprint overlaps, clearer authored basin edges, and removal of the verified green catch-basin stripe.
-Art registration is supplied; these changes are not yet integrated.</p>
+<p><strong>Prototype 117 — basin support and catch-basin water (built locally):</strong>
+Basin08 stays safe at 50% or greater board footprint overlap, including corners; cleanout caps retain full support.
+Authored porcelain edges mark the slab, and the catch basin uses shared animated channel water with an ivory border
+instead of the baked green stripe. Nine source suites, packaged support/audio checks and 44 Python tests pass.
+Mac and Windows packages are preserved. Actual visual review, screenshots and native Windows testing remain pending.
+The separately approved Level 2.1 camera proof is in progress and is not included in this build.</p>
 <p><strong>Prototype 116 — flush drain and dialogue fixes (built locally):</strong> The visible drain kills during
 controllable swimming; scripted finale capture remains safe. Fatal descent, one-life handling, retry and pause are
 covered headlessly. Planner routes avoid the opening. The partner's centered bubble now precedes and remains behind

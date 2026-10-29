@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 117 / 0.117.0",
+  "created_at": "2026-10-28T20:52:10.642412-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "source_commit": "ccb384f",
+  "status": "Mac and Windows packages built; source and packaged support/audio checks pass. Visual and native Windows acceptance pending.",
+  "app": "builds/Prototype-117/Drain Damage.app",
+  "archive": "builds/history/Prototype-117.zip",
+  "archive_sha256": "f192462cdce69d648717e33bad0fde5b1e164cfdbb335d0b42181ae86ead9dff",
+  "source_snapshot": "builds/source-117",
+  "source_snapshot_files": 2271,
+  "previous_build_preserved": "Prototype 116 and earlier apps, archives and snapshots preserved.",
+  "changes": [
+    "Basin08 is supported when at least50% of board footprint overlaps the slab, including corners; caps retain full-board support. Swept support and landing material use the authored threshold.",
+    "Existing authored porcelain strips clarify all four basin support edges.",
+    "Catch basin replaces baked green stripe with authored ivory border and shared channel water, clipped after pit drawing with matching tile phase and animated ripples."
+  ],
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-117/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-117/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-117/Drain Damage.app\"",
+    "brushes": "make run LEVEL=2-04",
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-117/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-117/Drain Damage.app\""
+  },
+  "checks": {
+    "python_tests": 44,
+    "source_suites": [
+      "ride_basin_support",
+      "ride_landing_material",
+      "ride_showcase_audio",
+      "ride_showcase_physics",
+      "ride_collision_timing",
+      "ride_zero_rest",
+      "ride_showcase_integration",
+      "ride_showcase_art",
+      "ride_fall_visibility"
+    ],
+    "packaged_suites": [
+      "ride_basin_support",
+      "ride_landing_material"
+    ],
+    "support_cases": "168 grounded/landing support cases plus exact edges, corners and swept interval assertions",
+    "audio_freshness": "100 slots checked",
+    "signature_archive": "Mac strict codesign and both ZIP CRC checks pass; Windows builder PE and five host PCK checks pass."
+  },
+  "capture_gap": {
+    "actual_capture": false,
+    "metadata": "storybook/117-basin-support-and-water/20261028-205210-capture-status.json",
+    "remaining": "Approved gameplay captures and native Windows validation."
+  },
+  "limitations": [
+    "Actual gameplay capture and basin/catch-basin visual review pending; no foreground launch authorized.",
+    "Native Windows graphics/audio/controller testing pending.",
+    "Camera proof separately approved and in progress; not part of Prototype117.",
+    "Existing shutdown resource warnings remain."
+  ],
+  "contributors": [
+    "handoffs/level-two-ride-showcase-layout.json",
+    "handoffs/ride-showcase-art.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json",
+    "audio/sources/ride-fall-panic-v1/manifest.json",
+    "handoffs/giant-brush-v2-art.json",
+    "handoffs/ceiling-strainer-v1-art.json"
+  ],
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
+  "proposals_not_implemented": [
+    "Mixed course",
+    "General oblique camera projection",
+    "Wall ram gameplay",
+    "Hungry-head final boss"
+  ],
+  "windows_export": {
+    "date": "2026-10-28",
+    "version": "0.117.0",
+    "architecture": "x86_64",
+    "archive": "builds/Drain-Damage-0.117.0-windows-x86_64-20261029-034959-980307Z.zip",
+    "archive_sha256": "0a39ab521ebaf961d4715b3f875f620839d8db7effe04e08a299c4ae27e73561",
+    "status": "Cross-exported on macOS; Windows-native validation pending. No VM or Windows machine used.",
+    "checks": [
+      "44 Python tests",
+      "Package integrity and x86_64 PE checks",
+      "Five exported PCK initialization checks on macOS",
+      "100 audio slots current"
+    ],
+    "known_limitations": [
+      "Unsigned Windows executable",
+      "Existing verification shutdown resource warnings recorded in manifest",
+      "PowerShell script not executed; no PowerShell available on this Mac",
+      "Markdown lint unavailable locally",
+      "No Windows gameplay capture; capture after native test permission"
+    ],
+    "commands": [
+      "make build-windows",
+      "make build-all"
+    ],
+    "instructions": "docs/DEVELOPMENT.md#windows-exports-and-testing"
+  },
+  "source_dirty_at_build": true,
+  "capture_time": null
+}

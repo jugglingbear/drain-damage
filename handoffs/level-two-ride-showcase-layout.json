@@ -617,7 +617,7 @@
       "center_lane_rejected": "A115px center-bank bite would leave only6px clearance at playable edges.",
       "jump_policy": "Tall jaw volume cannot be jumped through. A520px hole plus90px board requires610px travel; normal maximum forward hop is576px, so this hole requires bank avoidance.",
       "target_projection": "Use a committed screen-plane target while winding up, not a static world mark that scrolls560px away in1s. At impact convert the exact cut mask to world coordinates using current scroll; afterward it moves with the track. No homing or target changes after lock. For hero-lunge, clamp520px-wide target center260..700 so its whole projected zone fits960 viewport. Early track-bite is a separate ahead-of-player mask starting887, with explicit offscreen indication.",
-      "telegraph": "Candidate1.5\u20132.5s background emergence then >=1.0s locked, unmistakable lane cue; durations are proposals.",
+      "telegraph": "Candidate1.5–2.5s background emergence then >=1.0s locked, unmistakable lane cue; durations are proposals.",
       "dodge_budget": "120px bank reversal takes.343s at350. With.2s decision allowance,1.0s lock leaves.457s nominal margin. Both heroes share steering. Held forward/diagonal needs separate validation.",
       "screen_visibility_limit": "At x650 an entering world hazard has only.473s until board contact at560. Do not claim a1s fully visible hole. Keep projected lane warning and edge cue readable before world entry; verify no blind lethal commitment."
     },
@@ -702,7 +702,7 @@
       "No unavoidable unions of active hazards; test reachability from prior commitments, not only a fresh centered spawn.",
       "Art registration and actual gameplay captures, clearly distinguished from concepts."
     ],
-    "audio_brief": "Separate hunger performances from timing-critical inhale/jaw cue. Candidate anticipation1.0s+, short crunch.3\u2013.8s, retreat/chew1\u20132s. Auditions do not select runtime mappings.",
+    "audio_brief": "Separate hunger performances from timing-critical inhale/jaw cue. Candidate anticipation1.0s+, short crunch.3–.8s, retreat/chew1–2s. Auditions do not select runtime mappings.",
     "idea_bank": "Reviewed relevant optional environment ideas; none added as approved work. This proposal does not silently include optional steam/electrical hazards.",
     "implementation": "Maintenance Hand POC is delivered in Prototype110. No final boss, wall ram, strainer, mixed-course, brush redesign or camera change is implemented.",
     "mechanics_review": "Game Mechanics accepted separated hero/track attacks, >=1s locked cue, bank margins, no-retargeting and fixed887 early-track entry buffer. Numbers remain proposed design constraints, not runtime proof.",
@@ -767,7 +767,7 @@
       },
       "routes": {
         "dodge": "Far y270 both; near y390 only singlemiddle variant",
-        "jump": "Middle y330, worldtakeoff2432, \u00b150ms input offsets validated"
+        "jump": "Middle y330, worldtakeoff2432, ±50ms input offsets validated"
       },
       "visibility": "113 replacespartialedgeimpact with fullyvisible stagedmechanism andimpact. Actualruntime validationpendingEngineering.",
       "manifest": "assets/world/ceiling-strainer-v1/manifest.json",
@@ -778,11 +778,11 @@
       "art_handoff": "handoffs/ceiling-strainer-v1-art.json",
       "readability_revision": {
         "reason": "112strainer entered the screen at almost the same time as impact; a text warning did not let the player recognize the mechanism or action.",
-        "staging": "The SAME full140x92 basket enters fromscreenx1100 to800 during1.0..1.25, then hangs atx800,bottom210 (bounds730..870,118..210) for.90s. Visiblewindup raisesbottom210\u2192180 during2.15..2.75; drop2.75..3.10. No ghostpreview or miniature recognitionpose.",
+        "staging": "The SAME full140x92 basket enters fromscreenx1100 to800 during1.0..1.25, then hangs atx800,bottom210 (bounds730..870,118..210) for.90s. Visiblewindup raisesbottom210→180 during2.15..2.75; drop2.75..3.10. No ghostpreview or miniature recognitionpose.",
         "carrier": "Holdscreenx800 until2.95; Hermite travel over.15s with x=800+276u^2-212u^3 reaches864 at3.10 withvelocity-560, joining the fixedworld2600 target continuously. Maxcenter869.303; fullbasketright939.303 and180pxwinchright959.303 fit960viewport.",
         "impact": "At3.10 basketbounds794..934 arefullyvisible. Floorbreak/activation exactlysynchronous; targetworld2600 and140x60/130 holebounds unchanged.",
         "hoist": "3.10..3.25 raisesbasketbottom to110, then followsworldmotion. No cage collider/directdamage added.",
-        "safety": "Replace blanketclear-before-takeoff assertion with actualhorizontal ORvertical separation: conservativefullbasket bounds retain at least16.1328px(one-lane) or14.7832px(two-lane) beyondvisualhero front705 while basketbottom>=highestjumphead122. Afterwards it is abovejumpvolume. Chains staywithin\u00b164 andabovebasketbottom; winchbottom86.",
+        "safety": "Replace blanketclear-before-takeoff assertion with actualhorizontal ORvertical separation: conservativefullbasket bounds retain at least16.1328px(one-lane) or14.7832px(two-lane) beyondvisualhero front705 while basketbottom>=highestjumphead122. Afterwards it is abovejumpvolume. Chains staywithin±64 andabovebasketbottom; winchbottom86.",
         "proof_scope": "Mechanics analytical bounds and216 actual wrapper entry cases/36720 assembly poses pass. Human visualreadability acceptance remains pending.",
         "required_checks": [
           "Both12/13,bothheroes,allplayeranchors,directentry andprecedingzero-rest transition.",
@@ -800,8 +800,8 @@
           "entries": [
             "direct12",
             "direct13",
-            "zero-rest11\u219212",
-            "zero-rest12\u219213"
+            "zero-rest11→12",
+            "zero-rest12→13"
           ],
           "heroes": [
             "tony",
@@ -926,11 +926,11 @@
       "delivery_evidence": "handoffs/first-call-integration.json"
     },
     "ram_camera_review": {
-      "status": "Feasibility consultation only; no implementation approval",
-      "decision_needed": "Decide whether to prototype the wall ram and a controlled2D perspective effect after reviewing the feasibility tradeoff; consultation did not authorize implementation.",
-      "recommendation": "If pursuing the effect, start with a separate reversible2D composition prototype, not a true3D rewrite. Retain current camera for approved encounters.",
-      "feasibility": "Art relays Engineering: true camera yaw would require projection/3D rework; a controlled2D perspective effect is feasible if world geometry and cues share the transform while HUD stays flat.",
-      "scope": "General camera-tilt feasibility study, potentially for difficulty or obstacle presentation; not limited to wall ram. Production camera or difficulty effects remain unapproved, as does the ram itself.",
+      "status": "Approved isolated Level 2.1 camera proof; full migration unapproved",
+      "decision_needed": "Review the isolated Level 2.1 proof before authorizing broader conversion.",
+      "recommendation": "Shared camera-ready simple 3D environment surfaces and extrusions with authored textures and illustrated sprite actors; orthographic camera with bounded yaw/pitch and fixed-view fallback.",
+      "feasibility": "Preserve the gameplay model where possible, but introduce explicit world travel, bank depth and elevation coordinates. Existing screen-like coordinates, clipping and flush projection require adapters. Rotation capability does not establish content readiness at every angle.",
+      "scope": "Game-wide rotation-ready architecture, proven first in representative Level 1 and Level 2 slices; each level needs appropriate side faces, sprite facing and visibility review.",
       "engineering_assessment": {
         "basis": [
           "scripts/level_two_ride.gd",
@@ -939,16 +939,42 @@
         "current_renderer": "Node2D manually draws a 960x540 scene. Bank position, horizontal travel and jumping height are separate simulation quantities, with authored 2D depth sorting and clipping.",
         "true_camera": "A Camera2D rotation only rolls the image in its plane; it cannot reveal new side views. True yaw/pitch needs 3D geometry or a new projection/content pipeline and appropriate authored views. Highest scope and regression risk.",
         "controlled_2d": "A reversible oblique presentation is feasible. Centralize world-to-screen projection for floor geometry, raised actors, shadows, collision outlines, warnings, clipping and culling. Keep HUD/menu coordinates flat. Existing sprite fronts cannot reveal missing sides; Art review is required.",
-        "controls": "Decide and test world-relative versus screen-relative steering before production. Screen-relative controls need the inverse projection; preserve input magnitude, clamp behavior and jump timing. Avoid changing that mapping mid-jump.",
+        "controls": "Preserve existing level-relative controls initially; any screen-relative remapping requires a separate decision and inverse ground-plane mapping. Keep HUD and dialogue flat.",
         "fairness": "Measure projected hazard lead time, lane widths, readable landing areas and visibility at both horizontal clamps. A changed camera must not conceal fatal gaps or shorten warning acceptance silently. Preserve locked attack targets.",
         "difficulty": "Difficulty-specific tilt is a presentation proposal, not an approved rebalance. Validate both heroes, all difficulties and normal versus hard poses before assigning any angle to a mode.",
         "prototype_options": [
-          "Lowest scope: fixed small oblique projection in an isolated optional test, with reversible toggle and collision overlay.",
-          "Higher scope: smoothly change projection only in safe approach intervals; test motion discomfort and never reinterpret a held input mid-hazard.",
-          "Largest scope: true 3D/projection rewrite with new viewpoints, lighting/occlusion and revised assets."
+          "Recommended: simple textured 3D surfaces and extrusions with sprite actors and orthographic bounded camera angles.",
+          "Smaller alternative: custom fixed-angle shared 2D projection; limited rotation and unseen-side representation. This is no longer the sole recommendation."
         ],
-        "recommendation": "Next decision: authorize an isolated fixed small oblique 2D projection prototype, with reversible toggle and support overlay, or retain current view. Test lane/landing readability before any animated camera or difficulty-specific angle.",
-        "implementation_status": "Feasibility/source assessment only. No camera projection prototype or camera gameplay changes in Prototype 113."
+        "recommendation": "Shared camera-ready simple 3D environment surfaces and extrusions with authored textures and illustrated sprite actors; orthographic camera with bounded yaw/pitch and fixed-view fallback.",
+        "implementation_status": "Sean approved standalone Level 2.1 — Camera Test, separate entry from current Level 2. Runtime/model/art work in progress; no foreground launch authorized.",
+        "proof_slices": [
+          "Immediate approved scope: Level 2.1 basin, brass cleanout platform, round hole, flowing water and ramp.",
+          "Representative Level 1 slice remains a proposed later gate, outside immediate authorization."
+        ],
+        "stages": [
+          "Match existing gameplay at a fixed view first.",
+          "Test two modest angles and eased changes in safe intervals with a fixed-view fallback.",
+          "Obtain approved visual review and evaluate replay, occlusion and performance evidence before any migration decision."
+        ],
+        "acceptance": [
+          "Both heroes retain obstacle timing, bank distances, jump clearance, support rules, pause/retry and transition behavior across replay tests.",
+          "Basin support is safe at >=50% board footprint overlap, including corners; projected tops and side thickness match world geometry.",
+          "Round strainer world-space opening, projected ellipse, footprint-aware swept collision and downward water inflow agree; no invisible rectangular corner deaths.",
+          "Brush silhouette is rounded and unclipped with believable volume; inspect source crop, alpha and runtime clipping.",
+          "Rider, shadows and near-rim occlusion match actual surface contact and unsupported falls at both angles.",
+          "Readable cues and acceptable macOS and native Windows performance; actual visual review requires approval before foreground testing."
+        ],
+        "independent_work": "Previously approved basin support/edge and green catch-basin stripe fixes continue independently; this plan does not delay Prototype 117.",
+        "migration_gate": "Shared game-wide camera capability; content readiness and migration approved level by level after proof review."
+      },
+      "updated_date": "2026-10-28",
+      "proposal_source": {
+        "owner": "Bestiary / Art",
+        "date": "2026-10-28",
+        "destination_thread": "01a14b99-18c1-7240-89ce-d9ee7c8455e8",
+        "message": "Final consolidated camera/depth proposal",
+        "record_policy": "Existing planning record reconciled from Art and Project Manager instructions; no separate proposal file."
       }
     }
   },

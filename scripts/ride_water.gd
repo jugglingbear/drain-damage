@@ -21,10 +21,10 @@ static func tiles(host: Node2D, art: RefCounted, frame: Dictionary, clip: Rect2,
 	for tile in range(first-1,first+3):
 		patch(host,art,frame,Rect2(tile*period-phase,y,width,height),clip,opacity)
 
-static func surface(host: Node2D, art: RefCounted, age: float, scroll: float) -> void:
+static func surface(host: Node2D, art: RefCounted, age: float, scroll: float, clip := CHANNEL) -> void:
 	for row: Dictionary in surface_rows(art.manifest,age,scroll):
 		var frame: Dictionary = art.manifest.frames[row.id]
-		tiles(host,art,frame,CHANNEL,row.phase,row.y,float(frame.destination[3]),float(art.manifest.flow.surface_opacity))
+		tiles(host,art,frame,clip,row.phase,row.y,float(frame.destination[3]),float(art.manifest.flow.surface_opacity))
 
 static func surface_rows(manifest: Dictionary, age: float, scroll: float) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []

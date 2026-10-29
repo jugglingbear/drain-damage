@@ -44,6 +44,8 @@ func attach(host: Node2D) -> void:
 		for key in ["frames","animations","obstacle_overlays"]:
 			manifest[key].merge(water[key],true)
 		manifest["flow"] = water.flow
+		var clarity: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ride-surface-clarity-v1/manifest.json"))
+		manifest.frames.merge(clarity.frames,true)
 		obstacle_art.configure(manifest)
 
 func begin(host: Node2D, index := -1) -> void:
@@ -170,13 +172,16 @@ func process_audio(host: Node2D, delta: float) -> void:
 	audio.advance(delta,host.paused,not complete and host.life_state == "alive",
 		host.life_state == "dying" and events.has("fall"))
 
-func draw_strip(host: Node2D, id: String, scroll: float) -> void:
+func draw_strip(host: Node2D, id: String, scroll: float, clip := VIEWPORT) -> void:
 	var first := int(floor(scroll/960.0))
 	for tile in [first,first+1]:
 		var x := float(tile)*960.0-scroll
 		var mirrored: bool = posmod(tile,2) == 1
-		host.draw_set_transform(Vector2(x+(960.0 if mirrored else 0.0),0),0,Vector2(-1 if mirrored else 1,1))
-		art.draw_named(host,id)
+		var transform := Transform2D(0,Vector2(-1 if mirrored else 1,1),0,Vector2(x+(960.0 if mirrored else 0.0),0))
+		host.draw_set_transform_matrix(transform)
+		var frame: Dictionary = art.manifest.frames[id]
+		var d: Array = frame.destination
+		Water.patch(host,art,frame,Rect2(d[0],d[1],d[2],d[3]),transform.affine_inverse()*clip)
 	host.draw_set_transform(Vector2.ZERO)
 
 func draw_ramp(host: Node2D, obstacle: Dictionary, point: Vector2) -> void:
@@ -272,6 +277,10 @@ func draw_obstacle(host: Node2D, obstacle: Dictionary) -> void:
 	if id.begins_with("strainer_gap_"):
 		Water.gap(host,obstacle_art,obstacle_art.manifest.frames[id],point,float(obstacle.depth),clock)
 		return
+	if id == "catch_basin":
+		var clip := Rect2(point-Vector2(232.5,100),Vector2(465,200)).intersection(VIEWPORT)
+		draw_strip(host,"course_water",clock*(scroll_speed+34),clip)
+		Water.surface(host,obstacle_art,clock,clock*scroll_speed,clip)
 	obstacle_art.draw_named(host,id,point)
 	draw_obstacle_overlays(host,obstacle,false)
 	if id == "maintenance_hand_gap":

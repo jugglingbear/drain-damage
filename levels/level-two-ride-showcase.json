@@ -422,7 +422,7 @@
       "id": "2-08",
       "concept_id": 8,
       "title": "Broken-Basin Hopscotch",
-      "action_hint": "Jump and steer onto each staggered porcelain slab.",
+      "action_hint": "Keep at least half the board on each porcelain slab.",
       "obstacles": [
         {
           "id": "basin-water-gap",
@@ -441,7 +441,8 @@
           "width": 360,
           "depth": 100,
           "art_id": "basin_deck_360",
-          "landing_material": "porcelain"
+          "landing_material": "porcelain",
+          "minimum_support_fraction": 0.5
         },
         {
           "id": "basin-middle",
@@ -452,7 +453,8 @@
           "depth": 100,
           "art_id": "basin_deck_360",
           "mirror_bank": true,
-          "landing_material": "porcelain"
+          "landing_material": "porcelain",
+          "minimum_support_fraction": 0.5
         },
         {
           "id": "basin-exit",
@@ -462,7 +464,8 @@
           "width": 390,
           "depth": 100,
           "art_id": "basin_deck_390",
-          "landing_material": "porcelain"
+          "landing_material": "porcelain",
+          "minimum_support_fraction": 0.5
         }
       ],
       "end_x": 3860.0,
