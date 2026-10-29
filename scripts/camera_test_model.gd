@@ -3,6 +3,8 @@ extends RefCounted
 # Camera-independent metre-scale test course. Vector2 stores world X/Z; elevation stores world Y.
 const STEP := 1.0/120.0
 const HALF := Vector2(.45,.14)
+# Full rider clearance at every supported camera yaw, separate from the smaller pit footprint.
+const WALL_HALF := Vector2(.75,.85)
 # The painted rigid board is longer than its gameplay hazard footprint.
 const BOARD_LENGTH := 1.1
 const SPEED := Vector2(4,3.5)
@@ -189,8 +191,8 @@ func step(steering: Vector2) -> void:
 	var before := position
 	var target := position+steering*SPEED*STEP
 	var track: Rect2 = LAYOUT.track.rect
-	target.x = clampf(target.x,track.position.x+HALF.x,track.end.x-HALF.x)
-	target.y = clampf(target.y,track.position.y+HALF.y,track.end.y-HALF.y)
+	target.x = clampf(target.x,track.position.x+WALL_HALF.x,track.end.x-WALL_HALF.x)
+	target.y = clampf(target.y,track.position.y+WALL_HALF.y,track.end.y-WALL_HALF.y)
 	var support := support_at(target)
 	var old_height := elevation
 	if grounded and float(support.height) >= elevation-.05:

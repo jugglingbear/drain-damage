@@ -157,5 +157,14 @@ func _initialize() -> void:
 	model.reset()
 	if not require(not model.dead and model.clock == 0 and model.position == Model.LAYOUT.start,
 		"Reset clears death and fractional time"): return
+	# Walls constrain the entire rider independently of the hazard footprint and frame rate.
+	for hz in [30,60,120,144]:
+		for direction in [Vector2(-1,-1),Vector2(1,-1),Vector2(-1,1),Vector2(1,1)]:
+			model.reset()
+			model.position = Vector2(.8 if direction.x < 0 else 23.2,direction.y)
+			for frame in range(hz): model.tick(1.0/hz,direction,false)
+			var expected := Vector2(Model.WALL_HALF.x if direction.x < 0 else 24-Model.WALL_HALF.x,
+				direction.y*(2-Model.WALL_HALF.y))
+			if not require(model.position.distance_to(expected) < .0001,"Full rider stops at both walls and ends"): return
 	print("PASS: surface support, swept 65%-footprint circular hole, jump, ramp contact/exit, death freeze and FPS-independent world replay")
 	quit()

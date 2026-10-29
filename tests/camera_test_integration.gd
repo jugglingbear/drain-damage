@@ -47,6 +47,27 @@ func checks() -> void:
 					assert(actual.distance_to(expected) < .01,"Billboard must preserve physical slope contacts")
 				for sprite: Sprite3D in view.rider.get_children():
 					assert(sprite.billboard == BaseMaterial3D.BILLBOARD_DISABLED)
+		# Full sprite quads must stay inside the banks and gameplay viewport, including camera turns.
+		var track: Rect2 = model.LAYOUT.track.rect
+		for angle in [-18.0,-9.0,0.0,9.0,18.0]:
+			view.yaw = angle
+			view.target_yaw = angle
+			for x in [track.position.x+model.WALL_HALF.x,12.0,track.end.x-model.WALL_HALF.x]:
+				for z in [track.position.y+model.WALL_HALF.y,track.end.y-model.WALL_HALF.y]:
+					for height in [0.0,.54]:
+						model.position = Vector2(x,z)
+						model.elevation = height
+						model.board_pitch = 0
+						view.update_view(model,0,true,0)
+						for sprite: Sprite3D in view.rider.get_children():
+							var bounds := sprite.get_aabb()
+							for index in 8:
+								var point := sprite.to_global(bounds.get_endpoint(index))
+								assert(point.z > track.position.y and point.z < track.end.y,
+									"Full rider must clear both walls throughout camera turns")
+								var screen: Vector2 = view.camera.unproject_position(point)
+								assert(Rect2(8,90,944,380).has_point(screen),
+									"Full rider must remain inside gameplay view, outside HUD: %s setup=%s yaw=%s position=%s height=%s" % [screen,setup,angle,model.position,height])
 		model.elevation = 0
 		model.board_pitch = 0
 		model.position = model.LAYOUT.hole.center

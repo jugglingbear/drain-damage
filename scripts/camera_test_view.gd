@@ -147,9 +147,12 @@ func update_view(model: RefCounted, delta: float, paused: bool, fall_age: float)
 	if not paused:
 		turn_age = minf(1.2,turn_age+delta)
 		yaw = lerpf(turn_start,target_yaw,smoothstep(0,1.2,turn_age))
-	var focus := Vector3(clampf(model.position.x+1.2,3.8,20.0),0,0)
+	# Keep course-end framing while reserving headroom for jumps below the HUD.
+	var focus := Vector3(clampf(model.position.x+1.2,3.8,20.0),.6,0)
 	var angle := deg_to_rad(yaw)
 	var pitch := deg_to_rad(35)
+	# Yaw couples longitudinal offset into screen height when horizontal follow reaches its clamp.
+	focus.y -= (model.position.x-focus.x)*sin(angle)*tan(pitch)
 	camera.position = focus+Vector3(sin(angle)*cos(pitch),sin(pitch),cos(angle)*cos(pitch))*16
 	camera.look_at(focus)
 	var pose: Dictionary = model.board_pose()
