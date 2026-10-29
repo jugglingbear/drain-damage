@@ -82,6 +82,14 @@ v122 · Testing partial overlap at the drain
 
 v122 · Paused after crossing the edge: one life lost
 
+![v123 · The ramp’s underwater base is hard to see](123-submerged-ramp/20261028-220846-first-angle.png)
+
+v123 · The ramp’s underwater base is hard to see
+
+![v124 · The submerged base becomes visible](124-readable-ramp-foundation/20261028-221245-first-angle.png)
+
+v124 · The submerged base becomes visible
+
 ## Final game images
 
 To come. Current screenshots show work in progress.

@@ -46,6 +46,8 @@ func configure(model: RefCounted, hero_art: Dictionary, hero: String, hard: bool
 	materials.water = water
 	materials.channel.albedo_color = Color(.52,.58,.56)
 	var layout: Dictionary = model.LAYOUT
+	water.set_shader_parameter("foundation_min",Vector3(layout.ramp.rect.position.x,-.6,layout.ramp.rect.position.y))
+	water.set_shader_parameter("foundation_max",Vector3(layout.ramp.rect.end.x,0,layout.ramp.rect.end.y))
 	var basin: Dictionary = layout.basin
 	Geometry.slab(self,Rect2(basin.center-basin.size*.5,basin.size),basin.top,.7,
 		materials.porcelain_top,materials.porcelain_side)

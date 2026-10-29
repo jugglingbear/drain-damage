@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 123 / 0.123.0",
+  "created_at": "2026-10-28T21:59:38.659330-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "source_commit": "e95eb27",
+  "status": "Ramp foundation implemented and built; visual acceptance pending explicit small-window permission.",
+  "app": "builds/Prototype-123/Drain Damage.app",
+  "archive": "builds/history/Prototype-123.zip",
+  "source_snapshot": "builds/source-123",
+  "previous_build_preserved": "Prototype122 and earlier builds preserved.",
+  "changes": [
+    "Extend Level2.1 ramp side and end faces toY=-.6 beneath the translucent water.",
+    "Reuse authored ramp_side texture with consistent world-space scale; top slope and physics unchanged."
+  ],
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "brushes": "make run LEVEL=2-04",
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-123/Drain Damage.app\"",
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-123/Drain Damage.app\""
+  },
+  "checks": {
+    "source_suites": [
+      "camera_test_integration"
+    ],
+    "packaged_suites": [
+      "camera_test_integration"
+    ],
+    "limitations": "Actual ramp rendering not yet inspected; known shutdown ObjectDB warnings."
+  },
+  "capture_gap": {
+    "actual_capture": false,
+    "metadata": "storybook/123-submerged-ramp/20261028-215938-capture-status.json",
+    "remaining": "Approved small-window inspection at both camera angles."
+  },
+  "limitations": [
+    "Visual acceptance pending; do not treat headless tests as visual validation.",
+    "Native Windows testing pending."
+  ],
+  "contributors": [
+    "handoffs/level-two-ride-showcase-layout.json",
+    "handoffs/ride-showcase-art.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json",
+    "audio/sources/ride-fall-panic-v1/manifest.json",
+    "handoffs/giant-brush-v2-art.json",
+    "handoffs/ceiling-strainer-v1-art.json",
+    "assets/world/level-two-camera-test-v1/manifest.json",
+    "scripts/camera_test_model.gd",
+    "design/level-two-camera-concepts-v1/concept.json"
+  ],
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
+  "proposals_not_implemented": [
+    "Full-level/game camera migration",
+    "Level1 camera proof",
+    "Wall ram gameplay",
+    "Hungry-head final boss"
+  ],
+  "windows_export": {
+    "version": "0.123.0",
+    "archive": "builds/Drain-Damage-0.123.0-windows-x86_64-20261029-045903-761253Z.zip",
+    "archive_sha256": "2ad0d5e6bb1122ab4e786144fb2949041eed1f49d446caea3add6ed424ee3670",
+    "status": "Cross-export and six host resource-pack checks pass; native Windows pending."
+  },
+  "source_dirty_at_build": true,
+  "previous_visual_review": {
+    "date": "2026-10-28",
+    "result": "rejected",
+    "feedback": "Looks terrible; does not read as2.5D.",
+    "observed": [
+      "Washed-out slab and rails; stretched side textures.",
+      "Bright repetitive water and sparse background overwhelm weak surface depth.",
+      "Reused billboard composite does not convincingly ground the hero."
+    ],
+    "next": "Agree a concrete composition with Art before presentation revision; actual rendered review required. No full migration authorized."
+  },
+  "archive_sha256": "d6407e912f8b84fd1555c86966ebd7b4b301e51e85f92864eb37a4509e124dc3"
+}
