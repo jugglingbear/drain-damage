@@ -1,0 +1,68 @@
+{
+  "status": "Option B selected by Sean; Engineering integration and validation pending",
+  "created_at": "2026-10-23T10:52:34.242481-07:00",
+  "kind": "Layout mockups composed from existing game artwork and normal HUD primitives; not gameplay captures",
+  "reference_resolution": [
+    960,
+    540
+  ],
+  "output_resolution": [
+    1920,
+    1080
+  ],
+  "normal_hud_source": "scripts/game.gd#draw_hud",
+  "normal_hud_preserved": [
+    "3 of4 health pips",
+    "2 life portraits",
+    "Tony name",
+    "Pressure Gun weapon",
+    "kill count",
+    "route text"
+  ],
+  "boss_health_fraction": 0.65,
+  "options": {
+    "A": {
+      "clogfather": "design/boss-hud-options/option-a-clogfather.png",
+      "skitterling": "design/boss-hud-options/option-a-skitterling.png"
+    },
+    "B": {
+      "clogfather": "design/boss-hud-options/option-b-clogfather.png",
+      "skitterling": "design/boss-hud-options/option-b-skitterling.png"
+    },
+    "C": {
+      "clogfather": "design/boss-hud-options/option-c-clogfather.png",
+      "skitterling": "design/boss-hud-options/option-c-skitterling.png"
+    }
+  },
+  "comparison": "design/boss-hud-options/side-by-side.png",
+  "recommendation": "C: central meter within existing82px HUD; no added playfield obstruction",
+  "tradeoffs": {
+    "A": "Largest horizontal readout; consumes62px more vertical playfield and covers boss upper silhouette.",
+    "B": "Preserves most upper field; right-edge card overlaps rooted Clogfather flank and would require framing adjustment if chosen.",
+    "C": "Preserves entire playfield and familiar player layout; shorter bar, smaller decorative detail. Long boss names fit338px at14px with fit-to-width fallback."
+  },
+  "limits": [
+    "Static source poses stand in for animated runtime enemies; no gameplay launch",
+    "Green boss fill follows current HP color policy; this proposal does not alter color rules",
+    "Existing header player pips/life portrait coordinates preserved; title font approximated with Arial for static layout",
+    "Concept geometry only; controller/input/gameplay unaffected"
+  ],
+  "selected_option": "B",
+  "selection_date": "2026-10-23",
+  "selection_instruction": "Right-side vertical boss meter; preserve normal player HUD. Resolve boss/attack overlap during integration.",
+  "selected_layout_refinement": {
+    "world_scale": 0.9,
+    "world_offset": [
+      0,
+      54
+    ],
+    "sidebar": [
+      864,
+      82,
+      96,
+      458
+    ],
+    "registration": "assets/ui/boss-hud-right-v1/manifest.json",
+    "status": "Source composition approved; Engineering integration/build pending"
+  }
+}

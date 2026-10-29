@@ -1,0 +1,52 @@
+[
+  {
+    "id": "swim-tony-normal",
+    "prompt": "Production animation sprite sheet for Drain Damage. Reference image supplies character identity ONLY: Tony is dark spiky brown hair, clean shaven, navy work shirt; ignore other characters/poses. Create ONLY TONY swimming freestyle chest-deep, oblique overhead camera, facing screen-right, strong readable pixel-game style matching reference. Exactly8 chronological distinct frames in4columns x2rows, equalcells, generous transparentgutters, truealpha background no scenery. Full smooth freestyle cycle:1rightarm forward waterentry leftarm back;2rightarm catcheswater leftelbow rising;3rightarm pullsbelowwater leftarm high recovery;4leftarm reachesforward rightarm rear;5leftarm waterentry rightarm back;6leftarm catches rightelbow rises;7leftarm pulls rightarm high recovery;8rightarm reachesforward leftarm rear readyframe1. TWOarms only anatomicallyconsistent; head/shoulder mass same size and fixedchestwaterline atsamecellcoordinate, face breathingto viewer, visiblehead neck upperchest andarms ONLY, torso truncated atchestwaterline; NOlegs nofeet no walking. Intact navyshirt collar/shortrolledsleeves, soaked. Small matchingwateredge/splash perpose but no backgrounddisk. No text, no frame borders, no weapons. Allspritesfitcells, same scale, stablehair/face, legible at72pxwide. Animation has realarmmovement, no repeatedidenticalpose.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "swim-tony-normal-correct",
+    "prompt": "Correct this8frame Tony swimming sprite atlas. Keepidentity/style and8different swimmingposes, same4columns2rows. CRITICAL eachsprite includingallfoam mustfit insidecentral75%ofitscell, withatleast30px transparentpaddingonALLfour sides; no spritecrossescellborder, nonecutbycanvas. Reduceallcharactersuniformly tofit, sameheadsize. Chestwaterlineconsistent at70%cellheight. Freestylearmcycle smoothwith clearalternatingarmmotion, headcenterstable; no repeatedpose substitute. Preserve intactnavyshirt, darkspikyhair, cleanface. Truealpha transparentbackground. No text/no borders.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "swim-tony-hard",
+    "prompt": "Edit ONLY Tony's costume in this8frame freestyle swimming sheet to HardMode. Preserve exact8poses, face/hair, eachspriteposition/scale, water/splashshape, transparentcanvas andgutters. His navyworkshirt is severelytorn: atleasthalfshirtgone, raggedcollar andone tornsleeve remnant, muchofupperchest andshouldersvisible. No new wounds/gore. Still Tony darkspikyhair/cleanshaven. Do not changeanimation or waterline. Everyframeconsistent sameclothingdamage. Transparentbackground preserved.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "swim-sean-normal",
+    "prompt": "Production animation sprite sheet Drain Damage. Reference identityONLY: SEAN is completely BALD, gray chinbeard+soulpatch, NOmoustache, orange workshirt andblueoverallstraps, regularleanplumberbuild. IgnoreTony. CreateONLYSean swimming BREASTSTROKE chestdeep, fixedobliqueoverheadview, facing slightlyscreenright/viewer. Exactly8 chronologicalposes4columns2rows, equalcells and at least40px transparentgutters aroundeachsprite, no touchingcanvas. Real smoothsymmetric breaststroke:1bothhandsreachingforward together,2handsseparateoutward,3armswideoutward sweep,4elbowsbendpullback,5handspulltogetherunderchin,6palmsjoinandpushforward,7armsalmostextended,8fullforwardglide ready1. Head/bodyconsistentandfixed chestwaterlineat70%eachcellheight, no bobbing substitute. Visiblehead neckupperchestandtwoarms only; lowerbody underwater nolegsfeet. Distinctarmpositions acrossframes withlogicalcontinuity. Intactorangeshirt andblueoverallbib/straps visibleabove chestwaterline. Smallfoamedgesbelowchest, truealpha no backgrounds. Crisp richlyshadedpixel-gameart matchingreference, face/identityclearat72pxwidth. No words,borders,weapons, extraarms. Sameheadsize/poseanchor acrossallframes.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "swim-sean-hard",
+    "prompt": "Edit ONLY Sean's costume to HardMode in this8frame breaststroke atlas. Preserveexact8swimmingposes, baldhead graychinbeard NOmoustache, face, allcellpositions scale, splashes, realtransparency. Orange shirt halfgone withraggedshoulders, exposedupperchest; BLUEOVERALLBIB ANDSTRAPS ALSO badlytorn, onepartialstrap andraggedbibremnant visible, not intactoveralls. Samecostumedamageallframes. No blood/wounds. No weapons, noheldobjects. No changetoarmcycle/headsize/chestwaterline. Keepall8spritesinsidecellswithgutters.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "water-8phase",
+    "prompt": "Production animatedwater atlas DrainDamage. EXACT8different successiveframes, 2columns4rows ofequalwidecells onportraitcanvas. Eachcellcontains one ENTIRE isolated horizontalELLIPTICAL rushingturquoise water surface ratio2.57:1 viewedobliquelyoverhead. Transparentoutsideellipse and transparentcenterovalhole (drain) ratio2.57:1, holewidth18%surfacewidth. No porcelain, nocharacters, noletters/borders. Clearlyauthored8phase clockwise WHIRLPOOL animation: whitefoamcurves anddarktealwaterbands travelclockwisearoundring, advect inward andbreak/reform overeightframes; actualsurfacechanges, NOTidenticalstill rotated. Consistent fixedouterellipse/centerhole ineachcell, constantcolors/lightdirection, smoothcycle lasttofirst. Richcrisp pixelgameart, fastsweeping flow, readablelarge arcsratherthangrainy/noisyfoam; watermostlyopaque withrestrainedwhitehighlights. Leave24pxtransparentpaddingallcells, noedgescut. Imagewillrender720x280 soadequatedetail. Palettebrightturquoisematchesgiantporcelainbowl, butnoenvironmentbackground.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "props-eight",
+    "prompt": "Original production prop spriteatlas for DrainDamage, fixedobliqueoverhead view, crisp detailedpixelgameart, truealpha transparentbackground. Exactly8isolated objects in4columns2rows equalcells generous40pxgutters. Orderlefttoright topthenbottom:1 brightyellow CORNKERNEL cluster of3kernels;2 brownPOOPLOG small rounded ridgedsausage, noface/no wood;3 one copper PENNY coin withsimpleembossedprofile no legiblewords;4 metal CARKEYS keyring withtwosilverserratedkeys andoneblackplasticfob;5 a pairof whiteDICE withblackpips;6 oneblueclothingBUTTON fourholes;7 openmetalSAFETYPIN withclearlyvisibleloop clasp sharp tip;8 unusedwhitecotton TAMPON withthin curvedstring, cylindricalfiberbody, noapplicator no blood. Eachdistinctrecognizableat24\u201352px, boldoutline/separatedmaterials, threequarterview suitablefallingorwatersurface, no waterbakedin noshadows. Allobjectscenteredincells, nooverlap no labels/numbersoutside dice, no border/scenery.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "effects-eight",
+    "prompt": "Transparent production FXspriteatlas, DrainDamage crisp richlyshadedpixelgameart matchingturquoisewater. Exactly8isolatedsprites4columns2rows, equalcells withgenerouspadding, no text/grid. Toprow:1AMBERwarningring horizontalellipse2.57:1 with4smallinwardtriangleticks andtransparentcenter;2NAVYoval soft contactshadow2.57:1 no glow;3smallwhite-aqua impactSPLASHCROWN beginning;4sameimpactcrown expandedwithdroplets. Bottomrow4consecutiveframes ofCHESTWATERLINEforeground: a narrowhorizontalcrescentofopaqueturquoisewater withthinwhitefoamfrontedge, around72wideby12highinruntime; centerloweredgeopaque maskshero lowerchest, upperedgeundulates gradually across4frames; no giantdisks. Actualframevariation waveshiftlefttoright andsplashlets. Allalphaoutsideobjects, noopaque background. Shadows/markers formplane, splashescrownupright. Keepfullobjectsinsidecells, no sidescut.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "drain-layered",
+    "prompt": "Original2Dgame layeredDRAIN atlas, crisp illustratedpixelart matching ivoryporcelain/turquoisewater ofreference. Transparencyoutsideeachcomponent. Layout2columns2rows, allcomponentsseparate withwidepadding. TOPLEFT: complete darkellipticaldrain mouth lookingDOWN intoverydeepblackbluecurvedtoiletchute, ivoryporcelainrim, horizontalratio2.57:1, stronginnerwallbandsrecedingdown, nocharacters. TOPRIGHT: ONLY front lowerhalf ofsameporcelainrim as independentopaqueoccluder, crescent shape; transparent upperhalf whereholeandhero go, lipthick enoughhidehero movingdown behindit. BOTTOMLEFT: firstsuctionburblephase smallwhiteturquoisefoam curlingdownintoellipticalblackcenter, samewidthasdrain. BOTTOMRIGHT: secondburblephase withlargerbulgingbubbles collapsingtowarddarkcenter, distinctnextframe. No scenery, no words,borders, extraobjects. Designedruntime130x51mouth, frontlip130x30. Sameperspective/scale allfour, centeranchorsstable.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "drain-layered-correct",
+    "tool": "built-in image_gen",
+    "prompt": "Fix thisdrainatlas production separation. SAMEfourcomponents2x2 layout withWIDE60px transparentgutters betweenALLcomponents andcanvas. Uniformlyshrink eachcomponent enough soNO rim orfoam crosses cellborders. Removeallstraypixels/speckling outsideobjects. Preserve ivoryporcelainart, deepblackbluemouth topLEFT, separatefrontlip topRIGHT, smallvortex bottomLEFT, bubbleburble bottomRIGHT. Truealpha background. Mouthandburbleellipses same shape/size; frontlip matcheslowerhalfmouth. No newobjects/text."
+  }
+]
