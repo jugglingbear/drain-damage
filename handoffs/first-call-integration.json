@@ -1,21 +1,23 @@
 {
   "schema_version": 1,
-  "build": "Prototype 115 / 0.115.0",
-  "created_at": "2026-10-28T20:10:32.531915-07:00",
+  "build": "Prototype 116 / 0.116.0",
+  "created_at": "2026-10-28T20:31:13.297056-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "65348af5187864ce41607873db82b4e1774b41bb",
-  "status": "Built locally for macOS and Windows; headless landing regression passes. Listening, visual capture and Windows-native validation pending.",
-  "app": "builds/Prototype-115/Drain Damage.app",
-  "archive": "builds/history/Prototype-115.zip",
-  "archive_sha256": "07fda5958fb7917a312ba03715c257b6e9451bb9b84318373505579f9b2804ba",
-  "source_snapshot": "builds/source-115",
-  "source_snapshot_files": 1886,
-  "previous_build_preserved": "Prototype 114 app, archive and source remain intact.",
+  "source_commit": "0798973",
+  "status": "Mac and Windows packages built; packaged drain/dialogue regressions pass. Visual/audio and Windows-native acceptance pending.",
+  "app": "builds/Prototype-116/Drain Damage.app",
+  "archive": "builds/history/Prototype-116.zip",
+  "archive_sha256": "9bde10a1a9b73f737cc5851a4bc32f9c2b4eae50c25ed436d1bf3c1a346af18b",
+  "source_snapshot": "builds/source-116",
+  "source_snapshot_files": 1903,
+  "previous_build_preserved": "Prototype 115 and all earlier apps, archives and snapshots preserved.",
   "changes": [
-    "Landing material is captured from full-board deck support before encounter advancement. Cleanout caps use metal; basin slabs use porcelain; water uses the wet cue.",
-    "Ride-on entry remains silent; each airborne landing emits one cue. Gameplay geometry and timing are unchanged.",
-    "Audio registry and searchable auditions now include ride cue trigger descriptions; all existing files, candidates and IDs are preserved."
+    "Swimming into the visible projected drain opening before35s causes one-life death, including prelude and ordinary inward drift. Outer bound remains; obsolete protective inner clamp removed.",
+    "Split physics at scripted capture boundary; earlier lethal entry cannot advance to landing. Exact35s and later scripted capture remain protected. Fatal descent reuses authored swimmer/throat visuals and normal death audio; pause/retry preserved.",
+    "Debris planner now rejects projected drain crossings and removes obsolete inner-disk pruning; both hero speeds and all difficulties have finite guided replay coverage.",
+    "Remote partner opens centered before the selected hero complaint; partner card remains centered during bottom complaint, then partner reply slides down. Approved Tony landing wording unchanged; system emoji fallback covers both glyphs on this Mac.",
+    "Buddy remains only in opening tire-iron line. Approved hungry-head growls retained as audition-only voice baseline, with earlier candidates archived; no boss runtime mapping."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
@@ -23,35 +25,49 @@
     "direct": "make run LEVEL=2-01 (through 2-13)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-116/Drain Damage.app\"",
     "slalom": "make run LEVEL=2-01",
     "breach": "make run LEVEL=2-02",
     "float_sweep": "make run LEVEL=2-06",
-    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-115/Drain Damage.app\"",
-    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-116/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-116/Drain Damage.app\"",
     "brushes": "make run LEVEL=2-04",
-    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-115/Drain Damage.app\"",
-    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-115/Drain Damage.app\""
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-116/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-116/Drain Damage.app\""
   },
   "checks": {
-    "source_ride_suites_passed": 6,
-    "packaged_landing_regression": "Both heroes; ride-on and jump-on entry, cap-to-cap, cap-to-water across encounter transition, porcelain support and retry reset.",
     "python_tests": 44,
-    "audio_freshness": "100 slots checked after refresh and generation",
-    "exported_entries": "Mac executable: 2-07 Tony; Windows PCK on Mac: 1,2,2-landing,2-12,2-13.",
-    "signature_archive": "Mac strict codesign and archive CRC passed; Windows package integrity passed.",
-    "logs": "builds/verification-115/",
-    "whitespace": "git diff --check passed"
+    "source_suites": [
+      "flush_drain_death",
+      "flush_bounds",
+      "flush_interactions",
+      "flush_reading_time",
+      "flush_landing",
+      "flush_visibility",
+      "flush_radio_gag",
+      "flush_planner_drain",
+      "flush_scheduler"
+    ],
+    "packaged_suites": [
+      "flush_drain_death",
+      "flush_radio_gag"
+    ],
+    "planner_contribution": "Mechanics reports6 full hero/mode replays seed0 at120Hz and18 replays seeds0..2 at60Hz/120Hz substeps; zero damage or drain crossing. Finite coverage.",
+    "font": "Explicit system fallback has both approved emoji glyphs on macOS; no rendered screenshot or Windows glyph check.",
+    "audio_freshness": "100 slots checked",
+    "signature_archive": "Mac strict codesign and ZIP CRC pass; Windows builder integrity checks pass.",
+    "logs": "builds/verification-116/"
   },
   "capture_gap": {
     "actual_capture": false,
-    "remaining": "Listening and actual gameplay capture require an approved session; both builds preserved."
+    "metadata": "storybook/116-flush-drain-and-dialogue/20261028-203113-capture-status.json",
+    "remaining": "Approved actual gameplay capture, listening and native Windows validation."
   },
   "limitations": [
-    "No game window opened; no subjective listening or visual acceptance.",
-    "Windows executable and PowerShell checks not run on Windows.",
-    "Existing Godot shutdown resource warnings remain in logs.",
-    "Build made from source commit plus uncommitted changes; snapshot preserves tested source."
+    "No foreground game or screenshot; death presentation, dialogue layout and listening acceptance pending.",
+    "Windows-native and emoji rendering tests pending.",
+    "Existing shutdown leak warnings remain in logs.",
+    "Basin half-footprint support and catch-basin surface fixes remain queued for next iteration."
   ],
   "contributors": [
     "handoffs/level-two-ride-showcase-layout.json",
@@ -73,10 +89,10 @@
   ],
   "windows_export": {
     "date": "2026-10-28",
-    "version": "0.115.0",
+    "version": "0.116.0",
     "architecture": "x86_64",
-    "archive": "builds/Drain-Damage-0.115.0-windows-x86_64-20261029-030851-396217Z.zip",
-    "archive_sha256": "bfb30302cd5679622241589bcfcfaa2ea0d754eb62ebae117c86593444c9d562",
+    "archive": "builds/Drain-Damage-0.116.0-windows-x86_64-20261029-032939-153815Z.zip",
+    "archive_sha256": "433d15fb0a9bf4ab4d629c82490e43010e6d1a1fe7a18e29404bc4c19c7615ee",
     "status": "Cross-exported on macOS; Windows-native validation pending. No VM or Windows machine used.",
     "checks": [
       "44 Python tests",

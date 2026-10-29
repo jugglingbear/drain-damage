@@ -55,7 +55,7 @@ func checks() -> void:
 	flush.clock = 34.99
 	flush.position = Vector2(180,0)
 	flush.tick(game,0.02,Vector2.RIGHT,false,false)
-	assert(flush.drain_origin.is_equal_approx(Vector2(180,0)),"Outward input cannot move the automatic descent")
+	assert(flush.drain_origin.distance_to(Vector2(180,0)) < 4,"Only the pre35 control interval may move the capture origin")
 	flush.clock = 39.99
 	flush.state = "drain"
 	var burbles: int = flush.audio.starts.get("suction_burble",0)

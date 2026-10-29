@@ -45,7 +45,7 @@ const COMPLETION_TONY: Array[Dictionary] = [
 
 const COMPLETION_SEAN: Array[Dictionary] = [
 	{"who": "sean", "emotion": "surprised", "text": "Tony, the Clogfather’s down! All that water’s breaking through!", "radio": false},
-	{"who": "tony", "emotion": "neutral", "text": "Get clear of the water, buddy. Head back the way you came.", "radio": true},
+	{"who": "tony", "emotion": "neutral", "text": "Get clear of the water, Sean. Head back the way you came.", "radio": true},
 	{"who": "sean", "emotion": "worried", "text": "There’s a portal! It’s sucking in the water and everything else!", "radio": false},
 	{"who": "tony", "emotion": "worried", "text": "Grab something bolted down!", "radio": true},
 	{"who": "sean", "emotion": "worried", "text": "The bolts are going past me!", "radio": false},

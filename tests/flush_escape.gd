@@ -79,6 +79,10 @@ func _initialize() -> void:
 						model.last_steering = command
 						var old_position: Vector2 = model.position
 						if dt > 0: model.position = Flow.swim(model.position,command,speed,model.clock,dt,layout.difficulty[mode].flow)
+						if policy.is_empty() and model.clock < 35 and debris.drain_crossing(old_position,model.position):
+							push_error("Escape witness crosses visible drain")
+							quit(1)
+							return
 						guided_travel += old_position.distance_to(model.position)
 						host.invulnerable = maxf(0,host.invulnerable-dt)
 						# Deliberate old-warning mistake ensures recovery remains exercised even if idle is safe.

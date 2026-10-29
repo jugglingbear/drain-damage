@@ -849,6 +849,11 @@ func step_death(delta: float) -> void:
 		return
 	if paused or life_state != "dying": return
 	death_time += delta
+	if flush.state == "drain_death":
+		var progress := smoothstep(0.0,1.0,death_time)
+		flush.position = flush.drain_origin*(1.0-progress)
+		flush.sink_depth = progress
+		flush.sync_hero(self)
 	var duration: float = flush.ride.FALL_DURATION if flush.state == "ride" and flush.ride.events.has("fall") else 1.0
 	if death_time < duration: return
 	life_state = "game_over" if lives == 0 else "death_popup"

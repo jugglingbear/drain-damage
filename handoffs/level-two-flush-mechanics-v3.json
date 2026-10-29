@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
-  "updated": "2026-10-24",
+  "updated": "2026-10-28",
   "timezone": "America/Los_Angeles",
-  "status": "Agreed Prototype 100 numeric contract; runtime escape, packaged and human validation pending",
+  "status": "Prototype 116 drain-aware planner delivered; integrated export and visual validation owned by Engineering",
   "owner": "Game Mechanics",
   "integration_owner": "Engineering",
   "layout_owner": "Level Design",
@@ -277,5 +277,23 @@
     "solver": "Use 14+prop_radius for swept relative collision and 48+14+prop_radius for whole-pocket clearance. Preserve each item radius through prediction, collision, ledger and retirement.",
     "swallow": "Full physical swallow requires center_radius+prop_radius<=65. Ordinary threshold43; hamster25. At35 disable collision but retain visual suction until swallowed.",
     "fall_visibility": "Use actual registered top extent with HUD64 and margin8. Art proposes hamster top extent45.75px; if final registration matches, minimum initial foot y is117.75. Retain conservative64px upper extent/foot136 until the delivered manifest confirms this anchor. Do not stretch the sprite to fill80x64; preserve uniform scale."
+  },
+  "drain_planner_revision_116": {
+    "date": "2026-10-28",
+    "files": [
+      "scripts/flush_debris.gd",
+      "tests/flush_planner_drain.gd",
+      "tests/flush_scheduler.gd",
+      "tests/flush_escape.gd"
+    ],
+    "behavior": "Outer-only swim bounds match runtime. Reject projected visible-drain sweeps in route search, reaction, fixed continuation, recovery, hazard-free tails and incoming-wave prefixes. No inner-annulus hazard pruning. Runtime passes bundled art metadata to configure; source tests may read canonical manifest.",
+    "geometry": "Use Flow.drain_coordinates with canonical drain radii, projection and art depth. Conservative curve bound is for route proof only, without widening runtime death contact.",
+    "validation": [
+      "flush_scheduler PASS",
+      "flush_planner_drain PASS",
+      "flush_escape: six guided mode/hero runs at 120Hz, seed 0, no debris damage or drain crossings",
+      "flush_escape: eighteen guided mode/hero runs at 60Hz with 120Hz substeps, seeds 0..2, no debris damage or drain crossings; 222 waves, max planning 43.555ms"
+    ],
+    "limits": "Finite replay coverage; no visual playtest or export performed by Mechanics. Idle counterfactual output counts debris contacts only and does not model fatal drain death. Engineering owns runtime death/retry, phase-35 transition, build, roadmap and capture backlog."
   }
 }

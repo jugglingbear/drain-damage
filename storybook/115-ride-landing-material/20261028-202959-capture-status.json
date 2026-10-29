@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 115 / 0.115.0",
+  "created_at": "2026-10-28T20:10:32.531915-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "source_commit": "65348af5187864ce41607873db82b4e1774b41bb",
+  "status": "Built locally for macOS and Windows; headless landing regression passes. Listening, visual capture and Windows-native validation pending.",
+  "app": "builds/Prototype-115/Drain Damage.app",
+  "archive": "builds/history/Prototype-115.zip",
+  "archive_sha256": "07fda5958fb7917a312ba03715c257b6e9451bb9b84318373505579f9b2804ba",
+  "source_snapshot": "builds/source-115",
+  "source_snapshot_files": 1886,
+  "previous_build_preserved": "Prototype 114 app, archive and source remain intact.",
+  "changes": [
+    "Landing material is captured from full-board deck support before encounter advancement. Cleanout caps use metal; basin slabs use porcelain; water uses the wet cue.",
+    "Ride-on entry remains silent; each airborne landing emits one cue. Gameplay geometry and timing are unchanged.",
+    "Audio registry and searchable auditions now include ride cue trigger descriptions; all existing files, candidates and IDs are preserved."
+  ],
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "brushes": "make run LEVEL=2-04",
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-115/Drain Damage.app\""
+  },
+  "checks": {
+    "source_ride_suites_passed": 6,
+    "packaged_landing_regression": "Both heroes; ride-on and jump-on entry, cap-to-cap, cap-to-water across encounter transition, porcelain support and retry reset.",
+    "python_tests": 44,
+    "audio_freshness": "100 slots checked after refresh and generation",
+    "exported_entries": "Mac executable: 2-07 Tony; Windows PCK on Mac: 1,2,2-landing,2-12,2-13.",
+    "signature_archive": "Mac strict codesign and archive CRC passed; Windows package integrity passed.",
+    "logs": "builds/verification-115/",
+    "whitespace": "git diff --check passed"
+  },
+  "capture_gap": {
+    "actual_capture": false,
+    "remaining": "Listening and actual gameplay capture require an approved session; both builds preserved."
+  },
+  "limitations": [
+    "No game window opened; no subjective listening or visual acceptance.",
+    "Windows executable and PowerShell checks not run on Windows.",
+    "Existing Godot shutdown resource warnings remain in logs.",
+    "Build made from source commit plus uncommitted changes; snapshot preserves tested source."
+  ],
+  "contributors": [
+    "handoffs/level-two-ride-showcase-layout.json",
+    "handoffs/ride-showcase-art.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json",
+    "audio/sources/ride-fall-panic-v1/manifest.json",
+    "handoffs/giant-brush-v2-art.json",
+    "handoffs/ceiling-strainer-v1-art.json"
+  ],
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
+  "proposals_not_implemented": [
+    "Mixed course",
+    "General oblique camera projection",
+    "Wall ram gameplay",
+    "Hungry-head final boss"
+  ],
+  "windows_export": {
+    "date": "2026-10-28",
+    "version": "0.115.0",
+    "architecture": "x86_64",
+    "archive": "builds/Drain-Damage-0.115.0-windows-x86_64-20261029-030851-396217Z.zip",
+    "archive_sha256": "bfb30302cd5679622241589bcfcfaa2ea0d754eb62ebae117c86593444c9d562",
+    "status": "Cross-exported on macOS; Windows-native validation pending. No VM or Windows machine used.",
+    "checks": [
+      "44 Python tests",
+      "Package integrity and x86_64 PE checks",
+      "Five exported PCK initialization checks on macOS",
+      "100 audio slots current"
+    ],
+    "known_limitations": [
+      "Unsigned Windows executable",
+      "Existing verification shutdown resource warnings recorded in manifest",
+      "PowerShell script not executed; no PowerShell available on this Mac",
+      "Markdown lint unavailable locally",
+      "No Windows gameplay capture; capture after native test permission"
+    ],
+    "commands": [
+      "make build-windows",
+      "make build-all"
+    ],
+    "instructions": "docs/DEVELOPMENT.md#windows-exports-and-testing"
+  },
+  "source_dirty_at_build": true,
+  "archived_at": "2026-10-28T20:29:59.310866-07:00",
+  "capture_time": null,
+  "actual_capture": false
+}

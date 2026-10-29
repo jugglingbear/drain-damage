@@ -30,9 +30,9 @@ func _initialize() -> void:
 				for time in [0.0,8.0,21.5,35.0]:
 					var bounds := Flow.annulus(time)
 					var inner := Flow.swim(Vector2.RIGHT*bounds.x,Vector2.LEFT,speed,time,1.0/hz,flow)
-					assert(absf(inner.length()-bounds.x) < TOLERANCE,"Inward input respects current inner bound")
+					assert(inner.length() < bounds.x,"Swimmer can enter former protected inner disk")
 					var origin := Flow.swim(Vector2.ZERO,Vector2.ZERO,speed,time,1.0/hz,flow)
-					assert(origin.is_finite() and absf(origin.length()-bounds.x) < TOLERANCE)
+					assert(origin.is_finite() and origin == Vector2.ZERO,"Origin does not teleport to safety")
 					var start := Vector2.RIGHT*((bounds.x+bounds.y)*0.5)
 					var diagonal := Flow.swim(start,Vector2.ONE,speed,time,1.0/hz,flow)
 					var normalized := Flow.swim(start,Vector2.ONE.normalized(),speed,time,1.0/hz,flow)

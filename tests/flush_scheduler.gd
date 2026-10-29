@@ -68,7 +68,7 @@ func _initialize() -> void:
 	var unreachable := prop("unreachable",Vector2(125,0),8)
 	var cache := {"simulated":[unreachable.duplicate(true)],"frames":[],"allow_cutoff":true}
 	var proof := debris.proof_frame(cache,0,8,1.0/120)
-	if not require(proof.all_retired and not unreachable.retired,"Proof-only cutoff leaves runtime lifecycle intact"): return
+	if not require(not proof.all_retired and not unreachable.retired,"Former inner annulus cannot retire reachable hazards"): return
 	if not require(not proof.segments.is_empty(),"Cutoff retains just-completed crossing sweep"): return
 	var future_cache := {"simulated":[prop("future-cutoff",Vector2(125,0),9)],"frames":[],"allow_cutoff":true}
 	if not require(not debris.proof_frame(future_cache,0,8,1.0/120).all_retired,

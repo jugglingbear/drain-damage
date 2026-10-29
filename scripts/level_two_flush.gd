@@ -124,7 +124,7 @@ func begin(host: Node2D, retry := false) -> void:
 	swirl_angle = 0
 	sink_depth = 0
 	last_steering = Vector2.ZERO
-	debris.configure(definition.layout,host.difficulty,host.run_seed)
+	debris.configure(definition.layout,host.difficulty,host.run_seed,definition.art)
 	debris.render_frames = definition.art.frames
 	hazards = debris.items
 	audio.stop()
@@ -199,6 +199,19 @@ func sync_hero(host: Node2D) -> void:
 	host.grounded = jump_height <= 0
 
 func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing: bool) -> void:
+	# Bound collision travel and split exactly where the scripted capture takes ownership.
+	if state in ["ride","landing"]:
+		_tick_step(host,delta,steering,_jumping,_firing)
+		return
+	var remaining := delta
+	while remaining > 0.000001 and active and not host.paused and host.life_state == "alive":
+		var step := minf(remaining,1.0/120.0)
+		if prelude_remaining > 0: step = minf(step,prelude_remaining)
+		elif clock < 35: step = minf(step,35-clock)
+		_tick_step(host,step,steering,_jumping,_firing)
+		remaining -= step
+
+func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing: bool) -> void:
 	if not active or host.paused or host.life_state != "alive" or host.won: return
 	if state == "ride":
 		ride.tick(host,delta,steering,_jumping)
@@ -207,6 +220,9 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 		landing_clock += delta
 		radio.advance(landing_clock,delta,false)
 		if radio.next_index >= radio.entries.size() and radio.current.is_empty(): enter_ride(host)
+		return
+	if state == "bowl" and clock < 35 and drain_contact(position):
+		enter_drain_death(host)
 		return
 	if prelude_remaining > 0:
 		var reading_delta := minf(delta,prelude_remaining)
@@ -217,10 +233,15 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 		host.invulnerable = maxf(0,host.invulnerable-reading_delta)
 		host.hurt_time = maxf(0,host.hurt_time-reading_delta)
 		move_hero(host,reading_delta,steering,false)
+		if host.life_state != "alive": return
 		sync_hero(host)
 		radio.advance(prelude_duration-prelude_remaining,reading_delta,false)
 		delta -= reading_delta
 		if delta <= 0.000001: return
+	# Resolve the final controllable interval before making the finale immune.
+	if clock < 35 and clock+delta >= 35:
+		move_hero(host,delta,steering,false,true)
+		if host.life_state != "alive": return
 	clock = minf(45.0,clock+delta)
 	if 45.0-clock < 0.000001: clock = 45.0
 	water_clock += delta*lerpf(1.0,1.8,clampf(clock/43.0,0,1))
@@ -251,15 +272,35 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 			return
 	else:
 		move_hero(host,delta,steering,false)
+		if host.life_state != "alive": return
 		# Swimming owns this sequence: neither held nor tapped attack/jump inputs create effects.
 		debris.advance(self,host,delta)
+		if host.life_state != "alive": return
 	sync_hero(host)
 	radio.advance(clock+prelude_duration,delta,false)
 	if clock >= 8 and not announced.has("onset"):
 		announced.onset = true
 		audio.play("flush_onset")
 
-func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool) -> void:
+func drain_contact(point: Vector2) -> bool:
+	var radii: Array = definition.layout.geometry.drain_visual_radii
+	return Flow.drain_contact(point,Vector2(radii[0],radii[1]),projection(),
+		float(definition.art.get("surface_depth_pixels",0)))
+
+func enter_drain_death(host: Node2D) -> void:
+	if host.life_state != "alive" or state != "bowl" or clock >= 35: return
+	state = "drain_death"
+	drain_origin = position
+	sink_depth = 0
+	shots.clear()
+	hazards.clear()
+	host.health = 1
+	host.invulnerable = 0
+	host.hurt_player()
+	sync_hero(host)
+
+func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool, capture_boundary := false) -> void:
+	var start_position := position
 	var input := steering.limit_length()
 	if input.length() > 0.1:
 		aim = Vector2(roundf(input.x),roundf(input.y)).normalized()
@@ -268,6 +309,18 @@ func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool) ->
 	last_steering = input
 	position = Flow.swim(position,input,float(host.employee.move_speed),clock,delta,
 		definition.layout.difficulty[host.difficulty].flow)
+	if clock < 35 and drain_contact(position):
+		var low := 0.0
+		var high := 1.0
+		for iteration in range(32):
+			var middle := (low+high)*0.5
+			if drain_contact(start_position.lerp(position,middle)): high = middle
+			else: low = middle
+		# Exact 35s contact belongs to capture; an earlier entry still kills on a straddling frame.
+		if not capture_boundary or high < 1.0-0.000001:
+			position = start_position.lerp(position,high)
+			enter_drain_death(host)
+			return
 	jump_height = 0
 	jump_velocity = 0
 	host.animation_state = "idle"
@@ -304,14 +357,14 @@ func draw_bowl_actors(host: Node2D) -> void:
 	var ordered := hazards.duplicate()
 	ordered.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return project(a.pos).y < project(b.pos).y)
 	for item: Dictionary in ordered: art.debris(host,self,item)
-	var submerging := clock >= 40.0
+	var submerging := clock >= 40.0 or state == "drain_death"
 	# The opaque throat patch belongs behind an active swimmer, even at the front of the bowl.
-	# Only the scripted down-hole descent intentionally puts that patch over the hero.
+	# Both fatal entry and scripted descent put the throat patch over the sinking hero.
 	if not submerging: art.draw_named(host,"drain_front",project(Vector2.ZERO))
 	if host.invulnerable <= 0 or int(clock*12)%2 == 0 or state != "bowl": art.swimmer(host,self)
 	if submerging:
 		art.draw_named(host,"drain_front",project(Vector2.ZERO))
-		art.draw_frame(host,art.frame_at("burble",clock-40),project(Vector2.ZERO))
+		art.draw_frame(host,art.frame_at("burble",host.death_time if state == "drain_death" else clock-40),project(Vector2.ZERO))
 
 func draw(host: Node2D) -> void:
 	if state == "ride":

@@ -34,5 +34,14 @@ static func annulus(time: float) -> Vector2:
 static func swim(point: Vector2, input: Vector2, speed: float, time: float, delta: float, flow: Dictionary) -> Vector2:
 	point += (input.limit_length()*speed+velocity(point,time,flow))*delta
 	var bounds := annulus(time)
-	if point == Vector2.ZERO: point = Vector2.RIGHT*bounds.x
-	return point.normalized()*clampf(point.length(),bounds.x,bounds.y)
+	return point.limit_length(bounds.y)
+
+## Registered waterline contact against the visible opening, excluding decorative foam and body radius.
+static func drain_coordinates(point: Vector2, radii: Vector2, projection_y: float, depth: float) -> Vector2:
+	var radius := point.length()
+	var surface := depth*pow(1.0-clampf(radius/360.0,0,1),2)
+	var local := Vector2(point.x,point.y*projection_y+surface-depth)
+	return Vector2(local.x/radii.x,local.y/radii.y)
+
+static func drain_contact(point: Vector2, radii: Vector2, projection_y: float, depth: float) -> bool:
+	return drain_coordinates(point,radii,projection_y,depth).length_squared() <= 1.0

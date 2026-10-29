@@ -22,9 +22,21 @@ var render_frames: Dictionary = {}
 var last_failure: Dictionary = {}
 var proof_cache: Dictionary = {}
 var reaction_commands: Array = []
+var drain_radii := Vector2.ZERO
+var drain_projection := 1.0
+var drain_depth := 0.0
+var drain_world_bound := 0.0
 
-func configure(definition: Dictionary, difficulty: String, seed_value: int) -> void:
+func configure(definition: Dictionary, difficulty: String, seed_value: int, art: Dictionary = {}) -> void:
 	layout = definition
+	var geometry: Dictionary = layout.geometry
+	drain_radii = Vector2(geometry.drain_visual_radii[0],geometry.drain_visual_radii[1])
+	drain_projection = float(geometry.water_radii[1])/float(geometry.water_radii[0])
+	# Runtime supplies bundled art metadata; standalone source tests may read the canonical manifest.
+	if art.is_empty():
+		art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-flush-v3/manifest.json"))
+	drain_depth = float(art.get("surface_depth_pixels",0))
+	drain_world_bound = Vector2(drain_radii.x,(drain_radii.y+drain_depth)/drain_projection).length()
 	mode = difficulty
 	rng.seed = seed_value+99002
 	items.clear()
@@ -38,6 +50,25 @@ func configure(definition: Dictionary, difficulty: String, seed_value: int) -> v
 	last_failure.clear()
 	proof_cache.clear()
 	reaction_commands.clear()
+
+func drain_crossing(a: Vector2, b: Vector2) -> bool:
+	var closest := Geometry2D.get_closest_point_to_segment(Vector2.ZERO,a,b).length()
+	# A derived enclosing disk cheaply excludes distant paths; it is never a gameplay collider.
+	if closest > drain_world_bound: return false
+	var from := Flow.drain_coordinates(a,drain_radii,drain_projection,drain_depth)
+	var to := Flow.drain_coordinates(b,drain_radii,drain_projection,drain_depth)
+	if from.length_squared() <= 1 or to.length_squared() <= 1: return true
+	if closest <= 0.000001: return true
+	# Bound the depth curve's deviation from its projected chord, so a between-sample graze cannot pass.
+	var radius := float(layout.geometry.water_radii[0])
+	var curvature := 2*drain_depth/(radius*closest)+2*drain_depth/(radius*radius)
+	var padding := curvature*a.distance_squared_to(b)/(8*drain_radii.y)
+	return Geometry2D.get_closest_point_to_segment(Vector2.ZERO,from,to).length() <= 1+padding
+
+func route_target(angle: float, bounds: Vector2) -> Vector2:
+	var target := Vector2.from_angle(angle)*(bounds.x+bounds.y)*0.5
+	if drain_crossing(target,target): target = Vector2.from_angle(angle)*(bounds.y-8)
+	return target
 
 func shuffled(values: Array) -> Array:
 	var result := values.duplicate()
@@ -265,17 +296,15 @@ func spawn_wave(model: RefCounted, wave: Dictionary, immunity: float, hero_speed
 func incoming_clear(witness: Dictionary, start: float, incoming: Array[Dictionary]) -> bool:
 	if witness.positions.size() != witness.commands.size()+1: return false
 	if witness.commands.size()*STEP < CUTOFF-start-0.000001: return false
+	for index in range(witness.commands.size()):
+		if start+index*STEP >= CUTOFF: break
+		if drain_crossing(witness.positions[index],witness.positions[index+1]): return false
 	var simulated: Array[Dictionary] = []
 	for item in incoming: simulated.append(item.duplicate(true))
 	var first_impact := CUTOFF
 	for hazard in simulated: first_impact = minf(first_impact,float(hazard.impact_at))
 	var first_step := maxi(0,floori((first_impact-start)/STEP))
 	var time := start+first_step*STEP
-	var initial_bounds := Flow.annulus(start)
-	var origin: Vector2 = witness.positions[0]
-	var flow: Dictionary = layout.difficulty[mode].flow
-	var allow_cutoff := origin.length() >= initial_bounds.x and origin.length() <= initial_bounds.y
-	allow_cutoff = allow_cutoff and minf(flow.inward_speed_start,flow.inward_speed_end) >= 8
 	for index in range(first_step,witness.commands.size()):
 		var dt := minf(STEP,CUTOFF-time)
 		if dt <= 0: break
@@ -283,12 +312,10 @@ func incoming_clear(witness: Dictionary, start: float, incoming: Array[Dictionar
 		var b: Vector2 = witness.positions[index+1]
 		var remaining := false
 		for hazard in simulated:
-			if hazard.retired or hazard.get("proof_retired",false): continue
+			if hazard.retired: continue
 			# Include the entire first impact interval and exact boundary sample, without immunity exemptions.
 			if touches(a,b,time,time+dt,move_hazard(hazard,time,dt)): return false
-			if allow_cutoff and hazard.impacted and hazard.pos.length()+float(hazard.radius)+14+0.25 < Flow.annulus(time+dt).x:
-				hazard.proof_retired = true
-			remaining = remaining or (not hazard.retired and not hazard.get("proof_retired",false))
+			remaining = remaining or (not hazard.retired)
 		if not remaining: return true
 		time += dt
 	return true
@@ -297,7 +324,7 @@ func commit_wave(model: RefCounted, wave: Dictionary, incoming: Array[Dictionary
 		witness: Dictionary, admission: String, immunity: float, baseline_hits: int) -> void:
 	var bounds := Flow.annulus(float(wave.at)+float(wave.duration))
 	var entry := {"id":wave.id,"at":wave.at,"duration":wave.duration,"count":wave.count,
-		"safe_point":Vector2.from_angle(angle)*(bounds.x+bounds.y)*0.5,"witness":witness.commands,
+		"safe_point":route_target(angle,bounds),"witness":witness.commands,
 		"witness_start":model.clock,"witness_end":CUTOFF,"witness_positions":witness.positions,
 		"used_continuation":not reaction_commands.is_empty(),"mode":mode,"hero_speed":witness.hero_speed,
 		"reaction_source":ledger[-1].id if not reaction_commands.is_empty() else "constant-input",
@@ -330,15 +357,12 @@ func proof_frame(cache: Dictionary, index: int, time: float, dt: float) -> Dicti
 	var retired := PackedByteArray()
 	var all_retired := true
 	for hazard in cache.simulated:
-		if not hazard.retired and not hazard.get("proof_retired",false):
+		if not hazard.retired:
 			for segment in move_hazard(hazard,time,dt):
 				segments.append_array(PackedFloat64Array([segment.from.x,segment.from.y,segment.to.x,segment.to.y,
 					segment.start,segment.end,segment.radius]))
-		# Preserve this frame's crossing segments; only future proof steps omit unreachable disks.
-		if cache.allow_cutoff and dt <= STEP+0.0000001 and hazard.impacted:
-			if hazard.pos.length()+float(hazard.radius)+14+0.25 < Flow.annulus(time+dt).x:
-				hazard.proof_retired = true
-		var excluded: bool = hazard.retired or hazard.get("proof_retired",false)
+		# Swimming can enter the former inner annulus; only actual retirement removes a hazard.
+		var excluded: bool = hazard.retired
 		positions.append(hazard.pos)
 		retired.append(1 if excluded else 0)
 		all_retired = all_retired and excluded
@@ -349,26 +373,20 @@ func proof_frame(cache: Dictionary, index: int, time: float, dt: float) -> Dicti
 func safe_route(origin: Vector2, incoming: Array[Dictionary], start: float, angle: float,
 		prior_input: Vector2, hero_speed: float, recovery := false, initial_immunity := 0.0,
 		fixed_commands: Array = []) -> Dictionary:
-	var result := search_route(origin,incoming,start,angle,prior_input,hero_speed,recovery,initial_immunity,fixed_commands,true)
-	if result.safe or result.get("reaction_locked",false): return result
-	# Inner-disk pruning changes steering scores; retain the proven full-lifetime search as fallback.
-	return search_route(origin,incoming,start,angle,prior_input,hero_speed,recovery,initial_immunity,fixed_commands,false)
+	return search_route(origin,incoming,start,angle,prior_input,hero_speed,recovery,initial_immunity,fixed_commands)
 
 func search_route(origin: Vector2, incoming: Array[Dictionary], start: float, angle: float,
 		prior_input: Vector2, hero_speed: float, recovery: bool, initial_immunity: float,
-		fixed_commands: Array, use_cutoff: bool) -> Dictionary:
+		fixed_commands: Array) -> Dictionary:
 	# No immunity or inherited-contact exemptions: a witness must avoid every persistent hazard until35.
 	var simulated: Array[Dictionary] = []
 	for item in items: simulated.append(item.duplicate(true))
 	for item in incoming: simulated.append(item.duplicate(true))
 	# Cache exact hero-independent trajectories only within this wave planning transaction.
-	var initial_bounds := Flow.annulus(start)
 	var flow: Dictionary = layout.difficulty[mode].flow
-	var allow_cutoff := use_cutoff and origin.length() >= initial_bounds.x and origin.length() <= initial_bounds.y
-	allow_cutoff = allow_cutoff and minf(flow.inward_speed_start,flow.inward_speed_end) >= 8
-	var key := var_to_str([start,mode,flow,simulated,allow_cutoff])
+	var key := var_to_str([start,mode,flow,simulated])
 	if not proof_cache.has(key):
-		proof_cache[key] = {"simulated":simulated.duplicate(true),"frames":[],"allow_cutoff":allow_cutoff}
+		proof_cache[key] = {"simulated":simulated.duplicate(true),"frames":[]}
 	var cached: Dictionary = proof_cache[key]
 	var frame_index := 0
 	var all_retired: bool = simulated.all(func(hazard: Dictionary) -> bool: return hazard.retired)
@@ -391,7 +409,7 @@ func search_route(origin: Vector2, incoming: Array[Dictionary], start: float, an
 				# Zero-input padding here would make every later wave protect passive current drift.
 				var tail_bounds := Flow.annulus(time+tail_dt)
 				var tail_velocity := Flow.velocity(point,time+tail_dt,flow)
-				var tail_target := Vector2.from_angle(angle)*(tail_bounds.x+tail_bounds.y)*0.5
+				var tail_target := route_target(angle,tail_bounds)
 				var desired := tail_target-point-tail_velocity*tail_dt
 				var tail_command := Vector2.ZERO
 				if desired.length() > hero_speed*tail_dt*0.5:
@@ -399,9 +417,21 @@ func search_route(origin: Vector2, incoming: Array[Dictionary], start: float, an
 				if not fixed_commands.is_empty(): tail_command = fixed_commands[commands.size()]
 				elif commands.size() < reaction_commands.size(): tail_command = reaction_commands[commands.size()]
 				elif commands.size() < 18: tail_command = prior_input
-				point += (tail_command.limit_length()*hero_speed+tail_velocity)*tail_dt
-				if point == Vector2.ZERO: point = Vector2.RIGHT*tail_bounds.x
-				point = point.normalized()*clampf(point.length(),tail_bounds.x,tail_bounds.y)
+				var next_point := (point+(tail_command.limit_length()*hero_speed+tail_velocity)*tail_dt).limit_length(tail_bounds.y)
+				if drain_crossing(point,next_point):
+					var locked := not fixed_commands.is_empty() or commands.size() < 18
+					if locked: return {"safe":false,"reason":"drain","failed_at":time,"reaction_locked":commands.size() < 18}
+					var best_tail := INF
+					for alternative: Vector2 in directions:
+						var candidate := (point+(alternative*hero_speed+tail_velocity)*tail_dt).limit_length(tail_bounds.y)
+						if drain_crossing(point,candidate): continue
+						var score := candidate.distance_squared_to(tail_target)
+						if score < best_tail:
+							best_tail = score
+							tail_command = alternative
+							next_point = candidate
+					if best_tail == INF: return {"safe":false,"reason":"drain","failed_at":time}
+				point = next_point
 				commands.append(tail_command)
 				positions.append(point)
 				time += tail_dt
@@ -411,7 +441,7 @@ func search_route(origin: Vector2, incoming: Array[Dictionary], start: float, an
 		all_retired = frame.all_retired
 		var segments: PackedFloat64Array = frame.segments
 		var bounds := Flow.annulus(time+dt)
-		var target := Vector2.from_angle(angle)*(bounds.x+bounds.y)*0.5
+		var target := route_target(angle,bounds)
 		var velocity := Flow.velocity(point,time+dt,layout.difficulty[mode].flow)
 		var best := INF
 		var command := prior_input
@@ -434,14 +464,15 @@ func search_route(origin: Vector2, incoming: Array[Dictionary], start: float, an
 				var primary := Vector2.ZERO
 				if desired.length() > hero_speed*dt*0.5:
 					primary = directions[1+posmod(roundi(desired.angle()/(TAU/8)),8)]
-				options = [primary]
+				var trial := (point+(primary*hero_speed+velocity)*dt).limit_length(bounds.y)
+				options = directions if drain_crossing(point,trial) else [primary]
 		if not fixed_commands.is_empty(): options = [fixed_commands[commands.size()]]
 		for option in options:
 			# Same Flow.swim arithmetic; force and bounds are shared by all nine inputs.
 			var input: Vector2 = option
 			var candidate := point+(input.limit_length()*hero_speed+velocity)*dt
-			if candidate == Vector2.ZERO: candidate = Vector2.RIGHT*bounds.x
-			candidate = candidate.normalized()*clampf(candidate.length(),bounds.x,bounds.y)
+			candidate = candidate.limit_length(bounds.y)
+			if drain_crossing(point,candidate): continue
 			var score := candidate.distance_squared_to(target)
 			# Every remaining score term is nonnegative; these candidates cannot win.
 			if score >= best: continue

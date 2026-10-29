@@ -1,8 +1,8 @@
 {
   "id": "level_two_flush_story_v1",
-  "date": "2026-10-25",
-  "status": "Prototype103 timing-only handoff; runtime validation pending",
-  "authorization": "Engineering relays Sean approval via PM to double every existing flush dialogue duration. Wording unchanged; no new dialogue approved. Existing short ride authorization remains separate.",
+  "date": "2026-10-28",
+  "status": "User-approved partner-first intro and censored Tony landing; Engineering integration pending",
+  "authorization": "Sean explicitly approved complete flush dialogue integration October28, including partner-first intro, no buddy after opening, and exact censored Tony landing outburst.",
   "owner": "Storyboarding narrative; Engineering runtime/radio integration",
   "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
   "target_playable_seconds": 45,
@@ -10,24 +10,25 @@
     "tony": [
       {
         "at": 0,
-        "who": "tony",
+        "who": "sean",
         "emotion": "surprised",
-        "text": "Sean, I’m in a giant toilet!",
+        "text": "Tony? Are you inside a toilet? How big is this thing?",
         "duration": 5.0,
-        "radio": false,
-        "gag": false,
-        "event": "arrival"
+        "radio": true,
+        "gag": true,
+        "event": "arrival",
+        "gag_action": "hold_center"
       },
       {
         "at": 5.0,
         "who": "tony",
         "emotion": "worried",
-        "text": "Sean, move your chat window down!",
+        "text": "Big enough. Move your chat window down!",
         "duration": 4,
         "radio": false,
-        "gag": true,
+        "gag": false,
         "event": "arrival",
-        "gag_action": "hold_center"
+        "retain_partner": true
       },
       {
         "at": 9.0,
@@ -84,30 +85,31 @@
     "sean": [
       {
         "at": 0,
-        "who": "sean",
+        "who": "tony",
         "emotion": "surprised",
-        "text": "Tony? This is a giant toilet!",
+        "text": "Sean? That sounds like an enormous toilet. Where are you?",
         "duration": 5.0,
-        "radio": false,
-        "gag": false,
-        "event": "arrival"
-      },
-      {
-        "at": 5.0,
-        "who": "sean",
-        "emotion": "worried",
-        "text": "Tony, move your chat window! I can’t see!",
-        "duration": 4,
-        "radio": false,
+        "radio": true,
         "gag": true,
         "event": "arrival",
         "gag_action": "hold_center"
       },
       {
+        "at": 5.0,
+        "who": "sean",
+        "emotion": "worried",
+        "text": "Inside it! Tony, move your chat window! I can’t see!",
+        "duration": 4,
+        "radio": false,
+        "gag": false,
+        "event": "arrival",
+        "retain_partner": true
+      },
+      {
         "at": 9.0,
         "who": "tony",
         "emotion": "neutral",
-        "text": "Sure, buddy. Down here?",
+        "text": "Oh, hell. Sorry, Sean—can you see now?",
         "duration": 7.0,
         "radio": true,
         "gag": true,
@@ -131,7 +133,7 @@
         "at": 22,
         "who": "tony",
         "emotion": "worried",
-        "text": "Keep clear of the falling stuff, buddy.",
+        "text": "Keep clear of the falling stuff, Sean.",
         "duration": 6,
         "radio": true,
         "event": "flush"
@@ -150,7 +152,7 @@
   "events": {
     "arrival": {
       "trigger": "Presentation0–16: arrival0–5, request5–9, partner reply9–16.",
-      "gag": "Partner reply retains portrait/name/text through slide at line offsets2.8–4.4, absolute11.8–13.4; remains visible to16. Existing hold_center/slide_bottom behavior unchanged.",
+      "gag": "Remote partner centered0–5. Selected hero speaks at bottom5–9 while partner card stays centered. Partner reply9–16 replaces centered text, slides at11.8–13.4 and remains bottom through16. Do not substitute hero portrait into partner card. No hazards during exchange.",
       "safety": "No hazards before presentation34 (physics8). No new gag; preserve per-run seen behavior. Any lingering blocking panel must not admit hazards."
     },
     "flush": {
@@ -179,20 +181,20 @@
     "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero."
   },
   "validation_required": [
-    "Every existing line duration exactly doubled; text/speaker/emotion/radio flags unchanged",
-    "Both heroes: arrival0–5, request5–9, reply9–16; partner slide11.8–13.4",
+    "Approved wording, speakers and radio flags match canonical routes; preserve doubled durations.",
+    "Partner centered0–5; hero bottom5–9 with partner card retained; partner reply9–16 slides11.8–13.4.",
     "Tony flush exchange16–34; Sean16–28; hazards begin34 at physics8",
     "Physics timeline45seconds unchanged after26second prelude; music26–71",
     "Drain shout61–65; landing71–77; ride begins77",
     "Pause freezes both clocks; retry/skip/reset cannot introduce stale dialogue or early hazards",
-    "Landing checkpoint preserved; no new dialogue integrated"
+    "Landing checkpoint preserved; Tony approved censored text including emoji must display legibly; Sean landing unchanged."
   ],
   "landing_routes": {
     "tony": [
       {
         "who": "tony",
         "emotion": "surprised",
-        "text": "Sean. I’m riding a turd.",
+        "text": "@#$%!! 🤬 %&*#!! 💩 SON OF A—@#$%!!",
         "duration": 6,
         "radio": false
       }
@@ -220,6 +222,7 @@
     "music_start": 26,
     "music_end": 71,
     "music_seconds": 45,
-    "unchanged": "Physics schedule, hazard totals, speeds and obstacle behavior; no wording, speaker, emotion or radio-flag changes."
-  }
+    "unchanged": "Physics schedule, hazard totals, speeds, durations and obstacle behavior unchanged; approved intro wording/speakers/placement and Tony landing text updated."
+  },
+  "character_voice_rule": "Tony may use buddy once in the opening tire-iron line; no subsequent dialogue uses it. Sean direct instruction October28. Pending intro-order rewrite remains separate."
 }

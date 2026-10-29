@@ -41,7 +41,7 @@
       65,
       25.28
     ],
-    "boundary_behavior": "Use annulus contract shrinking bounds; no lethal edge",
+    "boundary_behavior": "Clamp swimmer only to outer bound. Waterline anchor entering visible projected drain ellipse is fatal before scripted capture at35s; no body-radius inflation.",
     "hud_safe_rect": [
       0,
       0,
@@ -416,7 +416,7 @@
     "outer_start": 316.8,
     "outer_end": 210,
     "minimum_width": 120,
-    "boundary_rule": "Project hero onto current annulus after integrating current and steering each substep. Clamp only radial position; retain tangential control. Shrinking bounds cannot be resisted by outward input. Do not damage at boundary or teleport across angles.",
+    "boundary_rule": "Annulus describes debris planning pocket targets. Swimmer has only outer clamp; inner radius is not protective. Planner witnesses must avoid the visible projected drain opening.",
     "pocket_center_radius": "(inner(t)+outer(t))/2",
     "safe_pocket_radius_world": 48,
     "pocket_boundary_margin_min": 12,
