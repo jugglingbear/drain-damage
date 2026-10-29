@@ -654,7 +654,7 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
 <div class="summary">
 <article><strong>Working foundation</strong><span>Keyboard + real Xbox controller playtested</span></article>
 <article><strong>Now: choose your employee</strong><span>Tony’s fast pressure gun or Sean’s heavy plunger; BJ owns Mainframe Plumbing &amp; Supply</span></article>
-<article><strong>Mobile: investigate</strong><span>Android APK + iOS development install</span></article>
+<article><strong>Mobile: planned</strong><span>Android + iOS ports, automated checks and real-device validation</span></article>
 </div>
 <figure>
 <img src="storybook/012-clean-title-and-controls/01-title.jpg" alt="Prototype 12: simplified title with Start, Controls, and Quit">
@@ -664,7 +664,6 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
 <nav aria-label="Filter roadmap">
 <button type="button" data-filter="all" aria-pressed="true">Everything</button>
 <button type="button" data-filter="next" aria-pressed="false">Up next</button>
-<button type="button" data-filter="research" aria-pressed="false">Mobile research</button>
 <button type="button" data-filter="planned" aria-pressed="false">Planned</button>
 <button type="button" data-filter="done" aria-pressed="false">Delivered</button>
 <button type="button" data-filter="ideas" aria-pressed="false">Ideas</button>
@@ -691,10 +690,38 @@ keep investigating. See the <a href="handoffs/hero-run-cycle-revision.json">revi
       <div class="phase-head"><span class="number">04</span><div>
       <span class="badge next">in progress</span><h2>Make it comfortable to play</h2><p>Opening and employee selection brought forward · Prototype 10 delivered; selection and Tony gameplay visually checked</p></div></div>
       <ul class="tasks"><li><h3>Two employees, one robot owner</h3><p>Implemented in Prototype 10: confident fourth-generation plumber Tony and idiot apprentice Sean. Prototype 14 now reads pressure-gun damage 6 / interval 0.15s and heavy-plunger damage 40 / interval 1.00s from canonical JSON. Prototype 23: Tony has 4 contact-hit health and speed 270; Sean has 5 and speed 235. Sprites, weapons, projectiles, and firing sounds differ. Agreed next mechanics direction (October 13): Tony is quicker with less health and rapid, low-damage attacks; Sean is stronger with more health and slow, heavy attacks. Proposed starting balance, not implemented: Tony 75 HP and 270 movement speed; Sean 100 HP and 235 movement speed. The requested reciprocal 25% health differences conflict mathematically: 75/100 makes Tony 25% lower and Sean 33⅓% higher; 80/100 makes Sean 25% higher and Tony 20% lower. Prototype 23 uses a provisional 4/5 contact-hit ratio; final balance remains open. Agreed weapon rule: each plumber has an exclusive arsenal; Tony cannot equip Sean’s weapons and Sean cannot equip Tony’s. Proposed assignments and balance (damage / seconds between attacks): Tony — pipe wrench (melee, 12 / 0.30), drain snake (melee, 8 / 0.25), pressure gun (ranged, 6 / 0.15); Sean — demolition hammer (melee, 60 / 1.50), heavy plunger launcher (ranged, 24 / 1.00; revised October 14), pipe-bomb launcher (ranged, 60 / 2.00). These replace the earlier shared-tool proposal. Canonical ownership checks now reject another employee’s weapons and unsupported mechanics explicitly. Melee, loadout selection, and pipe-bomb gameplay are not implemented. BJ (Billy-Joe) replaces S.U.M.P. as the robot company owner in current selection, dialogue, and victory text. Playtest weapon fairness and character selection; no companion AI or co-op in this iteration.</p></li><li><h3>Menus + settings</h3><p>Delivered: original illustrated title screen, animated pixel lettering, keyboard/controller Start, title-sound toggle, and return to title from pause. Prototype 10 adds Tony/Sean selection using keyboard, stick, D-pad, or mouse. Prototype 13 uses first names only (Tony and Sean) in selection and dialogue. Screenshots pending permission for visual capture. Prototype 12 simplifies the title to Start / Controls / Quit and adds original keyboard/gamepad diagrams. Button hints live in Controls, with the approved exception of a visible dialogue Skip hint. Tutorial code is removed. Prototype 19 adds only the approved skippable story introduction. Prototype 11 softens Tony’s selection line to “Fourth-generation plumber. Limitless experience.” Still planned: saved settings, audio levels, and input remapping.</p></li><li><h3>Accessibility + difficulty</h3><p>Readable text, reduced motion options, clear non-color cues, generous checkpoints, and adjustable challenge.</p></li><li><h3>Progress + stability</h3><p>Save settings and mission progress; test focus loss, controller reconnects, restart, and fullscreen transitions.</p></li><li><h3>Playtest the whole job</h3><p>Record confusing spots, input feel, boss fairness, crashes, and frame pacing. Add regression checks for real bugs.</p></li></ul><p class="gate">Done means: a new player can launch, understand, finish, and return to the game without developer help.</p></section>
-<section class="phase" data-status="research" id="phase-M">
-      <div class="phase-head"><span class="number">M</span><div>
-      <span class="badge research">research</span><h2>Take the job on the road</h2><p>Requested by Sean · Android + iOS feasibility</p></div></div>
-      <ul class="tasks"><li><h3>Inventory devices and tools</h3><p>Record actual Android/iPhone/iPad models, OS versions, available SDKs, Xcode, and Apple account options.</p></li><li><h3>Android: a sideloaded APK</h3><p>Set up the matching Godot export templates, Java and Android SDK. Sign an APK and install on a real device; no store launch required.</p></li><li><h3>iOS: an Xcode development build</h3><p>Export on the Mac, configure signing, and run on Sean’s iPhone/iPad. Investigate Personal Team limits before choosing a paid route.</p></li><li><h3>Touch + controller experiment</h3><p>Prototype landscape touch movement, jump, and fire. Test simultaneous touches and Bluetooth controller input on each OS.</p></li><li><h3>Phone-sized usability</h3><p>Check notches/safe areas, aspect ratios, readable text, pause/resume, audio interruptions, heat, battery use, and frame pacing.</p></li><li><h3>Write the feasibility verdict</h3><p>For each platform: install steps, signing/renewal friction, test results, blockers, estimated effort, and go/defer recommendation.</p></li></ul><p class="gate">Done means: a real-device prototype runs on each target, or a concrete blocker is documented. Mobile release is not yet committed.</p></section>
+<section class="phase" data-status="planned" id="phase-M">
+<div class="phase-head"><span class="number">M</span><div>
+<span class="badge planned">planned</span><h2>Take the job on the road</h2>
+<p>Android + iOS support · planned October 28, 2026 · Engineering owns delivery; no start date committed</p></div></div>
+<ul class="tasks">
+<li><h3>1. Establish mobile exports</h3>
+<p>Inventory SDKs, Xcode, signing options and available test devices. Configure reproducible Android APK and iOS
+Xcode exports with matching Godot templates, versioning and documented build commands. Neither mobile export is
+configured or validated yet; keep desktop builds working throughout.</p></li>
+<li><h3>2. Adapt controls and layout</h3>
+<p>Add landscape touch movement, jump, fire and menu controls; validate simultaneous touches and controller input.
+Adapt safe areas, aspect ratios, text and the shared health/lives HUD. Preserve Tony and Sean’s existing mechanics.
+Request any new control artwork from Bestiary / Art.</p></li>
+<li><h3>3. Automate Android testing</h3>
+<p>Configure an ARM64 Android Emulator through Android Studio’s Device Manager. Use command-line launch and ADB
+for installation, test execution, logs and screenshots; Android Studio need not stay open during routine runs.</p></li>
+<li><h3>4. Automate iOS testing</h3>
+<p>Use Xcode’s iOS Simulator on macOS with simulator-specific builds and command-line test orchestration.
+Verify the pinned Godot version’s simulator requirements, including the Compatibility renderer. This is a separate
+setup from the Windows VM; an ordinary UTM iOS VM is not the planned path.</p></li>
+<li><h3>5. Add repeatable gameplay scenarios</h3>
+<p>Extend the game’s test hooks to load levels and exercise movement, attacks, damage, death/retry, transitions and
+boss encounters. Collect assertions, crash logs and screenshots from mobile builds. Keep gameplay checks separate
+from touch-input checks; scripted success alone does not establish usable controls.</p></li>
+<li><h3>6. Validate real phones and tablets</h3>
+<p>Test Android and iPhone/iPad development installs for touch feel, controller support, frame pacing, memory,
+heat, battery use, audio interruptions and suspend/resume. Record device/OS coverage and signing or renewal friction.
+Emulator and simulator passes do not replace real-device validation.</p></li>
+</ul>
+<p class="gate">Done means: reproducible mobile builds, automated scenario results and documented real-device
+acceptance on both platforms, with remaining blockers explicit. Public store releases remain a separate decision.</p>
+</section>
 <section class="phase" data-status="planned" id="phase-05">
       <div class="phase-head"><span class="number">05</span><div>
       <span class="badge planned">planned</span><h2>Deliver the Mac game</h2><p>Release preparation · after playtesting</p></div></div>
@@ -931,7 +958,9 @@ refresh tactics as balance changes. The PDF is optimized for screen reading; pri
 Source layout and image provenance are preserved in <code>marketing/magazine/</code>. No gameplay changes in this delivery.</p>
 </section>
 <section class="notes" aria-labelledby="mobile-notes">
-<h2 id="mobile-notes">Mobile install options: what we know so far</h2>
+<h2 id="mobile-notes">Mobile support: planned approach</h2>
+<p>October 28: Sean requested the mobile support plan above. Implementation has not started; no mobile build or
+automated mobile test environment is ready. Public store distribution remains deferred.</p>
 <ul>
 <li><strong>Already cross-platform:</strong> our Godot/GDScript project can target macOS, Android, and iOS.
 <a href="https://docs.godotengine.org/en/stable/tutorials/export/index.html">Godot export documentation</a>.</li>
@@ -956,7 +985,7 @@ Godot exports an Xcode project; public App Store publication is not required for
 seven-day provisioning profiles that require rebuilding/reinstalling after expiry. Evaluate paid-program development,
 ad hoc distribution or TestFlight only if we need broader testing.
 <a href="https://developer.apple.com/help/account/basics/about-your-developer-account">Apple account and testing limits</a>.</p>
-<p><strong>Research gate:</strong> verify these paths with our installed Godot/Xcode versions and actual devices.
+<p><strong>Validation gate:</strong> verify these paths with our installed Godot/Xcode versions and actual devices.
 A successful export alone does not prove that touch controls, performance, or signing are practical.</p>
 </section>
 <section class="notes" aria-labelledby="working-rules">
@@ -964,7 +993,7 @@ A successful export alone does not prove that touch controls, performance, or si
 <ul>
 <li>Ask Sean and wait for permission before opening or foregrounding the game for a playtest or inspection.
 Keep agent checks headless/background; ask first if a visual test would interrupt him. Approved playtests use a large window.</li>
-<li>Keep Mac playable throughout. Mobile research can start early; full ports follow evidence.</li>
+<li>Keep Mac playable throughout. Stage mobile exports, controls and automated checks before real-device acceptance.</li>
 <li>Preserve the satisfying jump and forgiving retries. Let playtesting drive changes.</li>
 <li>Archive screenshots and notes for every delivered game build. Keep earlier chapters intact.</li>
 <li>Use original or licensed assets and document their sources.</li>
