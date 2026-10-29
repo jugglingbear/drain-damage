@@ -31,7 +31,7 @@ func footprint_checks() -> void:
 			max_cold_call = maxi(max_cold_call,Time.get_ticks_usec()-call_start)
 		var lethal := direction*low
 		var reference := sampled_overlap(lethal)
-		assert(reference >= .499 and reference < .515,"Certified crossing must be at least half within oracle grid tolerance")
+		assert(reference >= .649 and reference < .665,"Certified crossing must be at least 65% within oracle grid tolerance")
 		assert(not Flow.drain_contact(direction*(high+1),Vector2(65,25.28),140.0/360,60,14))
 		assert(Flow.drain_contact(direction*(low-1),Vector2(65,25.28),140.0/360,60,14))
 		var began := Time.get_ticks_usec()

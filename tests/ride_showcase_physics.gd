@@ -31,17 +31,17 @@ func setup(obstacles: Array) -> Array:
 func _initialize() -> void: call_deferred("run_checks")
 
 func run_checks() -> void:
-	# Edge grazing, quarter-area corner overlap and 49% overlap remain safe in both pit types.
+	# Edge grazing, quarter-area corner overlap and 64% overlap remain safe in both pit types.
 	for kind in ["gap","long_pit"]:
-		for point in [Vector2(355,330),Vector2(399,330),Vector2(400,280),Vector2(400,330)]:
+		for point in [Vector2(355,330),Vector2(399,330),Vector2(400,280),Vector2(400,330),Vector2(412.6,330),Vector2(413.5,330)]:
 			var probe := setup([obstacle("threshold",kind,500,200,330,100)])
 			var rider: Host = probe[0]
 			var simulation = probe[1]
 			simulation.position = point
 			simulation.scroll_speed = 0
 			simulation.tick(rider,.01,Vector2.ZERO,false)
-			assert((rider.life_state == "dead") == (point == Vector2(400,330)),
-				"Only the half-area footprint may trigger the fall")
+			assert((rider.life_state == "dead") == (point == Vector2(413.5,330)),
+				"Only the 65%-area footprint may trigger the fall")
 			rider.free()
 		for hz in [30,60,120,144]:
 			var probe := setup([obstacle("sweep",kind,500,200)])
@@ -51,7 +51,7 @@ func run_checks() -> void:
 				if rider.life_state == "dead": break
 				simulation.tick(rider,1.0/hz,Vector2.RIGHT,false)
 			assert(rider.life_state == "dead")
-			assert(absf(simulation.position.x+simulation.encounter_scroll-400) < .001)
+			assert(absf(simulation.position.x+simulation.encounter_scroll-413.5) < .001)
 			rider.free()
 	# A single long traversal cannot repeatedly hurt after immunity expires.
 	var pair := setup([obstacle("wide","support",1000,1800),obstacle("later","support",2600,50)])
@@ -116,8 +116,8 @@ func run_checks() -> void:
 	host = pair[0]; model = pair[1]
 	model.tick(host,.1,Vector2.RIGHT,false)
 	assert(host.life_state == "dead" and model.events.fall == 1)
-	assert(absf(model.position.x+model.encounter_scroll-350) < .001)
-	assert(absf(model.clock-50.0/960.0) < .00001)
+	assert(absf(model.position.x+model.encounter_scroll-363.5) < .001)
+	assert(absf(model.clock-63.5/960.0) < .00001)
 	var frozen_position: Vector2 = model.position
 	var frozen_scroll: float = model.encounter_scroll
 	model.tick(host,1,Vector2.RIGHT,true)
@@ -191,9 +191,9 @@ func run_checks() -> void:
 	model.tick(host,1.5,Vector2.ZERO,false)
 	assert(not model.events.has("ramp") and host.life_state == "dead")
 	host.free()
-	# Even the fastest normal jump cannot cover pit plus the whole board footprint.
+	# Even with the 65% grace margin, a wider pit exceeds the fastest normal jump.
 	for takeoff in range(2400,2601,20):
-		pair = setup([obstacle("pit","long_pit",2915,540)])
+		pair = setup([obstacle("pit","long_pit",2915,600)])
 		host = pair[0]; model = pair[1]
 		model.position.x = 180
 		model.encounter_scroll = takeoff-180

@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "build": "Prototype 125 / 0.125.0",
-  "created_at": "2026-10-28T22:28:21.345058-07:00",
+  "build": "Prototype 126 / 0.126.0",
+  "created_at": "2026-10-28T22:36:48.924021-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "c0ecc92",
-  "status": "Ramp contact physics and projected rider pitch verified in actual packaged gameplay for both heroes.",
-  "app": "builds/Prototype-125/Drain Damage.app",
-  "archive": "builds/history/Prototype-125.zip",
-  "source_snapshot": "builds/source-125",
-  "previous_build_preserved": "Prototype124 and earlier builds preserved.",
+  "source_commit": "d9ec256",
+  "status": "65% pit-overlap threshold verified; macOS and Windows exports pass. New visual capture and native Windows testing pending.",
+  "app": "builds/Prototype-126/Drain Damage.app",
+  "archive": "builds/history/Prototype-126.zip",
+  "source_snapshot": "builds/source-126",
+  "previous_build_preserved": "Prototype125 and earlier builds preserved.",
   "changes": [
-    "Rigid board underside follows ramp entry, slope and lip with continuous support; exit and jump preserve clearance.",
-    "Camera-facing rider uses projected physics pitch and Art-reviewed underside pivots for both heroes.",
-    "Standing ramp-contact invariant documented in AGENTS.md and docs/DEVELOPMENT.md."
+    "Raise lethal footprint overlap from 50% to 65% for circular camera-test holes, ride gaps/long pits and the flush drain.",
+    "Preserve swept crossings, jump clearance and existing solid-platform support rules.",
+    "Update the standing pit rule and boundary regression tests."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
@@ -21,32 +21,34 @@
     "direct": "make run LEVEL=2-01 (through 2-13)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-125/Drain Damage.app\"",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-126/Drain Damage.app\"",
     "slalom": "make run LEVEL=2-01",
     "breach": "make run LEVEL=2-02",
     "float_sweep": "make run LEVEL=2-06",
-    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-125/Drain Damage.app\"",
-    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-125/Drain Damage.app\"",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-126/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-126/Drain Damage.app\"",
     "brushes": "make run LEVEL=2-04",
-    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-125/Drain Damage.app\"",
-    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-125/Drain Damage.app\"",
-    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-125/Drain Damage.app\""
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-126/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-126/Drain Damage.app\"",
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-126/Drain Damage.app\""
   },
   "checks": {
-    "packaged_suites": [
-      "camera_test_integration"
-    ],
     "source_suites": [
       "camera_test_model",
+      "ride_showcase_physics",
+      "flush_drain_death",
+      "flush_planner_drain",
       "camera_test_integration"
     ],
-    "actual_visual": "Sean approach, ascent at both angles, lip and exit; Tony ascent inspected. Small test processes confirmed closed.",
-    "limitations": "Known ObjectDB shutdown warning; native Windows execution pending."
+    "actual_visual": "Pending permission for a new capture session.",
+    "limitations": "Known ObjectDB shutdown warnings; native Windows and new visual capture pending.",
+    "packaged_suites": [
+      "camera_test_model"
+    ]
   },
   "capture_gap": {
-    "actual_capture": true,
-    "metadata": "storybook/125-ramp-contact-pose/captures.json",
-    "remaining": "Native Windows and actual hard-pose visual review; normal/hard projected contacts pass automated checks."
+    "actual_capture": false,
+    "remaining": "Capture safe 64% overlap and lethal 65% crossing in an approved session; preserve126 build."
   },
   "limitations": [
     "Native Windows rendering untested.",
@@ -73,12 +75,6 @@
     "Wall ram gameplay",
     "Hungry-head final boss"
   ],
-  "windows_export": {
-    "version": "0.125.0",
-    "archive": "builds/Drain-Damage-0.125.0-windows-x86_64-20261029-052444-236542Z.zip",
-    "archive_sha256": "73853fc796745e35b863c417887e20d813093dd174d0758288d08be8f4a3ae77",
-    "status": "Cross-export and six host resource-pack checks pass; native Windows pending."
-  },
   "source_dirty_at_build": true,
   "previous_visual_review": {
     "date": "2026-10-28",
@@ -91,5 +87,11 @@
     ],
     "next": "Agree a concrete composition with Art before presentation revision; actual rendered review required. No full migration authorized."
   },
-  "archive_sha256": "eca574d14f5de7acd54924f93798e5f970982a941855b1435bbb5c1f5f25b57d"
+  "archive_sha256": "98fb31e6fc2201639514db4b2da0863476f0ced7415b98781e9d612a1af4b3a0",
+  "windows_export": {
+    "version": "0.126.0",
+    "archive": "builds/Drain-Damage-0.126.0-windows-x86_64-20261029-053810-717772Z.zip",
+    "archive_sha256": "a9fdcab02e473d39e5fafeeb22e0aa34c2beaab38b2c0c61af781437580cf375",
+    "status": "Cross-export and six host resource-pack checks pass; native Windows pending."
+  }
 }

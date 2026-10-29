@@ -84,7 +84,7 @@ static func drain_contact(point: Vector2, radii: Vector2, projection_y: float, d
 	var bounds := drain_rectangle_bounds(point,footprint_radius,radii,projection_y,depth)
 	if bounds.x > 1: return false
 	if bounds.y <= 1: return true
-	var half_area := PI*footprint_radius*footprint_radius*.5
+	var lethal_area := PI*footprint_radius*footprint_radius*.65
 	var lower := 0.0
 	var upper := PI*footprint_radius*footprint_radius
 	var cells: Array[Vector3] = [Vector3(0,0,footprint_radius)]
@@ -103,6 +103,6 @@ static func drain_contact(point: Vector2, radii: Vector2, projection_y: float, d
 			var child := half*.5
 			for x in [-child,child]:
 				for y in [-child,child]: cells.append(Vector3(offset.x+x,offset.y+y,child))
-		if lower >= half_area: return true
-		if upper < half_area: return false
+		if lower >= lethal_area: return true
+		if upper < lethal_area: return false
 	return false

@@ -147,7 +147,7 @@ func hole_fraction(point: Vector2) -> float:
 	return ellipse_support(point,LAYOUT.hole.center,Vector2.ONE*radius*2)
 
 func hole_entry(a: Vector2, b: Vector2) -> float:
-	if hole_fraction(a) >= .5: return 0
+	if hole_fraction(a) >= .65: return 0
 	# Half of a centrally symmetric footprint cannot overlap a convex hole while its center is outside.
 	# This circle bracket avoids the zero-area plateaus of the expanded bounding rectangle.
 	var low := circle_entry(a,b,LAYOUT.hole.center,LAYOUT.hole.radius)
@@ -155,19 +155,19 @@ func hole_entry(a: Vector2, b: Vector2) -> float:
 	var high := 1-circle_entry(b,a,LAYOUT.hole.center,LAYOUT.hole.radius)
 	var begin := low
 	# Convex intersection area is unimodal along a straight translation. Locate its peak even when
-	# both sweep endpoints are safe, then bisect the first half-area crossing.
+	# both sweep endpoints are safe, then bisect the first 65%-area crossing.
 	for iteration in range(40):
 		var left := lerpf(low,high,1.0/3)
 		var right := lerpf(low,high,2.0/3)
 		if hole_fraction(a.lerp(b,left)) < hole_fraction(a.lerp(b,right)): low = left
 		else: high = right
 	var peak := (low+high)*.5
-	if hole_fraction(a.lerp(b,peak)) < .5: return INF
+	if hole_fraction(a.lerp(b,peak)) < .65: return INF
 	low = begin
 	high = peak
 	for iteration in range(40):
 		var middle := (low+high)*.5
-		if hole_fraction(a.lerp(b,middle)) >= .5: high = middle
+		if hole_fraction(a.lerp(b,middle)) >= .65: high = middle
 		else: low = middle
 	return high
 

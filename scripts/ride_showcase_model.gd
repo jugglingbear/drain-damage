@@ -174,9 +174,9 @@ func _relative_interval(obstacle: Dictionary, a: Vector2, b: Vector2, time: floa
 		pad = absf(float(motion.get("amplitude",0)))*pow(TAU/maxf(.01,float(motion.get("period",2))),2)*dt*dt/8
 	var extent := HALF+Vector2.ONE*pad
 	if not supported and obstacle.kind in ["gap","long_pit"]:
-		# A rim touch is safe: at least half the ground footprint must cross into the void.
+		# A rim touch is safe: at least 65% of the ground footprint must cross into the void.
 		return area_support_interval(a-motion_offset(obstacle,time),b-motion_offset(obstacle,time+dt),
-			rect.grow(-pad),0.5)
+			rect.grow(-pad),0.65)
 	if supported:
 		var minimum := float(obstacle.get("minimum_support_fraction",0.5))
 		if minimum < 1.0:

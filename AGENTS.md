@@ -116,10 +116,10 @@
 
 ## Pit and hole fall threshold
 
-- A rim touch must not trigger a fall. Require at least half of the hero’s ground/contact footprint over the
+- A rim touch must not trigger a fall. Require at least 65% of the hero’s ground/contact footprint over the
   actual opening before a pit or hole becomes lethal. Use footprint area, including corners and curved openings.
-- Preserve jump clearance, swept crossing checks and frame-rate independence; apply the same threshold to
-  landings and platform support. Scripted transitions remain distinct from accidental pit falls.
+- Preserve jump clearance, swept crossing checks and frame-rate independence; apply the same pit-overlap threshold on
+  landing. Scripted transitions remain distinct from accidental pit falls.
 
 ## Roadmap maintenance
 
