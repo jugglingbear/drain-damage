@@ -1,6 +1,6 @@
 {
   "date": "2026-10-26",
-  "status": "Auditions only; no runtime mappings or selection",
+  "status": "Three growls approved; boss runtime integration and action-specific variants pending.",
   "slot_mapping": {
     "vocal": "DD-S0103",
     "wood": "DD-S0104",
@@ -207,7 +207,7 @@
     "guidance": "Vocal1.3\u20133s suitable for audition. Impact tails may overlap recoil; multiple fracture transients are texture, not multiple gameplay hits. Distinct onset/lock/impact cues may be useful later; warning must never be audio-only. Final timings differ from Level Design suggestions and remain unresolved."
   },
   "recorded_revision": {
-    "status": "Six recorded CC0 candidates ready for listening; no selection or integration",
+    "status": "Superseded by approved .19\u2013.21; earlier growls discarded.",
     "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
     "ids": [
       "DD-S0103.7",
@@ -219,5 +219,49 @@
     ],
     "reason": "Sean rejected electronic timbre and requested physical open-mouth growls.",
     "retention": "All prior synthesized auditions and all downloaded originals retained."
+  },
+  "lower_pitch_revision": {
+    "date": "2026-10-28",
+    "status": "Superseded by approved .19\u2013.21.",
+    "preference": "Sean likes A/B/C (.7\u2013.9); requests lower pitch.",
+    "source_manifest": "audio/sources/hungry-head-low-growls-v1/manifest.json",
+    "ids": [
+      "DD-S0103.13",
+      "DD-S0103.14",
+      "DD-S0103.15",
+      "DD-S0103.16",
+      "DD-S0103.17",
+      "DD-S0103.18"
+    ],
+    "followup": {
+      "source_manifest": "audio/sources/hungry-head-low-growls-v2/manifest.json",
+      "ids": [
+        "DD-S0103.19",
+        "DD-S0103.20",
+        "DD-S0103.21"
+      ],
+      "change": "Approved final pitch baseline; no runtime mapping yet."
+    }
+  },
+  "approved_growls": {
+    "date": "2026-10-28",
+    "ids": [
+      "DD-S0103.19",
+      "DD-S0103.20",
+      "DD-S0103.21"
+    ],
+    "source_manifest": "audio/sources/hungry-head-low-growls-v2/manifest.json",
+    "pitch_recipe": {
+      "semitones_relative_to_initial_recorded_A_B_C": -9,
+      "additional_semitones_below_Huge_versions": -2,
+      "original_recording_rate_factor": 0.9,
+      "final_rate_factor": 0.53515625,
+      "ffmpeg_asetrate_hz": 17125,
+      "working_and_output_rate_hz": 32000,
+      "note": "Apply to original StarNinjas recordings, not already shifted outputs. Rate reduction lowers pitch and resonances and lengthens duration. Exact filter chains/hashes in source manifest."
+    },
+    "future_actions": "Use this pitch/timbre baseline for future boss action variations; action list and new recordings not yet commissioned.",
+    "discarded": "Other growls removed from active audition table; files and permanent IDs archived, never reused.",
+    "next_unused_candidate_suffix": 22
   }
 }
