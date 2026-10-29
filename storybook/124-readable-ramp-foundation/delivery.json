@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 124 / 0.124.0",
+  "created_at": "2026-10-28T22:14:41.971790-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "source_commit": "f783781",
+  "status": "Actual packaged ramp inspected at both angles and on slope; foundation visible. Mac checks and Windows cross-export pass; native Windows pending.",
+  "app": "builds/Prototype-124/Drain Damage.app",
+  "archive": "builds/history/Prototype-124.zip",
+  "source_snapshot": "builds/source-124",
+  "previous_build_preserved": "Prototype123 faint-foundation candidate and all earlier builds preserved.",
+  "changes": [
+    "Use scene depth to reveal actual submerged ramp foundation through localized water-opacity reduction.",
+    "Fade the adjustment vertically; dry metal, surrounding water and playable slope unchanged.",
+    "Preserve123 rejected faint-foundation captures and124 actual verified both-angle/slope captures."
+  ],
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-124/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-124/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-124/Drain Damage.app\"",
+    "brushes": "make run LEVEL=2-04",
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-124/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-124/Drain Damage.app\"",
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-124/Drain Damage.app\""
+  },
+  "checks": {
+    "packaged_suites": [
+      "camera_test_integration"
+    ],
+    "actual_visual": "Packaged Mac both angles and slope contact inspected; no shader errors.",
+    "limitations": "Known ObjectDB shutdown warning; no native Windows execution."
+  },
+  "capture_gap": {
+    "actual_capture": true,
+    "metadata": "storybook/124-readable-ramp-foundation/captures.json",
+    "remaining": "Native Windows visual validation."
+  },
+  "limitations": [
+    "Native Windows rendering untested.",
+    "Existing camera-proof limitations remain."
+  ],
+  "contributors": [
+    "handoffs/level-two-ride-showcase-layout.json",
+    "handoffs/ride-showcase-art.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json",
+    "audio/sources/ride-fall-panic-v1/manifest.json",
+    "handoffs/giant-brush-v2-art.json",
+    "handoffs/ceiling-strainer-v1-art.json",
+    "assets/world/level-two-camera-test-v1/manifest.json",
+    "scripts/camera_test_model.gd",
+    "design/level-two-camera-concepts-v1/concept.json"
+  ],
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
+  "proposals_not_implemented": [
+    "Full-level/game camera migration",
+    "Level1 camera proof",
+    "Wall ram gameplay",
+    "Hungry-head final boss"
+  ],
+  "windows_export": {
+    "version": "0.124.0",
+    "archive": "builds/Drain-Damage-0.124.0-windows-x86_64-20261029-051333-864375Z.zip",
+    "archive_sha256": "133a42f2d93f54745fe2f5d5edac77bb32c587a90d85940a387bca2cecbdc2f6",
+    "status": "Cross-export and six host resource-pack checks pass; native Windows pending."
+  },
+  "source_dirty_at_build": true,
+  "previous_visual_review": {
+    "date": "2026-10-28",
+    "result": "rejected",
+    "feedback": "Looks terrible; does not read as2.5D.",
+    "observed": [
+      "Washed-out slab and rails; stretched side textures.",
+      "Bright repetitive water and sparse background overwhelm weak surface depth.",
+      "Reused billboard composite does not convincingly ground the hero."
+    ],
+    "next": "Agree a concrete composition with Art before presentation revision; actual rendered review required. No full migration authorized."
+  },
+  "archive_sha256": "58eb18e6fe114fcb613652c63c5a0f11232723f86e2444a66c42ff7c998af6ed"
+}

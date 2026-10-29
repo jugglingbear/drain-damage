@@ -71,8 +71,10 @@ func _initialize() -> void:
 	model.tick(.5,Vector2.RIGHT,false)
 	if not require(model.grounded and absf(model.elevation-.4) < .0001 and model.surface == "ramp","Continuous ramp ascent"): return
 	model.tick(.3,Vector2.RIGHT,false)
-	if not require(not model.grounded and model.elevation > .5 and model.elevation < .6,"Ramp exit falls smoothly"): return
-	model.tick(.5,Vector2.ZERO,false)
+	if not require(model.grounded and model.elevation > .6,"Ramp lip supports rigid overhang until rear clears"): return
+	model.tick(.1,Vector2.RIGHT,false)
+	if not require(not model.grounded and model.elevation > .6,"Rear clearance releases smoothly into flight"): return
+	model.tick(.6,Vector2.ZERO,false)
 	if not require(model.grounded and model.elevation == 0,"Ramp exit lands on water"): return
 	model.reset()
 	model.position = Vector2(18,0)
@@ -80,6 +82,61 @@ func _initialize() -> void:
 	if not require(model.grounded and model.surface == "ramp" and absf(model.elevation-.4) < .0001,"Jump lands on rising ramp"): return
 	model.tick(.25,Vector2.LEFT,false)
 	if not require(model.grounded and absf(model.elevation-.2) < .0001,"Ramp descent follows surface continuously"): return
+	model.reset()
+	model.position = Vector2(17,0)
+	var previous_height := 0.0
+	var previous_pitch := 0.0
+	for frame in range(180):
+		model.tick(Model.STEP,Vector2.RIGHT,false)
+		var pose: Dictionary = model.board_pose()
+		if not require(absf(pose.rear.distance_to(pose.front)-Model.BOARD_LENGTH) < .00001,"Rotated board must retain rigid length"): return
+		if not require(absf(model.elevation-previous_height) < .05 and absf(model.board_pitch-previous_pitch) < .03,
+			"Ramp toe and lip pose must remain continuous"): return
+		for sample in range(25):
+			var edge: Vector3 = pose.rear.lerp(pose.front,sample/24.0)
+			var top := (edge.x-18)*.2 if edge.x >= 18 and edge.x <= 21 else 0.0
+			if not require(edge.y >= top-.00001,"Rigid board underside penetrates ramp/water"): return
+		if model.position.x > 19 and model.position.x < 20:
+			if not require(absf(model.board_pitch-atan(.2)) < .00001,"Full slope must be atan(rise/run)"): return
+		previous_height = model.elevation
+		previous_pitch = model.board_pitch
+	model.reset()
+	model.position = Vector2(20,0)
+	model.elevation = .4
+	model.board_pitch = atan(.2)
+	for frame in range(80):
+		model.tick(Model.STEP,Vector2(0,1),false)
+		var pose: Dictionary = model.board_pose()
+		if model.position.y-Model.HALF.y < .8:
+			for edge in [pose.rear,pose.front]:
+				if not require(edge.y >= (edge.x-18)*.2-.00001,"Bank exit cannot sink through remaining ramp"): return
+	model.reset()
+	model.position = Vector2(20,0)
+	model.elevation = .4
+	model.board_pitch = atan(.2)
+	previous_height = model.elevation
+	previous_pitch = model.board_pitch
+	for frame in range(90):
+		model.tick(Model.STEP,Vector2.LEFT,false)
+		var pose: Dictionary = model.board_pose()
+		if not require(absf(model.elevation-previous_height) < .05 and absf(model.board_pitch-previous_pitch) < .03,
+			"Descending toe follows the same continuous rigid chord"): return
+		for sample in range(25):
+			var edge: Vector3 = pose.rear.lerp(pose.front,sample/24.0)
+			var top := (edge.x-18)*.2 if edge.x >= 18 and edge.x <= 21 else 0.0
+			if not require(edge.y >= top-.00001,"Descending board cannot penetrate ramp"): return
+		previous_height = model.elevation
+		previous_pitch = model.board_pitch
+	var ramp_reference := Model.new()
+	ramp_reference.position = Vector2(17,0)
+	for frame in range(180): ramp_reference.tick(Model.STEP,Vector2.RIGHT,false)
+	for hz in [30,60,144]:
+		var other := Model.new()
+		other.position = Vector2(17,0)
+		for frame in range(hz*3/2): other.tick(1.0/hz,Vector2.RIGHT,false)
+		if not require(other.position.distance_to(ramp_reference.position) < .0001 and
+			absf(other.elevation-ramp_reference.elevation) < .0001 and absf(other.board_pitch-ramp_reference.board_pitch) < .0001,
+			"Ramp pose and flight must remain FPS independent"): return
 	var reference = run_path(120)
 	for hz in [30,60,144]:
 		var other = run_path(hz)

@@ -3,6 +3,8 @@ extends RefCounted
 # Camera-independent metre-scale test course. Vector2 stores world X/Z; elevation stores world Y.
 const STEP := 1.0/120.0
 const HALF := Vector2(.45,.14)
+# The painted rigid board is longer than its gameplay hazard footprint.
+const BOARD_LENGTH := 1.1
 const SPEED := Vector2(4,3.5)
 const GRAVITY := 12.0
 const JUMP_SPEED := 3.6
@@ -17,6 +19,8 @@ const LAYOUT := {
 }
 var position := Vector2(1,0)
 var elevation := 0.0
+var board_pitch := 0.0
+var support_velocity := 0.0
 var clock := 0.0
 var dead := false
 var surface := "track"
@@ -30,6 +34,8 @@ var jump_pending := false
 func reset() -> void:
 	position = LAYOUT.start
 	elevation = 0
+	board_pitch = 0
+	support_velocity = 0
 	clock = 0
 	dead = false
 	surface = "track"
@@ -75,18 +81,53 @@ static func ellipse_support(point: Vector2, center: Vector2, size: Vector2) -> f
 		area += top-bottom
 	return clampf(area*radii.x*radii.y/(HALF.x*HALF.y*4),0,1)
 
+func ramp_pose(x: float) -> Dictionary:
+	var ramp: Dictionary = LAYOUT.ramp
+	var slope: float = ramp.rise/ramp.rect.size.x
+	var low := 0.0
+	var high := BOARD_LENGTH*.5
+	# A rigid board's projected width shrinks as it rotates. Solve its chord across the ramp toe;
+	# beyond the lip the same tangent supports the overhang until the rear clears the actual surface.
+	for iteration in range(24):
+		var half_x := (low+high)*.5
+		var rear := maxf(0,(x-half_x-ramp.rect.position.x)*slope)
+		var front := maxf(0,(x+half_x-ramp.rect.position.x)*slope)
+		if 4*half_x*half_x+pow(front-rear,2) > BOARD_LENGTH*BOARD_LENGTH: high = half_x
+		else: low = half_x
+	var half_x := (low+high)*.5
+	var rear := maxf(0,(x-half_x-ramp.rect.position.x)*slope)
+	var front := maxf(0,(x+half_x-ramp.rect.position.x)*slope)
+	return {"height":(rear+front)*.5,"pitch":atan2(front-rear,2*half_x),"half_x":half_x}
+
+func board_pose() -> Dictionary:
+	var center := Vector3(position.x,elevation,position.y)
+	var half_edge := Vector3(cos(board_pitch),sin(board_pitch),0)*(BOARD_LENGTH*.5)
+	return {"center":center,"rear":center-half_edge,"front":center+half_edge,"pitch":board_pitch}
+
+func ramp_clearance(point: Vector2, pitch: float) -> float:
+	var ramp: Dictionary = LAYOUT.ramp
+	if point.y+HALF.y <= ramp.rect.position.y or point.y-HALF.y >= ramp.rect.end.y: return 0
+	var half_x := BOARD_LENGTH*.5*cos(pitch)
+	var left := maxf(point.x-half_x,ramp.rect.position.x)
+	var right := minf(point.x+half_x,ramp.rect.end.x)
+	if right < left: return 0
+	var slope: float = ramp.rise/ramp.rect.size.x
+	return maxf((left-ramp.rect.position.x)*slope-(left-point.x)*tan(pitch),
+		(right-ramp.rect.position.x)*slope-(right-point.x)*tan(pitch))
+
 func support_at(point: Vector2) -> Dictionary:
 	var basin: Dictionary = LAYOUT.basin
 	if rectangle_support(point,Rect2(basin.center-basin.size*.5,basin.size))+EPS >= .5:
-		return {"surface":"basin","material":basin.material,"height":basin.top}
+		return {"surface":"basin","material":basin.material,"height":basin.top,"pitch":0.0}
 	var platform: Dictionary = LAYOUT.platform
 	if ellipse_support(point,platform.center,platform.size)+EPS >= .5:
-		return {"surface":"platform","material":platform.material,"height":platform.top}
+		return {"surface":"platform","material":platform.material,"height":platform.top,"pitch":0.0}
 	var ramp: Dictionary = LAYOUT.ramp
-	if rectangle_support(point,ramp.rect)+EPS >= .5:
-		return {"surface":"ramp","material":ramp.material,
-			"height":clampf((point.x-ramp.rect.position.x)/ramp.rect.size.x,0,1)*ramp.rise}
-	return {"surface":"track","material":"water","height":0.0}
+	var pose := ramp_pose(point.x)
+	var bank_overlap := maxf(0,minf(point.y+HALF.y,ramp.rect.end.y)-maxf(point.y-HALF.y,ramp.rect.position.y))
+	if bank_overlap+EPS >= HALF.y and point.x+pose.half_x >= ramp.rect.position.x and point.x-pose.half_x <= ramp.rect.end.x:
+		return {"surface":"ramp","material":ramp.material,"height":pose.height,"pitch":pose.pitch}
+	return {"surface":"track","material":"water","height":0.0,"pitch":0.0}
 
 static func circle_entry(a: Vector2, b: Vector2, center: Vector2, radius: float) -> float:
 	var offset := a-center
@@ -152,17 +193,35 @@ func step(steering: Vector2) -> void:
 	target.y = clampf(target.y,track.position.y+HALF.y,track.end.y-HALF.y)
 	var support := support_at(target)
 	var old_height := elevation
-	var initial_velocity := vertical_speed
 	if grounded and float(support.height) >= elevation-.05:
 		elevation = support.height
+		board_pitch = support.pitch
+		support_velocity = (elevation-old_height)/STEP
 	else:
+		if grounded: vertical_speed = support_velocity if surface == "ramp" else 0.0
 		grounded = false
+		var initial_velocity := vertical_speed
 		elevation += vertical_speed*STEP-.5*GRAVITY*STEP*STEP
 		vertical_speed -= GRAVITY*STEP
-		if vertical_speed <= 0 and elevation <= float(support.height):
+		board_pitch = move_toward(board_pitch,0,atan(float(LAYOUT.ramp.rise)/LAYOUT.ramp.rect.size.x)*STEP/.18)
+		# Even while leaving a bank edge, the underside cannot sink through the remaining ramp.
+		var clearance := ramp_clearance(target,board_pitch)
+		if support.surface == "ramp" and vertical_speed <= 0 and elevation <= clearance+EPS:
 			elevation = support.height
+			board_pitch = support.pitch
 			vertical_speed = 0
 			grounded = true
+		elif elevation < clearance:
+			elevation = clearance
+			vertical_speed = maxf(0,vertical_speed)
+		if vertical_speed <= 0 and elevation <= float(support.height)+EPS:
+			elevation = support.height
+			board_pitch = support.pitch
+			vertical_speed = 0
+			grounded = true
+		# Preserve pre-gravity velocity for the exact floor-contact split below.
+		support_velocity = initial_velocity
+	var initial_velocity := support_velocity
 	# Split the horizontal sweep at the floor landing; jumping above the hole is safe.
 	var floor_start := 0.0
 	if old_height > EPS:

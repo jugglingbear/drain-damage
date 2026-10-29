@@ -90,6 +90,14 @@ v123 · The ramp’s underwater base is hard to see
 
 v124 · The submerged base becomes visible
 
+![v125 · Sean’s board follows the ramp](125-ramp-contact-pose/20261028-222153-sean-ascent-first.png)
+
+v125 · Sean’s board follows the ramp
+
+![v125 · Tony on the slope from the opposite angle](125-ramp-contact-pose/20261028-222427-tony-ascent.png)
+
+v125 · Tony on the slope from the opposite angle
+
 ## Final game images
 
 To come. Current screenshots show work in progress.

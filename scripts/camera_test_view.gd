@@ -104,7 +104,7 @@ func configure(model: RefCounted, hero_art: Dictionary, hero: String, hard: bool
 	contact_shadow = Geometry.quad(self,[Vector3(-.5,0,-.17),Vector3(.5,0,-.17),
 		Vector3(.5,0,.17),Vector3(-.5,0,.17)],shadow_material)
 	var mode := "hard" if hard else "normal"
-	var contact: Array = contacts[hero][mode]
+	var contact: Array = manifest.get("rider_support_contacts",contacts)[hero][mode]
 	for frame: Dictionary in hero_art.landing[hero][mode].front:
 		add_rider_frame(frame,Vector2(contact[0],contact[1]))
 	ready_art = true
@@ -123,7 +123,7 @@ func add_rider_frame(frame: Dictionary, contact: Vector2) -> void:
 	# Offset within the billboard so its contact pixel, not its center, pivots at the world anchor.
 	sprite.offset = Vector2((float(d[0])+float(d[2])*.5-contact.x)*float(s[2])/float(d[2]),
 		-(float(d[1])+float(d[3])*.5-contact.y)*float(s[3])/float(d[3]))
-	sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	sprite.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 	sprite.alpha_scissor_threshold = .3
@@ -152,8 +152,15 @@ func update_view(model: RefCounted, delta: float, paused: bool, fall_age: float)
 	var pitch := deg_to_rad(35)
 	camera.position = focus+Vector3(sin(angle)*cos(pitch),sin(pitch),cos(angle)*cos(pitch))*16
 	camera.look_at(focus)
-	rider.position = Vector3(model.position.x,model.elevation-.9*minf(fall_age,1.2),model.position.y)
-	contact_shadow.position = Vector3(model.position.x,float(model.support_at(model.position).height)+.009,model.position.y)
+	var pose: Dictionary = model.board_pose()
+	var tangent: Vector3 = pose.front-pose.rear
+	var projected := Vector2(camera.basis.x.dot(tangent),camera.basis.y.dot(tangent))
+	# Face the camera explicitly: an automatic billboard would discard the physical board angle.
+	var roll := atan2(projected.y,projected.x)
+	rider.basis = camera.basis*Basis(Vector3.BACK,roll)*Basis.from_scale(Vector3(projected.length()/tangent.length(),1,1))
+	rider.position = pose.center-Vector3(0,.9*minf(fall_age,1.2),0)
+	contact_shadow.position = pose.center+Vector3(0,.009,0)
+	contact_shadow.rotation.z = model.board_pitch
 	contact_shadow.visible = not model.dead
 	materials.water.set_shader_parameter("flow_offset",Vector2(-model.clock*.14,0))
 	materials.downflow.set_shader_parameter("flow_offset",Vector2(0,-model.clock*.8))

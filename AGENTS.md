@@ -104,6 +104,16 @@
 - Preserve these visual indicators across damage, death, retry and transitions. Numeric-only substitutes require
   Sean's explicit approval; new modes inherit this standard unless he requests an exception.
 
+## Ramp and slope contact
+
+- A supported rider and board must follow the actual ramp/surface angle, rather than remain horizontal while
+  their center rises. Use the rigid board’s underside contact points to determine elevation and pitch.
+- Prevent visible penetration or hovering at the rear, middle and front of the board. Blend entry/exit contact
+  continuously and preserve correct jump takeoff, airborne motion and landing alignment.
+- Apply this rule to every ramp and sloped riding surface, including isolated prototypes and alternate cameras.
+  Camera-facing sprites must not override the physics pose. Verify both heroes and relevant camera angles with
+  contact tests and actual screenshots before claiming the visual result is correct.
+
 ## Pit and hole fall threshold
 
 - A rim touch must not trigger a fall. Require at least half of the hero’s ground/contact footprint over the

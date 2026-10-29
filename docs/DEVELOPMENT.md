@@ -196,3 +196,10 @@ These warnings remain in the logs and manifest; other errors fail the checks.
 Native execution and PowerShell behavior remain unverified until run on Windows.
 Follow with a visual check of menus, both heroes, Level 1, the flush, the ride, sound, keyboard/controller input,
 fullscreen/window behavior, and frame pacing. A headless pass does not establish those results.
+
+## Ramp contact invariant
+
+Supported riders follow the surface slope using the rigid board’s underside contacts. Elevation alone is insufficient:
+the board and rider pitch must track the slope without penetration or hovering through entry, ascent and exit.
+Camera-facing artwork must preserve that pose at every supported viewing angle. Jump takeoff, flight and landing
+retain continuous contact behavior. This applies to production levels and camera prototypes alike.

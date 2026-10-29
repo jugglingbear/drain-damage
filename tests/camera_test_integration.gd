@@ -8,10 +8,10 @@ func checks() -> void:
 	var options := Launch.parse(["--level=2.1","--hero=sean"])
 	assert(options.target.initializer == "camera-test")
 	assert(Launch.parse(["--level=2-08"]).target.initializer == "ride-encounter")
-	for hero in [0,1]:
+	for setup in [[0,false],[0,true],[1,false],[1,true]]:
 		var game = CameraGame.new()
-		game.employee = game.Crew.EMPLOYEES[hero]
-		game.difficulty = "normal" if hero == 0 else "hard"
+		game.employee = game.Crew.EMPLOYEES[setup[0]]
+		game.difficulty = "hard" if setup[1] else "normal"
 		root.add_child(game)
 		game.set_process(false)
 		game.set_physics_process(false)
@@ -29,6 +29,26 @@ func checks() -> void:
 		assert(is_equal_approx(view.yaw,0) and model.position == start and model.clock == 0)
 		view.update_view(model,.6,false,0)
 		assert(is_equal_approx(view.yaw,view.SECOND_YAW) and not view.turning())
+		# The rendered underside must project onto the same contacts as the physical rigid board.
+		for angle in [view.FIRST_YAW,view.SECOND_YAW]:
+			view.yaw = angle
+			view.target_yaw = angle
+			for x in [17.6,18.0,19.5,20.9]:
+				model.position = Vector2(x,0)
+				var support: Dictionary = model.support_at(model.position)
+				model.elevation = support.height
+				model.board_pitch = support.pitch
+				view.update_view(model,0,true,0)
+				var pose: Dictionary = model.board_pose()
+				for endpoint in [[-1.0,"rear"],[1.0,"front"]]:
+					var actual: Vector2 = view.camera.unproject_position(view.rider.to_global(
+						Vector3(endpoint[0]*model.BOARD_LENGTH*.5,0,0)))
+					var expected: Vector2 = view.camera.unproject_position(pose[endpoint[1]])
+					assert(actual.distance_to(expected) < .01,"Billboard must preserve physical slope contacts")
+				for sprite: Sprite3D in view.rider.get_children():
+					assert(sprite.billboard == BaseMaterial3D.BILLBOARD_DISABLED)
+		model.elevation = 0
+		model.board_pitch = 0
 		model.position = model.LAYOUT.hole.center
 		assert(not view.request_turn(model))
 		game._physics_process(1.0/60)
