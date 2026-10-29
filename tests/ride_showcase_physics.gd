@@ -31,6 +31,28 @@ func setup(obstacles: Array) -> Array:
 func _initialize() -> void: call_deferred("run_checks")
 
 func run_checks() -> void:
+	# Edge grazing, quarter-area corner overlap and 49% overlap remain safe in both pit types.
+	for kind in ["gap","long_pit"]:
+		for point in [Vector2(355,330),Vector2(399,330),Vector2(400,280),Vector2(400,330)]:
+			var probe := setup([obstacle("threshold",kind,500,200,330,100)])
+			var rider: Host = probe[0]
+			var simulation = probe[1]
+			simulation.position = point
+			simulation.scroll_speed = 0
+			simulation.tick(rider,.01,Vector2.ZERO,false)
+			assert((rider.life_state == "dead") == (point == Vector2(400,330)),
+				"Only the half-area footprint may trigger the fall")
+			rider.free()
+		for hz in [30,60,120,144]:
+			var probe := setup([obstacle("sweep",kind,500,200)])
+			var rider: Host = probe[0]
+			var simulation = probe[1]
+			for frame in range(hz):
+				if rider.life_state == "dead": break
+				simulation.tick(rider,1.0/hz,Vector2.RIGHT,false)
+			assert(rider.life_state == "dead")
+			assert(absf(simulation.position.x+simulation.encounter_scroll-400) < .001)
+			rider.free()
 	# A single long traversal cannot repeatedly hurt after immunity expires.
 	var pair := setup([obstacle("wide","support",1000,1800),obstacle("later","support",2600,50)])
 	var host: Host = pair[0]
@@ -94,20 +116,20 @@ func run_checks() -> void:
 	host = pair[0]; model = pair[1]
 	model.tick(host,.1,Vector2.RIGHT,false)
 	assert(host.life_state == "dead" and model.events.fall == 1)
-	assert(absf(model.position.x+model.encounter_scroll-305) < .001)
-	assert(absf(model.clock-5.0/960.0) < .00001)
+	assert(absf(model.position.x+model.encounter_scroll-350) < .001)
+	assert(absf(model.clock-50.0/960.0) < .00001)
 	var frozen_position: Vector2 = model.position
 	var frozen_scroll: float = model.encounter_scroll
 	model.tick(host,1,Vector2.RIGHT,true)
 	assert(model.position == frozen_position and model.encounter_scroll == frozen_scroll and host.lives == 2)
 	host.free()
-	# Full-footprint deck containment, not a center-only overlap.
-	for width in [80,100]:
+	# At least half the footprint supported by a deck prevents falling.
+	for width in [40,80,100]:
 		pair = setup([obstacle("water","gap",300,200),obstacle("deck","deck",300,width)])
 		host = pair[0]; model = pair[1]
 		model.tick(host,.001,Vector2.ZERO,false)
-		assert(host.health == (0 if width == 80 else 5))
-		assert(host.lives == (2 if width == 80 else 3))
+		assert(host.health == (0 if width == 40 else 5))
+		assert(host.lives == (2 if width == 40 else 3))
 		host.free()
 	# Both head envelopes hit low ceilings while grounded; jump cannot bypass overhead.
 	for hero in ["sean","tony"]:

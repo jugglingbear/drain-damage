@@ -1,0 +1,31 @@
+{
+  "source_commit": "cba9552 plus half-footprint correction",
+  "captures": [
+    {
+      "file": "20261028-215104-threshold-fall.png",
+      "captured_at": "2026-10-28T21:51:04.268000-07:00",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "build": "0.122.0 source",
+      "stage": "paused after crossing half-footprint threshold"
+    },
+    {
+      "file": "20261028-215043-partial-safe.png",
+      "captured_at": "2026-10-28T21:50:43.685000-07:00",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "build": "0.122.0 source",
+      "stage": "partial overlap alive"
+    },
+    {
+      "file": "20261028-215024-rim-safe.png",
+      "captured_at": "2026-10-28T21:50:24.901000-07:00",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "build": "0.122.0 source",
+      "stage": "rim overlap alive"
+    }
+  ],
+  "review": "Actual small-window source-runtime captures inspected: partial overlap survives; moving across half footprint triggers one life loss. Threshold frame is paused with overlay.",
+  "remaining": "Flush drain and ride variants validated headlessly; no native Windows visual capture."
+}

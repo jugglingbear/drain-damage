@@ -77,7 +77,12 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 28, 2026 · Current build: Prototype 121 / 0.121.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 28, 2026 · Current build: Prototype 122 / 0.122.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 122 — half-footprint pit threshold:</strong> Rim contact and shallow corner
+grazes remain safe. Camera-test holes and ride pits require half the ground footprint over the opening; ride platforms
+provide support at half overlap. The flush drain uses the registered swimmer footprint and conservatively bounds projected overlap. Swept crossing,
+jump clearance and one-life death handling remain intact. Actual small-window source-runtime captures verify partial overlap survives and crossing the threshold costs one life.
+Mac packaged camera/ride/flush tests and Windows cross-export checks pass; native Windows gameplay remains pending.</p>
 <p><strong>Prototype 121 — opening briefing:</strong> BJ now assigns the seventeen sewage-backup reports as one ticket,
 mentions the missing inspection camera, and directs the plumbers through basement access. Only the approved assignment
 and BJ’s approved closing break-time response change; the rest of the conversation and level layout remain intact. Dialogue checks pass; visual text-layout capture

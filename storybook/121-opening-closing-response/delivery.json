@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 121 / 0.121.0",
+  "created_at": "2026-10-28T21:39:29.602299-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "source_commit": "3029d04",
+  "status": "Approved BJ closing response integrated; source and packaged dialogue checks pass. Opening visual capture pending.",
+  "app": "builds/Prototype-121/Drain Damage.app",
+  "archive": "builds/history/Prototype-121.zip",
+  "archive_sha256": "fdb2d0c9facb020f14e6256f17eef8c1e1996e3e9c1a93409629edd47020dd15",
+  "source_snapshot": "builds/source-121",
+  "previous_build_preserved": "Prototype120 and earlier builds and source snapshots preserved.",
+  "changes": [
+    "Replace only BJ closing response with: Possibly. If you find anyone, remind them their break is over.",
+    "Preserve approved seventeen-reports assignment and every other dialogue line."
+  ],
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-121/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-121/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-121/Drain Damage.app\"",
+    "brushes": "make run LEVEL=2-04",
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-121/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-121/Drain Damage.app\"",
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-121/Drain Damage.app\""
+  },
+  "checks": {
+    "source_suites": [
+      "dialogue"
+    ],
+    "packaged_suites": [
+      "dialogue"
+    ],
+    "exact_change": "Approved exact text replacement; all other dialogue unchanged.",
+    "mac_export": "Built and signed; ZIP CRC verified.",
+    "limitations": "Opening text layout not visually inspected; native Windows untested."
+  },
+  "capture_gap": {
+    "actual_capture": false,
+    "metadata": "storybook/121-opening-closing-response/20261028-213929-capture-status.json",
+    "remaining": "Opening assignment text-layout capture after explicit launch permission."
+  },
+  "limitations": [
+    "Opening text-layout visual check pending.",
+    "No change to existing gameplay or earlier camera-proof limitations.",
+    "Native Windows runtime untested."
+  ],
+  "contributors": [
+    "handoffs/level-two-ride-showcase-layout.json",
+    "handoffs/ride-showcase-art.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json",
+    "audio/sources/ride-fall-panic-v1/manifest.json",
+    "handoffs/giant-brush-v2-art.json",
+    "handoffs/ceiling-strainer-v1-art.json",
+    "assets/world/level-two-camera-test-v1/manifest.json",
+    "scripts/camera_test_model.gd",
+    "design/level-two-camera-concepts-v1/concept.json"
+  ],
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
+  "proposals_not_implemented": [
+    "Full-level/game camera migration",
+    "Level1 camera proof",
+    "Wall ram gameplay",
+    "Hungry-head final boss"
+  ],
+  "windows_export": {
+    "version": "0.121.0",
+    "archive": "builds/Drain-Damage-0.121.0-windows-x86_64-20261029-043846-055519Z.zip",
+    "archive_sha256": "2abc8827a49a5056f074ef84726c80154547ecd2bb66d0e0db44e01a31d0d8a5",
+    "status": "Cross-export and six host resource-pack startup checks pass; native Windows validation pending."
+  },
+  "source_dirty_at_build": true,
+  "previous_visual_review": {
+    "date": "2026-10-28",
+    "result": "rejected",
+    "feedback": "Looks terrible; does not read as2.5D.",
+    "observed": [
+      "Washed-out slab and rails; stretched side textures.",
+      "Bright repetitive water and sparse background overwhelm weak surface depth.",
+      "Reused billboard composite does not convincingly ground the hero."
+    ],
+    "next": "Agree a concrete composition with Art before presentation revision; actual rendered review required. No full migration authorized."
+  }
+}

@@ -62,6 +62,26 @@ v112 · After: the rider stays visible
 
 v112 · Brush encounter in development
 
+![v119 · Camera experiment: visible water seams](119-camera-depth-correction/20261028-212141-first-angle.png)
+
+v119 · Camera experiment: visible water seams
+
+![v119 · Water seams softened](119-camera-depth-correction/20261028-212824-final-first-angle.png)
+
+v119 · Water seams softened
+
+![v119 · Testing elevation on the ramp](119-camera-depth-correction/20261028-212910-final-ramp.png)
+
+v119 · Testing elevation on the ramp
+
+![v122 · Testing partial overlap at the drain](122-half-footprint-falls/20261028-215043-partial-safe.png)
+
+v122 · Testing partial overlap at the drain
+
+![v122 · Paused after crossing the edge: one life lost](122-half-footprint-falls/20261028-215104-threshold-fall.png)
+
+v122 · Paused after crossing the edge: one life lost
+
 ## Final game images
 
 To come. Current screenshots show work in progress.

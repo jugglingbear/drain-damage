@@ -88,20 +88,6 @@ func support_at(point: Vector2) -> Dictionary:
 			"height":clampf((point.x-ramp.rect.position.x)/ramp.rect.size.x,0,1)*ramp.rise}
 	return {"surface":"track","material":"water","height":0.0}
 
-static func rect_entry(a: Vector2, b: Vector2, rect: Rect2) -> float:
-	var start := 0.0
-	var finish := 1.0
-	for axis in range(2):
-		var delta := b[axis]-a[axis]
-		if absf(delta) < EPS:
-			if a[axis] < rect.position[axis] or a[axis] > rect.end[axis]: return INF
-			continue
-		var first := (rect.position[axis]-a[axis])/delta
-		var last := (rect.end[axis]-a[axis])/delta
-		start = maxf(start,minf(first,last))
-		finish = minf(finish,maxf(first,last))
-	return start if start <= finish else INF
-
 static func circle_entry(a: Vector2, b: Vector2, center: Vector2, radius: float) -> float:
 	var offset := a-center
 	if offset.length_squared() <= radius*radius: return 0
@@ -115,16 +101,34 @@ static func circle_entry(a: Vector2, b: Vector2, center: Vector2, radius: float)
 	var entry := (-bb-sqrt(discriminant))/aa
 	return entry if entry >= 0 and entry <= 1 else INF
 
-func hole_entry(a: Vector2, b: Vector2) -> float:
-	# Circle expanded by the board rectangle: two strips plus four rounded corners, never a square.
-	var center: Vector2 = LAYOUT.hole.center
+func hole_fraction(point: Vector2) -> float:
 	var radius: float = LAYOUT.hole.radius
-	var first := rect_entry(a,b,Rect2(center-Vector2(HALF.x+radius,HALF.y),Vector2(2*(HALF.x+radius),2*HALF.y)))
-	first = minf(first,rect_entry(a,b,Rect2(center-Vector2(HALF.x,HALF.y+radius),Vector2(2*HALF.x,2*(HALF.y+radius)))))
-	for x in [-HALF.x,HALF.x]:
-		for z in [-HALF.y,HALF.y]:
-			first = minf(first,circle_entry(a,b,center+Vector2(x,z),radius))
-	return first
+	return ellipse_support(point,LAYOUT.hole.center,Vector2.ONE*radius*2)
+
+func hole_entry(a: Vector2, b: Vector2) -> float:
+	if hole_fraction(a) >= .5: return 0
+	# Half of a centrally symmetric footprint cannot overlap a convex hole while its center is outside.
+	# This circle bracket avoids the zero-area plateaus of the expanded bounding rectangle.
+	var low := circle_entry(a,b,LAYOUT.hole.center,LAYOUT.hole.radius)
+	if low == INF: return INF
+	var high := 1-circle_entry(b,a,LAYOUT.hole.center,LAYOUT.hole.radius)
+	var begin := low
+	# Convex intersection area is unimodal along a straight translation. Locate its peak even when
+	# both sweep endpoints are safe, then bisect the first half-area crossing.
+	for iteration in range(40):
+		var left := lerpf(low,high,1.0/3)
+		var right := lerpf(low,high,2.0/3)
+		if hole_fraction(a.lerp(b,left)) < hole_fraction(a.lerp(b,right)): low = left
+		else: high = right
+	var peak := (low+high)*.5
+	if hole_fraction(a.lerp(b,peak)) < .5: return INF
+	low = begin
+	high = peak
+	for iteration in range(40):
+		var middle := (low+high)*.5
+		if hole_fraction(a.lerp(b,middle)) >= .5: high = middle
+		else: low = middle
+	return high
 
 func tick(delta: float, steering: Vector2, jump: bool) -> void:
 	if dead or delta <= 0: return

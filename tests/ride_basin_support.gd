@@ -27,7 +27,7 @@ func checks() -> void:
 						model.encounter_scroll = float(deck.x)-300
 						if landing: model.jump_age = model.active_jump_duration-0.0005
 						model.tick(host,.001,Vector2.ZERO,false)
-						var supported: bool = absf(offset) <= float(deck.depth)*0.5 if index == 7 else absf(offset)+Model.HALF.y <= float(deck.depth)*0.5
+						var supported: bool = absf(offset) <= float(deck.depth)*0.5
 						assert((host.life_state == "alive") == supported,
 							"Support boundary must match authored threshold for grounded AND landing riders")
 						count += 1

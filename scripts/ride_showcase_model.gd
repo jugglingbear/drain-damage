@@ -173,8 +173,12 @@ func _relative_interval(obstacle: Dictionary, a: Vector2, b: Vector2, time: floa
 	if not motion.is_empty():
 		pad = absf(float(motion.get("amplitude",0)))*pow(TAU/maxf(.01,float(motion.get("period",2))),2)*dt*dt/8
 	var extent := HALF+Vector2.ONE*pad
+	if not supported and obstacle.kind in ["gap","long_pit"]:
+		# A rim touch is safe: at least half the ground footprint must cross into the void.
+		return area_support_interval(a-motion_offset(obstacle,time),b-motion_offset(obstacle,time+dt),
+			rect.grow(-pad),0.5)
 	if supported:
-		var minimum := float(obstacle.get("minimum_support_fraction",1.0))
+		var minimum := float(obstacle.get("minimum_support_fraction",0.5))
 		if minimum < 1.0:
 			return area_support_interval(a-motion_offset(obstacle,time),b-motion_offset(obstacle,time+dt),
 				rect.grow(-pad),minimum)
@@ -458,7 +462,7 @@ func _advance_air_motion(dt: float) -> void:
 				if obstacle.kind != "deck": continue
 				var size := Vector2(float(obstacle.width),float(obstacle.depth))
 				var support := Rect2(obstacle_position(obstacle)-size*0.5,size)
-				if support_fraction(board.get_center(),support)+EPS >= float(obstacle.get("minimum_support_fraction",1.0)):
+				if support_fraction(board.get_center(),support)+EPS >= float(obstacle.get("minimum_support_fraction",0.5)):
 					landing_material = str(obstacle.get("landing_material","metal"))
 					break
 			emit_event("landed")

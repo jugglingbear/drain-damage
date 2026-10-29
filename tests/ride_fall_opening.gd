@@ -36,7 +36,8 @@ func checks() -> void:
 			anchor.y -= pow(0.22-0.10,2)*460
 			assert(opening.grow(.001).has_point(anchor),"Continuous carry reaches actual unsupported floor")
 			if index == 6 and bank == 330:
-				assert(anchor.x > ride.position.x+80,"Regression: whole underlying pit must not keep Sean over cap")
+				assert(anchor.x >= opening.position.x+minf(55,opening.size.x*.5)-.001,
+					"Regression: fall carries the board fully into the opening after half-footprint entry")
 			count += 1
 	game.queue_free()
 	await process_frame

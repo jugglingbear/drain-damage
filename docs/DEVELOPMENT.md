@@ -69,6 +69,9 @@ Each encounter ends with three full seconds without hazards or next-encounter wa
 Deaths and retries resume the current encounter without replaying the flush.
 In Prototype 107, every true pit or unsupported-gap fall costs one life and visibly descends
 before the death menu. Ordinary solid/overhead/spike hits remain one HP; normal riding water is safe.
+Prototype 122 requires at least half of the hero’s contact footprint over an opening before a fall; edge and
+corner grazes are safe. Ride platforms support the rider at half-footprint overlap. Jump clearance and swept
+collision timing remain active.
 The preserved Prototype 106 app still has its earlier nonlethal ordinary-gap policy. The ramp launches automatically
 from grounded contact, locks horizontal steering through flight, and permits bank steering. Flight lasts 1.25 seconds and peaks about 93.33 pixels above water.
 The Prototype 107 ramp is 100 pixels across the banks: visible edges 280–380, with full-board center support

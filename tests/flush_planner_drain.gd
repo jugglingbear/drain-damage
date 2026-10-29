@@ -25,8 +25,13 @@ func _initialize() -> void:
 			var a: Vector2 = Vector2.from_angle(angle)*radius
 			var b: Vector2 = a+Vector2.from_angle(angle+1.7)*4
 			for sample in range(17):
-				if Flow.drain_contact(a.lerp(b,sample/16.0),debris.drain_radii,debris.drain_projection,debris.drain_depth):
+				if Flow.drain_coordinates(a.lerp(b,sample/16.0),debris.drain_radii,debris.drain_projection,debris.drain_depth).length_squared() <= 1:
 					if not require(debris.drain_crossing(a,b),"Dense lip sample escaped conservative sweep"): return
+	for index in range(12):
+		for radius in [40.0,60.0,170.0,182.0]:
+			var point: Vector2 = Vector2.from_angle(index*TAU/12)*radius
+			if Flow.drain_contact(point,debris.drain_radii,debris.drain_projection,debris.drain_depth,14):
+				if not require(debris.drain_crossing(point,point),"Planner cannot certify a lethal half-footprint position"): return
 	var unsafe := debris.safe_route(Vector2(0,183),[],34,PI/2,Vector2.UP,235,true,1.5)
 	if not require(not unsafe.safe,"Reaction and immunity cannot waive drain contact in a clear tail"): return
 	var pending := Fixtures.prop("pending",Vector2(1000,0),34.5)

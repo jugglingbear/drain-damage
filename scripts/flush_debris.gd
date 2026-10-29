@@ -26,6 +26,8 @@ var drain_radii := Vector2.ZERO
 var drain_projection := 1.0
 var drain_depth := 0.0
 var drain_world_bound := 0.0
+var drain_footprint_radius := 14.0
+var drain_footprint_padding := 0.0
 
 func configure(definition: Dictionary, difficulty: String, seed_value: int, art: Dictionary = {}) -> void:
 	layout = definition
@@ -36,7 +38,11 @@ func configure(definition: Dictionary, difficulty: String, seed_value: int, art:
 	if art.is_empty():
 		art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-flush-v3/manifest.json"))
 	drain_depth = float(art.get("surface_depth_pixels",0))
-	drain_world_bound = Vector2(drain_radii.x,(drain_radii.y+drain_depth)/drain_projection).length()
+	drain_footprint_radius = float(geometry.hero_collision_radius)
+	# Global Lipschitz bound of the normalized projection over the entire swimmer footprint.
+	drain_footprint_padding = drain_footprint_radius*Vector2(1/drain_radii.x,
+		(drain_projection+2*drain_depth/360)/drain_radii.y).length()
+	drain_world_bound = Vector2(drain_radii.x,(drain_radii.y+drain_depth)/drain_projection).length()+drain_footprint_radius
 	mode = difficulty
 	rng.seed = seed_value+99002
 	items.clear()
@@ -57,13 +63,13 @@ func drain_crossing(a: Vector2, b: Vector2) -> bool:
 	if closest > drain_world_bound: return false
 	var from := Flow.drain_coordinates(a,drain_radii,drain_projection,drain_depth)
 	var to := Flow.drain_coordinates(b,drain_radii,drain_projection,drain_depth)
-	if from.length_squared() <= 1 or to.length_squared() <= 1: return true
+	if from.length() <= 1+drain_footprint_padding or to.length() <= 1+drain_footprint_padding: return true
 	if closest <= 0.000001: return true
 	# Bound the depth curve's deviation from its projected chord, so a between-sample graze cannot pass.
 	var radius := float(layout.geometry.water_radii[0])
 	var curvature := 2*drain_depth/(radius*closest)+2*drain_depth/(radius*radius)
 	var padding := curvature*a.distance_squared_to(b)/(8*drain_radii.y)
-	return Geometry2D.get_closest_point_to_segment(Vector2.ZERO,from,to).length() <= 1+padding
+	return Geometry2D.get_closest_point_to_segment(Vector2.ZERO,from,to).length() <= 1+padding+drain_footprint_padding
 
 func route_target(angle: float, bounds: Vector2) -> Vector2:
 	var target := Vector2.from_angle(angle)*(bounds.x+bounds.y)*0.5

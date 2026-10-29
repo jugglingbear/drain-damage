@@ -285,7 +285,8 @@ func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _
 func drain_contact(point: Vector2) -> bool:
 	var radii: Array = definition.layout.geometry.drain_visual_radii
 	return Flow.drain_contact(point,Vector2(radii[0],radii[1]),projection(),
-		float(definition.art.get("surface_depth_pixels",0)))
+		float(definition.art.get("surface_depth_pixels",0)),
+		float(definition.layout.geometry.hero_collision_radius))
 
 func enter_drain_death(host: Node2D) -> void:
 	if host.life_state != "alive" or state != "bowl" or clock >= 35: return
@@ -312,12 +313,13 @@ func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool, ca
 	if clock < 35 and drain_contact(position):
 		var low := 0.0
 		var high := 1.0
-		for iteration in range(32):
+		# Four refinements locate the fall within 1/16 of a 120 Hz step without a frame stall.
+		for iteration in range(4):
 			var middle := (low+high)*0.5
 			if drain_contact(start_position.lerp(position,middle)): high = middle
 			else: low = middle
 		# Exact 35s contact belongs to capture; an earlier entry still kills on a straddling frame.
-		if not capture_boundary or high < 1.0-0.000001:
+		if not capture_boundary or high < 1.0-0.000001 or drain_contact(start_position.lerp(position,1.0-0.000001)):
 			position = start_position.lerp(position,high)
 			enter_drain_death(host)
 			return

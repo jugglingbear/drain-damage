@@ -25,14 +25,38 @@ func _initialize() -> void:
 	if not require(is_equal_approx(Model.ellipse_support(Vector2(10,0),Vector2(10,0),Vector2(1.8,1.4)),1),"Ellipse center full support"): return
 	if not require(model.support_at(Vector2(10.8,.6)).surface == "track","Ellipse bounding-box corner is not brass support"): return
 	if not require(model.hole_entry(Vector2(12,.78),Vector2(13.05,.78)) == INF,"Round hole rectangular corner must pass"): return
+	# At Z0, half the board overlaps when its center reaches the mean left circular boundary.
+	var radius := .65
+	var half_depth := .14
+	var mean_radius := (half_depth*sqrt(radius*radius-half_depth*half_depth)+radius*radius*asin(half_depth/radius))/(2*half_depth)
+	var threshold_x := 14-mean_radius
+	var expected_time := (threshold_x-12)/4
+	if not require(model.hole_entry(Vector2(12.9,0),Vector2(13.1,0)) == INF,"Initial edge overlap must remain safe"): return
+	if not require(absf(model.hole_fraction(Vector2(threshold_x-.009,0))-.49) < .00001,
+		"Circle overlap below half is measured as actual area"): return
+	if not require(model.hole_entry(Vector2(threshold_x-.009,0),Vector2(threshold_x-.009,0)) == INF,
+		"Stationary 49 percent overlap stays safe"): return
+	if not require(model.hole_entry(Vector2(threshold_x+.009,0),Vector2(threshold_x+.009,0)) == 0,
+		"Stationary 51 percent overlap falls"): return
+	if not require(model.hole_entry(Vector2(12,.7),Vector2(16,.7)) == INF,
+		"Swept shallow rim overlap never reaches half"): return
 	var entry: float = model.hole_entry(Vector2(12,0),Vector2(16,0))
-	if not require(absf(entry-.225) < .0001,"Swept board must reach circular hole at X12.9"): return
+	if not require(absf(entry-expected_time) < .0001,"Swept threshold must find half-area crossing with safe endpoints"): return
+	for bank in [-.4,-.2,0.0,.2,.4]:
+		var start := Vector2(12,bank)
+		var finish := Vector2(16,-bank)
+		var forward: float = model.hole_entry(start,finish)
+		var reverse: float = model.hole_entry(finish,start)
+		if not require(forward != INF and absf(forward-reverse) < .0001,"Symmetric diagonal sweeps find same half-area entry"): return
+		if not require(model.hole_fraction(start.lerp(finish,forward-.0001)) < .5 and
+			model.hole_fraction(start.lerp(finish,forward+.0001)) > .5,
+			"Swept first crossing separates safe and lethal overlap"): return
 	model.position = Vector2(12,0)
 	model.tick(1,Vector2.RIGHT,false)
-	if not require(model.dead and absf(model.position.x-12.9) < .0001,"Ground crossing freezes at exact contact"): return
+	if not require(model.dead and absf(model.position.x-threshold_x) < .0001,"Ground crossing freezes at exact contact"): return
 	var death_clock: float = model.clock
 	model.tick(5,Vector2.RIGHT,true)
-	if not require(model.clock == death_clock and model.position == Vector2(12.9,0),"Death freezes simulation"): return
+	if not require(model.clock == death_clock and absf(model.position.x-threshold_x) < .0001,"Death freezes simulation"): return
 	model.reset()
 	model.position = Vector2(12.85,0)
 	model.tick(.6,Vector2.RIGHT,true)
@@ -71,10 +95,10 @@ func _initialize() -> void:
 		model.reset()
 		model.position = Vector2(12,0)
 		for frame in range(hz): model.tick(1.0/hz,Vector2.RIGHT,false)
-		if not require(model.dead and absf(model.position.x-12.9) < .0001 and absf(model.clock-.225) < .0001,
+		if not require(model.dead and absf(model.position.x-threshold_x) < .0001 and absf(model.clock-expected_time) < .0001,
 			"Swept death position/time must be FPS independent"): return
 	model.reset()
 	if not require(not model.dead and model.clock == 0 and model.position == Model.LAYOUT.start,
 		"Reset clears death and fractional time"): return
-	print("PASS: surface support, rounded swept hole, jump, ramp contact/exit, death freeze and FPS-independent world replay")
+	print("PASS: surface support, swept half-footprint circular hole, jump, ramp contact/exit, death freeze and FPS-independent world replay")
 	quit()
