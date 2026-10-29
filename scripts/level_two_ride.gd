@@ -139,7 +139,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 	elif int(events.get("ramp",0)) > int(before.get("ramp",0)):
 		audio.play("water_launch")
 	elif int(events.get("landed",0)) > int(before.get("landed",0)):
-		audio.play("porcelain_contact" if previous_encounter == 7 else "ride_land")
+		audio.play({"metal":"metal_impact","porcelain":"porcelain_contact"}.get(landing_material,"ride_land"))
 	if previous_encounter != encounter_index: mechanism_cycle = -1
 	update_mechanism_audio()
 	sync_hero(host)

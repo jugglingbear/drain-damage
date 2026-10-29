@@ -77,7 +77,7 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 26, 2026 · Current build: Prototype 114 / 0.114.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 28, 2026 · Current build: Prototype 115 / 0.115.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
@@ -104,6 +104,12 @@ True 3D yaw or pitch is a larger rendering and artwork project. Animated camera 
 angles require later decisions after the fixed-angle experiment passes review.
 <a href="handoffs/level-two-ride-showcase-layout.json">Camera feasibility assessment</a>
 (<code>proposed_depth_and_final_boss.ram_camera_review.engineering_assessment</code>).</p>
+<p><strong>Prototype 115 — ride landing material fix (built locally):</strong>
+Cleanout-cap jumps now use the metal cue, basin slab jumps use porcelain, and water landings use the wet cue.
+Material comes from actual board support, including when a jump crosses into the next encounter. Riding onto a cap
+remains silent. Both heroes pass the headless regression against exported resources; six source ride suites and
+44 Python tests pass. Mac and Windows packages are preserved. Listening, gameplay captures and Windows-native
+validation remain pending; no game window opened. <a href="handoffs/first-call-integration.json">Delivery record</a>.</p>
 <p><strong>Prototype 114 — visible strainer strikes and flowing water (ready locally):</strong>
 The full-size basket is visible before its windup, strikes fully onscreen at 3.10 seconds, and clears by 3.25.
 The strike opens the same fatal footprint. Continuous channel ripples and inward foam replace static water and

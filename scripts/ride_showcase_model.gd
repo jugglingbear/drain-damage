@@ -45,6 +45,7 @@ var contact_latches: Dictionary = {}
 var hit_ids: Dictionary = {}
 var used_ramps: Dictionary = {}
 var last_event: Dictionary = {}
+var landing_material := "water"
 
 func emit_event(name: String, id := "") -> void:
 	events[name] = int(events.get(name,0))+1
@@ -67,6 +68,7 @@ func begin(host: Node2D, index := 0) -> void:
 	render_pitch = 0
 	complete = false
 	events.clear()
+	landing_material = "water"
 	host.won = false
 	_start_encounter(clampi(index,0,definition.encounters.size()-1))
 	sync_hero(host)
@@ -411,6 +413,15 @@ func _advance_air_motion(dt: float) -> void:
 			boosted = false
 			ballistic = false
 			cooldown = 0.10
+			# Snapshot support before encounter advancement can replace the course.
+			landing_material = "water"
+			var board := Rect2(position-HALF,HALF*2)
+			for obstacle: Dictionary in course.obstacles:
+				if obstacle.kind != "deck": continue
+				var size := Vector2(float(obstacle.width),float(obstacle.depth))
+				if Rect2(obstacle_position(obstacle)-size*0.5,size).encloses(board):
+					landing_material = str(obstacle.get("landing_material","metal"))
+					break
 			emit_event("landed")
 	jump_height = height(jump_age)
 	render_height = jump_height

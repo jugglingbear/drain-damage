@@ -102,6 +102,8 @@ def discover() -> dict[str, dict[str, Any]]:
         for cue in ride.get("audio", {}).get("cues", []):
             add(f"level-two-ride/{cue['event']}", "Level 2", f"Log ride — {cue['event'].replace('_', ' ')}",
                 [cue["path"]], "data/level-two-ride.json#/audio")
+            if "trigger" in cue:
+                slots[f"level-two-ride/{cue['event']}"]["trigger"] = cue["trigger"]
     return slots
 
 
@@ -216,6 +218,8 @@ def render(registry: dict[str, Any]) -> str:
                 if record["status"] == "proposed":
                     parts.append('<p><strong>PROPOSED — NOT IN GAME</strong> · Auditions only.</p>')
                 parts.append(f'<p><small>{esc(record["source"])} · Global UUID: {esc(record["uuid"])}</small></p>')
+                if record.get("trigger"):
+                    parts.append(f'<p>{esc(record["trigger"])}</p>')
                 parts.append('<div class="table-wrap"><table><thead><tr><th>ID</th><th>Version</th>'
                              '<th>Listen</th></tr></thead><tbody>')
                 clips = [(identity, "Current", path, (ROOT / path).read_bytes()) for path in record["paths"]]

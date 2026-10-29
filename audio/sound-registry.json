@@ -1505,7 +1505,8 @@
         "assets/audio/sfx/level-two-flush-v1/current-loop.wav"
       ],
       "source": "data/level-two-ride.json#/audio",
-      "status": "current"
+      "status": "current",
+      "trigger": "Once on active ride entry; steady pitch1, one looping bed. Stop on death or completion."
     },
     {
       "key": "level-two-ride/ride_land",
@@ -1518,7 +1519,8 @@
         "assets/audio/sfx/clogfather-v1/sludge-impact-a.wav"
       ],
       "source": "data/level-two-ride.json#/audio",
-      "status": "current"
+      "status": "current",
+      "trigger": "ride_landed only: board returns to supported water; quiet reused wet impact, no landing on gap failure."
     },
     {
       "key": "level-two-ride/ride_impact",
@@ -1531,7 +1533,8 @@
         "assets/audio/sfx/level-two-flush-v1/debris-impact.wav"
       ],
       "source": "data/level-two-ride.json#/audio",
-      "status": "current"
+      "status": "current",
+      "trigger": "Once per accepted barrier collision; debounce by obstacle/contact ID and damage invulnerability."
     },
     {
       "key": "level-two-ride/metal_impact",
@@ -1562,7 +1565,8 @@
           "generation_prompt": "Audition proposals for ride obstacles: two distinct options per shared material/event family. Metal and porcelain contacts, soft rubber/bristle impacts, moving float hinge, water flume launch. Original synthetic effects with clear movement versus impact labels. No runtime integration before Sean selects. Static valve01v2 and spike grate09v2 do not get invented movement sounds.",
           "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json"
         }
-      ]
+      ],
+      "trigger": "Accepted metal collision or airborne landing fully supported by a metal cleanout cap."
     },
     {
       "key": "level-two-ride/porcelain_contact",
@@ -1593,7 +1597,8 @@
           "generation_prompt": "Audition proposals for ride obstacles: two distinct options per shared material/event family. Metal and porcelain contacts, soft rubber/bristle impacts, moving float hinge, water flume launch. Original synthetic effects with clear movement versus impact labels. No runtime integration before Sean selects. Static valve01v2 and spike grate09v2 do not get invented movement sounds.",
           "source_manifest": "audio/sources/ride-obstacle-auditions-v1/manifest.json"
         }
-      ]
+      ],
+      "trigger": "Accepted porcelain collision or airborne landing fully supported by a porcelain basin slab."
     },
     {
       "key": "level-two-ride/soft_contact",

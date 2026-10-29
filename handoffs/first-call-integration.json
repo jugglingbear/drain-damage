@@ -1,23 +1,21 @@
 {
   "schema_version": 1,
-  "build": "Prototype 114 / 0.114.0",
-  "created_at": "2026-10-26T20:51:27.585470-07:00",
+  "build": "Prototype 115 / 0.115.0",
+  "created_at": "2026-10-28T20:10:32.531915-07:00",
   "timezone": "America/Los_Angeles",
   "utc_offset": "-07:00",
-  "source_commit": "5ef852c679bbf1cddb56dfb9ae98c327a56fef6c",
-  "status": "Ready locally: 48 packaged suites, 42 Python tests, 100 audio slots, exported entries and signed archive verify. Strainer/water visual acceptance pending; no game window opened.",
-  "app": "builds/Prototype-114/Drain Damage.app",
-  "archive": "builds/history/Prototype-114.zip",
-  "archive_sha256": "d24fe55023a0a7b9c91d055c47d3ae110cf05f0171a3bb053f53a0af54de9edf",
-  "source_snapshot": "builds/source-114",
-  "source_snapshot_files": 1879,
-  "previous_build_preserved": "Prototype113 app, archive and source preserved; all earlier builds retained.",
+  "source_commit": "65348af5187864ce41607873db82b4e1774b41bb",
+  "status": "Built locally for macOS and Windows; headless landing regression passes. Listening, visual capture and Windows-native validation pending.",
+  "app": "builds/Prototype-115/Drain Damage.app",
+  "archive": "builds/history/Prototype-115.zip",
+  "archive_sha256": "07fda5958fb7917a312ba03715c257b6e9451bb9b84318373505579f9b2804ba",
+  "source_snapshot": "builds/source-115",
+  "source_snapshot_files": 1886,
+  "previous_build_preserved": "Prototype 114 app, archive and source remain intact.",
   "changes": [
-    "The same full-size basket rides a ceiling rail into view, holds visibly for0.9s, winds up, then strikes fully onscreen at3.10s. Pit activation is synchronized; hoist clears by3.25s.",
-    "Late Hermite travel keeps the whole basket and winch onscreen and meets the fixed target continuously. Both heroes remain clear at every horizontal anchor.",
-    "Whole-channel water flows independently of world scroll. Authored sparse ripples and inward foam use the continuous simulation clock, preserving pause/freeze and encounter transitions.",
-    "New exact-boundary dark openings replace waterfall panels, with shallow inner walls and thin irregular wet rims. Authored transparency is normalized once and cached; original assets remain intact.",
-    "560 ride speed, zero explicit rests, collision footprints, hero controls and camera remain unchanged."
+    "Landing material is captured from full-board deck support before encounter advancement. Cleanout caps use metal; basin slabs use porcelain; water uses the wet cue.",
+    "Ride-on entry remains silent; each airborne landing emits one cue. Gameplay geometry and timing are unchanged.",
+    "Audio registry and searchable auditions now include ride cue trigger descriptions; all existing files, candidates and IDs are preserved."
   ],
   "entry": {
     "flush": "make run LEVEL=2",
@@ -25,41 +23,35 @@
     "direct": "make run LEVEL=2-01 (through 2-13)",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
     "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-114/Drain Damage.app\"",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-115/Drain Damage.app\"",
     "slalom": "make run LEVEL=2-01",
     "breach": "make run LEVEL=2-02",
     "float_sweep": "make run LEVEL=2-06",
-    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-114/Drain Damage.app\"",
-    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-114/Drain Damage.app\"",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-115/Drain Damage.app\"",
     "brushes": "make run LEVEL=2-04",
-    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-114/Drain Damage.app\"",
-    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-114/Drain Damage.app\""
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-115/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-115/Drain Damage.app\""
   },
   "checks": {
-    "packaged_suites_passed": 48,
-    "packaged_suites_total": 48,
-    "results": "builds/verification-114/final-results.json",
-    "strainer_visibility": "216 direct/zero-rest entry cases,36720 actual-wrapper poses across both heroes/all modes/anchors/frame rates. Full basket/winch visible; collision/visual envelope separation.",
-    "water": "Prepared alpha retains transparent gaps and visible marks; exact pit cores opaque; independent flow,pause and zero-rest continuity; cached textures stable.",
-    "performance": "Source check:10000 four-row water layout evaluations in23.3ms; seven prepared textures. Initialization about5.96s including game/art loading. Headless CPU evidence, not GPU frame-rate acceptance.",
-    "python_tests": 42,
-    "python_log": "builds/verification-114/python.log",
-    "audio_freshness": "100 slots fresh; no audio changes.",
-    "exported_entries": "2-12 Sean Hard screenshot mode on;2-13 Tony Normal screenshot mode off.",
-    "signature_archive": "codesign strict and ZIP integrity pass",
+    "source_ride_suites_passed": 6,
+    "packaged_landing_regression": "Both heroes; ride-on and jump-on entry, cap-to-cap, cap-to-water across encounter transition, porcelain support and retry reset.",
+    "python_tests": 44,
+    "audio_freshness": "100 slots checked after refresh and generation",
+    "exported_entries": "Mac executable: 2-07 Tony; Windows PCK on Mac: 1,2,2-landing,2-12,2-13.",
+    "signature_archive": "Mac strict codesign and archive CRC passed; Windows package integrity passed.",
+    "logs": "builds/verification-115/",
     "whitespace": "git diff --check passed"
   },
   "capture_gap": {
     "actual_capture": false,
-    "metadata": "storybook/114-visible-strainers-and-flowing-water/20261026-205127-capture-status.json",
-    "remaining": "Actual rendered before/after review and subjective clarity acceptance; build preserved for later capture."
+    "remaining": "Listening and actual gameplay capture require an approved session; both builds preserved."
   },
   "limitations": [
-    "No new game window or screenshot. Headless checks do not establish visual acceptance.",
-    "Headless geometry and CPU checks do not establish visual seam quality, motion readability or GPU performance.",
-    "Prior normal-paced new-obstacle and subjective sound acceptance gaps remain.",
-    "Camera assessment is feasibility only; no camera prototype implemented.",
-    "Existing Godot settings/log/certificate and shutdown warnings persist. Publication approved; remote push/deployment status recorded separately."
+    "No game window opened; no subjective listening or visual acceptance.",
+    "Windows executable and PowerShell checks not run on Windows.",
+    "Existing Godot shutdown resource warnings remain in logs.",
+    "Build made from source commit plus uncommitted changes; snapshot preserves tested source."
   ],
   "contributors": [
     "handoffs/level-two-ride-showcase-layout.json",
@@ -81,18 +73,16 @@
   ],
   "windows_export": {
     "date": "2026-10-28",
-    "version": "0.114.0",
+    "version": "0.115.0",
     "architecture": "x86_64",
-    "archive": "builds/Drain-Damage-0.114.0-windows-x86_64-20261028-215516-114074Z.zip",
-    "archive_sha256": "42ca2b69c31bef2efcb4bf9579a66b1fa9d383897641575621587da87063c787",
+    "archive": "builds/Drain-Damage-0.115.0-windows-x86_64-20261029-030851-396217Z.zip",
+    "archive_sha256": "bfb30302cd5679622241589bcfcfaa2ea0d754eb62ebae117c86593444c9d562",
     "status": "Cross-exported on macOS; Windows-native validation pending. No VM or Windows machine used.",
     "checks": [
       "44 Python tests",
-      "PE architecture and embedded product/version metadata",
-      "ZIP CRC and member SHA-256",
+      "Package integrity and x86_64 PE checks",
       "Five exported PCK initialization checks on macOS",
-      "100 audio slots current",
-      "Dependency readiness and version sync"
+      "100 audio slots current"
     ],
     "known_limitations": [
       "Unsigned Windows executable",
@@ -106,5 +96,6 @@
       "make build-all"
     ],
     "instructions": "docs/DEVELOPMENT.md#windows-exports-and-testing"
-  }
+  },
+  "source_dirty_at_build": true
 }
