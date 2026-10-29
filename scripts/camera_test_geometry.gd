@@ -42,7 +42,7 @@ static func floor_patch(parent: Node3D, bounds: Rect2, height: float, material: 
 
 static func slab(parent: Node3D, bounds: Rect2, top: float, thickness: float,
 		top_material: Material, side_material: Material) -> void:
-	floor_patch(parent,bounds,top,top_material)
+	floor_patch(parent,bounds,top,top_material,true)
 	var a := bounds.position
 	var b := bounds.end
 	var rim: Array[Vector3] = [Vector3(a.x,top,a.y),Vector3(b.x,top,a.y),
@@ -50,7 +50,9 @@ static func slab(parent: Node3D, bounds: Rect2, top: float, thickness: float,
 	for index in 4:
 		var p := rim[index]
 		var q := rim[(index+1)%4]
-		quad(parent,[p,q,q-Vector3.UP*thickness,p-Vector3.UP*thickness],side_material)
+		var length := p.distance_to(q)
+		quad(parent,[p,q,q-Vector3.UP*thickness,p-Vector3.UP*thickness],side_material,
+			[Vector2.ZERO,Vector2(length/1.5,0),Vector2(length/1.5,thickness/1.5),Vector2(0,thickness/1.5)])
 
 static func ellipse(parent: Node3D, center: Vector2, radii: Vector2, top: float,
 		bottom: float, top_material: Material, side_material: Material, cap := true) -> void:

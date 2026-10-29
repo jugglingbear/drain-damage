@@ -24,11 +24,11 @@ func checks() -> void:
 		var start: Vector2 = model.position
 		assert(view.request_turn(model))
 		view.update_view(model,.6,false,0)
-		assert(is_equal_approx(view.yaw,10))
+		assert(is_equal_approx(view.yaw,0))
 		view.update_view(model,1,true,0)
-		assert(is_equal_approx(view.yaw,10) and model.position == start and model.clock == 0)
+		assert(is_equal_approx(view.yaw,0) and model.position == start and model.clock == 0)
 		view.update_view(model,.6,false,0)
-		assert(is_equal_approx(view.yaw,20) and not view.turning())
+		assert(is_equal_approx(view.yaw,view.SECOND_YAW) and not view.turning())
 		model.position = model.LAYOUT.hole.center
 		assert(not view.request_turn(model))
 		game._physics_process(1.0/60)

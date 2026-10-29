@@ -40,9 +40,9 @@ func reset_game() -> void:
 	super.reset_game()
 	camera_model.reset()
 	if camera_view != null:
-		camera_view.yaw = 0
-		camera_view.target_yaw = 0
-		camera_view.turn_start = 0
+		camera_view.yaw = camera_view.FIRST_YAW
+		camera_view.target_yaw = camera_view.FIRST_YAW
+		camera_view.turn_start = camera_view.FIRST_YAW
 		camera_view.turn_age = 1.2
 	dialogue.finish()
 	dialogue.release_guard = 0

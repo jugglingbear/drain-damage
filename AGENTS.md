@@ -59,6 +59,10 @@
 - Use a temporary launch override for agent testing so normal user launches remain large.
 - Do not leave an agent test running in a large window unless explicitly handing it over for Sean's playtest.
 
+- Before presenting visual game changes as ready, capture the running build and inspect the screenshot yourself.
+  Check framing, lighting, proportions and contact at relevant camera angles; headless tests are not visual acceptance.
+  Follow the launch permission rules above and record any blocked capture honestly.
+
 ## Build delivery and notifications
 
 - After integrating game changes, including deliveries from other agents, build and run the relevant checks.

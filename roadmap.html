@@ -77,7 +77,7 @@ Opening the game still requires Sean’s permission.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 28, 2026 · Current build: Prototype 118 / 0.118.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 28, 2026 · Current build: Prototype 119 / 0.119.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 101 — active swimmer visibility:</strong> Active swimmers now draw above the opaque drain
 foreground and debris. Chest clipping remains intact, with deliberate drain occlusion retained at seconds 40–43.
 Nine deterministic packaged suites pass, including 12,288 draw-order cases; signed archive and both direct entries
@@ -96,17 +96,22 @@ are archived with IDs and files retained. Pitch recipe is preserved for future a
 The boss and camera changes remain plans only. The Maintenance Hand, giant brushes and ceiling-strainer variants are approved and delivered below.
 <a href="design/level-two-depth-concepts-v1/index.html">Five concept proposals ready for review</a>;
 <a href="handoffs/level-two-ride-showcase-layout.json">candidate dimensions and validation gates</a>.</p>
-<p id="camera-perspective-prototype"><strong>Prototype 118 — isolated Level 2.1 Camera Test (built locally):</strong>
+<p id="camera-perspective-prototype"><strong>Prototype 119 — revised Level 2.1 Camera Test:</strong>
 Sean approved a standalone Level 2.1 comparison entry; full-level and full-game migration remain unapproved. The preferred approach is simple 3D
 surfaces and extrusions with authored textures and illustrated sprite actors, viewed through a shared orthographic
 camera with bounded yaw/pitch and a fixed-view fallback. This supersedes the earlier fixed-angle 2D-only recommendation;
 a custom 2D projection remains a smaller, constrained alternative.
 Immediate scope: Level 2.1 basin, brass cleanout platform, round hole, flowing water and ramp.
 A representative Level 1 proof remains proposed later work, outside this immediate authorization.
-The isolated proof is packaged: fixed 50-degree pitch, 0/20-degree yaw and a 1.2-second comparison turn on safe water.
+The isolated proof is packaged: fixed 35-degree pitch, +18/-18-degree yaw and a 1.2-second comparison turn on safe water.
 Run <code>make run LEVEL=2.1</code>; C/RB or the button turns the camera and briefly pauses movement.
 Both-hero contact, camera/pause and retry tests pass in source and exported packages; 44 Python tests pass.
-Actual rendered review, screenshots, material seams, painted-board perspective and native Windows performance remain pending.
+Sean rejected the initial appearance on October 28: washed-out surfaces, stretched textures and weak depth do not meet
+the intended 2.5D presentation. Art and Engineering must agree a corrected composition and verify an actual render
+before acceptance. Native Windows performance remains pending.
+Prototype 119 corrects texture scale, oblique framing, lighting and hero contact, with blended water seams.
+Engineering inspected actual macOS captures at both angles, on the basin and on the ramp. Basin and cleanout shapes
+remain simplified placeholders; Sean’s acceptance and native Windows validation remain pending.
 This is a proof, not a production conversion. Preserve level-relative
 controls, flat HUD/dialogue and gameplay simulation where possible; coordinate and rendering adapters are required.
 Side faces and sprite-facing coverage must support the allowed angles. Round openings, projected ellipses, collision

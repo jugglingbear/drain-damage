@@ -146,14 +146,15 @@ make run LEVEL=2.1 HERO=sean
 
 The existing Level 2 entries remain available. This proof contains a raised porcelain slab, brass platform,
 round opening with flowing water, and ramp. Move with the existing arrows/WASD/stick and jump with Space/A.
-C, controller RB, or the camera button toggles between fixed 0-degree and 20-degree yaw views from safe water.
+C, controller RB, or the camera button toggles between fixed +18-degree and -18-degree yaw views from safe water.
 Movement pauses for the 1.2-second comparison turn; Escape pauses the whole test. A fall costs one life and uses
 normal retry controls. The interface stays flat while the world camera turns.
 
 This is a presentation and contact proof, not a converted production level. Surrounding water is safe; the round
 opening is lethal. Slabs auto-step, the ramp uses a center-height contact model, and the reused hero image includes
-its painted board. Tile seams, sprite foreshortening, actual graphics performance and native Windows rendering
-still require visual review. Full-level migration remains unapproved.
+its painted board. Prototype 119 uses a 35-degree camera pitch, contact-anchored billboards and blended water texture seams.
+Actual macOS captures were inspected at both angles, on the basin and on the ramp. Props remain simplified;
+performance benchmarking and native Windows rendering still need review. Full-level migration remains unapproved.
 
 ## Windows exports and testing
 
