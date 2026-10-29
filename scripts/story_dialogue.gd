@@ -27,7 +27,7 @@ static func choose_death_line() -> Dictionary:
 const OPENING: Array[Dictionary] = [
 	{"who": "bj", "emotion": "happy", "text": "Welcome. I’m Billy-Joe. I manage Mainframe Plumbing & Supply. You can call me BJ."},
 	{"who": "tony", "emotion": "happy", "text": "Morning, BJ. I’m Tony, and this is Sean, my new apprentice. What have you got for us?"},
-	{"who": "bj", "emotion": "neutral", "text": "Something in the basement is eating company property. I need you to stop it."},
+	{"who": "bj", "emotion": "neutral", "text": "We’ve had seventeen reports of sewage backing up. The inspection camera came back without its camera. I’ve consolidated everything into one ticket. Yours. Access is through the basement."},
 	{"who": "sean", "emotion": "happy", "text": "I brought a wrench."},
 	{"who": "tony", "emotion": "neutral", "text": "That’s a tire iron, buddy. We’ll get you sorted."},
 	{"who": "tony", "emotion": "worried", "text": "BJ, is there anyone down there?"},

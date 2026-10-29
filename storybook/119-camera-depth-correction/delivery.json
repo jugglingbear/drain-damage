@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "build": "Prototype 119 / 0.119.0",
+  "created_at": "2026-10-28T21:31:35.934165-07:00",
+  "timezone": "America/Los_Angeles",
+  "utc_offset": "-07:00",
+  "source_commit": "f1eb100",
+  "status": "Revised camera proof built and actual macOS screenshots inspected; Sean acceptance and native Windows validation pending.",
+  "app": "builds/Prototype-119/Drain Damage.app",
+  "archive": "builds/history/Prototype-119.zip",
+  "archive_sha256": "4165e1bdddc9f132f77559462101b30532628ac2cacd43aaf77d70ad70cb8118",
+  "source_snapshot": "builds/source-119",
+  "source_snapshot_files": 2606,
+  "previous_build_preserved": "Prototype118 and earlier apps, archives and snapshots preserved;119 candidate1 archived separately.",
+  "changes": [
+    "Oblique18/-18degree yaw,35degree pitch and closer framing.",
+    "Lower neutral lighting, consistent wall UV scale, taller far wall and below-water cleanout housing.",
+    "Full camera-facing hero with contact-pixel pivot and authored ground shadow.",
+    "Darker translucent water, restrained downflow and provisional authored basin drain.",
+    "Blend authored water texture across tile edges; inspect actual basin, ramp and both camera views."
+  ],
+  "entry": {
+    "flush": "make run LEVEL=2",
+    "landing": "make run LEVEL=2-landing",
+    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
+    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
+    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-119/Drain Damage.app\"",
+    "slalom": "make run LEVEL=2-01",
+    "breach": "make run LEVEL=2-02",
+    "float_sweep": "make run LEVEL=2-06",
+    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-119/Drain Damage.app\"",
+    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-119/Drain Damage.app\"",
+    "brushes": "make run LEVEL=2-04",
+    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-119/Drain Damage.app\"",
+    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-119/Drain Damage.app\"",
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-119/Drain Damage.app\""
+  },
+  "checks": {
+    "python_tests": 44,
+    "source_suites": [
+      "camera_test_model",
+      "camera_test_integration"
+    ],
+    "packaged_suites": [
+      "camera_test_integration"
+    ],
+    "model_coverage": "30/60/120/144Hz trajectory/death invariance, half-footprint/ellipse support, rounded-corner hole sweep, jump clearance, ramp descent/exit and death reset.",
+    "integration_coverage": "Both heroes, normal/hard artwork, authored materials, independent old entry, bounded camera turn, pause freeze, one-life hole death and retry.",
+    "audio_freshness": "100 slots checked",
+    "signature_archive": "Mac strict codesign and both ZIP CRC checks pass; Windows PE and six host PCK initialization checks pass.",
+    "limitations": "Known shutdown resource warnings persist. Native Windows, benchmarking and Tony visual capture pending. Markdown linter and PowerShell unavailable."
+  },
+  "capture_gap": {
+    "actual_capture": true,
+    "metadata": "storybook/119-camera-depth-correction/captures.json",
+    "remaining": "Tony-specific rendered capture, benchmark and native Windows testing."
+  },
+  "limitations": [
+    "Basin and cleanout shapes remain simplified; authored hero composite includes a painted board.",
+    "Actual Sean views inspected at both angles, basin and ramp; Tony covered by integration tests but no119 visual capture.",
+    "Safe surrounding water differs from lethal basin-island encounter; raised slabs auto-step, no underside/side-wall collision, ramp uses center height and half-footprint support.",
+    "Camera turns deliberately pause movement; player-controlled360rotation and full migration remain unapproved.",
+    "Production brush04 silhouette and strainer12/13 round-hole defects are not fixed by this separate proof.",
+    "Existing shutdown resource warnings remain."
+  ],
+  "contributors": [
+    "handoffs/level-two-ride-showcase-layout.json",
+    "handoffs/ride-showcase-art.json",
+    "handoffs/level-two-ride-mechanics.json",
+    "handoffs/ride-obstacle-auditions.json",
+    "assets/world/float-wall-mount-v2/proposed-registration.json",
+    "handoffs/maintenance-hand-art.json",
+    "audio/sources/ride-fall-panic-v1/manifest.json",
+    "handoffs/giant-brush-v2-art.json",
+    "handoffs/ceiling-strainer-v1-art.json",
+    "assets/world/level-two-camera-test-v1/manifest.json",
+    "scripts/camera_test_model.gd",
+    "design/level-two-camera-concepts-v1/concept.json"
+  ],
+  "publication_hold": "Lifted by Sean: commit and push all completed project work, including magazine33, after final checks.",
+  "proposals_not_implemented": [
+    "Full-level/game camera migration",
+    "Level1 camera proof",
+    "Wall ram gameplay",
+    "Hungry-head final boss"
+  ],
+  "windows_export": {
+    "date": "2026-10-28",
+    "version": "0.119.0",
+    "architecture": "x86_64",
+    "archive": "builds/Drain-Damage-0.119.0-windows-x86_64-20261029-042959-375975Z.zip",
+    "archive_sha256": "7c3a6a8e910940d559bae641a5dd5643ad040966c0ef57484d2dbe0b5f08b417",
+    "status": "Cross-exported on macOS; Windows-native validation pending. No VM or Windows machine used.",
+    "checks": [
+      "44 Python tests",
+      "x86_64 PE and ZIP integrity",
+      "Six exported PCK initialization checks on macOS including2.1",
+      "100 sound slots current"
+    ],
+    "known_limitations": [
+      "Unsigned Windows executable",
+      "Existing verification shutdown resource warnings recorded in manifest",
+      "PowerShell script not executed; no PowerShell available on this Mac",
+      "Markdown lint unavailable locally",
+      "No Windows gameplay capture; capture after native test permission"
+    ],
+    "commands": [
+      "make build-windows",
+      "make build-all"
+    ],
+    "instructions": "docs/DEVELOPMENT.md#windows-exports-and-testing"
+  },
+  "source_dirty_at_build": true,
+  "previous_visual_review": {
+    "date": "2026-10-28",
+    "result": "rejected",
+    "feedback": "Looks terrible; does not read as2.5D.",
+    "observed": [
+      "Washed-out slab and rails; stretched side textures.",
+      "Bright repetitive water and sparse background overwhelm weak surface depth.",
+      "Reused billboard composite does not convincingly ground the hero."
+    ],
+    "next": "Agree a concrete composition with Art before presentation revision; actual rendered review required. No full migration authorized."
+  }
+}
