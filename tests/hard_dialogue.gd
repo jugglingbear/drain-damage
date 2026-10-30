@@ -28,9 +28,9 @@ func run_checks() -> void:
 						expected = expected.to_upper()
 					assert(dialogue.current_text() == expected)
 					var paragraph := TextParagraph.new()
-					paragraph.width = 520
-					paragraph.add_string(expected, ThemeDB.fallback_font, 21)
-					assert(paragraph.get_size().y <= 100, "Dialogue must fit above skip controls")
+					paragraph.width = dialogue.TEXT_WIDTH
+					paragraph.add_string(expected, ThemeDB.fallback_font, dialogue.fitted_font_size(expected))
+					assert(paragraph.get_size().y <= dialogue.TEXT_HEIGHT, "Dialogue must fit above skip controls")
 					dialogue.tick(0.01, false)
 					assert(dialogue.revealed > 0 and dialogue.revealed < expected.length())
 					dialogue.advance()
@@ -39,6 +39,8 @@ func run_checks() -> void:
 				assert(not dialogue.active and dialogue.awaiting_release)
 				dialogue.start(conversation)
 				dialogue.release_guard = 0
+				# Let the prior release cross an input frame before asserting a fresh press.
+				await create_timer(0.02).timeout
 				Input.action_press("dialogue_skip")
 				dialogue.tick(0.01, false)
 				assert(not dialogue.active and dialogue.awaiting_release)

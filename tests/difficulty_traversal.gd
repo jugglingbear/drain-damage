@@ -30,7 +30,11 @@ func run_checks() -> void:
 				Input.action_press("shoot")
 				var hz := 60 if seed_value == 7 else 120
 				for tick in range(180*hz):
-					if game.dispenser.actions_locked:
+					if game.intro_input_release:
+						# A player must release held fire after a boss introduction before rearming it.
+						Input.action_release("shoot")
+						if Input.is_action_pressed("jump"): Input.action_release("jump")
+					elif game.dispenser.actions_locked:
 						Input.action_release("shoot")
 						game.dispenser.tick(game,1.0/hz)
 					else: Input.action_press("shoot")
@@ -72,7 +76,12 @@ func run_checks() -> void:
 						if actor.hp > 0 and actor.role == "aggressive_flyer": widows += 1
 					assert(widows <= 1)
 					if widows > 0: assert(game.ordinary_population() <= 6)
-				if game.player.x < 9450: print("STALLED ",mode," hero",hero," x",game.player," boss",game.skitterling.encounter.snapshot()," shots",game.shots.size()," aim",game.current_aim)
+				if game.player.x < 9450:
+					print("STALLED ",mode," hero",hero," seed",seed_value," x",game.player,
+						" life",game.life_state," paused",game.paused," dialogue",game.dialogue.active,
+						" guard",game.dialogue.release_guard," dispenser",game.dispenser.active,
+						" intro_guard",game.intro_input_release," axis",Input.get_axis("left","right"),
+						" boss",game.skitterling.encounter.snapshot()," shots",game.shots.size()," aim",game.current_aim)
 				assert(not game.won and game.player.x >= 9450, "The former exit continues toward Clogfather")
 				print("MODE ",mode," hero",hero," seed",seed_value," x",game.player.x,
 					" issued",game.trial_state.results().issued," waves",game.wave_spawned)
@@ -116,5 +125,7 @@ func run_checks() -> void:
 				assert(game.encounter_states["normal-route-08" if mode == "normal" else "wave-0-07"] == "bypassed")
 				game.queue_free()
 				await process_frame
+				# Manual simulation loops do not advance Godot's input-edge bookkeeping.
+				await physics_frame
 	print("PASS:18mode/hero/seed traversals60/120Hz,all caps,unique Widow,moving respawn grace and safe tail bypass")
 	quit()

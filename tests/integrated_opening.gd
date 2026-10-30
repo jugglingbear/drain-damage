@@ -18,8 +18,9 @@ func run_checks() -> void:
 		game.invulnerable = 100
 		assert(game.mission.current_zone == 2 and game.mission.remaining() == 0)
 		assert(game.mission.zone_counts.slice(0,2) == [0,0])
-		assert(game.trial_level.width == 9600)
-		assert(game.trial_level.decks.size() == 3)
+		assert(game.trial_level.width == game.ClogfatherRoute.WORLD_WIDTH)
+		assert(game.trial_level.decks.size() == 3+game.ClogfatherRoute.LEDGES.size())
+		for ledge in game.ClogfatherRoute.LEDGES: assert(game.trial_level.decks.has(ledge))
 		assert(game.swarms.actors.size() == 1 and game.swarms.actors[0].pos.x == 4400)
 		Input.action_press("right")
 		Input.action_press("shoot")
@@ -68,7 +69,7 @@ func run_checks() -> void:
 		var body: Dictionary = game.move_player_body(Vector2(3100,394),Vector2(-235,0),Vector2(26,46),0.1)
 		assert(body.pos.x < 3100, "Backtracking cannot hit removed gate")
 		# Checkpoint death rebuilds its owned segment and excludes the earlier opening.
-		assert(game.Level.CHECKPOINTS == [4650.0])
+		assert(game.Level.CHECKPOINTS == [4650.0,game.ClogfatherRoute.CHECKPOINT])
 		game.player = Vector2(4649,394)
 		game._physics_process(0)
 		assert(game.checkpoint_index == -1)
@@ -81,7 +82,7 @@ func run_checks() -> void:
 		game.respawn_after_death()
 		assert(game.player.x == 4650 and game.lives == 2)
 		assert(game.run_plan == before and game.mission.current_zone == 2)
-		assert(game.trial_state.results().unavailable == 12 and game.actors.is_empty())
+		assert(game.trial_state.results().unavailable == game.run_plan.opening.size() and game.actors.is_empty())
 		game.dispenser.cancel()
 		game.dialogue.release_guard = 0
 		# Former shutters never block either direction or shots, regardless of kills.
@@ -122,8 +123,11 @@ func run_checks() -> void:
 		game.camera_x = 4580
 		game.step_encounters(0.7)
 		assert(game.kills == initial_kills, "Retirement is not a kill")
-		assert(game.wave_bypassed[0]+game.wave_spawned[0] == 8)
-		# Ordinary enemies cannot block the exit after the commissioned boss is complete.
+		var first_wave_count := 0
+		for event in game.run_plan.later:
+			if event.enabled and event.wave == 0: first_wave_count += 1
+		assert(game.wave_bypassed[0]+game.wave_spawned[0] == first_wave_count)
+		# The old exit continues toward the finale; defeating Skitterling cannot end the level.
 		game.checkpoint_index = 0
 		game.dispenser.cancel()
 		game.skitterling.entered = true
@@ -132,11 +136,11 @@ func run_checks() -> void:
 		game.player = Vector2(9451,394)
 		game.dialogue.release_guard = 0
 		game._physics_process(0)
-		assert(game.won)
+		assert(not game.won and not game.ending.active() and not game.flush.active)
 		game.reset_game()
 		assert(game.lives == 3 and game.player.x == 85 and game.mission.remaining() == 0)
 		assert(game.trial_state.elapsed == 0 and not game.opening_passed)
 		game.queue_free()
 		await process_frame
-	print("PASS: both heroes continuous past20s, seamless boundary, checkpoints/lives, ungated crowds and quota-free exit")
+	print("PASS: both heroes continuous past20s, seamless boundary, canonical finale/checkpoints, ungated crowds and old-exit continuation")
 	quit()

@@ -67,7 +67,7 @@ func run_checks() -> void:
 		game.employee = employee
 		game.reset_game()
 		game.complete_job()
-		assert(game.dialogue.lines.size() == 9)
+		assert(game.dialogue.lines == (game.Story.COMPLETION_TONY if employee.id == "tony" else game.Story.COMPLETION_SEAN))
 		assert(game.dialogue.lines[0].who == employee.id)
 		assert(game.dialogue.lines[1].radio and game.dialogue.lines[1].who != employee.id)
 		for entry in game.dialogue.lines:

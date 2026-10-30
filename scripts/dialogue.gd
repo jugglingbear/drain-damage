@@ -3,6 +3,9 @@ extends Node2D
 
 const Portraits = preload("res://scripts/portrait_library.gd")
 const REVEAL_SPEED := 42.0
+const TEXT_WIDTH := 520.0
+const TEXT_HEIGHT := 96.0
+const TEXT_FONT_SIZE := 21
 var using_controller := false
 var active := false
 var lines: Array[Dictionary] = []
@@ -85,6 +88,16 @@ func tick(delta: float, is_paused: bool) -> void:
 			advance()
 	queue_redraw()
 
+func fitted_font_size(text: String) -> int:
+	# Measure the complete line so revealing letters never changes its font size.
+	for size in range(TEXT_FONT_SIZE, 11, -1):
+		var paragraph := TextParagraph.new()
+		paragraph.width = TEXT_WIDTH
+		paragraph.add_string(text, ThemeDB.fallback_font, size)
+		if paragraph.get_size().y <= TEXT_HEIGHT:
+			return size
+	return 12
+
 func _draw() -> void:
 	if not active:
 		return
@@ -109,8 +122,8 @@ func _draw() -> void:
 	draw_string(font, Vector2(390, 385), role, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("9aafb8"))
 	var text := current_text().substr(0, int(revealed))
 	var paragraph := TextParagraph.new()
-	paragraph.width = 520
-	paragraph.add_string(text, font, 21)
+	paragraph.width = TEXT_WIDTH
+	paragraph.add_string(text, font, fitted_font_size(current_text()))
 	paragraph.draw(get_canvas_item(), Vector2(390, 397), Color("f1eee4"))
 	draw_string(font, Vector2(885, 365), "%d / %d" % [line_index + 1, lines.size()],
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 13, accent)
