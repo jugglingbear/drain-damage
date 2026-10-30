@@ -99,6 +99,9 @@ def discover() -> dict[str, dict[str, Any]]:
     ride_path = ROOT / "data/level-two-ride.json"
     if ride_path.exists():
         ride = json.loads(ride_path.read_text())
+        if "music" in ride:
+            add("proposed-level-two-ride/music", "Level 2", "Ride music — Fighting Is Not an Option",
+                [ride["music"]["path"]], "data/level-two-ride.json#/music")
         for cue in ride.get("audio", {}).get("cues", []):
             add(f"level-two-ride/{cue['event']}", "Level 2", f"Log ride — {cue['event'].replace('_', ' ')}",
                 [cue["path"]], "data/level-two-ride.json#/audio")

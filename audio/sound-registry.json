@@ -1992,14 +1992,187 @@
       "key": "level-two-ride/fall_panic",
       "id": "DD-S0107",
       "uuid": "b96ce6a7-9e34-4a21-98b6-d32a6c5d0b72",
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "DD-S0107.1",
+          "path": "audio/alternatives/DD-S0107/DD-S0107.1.wav",
+          "name": "Natural human falling scream 1",
+          "source_manifest": "audio/sources/ride-human-fall-and-smash-v1/manifest.json",
+          "provenance": "JohnsonBrandEditing, CC0-1.0; Aargh pack extracts6/5 by congusbongus."
+        },
+        {
+          "id": "DD-S0107.2",
+          "path": "audio/alternatives/DD-S0107/DD-S0107.2.wav",
+          "name": "Natural human falling scream 2",
+          "source_manifest": "audio/sources/ride-human-fall-and-smash-v1/manifest.json",
+          "provenance": "JohnsonBrandEditing, CC0-1.0; Aargh pack extracts6/5 by congusbongus."
+        }
+      ],
       "section": "Level 2",
       "name": "Log ride \u2014 fall panic",
       "paths": [
-        "assets/audio/sfx/ride-fall-panic-v1/fall-panic.wav"
+        "assets/audio/sfx/ride-human-fall-and-smash-v1/fall-human.wav"
       ],
       "source": "data/level-two-ride.json#/audio",
-      "status": "current"
+      "status": "current",
+      "trigger": "Once at fatal support loss."
+    },
+    {
+      "id": "DD-S0108",
+      "key": "level-two-ride/track_smash",
+      "uuid": "df06372b-bb65-4da3-92a3-6b7f8976b057",
+      "name": "Log ride \u2014 track smash",
+      "section": "Level 2",
+      "paths": [
+        "assets/audio/sfx/ride-human-fall-and-smash-v1/track-smash.wav"
+      ],
+      "source": "data/level-two-ride.json#/audio",
+      "status": "current",
+      "alternatives": [
+        {
+          "id": "DD-S0108.1",
+          "path": "audio/alternatives/DD-S0108/DD-S0108.1.wav",
+          "name": "Track smash and falling rubble 1",
+          "source_manifest": "audio/sources/ride-human-fall-and-smash-v1/manifest.json",
+          "provenance": "rubberduck, 75 CC0 breaking / falling / hit SFX, CC0-1.0."
+        },
+        {
+          "id": "DD-S0108.2",
+          "path": "audio/alternatives/DD-S0108/DD-S0108.2.wav",
+          "name": "Track smash and falling rubble 2",
+          "source_manifest": "audio/sources/ride-human-fall-and-smash-v1/manifest.json",
+          "provenance": "rubberduck, 75 CC0 breaking / falling / hit SFX, CC0-1.0."
+        }
+      ],
+      "trigger": "Once when a timed track opening fractures; independent of hero contact."
+    },
+    {
+      "id": "DD-S0109",
+      "key": "level-two-ride/board_fart",
+      "uuid": "73b3124e-0f4d-49ee-81e0-4b4d58c7c0d5",
+      "name": "Log ride \u2014 board fart",
+      "section": "Level 2",
+      "paths": [
+        "assets/audio/sfx/ride-fidget-fart-v1/board-fart.wav"
+      ],
+      "status": "current",
+      "source": "data/level-two-ride.json#/audio",
+      "alternatives": [
+        {
+          "id": "DD-S0109.1",
+          "path": "audio/alternatives/DD-S0109/DD-S0109.1.wav",
+          "name": "Recorded wet flutter",
+          "source_manifest": "audio/sources/ride-fidget-fart-v1/manifest.json",
+          "provenance": "LFA, Gastric Distress, CC0-1.0; performed mouth/hand foley."
+        },
+        {
+          "id": "DD-S0109.2",
+          "path": "audio/alternatives/DD-S0109/DD-S0109.2.wav",
+          "name": "Recorded short sputter",
+          "source_manifest": "audio/sources/ride-fidget-fart-v1/manifest.json",
+          "provenance": "LFA, Gastric Distress, CC0-1.0; performed mouth/hand foley."
+        }
+      ]
+    },
+    {
+      "id": "DD-S0110",
+      "key": "proposed-level-two-ride/music",
+      "uuid": "cdc521f0-9060-43ba-8b73-ee4a7aec4cd9",
+      "name": "Ride music \u2014 Fighting Is Not an Option",
+      "group": "Ride music auditions",
+      "section": "Level 2",
+      "paths": [
+        "assets/audio/music/ride-fighting-is-not-an-option-v2.ogg"
+      ],
+      "status": "current",
+      "source": "data/level-two-ride.json#/music",
+      "alternatives": [
+        {
+          "id": "DD-S0110.1",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.1.ogg",
+          "name": "RESERVED for another level \u2014 Determined Pursuit",
+          "source_manifest": "audio/sources/ride-music-auditions-v1/manifest.json",
+          "provenance": "Emma_MA; CC0-1.0; https://opengameart.org/content/determined-pursuit-epic-orchestra-loop",
+          "selection_status": "reserved_for_other_level"
+        },
+        {
+          "id": "DD-S0110.2",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.2.ogg",
+          "name": "Unexplored Expansion \u2014 Exploration and unfamiliar surroundings; an alternative to constant danger.",
+          "source_manifest": "audio/sources/ride-music-auditions-v1/manifest.json",
+          "provenance": "Bo Jingles and TAD; CC0-1.0; https://opengameart.org/content/unexplored-expansion",
+          "selection_status": "rejected_for_level_two"
+        },
+        {
+          "id": "DD-S0110.3",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.3.ogg",
+          "name": "Fantasy Orchestral Theme \u2014 Fantasy adventure and a gradual orchestral buildup.",
+          "source_manifest": "audio/sources/ride-music-auditions-v1/manifest.json",
+          "provenance": "Joth; CC0-1.0; https://opengameart.org/content/fantasy-orchestral-theme",
+          "selection_status": "rejected_for_level_two"
+        },
+        {
+          "id": "DD-S0110.4",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.4.ogg",
+          "name": "Judgement \u2014 Tense fantasy scoring with orchestral and synth textures.",
+          "source_manifest": "audio/sources/ride-music-auditions-v1/manifest.json",
+          "provenance": "Spring Spring / Julie Damsgaard; CC0-1.0; https://opengameart.org/content/courtroom-and-judgement",
+          "selection_status": "rejected_for_level_two"
+        },
+        {
+          "id": "DD-S0110.5",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.5.ogg",
+          "name": "Battle Theme \u2014 Direct orchestral tension for a hazardous ride.",
+          "source_manifest": "audio/sources/ride-music-auditions-v1/manifest.json",
+          "provenance": "Wolfgang_ / Theodore Kerr; CC0-1.0; https://opengameart.org/content/battle-theme-0",
+          "selection_status": "rejected_for_level_two"
+        },
+        {
+          "id": "DD-S0110.6",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.6.ogg",
+          "name": "Cave Theme \u2014 Mysterious underground atmosphere; a calmer contrast.",
+          "source_manifest": "audio/sources/ride-music-auditions-v1/manifest.json",
+          "provenance": "Brandon75689 / HaelDB; CC0-1.0; https://opengameart.org/node/3922",
+          "selection_status": "rejected_for_level_two"
+        },
+        {
+          "id": "DD-S0110.7",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.7.ogg",
+          "name": "NEW \u2014 Super Wreck Roadway \u2014 Action rock written for racing/chase; audition for relentless forward motion.",
+          "source_manifest": "audio/sources/ride-music-auditions-v2/manifest.json",
+          "provenance": "Umplix; CC0-1.0; https://opengameart.org/content/super-wreck-roadway"
+        },
+        {
+          "id": "DD-S0110.8",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.8.ogg",
+          "name": "NEW \u2014 Simple Action Beat \u2014 Looping rock/funk groove; audition for steady backbeat and rhythmic focus.",
+          "source_manifest": "audio/sources/ride-music-auditions-v2/manifest.json",
+          "provenance": "LushoGames; CC0-1.0; https://opengameart.org/content/simple-action-beat"
+        },
+        {
+          "id": "DD-S0110.9",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.9.ogg",
+          "name": "NEW \u2014 Plomo \u2014 Live-recorded bass and guitar; audition for physical funk-rock groove.",
+          "source_manifest": "audio/sources/ride-music-auditions-v2/manifest.json",
+          "provenance": "LushoGames; CC0-1.0; https://opengameart.org/content/plomo"
+        },
+        {
+          "id": "DD-S0110.10",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.10.ogg",
+          "name": "SELECTED \u2014 Fighting Is Not an Option",
+          "source_manifest": "audio/sources/ride-music-auditions-v2/manifest.json",
+          "provenance": "Cleyton Kauffman; CC0-1.0; https://opengameart.org/content/rpg-battle-theme-ii",
+          "selection_status": "approved_for_level_two"
+        },
+        {
+          "id": "DD-S0110.11",
+          "path": "audio/alternatives/DD-S0110/DD-S0110.11.ogg",
+          "name": "NEW \u2014 Chase \u2014 Fast electronic pursuit; audition for mechanical momentum and a stranger-world feel.",
+          "source_manifest": "audio/sources/ride-music-auditions-v2/manifest.json",
+          "provenance": "Adiutorium; CC0-1.0; https://opengameart.org/content/chase-2"
+        }
+      ],
+      "selected_candidate": "DD-S0110.10"
     }
   ]
 }

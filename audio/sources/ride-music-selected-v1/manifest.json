@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-29",
+  "selected_candidate": "DD-S0110.10",
+  "title": "Fighting Is Not an Option",
+  "author": "Cleyton Kauffman",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source_url": "https://opengameart.org/content/rpg-battle-theme-ii",
+  "source_path": "audio/sources/ride-music-auditions-v2/fighting-is-not-an-option.ogg",
+  "path": "assets/audio/music/ride-fighting-is-not-an-option-v2.ogg",
+  "duration_seconds": 70.24771,
+  "sha256": "9e97255361725a9c3358e6ac115ac9cc85374facb7f03f0bde0b35d843b275ed",
+  "ffmpeg_command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-n",
+    "-i",
+    "audio/sources/ride-music-auditions-v2/fighting-is-not-an-option.ogg",
+    "-af",
+    "loudnorm=I=-20:TP=-3:LRA=9,aresample=44100,asetpts=N/SR/TB",
+    "-ar",
+    "44100",
+    "-ac",
+    "2",
+    "-c:a",
+    "libvorbis",
+    "-q:a",
+    "6",
+    "assets/audio/music/ride-fighting-is-not-an-option-v2.ogg"
+  ],
+  "status": "Sean selected for Level2 ride. Full track prepared; Engineering integration and in-game loop/mix checks pending.",
+  "loop": true,
+  "loop_note": "Composer identifies source as looped. Full source retained without audition fade-out. Audible seam remains to be checked in game.",
+  "integration": "Dedicated ride music; start on ride entry, loop until exit/death; preserve pause/music mute/reset/disposal and hazard audibility. Flush Air Running Out unchanged. Suggested initial gain -8dB on normalized track; tune by listening.",
+  "superseded_processing_attempt": {
+    "path": "assets/audio/music/ride-fighting-is-not-an-option-v1.ogg",
+    "sha256": "e32a0e1cb7fd7ef38177a39687fcaac855ae10f968250f0f2c828bacbcd73b2b",
+    "reason": "Decoded with timestamp warnings; regenerated with continuous sample timestamps."
+  },
+  "validation": "Full runtime OGG decodes without warnings after timestamp normalization; audible loop/mix check pending."
+}
