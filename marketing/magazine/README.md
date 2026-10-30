@@ -23,11 +23,22 @@ ordered pages, text, captions, image references and layout templates. The PDF is
 The renderer uses the macOS fonts configured in `layout.font_directory`. Change that path and the font filenames
 if building elsewhere. Shared header/footer templates use `{page_number}` and `{section}` placeholders.
 
+## Edition 34 release refresh — October 30, 2026
+
+Page 6 replaces early screenshots with recent actual captured views: Easy Mode Tony in the basement (136),
+the flush and Sean riding (137). Copy now covers the costume, swimming and ride. The approved asymmetric layout,
+creature articles, concept-labeled flush inventory and Industrial Trade advertisement remain.
+All nine pages rendered and visually inspected; seven unchanged page streams match edition 33 exactly.
+`current.pdf` matches edition 34. Earlier PDFs, source snapshots and capture originals remain preserved.
+Capture provenance and exact PDF hash are in `guide-assets-v34/provenance.json`.
+These are controlled gameplay fixtures, not uninterrupted playthroughs or native Windows validation.
+No speculative first-person concept was inserted. Engineering and Release own publication and live verification.
+
 ## Edition 33 Industrial Trade advertisement — October 26, 2026
 
 Sean selected Industrial Trade. Page 9 now uses the refined photographic advertisement as a full-page image.
 The nine-page issue preserves all interior pages; the cover edition number advances to 33.
-Earlier PDFs and all six ad concepts remain preserved. `current.pdf` matches edition 33.
+Earlier PDFs and all six ad concepts remain preserved. At that delivery, `current.pdf` matched edition 33.
 Rendered back-cover inspection and page-stream checks pass. External publication remains pending.
 The selected image is approximately 130 dpi at page size, with lettering embedded in the artwork.
 Selection, source and checks are recorded in `guide-assets-v33/provenance.json`.

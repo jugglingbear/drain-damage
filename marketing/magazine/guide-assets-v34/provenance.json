@@ -1,0 +1,49 @@
+{
+  "edition": 34,
+  "date": "2026-10-30",
+  "status": "Frozen local release delivery; publication owned by Engineering/Release",
+  "sha256": "af34161f199cbe8a507080f967787b1fe21bb40725c82b2c2ac92b49947a3e7e",
+  "page_count": 9,
+  "changed_pages": [
+    1,
+    6
+  ],
+  "checks": [
+    "All nine pages rendered and visually inspected",
+    "All seven other page content streams unchanged from33",
+    "Text extracted and reviewed",
+    "current.pdf and versioned PDF byte-identical",
+    "Source asset paths exist; existing site PDF/Storybook link targets retained"
+  ],
+  "capture_sources": [
+    {
+      "file": "tony-easy-level-one-136.png",
+      "source": "storybook/136-easy-mode-costumes/20261029-194637-tony-easy-level-one.png",
+      "metadata": "storybook/136-easy-mode-costumes/20261029-194637-tony-easy-level-one.json",
+      "kind": "Actual packaged136 controlled gameplay fixture"
+    },
+    {
+      "file": "flush-137.png",
+      "source": "builds/ui137-review/pack-retry.png",
+      "kind": "Actual packaged137 controlled gameplay fixture"
+    },
+    {
+      "file": "ride-137.png",
+      "source": "builds/ui137-review/pack-ride.png",
+      "kind": "Actual packaged137 controlled gameplay fixture"
+    }
+  ],
+  "capture_evidence": "handoffs/first-call-integration.json / ui_and_retry_137",
+  "crop": [
+    0,
+    63,
+    960,
+    541
+  ],
+  "crop_note": "PDF clipping removes OS titlebar only; originals retained unchanged. HUD/build badge remain. Not uninterrupted gameplay or complete route validation.",
+  "limitations": [
+    "Back-cover selected raster ad remains approximately130dpi with embedded lettering",
+    "Native Windows visuals not established by magazine",
+    "No speculative photorealistic first-person concept inserted"
+  ]
+}
