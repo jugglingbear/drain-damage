@@ -1816,6 +1816,101 @@
       "gap_notes": [
         "Native Windows visual validation remains pending."
       ]
+    },
+    {
+      "chapter": "128 — Landing and ride depth milestone",
+      "date": "2026-10-29",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "version": "0.128.0",
+      "embedded_captures": [
+        "128-landing-and-ride-depth/20261029-102337-sean-supported-cleanout-islands.png",
+        "128-landing-and-ride-depth/20261029-102439-tony-submerged-curved-launch-ramp.png",
+        "128-landing-and-ride-depth/20261029-102508-tony-supported-strainer-raised.png",
+        "128-landing-and-ride-depth/20261029-105136-sean-maintenance-hand-corrected-lift.png",
+        "128-landing-and-ride-depth/20261029-105400-sean-landing-verified-export-fixture.png"
+      ],
+      "capture_metadata": "storybook/128-landing-and-ride-depth/captures.json",
+      "capture_backlog": true,
+      "gap_notes": [
+        "Engineering is correcting presentation for v00.129.00; replacement evidence pending.",
+        "Native Windows visual validation remains pending."
+      ],
+      "review_notes": [
+        "Three selected actual exported-resource-pack frozen encounter fixtures inspected; not free-play captures or concept art.",
+        "Engineering reports full 13-encounter presentation conversion; physics/checkpoints/audio preserved, 65% uncovered pit union corrected. 54 routes/702 encounters checked headlessly; not visual playthrough evidence.",
+        "Source commit not yet supplied. Original captures and precise timestamp records preserved.",
+        "Final corrected hand lift105136 inspected and selected. Earlier102726/102733 hand views are intermediate before source cap correction; originals retained, not selected as final.",
+        "Verified replacement landing105400 visually inspected: Sean, log, landing dialogue, water/banks and HUD. Actual exported-resource frozen fixture, not standalone free-play. Rejected102849 Project Manager capture preserved and excluded; Engineering corrected its metadata.",
+        "Sean rejected v00.128.00 overall composition and motion: stationary banks, narrow water and square textured caps unlike Level2.1. Images preserve the intermediate result, not successful visual migration."
+      ],
+      "status": "intermediate_presentation_rejected_by_user"
+    },
+    {
+      "chapter": "129 — Ride presentation correction",
+      "date": "2026-10-29",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "version": "0.129.0",
+      "embedded_captures": [
+        "129-ride-proof-parity/20261029-114018-export-raised-cap.png",
+        "129-ride-proof-parity/20261029-113832-tony-raised-basin-contact.png"
+      ],
+      "capture_metadata": "storybook/129-ride-proof-parity/captures.json",
+      "capture_backlog": false,
+      "status": "correction_review_user_acceptance_pending",
+      "review_notes": [
+        "Selected final exported cap contact fixture and source-runtime basin fixture visually inspected; distinct provenance labeled. Earlier flat-cap iterations preserved, not used as final.",
+        "Engineering reports continuous bank movement restored and physical raised-surface height integrated. Static screenshots do not prove motion. Engineering reports the final live exported traversal from raised islands through the finish completed with health 5 and lives 3; this is separate from the selected static contact fixtures.",
+        "Route retains larger islands over pits than Level2.1 reference; no identical-layout claim.",
+        "Engineering reports both heroes on raised cap/basin, both camera angles and final wide-channel strainer inspected. Subsequent change lowers lifted hand 0.15 m for HUD margin; re-export in progress at report time. Selected cap capture remains valid; no claim that it captures the later hand adjustment."
+      ],
+      "gap_notes": [
+        "Native Windows visuals and user acceptance remain pending."
+      ]
+    },
+    {
+      "chapter": "133 — Board fidget feature",
+      "date": "2026-10-29",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "version": "0.133.0",
+      "embedded_captures": [
+        "133-board-fidget/20261029-165850-133-export-tony-porcelain.png",
+        "133-board-fidget/20261029-165933-133-export-sean-water.png"
+      ],
+      "capture_metadata": "storybook/133-board-fidget/captures.json",
+      "capture_backlog": false,
+      "review_notes": [
+        "Both images visually inspected; actual streak on porcelain and smear on water visible. Byte-identical copies preserved from Engineering original paths. Cosmetic fire-button fidget, no combat."
+      ],
+      "gap_notes": [
+        "Controlled gameplay review fixtures using the production renderer and final exported resource pack; not an unassisted playthrough.",
+        "Static images do not verify animation or recorded fart playback. Native Windows, physical controller and listening acceptance pending."
+      ]
+    },
+    {
+      "chapter": "136 — Easy Mode costumes",
+      "date": "2026-10-29",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "version": "0.136.0",
+      "embedded_captures": [
+        "136-easy-mode-costumes/20261029-194637-tony-easy-level-one.png",
+        "136-easy-mode-costumes/20261029-194507-sean-easy-ride.png"
+      ],
+      "capture_metadata": [
+        "storybook/136-easy-mode-costumes/20261029-194637-tony-easy-level-one.json",
+        "storybook/136-easy-mode-costumes/20261029-194507-sean-easy-ride.json"
+      ],
+      "capture_backlog": false,
+      "review_notes": [
+        "Selected final packaged Tony Level1 and Sean ride captures visually inspected; costumes and hero-specific life heads visible.",
+        "Engineering reports eight packaged suites,44Python and103audio slots passed; this does not establish full visual/gameplay acceptance."
+      ],
+      "gap_notes": [
+        "Native Windows, physical controllers and full survival run pending. Known baseline BJ text wrapping and stale completion test remain per Engineering."
+      ]
     }
   ],
   "next_shared_edit": "Update current book heading to Drain Damage while explaining original working title historically. Add curation/backlog links in README and HTML after coordinating Engineering edits.",
@@ -2076,6 +2171,20 @@
       "delivery_record": "handoffs/first-call-integration.json",
       "capture_boundary": "Engineering reports v00.121.00 includes both approved BJ replacements; source dialogue checks and Mac build passed, Windows/package checks finishing. No opening screenshot permission or actual capture. Capture during a future approved session; no text-only visual storybook entry.",
       "supersedes": "prototype-120-opening-assignment capture request; original v00.120.00 records remain preserved."
+    },
+    {
+      "id": "easy-mode-costume-integration",
+      "status": "milestone_capture_complete",
+      "capture_time": null,
+      "views": [
+        "One actual-game milestone capture showing integrated Easy Mode costume; identify selected hero and tested build."
+      ],
+      "delivery_record": "handoffs/easy-mode-art-delivery.json",
+      "capture_boundary": "Selected packaged fixtures visually inspected: Tony Level1 and Sean ride. Controlled frozen gameplay, not uninterrupted playthrough. Original timestamp sidecars preserved.",
+      "capture_metadata": [
+        "storybook/136-easy-mode-costumes/20261029-194637-tony-easy-level-one.json",
+        "storybook/136-easy-mode-costumes/20261029-194507-sean-easy-ride.json"
+      ]
     }
   ],
   "art_studies": [
@@ -2234,6 +2343,25 @@
       "notes": [
         "Left panel is an illustrative reconstruction, not an actual before screenshot.",
         "Angles, platform elevations, character pose and layout are illustrative, not runtime geometry specifications."
+      ]
+    },
+    {
+      "title": "Easy Mode concept to costume",
+      "kind": "Concept exploration and production source artwork, not runtime captures",
+      "status": "Source artwork preserved; packaged v136 gameplay captured separately.",
+      "date": "2026-10-29",
+      "timezone": "America/Los_Angeles",
+      "utc_offset": "-07:00",
+      "images": [
+        "design/easy-mode-portrait-concepts-v1/20261029-175252-easy-mode-portraits-v1.png",
+        "concept-art-archive/assets/sprites/easy-mode/landing-v1.png"
+      ],
+      "delivery_record": "handoffs/easy-mode-art-delivery.json",
+      "image_creation_time": null,
+      "creation_time_note": "Exact production-sheet generation timestamps unknown; archive timestamps are not creation times. Concept original filename preserved.",
+      "notes": [
+        "Selected concept and landing source sheet visually inspected. Art reports 20 portraits and 17 gameplay source sheets; counts are not runtime acceptance.",
+        "Bonnet/pacifier direction approved. Diapers, work boots and tool pouch remain Art assumptions per handoff."
       ]
     }
   ],

@@ -16,6 +16,16 @@ Strainer — concept
 
 Skitterling — rat-form source art
 
+![Easy Mode · Bonnet and pacifier concept exploration](../design/easy-mode-portrait-concepts-v1/20261029-175252-easy-mode-portraits-v1.png)
+
+Easy Mode · Bonnet and pacifier concept exploration
+
+![Easy Mode · Costume source sheet, not gameplay](../concept-art-archive/assets/sprites/easy-mode/landing-v1.png)
+
+Easy Mode · Costume source sheet, not gameplay
+
+2026-10-29 · Concept to costume artwork. Packaged gameplay appears below in v136.
+
 ## In-game proof of concept
 
 ![v001 · First playable basement](001-first-day/01-service-bay.jpg)
@@ -97,6 +107,73 @@ v125 · Sean’s board follows the ramp
 ![v125 · Tony on the slope from the opposite angle](125-ramp-contact-pose/20261028-222427-tony-ascent.png)
 
 v125 · Tony on the slope from the opposite angle
+
+
+2026-10-29 · v00.128.00 · Intermediate presentation — rejected after playtest.
+Sean flagged stationary banks, narrow water and square textured caps that did not match the Level 2.1 look.
+These landing and ride views are frozen fixtures rendered from the actual export.
+
+![v128 · Raised cleanout islands](128-landing-and-ride-depth/20261029-102337-sean-supported-cleanout-islands.png)
+
+v128 · Raised cleanout islands
+
+![v128 · The curved launch ramp](128-landing-and-ride-depth/20261029-102439-tony-submerged-curved-launch-ramp.png)
+
+v128 · The curved launch ramp
+
+![v128 · A suspended strainer](128-landing-and-ride-depth/20261029-102508-tony-supported-strainer-raised.png)
+
+v128 · A suspended strainer
+
+![v128 · The corrected Maintenance Hand](128-landing-and-ride-depth/20261029-105136-sean-maintenance-hand-corrected-lift.png)
+
+v128 · The corrected Maintenance Hand
+
+![v128 · Sean lands: “Please tell me this is a log.”](128-landing-and-ride-depth/20261029-105400-sean-landing-verified-export-fixture.png)
+
+v128 · Sean lands: “Please tell me this is a log.”
+
+[Capture details](128-landing-and-ride-depth/captures.json). Native Windows visuals remain untested.
+
+
+2026-10-29 · v00.129.00 · Revising the rejected v128 presentation: broader water, slimmer banks and raised surfaces.
+The route retains larger islands over pits than the Level 2.1 proof of concept.
+
+![v129 · Raised cap and recessed surround — exported runtime contact fixture](129-ride-proof-parity/20261029-114018-export-raised-cap.png)
+
+v129 · Raised cap and recessed surround — exported runtime contact fixture
+
+![v129 · Basin supports and rider contact — source-runtime fixture](129-ride-proof-parity/20261029-113832-tony-raised-basin-contact.png)
+
+v129 · Basin supports and rider contact — source-runtime fixture
+
+[Capture details](129-ride-proof-parity/captures.json). Native Windows visuals remain untested.
+
+
+2026-10-29 · v00.133.00 · The fire button now makes the board fidget, leaving a smear or streak with a fart sound.
+A cosmetic gag, with no combat effect. Captures show controlled exported-runtime review fixtures.
+
+![v133 · Tony leaves a streak on porcelain](133-board-fidget/20261029-165850-133-export-tony-porcelain.png)
+
+v133 · Tony leaves a streak on porcelain
+
+![v133 · Sean leaves a smear on the water](133-board-fidget/20261029-165933-133-export-sean-water.png)
+
+v133 · Sean leaves a smear on the water
+
+[Capture details](133-board-fidget/captures.json).
+
+
+2026-10-29 · v00.136.00 · Easy Mode costumes reach the game.
+Actual packaged runtime, shown in controlled frozen gameplay fixtures.
+
+![v136 · Tony’s Easy Mode costume in Level 1](136-easy-mode-costumes/20261029-194637-tony-easy-level-one.png)
+
+v136 · Tony’s Easy Mode costume in Level 1
+
+![v136 · Sean’s Easy Mode costume on the ride](136-easy-mode-costumes/20261029-194507-sean-easy-ride.png)
+
+v136 · Sean’s Easy Mode costume on the ride
 
 ## Final game images
 

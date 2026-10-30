@@ -72,12 +72,73 @@ coordination only; it does not change gameplay or delivery checks.</p>
 changes and remaining testing gaps. Builds may wait for related agent deliveries; pending work will be stated explicitly.
 Opening the game still requires Sean’s permission.</p>
 <p><strong>Platform palette revision:</strong> Beige foreground platforms rejected in playtest. <a href="assets/world/opening-trial/moss-platform-scene-mockup-v1.png">Oxidized moss-green scene mockup</a> applies consistent readable landing edges to small plinths and large pump platforms. Integrated across all 20 raised surfaces in Prototype 49; live contrast review pending.</p>
+<p><strong>Proposed / deferred — Level 2 turbo-fart:</strong> Consider replacing X/fire fidget with a limited boost,
+plus optional personal-best or target-record achievements and a skin, weapon or other reward. Charges/fuel versus
+regeneration, speed/duration, timer and retry rules, fair hero/difficulty records and rewards remain undecided.
+Boost would reduce reaction time; obstacle chains must remain physically feasible. Current fidget is unchanged;
+no implementation is approved. <a href="design-ideas.json">Idea and open questions</a>.</p>
+<p><strong>Prototype 137 — interface and flush retry fixes:</strong> One shared flush dialogue
+window replaces the two-card staging. Retries start at the first falling-object wave. Gameplay control coaching and
+the flush elapsed timer are removed; boss meters overlay continuous full-width scenery. Controls menu, vitals and
+danger warnings remain. Signed macOS and Windows exports pass, along with ten packaged regression suites and 44 Python
+tests. Actual packaged UI captures were inspected with independent Art critique; native Windows and physical-controller
+testing remain pending. <a href="handoffs/first-call-integration.json">Delivery and evidence</a>.</p>
+<p><strong>Prototype 136 — Easy Mode costumes:</strong> Both heroes now use their Easy portraits and gameplay
+costumes across aiming, movement, death, HUD heads, dispenser sequences, portal departure, swimming, landing and ride.
+Fresh source registration preserves Normal and Hard modes. Eight relevant packaged suites and 44 Python tests pass;
+representative actual gameplay and all swim/death frames were inspected, with independent Art review. Signed macOS
+and Windows exports are ready. Native Windows, physical controllers and a full uninterrupted playthrough remain
+pending; baseline dialogue-test failures and the shared swimming ripple are recorded separately.
+<a href="handoffs/easy-mode-art-delivery.json">Coverage, evidence and remaining gaps</a> ·
+<a href="storybook/136-easy-mode-costumes/">Packaged gameplay captures</a>.</p>
 <p><strong>Marketing hero portraits:</strong> Hyperrealistic Tony and Sean portraits derived only from illustrated designs replace the crew-profile references in editable magazine source. <a href="handoffs/hero-hyperreal-marketing-portraits.json">Art handoff</a>. Published PDF regeneration pending; game assets unchanged.</p>
 <p><strong>Weapon roster art:</strong> <a href="weapons/roster-mockup/weapon-roster-v1.png">Labeled sprite-sheet mockup</a> covers six catalog weapons and seven concepts, with melee/short-range/long-range labels and playable/catalog/idea status. Proposed ranges remain provisional; no new weapons implemented. <a href="weapons/roster-mockup/roster-v1.json">Roster notes</a>.</p>
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 29, 2026 · Current build: Prototype 127 / 0.127.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated October 29, 2026 · Current build: Prototype 137 / 0.137.0 · Primary target: Apple Silicon macOS</p>
+<p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
+at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
+point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;
+static geometry batching preserves the authored shapes. All 13 live first-visible views were profiled, eight packaged
+suites passed, and changed effects plus representative batched props were inspected. macOS and Windows exports are
+ready; native Windows and subjective listening remain pending. <a href="handoffs/landing-ride-depth-delivery.json">Checks
+and measured limits</a>.</p>
+<p>The final Level 2 design aims for mixed hazard chains between checkpoints; the current 13 showcase sections are
+not its final pacing. Mixed layouts and per-instance machinery timing remain future design work. Landing, steering
+and ramp-entry intervals must remain physically reachable; support-dependent chains belong in the same checkpoint
+chunk. No final-course spacing or difficulty rebalance is included in Prototype 135.</p>
+<p><strong>Prototype 133 — Level 2 board fidget:</strong> A fresh fire-button press leaves a small brown water
+smear or surface-following streak with recorded fart audio. Cosmetic only; no weapon, damage or propulsion.
+Water diffuses and fades; dry streaks follow decks and ramps. Both heroes, cooldown, pause/freeze and retry guards
+pass focused source and packaged checks. Water, cap, porcelain and ramp views were inspected, with Art critique.
+Signed macOS and Windows exports are ready; native Windows, physical-controller and listening acceptance remain
+pending.</p>
+<p><strong>Prototype 134 — selected Level 2 ride music:</strong> DD-S0110.10, Fighting Is Not an Option,
+now loops during the ride. Music mute leaves hazard sounds audible; pause, screenshot freeze, death, retry and
+exit cleanup pass source and packaged checks. Flush music stays separate. All auditions remain preserved, with
+Determined Pursuit reserved for another level. macOS and Windows exports are ready; audible loop seam, mix balance
+and native Windows playtesting remain pending.</p>
+<p><strong>Prototype 132 — Level 2 motion and breakage:</strong> Water now spills into track openings, including
+new hand and strainer holes. Natural human fall screams and fracture audio replace the inappropriate fall growl.
+Y screenshot freeze responds while steering. Black pointed brushes, a round float, connected heavier hand and
+falling rubble are integrated; machinery remains until offscreen. The hand strikes, lifts and withdraws into a
+forward hatch with verified rider clearance. Both platform exports and focused packaged checks pass; native
+Windows and physical-controller confirmation remain pending. Rectangular channel flanges have clearer seams and
+bolts but still resemble rails at gameplay scale. <a href="handoffs/landing-ride-depth-delivery.json">Review evidence
+and remaining limits</a>.</p>
+<p><strong>Prototype 131 — Level 2 construction and visual QA:</strong> Caps now sit on cylindrical iron housings;
+porcelain islands have separate floor-connected posts and feet. Rectangular water patches are removed from pits.
+Revised valve frames, hollow pipe mouths, brush bristles, bolted flanges, torn grate edges and ramp supports make
+construction readable. Braced far-wall supports and withdrawing strainer trolleys keep the hero visible.
+Circular pit support and finite pipe/float collisions now match their visible shapes. All 13 encounters and landing
+received screenshot review at both angles, with independent Art critique; exported live routes completed with both heroes and no lost lives.
+Signed macOS and Windows exports are built; native Windows runtime validation remains pending.
+<a href="handoffs/landing-ride-depth-delivery.json">Validation and bounded visual evidence</a>.</p>
+
+<p><strong>Prototype 130 — maintenance hand wrist correction:</strong> Palm and fist follow the forearm at both camera angles. Impact uses the opaque silhouette; raised clearance and wrist alignment pass packaged checks. Both camera views were inspected, including impact and lift. Gameplay timing is unchanged. macOS and Windows exports are ready; native Windows testing remains pending.</p>
+<p><strong>Prototype 129 — ride presentation corrected:</strong> Restores the Level 2.1 proof's four-metre waterway, slim banks, teal water and shaped objects. Banks scroll continuously with course travel. Caps have physically raised elliptical tops, thick rims and recessed wet surrounds; porcelain platforms have distinct piers extending to the shaft floor. Rider contact and jumps use the real mixed surface heights. All 54 authored routes / 702 traversals pass after the physics change. Actual proof comparison, both-hero surface checks and exported live traversal are complete; final macOS and Windows exports and packaged clearance checks pass. Ready for user playtesting. The full route retains its larger islands and long pits. Native Windows testing remains pending.</p>
+<p><strong>Prototype 128 — superseded after user playtest:</strong> The first landing and full-route 2.5D integration had stationary banks, an overly narrow waterway and flat-looking cap platforms. Sean rejected that presentation. Prototype 129 corrects those issues; the original captures remain in the storybook.</p>
 <p><strong>Prototype 127 — wall clearance and camera framing:</strong> The camera-test rider now stops before the full sprite intersects either bank. Wall clearance is separate from the unchanged 65% pit footprint. Camera framing reserves jump headroom and compensates for angle-dependent vertical drift at the course ends. Both heroes and costumes pass wall and viewport bounds checks across camera turns. Both heroes were visually inspected in the packaged macOS build at both angles and the course end. macOS and Windows exports pass; native Windows remains untested. No storybook entry is required for this bug fix.</p>
 <p><strong>Prototype 126 — later pit falls:</strong> Pit and hole falls now require 65% of the hero’s contact footprint over the opening, increased from 50%. This covers camera-test circular holes, ride gaps and long pits, and the flush drain. Existing solid-platform support remains unchanged. Boundary and swept-crossing checks pass; no storybook capture is required for this minor fix under the milestone-only curation policy.</p>
 <p><strong>Prototype 125 — boards follow ramp slopes:</strong> Rigid underside support now controls rider height and pitch through entry, ascent and the lip. Camera-facing sprites preserve the projected physical angle, with Art-reviewed contact pivots. Both heroes were inspected in packaged gameplay; Sean’s ascent, lip and exit are preserved in the storybook. Automated contact and projection checks pass, as do macOS and Windows exports; native Windows testing remains pending. The standing ramp-contact rule is recorded in AGENTS.md and the development guide.</p>
@@ -148,7 +209,7 @@ The separate Level 2.1 camera proof is delivered in Prototype118; it is not incl
 controllable swimming; scripted finale capture remains safe. Fatal descent, one-life handling, retry and pause are
 covered headlessly. Planner routes avoid the opening. The partner's centered bubble now precedes and remains behind
 the complaint, then slides away; approved wording and an emoji fallback are included. Both platforms are packaged;
-packaged drain/dialogue checks and44Python tests pass. Visual/listening and native Windows acceptance remain pending.
+packaged drain/dialogue checks and 44 Python tests pass. Visual/listening and native Windows acceptance remain pending.
 <a href="handoffs/first-call-integration.json">Current delivery evidence</a>.</p>
 <p><strong>Prototype 115 — ride landing material fix (built locally):</strong>
 Cleanout-cap jumps now use the metal cue, basin slab jumps use porcelain, and water landings use the wet cue.

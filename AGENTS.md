@@ -104,6 +104,37 @@
 - Preserve these visual indicators across damage, death, retry and transitions. Numeric-only substitutes require
   Sean's explicit approval; new modes inherit this standard unless he requests an exception.
 
+## 2.5D water and object support
+
+- Use artwork suited to the 2.5D view; coordinate replacements with Art when existing assets are unsuitable.
+- Fixed objects must visibly extend below the waterline or have credible structural supports. Do not leave
+  solid props resting like flat cutouts on the water. Only intentionally buoyant objects may float.
+- Verify submerged geometry, waterline occlusion and support from every supported camera angle.
+- Treat the approved Level 2.1 proof as the visual baseline for the ride: broad water coverage, restrained banks,
+  shaped props with visible thickness, and consistent materials. A textured flat plate is not a raised cap.
+- Physical contact height and shape must match visible surfaces, including raised discs and recessed surrounds;
+  do not hide a mismatch by applying a global rider offset.
+- Compare actual running views with the approved reference and inspect travel in motion. Frozen screenshots alone
+  cannot validate environmental scrolling or the relationship between moving scenery and the rider.
+
+## Visual acceptance and physical plausibility
+
+- Judge the rendered result at normal gameplay size before consulting implementation details. Having a mesh,
+  thickness value, passing physics test or technically connected support does not establish visual acceptance.
+- For each object, identify what it is, what supports it, how its parts join, what material it reads as, and how
+  it interacts with water and the rider. If those answers require explaining invisible geometry, reject the view.
+- Reject unsupported water patches, floating sheets, texture-painted depth, paper-thin heavy objects, ambiguous
+  water/metal materials, stretched textures, implausible joints, abrupt pose changes and unreadable black pits.
+- Compare against the approved reference side by side at similar framing. Inspect silhouettes, side faces,
+  attachment points, waterlines, contact shadows, proportions and material contrast at both supported angles.
+- Audit each encounter individually, including approach, interaction and departure in motion. Keep observed defects,
+  corrected items and unreviewed coverage distinct in the existing delivery record. Representative captures cannot
+  establish full-route visual approval. Automated tests establish technical behavior only.
+- Engineering owns final acceptance. Obtain independent Art critique of changed constructions and their final
+  rendered views; do not count agreement about code or a narrow seam check as approval of the complete scene.
+- Preserve evidence of rejected results and the concrete rejection reason. Do not tell Sean graphics are ready
+  while known glaring defects remain; report remaining gaps plainly. QA captures for bug fixes stay outside the storybook.
+
 ## Ramp and slope contact
 
 - A supported rider and board must follow the actual ramp/surface angle, rather than remain horizontal while
