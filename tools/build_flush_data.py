@@ -15,19 +15,21 @@ def read(path: str) -> dict[str, Any]:
 
 
 def validate_radio_gag(story: dict[str, Any]) -> None:
-    """Keep the relocation attached to the responding partner within the safe opening."""
+    """Keep one shared window centered until the reply moves it during the safe opening."""
     safe_until = float(story["timing"]["calm_prelude_seconds"]) + 8.0
     for hero, partner in (("tony", "sean"), ("sean", "tony")):
         route = story["routes"][hero]
-        openers = [line for line in route if line.get("gag_action") == "hold_center"]
-        requests = [line for line in route if line.get("retain_partner", False)]
+        if any(line.get("retain_partner", False) for line in route):
+            raise ValueError(f"A second retained dialogue panel is forbidden: {hero}")
+        openers = [line for line in route if line.get("gag_action") == "hold_center" and line.get("radio")]
+        requests = [line for line in route if line.get("gag_action") == "hold_center" and not line.get("radio")]
         replies = [line for line in route if line.get("gag_action") == "slide_bottom"]
         if len(openers) != 1 or len(requests) != 1 or len(replies) != 1:
             raise ValueError(f"Expected one window request and response: {hero}")
         opener, request, reply = openers[0], requests[0], replies[0]
         if (opener["who"] != partner or not opener["radio"] or not opener["gag"]
-                or opener["at"] + opener["duration"] != request["at"] or request["gag"]):
-            raise ValueError(f"Partner must obstruct before the bottom-positioned complaint: {hero}")
+                or opener["at"] + opener["duration"] != request["at"] or not request["gag"]):
+            raise ValueError(f"Partner and hero must share the centered window: {hero}")
         if request["who"] != hero or request["radio"] or "chat window" not in request["text"].lower():
             raise ValueError(f"Playable hero must request the chat window move: {hero}")
         if reply["who"] != partner or not reply["radio"]:
@@ -95,7 +97,11 @@ def build() -> dict[str, Any]:
     for key in ("surface_depth_pixels", "drain_center", "landing", "landing_rules"):
         art[key] = revision[key]
     art["revision"] = revision
-    for key in ("water", "tony_normal", "tony_hard", "sean_normal", "sean_hard"):
+    easy = read("assets/sprites/easy-mode/flush-manifest-v1.json")
+    art["animations"].update(easy["animations"])
+    for hero in ("tony", "sean"):
+        art["landing"][hero].update(easy["landing"][hero])
+    for key in ("water", "tony_normal", "tony_hard", "sean_normal", "sean_hard", "tony_easy", "sean_easy"):
         animation = art["animations"][key]
         if len(animation["frames"]) < 8 or animation["fps"] <= 0:
             raise ValueError(f"Missing authored animation phases: {key}")

@@ -1,8 +1,8 @@
 {
   "id": "level_two_flush_story_v1",
-  "date": "2026-10-28",
-  "status": "User-approved partner-first intro and censored Tony landing; Engineering integration pending",
-  "authorization": "Sean explicitly approved complete flush dialogue integration October28, including partner-first intro, no buddy after opening, and exact censored Tony landing outburst.",
+  "date": "2026-10-29",
+  "status": "User-approved single-window arrival correction; Engineering integration pending",
+  "authorization": "Sean explicitly approved complete flush dialogue integration October28, including partner-first intro, no buddy after opening, and exact censored Tony landing outburst. October29: Sean explicitly requires one unified chat window and revised complaint wording; supersedes retained-partner staging.",
   "owner": "Storyboarding narrative; Engineering runtime/radio integration",
   "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
   "target_playable_seconds": 45,
@@ -23,12 +23,12 @@
         "at": 5.0,
         "who": "tony",
         "emotion": "worried",
-        "text": "Big enough. Move your chat window down!",
+        "text": "Big enough. Move the chat window down!",
         "duration": 4,
         "radio": false,
-        "gag": false,
+        "gag": true,
         "event": "arrival",
-        "retain_partner": true
+        "gag_action": "hold_center"
       },
       {
         "at": 9.0,
@@ -98,12 +98,12 @@
         "at": 5.0,
         "who": "sean",
         "emotion": "worried",
-        "text": "Inside it! Tony, move your chat window! I can’t see!",
+        "text": "Inside it! Tony, move the chat window! I can’t see!",
         "duration": 4,
         "radio": false,
-        "gag": false,
+        "gag": true,
         "event": "arrival",
-        "retain_partner": true
+        "gag_action": "hold_center"
       },
       {
         "at": 9.0,
@@ -152,7 +152,7 @@
   "events": {
     "arrival": {
       "trigger": "Presentation0–16: arrival0–5, request5–9, partner reply9–16.",
-      "gag": "Remote partner centered0–5. Selected hero speaks at bottom5–9 while partner card stays centered. Partner reply9–16 replaces centered text, slides at11.8–13.4 and remains bottom through16. Do not substitute hero portrait into partner card. No hazards during exchange.",
+      "gag": "One unified window throughout: remote partner centered0–5; selected hero replaces portrait/text in the same centered window5–9; partner reply replaces content9–16 and moves that same window to bottom at11.8–13.4, remaining there through16. Never show separate center and bottom dialogue windows simultaneously. No hazards during exchange.",
       "safety": "No hazards before presentation34 (physics8). No new gag; preserve per-run seen behavior. Any lingering blocking panel must not admit hazards."
     },
     "flush": {
@@ -178,11 +178,12 @@
     "skip": "Skip arrival snaps panel bottom without advancing hazards before presentation34. Landing skip follows existing safe transition into authorized ride.",
     "retry": "Checkpoint retry cancels all pending lines; preserve per-run gag-seen; new run clears event/gag flags",
     "readability": "Durations explicit per line; do not truncate for combat. Gate arrival before hazards and place remaining short exchanges in safe intervals.",
-    "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero."
+    "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero.",
+    "window_policy": "Exactly one unified chat window. Speaker changes replace its portrait/text in place; the arrival reply animates the same window from center to bottom. No retained partner card or duplicate window."
   },
   "validation_required": [
     "Approved wording, speakers and radio flags match canonical routes; preserve doubled durations.",
-    "Partner centered0–5; hero bottom5–9 with partner card retained; partner reply9–16 slides11.8–13.4.",
+    "Exactly one window: partner centered0–5; hero replaces content centered5–9; partner reply9–16 slides same window11.8–13.4. Never simultaneous center and bottom windows.",
     "Tony flush exchange16–34; Sean16–28; hazards begin34 at physics8",
     "Physics timeline45seconds unchanged after26second prelude; music26–71",
     "Drain shout61–65; landing71–77; ride begins77",
@@ -224,5 +225,5 @@
     "music_seconds": 45,
     "unchanged": "Physics schedule, hazard totals, speeds, durations and obstacle behavior unchanged; approved intro wording/speakers/placement and Tony landing text updated."
   },
-  "character_voice_rule": "Tony may use buddy once in the opening tire-iron line; no subsequent dialogue uses it. Sean direct instruction October28. Pending intro-order rewrite remains separate."
+  "character_voice_rule": "Tony may use buddy once in the opening tire-iron line; no subsequent dialogue uses it. Sean direct instruction October28."
 }

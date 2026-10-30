@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-29T16:40:43-07:00",
+  "timezone": "America/Los_Angeles",
+  "owner": "Art",
+  "runtime_owner": "Engineering",
+  "status": "Authored textures delivered; runtime placement and normal-size moving visual acceptance pending",
+  "assets": [
+    {
+      "id": "water",
+      "path": "assets/world/ride-fidget-v1/water-smear-v1.png",
+      "dimensions_px": [
+        1942,
+        809
+      ],
+      "alpha": "native RGBA, preserve partial alpha",
+      "visible_bounds_alpha64_px": [
+        161,
+        208,
+        1850,
+        606
+      ],
+      "pivot_uv": [
+        0.88,
+        0.5
+      ],
+      "long_axis": "image +U points toward board/travel; wispy tail extends -U",
+      "visible_footprint_m": [
+        0.6,
+        0.25
+      ],
+      "sha256": "9638194f8f685fa1e55120ce46ffe72d5b71a8d451bf489f0f18f2227bf98e14",
+      "lifetime_s": 1.4,
+      "opacity_start": 0.55,
+      "animation": "Expand smoothly to1.25x length/1.5x width, drift with water and fade continuously; no alternating frames"
+    },
+    {
+      "id": "dry",
+      "path": "assets/world/ride-fidget-v1/dry-streak-v1.png",
+      "dimensions_px": [
+        1942,
+        809
+      ],
+      "alpha": "native RGBA, preserve partial alpha",
+      "visible_bounds_alpha64_px": [
+        118,
+        216,
+        1826,
+        590
+      ],
+      "pivot_uv": [
+        0.88,
+        0.5
+      ],
+      "long_axis": "image +U points toward board/travel; wispy tail extends -U",
+      "visible_footprint_m": [
+        0.6,
+        0.25
+      ],
+      "sha256": "e86cbca798450d2696fc75a5fd170b7955a49301a6fda82694855fc4aacb0327",
+      "lifetime_s": 3.5,
+      "opacity_start": 0.8,
+      "animation": "Remain attached to supporting surface; fade smoothly over final1s; no floating drift"
+    }
+  ],
+  "placement": {
+    "surface": "Horizontal/tangent-plane textured geometry, never camera-facing billboard",
+    "anchor": "Dense +U end immediately behind board rear contact; preserve visible .6x.25m after accounting for transparent padding",
+    "height_offset_m": 0.003,
+    "water": "Place on current water surface only; clip to water coverage and opening masks; no bridging pits or banks",
+    "solid": "Project onto actual supported top or ramp, matching its normal/pitch; split or clip at surface boundary, do not bridge gaps",
+    "airborne": "Do not stamp a floating dry decal while unsupported; Engineering owns trigger semantics",
+    "render": "Alpha blend with depth test, no cast shadows, no emission. Maintain continuous fade and bounded active count. Check both camera angles and both heroes on water, flat tops and slopes."
+  },
+  "provenance": "prompts.json contains exact built-in image_gen prompts. Originals copied unchanged to concept-art-archive/assets/world/ride-fidget-v1/; no runtime integration performed by Art.",
+  "textures": {
+    "water": "assets/world/ride-fidget-v1/water-smear-v1.png",
+    "solid": "assets/world/ride-fidget-v1/dry-streak-v1.png"
+  },
+  "runtime_contract_note": "Engineering may use shared2.4s lifetime/final.8s fade for initial integration. Art prefers lower water opacity .55 and dry .8; distinct1.4s water/3.5s dry lifetimes remain suggestions pending moving review. UV diffusion must stay within transparent padding and preserve clipped surface boundaries."
+}

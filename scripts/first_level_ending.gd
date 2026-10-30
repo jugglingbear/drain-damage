@@ -81,7 +81,7 @@ func hero_scale() -> float:
 	return 1.0
 
 func hero_frame(host: Node2D) -> Dictionary:
-	return departure.heroes["hard" if host.difficulty == "hard" else "normal"][host.employee.id]
+	return departure.heroes[host.difficulty][host.employee.id]
 
 func clipped_hero(frame: Dictionary, feet: Vector2) -> Dictionary:
 	var destination: Array = frame.destination

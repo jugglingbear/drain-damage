@@ -1,0 +1,499 @@
+{
+  "owner": "Bestiary / Art",
+  "integration_owner": "Engineering",
+  "created_at": "2026-10-29T09:44:17-07:00",
+  "timezone": "America/Los_Angeles",
+  "status": "Art candidate correction review handed back to Engineering; bounded acceptance recorded, final export/motion/transition checks pending",
+  "files": [
+    "assets/world/ride-depth-v1/assembly-recipes.json",
+    "assets/world/ride-depth-v1/hand-parts-v1.png",
+    "assets/world/ride-depth-v1/hand-parts-v2.png",
+    "assets/world/ride-depth-v1/hand-prompts-v2.json",
+    "assets/world/ride-depth-v1/hand-prompts.json",
+    "assets/world/ride-depth-v1/hand-registration-v1-preserved.json",
+    "assets/world/ride-depth-v1/hand-registration.json",
+    "assets/world/ride-depth-v1/manifest.json",
+    "assets/world/ride-depth-v1/material-atlas-v1.png",
+    "assets/world/ride-depth-v1/prompts.json"
+  ],
+  "route_inventory": [
+    {
+      "id": "2-01",
+      "title": "Valve-Stem Slalom",
+      "art_ids": [
+        "valve_center_v2",
+        "valve_wall_far_v2",
+        "valve_wall_near_v2"
+      ]
+    },
+    {
+      "id": "2-02",
+      "title": "Elbow-Pipe Breach",
+      "art_ids": [
+        "elbow_pipe_v2",
+        "elbow_pit_v2"
+      ]
+    },
+    {
+      "id": "2-03",
+      "title": "Chain-Hung Plug",
+      "art_ids": [
+        "chain_plug"
+      ]
+    },
+    {
+      "id": "2-04",
+      "title": "Drain-Brush Curtain",
+      "art_ids": [
+        "brush_center_v2",
+        "brush_far_v2",
+        "brush_near_v2"
+      ]
+    },
+    {
+      "id": "2-05",
+      "title": "Loose Flange Hop",
+      "art_ids": [
+        "loose_flange"
+      ]
+    },
+    {
+      "id": "2-06",
+      "title": "Float-Arm Sweep",
+      "art_ids": [
+        "float_ball"
+      ]
+    },
+    {
+      "id": "2-07",
+      "title": "Cleanout-Cap Islands",
+      "art_ids": [
+        "cleanout_deck_330",
+        "cleanout_deck_360",
+        "ordinary_gap"
+      ]
+    },
+    {
+      "id": "2-08",
+      "title": "Broken-Basin Hopscotch",
+      "art_ids": [
+        "basin_deck_360",
+        "basin_deck_390",
+        "ordinary_gap"
+      ]
+    },
+    {
+      "id": "2-09",
+      "title": "Buckled Drain Grate",
+      "art_ids": [
+        "spiked_grate"
+      ]
+    },
+    {
+      "id": "2-10",
+      "title": "Emergency Flume Launch",
+      "art_ids": [
+        "catch_basin",
+        "launch_ramp",
+        "long_pit"
+      ]
+    },
+    {
+      "id": "2-11",
+      "title": "Maintenance Hand",
+      "art_ids": [
+        "maintenance_hand_gap"
+      ]
+    },
+    {
+      "id": "2-12",
+      "title": "Strainer: Middle Lane",
+      "art_ids": [
+        "strainer_gap_60"
+      ]
+    },
+    {
+      "id": "2-13",
+      "title": "Strainer: Two Lanes",
+      "art_ids": [
+        "strainer_gap_130"
+      ]
+    }
+  ],
+  "reuse": [
+    "Camera-test porcelain, brass, ramp, channel, water and hole materials",
+    "Validated hero composites with camera support registrations, pending integration pose checks"
+  ],
+  "replace": [
+    "All complete flat solid obstacle sprites with authored 3D assembly recipes",
+    "Maintenance hand with new isolated registered joint parts; preserve originals"
+  ],
+  "validation": [
+    "All 13 route encounter art IDs covered by assembly recipes",
+    "Material crop bounds and source existence passed",
+    "All four hand crops and joint anchor bounds passed",
+    "Native RGBA alpha range 0..255 verified",
+    "Raw images copied to concept-art-archive; inventory hashes recorded"
+  ],
+  "remaining": [
+    "Prototype129 overall visual comparison against approved POC",
+    "Continuous scrolling and water motion validation",
+    "Full-route geometry/support and both-hero playtest owned by Engineering"
+  ],
+  "not_claimed": [
+    "No gameplay build or playtest produced by this art delivery",
+    "No Level1 conversion implemented"
+  ],
+  "hand_visual_review": {
+    "date": "2026-10-29",
+    "timezone": "America/Los_Angeles",
+    "captures": [
+      "storybook/128-landing-and-ride-depth/20261029-105136-sean-maintenance-hand-corrected-lift.png",
+      "storybook/128-landing-and-ride-depth/20261029-105149-maintenance-hand-corrected-opposite-angle.png"
+    ],
+    "observed": [
+      "Painted black oval absent in both views",
+      "Wrist overlap reads connected",
+      "Hatch/root no longer visibly clipped by jamb",
+      "Lifted hand clear of HUD in both supplied frames"
+    ],
+    "scope": "Frozen encounter lift frames at age3.20; not continuous full-route gameplay acceptance",
+    "engineering_report": "Engineering reports rebuilt128 and checked impact plus both lift angles."
+  },
+  "presentation_revision": {
+    "reason": "Narrow trench, dominant walls/walkways, square cap slabs and stationary environment departed from approved POC",
+    "agreed_changes": [
+      "Bank presentation scale2 consistently across positions, depths, openings and support visuals; simulation unchanged",
+      "Water\u00b12, farwall1.1, near coping.12, camera5.2, narrow dark outerbanks",
+      "Near-circular actual cap mesh with low-contrast rectangular support surround atY0 and cosmetic captop.002",
+      "Reuse approved POC basin materials and apron",
+      "World textures scroll with model travel; water adds relative flow"
+    ],
+    "artwork": "No new raster art required",
+    "acceptance": "Awaiting129 actual captures for overall composition and prop review. Earlier acceptance applies only to corrected hand seam.",
+    "foundation_correction": "Confirmed actual shaftfloorY-2; cap central cast-iron pier and basin twin piers now specified to reach it. Thin brass surround/porcelain apron remain above, collisionY0 unchanged. Await final captures.",
+    "raised_cap_correction": {
+      "top_y": 0.12,
+      "bottom_y": -0.06,
+      "thickness": 0.18,
+      "surround_top_y": -0.03,
+      "surround_bottom_y": -0.15,
+      "reason": "Actual raised volume requested; previous coplanar .002 disc rejected",
+      "physics_owner": "Engineering must reconcile support heights/shape and transitions; no visual-only lift acceptance"
+    }
+  },
+  "raised_cap_visual_review": {
+    "date": "2026-10-29",
+    "timezone": "America/Los_Angeles",
+    "captures": [
+      "storybook/129-ride-proof-parity/20261029-113730-raised-cap-contact.png",
+      "storybook/129-ride-proof-parity/20261029-113736-raised-cap-opposite.png"
+    ],
+    "accepted": [
+      "Visible continuous vertical rim and rounded shoulder at both angles",
+      "Raised disc clearly separated from recessed wet surround",
+      "Sean board has no obvious contact defect in supplied stills"
+    ],
+    "limits": [
+      "Source runtime, not final export",
+      "Pier bases occluded; not full foundation acceptance",
+      "Still frames do not validate transitions or motion",
+      "User acceptance remains pending"
+    ]
+  },
+  "hand_anatomy_revision": {
+    "status": "Corrected in exported130; final raised anatomy and HUD clearance visually reviewed at both angles",
+    "source": "storybook/129-ride-proof-parity/20261029-114448-export-final-hand-hud-margin.png",
+    "solution": "Shared wrist-axis alignment for both poses with rotated overlap/contact calculations; existing v2 image retained",
+    "owner": "Engineering runtime, Art registration",
+    "scope": "Prior cap-removal acceptance did not establish anatomical correctness",
+    "final_evidence": [
+      "builds/hand130-review/final-raised-forward.png",
+      "builds/hand130-review/final-raised-reverse.png"
+    ],
+    "evidence_retention": "Bug-fix review captures under ignored builds; not a storybook milestone",
+    "validation_scope": "Art inspected final raised exported stills and earlier contact source stills. Engineering reports packaged alignment/contact/clearance tests passed; Art did not independently inspect continuous animation or Windows rendering."
+  },
+  "realism_audit": {
+    "date": "2026-10-29",
+    "timezone": "America/Los_Angeles",
+    "owner": "Art recommendations; Engineering accountable integration",
+    "basis": [
+      "Current assembly recipes and ride_world_props/view source",
+      "Previously inspected129 cap/basin/ramp and130 hand captures",
+      "Unchanged Level2.1 reference screenshot"
+    ],
+    "limitations": "No new game launch. Source-only findings are risks requiring capture, not observed runtime defects. No full-route pass claimed.",
+    "priority_meaning": {
+      "0": "User-rejected blocker",
+      "1": "Observed construction/readability issue or essential follow-up",
+      "2": "Source risk; current visual review missing"
+    },
+    "encounters": [
+      {
+        "id": "landing",
+        "priority": 1,
+        "evidence": "Source reviewed; no current landing capture",
+        "finding": "Landing cannot be approved from obstacle screenshots.",
+        "correction": "Match water-dominant POC; visible outlet/arrival cause, log buoyancy shadow/wake, narrow coping. Inspect both heroes during arrival and transition."
+      },
+      {
+        "id": "2-01",
+        "priority": 2,
+        "evidence": "Source-only; current capture unreviewed",
+        "finding": "Valve is a broad textured box with decorative wheel; risks generic wall instead of plumbing fixture.",
+        "correction": "No further Art change requested for reviewed defect.",
+        "implementation_note": "Focused Art source fix delivered in ride_world_props.gd; no visual acceptance until new captures.",
+        "candidate_review": {
+          "result": "Accepted as valve-operated baffle housing with readable insetface/bolts/stembearing, not sculpted standalone valve",
+          "captures": [
+            "builds/level2-audit131/01-corrected-forward.png",
+            "builds/level2-audit131/01-corrected-reverse.png"
+          ],
+          "scope": "Actual source candidate stills; final export/motion/contact verification remains Engineering"
+        }
+      },
+      {
+        "id": "2-02",
+        "priority": 1,
+        "evidence": "Source-only; current capture unreviewed",
+        "finding": "Hollow bend exists, but outlet, footing and breach must read connected. Mechanics source audit: all-height180x110 collider exceeds narrow pipe/lowbase visible occupied volume; apparent clear-space hit risk.",
+        "correction": "No further Art change requested for reviewed defect.",
+        "implementation_note": "Focused Art source fix delivered in ride_world_props.gd; no visual acceptance until new captures.",
+        "candidate_review": {
+          "result": "Accepted elbow silhouette, hollow outlet lip and neutral solid footing",
+          "captures": [
+            "builds/level2-audit131/02-outlet-forward.png",
+            "builds/level2-audit131/02-outlet-reverse.png"
+          ],
+          "scope": "Actual source candidate stills; final export/motion/contact verification remains Engineering"
+        }
+      },
+      {
+        "id": "2-03",
+        "priority": 2,
+        "evidence": "Source-only; current capture unreviewed",
+        "finding": "Suspension must read as load-bearing chain, eye and rail, not floating plug.",
+        "correction": "Seat eye into rubber/metal crown, connect every chain endpoint to eye and ceiling anchor; matte charcoal rubber versus metal hardware; retain .64 underside clearance.",
+        "implementation_note": "Focused Art source fix delivered in ride_world_props.gd; no visual acceptance until new captures."
+      },
+      {
+        "id": "2-04",
+        "priority": 2,
+        "evidence": "Observed04-forward candidate",
+        "finding": "Rigid comb with identical hanging rods rejected",
+        "correction": "No further Art change requested for reviewed defect.",
+        "candidate_review": {
+          "result": "Accepted braced wall cantilever/brush assembly; foreground supports no longer obscure hero",
+          "captures": [
+            "builds/level2-audit131/04-cantilever-forward.png",
+            "builds/level2-audit131/04-cantilever-reverse.png"
+          ],
+          "scope": "Actual source candidate stills; final export/motion/contact verification remains Engineering"
+        }
+      },
+      {
+        "id": "2-05",
+        "priority": 2,
+        "evidence": "Observed05-forward candidate",
+        "finding": "Plain brown beams lack flange identity",
+        "correction": "Source updated recessed ironweb/copperedges/hexbolts/endclamps, maxY.18 unchanged. Parsepassed; visual pending."
+      },
+      {
+        "id": "2-06",
+        "priority": 1,
+        "evidence": "Source-only; current motion unreviewed",
+        "finding": "Scaled ellipsoid risks flattened buoy; anchor needs real rotation. Mechanics source audit: all-height100x60 collider versus ellipsoidtop.45 below normaljumpapex.54 risks visually clear jumps hitting.",
+        "correction": "Recognizable float body with seam and rod socket; keep hollow buoy intentionally floating, wall pivot fixed, rod endpoint continuously connected. Check silhouette versus collision envelope and motion extremes."
+      },
+      {
+        "id": "2-07",
+        "priority": 1,
+        "evidence": "builds/level2-audit131/07-balanced-forward.png and07-balanced-reverse.png",
+        "finding": "Balanced candidate accepted for cylindrical construction/material; no squarewaterpatch, housing distinct fromshaft",
+        "correction": "No further cap polish requested; finalexport/physics/userreview separate."
+      },
+      {
+        "id": "2-08",
+        "priority": 1,
+        "evidence": "builds/level2-audit131/08-balanced-forward.png and08-balanced-reverse.png",
+        "finding": "Balanced candidate supports/material accepted: distinctposts/feet and openstructure, no wateryblades",
+        "correction": "No further visualchange requested in reviewedstillviews; finalexport/motion separate."
+      },
+      {
+        "id": "2-09",
+        "priority": 2,
+        "evidence": "builds/level2-audit131/09-readable-forward.png",
+        "finding": "Wornedges make tornmetal tips readable atgamesize; forwardcandidate accepted",
+        "correction": "No further visualchange requested from thisview; finalexport/motion separate."
+      },
+      {
+        "id": "2-10",
+        "priority": 1,
+        "evidence": "builds/level2-audit131/10-ribs-forward.png and10-ribs-reverse.png",
+        "finding": "Lowered ribs no longer visibly pierce top in10-ribsboth; correction accepted in stills",
+        "correction": "Visible stiffening ribs/endplate connected to bed, neutral side material distinct from water; same quad profile as physics. Apply fourpost basin construction to catch. Verify board front/middle/rear in motion and both heroes."
+      },
+      {
+        "id": "2-11",
+        "priority": 1,
+        "evidence": "130 raised exports inspected; contact source inspected",
+        "finding": "Wrist anatomy fixed; black rectangular shaft and joint/impact animation still need holistic review.",
+        "correction": "Keep axis-aligned parts and true outline contact. Show strike causing connected rim fracture/debris and descending inflow, dark but readable shaftwall. Review full motion, no pose snap or hand-through-wall. Still acceptance does not approve whole encounter."
+      },
+      {
+        "id": "2-12",
+        "priority": 1,
+        "evidence": "Observed candidate12-forward/13-reverse age4.1",
+        "finding": "Corrected age4.1 captures show hero clear of withdrawn cage; full motion still unreviewed",
+        "correction": "Engineering to hoist/retract whole cage beyond projected hero path by clear time; retain collision truth, no hero-through-opaque-cage rendering trick."
+      },
+      {
+        "id": "2-13",
+        "priority": 1,
+        "evidence": "Observed candidate12-forward/13-reverse age4.1",
+        "finding": "Corrected age4.1 captures show hero clear of withdrawn cage; full motion still unreviewed",
+        "correction": "Engineering to hoist/retract whole cage beyond projected hero path by clear time; retain collision truth, no hero-through-opaque-cage rendering trick."
+      }
+    ],
+    "shared_acceptance": [
+      "Object identity recognizable without labels at normal play size",
+      "Visible load path from object to floor/wall/ceiling; no support hidden solely by blackness",
+      "Material distinguishes metal, ceramic, rubber, bristles and water; no watery solids",
+      "Safe support silhouette matches physics; no water islands or invisible corners",
+      "Whole encounter at both angles and both heroes; key approach/impact/clear states and continuous motion",
+      "Compare final exported build with POC, not just headless geometry checks"
+    ],
+    "asset_need": "Reuse existing materials initially; neutral support material treatment local to supports. New raster art only if visual prototype demonstrates specific unmet need.",
+    "mechanics_consultation": "Mechanics reports exact ellipse support/no square mount passes54routes/702traversals with unchanged route geometry. Full nominal top ellipse must remain atY.12; inward bevel must not shrink physical contact surface.",
+    "cap_housing": "Raised lid plus96% collar,90% barrel and98% base flange reaching actualfloorY-2; no rectangular water patches. Engineering found missing floor mesh and owns correction.",
+    "scope": "Entire Level2 visual experience: intentional2D flush/swimming/drain, transition to2.5D landing, landing,13 ride encounters, and unchanged2.1 POC comparison reference. Audit is not authorization to convert flush into3D.",
+    "supplemental_areas": [
+      {
+        "id": "flush-bowl-and-drain",
+        "priority": 2,
+        "evidence": "Source review scripts/flush_art.gd and level_two_flush.gd; no current captured sequence",
+        "finding": "Intentional authored2D bowl and swimmer with layered drain occlusion, surface flow crossfade and projected debris shadows. Not a failed3D prop merely because2D.",
+        "review_requirements": [
+          "Check water crossfade for ghosted/doubled surface features or state-like jumps",
+          "Verify swimmer waterline clipping and drain-front occlusion during sink, no sticker-like body over rim",
+          "Check shadow/debris impact registration and consistent bowl perspective",
+          "Check palette/hero scale continuity with incoming2.5D landing"
+        ],
+        "implementation_status": "No change proposed without current captures showing defect"
+      },
+      {
+        "id": "flush-to-landing-transition",
+        "priority": 1,
+        "evidence": "Source:2D bowl/actors stop atclock43, ride_world_view showing startsclock>=43; logical landing at45",
+        "finding": "Abrupt rendering handoff has no visually verified continuity; potential scale, perspective, waterbrightness or location jump. Source alone does not establish visible glitch.",
+        "review_requirements": [
+          "Capture continuous clock40..46 through sink, reveal and logical landing",
+          "Verify hero/board arrival, water contact and selected hero identity across switch",
+          "Confirm no blank frame, duplicate hero, HUD inconsistency or frozen transitionwater",
+          "Compare camera/palette change as an intentional transition rather than unrelated scene cut"
+        ]
+      },
+      {
+        "id": "level2.1-reference",
+        "priority": 2,
+        "evidence": "Actual unchanged reference20261029-111937 reviewed earlier; camera_test_view source reviewed",
+        "finding": "Approved proof is comparison baseline, not automatic acceptance of every component. Smaller isolated props and water-surrounded cap differ from fullride gap layout.",
+        "review_requirements": [
+          "Retain unchanged reference for material/framing comparison",
+          "Audit basin underside/support and cap foundation visibility at both angles",
+          "Check ramp support/contact and circular opening inflow in motion",
+          "Do not copy proof simplified dimensions or support assumptions into route without matching mechanics"
+        ]
+      }
+    ],
+    "visual_gate": "Reviewed candidate corrections accepted for their specified views. Engineering owns final export, continuous motion, flush-to-landing transition and remaining source/test coverage; no blanket all-Level2 visual pass.",
+    "prop_source_delivery": {
+      "file": "scripts/ride_world_props.gd",
+      "scope": [
+        "brush",
+        "loose_flange",
+        "spiked_grate",
+        "torn_grate_tooth helper"
+      ],
+      "validation": "Godot headless GDScript check-only passed; embedded plug shader requires renderer compilation and actual visual check.",
+      "remaining": "Engineering integration, captures and drawcall/performance review for denser brush",
+      "ownership": "Released back to Engineering after focused edit",
+      "additional_scope": [
+        "valve framedgate/stembearing",
+        "elbow neutralfooting/litlip/recessedthroat",
+        "plug lowcontrast authoredrubber/crown"
+      ]
+    },
+    "support_shader_revision": {
+      "file": "scripts/ride_support_material.gdshader",
+      "reason": "Reviewed correctedcap/basin captures still read as diffuse gray concrete; prior material hadmetallic0/roughness.85",
+      "changes": [
+        "Darker cooliron albedo preserving authoredluminance",
+        "Authored red-minus-blue rustmask with warmoxide variation",
+        "Metallic.72iron/.18rust; roughness.42iron/.78rust with finegrain variation",
+        "No emission or newrastertexture"
+      ],
+      "validation": "Balanced cap candidate views07-balanced-forward/reverse inspected: housing volume/material readable at game size, no further tuning requested. Final export still pending.",
+      "ownership": "Art edit complete; released to Engineering integration",
+      "final_parameters": "Ironalbedo.18-.39, metallic.38iron/.12rust, roughness.46-.76; supersedes darkerfirstpass"
+    },
+    "ownership_release": "All Art runtime/recipe edits released to Engineering. No further edits planned unless final evidence reveals a concrete defect."
+  },
+  "latest_revision": {
+    "date": "2026-10-29",
+    "status": "Runtime Art edits ready for Engineering capture and build; motion acceptance pending",
+    "changes": [
+      "Black pointed brush bristles using existing material",
+      "Paired rectangular channel-joint flange plates, recessed gasket seam and transverse bolts; unchanged width/depth and .18m top",
+      "Float vertical diameter 1m centered at -.05m; unchanged .45m top",
+      "Strainer rail/winch raised together to 3.3/3.08m",
+      "Hand 25% larger with matched forearm terminal, accelerating final .18s strike and .035s contact hold; opaque knuckle contact centered on gap"
+    ],
+    "visual_review": {
+      "accepted_stills": [
+        "builds/level2-audit132/hand-impact-forward.png",
+        "builds/level2-audit132/hand-impact-reverse.png",
+        "builds/level2-audit132/hand-raised-reverse.png",
+        "builds/level2-audit132/hand-withdrawn-forward.png",
+        "builds/level2-audit132/hand-withdrawn-reverse.png",
+        "builds/level2-audit132/brush-attached-reverse.png",
+        "builds/level2-audit132/float-forward.png"
+      ],
+      "scope": "Hand impact and hidden withdrawal endpoint accepted in both captured angles; brush attachment/black pointed tips accepted in reverse view; float rounded volume accepted in forward still. Continuous motion not established by stills.",
+      "pending": [
+        "Continuous hand withdrawal and intermediate pose visual review",
+        "Flange overall silhouette still resembles rails despite readable mating seam and bolts; rectangular channel-joint identity is a bounded compromise"
+      ]
+    },
+    "validation": "Props parse passes. World-view tests passed hand contact/alignment then failed Tony framing at y103.3735 against minimum104; Engineering notified.",
+    "withdrawal_correction": "Complete hand and forearm translate back through hatch toward Z=-6, finishing .08s before hide. Preserve impact2.9 and clear3.05. Parse passes; actual occlusion/motion capture still required. Previous always-above-rider retreat assertion must distinguish hidden behind-wall phase.",
+    "withdrawal_clearance": "Maintain full lifted Y until retreat progress .65 (wrist already behind wall), then lower. Unmodified tests/ride_world_view.gd passes all assertions, including intermediate clearance and both camera angles; exit reports one ObjectDB leak. Actual updated motion remains Engineering capture gate.",
+    "hatch_aperture_correction": "At intermediate retreat, thick cutout protruded above physical hatch. Added hand-local wall/aperture fragment clipping using existing authored atlas; behind wall only hatch opening remains visible, recess backing clips deeper fragments. World-view tests pass; real renderer shader/UV and intermediate-pose captures pending.",
+    "withdrawal_current_candidate": {
+      "status": "Mechanics dense clearance PASS; Art accepts inspected final forward stills; Engineering reports coherent live slow-motion sequence. Final exports owned by Engineering.",
+      "geometry": "Forward hatch localX4, rooted forearmX4.7; stable raised hand orientation during withdrawal; opaque center seats at hatch before entry; apertureX3.28..4.72; 12cm early-withdrawal lift clears reported 5.63cm fist overlap, pending dense retest",
+      "timing": "Unchanged impact2.9 clear3.05 retreat_end3.65",
+      "supersedes": "Rear-hatch and translated-root withdrawal captures are rejected for severing, HUD clipping or rider intersection; prior still acceptance does not validate current trajectory.",
+      "validation": "Game Mechanics reports tests/ride_world_view.gd exit0:242 samples at5ms, yaw\u00b118, alpha>=.5 pixel-derived hulls for fist/forearm, zero legal-rider-volume overlap through Tony54cm jump apex; stable basis/root/palm connection and all13 adapters pass. Evidence /tmp/hand-final-clearance.log. CA warning and1 ObjectDB exit leak reported.",
+      "final_visual_evidence": [
+        {
+          "path": "builds/level2-audit132/hand-forwardmount-impact.png",
+          "visible_time": 2.92,
+          "review": "Connected wrist/forearm; fist contacts opening; rider and gap readable."
+        },
+        {
+          "path": "builds/level2-audit132/hand-final-live-lift.png",
+          "visible_time": 3.373,
+          "review": "Despite lift filename, captured title is3.373; hand at forward hatch, no HUD flip or rider overlap visible. Proximal connection partly offscreen."
+        },
+        {
+          "path": "builds/level2-audit132/hand-final-live-entry.png",
+          "visible_time": 3.7,
+          "review": "Despite entry filename, captured title is3.700; hand hidden and hatch empty."
+        }
+      ],
+      "review_limit": "Art inspected stills, not continuous video. Engineering reports live strike/lift/seating/hidden sequence coherent. Do not label these files2.998 or3.423; use visible captured timestamps."
+    }
+  }
+}

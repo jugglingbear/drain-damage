@@ -72,7 +72,7 @@ func checks() -> void:
 								if age >= 1.25 and age < 2.15: recognition_seconds += dt
 								if age >= 3.40: break
 							var next_x: float = ride.position.x+ride.encounter_scroll+560*dt
-							var jump: bool = ride.encounter_index == 10 and not jumped and next_x >= 2432
+							var jump: bool = ride.encounter_index == 10 and not jumped and next_x >= 2312
 							if jump: jumped = true
 							var target := 330.0 if ride.encounter_index == 10 else 270.0
 							var steering := Vector2(0,clampf((target-ride.position.y)/(350*dt),-1,1))

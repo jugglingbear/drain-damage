@@ -92,5 +92,44 @@
     "archive_sha256": "1da5f59915666b793306661a7a1400f2e5b1384a8ae4a81b4e813478caef7b72",
     "status": "Cross-export and six host resource-pack checks pass; native Windows pending."
   },
-  "archive_sha256": "935d7825fb789a62f6cd08b3e3c40580e0e5182247632750dbb8fb85137913fc"
+  "archive_sha256": "935d7825fb789a62f6cd08b3e3c40580e0e5182247632750dbb8fb85137913fc",
+  "ui_and_retry_137": {
+    "build": "Prototype 137 / 0.137.0",
+    "date": "2026-10-29T21:42:46.238301-07:00",
+    "status": "Exported; ten packaged regression suites pass; actual packaged UI inspected; independent Art review accepted bounded captures",
+    "mac_app": "builds/Prototype-137/Drain Damage.app",
+    "windows_zip": "builds/Drain-Damage-0.137.0-windows-x86_64-20261030-043522-658733Z.zip",
+    "changes": [
+      "Unified flush window replaces speaker/text in place before the partner reply slides it to bottom; exact approved Tony line.",
+      "Flush retries skip to first hazard wave at clock8 with fresh scheduler, full warnings, coherent radio/music and no expired intro flash; game-over retries included.",
+      "Remove gameplay control coaching from flush, landing, ride and camera test, ride action hints and flush elapsed/total timer. Controls submenu, vitals, encounter names and danger telegraphs preserved. Level1 and bosses retain route objective.",
+      "Boss meter overlays continuous full-width scene; remove90percent world compression and solid sidebar."
+    ],
+    "checks": {
+      "packaged_suites": [
+        "flush_radio_gag",
+        "flush_retry_checkpoint",
+        "flush_reading_time",
+        "flush_music",
+        "flush_landing",
+        "boss_sidebar",
+        "boss_hud",
+        "boss_intro",
+        "camera_test_integration",
+        "controls"
+      ],
+      "python_tests": 44,
+      "audio_slots_fresh": 103,
+      "mac_signature": "verified",
+      "windows": "export/package integrity and six host resource-pack initialization checks pass; native pending",
+      "evidence": "builds/ui137-review/",
+      "visual": "Actual packaged controlled fixtures inspected: both hero complaints, Skitterling, Clogfather, retry first cohort, landing, ride and alternate-camera HUD; source slide/bottom inspected. Art independently accepted seven final packaged captures (all except alternate-camera). Bounded UI checks, not full playthroughs. Agent test windows closed."
+    },
+    "limitations": [
+      "Native Windows and physical controller testing pending.",
+      "Minor existing question-mark glyph in flush reply resembles raised e at960px; no text clipping.",
+      "Known headless certificate/log permissions and shutdown ObjectDB warnings persist."
+    ],
+    "pack_sha256": "77d603e595908e281bbd6019e44749ec31ef945a37e74618cad40d2ac64d0ac8"
+  }
 }

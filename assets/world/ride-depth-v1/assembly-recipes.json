@@ -1,0 +1,809 @@
+{
+  "schema_version": 1,
+  "status": "Revised for Prototype129 POC-matched presentation; overall visual acceptance pending",
+  "owner": "Bestiary / Art",
+  "integration_owner": "Engineering",
+  "contract": {
+    "units": "meters; 100 legacy pixels = 1 meter",
+    "axes": "X travel, Y up, Z bank; obstacle-local origin at water-level footprint center",
+    "parameters": "W=obstacle.width/100; D=2*obstacle.depth/100 in presentation; B=-0.8; C=2.4; S=nearest wall sign",
+    "expressions": "Symbolic engineering recipes, not executable expressions or a runtime parser contract",
+    "components": "Sizes and centers are XYZ meters; cylinder axes default Y; endpoints override cylinder orientation",
+    "collision": "Visual-only assembly. Existing model owns every footprint, damage threshold and event time",
+    "deck_support": "Cleanout uses true elliptical lid support+.12 with no rectangular corner support or waterpatch. Mechanics owns footprint/landing/pit parity; basins keep rectangular support.",
+    "texture_density": "256 pixels/meter; world UVs; extract atlas cells before repeat to prevent adjacent-cell bleed",
+    "lighting": "Opaque solids, depth-tested; subdued roughness highlights; no emissive metal or baked cast shadows",
+    "support": "Support reaches actual floor: ordinary water bedY-.8, lethal shaftfloorY-2 for ride deck piers. Overhead equipment attached to supported beams. No hidden gap between pier and floor.",
+    "camera": "Initial yaw -18/+18 degrees, pitch 35 degrees; inspect occlusion at both views",
+    "overhead_support": "Crossbeam Y2.4 spanning banks; sideposts outside playable |Z|<=1 extend to bedY-.8. All mount plates attach to beam. Near post must not hide rider or cue.",
+    "bank_presentation": "Map model bankZ=(y-330)/100 to renderedZ=2*bankZ; multiply all bank depths, positions, masks and support visuals consistently. Simulation unchanged.",
+    "composition": "Water Z\u00b12; POC far wall top1.1 and near coping top.12; narrow dark outerbanks, camera size5.2 baseline. Avoid dominant bright walkways.",
+    "environment_motion": "World textures scroll with continuous model travel at scrollspeed; water has additional relative flow. Pause freezes both.",
+    "support_material": "neutral_support_iron: support-only luminance/desaturation of existing cast_iron texture, warmgray midtones and retained microdetail. Proposed runtime material, not new raster asset."
+  },
+  "recipes": {
+    "valve": {
+      "art_ids": [
+        "valve_wall_far_v2",
+        "valve_wall_near_v2",
+        "valve_center_v2"
+      ],
+      "classification": "bed-supported, partly submerged",
+      "components": [
+        {
+          "name": "baffle",
+          "primitive": "box",
+          "size": [
+            "W",
+            1.8,
+            "D"
+          ],
+          "center": [
+            0,
+            0.1,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "stem",
+          "primitive": "cylinder",
+          "radius": 0.065,
+          "height": 0.24,
+          "center": [
+            0,
+            0.75,
+            "D/2+0.04"
+          ],
+          "axis": "Z",
+          "material": "copper"
+        },
+        {
+          "name": "wheel",
+          "primitive": "torus",
+          "major_radius": 0.24,
+          "tube_radius": 0.035,
+          "center": [
+            0,
+            0.75,
+            "D/2+0.16"
+          ],
+          "normal": "Z",
+          "material": "copper"
+        },
+        {
+          "name": "wheel_spokes",
+          "primitive": "radial_cylinders",
+          "count": 4,
+          "radius": 0.018,
+          "length": 0.24,
+          "center": [
+            0,
+            0.75,
+            "D/2+0.16"
+          ],
+          "normal": "Z",
+          "material": "copper"
+        }
+      ],
+      "note": "Keep trim inside collision silhouette where feasible; wheel protrusion is decorative, never an extra blocker"
+    },
+    "elbow": {
+      "art_ids": [
+        "elbow_pipe_v2"
+      ],
+      "classification": "bed-supported pipe with submerged base",
+      "components": [
+        {
+          "name": "foundation",
+          "primitive": "box",
+          "size": [
+            "W",
+            0.85,
+            "D"
+          ],
+          "center": [
+            0,
+            -0.375,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "pipe",
+          "primitive": "swept_tube",
+          "outer_radius": 0.35,
+          "wall_thickness": 0.06,
+          "centerline": [
+            [
+              "-W/2+0.35",
+              -0.6,
+              0
+            ],
+            [
+              "-W/2+0.35",
+              0.4,
+              0
+            ],
+            [
+              "-W/2+0.55",
+              0.68,
+              0
+            ],
+            [
+              "W/2-0.35",
+              0.75,
+              0
+            ]
+          ],
+          "material": "copper"
+        },
+        {
+          "name": "outlet_ring",
+          "primitive": "annular_cylinder",
+          "outer_radius": 0.4,
+          "inner_radius": 0.29,
+          "height": 0.1,
+          "center": [
+            "W/2-0.35",
+            0.75,
+            0
+          ],
+          "axis": "X",
+          "material": "cast_iron"
+        }
+      ],
+      "note": "Smooth bend, dark actual inner tube; maximum pipe top 1.1. Do not paste a rendered elbow rectangle"
+    },
+    "plug": {
+      "art_ids": [
+        "chain_plug"
+      ],
+      "classification": "ceiling suspended",
+      "components": [
+        {
+          "name": "ceiling_mount",
+          "primitive": "box",
+          "size": [
+            0.4,
+            0.12,
+            0.4
+          ],
+          "center": [
+            0,
+            2.4,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "chain",
+          "primitive": "linked_tori",
+          "endpoints": [
+            [
+              0,
+              2.34,
+              0
+            ],
+            [
+              0,
+              1.04,
+              0
+            ]
+          ],
+          "link_outer_radius": 0.045,
+          "wire_radius": 0.012,
+          "alternating_rotation_degrees": 90,
+          "material": "copper"
+        },
+        {
+          "name": "plug_body",
+          "primitive": "elliptical_frustum",
+          "size": [
+            "W",
+            0.4,
+            "D"
+          ],
+          "top_scale": 0.82,
+          "center": [
+            0,
+            0.84,
+            0
+          ],
+          "material": "rubber"
+        },
+        {
+          "name": "plug_eye",
+          "primitive": "torus",
+          "major_radius": 0.065,
+          "tube_radius": 0.018,
+          "center": [
+            0,
+            1.04,
+            0
+          ],
+          "normal": "Z",
+          "material": "copper"
+        }
+      ]
+    },
+    "brush": {
+      "art_ids": [
+        "brush_far_v2",
+        "brush_near_v2",
+        "brush_center_v2"
+      ],
+      "classification": "ceiling attached",
+      "components": [
+        {
+          "name": "hanger",
+          "primitive": "cylinder",
+          "radius": 0.06,
+          "height": 1.6,
+          "center": [
+            0,
+            1.6,
+            0
+          ],
+          "material": "copper"
+        },
+        {
+          "name": "brush_core",
+          "primitive": "box",
+          "size": [
+            "W*0.88",
+            0.16,
+            "D*0.88"
+          ],
+          "center": [
+            0,
+            0.8,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "bristle_bundles",
+          "primitive": "grid_tapered_prisms",
+          "count_x": 18,
+          "count_z": 10,
+          "envelope": [
+            "W",
+            0.56,
+            "D"
+          ],
+          "center": [
+            0,
+            0.44,
+            0
+          ],
+          "tip_scale": 0.65,
+          "material": "bristles"
+        }
+      ],
+      "animation": "Small asynchronous tip bending only; tips never below model bottom_z=.16; preserve full warning silhouette"
+    },
+    "flange": {
+      "art_ids": [
+        "loose_flange"
+      ],
+      "classification": "bed supported low cross-channel barrier",
+      "components": [
+        {
+          "name": "base",
+          "primitive": "box",
+          "size": [
+            "W",
+            0.8,
+            "D"
+          ],
+          "center": [
+            0,
+            -0.4,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "flange_bar",
+          "primitive": "box",
+          "size": [
+            "W",
+            0.18,
+            "D"
+          ],
+          "center": [
+            0,
+            0.09,
+            0
+          ],
+          "material": "copper"
+        }
+      ],
+      "note": "Recess bolt heads inside top face; no extra height above the .18 clearance"
+    },
+    "float": {
+      "art_ids": [
+        "float_ball"
+      ],
+      "classification": "intentionally buoyant, articulated wall anchor",
+      "components": [
+        {
+          "name": "wall_pivot",
+          "primitive": "cylinder",
+          "radius": 0.11,
+          "height": 0.12,
+          "center": [
+            0,
+            0.55,
+            "S*1.0-obstacle_bank_z"
+          ],
+          "axis": "Z",
+          "material": "cast_iron"
+        },
+        {
+          "name": "float_body",
+          "primitive": "ellipsoid",
+          "size": [
+            "W",
+            0.6,
+            "D"
+          ],
+          "center": [
+            0,
+            0.15,
+            0
+          ],
+          "material": "copper"
+        },
+        {
+          "name": "connecting_arm",
+          "primitive": "cylinder_between",
+          "radius": 0.028,
+          "endpoints": [
+            "wall_pivot.center",
+            "float_body.center"
+          ],
+          "material": "copper"
+        }
+      ],
+      "animation": "Model moves float center; wall pivot stays fixed in world space. Recompute rod endpoints every frame. Do not translate mount with ball"
+    },
+    "cleanout": {
+      "art_ids": [
+        "cleanout_deck_330",
+        "cleanout_deck_360"
+      ],
+      "classification": "bed-supported rectangular housing",
+      "components": [
+        {
+          "name": "lid",
+          "primitive": "elliptical_cylinder",
+          "radii": [
+            "W/2",
+            "D/2"
+          ],
+          "top_y": 0.12,
+          "bottom_y": -0.06,
+          "shoulder_bevel": 0.015,
+          "material_top": "brass_top",
+          "material_side": "brass_side",
+          "radial_segments": 96,
+          "shoulder_bevel_rule": "Bevel below full nominalY.12 top boundary, not inward reduction of raised support area"
+        },
+        {
+          "name": "collar",
+          "primitive": "elliptical_cylinder",
+          "radii": [
+            "W*.48",
+            "D*.48"
+          ],
+          "top_y": -0.06,
+          "bottom_y": -0.28,
+          "material": "neutral_support_iron"
+        },
+        {
+          "name": "barrel",
+          "primitive": "elliptical_cylinder",
+          "radii": [
+            "W*.45",
+            "D*.45"
+          ],
+          "top_y": -0.28,
+          "bottom_y": -1.9,
+          "material": "neutral_support_iron",
+          "detail": "Restrained circumferential band atY-.65 and sparse vertical seams; no extra support footprint"
+        },
+        {
+          "name": "base_flange",
+          "primitive": "elliptical_cylinder",
+          "radii": [
+            "W*.49",
+            "D*.49"
+          ],
+          "top_y": -1.9,
+          "bottom_y": -2,
+          "material": "neutral_support_iron"
+        }
+      ],
+      "note": "Exact ellipse support passes54routes/702traversals per Mechanics. Preserve full nominal top ellipse atY.12; bevel belongs below top edge and must not shrink contact boundary. No square mounting support/waterpatch. Actual shaftfloor meshY-2."
+    },
+    "basin": {
+      "art_ids": [
+        "basin_deck_360",
+        "basin_deck_390",
+        "catch_basin"
+      ],
+      "classification": "bed-supported porcelain assembly",
+      "components": [
+        {
+          "name": "apron",
+          "primitive": "box",
+          "size": [
+            "W",
+            0.18,
+            "D"
+          ],
+          "center": [
+            0,
+            -0.09,
+            0
+          ],
+          "material": "porcelain_side"
+        },
+        {
+          "name": "top",
+          "primitive": "plane",
+          "size_xz": [
+            "W",
+            "D"
+          ],
+          "center": [
+            0,
+            0,
+            0
+          ],
+          "material": "porcelain_top"
+        },
+        {
+          "name": "drain",
+          "primitive": "flush_disc_decal",
+          "radius": 0.14,
+          "center": [
+            "W*.28",
+            0,
+            0
+          ],
+          "material": "basin_drain"
+        },
+        {
+          "name": "left_pier",
+          "primitive": "box",
+          "size": [
+            "W*.12",
+            1.82,
+            "D*.7"
+          ],
+          "center": [
+            "-W*.3",
+            -1.09,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "right_pier",
+          "primitive": "box",
+          "size": [
+            "W*.12",
+            1.82,
+            "D*.7"
+          ],
+          "center": [
+            "W*.3",
+            -1.09,
+            0
+          ],
+          "material": "cast_iron"
+        }
+      ],
+      "note": "Thin porcelain apron distinct from cast-iron piers reaching shaftfloorY-2. For ordinary water placements, adapt pier height to actual bed; never leave floating ends."
+    },
+    "grate": {
+      "art_ids": [
+        "spiked_grate"
+      ],
+      "classification": "bed-supported dangerous grate",
+      "components": [
+        {
+          "name": "support",
+          "primitive": "box",
+          "size": [
+            "W",
+            0.8,
+            "D"
+          ],
+          "center": [
+            0,
+            -0.4,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "grate_bars",
+          "primitive": "grid_bars",
+          "envelope": [
+            "W",
+            0.04,
+            "D"
+          ],
+          "center": [
+            0,
+            0.02,
+            0
+          ],
+          "spacing": 0.12,
+          "bar_width": 0.025,
+          "material": "cast_iron"
+        },
+        {
+          "name": "spikes",
+          "primitive": "grid_cones",
+          "count_x": 3,
+          "count_z": 9,
+          "envelope": [
+            "W*0.8",
+            0.28,
+            "D*0.9"
+          ],
+          "center": [
+            0,
+            0.18,
+            0
+          ],
+          "base_radius": 0.035,
+          "material": "copper"
+        }
+      ],
+      "note": "Tips at .32m, matching clearance; dark recesses and bright worn tips signal contact damage"
+    },
+    "ramp": {
+      "art_ids": [
+        "launch_ramp"
+      ],
+      "classification": "bed-supported quadratic wedge",
+      "components": [
+        {
+          "name": "ramp_top",
+          "primitive": "parametric_surface",
+          "x_domain": [
+            "-W/2",
+            "W/2"
+          ],
+          "z_domain": [
+            "-D/2",
+            "D/2"
+          ],
+          "height": "rise*((x+W/2)/W)^2",
+          "segments_x": 48,
+          "segments_z": 1,
+          "material": "ramp_top"
+        },
+        {
+          "name": "foundation",
+          "primitive": "closed_surface_skirt",
+          "top_boundary": "ramp_top",
+          "bottom_y": -0.8,
+          "close_ends": true,
+          "material": "ramp_side"
+        }
+      ],
+      "note": "No rim above support. Use world-space texture scale on skirt. Preserve rigid board contact solver and launch model"
+    },
+    "opening": {
+      "art_ids": [
+        "elbow_pit_v2",
+        "ordinary_gap",
+        "long_pit"
+      ],
+      "classification": "actual opening with submerged/recessed walls",
+      "components": [
+        {
+          "name": "opening_walls",
+          "primitive": "rectangular_shaft",
+          "size_xz": [
+            "W",
+            "D"
+          ],
+          "top_y": 0,
+          "bottom_y": -2,
+          "wall_thickness": 0.05,
+          "wall_outside_opening": true,
+          "material": "hole_wall",
+          "tint": [
+            0.3,
+            0.36,
+            0.37
+          ]
+        },
+        {
+          "name": "shaft_floor",
+          "primitive": "plane",
+          "size_xz": [
+            "W",
+            "D"
+          ],
+          "center": [
+            0,
+            -2,
+            0
+          ],
+          "material": "hole_wall",
+          "note": "Actual receiving floor, restrained readable shading; do not claim support contact with absent mesh"
+        }
+      ],
+      "note": "Mask water exactly to model footprint; decks remain above opening. No opaque flat pit billboard"
+    },
+    "hand": {
+      "art_ids": [
+        "maintenance_hand_gap"
+      ],
+      "classification": "wall-emergent articulated hand; resulting opening is permanent",
+      "components": [
+        {
+          "name": "hatch",
+          "primitive": "box_frame",
+          "outer_size": [
+            1.6,
+            1.12,
+            0.12
+          ],
+          "border": 0.08,
+          "center": [
+            0,
+            0.62,
+            "-1.0-obstacle_bank_z"
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "forearm",
+          "primitive": "articulated_cutout",
+          "asset_manifest": "assets/world/ride-depth-v1/hand-registration.json",
+          "frame": "forearm_a",
+          "registration": "root_px/wrist_px",
+          "status": "New registered cutout; runtime review pending"
+        },
+        {
+          "name": "fist",
+          "primitive": "articulated_cutout",
+          "asset_manifest": "assets/world/ride-depth-v1/hand-registration.json",
+          "frames": [
+            "contact",
+            "curled"
+          ],
+          "status": "Uniform-scale wrist registration supplied; runtime review pending"
+        },
+        {
+          "name": "impact_opening",
+          "recipe": "opening",
+          "activate": "existing model impact time"
+        }
+      ],
+      "animation": "Existing event times are authoritative. Root stays at hatch; arm joins root to wrist. Clear hand fully from ride corridor before model clear time. No new hand damage collider",
+      "hatch_clearance": "Engineering revised clear opening to1.44 by .96m; root atX-3.7,Y.25,Z-1.05. Root/jamb accepted in age3.05 captures at both views; full timeline remains integration check."
+    },
+    "strainer": {
+      "art_ids": [
+        "strainer_gap_60",
+        "strainer_gap_130"
+      ],
+      "classification": "ceiling rail/winch attached crusher, then permanent opening",
+      "components": [
+        {
+          "name": "ceiling_rail",
+          "primitive": "box",
+          "size": [
+            2.2,
+            0.12,
+            0.16
+          ],
+          "center": [
+            0,
+            2.4,
+            0
+          ],
+          "material": "cast_iron"
+        },
+        {
+          "name": "winch",
+          "primitive": "cylinder",
+          "radius": 0.16,
+          "height": 0.32,
+          "center": [
+            0,
+            2.18,
+            0
+          ],
+          "axis": "Z",
+          "material": "copper"
+        },
+        {
+          "name": "basket",
+          "primitive": "perforated_box_basket",
+          "size": [
+            "W",
+            0.45,
+            "D"
+          ],
+          "center": [
+            0,
+            "basket_bottom+0.225",
+            0
+          ],
+          "bar_width": 0.025,
+          "spacing": 0.12,
+          "material": "cast_iron"
+        },
+        {
+          "name": "left_chain",
+          "primitive": "linked_tori_between",
+          "endpoints": [
+            [
+              "-W*0.35",
+              2.34,
+              0
+            ],
+            [
+              "-W*0.35",
+              "basket_bottom+0.45",
+              0
+            ]
+          ],
+          "link_outer_radius": 0.035,
+          "wire_radius": 0.009,
+          "material": "copper"
+        },
+        {
+          "name": "right_chain",
+          "primitive": "linked_tori_between",
+          "endpoints": [
+            [
+              "W*0.35",
+              2.34,
+              0
+            ],
+            [
+              "W*0.35",
+              "basket_bottom+0.45",
+              0
+            ]
+          ],
+          "link_outer_radius": 0.035,
+          "wire_radius": 0.009,
+          "material": "copper"
+        },
+        {
+          "name": "impact_opening",
+          "recipe": "opening",
+          "activate": "existing model impact time"
+        }
+      ],
+      "animation": "Model warning/drop/impact/clear times unchanged; basket_bottom=0 on impact, >=1.3 when clear. Connect chains continuously, keep basket below ceiling. Basket silhouette follows rectangular model opening; do not silently substitute circular collision"
+    }
+  },
+  "acceptance": [
+    "All 13 encounters and landing inspected at both camera angles with each hero",
+    "No unsupported solid, raised deck rim, submerged hiding of required route cue or foreground wall occlusion",
+    "Continuous hand and chain connections; no disconnected suspended objects",
+    "Water openings match authoritative footprints and activation time",
+    "Material repeats, depth sorting, hero contact and texture contrast checked in running build"
+  ],
+  "revision_132": {
+    "flange": "Two .30w-thick vertical mating plates centered at +/- .22w, recessed gasket and transverse hex bolts. Full original footprint, top .18m. Rectangular channel joint, not round pipe flange.",
+    "brush": "Existing bristle texture tinted near-black, pointed cones with zero tip radius.",
+    "float": "Vertical diameter1, centerY-.05, unchanged horizontal footprint and topY.45.",
+    "strainer": "RailY3.3; winchY3.08; Engineering owns matching moving chain endpoints."
+  }
+}

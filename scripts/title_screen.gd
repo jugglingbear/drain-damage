@@ -354,7 +354,8 @@ func draw_selection() -> void:
 	var ink := Color("263634")
 	caption("EMPLOYEE FILE", Vector2(266, 219), 14, ink)
 	caption("%d / %d" % [selected + 1, Crew.EMPLOYEES.size()], Vector2(640, 219), 14, ink)
-	EmployeePhoto.draw(self, Portraits.expression(person.id, "afraid" if person.id == "sean" else "neutral"),
+	EmployeePhoto.draw(self, Portraits.expression(person.id, "afraid" if person.id == "sean" else "neutral",
+		difficulty_copy.options[difficulty_index].id),
 		person.name)
 	caption(person.name, Vector2(430, 247), 23, ink)
 	caption("Fourth-generation plumber" if selected == 0 else "Apprentice", Vector2(430, 270), 14, ink)

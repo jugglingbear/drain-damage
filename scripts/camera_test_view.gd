@@ -1,4 +1,5 @@
 extends Node3D
+const Costume = preload("res://scripts/hero_costume.gd")
 ## Shared world-space presentation experiment. Simulation never reads the camera.
 const Geometry = preload("res://scripts/camera_test_geometry.gd")
 const MANIFEST := "res://assets/world/level-two-camera-test-v1/manifest.json"
@@ -34,7 +35,7 @@ func material_from(frame: Dictionary) -> StandardMaterial3D:
 	material.metallic_specular = .1
 	return material
 
-func configure(model: RefCounted, hero_art: Dictionary, hero: String, hard: bool,
+func configure(model: RefCounted, hero_art: Dictionary, hero: String, costume: Variant,
 		contacts: Dictionary) -> void:
 	assert(FileAccess.file_exists(MANIFEST),"Camera proof requires Art's registered materials")
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
@@ -103,7 +104,7 @@ func configure(model: RefCounted, hero_art: Dictionary, hero: String, hard: bool
 	shadow_material.albedo_color = Color(0,0,0,.7)
 	contact_shadow = Geometry.quad(self,[Vector3(-.5,0,-.17),Vector3(.5,0,-.17),
 		Vector3(.5,0,.17),Vector3(-.5,0,.17)],shadow_material)
-	var mode := "hard" if hard else "normal"
+	var mode := Costume.mode(costume)
 	var contact: Array = manifest.get("rider_support_contacts",contacts)[hero][mode]
 	for frame: Dictionary in hero_art.landing[hero][mode].front:
 		add_rider_frame(frame,Vector2(contact[0],contact[1]))

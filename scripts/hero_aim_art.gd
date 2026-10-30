@@ -1,10 +1,12 @@
 extends RefCounted
+const Costume = preload("res://scripts/hero_costume.gd")
 ## Independent body animation and aim layers share registration and muzzle geometry.
 const MANIFEST := "res://assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json"
 const ANIMATIONS := "res://assets/sprites/hero-animation-v2/manifest-beard-v3.json"
 const ANCHOR := Vector2(64, 104)
 const HardArt = preload("res://scripts/hard_costume_art.gd")
 var hard_mode := false
+var costume := "normal"
 var poses: Dictionary = {}
 var textures: Dictionary = {}
 var animations: Dictionary = {}
@@ -12,13 +14,15 @@ var animations: Dictionary = {}
 func _init() -> void:
 	configure(false)
 
-func configure(enabled: bool) -> void:
-	if not poses.is_empty() and hard_mode == enabled: return
-	hard_mode = enabled
+func configure(value: Variant) -> void:
+	var selected := Costume.mode(value)
+	if not poses.is_empty() and costume == selected: return
+	costume = selected
+	hard_mode = costume == "hard"
 	poses.clear()
 	textures.clear()
-	var pose_path := "res://assets/sprites/hard-mode/aim-manifest-v1.json" if enabled else MANIFEST
-	var animation_path := "res://assets/sprites/hard-mode/animation-manifest-v1.json" if enabled else ANIMATIONS
+	var pose_path := "res://assets/sprites/%s-mode/aim-manifest-v1.json" % costume if costume != "normal" else MANIFEST
+	var animation_path := "res://assets/sprites/%s-mode/animation-manifest-v1.json" % costume if costume != "normal" else ANIMATIONS
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(pose_path))
 	for pose: Dictionary in data.poses:
 		poses[pose.id] = pose

@@ -21,15 +21,18 @@ func checks() -> void:
 							model.position.x = anchor
 							var dt: float = 1.0/hz
 							var travel: float = 336+minf(400*air_input.normalized().x*0.6,650-anchor)
-							var trigger: float = 2600-travel*0.5+offset*560
+							var trigger: float = 2480-travel*0.5+offset*560
 							var pressed := false
 							for frame in range(15*hz):
 								if model.encounter_index != 10 or model.complete: break
 								var jump: bool = not pressed and model.position.x+model.encounter_scroll+560*dt >= trigger
 								if jump:
-									assert(model.encounter_clock >= 3.05,"Hand overlaps the authored jump")
+									assert(model.encounter_clock >= 1.25+1.5,"Jump has at least1.5 seconds of warning")
 									pressed = true
 								model.tick(host,dt,air_input if jump or model.jump_age >= 0 else Vector2.ZERO,jump)
+								if model.encounter_index == 10 and model.encounter_clock < 3.05:
+									assert(model.position.x+model.encounter_scroll+45 < 2480-70,
+										"Board cannot reach the hand footprint before physical clearance")
 							assert(model.encounter_index == 11 and host.health == 5 and host.lives == 3)
 							assert(model.events.get("jump",0) == 1 and model.events.get("fall",0) == 0)
 							host.free()

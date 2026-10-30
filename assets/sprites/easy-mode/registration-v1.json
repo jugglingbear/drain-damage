@@ -1,0 +1,5033 @@
+{
+  "schema_version": 1,
+  "status": "All17 source sheets mapped; manual estimates await assembly review",
+  "coordinate_space": "Absolute source pixels, not relative to source_rect",
+  "bounds_method": "Alpha240 core plus5px padding inside isolation region; measurement only, not alpha treatment approval",
+  "sheets": {
+    "tony-parts-v1.png": {
+      "path": "assets/sprites/easy-mode/tony-parts-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "ae00ba583ed7cc5374aeb528ff82180b28e10d78b5624aa6ce2a9d47ce959ecc",
+      "frames": [
+        {
+          "id": "tony-standing-body-0",
+          "source_rect": [
+            55,
+            61,
+            335,
+            589
+          ],
+          "isolation_region": [
+            0,
+            0,
+            418,
+            680
+          ],
+          "opaque_core_bounds_alpha240": [
+            60,
+            66,
+            325,
+            579
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              141,
+              330
+            ],
+            "back_shoulder": [
+              309,
+              318
+            ],
+            "sole_contacts": [
+              [
+                110,
+                640
+              ],
+              [
+                310,
+                640
+              ]
+            ],
+            "feet_midpoint": [
+              210.0,
+              640
+            ],
+            "head_source_rect": [
+              103,
+              56,
+              255,
+              235
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            222.5,
+            644
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-standing-body-1",
+          "source_rect": [
+            479,
+            61,
+            331,
+            589
+          ],
+          "isolation_region": [
+            418,
+            0,
+            418,
+            680
+          ],
+          "opaque_core_bounds_alpha240": [
+            484,
+            66,
+            321,
+            579
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              560,
+              330
+            ],
+            "back_shoulder": [
+              728,
+              318
+            ],
+            "sole_contacts": [
+              [
+                530,
+                640
+              ],
+              [
+                730,
+                640
+              ]
+            ],
+            "feet_midpoint": [
+              630.0,
+              640
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            644.5,
+            644
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-standing-body-2",
+          "source_rect": [
+            910,
+            63,
+            327,
+            587
+          ],
+          "isolation_region": [
+            836,
+            0,
+            418,
+            680
+          ],
+          "opaque_core_bounds_alpha240": [
+            915,
+            68,
+            317,
+            577
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              984,
+              330
+            ],
+            "back_shoulder": [
+              1152,
+              318
+            ],
+            "sole_contacts": [
+              [
+                952,
+                640
+              ],
+              [
+                1153,
+                640
+              ]
+            ],
+            "feet_midpoint": [
+              1052.5,
+              640
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1073.5,
+            644
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-right",
+          "source_rect": [
+            127,
+            781,
+            252,
+            117
+          ],
+          "isolation_region": [
+            0,
+            680,
+            418,
+            255
+          ],
+          "opaque_core_bounds_alpha240": [
+            132,
+            786,
+            242,
+            107
+          ],
+          "landmarks": {
+            "shoulder": [
+              175,
+              834
+            ],
+            "grip": [
+              337,
+              845
+            ],
+            "hand_source_rect": [
+              298,
+              802,
+              78,
+              86
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            253.0,
+            892
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-up-right",
+          "source_rect": [
+            547,
+            730,
+            231,
+            161
+          ],
+          "isolation_region": [
+            418,
+            680,
+            418,
+            255
+          ],
+          "opaque_core_bounds_alpha240": [
+            552,
+            735,
+            221,
+            151
+          ],
+          "landmarks": {
+            "shoulder": [
+              594,
+              836
+            ],
+            "grip": [
+              741,
+              777
+            ],
+            "hand_source_rect": [
+              700,
+              731,
+              74,
+              90
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            662.5,
+            885
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-up",
+          "source_rect": [
+            973,
+            699,
+            185,
+            198
+          ],
+          "isolation_region": [
+            836,
+            680,
+            418,
+            255
+          ],
+          "opaque_core_bounds_alpha240": [
+            978,
+            704,
+            175,
+            188
+          ],
+          "landmarks": {
+            "shoulder": [
+              1024,
+              837
+            ],
+            "grip": [
+              1121,
+              752
+            ],
+            "hand_source_rect": [
+              1077,
+              701,
+              84,
+              95
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1065.5,
+            891
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-right",
+          "source_rect": [
+            121,
+            1059,
+            253,
+            126
+          ],
+          "isolation_region": [
+            0,
+            935,
+            418,
+            319
+          ],
+          "opaque_core_bounds_alpha240": [
+            126,
+            1064,
+            243,
+            116
+          ],
+          "landmarks": {
+            "shoulder": [
+              171,
+              1116
+            ],
+            "grip": [
+              330,
+              1130
+            ],
+            "hand_source_rect": [
+              294,
+              1092,
+              76,
+              78
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            247.5,
+            1179
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-up-right",
+          "source_rect": [
+            546,
+            1001,
+            213,
+            178
+          ],
+          "isolation_region": [
+            418,
+            935,
+            418,
+            319
+          ],
+          "opaque_core_bounds_alpha240": [
+            551,
+            1006,
+            203,
+            168
+          ],
+          "landmarks": {
+            "shoulder": [
+              592,
+              1120
+            ],
+            "grip": [
+              717,
+              1048
+            ],
+            "hand_source_rect": [
+              676,
+              999,
+              82,
+              91
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            652.5,
+            1173
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-up",
+          "source_rect": [
+            1006,
+            958,
+            143,
+            219
+          ],
+          "isolation_region": [
+            836,
+            935,
+            418,
+            319
+          ],
+          "opaque_core_bounds_alpha240": [
+            1011,
+            963,
+            133,
+            209
+          ],
+          "landmarks": {
+            "shoulder": [
+              1052,
+              1122
+            ],
+            "grip": [
+              1101,
+              1018
+            ],
+            "hand_source_rect": [
+              1063,
+              961,
+              82,
+              106
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1077.5,
+            1171
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "sean-parts-v1.png": {
+      "path": "assets/sprites/easy-mode/sean-parts-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "094a46f294b9c351c638da55e227066e0cd4ec0adbe8cebfa836def3a78add03",
+      "frames": [
+        {
+          "id": "sean-standing-body-0",
+          "source_rect": [
+            85,
+            74,
+            274,
+            514
+          ],
+          "isolation_region": [
+            0,
+            0,
+            418,
+            620
+          ],
+          "opaque_core_bounds_alpha240": [
+            90,
+            79,
+            264,
+            504
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              140,
+              300
+            ],
+            "back_shoulder": [
+              282,
+              288
+            ],
+            "sole_contacts": [
+              [
+                135,
+                578
+              ],
+              [
+                294,
+                578
+              ]
+            ],
+            "feet_midpoint": [
+              214.5,
+              578
+            ],
+            "head_source_rect": [
+              110,
+              70,
+              210,
+              224
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            222.0,
+            582
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-standing-body-1",
+          "source_rect": [
+            504,
+            74,
+            273,
+            515
+          ],
+          "isolation_region": [
+            418,
+            0,
+            418,
+            620
+          ],
+          "opaque_core_bounds_alpha240": [
+            509,
+            79,
+            263,
+            505
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              558,
+              300
+            ],
+            "back_shoulder": [
+              700,
+              288
+            ],
+            "sole_contacts": [
+              [
+                552,
+                578
+              ],
+              [
+                710,
+                578
+              ]
+            ],
+            "feet_midpoint": [
+              631.0,
+              578
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            640.5,
+            583
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-standing-body-2",
+          "source_rect": [
+            920,
+            74,
+            275,
+            515
+          ],
+          "isolation_region": [
+            836,
+            0,
+            418,
+            620
+          ],
+          "opaque_core_bounds_alpha240": [
+            925,
+            79,
+            265,
+            505
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              974,
+              300
+            ],
+            "back_shoulder": [
+              1116,
+              288
+            ],
+            "sole_contacts": [
+              [
+                970,
+                578
+              ],
+              [
+                1127,
+                578
+              ]
+            ],
+            "feet_midpoint": [
+              1048.5,
+              578
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1057.5,
+            583
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-right",
+          "source_rect": [
+            136,
+            743,
+            232,
+            117
+          ],
+          "isolation_region": [
+            0,
+            620,
+            418,
+            280
+          ],
+          "opaque_core_bounds_alpha240": [
+            141,
+            748,
+            222,
+            107
+          ],
+          "landmarks": {
+            "shoulder": [
+              161,
+              799
+            ],
+            "grip": [
+              331,
+              817
+            ],
+            "hand_source_rect": [
+              297,
+              775,
+              68,
+              76
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            252.0,
+            854
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-up-right",
+          "source_rect": [
+            554,
+            700,
+            194,
+            147
+          ],
+          "isolation_region": [
+            418,
+            620,
+            418,
+            280
+          ],
+          "opaque_core_bounds_alpha240": [
+            559,
+            705,
+            184,
+            137
+          ],
+          "landmarks": {
+            "shoulder": [
+              584,
+              808
+            ],
+            "grip": [
+              715,
+              746
+            ],
+            "hand_source_rect": [
+              682,
+              702,
+              66,
+              76
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            651.0,
+            841
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-up",
+          "source_rect": [
+            975,
+            655,
+            146,
+            189
+          ],
+          "isolation_region": [
+            836,
+            620,
+            418,
+            280
+          ],
+          "opaque_core_bounds_alpha240": [
+            980,
+            660,
+            136,
+            179
+          ],
+          "landmarks": {
+            "shoulder": [
+              1004,
+              806
+            ],
+            "grip": [
+              1083,
+              700
+            ],
+            "hand_source_rect": [
+              1047,
+              657,
+              73,
+              80
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1048.0,
+            838
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-right",
+          "source_rect": [
+            131,
+            1040,
+            237,
+            122
+          ],
+          "isolation_region": [
+            0,
+            900,
+            418,
+            354
+          ],
+          "opaque_core_bounds_alpha240": [
+            136,
+            1045,
+            227,
+            112
+          ],
+          "landmarks": {
+            "shoulder": [
+              158,
+              1096
+            ],
+            "grip": [
+              331,
+              1119
+            ],
+            "hand_source_rect": [
+              293,
+              1078,
+              72,
+              76
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            249.5,
+            1156
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-up-right",
+          "source_rect": [
+            549,
+            994,
+            199,
+            158
+          ],
+          "isolation_region": [
+            418,
+            900,
+            418,
+            354
+          ],
+          "opaque_core_bounds_alpha240": [
+            554,
+            999,
+            189,
+            148
+          ],
+          "landmarks": {
+            "shoulder": [
+              581,
+              1117
+            ],
+            "grip": [
+              713,
+              1043
+            ],
+            "hand_source_rect": [
+              681,
+              998,
+              66,
+              80
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            648.5,
+            1146
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-up",
+          "source_rect": [
+            977,
+            944,
+            150,
+            207
+          ],
+          "isolation_region": [
+            836,
+            900,
+            418,
+            354
+          ],
+          "opaque_core_bounds_alpha240": [
+            982,
+            949,
+            140,
+            197
+          ],
+          "landmarks": {
+            "shoulder": [
+              1008,
+              1115
+            ],
+            "grip": [
+              1082,
+              988
+            ],
+            "hand_source_rect": [
+              1047,
+              945,
+              73,
+              83
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1052.0,
+            1145
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "sean-left-support-hand-v1.png": {
+      "path": "assets/sprites/easy-mode/sean-left-support-hand-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "9d7dade7de2bf9ac5af6ad35bb7b3e915f3b561f42896707b2b42233f7f74815",
+      "frames": [
+        {
+          "id": "back-right",
+          "source_rect": [
+            132,
+            732,
+            237,
+            115
+          ],
+          "isolation_region": [
+            0,
+            620,
+            418,
+            280
+          ],
+          "opaque_core_bounds_alpha240": [
+            137,
+            737,
+            227,
+            105
+          ],
+          "landmarks": {
+            "shoulder": [
+              176,
+              784
+            ],
+            "grip": [
+              330,
+              795
+            ],
+            "hand_source_rect": [
+              298,
+              755,
+              69,
+              77
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            250.5,
+            841
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-up-right",
+          "source_rect": [
+            536,
+            691,
+            206,
+            150
+          ],
+          "isolation_region": [
+            418,
+            620,
+            418,
+            280
+          ],
+          "opaque_core_bounds_alpha240": [
+            541,
+            696,
+            196,
+            140
+          ],
+          "landmarks": {
+            "shoulder": [
+              579,
+              787
+            ],
+            "grip": [
+              708,
+              737
+            ],
+            "hand_source_rect": [
+              671,
+              690,
+              71,
+              90
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            639.0,
+            835
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "back-up",
+          "source_rect": [
+            953,
+            635,
+            161,
+            206
+          ],
+          "isolation_region": [
+            836,
+            620,
+            418,
+            280
+          ],
+          "opaque_core_bounds_alpha240": [
+            958,
+            640,
+            151,
+            196
+          ],
+          "landmarks": {
+            "shoulder": [
+              1000,
+              786
+            ],
+            "grip": [
+              1067,
+              690
+            ],
+            "hand_source_rect": [
+              1032,
+              637,
+              76,
+              95
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1033.5,
+            835
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-right",
+          "source_rect": [
+            131,
+            1038,
+            225,
+            119
+          ],
+          "isolation_region": [
+            0,
+            900,
+            418,
+            354
+          ],
+          "opaque_core_bounds_alpha240": [
+            136,
+            1043,
+            215,
+            109
+          ],
+          "landmarks": {
+            "shoulder": [
+              171,
+              1093
+            ],
+            "grip": [
+              317,
+              1105
+            ],
+            "hand_source_rect": [
+              284,
+              1065,
+              70,
+              76
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            243.5,
+            1151
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-up-right",
+          "source_rect": [
+            534,
+            979,
+            209,
+            168
+          ],
+          "isolation_region": [
+            418,
+            900,
+            418,
+            354
+          ],
+          "opaque_core_bounds_alpha240": [
+            539,
+            984,
+            199,
+            158
+          ],
+          "landmarks": {
+            "shoulder": [
+              579,
+              1096
+            ],
+            "grip": [
+              708,
+              1024
+            ],
+            "hand_source_rect": [
+              675,
+              981,
+              70,
+              84
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            638.5,
+            1141
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "front-up",
+          "source_rect": [
+            964,
+            922,
+            150,
+            227
+          ],
+          "isolation_region": [
+            836,
+            900,
+            418,
+            354
+          ],
+          "opaque_core_bounds_alpha240": [
+            969,
+            927,
+            140,
+            217
+          ],
+          "landmarks": {
+            "shoulder": [
+              1003,
+              1097
+            ],
+            "grip": [
+              1069,
+              977
+            ],
+            "hand_source_rect": [
+              1031,
+              924,
+              80,
+              101
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1039.0,
+            1143
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-standing-body-0",
+          "source_rect": [
+            82,
+            65,
+            273,
+            517
+          ],
+          "isolation_region": [
+            0,
+            0,
+            418,
+            620
+          ],
+          "opaque_core_bounds_alpha240": [
+            87,
+            70,
+            263,
+            507
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              137,
+              292
+            ],
+            "back_shoulder": [
+              285,
+              285
+            ],
+            "sole_contacts": [
+              [
+                135,
+                572
+              ],
+              [
+                292,
+                572
+              ]
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            218.5,
+            576
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-standing-body-1",
+          "source_rect": [
+            500,
+            64,
+            274,
+            518
+          ],
+          "isolation_region": [
+            418,
+            0,
+            418,
+            620
+          ],
+          "opaque_core_bounds_alpha240": [
+            505,
+            69,
+            264,
+            508
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              555,
+              292
+            ],
+            "back_shoulder": [
+              703,
+              285
+            ],
+            "sole_contacts": [
+              [
+                553,
+                572
+              ],
+              [
+                710,
+                572
+              ]
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            637.0,
+            576
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-standing-body-2",
+          "source_rect": [
+            919,
+            65,
+            280,
+            517
+          ],
+          "isolation_region": [
+            836,
+            0,
+            418,
+            620
+          ],
+          "opaque_core_bounds_alpha240": [
+            924,
+            70,
+            270,
+            507
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              973,
+              292
+            ],
+            "back_shoulder": [
+              1121,
+              285
+            ],
+            "sole_contacts": [
+              [
+                971,
+                572
+              ],
+              [
+                1128,
+                572
+              ]
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1059.0,
+            576
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "downward-arms-v1.png": {
+      "path": "assets/sprites/easy-mode/downward-arms-v1.png",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "ad1cdad654cb7c381b56cb0288fca3e4a0883a9167f12120fbe037ded8bafb2a",
+      "frames": [
+        {
+          "id": "tony-down-arm-0",
+          "source_rect": [
+            118,
+            92,
+            284,
+            318
+          ],
+          "isolation_region": [
+            0,
+            0,
+            444,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            123,
+            97,
+            274,
+            308
+          ],
+          "landmarks": {
+            "shoulder": [
+              180,
+              151
+            ],
+            "grip": [
+              346,
+              351
+            ],
+            "hand_source_rect": [
+              290,
+              296,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            260.0,
+            404
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-down-arm-1",
+          "source_rect": [
+            559,
+            92,
+            305,
+            318
+          ],
+          "isolation_region": [
+            444,
+            0,
+            443,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            564,
+            97,
+            295,
+            308
+          ],
+          "landmarks": {
+            "shoulder": [
+              617,
+              151
+            ],
+            "grip": [
+              810,
+              350
+            ],
+            "hand_source_rect": [
+              754,
+              295,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            711.5,
+            404
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-down-arm-2",
+          "source_rect": [
+            1046,
+            89,
+            164,
+            338
+          ],
+          "isolation_region": [
+            887,
+            0,
+            443,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            1051,
+            94,
+            154,
+            328
+          ],
+          "landmarks": {
+            "shoulder": [
+              1108,
+              147
+            ],
+            "grip": [
+              1148,
+              374
+            ],
+            "hand_source_rect": [
+              1092,
+              319,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1128.0,
+            421
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-down-arm-3",
+          "source_rect": [
+            1492,
+            89,
+            158,
+            343
+          ],
+          "isolation_region": [
+            1330,
+            0,
+            444,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            1497,
+            94,
+            148,
+            333
+          ],
+          "landmarks": {
+            "shoulder": [
+              1556,
+              145
+            ],
+            "grip": [
+              1594,
+              378
+            ],
+            "hand_source_rect": [
+              1538,
+              323,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1571.0,
+            426
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-down-arm-0",
+          "source_rect": [
+            118,
+            481,
+            283,
+            317
+          ],
+          "isolation_region": [
+            0,
+            443,
+            444,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            123,
+            486,
+            273,
+            307
+          ],
+          "landmarks": {
+            "shoulder": [
+              180,
+              541
+            ],
+            "grip": [
+              346,
+              741
+            ],
+            "hand_source_rect": [
+              290,
+              686,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            259.5,
+            792
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-down-arm-1",
+          "source_rect": [
+            560,
+            481,
+            305,
+            316
+          ],
+          "isolation_region": [
+            444,
+            443,
+            443,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            565,
+            486,
+            295,
+            306
+          ],
+          "landmarks": {
+            "shoulder": [
+              617,
+              541
+            ],
+            "grip": [
+              810,
+              740
+            ],
+            "hand_source_rect": [
+              754,
+              685,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            712.5,
+            791
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-down-arm-2",
+          "source_rect": [
+            1047,
+            480,
+            162,
+            335
+          ],
+          "isolation_region": [
+            887,
+            443,
+            443,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            1052,
+            485,
+            152,
+            325
+          ],
+          "landmarks": {
+            "shoulder": [
+              1108,
+              537
+            ],
+            "grip": [
+              1148,
+              764
+            ],
+            "hand_source_rect": [
+              1092,
+              709,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1128.0,
+            809
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-down-arm-3",
+          "source_rect": [
+            1492,
+            479,
+            157,
+            344
+          ],
+          "isolation_region": [
+            1330,
+            443,
+            444,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            1497,
+            484,
+            147,
+            334
+          ],
+          "landmarks": {
+            "shoulder": [
+              1556,
+              535
+            ],
+            "grip": [
+              1594,
+              768
+            ],
+            "hand_source_rect": [
+              1538,
+              713,
+              112,
+              110
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1570.5,
+            817
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "airborne-bodies-v1.png": {
+      "path": "assets/sprites/easy-mode/airborne-bodies-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "5e3276687ada7d699885a9e6c040c5ef98e2a85f1bad7a9be396834e6c66f149",
+      "frames": [
+        {
+          "id": "tony-airborne-body",
+          "source_rect": [
+            191,
+            103,
+            482,
+            852
+          ],
+          "isolation_region": [
+            0,
+            0,
+            768,
+            1024
+          ],
+          "opaque_core_bounds_alpha240": [
+            196,
+            108,
+            472,
+            842
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              326,
+              493
+            ],
+            "back_shoulder": [
+              599,
+              494
+            ],
+            "sole_points_not_ground_contact": [
+              [
+                238,
+                882
+              ],
+              [
+                321,
+                943
+              ]
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            432.0,
+            949
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-airborne-body",
+          "source_rect": [
+            904,
+            112,
+            471,
+            843
+          ],
+          "isolation_region": [
+            768,
+            0,
+            768,
+            1024
+          ],
+          "opaque_core_bounds_alpha240": [
+            909,
+            117,
+            461,
+            833
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              1040,
+              491
+            ],
+            "back_shoulder": [
+              1312,
+              494
+            ],
+            "sole_points_not_ground_contact": [
+              [
+                952,
+                881
+              ],
+              [
+                1029,
+                942
+              ]
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1139.5,
+            949
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "tony-motion-v3.png": {
+      "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "b9c50df82da611692a83c6c1e056492a7b172ece35a03377bf7e75f6ddb35ef4",
+      "frames": [
+        {
+          "id": "tony-run0",
+          "source_rect": [
+            110,
+            90,
+            197,
+            245
+          ],
+          "isolation_region": [
+            0,
+            0,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            115,
+            95,
+            187,
+            235
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              185,
+              207
+            ],
+            "back_shoulder": [
+              250,
+              203
+            ],
+            "body_center_x": 219,
+            "row_reference_ground_y": 327,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              151.0,
+              329
+            ],
+            "ground_plane_anchor": [
+              219,
+              329
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            208.5,
+            329
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-run1",
+          "source_rect": [
+            499,
+            92,
+            173,
+            243
+          ],
+          "isolation_region": [
+            384,
+            0,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            504,
+            97,
+            163,
+            233
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              568,
+              208
+            ],
+            "back_shoulder": [
+              633,
+              204
+            ],
+            "body_center_x": 602,
+            "row_reference_ground_y": 327,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              544.5,
+              329
+            ],
+            "ground_plane_anchor": [
+              602,
+              329
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            585.5,
+            329
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-run2",
+          "source_rect": [
+            875,
+            90,
+            198,
+            245
+          ],
+          "isolation_region": [
+            768,
+            0,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            880,
+            95,
+            188,
+            235
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              948,
+              207
+            ],
+            "back_shoulder": [
+              1013,
+              203
+            ],
+            "body_center_x": 982,
+            "row_reference_ground_y": 327,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              919.5,
+              329
+            ],
+            "ground_plane_anchor": [
+              982,
+              329
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            974.0,
+            329
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-run3",
+          "source_rect": [
+            1245,
+            87,
+            215,
+            246
+          ],
+          "isolation_region": [
+            1152,
+            0,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            1250,
+            92,
+            205,
+            236
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              1325,
+              207
+            ],
+            "back_shoulder": [
+              1390,
+              203
+            ],
+            "body_center_x": 1359,
+            "row_reference_ground_y": 327,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              1404.5,
+              327
+            ],
+            "ground_plane_anchor": [
+              1359,
+              327
+            ],
+            "contact_state": "run-flight",
+            "suggested_run_flight_clearance_canvas_px": 2,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1352.5,
+            327
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-run4",
+          "source_rect": [
+            97,
+            415,
+            221,
+            242
+          ],
+          "isolation_region": [
+            0,
+            341,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            102,
+            420,
+            211,
+            232
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              170,
+              530
+            ],
+            "back_shoulder": [
+              235,
+              526
+            ],
+            "body_center_x": 204,
+            "row_reference_ground_y": 650,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              184.43,
+              651
+            ],
+            "ground_plane_anchor": [
+              204,
+              651
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            207.5,
+            651
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-run5",
+          "source_rect": [
+            477,
+            415,
+            236,
+            242
+          ],
+          "isolation_region": [
+            384,
+            341,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            482,
+            420,
+            226,
+            232
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              560,
+              530
+            ],
+            "back_shoulder": [
+              625,
+              526
+            ],
+            "body_center_x": 594,
+            "row_reference_ground_y": 650,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              655.5,
+              651
+            ],
+            "ground_plane_anchor": [
+              594,
+              651
+            ],
+            "contact_state": "run-flight",
+            "suggested_run_flight_clearance_canvas_px": 2,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            595.0,
+            651
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-takeoff",
+          "source_rect": [
+            887,
+            439,
+            156,
+            215
+          ],
+          "isolation_region": [
+            768,
+            341,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            892,
+            444,
+            146,
+            205
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              938,
+              548
+            ],
+            "back_shoulder": [
+              1003,
+              544
+            ],
+            "body_center_x": 972,
+            "row_reference_ground_y": 650,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              936.0,
+              648
+            ],
+            "ground_plane_anchor": [
+              972,
+              648
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            965.0,
+            648
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-rising",
+          "source_rect": [
+            1257,
+            427,
+            161,
+            226
+          ],
+          "isolation_region": [
+            1152,
+            341,
+            384,
+            341
+          ],
+          "opaque_core_bounds_alpha240": [
+            1262,
+            432,
+            151,
+            216
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              1318,
+              538
+            ],
+            "back_shoulder": [
+              1383,
+              534
+            ],
+            "body_center_x": 1352,
+            "row_reference_ground_y": 650,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              1340.75,
+              647
+            ],
+            "ground_plane_anchor": [
+              1352,
+              647
+            ],
+            "contact_state": "airborne",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1337.5,
+            647
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-apex",
+          "source_rect": [
+            138,
+            746,
+            140,
+            221
+          ],
+          "isolation_region": [
+            0,
+            682,
+            384,
+            342
+          ],
+          "opaque_core_bounds_alpha240": [
+            143,
+            751,
+            130,
+            211
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              174,
+              858
+            ],
+            "back_shoulder": [
+              239,
+              854
+            ],
+            "body_center_x": 208,
+            "row_reference_ground_y": 964,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              200.0,
+              961
+            ],
+            "ground_plane_anchor": [
+              208,
+              961
+            ],
+            "contact_state": "airborne",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            208.0,
+            961
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-falling",
+          "source_rect": [
+            524,
+            745,
+            180,
+            228
+          ],
+          "isolation_region": [
+            384,
+            682,
+            384,
+            342
+          ],
+          "opaque_core_bounds_alpha240": [
+            529,
+            750,
+            170,
+            218
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              556,
+              858
+            ],
+            "back_shoulder": [
+              621,
+              854
+            ],
+            "body_center_x": 590,
+            "row_reference_ground_y": 964,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              591.0,
+              967
+            ],
+            "ground_plane_anchor": [
+              590,
+              967
+            ],
+            "contact_state": "airborne",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            614.0,
+            967
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-landing",
+          "source_rect": [
+            892,
+            731,
+            159,
+            240
+          ],
+          "isolation_region": [
+            768,
+            682,
+            384,
+            342
+          ],
+          "opaque_core_bounds_alpha240": [
+            897,
+            736,
+            149,
+            230
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              934,
+              846
+            ],
+            "back_shoulder": [
+              999,
+              842
+            ],
+            "body_center_x": 968,
+            "row_reference_ground_y": 964,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              943.0,
+              965
+            ],
+            "ground_plane_anchor": [
+              968,
+              965
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            971.5,
+            965
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-hurt",
+          "source_rect": [
+            1281,
+            734,
+            165,
+            236
+          ],
+          "isolation_region": [
+            1152,
+            682,
+            384,
+            342
+          ],
+          "opaque_core_bounds_alpha240": [
+            1286,
+            739,
+            155,
+            226
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              1315,
+              854
+            ],
+            "back_shoulder": [
+              1380,
+              850
+            ],
+            "body_center_x": 1349,
+            "row_reference_ground_y": 964,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              1345.59,
+              964
+            ],
+            "ground_plane_anchor": [
+              1349,
+              964
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1363.5,
+            964
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "sean-motion-v1.png": {
+      "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "ff4241bf3576a7ba9bce9fbc2eb36c51b826ce723a99d68ffa8431c3d735580c",
+      "frames": [
+        {
+          "id": "sean-run0",
+          "source_rect": [
+            71,
+            0,
+            273,
+            337
+          ],
+          "isolation_region": [
+            0,
+            0,
+            384,
+            337
+          ],
+          "opaque_core_bounds_alpha240": [
+            76,
+            5,
+            263,
+            330
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              180,
+              150
+            ],
+            "back_shoulder": [
+              270,
+              146
+            ],
+            "body_center_x": 228,
+            "row_reference_ground_y": 336,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              260.5,
+              334
+            ],
+            "ground_plane_anchor": [
+              228,
+              334
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            207.5,
+            334
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-run1",
+          "source_rect": [
+            511,
+            1,
+            182,
+            339
+          ],
+          "isolation_region": [
+            384,
+            0,
+            384,
+            340
+          ],
+          "opaque_core_bounds_alpha240": [
+            516,
+            6,
+            172,
+            333
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              562,
+              150
+            ],
+            "back_shoulder": [
+              652,
+              146
+            ],
+            "body_center_x": 610,
+            "row_reference_ground_y": 336,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              575.5,
+              338
+            ],
+            "ground_plane_anchor": [
+              610,
+              338
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            602.0,
+            338
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-run2",
+          "source_rect": [
+            856,
+            1,
+            252,
+            346
+          ],
+          "isolation_region": [
+            768,
+            0,
+            384,
+            355
+          ],
+          "opaque_core_bounds_alpha240": [
+            861,
+            6,
+            242,
+            336
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              946,
+              150
+            ],
+            "back_shoulder": [
+              1036,
+              146
+            ],
+            "body_center_x": 994,
+            "row_reference_ground_y": 336,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              917.5,
+              341
+            ],
+            "ground_plane_anchor": [
+              994,
+              341
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            982.0,
+            341
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-run3",
+          "source_rect": [
+            1220,
+            1,
+            305,
+            332
+          ],
+          "isolation_region": [
+            1152,
+            0,
+            384,
+            333
+          ],
+          "opaque_core_bounds_alpha240": [
+            1225,
+            6,
+            295,
+            323
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              1325,
+              151
+            ],
+            "back_shoulder": [
+              1415,
+              147
+            ],
+            "body_center_x": 1373,
+            "row_reference_ground_y": 336,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              1444.5,
+              328
+            ],
+            "ground_plane_anchor": [
+              1373,
+              328
+            ],
+            "contact_state": "run-flight",
+            "suggested_run_flight_clearance_canvas_px": 2,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1372.5,
+            328
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-run4",
+          "source_rect": [
+            68,
+            337,
+            305,
+            344
+          ],
+          "isolation_region": [
+            0,
+            337,
+            384,
+            344
+          ],
+          "opaque_core_bounds_alpha240": [
+            73,
+            339,
+            295,
+            341
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              180,
+              485
+            ],
+            "back_shoulder": [
+              270,
+              481
+            ],
+            "body_center_x": 228,
+            "row_reference_ground_y": 674,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              130.5,
+              679
+            ],
+            "ground_plane_anchor": [
+              228,
+              679
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            220.5,
+            679
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-run5",
+          "source_rect": [
+            477,
+            340,
+            267,
+            342
+          ],
+          "isolation_region": [
+            384,
+            340,
+            384,
+            342
+          ],
+          "opaque_core_bounds_alpha240": [
+            482,
+            340,
+            257,
+            340
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              580,
+              481
+            ],
+            "back_shoulder": [
+              670,
+              477
+            ],
+            "body_center_x": 628,
+            "row_reference_ground_y": 674,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              540.0,
+              679
+            ],
+            "ground_plane_anchor": [
+              628,
+              679
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            610.5,
+            679
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-takeoff",
+          "source_rect": [
+            896,
+            373,
+            192,
+            308
+          ],
+          "isolation_region": [
+            768,
+            355,
+            384,
+            326
+          ],
+          "opaque_core_bounds_alpha240": [
+            901,
+            378,
+            182,
+            299
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              954,
+              518
+            ],
+            "back_shoulder": [
+              1044,
+              514
+            ],
+            "body_center_x": 1002,
+            "row_reference_ground_y": 674,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              981.5,
+              676
+            ],
+            "ground_plane_anchor": [
+              1002,
+              676
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            992.0,
+            676
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-rising",
+          "source_rect": [
+            1224,
+            333,
+            254,
+            301
+          ],
+          "isolation_region": [
+            1152,
+            333,
+            384,
+            332
+          ],
+          "opaque_core_bounds_alpha240": [
+            1229,
+            338,
+            244,
+            291
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              1350,
+              483
+            ],
+            "back_shoulder": [
+              1440,
+              479
+            ],
+            "body_center_x": 1398,
+            "row_reference_ground_y": 674,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              1254.0,
+              628
+            ],
+            "ground_plane_anchor": [
+              1398,
+              628
+            ],
+            "contact_state": "airborne",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1351.0,
+            628
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-apex",
+          "source_rect": [
+            113,
+            681,
+            194,
+            319
+          ],
+          "isolation_region": [
+            0,
+            681,
+            384,
+            343
+          ],
+          "opaque_core_bounds_alpha240": [
+            118,
+            684,
+            184,
+            311
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              170,
+              829
+            ],
+            "back_shoulder": [
+              260,
+              825
+            ],
+            "body_center_x": 218,
+            "row_reference_ground_y": 1008,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              222.0,
+              994
+            ],
+            "ground_plane_anchor": [
+              218,
+              994
+            ],
+            "contact_state": "airborne",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            210.0,
+            994
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-falling",
+          "source_rect": [
+            511,
+            682,
+            190,
+            338
+          ],
+          "isolation_region": [
+            384,
+            682,
+            384,
+            342
+          ],
+          "opaque_core_bounds_alpha240": [
+            516,
+            685,
+            180,
+            330
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              561,
+              837
+            ],
+            "back_shoulder": [
+              651,
+              833
+            ],
+            "body_center_x": 609,
+            "row_reference_ground_y": 1008,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              608.0,
+              1014
+            ],
+            "ground_plane_anchor": [
+              609,
+              1014
+            ],
+            "contact_state": "airborne",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            606.0,
+            1014
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-landing",
+          "source_rect": [
+            892,
+            682,
+            204,
+            330
+          ],
+          "isolation_region": [
+            768,
+            681,
+            384,
+            343
+          ],
+          "opaque_core_bounds_alpha240": [
+            897,
+            687,
+            194,
+            320
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              949,
+              839
+            ],
+            "back_shoulder": [
+              1039,
+              835
+            ],
+            "body_center_x": 997,
+            "row_reference_ground_y": 1008,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              987.5,
+              1006
+            ],
+            "ground_plane_anchor": [
+              997,
+              1006
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            994.0,
+            1006
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-hurt",
+          "source_rect": [
+            1257,
+            679,
+            260,
+            339
+          ],
+          "isolation_region": [
+            1152,
+            665,
+            384,
+            359
+          ],
+          "opaque_core_bounds_alpha240": [
+            1262,
+            684,
+            250,
+            329
+          ],
+          "landmarks": {
+            "front_shoulder": [
+              1321,
+              838
+            ],
+            "back_shoulder": [
+              1411,
+              834
+            ],
+            "body_center_x": 1369,
+            "row_reference_ground_y": 1008,
+            "contact_note": "Use ground_plane_anchor Y for grounded frames; x retains torso registration, not planted-foot x. Airborne frames do not snap to floor.",
+            "lowest_boot_sole": [
+              1328.11,
+              1012
+            ],
+            "ground_plane_anchor": [
+              1369,
+              1012
+            ],
+            "contact_state": "grounded",
+            "suggested_run_flight_clearance_canvas_px": 0,
+            "sole_measurement": "Visually confirmed boot silhouette; bottommost alpha240 core row. Native fringe may extend1px."
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1387.0,
+            1012
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "death-v1.png": {
+      "path": "assets/sprites/easy-mode/death-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "4cd87708a0b9ff82d125a2c7cebd2eb06ce137909774a197fae7981209305480",
+      "frames": [
+        {
+          "id": "tony-recoil",
+          "source_rect": [
+            23,
+            93,
+            318,
+            393
+          ],
+          "isolation_region": [
+            0,
+            0,
+            356,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            28,
+            98,
+            308,
+            383
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            182.0,
+            480
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-airborne-fall",
+          "source_rect": [
+            372,
+            123,
+            386,
+            340
+          ],
+          "isolation_region": [
+            356,
+            0,
+            402,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            377,
+            128,
+            380,
+            330
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            567.0,
+            457
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-ground-impact",
+          "source_rect": [
+            758,
+            315,
+            383,
+            188
+          ],
+          "isolation_region": [
+            758,
+            0,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            760,
+            320,
+            376,
+            178
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            948.0,
+            497
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-settled",
+          "source_rect": [
+            1143,
+            364,
+            383,
+            144
+          ],
+          "isolation_region": [
+            1142,
+            0,
+            394,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            1148,
+            369,
+            373,
+            134
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1334.5,
+            502
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-recoil",
+          "source_rect": [
+            31,
+            580,
+            318,
+            385
+          ],
+          "isolation_region": [
+            0,
+            512,
+            366,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            36,
+            585,
+            308,
+            375
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            190.0,
+            959
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-airborne-fall",
+          "source_rect": [
+            385,
+            605,
+            382,
+            335
+          ],
+          "isolation_region": [
+            366,
+            512,
+            401,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            390,
+            610,
+            376,
+            325
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            578.0,
+            934
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-ground-impact",
+          "source_rect": [
+            767,
+            784,
+            374,
+            187
+          ],
+          "isolation_region": [
+            767,
+            512,
+            374,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            767,
+            789,
+            370,
+            177
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            952.0,
+            965
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-settled",
+          "source_rect": [
+            1141,
+            825,
+            389,
+            142
+          ],
+          "isolation_region": [
+            1141,
+            512,
+            395,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            1146,
+            830,
+            379,
+            132
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1335.5,
+            961
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "sleeping-heroes-v1.png": {
+      "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "90763d0b2670b46be0b87ec65091b8c836435ff8798da9a8d7152fd992ac08fe",
+      "frames": [
+        {
+          "id": "tony-sleep0",
+          "source_rect": [
+            60,
+            27,
+            318,
+            485
+          ],
+          "isolation_region": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            65,
+            32,
+            308,
+            477
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            219.0,
+            508
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-sleep1",
+          "source_rect": [
+            444,
+            27,
+            318,
+            485
+          ],
+          "isolation_region": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            449,
+            32,
+            308,
+            477
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            603.0,
+            508
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-sleep2",
+          "source_rect": [
+            828,
+            27,
+            319,
+            485
+          ],
+          "isolation_region": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            833,
+            32,
+            309,
+            478
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            987.5,
+            509
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-sleep3",
+          "source_rect": [
+            1214,
+            33,
+            317,
+            479
+          ],
+          "isolation_region": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            1219,
+            38,
+            307,
+            472
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1372.5,
+            509
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-sleep0",
+          "source_rect": [
+            58,
+            523,
+            321,
+            478
+          ],
+          "isolation_region": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            63,
+            528,
+            311,
+            468
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            218.5,
+            995
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-sleep1",
+          "source_rect": [
+            444,
+            523,
+            319,
+            478
+          ],
+          "isolation_region": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            449,
+            528,
+            309,
+            468
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            603.5,
+            995
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-sleep2",
+          "source_rect": [
+            828,
+            523,
+            319,
+            479
+          ],
+          "isolation_region": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            833,
+            528,
+            309,
+            469
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            987.5,
+            996
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-sleep3",
+          "source_rect": [
+            1210,
+            526,
+            321,
+            476
+          ],
+          "isolation_region": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            1215,
+            531,
+            311,
+            466
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1370.5,
+            996
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "bloody-impact-v1.png": {
+      "path": "assets/sprites/easy-mode/bloody-impact-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "13b998610989cee6a49b5c0cffc344dc837cabe062e728604ed1336c437f3c21",
+      "frames": [
+        {
+          "id": "tony-impact",
+          "source_rect": [
+            31,
+            52,
+            462,
+            455
+          ],
+          "isolation_region": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            36,
+            57,
+            452,
+            445
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            262.0,
+            501
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-sliding-impact",
+          "source_rect": [
+            585,
+            16,
+            386,
+            505
+          ],
+          "isolation_region": [
+            512,
+            0,
+            512,
+            521
+          ],
+          "opaque_core_bounds_alpha240": [
+            590,
+            21,
+            376,
+            496
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            778.0,
+            516
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-drips",
+          "source_rect": [
+            1129,
+            21,
+            375,
+            477
+          ],
+          "isolation_region": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            1134,
+            26,
+            365,
+            467
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1316.5,
+            492
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-impact",
+          "source_rect": [
+            31,
+            553,
+            472,
+            443
+          ],
+          "isolation_region": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            36,
+            558,
+            462,
+            433
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            267.0,
+            990
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-sliding-impact",
+          "source_rect": [
+            583,
+            521,
+            380,
+            493
+          ],
+          "isolation_region": [
+            512,
+            521,
+            512,
+            503
+          ],
+          "opaque_core_bounds_alpha240": [
+            588,
+            526,
+            370,
+            483
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            773.0,
+            1008
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-drips",
+          "source_rect": [
+            1153,
+            532,
+            346,
+            478
+          ],
+          "isolation_region": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "opaque_core_bounds_alpha240": [
+            1158,
+            537,
+            336,
+            468
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1326.0,
+            1004
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "tony-dispenser-v1.png": {
+      "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "a4ef61ef5207cd56106b4738233af26eae99f2e1f750cfaf11d50444a6538e33",
+      "frames": [
+        {
+          "id": "tony-dispenser-source-0",
+          "source_rect": [
+            65,
+            31,
+            308,
+            415
+          ],
+          "isolation_region": [
+            0,
+            0,
+            418,
+            446
+          ],
+          "opaque_core_bounds_alpha240": [
+            70,
+            36,
+            298,
+            406
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            219.0,
+            441
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-1",
+          "source_rect": [
+            515,
+            105,
+            258,
+            340
+          ],
+          "isolation_region": [
+            418,
+            0,
+            418,
+            446
+          ],
+          "opaque_core_bounds_alpha240": [
+            520,
+            110,
+            248,
+            330
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            644.0,
+            439
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-2",
+          "source_rect": [
+            935,
+            148,
+            259,
+            297
+          ],
+          "isolation_region": [
+            836,
+            0,
+            418,
+            446
+          ],
+          "opaque_core_bounds_alpha240": [
+            940,
+            153,
+            249,
+            287
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1064.5,
+            439
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-3",
+          "source_rect": [
+            72,
+            447,
+            284,
+            397
+          ],
+          "isolation_region": [
+            0,
+            446,
+            418,
+            398
+          ],
+          "opaque_core_bounds_alpha240": [
+            77,
+            452,
+            274,
+            390
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            214.0,
+            841
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-4",
+          "source_rect": [
+            501,
+            448,
+            262,
+            396
+          ],
+          "isolation_region": [
+            418,
+            446,
+            418,
+            398
+          ],
+          "opaque_core_bounds_alpha240": [
+            506,
+            453,
+            252,
+            387
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            632.0,
+            839
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-5",
+          "source_rect": [
+            937,
+            455,
+            249,
+            389
+          ],
+          "isolation_region": [
+            836,
+            446,
+            418,
+            398
+          ],
+          "opaque_core_bounds_alpha240": [
+            942,
+            460,
+            239,
+            380
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1061.5,
+            839
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-6",
+          "source_rect": [
+            55,
+            844,
+            324,
+            389
+          ],
+          "isolation_region": [
+            0,
+            844,
+            418,
+            410
+          ],
+          "opaque_core_bounds_alpha240": [
+            60,
+            846,
+            314,
+            382
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            217.0,
+            1227
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-7",
+          "source_rect": [
+            465,
+            884,
+            336,
+            301
+          ],
+          "isolation_region": [
+            418,
+            844,
+            418,
+            410
+          ],
+          "opaque_core_bounds_alpha240": [
+            470,
+            889,
+            326,
+            291
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            633.0,
+            1179
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-dispenser-source-8",
+          "source_rect": [
+            904,
+            854,
+            294,
+            366
+          ],
+          "isolation_region": [
+            836,
+            844,
+            418,
+            410
+          ],
+          "opaque_core_bounds_alpha240": [
+            909,
+            859,
+            284,
+            356
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1051.0,
+            1214
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "tony-flush-v1.png": {
+      "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "4f2c5611c767e5721e20055afe593ef2b339b3cbc4800b6310414c6eabd7a664",
+      "frames": [
+        {
+          "id": "tony-swim0",
+          "source_rect": [
+            20,
+            133,
+            437,
+            306
+          ],
+          "isolation_region": [
+            0,
+            0,
+            468,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            25,
+            138,
+            427,
+            296
+          ],
+          "landmarks": {
+            "waterline_center": [
+              234.0,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            238.5,
+            433
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-swim1",
+          "source_rect": [
+            481,
+            134,
+            399,
+            281
+          ],
+          "isolation_region": [
+            468,
+            0,
+            422,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            486,
+            139,
+            389,
+            271
+          ],
+          "landmarks": {
+            "waterline_center": [
+              679.0,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            680.5,
+            409
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-swim2",
+          "source_rect": [
+            900,
+            135,
+            399,
+            286
+          ],
+          "isolation_region": [
+            890,
+            0,
+            430,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            905,
+            140,
+            389,
+            276
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1105.0,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1099.5,
+            415
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-swim3",
+          "source_rect": [
+            1342,
+            134,
+            428,
+            294
+          ],
+          "isolation_region": [
+            1320,
+            0,
+            454,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            1347,
+            139,
+            418,
+            284
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1547.0,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1556.0,
+            422
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-swim4",
+          "source_rect": [
+            27,
+            522,
+            444,
+            296
+          ],
+          "isolation_region": [
+            0,
+            444,
+            480,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            32,
+            527,
+            434,
+            286
+          ],
+          "landmarks": {
+            "waterline_center": [
+              240.0,
+              754
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            249.0,
+            812
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-swim5",
+          "source_rect": [
+            489,
+            522,
+            392,
+            291
+          ],
+          "isolation_region": [
+            480,
+            444,
+            412,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            494,
+            527,
+            382,
+            281
+          ],
+          "landmarks": {
+            "waterline_center": [
+              686.0,
+              754
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            685.0,
+            807
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-swim6",
+          "source_rect": [
+            905,
+            515,
+            394,
+            300
+          ],
+          "isolation_region": [
+            892,
+            444,
+            428,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            910,
+            520,
+            384,
+            290
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1106.0,
+              747
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1102.0,
+            809
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "tony-swim7",
+          "source_rect": [
+            1346,
+            523,
+            424,
+            285
+          ],
+          "isolation_region": [
+            1320,
+            444,
+            454,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            1351,
+            528,
+            414,
+            275
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1547.0,
+              755
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1558.0,
+            802
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "sean-dispenser-v1.png": {
+      "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5fc87069e61ebd60e40160bd73eab00558533f532262b7b0223d8e7d80a9b6ba",
+      "frames": [
+        {
+          "id": "sean-dispenser-source-0",
+          "source_rect": [
+            49,
+            8,
+            365,
+            434
+          ],
+          "isolation_region": [
+            0,
+            0,
+            418,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            54,
+            13,
+            355,
+            424
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            231.5,
+            436
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-1",
+          "source_rect": [
+            523,
+            105,
+            235,
+            332
+          ],
+          "isolation_region": [
+            418,
+            0,
+            418,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            528,
+            110,
+            225,
+            322
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            640.5,
+            431
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-2",
+          "source_rect": [
+            913,
+            154,
+            275,
+            271
+          ],
+          "isolation_region": [
+            836,
+            0,
+            418,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            918,
+            159,
+            265,
+            261
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1050.5,
+            419
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-3",
+          "source_rect": [
+            70,
+            444,
+            314,
+            407
+          ],
+          "isolation_region": [
+            0,
+            444,
+            418,
+            407
+          ],
+          "opaque_core_bounds_alpha240": [
+            75,
+            448,
+            304,
+            401
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            227.0,
+            848
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-4",
+          "source_rect": [
+            512,
+            444,
+            253,
+            402
+          ],
+          "isolation_region": [
+            418,
+            444,
+            418,
+            407
+          ],
+          "opaque_core_bounds_alpha240": [
+            517,
+            448,
+            243,
+            393
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            638.5,
+            840
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-5",
+          "source_rect": [
+            928,
+            446,
+            255,
+            400
+          ],
+          "isolation_region": [
+            836,
+            444,
+            418,
+            407
+          ],
+          "opaque_core_bounds_alpha240": [
+            933,
+            451,
+            245,
+            390
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1055.5,
+            840
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-6",
+          "source_rect": [
+            36,
+            851,
+            390,
+            395
+          ],
+          "isolation_region": [
+            0,
+            851,
+            432,
+            403
+          ],
+          "opaque_core_bounds_alpha240": [
+            41,
+            854,
+            380,
+            387
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            231.0,
+            1240
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-7",
+          "source_rect": [
+            438,
+            866,
+            380,
+            340
+          ],
+          "isolation_region": [
+            432,
+            851,
+            408,
+            403
+          ],
+          "opaque_core_bounds_alpha240": [
+            443,
+            871,
+            370,
+            330
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            628.0,
+            1200
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-dispenser-source-8",
+          "source_rect": [
+            867,
+            871,
+            359,
+            364
+          ],
+          "isolation_region": [
+            840,
+            851,
+            414,
+            403
+          ],
+          "opaque_core_bounds_alpha240": [
+            872,
+            876,
+            349,
+            354
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1046.5,
+            1229
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "sean-flush-v1.png": {
+      "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "a21ef114452c8d2e55f3808d597ffe1880c9f8b9699f27b8fdbf6c4400ad59da",
+      "frames": [
+        {
+          "id": "sean-swim0",
+          "source_rect": [
+            10,
+            101,
+            424,
+            341
+          ],
+          "isolation_region": [
+            0,
+            0,
+            444,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            15,
+            106,
+            414,
+            331
+          ],
+          "landmarks": {
+            "waterline_center": [
+              222.0,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            222.0,
+            436
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-swim1",
+          "source_rect": [
+            452,
+            100,
+            442,
+            344
+          ],
+          "isolation_region": [
+            444,
+            0,
+            451,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            457,
+            105,
+            432,
+            334
+          ],
+          "landmarks": {
+            "waterline_center": [
+              669.5,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            673.0,
+            438
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-swim2",
+          "source_rect": [
+            898,
+            100,
+            502,
+            319
+          ],
+          "isolation_region": [
+            895,
+            0,
+            507,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            903,
+            105,
+            492,
+            309
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1148.5,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1149.0,
+            413
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-swim3",
+          "source_rect": [
+            1405,
+            97,
+            369,
+            319
+          ],
+          "isolation_region": [
+            1402,
+            0,
+            372,
+            444
+          ],
+          "opaque_core_bounds_alpha240": [
+            1410,
+            102,
+            361,
+            309
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1588.0,
+              365
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1590.5,
+            410
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-swim4",
+          "source_rect": [
+            10,
+            498,
+            415,
+            329
+          ],
+          "isolation_region": [
+            0,
+            444,
+            443,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            15,
+            503,
+            405,
+            319
+          ],
+          "landmarks": {
+            "waterline_center": [
+              221.5,
+              765
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            217.5,
+            821
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-swim5",
+          "source_rect": [
+            463,
+            496,
+            414,
+            332
+          ],
+          "isolation_region": [
+            443,
+            444,
+            449,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            468,
+            501,
+            404,
+            322
+          ],
+          "landmarks": {
+            "waterline_center": [
+              667.5,
+              765
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            670.0,
+            822
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-swim6",
+          "source_rect": [
+            908,
+            496,
+            445,
+            334
+          ],
+          "isolation_region": [
+            892,
+            444,
+            468,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            913,
+            501,
+            435,
+            324
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1126.0,
+              765
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1130.5,
+            824
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-swim7",
+          "source_rect": [
+            1367,
+            496,
+            407,
+            337
+          ],
+          "isolation_region": [
+            1360,
+            444,
+            414,
+            443
+          ],
+          "opaque_core_bounds_alpha240": [
+            1372,
+            501,
+            400,
+            327
+          ],
+          "landmarks": {
+            "waterline_center": [
+              1567.0,
+              765
+            ],
+            "waterline_note": "Manual body-to-water anchor; bottomrow pose offset differs from atlas halfheight"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1572.0,
+            827
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ]
+    },
+    "portal-panic-v1.png": {
+      "path": "assets/sprites/easy-mode/portal-panic-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "10fde0176b8e520d1056a5ba00bf6e91a78b9222879136dbdc06c56e2045d0a1",
+      "frames": [
+        {
+          "id": "tony-portal-pull",
+          "source_rect": [
+            42,
+            20,
+            584,
+            612
+          ],
+          "isolation_region": [
+            0,
+            0,
+            627,
+            632
+          ],
+          "opaque_core_bounds_alpha240": [
+            47,
+            25,
+            574,
+            603
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            334.0,
+            627
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-portal-pull",
+          "source_rect": [
+            638,
+            85,
+            608,
+            555
+          ],
+          "isolation_region": [
+            627,
+            0,
+            627,
+            650
+          ],
+          "opaque_core_bounds_alpha240": [
+            643,
+            90,
+            598,
+            545
+          ],
+          "landmarks": {},
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            942.0,
+            634
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ],
+      "unused_regions": [
+        {
+          "source_rect": [
+            0,
+            667,
+            1254,
+            587
+          ],
+          "reason": "Unused duplicate row; portal bottom diapers additionally rejected for torn detail"
+        }
+      ]
+    },
+    "held-heroes-v1.png": {
+      "path": "assets/sprites/easy-mode/held-heroes-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "fb5b69aaf49babaa019f766d5bdf6942677a55ceb7b1b6cf13e748f3e6914b0a",
+      "frames": [
+        {
+          "id": "tony-held-inspection",
+          "source_rect": [
+            140,
+            5,
+            421,
+            617
+          ],
+          "isolation_region": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "opaque_core_bounds_alpha240": [
+            145,
+            10,
+            411,
+            607
+          ],
+          "landmarks": {
+            "sole_contacts": [
+              [
+                298,
+                604
+              ],
+              [
+                385,
+                608
+              ]
+            ],
+            "waist_grab_center": [
+              340,
+              350
+            ],
+            "feet_midpoint": [
+              342,
+              608
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            350.5,
+            616
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-held-inspection",
+          "source_rect": [
+            726,
+            50,
+            420,
+            571
+          ],
+          "isolation_region": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "opaque_core_bounds_alpha240": [
+            731,
+            55,
+            410,
+            561
+          ],
+          "landmarks": {
+            "sole_contacts": [
+              [
+                888,
+                604
+              ],
+              [
+                975,
+                608
+              ]
+            ],
+            "waist_grab_center": [
+              930,
+              350
+            ],
+            "feet_midpoint": [
+              932,
+              608
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            936.0,
+            615
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ],
+      "unused_regions": [
+        {
+          "source_rect": [
+            0,
+            667,
+            1254,
+            587
+          ],
+          "reason": "Unused duplicate row; portal bottom diapers additionally rejected for torn detail"
+        }
+      ]
+    },
+    "landing-v2.png": {
+      "path": "assets/sprites/easy-mode/landing-v2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "718b69ce02bd3a1017217ce7fd49b4cb3bf7353404be5c38078e896e8bbe5f02",
+      "frames": [
+        {
+          "id": "tony-landing-front",
+          "source_rect": [
+            101,
+            0,
+            659,
+            515
+          ],
+          "isolation_region": [
+            0,
+            0,
+            768,
+            550
+          ],
+          "opaque_core_bounds_alpha240": [
+            106,
+            3,
+            649,
+            507
+          ],
+          "landmarks": {
+            "boot_board_contacts": [
+              [
+                291,
+                447
+              ],
+              [
+                550,
+                432
+              ]
+            ],
+            "board_underside_contacts": [
+              [
+                220,
+                491
+              ],
+              [
+                430,
+                504
+              ],
+              [
+                650,
+                489
+              ]
+            ],
+            "board_reference_center": [
+              430,
+              504
+            ]
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            430.5,
+            509
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        },
+        {
+          "id": "sean-landing-front",
+          "source_rect": [
+            826,
+            43,
+            634,
+            483
+          ],
+          "isolation_region": [
+            768,
+            0,
+            768,
+            550
+          ],
+          "opaque_core_bounds_alpha240": [
+            831,
+            48,
+            624,
+            473
+          ],
+          "landmarks": {
+            "seated_board_contact": [
+              1182,
+              400
+            ],
+            "hanging_boot_bottom": [
+              1110,
+              511
+            ],
+            "board_underside_contacts": [
+              [
+                935,
+                479
+              ],
+              [
+                1182,
+                499
+              ],
+              [
+                1366,
+                493
+              ]
+            ],
+            "board_reference_center": [
+              1182,
+              499
+            ],
+            "contact_note": "Hanging front boot is not board support; far leg stays occluded"
+          },
+          "landmark_status": "Manual visual estimates in absolute source pixels; renderer alignment review required",
+          "geometric_bottom_center": [
+            1143.0,
+            520
+          ],
+          "geometry_note": "Geometric bottom center is not a substitute for a manually marked foot/contact anchor"
+        }
+      ],
+      "unused_regions": [
+        {
+          "source_rect": [
+            0,
+            550,
+            1536,
+            474
+          ],
+          "reason": "Empty lower canvas; bottom duplicates removed by image generation edit"
+        }
+      ]
+    }
+  }
+}

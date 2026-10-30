@@ -1,10 +1,12 @@
 extends RefCounted
+const Costume = preload("res://scripts/hero_costume.gd")
 ## Event-driven checkpoint presentation; never waits for audio or animation callbacks.
 const Data = preload("res://scripts/combat_data.gd")
 const HardArt = preload("res://scripts/hard_costume_art.gd")
 const INSPECTION_CONTRACT := "res://assets/world/spare-employee-dispenser/inspection-contract-v1.json"
 var inspection: Dictionary = {}
 var hard_mode := false
+var costume := "normal"
 const GUARDED_ACTIONS := ["shoot", "jump", "dialogue_next", "dialogue_skip", "pause_game"]
 static var full_sequence_seen := false
 var art: Dictionary
@@ -58,13 +60,15 @@ func _init() -> void:
 	audio = Data.bundle.dispenser.audio
 	configure(false)
 
-func configure(enabled: bool) -> void:
-	if art != null and not art.is_empty() and hard_mode == enabled: return
-	hard_mode = enabled
+func configure(value: Variant) -> void:
+	var selected := Costume.mode(value)
+	if art != null and not art.is_empty() and costume == selected: return
+	costume = selected
+	hard_mode = costume == "hard"
 	textures.clear()
 	art = Data.bundle.dispenser.art
-	if enabled:
-		art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/sprites/hard-mode/dispenser-manifest-v1.json"))
+	if costume != "normal":
+		art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/sprites/%s-mode/dispenser-manifest-v1.json" % costume))
 		art.sleeping_heroes = JSON.parse_string(FileAccess.get_file_as_string(
 			"res://" + str(art.machine.sleeping_occupants.source_manifest)))
 	load_art(art.machine)
@@ -315,7 +319,7 @@ func draw_world(game: Node2D) -> void:
 		draw_holding_arm(game,origin,grip,false)
 		var held_frame: Dictionary = states[state]
 		if state == "grab" and inspection.has("hero_states"):
-			held_frame = inspection.hero_states["hard" if hard_mode else "normal"][hero].grab
+			held_frame = inspection.hero_states[costume][hero].grab
 		draw_frame(game,held_frame,position-Vector2(64,104))
 		draw_holding_arm(game,origin,grip,true)
 		draw_inspection_arm(game,origin)

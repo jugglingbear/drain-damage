@@ -573,9 +573,9 @@
   },
   "story": {
     "id": "level_two_flush_story_v1",
-    "date": "2026-10-28",
-    "status": "User-approved partner-first intro and censored Tony landing; Engineering integration pending",
-    "authorization": "Sean explicitly approved complete flush dialogue integration October28, including partner-first intro, no buddy after opening, and exact censored Tony landing outburst.",
+    "date": "2026-10-29",
+    "status": "User-approved single-window arrival correction; Engineering integration pending",
+    "authorization": "Sean explicitly approved complete flush dialogue integration October28, including partner-first intro, no buddy after opening, and exact censored Tony landing outburst. October29: Sean explicitly requires one unified chat window and revised complaint wording; supersedes retained-partner staging.",
     "owner": "Storyboarding narrative; Engineering runtime/radio integration",
     "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
     "target_playable_seconds": 45,
@@ -596,12 +596,12 @@
           "at": 5.0,
           "who": "tony",
           "emotion": "worried",
-          "text": "Big enough. Move your chat window down!",
+          "text": "Big enough. Move the chat window down!",
           "duration": 4,
           "radio": false,
-          "gag": false,
+          "gag": true,
           "event": "arrival",
-          "retain_partner": true
+          "gag_action": "hold_center"
         },
         {
           "at": 9.0,
@@ -671,12 +671,12 @@
           "at": 5.0,
           "who": "sean",
           "emotion": "worried",
-          "text": "Inside it! Tony, move your chat window! I can\u2019t see!",
+          "text": "Inside it! Tony, move the chat window! I can\u2019t see!",
           "duration": 4,
           "radio": false,
-          "gag": false,
+          "gag": true,
           "event": "arrival",
-          "retain_partner": true
+          "gag_action": "hold_center"
         },
         {
           "at": 9.0,
@@ -725,7 +725,7 @@
     "events": {
       "arrival": {
         "trigger": "Presentation0\u201316: arrival0\u20135, request5\u20139, partner reply9\u201316.",
-        "gag": "Remote partner centered0\u20135. Selected hero speaks at bottom5\u20139 while partner card stays centered. Partner reply9\u201316 replaces centered text, slides at11.8\u201313.4 and remains bottom through16. Do not substitute hero portrait into partner card. No hazards during exchange.",
+        "gag": "One unified window throughout: remote partner centered0\u20135; selected hero replaces portrait/text in the same centered window5\u20139; partner reply replaces content9\u201316 and moves that same window to bottom at11.8\u201313.4, remaining there through16. Never show separate center and bottom dialogue windows simultaneously. No hazards during exchange.",
         "safety": "No hazards before presentation34 (physics8). No new gag; preserve per-run seen behavior. Any lingering blocking panel must not admit hazards."
       },
       "flush": {
@@ -751,11 +751,12 @@
       "skip": "Skip arrival snaps panel bottom without advancing hazards before presentation34. Landing skip follows existing safe transition into authorized ride.",
       "retry": "Checkpoint retry cancels all pending lines; preserve per-run gag-seen; new run clears event/gag flags",
       "readability": "Durations explicit per line; do not truncate for combat. Gate arrival before hazards and place remaining short exchanges in safe intervals.",
-      "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero."
+      "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero.",
+      "window_policy": "Exactly one unified chat window. Speaker changes replace its portrait/text in place; the arrival reply animates the same window from center to bottom. No retained partner card or duplicate window."
     },
     "validation_required": [
       "Approved wording, speakers and radio flags match canonical routes; preserve doubled durations.",
-      "Partner centered0\u20135; hero bottom5\u20139 with partner card retained; partner reply9\u201316 slides11.8\u201313.4.",
+      "Exactly one window: partner centered0\u20135; hero replaces content centered5\u20139; partner reply9\u201316 slides same window11.8\u201313.4. Never simultaneous center and bottom windows.",
       "Tony flush exchange16\u201334; Sean16\u201328; hazards begin34 at physics8",
       "Physics timeline45seconds unchanged after26second prelude; music26\u201371",
       "Drain shout61\u201365; landing71\u201377; ride begins77",
@@ -797,7 +798,7 @@
       "music_seconds": 45,
       "unchanged": "Physics schedule, hazard totals, speeds, durations and obstacle behavior unchanged; approved intro wording/speakers/placement and Tony landing text updated."
     },
-    "character_voice_rule": "Tony may use buddy once in the opening tire-iron line; no subsequent dialogue uses it. Sean direct instruction October28. Pending intro-order rewrite remains separate."
+    "character_voice_rule": "Tony may use buddy once in the opening tire-iron line; no subsequent dialogue uses it. Sean direct instruction October28."
   },
   "audio": {
     "date": "2026-10-24",
@@ -3466,6 +3467,358 @@
             ],
             "coordinate_space": "local",
             "duration_seconds": 0.0625
+          }
+        ]
+      },
+      "tony_easy": {
+        "loop": true,
+        "fps": 12,
+        "facing": "screen_right; horizontal flip permitted",
+        "stroke": "freestyle",
+        "frames": [
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              20,
+              133,
+              437,
+              306
+            ],
+            "destination": [
+              -47.08,
+              -51.04,
+              96.14,
+              67.32000000000001
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              481,
+              134,
+              399,
+              281
+            ],
+            "destination": [
+              -43.56,
+              -50.82,
+              87.78,
+              61.82
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              900,
+              135,
+              399,
+              286
+            ],
+            "destination": [
+              -45.1,
+              -50.6,
+              87.78,
+              62.92
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              1342,
+              134,
+              428,
+              294
+            ],
+            "destination": [
+              -45.1,
+              -50.82,
+              94.16,
+              64.68
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              27,
+              522,
+              444,
+              296
+            ],
+            "destination": [
+              -46.86,
+              -51.04,
+              97.68,
+              65.12
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              489,
+              522,
+              392,
+              291
+            ],
+            "destination": [
+              -43.34,
+              -51.04,
+              86.24,
+              64.02
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              905,
+              515,
+              394,
+              300
+            ],
+            "destination": [
+              -44.22,
+              -51.04,
+              86.68,
+              66.0
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/tony-flush-v1.png",
+            "source_rect": [
+              1346,
+              523,
+              424,
+              285
+            ],
+            "destination": [
+              -44.22,
+              -51.04,
+              93.28,
+              62.7
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          }
+        ]
+      },
+      "sean_easy": {
+        "loop": true,
+        "fps": 12,
+        "facing": "screen_right; horizontal flip permitted",
+        "stroke": "breaststroke",
+        "frames": [
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              10,
+              101,
+              424,
+              341
+            ],
+            "destination": [
+              -46.64,
+              -58.08,
+              93.28,
+              75.02
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              452,
+              100,
+              442,
+              344
+            ],
+            "destination": [
+              -47.85,
+              -58.3,
+              97.24,
+              75.68
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              898,
+              100,
+              502,
+              319
+            ],
+            "destination": [
+              -55.11,
+              -58.3,
+              110.44,
+              70.18
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              1405,
+              97,
+              369,
+              319
+            ],
+            "destination": [
+              -40.26,
+              -58.96,
+              81.18,
+              70.18
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              10,
+              498,
+              415,
+              329
+            ],
+            "destination": [
+              -46.53,
+              -58.74,
+              91.3,
+              72.38
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              463,
+              496,
+              414,
+              332
+            ],
+            "destination": [
+              -44.99,
+              -59.18,
+              91.08,
+              73.04
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              908,
+              496,
+              445,
+              334
+            ],
+            "destination": [
+              -47.96,
+              -59.18,
+              97.9,
+              73.48
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
+          },
+          {
+            "path": "assets/sprites/easy-mode/sean-flush-v1.png",
+            "source_rect": [
+              1367,
+              496,
+              407,
+              337
+            ],
+            "destination": [
+              -44.0,
+              -59.18,
+              89.54,
+              74.14
+            ],
+            "anchor": [
+              0,
+              0
+            ],
+            "duration_seconds": 0.0833333333,
+            "coordinate_space": "local"
           }
         ]
       }
@@ -6223,6 +6576,45 @@
               10.833
             ],
             "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+          },
+          "easy": {
+            "rear": [],
+            "front": [
+              {
+                "path": "assets/sprites/easy-mode/landing-v2.png",
+                "source_rect": [
+                  101,
+                  0,
+                  659,
+                  515
+                ],
+                "destination": [
+                  -64.90136570561457,
+                  -99.42336874051594,
+                  130.0,
+                  101.59332321699544
+                ],
+                "anchor": [
+                  0,
+                  0
+                ]
+              }
+            ],
+            "contact_anchor": [
+              0,
+              0
+            ],
+            "screen_anchor": [
+              480,
+              385
+            ],
+            "composite_includes_board": true,
+            "pose": "standing surfing",
+            "visible_local_extents_y": [
+              -99.42336874051594,
+              0
+            ],
+            "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
           }
         },
         "sean": {
@@ -6305,6 +6697,45 @@
             "visible_local_extents_y": [
               -60.145,
               15.435
+            ],
+            "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+          },
+          "easy": {
+            "rear": [],
+            "front": [
+              {
+                "path": "assets/sprites/easy-mode/landing-v2.png",
+                "source_rect": [
+                  826,
+                  43,
+                  634,
+                  483
+                ],
+                "destination": [
+                  -72.9968454258675,
+                  -93.50157728706624,
+                  130.0,
+                  99.03785488958991
+                ],
+                "anchor": [
+                  0,
+                  0
+                ]
+              }
+            ],
+            "contact_anchor": [
+              0,
+              0
+            ],
+            "screen_anchor": [
+              480,
+              385
+            ],
+            "composite_includes_board": true,
+            "pose": "seated astride; far leg occluded, near leg in front",
+            "visible_local_extents_y": [
+              -93.50157728706624,
+              0
             ],
             "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
           }
@@ -6405,6 +6836,45 @@
             10.833
           ],
           "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+        },
+        "easy": {
+          "rear": [],
+          "front": [
+            {
+              "path": "assets/sprites/easy-mode/landing-v2.png",
+              "source_rect": [
+                101,
+                0,
+                659,
+                515
+              ],
+              "destination": [
+                -64.90136570561457,
+                -99.42336874051594,
+                130.0,
+                101.59332321699544
+              ],
+              "anchor": [
+                0,
+                0
+              ]
+            }
+          ],
+          "contact_anchor": [
+            0,
+            0
+          ],
+          "screen_anchor": [
+            480,
+            385
+          ],
+          "composite_includes_board": true,
+          "pose": "standing surfing",
+          "visible_local_extents_y": [
+            -99.42336874051594,
+            0
+          ],
+          "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
         }
       },
       "sean": {
@@ -6487,6 +6957,45 @@
           "visible_local_extents_y": [
             -60.145,
             15.435
+          ],
+          "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
+        },
+        "easy": {
+          "rear": [],
+          "front": [
+            {
+              "path": "assets/sprites/easy-mode/landing-v2.png",
+              "source_rect": [
+                826,
+                43,
+                634,
+                483
+              ],
+              "destination": [
+                -72.9968454258675,
+                -93.50157728706624,
+                130.0,
+                99.03785488958991
+              ],
+              "anchor": [
+                0,
+                0
+              ]
+            }
+          ],
+          "contact_anchor": [
+            0,
+            0
+          ],
+          "screen_anchor": [
+            480,
+            385
+          ],
+          "composite_includes_board": true,
+          "pose": "seated astride; far leg occluded, near leg in front",
+          "visible_local_extents_y": [
+            -93.50157728706624,
+            0
           ],
           "shared_transform": "Translate/bob/tilt the entire composite; do not draw another board beneath it."
         }

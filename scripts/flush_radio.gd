@@ -1,4 +1,5 @@
 extends Node2D
+const Costume = preload("res://scripts/hero_costume.gd")
 ## Nonblocking radio follows the level clock; pause never consumes a line's reading time.
 const Portraits = preload("res://scripts/portrait_library.gd")
 var entries: Array = []
@@ -6,6 +7,7 @@ var current: Dictionary = {}
 var next_index := 0
 var line_clock := 0.0
 var hard_mode := false
+var costume := "normal"
 var transmissions := 0
 var last_event := ""
 var dialogue_font: Font
@@ -16,9 +18,10 @@ func _ready() -> void:
 	set_as_top_level(true)
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 
-func configure(lines: Array, hard: bool, retry: bool) -> void:
+func configure(lines: Array, mode: Variant, retry: bool) -> void:
 	entries = lines.duplicate(true)
-	hard_mode = hard
+	costume = Costume.mode(mode)
+	hard_mode = costume == "hard"
 	next_index = 0
 	current = {}
 	line_clock = 0
@@ -56,14 +59,9 @@ func presentation() -> Dictionary:
 	return line_presentation(current,line_clock)
 
 func presentations() -> Array[Dictionary]:
-	var result: Array[Dictionary] = []
-	if current.get("retain_partner",false):
-		for line: Dictionary in entries:
-			if float(line.at) >= float(current.at): break
-			if line.get("gag_action","") == "hold_center" and line.get("radio",false):
-				result = [line_presentation(line,0)]
-	if not current.is_empty(): result.append(presentation())
-	return result
+	# Speaker changes replace the contents of the single shared window.
+	if current.is_empty(): return []
+	return [presentation()]
 
 func line_presentation(line: Dictionary, age: float) -> Dictionary:
 	if line.is_empty(): return {}
@@ -72,14 +70,14 @@ func line_presentation(line: Dictionary, age: float) -> Dictionary:
 	var progress := 1.0
 	if line.get("gag",false):
 		progress = 0.0
-		# Only the authored partner response can relocate its own portrait and dialogue.
+		# The reply moves the shared window after the centered complaint.
 		if line.get("gag_action","") == "slide_bottom":
 			var interval: Array = line.slide_line_seconds
 			progress = smoothstep(float(interval[0]),float(interval[1]),age)
 		destination = Vector2(110,220).lerp(destination,progress)
 		scale = lerpf(1.18,1.0,progress)
 	return {"who":line.who,"emotion":line.emotion,"text":line.text,
-		"portrait":Portraits.expression(str(line.who),str(line.emotion),hard_mode),
+		"portrait":Portraits.expression(str(line.who),str(line.emotion),costume),
 		"destination":destination,"scale":scale,"progress":progress}
 
 func text_font() -> Font:

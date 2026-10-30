@@ -11,6 +11,7 @@ var revealed := 0.0
 var release_guard := 0.0
 var awaiting_release := false
 var hard_portraits := false
+var costume := "normal"
 var hard_dialogue := false
 
 func _ready() -> void:
@@ -91,7 +92,7 @@ func _draw() -> void:
 	var is_boss := str(entry.who).to_lower() == "bj"
 	var is_tony := str(entry.who).to_lower() == "tony"
 	var accent := Color("7ce4bc") if is_tony else Color("ffcf70")
-	var portrait := Portraits.expression(str(entry.who), str(entry.emotion), hard_portraits)
+	var portrait := Portraits.expression(str(entry.who), str(entry.emotion), "hard" if hard_portraits else costume)
 	draw_rect(Rect2(0, 0, 960, 540), Color(0.02, 0.04, 0.08, 0.55))
 	draw_rect(Rect2(22, 334, 916, 188), Color("101c2a"))
 	draw_rect(Rect2(22, 334, 916, 3), accent)

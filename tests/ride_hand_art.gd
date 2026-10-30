@@ -39,7 +39,7 @@ func checks() -> void:
 			else: assert(is_equal_approx(part.transform.determinant(),1),"Fist and hatch remain rigid")
 		if ride.clock >= 3.65: assert(assembly.parts.size() == 1)
 	ride.clock = 2.9
-	assert(is_equal_approx(ride.obstacle_position(obstacle).x-70,906))
+	assert(is_equal_approx(ride.obstacle_position(obstacle).x-70,786))
 	assert(ride.visual_bounds(obstacle).intersects(ride.VIEWPORT,true))
 	# Exact boundary and rest must not resurrect the unbroken surface or reset its world origin.
 	ride.clock = 2.9-0.000001

@@ -1,0 +1,604 @@
+{
+  "owner": "Art",
+  "integration_owner": "Engineering",
+  "created_at": "2026-10-29T18:20:57-07:00",
+  "status": "Integrated in 0.136.0; exported and verified with bounded visual review",
+  "portraits": {
+    "status": "All20 expressions integrated with explicit mode routing; Tony happy/amused distinguished",
+    "layout": {
+      "columns": 5,
+      "rows": 2,
+      "order": "row-major"
+    },
+    "emotions": [
+      "neutral",
+      "happy",
+      "amused",
+      "sad",
+      "worried",
+      "afraid",
+      "surprised",
+      "angry",
+      "skeptical",
+      "embarrassed"
+    ],
+    "assets": [
+      {
+        "hero": "tony",
+        "path": "assets/selection/easy-mode/tony-expressions-v2.png",
+        "dimensions": [
+          1983,
+          793
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "050bdb08145195d561a0b4ed999d7802a4b97686b1a2ddaffbfbab08df5fb9b6"
+      },
+      {
+        "hero": "sean",
+        "path": "assets/selection/easy-mode/sean-expressions-v1.png",
+        "dimensions": [
+          1983,
+          793
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "sha256": "4002704375cdbfd27d3626f64b4cc70afd35d9d8df684495fab4434537b80552"
+      }
+    ],
+    "prompts": "assets/selection/easy-mode/prompts-v1.json"
+  },
+  "sheets": [
+    {
+      "source": "assets/sprites/hard-mode/tony-motion-v3.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "target": "assets/sprites/easy-mode/tony-motion-v3.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "b9c50df82da611692a83c6c1e056492a7b172ece35a03377bf7e75f6ddb35ef4",
+      "layout": "4 columns x3 rows; row-major run0-5, takeoff6, rising7, apex8, falling9, landing10, hurt11; armless bodies",
+      "alpha_metrics": {
+        "0-0": 1226720,
+        "1-63": 72113,
+        "64-127": 3375,
+        "128-191": 3372,
+        "192-239": 5136,
+        "240-254": 262148,
+        "255-255": 0
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/tony-motion-v3.png",
+      "previous_source_preserved": "assets/sprites/easy-mode/tony-motion-v1.png",
+      "revision_prompts": "assets/sprites/easy-mode/revision-prompts-v1.json"
+    },
+    {
+      "source": "assets/sprites/hard-mode/sean-motion-v3.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "target": "assets/sprites/easy-mode/sean-motion-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "ff4241bf3576a7ba9bce9fbc2eb36c51b826ce723a99d68ffa8431c3d735580c",
+      "layout": "4 columns x3 rows; row-major run0-5, takeoff6, rising7, apex8, falling9, landing10, hurt11; armless bodies",
+      "alpha_metrics": {
+        "0-0": 935734,
+        "1-63": 96058,
+        "64-127": 4867,
+        "128-191": 4985,
+        "192-239": 8653,
+        "240-254": 522567,
+        "255-255": 0
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/sean-motion-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/death-v2.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "target": "assets/sprites/easy-mode/death-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "4cd87708a0b9ff82d125a2c7cebd2eb06ce137909774a197fae7981209305480",
+      "layout": "4 columns x2 rows; Tony top, Sean bottom; recoil, airborne fall, ground impact, settled",
+      "alpha_metrics": {
+        "0-0": 1101119,
+        "1-63": 52028,
+        "64-127": 3737,
+        "128-191": 3832,
+        "192-239": 6012,
+        "240-254": 406136,
+        "255-255": 0
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/death-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/tony-parts-v2.png",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "target": "assets/sprites/easy-mode/tony-parts-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "ae00ba583ed7cc5374aeb528ff82180b28e10d78b5624aa6ce2a9d47ce959ecc",
+      "layout": "Three armless standing bodies across upper region, six detached arms in two rows below. Fresh shoulder/grip crops required.",
+      "alpha_metrics": {
+        "0-0": 1038633,
+        "1-63": 67573,
+        "64-127": 3890,
+        "128-191": 3780,
+        "192-239": 5420,
+        "240-254": 451891,
+        "255-255": 1329
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/tony-parts-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/sean-parts-v2.png",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "target": "assets/sprites/easy-mode/sean-parts-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "094a46f294b9c351c638da55e227066e0cd4ec0adbe8cebfa836def3a78add03",
+      "layout": "Three armless standing bodies across upper region, six detached bare arms in two rows below. Frilled arm cuffs removed in final edit.",
+      "alpha_metrics": {
+        "0-0": 1015777,
+        "1-63": 191895,
+        "64-127": 3489,
+        "128-191": 3553,
+        "192-239": 5257,
+        "240-254": 352001,
+        "255-255": 544
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/sean-parts-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/downward-arms-v1.png",
+      "source_dimensions": [
+        1774,
+        887
+      ],
+      "target": "assets/sprites/easy-mode/downward-arms-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "ad1cdad654cb7c381b56cb0288fca3e4a0883a9167f12120fbe037ded8bafb2a",
+      "layout": "4 columns x2 rows; Tony top, Sean bottom; preserve corresponding Hard arm/grip roles with fresh crops",
+      "alpha_metrics": {
+        "0-0": 1261994,
+        "1-63": 22262,
+        "64-127": 2270,
+        "128-191": 2425,
+        "192-239": 2722,
+        "240-254": 279868,
+        "255-255": 1997
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/downward-arms-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/sean-left-support-hand-v1.png",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "target": "assets/sprites/easy-mode/sean-left-support-hand-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "9d7dade7de2bf9ac5af6ad35bb7b3e915f3b561f42896707b2b42233f7f74815",
+      "layout": "Three bodies upper region, six supporting arm grip variants below; fresh crop/pivot registration",
+      "alpha_metrics": {
+        "0-0": 1166308,
+        "1-63": 33673,
+        "64-127": 3082,
+        "128-191": 2842,
+        "192-239": 3777,
+        "240-254": 359910,
+        "255-255": 2924
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/sean-left-support-hand-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/airborne-bodies-v2.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "target": "assets/sprites/easy-mode/airborne-bodies-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "5e3276687ada7d699885a9e6c040c5ef98e2a85f1bad7a9be396834e6c66f149",
+      "layout": "Tony left, Sean right; armless tucked-leg jumping bodies",
+      "alpha_metrics": {
+        "0-0": 1019020,
+        "1-63": 29646,
+        "64-127": 1881,
+        "128-191": 1807,
+        "192-239": 3382,
+        "240-254": 517128,
+        "255-255": 0
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/airborne-bodies-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/tony-dispenser-v1.png",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "target": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "a4ef61ef5207cd56106b4738233af26eae99f2e1f750cfaf11d50444a6538e33",
+      "layout": "3x3 row-major matching Hard dispenser source roles; full-body spare employee poses",
+      "alpha_metrics": {
+        "0-0": 918430,
+        "1-63": 56545,
+        "64-127": 6051,
+        "128-191": 7104,
+        "192-239": 9033,
+        "240-254": 572850,
+        "255-255": 2503
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/tony-dispenser-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/sean-dispenser-v1.png",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "target": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5fc87069e61ebd60e40160bd73eab00558533f532262b7b0223d8e7d80a9b6ba",
+      "layout": "3x3 row-major matching Hard dispenser source roles; full-body spare employee poses",
+      "alpha_metrics": {
+        "0-0": 872842,
+        "1-63": 44817,
+        "64-127": 4915,
+        "128-191": 4894,
+        "192-239": 5956,
+        "240-254": 635791,
+        "255-255": 3301
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/sean-dispenser-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/bloody-impact-v2.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "target": "assets/sprites/easy-mode/bloody-impact-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "13b998610989cee6a49b5c0cffc344dc837cabe062e728604ed1336c437f3c21",
+      "layout": "3 columns x2 rows; Tony top, Sean bottom; impact, sliding impact, shared-looking red drips only",
+      "alpha_metrics": {
+        "0-0": 836960,
+        "1-63": 158149,
+        "64-127": 10905,
+        "128-191": 10873,
+        "192-239": 23686,
+        "240-254": 532291,
+        "255-255": 0
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/bloody-impact-v1.png"
+    },
+    {
+      "source": "assets/sprites/hard-mode/sleeping-heroes-v1.png",
+      "source_dimensions": [
+        1536,
+        1024
+      ],
+      "target": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "90763d0b2670b46be0b87ec65091b8c836435ff8798da9a8d7152fd992ac08fe",
+      "layout": "4 columns x2 rows; Tony top, Sean bottom; closed-eye seated sleeping poses",
+      "alpha_metrics": {
+        "0-0": 644338,
+        "1-63": 79842,
+        "64-127": 4590,
+        "128-191": 4769,
+        "192-239": 8523,
+        "240-254": 830802,
+        "255-255": 0
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/sleeping-heroes-v1.png"
+    },
+    {
+      "source": "assets/world/level-two-flush-v2/tony-hard-v1.png",
+      "target": "assets/sprites/easy-mode/tony-flush-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "4f2c5611c767e5721e20055afe593ef2b339b3cbc4800b6310414c6eabd7a664",
+      "layout": "4 columns x2 rows; eight Tony swimming gestures matching Hard source pose sequence",
+      "alpha_metrics": {
+        "0-0": 906374,
+        "1-63": 55770,
+        "64-127": 6337,
+        "128-191": 6404,
+        "192-239": 12081,
+        "240-254": 586387,
+        "255-255": 185
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/tony-flush-v1.png"
+    },
+    {
+      "source": "assets/world/level-two-flush-v2/sean-hard-v1.png",
+      "target": "assets/sprites/easy-mode/sean-flush-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "a21ef114452c8d2e55f3808d597ffe1880c9f8b9699f27b8fdbf6c4400ad59da",
+      "layout": "4 columns x2 rows; eight Sean swimming gestures matching Hard source pose sequence",
+      "alpha_metrics": {
+        "0-0": 851040,
+        "1-63": 58224,
+        "64-127": 9676,
+        "128-191": 9735,
+        "192-239": 16011,
+        "240-254": 628744,
+        "255-255": 108
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/sean-flush-v1.png"
+    },
+    {
+      "source": "assets/world/level-two-flush-v3/landing-v2.png",
+      "target": "assets/sprites/easy-mode/landing-v2.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "718b69ce02bd3a1017217ce7fd49b4cb3bf7353404be5c38078e896e8bbe5f02",
+      "layout": "One row, TonyLEFT SeanRIGHT; bottom duplicate row removed, lowercanvas empty",
+      "alpha_metrics": {
+        "0-0": 1234706,
+        "1-63": 18389,
+        "64-127": 1735,
+        "128-191": 1856,
+        "192-239": 2385,
+        "240-254": 313793,
+        "255-255": 0
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/landing-v2.png",
+      "previous_source_preserved": "assets/sprites/easy-mode/landing-v1.png",
+      "revision_prompts": "assets/sprites/easy-mode/revision-prompts-v1.json"
+    },
+    {
+      "source": "assets/world/first-call/portal-panic-v2.png",
+      "target": "assets/sprites/easy-mode/portal-panic-v1.png",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "10fde0176b8e520d1056a5ba00bf6e91a78b9222879136dbdc06c56e2045d0a1",
+      "layout": "2x2; Tony left, Sean right. Use TOP ROW ONLY. Bottom duplicate diapers have torn detail and are rejected for runtime.",
+      "alpha_metrics": {
+        "0-0": 818590,
+        "1-63": 32169,
+        "64-127": 4078,
+        "128-191": 4168,
+        "192-239": 5040,
+        "240-254": 705437,
+        "255-255": 3034
+      },
+      "alpha_contract": "Preserve original RGBA. Start with native alpha; no universal cutoff approved. Compare per-sheet treatment in actual renderer before acceptance.",
+      "archived_copy": "concept-art-archive/assets/sprites/easy-mode/portal-panic-v1.png"
+    },
+    {
+      "source": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+      "target": "assets/sprites/easy-mode/held-heroes-v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "fb5b69aaf49babaa019f766d5bdf6942677a55ceb7b1b6cf13e748f3e6914b0a",
+      "layout": "2x2; Tony left, Sean right. Use top row for Easy held inspection pose; bottom duplicates unused. Align feet against held_hero_feet and machine gripping fingers.",
+      "status": "Registered and integrated in 0.136.0; source originals preserved",
+      "alpha_metrics": {
+        "0-0": 981469,
+        "1-63": 54245,
+        "64-127": 2946,
+        "128-191": 3003,
+        "192-239": 3937,
+        "240-254": 525571,
+        "255-255": 1345
+      },
+      "alpha_contract": "Preserve RGBA; native first; renderer validation pending",
+      "prompts": "assets/sprites/easy-mode/held-heroes-prompts-v1.json"
+    }
+  ],
+  "contracts": [
+    "Keep stable per-emotion/per-animation IDs and physics; Easy cannot fallback to normal art silently.",
+    "Generate versioned originals, inspect source rectangles/pivots after generation; never assume pixel registration from reference alone.",
+    "HUD heads and selection busts may derive from Easy portraits/body frames; enumerate every runtime consumer.",
+    "Weapons and dispenser machine remain shared; hero bodies/arms/clones/heads change.",
+    "Flush/landing/ride and camera-test rider support contacts require Easy entries and actual slope/board contact validation."
+  ],
+  "runtime_review": {
+    "status": "Implemented and verified; final results and remaining gaps recorded in runtime_delivery",
+    "consumers": [
+      "Explicit Easy/Normal/Hard portrait selection; all10 emotions perhero; BJ and Hard dialogue wording isolated",
+      "Hero aim, locomotion, jumps, hurt and death with fresh source registration",
+      "Shared draw_vitals life-head crops",
+      "Employee dispenser sleeping stock, held inspection, impact and emerging",
+      "First-level portal departure",
+      "Flush swimming, landing and radio portraits",
+      "Level2 ride and camera-test rider mode/board contact",
+      "Selection portraits follow selected difficulty"
+    ],
+    "evidence_owner": "Engineering; runtime_delivery field appended after final checks"
+  },
+  "ambiguities": [
+    "Diapers, work boots and small tool pouch are a provisional Art assumption after optional preference query; no explicit user answer received."
+  ],
+  "updated_at": "2026-10-29T19:17:34.307236-07:00",
+  "source_owner": "Art",
+  "runtime_manifest_owner": "Engineering",
+  "source_freeze": "17 current sources; Tony motion-v3, landing-v2, all other gameplay-v1; Tony expressions-v2 and Sean expressions-v1",
+  "source_qa": {
+    "all_sources_exist": true,
+    "all_gameplay_sources_rgba": true,
+    "source_layouts_inspected": true,
+    "runtime_visual_acceptance": true,
+    "limitations": [
+      "Generated source layout is not pixel-identical to Hard: do not blindly copy source_rect or shoulder/grip pivots.",
+      "Fractional-alpha metrics do not prove which cutoff is safe; Engineering owns native-versus-treatment rendered comparison.",
+      "Portrait atlases have tight gutters; verify actual ten-cell crops do not include neighboring pixels.",
+      "Source art cannot validate riding contact or live weapon attachment."
+    ],
+    "isolation_audit": "123 frame regions measured; production-rendered representative compositions and all swim frames visually reviewed. See runtime_delivery for final checks and limitations.",
+    "swim_anchor_revision": "Final waterline Y: Tony 365 x4 then 754/754/747/755; Sean 365 x4 then 765 x4. All sixteen production-rendered frames visually accepted at a fixed waterline."
+  },
+  "prompts": "assets/sprites/easy-mode/prompts-v1.json",
+  "source_registration": "assets/sprites/easy-mode/registration-v1.json",
+  "art_render_reviews": [
+    {
+      "evidence": "builds/easy-runtime136/aim-native.png",
+      "result": "Rejected oversized upward arms and detached Sean support hand; Engineering revised transforms."
+    },
+    {
+      "evidence": "builds/easy-runtime136/aim-final.png",
+      "result": "Improved reach and support contact accepted provisionally at960px fixture scale; live animation/background review pending."
+    },
+    {
+      "evidence": [
+        "builds/easy-runtime136/landing-tony-native.png",
+        "builds/easy-runtime136/landing-sean-native.png"
+      ],
+      "result": "Easy costumes, dialogue portraits and HUD life heads read clearly over water with native alpha; standing/seated board relation coherent in depicted stills. Earlier landing source used; final v2 contact/camera verification remains Engineering gate."
+    },
+    {
+      "evidence": "builds/easy-runtime136/motion-run.png",
+      "result": "Foot-height mismatch rejected; supplied per-frame lowest-sole and grounded/run-flight metadata for correction."
+    },
+    {
+      "evidence": [
+        "builds/easy-runtime136/dispenser-tony-held.png",
+        "builds/easy-runtime136/dispenser-sean-impact.png",
+        "builds/easy-runtime136/dispenser-sean-emerge.png"
+      ],
+      "result": "Bounded Art acceptance of depicted states; identity, HUD, cabinet stock, full silhouettes and emerged floor contact coherent."
+    },
+    {
+      "evidence": "builds/easy-runtime136/motion-assembled.png",
+      "result": "Bounded Art acceptance of depicted run/takeoff/rising/apex/landing compositions; no obvious source bleed, haze or disconnected shoulder/weapon. Cadence and moving contact require separate runtime evidence."
+    },
+    {
+      "evidence": [
+        "builds/easy-runtime136/swimming-tony.png",
+        "builds/easy-runtime136/swimming-sean.png",
+        "builds/easy-runtime136/swimming-normal-control.png"
+      ],
+      "result": "Easy identity/HUD read clearly; detached thin wake reproduced unchanged in Normal control, not Easy source contamination. Separate lower-row anchor correction supplied before final package rebuild."
+    },
+    {
+      "evidence": "builds/easy-runtime136/swim-waterlines-final.png",
+      "result": "All sixteen poses visually inspected against a fixed waterline; coherent head height through row transition and no obvious foreign fragments. Bounded still-frame acceptance."
+    }
+  ],
+  "runtime_delivery": {
+    "version": "0.136.0",
+    "status": "Integrated and exported; bounded visual review complete",
+    "mac_app": "builds/Prototype-136/Drain Damage.app",
+    "windows_zip": "builds/Drain-Damage-0.136.0-windows-x86_64-20261030-024249-991779Z.zip",
+    "pack_sha256": "5b3787ce8a2acae609f49d036e808f28cd3261eec293e3a491320098ecd8ec94",
+    "scope": [
+      "Both heroes, all twenty expression portraits, aim and movement, death and HUD heads",
+      "Dispenser held/compressed/thrown/impact/emergence/sleeping states",
+      "Portal departure, swimming, landing, ride and camera proof; Normal/Hard retained"
+    ],
+    "registration": [
+      "Art-owned123 source-frame registrations; Tony motionv3 and landingv2",
+      "Uniform anatomical motion scale; grounded/run-flight sole contacts and arm offsets",
+      "Sean support grip raised2px; corrected bottom-row swim waterlines; original native-alpha artwork retained"
+    ],
+    "checks": {
+      "packaged": "Easy costume870frames plus contact/lifecycle assertions; Hard costumes; hero animation240cases; camera integration now both heroes/allthree modes with ramp/wall/framing checks; flush landing; flush radio; dispenser inspection; glass dispenser",
+      "python": "44 tests pass",
+      "audio": "103 sound slots fresh; no audio mapping change in this delivery",
+      "exports": "macOS ad-hoc signature verified; Windows PE/PCK and six host resource-pack entry checks pass",
+      "visual": "Actual rendered aim, assembled motion, all death/swim frames, both-hero dispenser states, portal, landing and both ride angles inspected; Art independently reviewed representative captures. Final packaged Level1 and ride screenshots preserved."
+    },
+    "evidence_directory": "builds/easy-runtime136/",
+    "storybook": "storybook/136-easy-mode-costumes/",
+    "remaining_gaps": [
+      "Native Windows gameplay, physical controllers and full uninterrupted survival playthrough pending",
+      "Existing BJ opening dialogue can wrap beyond its text area; unchanged portraits test expects9completion lines but current and HEAD story return6",
+      "Existing shared swimming ripple has a thin detached streak also visible with Normal; separate art polish",
+      "Known headless log/certificate and ObjectDB shutdown warnings remain"
+    ]
+  }
+}

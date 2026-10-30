@@ -1,5 +1,7 @@
 extends "res://scripts/ride_showcase_model.gd"
 ## Showcase presentation uses the same calibrated obstacle and rider anchors as the simulation.
+const Music = preload("res://scripts/ride_music.gd")
+const Fidget = preload("res://scripts/ride_fidget.gd")
 const Audio = preload("res://scripts/level_two_ride_audio.gd")
 const Art = preload("res://scripts/flush_art.gd")
 const Strainer = preload("res://scripts/ride_ceiling_strainer.gd")
@@ -10,8 +12,11 @@ const SHOWCASE_ART := "res://assets/world/ride-showcase-v1/manifest.json"
 var art := Art.new()
 var obstacle_art := Art.new()
 var audio := Audio.new()
+var music := Music.new()
+var fidget := Fidget.new()
 var audio_definition: Dictionary = {}
 var mechanism_cycle := -1
+var fractured: Dictionary = {}
 var visual_obstacles: Array[Dictionary] = []
 const FALL_DURATION := 1.35
 const VIEWPORT := Rect2(0,0,960,540)
@@ -19,6 +24,7 @@ const VIEWPORT := Rect2(0,0,960,540)
 func attach(host: Node2D) -> void:
 	audio_definition = JSON.parse_string(FileAccess.get_file_as_string("res://data/level-two-ride.json"))
 	audio.attach(host,audio_definition.audio.cues)
+	music.attach(host,audio_definition.music)
 	art.configure(JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-ride-v1/manifest.json")))
 	if FileAccess.file_exists(SHOWCASE_ART):
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHOWCASE_ART))
@@ -50,8 +56,11 @@ func attach(host: Node2D) -> void:
 
 func begin(host: Node2D, index := -1) -> void:
 	visual_obstacles.clear()
+	fractured.clear()
+	fidget.reset()
 	super.begin(host,checkpoint_index if index < 0 else index)
 	audio.stop()
+	music.stop()
 	mechanism_cycle = -1
 
 func _start_encounter(index: int) -> void:
@@ -117,20 +126,30 @@ func prune_departed_visuals() -> void:
 		# Keep a conservative margin for moving/rotating decorations that could swing back into view.
 		var margin := absf(float(motion.get("amplitude",0)))*2
 		if obstacle_frame_id(obstacle) == "float_ball": margin += 400
-		if visual_bounds(obstacle).end.x+margin < 0: visual_obstacles.remove_at(i)
+		# The 3D rail extends eight metres past its target, beyond the old sprite bounds.
+		# Include camera yaw/bank projection and the trolley's cleared travel before retirement.
+		var world_margin := 1100.0 if str(obstacle.art_id).begins_with("strainer_gap_") else 400.0
+		var world_right := obstacle_position(obstacle).x+float(obstacle.width)*.5+world_margin
+		if visual_bounds(obstacle).end.x+margin < 0 and world_right < 0:
+			visual_obstacles.remove_at(i)
 
-func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
+func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool, firing := false) -> void:
 	if host.paused or host.life_state != "alive" or complete: return
 	var before := events.duplicate()
 	var previous_encounter := encounter_index
+	var previous_clock := clock
 	super.tick(host,delta,steering,jumping)
 	prune_departed_visuals()
+	update_fracture_audio(previous_clock)
 	if host.life_state != "alive" or complete:
+		fidget.reset(firing)
 		audio.stop()
+		music.stop()
 		if int(events.get("fall",0)) > int(before.get("fall",0)):
 			host.hero_death_audio.stop()
 			audio.play("fall_panic")
 		return
+	if fidget.step(self,firing,delta).triggered: audio.play("board_fart")
 	if int(events.get("jump",0)) > int(before.get("jump",0)): host.play_tone(360.0,0.08)
 	if int(events.get("hit",0)) > int(before.get("hit",0)):
 		host.tone_time = 0
@@ -145,6 +164,15 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 	if previous_encounter != encounter_index: mechanism_cycle = -1
 	update_mechanism_audio()
 	sync_hero(host)
+
+func update_fracture_audio(previous_clock: float) -> void:
+	for obstacle: Dictionary in visual_obstacles:
+		if not obstacle.has("activates_at"): continue
+		var key := str(obstacle.id)+":"+str(obstacle.visual_started)
+		var impact := float(obstacle.visual_started)+float(obstacle.activates_at)
+		if previous_clock < impact and clock >= impact and not fractured.has(key):
+			fractured[key] = true
+			audio.play("track_smash")
 
 func update_mechanism_audio() -> void:
 	if phase != "encounter" or encounter_index != 5:
@@ -169,6 +197,11 @@ func sync_hero(host: Node2D) -> void:
 	host.current_aim = Vector2.RIGHT
 
 func process_audio(host: Node2D, delta: float) -> void:
+	music.advance(clock,host.paused or host.flush.input_guard,
+		host.flush.active and host.flush.state == "ride" and not complete and host.life_state == "alive" and not host.won,
+		host.music_director != null and host.music_director.muted)
+	if host.paused or host.life_state != "alive" or complete:
+		fidget.step(self,Input.is_action_pressed("shoot"),0,not complete,host.paused,host.life_state == "alive")
 	audio.advance(delta,host.paused,not complete and host.life_state == "alive",
 		host.life_state == "dying" and events.has("fall"))
 
@@ -419,7 +452,7 @@ func draw_rider(host: Node2D, flush: RefCounted) -> void:
 	var falling: bool = host.life_state != "alive" and events.has("fall")
 	if not falling: art.draw_named(host,"shadow",position,Color(1,1,1,clampf(1-render_height/200.0,0.2,1)))
 	if rider_visible(host):
-		var mode := "hard" if host.difficulty == "hard" else "normal"
+		var mode: String = host.difficulty
 		var pose: Dictionary = flush.art.manifest.landing[host.employee.id][mode]
 		var registration: Array = obstacle_art.manifest.get("rider_contacts",{}).get(host.employee.id,{}).get(mode,[0,0])
 		host.draw_set_transform_matrix(rider_transform(host))
@@ -435,57 +468,23 @@ func draw_rider(host: Node2D, flush: RefCounted) -> void:
 
 func draw(host: Node2D, flush: RefCounted) -> void:
 	host.draw_set_transform(Vector2.ZERO)
-	var scroll := clock*scroll_speed
-	draw_strip(host,"course_far",scroll*0.35)
-	draw_strip(host,"course_water",scroll+clock*34)
-	Water.surface(host,obstacle_art,clock,scroll)
-	var foreground: Array[Dictionary] = []
-	for obstacle: Dictionary in visual_obstacles:
-		if not visual_bounds(obstacle).intersects(VIEWPORT,true): continue
-		draw_obstacle_shadow(host,obstacle)
-		if obstacle.kind in ["support","overhead"]:
-			foreground.append(obstacle)
-		else: draw_obstacle(host,obstacle)
-		if obstacle_frame_id(obstacle) == "maintenance_hand_gap" or obstacle_frame_id(obstacle).begins_with("strainer_gap_"):
-			draw_hand(host,obstacle)
-	foreground.sort_custom(func(a: Dictionary,b: Dictionary) -> bool: return obstacle_position(a).y < obstacle_position(b).y)
-	var rider_drawn := false
-	for obstacle: Dictionary in foreground:
-		if not rider_drawn and obstacle_position(obstacle).y >= position.y:
-			draw_rider(host,flush)
-			rider_drawn = true
-		draw_obstacle(host,obstacle)
-	if not rider_drawn: draw_rider(host,flush)
-	if host.life_state != "alive" and events.has("fall"):
-		# Solid island tops and sidewalls occlude the descending composite at its failed position.
-		for obstacle: Dictionary in visual_obstacles:
-			var frame: Dictionary = obstacle_art.manifest.frames[obstacle_frame_id(obstacle)]
-			if obstacle_active(obstacle) and (deck_occludes_fall(obstacle) if obstacle.kind == "deck"
-				else bool(frame.get("has_fall_occlusion",false))):
-				draw_fall_occluder(host,frame,obstacle_position(obstacle),
-					float(obstacle.depth)*0.5 if obstacle.kind == "deck" else -INF)
-	for obstacle: Dictionary in visual_obstacles:
-		if visual_bounds(obstacle).intersects(VIEWPORT,true): draw_obstacle_overlays(host,obstacle,true)
-	draw_strip(host,"course_near",scroll)
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)
-	host.label_at("Steer: arrows / stick   Jump: Space / A",Vector2(24,52),14,host.GOLD)
 	host.draw_vitals(Vector2(550,10))
 	host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(830,52),14,host.MINT)
 	if phase == "rest":
 		host.label_at("REST — %.1f s" % rest_remaining,Vector2(24,92),22,host.MINT)
 	elif phase == "encounter":
 		host.label_at("%02d  %s" % [encounter_index+1,str(encounter.get("title",""))],Vector2(24,92),22,host.GOLD)
-		host.label_at(str(encounter.get("action_hint","")),Vector2(24,117),16,host.MINT)
 	if phase == "encounter" and (encounter.has("hand_timeline") or encounter.has("strainer_timeline")):
 		var warning := float(encounter.get("hand_timeline",encounter.get("strainer_timeline",{})).warning_at)
 		var pit: Dictionary = course.obstacles[0]
 		if encounter_clock >= warning and obstacle_position(pit).x+float(pit.width)*0.5 > position.x-HALF.x:
 			var response := "DODGE FAR OR JUMP →" if encounter.has("strainer_timeline") else "JUMP THE FULL-WIDTH GAP →"
+			host.box(550,470,410,44,Color("101d29"))
 			host.label_at("TRACK BREAK AHEAD →" if not obstacle_active(pit) else response,
-				Vector2(580,155),18,host.GOLD)
-			if obstacle_position(pit).x+float(pit.width)*0.5 > 960:
-				host.label_at("Far edge is still offscreen",Vector2(650,178),14,host.MINT)
+				Vector2(580,496),18,host.GOLD)
+
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:
 		host.box(0,0,960,540,Color(0.03,0.07,0.12,0.88))

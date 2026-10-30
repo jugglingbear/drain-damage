@@ -1,0 +1,861 @@
+{
+  "schema_version": 1,
+  "status": "Easy runtime integration; rendered acceptance in progress",
+  "machine": {
+    "canvas": [
+      192,
+      192
+    ],
+    "anchor": [
+      96,
+      192
+    ],
+    "states": {
+      "idle": {
+        "path": "assets/world/spare-employee-dispenser/glass-cabinet-v1.png",
+        "source_rect": [
+          0,
+          145,
+          632,
+          1148
+        ],
+        "destination": [
+          25.5,
+          27.6,
+          132.9,
+          164.4
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "scan": {
+        "path": "assets/world/spare-employee-dispenser/glass-cabinet-v1.png",
+        "source_rect": [
+          0,
+          145,
+          632,
+          1148
+        ],
+        "destination": [
+          25.5,
+          27.6,
+          132.9,
+          164.4
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "dispense": {
+        "path": "assets/world/spare-employee-dispenser/glass-cabinet-v1.png",
+        "source_rect": [
+          0,
+          145,
+          632,
+          1148
+        ],
+        "destination": [
+          25.5,
+          27.6,
+          132.9,
+          164.4
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "activated": {
+        "path": "assets/world/spare-employee-dispenser/glass-cabinet-v1.png",
+        "source_rect": [
+          0,
+          145,
+          632,
+          1148
+        ],
+        "destination": [
+          25.5,
+          27.6,
+          132.9,
+          164.4
+        ],
+        "anchor": [
+          96,
+          192
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      }
+    },
+    "hand": {
+      "extend": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          0,
+          580,
+          510,
+          285
+        ],
+        "destination": [
+          0.0,
+          54.5,
+          153.0,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "compress": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          510,
+          580,
+          440,
+          285
+        ],
+        "destination": [
+          21.0,
+          54.5,
+          132.0,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "throw": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          950,
+          580,
+          380,
+          285
+        ],
+        "destination": [
+          45.0,
+          54.5,
+          114.0,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      },
+      "retract": {
+        "path": "assets/world/spare-employee-dispenser/machine-v1.png",
+        "source_rect": [
+          1330,
+          580,
+          444,
+          285
+        ],
+        "destination": [
+          33.0,
+          54.5,
+          133.2,
+          85.5
+        ],
+        "anchor": [
+          144,
+          95
+        ],
+        "duration_seconds": 0.2,
+        "mirror_x": false
+      }
+    },
+    "foreground_trim": {
+      "path": "assets/world/spare-employee-dispenser/glass-cabinet-v1.png",
+      "source_rect": [
+        90,
+        1148,
+        425,
+        145
+      ],
+      "destination": [
+        44.43,
+        171.24,
+        89.37,
+        20.76
+      ],
+      "anchor": [
+        96,
+        192
+      ],
+      "duration_seconds": 0.2,
+      "mirror_x": false
+    },
+    "attachment": {
+      "hand_mount": [
+        144,
+        95
+      ],
+      "opening_rect": [
+        56,
+        151,
+        64,
+        20
+      ],
+      "hero_exit_feet": [
+        82,
+        166
+      ],
+      "interaction_note": "Hand source faces left; animate mount/extension relative to machine. Hero grab position must meet open clamp; no auto-stretch of hero."
+    },
+    "glass_front": {
+      "path": "assets/world/spare-employee-dispenser/glass-cabinet-v1.png",
+      "source_rect": [
+        638,
+        408,
+        440,
+        539
+      ],
+      "destination": [
+        42.32,
+        65.26,
+        94.22,
+        77.19
+      ],
+      "anchor": [
+        96,
+        192
+      ],
+      "duration_seconds": 0.2,
+      "mirror_x": false
+    },
+    "sleeping_occupants": {
+      "source_manifest": "assets/sprites/easy-mode/sleeping-manifest-v1.json",
+      "selected_hero_only": true,
+      "count": 1,
+      "draw_order": [
+        "machine.states",
+        "sleeping_occupants",
+        "glass_front"
+      ],
+      "clip_rects": [
+        [
+          50,
+          73,
+          34,
+          64
+        ]
+      ],
+      "foot_anchors": [
+        [
+          67,
+          137
+        ]
+      ],
+      "source_scale": 0.105,
+      "source_foot_y": {
+        "tony": 508,
+        "sean": 460
+      },
+      "source_center_x": 192,
+      "animation_seconds_per_frame": 0.4,
+      "second_slot_phase_seconds": 0.8,
+      "rule": "Draw one selected-hero sleeper in slot0 only while stocked. Hide on first vend, persist empty until new run. Existing source registration retained."
+    },
+    "state_treatment": {
+      "idle": "One selected-hero clone in slot0 if stocked; right bay empty.",
+      "activated": "Checkpoint activation preserves existing stock; never refills.",
+      "scan": "Existing hand/scan timing; sole clone remains until vend.",
+      "dispense": "First vend consumes stock; existing emergence follows. Later checkpoint respawns use empty arrival, no repeated dispense."
+    }
+  },
+  "heroes": {
+    "tony": {
+      "canvas": [
+        128,
+        128
+      ],
+      "standing_anchor": [
+        64,
+        104
+      ],
+      "states": {
+        "grab": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            65,
+            31,
+            308,
+            415
+          ],
+          "destination": [
+            35.797590361445785,
+            28.915662650602414,
+            56.40481927710843,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "compress": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            515,
+            105,
+            258,
+            340
+          ],
+          "destination": [
+            35.16470588235294,
+            29.341176470588238,
+            57.67058823529412,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "ball": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            935,
+            148,
+            259,
+            297
+          ],
+          "destination": [
+            22.57744107744108,
+            6.919191919191917,
+            82.84511784511784,
+            95.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "emerge": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            72,
+            447,
+            284,
+            397
+          ],
+          "destination": [
+            36.816120906801004,
+            28.57430730478589,
+            54.367758186397985,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_right": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            501,
+            448,
+            262,
+            396
+          ],
+          "destination": [
+            38.85858585858586,
+            28.95959595959596,
+            50.28282828282828,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_left": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            937,
+            455,
+            249,
+            389
+          ],
+          "destination": [
+            39.67609254498715,
+            28.976863753213365,
+            48.6478149100257,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "shrug": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            55,
+            844,
+            324,
+            389
+          ],
+          "destination": [
+            32.34961439588689,
+            29.17223650385604,
+            63.300771208226216,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "impact": {
+          "path": "assets/sprites/easy-mode/bloody-impact-v1.png",
+          "source_rect": [
+            31,
+            52,
+            462,
+            455
+          ],
+          "destination": [
+            8.153846153846153,
+            11.450549450549445,
+            111.6923076923077,
+            110.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "slide": {
+          "path": "assets/sprites/easy-mode/bloody-impact-v1.png",
+          "source_rect": [
+            585,
+            16,
+            386,
+            505
+          ],
+          "destination": [
+            21.960396039603964,
+            11.089108910891085,
+            84.07920792079207,
+            110.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 1.5,
+          "mirror_x": false
+        },
+        "blood_trail": {
+          "path": "assets/sprites/easy-mode/bloody-impact-v1.png",
+          "source_rect": [
+            1129,
+            21,
+            375,
+            477
+          ],
+          "destination": [
+            20.761006289308177,
+            11.383647798742146,
+            86.47798742138365,
+            110.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 1.5,
+          "mirror_x": false
+        }
+      }
+    },
+    "sean": {
+      "canvas": [
+        128,
+        128
+      ],
+      "standing_anchor": [
+        64,
+        104
+      ],
+      "states": {
+        "grab": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            49,
+            8,
+            365,
+            434
+          ],
+          "destination": [
+            32.04147465437788,
+            29.05069124423963,
+            63.917050691244235,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "compress": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            523,
+            105,
+            235,
+            332
+          ],
+          "destination": [
+            37.10240963855422,
+            29.373493975903614,
+            53.795180722891565,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "ball": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            913,
+            154,
+            275,
+            271
+          ],
+          "destination": [
+            15.798892988929886,
+            7.103321033210321,
+            96.40221402214023,
+            95.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "emerge": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            70,
+            444,
+            314,
+            407
+          ],
+          "destination": [
+            34.68304668304668,
+            28.56019656019656,
+            58.63390663390663,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_right": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            512,
+            444,
+            253,
+            402
+          ],
+          "destination": [
+            40.08457711442786,
+            29.13432835820896,
+            47.830845771144276,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "look_left": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            928,
+            446,
+            255,
+            400
+          ],
+          "destination": [
+            39.775,
+            29.14,
+            48.45,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": true
+        },
+        "shrug": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            36,
+            851,
+            390,
+            395
+          ],
+          "destination": [
+            26.481012658227847,
+            29.15443037974684,
+            75.0379746835443,
+            76.0
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "impact": {
+          "path": "assets/sprites/easy-mode/bloody-impact-v1.png",
+          "source_rect": [
+            31,
+            553,
+            472,
+            443
+          ],
+          "destination": [
+            5.39954853273138,
+            11.489841986455986,
+            117.20090293453724,
+            110.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 0.2,
+          "mirror_x": false
+        },
+        "slide": {
+          "path": "assets/sprites/easy-mode/bloody-impact-v1.png",
+          "source_rect": [
+            583,
+            521,
+            380,
+            493
+          ],
+          "destination": [
+            21.606490872210955,
+            11.338742393509136,
+            84.78701825557809,
+            110.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 1.5,
+          "mirror_x": false
+        },
+        "blood_trail": {
+          "path": "assets/sprites/easy-mode/bloody-impact-v1.png",
+          "source_rect": [
+            1153,
+            532,
+            346,
+            478
+          ],
+          "destination": [
+            24.188284518828453,
+            11.38075313807532,
+            79.6234309623431,
+            110.0
+          ],
+          "anchor": [
+            64,
+            64
+          ],
+          "duration_seconds": 1.5,
+          "mirror_x": false
+        }
+      }
+    }
+  },
+  "screen_space": {
+    "canvas": [
+      128,
+      128
+    ],
+    "anchor": [
+      64,
+      64
+    ],
+    "maximum_display_size": [
+      256,
+      256
+    ]
+  },
+  "provenance": "assets/world/spare-employee-dispenser/prompts-v1.json",
+  "timeline": [
+    {
+      "time": 0,
+      "event": "scan"
+    },
+    {
+      "time": 0.4,
+      "event": "grab"
+    },
+    {
+      "time": 0.8,
+      "event": "compress"
+    },
+    {
+      "time": 1.4,
+      "event": "throw"
+    },
+    {
+      "time": 1.9,
+      "event": "impact"
+    },
+    {
+      "time": 2.1,
+      "event": "slide"
+    },
+    {
+      "time": 2.1,
+      "event": "vend"
+    },
+    {
+      "time": 3.6,
+      "event": "emerge"
+    },
+    {
+      "time": 4.1,
+      "event": "look_left"
+    },
+    {
+      "time": 4.5,
+      "event": "look_right"
+    },
+    {
+      "time": 4.9,
+      "event": "shrug"
+    },
+    {
+      "time": 5.35,
+      "event": "stamp"
+    },
+    {
+      "time": 5.5,
+      "event": "release"
+    }
+  ],
+  "short_paths": {
+    "full_health": [
+      {
+        "time": 0,
+        "event": "stamp"
+      },
+      {
+        "time": 0.4,
+        "event": "release"
+      }
+    ],
+    "respawn": [
+      {
+        "time": 0,
+        "event": "vend"
+      },
+      {
+        "time": 0.3,
+        "event": "emerge"
+      },
+      {
+        "time": 0.9,
+        "event": "look_left"
+      },
+      {
+        "time": 1.15,
+        "event": "look_right"
+      },
+      {
+        "time": 1.4,
+        "event": "shrug"
+      },
+      {
+        "time": 1.9,
+        "event": "release"
+      }
+    ]
+  },
+  "animation_notes": [
+    "Authored key poses; runtime supplies arm travel, scan motion, throw scaling and slide/fade interpolation. Not a dense frame-by-frame cartoon.",
+    "Idle/activated are holds. Scan uses authored lit cabinet. Compression swaps crouch then ball.",
+    "Throw ball from world hand into screen-space around480,280; impact then slide downward while alpha fades; remove by3.6s.",
+    "Screen gag does not inherit camera transforms. Draw smear separately from intact replacement.",
+    "Hero left/right labels follow inspected poses rather than generated order; Sean left uses explicit mirror.",
+    "All text remains live. Do not stretch transparent sprites based on individual opaque bounds."
+  ],
+  "limitations": [
+    "Machine opening/hero occlusion and hand reach need composed runtime review.",
+    "Hero emergence has one authored stepping pose, not a walk cycle.",
+    "Small source edge fringes may remain; alpha compositing required.",
+    "Sequence timing and world/screen transition not tested in running game.",
+    "No claim of production visual approval."
+  ],
+  "glass_front_notes": [
+    "Base cabinet replaces all four old machine state pictures, preserving hand and hero animation fields.",
+    "Do not draw old foreground trim; use new trim only during emergence.",
+    "Anchor96,192 and origin unchanged; hero_exit_feet82,166 unchanged. Lower opening clip revised to actual lower hatch.",
+    "No runtime use of marketing composites. Sleeping clones are game sprites.",
+    "Render glass after occupants and before foreground action. Glass pane interiors alpha0, reflections remain near edges."
+  ],
+  "source_manifest": "assets/sprites/easy-mode/registration-v1.json",
+  "date": "2026-10-29"
+}

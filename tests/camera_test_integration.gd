@@ -8,10 +8,10 @@ func checks() -> void:
 	var options := Launch.parse(["--level=2.1","--hero=sean"])
 	assert(options.target.initializer == "camera-test")
 	assert(Launch.parse(["--level=2-08"]).target.initializer == "ride-encounter")
-	for setup in [[0,false],[0,true],[1,false],[1,true]]:
+	for setup in [[0,"normal"],[0,"hard"],[0,"easy"],[1,"normal"],[1,"hard"],[1,"easy"]]:
 		var game = CameraGame.new()
 		game.employee = game.Crew.EMPLOYEES[setup[0]]
-		game.difficulty = "hard" if setup[1] else "normal"
+		game.difficulty = setup[1]
 		root.add_child(game)
 		game.set_process(false)
 		game.set_physics_process(false)

@@ -2,7 +2,6 @@ extends Node
 ## Opt-in capture freeze owns tree pause, never the game's menu pause or HUD state.
 var host: Node2D
 var frozen := false
-var resuming := false
 var y_down := false
 var saved_audio: Dictionary = {}
 
@@ -27,14 +26,14 @@ func resume() -> void:
 	for voice in saved_audio:
 		if is_instance_valid(voice): voice.stream_paused = saved_audio[voice]
 	saved_audio.clear()
+	if host.has_method("sync_capture_input"): host.sync_capture_input()
 	get_tree().paused = false
 	frozen = false
-	resuming = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton and event.button_index == JOY_BUTTON_Y:
 		if event.pressed and not y_down:
-			if frozen: resuming = true
+			if frozen: resume()
 			else: begin_freeze()
 		y_down = event.pressed
 		get_viewport().set_input_as_handled()
@@ -42,20 +41,8 @@ func _input(event: InputEvent) -> void:
 		# Keep pause/menu actions from leaking through this separate capture state.
 		get_viewport().set_input_as_handled()
 
-func controls_released() -> bool:
-	if y_down or Input.is_anything_pressed(): return false
-	for device in Input.get_connected_joypads():
-		for axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y,JOY_AXIS_RIGHT_X,JOY_AXIS_RIGHT_Y]:
-			if absf(Input.get_joy_axis(device,axis)) > 0.2: return false
-	return true
-
-func _process(_delta: float) -> void:
-	# Release all controls before resuming, so held jump/fire/confirm cannot advance the captured scene.
-	if frozen and resuming and get_window().has_focus() and controls_released(): resume()
-
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-		resuming = false
 		y_down = false
 
 func _exit_tree() -> void:

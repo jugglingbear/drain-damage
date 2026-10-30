@@ -1,0 +1,196 @@
+{
+  "version": "0.135.0",
+  "prototype": 135,
+  "date": "2026-10-29",
+  "owner": "Engineering",
+  "status": "Prototype135 exported; faster fidget, airborne cloud and prewarmed reusable encounter rendering verified",
+  "scope": "2-landing and the complete 13-encounter ride route",
+  "implementation": [
+    "World-space water, banks, bed and actual pit openings; supported or submerged solids",
+    "Art-authored materials, prop recipes and articulated hand registrations",
+    "Quadratic ramp surface and board pitch follow authoritative ride physics",
+    "Camera turns are presentation-only; existing movement, checkpoints, audio and encounter cadence retained",
+    "65% lethal pit threshold uses uncovered board area after subtracting the union of supported deck tops",
+    "Four-metre waterway and slim banks derived from Level 2.1; bank-axis mapping applied consistently to presentation",
+    "Continuous course-distance scenery scrolling plus relative water flow",
+    "Hand wrist axis follows projected forearm through both poses; rotated opaque outline determines impact height. Raised path clears rider and HUD.",
+    "Raised elliptical cap tops on continuous iron collars, cylindrical housings and floor-connected base flanges; no rectangular water islands",
+    "Porcelain slabs supported by four separate iron posts, bearers and feet",
+    "Braced far-wall cantilevers, withdrawn strainer trolley, visible torn grate edges, framed valve housings and recessed elbow outlets",
+    "Exact ellipse pit support and finite elbow/float contact volumes match visible geometry"
+  ],
+  "checks": {
+    "model_routes": "54 complete routes / 702 traversals passed after ellipse and finite solid contact changes",
+    "failures": "972 failure/exploit cases and141 blocked slalom lanes",
+    "pit_area": "65% threshold, duplicate/overlapping decks, corners, swept intervals and frame-rate invariance",
+    "integration": "78 encounter entries; pause, death/retry, checkpoints and audio lifecycle",
+    "presentation": "Both heroes/costumes, all13 actor adapters, three yaw angles, bank planes and boosted-jump viewport bounds",
+    "python": "44 tests passed",
+    "audio": "101 sound slots and audition HTML fresh",
+    "final_export": "132 signed macOS app and Windows x86_64 ZIP succeeded; focused final resource-pack tests passed",
+    "final_visual": "See correction_132 for current focused review; full-route prior131 review is historical evidence only",
+    "scenery": "Course-distance motion, encounter reset stability and pause checks passed",
+    "raised_surfaces": "Mixed ellipse/rectangle contacts, empty cap corners, same-height hops, raised landing, support loss and absolute-height hazards passed at 30/60/120/144Hz",
+    "hand_correction": "Packaged wrist alignment, opaque impact height and raised clearance checks pass; both views of impact/lift inspected. Existing certificate and ObjectDB shutdown warnings remain.",
+    "solid_contacts": "Float ellipsoid, elbow tube/rim/pedestal, empty corners, moving sweeps and height clearance passed at 30/60/120/144Hz; elbow216 and failures972+141 passed"
+  },
+  "art": "handoffs/ride-depth-art-v1.json",
+  "captures": "storybook/129-ride-proof-parity/captures.json",
+  "limitations": [
+    "Native Windows runtime not tested on this Mac",
+    "Hand uses articulated depth-tested cutouts for the two approved camera angles; arbitrary orbit is not supported",
+    "Headless integrated tests retain an existing AudioStreamGeneratorPlayback shutdown warning",
+    "Production route retains larger islands and long pits; its obstacle layout is not identical to the isolated Level 2.1 proof"
+  ],
+  "macos_app": "builds/Prototype-132/Drain Damage.app",
+  "windows_package": "builds/Drain-Damage-0.132.0-windows-x86_64-20261029-233058-579803Z.zip",
+  "previous_iteration": {
+    "version": "0.128.0",
+    "status": "Rejected after user playtest",
+    "issues": [
+      "Stationary banks",
+      "Narrow waterway and dominant tiled aprons",
+      "Square cap presentation unlike Level 2.1"
+    ],
+    "captures": "storybook/128-landing-and-ride-depth/captures.json"
+  },
+  "hand_review": "builds/hand130-review/ (bug-fix diagnostic screenshots, no new storybook chapter)",
+  "graphics_audit": {
+    "date": "2026-10-29",
+    "scope": "Landing and all 13 ride encounters; Level2.1 approved reference",
+    "source_review": "handoffs/ride-depth-art-v1.json#realism_audit",
+    "observed_rejections": [
+      "Thin cap discs on rectangular water patches over black pits",
+      "Broad teal basin supports resembling water panels",
+      "Raised strainer cage hides hero after collision clearance at both angles",
+      "Grate reads as orange cones; flange as plain beams; brush as rigid comb",
+      "Valve reads as generic block; ramp foundation lacks visible structural detail"
+    ],
+    "code_findings": [
+      "Water shader explicitly preserved water inside rectangular deck footprints",
+      "Pit geometry had walls but no floor mesh",
+      "Circular raised cap retained rectangular pit support in physics"
+    ],
+    "implemented_pending_visual": [],
+    "technical_checks": "Ellipse and finite solid contact checks,54 full routes/702 traversals,972 failure/exploit cases+141 slalom lanes,216 elbow cases, packaged world/camera checks and100 audio slots passed.",
+    "visual_gate": "Corrected source views accepted by Engineering and Art; exported world/camera tests and two live route traversals passed. Native Windows appearance/performance unverified.",
+    "qa_changes": "AGENTS.md Visual acceptance and physical plausibility: object identity/load path/material/motion review, per-encounter coverage, independent Art critique, no proxy approval from mesh presence or headless tests.",
+    "evidence_directory": "builds/level2-audit131/",
+    "transition": "Actual running source frames42.9,43.0,43.1 show bowl/sink followed by visible3D landing, no black interval in sampled boundary frames; original2D flush remains intentional.",
+    "art_acceptance": "See ride-depth-art-v1.json realism_audit for bounded per-view decisions, including rejected intermediate concrete/dark support materials.",
+    "export_evidence": "builds/level2-audit131/export-*.png; build131.log and pack131-check/visual.log in /private/tmp",
+    "encounters": {
+      "1": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "2": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "3": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "4": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "5": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "6": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "7": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "8": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "9": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "10": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "11": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "12": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json",
+      "13": "Both-angle source screenshot audit; corrected visual evidence and Art decisions in ride-depth-art-v1.json"
+    },
+    "qa_limit": "Screenshots expose construction/readability defects; they do not establish exhaustive motion, all hardware, all player routes or native Windows acceptance."
+  },
+  "correction_132": {
+    "changes": [
+      "Animated curved water lips and descending curtains on every water-adjacent track-hole edge, including newly opened hand and strainer gaps",
+      "Natural recorded human pit scream DD-S0107.1 and layered breaking/rubble DD-S0108.1; final-boss growls retained separately",
+      "Immediate Y freeze/resume while directional actions or stick are held",
+      "Black pointed brush curtain, attached stems, round partially submerged float, raised strainer rail",
+      "Channel-Flange Hop clarified as paired rectangular channel-joint plates with mating seam and bolts",
+      "Larger continuous hand/forearm, accelerating strike, synchronized fracture cue and 18 spinning gravity-driven fragments retained on shaft floor",
+      "Forward-mounted hatch and rooted staged withdrawal keep hand and forearm away from rider",
+      "Full machinery bounds retained until offscreen rather than deleting at old 2D obstacle boundary"
+    ],
+    "checks": {
+      "packaged": "All13 world adapters, both heroes/costumes;242 opaque fist/forearm clearance samples at5ms intervals;802 projected machinery snapshots; impact framing and timing; breakage; seven Y-freeze contexts passed against final exported macOS resource pack",
+      "routes": "54 complete routes/702 encounters,972 failure cases and141 blocked slalom lanes passed during integration",
+      "audio": "101 slots; registry/audition HTML freshness check passed",
+      "exports": "Signed and verified macOS app; Windows x86_64 ZIP and six host resource-pack entry checks succeeded",
+      "visual": "Focused changed-prop stills at supported angles, successive slow-motion hand/debris frames inspected in source and final exported reverse view. Independent Art critique of saved changed-prop/hand stills. This is bounded review, not a new exhaustive all-route playthrough."
+    },
+    "evidence_directory": "builds/level2-audit132/",
+    "rejected_during_review": [
+      "Opaque waterfall surface tiles replaced with stretched downward streaks and transparent depth fade",
+      "Brush stem detached by raised shared gantry corrected with type-specific beam height",
+      "Hand retreat protruded through wall; aperture clipping then exposed a severed intermediate hand",
+      "Rooted retreat re-aimed palm into HUD; stable orientation and forward hatch replaced that path",
+      "Opaque forearm and fist collided with reachable rider volume; forward hatch and12cm lift pass dense geometry checks"
+    ],
+    "limitations": [
+      "Native Windows runtime testing pending",
+      "Physical-controller confirmation and subjective audio mix/listening acceptance pending; injected controller-event and audio lifecycle tests passed",
+      "Rectangular channel-flange silhouette still resembles rails at gameplay scale; not a conventional circular pipe flange",
+      "Headless sandbox checks emit log-directory/certificate warnings and existing ObjectDB shutdown leaks",
+      "Hand remains articulated depth-tested cutouts for the two supported camera angles"
+    ]
+  },
+  "fidget_133": {
+    "changes": [
+      "Fresh fire press creates cosmetic water smear or support-clipped dry streak and recorded fart DD-S0109.1",
+      "One-second cooldown; no damage, propulsion, airborne marking or swimming-flush use",
+      "Water diffuses/fades over1.4 seconds; dry marks last3.5 seconds and conform to elliptical caps, porcelain and quadratic ramps",
+      "Pause/screenshot freeze consume held edges; death/retry/route disposal clear bounded effects and voice"
+    ],
+    "checks": {
+      "source_and_packaged": "Fidget geometry/input model and both-hero runtime audio/lifecycle integration passed against final macOS pack",
+      "regressions": "Screenshot freeze seven contexts; world adapters/242 opaque hand hull checks;44Python tests;102audio slots fresh",
+      "visual": "Inspected source water at both angles, cap, porcelain and ramp; independent Art still critique accepted. Final exported Tony porcelain and Sean water captures inspected. Model-stepped age comparison; no claim of exhaustive continuous-motion playthrough.",
+      "exports": "Signed macOS app and Windows ZIP; six Windows resource-pack host entry checks pass"
+    },
+    "mac_app": "builds/Prototype-133/Drain Damage.app",
+    "windows_zip": "builds/Drain-Damage-0.133.0-windows-x86_64-20261029-235723-834481Z.zip",
+    "evidence_directory": "builds/level2-fidget133/",
+    "limitations": [
+      "Native Windows runtime, physical controller and subjective audio listening acceptance pending",
+      "Six music auditions remain unselected and unmapped",
+      "Existing headless log/certificate warnings and ObjectDB shutdown leaks remain"
+    ]
+  },
+  "music_134": {
+    "record": "handoffs/level-two-ride-music.json",
+    "slot": "DD-S0110",
+    "candidate": "DD-S0110.10",
+    "scope": "Dedicated ride score; flush music and gameplay unchanged"
+  },
+  "fidget_and_transitions_135": {
+    "status": "Delivered in Prototype135",
+    "changes": [
+      "Fidget cooldown 0.5 seconds; each accepted press restarts the bounded fart voice even if its previous tail is playing",
+      "Airborne fidget emits Art-authored partial-alpha brown cloud, anchored in continuous course space with gentle rise; full projected offscreen retirement",
+      "Encounter graphics prepared during initialization and reused, with identical static geometry batched to reduce draw submissions"
+    ],
+    "checks": {
+      "fidget": "Source model, audio/lifecycle integration and both-hero/both-angle cloud projection/retirement tests pass; 44 Python tests pass",
+      "visual": "Actual packaged135 brush, caps at both angles, hand and strainer inspected after batching. Source Sean cloud release/stepped scroll accepted by Art; packaged Tony reverse-angle continuous slow-motion playback captured with suspended cloud followed by full offscreen departure. Bounded visual review, not an exhaustive survival playthrough.",
+      "rendering": "Live macOS OpenGL: all13 encounter first-present probe passes; actual GPU instance-transform readback and exact batched triangles/UV/material checks pass. Frame intervals include presentation pacing, not an isolated GPU timer.",
+      "packaged": "Eight suites pass: fidget model, runtime audio/input lifecycle, both-hero/both-angle cloud projection/retirement, exact actor batching/reuse, all13 world adapters/242 hand hull checks,802 machinery retirement samples, ride music and seven screenshot-freeze contexts. Signed macOS and Windows export/six host pack entries pass;103 audio slots fresh;44Python tests pass."
+    },
+    "evidence_directory": "builds/level2-audit135/",
+    "composition_design": {
+      "current": "Mixed obstacles already supported within an encounter; existing 13 showcase stages have intentionally long approaches and independent encounter clocks",
+      "next": "Author bounded mixed-hazard checkpoint chunks; decouple moving machinery phases, warnings, audio and framing from showcase indices before arbitrary reordering",
+      "constraints": "Provide reachable steering/landing intervals from actual movement physics; keep ramp, dependent flight and catch platform in the same chunk; validate both heroes, retries, frame rates and failure lanes",
+      "scope": "Design guidance only; no final route or difficulty rebalance included"
+    },
+    "performance": {
+      "baseline": "Brush synchronous construction92.9ms; sampled first-visible driver preparation200\u2013474ms despite CPU pooling",
+      "after": "27 prebuilt/reused actors;3735 fewer MeshInstance nodes; live activation90\u2013360us; stage1 firstpresent32.3ms, subsequent stages2.5\u201313.8ms; cloud firstpresent12.9ms",
+      "startup": "Approximately624ms geometry preparation plus1.36s synchronous offscreen graphics warmup before gameplay clocks start",
+      "scope": "One Apple M3 Max macOS measurement; native Windows and other hardware unverified"
+    },
+    "mac_app": "builds/Prototype-135/Drain Damage.app",
+    "windows_zip": "builds/Drain-Damage-0.135.0-windows-x86_64-20261030-012634-712810Z.zip",
+    "limitations": [
+      "Native Windows, physical-controller and subjective listening acceptance pending",
+      "Timing measurements are one macOS host and include frame pacing; no guarantee against every stall on other hardware",
+      "Known headless log-directory/certificate warnings and shutdown leaks persist",
+      "Final mixed-hazard course design and per-instance machinery timing are future work"
+    ]
+  }
+}

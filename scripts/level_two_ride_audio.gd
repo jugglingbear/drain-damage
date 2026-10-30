@@ -7,7 +7,7 @@ var cooldown := 0.0
 var starts: Dictionary = {}
 
 func attach(host: Node, definitions: Array) -> void:
-	for id in ["current", "contact", "mechanism", "fatal"]:
+	for id in ["current", "contact", "mechanism", "fatal", "fracture", "fidget"]:
 		var voice := AudioStreamPlayer.new()
 		host.add_child(voice)
 		voices[id] = voice
@@ -19,9 +19,9 @@ func attach(host: Node, definitions: Array) -> void:
 
 func play(event: String) -> void:
 	if frozen or AudioServer.is_bus_mute(0) or not cues.has(event): return
-	var channel := "fatal" if event == "fall_panic" else "current" if event == "current_loop" else "mechanism" if event == "hinge_move" else "contact"
+	var channel := "fidget" if event == "board_fart" else "fracture" if event == "track_smash" else "fatal" if event == "fall_panic" else "current" if event == "current_loop" else "mechanism" if event == "hinge_move" else "contact"
 	if channel == "contact" and cooldown > 0: return
-	if channel == "mechanism" and voices.mechanism.playing: return
+	if channel == "mechanism" and voices[channel].playing: return
 	var voice: AudioStreamPlayer = voices[channel]
 	voice.stream = cues[event].stream
 	voice.volume_db = cues[event].gain
@@ -36,7 +36,7 @@ func advance(delta: float, paused: bool, active: bool, falling := false) -> void
 		for voice: AudioStreamPlayer in voices.values(): voice.stop()
 		return
 	if falling:
-		for channel in ["current","contact","mechanism"]: voices[channel].stop()
+		for channel in ["current","contact","mechanism","fracture","fidget"]: voices[channel].stop()
 		return
 	voices.fatal.stop()
 	if paused: return

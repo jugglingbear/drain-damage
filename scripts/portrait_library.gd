@@ -1,4 +1,5 @@
 extends RefCounted
+const Costume = preload("res://scripts/hero_costume.gd")
 ## Semantic expressions shared by conversations and employee selection.
 const MANIFEST_PATH := "res://assets/portraits/emotions-v1.json"
 const TONY = preload("res://assets/portraits/tony-expressions-v3.png")
@@ -8,6 +9,9 @@ const TEXTURES := {"tony": TONY, "sean": SEAN, "bj": BJ}
 const HARD_TEXTURES := {
 	"tony": preload("res://assets/selection/hard-mode/tony-expressions-v1.png"),
 	"sean": preload("res://assets/selection/hard-mode/sean-expressions-v1.png")}
+const EASY_TEXTURES := {
+	"tony": preload("res://assets/selection/easy-mode/tony-expressions-v2.png"),
+	"sean": preload("res://assets/selection/easy-mode/sean-expressions-v1.png")}
 static var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST_PATH))
 
 static func has_emotion(emotion: String) -> bool:
@@ -15,7 +19,7 @@ static func has_emotion(emotion: String) -> bool:
 		if entry.name == emotion: return true
 	return false
 
-static func expression(character: String, emotion: String, hard_mode := false) -> AtlasTexture:
+static func expression(character: String, emotion: String, costume: Variant = "normal") -> AtlasTexture:
 	var id := character.to_lower()
 	assert(TEXTURES.has(id), "Unknown portrait character: " + character)
 	assert(has_emotion(emotion), "Unknown portrait emotion: " + emotion)
@@ -23,7 +27,9 @@ static func expression(character: String, emotion: String, hard_mode := false) -
 	for entry in manifest.emotions:
 		if entry.name == emotion: index = int(entry.index)
 	var atlas: Texture2D = TEXTURES[id]
-	if hard_mode and HARD_TEXTURES.has(id): atlas = HARD_TEXTURES[id]
+	var mode := Costume.mode(costume)
+	if mode == "hard" and HARD_TEXTURES.has(id): atlas = HARD_TEXTURES[id]
+	if mode == "easy" and EASY_TEXTURES.has(id): atlas = EASY_TEXTURES[id]
 	var columns := int(manifest.layout.columns)
 	var rows := int(manifest.layout.rows)
 	var column := index % columns

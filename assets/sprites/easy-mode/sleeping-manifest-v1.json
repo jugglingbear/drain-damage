@@ -1,0 +1,207 @@
+{
+  "date": "2026-10-29",
+  "status": "Easy runtime integration; rendered acceptance in progress",
+  "canvas": [
+    128,
+    128
+  ],
+  "anchor": [
+    64,
+    104
+  ],
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "heroes": {
+    "tony": [
+      {
+        "id": 0,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          60,
+          27,
+          318,
+          485
+        ],
+        "destination": [
+          37.77319587628866,
+          24.659793814432987,
+          52.45360824742268,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 1,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          444,
+          27,
+          318,
+          485
+        ],
+        "destination": [
+          37.77319587628866,
+          24.659793814432987,
+          52.45360824742268,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 2,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          828,
+          27,
+          319,
+          485
+        ],
+        "destination": [
+          37.69072164948454,
+          24.49484536082474,
+          52.618556701030926,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 3,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          1214,
+          33,
+          317,
+          479
+        ],
+        "destination": [
+          37.52818371607516,
+          24.501043841336113,
+          52.94363256784968,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      }
+    ],
+    "sean": [
+      {
+        "id": 0,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          58,
+          523,
+          321,
+          478
+        ],
+        "destination": [
+          37.13807531380753,
+          25.004184100418414,
+          53.72384937238493,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 1,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          444,
+          523,
+          319,
+          478
+        ],
+        "destination": [
+          37.30543933054393,
+          25.004184100418414,
+          53.38912133891213,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 2,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          828,
+          523,
+          319,
+          479
+        ],
+        "destination": [
+          37.36116910229645,
+          25.00208768267224,
+          53.2776617954071,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      },
+      {
+        "id": 3,
+        "path": "assets/sprites/easy-mode/sleeping-heroes-v1.png",
+        "source_rect": [
+          1210,
+          526,
+          321,
+          476
+        ],
+        "destination": [
+          37.02521008403361,
+          25.008403361344534,
+          53.94957983193278,
+          80.0
+        ],
+        "anchor": [
+          64,
+          104
+        ],
+        "duration_seconds": 0.4
+      }
+    ]
+  },
+  "animations": {
+    "sleep": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "loop": true,
+      "cycle_seconds": 1.6
+    }
+  },
+  "notes": [
+    "Four authored Easy breathing poses per hero; runtime preserves the shared sleep cycle."
+  ],
+  "provenance": "marketing/spare-employee-dispenser/glass-front-prompts-v1.json",
+  "source_manifest": "assets/sprites/easy-mode/registration-v1.json"
+}

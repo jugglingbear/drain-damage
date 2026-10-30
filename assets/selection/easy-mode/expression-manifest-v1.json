@@ -1,0 +1,48 @@
+{
+  "status": "All ten emotions per hero source-inspected; Tony happy open eyes distinguished from amused; runtime crops pending",
+  "layout": {
+    "columns": 5,
+    "rows": 2,
+    "order": "row-major"
+  },
+  "emotions": [
+    "neutral",
+    "happy",
+    "amused",
+    "sad",
+    "worried",
+    "afraid",
+    "surprised",
+    "angry",
+    "skeptical",
+    "embarrassed"
+  ],
+  "assets": [
+    {
+      "hero": "tony",
+      "path": "assets/selection/easy-mode/tony-expressions-v2.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "hero": "sean",
+      "path": "assets/selection/easy-mode/sean-expressions-v1.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    }
+  ],
+  "prompts": "assets/selection/easy-mode/prompts-v1.json",
+  "revision_prompts": "assets/selection/easy-mode/prompts-v2.json"
+}

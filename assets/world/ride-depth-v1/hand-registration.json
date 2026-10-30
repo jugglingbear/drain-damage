@@ -1,0 +1,732 @@
+{
+  "schema_version": 1,
+  "status": "132 candidate: enlarged hand and matched arm terminal; impact stills accepted, continuous motion review pending",
+  "path": "assets/world/ride-depth-v1/hand-parts-v2.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "alpha": "Native generated RGBA; preserve alpha. Optional alpha scissor .5 for solid edge, no dark background quad.",
+  "coordinates": "All pivots/endpoints below are absolute atlas pixels, not crop-local. Subtract source_rect origin before UV/local conversion.",
+  "frames": {
+    "contact": {
+      "source_rect": [
+        0,
+        0,
+        646,
+        720
+      ],
+      "wrist_px": [
+        335,
+        77
+      ],
+      "width_m": 1.75,
+      "scale_rule": "Uniform 1.75/606 pixels-to-world; runtime solves opaque lowest knuckle to gap center.",
+      "opaque_bbox_alpha179": [
+        32,
+        50,
+        638,
+        652
+      ],
+      "arm_overlap_px": [
+        335,
+        150
+      ],
+      "wrist_axis_tip_px": [
+        335,
+        350
+      ],
+      "wrist_axis_local_xy": [
+        0,
+        -1
+      ],
+      "opaque_convex_outline_px": [
+        [
+          34,
+          406
+        ],
+        [
+          56,
+          339
+        ],
+        [
+          58,
+          333
+        ],
+        [
+          60,
+          329
+        ],
+        [
+          219,
+          80
+        ],
+        [
+          226,
+          73
+        ],
+        [
+          234,
+          69
+        ],
+        [
+          243,
+          65
+        ],
+        [
+          246,
+          64
+        ],
+        [
+          260,
+          60
+        ],
+        [
+          270,
+          58
+        ],
+        [
+          276,
+          57
+        ],
+        [
+          292,
+          55
+        ],
+        [
+          302,
+          54
+        ],
+        [
+          314,
+          53
+        ],
+        [
+          330,
+          52
+        ],
+        [
+          343,
+          52
+        ],
+        [
+          362,
+          53
+        ],
+        [
+          375,
+          54
+        ],
+        [
+          397,
+          56
+        ],
+        [
+          404,
+          57
+        ],
+        [
+          410,
+          58
+        ],
+        [
+          415,
+          59
+        ],
+        [
+          419,
+          60
+        ],
+        [
+          433,
+          64
+        ],
+        [
+          440,
+          67
+        ],
+        [
+          442,
+          68
+        ],
+        [
+          448,
+          72
+        ],
+        [
+          450,
+          75
+        ],
+        [
+          582,
+          321
+        ],
+        [
+          584,
+          325
+        ],
+        [
+          634,
+          431
+        ],
+        [
+          636,
+          437
+        ],
+        [
+          637,
+          442
+        ],
+        [
+          637,
+          459
+        ],
+        [
+          636,
+          463
+        ],
+        [
+          634,
+          469
+        ],
+        [
+          584,
+          576
+        ],
+        [
+          580,
+          584
+        ],
+        [
+          576,
+          590
+        ],
+        [
+          569,
+          597
+        ],
+        [
+          565,
+          600
+        ],
+        [
+          560,
+          603
+        ],
+        [
+          557,
+          604
+        ],
+        [
+          457,
+          633
+        ],
+        [
+          453,
+          634
+        ],
+        [
+          448,
+          635
+        ],
+        [
+          337,
+          652
+        ],
+        [
+          314,
+          652
+        ],
+        [
+          308,
+          651
+        ],
+        [
+          208,
+          627
+        ],
+        [
+          204,
+          626
+        ],
+        [
+          201,
+          625
+        ],
+        [
+          111,
+          594
+        ],
+        [
+          106,
+          592
+        ],
+        [
+          102,
+          590
+        ],
+        [
+          99,
+          588
+        ],
+        [
+          93,
+          583
+        ],
+        [
+          87,
+          577
+        ],
+        [
+          84,
+          573
+        ],
+        [
+          81,
+          568
+        ],
+        [
+          70,
+          546
+        ],
+        [
+          68,
+          541
+        ],
+        [
+          64,
+          529
+        ],
+        [
+          35,
+          425
+        ],
+        [
+          34,
+          420
+        ]
+      ],
+      "opaque_outline_metadata": {
+        "alpha_threshold": 179,
+        "coordinate_space": "absolute atlas pixel-edge coordinates",
+        "algorithm": "Exact monotone-chain convex hull of opaque pixel cell corners; row extremes preserve convex hull",
+        "simplification": "Collinear vertices removed only; no geometric approximation",
+        "source": "assets/world/ride-depth-v1/hand-parts-v2.png",
+        "usage": "Subtract wrist_px, invert imageY, multiply uniform pixel scale, transform by actual rolled basis. Minimum worldY over vertices gives exact support of opaque pixel-cell hull. Convex hull preserves directional extrema; not intended as collision polygon."
+      }
+    },
+    "curled": {
+      "source_rect": [
+        646,
+        0,
+        608,
+        720
+      ],
+      "wrist_px": [
+        932,
+        80
+      ],
+      "width_m": 1.75,
+      "scale_rule": "Uniform 1.75/606 pixels-to-world; runtime solves opaque lowest knuckle to gap center.",
+      "opaque_bbox_alpha179": [
+        656,
+        57,
+        1233,
+        675
+      ],
+      "arm_overlap_px": [
+        932,
+        190
+      ],
+      "wrist_axis_tip_px": [
+        932,
+        350
+      ],
+      "wrist_axis_local_xy": [
+        0,
+        -1
+      ],
+      "opaque_convex_outline_px": [
+        [
+          657,
+          519
+        ],
+        [
+          658,
+          515
+        ],
+        [
+          715,
+          325
+        ],
+        [
+          718,
+          316
+        ],
+        [
+          721,
+          308
+        ],
+        [
+          727,
+          293
+        ],
+        [
+          817,
+          92
+        ],
+        [
+          819,
+          88
+        ],
+        [
+          824,
+          83
+        ],
+        [
+          827,
+          81
+        ],
+        [
+          839,
+          74
+        ],
+        [
+          847,
+          71
+        ],
+        [
+          856,
+          68
+        ],
+        [
+          863,
+          66
+        ],
+        [
+          867,
+          65
+        ],
+        [
+          873,
+          64
+        ],
+        [
+          900,
+          60
+        ],
+        [
+          909,
+          59
+        ],
+        [
+          921,
+          58
+        ],
+        [
+          961,
+          58
+        ],
+        [
+          981,
+          60
+        ],
+        [
+          990,
+          61
+        ],
+        [
+          1011,
+          64
+        ],
+        [
+          1020,
+          66
+        ],
+        [
+          1024,
+          67
+        ],
+        [
+          1033,
+          70
+        ],
+        [
+          1041,
+          73
+        ],
+        [
+          1043,
+          74
+        ],
+        [
+          1048,
+          78
+        ],
+        [
+          1054,
+          84
+        ],
+        [
+          1166,
+          234
+        ],
+        [
+          1168,
+          237
+        ],
+        [
+          1219,
+          315
+        ],
+        [
+          1223,
+          322
+        ],
+        [
+          1227,
+          330
+        ],
+        [
+          1232,
+          345
+        ],
+        [
+          1232,
+          359
+        ],
+        [
+          1231,
+          364
+        ],
+        [
+          1170,
+          557
+        ],
+        [
+          1169,
+          560
+        ],
+        [
+          1161,
+          576
+        ],
+        [
+          1156,
+          584
+        ],
+        [
+          1154,
+          587
+        ],
+        [
+          1148,
+          593
+        ],
+        [
+          1143,
+          597
+        ],
+        [
+          1139,
+          600
+        ],
+        [
+          1136,
+          602
+        ],
+        [
+          1021,
+          664
+        ],
+        [
+          1011,
+          669
+        ],
+        [
+          1005,
+          671
+        ],
+        [
+          997,
+          673
+        ],
+        [
+          992,
+          674
+        ],
+        [
+          983,
+          675
+        ],
+        [
+          965,
+          675
+        ],
+        [
+          835,
+          664
+        ],
+        [
+          826,
+          663
+        ],
+        [
+          816,
+          661
+        ],
+        [
+          808,
+          659
+        ],
+        [
+          805,
+          658
+        ],
+        [
+          800,
+          656
+        ],
+        [
+          794,
+          653
+        ],
+        [
+          695,
+          589
+        ],
+        [
+          692,
+          587
+        ],
+        [
+          685,
+          582
+        ],
+        [
+          681,
+          579
+        ],
+        [
+          675,
+          573
+        ],
+        [
+          667,
+          561
+        ],
+        [
+          666,
+          559
+        ],
+        [
+          662,
+          550
+        ],
+        [
+          660,
+          545
+        ],
+        [
+          659,
+          542
+        ],
+        [
+          657,
+          532
+        ]
+      ],
+      "opaque_outline_metadata": {
+        "alpha_threshold": 179,
+        "coordinate_space": "absolute atlas pixel-edge coordinates",
+        "algorithm": "Exact monotone-chain convex hull of opaque pixel cell corners; row extremes preserve convex hull",
+        "simplification": "Collinear vertices removed only; no geometric approximation",
+        "source": "assets/world/ride-depth-v1/hand-parts-v2.png",
+        "usage": "Subtract wrist_px, invert imageY, multiply uniform pixel scale, transform by actual rolled basis. Minimum worldY over vertices gives exact support of opaque pixel-cell hull. Convex hull preserves directional extrema; not intended as collision polygon."
+      }
+    },
+    "forearm_a": {
+      "source_rect": [
+        0,
+        760,
+        636,
+        494
+      ],
+      "root_px": [
+        44,
+        980
+      ],
+      "wrist_px": [
+        608,
+        1016
+      ],
+      "width_m": 0.55,
+      "joint_overlap_m": 0.06
+    },
+    "forearm_b": {
+      "source_rect": [
+        636,
+        760,
+        618,
+        494
+      ],
+      "root_px": [
+        660,
+        995
+      ],
+      "wrist_px": [
+        1217,
+        1012
+      ],
+      "width_m": 0.55,
+      "joint_overlap_m": 0.06
+    }
+  },
+  "assembly": [
+    "Hatch is real wall-mounted geometry, not part of cutout atlas.",
+    "Anchor forearm root inside hatch and wrist at fist wrist. Extend wrist joint .06m behind fist to hide seam.",
+    "Scale arm along root-to-wrist axis only; keep thickness fixed. Orient cutout plane to camera while its endpoints remain world-registered.",
+    "Fist pivots at wrist; scale uniformly. Prefer forearm_a until both camera views validate alternate side. No abrupt view switching.",
+    "Drive whole limb in world space from root to wrist; depth-test against real wall/hatch. Forearm should emerge from opening, not lie over wall facade.",
+    "On impact lower contact knuckle extent to Y0; derive wrist height from transformed opaque bottom, do not place wrist atY0.",
+    "Retreat in world height/depth until opaque fist is above corridor; do not shrink lifted pose to fake clearance.",
+    "Keep moving hand visibility independent of permanent opening and use existing event times."
+  ],
+  "limitations": [
+    "Two articulated planes cannot reveal a true back surface during arbitrary camera orbit. Scope limited to approved \u00b118-degree views.",
+    "Rendered camera pose, silhouette, wrist seam, contact and clearance must be verified in actual build."
+  ],
+  "joint_revision": {
+    "status": "Painted cap removed in v2; final lifted-pose captures accepted",
+    "reason": "Forearm drawn end cap is visible when terminal lands at top-edge wrist pivot. Hide terminal inside opaque fist neck.",
+    "target_formula": "arm_target = fist_world_pivot + camera_right*(overlap_x-wrist_x)*pixel_scale - camera_up*(overlap_y-wrist_y)*pixel_scale",
+    "depth_order": "Forearm behind fist at seam; do not move forearm camera-forward to cover cap. Depth-test both against world.",
+    "extension_m": 0.06,
+    "preserve": "Existing fist wrist pivot, uniform scale and knuckle contact solver unchanged",
+    "contact_offset_pixels": [
+      0,
+      73
+    ],
+    "curled_offset_pixels": [
+      0,
+      110
+    ],
+    "root": "Put forearm root end behind actual wall opening/frame so no root cut face is exposed outside hatch.",
+    "source_fix": "Version2 removes painted oval cut faces from both forearm tips. Source hands had no matching oval; failed registration attempts alone did not remove forearm cap. Generated edit retains layout but is not pixel-identical."
+  },
+  "visual_evidence": [
+    "storybook/128-landing-and-ride-depth/20261029-105136-sean-maintenance-hand-corrected-lift.png",
+    "storybook/128-landing-and-ride-depth/20261029-105149-maintenance-hand-corrected-opposite-angle.png"
+  ],
+  "anatomical_alignment": {
+    "source_axis": "Wrist toward palm/knuckles follows increasing atlasY, local sprite -Y",
+    "world_target": "Project outward root-to-wrist tangent onto camera right/up",
+    "roll_radians": "atan2(projected_direction.y, projected_direction.x) + PI/2",
+    "pose_consistency": "Both poses inherit same axis; no upright reset at switch. Small deliberate wrist flex <=15deg only.",
+    "overlap": "Transform arm_overlap_px through rolled hand basis, not raw camera basis. Forearm joins proximal wrist along axis.",
+    "contact": "Recompute lowest rotated opaque silhouette worldY and solve wrist height for contact; old vertical575px formula invalid after roll.",
+    "clearance": "Use transformed complete silhouette for lift, HUD and wall aperture checks",
+    "acceptance": "Verify contact and curled poses at both yaw views, plus continuous transition. Previous seam acceptance is not anatomical acceptance.",
+    "review_result": "Raised anatomy/HUD clearance accepted in130 exported stills at both angles; earlier source contact poses accepted. Continuous animation not independently reviewed by Art."
+  }
+}

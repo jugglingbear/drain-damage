@@ -4,7 +4,7 @@ const Fixture = preload("res://tests/ride_showcase_physics.gd")
 
 func _initialize() -> void: call_deferred("checks")
 
-func gap(x := 2600.0, activation := 2.90) -> Dictionary:
+func gap(x := 2480.0, activation := 2.90) -> Dictionary:
 	return {"id":"hand-pit","kind":"gap","x":x,"y":330,"width":140,"depth":200,"activates_at":activation}
 
 func setup(obstacle: Dictionary) -> Array:
@@ -47,7 +47,7 @@ func checks() -> void:
 							for frame in range(12*hz):
 								if model.phase != "encounter" or host.life_state != "alive": break
 								var dt: float = 1.0/hz
-								var jump: bool = should_jump and not jumped and model.position.x+model.encounter_scroll+560*dt >= 2432
+								var jump: bool = should_jump and not jumped and model.position.x+model.encounter_scroll+560*dt >= 2312
 								model.tick(host,dt,Vector2.ZERO,jump)
 								jumped = jumped or jump
 							if should_jump:
@@ -63,20 +63,20 @@ func checks() -> void:
 			pair = setup(gap())
 			host = pair[0]; model = pair[1]
 			var displacement := minf(.6*400*direction.normalized().x,650-anchor)
-			var takeoff := 2600-(336+displacement)*.5
+			var takeoff := 2480-(336+displacement)*.5
 			model.position = Vector2(anchor,330)
 			model.encounter_scroll = takeoff-anchor
 			model.encounter_clock = model.encounter_scroll/560
 			model.clock = model.encounter_clock
 			model.tick(host,.6,direction,true)
 			assert(host.health == 5 and model.events.landed == 1)
-			assert(model.position.x+model.encounter_scroll-45 > 2670)
+			assert(model.position.x+model.encounter_scroll-45 > 2550)
 			host.free()
 	# Holding left from the forward anchor shortens the hop; no automatic speed lock rescues it.
 	pair = setup(gap())
 	host = pair[0]; model = pair[1]
 	model.position = Vector2(650,330)
-	model.encounter_scroll = 2432-650
+	model.encounter_scroll = 2312-650
 	model.encounter_clock = model.encounter_scroll/560
 	model.tick(host,1,Vector2.LEFT,true)
 	assert(host.life_state == "dead" and host.lives == 2)

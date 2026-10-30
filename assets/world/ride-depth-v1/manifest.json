@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-29T09:39:37-07:00",
+  "timezone": "America/Los_Angeles",
+  "status": "Art source delivery; runtime visual verification pending",
+  "atlas_dimensions": [
+    1254,
+    1254
+  ],
+  "materials": {
+    "cast_iron": {
+      "path": "assets/world/ride-depth-v1/material-atlas-v1.png",
+      "source_rect": [
+        4,
+        4,
+        619,
+        619
+      ],
+      "roughness": 0.82,
+      "texels_per_meter": 256,
+      "repeat_validation": "pending; extract inset cell before repeat"
+    },
+    "copper": {
+      "path": "assets/world/ride-depth-v1/material-atlas-v1.png",
+      "source_rect": [
+        631,
+        4,
+        619,
+        619
+      ],
+      "roughness": 0.82,
+      "texels_per_meter": 256,
+      "repeat_validation": "pending; extract inset cell before repeat"
+    },
+    "rubber": {
+      "path": "assets/world/ride-depth-v1/material-atlas-v1.png",
+      "source_rect": [
+        4,
+        631,
+        619,
+        619
+      ],
+      "roughness": 0.82,
+      "texels_per_meter": 256,
+      "repeat_validation": "pending; extract inset cell before repeat"
+    },
+    "bristles": {
+      "path": "assets/world/ride-depth-v1/material-atlas-v1.png",
+      "source_rect": [
+        631,
+        631,
+        619,
+        619
+      ],
+      "roughness": 0.82,
+      "texels_per_meter": 256,
+      "repeat_validation": "pending; extract inset cell before repeat"
+    },
+    "porcelain_top": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        4,
+        4,
+        410,
+        410
+      ]
+    },
+    "porcelain_side": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        422,
+        4,
+        410,
+        410
+      ]
+    },
+    "brass_top": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        840,
+        4,
+        410,
+        410
+      ]
+    },
+    "brass_side": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        4,
+        422,
+        410,
+        410
+      ]
+    },
+    "ramp_top": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        4,
+        840,
+        410,
+        410
+      ]
+    },
+    "ramp_side": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        422,
+        840,
+        410,
+        410
+      ]
+    },
+    "hole_wall": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        840,
+        840,
+        410,
+        410
+      ]
+    },
+    "channel": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        840,
+        422,
+        410,
+        410
+      ]
+    },
+    "water": {
+      "path": "assets/world/level-two-camera-test-v1/material-atlas-v1.png",
+      "source_rect": [
+        422,
+        422,
+        410,
+        410
+      ]
+    },
+    "basin_drain": {
+      "path": "assets/world/ride-showcase-v1/decks-v1.png",
+      "source_rect": [
+        1103,
+        220,
+        118,
+        99
+      ],
+      "provenance": "Existing authored upper-right porcelain basin drain; source atlas preserved.",
+      "recommended_diameter_world": 0.28,
+      "limitations": "Provisional detail with baked rim highlight and mild foreshortening. Map crop onto horizontal disc; mask porcelain corners with disc geometry. Not validated final orthographic fixture."
+    }
+  },
+  "recipes": "assets/world/ride-depth-v1/assembly-recipes.json",
+  "limitations": [
+    "Generated atlas has not been proven seamless. Inset cells avoid cross-material bleed but do not fix repetition seams.",
+    "New hand parts registered; camera occlusion/contact verification pending.",
+    "Only geometry integration establishes final surface contact and silhouette."
+  ],
+  "hand_registration": "assets/world/ride-depth-v1/hand-registration.json"
+}

@@ -15,7 +15,7 @@ func checks() -> void:
 			model.begin(host,index)
 			var decks: Array = model.course.obstacles.filter(func(o: Dictionary) -> bool: return o.kind == "deck")
 			for deck: Dictionary in decks:
-				for offset in [-51.0,-50.0,-37.0,-36.0,0.0,36.0,37.0,50.0,51.0]:
+				for offset in [-54.3,-54.2,-54.1,-51.0,-50.0,-37.0,-36.0,0.0,36.0,37.0,50.0,51.0,54.1,54.2,54.3]:
 					var bank: float = float(deck.y)+offset
 					if bank < 260 or bank > 400: continue
 					for landing in [false,true]:
@@ -27,9 +27,9 @@ func checks() -> void:
 						model.encounter_scroll = float(deck.x)-300
 						if landing: model.jump_age = model.active_jump_duration-0.0005
 						model.tick(host,.001,Vector2.ZERO,false)
-						var supported: bool = absf(offset) <= float(deck.depth)*0.5
+						var supported: bool = absf(offset) < float(deck.depth)*0.5+4.2-0.000001
 						assert((host.life_state == "alive") == supported,
-							"Support boundary must match authored threshold for grounded AND landing riders")
+							"65% uncovered boundary must match for grounded AND landing riders")
 						count += 1
 			host.free()
 	var rect := Rect2(-180,-50,360,100)

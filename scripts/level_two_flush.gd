@@ -5,6 +5,8 @@ const Audio = preload("res://scripts/level_two_flush_audio.gd")
 const Flow = preload("res://scripts/flush_flow.gd")
 const Debris = preload("res://scripts/flush_debris.gd")
 const Art = preload("res://scripts/flush_art.gd")
+const WorldView = preload("res://scripts/ride_world_view.gd")
+var world_view: Node3D
 const Ride = preload("res://scripts/level_two_ride.gd")
 var ride := Ride.new()
 const Music = preload("res://scripts/flush_music.gd")
@@ -49,10 +51,13 @@ func attach(host: Node2D) -> void:
 	music.attach(host,definition.music)
 	art.configure(definition.art)
 	ride.attach(host)
+	world_view = WorldView.new()
+	world_view.attach(host,self)
 	radio.transmission.connect(func() -> void: audio.play("radio_chirp"))
 
 func reset() -> void:
 	ride.audio.stop()
+	ride.music.stop()
 	ride.checkpoint_index = 0
 	active = false
 	state = "idle"
@@ -101,6 +106,7 @@ func surface_transform(point: Vector2) -> Transform2D:
 	return Transform2D(Vector2(1,gradient.x),Vector2(0,1+gradient.y/projection()),project(point))
 
 func begin(host: Node2D, retry := false) -> void:
+	ride.music.stop()
 	active = true
 	state = "bowl"
 	clock = 0
@@ -129,7 +135,7 @@ func begin(host: Node2D, retry := false) -> void:
 	hazards = debris.items
 	audio.stop()
 	music.stop()
-	radio.configure(definition.story.routes[host.employee.id],host.difficulty == "hard",retry or gag_seen)
+	radio.configure(definition.story.routes[host.employee.id],host.difficulty,retry or gag_seen)
 	gag_seen = true
 	host.won = false
 	host.camera_x = 0
@@ -156,9 +162,24 @@ func begin(host: Node2D, retry := false) -> void:
 	host.animation_state = "idle"
 	host.transform = Transform2D.IDENTITY
 	if host.music_director != null: host.music_director.stop_music()
+	if retry:
+		# Restore the authored hazard boundary, rather than simulating skipped intro time.
+		# A fresh scheduler receives exactly its first cohort, with the full warning duration.
+		clock = float(definition.layout.difficulty[host.difficulty].waves[0].at)
+		prelude_remaining = 0
+		debris.advance(self,host,0)
+		# An introductory line ending exactly at the checkpoint is already over.
+		while radio.next_index < radio.entries.size():
+			var line: Dictionary = radio.entries[radio.next_index]
+			if float(line.at)+float(line.get("duration",4.0)) > clock+prelude_duration: break
+			radio.next_index += 1
+		radio.advance(clock+prelude_duration,0,false)
+		announced.onset = true
+		audio.play("flush_onset")
 	sync_hero(host)
 
 func enter_landing(host: Node2D) -> void:
+	ride.music.stop()
 	# Shared by survival completion and the direct post-flush playtest entry.
 	state = "landing"
 	clock = 45.0
@@ -177,7 +198,7 @@ func enter_landing(host: Node2D) -> void:
 	for line: Dictionary in lines:
 		line.at = at
 		at += float(line.duration)
-	radio.configure(lines,host.difficulty == "hard",false)
+	radio.configure(lines,host.difficulty,false)
 	radio.advance(0,0,false)
 	sync_hero(host)
 
@@ -214,7 +235,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing: bool) -> void:
 	if not active or host.paused or host.life_state != "alive" or host.won: return
 	if state == "ride":
-		ride.tick(host,delta,steering,_jumping)
+		ride.tick(host,delta,steering,_jumping,_firing)
 		return
 	if state == "landing":
 		landing_clock += delta
@@ -340,6 +361,7 @@ func process_audio(host: Node2D, delta: float) -> void:
 	radio.visible = active and host.life_state == "alive" and not host.paused and not host.won
 
 func finish(host: Node2D) -> void:
+	ride.music.stop()
 	state = "complete"
 	host.won = true
 	radio.clear()
@@ -350,6 +372,7 @@ func finish(host: Node2D) -> void:
 
 func dispose() -> void:
 	ride.audio.dispose()
+	ride.music.dispose()
 	audio.dispose()
 	music.dispose()
 	radio.clear()
@@ -373,22 +396,16 @@ func draw(host: Node2D) -> void:
 		ride.draw(host,self)
 		return
 	host.draw_set_transform(Vector2.ZERO)
-	if clock >= 43:
-		draw_frame(host,"landing")
-	else:
+	if clock < 43:
 		draw_frame(host,"bowl_top")
 		draw_frame(host,"bowl")
 		art.water(host,self)
 		art.draw_named(host,"drain_back",project(Vector2.ZERO))
-	if clock >= 43:
-		art.landing(host,self)
-	else:
+	if clock < 43:
 		draw_bowl_actors(host)
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("THE FLUSH",Vector2(24,27),22,host.MINT)
-	host.label_at("Ready to ride: arrows / stick, Space / A to jump" if state == "landing" else "Swim: arrows / stick   Dodge the falling objects",Vector2(24,52),14,host.GOLD)
 	host.draw_vitals(Vector2(550,10))
-	host.label_at("%.0f / 71 s" % (clock+prelude_duration-prelude_remaining),Vector2(800,52),14,host.MINT)
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:
 		host.box(0,0,960,540,Color(0.03,0.07,0.12,0.88))

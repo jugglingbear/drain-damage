@@ -273,8 +273,8 @@
     {
       "id": "2-05",
       "concept_id": 5,
-      "title": "Loose Flange Hop",
-      "action_hint": "Jump across both low rims in one hop.",
+      "title": "Channel-Flange Hop",
+      "action_hint": "Jump across both raised channel joints in one hop.",
       "obstacles": [
         {
           "id": "flange-front",
@@ -593,7 +593,7 @@
         {
           "id": "hand-break",
           "kind": "gap",
-          "x": 2600,
+          "x": 2480,
           "y": 330,
           "width": 140,
           "depth": 200,
@@ -601,16 +601,16 @@
           "activates_at": 2.9
         }
       ],
-      "end_x": 2670,
+      "end_x": 2550,
       "rest_after_seconds": 0,
       "warning_seconds": 3.0,
       "hand_timeline": {
         "warning_at": 1.25,
         "impact_at": 2.9,
         "jump_volume_clear_at": 3.05,
-        "target_world_x": 2600,
+        "target_world_x": 2480,
         "target_world_y": 330,
-        "note": "Persistent right-edge cue; impact near half visible at right edge for earliest rider, tail remains offscreen. No horizontal lock or speed change."
+        "note": "Full impact opening is visible at both camera yaw angles. Forward-anchor board reaches the hand footprint after3.05 clearance; no speed lock."
       },
       "witness": {
         "coordinate": "board center encounter-world x = screen anchor x + encounter_scroll",
@@ -621,7 +621,7 @@
           }
         ],
         "jump_press_world_x": [
-          2432
+          2312
         ],
         "horizontal_input": 0,
         "input_rule": "Steer toward latest target using actual bank speed, clamp on arrival; jump once when next tick crosses authored world-x trigger."

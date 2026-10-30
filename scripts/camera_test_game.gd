@@ -24,10 +24,11 @@ func _ready() -> void:
 	container.add_child(viewport)
 	camera_view = CameraView.new()
 	viewport.add_child(camera_view)
-	camera_view.configure(camera_model,flush.art.manifest,employee.id,difficulty == "hard",
+	camera_view.configure(camera_model,flush.art.manifest,employee.id,difficulty,
 		flush.ride.obstacle_art.manifest.rider_contacts)
 	turn_button = Button.new()
-	turn_button.text = "Turn camera / fixed view [C]"
+	turn_button.text = "Turn camera"
+	turn_button.hide()
 	turn_button.position = Vector2(655,490)
 	turn_button.size = Vector2(285,34)
 	turn_button.z_index = 5
@@ -83,12 +84,9 @@ func _draw() -> void:
 	if camera_view == null: return
 	box(0,0,960,76,Color(0.025,.055,.075,.94))
 	label_at("LEVEL 2.1 — CAMERA TEST",Vector2(24,30),22,MINT)
-	label_at("Move: arrows / WASD / stick    Jump: Space / A",Vector2(24,54),14,Color.WHITE)
 	draw_vitals(Vector2(625,12))
 	box(0,466,960,74,Color(0.025,.055,.075,.94))
 	label_at("%s  ·  %s  ·  camera %.0f°" % [employee.name,camera_model.surface,camera_view.yaw],
 		Vector2(24,490),15,GOLD)
-	label_at("Turn on safe water with C / RB. Movement pauses during the comparison turn.",
-		Vector2(24,516),13,Color.WHITE)
 	BuildVersion.draw(self)
 	if paused: draw_pause_panel()

@@ -1,0 +1,1210 @@
+{
+  "schema_version": 1,
+  "status": "Easy registrations pending rendered acceptance",
+  "canvas": [
+    128,
+    128
+  ],
+  "registration_anchor": [
+    64,
+    104
+  ],
+  "heroes": {
+    "tony": {
+      "phases": {
+        "run": {
+          "loop": true,
+          "frames": [
+            {
+              "id": 0,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                110,
+                90,
+                197,
+                245
+              ],
+              "destination": [
+                28.0,
+                24.333333333333336,
+                65.66666666666666,
+                81.66666666666666
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.0,
+                -0.6666666666666643
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 1,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                499,
+                92,
+                173,
+                243
+              ],
+              "destination": [
+                29.78,
+                25.000000000000007,
+                57.666666666666664,
+                81.0
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.7800000000000011,
+                -0.3333333333333286
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 2,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                875,
+                90,
+                198,
+                245
+              ],
+              "destination": [
+                27.786666666666665,
+                24.333333333333336,
+                66.0,
+                81.66666666666666
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.11999999999999744,
+                -0.6666666666666643
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 3,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                1245,
+                87,
+                215,
+                246
+              ],
+              "destination": [
+                26.113333333333337,
+                22.0,
+                71.66666666666666,
+                82.0
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.7800000000000011,
+                -2.0
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 4,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                97,
+                415,
+                221,
+                242
+              ],
+              "destination": [
+                28.44666666666667,
+                25.333333333333343,
+                73.66666666666666,
+                80.66666666666666
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.7800000000000011,
+                -0.3333333333333286
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 5,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                477,
+                415,
+                236,
+                242
+              ],
+              "destination": [
+                24.67333333333334,
+                23.333333333333343,
+                78.66666666666666,
+                80.66666666666666
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.3400000000000034,
+                -2.3333333333333286
+              ],
+              "duration": 0.09
+            }
+          ]
+        },
+        "takeoff": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 6,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                887,
+                439,
+                156,
+                215
+              ],
+              "destination": [
+                36.66,
+                34.33333333333334,
+                52.0,
+                71.66666666666666
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.6599999999999966,
+                6.666666666666671
+              ],
+              "duration": 0.1
+            }
+          ]
+        },
+        "rising": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 7,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                1257,
+                427,
+                161,
+                226
+              ],
+              "destination": [
+                33.32666666666667,
+                24.54,
+                53.666666666666664,
+                75.33333333333333
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.6599999999999966,
+                -2.460000000000001
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "apex": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 8,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                138,
+                746,
+                140,
+                221
+              ],
+              "destination": [
+                40.78,
+                28.38666666666667,
+                46.666666666666664,
+                73.66666666666666
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.7800000000000011,
+                1.7199999999999989
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "falling": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 9,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                524,
+                745,
+                180,
+                228
+              ],
+              "destination": [
+                41.45333333333333,
+                28.273333333333333,
+                60.0,
+                76.0
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.11999999999999744,
+                1.9399999999999977
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "landing": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 10,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                892,
+                731,
+                159,
+                240
+              ],
+              "destination": [
+                39.66,
+                26.000000000000014,
+                53.0,
+                80.0
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.6599999999999966,
+                0.3333333333333428
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "hurt": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 11,
+              "path": "assets/sprites/easy-mode/tony-motion-v3.png",
+              "source_rect": [
+                1281,
+                734,
+                165,
+                236
+              ],
+              "destination": [
+                41.44666666666667,
+                27.333333333333343,
+                55.0,
+                78.66666666666666
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                0.7800000000000011,
+                3.333333333333343
+              ],
+              "duration": 0.12
+            }
+          ]
+        }
+      },
+      "idle": "Retain existing standing body layer",
+      "death": [
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            23,
+            93,
+            318,
+            393
+          ],
+          "destination": [
+            32.2,
+            26.599999999999994,
+            63.6,
+            78.60000000000001
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "recoil"
+        },
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            372,
+            123,
+            386,
+            340
+          ],
+          "destination": [
+            25.0,
+            37.2,
+            77.2,
+            68.0
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "airborne_fall"
+        },
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            758,
+            315,
+            383,
+            188
+          ],
+          "destination": [
+            26.0,
+            67.6,
+            76.60000000000001,
+            37.6
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.18,
+          "stage": "ground_impact"
+        },
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            1143,
+            364,
+            383,
+            144
+          ],
+          "destination": [
+            25.699999999999996,
+            76.4,
+            76.60000000000001,
+            28.8
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.27,
+          "stage": "settled"
+        }
+      ],
+      "head_icon": {
+        "path": "assets/sprites/easy-mode/tony-parts-v1.png",
+        "source_rect": [
+          103,
+          56,
+          255,
+          235
+        ],
+        "max_size": [
+          24,
+          24
+        ]
+      }
+    },
+    "sean": {
+      "phases": {
+        "run": {
+          "loop": true,
+          "frames": [
+            {
+              "id": 0,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                71,
+                0,
+                273,
+                337
+              ],
+              "destination": [
+                30.719139784946233,
+                32.172043010752695,
+                58.70967741935484,
+                72.47311827956989
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.1599999999999966,
+                0.43010752688172715
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 1,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                511,
+                1,
+                182,
+                339
+              ],
+              "destination": [
+                42.95225806451613,
+                31.526881720430104,
+                39.13978494623656,
+                72.90322580645162
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.9200000000000017,
+                -0.43010752688172005
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 2,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                856,
+                1,
+                252,
+                346
+              ],
+              "destination": [
+                35.04516129032258,
+                30.88172043010752,
+                54.193548387096776,
+                74.40860215053763
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.3999999999999986,
+                -1.0752688172043037
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 3,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                1220,
+                1,
+                305,
+                332
+              ],
+              "destination": [
+                31.339354838709678,
+                31.67741935483871,
+                65.59139784946237,
+                71.3978494623656
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.9200000000000017,
+                -0.06451612903225623
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 4,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                68,
+                337,
+                305,
+                344
+              ],
+              "destination": [
+                30.073978494623653,
+                30.451612903225808,
+                65.59139784946237,
+                73.97849462365592
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.1599999999999966,
+                -1.7204301075268802
+              ],
+              "duration": 0.09
+            },
+            {
+              "id": 5,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                477,
+                340,
+                267,
+                342
+              ],
+              "destination": [
+                32.00946236559139,
+                31.096774193548388,
+                57.41935483870968,
+                73.54838709677419
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.1599999999999966,
+                -2.5806451612903203
+              ],
+              "duration": 0.09
+            }
+          ]
+        },
+        "takeoff": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 6,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                896,
+                373,
+                192,
+                308
+              ],
+              "destination": [
+                41.44688172043011,
+                38.83870967741936,
+                41.29032258064516,
+                66.23655913978494
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.9200000000000017,
+                6.021505376344095
+              ],
+              "duration": 0.1
+            }
+          ]
+        },
+        "rising": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 7,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                1224,
+                333,
+                254,
+                301
+              ],
+              "destination": [
+                26.103225806451615,
+                20.141935483870967,
+                54.623655913978496,
+                64.73118279569893
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.2000000000000028,
+                -11.600000000000001
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "apex": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 8,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                113,
+                681,
+                194,
+                319
+              ],
+              "destination": [
+                41.66193548387097,
+                25.852043010752688,
+                41.72043010752688,
+                68.60215053763442
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.9200000000000017,
+                -6.32
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "falling": {
+          "loop": false,
+          "hold_last": true,
+          "frames": [
+            {
+              "id": 9,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                511,
+                682,
+                190,
+                338
+              ],
+              "destination": [
+                43.64731182795699,
+                23.866666666666667,
+                40.86021505376344,
+                72.68817204301075
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                2.3999999999999986,
+                -6.799999999999997
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "landing": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 10,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                892,
+                682,
+                204,
+                330
+              ],
+              "destination": [
+                41.66193548387097,
+                34.322580645161295,
+                43.87096774193549,
+                70.96774193548387
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                1.9200000000000017,
+                4.086021505376351
+              ],
+              "duration": 0.12
+            }
+          ]
+        },
+        "hurt": {
+          "loop": false,
+          "hold_last": false,
+          "frames": [
+            {
+              "id": 11,
+              "path": "assets/sprites/easy-mode/sean-motion-v1.png",
+              "source_rect": [
+                1257,
+                679,
+                260,
+                339
+              ],
+              "destination": [
+                36.79655913978495,
+                32.387096774193544,
+                55.913978494623656,
+                72.90322580645162
+              ],
+              "pivot": [
+                64,
+                104
+              ],
+              "rotation_degrees": 0,
+              "attachment_offset": [
+                -1.4399999999999977,
+                2.5806451612903203
+              ],
+              "duration": 0.12
+            }
+          ]
+        }
+      },
+      "idle": "Retain existing standing body layer",
+      "death": [
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            31,
+            580,
+            318,
+            385
+          ],
+          "destination": [
+            32.2,
+            28.200000000000003,
+            63.6,
+            77.0
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "recoil"
+        },
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            385,
+            605,
+            382,
+            335
+          ],
+          "destination": [
+            25.4,
+            38.2,
+            76.4,
+            67.0
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.14,
+          "stage": "airborne_fall"
+        },
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            767,
+            784,
+            374,
+            187
+          ],
+          "destination": [
+            27.0,
+            67.80000000000001,
+            74.8,
+            37.4
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.18,
+          "stage": "ground_impact"
+        },
+        {
+          "path": "assets/sprites/easy-mode/death-v1.png",
+          "source_rect": [
+            1141,
+            825,
+            389,
+            142
+          ],
+          "destination": [
+            25.099999999999994,
+            76.8,
+            77.80000000000001,
+            28.400000000000002
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0,
+          "duration": 0.27,
+          "stage": "settled"
+        }
+      ],
+      "head_icon": {
+        "path": "assets/sprites/easy-mode/sean-parts-v1.png",
+        "source_rect": [
+          110,
+          70,
+          210,
+          224
+        ],
+        "max_size": [
+          24,
+          24
+        ]
+      }
+    }
+  },
+  "integration": {
+    "body": "Replace only body layer. Apply attachment_offset to every other layer destination and pivot, grip, support_hand and muzzle.",
+    "clock": "Advance run independently of aim and fire. Preserve clock when changing direction; recoil must not replace body animation.",
+    "mirror": "Mirror completed composition and anchors around x64. Backpedaling reverses cycle playback, not facing.",
+    "jump": "Use takeoff, rising, apex, falling, landing according to physics phase. Single authored hold per jump phase.",
+    "hurt": "Stationary hurt frame only; moving hurt retains locomotion with hit flash.",
+    "death": "No weapon layers. Recoil 0.14s then falling hold until grounded. On ground play impact0.18s then settle at least0.27s; never loop. Minimum total1.0s and grounded0.45s.",
+    "hud": "24x24 maximum head icon, preserve source aspect; one per total remaining life.",
+    "scope": "Tony pressure-gun and Sean heavy-plunger-launcher only. Other weapon combinations require grip/occlusion review."
+  },
+  "additional_aim_poses": [
+    {
+      "id": "tony-standing-down_right",
+      "hero": "tony",
+      "weapon": "pressure-gun",
+      "stance": "standing",
+      "direction": "down_right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/sprites/easy-mode/downward-arms-v1.png",
+          "source_rect": [
+            559,
+            92,
+            305,
+            318
+          ],
+          "destination": [
+            69.04166314858621,
+            57.735929865831025,
+            24.377683498396745,
+            25.41673230324644
+          ],
+          "pivot": [
+            73.6774193548387,
+            62.45161290322581
+          ],
+          "rotation_degrees": 18.1913111103457
+        },
+        {
+          "role": "body",
+          "path": "assets/sprites/easy-mode/tony-parts-v1.png",
+          "source_rect": [
+            55,
+            61,
+            335,
+            589
+          ],
+          "destination": [
+            40.903225806451616,
+            29.29032258064516,
+            43.225806451612904,
+            76.0
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/pressure-gun/atlas-v2.png",
+          "source_rect": [
+            450,
+            140,
+            325,
+            230
+          ],
+          "destination": [
+            68.70159016396943,
+            59.86958100375455,
+            32.5,
+            23.0
+          ],
+          "pivot": [
+            72.90159016396943,
+            77.56958100375455
+          ],
+          "rotation_degrees": 45
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/sprites/easy-mode/downward-arms-v1.png",
+          "source_rect": [
+            754,
+            295,
+            112,
+            110
+          ],
+          "destination": [
+            84.62739522133167,
+            73.96107658771476,
+            8.951805087935854,
+            8.791951425651286
+          ],
+          "pivot": [
+            73.6774193548387,
+            62.45161290322581
+          ],
+          "rotation_degrees": 18.1913111103457
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/sprites/easy-mode/downward-arms-v1.png",
+          "source_rect": [
+            118,
+            92,
+            284,
+            318
+          ],
+          "destination": [
+            46.05558634982525,
+            58.34321926838209,
+            27.229249623381126,
+            30.489089367025343
+          ],
+          "pivot": [
+            52.0,
+            64.0
+          ],
+          "rotation_degrees": -17.315175543645797
+        }
+      ],
+      "grip": [
+        72.90159016396943,
+        77.56958100375455
+      ],
+      "support_hand": [
+        83.36677052553034,
+        82.37790711582308
+      ],
+      "muzzle": [
+        97.22606343678666,
+        91.99455933996012
+      ]
+    },
+    {
+      "id": "sean-standing-down_right",
+      "hero": "sean",
+      "weapon": "heavy-plunger-launcher",
+      "stance": "standing",
+      "direction": "down_right",
+      "layers": [
+        {
+          "role": "back_arm",
+          "path": "assets/sprites/easy-mode/downward-arms-v1.png",
+          "source_rect": [
+            560,
+            481,
+            305,
+            316
+          ],
+          "destination": [
+            66.98206634883833,
+            56.53697252925806,
+            29.16007789233866,
+            30.211752832718087
+          ],
+          "pivot": [
+            72.431654676259,
+            62.273381294964025
+          ],
+          "rotation_degrees": 18.438263643159402
+        },
+        {
+          "role": "body",
+          "path": "assets/sprites/easy-mode/sean-parts-v1.png",
+          "source_rect": [
+            85,
+            74,
+            274,
+            514
+          ],
+          "destination": [
+            44.0863309352518,
+            31.482014388489212,
+            39.42446043165467,
+            73.9568345323741
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "rotation_degrees": 0
+        },
+        {
+          "role": "weapon",
+          "path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+          "source_rect": [
+            430,
+            140,
+            375,
+            230
+          ],
+          "destination": [
+            67.25175189165066,
+            58.28416502426133,
+            37.5,
+            23.0
+          ],
+          "pivot": [
+            72.25175189165066,
+            75.78416502426133
+          ],
+          "rotation_degrees": 45
+        },
+        {
+          "role": "front_hand",
+          "path": "assets/sprites/easy-mode/downward-arms-v1.png",
+          "source_rect": [
+            754,
+            685,
+            112,
+            110
+          ],
+          "destination": [
+            85.52978802462096,
+            76.04076233265835,
+            10.707963029317803,
+            10.51674940379427
+          ],
+          "pivot": [
+            72.431654676259,
+            62.273381294964025
+          ],
+          "rotation_degrees": 18.438263643159402
+        },
+        {
+          "role": "front_arm",
+          "path": "assets/sprites/easy-mode/downward-arms-v1.png",
+          "source_rect": [
+            118,
+            481,
+            283,
+            317
+          ],
+          "destination": [
+            46.41084828876466,
+            58.59114350525612,
+            25.511773133541954,
+            28.57679181389682
+          ],
+          "pivot": [
+            52.0,
+            64.0
+          ],
+          "rotation_degrees": -20.11289794159635
+        }
+      ],
+      "grip": [
+        72.25175189165066,
+        75.78416502426133
+      ],
+      "support_hand": [
+        83.9190137812287,
+        88.15853369502591
+      ],
+      "muzzle": [
+        99.47536296733274,
+        92.4011743821452
+      ]
+    }
+  ],
+  "limitations": [
+    "Run cadence and limb overlap need visual review; generated stride silhouettes are uneven.",
+    "Body shoulder offsets measured from source art; full two-hand contact across every phase has not yet been visually verified.",
+    "Grounded diagonal-down reuses authored downward arms with standing body; muzzle/body clearance needs assembly review.",
+    "No dedicated recoil bitmap cycle. Engineering may translate aim group briefly without stopping locomotion.",
+    "No runtime launch or actual game screenshots by Art.",
+    "Sean rising pose shows part of unused shoulder socket; needs attachment polish. Raised weapons still obscure faces."
+  ],
+  "source_manifest": "assets/sprites/easy-mode/registration-v1.json",
+  "date": "2026-10-29"
+}

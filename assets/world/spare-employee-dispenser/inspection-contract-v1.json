@@ -438,6 +438,54 @@
           "duration_seconds": 0.2
         }
       }
+    },
+    "easy": {
+      "tony": {
+        "grab": {
+          "path": "assets/sprites/easy-mode/held-heroes-v1.png",
+          "source_rect": [
+            140,
+            5,
+            421,
+            617
+          ],
+          "destination": [
+            34.53484602917342,
+            16.04213938411671,
+            61.41004862236628,
+            89.99999999999999
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2
+        }
+      },
+      "sean": {
+        "grab": {
+          "path": "assets/sprites/easy-mode/held-heroes-v1.png",
+          "source_rect": [
+            726,
+            50,
+            420,
+            571
+          ],
+          "destination": [
+            31.530647985989496,
+            16.049036777583197,
+            66.19964973730298,
+            89.99999999999999
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2
+        }
+      }
     }
   },
   "hero_pose_notes": "Grab/held pose replaced for Tony and Sean, normal and Hard. Existing compress, ball, impact, slide and vend remain unchanged. Registered at common0.15 scale with feet104 and centered torso; source composition reviewed.",

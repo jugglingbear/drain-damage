@@ -77,14 +77,14 @@ func checks() -> void:
 						if not require(host.health < 100,"Straight slalom bank-edge bypass"): return
 						failures_checked += 1
 						host.free()
-					# A center inside a platform is insufficient when the board overhangs its bank edge.
+					# A genuinely uncovered opening between islands still costs one life and retries this encounter.
 					for index in [6,7]:
 						var pair := setup(hero,anchor,index,260 if index == 6 else 330)
 						var host = pair[0]
 						host.difficulty = mode
 						host.invulnerable = 0.75 if index in [6,7] else 0.0
 						var model = pair[1]
-						model.encounter_scroll = 2600-anchor
+						model.encounter_scroll = (2900 if index == 6 else 2930)-anchor
 						model.encounter_clock = model.encounter_scroll/560.0
 						model.tick(host,dt,Vector2.ZERO,false)
 						if not verify_fall_and_retry(host,model,index,dt): return

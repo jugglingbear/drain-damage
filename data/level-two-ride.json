@@ -95,13 +95,34 @@
       },
       {
         "event": "fall_panic",
-        "path": "assets/audio/sfx/ride-fall-panic-v1/fall-panic.wav",
-        "duration_seconds": 1.2,
+        "duration_seconds": 1.35,
+        "loop": false,
+        "gain_db": -3,
+        "sha256": "dea1608c4de4e3e25ed975f19790127aaf2df9b470cb3c28b16ba646600e12dd",
+        "path": "assets/audio/sfx/ride-human-fall-and-smash-v1/fall-human.wav",
+        "source": "audio/alternatives/DD-S0107/DD-S0107.1.wav",
+        "source_manifest": "handoffs/ride-human-fall-and-smash.json",
+        "trigger": "Once at fatal support loss."
+      },
+      {
+        "event": "track_smash",
+        "duration_seconds": 1.5,
         "loop": false,
         "gain_db": -4,
-        "source": "audio/sources/recorded-creatures-cc0-v1/rubberduck/scream_01.ogg",
-        "source_manifest": "audio/sources/ride-fall-panic-v1/manifest.json",
-        "sha256": "07dfcfb7272d2bf19e1f138c861fbd315ea2260507fa93813fbcbbb58ac82a57"
+        "sha256": "248d13858bec0d52cb24dc6b9a4b4ead6af890997c520fc96bd4c84db17dacf3",
+        "path": "assets/audio/sfx/ride-human-fall-and-smash-v1/track-smash.wav",
+        "source": "audio/alternatives/DD-S0108/DD-S0108.1.wav",
+        "source_manifest": "handoffs/ride-human-fall-and-smash.json",
+        "trigger": "Once when a timed track opening fractures; independent of hero contact."
+      },
+      {
+        "event": "board_fart",
+        "path": "assets/audio/sfx/ride-fidget-fart-v1/board-fart.wav",
+        "gain_db": -6,
+        "loop": false,
+        "duration_seconds": 0.98,
+        "source": "handoffs/ride-fidget-audio.json",
+        "sha256": "67243578c2b66b822795892847bb7e84315ea07e09023367a83ee9ffcd147447"
       }
     ]
   },
@@ -145,7 +166,7 @@
     "inputs": "Left/right shift anchor within view; up/down move toward upper/lower bank. Normalize two-axis input before multiplying x400/y350. Clamp anchor bounds after movement. Same physics for both heroes and all modes.",
     "course_coordinate": "World x = encounter scroll + screen anchor x. Ten isolated encounters; three seconds danger-free after each clears.",
     "pause": "Pause freezes scroll, steering, jump, warnings, hazards, damage timers and audio; no catch-up.",
-    "fire": "Ignore fire/weapon actions throughout ride, preserve loadout for later scenes. Release guards prevent held transition inputs firing or auto-jumping."
+    "fire": "A fresh fire press triggers a cosmetic poop-board fidget every0.5 seconds: water smear, supported solid streak, or an airborne brown cloud anchored above its release point until fully offscreen. No weapon, damage or movement impulse; swimming flush does not emit."
   },
   "jump": {
     "duration_seconds": 0.6,
@@ -156,5 +177,17 @@
     "shadow": "Render board/rider at water anchor minus z; shadow remains on water anchor and changes opacity/size. Collision uses planar footprint plus z, never screen-render position.",
     "release": "A jump on landing dialogue dismissal is not accepted until input is released and pressed again."
   },
-  "course_source": "levels/level-two-ride-showcase.json"
+  "course_source": "levels/level-two-ride-showcase.json",
+  "music": {
+    "path": "assets/audio/music/ride-fighting-is-not-an-option-v2.ogg",
+    "title": "Fighting Is Not an Option",
+    "author": "Cleyton Kauffman",
+    "license": "CC0-1.0",
+    "source_url": "https://opengameart.org/content/rpg-battle-theme-ii",
+    "sha256": "9e97255361725a9c3358e6ac115ac9cc85374facb7f03f0bde0b35d843b275ed",
+    "duration_seconds": 70.24771,
+    "gain_db": -8.0,
+    "loop": true,
+    "selected_candidate": "DD-S0110.10"
+  }
 }

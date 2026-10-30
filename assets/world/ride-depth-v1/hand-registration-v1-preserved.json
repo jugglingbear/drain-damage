@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "status": "Authored cutout registrations; runtime angle/occlusion acceptance pending",
+  "path": "assets/world/ride-depth-v1/hand-parts-v1.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "alpha": "Native generated RGBA; preserve alpha. Optional alpha scissor .5 for solid edge, no dark background quad.",
+  "coordinates": "All pivots/endpoints below are absolute atlas pixels, not crop-local. Subtract source_rect origin before UV/local conversion.",
+  "frames": {
+    "contact": {
+      "source_rect": [
+        0,
+        0,
+        646,
+        720
+      ],
+      "wrist_px": [
+        335,
+        77
+      ],
+      "width_m": 1.4,
+      "scale_rule": "uniform pixels-to-world from opaque width606px; do not stretch to140x200 legacy destination",
+      "opaque_bbox_alpha179": [
+        32,
+        50,
+        638,
+        652
+      ],
+      "arm_overlap_px": [
+        335,
+        150
+      ]
+    },
+    "curled": {
+      "source_rect": [
+        646,
+        0,
+        608,
+        720
+      ],
+      "wrist_px": [
+        932,
+        80
+      ],
+      "width_m": 1.33,
+      "scale_rule": "same uniform scale as contact (1.4/606 meter per pixel); no legacy50px vertical squash",
+      "opaque_bbox_alpha179": [
+        656,
+        57,
+        1233,
+        675
+      ],
+      "arm_overlap_px": [
+        932,
+        190
+      ]
+    },
+    "forearm_a": {
+      "source_rect": [
+        0,
+        760,
+        636,
+        494
+      ],
+      "root_px": [
+        44,
+        980
+      ],
+      "wrist_px": [
+        608,
+        1016
+      ],
+      "width_m": 0.55,
+      "joint_overlap_m": 0.06
+    },
+    "forearm_b": {
+      "source_rect": [
+        636,
+        760,
+        618,
+        494
+      ],
+      "root_px": [
+        660,
+        995
+      ],
+      "wrist_px": [
+        1217,
+        1012
+      ],
+      "width_m": 0.55,
+      "joint_overlap_m": 0.06
+    }
+  },
+  "assembly": [
+    "Hatch is real wall-mounted geometry, not part of cutout atlas.",
+    "Anchor forearm root inside hatch and wrist at fist wrist. Extend wrist joint .06m behind fist to hide seam.",
+    "Scale arm along root-to-wrist axis only; keep thickness fixed. Orient cutout plane to camera while its endpoints remain world-registered.",
+    "Fist pivots at wrist; scale uniformly. Prefer forearm_a until both camera views validate alternate side. No abrupt view switching.",
+    "Drive whole limb in world space from root to wrist; depth-test against real wall/hatch. Forearm should emerge from opening, not lie over wall facade.",
+    "On impact lower contact knuckle extent to Y0; derive wrist height from transformed opaque bottom, do not place wrist atY0.",
+    "Retreat in world height/depth until opaque fist is above corridor; do not shrink lifted pose to fake clearance.",
+    "Keep moving hand visibility independent of permanent opening and use existing event times."
+  ],
+  "limitations": [
+    "Two articulated planes cannot reveal a true back surface during arbitrary camera orbit. Scope limited to approved \u00b118-degree views.",
+    "Rendered camera pose, silhouette, wrist seam, contact and clearance must be verified in actual build."
+  ],
+  "joint_revision": {
+    "status": "Impact wrist accepted in two captures; curled overlap deepened after age3.05 review, verification pending",
+    "reason": "Forearm drawn end cap is visible when terminal lands at top-edge wrist pivot. Hide terminal inside opaque fist neck.",
+    "target_formula": "arm_target = fist_world_pivot + camera_right*(overlap_x-wrist_x)*pixel_scale - camera_up*(overlap_y-wrist_y)*pixel_scale",
+    "depth_order": "Forearm behind fist at seam; do not move forearm camera-forward to cover cap. Depth-test both against world.",
+    "extension_m": 0.06,
+    "preserve": "Existing fist wrist pivot, uniform scale and knuckle contact solver unchanged",
+    "contact_offset_pixels": [
+      0,
+      73
+    ],
+    "curled_offset_pixels": [
+      0,
+      110
+    ],
+    "root": "Put forearm root end behind actual wall opening/frame so no root cut face is exposed outside hatch."
+  }
+}

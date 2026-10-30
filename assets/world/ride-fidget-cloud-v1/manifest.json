@@ -1,0 +1,45 @@
+{
+  "status": "Integrated Prototype135/0.135.0; bounded source and packaged visual acceptance",
+  "created_at": "2026-10-29T17:57:50-07:00",
+  "timezone": "America/Los_Angeles",
+  "textures": {
+    "airborne": "assets/world/ride-fidget-cloud-v1/airborne-cloud-v1.png"
+  },
+  "dimensions_px": [
+    1536,
+    1024
+  ],
+  "pivot_uv": [
+    0.5,
+    0.68
+  ],
+  "visible_bounds_alpha64_px": [
+    111,
+    210,
+    1419,
+    817
+  ],
+  "alpha": "Native RGBA; preserve partial alpha; no alpha scissor",
+  "sha256": "4d26adac71d78ab325dd0a0f0f8888b2740bfc216be0cf9872ef5235af99b6e6",
+  "render_contract": {
+    "visible_width_m": 0.9,
+    "initial_opacity": 0.65,
+    "orientation": "Camera-facing billboard with depth testing, no cast shadow or emission",
+    "anchor": "World anchor at board release location, not attached to rider; pivot lower center",
+    "drift": "Gentle upward drift .08m/s capped at .25m; subtle expansion to1.15x, no alternating frames",
+    "retention": "Remain above release location until entirely offscreen; do not inherit water/dry timed fade lifetime",
+    "emission_interval_s": 0.5,
+    "cleanup": "Bound emission and active count; remove offscreen clouds first; pause freezes motion, scene reset clears effects",
+    "review": "Both heroes and angles; verify airborne origin, world scrolling, recognizable brown puff at board width and no rectangular backing"
+  },
+  "prompt_file": "prompts.json",
+  "validation": {
+    "source": "Both heroes/angles geometry and retirement checks pass; Sean release/scrolled stills accepted",
+    "packaged": "Engineering inspected Tony reverse continuous slow playback and full offscreen departure",
+    "evidence": [
+      "builds/level2-audit135/packaged-cloud-tony-moving-a.png",
+      "builds/level2-audit135/packaged-cloud-tony-moving-b.png"
+    ],
+    "remaining": "No claim of exhaustive gameplay or performance validation"
+  }
+}

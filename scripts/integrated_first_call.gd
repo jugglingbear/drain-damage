@@ -36,9 +36,6 @@ var route_fallbacks: Dictionary = {}
 const BACKGROUND_MANIFEST := "res://assets/world/first-call/background-manifest-v2.json"
 var background_panels: Array = []
 var background_textures: Dictionary = {}
-const BOSS_WORLD_SCALE := 0.9
-const BOSS_WORLD_OFFSET := Vector2(0,54)
-var boss_sidebar := false
 const BossIntro = preload("res://scripts/boss_intro.gd")
 var boss_intro := BossIntro.new()
 var intro_input_release := false
@@ -69,9 +66,10 @@ func reset_game() -> void:
 	boss_intro.reset(true)
 	intro_input_release = false
 	dialogue.hard_portraits = difficulty == "hard"
+	dialogue.costume = difficulty
 	dialogue.hard_dialogue = difficulty == "hard"
-	world_art.hero_aim_art.configure(difficulty == "hard")
-	dispenser.configure(difficulty == "hard")
+	world_art.hero_aim_art.configure(difficulty)
+	dispenser.configure(difficulty)
 	run_seed = seed_override if seed_override >= 0 else randi()
 	run_plan = DifficultyPlan.resolve(difficulty,run_seed)
 	ClogfatherRoute.append_plan(run_plan)
@@ -83,7 +81,7 @@ func reset_game() -> void:
 	if music_director != null: music_director.play_track("level")
 	super.reset_game()
 	if retry_flush:
-		flush.begin(self)
+		flush.begin(self,true)
 		if retry_ride: flush.enter_ride(self,ride_checkpoint)
 
 func reset_observation() -> void:
@@ -716,14 +714,8 @@ func draw_environment() -> void:
 	dispenser.draw_machines(self)
 
 func sync_boss_presentation() -> void:
-	if flush.active:
-		boss_sidebar = false
-		transform = Transform2D.IDENTITY
-		return
-	# Keep the full room visible, including the right pipe, through death and exit traversal.
-	boss_sidebar = clogfather.entered or skitterling.locked()
-	transform = Transform2D(0,Vector2.ONE*BOSS_WORLD_SCALE,0,BOSS_WORLD_OFFSET) \
-		if boss_sidebar else Transform2D.IDENTITY
+	# Boss meters overlay the continuous scene, without reserving a separate sidebar.
+	transform = Transform2D.IDENTITY
 
 func _draw() -> void:
 	if flush.active:
@@ -770,7 +762,6 @@ func _draw() -> void:
 	draw_set_transform(Vector2.ZERO)
 	ending.draw_shout(self)
 	draw_set_transform_matrix(transform.affine_inverse())
-	if boss_sidebar: box(864,82,96,458,INK)
 	draw_hud()
 	dispenser.draw_overlay(self)
 	draw_set_transform_matrix(transform.affine_inverse())
@@ -867,3 +858,8 @@ func step_death(delta: float) -> void:
 	title_button.position = Vector2(245,416)
 	style_pause_buttons()
 	set_paused(true)
+
+func sync_capture_input() -> void:
+	# A fire press made during screenshot freeze must not queue a cosmetic action.
+	if flush.active and flush.state == "ride":
+		flush.ride.fidget.step(flush.ride,Input.is_action_pressed("shoot"),0,true,true,life_state == "alive")

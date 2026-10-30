@@ -1,4 +1,5 @@
 extends RefCounted
+const Costume = preload("res://scripts/hero_costume.gd")
 ## Authored frame animation, waterline clipping and actual fall height share the simulation's anchors.
 var manifest: Dictionary = {}
 var textures: Dictionary = {}
@@ -75,8 +76,8 @@ func clipped_region(frame: Dictionary, offset := Vector2.ZERO, clip_bottom := IN
 func draw_named(host: Node2D, id: String, offset := Vector2.ZERO, tint := Color.WHITE) -> void:
 	draw_frame(host,manifest.frames[id],offset,tint)
 
-func landing_presentation(hero: String, hard: bool, elapsed: float) -> Dictionary:
-	var pose: Dictionary = manifest.landing[hero]["hard" if hard else "normal"]
+func landing_presentation(hero: String, mode: Variant, elapsed: float) -> Dictionary:
+	var pose: Dictionary = manifest.landing[hero][Costume.mode(mode)]
 	var settled := smoothstep(0.0,1.4,elapsed)
 	var bob := sin(elapsed*3.0)*2.0*settled
 	var anchor := Vector2(pose.screen_anchor[0],pose.screen_anchor[1])
@@ -86,7 +87,7 @@ func landing_presentation(hero: String, hard: bool, elapsed: float) -> Dictionar
 
 func landing(host: Node2D, model: RefCounted) -> void:
 	var elapsed: float = maxf(0,model.clock-43.0)+model.landing_clock
-	var presentation := landing_presentation(host.employee.id,host.difficulty == "hard",elapsed)
+	var presentation := landing_presentation(host.employee.id,host.difficulty,elapsed)
 	var pose: Dictionary = presentation.pose
 	# Contact and leg occlusion are authored into the rider/board composite, so every part shares one transform.
 	host.draw_set_transform_matrix(presentation.transform)
@@ -123,7 +124,7 @@ func water(host: Node2D, model: RefCounted) -> void:
 
 func swimmer(host: Node2D, model: RefCounted) -> void:
 	if model.clock >= 43: return
-	var id: String = host.employee.id+("_hard" if host.difficulty == "hard" else "_normal")
+	var id: String = host.employee.id+"_"+host.difficulty
 	var frame := frame_at(id,model.swim_clock)
 	var anchor: Vector2 = model.project(model.position)
 	var depth: float = model.sink_depth*64.0

@@ -24,10 +24,10 @@ func run_checks() -> void:
 			var world_player: Vector2 = game.player
 			var camera: float = game.camera_x
 			game.sync_boss_presentation()
-			assert(game.boss_sidebar and game.player == world_player and game.camera_x == camera)
-			assert((game.transform*Vector2(960,540)).is_equal_approx(Vector2(864,540)))
-			assert((game.transform*Vector2(912,232)).is_equal_approx(Vector2(820.8,262.8)))
-			assert((game.transform*Vector2(928,440)).x < 894)
+			assert(game.transform == Transform2D.IDENTITY and game.player == world_player and game.camera_x == camera)
+			assert((game.transform*Vector2(960,540)).is_equal_approx(Vector2(960,540)))
+			assert((game.transform*Vector2(912,232)).is_equal_approx(Vector2(912,232)))
+			assert((game.transform*Vector2(928,440)).x == 928)
 			for overlay: CanvasItem in [game.boss_hud,game.dialogue,game.pause_menu]:
 				assert(overlay.is_set_as_top_level())
 				assert(overlay.get_global_transform().is_equal_approx(Transform2D.IDENTITY))
@@ -40,10 +40,10 @@ func run_checks() -> void:
 			game.skitterling.encounter.exit_open = true
 			game.boss_hud.end_encounter()
 			game.sync_boss_presentation()
-			assert(game.boss_sidebar,"Keep framing through terminal exit, after health bar fades")
+			assert(game.transform == Transform2D.IDENTITY,"Keep framing through terminal exit, after health bar fades")
 			game.skitterling.released = true
 			game.sync_boss_presentation()
-			assert(not game.boss_sidebar)
+			assert(game.transform == Transform2D.IDENTITY)
 			game.clogfather.entered = true
 			game.sync_boss_presentation()
 			for rect in [game.clogfather.encounter.weak_point,game.clogfather.encounter.high_weak_point]:
@@ -52,10 +52,10 @@ func run_checks() -> void:
 				game.clogfather.encounter.state = state
 				game.clogfather.encounter.hp = 0
 				game.sync_boss_presentation()
-				assert(game.boss_sidebar,"Keep entire portal pull at stable scale")
+				assert(game.transform == Transform2D.IDENTITY,"Keep entire portal pull at stable full-width scale")
 			game.reset_game()
-			assert(game.transform == Transform2D.IDENTITY and not game.boss_sidebar)
+			assert(game.transform == Transform2D.IDENTITY)
 			game.queue_free()
 			await process_frame
-	print("PASS: sidebar mapping all heroes/modes; complete world, right pipe/body/weakpoints, fixed GUI, death/exit/portal/reset")
+	print("PASS: full-width scene under boss meter all heroes/modes; complete world, right pipe/body/weakpoints, fixed GUI, death/exit/portal/reset")
 	quit()
