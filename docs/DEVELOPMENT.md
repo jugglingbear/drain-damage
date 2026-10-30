@@ -116,7 +116,8 @@ make run LEVEL=2-landing SCREENSHOT_MODE=1
 ```
 
 With the flag set, controller Y (the top face button) freezes the current gameplay scene without adding a pause menu,
-dimmer or buttons. The normal HUD remains visible. Press Y again and release the controls to resume. Gameplay,
+dimmer or buttons. The normal HUD remains visible. Press Y again to resume, including while holding a direction.
+Gameplay,
 animations, dialogue, particles and audio pause together. Focus loss leaves the scene frozen until Y is pressed again.
 Ordinary pause/death menus retain their existing controls; capture mode does not replace an already-open menu.
 The flag also works with other launch targets or an ordinary `make run SCREENSHOT_MODE=1` start.
@@ -154,10 +155,12 @@ Movement pauses for the 1.2-second comparison turn; Escape pauses the whole test
 normal retry controls. The interface stays flat while the world camera turns.
 
 This is a presentation and contact proof, not a converted production level. Surrounding water is safe; the round
-opening is lethal. Slabs auto-step, the ramp uses a center-height contact model, and the reused hero image includes
+opening is lethal. Slabs auto-step, ramps align the board using underside contact points,
+and the reused hero image includes
 its painted board. Prototype 119 uses a 35-degree camera pitch, contact-anchored billboards and blended water texture seams.
 Actual macOS captures were inspected at both angles, on the basin and on the ramp. Props remain simplified;
-performance benchmarking and native Windows rendering still need review. Full-level migration remains unapproved.
+performance benchmarking and native Windows rendering still need review. The landing and 13-encounter ride now share the 2.5D presentation;
+the final campaign route remains unfinished.
 
 ## Windows exports and testing
 

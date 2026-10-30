@@ -1,0 +1,40 @@
+{
+  "version": "0.138.0",
+  "kind": "development prototype",
+  "source_commit_at_build": "d9ad95c2b780ad540c49ec6e0308ef6225ac0ec3",
+  "working_tree_dirty_at_build": true,
+  "architectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "signing": {
+    "type": "ad-hoc",
+    "notarized": false,
+    "strict_signature_verified": true
+  },
+  "native_intel_tested": false,
+  "fresh_machine_tested": false,
+  "archive": {
+    "file": "Drain-Damage-0.138.0-macos-universal.zip",
+    "sha256": "6418045bbac966cbcf31f2c47628b327d6585a127e5290e801f838993311f579",
+    "bytes": 444244214
+  },
+  "packaged_files": {
+    "Contents/Info.plist": "5ed09151c60c8b3ee2a87401ad8cd7df5075ca68dfafbd44b3023890823a43af",
+    "Contents/MacOS/Drain Damage": "4b30fe2759198bd7c3eda0b910051c510668830673438ed52d9b7788eb0a7b7e",
+    "Contents/PkgInfo": "7e50a30efad50208a173203ced60818d693bb61266b75aa10927d1a2adce80cb",
+    "Contents/Resources/Drain Damage.pck": "ded9279c865266e2dfa0dba691c58fd6407da191aa778656577ba4aa6f0ffce7",
+    "Contents/Resources/GODOT_COPYRIGHT.txt": "cb1980c88089573bcacd7221d777c689bb8bbd778799f24c27fca0fe5f774d6d",
+    "Contents/Resources/PrivacyInfo.xcprivacy": "0535353bb08c25b8ce5ed9ac7e442a5994f402e0f6cbc4bed668cfc63c2ceac3",
+    "Contents/Resources/icon.icns": "99863c5b67828191cb765d091d5267d613ad09b8dc3b87a1a3e59efa2ac01745",
+    "Contents/_CodeSignature/CodeResources": "106c4e5f4b4b985dc865226d86614b69fde10e54920ccd6d29f6c255839ffa8d"
+  },
+  "visual_validation": "Pending138dialogue check; prior137bounded captures remain applicable to unchanged scenes",
+  "limitations": [
+    "Native Windows and Intel execution unverified",
+    "Physical controllers, full uninterrupted playthrough and subjective audio mixing unverified",
+    "Known minor swim ripple, small boss icons, rail-like flange representation"
+  ],
+  "source_content_commit": "72028d78270bac111203bd34f732032a965276e3",
+  "source_content_note": "Runtime source committed after export; build-time dirty provenance retained. Only excluded tests/comments and publication metadata changed after the runtime export."
+}
