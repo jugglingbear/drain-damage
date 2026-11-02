@@ -3,6 +3,18 @@
 [magazine.json](magazine.json) is the canonical editable source for the magazine. It contains publication metadata,
 ordered pages, text, captions, image references and layout templates. The PDF is generated output.
 
+## Costume spoiler policy and edition 35 — November 2, 2026
+
+Only normal-costume portraits, sprites and gameplay images belong in the magazine. Easy- and Hard-Mode costumes
+and revealing copy are player surprises and must be excluded from every future reader edition.
+Sean resumed the October 30 credit-deferred correction on November 2. Edition 35 replaces all three page 6
+costume screenshots with normal Tony swimming, normal Sean riding and the existing normal Tony pressure-gun sprite.
+Costume copy is removed. All nine rendered pages, image references and extracted text were audited.
+`current.pdf` matches edition 35. Historical editions and original assets remain preserved.
+The replacement screenshots are controlled actual captures from 136 and 133; version badges remain visible.
+Engineering confirmed the normal swimming capture, including its known thin ripple streak. No new game launch occurred.
+Evidence and hash: `guide-assets-v35/provenance.json`. Release and Engineering own publication/live verification.
+
 ## Editing and building
 
 1. Edit the relevant page by its stable `id`. Edit `text` for headings and paragraphs; retain paragraph markup such
@@ -29,7 +41,7 @@ Page 6 replaces early screenshots with recent actual captured views: Easy Mode T
 the flush and Sean riding (137). Copy now covers the costume, swimming and ride. The approved asymmetric layout,
 creature articles, concept-labeled flush inventory and Industrial Trade advertisement remain.
 All nine pages rendered and visually inspected; seven unchanged page streams match edition 33 exactly.
-`current.pdf` matches edition 34. Earlier PDFs, source snapshots and capture originals remain preserved.
+At that delivery, `current.pdf` matched edition 34. Earlier PDFs, source snapshots and capture originals remain preserved.
 Capture provenance and exact PDF hash are in `guide-assets-v34/provenance.json`.
 These are controlled gameplay fixtures, not uninterrupted playthroughs or native Windows validation.
 No speculative first-person concept was inserted. Engineering and Release own publication and live verification.

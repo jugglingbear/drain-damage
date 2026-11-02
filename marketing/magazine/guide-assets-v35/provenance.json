@@ -1,0 +1,40 @@
+{
+  "edition": 35,
+  "date": "2026-11-02",
+  "status": "Frozen corrected delivery; Release/Engineering own publication",
+  "sha256": "f0c9306b11964388048a6695b72f6fdfb42086d1ec3bcac63150d67b899909ed",
+  "page_count": 9,
+  "checks": [
+    "All nine rendered pages visually inspected for costume spoilers, including portraits, HUD heads and sprites",
+    "No Easy/Hard costume imagery or revealing copy found",
+    "All3 page6 spoiler screenshots replaced",
+    "Seven other page streams identical34",
+    "Reader text and all referenced image paths audited",
+    "current and versioned PDF identical"
+  ],
+  "sources": [
+    {
+      "file": "normal-tony-flush-136.png",
+      "source": "builds/easy-runtime136/swimming-normal-control.png",
+      "kind": "Actual native Mac136 normal-costume control QA capture; Engineering confirmed provenance",
+      "known_gap": "Thin white/cyan swim ripple streak shared with normal mode; not full-playthrough evidence"
+    },
+    {
+      "file": "normal-sean-ride-133.png",
+      "source": "storybook/133-board-fidget/20261029-165933-133-export-sean-water.png",
+      "kind": "Actual exported133 controlled normal-costume capture; see source captures.json"
+    }
+  ],
+  "crop": [
+    0,
+    63,
+    960,
+    541
+  ],
+  "crop_note": "Only OS titlebars clipped in PDF; original pixels and version badges retained. Historical captures, not current138 playthrough.",
+  "preservation": "All earlier editions/assets preserved outside current reader PDF",
+  "limitations": [
+    "Existing selected back-cover raster remains approximately130dpi",
+    "Website deployment/live hash verification pending Release/Engineering"
+  ]
+}
