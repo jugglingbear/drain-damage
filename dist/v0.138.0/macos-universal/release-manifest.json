@@ -29,12 +29,19 @@
     "Contents/Resources/icon.icns": "99863c5b67828191cb765d091d5267d613ad09b8dc3b87a1a3e59efa2ac01745",
     "Contents/_CodeSignature/CodeResources": "106c4e5f4b4b985dc865226d86614b69fde10e54920ccd6d29f6c255839ffa8d"
   },
-  "visual_validation": "Pending138dialogue check; prior137bounded captures remain applicable to unchanged scenes",
+  "visual_validation": "Bounded dialogue layout inspection passed on preserved 138 PCK with independent Art review; prior 137 bounded captures cover unchanged scenes.",
   "limitations": [
     "Native Windows and Intel execution unverified",
     "Physical controllers, full uninterrupted playthrough and subjective audio mixing unverified",
     "Known minor swim ripple, small boss icons, rail-like flange representation"
   ],
   "source_content_commit": "72028d78270bac111203bd34f732032a965276e3",
-  "source_content_note": "Runtime source committed after export; build-time dirty provenance retained. Only excluded tests/comments and publication metadata changed after the runtime export."
+  "source_content_note": "Runtime source committed after export; build-time dirty provenance retained. Only excluded tests/comments and publication metadata changed after the runtime export.",
+  "dialogue_visual_validation": {
+    "accepted": true,
+    "date": "2026-11-02",
+    "scope": "Textlayout/reveal/Skipclearance only; Hardcostume state not staged.",
+    "evidence": "../dialogue-visual-verification.json",
+    "pck_sha256": "ded9279c865266e2dfa0dba691c58fd6407da191aa778656577ba4aa6f0ffce7"
+  }
 }
