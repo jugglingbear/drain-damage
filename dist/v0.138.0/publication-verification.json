@@ -37,5 +37,24 @@
   },
   "release_tag_created": false,
   "github_release_created": false,
-  "remaining_gate": "Actual138dialogue visual inspection awaiting permission; native Windows remains unverified"
+  "remaining_gate": "Actual138dialogue visual inspection awaiting permission; native Windows remains unverified",
+  "magazine_35_update": {
+    "date": "2026-11-02",
+    "source_commit": "96e938e91b8cc9298c65faa306c497d015860efa",
+    "pages_workflow": 41512557428,
+    "conclusion": "success",
+    "checks": [
+      {
+        "url": "https://jugglingbear.github.io/drain-damage/magazine.pdf",
+        "sha256": "f0c9306b11964388048a6695b72f6fdfb42086d1ec3bcac63150d67b899909ed",
+        "matches_local": true
+      },
+      {
+        "url": "https://jugglingbear.github.io/drain-damage/storybook/storybook.html",
+        "sha256": "1a9d399fdc67b9c749cb5c51ce254cc15d189e8d8f3c8beaa880a21042f943ae",
+        "matches_local": true
+      }
+    ],
+    "game_release_gate": "Unchanged; actual dialogue verification awaiting launch permission"
+  }
 }
