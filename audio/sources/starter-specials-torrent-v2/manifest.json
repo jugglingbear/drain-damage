@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-03",
+  "status": "Revised audition; pending listening approval, not implemented",
+  "brief": "Sean requests Tony's jetter to sound like a loud fire hose or broken hydrant: tons of water, violent and powerful. Sean's plunger and water spout should last longer. Starting target is 7\u20138 seconds for each whole special. Create a dense water roar with recorded liquid texture and original filtered turbulence, preserving headroom. Keep separate startup, sustain and shutdown assets; no gameplay implementation.",
+  "sources": {
+    "water": {
+      "path": "audio/sources/player-death-flush-v1/toilet_01.ogg",
+      "sha256": "502393b0cf4ef7be08eee5955d0c451e42f9b192b181fecd1f28ada0329c2257",
+      "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=80,lowpass=f=6500",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "splash": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_01.ogg",
+      "sha256": "8d48e8da680fbdfd3c885aa2f69d8e83ad16717bae43d178861d7af08d142849",
+      "filters": "aresample=44100,asetrate=39690,aresample=44100,highpass=f=100,lowpass=f=8000",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "splash2": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_02.ogg",
+      "sha256": "e515b7da00b2a268263824dbea9b7bc0c2e972fbd189fe3c02576d2e29af3aa5",
+      "filters": "aresample=44100,asetrate=30870,aresample=44100,highpass=f=70,lowpass=f=5000",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    }
+  },
+  "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+  "parent_sources_and_licenses": "audio/sources/starter-specials-auditions-v1/manifest.json",
+  "recipe": "audio/sources/starter-specials-torrent-v2/generate.py",
+  "timing": {
+    "status": "Game Mechanics recommendation for 7.5s audiovisual auditions, per Sean 7\u20138s starting target",
+    "total_seconds": 7.5,
+    "sean_pull_duration": 0.55,
+    "tony": {
+      "rise": [
+        0,
+        0.35
+      ],
+      "core_start": 0.35,
+      "core_duration": 6.45,
+      "stop_start": 6.8,
+      "shutdown_duration": 0.7
+    },
+    "sean": {
+      "seal": 0,
+      "pull": 0.3,
+      "break": 0.85,
+      "erupt": 1.0,
+      "vertical_until": 3.25,
+      "tip": 3.25,
+      "tilt_until": 6.0,
+      "core_start": 1.1,
+      "core_duration": 5.0,
+      "stop_start": 6.0,
+      "shutdown_duration": 1.5
+    },
+    "notes": [
+      "Tony water present essentially throughout; full-force plateau 6.45s.",
+      "Sean main water phase 1.0\u20137.5s; break/release accent at 0.85s.",
+      "Tony aim/reversal must not restart the loop. Sean tilt preserves water flow.",
+      "No continuous hero grunts. Animation/damage windows remain undecided."
+    ]
+  },
+  "outputs": [
+    {
+      "id": "DD-S0126.4",
+      "event": "tony-start",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0126/DD-S0126.4.wav",
+      "duration_seconds": 0.35,
+      "peak_dbfs": -5.0,
+      "rms_dbfs": -14.82,
+      "sha256": "742d1558ea38d659473db9c31641dda4cf95df51c58b5ef316f1c4003904556d"
+    },
+    {
+      "id": "DD-S0127.4",
+      "event": "tony-core",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0127/DD-S0127.4.wav",
+      "duration_seconds": 3.0,
+      "peak_dbfs": -5.0,
+      "rms_dbfs": -10.59,
+      "sha256": "6ac572b3e670d10a07dff88cc0c8e098138fd1728c599c01eef88a9c1f870320"
+    },
+    {
+      "id": "DD-S0128.4",
+      "event": "tony-stop",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0128/DD-S0128.4.wav",
+      "duration_seconds": 0.7,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -20.43,
+      "sha256": "0f8358ee14794c525f3212b479dda23be124ee29771a9dbb566f2872a66a64ec"
+    },
+    {
+      "id": "DD-S0131.4",
+      "event": "sean-pull",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0131/DD-S0131.4.wav",
+      "duration_seconds": 0.55,
+      "peak_dbfs": -17.0,
+      "rms_dbfs": -25.75,
+      "sha256": "8165ee9acf317b75de20c7b2c403bad6f829e60174ce9129d92c0bc16c448ec2"
+    },
+    {
+      "id": "DD-S0133.4",
+      "event": "sean-erupt",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0133/DD-S0133.4.wav",
+      "duration_seconds": 0.65,
+      "peak_dbfs": -5.0,
+      "rms_dbfs": -19.08,
+      "sha256": "6598b8085ed960bcbad8a84e6f7f61c417858e06d6cf2f800278ffe7749e5fa0"
+    },
+    {
+      "id": "DD-S0141.4",
+      "event": "sean-core",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0141/DD-S0141.4.wav",
+      "duration_seconds": 3.0,
+      "peak_dbfs": -5.0,
+      "rms_dbfs": -9.76,
+      "sha256": "122591f4667208c97866e85075125f60b3e5b75c19aa7a133470fee8cd015f40"
+    },
+    {
+      "id": "DD-S0135.4",
+      "event": "sean-stop",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0135/DD-S0135.4.wav",
+      "duration_seconds": 1.5,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -22.0,
+      "sha256": "e5394e140f9048ea041334a01954fb2d35dc54990f6e70267aa0ee78836c5110"
+    },
+    {
+      "id": "DD-S0125.4",
+      "event": "tony-preview",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0125/DD-S0125.4.wav",
+      "duration_seconds": 7.5,
+      "peak_dbfs": -4.0,
+      "rms_dbfs": -10.23,
+      "sha256": "bd2b48b49f0634087d6c5ef57b69653215d650145218227fd552deb297011368"
+    },
+    {
+      "id": "DD-S0129.4",
+      "event": "sean-preview",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0129/DD-S0129.4.wav",
+      "duration_seconds": 7.5,
+      "peak_dbfs": -4.0,
+      "rms_dbfs": -13.58,
+      "sha256": "bcd52d8557c3ca831988dbd6a9fe2f7b066a7a90b6d1ee46e0f92afae28c829a"
+    }
+  ],
+  "mix": "Higher density and low water roar, peaks capped at -4dBFS in previews. Sustain is unfaded for loop playback; demonstrate lifecycle fades separately. Final mix under music unverified.",
+  "limitations": [
+    "Total 7.5s previews are starting points, not finalized gameplay timing.",
+    "No runtime, damage, recoil or input changes.",
+    "Audible character and loop/mix acceptance require listening."
+  ]
+}

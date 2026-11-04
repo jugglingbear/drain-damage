@@ -43,6 +43,81 @@ Close the game before rebuilding its app. Agents must follow [the project instru
 permission before opening or foregrounding the game for a playtest. A build or documentation update
 is not launch permission.
 
+## Level 1 section trials
+
+Section trials are command-only entries. `LEVEL=1.1` launches the original three-screen trial;
+`LEVEL=1-trial` remains its compatibility alias. `LEVEL=1.2` launches the next independent three-screen section.
+The sections are not yet connected into the production route, and **Start** still launches production Level 1.
+
+```sh
+make run LEVEL=1.2 HERO=tony DIFFICULTY=normal SEED=42
+```
+
+Section 1.2 moves the pit earlier, provides a landing recovery stretch and puts the machinery climb later.
+It uses the same tuned Normal limits, shared combat behavior and text-free dispenser HUD as section 1.1.
+The [section 1.2 contract](../levels/first-call/section-1-2.json) records geometry, finite encounters
+and validation status.
+Use `make run-check LEVEL=1.2` for a headless initialization check.
+
+### Original three-screen trial
+
+The trial is available only through the command below; it has no main-menu button. **Start** launches
+production Level 1. The separate trial has an optional catwalk, mandatory machinery climb, background
+and foreground arrivals, an introductory pit and a final single/burst exchange. It does not replace the full level.
+
+```sh
+make run LEVEL=1-trial HERO=tony DIFFICULTY=normal SEED=42
+```
+
+Agents still need launch permission. `make run-check LEVEL=1-trial` checks initialization headlessly. Use
+`APP="builds/Prototype-153/Drain Damage.app"` with the same selectors to check or launch that preserved package.
+
+The [layout contract](../levels/first-call/three-screen-trial.json) defines the route. The
+[trial delivery record](../handoffs/three-screen-trial-delivery.json) records tested behavior and acceptance gaps.
+The mixed trial includes runners, purple-bolt shooters, flying spiders and Gnatastrophes.
+Monsters must use continuous, individually authored entrances rather than appearing at their combat positions.
+Prototype 160 assigns screen-edge approaches and selective foreground/background depth entrances per encounter.
+Stationary purple-bolt shooters emerge through supported floor hatches or ceiling mounts, never from the viewer.
+Each trial includes one ceiling shooter with a fixed body and independently aimed barrel. Fixtures are resident
+scenery; side entrants begin ordinary movement and contact at their first fully visible position.
+Section 1.2 uses 90% pit overlap; other levels retain their existing thresholds.
+Creatures remain animated and harmless in transit; arrivals count toward population limits.
+Foreground entrants render above the playfield and below the HUD. This rule also applies to production swarm
+schedules and boss reinforcements; production toilets retain their existing offscreen edge entrances.
+Normal admits at most two living shooters and two living flying spiders, including arrivals. Shooters recover
+for 2.2 seconds after each volley on Normal; Easy and Hard retain 1.2 seconds. Gnatastrophes wander
+in a rounded cloud until the hero is within 320 logical pixels, then visibly reform into a living weapon-shaped
+swarm while moving. They wander at 70 px/s, charge at 140 px/s toward the position captured at lock-on, then reform
+into a cloud on arrival or blocked terrain and repeat. The swarm center can reach a grounded hero; individual flies
+stay outside solid surfaces. Every living phase deals contact damage, including outer weapon-form flies.
+Toilets are 20% larger, with matching terrain and shot geometry. Both heroes use alternating six-pose run cycles
+in every costume, including narrow passing poses and registered arm and ground contacts.
+Purple bolts remain until their entire sprite leaves the viewport or they hit a hero or solid. The trial is a
+playtest candidate; automated completion and damage counts do not establish final pacing or difficulty acceptance.
+
+## Starter specials: integration candidate
+
+Prototype 162 integrates Tony's Hydrojet Overdrive and Sean's Main Break into ordinary Level 1 combat and its trials.
+Press **K** or gamepad **B** for one activation. Each hero has two uses per logical level; death, checkpoints,
+retries, section boundaries and bosses do not refill them. Hold-and-repeat is disabled, and dialogue/menu input
+must be released before activating a special. Each attack lasts 7.5 seconds, pauses with gameplay and ends on death.
+
+Tony can aim and jump while firing. Idle recoil slides him backward; walking against recoil gives half normal speed.
+Sean needs supported ground and room for the pipe, remains planted during the first second, then can move while
+the anchored main continues its blast. The spent main remains behind the hero as an inert prop.
+Water stops at solid scenery and reaches the current screen edge when unobstructed.
+Scripted flush, ride and camera-test modes reject activation without spending a use.
+
+HUD A attaches the weapon icon and two amber/depleted charge indicators beside the existing vitals in all three themes.
+Tony's Hydrojet deals 240 sustained DPS, 3.2 times his current regular fire; Sean's Main Break remains at 60 DPS.
+Each activation caps actual damage to a boss/miniboss encounter at 250, preserving its vulnerability rules.
+
+The signed Mac candidate passes packaged checks and sampled running visual review with Art. Continuous-animation feel,
+audible gameplay mix and human balance/fun review remain open; sampled captures do not establish full-route acceptance.
+See the
+[starter-special delivery record](../handoffs/starter-specials-delivery.json)
+for the exact package and validation evidence.
+
 ## Direct Level 2 playtests
 
 Start the flush sequence without completing Level 1:
@@ -54,7 +129,7 @@ make run LEVEL=2 HERO=tony DIFFICULTY=normal
 Skip the flush and start at the post-flush log landing:
 
 ```sh
-make run LEVEL=2-landing HERO=sean DIFFICULTY=hard
+make run LEVEL=2.1 HERO=sean DIFFICULTY=hard
 ```
 
 Both entries initialize a fresh run without a prior save. Either accepts `HERO=tony|sean`,
@@ -112,7 +187,7 @@ metadata and delivery records before relying on them.
 Prototype 109 and the source launcher accept an opt-in screenshot flag; Prototype 106 does not include it.
 
 ```sh
-make run LEVEL=2-landing SCREENSHOT_MODE=1
+make run LEVEL=2.1 SCREENSHOT_MODE=1
 ```
 
 With the flag set, controller Y (the top face button) freezes the current gameplay scene without adding a pause menu,
@@ -140,12 +215,12 @@ connected throughout its sweep. The ball collider and movement are unchanged; mo
 Mixed-course pacing, brush-curtain redesign and the new final
 boss remain proposals; Prototype 108 does not implement them. Human visual and controller review remains pending.
 
-## Level 2.1 camera proof
+## Isolated camera proof
 
 Launch the isolated comparison course with either hero:
 
 ```sh
-make run LEVEL=2.1 HERO=sean
+make run LEVEL=camera-test HERO=sean
 ```
 
 The existing Level 2 entries remain available. This proof contains a raised porcelain slab, brass platform,

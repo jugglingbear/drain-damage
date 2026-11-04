@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "status": "Integration contract; user-approved behavior with initial tunings pending playtest",
+  "owner": "Game Mechanics",
+  "runtime_owner": "Engineering",
+  "art_owner": "Art",
+  "audio_owner": "Audio",
+  "approved_direction": {
+    "uses_per_hero_per_level": 2,
+    "refills": false,
+    "duration_starting_point_seconds": 7.5,
+    "gamepad": "B",
+    "range": "Reach the current viewport edge along the stream direction",
+    "hud": "Option A approved by Sean: attached side module with square current-weapon icon and two special-use indicators; preserve existing pictorial health/lives."
+  },
+  "input": {
+    "keyboard": "K",
+    "trigger": "Fresh press only; one accepted activation spends one use",
+    "blocked_states": [
+      "active special",
+      "pause",
+      "dialogue and release guard",
+      "death",
+      "dispenser action lock",
+      "scene transition",
+      "scripted flush/ride or camera-test control modes without ordinary weapon combat"
+    ],
+    "gamepad_b_context": "Dialogue/menu B behavior stays; release before gameplay special can activate",
+    "empty": "No action or spend; optional short feedback only on fresh press",
+    "normal_fire": "Suppressed during active special",
+    "unsupported_mode": "Reject activation without spending; retain logical-level budget for supported combat."
+  },
+  "lifecycle": {
+    "budget": "Two shared remaining uses for the selected hero in one logical level; not per weapon or per section",
+    "preserve_on": [
+      "damage",
+      "death",
+      "checkpoint respawn",
+      "retry within current run",
+      "boss entry",
+      "subsection transition"
+    ],
+    "reset_on": [
+      "new run",
+      "first entry to a new logical level"
+    ],
+    "direct_playtest": "Initialize two uses for the launched level",
+    "pause": "Freeze timeline, movement and damage cadence; pause audio",
+    "death_or_teardown": "Cancel effect and stop audio; spent use stays spent",
+    "nonlethal_damage": "Normal damage applies; does not cancel the special",
+    "mapping_status": "Agreed with Engineering; first-call covers base, trials and integrated bosses; level-two begins at integrated begin_level_two or direct flush/ride initialization.",
+    "logical_levels": {
+      "first-call": [
+        "base combat",
+        "trial sections",
+        "integrated first-level bosses"
+      ],
+      "level-two": [
+        "integrated begin_level_two",
+        "direct flush or ride initialization"
+      ]
+    }
+  },
+  "initial_tuning": {
+    "status": "Mechanics-selected initial values. Tony updated for requested 3\u20134x active regular sustained DPS; Sean unchanged.",
+    "damage_per_tick": 12,
+    "tick_interval_seconds": 0.2,
+    "maximum_damage_per_boss_per_activation": 250,
+    "boss_budget_key": "Stable encounter identity across phase/form changes",
+    "boss_rules": "Respect existing invulnerability, weak-point and phase transition gates; cap counts actual applied damage",
+    "enemy_rules": "At most one tick per enemy per interval across all stream pieces; no frame-rate or multi-segment multiplication",
+    "recoil_horizontal_pixels_per_second": 30,
+    "tony_jet_thickness_pixels": 52,
+    "default_damage_scope": "Sean Main Break only; Tony uses the explicit per-hero override below.",
+    "hero_overrides": {
+      "tony": {
+        "damage_per_tick": 24,
+        "tick_interval_seconds": 0.1,
+        "sustained_damage_per_second": 240,
+        "active_regular_damage": 12,
+        "active_regular_interval_seconds": 0.16,
+        "active_regular_sustained_damage_per_second": 75,
+        "special_to_regular_ratio": 3.2,
+        "comparison": "Current First Call profile, not legacy canonical 6 damage / 0.15 seconds. Assumes continuous overlap and an eligible target."
+      },
+      "sean": {
+        "damage_per_tick": 12,
+        "tick_interval_seconds": 0.2,
+        "sustained_damage_per_second": 60,
+        "status": "Unchanged; Tony-only rebalance"
+      }
+    }
+  },
+  "geometry": {
+    "damage": "Only actual visible water envelope can damage; no global screen damage",
+    "reach": "Ray extends from registered outlet to current viewport boundary in aimed direction",
+    "occlusion": "Clip visible stream and damage against actual projectile-blocking solid geometry; scenery decoration does not block",
+    "thickness": "Use full stream width for occlusion and hit tests; no damaging unseen strips past a wall",
+    "world_anchors": "Pipe and outlet remain world-anchored through camera scroll; no camera-driven teleport",
+    "fade": "Visible shrinking water and damaging envelope shrink together"
+  },
+  "tony": {
+    "weapon": "pressure-gun",
+    "name": "Hydrojet Overdrive",
+    "timeline": [
+      {
+        "phase": "rise",
+        "start": 0,
+        "end": 0.35
+      },
+      {
+        "phase": "torrent",
+        "start": 0.35,
+        "end": 6.8
+      },
+      {
+        "phase": "decay",
+        "start": 6.8,
+        "end": 7.5
+      }
+    ],
+    "aim": "Use existing valid regular weapon aiming and facing, including airborne restrictions; continuous stream through reversal",
+    "movement": "Normal jump allowed. Idle slides horizontally opposite aim by recoil speed times absolute horizontal aim component. Walking against horizontal recoil gives exactly half normal walking speed net. Pure vertical aiming produces no horizontal recoil. Ordinary terrain and pit collision remain active.",
+    "audio": "Start once, uninterrupted sustained loop through aim/facing changes, then shutdown",
+    "activation": "One fresh special-button press starts automatic sustained damage for the action. Neither special nor ordinary fire needs to remain held."
+  },
+  "sean": {
+    "weapon": "heavy-plunger-launcher",
+    "name": "Main Break",
+    "timeline": [
+      {
+        "phase": "plant",
+        "start": 0,
+        "end": 0.3
+      },
+      {
+        "phase": "strain",
+        "start": 0.3,
+        "end": 0.85
+      },
+      {
+        "phase": "break",
+        "start": 0.85,
+        "end": 1
+      },
+      {
+        "phase": "vertical",
+        "start": 1,
+        "end": 3.25
+      },
+      {
+        "phase": "tilt",
+        "start": 3.25,
+        "end": 6
+      },
+      {
+        "phase": "sputter",
+        "start": 6,
+        "end": 7.5
+      }
+    ],
+    "activation": "Requires supported ground and room for the Art-registered pipe assembly; rejected activation does not consume charge",
+    "movement": "Root during first second; then normal movement while pipe continues independently at original position",
+    "facing": "Lock sweep direction at accepted activation",
+    "water": "Three-foot main with full-bore ceiling-reaching eruption; rotate outlet and water together toward facing horizontal, maintaining heavy flow until sputter",
+    "art": "Use approved v3 direction, physically connected base and outlet; no cup blocking emitted water",
+    "damage_window_seconds": [
+      1,
+      7.5
+    ],
+    "spent_pipe": {
+      "presentation": "Retain the bent main at its original world anchor as inert scenery behind the hero after the special expires.",
+      "gameplay": "No collision, support, damage, water or continuing special audio. Never count as a platform or change navigation.",
+      "interruption": "On death or cancellation, freeze the last actually rendered pipe pose at its supported anchor; do not create a pipe if none has emerged. Stop water and special audio immediately.",
+      "lifetime": "Clear at level teardown or scene reset; scene cleanup does not refund spent charges.",
+      "limit": "At most two retained pipes per logical level, matching its two-use budget.",
+      "visual_review": "Keep ground contact and scenery occlusion correct; verify the spent prop does not obscure floor hazards, hero feet or active enemies."
+    }
+  },
+  "acceptance": [
+    "Both heroes: two accepted activations, third rejected; held input never double-spends",
+    "B dialogue skip cannot leak into special; K and B work from gameplay",
+    "Death/checkpoint/retry preserve remaining budget; genuine new level/new run initializes two",
+    "Pause and teardown correctly control effect/audio lifecycle",
+    "Tony idle slide, half-speed counterwalk, aim reversal and jump stay collision-safe",
+    "Sean unsupported activation rejected, stable world anchor, ceiling-to-horizontal sweep and sputter match visible water",
+    "Visible-envelope-only damage and solid occlusion; stable results at30/60/120Hz",
+    "Boss damage cap survives form changes and respects closed weak points",
+    "Current weapon icon and2/1/0 indicators preserve selected-hero HP/lives and approved themes",
+    "Art reviews captured actual motion, contact, jet scale and crowded boss framing; Audio checks sustained loops and mix",
+    "Tony: release special and ordinary fire after activation; visible water keeps damaging at 24 per 0.1 seconds (240 sustained DPS) at 30/60/120Hz. Sean stays 12 per 0.2 seconds. Boss cap remains 250 actual damage per activation across forms."
+  ],
+  "runtime_interface": {
+    "script": "scripts/starter_specials.gd",
+    "host_instance": "specials",
+    "methods": [
+      "configure(hero_id, level_key)",
+      "remaining(hero_id=\"\")",
+      "begin(host) -> bool",
+      "step(host, delta)",
+      "cancel(reason=\"\")",
+      "water_segments(host) -> Array[Dictionary]",
+      "sample_input(host, pressed)"
+    ],
+    "state": [
+      "active",
+      "elapsed"
+    ],
+    "segment_fields": [
+      "origin",
+      "end",
+      "width"
+    ],
+    "host_damage_callback": "special_damage(segments, amount, activation_id, boss_remaining) -> Dictionary; reports actual boss damage",
+    "tuning_source": "Generated data/combat.json; canonical weapon metadata carries special settings. This design contract is documentation and is not required in the exported package."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-02",
+  "status": "Art-approved texture deformation contract; runtime and visual verification pending",
+  "creature": "sputtervalve",
+  "source_manifest": "assets/bestiary/opening-trial/manifest-v1.json",
+  "source_image": "assets/bestiary/opening-trial/sputtervalve-v1.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "windup_frame": 2,
+  "source_frame_rect": [
+    768,
+    0,
+    384,
+    512
+  ],
+  "source_scale": 0.15,
+  "registered_destination": [
+    19.2,
+    9.95,
+    57.6,
+    76.8
+  ],
+  "canvas_anchor": [
+    48,
+    80
+  ],
+  "layers": {
+    "fixed_base": {
+      "source_rect": [
+        768,
+        390,
+        384,
+        122
+      ],
+      "destination": [
+        19.2,
+        68.45,
+        57.6,
+        18.3
+      ],
+      "motion": "None. Preserve original opaque silhouette and floor registration."
+    },
+    "pressure_body": {
+      "source_rect": [
+        768,
+        0,
+        384,
+        390
+      ],
+      "destination": [
+        19.2,
+        9.95,
+        57.6,
+        58.5
+      ],
+      "join_source_y": 390
+    }
+  },
+  "windup_motion": {
+    "duration_authority": "Existing runtime windup duration; normalize elapsed to0..1",
+    "horizontal_amplitude_game_pixels": [
+      0.15,
+      0.75
+    ],
+    "frequency_hz": [
+      7,
+      11
+    ],
+    "deformation": "Continuous horizontal pressure tremor on upper texture. Multiply displacement by clamp((390-source_local_y)/90,0,1), so it is exactly zero at the fixed-base seam. Render textured mesh or narrow contiguous strips; do not translate a detached upper rectangle.",
+    "vertical_motion_game_pixels": 0,
+    "brightness_multiplier": [
+      1.0,
+      1.18
+    ],
+    "brightness_rule": "Ramp upper charge artwork brightness with normalized progress and restrained sine pulse; retain original purple eyes/nozzle. This is brightness buildup, not a claimed rotating gauge-needle animation.",
+    "clock": "Continuous elapsed seconds, no per-frame random jitter or 0.3s pose switching."
+  },
+  "recoil": {
+    "frame": 3,
+    "duration_seconds": 0.1,
+    "maximum_backward_displacement_game_pixels": 1.5,
+    "rule": "Apply the same seam-pinned deformation to fire frame; recoil opposite muzzle direction, ease back to zero. Base stays fixed. Existing recovery frame4 follows with existing foot registration."
+  },
+  "validation_required": [
+    "Base and seam remain joined during entire windup and recoil",
+    "Pressure motion visible at normal gameplay size without whole-object skating",
+    "Muzzle position matches projectile emission at fire boundary",
+    "No change to damage, attack duration, range or audio",
+    "Capture actual runtime before claiming completed animation"
+  ]
+}

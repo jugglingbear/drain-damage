@@ -53,6 +53,7 @@ def discover() -> dict[str, dict[str, Any]]:
 
     simple = {
         "hero_death_audio.gd": (SECTIONS[0], "Sean and Tony — death flush"),
+        "three_screen_arrival_audio.gd": ("Level 1", "Three-screen trial — depth arrival warning"),
         "swarm_audio.gd": ("Level 1", "Gnatastrophe — ambient swarm"),
         "flushfiend_death_audio.gd": ("Level 1", "Flushfiend — porcelain shatter"),
         "door_audio.gd": ("Level 1", "Progress door"),
@@ -107,6 +108,11 @@ def discover() -> dict[str, dict[str, Any]]:
                 [cue["path"]], "data/level-two-ride.json#/audio")
             if "trigger" in cue:
                 slots[f"level-two-ride/{cue['event']}"]["trigger"] = cue["trigger"]
+    special_path = ROOT / "data/starter-special-audio.json"
+    if special_path.exists():
+        for cue in json.loads(special_path.read_text())["cues"].values():
+            add(cue["slot_key"], SECTIONS[1], cue["label"], [cue["path"]],
+                "data/starter-special-audio.json#/cues")
     return slots
 
 

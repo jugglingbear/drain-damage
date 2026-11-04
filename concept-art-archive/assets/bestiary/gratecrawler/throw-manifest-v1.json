@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "status": "Prototype162 raised-hand release passes Mechanics checks and independent Art packaged sampled visual review; continuous motion and mirrored visual coverage remain unverified",
+  "anchor": [
+    48,
+    80
+  ],
+  "release_seconds": 0.3,
+  "duration_seconds": 0.6,
+  "release_frame": 2,
+  "frames": [
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "source_rect": [
+        0,
+        0,
+        768,
+        512
+      ],
+      "destination": [
+        -14.400000000000006,
+        16.299999999999997,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        58.4,
+        32.809999999999995
+      ],
+      "duration_seconds": 0.15,
+      "source_foot_anchor": [
+        480,
+        490
+      ],
+      "source_hand_center": [
+        560,
+        127
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "source_rect": [
+        768,
+        0,
+        768,
+        512
+      ],
+      "destination": [
+        -0.35999999999999943,
+        16.299999999999997,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        57.1,
+        29.04
+      ],
+      "duration_seconds": 0.15,
+      "source_foot_anchor": [
+        372,
+        490
+      ],
+      "source_hand_center": [
+        442,
+        98
+      ]
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v3.png",
+      "source_rect": [
+        0,
+        512,
+        768,
+        512
+      ],
+      "destination": [
+        -21.549999999999997,
+        22.28,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        -2.05,
+        39.83
+      ],
+      "duration_seconds": 0.12,
+      "source_foot_anchor": [
+        535,
+        444
+      ],
+      "source_hand_center": [
+        150,
+        135
+      ],
+      "alpha_cutoff": 240
+    },
+    {
+      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "source_rect": [
+        768,
+        512,
+        768,
+        512
+      ],
+      "destination": [
+        -4.260000000000005,
+        21.759999999999998,
+        99.84,
+        66.56
+      ],
+      "hand": [
+        23.3,
+        63.75
+      ],
+      "duration_seconds": 0.18,
+      "source_foot_anchor": [
+        402,
+        448
+      ],
+      "source_hand_center": [
+        212,
+        323
+      ]
+    }
+  ],
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "provenance": "assets/bestiary/gratecrawler/throw-prompts-v1.json",
+  "facing": "Source LEFT. Mirror destination and hand around feet anchor for RIGHT before role_scale2.",
+  "source_scale": 0.13,
+  "registration": "Common source scale matches existing Gratecrawler atlas; perpose foot registration, never opaque-bounds fit.",
+  "ball": "Existing muck-ball art attached at frame.hand while clock<0.3; release once from frame2.hand at0.3, no attachedball thereafter.",
+  "movement": "Pause through0.6s; temporarily face target, restore previous patrol facing afterward.",
+  "aim": "Target locked at windup start; ballistic velocity calculated from actual release hand to locked target.",
+  "review_limit": "Source compositions do not validate live timing or motion.",
+  "source_review": {
+    "evidence": "previews/gratecrawler-throw-v1/both-facings.png",
+    "kind": "Software source composition, not gameplay screenshot",
+    "approved": "Four poses each facing at runtime2x scale; held-ball contact, outside-body release, stable footanchor and mirrored registration",
+    "validation": "Four source bounds and timing/footanchor checks pass",
+    "remaining": "Live transitions, aim lock, release timing and patrol restoration"
+  },
+  "clearance_revision": {
+    "date": "2026-11-03",
+    "source_pixel_lift": 43,
+    "world_pixel_lift": 11.18,
+    "release_height_above_feet": 80.34,
+    "clearance_above_60px_plinth_with_radius12": 8.34,
+    "provenance": "assets/bestiary/gratecrawler/throw-clearance-prompts-v1.json",
+    "approval": "Mechanics reports 27 checks passed, 0 failures with imported throw-v3 registered hand: 100px close-ledge caster offset both facings, actual hand release, hero-on-top damage and full12px ball clearance. Existing role combat regression passes after old arrival fixture correction. No asset load errors. Source geometry approval is not motion acceptance.",
+    "preparation": "Release frame2 declares alpha_cutoff240 for derived runtime preparation only; discard alpha below240. Raw v3 and all original pixels preserved. Other frames remain v2 without this field.",
+    "runtime_art_review": {
+      "package": "0.162.0",
+      "evidence": [
+        "builds/Prototype-162/evidence/muck-0.png",
+        "builds/Prototype-162/evidence/muck-0-25.png",
+        "builds/Prototype-162/evidence/muck-0-6.png",
+        "builds/Prototype-162/evidence/muck-0-9.png",
+        "builds/Prototype-162/evidence/muck-1-2.png"
+      ],
+      "result": "Left-facing sampled release passes: ball touches extended hand outside torso, feet planted, no visible haze rectangle or missing arm silhouette after alpha240. Subsequent ball positions clear platform and rise toward hero; later HUD shows one health light depleted and hero displaced.",
+      "limits": "No continuous playback or mirrored packaged visual acceptance; exact collision clearance established by Mechanics tests rather than sparse screenshots."
+    }
+  }
+}

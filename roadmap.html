@@ -68,6 +68,306 @@ coordination only; it does not change gameplay or delivery checks.</p>
 <p class="meta">Sound review tooling: <a href="https://jugglingbear.github.io/drain-damage/audio/drain-damage-sound-auditions.html">all-game audio auditions</a> now provides permanent sound IDs, preserved alternatives, collapsed searchable groups, green IN GAME rows, and an audio freshness check. Prototype 99 adds suction burble DD-S0091. The unused break cue is retired from active mappings; all originals and candidates remain preserved.</p>
 <div class="kicker">DRAIN DAMAGE / DEVELOPMENT ROADMAP</div>
 <h1>From three angry toilets<br>to a real adventure.</h1>
+<p><strong>November 3 — three HUD themes integrated; Prototype 156 readability review passed:</strong> Art delivered six generated mockups: badge, belt,
+pressure panel, punch card, porcelain and staffing dispenser. Each uses the same Sean reference with four of five HP
+and three lives, under Engineering's shared <code>draw_vitals</code>, header and variable-hero constraints.
+The <a href="design/vitals-hud-concepts-v1/index.html">HUD concept gallery</a> and
+<a href="design/vitals-hud-concepts-v1/manifest.json">prompt, constraint and dimension manifest</a> are delivered,
+with originals archived. These are generated concepts, not runtime screenshots. Sean selected #6, Emergency Staffing
+Dispenser, for the original HUD direction; exact header fit and all hero/life-state validation remain pending.
+For the flush, Sean explicitly requested completely new designs rather than dispenser variants. The
+<a href="design/flush-vitals-concepts-v2/index.html">fresh flush HUD gallery</a> delivers soap-bubble, perforated-paper,
+porcelain-rim and chain/plug concepts, with exact prompts and dimensions in its manifest and originals archived.
+Sean approved Emergency Staffing Dispenser for Level 1 and Chain/Plugs for the flush, and requires no text in any
+health/lives HUD on any level. Engineering supplied Art a 160×56 logical production-component contract at 2× resolution,
+with transparent housing, health markers and portrait sockets within the existing header. Textless revised mockups
+and production source components are delivered under <code>assets/ui/vitals-themes-v1/</code>, with measured source
+rectangles and preparation notes. Prototype 155 builds with shared text-free vitals: Level 1 dispenser, flush chain/plugs,
+and rubber ducks for ride/camera modes. Prepared runtime assets preserve the 2× sources. Engineering reports 61,554
+source checks passing for alpha-bottom alignment, counts, lifecycles and no-text behavior. Exported ride/camera launch
+and signature checks pass; all 61,554 exact-packaged HUD checks also pass. Sean approved running review.
+Six native-size captures cover both heroes across all three themes. Engineering and Art found the dispenser readable,
+and rejected faint chain depleted drops, unclear depleted ducks and cramped portrait openings in Prototype 155.
+Prototype 156 integrates Art replacements: brighter depleted droplets, recognizable gray ducks and thinner portrait rims.
+All 61,554 source and exact-packaged checks pass, along with signature verification. Engineering and independent Art
+approve the captured Normal static compositions for both heroes, including mixed and empty health. Live visual
+damage/death/retry/transitions, Easy/Hard portrait variants and other window scales remain unreviewed.
+The earlier four dispenser-based flush drafts are archived as superseded.
+On November 3, Sean declined all five <a href="design/ride-vitals-concepts-v1/index.html">first-round Level 2.1 HUD
+concepts</a>; they remain preserved as unselected explorations. Sean selected Rubber Ducks (#3) from the second set,
+recorded in the <a href="design/ride-vitals-concepts-v2/manifest.json">round-two selection manifest</a> and illustrated in
+<a href="design/ride-vitals-concepts-v2/03-rubber-ducks-v1.png">the selected concept</a>. The text-free direction uses
+intact/depleted duck health markers and selected-hero portraits in soap dishes for lives. Engineering integrated the
+approved duck theme in Prototype 155 and readability corrections in Prototype 156; packaged checks and bounded still review pass. The Level 1 dispenser
+and flush Chain/Plugs selections are unchanged. Prototype 156 is the HUD playtest candidate; previous Prototype 153 remains retained.</p>
+<p><strong>November 3 — Prototype 162 starter specials and HUD A playtest candidate:</strong>
+Tony's Hydrojet Overdrive and Sean's Main Break are integrated into ordinary Level 1 and its section trials.
+K or gamepad B starts a 7.5-second attack without holding fire. Each hero gets two uses per logical level;
+death, retry, checkpoints and boss phases do not refill them. HUD A attaches a weapon icon and two charge canisters
+beside existing vitals in all three themes. Tony's corrected nozzle transition follows recoil and aim; sustained
+240 DPS is 3.2 times current regular fire. Sean remains at 60 DPS. Both preserve the 250 actual-damage boss cap.
+Sean's supported main emerges, sweeps from upright to horizontal, tapers off and remains as an inert spent prop.
+Gratecrawler now raises its release hand and selects a higher clear arc when a nearby platform blocks the ordinary throw;
+full-radius scenery collision, damage and cadence remain intact. Scripted flush, ride and camera-test modes reject
+special activation without spending a use. The signed Mac package passes 1,573 special checks, 342 HUD checks,
+27 muck-clearance checks, combat/controls/held-aim/audio/launch suites and 45 Python tests. Actual packaged captures
+received independent Art approval for sampled contact, progression and HUD fit. Continuous-animation feel, audible mix
+and human balance/fun review remain open; representative evidence does not establish full-route visual approval.
+Prototype 161's rejected water-onset evidence is retained. The <a href="storybook/storybook.html">storybook</a>
+records the controlled Prototype 162 captures. See the
+<a href="handoffs/starter-specials-delivery.json">exact package, evidence and remaining review limits</a>.</p>
+<p><strong>Earlier starter-special design and selection record (superseded by the integration approval above):</strong> Game Mechanics coordinates
+Art action boards and two to three HUD alternatives, plus Audio's two to three treatments per special and activation
+and depleted cues. Start with Sean's Main Break and Tony's Hydrojet Overdrive; future weapon switching remains future
+work. Tony's jet is as thick as a Flushfiend body. Recoil slowly slides idle Tony backward; walking against recoil
+produces half normal walking speed. Normal left/right/up/diagonal aiming remains available. Sean plants his plunger,
+pulls up an unclogged three-foot water main and triggers a huge full-bore blast reaching the level ceiling. The broad
+flow continues as the pipe tips toward his facing direction, becoming horizontal before sputtering out. This is
+Sean's revised visual brief, not approval of gameplay range or damage. Each hero gets two uses per level with no
+refills for now. HUD mockups show
+2/1/0 special uses beside existing health/lives indicators and a square current-weapon icon. Existing health/lives
+remain pictorial; the requested special counter is a separate display. Design assumes death/checkpoints do not
+grant extra uses, but exact level-boundary and retry semantics must be settled before implementation. Damage,
+duration, range, recoil rate and input binding remain unapproved. This is design/mockup work awaiting Sean's approval,
+with no runtime or build change authorized by this item. Sean suggested seven to eight seconds per special as a
+starting point. Mechanics proposes 7.5-second auditions: Tony uses 0.35 seconds of rise, 6.45 seconds of violent
+firehose/broken-hydrant torrent and 0.7 seconds of decay; Sean uses 0.30 seconds planting, 0.55 straining, 0.15 breaking
+free, 2.25 of vertical eruption, 2.75 tipping with heavy flow and 1.5 sputtering. Sean's water phase totals 6.5 seconds.
+These phase allocations are proposed mockup timing; damage windows and implemented balance remain unapproved.
+The 7.5-second TORRENT v2 previews are ready for listening: Tony DD-S0125.4 and Sean DD-S0129.4 in the
+<a href="audio/drain-damage-sound-auditions.html">canonical sound auditions</a>. They add denser low/mid water and
+spray, with uninterrupted Sean flow through the pipe tilt and separate unfaded loop/start/stop assets.
+<a href="audio/sources/starter-specials-torrent-v2/manifest.json">TORRENT v2 manifest</a> and
+<a href="audio/sources/starter-specials-torrent-v2/timing.json">timing proposal</a> retain the delivery details.
+Audio reports freshness, six tests and nine-asset PCM/hash/headroom/loop checks passing. Subjective character and
+mix approval remain pending; no runtime changes. Earlier audio mockups remain available for Sean's listening in the
+<a href="audio/drain-damage-sound-auditions.html">sound auditions</a>: Clean Pressure, Wet Plumbing and Heavy Pump.
+Tony previews DD-S0125.1–3 last three seconds; Sean previews DD-S0129.1–3 use the current 2.5-second v2 sequence.
+The 51 draft candidates include separate startup/loop/shutdown, recoil-slide/braced-step, Sean release/hinge/jet-follow
+and accepted/empty HUD cues. <a href="audio/sources/starter-specials-auditions-v1/manifest.json">Audio sources and recipes</a>
+are retained. Audio reports six catalog tests, 104 runtime-slot freshness checks, PCM/hash/headroom checks and six
+loop checks passing; audible seam and mix acceptance remain unverified.
+<a href="design/starter-specials-v1/index.html">Initial Art approval package</a> is partially delivered: Tony's
+six-pose board, <a href="design/starter-specials-v1/sean-main-break-board-v3.png">Sean's third Main Break storyboard</a>
+with the three-foot full-bore water main, and three HUD aesthetic directions. Earlier boards are preserved; Sean's
+first board was rejected for a capped outlet. Generated HUD illustrations contain incorrect life counts and weapon identity; the native HTML
+is the intended count/anchor reference but has not yet been browser-render verified. Native gallery inspection is
+blocked by an explicit CUA access rejection; no workaround was attempted. Remaining approval evidence:
+native 960×540 captures showing 2/1/0 for both heroes, composition against the actual crowded boss header, and a
+Flushfiend-versus-52-pixel-jet scale inset. Full mockup readiness is not claimed. No runtime or build change.
+Devil-spider contents exploration remains active.</p>
+<p><strong>November 3 — devil-spider cage-abdomen concept selected; contents and audio pending:</strong>
+Sean selected option 5 from Art's five near-black devil-spider concepts, then requested whole dolls with a few limbs
+protruding from the cage abdomen. <a href="design/devil-spider-concepts-v2/">Revised contents explorations</a> are in
+progress; the initial five-way art selection is complete. Game Mechanics coordinates the design and audio work.
+Four audio families are ready in the
+<a href="audio/drain-damage-sound-auditions.html">sound auditions</a>: Chitin Rattle, Wet Brood, Breath Stalker and
+Black Maw. Sean requested shorter cues to leave space for music and other monsters. The new SHORT v2 candidates
+last 0.09–0.48 seconds: single claw ticks, web shots/catches, individual silk pulls, occasional hungry vocals,
+escape snaps and hit/death cues. Four choices per event add 32 drafts; hungry vocals use DD-S0124.1–4 and the
+other short events use suffixes .5–8 in their existing slots. All 48 earlier drafts, including DD-S0112 sequences,
+remain preserved. <a href="audio/sources/devil-spider-short-v2/manifest.json">Short-cue recipes and mix proposals</a>
+link the retained CC0 source evidence. Audition freshness and technical audio checks pass. Sean's listening and
+selection remain pending; voice limits, event timing and in-game balance are recommendations awaiting integration.
+Final contents treatment, animation studies and audio selection remain pending before runtime implementation;
+no build change is requested by this selection work. Proposed behavior separates the existing halo-and-dive angel spider, with a
+brief grounded scuttle as an attack opening, from a ceiling-crawling devil spider. A direct web hit cocoons the hero;
+rear and side legs visibly haul taut silk while forelegs reach, and a short escape visibly tears the strands.
+Missed webs become floor snares ignored by the spider, requiring fewer escape inputs while other monsters behave
+normally. Slowdown is a fallback if the escape mechanic proves too difficult. Ambient old hanging cocoons that
+occasionally struggle or twitch are approved concept direction. Counts, timing and final mechanics remain pending.</p>
+<p><strong>November 3 — Prototype 160 built:</strong> Section 1.2 now requires 90% footprint overlap before falling;
+other levels retain their thresholds. Both trials use individually authored screen-edge and selective depth arrivals.
+Stationary shooters emerge from floor hatches or mounted ceiling fixtures, never from the viewer. Each final fight
+has one ceiling shooter with an independently aimed barrel. Fixtures remain visible before admission and after defeat.
+Side entrants begin ordinary movement/contact at their first fully visible position. Counts, caps and cooldowns are unchanged.
+The signed macOS package passes 52,878 entry checks and 35,468 section checks, including both ledges, landing and
+swept crossings. Running visual review corrected a displaced ceiling support and mirrored runner registration.
+Art accepts the pictured mounts, partial floor reveal, pit-origin swarm and both heroes at the reported ledge;
+Art also accepts sampled normal-speed reveal/charge/fire and corrected side/depth entries as a playtest candidate.
+Sparse samples do not certify uninterrupted motion. Full-route human pacing remains untested; ceiling defeat currently darkens
+and fades the mechanism while preserving its mount.</p>
+<p><strong>November 3 — continuous monster entrances implemented in Prototype 158:</strong> Sean reported monsters popping into view
+in the Level 1 trial. All monsters must arrive continuously from outside a screen edge or through a depth entrance:
+background emergence or a large super-foreground creature shrinking as it travels away from the viewer to the hero's
+plane. Warning rings or flashing at the final spawn position are insufficient. Engineering owns integration;
+Game Mechanics is auditing and fixing trial, production and reinforcement paths, with Art reviewing motion and reuse.
+Arrivals retain animation, consume population limits, and cannot attack or damage the hero before reaching the playable
+plane. Prototype 158 implements foreground/top/pipe entries across both trials and shared opening actors, production
+swarms and boss reinforcements, removes ghost-swarm previews and geometrically reveals the initial Skitterling pipe
+cluster. Existing offscreen production toilet admissions remain intact. Exact-package validation passes 39,945 entry
+checks and 34,945 section 1.2 checks; source combat, boss and original-trial regressions pass. No damage/cap/cooldown
+tuning changed, but deferred shooter charging reduces immediate pressure in scripted runs. Sean approved test windows throughout November 3. Running Prototype 158 captures reveal that the foreground
+scale change happens mostly below the viewport; Engineering and Art reject that depth effect. Prototype 159
+keeps a recognizable large creature visible before recession; 39,981 source and exact-packaged entry checks pass.
+Engineering and Art approve that visible correction and section 1.2 as a playtest candidate. Pictured catwalk, pit and
+machinery pass bounded static review. Normal-clock sampled captures show enlarged-to-native scale and changing
+creature poses, but do not certify first-pixel continuity or uninterrupted smoothness. Full-route both-hero play,
+production/boss entry motion and human pacing remain pending. The small test window is closed. Prototype 157 predates this fix.</p>
+<p><strong>November 3 — section 1.2 built in Prototype 157; visual review pending:</strong> Sean approved building the next Level 1
+chunk after the tuned first trial. Engineering owns integration and delivery, Level Design owns the new route contract,
+and Game Mechanics owns the reusable trial runtime and traversal/encounter tests. The new three-screen comparison
+uses different terrain and encounter timing while retaining Normal's two-shooter/two-flyer limits and 2.2-second
+shooter recovery. Existing artwork will be reused where suitable, with independent Art review. Command entries
+are <code>LEVEL=1.1</code> for the original trial (retaining <code>1-trial</code>) and <code>LEVEL=1.2</code> for the new
+section; no menu button. The build and packaged launch pass. Source validation passes 34,945 section checks, including
+both heroes at 30/120 Hz, supported traversal, pursuit and retry, plus original-trial pressure/flyer regressions.
+The same 34,945 checks pass against the exact package. Prototype 159 corrects the foreground entrance and has bounded Engineering/Art approval as a playtest candidate.
+Human fun/pacing and full-route visual review remain pending.
+Full-route connection remains a later step. <code>LEVEL=2</code> starts the flush, <code>LEVEL=2.1</code> starts the ride
+at its landing, and <code>LEVEL=camera-test</code> remains the isolated camera proof.</p>
+<p><strong>November 2 — four Level 1 title images approved; integration underway:</strong> The
+<a href="design/title-screen-concepts-v1/index.html">four-concept Level 1 gallery</a> uses Normal outfits only.
+Sean withdrew all eight flush and Level 2 ride concepts to avoid spoilers; archived originals are retained and must not
+be integrated. Exact prompts and dimensions for active options are preserved in the
+<a href="design/title-screen-concepts-v1/manifest.json">manifest</a>, with originals archived. Sean approved all four:
+randomly choose one at each game launch and retain that choice throughout the session. Art staged the
+<a href="assets/title/starting-pictures/manifest.json">starting-picture pool and provenance contract</a>, including
+corrected Skitterling v2; the earlier rotation staging is superseded. Runtime will discover valid
+<code>assets/title/starting-pictures/start-*.png</code> textures once per launch, choose one and retain it for the session.
+Future matching files require no selector-code edits; the manifest records provenance, not a runtime allowlist.
+Engineering will verify exported PCK inclusion/discovery and the old-title fallback when the pool is empty.
+Engineering owns integration, tests and build delivery; integration remains pending completion.
+Both heroes' six-pose run replacements are delivered in Prototype 145 with bounded pose/contact/join
+reviews across Normal, Easy and Hard; continuous cadence remains uncertified.</p>
+<p><strong>November 2 — compact ownership handoffs:</strong> Added a reusable
+<a href="docs/compact-ownership-handoff.md">ownership transfer procedure and templates</a>, including verified chat IDs
+and notification of other current-project agents. Documentation only; game build and acceptance status are unchanged.</p>
+<p><strong>November 2 — Level 1 trial — Prototype 144 local playtest candidate:</strong> Sean found Prototype 143
+too easy and insufficiently frantic. Its eight finite events, absent spiders/swarms, two-pattern Normal cap, protected
+560px crossing corridor and short final projectile range limited moving-player pressure. Prototype 144 integrates
+32 finite enemies across three overlapping sections, including six flying spiders and three pursuing Gnatastrophes,
+with a substantially stronger Normal baseline, mixed single/burst fire and brief deliberate intensity dips.
+Measured moving-route activity and full-speed human review are acceptance requirements. Replacing blanket pit immunity
+with validated crossing windows is proposed, not yet integrated; accepted support geometry and bug fixes remain required.
+Engineering owns shared swarm/projectile runtime and final integration; Game Mechanics exclusively owns the trial script
+and trial tests for the denser roster and crossing safety. The historical Prototype 144 swarm used 320px Euclidean acquisition,
+a 0.65-second morph within a 0.8-second visible tell, 170px/s pursuit bounded to 100 degrees/s, a 0.7-second committed
+pass and invariant 48px contact radius across visual forms. Those values are superseded by the Prototype 147 cycle below; they did not establish pacing acceptance.
+Prototype 144 is built and signature-verified as a local candidate; no release publication is authorized.</p>
+<p><strong>Prototype 150 — command-only trial access, local candidate:</strong> Sean requested removal of the Level 1
+Trial menu button. The title menu now contains only Start, Controls and Quit. Launch the trial through
+<code>make run LEVEL=1-trial</code> (direct selector <code>--level=1-trial</code>). Signature and packaged title checks
+pass, and the exported CLI initializes Sean/Normal with seed 42. Engineering and Art accepted the running menu view:
+readable spacing/focus, no clipping or leftover fourth plate. Gameplay remains unchanged from Prototype 149;
+the post-pit spider report is unresolved. Title-image rotation remains a separate pending integration.</p>
+<p><strong>Prototype 152 — Normal shooter and spider relief, current local candidate:</strong> After four or five
+attempts, Sean reports frantic is achieved but Normal is overwhelming; fun remains uncertain and the prior pressure
+fits Hard. Normal now admits at most two living purple-bolt shooters and two flying spiders, including arrivals.
+Further entrants wait; existing visible actors and projectiles are never deleted to enforce these caps. Recovery after
+the last bolt of each volley increases from 1.2 to 2.2 seconds. Easy and Hard remain unchanged.
+Signature, exported trial launch, 39,589 packaged scene checks and 95 independent pressure checks pass. Tests cover
+camera/backtracking, slot release, retained projectiles and actual firing cadence. Engineering and Art accepted a
+bounded running encounter view. Human difficulty and fun acceptance remain pending. The trial remains command-only:
+<code>make run LEVEL=1-trial</code>.</p>
+<p><strong>Prototype 151 — local candidate; bounded pursuit/contact review complete:</strong> Mechanics reproduced a
+pre-pit survivor stranded at x2140/y25 while Sean stands at x2563; its home-side flight bounds clip every dive despite
+aggro. Prototype 151 latches full-world pursuit only after the hero passes x2440, is grounded and has cleared the
+crossing reservation, including 0.45-second landing grace. The unlock must never snap the spider back; attack admission
+and protection on later crossings remain active. Movement success must mean reaching the actual requested endpoint,
+not a ceiling-clamped substitute. Signature, 42,342 packaged trial checks and 1,338 independent pursuit checks pass.
+Both heroes receive actual contact damage after safe unlock; backtracking during windup/swoop safely cancels the attack
+and recovers upward. A running capture shows escape from the old stuck position and Sean HP falling from five to four.
+Art accepted three readable pursuit/contact views with distinct wing poses, coherent face/legs, HP loss and knockback,
+and no obvious deep floor penetration. The fourth high-ceiling recovery view is substantially obscured by the HUD/top
+right; complete-pose visibility remains a gap. This is still-image acceptance, not continuous/all-contact or balance
+certification. The boundary bug is corrected; its identity in the original report remains inferred.
+Command-only trial access is retained.</p>
+<p><strong>Prototype 149 — local candidate; bounded layering review complete:</strong> Sean's screenshot exposed flying spiders hidden
+by a foreground pipe lip drawn after active monsters. Engineering is moving inactive background emergence behind the
+lip while drawing corpses, active actors, foreground arrivals, swarms, the hero and shots in front. Signature, Sean
+direct trial launch, 42,907 packaged trial checks and 104 audio-slot checks pass. Engineering inspected paired 148/149
+spider overlap and active toilet/swarm/background-emergence views. Art accepted five before/after captures: active
+actors appear in front while the small background arrival remains behind the rim, with no obvious static regression.
+Continuous crossing/emergence handoff and every actor/position remain unreviewed. Other
+Prototype 148 motion/shape and human-feel gaps remain. Title-image rotation is separate and excluded from this build.</p>
+<p><strong>Prototype 148 — local candidate; bounded grounded-contact review complete:</strong> Fixes grounded charges ending
+prematurely because of oversized terrain clearance and the original encounter pocket. The swarm center uses a 4px
+swept terrain check, rendered flies project outside solids, and hunting can traverse the full trial bounds. All living
+phases and outer rendered fly contact damage the hero subject to invulnerability and the shared cooldown. The existing
+70px/s wander, 140px/s locked-target charge and moving morph/reform remain. Engineering reports 82,724 packaged swarm
+and 42,907 trial checks passing, plus twenty seeded 60-second lifecycle paths, eighteen paired schedule runs and
+104 audio slots. Signature and packaged launch checks pass. Engineering and Art accepted four grounded endpoint/contact
+captures: the swarm reaches its locked target at 1.7 seconds and Tony loses one HP. The near-floor swarm visibly
+compresses/flattens and extends into the open pit; round silhouette preservation is not claimed. Continuous boundary
+motion, all corners/forms and human feel remain unverified. Local candidate only, with no release publication.</p>
+<p><strong>Prototype 147 — revised Gnat cycle, built and signed:</strong> The swarm keeps moving at 70px/s while
+wandering, acquiring and reforming. Each acquisition within 320px chooses a random weapon; a moving 0.8-second tell
+precedes a straight 140px/s charge toward the hero position locked at acquisition start, before the tell. Reaching that point or an obstacle
+starts a 0.65-second moving cloud reform, followed by at least 0.8 seconds of wandering before another acquisition.
+There is no stopped weapon/pass state or curved retargeting charge. Engineering reports 17,904 cycle checks,
+42,322 trial checks, eighteen paired schedule runs and twenty seeded 60-second path/contact lifecycle runs passing.
+Art reviewed four verified captures and the next-weapon view: no static blocker; partial morph, weapon, rounded cloud
+and position changes are visible. Art also accepted unoccluded reform/cloud follow-up captures, resolving the earlier
+outline-occlusion gap in bounded static review. Wrong-window captures are excluded. Continuous,
+all-angle/all-form readability and human cadence/frantic-feel acceptance remain open.</p>
+<p><strong>Prototype 144 packaged verification, pacing gap remains:</strong> Mechanics implemented the 32-enemy roster and
+Easy/Normal/Hard actor caps of 6/10/12, with individual admission every 0.25 seconds rather than the proposed authored
+wave spacing. A subsequent source pressure pass prioritizes a second shooter, advances its opening trigger, starts
+reinforcement shooters with full bursts and overlaps their visible charge with arrival warnings. Normal moving-route
+peaks improved from two bolts to five for Tony and four for Sean, with ten/twelve total shots and two/three simultaneous
+shooter sources; both simple forward/fire/terrain-jump baselines finish with one HP. Hard peaks are seven/six bolts,
+Easy four/two. The packaged scene suite passes 41,558 assertions, including moving-route pressure and complete charge
+checks. Normal still misses the six-to-twelve peak target; these results do not establish frantic feel.
+Pit handling uses a narrower conservative exclusion and
+attack holds, not the proposed contested crossing. Packaged geometry (218), shared swarm (13,156) and purple projectile
+(15) checks pass, alongside 44 Python tests and 104 audio slots. Normal-speed scripted opening, climb and pit views were
+captured without healing and received bounded visual review. Continuous all-angle/full-cycle morph review and human
+frantic-feel acceptance remain open. Actual parameters and observations are recorded in the trial contract.</p>
+<p><strong>Prototype 144 swarm and projectile behavior:</strong> Gnatastrophe wanders until the hero is about
+one-third of a screen away (320px), then acquires and pursues. Its cloud smoothly forms a sword, arrow,
+spear or spiked mace silhouette while insects continue moving; these forms are visual-only. Art owns the new assets.
+All monsters must animate movement and charging unless explicitly excepted. Purple bolts have no range cap or lifetime
+timeout: they persist until collision or fully offscreen. Crossing safety must account for their complete visible
+trajectories rather than delete them. These requirements supersede the proposed 650px range/TTL. Four form silhouettes passed static Art readability review;
+this does not certify continuous morph cycles at every angle.</p>
+<p><strong>Prototype 146:</strong> Flying spider HP reduced exactly 25%, from 135 to 101.25, across production and trials
+in all difficulties. First-level weapons now take nine Tony hits or six Sean hits. Movement and attack behavior are unchanged.
+Packaged regression checks are recorded in the <a href="handoffs/three-screen-trial-delivery.json">delivery record</a>.</p>
+<p><strong>Prototype 145 — local playtest candidate; bounded still reviews complete:</strong> The rounded default Gnat cloud is
+restored, replacing the semicircle interpretation. Weapon visuals are 50% larger, with 70px terrain clearance,
+unchanged 48px damage radius and visible repositioning before morphing. Toilets are 20% larger; actual horizontal-shot
+checks cover both heroes and costumes. Tony and Sean each have six-pose run cycles across all costumes, including
+corrected passing poses and registration.</p>
+<p>Exact packaged checks pass: 14,419 swarm assertions, 599 toilet checks, 162 hero registrations, 240 hero phases,
+870 Easy costume frames, 18 Hard cached sheets and 43,519 trial assertions. Art's bounded static review passed for the
+rounded cloud, four enlarged weapons and final Easy alpha-240 frames. A normal-speed scripted Tony
+route completed in 10.9 seconds with six defeats, three lives and one HP, without a healing override. This does not
+establish human fun or balance acceptance. Continuous cadence/morph coverage, Windows/Intel, physical controllers
+and live audio gaps remain. Evidence is preserved under <code>builds/Prototype-145/evidence</code>; no release publication.</p>
+<p>A separate test route combines an optional
+catwalk, a mandatory machinery climb, an introductory pit, background and foreground arrivals, and alternating
+single-shot and burst pressure. Easy, Normal and Hard share core movement with parameterized attack scheduling.
+Level Design's <a href="levels/first-call/three-screen-trial.json">layout and acceptance contract</a> includes
+Mechanics' initial feasibility corrections. Build 0.140.0 is signed, with 218 geometry checks, 7,537 packaged scene assertions,
+44 Python tests and 104 audio slots checked. Prototype 139 playtesting exposed an arrival stall while the hero waits at
+x1722 and poor platform contrast. Prototype 140 removes the extra x1810 activation gate after safe arrival completion;
+held-position patrol and actual horizontal-shot kills pass for both heroes in all three modes. Existing corpse rendering
+is restored so death animation and debris are visible; Engineering inspected the kill and shatter sequence in the approved
+small-window session. Engineering and Art accepted the inspected machinery/deck contrast, contact and airborne-to-settled
+death stages. This acceptance covers selected views and sampled motion, not full-speed cadence or every platform.
+Sean separately reported a background door-base ledge at x813 that appears standable. Prototype 141 is built and signed
+with Art's trial-only background-v2, removing the projecting door sill and central shelf bracket. Production scenery
+and collision remain unchanged. Engineering and Art accepted exact-x813 and both repeated-bay captures; the misleading
+shelf is absent and actual platforms remain distinct. Prototype 141's 7,537 packaged scene assertions passed.
+An additional x1373 report identifies frozen runner animation and missing pursuit onto the machinery summit.
+Prototype 142 fixes the elevated runner's frozen airborne pose using actual grounded state and restores reachable step
+pursuit for the two climb runners within full-body bounds x1000–2010. The floor runner's walking loop already existed.
+The signed package passes 9,952 focused assertions and shared Flushfiend step checks. Engineering inspected actual
+walking, floor-to-step jumping, both summit landings and contact damage; Art independently accepted sampled poses and
+contact. The protected pit approach remains excluded. This is bounded visual acceptance, not full-speed balance approval.
+Sean subsequently reported visible enemies disappearing on approach and knockback embedding the hero beside the x1700
+step. The signed Prototype 143 package passes 15,507 scene assertions, including swept knockback at the x1700/x1500
+faces for both heroes and visible arrival persistence through approach, overlap and region exit. Settled actors remain
+targetable; overlapping actors are harmless and receive a fresh warning after separation. Engineering inspected the
+corrected positions and retained enemy; Art accepted knockback contact and the separated, grounded native enemy after
+occupied arrival. Acceptance covers these inspected cases, not the whole route. The dark
+foreground warning remains low contrast below the floor, and its orange ring can be partly covered by the hero.
+The earlier visual review did not cover this stationary-player case. Full-speed human balance, physical controllers,
+native Windows/Intel execution and live warning audibility remain unverified. The legacy opening-trial
+fixture now advances visible age and uses current attack cadence; its packaged check passes in Prototype 144.
+Existing Level 1 stays available for comparison. External design resources inform pacing, without a framework migration.
+<a href="handoffs/three-screen-trial-delivery.json">Engineering delivery evidence and remaining checks</a>.</p>
 <p>Build delivery policy: integrated game changes receive a new build and a readiness update with the version,
 changes and remaining testing gaps. Builds may wait for related agent deliveries; pending work will be stated explicitly.
 Opening the game still requires Sean’s permission.</p>
@@ -106,7 +406,7 @@ pending; baseline dialogue-test failures and the shared swimming ripple are reco
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated October 30, 2026 · Current build: Prototype 138 / 0.138.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated November 2, 2026 · Current build: Prototype 153 / 0.153.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
 at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
 point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;
@@ -192,7 +492,7 @@ a custom 2D projection remains a smaller, constrained alternative.
 Immediate scope: Level 2.1 basin, brass cleanout platform, round hole, flowing water and ramp.
 A representative Level 1 proof remains proposed later work, outside this immediate authorization.
 The isolated proof is packaged: fixed 35-degree pitch, +18/-18-degree yaw and a 1.2-second comparison turn on safe water.
-Run <code>make run LEVEL=2.1</code>; C/RB or the button turns the camera and briefly pauses movement.
+Run <code>make run LEVEL=camera-test</code>; C/RB or the button turns the camera and briefly pauses movement.
 Both-hero contact, camera/pause and retry tests pass in source and exported packages; 44 Python tests pass.
 Sean rejected the initial appearance on October 28: washed-out surfaces, stretched textures and weak depth do not meet
 the intended 2.5D presentation. Art and Engineering must agree a corrected composition and verify an actual render
@@ -376,7 +676,7 @@ The Clogfather portal now leads into a 45-second oversized porcelain bowl with c
 shootable soft plugs and partner radio. Surviving reaches a three-second landing line, then the
 “Log ride under construction” boundary. Both heroes and all difficulties are supported; health/lives carry in,
 retries stay in the bowl, and pause/mute apply. Fifteen packaged suites and 40 Python tests pass.
-Use <code>make run LEVEL=2</code> for the flush or <code>make run LEVEL=2-landing</code> for the post-flush landing;
+Use <code>make run LEVEL=2</code> for the flush or <code>make run LEVEL=2.1</code> for the post-flush landing;
 add <code>HERO=tony|sean DIFFICULTY=easy|normal|hard</code>. No prior save or boss completion is needed.
 Full log-ride production remains deferred. Live visual/listening/balance review and actual screenshots are pending.
 <a href="handoffs/first-call-integration.json">Delivery evidence</a>.</p>

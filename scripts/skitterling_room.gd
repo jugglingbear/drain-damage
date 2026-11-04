@@ -187,11 +187,11 @@ func contain_prior(host: Node2D) -> void:
 			actor.feet.x = QUIET-shape.end.x
 			actor.facing = -1.0
 	for enemy in host.enemies:
-		if enemy.pos.x+38 > QUIET:
-			enemy.pos.x = QUIET-38
+		if host.FlushfiendGeometry.body(enemy.pos).end.x > QUIET:
+			enemy.pos.x -= host.FlushfiendGeometry.body(enemy.pos).end.x-QUIET
 			enemy.direction = -1.0
 	for index in range(host.hostile_shots.size()-1,-1,-1):
-		if host.hostile_shots[index].pos.x >= QUIET:
+		if host.hostile_shots[index].get("kind","") == "muck" and host.hostile_shots[index].pos.x >= QUIET:
 			host.trial_state.remove_bullet(host.hostile_shots[index].id)
 			host.hostile_shots.remove_at(index)
 

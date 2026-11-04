@@ -63,11 +63,11 @@ static func draw(canvas: Node2D, page: int, muted: bool, health_bars := false) -
 		text(canvas, PRIMARY[page][index][1], Vector2(638, y + 39), 17)
 	text(canvas, "Aim: WASD / arrows or stick / D-pad. Only straight down needs a jump.", Vector2(42, 363), 14, MINT)
 	if page == 0:
-		reference_card(canvas, 32, "DURING A JOB", ["Hold fire for continuous shots", "Q  Title when paused / complete", "Numpad Enter also fires / confirms"])
+		reference_card(canvas, 32, "DURING A JOB", ["K  Special (two uses per level)", "Hold fire for continuous shots", "Q  Title when paused / complete"])
 		reference_card(canvas, 336, "MENUS & PAGES", ["WASD / arrows  Navigate", "Enter / Space  Confirm; mouse works", "Esc  Back (quits on title)"])
 		reference_card(canvas, 640, "CONVERSATIONS", ["Enter / Space  Reveal / continue", "Tab  Skip conversation", "Left / Right or A / D  Controls page"])
 	else:
-		reference_card(canvas, 32, "DURING A JOB", ["Hold fire for continuous shots", "B  Back / resume when paused", "Pause menu includes Return to Main Menu"])
+		reference_card(canvas, 32, "DURING A JOB", ["B  Special (two uses per level)", "Hold fire for continuous shots", "B  Back / resume when paused"])
 		reference_card(canvas, 336, "MENUS & PAGES", ["Stick / D-pad  Navigate", "A / Menu  Confirm; B  Back", "Left / Right  Controls page"])
 		reference_card(canvas, 640, "CONVERSATIONS", ["A  Reveal / continue", "B  Skip conversation", "Guide button belongs to the OS"])
 	Buttons.compact(canvas,MUSIC_RECT,"Music  %s  ·  %s / click (menus)" % ["OFF" if muted else "ON",

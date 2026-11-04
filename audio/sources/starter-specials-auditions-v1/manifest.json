@@ -1,0 +1,842 @@
+{
+  "date": "2026-11-03",
+  "status": "Pending Sean approval; audition only",
+  "brief": "Tony Hydrojet Overdrive: pressure start, thick steady water core and sputter stop. Sean Main Break: plant/seal, strained pull, pipe release, vertical eruption, bend/tip and pressure decay. Three distinct restrained treatments plus accepted/empty HUD feedback. No voices or continuous clatter. Durations illustrative; no damage, recoil, input binding or gameplay implementation implied.",
+  "recipe": "audio/sources/starter-specials-auditions-v1/generate.py",
+  "sources": {
+    "water": {
+      "path": "audio/sources/player-death-flush-v1/toilet_01.ogg",
+      "sha256": "502393b0cf4ef7be08eee5955d0c451e42f9b192b181fecd1f28ada0329c2257",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "splash": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_01.ogg",
+      "sha256": "8d48e8da680fbdfd3c885aa2f69d8e83ad16717bae43d178861d7af08d142849",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "splash2": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_02.ogg",
+      "sha256": "e515b7da00b2a268263824dbea9b7bc0c2e972fbd189fe3c02576d2e29af3aa5",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "metal": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_light_001.ogg",
+      "sha256": "fba69c467ddd85da7b1d82e259f936b876d9ba6a3d6f1b24bdd10468e46bfe08",
+      "license_evidence": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    },
+    "heavy": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_heavy_002.ogg",
+      "sha256": "b914c8f1eb7c0f34bb165d7c77f4be0351f6be0660c13c53e65424e262e2c093",
+      "license_evidence": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    },
+    "seal": {
+      "path": "assets/audio/sfx/starter-weapons-v1/sean-suction-pop.wav",
+      "sha256": "1492b141a34f5abf7dad7f97468547a781ace53cfafe613a198479f425951606",
+      "license_evidence": "audio/sources/starter-weapons-audition-v1/manifest.json",
+      "author": "Drain Damage",
+      "license": "Original synthesis"
+    },
+    "jet": {
+      "path": "assets/audio/sfx/starter-weapons-v1/tony-water-gush.wav",
+      "sha256": "05a16df97ec9fc501b4da4bf7e1351f8f559db08590d59c11f2d93c4fd47fe99",
+      "license_evidence": "audio/sources/starter-weapons-audition-v1/water-round-2/manifest.json",
+      "author": "Drain Damage",
+      "license": "Original synthesis"
+    },
+    "scrape": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/wooded_box_open.ogg",
+      "sha256": "f564d93620fa150f6a85f86f26c3dc61ca42b62c887bc833b3af3a564897796f",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "note": "Wood handling/impact repurposed as designed foot contact; not recorded feet."
+    },
+    "step": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/wooden_01.ogg",
+      "sha256": "e7f7b1243ecd6ff3487eee1540de56f38fac606fe6218bdd49a91efc29ae1b9a",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "note": "Wood handling/impact repurposed as designed foot contact; not recorded feet."
+    }
+  },
+  "extracted_originals": {
+    "archive": "audio/sources/player-death-flush-v1/original-pack.zip",
+    "members": [
+      "splash_01.ogg",
+      "splash_02.ogg",
+      "wooded_box_open.ogg",
+      "wooden_01.ogg"
+    ]
+  },
+  "processing": [
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=280,lowpass=f=7200",
+      "leading_trim_samples": 4594
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=280,lowpass=f=7200",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "metal",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=100,lowpass=f=7200",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=80,lowpass=f=7200",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "seal",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=280,lowpass=f=7200",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "jet",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=280,lowpass=f=7200",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=120,lowpass=f=4600",
+      "leading_trim_samples": 6135
+    },
+    {
+      "source": "splash2",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=120,lowpass=f=4600",
+      "leading_trim_samples": 264
+    },
+    {
+      "source": "metal",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=100,lowpass=f=4600",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=80,lowpass=f=4600",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "seal",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=120,lowpass=f=4600",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "jet",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=120,lowpass=f=4600",
+      "leading_trim_samples": 4
+    },
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=80,lowpass=f=2900",
+      "leading_trim_samples": 7760
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=80,lowpass=f=2900",
+      "leading_trim_samples": 60
+    },
+    {
+      "source": "metal",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=100,lowpass=f=2900",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=80,lowpass=f=2900",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "seal",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=80,lowpass=f=2900",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "jet",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=80,lowpass=f=2900",
+      "leading_trim_samples": 35
+    },
+    {
+      "source": "scrape",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=300,lowpass=f=4000",
+      "leading_trim_samples": 1381
+    },
+    {
+      "source": "step",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=100,lowpass=f=2400",
+      "leading_trim_samples": 1206
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=100,lowpass=f=2800",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=280,lowpass=f=7200",
+      "leading_trim_samples": 4594
+    },
+    {
+      "source": "scrape",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=300,lowpass=f=4000",
+      "leading_trim_samples": 1783
+    },
+    {
+      "source": "step",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=100,lowpass=f=2400",
+      "leading_trim_samples": 1561
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=100,lowpass=f=2800",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=120,lowpass=f=4600",
+      "leading_trim_samples": 6135
+    },
+    {
+      "source": "scrape",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=300,lowpass=f=2900",
+      "leading_trim_samples": 2335
+    },
+    {
+      "source": "step",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=100,lowpass=f=2400",
+      "leading_trim_samples": 2048
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=100,lowpass=f=2800",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=29988,aresample=44100,highpass=f=80,lowpass=f=2900",
+      "leading_trim_samples": 7760
+    }
+  ],
+  "outputs": [
+    {
+      "id": "DD-S0126.1",
+      "event": "tony-start",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0126/DD-S0126.1.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -11.0,
+      "sha256": "f0b71bc723e57018198fe111b6b562f0eba0be7f534f69ef030ed92093b2b9a6"
+    },
+    {
+      "id": "DD-S0127.1",
+      "event": "tony-core",
+      "family": "A \u2014 Clean pressure",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0127/DD-S0127.1.wav",
+      "duration_seconds": 1.2,
+      "peak_dbfs": -18.0,
+      "sha256": "d775154536b0f46dbca82e992111a693122e2e013aecaa77a58f769b256c409d"
+    },
+    {
+      "id": "DD-S0128.1",
+      "event": "tony-stop",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0128/DD-S0128.1.wav",
+      "duration_seconds": 0.34,
+      "peak_dbfs": -16.0,
+      "sha256": "07199d47d83ebcc3e75f5c10f403eac05c9c313528d382f69b6409091eaa79cb"
+    },
+    {
+      "id": "DD-S0130.1",
+      "event": "sean-seal",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0130/DD-S0130.1.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -11.0,
+      "sha256": "1058682198cd5229a8c9350537692c046f89184baea5f6937622f10966b132b1"
+    },
+    {
+      "id": "DD-S0131.1",
+      "event": "sean-pull",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0131/DD-S0131.1.wav",
+      "duration_seconds": 0.32,
+      "peak_dbfs": -16.0,
+      "sha256": "14b9f765aef61161eb6217d8096eec21a2d66ae87bb6f87e71368c1b0ae99dfd"
+    },
+    {
+      "id": "DD-S0132.1",
+      "event": "sean-break",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0132/DD-S0132.1.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -11.0,
+      "sha256": "69cc6403f10317356bc8865b823a9e2766f7d406c3b8a0cb5c9e1eea57876bb1"
+    },
+    {
+      "id": "DD-S0133.1",
+      "event": "sean-erupt",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0133/DD-S0133.1.wav",
+      "duration_seconds": 0.65,
+      "peak_dbfs": -11.0,
+      "sha256": "5f850aab0ca5657ee2aa4bd9511dc8a467fa9c65c998ff24c3d5c512a0247364"
+    },
+    {
+      "id": "DD-S0134.1",
+      "event": "sean-tip",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0134/DD-S0134.1-v2.wav",
+      "duration_seconds": 0.3,
+      "peak_dbfs": -17.001,
+      "sha256": "a32aff4a14ada780b370b3bfb6af1866b7f061e5af52293b70ddb69b81084a74",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0134/DD-S0134.1.wav",
+        "sha256": "07792cfb71ebaad1bced2fbafa842a7c1e780e0e57bc3df64e231361d221359a"
+      }
+    },
+    {
+      "id": "DD-S0135.1",
+      "event": "sean-stop",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0135/DD-S0135.1.wav",
+      "duration_seconds": 0.48,
+      "peak_dbfs": -16.0,
+      "sha256": "9e7f66f25e29076c4f5cf5fa1c987696eadf95fd35ac40f7e88c73ccdc8012ca"
+    },
+    {
+      "id": "DD-S0136.1",
+      "event": "hud-accepted",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0136/DD-S0136.1.wav",
+      "duration_seconds": 0.11,
+      "peak_dbfs": -19.999,
+      "sha256": "d4d041dbdd20854ffcf393e97308e3f4aba226109acf0c30361c611d18974975"
+    },
+    {
+      "id": "DD-S0137.1",
+      "event": "hud-empty",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0137/DD-S0137.1.wav",
+      "duration_seconds": 0.14,
+      "peak_dbfs": -19.999,
+      "sha256": "1fd263dfad5661a2ad6317090d5f3cede2574950ecb500856f219d79f7e559a8"
+    },
+    {
+      "id": "DD-S0125.1",
+      "event": "tony-preview",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0125/DD-S0125.1.wav",
+      "duration_seconds": 3.0,
+      "peak_dbfs": -11.0,
+      "sha256": "2f4eb9ca9b5dcbdda47195114e7bab9649ab720025197b7ba293b0815ea4f4ce"
+    },
+    {
+      "id": "DD-S0129.1",
+      "event": "sean-preview",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0129/DD-S0129.1-v2.wav",
+      "duration_seconds": 2.5,
+      "peak_dbfs": -10.802,
+      "sha256": "b6705fbed027fc23c99dff486fa0dec452e7cc46e0ada5d4e7dff51ec535e21b",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0129/DD-S0129.1.wav",
+        "sha256": "e4a131704eb0849dfbfb617a772c03d6079c9b3ddc528f41eb03ad32c1322891"
+      }
+    },
+    {
+      "id": "DD-S0126.2",
+      "event": "tony-start",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0126/DD-S0126.2.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -11.0,
+      "sha256": "1154a07583282fe270041e8866841e596da4e7d3d9a6361e727685733a54c3ad"
+    },
+    {
+      "id": "DD-S0127.2",
+      "event": "tony-core",
+      "family": "B \u2014 Wet plumbing",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0127/DD-S0127.2.wav",
+      "duration_seconds": 1.2,
+      "peak_dbfs": -18.0,
+      "sha256": "201ef7e656a54bb3782dd9cfaf66bc7a1bffbb79bad217a0427c304e54979179"
+    },
+    {
+      "id": "DD-S0128.2",
+      "event": "tony-stop",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0128/DD-S0128.2.wav",
+      "duration_seconds": 0.34,
+      "peak_dbfs": -16.0,
+      "sha256": "6a18bf3c98d9342700e2e3bea9a378cd5105e327c3a15b2fc69048a7b3903723"
+    },
+    {
+      "id": "DD-S0130.2",
+      "event": "sean-seal",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0130/DD-S0130.2.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -11.0,
+      "sha256": "534e3578bfc1d893f5c5bbb4d2846034639234cd13d27847cdba8ff99686ed83"
+    },
+    {
+      "id": "DD-S0131.2",
+      "event": "sean-pull",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0131/DD-S0131.2.wav",
+      "duration_seconds": 0.32,
+      "peak_dbfs": -16.0,
+      "sha256": "9b31367c67a8ed532eed545af46cd0f9929ceab5e9935db196a9c74cd2267bc7"
+    },
+    {
+      "id": "DD-S0132.2",
+      "event": "sean-break",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0132/DD-S0132.2.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -11.0,
+      "sha256": "3d63a1d587c57d8ddfc462044791b1514edee038e29cf2d449d4737bb3553059"
+    },
+    {
+      "id": "DD-S0133.2",
+      "event": "sean-erupt",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0133/DD-S0133.2.wav",
+      "duration_seconds": 0.65,
+      "peak_dbfs": -11.0,
+      "sha256": "b1965c78def7e4af37735969e42dfadc39c4e3eccef346dd736eb6b8e5116a43"
+    },
+    {
+      "id": "DD-S0134.2",
+      "event": "sean-tip",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0134/DD-S0134.2-v2.wav",
+      "duration_seconds": 0.3,
+      "peak_dbfs": -17.001,
+      "sha256": "529f3149e5a477581341691ec1e5427513552ee7a2ec038fa66564c4cfb3a57a",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0134/DD-S0134.2.wav",
+        "sha256": "7673fec24f431acd9f292b1e244952cac6b21077a7ae974879b620bd43bf4f5f"
+      }
+    },
+    {
+      "id": "DD-S0135.2",
+      "event": "sean-stop",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0135/DD-S0135.2.wav",
+      "duration_seconds": 0.48,
+      "peak_dbfs": -16.0,
+      "sha256": "94cb39660c185a923b055243d0df988a0844d971ae6162948dd6d649ae8b5b4a"
+    },
+    {
+      "id": "DD-S0136.2",
+      "event": "hud-accepted",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0136/DD-S0136.2.wav",
+      "duration_seconds": 0.11,
+      "peak_dbfs": -19.999,
+      "sha256": "05d02b9fff9ab1fba180f12fb01cb797795e7e59be8f47ab5375dcd286dd1ad1"
+    },
+    {
+      "id": "DD-S0137.2",
+      "event": "hud-empty",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0137/DD-S0137.2.wav",
+      "duration_seconds": 0.14,
+      "peak_dbfs": -19.999,
+      "sha256": "59e35aa84b02736ad7128021daad036d076ed2b1ebeb63a3bc102969850aef28"
+    },
+    {
+      "id": "DD-S0125.2",
+      "event": "tony-preview",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0125/DD-S0125.2.wav",
+      "duration_seconds": 3.0,
+      "peak_dbfs": -11.0,
+      "sha256": "f2410371f12f967611c0db05cf18fcbf6a9b717bc9ed482f95d5bed37a114bd4"
+    },
+    {
+      "id": "DD-S0129.2",
+      "event": "sean-preview",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0129/DD-S0129.2-v2.wav",
+      "duration_seconds": 2.5,
+      "peak_dbfs": -11.0,
+      "sha256": "b0e41cf60ff55042a32abc2199e09e1a0150633445452acda36ef1019ee42981",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0129/DD-S0129.2.wav",
+        "sha256": "a180f2e98683c5d325acc3ec7d1656b9e6069689b65850762226365a6eb14a35"
+      }
+    },
+    {
+      "id": "DD-S0126.3",
+      "event": "tony-start",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0126/DD-S0126.3.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -11.0,
+      "sha256": "7d465ea5fd12d30f432ccc2d0e109940477c039b7735d292201aae778c5f27e4"
+    },
+    {
+      "id": "DD-S0127.3",
+      "event": "tony-core",
+      "family": "C \u2014 Heavy pump",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0127/DD-S0127.3.wav",
+      "duration_seconds": 1.2,
+      "peak_dbfs": -18.0,
+      "sha256": "4c9a555a588860469985040bb835ccb559d48d5e6184685730d89960fe9aa541"
+    },
+    {
+      "id": "DD-S0128.3",
+      "event": "tony-stop",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0128/DD-S0128.3.wav",
+      "duration_seconds": 0.34,
+      "peak_dbfs": -16.0,
+      "sha256": "0c9cac9cac82586ab0808d8a358b88478602c1b0d32d7ca469692fa5a6d95344"
+    },
+    {
+      "id": "DD-S0130.3",
+      "event": "sean-seal",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0130/DD-S0130.3.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -11.0,
+      "sha256": "d6f67a0a13efbd9217ba1d9608140c23a2c24e5b0291730835f32adeac6336e3"
+    },
+    {
+      "id": "DD-S0131.3",
+      "event": "sean-pull",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0131/DD-S0131.3.wav",
+      "duration_seconds": 0.32,
+      "peak_dbfs": -16.0,
+      "sha256": "65ce67c1bfedb0e4831dcd6965616de7c0baa6df829a4e8e51b6fff9a1cf747c"
+    },
+    {
+      "id": "DD-S0132.3",
+      "event": "sean-break",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0132/DD-S0132.3.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -11.0,
+      "sha256": "29967a5ad13d4dd1dd393bd4656c6e86f9b248cf5af2f2a4ba571344ec0e47dd"
+    },
+    {
+      "id": "DD-S0133.3",
+      "event": "sean-erupt",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0133/DD-S0133.3.wav",
+      "duration_seconds": 0.65,
+      "peak_dbfs": -11.0,
+      "sha256": "f5717ae5808da4e43209a892915e46f6618493e358234889e562316326cf26ba"
+    },
+    {
+      "id": "DD-S0134.3",
+      "event": "sean-tip",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0134/DD-S0134.3-v2.wav",
+      "duration_seconds": 0.3,
+      "peak_dbfs": -17.001,
+      "sha256": "076cf3766ce689e7e55ba253c785ad0ebce4ae41509a54feb7cca23824af36b6",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0134/DD-S0134.3.wav",
+        "sha256": "c47926537bdc32837fc7a498d9adc69fec351863bcb3f7b81a42c73084d601ed"
+      }
+    },
+    {
+      "id": "DD-S0135.3",
+      "event": "sean-stop",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0135/DD-S0135.3.wav",
+      "duration_seconds": 0.48,
+      "peak_dbfs": -16.0,
+      "sha256": "84f579005942c3f7ec8e504661a7f1c4b2b41d4a53494b8870fa0fe6bb16d537"
+    },
+    {
+      "id": "DD-S0136.3",
+      "event": "hud-accepted",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0136/DD-S0136.3.wav",
+      "duration_seconds": 0.11,
+      "peak_dbfs": -19.999,
+      "sha256": "259cfe7bc5afe98c95f24a0f4043fa19684b4061886617cdcea4aa67ea1735ee"
+    },
+    {
+      "id": "DD-S0137.3",
+      "event": "hud-empty",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0137/DD-S0137.3.wav",
+      "duration_seconds": 0.14,
+      "peak_dbfs": -19.999,
+      "sha256": "0abba603d52a5a37c96bfd47fca157550a5ab3639c93c42fd445e79238677fe1"
+    },
+    {
+      "id": "DD-S0125.3",
+      "event": "tony-preview",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0125/DD-S0125.3.wav",
+      "duration_seconds": 3.0,
+      "peak_dbfs": -11.0,
+      "sha256": "e92fa106b3e47cd0171cbe2e9172e7cebd442a84401a2a38d3c2f9be921ff6a0"
+    },
+    {
+      "id": "DD-S0129.3",
+      "event": "sean-preview",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0129/DD-S0129.3-v2.wav",
+      "duration_seconds": 2.5,
+      "peak_dbfs": -11.0,
+      "sha256": "acf55af12248a355c91ea9ef8bb1b0674987139eefc99896b69cfe45c78ab686",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0129/DD-S0129.3.wav",
+        "sha256": "90f04007502a797fa2cef510c2891ef53899202968d633fe0f9935d42f76ff8a"
+      }
+    },
+    {
+      "id": "DD-S0138.1",
+      "event": "tony-recoil",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0138/DD-S0138.1.wav",
+      "duration_seconds": 0.25,
+      "peak_dbfs": -22.999,
+      "sha256": "d211ac82348d4e5249165337f94117595ccc952c558bab47d90d62ee43329521"
+    },
+    {
+      "id": "DD-S0139.1",
+      "event": "tony-step",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0139/DD-S0139.1.wav",
+      "duration_seconds": 0.09,
+      "peak_dbfs": -24.002,
+      "sha256": "635d2338e98a1b449aec43eddd5b9b15021d14f5ecf0e76972f57108b2bad9a0"
+    },
+    {
+      "id": "DD-S0140.1",
+      "event": "sean-hinge",
+      "family": "A \u2014 Clean pressure",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0140/DD-S0140.1.wav",
+      "duration_seconds": 0.26,
+      "peak_dbfs": -19.999,
+      "sha256": "ccbadc65a51538ff7c2b8a0614a5e871b8f5cb870f56ad4eb225905c972db6b7"
+    },
+    {
+      "id": "DD-S0141.1",
+      "event": "sean-core",
+      "family": "A \u2014 Clean pressure",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0141/DD-S0141.1.wav",
+      "duration_seconds": 1.2,
+      "peak_dbfs": -18.999,
+      "sha256": "83723d6b17453a94d454bee3effe795fac8d6dd85376efa6986d68e38db2feeb"
+    },
+    {
+      "id": "DD-S0138.2",
+      "event": "tony-recoil",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0138/DD-S0138.2.wav",
+      "duration_seconds": 0.25,
+      "peak_dbfs": -22.999,
+      "sha256": "a31c6810cfdd14f6496648ee6091080b44a7f8622a977ae692ce5e4f293d3e67"
+    },
+    {
+      "id": "DD-S0139.2",
+      "event": "tony-step",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0139/DD-S0139.2.wav",
+      "duration_seconds": 0.09,
+      "peak_dbfs": -24.002,
+      "sha256": "7506b72044f614c55a83827c749f49ac770ca9dd9eb951875d06713f8b4be8e1"
+    },
+    {
+      "id": "DD-S0140.2",
+      "event": "sean-hinge",
+      "family": "B \u2014 Wet plumbing",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0140/DD-S0140.2.wav",
+      "duration_seconds": 0.26,
+      "peak_dbfs": -19.999,
+      "sha256": "edf60a75eb9687ea2951f900e1c58e789bcad13b8671f0bbfa219d79971f57ca"
+    },
+    {
+      "id": "DD-S0141.2",
+      "event": "sean-core",
+      "family": "B \u2014 Wet plumbing",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0141/DD-S0141.2.wav",
+      "duration_seconds": 1.2,
+      "peak_dbfs": -18.999,
+      "sha256": "5641bfbe1f6e473d03e4d96435705e840e43b0aca5423a771bb381fc5a98ae8b"
+    },
+    {
+      "id": "DD-S0138.3",
+      "event": "tony-recoil",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0138/DD-S0138.3.wav",
+      "duration_seconds": 0.25,
+      "peak_dbfs": -22.999,
+      "sha256": "104d7a394f08efb98bc6d3e3b9a5069444226b1ec11bdd62804d16a397db6207"
+    },
+    {
+      "id": "DD-S0139.3",
+      "event": "tony-step",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0139/DD-S0139.3.wav",
+      "duration_seconds": 0.09,
+      "peak_dbfs": -24.002,
+      "sha256": "b04ea56a72e50a09622a018acb7c9cf70109810c9415d0c7f484a7eb5a8203a6"
+    },
+    {
+      "id": "DD-S0140.3",
+      "event": "sean-hinge",
+      "family": "C \u2014 Heavy pump",
+      "loop": false,
+      "path": "audio/alternatives/DD-S0140/DD-S0140.3.wav",
+      "duration_seconds": 0.26,
+      "peak_dbfs": -19.999,
+      "sha256": "ac8f5753487106223da30c302038016a13376eb6bb4b33107a747c23ddf5c72c"
+    },
+    {
+      "id": "DD-S0141.3",
+      "event": "sean-core",
+      "family": "C \u2014 Heavy pump",
+      "loop": true,
+      "path": "audio/alternatives/DD-S0141/DD-S0141.3.wav",
+      "duration_seconds": 1.2,
+      "peak_dbfs": -18.999,
+      "sha256": "6a4d96dbcedd6c04090e71218434ea2de34738978db1490fe7cea888f588c2cf"
+    }
+  ],
+  "illustrative_timelines": {
+    "tony": [
+      [
+        "tony-start",
+        0
+      ],
+      [
+        "tony-core",
+        0.16
+      ],
+      [
+        "tony-core",
+        1.36
+      ],
+      [
+        "tony-stop",
+        2.56
+      ]
+    ],
+    "sean": [
+      [
+        "sean-seal",
+        0
+      ],
+      [
+        "sean-pull",
+        0.3
+      ],
+      [
+        "sean-break",
+        0.72
+      ],
+      [
+        "sean-erupt",
+        0.82
+      ],
+      [
+        "sean-core",
+        1.05
+      ],
+      [
+        "sean-hinge",
+        1.5
+      ],
+      [
+        "sean-tip",
+        1.5
+      ],
+      [
+        "sean-stop",
+        1.85
+      ]
+    ]
+  },
+  "integration_proposal": [
+    "Tony: one sustain voice plus one bounded transient voice; fade core 40 ms on entry/exit.",
+    "Do not retrigger startup for aim changes; spatial placement follows muzzle, including up/diagonal.",
+    "Sean: seal/pull/break/erupt/tip/decay follow separate animation events; tip follows facing side.",
+    "Duck or omit accepted HUD cue when the special start itself gives sufficient feedback.",
+    "Empty cue only on a fresh rejected press, never every held frame.",
+    "Two uses per hero per level and no refills are design context, not implemented here.",
+    "No weapon-switch cue or runtime hookup; future square weapon-icon HUD does not imply switching.",
+    "Musical/monster balance, audible loop acceptance and final timing need in-game listening."
+  ],
+  "sync_recipe": "audio/sources/starter-specials-auditions-v1/add_sync_cues.py",
+  "art_sync_notes": [
+    "Tony idle recoil scrape differs from braced stepping; neither restarts the pressure loop.",
+    "Tony direction reversal preserves pressure; no aim/reversal cue is added.",
+    "Sean hinge strain is separate from initial pipe release and from the water-follow tip gesture.",
+    "Sean following jet can sustain through arbitrary tilt duration, then crossfade into irregular decay.",
+    "Preview uses one finite core pass; durations remain illustrative, not approved mechanics."
+  ]
+}

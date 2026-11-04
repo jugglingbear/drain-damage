@@ -56,12 +56,12 @@ func step(host: Node2D) -> void:
 		var entry: Dictionary = ledger[actor.schedule_id]
 		var death_frames: Array = host.swarms.definition.animation.animations.death.frames
 		var drawable: bool = actor.hp > 0 or actor.death < death_frames[0].duration_seconds*death_frames.size()
-		if drawable and actor.pos.x+64 >= host.camera_x and actor.pos.x-64 <= host.camera_x+960:
+		if drawable and actor.pos.x+host.swarms.visual_radius >= host.camera_x and actor.pos.x-host.swarms.visual_radius <= host.camera_x+960:
 			entry.visible = true
 		if actor.hp <= 0:
 			entry.defeated = true
 			entry.state = "defeated"
-		if actor.get("additive",false) and actor.pos.x+64 < host.camera_x:
+		if actor.get("additive",false) and actor.pos.x+host.swarms.visual_radius < host.camera_x:
 			if actor.hp > 0: entry.state = "retired"
 			host.swarms.actors.remove_at(index)
 	if not enabled or host.life_state != "alive" or host.paused or host.dispenser.active \
@@ -85,6 +85,7 @@ func step(host: Node2D) -> void:
 		actor.schedule_id = slot.id
 		actor.additive = true
 		actor.warning = WARNING
+		host.swarms.begin_entry(actor,WARNING)
 		host.swarms.actors.append(actor)
 		entry.state = "issued"
 		entry.issued = true

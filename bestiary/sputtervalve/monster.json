@@ -3,7 +3,7 @@
   "name": "Sputtervalve",
   "name_status": "Name and pressure-valve design basis approved by Sean on 2026-10-17; visual revisions pending",
   "description": "A bolted-down pressure valve with an angry gauge face that charges and spits a violet sewage spark.",
-  "implementation_status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+  "implementation_status": "Packaged in Prototype144; bounded still review passed; full-cycle/all-angle animation review pending.",
   "backstory": {
     "status": "pending",
     "text": ""
@@ -50,7 +50,9 @@
       1024
     ],
     "animation": "assets/bestiary/opening-trial/manifest-v1.json",
-    "prompt": "assets/bestiary/opening-trial/prompts-v1.json"
+    "prompt": "assets/bestiary/opening-trial/prompts-v1.json",
+    "charge_animation_contract": "assets/bestiary/opening-trial/sputtervalve-charge-v1.json",
+    "charge_animation_status": "Packaged in Prototype144; bounded still review passed; full-cycle/all-angle animation review pending."
   },
   "marketing": {
     "status": "pending; no hyperrealistic portrait generated for provisional design",
@@ -105,7 +107,38 @@
     "decision": "Sean answered yes to retaining the Sputtervalve name and valve design, requesting 50% larger body, stronger contrast and larger projectiles. Exact backstory remains unapproved."
   },
   "prototype86_revision": {
-    "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
+    "status": "Historical, superseded behavior from Prototype86; not current trial behavior",
     "attack": "No attack windup; 2.5-second repeat with the existing purple projectile. The initial 0.8-second visible introduction and spawn safety remain."
+  },
+  "art_review_144": {
+    "status": "Packaged in Prototype144; bounded still review passed; full-cycle/all-angle animation review pending.",
+    "owner_record": "handoffs/three-screen-trial-delivery.json#visual_review_144",
+    "review_scope": "Packaged staged forms and sampled route poses; pressure base attachment in sampled charge poses.",
+    "remaining": [
+      "Continuous morph/turn/death/pressure cadence",
+      "All rotated forms",
+      "Gnat/Widow crowding and subtle mace spikes",
+      "Subjective gameplay fairness and fun"
+    ],
+    "provenance": "Post-build editorial reconciliation; these later status updates are not claimed present in the reviewed PCK."
+  },
+  "ceiling_art_v1": {
+    "source": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.png",
+    "manifest": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.json",
+    "status": "Integrated in Prototype160; bounded supplied capture review passed; dense motion, full-route and all-angle review remain pending",
+    "dimensions": [
+      1536,
+      1024
+    ]
+  },
+  "current_trial_summary": {
+    "date": "2026-11-03",
+    "scope": "Current trial behavior; not comprehensive runtime/documentation parity",
+    "behavior": "Stationary shooter charges before purple-bolt volleys; pressure vibration and recoil preserve attached base. Normal cap2; recovery2.2s after last bolt. Exact timings vary by section.",
+    "contracts": [
+      "levels/first-call/three-screen-trial.json",
+      "levels/first-call/section-1-2.json"
+    ],
+    "ceiling_status": "Integrated in Prototype160; bounded supplied capture review passed; dense motion, full-route and all-angle review remain pending; no positive-Z shooter arrivals"
   }
 }

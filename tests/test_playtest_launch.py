@@ -31,9 +31,15 @@ class PlaytestLaunchTests(unittest.TestCase):
                          ["--miniboss=skitterling", "--hero=sean", "--difficulty=hard", "--seed=913"])
 
     def test_distinct_flush_and_landing_entries(self) -> None:
-        for target in ("2", "2-landing", *(f"2-{number:02d}" for number in range(1, 14))):
+        for target in ("2", "2.1", *(f"2-{number:02d}" for number in range(1, 14))):
             self.assertEqual(launch.launch_arguments({"LEVEL": target, "HERO": "sean", "DIFFICULTY": "hard"}),
                              [f"--level={target}", "--hero=sean", "--difficulty=hard", "--seed=42"])
+
+    def test_numbered_level_one_sections(self) -> None:
+        for target in ("1-trial", "1.1", "1.2"):
+            with self.subTest(target=target):
+                self.assertEqual(launch.launch_arguments({"LEVEL": target}),
+                                 [f"--level={target}", "--hero=tony", "--difficulty=normal", "--seed=42"])
 
     def test_invalid_unimplemented_and_conflicting_selectors(self) -> None:
         for values in [{"LEVEL": "3"}, {"BOSS": "clogfather"}, {"MINIBOSS": "unknown"},
@@ -49,7 +55,7 @@ class PlaytestLaunchTests(unittest.TestCase):
     def test_screenshot_mode(self) -> None:
         self.assertEqual(launch.launch_arguments({"SCREENSHOT_MODE": "1"}), ["--screenshot-mode=1"])
         self.assertEqual(launch.launch_arguments({"SCREENSHOT_MODE": "0"}), [])
-        self.assertIn("--screenshot-mode=1", launch.command({"LEVEL": "2-landing", "SCREENSHOT_MODE": "1"}))
+        self.assertIn("--screenshot-mode=1", launch.command({"LEVEL": "2.1", "SCREENSHOT_MODE": "1"}))
         for value in ("true", "yes", "2", "1;echo nope"):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 launch.launch_arguments({"SCREENSHOT_MODE": value})

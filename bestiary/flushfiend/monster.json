@@ -128,5 +128,21 @@
       "max_voices": 4,
       "loop": false
     }
+  },
+  "size_revision_145": {
+    "status": "Prototype145 packaged: 1.2 proportional scale and foot contact passed bounded still review; full encounter motion review remains pending",
+    "scale": 1.2,
+    "render_height_pixels": 51.6,
+    "terrain_body_pixels": [
+      45.6,
+      43.2
+    ],
+    "projectile_hurtbox_pixels": [
+      45.6,
+      51.6
+    ],
+    "anchor": "Keep measured per-frame source foot pivots and existing world feet; no global rider/foot offset.",
+    "runtime_geometry": "scripts/flushfiend_geometry.gd",
+    "scope": "All existing living damage/death artwork reused; HP and damage unchanged."
   }
 }

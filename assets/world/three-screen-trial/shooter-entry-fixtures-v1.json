@@ -1,0 +1,72 @@
+{
+  "status": "Exact Art assembly proposal; runtime composed/motion acceptance pending",
+  "floor": {
+    "path": "assets/world/opening-trial/entry-fx-v1.png",
+    "back_source_rect": [
+      545,
+      275,
+      465,
+      180
+    ],
+    "front_source_rect": [
+      545,
+      411,
+      465,
+      44
+    ],
+    "scale": 0.13763440860215054,
+    "source_anchor": [
+      776,
+      402
+    ],
+    "back_destination_offset": [
+      -31.793548387096774,
+      -17.47956989247312,
+      64,
+      24.774193548387096
+    ],
+    "front_destination_offset": [
+      -31.793548387096774,
+      1.238709677419355,
+      64,
+      6.055913978494623
+    ],
+    "clip_plane": "Authored support top at feet.y; reveal above it, front sill overlays lower base. Opening remains centered under body. Back and front source are registered pieces of same hatch.",
+    "notes": "No gameplay hole introduced; decorative reveal only. Check shell does not imply unsupported walkable floor."
+  },
+  "ceiling": {
+    "path": "assets/world/opening-trial/platform-kit-v1.png",
+    "support_source_rect": [
+      885,
+      152,
+      604,
+      349
+    ],
+    "support_destination_offset": [
+      -60,
+      -69.3377483444,
+      120,
+      69.3377483444
+    ],
+    "flip_y": true,
+    "mount_y": 180,
+    "post_source_rect": [
+      900,
+      230,
+      66,
+      246
+    ],
+    "post_logical_width": 11,
+    "post_logical_tile_height": 41,
+    "post_center_offsets_x": [
+      -51.2582781457,
+      50.2649006623
+    ],
+    "post_range_y": [
+      0,
+      110.6622516556
+    ],
+    "notes": "Tile/crop final segment, preserve scale; overlap upper flange ends. Support behind actor, actor mounting plate meets underside at mount. Decorative supports do not become solids without separate design decision."
+  },
+  "ceiling_actor_manifest": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.json"
+}

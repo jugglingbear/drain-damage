@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Integrated in Prototype 90; both-facing source composition and packaged behavior checks passed; live motion review pending",
+  "status": "Prototype162 raised-hand release passes Mechanics checks and independent Art packaged sampled visual review; continuous motion and mirrored visual coverage remain unverified",
   "anchor": [
     48,
     80
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "path": "assets/bestiary/gratecrawler/throw-v2.png",
+      "path": "assets/bestiary/gratecrawler/throw-v3.png",
       "source_rect": [
         0,
         512,
@@ -80,8 +80,8 @@
         66.56
       ],
       "hand": [
-        -2.0500000000000043,
-        45.42
+        -2.05,
+        39.83
       ],
       "duration_seconds": 0.12,
       "source_foot_anchor": [
@@ -90,8 +90,9 @@
       ],
       "source_hand_center": [
         150,
-        178
-      ]
+        135
+      ],
+      "alpha_cutoff": 240
     },
     {
       "path": "assets/bestiary/gratecrawler/throw-v2.png",
@@ -140,5 +141,27 @@
     "approved": "Four poses each facing at runtime2x scale; held-ball contact, outside-body release, stable footanchor and mirrored registration",
     "validation": "Four source bounds and timing/footanchor checks pass",
     "remaining": "Live transitions, aim lock, release timing and patrol restoration"
+  },
+  "clearance_revision": {
+    "date": "2026-11-03",
+    "source_pixel_lift": 43,
+    "world_pixel_lift": 11.18,
+    "release_height_above_feet": 80.34,
+    "clearance_above_60px_plinth_with_radius12": 8.34,
+    "provenance": "assets/bestiary/gratecrawler/throw-clearance-prompts-v1.json",
+    "approval": "Mechanics reports 27 checks passed, 0 failures with imported throw-v3 registered hand: 100px close-ledge caster offset both facings, actual hand release, hero-on-top damage and full12px ball clearance. Existing role combat regression passes after old arrival fixture correction. No asset load errors. Source geometry approval is not motion acceptance.",
+    "preparation": "Release frame2 declares alpha_cutoff240 for derived runtime preparation only; discard alpha below240. Raw v3 and all original pixels preserved. Other frames remain v2 without this field.",
+    "runtime_art_review": {
+      "package": "0.162.0",
+      "evidence": [
+        "builds/Prototype-162/evidence/muck-0.png",
+        "builds/Prototype-162/evidence/muck-0-25.png",
+        "builds/Prototype-162/evidence/muck-0-6.png",
+        "builds/Prototype-162/evidence/muck-0-9.png",
+        "builds/Prototype-162/evidence/muck-1-2.png"
+      ],
+      "result": "Left-facing sampled release passes: ball touches extended hand outside torso, feet planted, no visible haze rectangle or missing arm silhouette after alpha240. Subsequent ball positions clear platform and rise toward hero; later HUD shows one health light depleted and hero displaced.",
+      "limits": "No continuous playback or mirrored packaged visual acceptance; exact collision clearance established by Mechanics tests rather than sparse screenshots."
+    }
   }
 }

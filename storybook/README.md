@@ -1,6 +1,6 @@
 # Drain Damage — In pictures
 
-Concept art and playable experiments. Gameplay captures through v0.137.0.
+Concept art and playable experiments. Gameplay captures through v0.162.0.
 
 ## Concept art
 
@@ -150,6 +150,70 @@ v136 · Tony’s Easy Mode costume in Level 1 · Export fixture
 
 v136 · Sean’s Easy Mode costume on the ride · Export fixture
 
+![v139 · Optional catwalk — staged review2 fixture][image-37]
+
+v139 · Optional catwalk — staged review2 fixture
+
+![v139 · Machinery climb — final-pack review fixture][image-38]
+
+v139 · Machinery climb — final-pack review fixture
+
+![v139 · Foreground arrival — review2 fixture][image-39]
+
+v139 · Foreground arrival — review2 fixture
+
+![v139 · Pit crossing — automated physics at 0.2× speed][image-40]
+
+v139 · Pit crossing — automated physics at 0.2× speed
+
+![v139 · Across the pit — slowed physics autoplay][image-41]
+
+v139 · Across the pit — slowed physics autoplay
+
+![v139 · Final burst exchange — staged runtime fixture][image-42]
+
+v139 · Final burst exchange — staged runtime fixture
+
+![v144 · Four living-fly weapon shapes — staged packaged review][image-43]
+
+v144 · Four living-fly weapon shapes — staged packaged review
+
+![v144 · Sputtervalve charge — staged packaged review][image-44]
+
+v144 · Sputtervalve charge — staged packaged review
+
+![v144 · Mixed enemies in motion — automated play][image-45]
+
+v144 · Mixed enemies in motion — automated play
+
+![v144 · Pit crossing under pressure — automated play][image-46]
+
+v144 · Pit crossing under pressure — automated play
+
+![v159 · Section 1.2 optional catwalk — stationary packaged fixture][image-47]
+
+v159 · Section 1.2 optional catwalk — stationary packaged fixture
+
+![v159 · Section 1.2 machinery climb — stationary packaged fixture][image-48]
+
+v159 · Section 1.2 machinery climb — stationary packaged fixture
+
+![Tony unleashes a horizontal torrent.][image-49]
+
+Tony unleashes a horizontal torrent. v0.162.0 · November 3, 2026 · Controlled runtime review.
+
+![Sean raises a vertical water column.][image-50]
+
+Sean raises a vertical water column. v0.162.0 · November 3, 2026 · Controlled runtime review.
+
+![The pipe tilts, sweeping the stream downward.][image-51]
+
+The pipe tilts, sweeping the stream downward. v0.162.0 · November 3, 2026 · Controlled runtime review.
+
+![Sean completes the sweep at floor level.][image-52]
+
+Sean completes the sweep at floor level. v0.162.0 · November 3, 2026 · Controlled runtime review.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -190,3 +254,19 @@ To come. These images document development, not a finished game.
 [image-34]: 133-board-fidget/20261029-165933-133-export-sean-water.png
 [image-35]: 136-easy-mode-costumes/20261029-194637-tony-easy-level-one.png
 [image-36]: 136-easy-mode-costumes/20261029-194507-sean-easy-ride.png
+[image-37]: 139-three-screen-trial/20261102-132523-catwalk-unobstructed.png
+[image-38]: 139-three-screen-trial/20261102-133548-final-grounded-patrol.png
+[image-39]: 139-three-screen-trial/20261102-132651-foreground-motion-03-settle.png
+[image-40]: 139-three-screen-trial/20261102-133618-final-pit-airborne-01.png
+[image-41]: 139-three-screen-trial/20261102-133909-final-pit-landing-visible.png
+[image-42]: 139-three-screen-trial/20261102-134009-final-exchange-burst.png
+[image-43]: 144-living-swarm-hunt/20261102-151925-packaged-four-forms.png
+[image-44]: 144-living-swarm-hunt/20261102-151926-packaged-charge-a.png
+[image-45]: 144-living-swarm-hunt/20261102-152227-packaged-moving-opening.png
+[image-46]: 144-living-swarm-hunt/20261102-152444-packaged-moving-pit-approach.png
+[image-47]: 159-section-one-two/20261103-110528-optional-route.png
+[image-48]: 159-section-one-two/20261103-110529-late-climb.png
+[image-49]: 162-starter-specials/20261103-214910-tony-torrent.png
+[image-50]: 162-starter-specials/20261103-214721-sean-vertical.png
+[image-51]: 162-starter-specials/20261103-214807-sean-diagonal.png
+[image-52]: 162-starter-specials/20261103-214811-sean-horizontal.png

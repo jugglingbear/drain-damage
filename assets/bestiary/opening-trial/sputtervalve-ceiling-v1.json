@@ -1,0 +1,50 @@
+{
+  "status": "Art source and exact assembly registration delivered; runtime and visual validation pending",
+  "source": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-b1ba4829-e972-4dd6-8408-579465601830.png",
+  "prompt": "Production modular sprite atlas for ceiling-mounted Sputtervalve enemy in pixel-art plumbing game. Use reference for exact rusty teal iron/brass/red handwheel visual identity and angry orange-eyed pressure gauge face. Transparent background. Landscape1536x1024. Only THREE isolated components with large transparent margins. Upper left region x80y80w600h500: ceiling-hung fixed body WITHOUT ANY BARREL. Broad bolted mounting plate on TOP, short iron suspension neck directly connecting to round angry gauge body beneath; red valve wheel on right. Small circular brass articulation socket centered below gauge face, exposed in front for separate cannon barrel. Body silhouette compact and sturdy. Upper right regionx850y80w600h500: second animation frame of SAME body identical mounting plate/neck/silhouette/pivot, subtly turned valve wheel and brighter orange eyes, NO barrel. Bottom center regionx500y650w600h280: ONE separate cannon barrel module, SIDE VIEW, perfectly horizontal pointing RIGHT. At LEFT end a large circular brass swivel hub, long straight brass tube extending RIGHT, clearly visible open dark muzzle at far RIGHT. No bent elbow, no body, no mounting base on barrel. This separate barrel rotates at hub center to aim down-left or down-right while body stays fixed. Authentic crisp detailed pixel art matching reference, dark outline, readable at60px body. No text, grid, captions, numbering, ground, cast shadows or extra pieces. Fully transparent outside all components. Keep upper body frames registration identical.",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "body_frames": [
+    [
+      172,
+      104,
+      475,
+      498
+    ],
+    [
+      908,
+      104,
+      474,
+      498
+    ]
+  ],
+  "body_anchor_in_frame": [
+    225,
+    0
+  ],
+  "body_pivot_in_frame": [
+    183,
+    448
+  ],
+  "body_scale": 0.1,
+  "barrel_source_rect": [
+    521,
+    737,
+    487,
+    189
+  ],
+  "barrel_pivot_in_frame": [
+    82,
+    94
+  ],
+  "barrel_muzzle_in_frame": [
+    454,
+    98
+  ],
+  "barrel_scale": 0.05,
+  "notes": "Body top mount stays fixed. Barrel rotates around hub to actual aim vector, source points right. Source muzzle differs4px vertically from pivot; account for full transformed vector. Body frames share registration, pad second frame one pixel rather than resize. Full silhouette exceeds prior42px collider; update extent checks. Use2 frames for valve/eye movement, never rotate mounting plate.",
+  "alpha_preparation": "Threshold low-alpha haze in derived runtime textures; preserve original.",
+  "archived_at": "2026-11-03T11:23:07.575261-08:00"
+}

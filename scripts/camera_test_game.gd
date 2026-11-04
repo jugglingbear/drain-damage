@@ -60,6 +60,9 @@ func respawn_after_death() -> void:
 func turn_camera() -> void:
 	if not paused and life_state == "alive": camera_view.request_turn(camera_model)
 
+func specials_allowed(_ignore_active := false) -> bool:
+	return false
+
 func _physics_process(delta: float) -> void:
 	if camera_view == null or paused: return
 	if life_state == "dying":
@@ -84,7 +87,7 @@ func _draw() -> void:
 	if camera_view == null: return
 	box(0,0,960,76,Color(0.025,.055,.075,.94))
 	label_at("LEVEL 2.1 — CAMERA TEST",Vector2(24,30),22,MINT)
-	draw_vitals(Vector2(625,12))
+	draw_vitals(Vector2(625,4),"rubber-ducks")
 	box(0,466,960,74,Color(0.025,.055,.075,.94))
 	label_at("%s  ·  %s  ·  camera %.0f°" % [employee.name,camera_model.surface,camera_view.yaw],
 		Vector2(24,490),15,GOLD)

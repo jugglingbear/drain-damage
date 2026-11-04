@@ -5,6 +5,15 @@ const BuildVersion = preload("res://scripts/build_version.gd")
 
 signal title_requested
 
+const VitalsHUD = preload("res://scripts/vitals_hud.gd")
+var vitals_hud := VitalsHUD.new()
+const StarterSpecials = preload("res://scripts/starter_specials.gd")
+const StarterSpecialArt = preload("res://scripts/starter_special_art.gd")
+var special_art := StarterSpecialArt.new()
+const StarterSpecialAudio = preload("res://scripts/starter_special_audio.gd")
+var specials := StarterSpecials.new()
+var special_audio := StarterSpecialAudio.new()
+
 const BossHUD = preload("res://scripts/boss_hud.gd")
 var boss_hud := BossHUD.new()
 
@@ -29,7 +38,8 @@ const Level = preload("res://scripts/first_call.gd")
 const Mission = preload("res://scripts/mission_state.gd")
 const WORLD_WIDTH := Level.WIDTH
 var mission := Mission.new()
-const SewerSwarm = preload("res://scripts/sewer_swarm.gd")
+const FlushfiendGeometry = preload("res://scripts/flushfiend_geometry.gd")
+const SewerSwarm = preload("res://scripts/gnatastrophe.gd")
 var swarms := SewerSwarm.new()
 const EmployeeDispenser = preload("res://scripts/employee_dispenser.gd")
 var dispenser := EmployeeDispenser.new()
@@ -119,6 +129,7 @@ var tone_phase := 0.0
 
 func _ready() -> void:
 	Data.load_data()
+	special_art.prepare()
 	# Never process the damage atlas on the first visible enemy during gameplay.
 	world_art.damage_art.prepare("toilet")
 	assert(wastewater_art.configure(Data.bundle.wastewater))
@@ -130,6 +141,7 @@ func _ready() -> void:
 	add_action("aim_up", [KEY_W, KEY_UP])
 	add_action("aim_down", [KEY_S, KEY_DOWN])
 	add_action("shoot", [KEY_ENTER, KEY_KP_ENTER, KEY_J, KEY_X])
+	add_action("special", [KEY_K])
 	add_action("dialogue_next", [KEY_ENTER, KEY_KP_ENTER, KEY_SPACE])
 	add_action("dialogue_skip", [KEY_TAB])
 	if InputMap.has_action("restart"): InputMap.erase_action("restart")
@@ -141,6 +153,7 @@ func _ready() -> void:
 	add_pad_button("aim_up", JOY_BUTTON_DPAD_UP)
 	add_pad_button("aim_down", JOY_BUTTON_DPAD_DOWN)
 	add_pad_button("shoot", JOY_BUTTON_X)
+	add_pad_button("special", JOY_BUTTON_B)
 	add_pad_button("pause_game", JOY_BUTTON_START)
 	add_pad_button("dialogue_next", JOY_BUTTON_A)
 	add_pad_button("dialogue_skip", JOY_BUTTON_B)
@@ -164,6 +177,7 @@ func _ready() -> void:
 	audio_player.play()
 	sound_playback = audio_player.get_stream_playback()
 	starter_weapon_audio.attach(self)
+	special_audio.attach(self)
 	dialogue = Dialogue.new()
 	add_child(dialogue)
 	create_pause_menu()
@@ -285,7 +299,7 @@ func draw_pause_plates() -> void:
 func update_death_popup_guard(delta: float) -> void:
 	if not death_popup_locked: return
 	var held := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	for action in ["shoot", "jump", "dialogue_next", "dialogue_skip", "pause_game", "return_title"]:
+	for action in ["shoot", "special", "jump", "dialogue_next", "dialogue_skip", "pause_game", "return_title"]:
 		held = held or Input.is_action_pressed(action)
 	if held:
 		death_popup_guard = 0.35
@@ -352,6 +366,8 @@ func _input(event: InputEvent) -> void:
 
 func request_title() -> void:
 	if death_popup_locked: return
+	specials.cancel("title")
+	special_audio.stop()
 	starter_weapon_audio.stop()
 	door_audio.stop()
 	swarm_audio.stop()
@@ -364,6 +380,8 @@ func request_title() -> void:
 	title_requested.emit()
 
 func _exit_tree() -> void:
+	specials.cancel("teardown")
+	special_audio.dispose()
 	starter_weapon_audio.dispose()
 	door_audio.dispose()
 	swarm_audio.dispose()
@@ -404,6 +422,11 @@ func _on_joy_connection_changed(_device: int, connected: bool) -> void:
 		set_paused(true)
 
 func reset_game() -> void:
+	specials.cancel("retry")
+	specials.spent_pipes.clear()
+	special_audio.stop()
+	specials.configure(employee.id,"first-call")
+	specials.held = Input.is_action_pressed("special")
 	starter_weapon_audio.stop()
 	dispenser.reset_stock()
 	door_audio.stop()
@@ -481,6 +504,11 @@ func complete_job() -> void:
 	play_tone(540.0, 0.3)
 
 func _process(delta: float) -> void:
+	specials.sample_input(self,Input.is_action_pressed("special"))
+	if life_state != "alive" or won:
+		specials.cancel("inactive")
+		special_audio.stop()
+	special_audio.set_paused(not specials_allowed(true))
 	update_death_popup_guard(delta)
 	if paused and life_state in ["alive", "dying"] and Input.is_action_just_pressed("dialogue_skip"):
 		set_paused(false)
@@ -578,11 +606,51 @@ func step_gates(delta: float) -> void:
 func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: float) -> Dictionary:
 	return Level.move_body(position,motion,size,delta,Level.solids(mission.current_zone,gate_progress))
 
+func swarm_hunt_bounds(actor: Dictionary) -> Rect2:
+	if actor.get("clogfather_reinforcement",false): return actor.bounds
+	return actor.get("wander_bounds",actor.bounds).grow(320).intersection(Rect2(0,0,WORLD_WIDTH,440))
+
 func actor_solids() -> Array[Rect2]:
 	return Level.solids(mission.current_zone,gate_progress)
 
 func player_shot_solids() -> Array[Rect2]:
 	return Level.solids(mission.current_zone,gate_progress)
+
+func specials_allowed(ignore_active := false) -> bool:
+	return life_state == "alive" and not paused and not won and not dispenser.actions_locked \
+		and restart_guard_device < 0 and dialogue != null and not dialogue.active \
+		and dialogue.release_guard <= 0 and not dialogue.awaiting_release and (ignore_active or not specials.active)
+
+func special_floor_solids() -> Array[Rect2]:
+	return [Rect2(0,FLOOR_Y,WORLD_WIDTH,100)]
+
+func special_solids() -> Array[Rect2]:
+	var result := player_shot_solids()
+	result.append_array(special_floor_solids())
+	return result
+
+func special_pipe_clear(point: Vector2) -> bool:
+	var supported := false
+	var envelope := Rect2(point-Vector2(32,64),Vector2(64,63.9))
+	for solid: Rect2 in special_solids():
+		if absf(solid.position.y-point.y) < 0.1 and point.x-32 >= solid.position.x and point.x+32 <= solid.end.x:
+			supported = true
+		if envelope.intersects(solid): return false
+	return supported
+
+func special_damage(segments: Array[Dictionary], amount: float, _activation: int, _boss_remaining: Dictionary) -> Dictionary:
+	for index in range(enemies.size()-1,-1,-1):
+		var enemy: Dictionary = enemies[index]
+		if enemy.hp > 0 and StarterSpecials.overlaps(segments,FlushfiendGeometry.projectile_rect(FlushfiendGeometry.feet(enemy.pos))):
+			damage_enemy(index,amount,FlushfiendGeometry.feet(enemy.pos))
+	for index in range(swarms.actors.size()):
+		var swarm: Dictionary = swarms.actors[index]
+		if swarm.hp <= 0 or swarms.entry_active(swarm): continue
+		for offset: Vector2 in swarms.fly_offsets(swarm):
+			if StarterSpecials.overlaps(segments,Rect2(swarm.pos+offset-Vector2(6,6),Vector2(12,12))):
+				swarms.damage(index,amount)
+				break
+	return {}
 
 func step_player(delta: float) -> void:
 	if life_state != "alive" or restart_guard_device >= 0: return
@@ -596,10 +664,12 @@ func step_player(delta: float) -> void:
 	if not dispenser.actions_locked and Input.is_action_just_pressed("jump"):
 		jump_buffer = 0.14
 	var direction := Input.get_axis("left", "right")
-	velocity.x = move_toward(velocity.x, direction * employee.move_speed, 1900.0 * delta)
+	var target_speed := specials.movement_speed(direction,float(employee.move_speed),aim_direction())
+	velocity.x = move_toward(velocity.x, target_speed, 1900.0 * delta)
+	if specials.rooted(): velocity.x = 0
 	if direction != 0:
 		facing = signf(direction)
-	if jump_buffer > 0 and coyote > 0:
+	if jump_buffer > 0 and coyote > 0 and not specials.rooted():
 		velocity.y = JUMP_SPEED
 		jump_buffer = 0.0
 		coyote = 0.0
@@ -616,7 +686,10 @@ func step_player(delta: float) -> void:
 	landed_platform = -1
 	current_aim = aim_direction()
 	update_animation(delta)
-	if not dispenser.actions_locked and Input.is_action_pressed("shoot") and fire_timer <= 0 and not restart_inputs_held():
+	if specials.active and specials.hero_id == "tony" and grounded and is_zero_approx(direction):
+		animation_state = "idle"
+	specials.step(self,delta)
+	if not specials.active and not dispenser.actions_locked and Input.is_action_pressed("shoot") and fire_timer <= 0 and not restart_inputs_held():
 		var aim := current_aim
 		if aim == Vector2.ZERO: return
 		var muzzle := world_art.hero_aim_art.muzzle(self)
@@ -673,18 +746,19 @@ func step_combat(delta: float) -> void:
 		if not enemy.aggro: enemy.horizontal_speed = dx
 		var obstacles := actor_solids()
 		var vy: float = enemy.get("vertical_speed",0.0)
-		var navigation := FlushfiendNavigation.velocity(Rect2(enemy.pos,Vector2(38,36)),
+		var navigation := FlushfiendNavigation.velocity(FlushfiendGeometry.body(enemy.pos),
 			Vector2(dx,vy),enemy,delta,obstacles,move_player_body,GRAVITY,JUMP_SPEED)
 		dx = navigation.x
 		vy = navigation.y
 		if dx != 0: enemy.direction = signf(dx)
 		vy += GRAVITY * delta
-		var motion := move_player_body(enemy.pos, Vector2(dx,vy), Vector2(38,36), delta)
-		enemy.pos = motion.pos
+		var motion := move_player_body(FlushfiendGeometry.body(enemy.pos).position,
+			Vector2(dx,vy),FlushfiendGeometry.BODY_SIZE,delta)
+		enemy.pos = FlushfiendGeometry.legacy_from_body(motion.pos)
 		enemy.vertical_speed = motion.velocity.y
 		enemy.grounded = motion.grounded
 		enemy.flash = maxf(0.0, enemy.flash - delta)
-		if Rect2(player, PLAYER_SIZE).intersects(Rect2(enemy.pos, Vector2(38, 36))):
+		if Rect2(player, PLAYER_SIZE).intersects(FlushfiendGeometry.body(enemy.pos)):
 			hurt_player()
 	for index in range(shots.size() - 1, -1, -1):
 		var shot: Dictionary = shots[index]
@@ -703,7 +777,7 @@ func step_combat(delta: float) -> void:
 			if fraction >= 0 and fraction < closest: closest = fraction
 		for enemy_index in range(enemies.size()):
 			var enemy: Dictionary = enemies[enemy_index]
-			var fraction := projectile_hit(start, end, Rect2(enemy.pos - Vector2(8, 5), Vector2(54, 46)), shot_direction(shot))
+			var fraction := projectile_hit(start, end, FlushfiendGeometry.projectile_rect(FlushfiendGeometry.feet(enemy.pos)), shot_direction(shot))
 			if fraction >= 0 and fraction < closest:
 				closest = fraction
 				target = enemy_index
@@ -723,9 +797,7 @@ func step_combat(delta: float) -> void:
 			shots.remove_at(index)
 
 func flushfiend_projectile_rect(feet: Vector2) -> Rect2:
-	# world_art draws a 43px body above its feet. The 36px movement collider
-	# excludes its upper body and lets correctly aligned horizontal shots pass through it.
-	return Rect2(feet + Vector2(-19, -43), Vector2(38, 43))
+	return FlushfiendGeometry.projectile_rect(feet)
 
 func projectile_hit(start: Vector2, end: Vector2, target: Rect2, direction: Vector2) -> float:
 	# Sweep the visible projectile thickness, not an infinitely thin centerline.
@@ -928,6 +1000,7 @@ func _draw() -> void:
 	for enemy: Dictionary in enemies:
 		draw_toilet(enemy)
 	dispenser.draw_world(self)
+	special_art.draw_back(self)
 	if not dispenser.hides_hero() and (life_state != "alive" or invulnerable <= 0 or int(elapsed * 12) % 2 == 0):
 		draw_sean(player)
 	for shot: Dictionary in shots:
@@ -945,6 +1018,7 @@ func _draw() -> void:
 		draw_set_transform(Vector2(-floorf(camera_x), 0))
 	for particle: Dictionary in particles:
 		box(particle.pos.x, particle.pos.y, 4, 4, particle.color)
+	special_art.draw_front(self)
 	draw_set_transform(Vector2.ZERO)
 	draw_set_transform(Vector2(0, boss_hud.reserved_height()))
 	draw_hud()
@@ -991,6 +1065,7 @@ func draw_room() -> void:
 	world_art.draw_room(self)
 
 func draw_sean(_position: Vector2) -> void:
+	if special_art.draw_hero(self): return
 	world_art.draw_sean(self)
 
 func draw_toilet(enemy: Dictionary) -> void:
@@ -1005,13 +1080,8 @@ func draw_hud() -> void:
 	draw_progress()
 	BuildVersion.draw(self)
 
-func draw_vitals(origin := Vector2(630,17)) -> void:
-	label_at(employee.name, origin+Vector2(0,13), 14, GOLD)
-	label_at("LIVES", origin+Vector2(0,46), 12, GOLD)
-	world_art.hero_aim_art.draw_lives(self, origin+Vector2(54,26))
-	for index in range(employee.max_health):
-		box(origin.x+54+index*18, origin.y, 12, 13,
-			Color("ef9270") if index < health else Color("344552"))
+func draw_vitals(origin := Vector2(630,8), theme := "dispenser") -> void:
+	vitals_hud.draw(self,origin,theme)
 
 func draw_progress() -> void:
 	label_at("CLEARED  %d / 30" % kills, Vector2(800, 30), 16, MINT)
@@ -1019,7 +1089,7 @@ func draw_progress() -> void:
 
 func entrance_radius() -> float:
 	var prepared: Dictionary = Data.monster("toilet").damage_art.runtime_preparation
-	var scale: float = 43.0 / prepared.reference_body_height_pixels
+	var scale: float = FlushfiendGeometry.RENDER_HEIGHT / prepared.reference_body_height_pixels
 	var radius := 20.0
 	# Bound every pose and both mirrors, not just the smaller collision body.
 	for frame: Dictionary in prepared.frames:
@@ -1031,7 +1101,7 @@ func safe_entrance(x: float) -> bool:
 	var center := x + 19
 	if center-radius < 0 or center+radius > WORLD_WIDTH: return false
 	if center+radius > floorf(camera_x)-24 and center-radius < floorf(camera_x)+984: return false
-	var body := Rect2(x,404,38,36)
+	var body := FlushfiendGeometry.body(Vector2(x,404))
 	# Never insert behind a closed shutter that would prevent reaching this encounter.
 	for solid in actor_solids():
 		if solid.position.y >= FLOOR_Y: continue

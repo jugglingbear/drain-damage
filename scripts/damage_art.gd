@@ -40,7 +40,7 @@ func frame_for(enemy: Dictionary) -> int:
 	var loop: Array = spec.living_loop.columns
 	var column := int(loop[int(enemy.phase * spec.living_loop.suggested_fps / 4.5) % loop.size()])
 	if enemy.id == "toilet":
-		if enemy.pos.y < 397: column = 2
+		if not enemy.get("grounded",enemy.pos.y >= 397): column = 2
 		if enemy.flash > 0: column = 3
 	return row * int(spec.layout.columns) + column
 

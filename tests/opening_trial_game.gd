@@ -81,19 +81,21 @@ func check_queue_and_shooter(game: Node) -> void:
 	assert(shooter.role == "perched_shooter", "Unsafe rear entry blocked a safe later shooter")
 	game.trial_state.advance(0.8)
 	assert(game.trial_state.activate(shooter.event_id))
+	game.step_actor_entry(shooter,shooter.entry.duration)
 	shooter.active = true
 	var fire_times: Array[float] = []
 	var previous := 0
 	for tick in range(340):
 		shooter.age += 0.01
+		shooter.visible_age += 0.01
 		game.step_shooter(shooter,0.01,true)
 		assert(game.trial_state.results().patterns <= 1)
 		if game.hostile_shots.size() > previous:
 			fire_times.append((tick+1)*0.01)
 			previous = game.hostile_shots.size()
 	assert(fire_times.size() == 2)
-	assert(absf(fire_times[0]-1.45) < 0.03)
-	assert(absf(fire_times[1]-fire_times[0]-1.8) < 0.03)
+	assert(absf(fire_times[0]-0.8) < 0.03)
+	assert(absf(fire_times[1]-fire_times[0]-2.5) < 0.03)
 	game.step_shooter(shooter,0.01,false)
 	assert(not shooter.winding and game.trial_state.results().patterns == 0)
 	assert(game.hostile_shots.size() == 2, "Canceling a shooter must preserve existing bullets")

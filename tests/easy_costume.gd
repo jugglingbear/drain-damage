@@ -118,6 +118,10 @@ func check_motion_contacts(animation: Dictionary, hero: String) -> void:
 	for sheet in registration.sheets.values():
 		for frame in sheet.frames:
 			source_frames[str(sheet.path)+JSON.stringify(frame.source_rect)] = frame
+	var replacement: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
+		"res://assets/sprites/%s-run-v4/run-overrides-v1.json" % hero)).costumes.easy.registration
+	for frame in replacement.frames:
+		source_frames[str(replacement.path)+JSON.stringify(frame.source_rect)] = frame
 	var counts := {"grounded":0,"run-flight":0,"airborne":0}
 	var common_scale := -1.0
 	for phase in animation.phases.values():
@@ -129,8 +133,11 @@ func check_motion_contacts(animation: Dictionary, hero: String) -> void:
 			var rect: Array = frame.source_rect
 			var destination: Array = frame.destination
 			var scale := float(destination[3])/float(rect[3])
-			if common_scale < 0: common_scale = scale
-			require(is_equal_approx(scale,common_scale),hero+": motion must not resize between phases")
+			if str(frame.path) == replacement.path:
+				require(is_equal_approx(scale,replacement.expected_source_scale),hero+": registered run sheet scale")
+			else:
+				if common_scale < 0: common_scale = scale
+				require(is_equal_approx(scale,common_scale),hero+": legacy sheet scale remains uniform")
 			require(is_equal_approx(float(destination[2])/float(rect[2]),scale),hero+": anisotropic motion scale")
 			var shoulder_y := float(destination[1])+(float(marks.front_shoulder[1])-float(rect[1]))*scale
 			require(is_equal_approx(shoulder_y,64.0+float(frame.attachment_offset[1])),hero+": detached aim shoulder")

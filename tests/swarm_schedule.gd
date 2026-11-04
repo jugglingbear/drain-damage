@@ -31,9 +31,9 @@ func run_checks() -> void:
 		var actor: Dictionary = game.swarms.spawn(slot.home,slot.bounds,42)
 		for tick in range(600):
 			game.swarms.step_motion(actor,1.0/60,game.actor_solids())
-			assert(slot.bounds.grow(-48).has_point(actor.pos))
+			assert(slot.bounds.grow(-game.swarms.TERRAIN_RADIUS).has_point(actor.pos))
 			for solid in game.actor_solids():
-				assert(not solid.grow(48).has_point(actor.pos),"Swarm intersects solid: "+slot.id)
+				assert(not solid.grow(game.swarms.TERRAIN_RADIUS).has_point(actor.pos),"Swarm intersects solid: "+slot.id)
 	# No admission during pause/dialogue/dispenser/death or checkpoint grace.
 	for gate in ["pause","dialogue","dispenser","death"]:
 		game.reset_observation()
@@ -76,15 +76,18 @@ func run_checks() -> void:
 	game.camera_x = warning.pos.x-900
 	for tick in range(60): game.swarms.step(game,1.0/120)
 	assert(warning.warning > 0.29 and not warning.get("contact_ready",false))
-	# Warning contact stays harmless, including a player stepping into its footprint.
+	# Visible swarm contact damages the player even during its arrival warning.
 	game.player = warning.pos-Vector2(13,23)
 	game.health = game.employee.max_health
 	game.invulnerable = 0
 	for tick in range(120): game.swarms.step(game,1.0/120)
-	assert(game.health == game.employee.max_health and not warning.get("contact_ready",false))
+	assert(game.health < game.employee.max_health)
 	game.player.x -= 250
-	game.swarms.step(game,.01)
-	assert(warning.contact_ready)
+	# Acquisition adds its own visible transformation tell after the arrival warning.
+	for tick in range(120):
+		game.swarms.step(game,1.0/120)
+		if warning.get("contact_ready",false): break
+	assert(warning.get("contact_ready",false))
 	game.player = warning.pos-Vector2(13,23)
 	game.swarms.step(game,.01)
 	assert(game.health < game.employee.max_health)

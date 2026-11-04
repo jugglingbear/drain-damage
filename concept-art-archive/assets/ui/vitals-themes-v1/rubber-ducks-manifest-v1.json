@@ -1,0 +1,71 @@
+{
+  "source": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-2597ae86-78e0-4e55-b9ae-8638f35340d2.png",
+  "prompt": "Create transparent game UI component atlas, landscape1536x1024. Reference is approved Rubber Ducks HUD styling ONLY. NO screenshot, no words, letters, numbers, portraits. Five isolated components on genuine transparent background, broad gaps. TOP LEFT at x80 y80 region width900 height315: ONLY empty blue enamel rounded rectangular backing plate, aspect160:56, chipped blue paint ivory screws, no shelf, no icons, no sockets, no cutouts, no text, sparse details. TOP RIGHT x1080 y100 region width360 height160: separate straight horizontal ivory enamel shelf ledge, thin side-view thickness, aspect20:1, supported by two tiny brackets, no ducks. BOTTOM LEFT x100 y580 region300x300: ONE plump yellow rubber duck facing right with orange beak, black eye, subtle grime, full outline. BOTTOM MIDDLE x590 y580 region300x300: ONE collapsed charcoal rubber duck, recognizable duck head and deflated body, pale outline, facing right. BOTTOM RIGHT x1080 y580 region300x300: ONE ivory ceramic oval soap dish RIM, fully transparent large center hole for runtime portrait; no backing inside hole, no drainage slits inside hole, no character. Match polished richly shaded retro game reference. Bold shapes legible small. No shadows outside sprites, no glow haze. Keep elements strictly separate. Housing is assembled by runtime from backing and shelf so shelf can align to duck feet. Transparent background everywhere outside components and within dish opening.",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "status": "Production source delivered; runtime preparation and visual acceptance pending",
+  "source_rects": {
+    "backing": [
+      65,
+      100,
+      939,
+      331
+    ],
+    "shelf": [
+      1046,
+      238,
+      444,
+      73
+    ],
+    "health_active": [
+      74,
+      591,
+      342,
+      349
+    ],
+    "health_depleted": [
+      492,
+      636,
+      451,
+      255
+    ],
+    "portrait_rim": [
+      999,
+      590,
+      480,
+      338
+    ]
+  },
+  "alpha_preparation": "Alpha below240 is generated background haze; threshold during derived runtime preparation, preserve original. Dish center measured alpha0.",
+  "layout": {
+    "canvas": [
+      160,
+      56
+    ],
+    "backing": [
+      0,
+      0,
+      158.86,
+      56
+    ],
+    "shelf": [
+      30,
+      23,
+      102,
+      16.77
+    ],
+    "health": "Boxes(34+18*i,8,16,16); aspect fit with bottom aligned at24 for BOTH intact and collapsed duck.",
+    "lives": "Boxes(38+28*i,25,26,26); preserve oval rim aspect, vertically center in box. Selected-hero16px head centered; rim opening height must be checked for face clearance.",
+    "layer_order": [
+      "backing",
+      "shelf",
+      "health ducks",
+      "portraits",
+      "dish rims"
+    ],
+    "notes": "Shelf top near24; lower brackets may sit behind dishes. This is Art-approved initial assembly direction, pending rendered verification; adjust rear brackets behind rims rather than float dishes."
+  },
+  "archived_at": "2026-11-03T09:33:23.858838-08:00"
+}

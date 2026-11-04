@@ -3,6 +3,10 @@ const Costume = preload("res://scripts/hero_costume.gd")
 ## Independent body animation and aim layers share registration and muzzle geometry.
 const MANIFEST := "res://assets/sprites/modular-aim-v1/runtime-manifest-beard-v2.json"
 const ANIMATIONS := "res://assets/sprites/hero-animation-v2/manifest-beard-v3.json"
+const RUN_OVERRIDES := {
+	"tony":"res://assets/sprites/tony-run-v4/run-overrides-v1.json",
+	"sean":"res://assets/sprites/sean-run-v4/run-overrides-v1.json",
+}
 const ANCHOR := Vector2(64, 104)
 const HardArt = preload("res://scripts/hard_costume_art.gd")
 var hard_mode := false
@@ -29,6 +33,9 @@ func configure(value: Variant) -> void:
 		for layer: Dictionary in pose.layers:
 			load_texture(layer.path)
 	animations = JSON.parse_string(FileAccess.get_file_as_string(animation_path))
+	for hero_id in RUN_OVERRIDES:
+		var runs: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(RUN_OVERRIDES[hero_id]))
+		animations.heroes[hero_id].phases.run = runs.costumes[costume].phase.duplicate(true)
 	for pose: Dictionary in animations.additional_aim_poses:
 		poses[pose.id] = pose
 		for layer: Dictionary in pose.layers: load_texture(layer.path)
@@ -99,7 +106,7 @@ func muzzle(game: Node2D) -> Vector2:
 	var point: Array = selected_pose(game).muzzle
 	return world_transform(game) * Vector2(point[0], point[1])
 
-func draw(game: Node2D) -> void:
+func draw(game: Node2D, tint := Color.WHITE) -> void:
 	var base := world_transform(game)
 	base.origin.x -= floorf(game.camera_x)
 	var layers: Array = [death_frame(game)] if game.life_state != "alive" else selected_pose(game).layers
@@ -112,7 +119,7 @@ func draw(game: Node2D) -> void:
 		var source: Array = layer.source_rect
 		game.draw_texture_rect_region(textures[layer.path],
 			Rect2(dest[0], dest[1], dest[2], dest[3]),
-			Rect2(source[0], source[1], source[2], source[3]))
+			Rect2(source[0], source[1], source[2], source[3]),tint)
 	game.draw_set_transform(Vector2(-floorf(game.camera_x), 0))
 
 func draw_lives(game: Node2D, origin: Vector2) -> void:

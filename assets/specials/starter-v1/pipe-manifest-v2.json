@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "status": "Source layers delivered; assembled articulation requires runtime visual review",
+  "path": "assets/specials/starter-v1/pipe-components-v2.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "prompt": "Correct this transparent sprite component atlas for an industrial WATER MAIN, same rusty metal pixel-art style. Six isolated components3columns2rows1536x1024. REMOVE all haze and background, genuine transparency. Critical: top-left is NOT a funnel or horn. It is a SHORT WIDE CYLINDER with PARALLEL sides, seen SIDE ON with slightly visible open top. Width384sourcepixels, height160. Top open mouth ellipse height80,width384; dark opening width312 and height48. No tapering neck. Body samewidth all the way down to open lower edge. Top-left component spans localx64..448,y120..280. Top-middle matching FRONT LIP only: lower HALF of the shallow top ellipse, wide384,height40; no complete ring, no back arc, no solid center. Top-right straight LOWER pipe: squat width312,height192, smallbaseflange384, side-on parallel walls. Bottom-left lowerpipe bent45degrees, same largebore width312, crumpledmetal but attached to base; bottom-middle lowerpipe bent90degrees, samebore, same anchoredbase, short broad elbow not narrowtube. Bottom-right floorcollar wide384,shallowheight64, cleartransparentcenter. Keep allcomponents generousmargins and same materialscale. Do not draw pipes as tallskinnytubes or front-facing circles. No water, no text, no characters.",
+  "alpha_preparation": "Threshold alpha<240 on derived extraction; preserve source. Generated checker/haze is low-alpha, not intended artwork.",
+  "space": "All destinations below relative to fixed floor attachment; add facing*44 to hero activation foot center. Mirror assembly for left facing.",
+  "geometry": {
+    "floor": [
+      0,
+      0
+    ],
+    "bend": [
+      0,
+      -32
+    ],
+    "upright_mouth": [
+      0,
+      -48
+    ],
+    "arc_radius": 16,
+    "clear_bore": 52,
+    "outer_flange": 64
+  },
+  "layers": {
+    "upper_back": {
+      "path": "assets/specials/starter-v1/pipe-components-v2.png",
+      "source_rect": [
+        56,
+        170,
+        400,
+        236
+      ],
+      "destination": [
+        -32,
+        -52.8,
+        64,
+        37.76
+      ],
+      "pivot": [
+        0,
+        -32
+      ],
+      "source_mouth": [
+        256,
+        200
+      ],
+      "note": "Contains existing front lip too; separate front rim overlay supplies foreground water occlusion. Do not draw water behind entire dark opening."
+    },
+    "front_rim": {
+      "path": "assets/specials/starter-v1/pipe-components-v2.png",
+      "source_rect": [
+        572,
+        264,
+        391,
+        97
+      ],
+      "destination": [
+        -32,
+        -48,
+        64,
+        10
+      ],
+      "pivot": [
+        0,
+        -32
+      ],
+      "note": "Fit rim to64x10 logical overlay; foreground arc covers lower edge of water origin."
+    },
+    "lower": {
+      "path": "assets/specials/starter-v1/pipe-components-v2.png",
+      "source_rect": [
+        1079,
+        182,
+        388,
+        267
+      ],
+      "destination": [
+        -32,
+        -40,
+        64,
+        40
+      ],
+      "pivot": [
+        0,
+        0
+      ],
+      "source_base": [
+        1273,
+        449
+      ],
+      "source_upper_center": [
+        1273,
+        200
+      ]
+    },
+    "lower_buckled_45": {
+      "path": "assets/specials/starter-v1/pipe-components-v2.png",
+      "source_rect": [
+        76,
+        579,
+        358,
+        373
+      ],
+      "destination": [
+        -32,
+        -48,
+        64,
+        48
+      ],
+      "pivot": [
+        0,
+        0
+      ],
+      "source_base": [
+        242,
+        947
+      ],
+      "source_upper_center": [
+        355,
+        652
+      ],
+      "note": "Source pose guide: upper joint displaced relative to base. Must register/deform source upper-center to(0,-32) and base to(0,0); destination alone is not final articulation. Do not pop between unregistered elbow images."
+    },
+    "lower_buckled_90": {
+      "path": "assets/specials/starter-v1/pipe-components-v2.png",
+      "source_rect": [
+        551,
+        563,
+        403,
+        387
+      ],
+      "destination": [
+        -32,
+        -48,
+        64,
+        48
+      ],
+      "pivot": [
+        0,
+        0
+      ],
+      "source_base": [
+        720,
+        945
+      ],
+      "source_upper_center": [
+        924,
+        670
+      ],
+      "note": "Same joint-registration requirement as45; source-assisted lower mesh deformation preferred over abrupt image switch."
+    },
+    "collar": {
+      "path": "assets/specials/starter-v1/pipe-components-v2.png",
+      "source_rect": [
+        1072,
+        782,
+        400,
+        174
+      ],
+      "destination": [
+        -32,
+        -8,
+        64,
+        16
+      ],
+      "pivot": [
+        0,
+        0
+      ],
+      "note": "Floor clip below y0; upper collar provides occlusion of lower attachment."
+    }
+  },
+  "rejected": "pipe-components-v1.png: funnel top, wrong mouth projection; retained only.",
+  "layer_order": [
+    "lower behind hero",
+    "upper_back",
+    "water from mouth",
+    "front_rim",
+    "floor collar"
+  ],
+  "limitations": [
+    "Lower deformation attachment and floor contact need live inspection at0/45/90degrees.",
+    "No assembled animation accepted yet."
+  ]
+}

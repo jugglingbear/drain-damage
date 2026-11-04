@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "status": "Inspected source atlas for integration; runtime motion and seam acceptance pending",
+  "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "prompt": "Production game sprite source atlas on TRUE TRANSPARENT background, 1536x1024. Exactly THREE columns and FOUR rows,12 cells, each512x256, no borders labels text or backdrop. Water flows horizontally LEFT TO RIGHT in every cell. Pixel-art thick violent firehose water matching reference foam palette. Cells0,1,2,3 in row-major order: FOUR looping CORE frames, full-width512pixel strip, nominal208pixel thickness centered y128 (24pixel clear margins); left and right edges same saturated turquoise water profile suitable seamless tiling. Dense turbulent cyan core, white foam streaks shifting right between frames, contour curls differ smoothly, no narrowing, no projectile bullets, no tapered tails, no black outlines. Cells4,5,6,7: FOUR muzzle bloom frames with origin at local(32,128), expands rapidly to same208thickness and stays full bore at right edge, spray within cell. Cells8,9,10,11: FOUR pressure decay/end-cap frames, same origin(32,128), thick turbulent water breaks into increasingly sparse droplets toward right; transparent between droplets, clear progression. Opaque water core, alpha only at edges. No pipe, no hero, no glow haze. Each cell separate, exactly aligned grid. Source intended reduced4x to128x64 with52px core. Preserve crisp sprites and transparent negative space.",
+  "alpha_preparation": "Threshold alpha below240 to0 on derived extraction only; preserve original. Transparent corner alpha0 verified. Do not replace RGB with code-drawn water.",
+  "coordinate_system": "Destination rectangles relative to muzzle/stream centerline, forward +x, rotate entire assembly around pivot(0,0).",
+  "nominal_core_thickness": 52,
+  "frames": {
+    "core": [
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          6,
+          74,
+          372,
+          186
+        ],
+        "destination": [
+          0,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          390,
+          74,
+          372,
+          186
+        ],
+        "destination": [
+          0,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          774,
+          74,
+          372,
+          186
+        ],
+        "destination": [
+          0,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          1158,
+          74,
+          372,
+          186
+        ],
+        "destination": [
+          0,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      }
+    ],
+    "bloom": [
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          6,
+          418,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          390,
+          418,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          774,
+          418,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          1158,
+          418,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      }
+    ],
+    "decay": [
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          6,
+          762,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          390,
+          762,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          774,
+          762,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      },
+      {
+        "path": "assets/specials/starter-v1/torrent-atlas-v1.png",
+        "source_rect": [
+          1158,
+          762,
+          372,
+          186
+        ],
+        "destination": [
+          -2,
+          -32,
+          128,
+          64
+        ],
+        "pivot": [
+          0,
+          0
+        ],
+        "duration": 0.06
+      }
+    ]
+  },
+  "animation_notes": "Suggested source cadence0.06s/frame with smooth texture advection and brief adjacent-frame blend. Overlap tiles8px (120px pitch) to suppress generated edge mismatch; confirm seams in moving build. Preserve broad core through sweep, only decay group thins. Full viewport reach is runtime-owned."
+}

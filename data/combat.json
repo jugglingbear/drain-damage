@@ -180,6 +180,28 @@
         "source": "design/first-call-action/opening-trial-balance.json",
         "entry": "weapons.pressure-gun",
         "note": "Default first-level playtest uses this faster balance; top-level values retain the original baseline for comparison."
+      },
+      "special": {
+        "name": "Hydrojet Overdrive",
+        "status": "Authorized integration in progress; initial tunings pending playtest",
+        "contract": "design/starter-specials-v1/mechanics.json",
+        "uses_per_hero_per_logical_level": 2,
+        "duration_seconds": 7.5,
+        "damage_per_tick": 24,
+        "tick_interval_seconds": 0.1,
+        "boss_damage_cap_per_activation": 250,
+        "range": "Current viewport edge along visible water, blocked by solid scenery",
+        "input": {
+          "keyboard": "K",
+          "gamepad": "B",
+          "trigger": "fresh press"
+        },
+        "budget": "No refill on death, checkpoint, retry, subsection or boss; initialize on new run or first entry to logical level",
+        "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending",
+        "sustained_damage_per_second": 240,
+        "active_regular_sustained_damage_per_second": 75,
+        "special_to_regular_ratio": 3.2,
+        "activation": "Fresh press automatically sustains damage; neither special nor ordinary fire needs to remain held"
       }
     },
     "demolition-hammer": {
@@ -321,6 +343,24 @@
         "source": "design/first-call-action/opening-trial-balance.json",
         "entry": "weapons.heavy-plunger-launcher",
         "note": "Default first-level playtest uses this faster balance; top-level values retain the original baseline for comparison."
+      },
+      "special": {
+        "name": "Main Break",
+        "status": "Authorized integration in progress; initial tunings pending playtest",
+        "contract": "design/starter-specials-v1/mechanics.json",
+        "uses_per_hero_per_logical_level": 2,
+        "duration_seconds": 7.5,
+        "damage_per_tick": 12,
+        "tick_interval_seconds": 0.2,
+        "boss_damage_cap_per_activation": 250,
+        "range": "Current viewport edge along visible water, blocked by solid scenery",
+        "input": {
+          "keyboard": "K",
+          "gamepad": "B",
+          "trigger": "fresh press"
+        },
+        "budget": "No refill on death, checkpoint, retry, subsection or boss; initialize on new run or first entry to logical level",
+        "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending"
       }
     },
     "pipe-bomb-launcher": {
@@ -949,11 +989,11 @@
         }
       },
       "health": {
-        "max_hp": 135,
-        "spawn_hp": 135,
-        "status": "135 HP implemented in Prototype 84; validation and live-review status in handoffs/normal-density-refinement-delivery.json#prototype84",
-        "runtime_max_hp": 135,
-        "runtime_note": "First-level profile: 135 HP in all difficulties, reduced 25% from 180 HP; render scale remains 2.",
+        "max_hp": 101.25,
+        "spawn_hp": 101.25,
+        "status": "101.25 HP in Prototype 146; reduced 25% from135 at user request",
+        "runtime_max_hp": 101.25,
+        "runtime_note": "101.25 HP in all difficulties, production and trials; render scale remains2.",
         "encounter_stage": "first_level",
         "stage_status": "User requested durable opening hazard",
         "role": "mobile aerial threat",
@@ -966,20 +1006,20 @@
         },
         "visual_policy": "assets/bestiary/damage/health-visuals.json",
         "balance_policy": "assets/bestiary/balance-policy.json",
-        "rationale": "12 Tony hits at 12 damage or 8 Sean hits at 18 damage; 1.76/1.68 seconds first-to-last firing plus travel and misses.",
+        "rationale": "9 Tony hits at12 damage or6 Sean hits at18 damage with first-level weapons.",
         "hits_to_defeat": {
-          "heavy-plunger-launcher": 6,
-          "pressure-gun": 23,
-          "drain-snake": 17,
-          "demolition-hammer": 3,
-          "pipe-wrench": 12,
-          "pipe-bomb-launcher": 3
+          "heavy-plunger-launcher": 5,
+          "pressure-gun": 17,
+          "drain-snake": 13,
+          "demolition-hammer": 2,
+          "pipe-wrench": 9,
+          "pipe-bomb-launcher": 2
         },
         "comparison_assumptions": "Base weapon catalog damage; first-level overrides compared separately. Full-health hits, no armor; melee may not reach flight.",
-        "comparison_balance_version": "widow-health-2026-10-20",
+        "comparison_balance_version": "widow-health-2026-11-02",
         "first_level_hits_to_defeat": {
-          "pressure-gun": 12,
-          "heavy-plunger-launcher": 8
+          "pressure-gun": 9,
+          "heavy-plunger-launcher": 6
         }
       },
       "name": "The Hallowed Widow",
@@ -1589,7 +1629,7 @@
       "health": {
         "max_hp": 24,
         "spawn_hp": 24,
-        "role": "fragile wandering environmental enemy",
+        "role": "wandering swarm that acquires nearby heroes and pursues; visual weapon forms share damage",
         "encounter_stage": "Early first-level traversal, initially shown alone before mixed fights",
         "rationale": "Sean requested at least two hits from his current starter weapon. At24HP both active first-level starters take two hits: Sean18 damage leaves6HP; Tony12 leaves12HP. Preserve a light wandering obstacle without adding a third Tony hit.",
         "hits_to_defeat": {
@@ -1657,7 +1697,8 @@
         "safe_route": "First introduction leaves a clear bypass and room to learn. Initial swarms optional and excluded from gate-clear requirements; their kills of existing gate enemies still count.",
         "animation": "Select from actual velocity after collision. Use4px/s hover threshold and20% dominant-axis hysteresis; preserve loop clock across direction changes to avoid frame-zero flicker.",
         "determinism": "Fixed physics updates; seeded RNG only at elapsed decision events, never per render frame. Separate seeds per spawn ID; cap catch-up after long stalls.",
-        "tuning_status": "Initial implementation defaults; validate visually and adjust before claiming feel is final."
+        "tuning_status": "Initial implementation defaults; validate visually and adjust before claiming feel is final.",
+        "scope": "Legacy environmental base tuning only. Active shared Gnatastrophe uses hunting_mode continuous70px/s wandering and140px/s charges, without hover pauses."
       },
       "contact": {
         "hero_damage": 1,
@@ -3935,8 +3976,8 @@
         "flyer": {
           "creature_id": null,
           "status": "Repeating dive/rise/top-pause/retarget source revision; integrated build pending",
-          "max_hp": 135,
-          "spawn_hp": 135,
+          "max_hp": 101.25,
+          "spawn_hp": 101.25,
           "speed_pixels_per_second": 100,
           "contact_damage_player": 1,
           "entry_warning_seconds": 0.8,
@@ -6501,5 +6542,24 @@
         "lodged_debris_coverage_fraction": 1.0
       }
     ]
+  },
+  "starter_specials": {
+    "initial_tuning": {
+      "damage_per_tick": 12,
+      "tick_interval_seconds": 0.2,
+      "maximum_damage_per_boss_per_activation": 250,
+      "recoil_horizontal_pixels_per_second": 30,
+      "tony_jet_thickness_pixels": 52,
+      "hero_overrides": {
+        "tony": {
+          "damage_per_tick": 24,
+          "tick_interval_seconds": 0.1
+        },
+        "sean": {
+          "damage_per_tick": 12,
+          "tick_interval_seconds": 0.2
+        }
+      }
+    }
   }
 }

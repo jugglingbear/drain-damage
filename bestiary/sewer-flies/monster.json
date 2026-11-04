@@ -2,8 +2,8 @@
   "id": "sewer-fly-swarm",
   "name": "Gnatastrophe",
   "name_status": "Renamed Gnatastrophe by Sean on 2026-10-23; stable ID retained",
-  "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
-  "implementation_status": "Integrated in Prototype70/0.70.0: nine potential first-level swarms. Automated packaged verification passed; live visual, listening and fairness review pending.",
+  "description": "A cloud of sewer flies that wanders until a plumber approaches, then reforms into a flying weapon shape and gives chase.",
+  "implementation_status": "Packaged in Prototype144; bounded still review passed; full-cycle/all-angle animation review pending.",
   "backstory": {
     "status": "draft",
     "text": "A maintenance crew first reported Gnatastrophe as a swarm circling a blocked vent with the persistence of aircraft waiting for landing clearance. They have since been spotted throughout the sewers, flying in close formation toward no particular destination. Their buzzing carries impressively far for something with so little to report. Plumbers and monsters alike suffer for wandering into their flight path. Nobody has identified a commanding officer, although several flies appear to be taking credit.",
@@ -12,7 +12,7 @@
   "health": {
     "max_hp": 24,
     "spawn_hp": 24,
-    "role": "fragile wandering environmental enemy",
+    "role": "wandering swarm that acquires nearby heroes and pursues; visual weapon forms share damage",
     "encounter_stage": "Early first-level traversal, initially shown alone before mixed fights",
     "rationale": "Sean requested at least two hits from his current starter weapon. At24HP both active first-level starters take two hits: Sean18 damage leaves6HP; Tony12 leaves12HP. Preserve a light wandering obstacle without adding a third Tony hit.",
     "hits_to_defeat": {
@@ -61,7 +61,8 @@
       128,
       128
     ],
-    "runtime_scale_note": "128x128 display;48px radius covers89.9\u201399.8% alpha-weighted living fly ink across20frames, measured by Art. Contact, shots and obstacle clearance share radius."
+    "runtime_scale_note": "128x128 display;48px radius covers89.9\u201399.8% alpha-weighted living fly ink across20frames, measured by Art. Contact, shots and obstacle clearance share radius.",
+    "formation_manifest": "assets/bestiary/sewer-flies/weapon-formations-v3.json"
   },
   "marketing": {
     "status": "Not requested for current sprite mockup; pending future production",
@@ -72,7 +73,7 @@
   "lore_quirk": {
     "status": "proposed flavor only",
     "text": "An absurdly self-important air force with no flight plan or identifiable commanding officer.",
-    "mechanics_constraint": "Slow random non-hunting movement and incidental contact damage remain unchanged. No guns, projectiles, pursuit, uniforms or new animation required."
+    "mechanics_constraint": "Historical no-pursuit restriction superseded by approved November2 hunting mode. No guns, projectiles or weapon-specific damage mechanics."
   },
   "movement": {
     "model": "bounded_correlated_wander",
@@ -103,7 +104,8 @@
     "safe_route": "First introduction leaves a clear bypass and room to learn. Initial swarms optional and excluded from gate-clear requirements; their kills of existing gate enemies still count.",
     "animation": "Select from actual velocity after collision. Use4px/s hover threshold and20% dominant-axis hysteresis; preserve loop clock across direction changes to avoid frame-zero flicker.",
     "determinism": "Fixed physics updates; seeded RNG only at elapsed decision events, never per render frame. Separate seeds per spawn ID; cap catch-up after long stalls.",
-    "tuning_status": "Initial implementation defaults; validate visually and adjust before claiming feel is final."
+    "tuning_status": "Initial implementation defaults; validate visually and adjust before claiming feel is final.",
+    "scope": "Legacy environmental base tuning only. Active shared Gnatastrophe uses hunting_mode continuous70px/s wandering and140px/s charges, without hover pauses."
   },
   "contact": {
     "hero_damage": 1,
@@ -270,5 +272,47 @@
       "max_voices": 2,
       "loop": false
     }
+  },
+  "approved_revision": {
+    "date": "2026-11-02",
+    "status": "Prototype145 packaged: filled rounded cloud and 50% larger weapon visuals passed bounded still review; continuous motion and balance review remain pending",
+    "description": "Use original circular-ish filled cloud, not an arch. Keep individual fly motion; scale formed weapon anchors, glyphs and motion1.5x while cloud remains unchanged.",
+    "art_manifest": "assets/bestiary/sewer-flies/weapon-formations-v3.json",
+    "supersedes": "Prior no-pursuit movement and lore mechanics constraints for this approved revision; legacy runtime fields below describe the previous implementation."
+  },
+  "hunting_mode": {
+    "status": "Prototype148 packaged endpoint/contact checks and bounded grounded still review passed; continuous boundary motion and all corners/forms remain unverified",
+    "renderer": "scripts/gnatastrophe.gd",
+    "base_renderer": "scripts/sewer_swarm.gd",
+    "notice_distance_pixels": 320,
+    "acquisition_seconds": 0.8,
+    "morph_seconds": 0.65,
+    "pursuit_speed_pixels_per_second": 140,
+    "formation_manifest": "assets/bestiary/sewer-flies/weapon-formations-v3.json",
+    "forms": [
+      "sword",
+      "arrow",
+      "spear",
+      "spiked_mace"
+    ],
+    "damage_rule": "Every living phase damages hero on contact, including moving tells and outer rendered weapon flies. Shared24HP and contact damage amount/cooldown retained;48px core plus per-fly rendered rectangles.",
+    "wander_speed_pixels_per_second": 70,
+    "reform_seconds": 0.65,
+    "minimum_wander_seconds": 0.8,
+    "targeting": "Capture hero center when proximity starts the moving tell; charge straight toward that location, without tracking a dodge.",
+    "cycle": "Continuous random wander, random weapon per acquisition, moving morph/tell, double-speed charge, moving cloud reform on arrival, repeat.",
+    "obstacles": "4px center terrain sweep reaches grounded hero center; individual fly glyphs project against solid surfaces. Trial acquisition expands beyond original wander pocket. Physical blocking walls still end a charge."
+  },
+  "art_review_144": {
+    "status": "Packaged in Prototype144; bounded still review passed; full-cycle/all-angle animation review pending.",
+    "owner_record": "handoffs/three-screen-trial-delivery.json#visual_review_144",
+    "review_scope": "Packaged staged forms and sampled route poses; pressure base attachment in sampled charge poses.",
+    "remaining": [
+      "Continuous morph/turn/death/pressure cadence",
+      "All rotated forms",
+      "Gnat/Widow crowding and subtle mace spikes",
+      "Subjective gameplay fairness and fun"
+    ],
+    "provenance": "Post-build editorial reconciliation; these later status updates are not claimed present in the reviewed PCK."
   }
 }

@@ -224,5 +224,26 @@
     "Visual effects do not define collision, damage, reach, travel distance, or blast radius.",
     "Clean alpha fringes and validate readable icons and effects at gameplay size.",
     "Fire pose includes muzzle effect; prevent duplicate effect/projectile rendering at release."
-  ]
+  ],
+  "special_art": {
+    "name": "Hydrojet Overdrive",
+    "status": "Production candidates integrated by Engineering; runtime contact and motion visual acceptance pending",
+    "updated_date": "2026-11-03",
+    "manifests": [
+      "assets/specials/starter-v1/water-manifest-v1.json"
+    ],
+    "delivery_record": "assets/specials/starter-v1/delivery.json",
+    "generation_prompts": "assets/specials/starter-v1/generation-prompts.json",
+    "integration_evidence": "Engineering report in current project chat; no inspected running capture yet",
+    "visual_acceptance": {
+      "accepted": false,
+      "blocker": "Mac locked; running capture pending unlock",
+      "remaining": [
+        "Native-size readability",
+        "Continuous flow and tile seams",
+        "Aim/sweep registration",
+        "Hero contact and motion"
+      ]
+    }
+  }
 }

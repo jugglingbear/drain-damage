@@ -87,6 +87,11 @@ static func initialize(game: Node2D, target: Dictionary) -> void:
 	game.invulnerable = 1.0
 
 static func summary(game: Node2D, options: Dictionary) -> Dictionary:
+	if options.target.initializer in ["three-screen-trial","section-one-two"]:
+		return {"target":options.target.id,"kind":"level","hero":game.employee.id,
+			"difficulty":game.difficulty,"seed":game.run_seed,"player":[game.player.x,game.player.y],
+			"health":game.health,"lives":game.lives,"three_screen_trial":true,
+			"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}
 	return {"target":options.target.id,"kind":options.target.kind,"hero":game.employee.id,
 		"difficulty":game.difficulty,"seed":game.run_seed,"player":[game.player.x,game.player.y],
 		"checkpoint":game.checkpoint_index,"respawn_origin":game.respawn_origin,

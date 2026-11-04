@@ -211,7 +211,8 @@ func handle_menu(event: InputEvent) -> bool:
 		return true
 	if confirm:
 		match menu_index:
-			0: request_start()
+			0:
+				request_start()
 			1: showing_controls = true
 			2: get_tree().quit()
 		return true
@@ -423,7 +424,15 @@ func start_game(launch: Dictionary = {}) -> void:
 	navigation_voice.stop()
 	held_navigation_buttons.clear()
 	music_director.play_track("level")
-	game = load("res://scenes/level_two_camera_test.tscn").instantiate() if launch.get("target",{}).get("initializer","") == "camera-test" else GAME.new()
+	var initializer: String = launch.get("target",{}).get("initializer","")
+	if initializer == "three-screen-trial":
+		game = load("res://scripts/three_screen_trial_game.gd").new()
+	elif initializer == "section-one-two":
+		game = load("res://scripts/section_one_two_game.gd").new()
+	elif initializer == "camera-test":
+		game = load("res://scenes/level_two_camera_test.tscn").instantiate()
+	else:
+		game = GAME.new()
 	if launch.has("target"): game.seed_override = launch.seed
 	game.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	game.music_director = music_director

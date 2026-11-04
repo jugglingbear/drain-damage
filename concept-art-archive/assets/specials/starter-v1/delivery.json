@@ -1,0 +1,113 @@
+{
+  "status": "Integrated in Prototype162; Sean and Tony normal right-facing packaged sampled progression passes Art contact/continuity review; broader review scoped below",
+  "archived_at": "2026-11-03T20:23:19.959784-08:00",
+  "active_manifests": [
+    "water-manifest-v1.json",
+    "pipe-manifest-v2.json",
+    "sean-actions-manifest-v1.json"
+  ],
+  "preserved_rejected": {
+    "pipe-components-v1.png": "Funnel projection; replaced by parallel-wall main",
+    "sean-normal-main-break-v1.png": "Horizontal plunger weapon pose",
+    "sean-normal-main-break-v2.png": "Compact reach fails44px mouth",
+    "sean-easy-main-break-v1.png": "Compact reach fails44px mouth",
+    "sean-hard-main-break-v1.png": "Compact reach fails44px mouth",
+    "normal-pose-match-v3.png": "Consistent action but compact reach fails44px mouth",
+    "easy-pose-match-v2.png": "Consistent action but compact reach fails44px mouth"
+  },
+  "validation": [
+    "All referenced source files exist",
+    "All manifest source rectangles fit actual images",
+    "18 costume frames total1.0s each costume",
+    "First4 cup x anchors44px each costume",
+    "Water alpha corners0 verified"
+  ],
+  "remaining": [
+    "Continuous playback smoothness and exact transition timing",
+    "All-costume/mirrored full-sequence coverage beyond earlier bounded source stills",
+    "HUD unsampled combinations and full boss-fight composition"
+  ],
+  "dimensions": {
+    "normal-pose-match-v3.png": [
+      1536,
+      1024
+    ],
+    "sean-hard-extended-v2.png": [
+      1536,
+      1024
+    ],
+    "easy-pose-match-v2.png": [
+      1536,
+      1024
+    ],
+    "sean-easy-extended-v3.png": [
+      1536,
+      1024
+    ],
+    "sean-normal-extended-v4.png": [
+      1536,
+      1024
+    ],
+    "torrent-atlas-v1.png": [
+      1536,
+      1024
+    ],
+    "sean-hard-main-break-v1.png": [
+      1536,
+      1024
+    ],
+    "sean-easy-main-break-v1.png": [
+      1536,
+      1024
+    ],
+    "sean-normal-main-break-v2.png": [
+      1536,
+      1024
+    ],
+    "sean-normal-main-break-v1.png": [
+      1536,
+      1024
+    ],
+    "pipe-components-v1.png": [
+      1536,
+      1024
+    ],
+    "pipe-components-v2.png": [
+      1536,
+      1024
+    ]
+  },
+  "runtime_review": {
+    "package": "0.162.0 visible in captures",
+    "evidence_directory": "builds/Prototype-162/evidence",
+    "inspected": [
+      "sean-motion-0.png",
+      "sean-motion-1.png",
+      "sean-motion-2.png",
+      "sean-motion-3.png",
+      "sean-motion-5.png",
+      "sean-motion-7.png",
+      "sean-motion-9.png",
+      "sean-motion-11.png",
+      "sean-sweep-0.png",
+      "sean-sweep-2.png",
+      "sean-sweep-4.png",
+      "sean-sweep-6.png",
+      "sean-sweep-8.png"
+    ],
+    "findings": "Plunger rises with emerging pipe; sampled water onset follows recovery. Feet and floor collar stay planted. Upright, oblique and horizontal pipe remain supported with no visible mesh holes. Water begins inside rim and reaches viewport boundary; decay narrows then ends, leaving same bent pipe. HUD attachment readable in package.",
+    "limit": "Sampled frames validate progression and visible contact, not continuous playback smoothness or exact shutter timing.",
+    "tony": {
+      "inspected": [
+        "tony-motion-0.png",
+        "tony-motion-1.png",
+        "tony-motion-2.png",
+        "tony-motion-3.png",
+        "tony-motion-4.png"
+      ],
+      "findings": "Normal right-facing packaged sequence shows backward displacement with water onset following nozzle. Rounded onset expands from narrow brass nozzle; no visible detachment or hard repeated tile seams at native capture size. Stream reaches right viewport boundary; HUD remains readable.",
+      "limit": "Sampled recoil progression, not continuous playback or all aiming/costume combinations."
+    }
+  },
+  "hud": "Selected A delivered and integrated; bounded still review in assets/ui/specials-module-v1/manifest.json"
+}

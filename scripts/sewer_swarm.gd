@@ -1,7 +1,9 @@
 extends RefCounted
 signal damaged(actor: Dictionary, lethal: bool)
 ## Seeded environmental wander: steering never receives a player or target position.
+const MonsterEntry = preload("res://scripts/monster_entry.gd")
 const DISPLAY_SIZE := Vector2(128,128)
+const FlushfiendGeometry = preload("res://scripts/flushfiend_geometry.gd")
 const Data = preload("res://scripts/combat_data.gd")
 var definition: Dictionary
 var texture: Texture2D
@@ -21,10 +23,28 @@ func spawn(position: Vector2, bounds: Rect2, seed_value: int) -> Dictionary:
 		"animation":"hover", "axis":"x", "flash":0.0, "stuck_time":0.0, "stuck_origin":position,
 		"blocked":false, "recovery_wait":0.0}
 
+func begin_entry(actor: Dictionary, duration := 1.2) -> void:
+	# The generous envelope includes the full cloud and every animated fly, not just its core.
+	actor.entry = MonsterEntry.create(actor.pos,128.0,maxf(1.2,duration),"top")
+	actor.pos = actor.entry.pos
+	actor.contact_ready = false
+
+func entry_active(actor: Dictionary) -> bool:
+	return MonsterEntry.active(actor)
+
+func step_entry(actor: Dictionary, delta: float) -> bool:
+	if not entry_active(actor): return false
+	MonsterEntry.advance(actor.entry,delta)
+	actor.pos = actor.entry.pos
+	actor.velocity = Vector2.DOWN*100
+	select_animation(actor)
+	return true
+
 func reset() -> void:
 	hero_cooldown = 0
 	actors = [spawn(Vector2(2090,290),Rect2(2000,220,180,204),101),
 		spawn(Vector2(4400,330),Rect2(4140,230,430,194),202)]
+	for actor in actors: begin_entry(actor)
 
 func clear_path(start: Vector2, finish: Vector2, bounds: Rect2, solids: Array[Rect2]) -> bool:
 	var radius: float = definition.movement.contact_radius_pixels
@@ -72,6 +92,7 @@ func recovery_heading(actor: Dictionary, solids: Array[Rect2]) -> float:
 func step_motion(actor: Dictionary, delta: float, solids: Array[Rect2]) -> void:
 	var tuning: Dictionary = definition.movement
 	actor.clock += delta
+	if step_entry(actor,delta): return
 	actor.flash = maxf(0,actor.flash-delta)
 	if actor.hp <= 0:
 		actor.death += delta
@@ -131,6 +152,7 @@ func select_animation(actor: Dictionary) -> void:
 		else ("move_down" if velocity.y > 0 else "move_up")
 
 func overlaps(actor: Dictionary, rect: Rect2) -> bool:
+	if entry_active(actor): return false
 	var nearest: Vector2 = actor.pos.clamp(rect.position,rect.end)
 	return actor.pos.distance_squared_to(nearest) <= pow(definition.movement.contact_radius_pixels,2)
 
@@ -140,7 +162,9 @@ func step(game: Node2D, delta: float) -> void:
 	for enemy: Dictionary in game.enemies:
 		enemy.swarm_cooldown = maxf(0,enemy.get("swarm_cooldown",0.0)-delta)
 	for actor in actors:
+		var arriving := entry_active(actor)
 		step_motion(actor,delta,solids)
+		if arriving: continue
 		if actor.get("warning",0.0) > 0:
 			# Offscreen staging must not spend the player's visible warning time.
 			if actor.pos.x+64 >= game.camera_x and actor.pos.x-64 <= game.camera_x+960:
@@ -160,13 +184,13 @@ func step(game: Node2D, delta: float) -> void:
 			# Boss shell and invulnerability are never bypassed by environmental contact.
 			if enemy.hp <= 0 or enemy.get("invulnerable",0.0) > 0 or enemy.get("is_boss",false) \
 				or enemy.id == "clogfather": continue
-			if enemy.get("swarm_cooldown",0.0) <= 0 and overlaps(actor,Rect2(enemy.pos,Vector2(38,36))):
+			if enemy.get("swarm_cooldown",0.0) <= 0 and overlaps(actor,FlushfiendGeometry.body(enemy.pos)):
 				enemy.swarm_cooldown = definition.contact.per_target_cooldown_seconds
 				game.damage_enemy(index,definition.contact.monster_damage,actor.pos,false)
 
 func shot_hit(start: Vector2, finish: Vector2, index: int, thickness: float) -> float:
 	var actor: Dictionary = actors[index]
-	if actor.hp <= 0: return -1
+	if actor.hp <= 0 or entry_active(actor): return -1
 	var offset: Vector2 = start-actor.pos
 	var travel := finish-start
 	var radius: float = definition.movement.contact_radius_pixels+thickness
@@ -182,7 +206,7 @@ func shot_hit(start: Vector2, finish: Vector2, index: int, thickness: float) -> 
 
 func damage(index: int, amount: float) -> void:
 	var actor: Dictionary = actors[index]
-	if actor.hp <= 0 or amount <= 0 or not is_finite(amount): return
+	if actor.hp <= 0 or amount <= 0 or not is_finite(amount) or entry_active(actor): return
 	actor.hp = maxf(0,actor.hp-amount)
 	actor.flash = 0.1
 	damaged.emit(actor, actor.hp == 0)
@@ -201,6 +225,6 @@ func draw(canvas: Node2D, show_bars: bool) -> void:
 		var source: Array = animation.frames[index].source_rect
 		canvas.draw_texture_rect_region(texture,Rect2(actor.pos-DISPLAY_SIZE/2,DISPLAY_SIZE),
 			Rect2(source[0],source[1],source[2],source[3]),Color(2,2,2) if actor.flash > 0 else Color.WHITE)
-		if show_bars and actor.hp > 0:
+		if show_bars and actor.hp > 0 and not entry_active(actor):
 			canvas.draw_rect(Rect2(actor.pos+Vector2(-16,-57),Vector2(32,3)),Color("172432"))
 			canvas.draw_rect(Rect2(actor.pos+Vector2(-16,-57),Vector2(32*actor.hp/definition.health.max_hp,3)),Color("7ce4bc"))

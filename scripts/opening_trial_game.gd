@@ -1,5 +1,10 @@
 extends "res://scripts/game.gd"
 ## Explicit comparison mode; original campaign data and progression remain independent.
+const CeilingShooterArt = preload("res://scripts/ceiling_shooter_art.gd")
+var ceiling_shooter_art := CeilingShooterArt.new()
+var entry_fixtures: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
+	"res://assets/world/three-screen-trial/shooter-entry-fixtures-v1.json"))
+const MonsterEntry = preload("res://scripts/monster_entry.gd")
 const TrialState = preload("res://scripts/opening_trial_state.gd")
 const TrialLevel = preload("res://scripts/opening_trial_level.gd")
 var trial_state := TrialState.new()
@@ -37,6 +42,14 @@ func load_trial_textures(value: Variant) -> void:
 	if value is Dictionary:
 		if value.has("path") and value.has("source_rect"):
 			trial_textures[value.path] = load("res://"+value.path)
+			if value.has("alpha_cutoff"):
+				var pixels: Image = trial_textures[value.path].get_image()
+				pixels.convert(Image.FORMAT_RGBA8)
+				var bytes := pixels.get_data()
+				for index in range(3,bytes.size(),4):
+					if bytes[index] < int(value.alpha_cutoff): bytes[index] = 0
+				trial_textures[value.path] = ImageTexture.create_from_image(Image.create_from_data(
+					pixels.get_width(),pixels.get_height(),false,Image.FORMAT_RGBA8,bytes))
 		for child in value.values(): load_trial_textures(child)
 	elif value is Array:
 		for child in value: load_trial_textures(child)
@@ -122,12 +135,22 @@ func role_scale(role: String) -> float:
 	return 1.0
 
 func event_size(role: String) -> Rect2:
-	if role in ["runner","rear_runner"]: return Rect2(-19,-36,38,36)
+	if role in ["runner","rear_runner"]: return FlushfiendGeometry.body_at_feet(Vector2.ZERO)
 	var r: Array = trial_data.role_art.roles[ROLE_KEYS[role]].proposed_hitbox_relative_to_anchor
 	return Rect2(Vector2(r[0],r[1])*role_scale(role),Vector2(r[2],r[3])*role_scale(role))
 
+func ceiling_direction(actor: Dictionary) -> Vector2:
+	var committed: Vector2 = actor.get("committed_dir",Vector2.ZERO)
+	if not actor.winding and not committed.is_zero_approx(): return committed
+	return (player+PLAYER_SIZE*0.5-ceiling_shooter_art.pivot(actor.feet)).normalized()
+
+func actor_shape(actor: Dictionary) -> Rect2:
+	if actor.get("mount","") == "ceiling":
+		return ceiling_shooter_art.bounds(Vector2.ZERO,ceiling_direction(actor))
+	return event_size(actor.role)
+
 func actor_rect(actor: Dictionary) -> Rect2:
-	var body := event_size(actor.role)
+	var body := actor_shape(actor)
 	body.position += actor.feet
 	return body
 
@@ -199,6 +222,126 @@ func create_actor(event: Dictionary, home: Vector2) -> void:
 		"warning_seconds":float(event.warning_seconds),"target":Vector2.ZERO,"flight_time":0.0,"hover_started":false,"hover_remaining":0.0,
 		"runner":Data.spawn("toilet",home-Vector2(19,36))})
 
+	var actor: Dictionary = actors.back()
+	var radius := actor_render_radius(actor.role)
+	if home.x+radius >= camera_x and home.x-radius <= camera_x+960:
+		start_actor_entry(actor,"top" if role == "aggressive_flyer" else "floor")
+
+func render_bounds(role: String) -> Rect2:
+	var result := Rect2()
+	if role in ["runner","rear_runner"]: return event_size(role)
+	var spec: Dictionary = trial_data.role_art.roles[ROLE_KEYS[role]]
+	for frame: Dictionary in spec.frames:
+		var rect := region(frame.destination)
+		rect.position -= Vector2(spec.anchor[0],spec.anchor[1])
+		rect = Rect2(rect.position*role_scale(role),rect.size*role_scale(role))
+		result = result.merge(rect) if result.has_area() else rect
+	return result
+
+func actor_render_radius(role: String) -> float:
+	var radius := 1.0
+	if role in ["runner","rear_runner"]:
+		var renderer = world_art.damage_art
+		renderer.prepare("toilet")
+		var scale: float = FlushfiendGeometry.RENDER_HEIGHT / Data.monster("toilet").damage_art.runtime_preparation.reference_body_height_pixels
+		for index in range(renderer.regions.toilet.size()):
+			var rect := Rect2(-renderer.anchors.toilet[index]*scale,renderer.regions.toilet[index].size*scale)
+			radius = maxf(radius,maxf(rect.position.length(),rect.end.length()))
+	else:
+		var spec: Dictionary = trial_data.role_art.roles[ROLE_KEYS[role]]
+		for frame: Dictionary in spec.frames:
+			var rect := region(frame.destination)
+			rect.position -= Vector2(spec.anchor[0],spec.anchor[1])
+			radius = maxf(radius,maxf(rect.position.length(),rect.end.length())*role_scale(role))
+	return radius
+
+func start_actor_entry(actor: Dictionary, mode: String, mouth := Vector2.ZERO, duration := 1.2) -> void:
+	if actor.role == "perched_shooter" and mode == "foreground":
+		push_error("Stationary shooters cannot enter from the foreground")
+		return
+	actor.mount = mode if mode in ["floor","ceiling"] else ""
+	actor.entry = MonsterEntry.create(actor.home,actor_render_radius(actor.role),
+		maxf(duration,actor.warning_seconds),mode,mouth,camera_x,player+PLAYER_SIZE*0.5)
+	MonsterEntry.advance(actor.entry,0)
+	actor.feet = actor.entry.pos
+	actor.contact_live = false
+	actor.winding = false
+
+func step_actor_entry(actor: Dictionary, delta: float) -> bool:
+	if not MonsterEntry.active(actor): return false
+	MonsterEntry.advance(actor.entry,delta)
+	actor.feet = actor.entry.pos
+	actor.contact_live = false
+	actor.winding = false
+	return not actor.entry.complete
+
+func draw_entry_fixture(actor: Dictionary, front := false) -> void:
+	var mode: String = actor.get("mount","")
+	if mode not in ["floor","ceiling"]: return
+	var fixture: Dictionary = entry_fixtures[mode]
+	var texture: Texture2D = load("res://"+fixture.path)
+	if mode == "floor":
+		var part := "front" if front else "back"
+		var destination := region(fixture[part+"_destination_offset"])
+		destination.position += actor.home
+		draw_texture_rect_region(texture,destination,region(fixture[part+"_source_rect"]))
+	elif not front:
+		var destination := region(fixture.support_destination_offset)
+		destination.position += actor.home
+		var support_source := region(fixture.support_source_rect)
+		# Flip UVs within the authored destination; negative rectangle sizes shift the visible mount.
+		var corners := PackedVector2Array([destination.position,
+			Vector2(destination.end.x,destination.position.y),destination.end,
+			Vector2(destination.position.x,destination.end.y)])
+		var uvs := PackedVector2Array([Vector2(support_source.position.x,support_source.end.y),
+			support_source.end,Vector2(support_source.end.x,support_source.position.y),support_source.position])
+		for index in range(uvs.size()): uvs[index] /= texture.get_size()
+		draw_polygon(corners,PackedColorArray([Color.WHITE]),uvs,texture)
+		for offset in fixture.post_center_offsets_x:
+			var y := 0.0
+			var end: float = actor.home.y+float(fixture.support_destination_offset[1])+2
+			while y < end:
+				var height := minf(float(fixture.post_logical_tile_height),end-y)
+				var source := region(fixture.post_source_rect)
+				source.size.y *= height/float(fixture.post_logical_tile_height)
+				draw_texture_rect_region(texture,Rect2(actor.home.x+float(offset)-5.5,y,11,height),source)
+				y += height
+
+func draw_entry_actor(actor: Dictionary) -> void:
+	var entry: Dictionary = actor.entry
+	var scale: float = entry.scale
+	if actor.role in ["runner","rear_runner"]:
+		draw_entry_fixture(actor)
+		var enemy: Dictionary = actor.runner.duplicate()
+		enemy.hp = actor.hp
+		enemy.max_hp = actor.max_hp
+		enemy.phase = actor.age*4.5
+		enemy.direction = actor.facing
+		enemy.grounded = true
+		var renderer = world_art.damage_art
+		var index: int = renderer.frame_for(enemy)
+		var source: Rect2 = renderer.regions.toilet[index]
+		var pivot: Vector2 = renderer.anchors.toilet[index]
+		scale *= FlushfiendGeometry.RENDER_HEIGHT / Data.monster("toilet").damage_art.runtime_preparation.reference_body_height_pixels
+		var destination := Rect2(entry.pos-pivot*scale,source.size*scale)
+		if actor.facing > 0:
+			destination.position.x = entry.pos.x-(source.size.x-pivot.x)*scale
+		# The actual pipe opening, rather than a fade, reveals the leading body.
+		var visible: Rect2 = destination.intersection(entry.clip) if entry.clip.has_area() else destination
+		if not visible.has_area(): return
+		var corners := PackedVector2Array([visible.position,Vector2(visible.end.x,visible.position.y),
+			visible.end,Vector2(visible.position.x,visible.end.y)])
+		var uvs := PackedVector2Array()
+		for point in corners:
+			var fraction: Vector2 = (point-destination.position)/destination.size
+			if actor.facing > 0: fraction.x = 1-fraction.x
+			uvs.append((source.position+fraction*source.size)/renderer.textures.toilet.get_size())
+		draw_polygon(corners,PackedColorArray([Color.WHITE]),uvs,renderer.textures.toilet)
+		draw_entry_fixture(actor,true)
+	else:
+		# The ordinary role renderer supplies current animation frames and registered pivots.
+		draw_actor(actor,true)
+
 func damage_trial_actor(actor: Dictionary, amount: float) -> void:
 	if amount <= 0 or not is_finite(amount) or actor.hp <= 0: return
 	var previous_hp: float = actor.hp
@@ -209,6 +352,13 @@ func damage_trial_actor(actor: Dictionary, amount: float) -> void:
 		finish_trial_defeat(actor)
 	elif actor.hp < previous_hp:
 		creature_audio[AUDIO_IDS[actor.role]].play_hit(actor, float(actor.get("age", elapsed)))
+
+func special_damage(segments: Array[Dictionary], amount: float, activation: int, boss_remaining: Dictionary) -> Dictionary:
+	var applied := super.special_damage(segments,amount,activation,boss_remaining)
+	for actor: Dictionary in actors:
+		if actor.hp > 0 and actor.active and StarterSpecials.overlaps(segments,actor_projectile_rect(actor)):
+			damage_trial_actor(actor,amount)
+	return applied
 
 func finish_trial_defeat(actor: Dictionary) -> void:
 	if actor.get("defeat_recorded",false): return
@@ -242,6 +392,7 @@ func move_ground_actor(actor: Dictionary, dx: float, delta: float) -> void:
 	var motion: Dictionary = trial_level.move_body(actor.feet+shape.position,Vector2(dx,actor.vy),shape.size,delta)
 	actor.feet = motion.pos-shape.position
 	actor.vy = motion.velocity.y
+	actor.grounded = motion.grounded
 	# The body sweep uses this role's actual bounds; a blocked patrol turns instead of jumping.
 	if actor.role == "floor_emerger" and delta > 0 and dx != 0 and motion.velocity.x == 0:
 		actor.facing = -signf(dx)
@@ -255,6 +406,7 @@ func step_trial_actors(delta: float) -> void:
 		if actor.hp <= 0:
 			actor.death += delta
 			continue
+		if step_actor_entry(actor,delta): continue
 		var visible: bool = actor.feet.x > camera_x+25 and actor.feet.x < camera_x+935
 		if visible: actor.visible_age += delta
 		if not actor.active:
@@ -333,6 +485,13 @@ func face_flyer_toward_hero(actor: Dictionary) -> void:
 	# Keep the previous heading under a nearly centered hero instead of jittering left/right.
 	if absf(distance) > 6.0: actor.facing = signf(distance)
 
+func begin_flyer_pattern(actor: Dictionary) -> bool:
+	return trial_state.begin_pattern("contact-"+str(actor.event_id),actor.event_id)
+
+func end_flyer_pattern(actor: Dictionary) -> void:
+	trial_state.end_pattern("contact-"+str(actor.event_id))
+	actor.contact_live = false
+
 func step_flyer(actor: Dictionary, delta: float) -> void:
 	if actor.hp <= 0 or paused or life_state != "alive" or dispenser.active or dialogue.active: return
 	var stats: Dictionary = trial_data.balance.roles.flyer
@@ -347,9 +506,8 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 	match actor.attack_state:
 		"approach":
 			if visible and absf(actor.feet.x-(player.x+PLAYER_SIZE.x*0.5)) <= stats.aggro_distance_pixels:
-				var token := "contact-"+str(actor.event_id)
 				if not actor.contact_live:
-					actor.contact_live = trial_state.begin_pattern(token,actor.event_id)
+					actor.contact_live = begin_flyer_pattern(actor)
 				if not actor.contact_live: return
 				actor.attack_state = "windup"
 				actor.attack_clock = 0.0
@@ -367,6 +525,7 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 						move_flyer_clear(actor,actor.feet+Vector2(0,180*delta))
 		"windup":
 			if not visible:
+				end_flyer_pattern(actor)
 				actor.attack_state = "top_pause"
 				actor.attack_clock = 0.0
 			elif actor.attack_clock >= stats.attack_warning_seconds:
@@ -396,6 +555,7 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 						actor.recovery_escape *= -1
 						move_flyer_clear(actor,actor.feet+Vector2(actor.recovery_escape*150*delta,0))
 			if (t >= 1 and is_equal_approx(actor.feet.y,actor.attack_origin.y)) or actor.attack_clock >= 2.5:
+				end_flyer_pattern(actor)
 				actor.attack_state = "top_pause"
 				actor.attack_clock = 0.0
 		"top_pause":
@@ -415,19 +575,35 @@ func step_shooter(actor: Dictionary, delta: float, visible: bool) -> void:
 		actor.shot_clock = 0
 		trial_state.end_pattern(pattern)
 		return
-	if actor.fire_age >= 0 and actor.age-actor.fire_age >= 0.35: trial_state.end_pattern(pattern)
-	if actor.visible_age < float(stats.first_shot_visible_delay_seconds): return
-	if actor.fire_age >= 0 and actor.shot_clock+0.000001 < float(stats.shot_interval_seconds): return
-	if not trial_state.begin_pattern(pattern,actor.event_id): return
+	if not actor.winding and actor.fire_age >= 0 and actor.age-actor.fire_age >= 0.35:
+		trial_state.end_pattern(pattern)
+	# Charge inside the existing cadence rather than adding a silent delay to every shot.
+	if actor.visible_age+0.000001 < maxf(0,float(stats.first_shot_visible_delay_seconds)-0.65): return
+	if actor.fire_age >= 0 and actor.shot_clock+0.000001 < float(stats.shot_interval_seconds)-0.65: return
+	if not actor.winding:
+		if not trial_state.begin_pattern(pattern,actor.event_id): return
+		actor.winding = true
+		actor.windup_started = actor.age
+		return
+	if actor.age-float(actor.windup_started)+0.000001 < 0.65: return
 	actor.target = player+PLAYER_SIZE*0.5
 	actor.facing = -1.0 if actor.target.x < actor.feet.x else 1.0
 	var muzzle: Vector2 = actor.feet+Vector2(actor.facing*22,-25)
+	if not purple_shot_allowed(muzzle,(actor.target-muzzle).normalized()):
+		actor.winding = false
+		actor.shot_clock = 0
+		trial_state.end_pattern(pattern)
+		return
 	for solid in player_shot_solids():
 		if segment_hit(muzzle,actor.target,solid) >= 0:
+			actor.winding = false
+			actor.shot_clock = 0
 			trial_state.end_pattern(pattern)
 			return
 	var token := "bullet-%s-%s" % [actor.event_id,actor.age]
 	if not trial_state.add_bullet(token):
+		actor.winding = false
+		actor.shot_clock = 0
 		trial_state.end_pattern(pattern)
 		return
 	hostile_shots.append({"id":token,"pos":muzzle,"dir":(actor.target-muzzle).normalized(),"age":0.0})
@@ -456,6 +632,34 @@ func muck_hand(actor: Dictionary) -> Vector2:
 	var anchor: Array = muck_throw_art.anchor
 	var offset := Vector2(frame.hand[0]-anchor[0],frame.hand[1]-anchor[1])
 	return actor.feet+offset*Vector2(-actor.facing,1)*role_scale(actor.role)
+
+func muck_trajectory(origin: Vector2, target: Vector2, facing_direction: float) -> Dictionary:
+	# Preserve clear ordinary throws; only obstructed throws spend longer climbing above a ledge.
+	if (target.x-origin.x)*facing_direction <= 0: return {}
+	var stats: Dictionary = trial_data.balance.roles.emerger
+	var gravity := float(stats.muck_gravity)
+	var baseline := float(stats.muck_flight_seconds)
+	var solids := player_shot_solids()
+	for attempt in range(11):
+		var flight := baseline+attempt*0.1
+		var velocity := Vector2((target.x-origin.x)/flight,(target.y-origin.y)/flight-gravity*flight*0.5)
+		var previous := origin
+		var clear := true
+		var steps := ceili(flight*120)
+		for index in range(1,steps+1):
+			var time := flight*index/steps
+			var point := origin+velocity*time+Vector2(0,gravity*time*time*0.5)
+			if point.y < 12:
+				clear = false
+				break
+			for solid in solids:
+				if segment_hit(previous,point,solid.grow(12.01)) >= 0:
+					clear = false
+					break
+			if not clear: break
+			previous = point
+		if clear: return {"velocity":velocity,"flight":flight}
+	return {}
 
 func step_muck_thrower(actor: Dictionary, delta: float, visible: bool) -> void:
 	if paused or life_state != "alive" or dialogue.active or dispenser.active or delta <= 0: return
@@ -489,18 +693,10 @@ func step_muck_thrower(actor: Dictionary, delta: float, visible: bool) -> void:
 	actor.throw_state = "recover"
 	var target: Vector2 = actor.throw_target
 	var origin := muck_hand(actor)
-	var flight := float(stats.muck_flight_seconds)
 	var gravity := float(stats.muck_gravity)
-	var velocity := Vector2((target.x-origin.x)/flight,(target.y-origin.y)/flight-gravity*flight*0.5)
-	# A point-blank target behind the extended hand must not send muck back through the body.
-	var clear: bool = (target.x-origin.x)*actor.facing > 0
-	var previous := origin
-	for index in range(1,17):
-		var time := flight*index/16.0
-		var point := origin+velocity*time+Vector2(0,gravity*time*time*0.5)
-		for solid in player_shot_solids():
-			if segment_hit(previous,point,solid.grow(12)) >= 0: clear = false
-		previous = point
+	var trajectory := muck_trajectory(origin,target,actor.facing)
+	var clear := not trajectory.is_empty()
+	var velocity: Vector2 = trajectory.get("velocity",Vector2.ZERO)
 	var token := "muck-%s-%s" % [actor.event_id,actor.age]
 	if clear and trial_state.add_bullet(token):
 		hostile_shots.append({"id":token,"kind":"muck","pos":origin,"dir":velocity.normalized(),
@@ -517,6 +713,27 @@ func draw_hostile_shot(shot: Dictionary) -> void:
 	var destination := region(frame.destination)
 	destination.position += shot.pos
 	draw_asset(frame,destination)
+
+func purple_bolt_rect(position: Vector2) -> Rect2:
+	for item in trial_data.environment.effects:
+		if item.id == "hostile-projectile":
+			return Rect2(position-Vector2(item.anchor[0],item.anchor[1]),
+				Vector2(item.logical_size[0],item.logical_size[1]))
+	return Rect2(position-Vector2(40,32.5),Vector2(64,64))
+
+func purple_bolt_offscreen(position: Vector2) -> bool:
+	return not purple_bolt_rect(position).intersects(Rect2(camera_x,0,960,540))
+
+func purple_shot_allowed(_origin: Vector2, direction: Vector2) -> bool:
+	return direction.is_finite() and direction.length_squared() > 0.001
+
+func purple_bolt_reaches_x(origin: Vector2, direction: Vector2, boundary: float) -> bool:
+	if direction.x <= 0 or origin.x >= boundary: return false
+	var end := origin+direction*((boundary-origin.x)/direction.x)
+	if end.y < -32 or end.y > 573: return false
+	for solid in player_shot_solids():
+		if segment_hit(origin,end,solid.grow(4)) >= 0: return false
+	return true
 
 func step_trial_shots(delta: float) -> void:
 	for index in range(shots.size()-1,-1,-1):
@@ -566,7 +783,8 @@ func step_hostile_projectiles(delta: float) -> void:
 				if hit >= 0: wall = minf(wall,hit)
 			shot.age += dt
 			if fraction >= 0 and fraction < wall: hurt_player()
-			if fraction >= 0 or wall <= 1 or shot.age > 3.5:
+			var expired: bool = shot.age > 3.5 if shot.get("kind","") == "muck" else purple_bolt_offscreen(end)
+			if fraction >= 0 or wall <= 1 or expired:
 				trial_state.remove_bullet(shot.id)
 				hostile_shots.remove_at(index)
 			else: shot.pos = end
@@ -626,7 +844,34 @@ func draw_environment() -> void:
 	for x in range(0,6000,480):
 		draw_asset(part("floor-fascia"),Rect2(x,440,480,100))
 
-func draw_actor(actor: Dictionary) -> void:
+func foreground_entry(actor: Dictionary) -> bool:
+	return MonsterEntry.active(actor) and actor.entry.mode == "foreground"
+
+func draw_foreground_entries() -> void:
+	# Near-camera creatures belong above playfield actors/projectiles and below the HUD.
+	draw_set_transform(Vector2(-floorf(camera_x),0))
+	for actor in actors:
+		if actor.hp > 0 and foreground_entry(actor): draw_entry_actor(actor)
+
+func draw_actor(actor: Dictionary, entry_render := false) -> void:
+	if MonsterEntry.active(actor) and not entry_render:
+		draw_entry_actor(actor)
+		return
+	draw_entry_fixture(actor)
+	draw_actor_body(actor,entry_render)
+	draw_entry_fixture(actor,true)
+
+func draw_actor_body(actor: Dictionary, entry_render: bool) -> void:
+	if actor.get("mount","") == "ceiling":
+		ceiling_shooter_art.draw(self,actor,ceiling_direction(actor))
+		if actor.hp > 0 and actor.active and show_enemy_health_bars:
+			var body := actor_rect(actor)
+			box(body.position.x,body.end.y+5,body.size.x,4,Color("243447"))
+			box(body.position.x,body.end.y+5,body.size.x*actor.hp/actor.max_hp,4,MINT)
+		return
+	if MonsterEntry.active(actor) and not entry_render:
+		draw_entry_actor(actor)
+		return
 	if actor.hp <= 0 and actor.role in ["runner","rear_runner"]: return
 	if actor.role in ["runner","rear_runner"]:
 		var enemy: Dictionary = actor.runner
@@ -637,14 +882,15 @@ func draw_actor(actor: Dictionary) -> void:
 		enemy.flash = actor.flash
 		enemy.death_time = actor.death
 		enemy.direction = actor.facing
+		if actor.has("grounded"): enemy.grounded = actor.grounded
 		world_art.draw_toilet(self,enemy)
 		return
 	var spec: Dictionary = trial_data.role_art.roles[ROLE_KEYS[actor.role]]
 	var state := "idle"
 	if actor.role == "aggressive_flyer": state = "flight"
 	elif actor.role == "floor_emerger":
-		if not actor.active and actor.age < actor.warning_seconds: return
-		state = "patrol" if actor.active else ("emerge" if actor.age < actor.warning_seconds+0.35 else "settle")
+		if not entry_render and not actor.active and actor.age < actor.warning_seconds: return
+		state = "patrol" if actor.active or entry_render else ("emerge" if actor.age < actor.warning_seconds+0.35 else "settle")
 	elif actor.winding: state = "windup"
 	elif actor.fire_age >= 0 and actor.age-actor.fire_age < 0.15: state = "fire"
 	elif actor.fire_age >= 0 and actor.age-actor.fire_age < 0.5: state = "recover"
@@ -653,9 +899,13 @@ func draw_actor(actor: Dictionary) -> void:
 	var animation: Dictionary = spec.states[state]
 	var frames: Array = animation.frames
 	var clock_value: float = actor.death if actor.hp <= 0 else actor.clock
+	if state == "windup": clock_value = actor.age-float(actor.get("windup_started",actor.age-actor.clock))
+	elif state == "fire": clock_value = actor.age-actor.fire_age
+	elif state == "recover": clock_value = actor.age-actor.fire_age-0.15
+	elif state == "hurt": clock_value = 0.1-actor.flash
 	if actor.role == "aggressive_flyer" and actor.get("attack_state","") == "windup":
 		clock_value *= 2.0
-	if actor.role == "floor_emerger" and not actor.active:
+	if actor.role == "floor_emerger" and not actor.active and not entry_render:
 		clock_value = maxf(0,actor.age-actor.warning_seconds-(0.35 if state == "settle" else 0.0))
 	var duration := 0.0
 	for seconds in animation.durations: duration += float(seconds)
@@ -669,13 +919,23 @@ func draw_actor(actor: Dictionary) -> void:
 	var frame: Dictionary = spec.frames[frame_id]
 	var throwing: bool = actor.role == "floor_emerger" and actor.hp > 0 and not actor.throw_state.is_empty()
 	if throwing: frame = muck_throw_frame(actor)
+	frame = frame.duplicate(true)
 	var destination := region(frame.destination)
 	var anchor := Vector2(spec.anchor[0],spec.anchor[1])
 	destination.position -= anchor
+	if actor.get("mount","") == "floor":
+		var visible_height := minf(destination.end.y,(actor.home.y-actor.feet.y)/role_scale(actor.role))-destination.position.y
+		if visible_height <= 0: return
+		if visible_height < destination.size.y:
+			frame.source_rect[3] *= visible_height/destination.size.y
+			destination.size.y = visible_height
 	# Mirror around the registered anchor, never around the crop's left edge.
 	draw_set_transform(actor.feet-Vector2(floorf(camera_x),0),0,
-		Vector2(-1 if actor.facing > 0 else 1,1)*role_scale(actor.role))
-	draw_asset(frame,destination,Color(1,1,1,1-clampf(actor.death/0.6,0,1)))
+		Vector2(-1 if actor.facing > 0 else 1,1)*role_scale(actor.role)*(float(actor.entry.scale) if entry_render else 1.0))
+	if actor.role == "perched_shooter" and state in ["windup","fire"]:
+		draw_shooter_pressure(frame,destination,actor,state)
+	else:
+		draw_asset(frame,destination,Color(1,1,1,1-clampf(actor.death/0.6,0,1)))
 	draw_set_transform(Vector2(-floorf(camera_x),0))
 	if throwing and actor.throw_state == "windup":
 		var held: Dictionary = muck_art.frames[0]
@@ -687,6 +947,31 @@ func draw_actor(actor: Dictionary) -> void:
 		box(body.position.x,body.position.y-14,body.size.x,4,Color("243447"))
 		box(body.position.x,body.position.y-14,body.size.x*actor.hp/actor.max_hp,4,MINT)
 
+func draw_shooter_pressure(frame: Dictionary, destination: Rect2, actor: Dictionary, state: String) -> void:
+	# Art's seam-pinned deformation: the bolted base never translates or separates from the body.
+	var source := region(frame.source_rect)
+	var elapsed: float = actor.age-float(actor.get("windup_started",actor.age-actor.clock))
+	var progress := clampf(elapsed/float(actor.get("windup_duration",0.65)),0,1)
+	var amplitude := lerpf(0.15,0.75,progress)
+	var duration := float(actor.get("windup_duration",0.65))
+	var ramp_time := minf(elapsed,duration)
+	var phase := TAU*(7*ramp_time+2*ramp_time*ramp_time/duration+11*maxf(0,elapsed-duration))
+	var offset := sin(phase)*amplitude
+	var brightness := 1+0.18*progress
+	if state == "fire":
+		offset = 1.5*(1-clampf((actor.age-actor.fire_age)/0.1,0,1))
+		brightness = 1
+	var y := 0.0
+	while y < destination.size.y:
+		var height := minf(1.5,destination.size.y-y)
+		var source_y := y/destination.size.y*source.size.y
+		var taper := clampf((390-source_y)/90,0,1)
+		var strip := Rect2(destination.position+Vector2(offset*taper,y),Vector2(destination.size.x,height))
+		var crop := Rect2(source.position+Vector2(0,source_y),Vector2(source.size.x,height/destination.size.y*source.size.y))
+		var shade := lerpf(1,brightness,taper)
+		draw_texture_rect_region(trial_textures[frame.path],strip,crop,Color(shade,shade,shade))
+		y += height
+
 func _draw() -> void:
 	if trial_data.is_empty(): return
 	draw_set_transform(Vector2(-floorf(camera_x),0))
@@ -695,8 +980,9 @@ func _draw() -> void:
 	for actor in actors:
 		if not actor.active and actor.hp > 0:
 			effect("grate-warning" if actor.role == "floor_emerger" else "landing-warning",
-				Vector2(clampf(actor.feet.x,camera_x+35,camera_x+925),minf(actor.feet.y,440)))
-		draw_actor(actor)
+				Vector2(clampf(actor.home.x,camera_x+35,camera_x+925),minf(actor.home.y,440)))
+		if not foreground_entry(actor): draw_actor(actor)
+	special_art.draw_back(self)
 	if life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0: draw_sean(player)
 	for shot in shots:
 		# Reuse the existing original projectile presentation.
@@ -709,6 +995,8 @@ func _draw() -> void:
 			box(0,-5,5,11,Color("e57356"))
 		draw_set_transform(Vector2(-floorf(camera_x),0))
 	for shot in hostile_shots: draw_hostile_shot(shot)
+	special_art.draw_front(self)
+	draw_foreground_entries()
 	draw_set_transform(Vector2.ZERO)
 	draw_hud()
 	if paused:

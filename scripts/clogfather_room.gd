@@ -130,8 +130,7 @@ func spawn_reinforcements(host: Node2D) -> void:
 		actor.clogfather_reinforcement = true
 		actor.pressure_wave = spawned_wave
 		actor.additive = true
-		# The complete encounter warning already grants time to leave the formation.
-		actor.contact_ready = true
+		host.swarms.begin_entry(actor)
 		host.swarms.actors.append(actor)
 
 func gas_targets() -> Array[Dictionary]:
@@ -158,13 +157,6 @@ func draw(host: Node2D) -> void:
 	if host.ending.active(): snapshot.remains_alpha = 1-smoothstep(0,0.8,host.ending.clock)
 	art.draw(host,snapshot,ORIGIN-Vector2(floorf(host.camera_x),0),clock)
 	host.draw_set_transform(Vector2(-floorf(host.camera_x),0))
-	if snapshot.state == "pressure_warning" and snapshot.pressure_kind == "reinforcements":
-		var animation: Dictionary = host.swarms.definition.animation.animations.hover
-		var source: Array = animation.frames[int(clock*8)%4].source_rect
-		for request: Dictionary in snapshot.reinforcement_requests:
-			host.draw_texture_rect_region(host.swarms.texture,
-				Rect2(request.center+ORIGIN-Vector2(64,64),Vector2(128,128)),
-				Rect2(source[0],source[1],source[2],source[3]),Color(1,1,1,0.4+0.2*sin(clock*12)))
 
 func shell_rect() -> Rect2:
 	var body := encounter.body_rect()
@@ -188,10 +180,10 @@ func contain_prior(host: Node2D) -> void:
 			actor.feet.x = CONTAINMENT-shape.end.x
 			actor.facing = -1.0
 	for enemy in host.enemies:
-		if enemy.pos.x+38 > CONTAINMENT:
-			enemy.pos.x = CONTAINMENT-38
+		if host.FlushfiendGeometry.body(enemy.pos).end.x > CONTAINMENT:
+			enemy.pos.x -= host.FlushfiendGeometry.body(enemy.pos).end.x-CONTAINMENT
 			enemy.direction = -1.0
 	for index in range(host.hostile_shots.size()-1,-1,-1):
-		if host.hostile_shots[index].pos.x >= CONTAINMENT:
+		if host.hostile_shots[index].get("kind","") == "muck" and host.hostile_shots[index].pos.x >= CONTAINMENT:
 			host.trial_state.remove_bullet(host.hostile_shots[index].id)
 			host.hostile_shots.remove_at(index)

@@ -57,7 +57,7 @@ func run_checks() -> void:
 		game.trial_level.plinths.assign([Rect2(500,380 if ceiling else 300,180,60 if ceiling else 140)])
 		if ceiling: game.trial_level.plinths.append(Rect2(400,380,90,10))
 		var actor := {"event_id":"normal-route-01","role":"runner",
-			"feet":Vector2(481,440),"vy":0.0,"facing":1.0}
+			"feet":Vector2(500-game.FlushfiendGeometry.BODY_SIZE.x*0.5-0.1,440),"vy":0.0,"facing":1.0}
 		for i in range(60): game.move_ground_actor(actor,100,1.0/120)
 		assert(actor.feet.x < 470 and actor.vy == 0,"Blocked ascent must retreat instead of stall/head-bump")
 	game.trial_level.plinths.assign(geometry)

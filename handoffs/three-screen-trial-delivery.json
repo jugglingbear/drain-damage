@@ -1,0 +1,833 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-02",
+  "owner": "Engineering",
+  "status": "Prototype153 local candidate; flush2/ride2.1 selector mapping,152trial tuning retained",
+  "version": "0.153.0",
+  "scope": "Shared Gnatastrophe, Flushfiend size and both hero run cycles across production and trial; trial roster remains the 144 mixed encounter roster",
+  "contract": "levels/first-call/three-screen-trial.json",
+  "art_manifest": "assets/world/three-screen-trial/manifest.json",
+  "entry_points": {
+    "menu": "No trial menu entry; Start launches production Level1.",
+    "selector": "--level=1-trial"
+  },
+  "build": {
+    "app": "builds/Prototype-153/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash. Post-build review/status documentation is not claimed present in packaged bytes.",
+    "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+    "evidence": "builds/Prototype-153/evidence",
+    "pck_sha256": "e45816d5e52c69aeee5e9e5291cf9bfdf92587b84c2eb4c0ae05ec751e5900a9",
+    "pck_bytes": 424252232,
+    "bundle_version": "0.153.0"
+  },
+  "validation": {
+    "python_launcher_tests": 6,
+    "packaged_selectors": [
+      "2: bowl",
+      "2.1: landing",
+      "camera-test: isolated proof"
+    ],
+    "signature": "Verified",
+    "gameplay": "Unchanged from152; previous_validation_152 retains pressure checks",
+    "logs": "builds/Prototype-153/evidence",
+    "packaged_launcher_suite": "Passed both heroes/all difficulties and checkpoint reset"
+  },
+  "visual_review": "See visual_review_152; prior visual evidence retained.",
+  "pacing_notes": {
+    "roster": {
+      "total_finite": 32,
+      "runners": 15,
+      "shooters": 8,
+      "flying_spiders": 6,
+      "gnatastrophes": 3
+    },
+    "normal_caps": {
+      "actors": 10,
+      "patterns": 4,
+      "bolts": 18
+    },
+    "normal_automated_route": {
+      "tony": {
+        "peak_bolts": 5,
+        "total_fired": 10,
+        "simultaneous_sources": 2,
+        "finish_hp": 1
+      },
+      "sean": {
+        "peak_bolts": 4,
+        "total_fired": 12,
+        "simultaneous_sources": 3,
+        "finish_hp": 1
+      },
+      "provenance": "Historical144route, not152difficulty evidence."
+    },
+    "remaining": [
+      "Sean playtest of152Normal difficulty and fun; frantic already achieved in prior build.",
+      "Protected crossing remains conservative."
+    ],
+    "runtime_contract": "levels/first-call/three-screen-trial.json#aggressive_replacement"
+  },
+  "ownership": {
+    "runtime_tests_build": "Engineering",
+    "contract_roadmap": "Level Design",
+    "assets_review": "Art",
+    "independent_geometry_test": "Game Mechanics",
+    "arrival_audio_and_auditions": "Audio",
+    "storybook_curation": "Storyboarding",
+    "trial_runtime_and_tests_contribution": "Game Mechanics; Engineering integrated, packaged and inspected"
+  },
+  "release": "Local trial build only. v0.138.0 release gate remains separate; no tag/publication authorized.",
+  "storybook": "storybook/144-living-swarm-hunt/captures.json",
+  "storybook_status": "144 chapter retained; 145 corrective evidence is linked here, without a new milestone chapter.",
+  "user_playtest_followup": {
+    "reported_version": "0.139.0",
+    "position": 1722,
+    "findings": [
+      "Foreground actor settles but stays inactive below x1810, preventing movement and damage.",
+      "Platforms compete with backdrop detail.",
+      "Trial draw override omitted corpses: defeat created wreckage but never rendered it.",
+      "At hero813, painted door-base shelf ahead/below catwalk reads as standable despite no collision; new Art correction pending.",
+      "Elevated runner forced airbornepose by absoluteheight check; bounded ground-only patrol removed expected climb pursuit.",
+      "Visible arrivals deleted when player approached; direct45px knockback could embed hero in machinery."
+    ],
+    "correction": "Remove post-arrival position gate; Art-directed background tint RGB(0.65,0.70,0.75). Restored existing animated corpse rendering. Art-directed deck-only RGB(1.15,1.15,1.15) boost. v142 uses actualsupportstate for trialrunner animation and shared reachable-step navigation in LD-approved fullbody envelope1000..2010; protectedpit unchanged. v143 sweeps trial knockback through actual collision. Visible arrivals remain, overlap is harmless aftersettle whileactor staysvulnerable, andseparation startsfreshwarning beforeattacksresume.",
+    "regression": "Both heroes reproduce freeze and missed shots before fix; both kill entrant with horizontal fire after fix."
+  },
+  "previous_build": {
+    "app": "builds/Prototype-139/Drain Damage.app",
+    "source_commit": "08022aa3b4b321b6cc8ba67569902d377b3b8e77",
+    "dirty_tree": true,
+    "signature": "Ad-hoc macOS signature verified after final export",
+    "evidence": "builds/Prototype-139/evidence",
+    "preserved_reviews": [
+      "builds/Prototype-139/review-1/Drain Damage.app",
+      "builds/Prototype-139/review-2/Drain Damage.app"
+    ],
+    "pck_sha256": "35b28172d18dd606091c171db00f0eaa02de2822e7e187f6752264b603e5226c",
+    "pck_bytes": 392921400,
+    "bundle_version": "0.139.0"
+  },
+  "visual_review_140": {
+    "permission": "Sean explicitly approved small test window on 2026-11-02 in Engineering",
+    "capture_index": "builds/Prototype-140/evidence/captures/index.json",
+    "method": "Actual packaged PCK in Godot, small960x540 window, staged positions and actual combat at0.2time scale",
+    "observed": [
+      "Stationary Tony1722: active patrolling entrant",
+      "Horizontal shots kill entrant and visible debris remains",
+      "Catwalk and machinery contrast inspected",
+      "Final package death fixture shows airborne ceramic shards at0.1s and settled debris at0.5s; existing animation cadence preserved."
+    ],
+    "art_review": "Art independently accepted final deck contrast, machinery contrast and depicted airborne-to-settled death stages; no blocker in reviewed captures.",
+    "accepted": true,
+    "test_window": "Closed after approved session",
+    "limits": "Sampled motion and selected camera views; not full-speed cadence or every-platform certification. Sean readability preference remains final. Subsequent user screenshot identified misleading door-base shelf at813; general contrast acceptance does not resolve this false affordance."
+  },
+  "previous_build_140": {
+    "app": "builds/Prototype-140/Drain Damage.app",
+    "source_commit": "08022aa3b4b321b6cc8ba67569902d377b3b8e77",
+    "dirty_tree": true,
+    "signature": "Ad-hoc macOS signature verified with codesign --deep --strict",
+    "evidence": "builds/Prototype-140/evidence",
+    "pck_sha256": "0e9278c86bd8f0a49c58357184d0e551040348cb1861e7ebc7c0e26306887a0c",
+    "pck_bytes": 392926312,
+    "bundle_version": "0.140.0",
+    "preserved_reviews": [
+      "builds/Prototype-140/review-1/Drain Damage.app",
+      "builds/Prototype-140/review-2/Drain Damage.app"
+    ]
+  },
+  "visual_review_141": {
+    "accepted": true,
+    "correction": "Trial-only backdrop v2 removes projecting door-base sill and central shelf bracket; original main-level backdrop and collision unchanged.",
+    "source": "assets/world/three-screen-trial/background-v2.png",
+    "remaining": "",
+    "capture_index": "builds/Prototype-141/evidence/captures/index.json",
+    "review": "Engineering and Art inspected exact813 plus second/thirdbay; projecting sill absent and real platforms distinct.",
+    "permission": "Sean approved small-window141 session; closed after captures"
+  },
+  "previous_build_141": {
+    "app": "builds/Prototype-141/Drain Damage.app",
+    "source_commit": "08022aa3b4b321b6cc8ba67569902d377b3b8e77",
+    "dirty_tree": true,
+    "signature": "Ad-hoc macOS signature verified with codesign --deep --strict",
+    "evidence": "builds/Prototype-141/evidence",
+    "pck_sha256": "b30d66ef11997b20d2d61fc1feb1ecfc31eeab5e24352ed9cc4098b8fdf2264a",
+    "pck_bytes": 395071996,
+    "bundle_version": "0.141.0"
+  },
+  "visual_review_142": {
+    "accepted": true,
+    "capture_index": "builds/Prototype-142/evidence/captures/index.json",
+    "permission": "Sean directly approved testing until2026-11-02 17:13PST after automatic review rejected agent-relayed approval. Approved test window nowclosed.",
+    "method": "Actual142PCK; staged active runner starts at1590step/1740floor; actualnavigation/contactdamage, sampled0.25timescale. Tony heroheld1373; contactdisplacedto1328.",
+    "observed": [
+      "Upper groundedrunner cycles footposes instead of frozenairpose",
+      "Lower runner jumps fromfloor tostep",
+      "Both runners reach supported summit",
+      "Contactdamage reducesTonyhealth4to3"
+    ],
+    "art_review": "Independent Art accepted sampled walkposes, jumpclearance and summit/step contact; no blocker in reviewedcaptures.",
+    "limits": "No fullspeed humanbalance/cadence certification; floor runner already had walkingloop, now visually confirmed rather than claimed separately fixed."
+  },
+  "previous_build_142": {
+    "app": "builds/Prototype-142/Drain Damage.app",
+    "source_commit": "08022aa3b4b321b6cc8ba67569902d377b3b8e77",
+    "dirty_tree": true,
+    "signature": "Ad-hoc macOS signature verified with codesign --deep --strict",
+    "evidence": "builds/Prototype-142/evidence",
+    "pck_sha256": "a95442db7e795309cb076ec26ea7c62cdf50e812689d7a7d576995a38818ed8a",
+    "pck_bytes": 395074652,
+    "bundle_version": "0.142.0"
+  },
+  "visual_review_143": {
+    "accepted": true,
+    "capture_index": "builds/Prototype-143/evidence/captures/index.json",
+    "method": "Actual143PCK with staged damage/occupiedarrival fixtures, actual collision and actor step functions,0.25timescale",
+    "permission": "Direct Sean approval until2026-11-02 17:13PST",
+    "art_review": "Art independently accepted visible hero outside machinery and native enemy retained/grounded after separation. Fresh rearm timing established by runtime checks, not stills.",
+    "test_window": "Closed",
+    "limitations": [
+      "Enlarged dark foreground warning actor has low contrast against floor arches; orange ring visible but can be partly covered by hero.",
+      "Staged samples and technical regressions do not certify full-speed manual balance or every contact angle."
+    ]
+  },
+  "previous_build_143": {
+    "app": "builds/Prototype-143/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "signature": "Ad-hoc macOS signature verified with codesign --deep --strict",
+    "evidence": "builds/Prototype-143/evidence",
+    "pck_sha256": "c947d30411a5c6c3cc1663a8db1320a0db7be557f18ac61658a8a77cc94e6c87",
+    "pck_bytes": 395078540,
+    "bundle_version": "0.143.0",
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Gameplay changes remain uncommitted; concurrent release-only commits advanced HEAD during this task. Exact build-time HEAD not recorded; PCK hash identifies tested bytes."
+  },
+  "visual_review_144": {
+    "evidence_index": "builds/Prototype-144/evidence/captures.json",
+    "build": "0.144.0",
+    "owner": "Engineering",
+    "independent_reviewer": "Art",
+    "accepted_scope": [
+      "V2 four-form distinctions at staged horizontal gameplay scale",
+      "Persistent individual fly position changes in held formations",
+      "Sampled actual diagonal pursuit above solid catwalk",
+      "Packaged shooter base contact and joined body in charge samples",
+      "Normal-speed scripted route opening, climb and pit: moving enemies, projectiles, breakup and support visible"
+    ],
+    "limitations": [
+      "Discrete captures do not certify every continuous animation cycle, rotation angle or recoil frame.",
+      "Mace spikes remain subtle; Gnat can be occluded by a nearby Widow or scenery.",
+      "Climb hero is hidden in an invulnerability blink, so that frame does not establish hero contact.",
+      "Normal-speed scripted input is not human fun/fairness acceptance."
+    ],
+    "window_status": "All agent preview windows closed after result capture; normal user launch remains maximized."
+  },
+  "living_monsters_144": {
+    "gnat": {
+      "acquisition_pixels": 320,
+      "visible_tell_seconds": 0.8,
+      "morph_seconds": 0.65,
+      "pursuit_speed": 170,
+      "turn_degrees_per_second": 100,
+      "pass_commit_seconds": 0.7,
+      "forms": [
+        "sword",
+        "arrow",
+        "spear",
+        "spiked_mace"
+      ],
+      "flies_per_swarm": 32,
+      "hp": 24,
+      "contact_radius": 48,
+      "formation_manifest": "assets/bestiary/sewer-flies/weapon-formations-v2.json"
+    },
+    "purple_bolts": "No time/range expiry; full rendered viewport exit or physical impact. Lifecycle reset still clears old runs.",
+    "motion_policy": "docs/agent-task-requirements.md#monster-motion-and-purple-projectiles",
+    "shooter_charge": "Seam-pinned moving upper body over fixed bolted base; production cadence preserved."
+  },
+  "previous_build_144": {
+    "build": {
+      "app": "builds/Prototype-144/Drain Damage.app",
+      "source_commit": null,
+      "dirty_tree": true,
+      "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+      "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash.",
+      "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+      "evidence": "builds/Prototype-144/evidence",
+      "pck_sha256": "27dcb45e11ac0dc33e7ba750647bcce866618fdf6429a9e0a76d74bc21ab7ea9",
+      "pck_bytes": 395146712,
+      "bundle_version": "0.144.0"
+    },
+    "validation": {
+      "packaged_scene_checks": 41558,
+      "packaged_geometry_checks": 218,
+      "packaged_gnat_checks": 13156,
+      "packaged_purple_lifetime_checks": 15,
+      "packaged_legacy_opening": "Passed after correcting fixture visible_age and current 0.8/2.5 second cadence; no longer counted as known failure.",
+      "source_regressions": [
+        "44 Python tests",
+        "20 seeded 60-second swarm wander paths",
+        "swarm health and schedule",
+        "durable flyer",
+        "role combat revision",
+        "integrated opening"
+      ],
+      "audio": "104 slots refreshed and checked",
+      "logs": "builds/Prototype-144/evidence; checked for SCRIPT ERROR/Parse Error/Assertion, not just PASS banners",
+      "environment_notes": [
+        "Sandbox certificate and editor-settings-save warnings; export and signature succeeded.",
+        "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+      ],
+      "platform_limits": [
+        "No native Windows or Intel execution",
+        "No physical controller playtest",
+        "No human deliberate-play difficulty or frantic-feel acceptance"
+      ],
+      "native_graphical_route": "Packaged Tony Normal scripted right/fire with terrain jumps completed in 10.9 seconds, 9 defeats, 3 lives and 1 HP; screenshot 20261102-152540. No healing/invulnerability override; not a human balance playtest."
+    },
+    "status": "Prototype 144 local playtest candidate; hunting swarms, living formations, animated charges and denser mixed trial integrated"
+  },
+  "visual_review_145": {
+    "evidence": "builds/Prototype-145/evidence",
+    "owner_inspection": "Rounded cloud and four enlarged forms; all six run poses for both heroes in Normal/Easy/Hard; mirrored live-clock samples; normal-speed route opening, middle, pit and completion.",
+    "independent_art": "Art independently accepted bounded pose, attachment, contact and swarm silhouette review for both heroes in all costumes, including final Easy alpha240 capture162411. Continuous cadence and full encounter acceptance remain unclaimed.",
+    "captures": [
+      "20261102-162252-packaged-rounded-cloud-and-larger-weapons.png",
+      "20261102-162014-packaged-tony-six-poses-normal.png",
+      "20261102-161826-packaged-sean-six-poses-normal.png",
+      "20261102-162411-packaged-sean-six-poses-easy-final.png",
+      "20261102-162452-packaged-route-opening.png",
+      "20261102-162614-packaged-route-finish.png"
+    ],
+    "limits": "Staged pose and swarm arrangements verify artwork, not encounter balance; live-clock snapshots and scripted route are not continuous cadence or human feel acceptance. Preliminary Easy alpha220 comparison was rejected; final package uses alpha240."
+  },
+  "corrections_145": {
+    "gnatastrophe": "Filled irregular rounded cloud replaces arch; sword/arrow/spear/mace anchors, fly glyphs and micro-motion scale 1.5. Damage circle remains 48px; 70px visual clearance prevents larger forms growing into solids. Animated repositioning precedes morph where required.",
+    "flushfiend": "All toilet rendering and terrain/projectile geometry scale 1.2 around unchanged feet. Body 45.6x43.2; rendered/projectile height51.6. Both heroes hit them with same-floor straight shots in every run frame and costume.",
+    "hero_runs": "Tony and Sean receive six distinct contact/compression/passing/opposite-contact/crossing/opposite-passing poses in all three costumes. Registered shoulder and foot contacts preserve modular aim. Sean extra passing lift removed to keep head bob below6px. Other animation phases retained.",
+    "art_originals": "Original generated sheets and prompts retained; new run overrides load only run phases."
+  },
+  "previous_build_145": {
+    "build": {
+      "app": "builds/Prototype-145/Drain Damage.app",
+      "source_commit": null,
+      "dirty_tree": true,
+      "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+      "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash.",
+      "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+      "evidence": "builds/Prototype-145/evidence",
+      "pck_sha256": "ccd288aaf3d2f8378ac89c624ce9ba226ed187b0ff268bbe23bd572e57f1657b",
+      "pck_bytes": 403821436,
+      "bundle_version": "0.145.0"
+    },
+    "validation": {
+      "packaged_scene_checks": 43519,
+      "packaged_gnat_checks": 14419,
+      "packaged_flushfiend_scale_checks": 599,
+      "packaged_hero_run_registration_checks": 162,
+      "packaged_hero_animation_combinations": 240,
+      "packaged_easy_registered_frames": 870,
+      "packaged_prepared_sheets": 18,
+      "source_regressions": [
+        "44 Python tests",
+        "20 seeded 60-second swarm wander paths",
+        "Swarm schedule",
+        "Flushfiend step navigation"
+      ],
+      "logs": "builds/Prototype-145/evidence; logs checked for script, parse and assertion failures, not only PASS banners",
+      "environment_notes": [
+        "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+        "Existing ObjectDB/RID/resource shutdown warnings remain in some tests.",
+        "Markdown linter unavailable offline; changed Markdown structure and whitespace inspected; pre-existing long lines retained.",
+        "An un-escalated graphical run-preview invocation exited250 in sandbox; prior authorized native PCK graphical sessions and actual bundle headless selector check passed."
+      ],
+      "platform_limits": [
+        "No native Windows or Intel execution",
+        "No physical controller playtest",
+        "No human deliberate-play difficulty or frantic-feel acceptance",
+        "Discrete live-motion captures do not certify continuous cadence in every encounter"
+      ],
+      "native_graphical_route": "Packaged Tony Normal scripted right/fire with terrain jumps completed in 10.9 seconds, 6 defeats, 3 lives and 1 HP; 20261102-162614 capture. No healing/invulnerability override; not a human balance playtest.",
+      "audio": "104 audition slots checked; no audio changes in145",
+      "packaged_launch": "make run-check APP=Prototype-145 bundle LEVEL=1-trial HERO=tony DIFFICULTY=normal SEED=42 passed actual exported executable initialization."
+    },
+    "status": "Prototype 145 local playtest candidate; rounded cloud, larger weapon forms and toilets, alternating Tony and Sean run cycles"
+  },
+  "health_revision_146": {
+    "monster": "The Hallowed Widow",
+    "previous_hp": 135,
+    "max_hp": 101.25,
+    "spawn_hp": 101.25,
+    "reduction_percent": 25,
+    "scope": "All difficulties, canonical creature and shared production/trial flyer override",
+    "first_level_hits": {
+      "tony": 9,
+      "sean": 6
+    },
+    "behavior": "Unchanged"
+  },
+  "previous_build_146": {
+    "build": {
+      "app": "builds/Prototype-146/Drain Damage.app",
+      "source_commit": null,
+      "dirty_tree": true,
+      "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+      "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash.",
+      "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+      "evidence": "builds/Prototype-146/evidence",
+      "pck_sha256": "5107f6007e9b3e1312d60340ce3516c4b7641dfd26e31fce6120fd7d76465b47",
+      "pck_bytes": 403826764,
+      "bundle_version": "0.146.0"
+    },
+    "validation": {
+      "packaged_scene_checks": 43519,
+      "packaged_durable_flyer": "Passed both heroes, production/opening routes, all difficulties, nine/six actual projectile hits, repeated dives, collision, death, offscreen persistence and reset.",
+      "packaged_role_combat_revision": "Passed shooter, crawler and flying spider pursuit regressions.",
+      "audio": "104 audition slots regenerated and checked.",
+      "logs": "builds/Prototype-146/evidence; no script/parse/assertion failures.",
+      "environment_notes": [
+        "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+        "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+      ],
+      "platform_limits": [
+        "No native Windows or Intel execution",
+        "No physical controller playtest",
+        "No human deliberate-play difficulty or frantic-feel acceptance",
+        "Discrete live-motion captures do not certify continuous cadence in every encounter"
+      ],
+      "visual_note": "HP-only update; no new art or animation changes. Prototype145 visual evidence retained; no foreground test required for this parameter change."
+    },
+    "status": "Prototype 146 local playtest candidate; flying spider HP reduced25% to101.25"
+  },
+  "gnatastrophe_revision_147": {
+    "wander_speed": 70,
+    "charge_speed": 140,
+    "notice_distance": 320,
+    "moving_tell_seconds": 0.8,
+    "morph_seconds": 0.65,
+    "reform_seconds": 0.65,
+    "minimum_wander_seconds": 0.8,
+    "target": "Hero center captured at start of acquisition, before morph; charge does not track subsequent movement.",
+    "cycle": "Continuous wander \u2192 random weapon and moving morph \u2192 straight double-speed charge \u2192 moving cloud reform on arrival or blocked geometry \u2192 wander and repeat.",
+    "collision": "70px visual terrain clearance,48px unchanged damage radius; blocked charge reforms and steers away without teleporting. Fully enclosed impossible geometry may still prevent movement."
+  },
+  "visual_review_147": {
+    "evidence": "builds/Prototype-147/evidence",
+    "accepted_files": [
+      "verified-moving-morph.png",
+      "verified-charge.png",
+      "verified-reform.png",
+      "verified-cloud-wander.png",
+      "verified-next-weapon.png",
+      "verified-unoccluded-reform.png",
+      "verified-unoccluded-cloud.png"
+    ],
+    "owner": "Actual packaged cycle captured at0.4/1.2/2.4/3.1/4.1 seconds in staged midair-target fixture. Formation and position changes inspected. Additional target-hidden captures show complete reform and cloud silhouettes without hero occlusion.",
+    "independent_art": "No new static silhouette blocker; compact partial morph, elongated left-pointing charge with visible flies, and rounded cloud restored. Position changes visible. Follow-up target-hidden reform/cloud captures independently inspected: prior outline occlusion resolved; readable compact reform and filled rounded cloud, no static silhouette blocker.",
+    "limits": "Discrete captures do not certify continuous timing, all angles/forms, ground contact or human balance; mathematical motion/continuity/repeat coverage is in17904 checks. Initial target occlusion resolved by dedicated target-hidden captures.",
+    "excluded": "Timestamped captures before verified filenames selected an unrelated window or title screen and are excluded from acceptance."
+  },
+  "previous_build_147": {
+    "app": "builds/Prototype-147/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash.",
+    "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+    "evidence": "builds/Prototype-147/evidence",
+    "pck_sha256": "d148859ba09ad42306de1d875480080f0f2e43f4cc5bea5d7f501d86e924a42b",
+    "pck_bytes": 403829580,
+    "bundle_version": "0.147.0"
+  },
+  "previous_validation_147": {
+    "packaged_scene_checks": 42322,
+    "packaged_gnat_checks": 17904,
+    "packaged_swarm_schedule": "18 paired admission runs passed",
+    "packaged_swarm_lifecycle": "20 seeded60-second paths, doors/corners, contact sharing, gate credit, death/reset passed. Legacy35px/s expectation updated to70; contact fixture isolated from acquisition tell and placed above floor.",
+    "audio": "104 audition slots regenerated and checked",
+    "logs": "builds/Prototype-147/evidence; no remaining script/parse/assertion failures",
+    "environment_notes": [
+      "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+      "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+    ],
+    "platform_limits": [
+      "No native Windows or Intel execution",
+      "No physical controller playtest",
+      "No human deliberate-play difficulty or frantic-feel acceptance",
+      "Discrete live-motion captures do not certify continuous cadence in every encounter"
+    ],
+    "packaged_launch": "Actual exported app passes direct trial selector initialization via make run-check."
+  },
+  "visual_review_148": {
+    "status": "Engineering and independent Art bounded still review passed for grounded endpoint/contact; continuous boundary motion remains unverified",
+    "evidence": "builds/Prototype-148/evidence",
+    "captures": [
+      "grounded-moving-morph.png",
+      "grounded-weapon-approach.png",
+      "grounded-exact-arrival.png",
+      "grounded-cloud-reform.png"
+    ],
+    "arrival": {
+      "clock_seconds": 1.7,
+      "swarm_center": [
+        2413,
+        417
+      ],
+      "target_center": [
+        2413,
+        417
+      ],
+      "hero_hp_before": 4,
+      "hero_hp_after": 3
+    },
+    "fixture": "Packaged runtime; stationary grounded Tony reset to x2400 after normal contact knockback solely to inspect exact target arrival. Normal gameplay retains knockback. Four sampled phases, not continuous-motion acceptance.",
+    "art_findings": "Readable weapon approach, grounded Tony, visible HP loss, no obvious solid-floor penetration. Near-floor swarm compresses into a flatter band; flies below left ledge occupy open pit.",
+    "remaining": "Continuous boundary projection motion, all wall corners and all rotated forms; near-ground round cloud silhouette is compressed by terrain."
+  },
+  "correction_148": {
+    "cause": "Oversized visual terrain clearance and original encounter pocket ended charges before grounded targets. Contact was also suppressed during visible tell phases.",
+    "change": "4px swept center terrain clearance; rendered flies project outside solids; full-trial hunt bounds. All living phases and outer rendered fly rectangles damage hero, retaining invulnerability/shared cooldown.",
+    "retained": "70px/s wander, 140px/s locked-position charge, moving morph/reform, random weapon per acquisition. Physical walls can still block the center.",
+    "evidence": "Packaged Gnat tests exercise actual grounded trial target outside original pocket, exact center arrival, fly terrain clearance and damage during every phase with normal protection guards."
+  },
+  "previous_build_148": {
+    "app": "builds/Prototype-148/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash. Post-build review/status documentation is not claimed present in packaged bytes.",
+    "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+    "evidence": "builds/Prototype-148/evidence",
+    "pck_sha256": "924987b601bf952544ce8a54afd0085e9f6e5ca578188b432bad07503a03f434",
+    "pck_bytes": 403835788,
+    "bundle_version": "0.148.0"
+  },
+  "previous_validation_148": {
+    "packaged_scene_checks": 42907,
+    "packaged_gnat_checks": 82724,
+    "packaged_swarm_schedule": "18 paired admission runs passed; visible warning contact damages hero as requested.",
+    "packaged_swarm_lifecycle": "20 seeded 60-second paths, doors/corners, contact sharing, gate credit, death/reset passed. Terrain fixtures use the new 4px center clearance.",
+    "audio": "104 audition slots regenerated and checked",
+    "logs": "builds/Prototype-148/evidence; no script/parse/assertion failures",
+    "environment_notes": [
+      "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+      "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+    ],
+    "platform_limits": [
+      "No native Windows or Intel execution",
+      "No physical controller playtest",
+      "No human deliberate-play difficulty or frantic-feel acceptance",
+      "Discrete live-motion captures do not certify continuous cadence in every encounter"
+    ],
+    "packaged_launch": "Actual exported app passes direct trial selector initialization via make run-check."
+  },
+  "visual_review_149": {
+    "status": "Engineering and independent Art bounded still review passed",
+    "evidence": "builds/Prototype-149/evidence",
+    "captures": [
+      "before-spider.png",
+      "after-spider.png",
+      "after-toilet.png",
+      "after-swarm.png",
+      "background-emergence.png"
+    ],
+    "scope": "Staged overlap at wall opening above Sean x1583. Active spider/toilet/swarm render above pipe lip. Inactive background arrivals remain behind lip. No new artwork or combat changes.",
+    "art_findings": "Spider face/eyes/legs, active toilet and fly glyphs are visible in front of lip; small background arrival remains inside opening behind rim. No obvious new static layering regression.",
+    "remaining": "Continuous crossing/emergence handoff and every actor/position not independently reviewed."
+  },
+  "correction_149": "Pipe lip formerly drew over all actors and swarms. Draw background emergence before the lip, then active actors, corpses, foreground arrivals and swarms after it.",
+  "post_pit_spider_report": {
+    "reported_build": "0.147.0",
+    "hero": "Sean",
+    "hero_x": 2563,
+    "report": "Flying spider after pit remained in air without attacking.",
+    "status": "Reproduced boundary stall independently in exact147PCK and fixed in151. Reported actor identity remains inferred, not proven from screenshot.",
+    "evidence": "builds/Prototype-150/evidence/probe.log (diagnostic only; no150 build)",
+    "expected_pauses": "1 second recovery pause,0.65 second attack windup; crossing protection until landing plus0.45seconds. Attack-budget contention can delay acquisition.",
+    "next": "User confirmation of reported encounter; targeted technical reproduction and repeated contact checks pass.",
+    "user_clarification": "Stirred in place as if stuck; never attacked before defeat.",
+    "related_reproduction": "Pre-pit flyer home2100,190 pursuing hero2563,394 clamps at x2140 then climbs to y25 and remains approach indefinitely. No pattern contention or crossing reservation. Not yet confirmed as reported actor.",
+    "related_evidence": "builds/Prototype-150/evidence/probe-prepit.log"
+  },
+  "previous_build_149": {
+    "app": "builds/Prototype-149/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash. Post-build review/status documentation is not claimed present in packaged bytes.",
+    "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+    "evidence": "builds/Prototype-149/evidence",
+    "pck_sha256": "cd3128ba205388789ec28e2df04c68917e70ef2a4574742074a4e184cd15bb9f",
+    "pck_bytes": 414036692,
+    "bundle_version": "0.149.0"
+  },
+  "previous_validation_149": {
+    "packaged_scene_checks": 42907,
+    "packaged_launch": "Exported149 app initializes trial with Sean/Normal/seed42 via make run-check.",
+    "signature": "codesign --verify --deep --strict passed",
+    "audio": "104 audition slots checked",
+    "logs": "builds/Prototype-149/evidence",
+    "inherited_checks": "148 swarm checks retained in previous_validation_148; not rerun for this draw-order-only correction.",
+    "environment_notes": [
+      "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+      "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+    ],
+    "platform_limits": [
+      "No native Windows or Intel execution",
+      "No physical controller playtest",
+      "No human deliberate-play difficulty or frantic-feel acceptance",
+      "Discrete live-motion captures do not certify continuous cadence in every encounter"
+    ]
+  },
+  "visual_review_150": {
+    "status": "Engineering and independent Art static review passed: three readable buttons, no leftover fourth plate or clipping",
+    "capture": "builds/Prototype-150/evidence/menu.png",
+    "scope": "Start, Controls, Quit only. No trial button; existing title artwork retained."
+  },
+  "correction_150": "Removed trial menu entry and selection flag. Trial construction requires explicit command-line initializer; make run LEVEL=1-trial retained.",
+  "previous_build_150": {
+    "app": "builds/Prototype-150/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash. Post-build review/status documentation is not claimed present in packaged bytes.",
+    "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+    "evidence": "builds/Prototype-150/evidence",
+    "pck_sha256": "906517eb16890e7d6de8dd2a6bd0b4264b2756ba6a7a89e7a1c590e0e3a00a00",
+    "pck_bytes": 424237928,
+    "bundle_version": "0.150.0"
+  },
+  "previous_validation_150": {
+    "packaged_title": "Passed menu labels/hit targets, both heroes, guarded difficulty, controller start, restart, return and mute.",
+    "packaged_trial_launch": "Actual exported app direct trial selector passes for Sean/Normal/seed42.",
+    "signature": "codesign --verify --deep --strict passed",
+    "logs": "builds/Prototype-150/evidence",
+    "inherited_checks": "Gameplay unchanged;149 and148 checks retained in prior validation records.",
+    "environment_notes": [
+      "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+      "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+    ],
+    "platform_limits": [
+      "No native Windows or Intel execution",
+      "No physical controller playtest",
+      "No human deliberate-play difficulty or frantic-feel acceptance",
+      "Discrete live-motion captures do not certify continuous cadence in every encounter"
+    ]
+  },
+  "visual_review_151": {
+    "status": "Engineering and independent Art bounded review passed for three readable pursuit/contact views; ceiling/HUD view retained as known visibility limitation",
+    "evidence": "builds/Prototype-151/evidence",
+    "captures": [
+      "pursuit-swoop.png",
+      "pursuit-contact.png",
+      "repeated-pursuit.png",
+      "repeated-pursuit-contact.png"
+    ],
+    "scope": "Old ceiling-stuck pre-pit flyer leaves boundary, dives twice; Sean HP5\u21924\u21923. Fixture retains knockback; player physics disabled.",
+    "limits": "Inherited ceiling-height attack origin is partly behind HUD on recovery. Sampled poses do not establish all-path continuous visual acceptance.",
+    "art_findings": "Distinct wing poses, readable face/legs, HP loss and knockback, direct second-contact overlap with grounded Sean; no obvious deep floor penetration. High recovery pose is obscured by HUD/top-right edge, not accepted as complete pose."
+  },
+  "correction_151": "After hero is beyond2440, grounded and crossing/landing grace expires, flyers retain unlocked world pursuit. Actual endpoint determines movement success. Re-entering crossing cancels unlocked windup/swoop into non-contact upward recovery; no teleport or reset of navigation latch.",
+  "previous_build_151": {
+    "app": "builds/Prototype-151/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash. Post-build review/status documentation is not claimed present in packaged bytes.",
+    "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+    "evidence": "builds/Prototype-151/evidence",
+    "pck_sha256": "1c2c8cd26e4835b794d97ca1825854dafdcaa37e16ca53da80d109ea11c7819a",
+    "pck_bytes": 424242872,
+    "bundle_version": "0.151.0"
+  },
+  "previous_validation_151": {
+    "packaged_trial_checks": 42342,
+    "packaged_flyer_pursuit_checks": 1338,
+    "packaged_launch": "Exported trial Sean/Normal/seed42 passed",
+    "signature": "codesign --verify --deep --strict passed",
+    "audio": "104 auditions checked",
+    "logs": "builds/Prototype-151/evidence",
+    "environment_notes": [
+      "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+      "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+    ],
+    "platform_limits": [
+      "No native Windows or Intel execution",
+      "No physical controller playtest",
+      "No human deliberate-play difficulty or frantic-feel acceptance",
+      "Discrete live-motion captures do not certify continuous cadence in every encounter"
+    ]
+  },
+  "visual_review_152": {
+    "status": "Engineering and independent Art bounded static review passed; human difficulty/fun acceptance pending",
+    "evidence": "builds/Prototype-152/evidence",
+    "captures": [
+      "normal-capped-encounter.png",
+      "normal-encounter-later.png"
+    ],
+    "limits": "Staged admission/animation views do not establish final difficulty or fun.",
+    "art_findings": "Two distinct spiders and two platform shooters, readable silhouettes and muzzle cue, grounded hero and clear vitals; no obvious new static clipping/layering/proportion regression."
+  },
+  "normal_pressure_152": {
+    "human_feedback": "Frantic achieved; fun uncertain. Sean could not finish in4\u20135attempts; prior pressure suitable forHard.",
+    "normal": {
+      "living_shooter_cap": 2,
+      "living_flyer_cap": 2,
+      "recovery_after_final_bolt_seconds": 2.2
+    },
+    "hard": "Unchanged;1.2second recovery and no additional role cap.",
+    "admission": "Conservative global live role caps include arrivals; third remains pending, existing visible actors/bolts never deleted to enforce cap.",
+    "acceptance": "Await Sean playtest of tunedNormal."
+  },
+  "previous_build_152": {
+    "app": "builds/Prototype-152/Drain Damage.app",
+    "source_commit": null,
+    "dirty_tree": true,
+    "source_head_at_delivery": "02fedbb7afa47251845ba6840fe483e251bbb09d",
+    "source_note": "Uncommitted gameplay integration; exact tested bytes identified by PCK hash. Post-build review/status documentation is not claimed present in packaged bytes.",
+    "signature": "Ad-hoc macOS codesign --verify --deep --strict passed",
+    "evidence": "builds/Prototype-152/evidence",
+    "pck_sha256": "0368554c851e99425d8feff7a6de5546a10324e353ee07983bc31ec0fd77aca3",
+    "pck_bytes": 424248712,
+    "bundle_version": "0.152.0"
+  },
+  "previous_validation_152": {
+    "packaged_scene_checks": 39589,
+    "packaged_normal_pressure_checks": 95,
+    "signature": "codesign --verify --deep --strict passed",
+    "packaged_launch": "Exported trial Tony/Normal/seed42 passed",
+    "logs": "builds/Prototype-152/evidence",
+    "scope": "Normal2shooters/2flyers includes living arrivals, camera/backtrack, death slot release, other-role admission and inflight projectile retention. Hard permits3ofeach. Measured recovery2.2Normal/1.2Hard at30/120Hz; .55tell and3/4burst unchanged.",
+    "environment_notes": [
+      "Sandbox log/certificate/editor-settings-save warnings; export and signature succeeded.",
+      "Existing ObjectDB/RID/resource shutdown warnings remain in some tests."
+    ],
+    "platform_limits": [
+      "No native Windows or Intel execution",
+      "No physical controller playtest",
+      "No human deliberate-play difficulty or frantic-feel acceptance",
+      "Discrete live-motion captures do not certify continuous cadence in every encounter"
+    ]
+  },
+  "selector_revision_153": {
+    "2": "Flush from bowl",
+    "2.1": "Poop-board ride from landing checkpoint",
+    "camera-test": "Isolated camera proof; no numbered section collision",
+    "removed": "2-landing replaced by2.1",
+    "validation": "6Python launcher tests, actual exported flush/ride/camera initialization, signature and packaged launcher suite for both heroes/all difficulties/checkpoint reset passed"
+  },
+  "hud_integration_154": {
+    "status": "Superseded by155ride-theme integration;154technical evidence retained, no visual acceptance.",
+    "app": "builds/Prototype-154/Drain Damage.app",
+    "pck_sha256": "929074454e828b803f99b925c273bb42c89ee828e1b0dc058c4250f5aceb7c2e",
+    "changes": "Shared no-text health/lives renderer. Level1 dispenser, flush chain, ride/camera dispenser fallback pending ride choice. Selected-hero portraits, filled/depleted markers; no labels.",
+    "assets": "assets/ui/vitals-themes-v1",
+    "preparation": "scripts/vitals_hud.gd preserves original atlases; alpha below240 removed, aspect-preserving components on2xcanvases. Chain housing assembled from Art-approved existing lever/rail/connector source rectangles.",
+    "validation": "41700 source and41700 exact-packaged HUD checks pass bothheroes/allmodes/allhealth/lives/theme/bounds and transition/death/retry/reset. Exportedflush/trial launch and signature pass.",
+    "evidence": "builds/Prototype-154/evidence",
+    "pending": "Root running capture of boththemes/heroes/depleted states, normal-size/enlarged composition and independent Art review. No visual-ready claim."
+  },
+  "hud_integration_155": {
+    "status": "Built and technically checked; approved running review found required chain and duck readability corrections.",
+    "app": "builds/Prototype-155/Drain Damage.app",
+    "pck_sha256": "c4e460224d779f9f69daa99d352b0ed863b0b5159ca2d06c63b0f993da666630",
+    "changes": "Ride and camera proof use approved text-free rubber-duck HUD. Level1 dispenser and flush chain retained. Duck art bottom-aligned at24; backing and shelf assembled from Artmanifest, oval rim preserves aspect,16px selected-hero portraits unchanged.",
+    "validation": "61,554 source and 61,554 exact-packaged HUD checks pass; exported ride/camera launches and signature pass. Six native-size captures cover both heroes across all three themes. Counts and no-text behavior match.",
+    "pending": "Art owns replacement depleted-chain and depleted-duck components plus clearer portrait openings. Engineering will integrate, rebuild and repeat visual review. Dispenser Sean still has bounded Art approval; full lifecycle motion acceptance remains pending. Stable visually reviewed build remains 153.",
+    "evidence": "builds/Prototype-155/evidence",
+    "visual_review": {
+      "permission": "Sean explicitly approved review of all three HUDs in this chat.",
+      "captures": [
+        "dispenser-sean.png",
+        "dispenser-tony.png",
+        "chain-tony.png",
+        "chain-sean.png",
+        "ducks-sean.png",
+        "ducks-tony.png"
+      ],
+      "findings": "Dispenser readable. Chain depleted drops too faint; plug rims dominate faces. Duck depleted markers read as rubble; oval rims squeeze portraits; excess backing space. Not visually accepted as a complete set.",
+      "window": "Owned agent preview closed after captures."
+    }
+  },
+  "hud_integration_156": {
+    "status": "Built and technically checked; Engineering and independent Art bounded still acceptance passed.",
+    "app": "builds/Prototype-156/Drain Damage.app",
+    "pck_sha256": "ed09f7726a7b4e30e0e07eed4ea7f9db054531a27ea7871de60a259b6d662401",
+    "changes": "Art v2 depleted chain droplets and ducks improve native-size silhouettes; thinner plug and circular dish rims preserve 16px selected-hero portraits. Originals retained.",
+    "validation": "61,554 source and 61,554 exact-packaged HUD checks pass; signature verified. Actual opaque duck baseline and minimum readable height checked. Four running captures cover both heroes and empty health; native and 4x prepared-component previews retained.",
+    "evidence": "builds/Prototype-156/evidence",
+    "limits": "Still captures do not establish continuous transition/motion acceptance. Owned small preview closed.",
+    "pending": "Live visual damage/death/retry/transitions, Easy/Hard portrait review and other window scales remain unreviewed.",
+    "art_review": "Approved displayed Normal compositions for both heroes, mixed and zero health. Gray ducks and depleted droplets countable; faces clear rims; no obvious detached joins, clipping, text or header overflow. Prototype 155 rejection evidence retained."
+  },
+  "section_1_2_157": {
+    "status": "Prototype 160 playtest candidate: 90% pit overlap and varied authored arrivals; packaged checks and bounded Engineering/Art visual review pass. Human full-route pacing remains pending.",
+    "app": "builds/Prototype-157/Drain Damage.app",
+    "pck_sha256": "3881ad2d30266eaa1a52ae92e919ae3cfdb47790861e4eddd6cbec79b5570058",
+    "command": "make run LEVEL=1.2",
+    "contract": "levels/first-call/section-1-2.json",
+    "scope": "Independent 2880px section, early pit, landing respite, floor exchange and late machinery climb; 24 finite enemies. Production Level1 unchanged.1.1 aliases original1-trial.",
+    "validation": "34,945 source and34,945 exact-packaged section checks, baseline pressure95 and flyer1338 checks pass. Both heroes/all3difficulties,30/120Hz terrain routes, real jump holds,65%pit overlap, supported spawns, climb pursuit, caps, dips and retry. Python launcher7checks and Godot launch suite pass.",
+    "pending": "Humanfun/difficulty andfullroutebothhero review; detailedentrymotioncoverage.",
+    "evidence": "builds/Prototype-157/evidence"
+  },
+  "continuous_monster_entries": {
+    "status": "Prototype 160 playtest candidate: packaged checks pass; Engineering and Art accept bounded running visual evidence for the requested corrections.",
+    "requirement": "No visible pop-ins. Author varied screen-edge and selective depth entrances per encounter. Stationary shooters never arrive from the viewer; use supported ground, ceiling or wall emergence.",
+    "owner": "Engineering integration; Game Mechanics runtime and tests; Art visual critique",
+    "audit": {
+      "production_flushfiends": "Existing full-render-radius offscreen admission retained.",
+      "trial_actors": "Fixed shared opening/production-opening and both section actor admissions: animated foreground/top/pipe entries, continuous anchor and normal-layer handoff.",
+      "swarms": "Fixed trial, production scheduled/reset and Clogfather reinforcements with animated top entries; harmless during transit.",
+      "clogfather_warning": "Removed flashing full-swarm ghost previews; boss warning/audio retained. Boss-specific actual fly glyph/contact positions preserve central safe lane.",
+      "clogfather_body": "Resident scenery actor visible before encounter trigger; no new spawn needed.",
+      "skitterling": "Initial central pipe reveal corrected using geometric aperture clipping. Existing side/ceiling relaunch, withdrawal and water/form sequences retained; not newly visually certified."
+    },
+    "pending": "Human full-route fun/pacing; dense continuous motion and other production/boss entry paths remain outside this bounded correction review.",
+    "app": "builds/Prototype-160/Drain Damage.app",
+    "pck_sha256": "987b2a3b013df9e6e557682f452f35fbac64734b1da764abf3266ea1a29e951e",
+    "validation": "Final package: 52,878 entry checks and 35,468 section checks, zero failures. Source Normal pressure 93, flyer pursuit 1,338 and original-trial 29,361 pass; opening trial passes. Sean 1.2 headless launch passes. Signature verified during build.",
+    "pacing": "No damage/cap/cooldown tuning changes. Shooters no longer charge during entry, reducing immediate pressure in scripted runs; human pacing recheck pending.",
+    "evidence": "builds/Prototype-160/evidence",
+    "permission": "Sean explicitly allows game test windows throughout November3,2026; section1.2 approval repeated directly.",
+    "visual_review_158": {
+      "evidence": "builds/Prototype-158/evidence/*-live-*.png and section-*.png",
+      "method": "CUA running screenshots of exact158PCK; staged stationary geometry and sampled0.5x arrival time. Not a continuous video/full-speed certification.",
+      "rejection": "Foreground scale3 shrinks mostly belowviewport; first fullmonster onlymodestlylarger, reads as floor rise. Art requests recognizablelargevisiblephase before recession.",
+      "accepted": "Art boundedstaticapproval earlypit and picturedlateclimb. Othersequences andfullgeometryreviewpending.",
+      "invalid_evidence": "foreground-motion series capturedfinishedstateonly; pipe-050 heroembeddedbyfixture, pipe-100 heroflicker. Neitherusedforacceptance; correctedpipe-live seriesretained.",
+      "window": "158ownedpreviewclosedaftercapture."
+    },
+    "visual_review_159": {
+      "evidence": "builds/Prototype-159/evidence; storybook/159-section-one-two/captures.json",
+      "method": "Actual159PCK at normal animation clock, screenshots roughly1second apart plus explicitly staged shooter0.5s image.",
+      "accepted": "Art and Engineering: recognizablelargeforeground toilet before nativesize; oversizedshooter stage. Sectiongeometry, wing/insectmotion read in capturedviews. Candidate-only acceptance.",
+      "limits": "Sparsecaptures do not certify firstpixelcontinuity, uninterruptedhandoff or smoothness. Full-routebothhero gameplay/contact, production/bossreinforcementmotion unreviewed.",
+      "window": "Ownedpreviewclosed;159previewlogcontainsnoSCRIPTERROR.158fixturehadatransientcontrolJSONreaderror, notgamecode;159usesatomicwrites."
+    },
+    "correction_160": {
+      "status": "Delivered as Prototype 160; packaged checks pass and Engineering/Art bounded visual acceptance complete.",
+      "user_feedback": "Section 1.2 first pit falls too early; blanket foreground arrivals misinterpret no-pop-in requirement.",
+      "pit": "90% footprint overlap only in section 1.2; verify drawn lip and collision opening, both heroes and landing directions.",
+      "arrivals": "Per-encounter left/right/top/bottom and selective positive/negative depth. Stationary shooters use supported emergence; include ceiling coverage.",
+      "constraints": "Preserve finite roster counts, Normal two-shooter/two-flyer limits and 2.2-second firing recovery.",
+      "ownership": "Mechanics: runtime/tests. Level Design: both trial contracts. Art: mounts/reveal artwork and independent review. Engineering: integration/docs/build.",
+      "interpretation": "Clarify surprising broad interpretations with Sean before applying them across the game.",
+      "art": "Delivered modular ceiling shooter with two body frames and independent barrel; existing hatch and supported ceiling fixture registration. Runtime and composed visual acceptance pending.",
+      "art_manifests": [
+        "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.json",
+        "assets/world/three-screen-trial/shooter-entry-fixtures-v1.json"
+      ],
+      "visual_fixes": "Running captures caught displaced negative-height ceiling bracket and negative-width mirrored runner. Explicit UV flips now retain authored destination and clipping registration.",
+      "visual_evidence": "Final-package left-entry-final, floor-live, ceiling-live, foreground-live, pipe-live, top-visible-final and pit-*-89 captures. Earlier static floor/bottom/ledge samples retain applicability; rejected ceiling-mounted and left-facing-corrected are not acceptance evidence.",
+      "limits": "Staged stationary hero with normal-speed enemy stepping and shots; sparse screenshots do not prove uninterrupted first-pixel continuity or full-route pacing. Pipe-live hero was positioned unsupported by fixture; use pipe-supported-final for supported staging. Ceiling defeat is provisional darken/fade, not a finished destruction animation.",
+      "window": "Owned small test window closed after capture.",
+      "warnings": "Existing sandbox CA-certificate/editor-settings warnings and ObjectDB/resource shutdown warnings; no script errors in passing gates.",
+      "art_review": "Art accepts corrected left-facing registration, floor partial reveal through charge/fire, mounted ceiling reveal/aim/fire, selective foreground and pipe arrivals, top flyer and pictured ledges. No additional correction requested in inspected states; sparse-motion limits and provisional ceiling fade remain."
+    }
+  }
+}

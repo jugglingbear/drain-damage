@@ -22,6 +22,9 @@ func prepare(game: Node, role: String, home: Vector2) -> Dictionary:
 	assert(game.trial_state.activate(event.id))
 	game.create_actor(event,home)
 	var actor: Dictionary = game.actors[0]
+	if game.MonsterEntry.active(actor):
+		game.MonsterEntry.advance(actor.entry,actor.entry.duration)
+		actor.feet = actor.entry.home
 	actor.active = true
 	return actor
 
@@ -45,7 +48,7 @@ func run_checks() -> void:
 				times.append(shooter.age)
 				for shot in game.hostile_shots: game.trial_state.remove_bullet(shot.id)
 				game.hostile_shots.clear()
-		assert(times.size() == 4)
+		assert(times.size() == 4, str(times))
 		assert(times[0] >= 0.8-dt and times[0] <= 0.8+dt)
 		for index in range(1,times.size()): assert(absf(times[index]-times[index-1]-2.5) <= dt+0.0001)
 		game.step_shooter(shooter,1,false)
@@ -100,7 +103,7 @@ func run_checks() -> void:
 		flyer.facing = -side
 		var old_distance: float = absf(flyer.feet.x-game.player.x)
 		for tick in range(120): game.step_flyer(flyer,1.0/120)
-		assert(absf(flyer.feet.x-game.player.x) < old_distance-200 and flyer.hp == 135)
+		assert(absf(flyer.feet.x-game.player.x) < old_distance-200 and flyer.hp == 101.25)
 	# A blocked vertical return can slide out from under an overhang, without tunneling.
 	var flyer := prepare(game,"aggressive_flyer",Vector2(600,350))
 	var ceiling := Rect2(520,270,180,30)

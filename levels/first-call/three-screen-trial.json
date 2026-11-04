@@ -1,0 +1,1107 @@
+{
+  "schema_version": 1,
+  "id": "first-call-three-screen-trial",
+  "date": "2026-11-02",
+  "status": "Prototype 160 built; packaged traversal and entry checks pass. Bounded visual review passes pictured geometry and mounts; full-route human pacing remains pending.",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "approval": "Sean approved the three-screen plan, varied intensity, single shots and bursts; external tools are inspiration only.",
+  "scope": "Separate selectable trial retaining the current production Level 1 for comparison. No engine/editor migration.",
+  "world": {
+    "width": 2880,
+    "viewport": [
+      960,
+      540
+    ],
+    "floor_y": 440,
+    "spawn_feet": [
+      85,
+      440
+    ],
+    "finish_x": 2770
+  },
+  "movement": {
+    "preserve_existing": true,
+    "required_rise_max": 60,
+    "required_landing_width_min": 200,
+    "pit_overlap_fatal_fraction": 0.65,
+    "validation": "Simulate both heroes from standing and moving starts, partial/full jump holds, ascent headroom and landing. Numbers are candidates, not reachability certification."
+  },
+  "geometry": {
+    "optional_route": {
+      "steps": [
+        [
+          300,
+          380,
+          160,
+          60
+        ]
+      ],
+      "catwalk": [
+        460,
+        320,
+        380,
+        16
+      ],
+      "collision": "Access ledge and catwalk are one-way, passable from sides/below; Art provides brackets behind playable lane. Ground route remains walkable."
+    },
+    "mandatory_climb": {
+      "solid_rects": [
+        [
+          1080,
+          380,
+          200,
+          60
+        ],
+        [
+          1280,
+          320,
+          220,
+          120
+        ],
+        [
+          1500,
+          380,
+          200,
+          60
+        ]
+      ],
+      "purpose": "Floor route blocked by solid machinery; two 60px rises require jumping. Broad summit supports combat.",
+      "runner_pursuit": {
+        "actors": [
+          "background-entry",
+          "climb-runner"
+        ],
+        "horizontal_body_envelope": [
+          1000,
+          2010
+        ],
+        "route": "Connected floor to60px side steps to120px summit; from right use1700 edge then1500 edge, with real supported landing on each tier. Hero1373 summit must be reachable.",
+        "constraints": [
+          "Contain full body/contact footprint, not feet only; keep protected2040..2600 empty.",
+          "Jump only toward a reachable supported destination within bounds; do not jump at invisible containment edges.",
+          "Use actual grounded/support state for walk/air animation, never absolute screen height.",
+          "When hero is outside reachable pocket, patrol supported route or stop at bound without repeated jumps.",
+          "Preserve foreground-entry1840..2010 and opening bounds; this expansion applies only to two climb runners."
+        ],
+        "validation": "Mechanics/Engineering verify actual enemy jump physics, supported landings, both directions, hero held1373 and departure toward pit. Bounds approval is not navigation certification."
+      }
+    },
+    "pit": {
+      "opening_x": [
+        2240,
+        2360
+      ],
+      "takeoff_clear_x": [
+        2040,
+        2240
+      ],
+      "landing_clear_x": [
+        2360,
+        2600
+      ],
+      "rendering": "Actual floor opening with broken edges and visible depth. Remove floor support only within opening.",
+      "intro_rule": "No new attack enters the takeoff, jump corridor or landing while this introductory crossing is committed."
+    }
+  },
+  "beats": [
+    {
+      "id": "opening-choice",
+      "trigger_x": 180,
+      "end_x": 900,
+      "intent": "Immediate light combat, then elevated single-shot pressure; optional catwalk changes firing angle.",
+      "roles": [
+        "two forward fragile runners",
+        "one elevated single-shot attacker"
+      ],
+      "timing": "Reveal elevated attacker after first ground contact; stagger first shot. Upper route is optional, not universally safer."
+    },
+    {
+      "id": "climb-and-breach",
+      "trigger_x": 960,
+      "end_x": 1780,
+      "intent": "Short low-pressure approach, mandatory climb, then stronger mixed-height combat.",
+      "roles": [
+        "one background-pipe entrant",
+        "one forward runner",
+        "one burst shooter"
+      ],
+      "timing": "Pipe entrant lands ahead in a visible clear pocket; shooter single first, burst on later cycle. Avoid firing into sole ascent/landing corridor."
+    },
+    {
+      "id": "foreground-and-gap",
+      "trigger_x": 1810,
+      "foreground_warning_trigger_x": 1650,
+      "end_x": 2770,
+      "intent": "Foreground arrival over intact floor, relief for pit introduction, final short single/burst exchange after landing.",
+      "roles": [
+        "one foreground entrant",
+        "one forward shooter after crossing"
+      ],
+      "timing": "Foreground warning may begin at1650 only when source/destination are on camera and actor budgets allow. Activate after full warning/travel/settle completion and occupancy recheck, without requiring hero to reach1810. Keep ordinary actor within1840..2010; expire only not-yet-visible entries at2040; visible arrivals finish at their committed safe destination under overlap inhibition. Final shooter activation requires grounded hero beyond2600. No pit swarm in first trial.",
+      "final_shooter": {
+        "feet_x": 2800,
+        "left_muzzle_x": 2782,
+        "projectile_range_pixels": 120,
+        "expiry": "Range fixed at projectile birth; expire at range or lifetime ceiling, whichever occurs first. Never dynamically clip at protected boundary.",
+        "acceptance": "Fresh visible warning per volley; full projectile footprint stays beyond2600. Deliberate play near2700 demonstrates single and burst fire; rushing may skip later volleys without a timer gate."
+      },
+      "trigger_x_scope": "1810 marks the encounter region, not an additional foreground activation gate."
+    }
+  ],
+  "depth_arrival": {
+    "phases": [
+      "visible warning",
+      "non-colliding depth travel",
+      "visible arrival",
+      "ordinary combat"
+    ],
+    "rules": [
+      "Foreground entrant begins offscreen near viewer; edge silhouette plus spatial audio and landing cue precede inward motion.",
+      "Background entrant uses an authored pipe origin and clear perspective transition.",
+      "No damage from sprite overlap during depth travel. Both directions become ordinary targetable actors on arrival.",
+      "Commit destination before travel. Suppress unsafe entries before first visible warning; once visible, hero proximity or region exit must not delete the actor. Complete full warning/travel/settle at committed supported destination within encounter bounds.",
+      "Foreground imagery must not obscure hero, hostile projectiles or pit edges during an active dodge.",
+      "At2040 suppress not-yet-visible foreground entries. Existing visible arrival remains outside protected corridor; finish naturally, never shorten warning or lock hero. Ordinary cleanup only when entire visual bounds are offscreen; retain stable consumed event ID.",
+      "On arrival, actor becomes vulnerable at its actual native hit geometry. While overlapping hero, inhibit contact damage and attacks; clear inhibition only after genuine separation and a fresh normal attack tell. Do not chase overlap to inflict damage, teleport hero or relocate destination into pit. A geometrically invalid destination must be rejected before visibility."
+    ],
+    "implementation_gate": "Engineering must register exact source/destination, collision footprint and arrival plane with Art before activation; Mechanics reviews projected escape and landing coverage. Do not infer collision from sprite scaling."
+  },
+  "difficulty": {
+    "easy": {
+      "active_patterns_max": 1,
+      "hostile_projectiles_max": 4,
+      "speed_multiplier": 0.8,
+      "burst_count": 2,
+      "arrival_warning_seconds": 1.2,
+      "recovery_seconds": 2.0,
+      "total_actors_max": 4,
+      "shot_warning_seconds": 0.65,
+      "burst_spacing_seconds": 0.22,
+      "projectile_lifetime_seconds": 2.0
+    },
+    "normal": {
+      "active_patterns_max": 2,
+      "hostile_projectiles_max": 8,
+      "speed_multiplier": 1.0,
+      "burst_count": 3,
+      "arrival_warning_seconds": 0.9,
+      "recovery_seconds": 2.2,
+      "total_actors_max": 6,
+      "shot_warning_seconds": 0.5,
+      "burst_spacing_seconds": 0.22,
+      "projectile_lifetime_seconds": 2.0,
+      "shooter_cap": 2,
+      "flyer_cap": 2
+    },
+    "hard": {
+      "active_patterns_max": 3,
+      "hostile_projectiles_max": 12,
+      "speed_multiplier": 1.15,
+      "burst_count": 4,
+      "arrival_warning_seconds": 0.7,
+      "recovery_seconds": 0.8,
+      "total_actors_max": 8,
+      "shot_warning_seconds": 0.4,
+      "burst_spacing_seconds": 0.22,
+      "projectile_lifetime_seconds": 2.0
+    },
+    "notes": "Candidate ceilings, not quotas. Extend warning for actual escape time. Same core geometry and movement for initial comparison; no HP inflation. Speed multiplier affects hostile projectiles only. Recovery begins after final projectile in a volley is emitted. Aim commits at end of visible windup; each burst uses the committed direction. Actor caps include warnings, arrivals and runners."
+  },
+  "scheduler": [
+    "Finite waves with stable IDs; crossing trigger starts each beat once, not continuous camping spawns.",
+    "Count warning and arriving actors against population budget; defer attacks exceeding pattern/projectile caps.",
+    "Reserve a physically reachable escape route through every overlap. Commit aimed shots before launch.",
+    "Do not accumulate deferred volleys into an instant burst when capacity frees.",
+    "Preserve pause, mute, retry and menu cleanup; reset trial from fresh deterministic seed and starting hero state.",
+    "No mandatory clear-all doors or timer waits. Expire missed entries only before visibility; visible actors complete their committed entry and remain bounded outside pit protection. Retire only fully offscreen, preserving finite IDs.",
+    "Keep protected crossing2040..2600 free of hostile projectile/contact occupancy, including earlier beats. Admission checks projected trajectories; stop upstream volleys sufficiently early for natural clearance. Do not delete visible bullets or lock hero to achieve this.",
+    "Final shooter beyond2600 must receive a fresh visible shot warning after grounded activation."
+  ],
+  "art": {
+    "owner": "Art",
+    "requirements": [
+      "Supported catwalk",
+      "Readable machinery steps",
+      "Broken pit edges/depth",
+      "Background arrival",
+      "Foreground inward arrival and warning"
+    ],
+    "rule": "Reuse approved artwork where suitable. Art supplies missing imagery after Engineering agrees runtime dimensions; no code-drawn replacement art."
+  },
+  "validation": [
+    "Both heroes and all three modes: full route without test healing, traversal reachability and reproducible encounter seed.",
+    "Hold-right-and-fire baseline cannot complete because mandatory platforming requires input; separately assess combat pressure without relying only on pit deaths.",
+    "Compare deliberate play: avoidable damage, readable cues, distinct singles/bursts and actual quiet intervals.",
+    "Test pit rim, 65% overlap, swept crossing and landing, frame rates, depth collision phases, pause and retry cleanup.",
+    "Engineering builds and runs relevant regression checks; capture and inspect running build with independent Art critique under existing launch permissions.",
+    "Hold hero at1722 through foreground warning/travel/settle: arrival must activate safely without1810 progression gate; verify native target/hit geometry permits intended straight shots. Test both heroes, all modes, retreat, pause and occupied landing cancellation. Art and Engineering inspect corrected platform contrast at gameplay size.",
+    "Approach, overlap and cross region end during each visible arrival phase: no disappearing actor, no contact/shot during overlap, real shot damage after settlement, safe rearm after separation. Knockback beside1700 step must use swept collision and leave hero outside solids across frame rates, both directions and both heroes."
+  ],
+  "delivery": {
+    "evidence": "handoffs/three-screen-trial-delivery.json",
+    "build": "0.152.0",
+    "runtime_validated": false,
+    "visual_accepted": false,
+    "validation_scope": "39589 packaged scene checks,95 independent Normal-pressure checks, signature and exported trial launch. Engineering/Art bounded encounter view passed; human difficulty/fun pending.",
+    "visual_status": "Prototype152 bounded encounter view accepted by Engineering and Art: two readable spiders and shooters, grounded hero and clear vitals; no obvious static clipping/layering regression. Human difficulty/fun remains pending.",
+    "limitations": "Prior frantic target achieved per Sean;152Normal difficulty and fun require human playtest. Conservative crossing protection remains. Prior continuous-motion, high-ceiling visibility, controller, Windows, Intel and live-audio gaps are not cleared by this tuning delivery.",
+    "corrections": "Removed extra foreground progression gate, restored existing corpse drawing for death animation/debris, toned backdrop and adjusted deck brightness under Art direction.",
+    "pending_visual_fix": {
+      "issue": "Background door-base ledge atx813 reads as standable; audit repeated ledges",
+      "art_owner": "Art",
+      "integration_owner": "Engineering",
+      "direction": "Trial-specific backdrop removal or flattening; do not add collision to painted background detail",
+      "validation": "Inspect approach and jumping near813 at gameplay size, compare false background ledge with actual catwalk; audit repeated instances.",
+      "status": "Resolved in141; Engineering and Art accepted exact813 and both repeatedbay views, evidence owner visual_review_141"
+    },
+    "pending_climb_fix": "Resolved in142: actual grounded animation state and reachable navigation for two climb runners within1000..2010 full-body bounds; owner visual_review_142 records bounded acceptance.",
+    "pending_arrival_knockback_fix": "Resolved in143 with15507 packaged scene assertions and bounded Engineering/Art signoff; enlarged-warning readability limitation remains."
+  },
+  "excluded": [
+    "Full Level1 replacement",
+    "Boss changes",
+    "New species",
+    "Steam hazards",
+    "Framework migration",
+    "Unapproved game foregrounding"
+  ],
+  "aggressive_replacement": {
+    "status": "Proposed concrete tuning/layout plan; Sean requested substantially more aggressive Normal baseline. Not implemented or validated.",
+    "owner": "Level Design",
+    "integration_owner": "Engineering",
+    "why_previous_failed": [
+      "Only eight finite enemy events across2880px, with most entries avoidable by forward movement.",
+      "Normal capped at two independent patterns; no flying spiders or swarms included.",
+      "Entire2040..2600 corridor was combat-free, removing pressure from the only pit.",
+      "Final120px projectile range and grounded2600 activation left almost no run-through exposure.",
+      "Fixtures showed attacks while stationary; that did not establish actual play pacing."
+    ],
+    "normal_targets": {
+      "authored_total": 32,
+      "ground_runners": 15,
+      "sputtervalves": 8,
+      "flying_spiders": 6,
+      "gnatastrophes": 3,
+      "active_actor_cap": 10,
+      "typical_live_threats": [
+        5,
+        8
+      ],
+      "active_pattern_cap": 4,
+      "hostile_projectile_cap": 18,
+      "typical_visible_projectiles_during_peak": [
+        6,
+        12
+      ],
+      "note": "Targets for measured combat intervals, not quotas on every frame; count each swarm as one actor and decorative bugs separately."
+    },
+    "sections": [
+      {
+        "id": "opening-crossfire",
+        "x": [
+          120,
+          900
+        ],
+        "counts": {
+          "runners": 5,
+          "shooters": 2,
+          "spiders": 2,
+          "swarms": 1
+        },
+        "waves": [
+          [
+            "runner",
+            "runner",
+            "single shooter"
+          ],
+          [
+            "spider",
+            "runner",
+            "burst shooter"
+          ],
+          [
+            "swarm",
+            "spider",
+            "runner",
+            "runner"
+          ]
+        ],
+        "entry": "First wave visible ahead by120; upper single shooter near700 atcatwalkheight; alternate front/rear runners with visible admission. Air enters above ahead, not over hero.",
+        "cadence": "Next wave after1.6s from previous admission or one live threat remains, subject caps and safe admission. One0.8s low-pressure dip after second wave, not a new empty corridor.",
+        "movement": "Optionalcatwalk gives firing angle; low volleys on floor prompt jumps while spider dives pressure camping above."
+      },
+      {
+        "id": "machinery-assault",
+        "x": [
+          900,
+          1810
+        ],
+        "counts": {
+          "runners": 6,
+          "shooters": 3,
+          "spiders": 2,
+          "swarms": 1
+        },
+        "waves": [
+          [
+            "runner",
+            "runner",
+            "single shooter",
+            "spider"
+          ],
+          [
+            "background runner",
+            "burst shooter",
+            "runner",
+            "swarm"
+          ],
+          [
+            "runner",
+            "runner",
+            "single shooter",
+            "spider"
+          ]
+        ],
+        "entry": "Existing background1590step entry plus reachable climb pursuers1000..2010; perch shooters distributed ahead/above, not all at1460. Use existing native art and mechanics.",
+        "cadence": "1.4s minimum wave spacing; single and burst shooter cycles offset0.35s. Brief1.0s reduced-fire interval while climbing first riser, with visible pursuing enemies continuing.",
+        "movement": "Two mandatory60px rises remain; both runners and air threats can contest summit. Fresh arrivals cannot occupy sole supported landing."
+      },
+      {
+        "id": "pursuit-and-crossing",
+        "x": [
+          1650,
+          2880
+        ],
+        "counts": {
+          "runners": 4,
+          "shooters": 3,
+          "spiders": 2,
+          "swarms": 1
+        },
+        "waves": [
+          [
+            "foreground runner",
+            "runner",
+            "single shooter"
+          ],
+          [
+            "spider",
+            "swarm",
+            "burst shooter"
+          ],
+          [
+            "runner",
+            "runner",
+            "spider",
+            "single shooter"
+          ]
+        ],
+        "entry": "Foreground warning retains1650; visible arrival persistence and overlap inhibition retained. Place final firing position near2780 and expose it fromaround2400, no grounded2600 admission gate.",
+        "cadence": "1.5s minimum wave spacing. Afterpit next burst waits at least0.45s following landing; air/ground enemies remain visible.",
+        "movement": "Keep120px pit and supportgeometry. Replace blanket560px immunity with authored crossing window below. Final combat begins on approach rather than after player has nearly reached exit."
+      }
+    ],
+    "projectiles": {
+      "single": "Visible0.45s windup, committed aim, one projectile,1.0s recovery.",
+      "burst": "Visible0.55s windup, three shots0.18s apart,1.2s recovery after last shot; aim fixed for entire burst.",
+      "speed_pixels_per_second": 220,
+      "rule": "Trial purple-bolt requirement supersedes proposed650px range/3s TTL and prior short-range final shooter for replacement. Actual projectile trajectories until collision/full offscreen exit determine threat and crossing admission. Other projectile types retain their explicit existing lifecycle unless separately revised.",
+      "purple_bolt_lifetime": "No range cap or TTL. Persist until collision or entire visible extent is offscreen; camera-relative cleanup checks full projectile bounds. Never delete a visible bolt due to protected-zone entry, age, distance or phase change."
+    },
+    "air_pressure": {
+      "spider": "Reuse Hallowed Widow art/flight and authored attack tells; alternating high traverse and committed dive provides upward/diagonal targets. Do not assume current runtime can transplant without adaptation.",
+      "gnatastrophe": "Current147: continuous70px/s wander/acquire/reform. At320px acquisition choose random weapon form; moving0.8s tell then140px/s straight charge toward hero position locked at acquisition start before the0.8s moving tell. Arrival at locked position or obstacle leads to0.65s moving cloud reform, then minimum0.8s wander before repeat. No stopped weapon/pass state; no ongoing curved heat seeking during charge. Earlier170px/s100deg/s0.7pass proposals are historical only.",
+      "pit_swarm": "Show swarm rising from far pit rim before crossing commitment, then entering pursuit; suppress this particular emergence if it would first become dangerous during committed jump. Swarm already visible may remain a threat only within validated crossing windows."
+    },
+    "pit_revision": {
+      "preserve": "Opening2240..2360,65percent overlap rule, support/collision and wide landing remain.",
+      "replace": "Propose superseding absolute2040..2600 combat exclusion for this replacement only.",
+      "crossing_window": "At most one hostile pattern may intersect the jump envelope, but count alone never establishes safety. Before admission verify a clear full swept crossing and supported landing option for the actual hero, including all existing bullets, burst members, swarm/contact shapes and their future trajectories. At jump commitment freeze threatening admitted air trajectories and shot aim; reserve landing through touchdown+0.45s, accounting for already airborne projectile flight. Defer only conflicting attacks; retain pressure elsewhere. Purple bolts have no TTL/range safety cutoff: simulate full actual trajectory until collision or complete offscreen exit, accounting camera motion. Never presume a visible bolt expires before reaching the landing.",
+      "contact": "Keep ground runners physically out of opening. Existing airborne actors cannot retarget into reserved landing during commitment.",
+      "validation": "Bothhero actual swept trajectories at supported frame rates with early/late takeoff, reversal and lowhealth; include existing bullets and whole swarm/contact extents. Reject a crossing if any unavoidable hit covers all feasible paths. Landing guard duration is a minimum, extended or conflicting shot deferred when flight time requires. No invisible barrier, invulnerability or bullet removal."
+    },
+    "difficulty": {
+      "easy": {
+        "actor_cap": 6,
+        "pattern_cap": 2,
+        "projectile_cap": 10,
+        "projectile_speed_multiplier": 0.8,
+        "burst_count": 2,
+        "wave_spacing_multiplier": 1.4,
+        "homing_turn_multiplier": 0.7
+      },
+      "normal": {
+        "actor_cap": 10,
+        "pattern_cap": 4,
+        "projectile_cap": 18,
+        "projectile_speed_multiplier": 1.0,
+        "burst_count": 3,
+        "wave_spacing_multiplier": 1.0,
+        "homing_turn_multiplier": 1.0,
+        "shooter_cap": 2,
+        "recovery_seconds": 2.2,
+        "tuning_status": "Delivered Prototype152; packaged validation passed, human playtest pending",
+        "flyer_cap": 2
+      },
+      "hard": {
+        "actor_cap": 12,
+        "pattern_cap": 5,
+        "projectile_cap": 24,
+        "projectile_speed_multiplier": 1.15,
+        "burst_count": 4,
+        "wave_spacing_multiplier": 0.8,
+        "homing_turn_multiplier": 1.2
+      },
+      "shared": "Keep movement/HP geometry stable initially; preserve minimum reaction/landing constraints in all modes. More fragile existing enemies, no HP inflation."
+    },
+    "anti_bypass": [
+      "Ahead-of-player activation within camera; wave timing and path progress jointly schedule finite pressure. Do not expire every pending wave just because hero crosses a section line.",
+      "Carry finite pending wave into next authored visible safe entry slot; defer if caps reached, never spawn unseen attacks or unload accumulated volleys.",
+      "Test continuous right+fire+necessary terrain jumps as baseline, not a no-jump bot that only dies to geometry. Track attacks that actually reach its route.",
+      "No clear-all gates or forced waits. Successful skilled speedrun remains legitimate; simplistic forward-fire should require aiming/dodging changes to survive Normal."
+    ],
+    "acceptance": [
+      "Log per0.25s active targetable enemies byrole, warnings separately, visiblehostile projectiles, fired/suppressed attacks, minimum escape window and reasons.",
+      "DuringNormal combat peaks aim for5..8 targetable threats and6..12 visiblebullets for at least half peak time; keep1..2 deliberate0.8..1.2s dips. Validate this target with humans, not just spawningcounts.",
+      "All3screens must present ground+ranged+air pressure in real moving routes; bothspider and homingswarm must engage bothheroes, not exist only in stagedfixtures.",
+      "Measure jump/aim/direction decisions and damage sources; target at least5 meaningful jump decisions across the trial including mandatory climb/pit and lowvolley evasions. No claim achieved merely from jumpbuttoncount.",
+      "Compare baseline forwardfirewithterrainjumps against deliberateplay acrossfixedseeds; fullspeedhumanreview required before callingfrantic/difficult. Preserveactualfailedpacing143 as comparison.",
+      "Verify all monster movement and charge animations in actual play; identify explicit exceptions rather than silently freezing poses.",
+      "Verify swarm wanders outside acquisition range, acquires around320px, smoothly morphs with living internal movement, and visual forms do not alter combat values.",
+      "Verify purple bolts remain visible beyond old120/650px ranges and oldTTL, collide correctly, and clean up only when full visual bounds exit screen; crossing checks include these continuing trajectories."
+    ],
+    "dependencies": [
+      "Mechanics review homing turn/attack/crossing windows and existing spider adapter before implementation.",
+      "Art reviews existing spider/swarm/background/foreground reads under increased density; no new species/art assumed.",
+      "Engineering owns runtime/build/performance tests and actual fullspeed capture; no framework migration."
+    ],
+    "mechanics_review": "Trial-only approach feasible in principle. One-pattern cap is insufficient without swept crossing/landing coverage; existing attack flight and cloud extents count. No implementation/runtime certification; moving-route fullspeed evasion evidence remains required.",
+    "authorized_requirements": {
+      "source": "Sean direct requirements relayed by Engineering on2026-11-02",
+      "gnatastrophe": "Rounded/circular default cloud and living visual-only weapon forms preserved. Current147 behavior is repeated moving acquire/tell/straight charge/reform/wander with a fresh random form at each320px lock; supersedes earlier curved pursuit proposal.",
+      "animation": "All monsters animate movement and charge unless explicitly excepted.",
+      "purple_bolts": "Infinite configured travel range and no lifetime timeout; remove only on collision or when entire visible projectile is offscreen. No range or age deletion while visible.",
+      "implementation_status": "Authorized behavior requirements; Art assets/design and Engineering runtime pending. Proposed density figures remain tuning candidates, not implemented143 behavior."
+    },
+    "integration": {
+      "planned_version": "0.144.0",
+      "status": "Integrated in signed local144candidate; no pacing acceptance or release publication",
+      "ownership": {
+        "Engineering": "Shared Gnat hunting/morphs, purple projectile/shooter runtime, final integration/build",
+        "Game Mechanics": "Exclusive trial script and trial tests for denser mixed roster and pit safety",
+        "Level Design": "Contract and scoped roadmap",
+        "Art": "Morph anchors, charge artwork/contracts and visual critique"
+      },
+      "gnat_implementation_values": {
+        "acquisition_radius_pixels": 320,
+        "acquisition_metric": "Euclidean center distance",
+        "morph_seconds": 0.65,
+        "visible_tell_seconds": 0.8,
+        "speed_pixels_per_second": 170,
+        "turn_degrees_per_second": 100,
+        "committed_pass_seconds": 0.7,
+        "contact_radius_pixels": 48,
+        "form_mechanics": "Visual-only forms; invariant contact radius",
+        "art_fly_anchors": 32,
+        "version_scope": "Historical144 integration values, superseded for current behavior by current_gnat_cycle147; retain as evidence only."
+      },
+      "gates": "Runtime values must be reconciled with Mechanics delivery. No density/frantic-feel acceptance without full-speed moving-route evidence; no144build claim before integration/export."
+    },
+    "implemented_trial_handoff": {
+      "status": "Integrated144candidate; pressure gap remains",
+      "roster": {
+        "total": 32,
+        "runners": 15,
+        "shooters": 8,
+        "widows": 6,
+        "gnatastrophes": 3
+      },
+      "admission": "0.25s individual admission, replacing proposed authored1.4..1.6s wave spacing; no claim equivalent pacing",
+      "caps": {
+        "easy": {
+          "actors": 6,
+          "patterns": 2,
+          "bolts": 10
+        },
+        "normal": {
+          "actors": 10,
+          "patterns": 4,
+          "bolts": 18
+        },
+        "hard": {
+          "actors": 12,
+          "patterns": 5,
+          "bolts": 24
+        }
+      },
+      "purple_bolts": {
+        "base_speed": 220,
+        "difficulty_speed_multipliers": [
+          0.8,
+          1.0,
+          1.15
+        ],
+        "tell_seconds": 0.55,
+        "burst_spacing_seconds": 0.18,
+        "recovery_seconds": 1.2,
+        "burst_counts": [
+          2,
+          3,
+          4
+        ],
+        "sequence": "Alternating single/burst",
+        "lifecycle": "Until full sprite exits view or physical impact; no range/TTL"
+      },
+      "gnat": "Shared320 acquisition and0.8tell; no difficulty-specific turn multiplier implemented",
+      "crossing": {
+        "prebirth_ray_denial_x": [
+          2180,
+          2440
+        ],
+        "attack_hold_hero_x": [
+          2160,
+          2410
+        ],
+        "additional_hold": "Airborne commitment and landing+0.45s",
+        "air_pockets": "At or below2170 / at or above2490 in worldx",
+        "difference": "Conservative narrowed exclusion, not proposed one-pattern contested crossing; no existing visible bolt deletion"
+      },
+      "reported_checks": {
+        "trial_scene": 41558,
+        "shared_gnat": 13156,
+        "physics": 218,
+        "scope": "Mechanics reported source technical checks; not final packaged or human visual acceptance"
+      },
+      "moving_route_observations": {
+        "normal_peaks": {
+          "actors": 10,
+          "patterns": 4,
+          "visible_bolts": 2
+        },
+        "normal_bolts_fired": {
+          "sean": 5,
+          "tony": 6
+        },
+        "baseline": "Continuous right/fire with terrain jumps",
+        "tony_normal": "Died atx2666.94",
+        "tony_hard": "Died atx1910.94",
+        "sean_normal": "Finished with1HP",
+        "sean_hard": "Finished with1HP",
+        "easy": "Both finished with3HP",
+        "status": "Earlier pre-pressure-pass baseline; superseded by pressure_pass moving_routes for current source"
+      },
+      "remaining": "Current sourceNormal peaks5Tony/4Sean bolts, improved from2 but below6..12target. Source checks are not final package or human acceptance; Engineering owns next decision.",
+      "pressure_pass": {
+        "status": "Mechanics source delivered to Engineering; build/visual review pending",
+        "changes": [
+          "Prioritize pending second shooter; opening-single trigger120.",
+          "Reinforcement shooters start with full first burst2/3/4.",
+          "Visible charge overlaps last0.55s of arrival warning; full charge and arrival completion both required."
+        ],
+        "shooter_perches": [
+          [
+            620,
+            320
+          ],
+          [
+            920,
+            440
+          ],
+          [
+            1320,
+            320
+          ],
+          [
+            1760,
+            440
+          ],
+          [
+            2700,
+            440
+          ]
+        ],
+        "unchanged": "32 roster, actor/pattern/projectile caps, HP,220base projectile speed and pit policy",
+        "moving_routes": {
+          "normal": {
+            "peak_bolts": {
+              "tony": 5,
+              "sean": 4
+            },
+            "total_shots": {
+              "tony": 10,
+              "sean": 12
+            },
+            "simultaneous_shooter_sources": {
+              "tony": 2,
+              "sean": 3
+            },
+            "outcome": "Both finish1HP"
+          },
+          "hard": {
+            "peak_bolts": {
+              "tony": 7,
+              "sean": 6
+            },
+            "total_shots": {
+              "tony": 19,
+              "sean": 19
+            }
+          },
+          "easy": {
+            "peak_bolts": {
+              "tony": 4,
+              "sean": 2
+            },
+            "total_shots": {
+              "tony": 6,
+              "sean": 5
+            }
+          }
+        },
+        "source_scene_assertions": 41558,
+        "new_checks": "Normal moving-route at least4bolts and2sources; full visiblecharge beforeattack",
+        "remaining": "Normal6..12peak target remains unmet; no fullspeed human/visual pacing validation."
+      }
+    }
+  },
+  "planned_145": {
+    "status": "Integrated signed145 package; technical checks and bounded still reviews complete, remaining continuouscadence/human/platform gaps retained",
+    "scope": [
+      "Restore rounded/circular-ish default Gnat cloud; prior semicircle interpretation superseded.",
+      "Enlarge Gnat weapon formations50percent relative to144.",
+      "Enlarge toilet monsters20percent relative to144 and verify actual horizontal hero shots connect.",
+      "Correct Tony run cycle so feet alternate and pass each other rather than spread oscillation.",
+      "Sean direct request to Art extends run-cycle correction to Sean: six poses across all costumes, same145 integration."
+    ],
+    "ownership": {
+      "Art": "Cloud anchors, Tony and Sean run artwork/derivatives and canonical metadata",
+      "Game Mechanics": "Toilet runtime geometry proposal and shot/contact tests",
+      "Engineering": "Runtime integration, build and visual validation",
+      "Level Design": "Scoped contract/roadmap notes"
+    },
+    "acceptance": [
+      "Check rounded idle cloud, smooth transitions and all enlarged weaponforms with continuous insect movement.",
+      "Check enlarged toilets visible/native geometry and actual horizontal-shot kills for bothheroes; no invisible hitbox enlargement as substitute for alignment.",
+      "Inspect Tony running in motion bothdirections for alternating/passing feet and grounded contact; preserve authored cadence and proportions.",
+      "Verify Sean six-pose foot alternation/passing across all costumes and directions after final derivative registration; preserve Tony accepted source changes and test both heroes in combined package."
+    ],
+    "constraints": "No new roster or unrelated changes. Preserve144 evidence and prior assets. Exact geometry/contact changes need owner reconciliation, not inferred from visual scale.",
+    "toilet_handoff": {
+      "status": "Mechanics source implemented and handed to Engineering; combined build and visual acceptance pending",
+      "render_height_pixels": 51.6,
+      "previous_render_height_pixels": 43,
+      "terrain_contact_size_pixels": [
+        45.6,
+        43.2
+      ],
+      "projectile_target_size_pixels": [
+        45.6,
+        51.6
+      ],
+      "preserved": "Legacy feet anchors; hero aim, HP and damage unchanged",
+      "coverage": "Shared production/trial/depth arrivals; enlarged entrance, boss containment and climb bounds",
+      "reported_source_checks": {
+        "focused": 527,
+        "flushfiend_steps": "passed",
+        "trial_scene": 41707
+      },
+      "evidence_limit": "Mechanics own geometry snapshot; not combined packaged or visual size acceptance"
+    },
+    "integrated_source": {
+      "gnat": "Rounded default cloud; complete weapon visuals scale1.5, terrain clearance70 separate from damage radius48, animated reposition before morph",
+      "toilets": "Scale1.2 with actual horizontal-shot checks including running muzzle positions",
+      "tony": "Six new running poses across all three costumes using versioned run override",
+      "reported_source_checks": {
+        "toilet": 599,
+        "run_registration": 81,
+        "hero_aim_combinations": 240,
+        "costume_frames": 870,
+        "prepared_cache": 15,
+        "gnat": 14419,
+        "trial": 41707
+      },
+      "visual_scope": "Engineering inspected six composed poses; independent Art review active. Not packaged or fullspeed runtime acceptance.",
+      "sean": "Six-pose allcostumes run integrated; extra2px passing lift removed, final alpha240"
+    },
+    "packaged_checks": {
+      "gnat": 14419,
+      "flushfiend": 599,
+      "hero_registration": 162,
+      "hero_phases": 240,
+      "easy_frames": 870,
+      "hard_cached_sheets": 18,
+      "trial": 43519
+    },
+    "package": {
+      "pck_sha256": "ccd288aaf3d2f8378ac89c624ce9ba226ed187b0ff268bbe23bd572e57f1657b",
+      "bytes": 403821436,
+      "evidence": "builds/Prototype-145/evidence"
+    }
+  },
+  "current_gnat_cycle": {
+    "version": "0.148.0",
+    "status": "148 signed local candidate; endpoint/contact still acceptance complete",
+    "wander_acquire_reform_speed": 70,
+    "acquire_radius": 320,
+    "weapon_choice": "Random each acquisition",
+    "moving_tell_seconds": 0.8,
+    "straight_charge_speed": 140,
+    "target": "Hero position locked at acquisition start before the0.8s moving tell; no homing retarget during charge",
+    "reform_trigger": "Reach locked position or encounter obstacle",
+    "moving_reform_seconds": 0.65,
+    "minimum_wander_seconds": 0.8,
+    "removed": "Stopped weapon/pass state; old170speed100degturn0.7pass and2.2timeout not current",
+    "checks": {
+      "cycle": 17904,
+      "trial": 42322,
+      "schedule_paired_runs": 18,
+      "seeded_60_second_lifecycle_runs": 20
+    },
+    "limits": "Four grounded captures accepted for approach, grounded hero and endpoint/contact without obvious solid penetration. Nearfloor swarm visibly compresses/flattens and extends into open pit; round silhouette preservation not established. Continuous boundary motion/all corners/forms remain unreviewed.",
+    "terrain_and_contact_148": {
+      "terrain": "4px swept center terrain check; rendered flies project outside solids",
+      "navigation": "Hunt can traverse full trial bounds rather than original encounter pocket",
+      "damage": "All living phases and outer rendered fly contact can damage hero, respecting invulnerability/shared cooldown",
+      "preserved": "70wander/140lockedtarget charge with moving morph/reform",
+      "supersedes": "Oversized70px terrain clearance and invariant48px-only damage claims for current148 behavior"
+    }
+  },
+  "planned_149": {
+    "status": "Built; signature, direct trial launch,42907packagedtrialchecks and104audio slots pass. Engineering and independent Art bounded layering review complete.",
+    "issue": "Pipe-front lip drawn after monsters/swarms hides flying spiders crossing wall opening",
+    "draw_order": [
+      "environment",
+      "inactive background emergence only",
+      "pipe front lip",
+      "corpses and active actors",
+      "foreground arrivals and swarms",
+      "hero and shots"
+    ],
+    "scope": "Layering correction only; title rotation excluded and separately owned by Engineering/Art",
+    "acceptance": "Verify active flying spiders/other actors remain visible across opening while inactive background emergence still passes behind lip. Packaged tests and running visual independent Art review required.",
+    "visual_evidence": "builds/Prototype-149/evidence: paired spider overlap, active toilet/swarm above rim and intentional background emergence below",
+    "visual_limits": "Five before/after captures accepted: spider face/eyes/legs, toilet and fly glyphs in front; small background arrival behind rim. Continuous crossing/emergence handoff and everyactor/position unreviewed."
+  },
+  "entry_points": {
+    "menu": "Start/Controls/Quit only; no Level1Trial button",
+    "command": "make run LEVEL=1-trial",
+    "direct_selector": "--level=1-trial"
+  },
+  "planned_151": {
+    "status": "Built/signed;42342packagedtrial and1338independentpursuit checks pass; Art accepted three bounded pursuit/contact views",
+    "reproduction": "Mechanics reproduced147 prepit surviving spider at2140,25 versusSean2563; home-side bounds clip every dive despite aggro, consistent with31defeats.",
+    "pursuit_unlock": "Latch per spider only when hero x>2440 AND grounded AND crossing_reserved false, including expired0.45s landing grace. Then permit full-world supported flight bounds; never snap/reclamp actor to former home pocket.",
+    "pit_invariants": [
+      "Airborne crossing and0.45s landing grace remain active before unlock.",
+      "Unlock changes navigation bounds only, not permission to attack; each attack still checks crossing reservation/admission.",
+      "If hero returns to pit, preserve dynamic crossing and landing guard even though navigation unlock remains latched.",
+      "An already committed dive must obey existing crossing trajectory safety; do not rely solely on checking next attack.",
+      "Reset/retry clears latch; reopening flight bounds must not teleport or bypass world/solid collision."
+    ],
+    "movement_result": "Return success only when actual position reaches requested endpoint within established numeric tolerance, not merely because clamped movement completed. Ceiling/world/solid clamp must report blocked/unreached.",
+    "acceptance": [
+      "Reproduce survivor2140,25 and hero2563: spider must approach and execute reachable attacks after safe unlock.",
+      "No unlock airborne or during landing grace; check boundary2440 and post-grace bothheroes/frame rates.",
+      "Cross back after unlock and verify dynamic guard, committed dive safety, no snapback, pause/reset cleanup.",
+      "Ceiling-clamped target must report failure, allowing valid recovery instead of repeated false-success dives."
+    ],
+    "owner": "Engineering runtime/build; Level Design contract/roadmap",
+    "validation_results": "Bothheroes2500/2563 at30/120Hz receive actualcontactdamage after unlock. Precrossing/airborne/.45grace locked; unlock persists without reverse teleport. Backtrack windup/swoop cancellation recovers upward/releasesowner with90frames noHPdamage. Ceilingfalse/downescape/reset pass.",
+    "visual_evidence": "Art accepted three readable views: distinctwingposes/coherentfacelegs,SeanHP5\u21924\u21923/knockback,secondoverlapgrounded,noobviousdeepfloorpenetration. Fourthhighceilingrecoveryview substantiallyHUD/toprightoccluded; completepose notaccepted. Stills only, no continuous/allcontact/balanceclaim; originalreportidentity remains inferred."
+  },
+  "normal_pressure_152": {
+    "status": "Delivered Prototype152; human playtest pending",
+    "feedback": "Sean could not finish in4\u20135playtests; frantic achieved, fun uncertain; current pressure appropriate forHard",
+    "normal": {
+      "shooter_cap": 2,
+      "recovery_seconds": 2.2,
+      "flyer_cap": 2
+    },
+    "other_modes": {
+      "recovery_seconds": 1.2,
+      "shooter_role_cap": null,
+      "rule": "Preserve existing mode-specific actor/pattern/projectile caps; no additional shooter-role cap"
+    },
+    "cap_semantics": "Conservative global admitted live purple-bolt shooter cap2 forNormal, including visible warning/arrival/active phases. Retain finite pending IDs; admit next only after prior shooter dies or completes legal fully-offscreen retirement. Never visibly despawn to enforce cap, never uncount merely cameraoffscreen, and keep already fired projectiles alive to existing collision/full-offscreen rules.",
+    "cooldown_semantics": "2.2seconds after final projectile of a volley before next attack cycle, replacing1.2; preserve charge/tell/burst spacing and any independent admission gates.",
+    "spider_cap": "Sean approved Normal maximum2 live flying spiders; global admission count includes all living warning/arrival/active phases, no existing visible actor despawn.",
+    "acceptance": [
+      "Normal onscreen purple shooters<=2 during forwardplay, backtracking and camera scroll; warning/arrivalactors included in admission count.",
+      "Verify 2.2s recovery after single and burst lastshot; Easy/Hard retain1.2 and no newrolecap.",
+      "Do not infer fullspeedhumanfun or successfulbalance from automatedcounts; playtest still needed.",
+      "Normal globally admitted liveflyers<=2 through allphases and camera/backtracking; EasyHard unchanged without extra rolecap."
+    ],
+    "ownership": "Engineering runtime/build/tests; Level Design contract/roadmap only"
+  },
+  "section_naming_convention": {
+    "status": "Numbered sections agreed;153 Level2 selector migration delivered",
+    "level_one": "Use1.1,1.2,etc for futureLevel1 sections; full expansion not yet implemented",
+    "selectors": {
+      "2": "Flush",
+      "2.1": "Poop-board ride landing",
+      "camera-test": "Isolated camera proof"
+    },
+    "scope": "Selector naming only; no gameplay or full expansion changes"
+  },
+  "entry_assignments": {
+    "opening-runner-a": {
+      "entry": {
+        "mode": "left"
+      }
+    },
+    "opening-runner-b": {
+      "entry": {
+        "mode": "left"
+      }
+    },
+    "opening-single": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "background-entry": {
+      "entry": {
+        "mode": "background",
+        "source": [
+          1590,
+          240
+        ]
+      }
+    },
+    "climb-runner": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "climb-burst": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "foreground-entry": {
+      "entry": {
+        "mode": "foreground"
+      }
+    },
+    "final-exchange": {
+      "entry": {
+        "mode": "ceiling"
+      },
+      "feet": [
+        2800,
+        180
+      ],
+      "bounds": [
+        2800,
+        2800
+      ]
+    },
+    "pressure-runner-0": {
+      "entry": {
+        "mode": "left"
+      }
+    },
+    "pressure-runner-1": {
+      "entry": {
+        "mode": "left"
+      }
+    },
+    "pressure-runner-2": {
+      "entry": {
+        "mode": "left"
+      }
+    },
+    "pressure-runner-3": {
+      "entry": {
+        "mode": "left"
+      }
+    },
+    "pressure-runner-4": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-runner-5": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-runner-6": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-runner-7": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-runner-8": {
+      "entry": {
+        "mode": "right"
+      }
+    },
+    "pressure-runner-9": {
+      "entry": {
+        "mode": "right"
+      }
+    },
+    "pressure-perched_shooter-0": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-perched_shooter-1": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-perched_shooter-2": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-perched_shooter-3": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-perched_shooter-4": {
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    "pressure-aggressive_flyer-0": {
+      "entry": {
+        "mode": "top"
+      }
+    },
+    "pressure-aggressive_flyer-1": {
+      "entry": {
+        "mode": "right"
+      }
+    },
+    "pressure-aggressive_flyer-2": {
+      "entry": {
+        "mode": "top"
+      }
+    },
+    "pressure-aggressive_flyer-3": {
+      "entry": {
+        "mode": "left"
+      }
+    },
+    "pressure-aggressive_flyer-4": {
+      "entry": {
+        "mode": "top"
+      }
+    },
+    "pressure-aggressive_flyer-5": {
+      "entry": {
+        "mode": "top"
+      }
+    },
+    "pressure-swarm-0": {
+      "entry": {
+        "mode": "top"
+      }
+    },
+    "pressure-swarm-1": {
+      "entry": {
+        "mode": "right"
+      }
+    },
+    "pressure-swarm-2": {
+      "entry": {
+        "mode": "bottom"
+      }
+    }
+  },
+  "authored_entry_revision": {
+    "status": "Integrated in Prototype 160; all 56 isolated event admissions validated. See canonical delivery for visual scope.",
+    "rules": [
+      "Every existing event has an explicit entrance; no additional enemies or density increase.",
+      "Normal retains two shooters, two flyers and 2.2-second shooter recovery.",
+      "Stationary shooters never use foreground positive-Z. Floor entries rise through a registered hatch at their supported feet.",
+      "Side runners require supported ingress from outside the current viewport to the first fully visible position, then use ordinary movement/contact. Reject unsafe paths; never interpolate through pits or machinery.",
+      "Top and bottom flying entries require a clear authored approach. Bottom entries must use a credible opening or safe staging path, never visibly cross solid floor.",
+      "Keep the existing single foreground runner and single background pipe runner; neither entry becomes a universal fallback.",
+      "Visible entrants complete continuously and consume caps; contact and firing wait for arrival and normal separation/tell rules."
+    ],
+    "ceiling_fixture": {
+      "event_id": "final-exchange",
+      "mount_anchor": [
+        2800,
+        180
+      ],
+      "support_destination": [
+        2740,
+        110.6622516556,
+        120,
+        69.3377483444
+      ],
+      "support_source_rect": [
+        885,
+        152,
+        604,
+        349
+      ],
+      "asset": "assets/world/opening-trial/platform-kit-v1.png",
+      "transform": "Uniform scale and vertical flip; connect upper posts to a visible overhead structural edge.",
+      "collision": "Fixture is decorative; actor body, muzzle and aiming transform must follow the hanging mount.",
+      "review": "Integrated articulated body/barrel and persistent support. Pictured assembly accepted by Art; see canonical delivery for motion coverage and remaining limits.",
+      "overhead_posts": {
+        "source_rect_candidate": [
+          900,
+          230,
+          66,
+          246
+        ],
+        "logical_width": 11,
+        "top_y": 0,
+        "rule": "Tile or crop at consistent scale from overhead to both upper flange centers; overlap rod ends and preserve joints. Posts continue behind HUD. Do not stretch the entire bracket.",
+        "registration": "Use exact post centers, tile dimensions and range in fixture_manifest."
+      },
+      "actor_manifest": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.json",
+      "actor_asset": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.png"
+    },
+    "floor_fixture": {
+      "asset": "assets/world/opening-trial/entry-fx-v1.png",
+      "source_rect_candidate": [
+        545,
+        275,
+        465,
+        180
+      ],
+      "front_sill_source_rect_candidate": [
+        545,
+        411,
+        465,
+        44
+      ],
+      "approximate_size": [
+        64,
+        25
+      ],
+      "rule": "Register aperture at supported feet; rear lid behind actor, same-crop sill in front during emergence, clip below support top. Art must verify aperture registration.",
+      "registration": "Use exact back/front destination offsets and scale in fixture_manifest; candidate dimensions here are descriptive only."
+    },
+    "bottom_approach": {
+      "event_id": "pressure-swarm-2",
+      "pit_center_x": 2300,
+      "route_intent": [
+        [
+          2300,
+          640
+        ],
+        [
+          2300,
+          300
+        ]
+      ],
+      "rule": "One existing Gnatastrophe swarm rises through the actual pit opening, then flies to home. Confirm its complete animated envelope fits the 120px opening at native scale before admission. Defer while crossing or landing reservation is active. No contact or attacks during transit; never clip rims, shrink the creature, substitute foreground, or cross solid floor."
+    },
+    "fixture_manifest": "assets/world/three-screen-trial/shooter-entry-fixtures-v1.json"
+  }
+}

@@ -3,7 +3,7 @@
   "name": "Gratecrawler",
   "name_status": "Proposed working name, not user-approved canon",
   "description": "A hunched sludge creature with porcelain teeth and a rusty drain strainer embedded in its back; it crawls from warned floor grates, plods back and forth, and lobs aimed muck balls.",
-  "implementation_status": "Prototype 88 integrated; packaged validation passed, live review pending",
+  "implementation_status": "Prototype 162 integrated; packaged clearance/combat checks and sampled release/arc review pass; full-route balance remains open",
   "backstory": {
     "status": "pending",
     "text": ""
@@ -130,5 +130,12 @@
     "repeat_seconds": 2.5,
     "interruptions": "Hit, death or leaving visibility cancels pending release; pause freezes sequence; reset discards it",
     "preserved": "72 HP, doubled size, 45 px/s patrol, muck damage, gravity 700 and one-second committed trajectory"
+  },
+  "prototype162_revision": {
+    "status": "27 packaged clearance checks and role combat regression pass; sampled left-facing release/arc visually reviewed by Engineering and Art",
+    "sequence": "Locks hero position at windup start and releases from the animated hand. Keeps the original one-second arc when clear; blocked arcs try progressively higher trajectories up to two seconds.",
+    "collision": "Full 12px-radius projectile path must clear solid scenery and the top of the viewport. Impossible throws remain suppressed; one-way decks retain existing projectile-pass behavior.",
+    "release_art": "Raised frame 2 in throw-v3.png prevents the release ball starting inside nearby 60px platform lips.",
+    "preserved": "Gravity 700, damage, throw cadence, target lock and original clear-path flight."
   }
 }

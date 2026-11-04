@@ -1,6 +1,7 @@
 extends RefCounted
 ## Presentation only: atlas frames stay independent of the existing collision geometry.
 
+const FlushfiendGeometry = preload("res://scripts/flushfiend_geometry.gd")
 const DamageArt = preload("res://scripts/damage_art.gd")
 var damage_art := DamageArt.new()
 const HeroAimArt = preload("res://scripts/hero_aim_art.gd")
@@ -65,12 +66,16 @@ func draw_sean(game: Node2D) -> void:
 	hero_aim_art.draw(game)
 
 func draw_toilet(game: Node2D, enemy: Dictionary) -> void:
-	game.draw_ellipse_shadow(Vector2(enemy.pos.x + 19, 440), Vector2(20, 3))
-	damage_art.draw(game, enemy, enemy.pos + Vector2(19, 36), 43.0 / game.Data.monster(enemy.id).damage_art.runtime_preparation.reference_body_height_pixels)
+	var feet := FlushfiendGeometry.feet(enemy.pos)
+	game.draw_ellipse_shadow(feet, Vector2(20,3)*FlushfiendGeometry.SCALE)
+	damage_art.draw(game,enemy,feet,FlushfiendGeometry.RENDER_HEIGHT /
+		game.Data.monster(enemy.id).damage_art.runtime_preparation.reference_body_height_pixels)
 	var bar: Dictionary = game.Data.monster(enemy.id).health.bar
 	if enemy.hp > 0 and bar.enabled and (game.show_enemy_health_bars or bar.visible_by_default):
-		game.box(enemy.pos.x, enemy.pos.y - 14, 38, 4, Color("243447"))
-		game.box(enemy.pos.x, enemy.pos.y - 14, 38 * enemy.hp / enemy.max_hp, 4, game.MINT)
+		var body := FlushfiendGeometry.projectile_rect(feet)
+		game.box(body.position.x,body.position.y-7,body.size.x,4,Color("243447"))
+		game.box(body.position.x,body.position.y-7,body.size.x*enemy.hp/enemy.max_hp,4,game.MINT)
+
 
 func draw_room(game: Node2D) -> void:
 	# Background moves more slowly than the walkable world, giving the room depth.

@@ -225,6 +225,15 @@ func draw(host: CanvasItem, key: String, next_key: String, blend: float, origin:
 		var phase := index % 4
 		var transform := Transform2D(Vector2(cos(angle), sin(angle)) * size.x,
 			Vector2(-sin(angle), cos(angle)) * size.y, point)
+		if sample.get("clip",false):
+			var tint: Color = targets[pose.key].colors[index].lerp(targets[pose.next_key].colors[index], pose.blend)
+			var image: Texture2D = insect_textures[posmod(int(clock*8)+phase,4)]
+			for polygon: PackedVector2Array in clipped_insect(transform,pipe.mouth,pipe.radius):
+				var uvs := PackedVector2Array()
+				var inverse := transform.affine_inverse()
+				for vertex in polygon: uvs.append(inverse*vertex+Vector2(0.5,0.5))
+				host.draw_polygon(polygon,PackedColorArray([tint]),uvs,image)
+			continue
 		meshes[phase].set_instance_transform_2d(counts[phase], transform)
 		var tint: Color = targets[pose.key].colors[index].lerp(targets[pose.next_key].colors[index], pose.blend)
 		if underwater: tint *= Color(.65, .85, .85, .85)
@@ -242,6 +251,15 @@ func pose_keys(key: String, next_key: String, blend: float, index: int, override
 		if overrides.has(group): return overrides[group]
 	return {"key":key, "next_key":next_key, "blend":blend}
 
+static func clipped_insect(transform: Transform2D, mouth: Vector2, radius: Vector2) -> Array[PackedVector2Array]:
+	# Clip textured geometry to the real opening; no alpha fade or sprite replacement.
+	var quad := PackedVector2Array()
+	for corner in [Vector2(-0.5,-0.5),Vector2(0.5,-0.5),Vector2(0.5,0.5),Vector2(-0.5,0.5)]:
+		quad.append(transform*corner)
+	var aperture := PackedVector2Array()
+	for index in range(48): aperture.append(mouth+Vector2.from_angle(index*TAU/48)*radius)
+	return Geometry2D.intersect_polygons(quad,aperture)
+
 static func pipe_sample(index: int, point: Vector2, pipe: Dictionary) -> Dictionary:
 	if pipe.is_empty(): return {"position":point, "scale":1.0, "visible":true}
 	var mouth: Vector2 = pipe.mouth
@@ -253,6 +271,14 @@ static func pipe_sample(index: int, point: Vector2, pipe: Dictionary) -> Diction
 	var progress: float = pipe.progress
 	var stagger := float(index % 19) / 19.0 * .35
 	var amount := smoothstep(stagger, 1.0, progress)
+	if mode == "launch" and pipe.get("arrival",false):
+		var radius: Vector2 = pipe.radius
+		var hidden := mouth+Vector2(pocket.x-mouth.x,radius.y+EXTENT*2)
+		if amount < 0.3:
+			return {"position":hidden.lerp(pocket,smoothstep(0,0.3,amount)),
+				"scale":0.65,"visible":true,"clip":true}
+		var travel := smoothstep(0.3,1,amount)
+		return {"position":pocket.lerp(point,travel),"scale":lerpf(0.65,1,travel),"visible":true}
 	if mode == "launch":
 		return {"position":pocket.lerp(point, amount), "scale":lerpf(.65, 1, amount), "visible":true}
 	var position := point.lerp(pocket, amount)

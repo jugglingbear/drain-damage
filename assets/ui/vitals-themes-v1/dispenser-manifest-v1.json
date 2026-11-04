@@ -1,0 +1,59 @@
+{
+  "source": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-e4be66f0-ff43-43b9-ac14-b62addb61105.png",
+  "prompt": "Production game UI sprite atlas, genuine transparent background. EXACT canvas1536x1024. FOUR separate isolated components, no text anywhere, no grid lines, no labels, no shadows outside sprites. Top component HOUSING within rectangle x64 y64 width1280 height448; horizontal aspect160:56. Bottom three isolated components: active-health icon centered(256,768) inside128x128; depleted-health icon centered(768,768) inside128x128; empty portrait-socket centered(1280,768) inside208x208. Leave broad transparent gaps, never overlap regions. Match attached approved UI styling only; do not include screenshot/gameplay. No hero portraits. No baked health markers or life sockets in top housing: runtime draws them separately. Fully transparent outside each component and inside empty portrait socket. Crisp polished retro plumbing game artwork, legible when reduced. Worn teal enamel Emergency Staffing Dispenser with brass pipes/screws, small unlettered card-ejection lip on LEFT. Housing is a plain empty wide teal panel, NO lamps, sockets, portraits or baked counters. Health tokens are circular green indicator lamp and dark cracked unlit lamp. Portrait socket is brass rectangular card-window frame with completely transparent center.",
+  "mockup": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-34e17129-1b83-4d26-8fd9-b3923659323c.png",
+  "mockup_prompt": "Precise edit of this HUD concept: remove ALL text, letters, names and numbers from the HEALTH AND LIVES COMPONENT ONLY. Remove SEAN, HP, LIVES and, for chain design, FLUSH lettering on handle too. Remove now-unnecessary label plaques or replace with matching uninterrupted material, keeping compact coherent design. Preserve exactly five health markers (four active and one depleted), exactly three Sean portrait life markers, same selected design, materials, shapes and rest of composition. No added lettering/symbolic pseudo-writing. Preserve unrelated game title/instructions/timer/kill counter outside the vitals component. No other changes.",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "source_rects": {
+    "housing": [
+      63,
+      65,
+      1407,
+      384
+    ],
+    "health_active": [
+      188,
+      653,
+      183,
+      187
+    ],
+    "health_depleted": [
+      669,
+      653,
+      183,
+      187
+    ],
+    "portrait_socket": [
+      1095,
+      618,
+      306,
+      249
+    ]
+  },
+  "alpha_preparation": "Generated alpha has low-opacity colored haze. Threshold alpha below240 to0 for runtime preparation; retain original source. Socket center measured alpha0.",
+  "logical_canvas": [
+    160,
+    56
+  ],
+  "runtime_sizes": {
+    "health": [
+      16,
+      16
+    ],
+    "portrait_socket": [
+      26,
+      26
+    ]
+  },
+  "layer_order": [
+    "housing",
+    "health markers",
+    "selected-hero portraits",
+    "portrait socket rims"
+  ],
+  "status": "Selected art components delivered; Engineering extraction/layout/runtime visual acceptance pending",
+  "archived_at": "2026-11-02T20:08:37.531770-08:00"
+}

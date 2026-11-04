@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "owner": "Engineering",
+  "updated_at": "2026-11-03T21:56:39.239335-08:00",
+  "status": "Prototype 162 signed Mac playtest candidate; sampled visual review passed with explicit wider-review limits",
+  "version": "0.162.0",
+  "app": "builds/Prototype-162/Drain Damage.app",
+  "pck_sha256": "3329059f17889b16350aa399f47a624bbbd30ac2294aeb11fee8d1a79310fb07",
+  "ready_for_playtest": true,
+  "contract": "design/starter-specials-v1/mechanics.json",
+  "runtime": [
+    "scripts/starter_specials.gd",
+    "scripts/starter_special_art.gd",
+    "scripts/starter_special_audio.gd",
+    "scripts/special_hud.gd"
+  ],
+  "art_manifests": [
+    "assets/specials/starter-v1/water-manifest-v1.json",
+    "assets/specials/starter-v1/pipe-manifest-v2.json",
+    "assets/specials/starter-v1/sean-actions-manifest-v1.json",
+    "assets/ui/specials-module-v1/manifest.json"
+  ],
+  "controls": {
+    "keyboard": "K",
+    "gamepad": "B",
+    "uses_per_hero_per_logical_level": 2,
+    "duration_seconds": 7.5
+  },
+  "availability": "Ordinary production Level 1 and section trials. Scripted flush, ride and camera-test modes reject without spending.",
+  "implemented": [
+    "Generated exportable tuning, per-run level budgets and fresh-press input guards",
+    "Tony aim-following clipped torrent, idle recoil and half-speed counterwalk",
+    "Sean supported anchored main, costume-specific action poses, vertical-to-horizontal blast",
+    "Inert spent mains persist behind hero; reset clears props without charge refund",
+    "Per-enemy damage cadence and shared actual-damage boss cap across phase changes",
+    "Audio simulation timing, pause, mute, death cancellation and bounded voices",
+    "HUD A side module with weapon icon and two charge indicators",
+    "Tony24 damage/.1sec=240DPS,3.2x active regular75DPS; Sean unchanged; boss cap250 retained",
+    "Tony actual-nozzle attachment, curved bloom and water overlap feathering",
+    "Gratecrawler adaptive high arcs and registered raised release pose for close ledges"
+  ],
+  "validation": {
+    "mac_export_and_signature": "pass",
+    "python_tests": 45,
+    "packaged_special_checks": 1573,
+    "packaged_controls": "pass",
+    "packaged_held_aim": "pass",
+    "packaged_audio_lifecycle": "pass",
+    "audio_catalog_slots": 115,
+    "launch_registry": "pass: both heroes/all difficulties, targets and checkpoint reset",
+    "evidence_directory": "builds/Prototype-162/evidence",
+    "warnings": [
+      "Sandbox user-log/editor-settings write and macOS CA lookup warnings retained.",
+      "ObjectDB exit warnings retained in some packaged tests; not a clean-shutdown claim.",
+      "Initial controls test used a nonexistent filename; corrected controls.gd rerun passes.",
+      "Capture-only fixture staging errors were corrected; accepted captures use corrected inputs."
+    ],
+    "packaged_hud_checks": 342,
+    "packaged_muck_clearance_checks": 27,
+    "packaged_role_combat": "pass",
+    "prior_vitals_checks": {
+      "version": "0.161.0",
+      "checks": 61554
+    },
+    "combat_bundle_matches_package": "sha256 d5b54ad4374a9cbb7d6f9b033b450add913e03372f5092a1328378120b673bf1"
+  },
+  "remaining": [
+    "Continuous-animation feel and precise transition timing review beyond sampled frames.",
+    "Audible gameplay mix/loop listening and human balance/fun playtest.",
+    "Full-route/costume/mirrored packaged visual coverage and native Windows verification not claimed."
+  ],
+  "visual_acceptance": {
+    "accepted": "bounded sampled runtime review",
+    "scope": "Engineering and independent Art: Tony normal/right recoil/nozzle progression, Sean normal/right emergence/sweep/taper/spent pipe, Gratecrawler left-facing raised release/ledge arc. Source costume/mirror/aim stills separately reviewed. Packaged HUD A: chain/one use, ducks/zero uses and dispenser/two uses with staged boss bar independently reviewed.",
+    "captures": [
+      "builds/Prototype-162/evidence/tony-motion.json",
+      "builds/Prototype-162/evidence/sean-motion.json",
+      "builds/Prototype-162/evidence/sean-sweep.json",
+      "builds/Prototype-162/evidence/muck-0.png",
+      "builds/Prototype-162/evidence/muck-0-6.png",
+      "builds/Prototype-162/evidence/muck-1-2.png",
+      "builds/Prototype-162/evidence/hud-chain-one-packaged.png",
+      "builds/Prototype-162/evidence/hud-ducks-zero-packaged.png",
+      "builds/Prototype-162/evidence/hud-boss-two-packaged.png"
+    ],
+    "limits": "Sampled frames do not certify continuous smoothness, exact shutter-time timing or full-route visual acceptance."
+  },
+  "previous_candidate": {
+    "version": "0.161.0",
+    "app": "builds/Prototype-161/IntegrationCandidate.app",
+    "pck_sha256": "c5362e0374d24a2bb5efb41f65ef9683a00806bd8f3e5bec9a19f026330c6c80",
+    "visual_acceptance": {
+      "accepted": false,
+      "captures": [
+        "builds/Prototype-161/evidence/tony-water-right.png",
+        "builds/Prototype-161/evidence/sean-vertical.png",
+        "builds/Prototype-161/evidence/sean-tilt.png",
+        "builds/Prototype-161/evidence/sean-horizontal.png",
+        "builds/Prototype-161/evidence/sean-pull.png"
+      ],
+      "reason": "161 onset and water tile seams rejected in actual running captures; pipe review bounded, motion pending."
+    }
+  },
+  "storybook": "storybook/162-starter-specials/captures.json"
+}

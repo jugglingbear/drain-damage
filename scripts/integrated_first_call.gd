@@ -221,6 +221,18 @@ func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: 
 		result.pos = bounded
 	return result
 
+func swarm_hunt_bounds(actor: Dictionary) -> Rect2:
+	var bounds := super.swarm_hunt_bounds(actor)
+	if actor.get("clogfather_reinforcement",false): return bounds
+	var home: Rect2 = actor.get("wander_bounds",actor.bounds)
+	if home.end.x <= SkitterlingRoom.QUIET:
+		bounds.end.x = minf(bounds.end.x,SkitterlingRoom.QUIET)
+	elif home.position.x >= SkitterlingRoom.END:
+		bounds = bounds.intersection(Rect2(SkitterlingRoom.END,0,WORLD_WIDTH-SkitterlingRoom.END,440))
+	if home.end.x <= ClogfatherRoom.CONTAINMENT:
+		bounds.end.x = minf(bounds.end.x,ClogfatherRoom.CONTAINMENT)
+	return bounds
+
 func actor_solids() -> Array[Rect2]:
 	var solids := trial_level.actor_solids()
 	solids.append(Rect2(0,440,WORLD_WIDTH,100))
@@ -279,6 +291,13 @@ func issue_event() -> void:
 
 func actor_world_limit() -> float:
 	return ClogfatherRoom.CONTAINMENT
+
+func purple_shot_allowed(origin: Vector2, direction: Vector2) -> bool:
+	if not super.purple_shot_allowed(origin,direction): return false
+	# Refuse a conflicting launch; never erase an already visible bolt at a room boundary.
+	if purple_bolt_reaches_x(origin,direction,ClogfatherRoom.CONTAINMENT): return false
+	if not skitterling.entered and purple_bolt_reaches_x(origin,direction,SkitterlingRoom.QUIET): return false
+	return true
 
 func route_home(event: Dictionary) -> Vector2:
 	if event.get("id", "").ends_with("-extra") and event.role == "runner": return density_runner_home()
@@ -369,6 +388,22 @@ func step_player(delta: float) -> void:
 	dispenser.actions_locked = locked or intro_input_release
 	super.step_player(delta)
 	dispenser.actions_locked = locked
+
+func specials_allowed(ignore_active := false) -> bool:
+	return not flush.active and not boss_intro.blocking() and not ending.active() \
+		and not intro_input_release and super.specials_allowed(ignore_active)
+
+func special_damage(segments: Array[Dictionary], amount: float, activation: int, boss_remaining: Dictionary) -> Dictionary:
+	var applied := super.special_damage(segments,amount,activation,boss_remaining)
+	for region: Rect2 in skitterling.target_regions():
+		if StarterSpecials.overlaps(segments,region):
+			applied.skitterling = skitterling.damage(self,int(minf(amount,boss_remaining.get("skitterling",0))))
+			break
+	var weak: Rect2 = clogfather.target_rect()
+	if weak.has_area() and StarterSpecials.overlaps(segments,weak):
+		applied.clogfather = clogfather.damage(self,int(minf(amount,boss_remaining.get("clogfather",0))),
+			"special-%d-%d" % [activation,specials.tick_serial],not grounded)
+	return applied
 
 func _physics_process(delta: float) -> void:
 	if flush.active:
@@ -732,14 +767,15 @@ func _draw() -> void:
 	for actor in actors:
 		if not actor.active and actor.hp > 0:
 			effect("grate-warning" if actor.role == "floor_emerger" else "landing-warning",
-				Vector2(clampf(actor.feet.x,camera_x+35,camera_x+925),minf(actor.feet.y,440)))
-		draw_actor(actor)
+				Vector2(clampf(actor.home.x,camera_x+35,camera_x+925),minf(actor.home.y,440)))
+		if not foreground_entry(actor): draw_actor(actor)
 	skitterling.draw_actor(self)
 	ending.draw_portal(self)
 	clogfather.draw(self)
 	# Room scenery must not cover the continuous route's below-floor cutaway.
 	wastewater_art.draw(self,camera_x,elapsed,false)
 	ending.draw_surge(self,false)
+	special_art.draw_back(self)
 	if ending.state == "pull":
 		ending.draw_hero(self)
 	elif ending.state != "complete" and not dispenser.hides_hero() \
@@ -759,6 +795,8 @@ func _draw() -> void:
 		box(particle.pos.x,particle.pos.y,4,4,particle.color)
 	skitterling.draw_front(self)
 	ending.draw_surge(self,true)
+	special_art.draw_front(self)
+	draw_foreground_entries()
 	draw_set_transform(Vector2.ZERO)
 	ending.draw_shout(self)
 	draw_set_transform_matrix(transform.affine_inverse())
@@ -831,6 +869,9 @@ func _exit_tree() -> void:
 	super._exit_tree()
 
 func begin_level_two() -> void:
+	specials.cancel("level transition")
+	special_audio.stop()
+	specials.configure(employee.id,"level-two")
 	flush.ride.checkpoint_index = 0
 	flush.begin(self)
 

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "status": "Selected A integrated in Prototype162; independent Art packaged still review passes sampled themes/counts and staged boss clearance",
+  "source": "assets/ui/specials-module-v1/side-module-source-v1.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "prompt": "Create production transparent sprite atlas for approved attached-side-module game HUD. Reference ONLY rowA style, not its guns or counts.1536x1024 exact,3columns2rows,6isolated sprites equal512cells with broad margins. TOP THREE CELLS: each an EMPTY tall rounded rectangular housing width300height405, aspect40:54. Same exactgeometry all3. Housing contains upper recessed DARK square weapon socket, intended32x32 in40x54panel (squareinnerwindow mostlyfillswidth, top area), and plain lower blank panel for separate twochargecanisters. NO gun, NO icons, NO lights, NO counters baked into panels. Tiny attachment screws, clipped corners, readable broad rim. Leftfinish weatheredTEAL enamel withBRASSrim for industrialdispenser; middlefinish IVORYenamel withgoldBRASSrim for chain/plug theme; rightfinish BLUEenamel withIVORYrim for rubberducktheme. Do notdrawchains ducks health bulbs portraits or otherHUD elements. BOTTOMLEFT: ONE brightorange amber full pressurecanister icon, stout near-square silhouette, metalcap, luminousfullamberreservoir, darkoutline readable at12px. BOTTOMMIDDLE: SAMEcanister EMPTY, darkslate reservoir, paleoutline, small diagonalcrack to showdepleted; no orangefill. BOTTOMRIGHT: sameEMPTYcanister with AMBER outline for brief unavailable-input feedback, still empty/darkinside. Allthreecanistersilhouettes same size/registration. Pixel-art richlyshaded plumbinggame, crisp simple shapes readabletiny, no text letters numbers labels grids orbackdrop. Genuine transparentoutside allcomponents, no haze. Source should be isolated UI components, not screenshot or presentation.",
+  "selection": {
+    "layout": "A attached side module",
+    "date": "2026-11-03",
+    "source": "Sean selection relayed by current Game Mechanics"
+  },
+  "geometry": {
+    "module_origin_relative_to_vitals": [
+      -36,
+      2
+    ],
+    "housing": [
+      -4,
+      -2,
+      40,
+      54
+    ],
+    "weapon_socket": [
+      0,
+      0,
+      32,
+      32
+    ],
+    "weapon_icon_fit": [
+      3,
+      3,
+      26,
+      26
+    ],
+    "canisters": [
+      [
+        2,
+        37,
+        12,
+        12
+      ],
+      [
+        18,
+        37,
+        12,
+        12
+      ]
+    ]
+  },
+  "themes": {
+    "dispenser": {
+      "housing_source_rect": [
+        142,
+        65,
+        274,
+        485
+      ],
+      "socket_source_rect": [
+        169,
+        101,
+        226,
+        215
+      ]
+    },
+    "chain": {
+      "housing_source_rect": [
+        630,
+        65,
+        274,
+        485
+      ],
+      "socket_source_rect": [
+        657,
+        101,
+        226,
+        215
+      ]
+    },
+    "rubber-ducks": {
+      "housing_source_rect": [
+        1119,
+        65,
+        274,
+        485
+      ],
+      "socket_source_rect": [
+        1146,
+        101,
+        226,
+        215
+      ]
+    }
+  },
+  "components": {
+    "charged": {
+      "source_rect": [
+        171,
+        640,
+        230,
+        284
+      ]
+    },
+    "depleted": {
+      "source_rect": [
+        652,
+        640,
+        229,
+        284
+      ]
+    },
+    "unavailable_feedback": {
+      "source_rect": [
+        1131,
+        640,
+        230,
+        284
+      ]
+    }
+  },
+  "weapons": {
+    "pressure-gun": {
+      "path": "assets/weapons/pressure-gun/atlas-v2.png",
+      "source_rect": [
+        450,
+        140,
+        325,
+        230
+      ]
+    },
+    "heavy-plunger-launcher": {
+      "path": "assets/weapons/heavy-plunger-launcher/atlas-v1.png",
+      "source_rect": [
+        430,
+        140,
+        375,
+        230
+      ]
+    }
+  },
+  "states": {
+    "0": [
+      "depleted",
+      "depleted"
+    ],
+    "1": [
+      "charged",
+      "depleted"
+    ],
+    "2": [
+      "charged",
+      "charged"
+    ]
+  },
+  "preparation": "Threshold low-alpha haze below240 in derived assets only. Housing maps to fixed40x54; overlay separately cropped square socket at32x32 to preserve its aspect/weapon clearance. Weapon and canisters aspect-fit; canisters bottom-aligned to commonbaseline. Do not regenerate guns or use illustrative board counts.",
+  "layer_order": [
+    "housing",
+    "socket",
+    "weapon icon",
+    "two canisters"
+  ],
+  "policy": "No text/numbers/names on vitals/module. Existing health/lives markers and portrait counts unchanged. Unavailable_feedback is optional brief edge accent on empty canisters, not a refill or flashing health indicator.",
+  "validation": {
+    "source_alpha_corner": 0,
+    "visual_scope": "Inspected four actual source-build captures at 960px width: dispenser two charges, chain one, ducks zero, Sean dispenser two with staged right-side boss bar. Attachment at -36 is clean; weapon icons identifiable; amber versus dark canisters distinguishable; no clipping or boss-bar overlap. Captures display version0.161.0 despite evidence folder Prototype-162; not final162 package evidence.",
+    "remaining": [
+      "Unsampled hero/theme/count combinations",
+      "Motion and unavailable-input feedback",
+      "Full boss-fight composition rather than staged bar"
+    ],
+    "evidence": [
+      "builds/Prototype-162/evidence/hud-dispenser-two-source.png",
+      "builds/Prototype-162/evidence/hud-chain-one-source.png",
+      "builds/Prototype-162/evidence/hud-ducks-zero-source.png",
+      "builds/Prototype-162/evidence/hud-boss-two-source.png"
+    ],
+    "packaged_review": {
+      "version": "0.162.0",
+      "evidence": [
+        "builds/Prototype-162/evidence/hud-chain-one-packaged.png",
+        "builds/Prototype-162/evidence/hud-ducks-zero-packaged.png",
+        "builds/Prototype-162/evidence/hud-boss-two-packaged.png"
+      ],
+      "result": "One amber/one dark, two dark, and two amber canisters distinguishable at native capture size. Both weapon icons readable. Attached geometry and theme finishes preserved; existing HP/lives unobscured. Staged right-side boss bar clear of HUD.",
+      "scope": "Sampled stills; staged bar rather than full boss fight."
+    }
+  }
+}

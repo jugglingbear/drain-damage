@@ -1,0 +1,848 @@
+{
+  "schema_version": 1,
+  "status": "Measured integration candidate; live contact, costume scale and motion acceptance pending",
+  "canvas": [
+    128,
+    128
+  ],
+  "registration_anchor": [
+    64,
+    104
+  ],
+  "alpha_preparation": "Threshold source alpha below240 on derived crops; preserve originals.",
+  "timing": "Six poses cover first1.0s. Complete release to recover before water begins at1.0s. No side movement of player requested.",
+  "source_measurement": "Cup/grip points manually inspected in full atlas; feet baselines measured from opaque boot pixels. Source point tolerance approximately3pixels (0.51logicalpx).",
+  "heroes": {
+    "normal": {
+      "frames": [
+        {
+          "id": "plant",
+          "path": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            32.18,
+            19.68,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_cup_contact": [
+            446,
+            494
+          ],
+          "source_grip": [
+            446,
+            357
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -0.34
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -23.63
+          ],
+          "duration": 0.3
+        },
+        {
+          "id": "strain",
+          "path": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            32.18,
+            19.85,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            495
+          ],
+          "source_cup_contact": [
+            446,
+            425
+          ],
+          "source_grip": [
+            446,
+            270
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -11.9
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -38.25
+          ],
+          "duration": 0.25
+        },
+        {
+          "id": "pull",
+          "path": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            32.01,
+            19.68,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            188.1765,
+            496
+          ],
+          "source_cup_contact": [
+            447,
+            328
+          ],
+          "source_grip": [
+            447,
+            194
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -28.56
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -51.34
+          ],
+          "duration": 0.2
+        },
+        {
+          "id": "raised",
+          "path": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.18,
+            25.29,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            463
+          ],
+          "source_cup_contact": [
+            446,
+            208
+          ],
+          "source_grip": [
+            446,
+            100
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -43.35
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -61.71
+          ],
+          "duration": 0.1
+        },
+        {
+          "id": "release",
+          "path": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.21,
+            25.29,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187,
+            463
+          ],
+          "source_cup_contact": [
+            318,
+            238
+          ],
+          "source_grip": [
+            280,
+            112
+          ],
+          "cup_relative_to_feet": [
+            22.27,
+            -38.25
+          ],
+          "grip_relative_to_feet": [
+            15.81,
+            -59.67
+          ],
+          "duration": 0.075
+        },
+        {
+          "id": "recover",
+          "path": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.21,
+            25.29,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187,
+            463
+          ],
+          "source_cup_contact": [
+            76,
+            307
+          ],
+          "source_grip": [
+            76,
+            190
+          ],
+          "cup_relative_to_feet": [
+            -18.87,
+            -26.52
+          ],
+          "grip_relative_to_feet": [
+            -18.87,
+            -46.41
+          ],
+          "duration": 0.075
+        }
+      ]
+    },
+    "easy": {
+      "frames": [
+        {
+          "id": "plant",
+          "path": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            32.18,
+            19.51,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            497
+          ],
+          "source_cup_contact": [
+            446,
+            499
+          ],
+          "source_grip": [
+            446,
+            357
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            0.34
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -23.8
+          ],
+          "duration": 0.3
+        },
+        {
+          "id": "strain",
+          "path": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            32.18,
+            19.51,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            497
+          ],
+          "source_cup_contact": [
+            446,
+            425
+          ],
+          "source_grip": [
+            446,
+            270
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -12.24
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -38.59
+          ],
+          "duration": 0.25
+        },
+        {
+          "id": "pull",
+          "path": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            32.01,
+            19.51,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            188.1765,
+            497
+          ],
+          "source_cup_contact": [
+            447,
+            328
+          ],
+          "source_grip": [
+            447,
+            194
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -28.73
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -51.51
+          ],
+          "duration": 0.2
+        },
+        {
+          "id": "raised",
+          "path": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.18,
+            25.29,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            463
+          ],
+          "source_cup_contact": [
+            446,
+            208
+          ],
+          "source_grip": [
+            446,
+            100
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -43.35
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -61.71
+          ],
+          "duration": 0.1
+        },
+        {
+          "id": "release",
+          "path": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.21,
+            25.12,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187,
+            464
+          ],
+          "source_cup_contact": [
+            318,
+            238
+          ],
+          "source_grip": [
+            280,
+            112
+          ],
+          "cup_relative_to_feet": [
+            22.27,
+            -38.42
+          ],
+          "grip_relative_to_feet": [
+            15.81,
+            -59.84
+          ],
+          "duration": 0.075
+        },
+        {
+          "id": "recover",
+          "path": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.21,
+            25.29,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187,
+            463
+          ],
+          "source_cup_contact": [
+            76,
+            307
+          ],
+          "source_grip": [
+            76,
+            190
+          ],
+          "cup_relative_to_feet": [
+            -18.87,
+            -26.52
+          ],
+          "grip_relative_to_feet": [
+            -18.87,
+            -46.41
+          ],
+          "duration": 0.075
+        }
+      ]
+    },
+    "hard": {
+      "frames": [
+        {
+          "id": "plant",
+          "path": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            34.73,
+            19.68,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            172.1765,
+            496
+          ],
+          "source_cup_contact": [
+            431,
+            495
+          ],
+          "source_grip": [
+            431,
+            357
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -0.17
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -23.63
+          ],
+          "duration": 0.3
+        },
+        {
+          "id": "strain",
+          "path": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            35.24,
+            19.68,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            169.1765,
+            496
+          ],
+          "source_cup_contact": [
+            428,
+            425
+          ],
+          "source_grip": [
+            428,
+            270
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -12.07
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -38.42
+          ],
+          "duration": 0.25
+        },
+        {
+          "id": "pull",
+          "path": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "destination": [
+            32.01,
+            19.68,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            188.1765,
+            496
+          ],
+          "source_cup_contact": [
+            447,
+            328
+          ],
+          "source_grip": [
+            447,
+            194
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -28.56
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -51.34
+          ],
+          "duration": 0.2
+        },
+        {
+          "id": "raised",
+          "path": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            36.6,
+            25.12,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            161.1765,
+            464
+          ],
+          "source_cup_contact": [
+            420,
+            208
+          ],
+          "source_grip": [
+            420,
+            100
+          ],
+          "cup_relative_to_feet": [
+            44.0,
+            -43.52
+          ],
+          "grip_relative_to_feet": [
+            44.0,
+            -61.88
+          ],
+          "duration": 0.1
+        },
+        {
+          "id": "release",
+          "path": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.21,
+            25.12,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187,
+            464
+          ],
+          "source_cup_contact": [
+            310,
+            238
+          ],
+          "source_grip": [
+            280,
+            112
+          ],
+          "cup_relative_to_feet": [
+            20.91,
+            -38.42
+          ],
+          "grip_relative_to_feet": [
+            15.81,
+            -59.84
+          ],
+          "duration": 0.075
+        },
+        {
+          "id": "recover",
+          "path": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "destination": [
+            32.21,
+            25.12,
+            87.04,
+            87.04
+          ],
+          "pivot": [
+            64,
+            104
+          ],
+          "feet_anchor": [
+            64,
+            104
+          ],
+          "source_feet_anchor": [
+            187,
+            464
+          ],
+          "source_cup_contact": [
+            72,
+            307
+          ],
+          "source_grip": [
+            76,
+            190
+          ],
+          "cup_relative_to_feet": [
+            -19.55,
+            -26.69
+          ],
+          "grip_relative_to_feet": [
+            -18.87,
+            -46.58
+          ],
+          "duration": 0.075
+        }
+      ]
+    }
+  },
+  "notes": [
+    "Full frame source rectangles; use destination and pivot rather than auto-fit each frame.",
+    "Cup x in first4frames is registered44px ahead of logical feet; y follows measured emergence keyframes. Pipe completes final rise to\u221248 during release.",
+    "Release frame4 is transit only: cup still overlaps bore horizontally. Frame5 recover clears fully left before eruption; do not start jet while frame4 is displayed.",
+    "At scale0.17, planted boots stay on same floor but small per-frame horizontal weight shift remains, especially Hard. Inspect flange/toe overlap before acceptance.",
+    "Do not stretch torso to force anchors. Use contact data for supported source-based articulation if interpolation requires it.",
+    "Six sources are action key poses, not evidence of smooth runtime animation. Continuous rig interpolation/contact constraints and strain motion must be inspected in build."
+  ],
+  "archived_at": "2026-11-03T20:21:58.465841-08:00"
+}

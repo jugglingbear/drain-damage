@@ -336,7 +336,7 @@ func pipe_parameters(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Dict
 	var state: String = snapshot.get("state", "")
 	var elapsed := float(snapshot.get("elapsed", 0.0))
 	if state in ["rat_pipe_retreat", "entry_skitter"]:
-		return {"mode":"retreat" if state == "rat_pipe_retreat" else "launch",
+		return {"mode":"retreat" if state == "rat_pipe_retreat" else "launch", "arrival":state == "entry_skitter",
 			"progress":clampf(elapsed / float(Encounter.DURATIONS[state]), 0, 1),
 			"mouth":world_origin + Vector2(480, 258), "radius":Vector2(115, 105),
 			"outer":Rect2(world_origin + Vector2(320, 108), Vector2(320, 300))}

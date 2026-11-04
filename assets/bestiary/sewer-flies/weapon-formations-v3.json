@@ -1,0 +1,761 @@
+{
+  "schema_version": 1,
+  "status": "Rounded filled cloud and1.5weapon visual scale contract delivered; runtime validation pending",
+  "date": "2026-11-02",
+  "creature_id": "sewer-fly-swarm",
+  "canvas": [
+    128,
+    128
+  ],
+  "pivot": [
+    64,
+    64
+  ],
+  "fly_count": 32,
+  "orientation": "+X; rotate all anchors continuously toward pursuit direction",
+  "source": {
+    "image": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "source_rect": [
+      74,
+      74,
+      39,
+      37
+    ],
+    "alpha_cutoff": 0.5,
+    "component_rule": "Retain largest 4-connected alpha component within source_rect; discard neighboring fly fragments. Preserve source PNG.",
+    "component_expected_pixels": 830,
+    "destination_size": [
+      8,
+      8
+    ],
+    "destination_pivot": [
+      4,
+      4
+    ],
+    "wing_animation": "No validated sequential wing poses in this crop. Continuous individual movement is required; do not claim wingbeat animation."
+  },
+  "morph": {
+    "seconds": 0.65,
+    "interpolation": "smoothstep(t)=t*t*(3-2*t)",
+    "identity_rule": "Capture each current displayed fly position at acquisition. Interpolate each persistent ID to its target anchor; never respawn, randomize IDs or swap whole-cloud sprites.",
+    "interrupt_rule": "Retarget from current interpolated positions; preserve phase, never jump to source formation.",
+    "shape_selection": "Choose one approved form per acquisition; no per-frame shape randomization.",
+    "phase_rule": "Keep each fly continuous phase through wandering, morph and held weapon."
+  },
+  "micro_motion": {
+    "amplitude_pixels": 1.0,
+    "maximum_amplitude_pixels": 2.0,
+    "frequency_hz_range": [
+      1.2,
+      2.4
+    ],
+    "phase_offset_radians_per_id": 2.399963,
+    "rule": "Independent smooth bounded orbital offsets; no frame-random jitter. All anchors default1px. Only interior anchors radius<=39 may use2px; tip/guard/spike anchors stay<=1px."
+  },
+  "contact": {
+    "existing_radius": 48,
+    "maximum_anchor_radius": 40,
+    "maximum_glyph_corner_radius": 5.657,
+    "rule": "Damage contact remains48px; all four weapon forms share damage. Full formed visual is1.5scale; request separate terrain clearance to avoid decorative fly penetration."
+  },
+  "approved_behavior": {
+    "acquisition_distance_pixels": 320,
+    "description": "Wander until hero is roughly one third of a 960px screen away, then acquire and heat-seek while reforming."
+  },
+  "formations": {
+    "sword": {
+      "anchors": [
+        [
+          55.628,
+          56.558
+        ],
+        [
+          55.628,
+          71.442
+        ],
+        [
+          64.0,
+          56.558
+        ],
+        [
+          64.0,
+          71.442
+        ],
+        [
+          72.372,
+          56.558
+        ],
+        [
+          72.372,
+          71.442
+        ],
+        [
+          80.744,
+          56.558
+        ],
+        [
+          80.744,
+          71.442
+        ],
+        [
+          89.116,
+          56.558
+        ],
+        [
+          89.116,
+          71.442
+        ],
+        [
+          97.488,
+          56.558
+        ],
+        [
+          97.488,
+          71.442
+        ],
+        [
+          104.0,
+          64.0
+        ],
+        [
+          48.186,
+          37.953
+        ],
+        [
+          48.186,
+          50.977
+        ],
+        [
+          48.186,
+          57.488
+        ],
+        [
+          48.186,
+          64.0
+        ],
+        [
+          48.186,
+          70.512
+        ],
+        [
+          48.186,
+          77.023
+        ],
+        [
+          48.186,
+          90.047
+        ],
+        [
+          30.512,
+          61.209
+        ],
+        [
+          30.512,
+          66.791
+        ],
+        [
+          37.023,
+          61.209
+        ],
+        [
+          37.023,
+          66.791
+        ],
+        [
+          43.535,
+          61.209
+        ],
+        [
+          43.535,
+          66.791
+        ],
+        [
+          26.791,
+          64.0
+        ],
+        [
+          52.837,
+          54.698
+        ],
+        [
+          52.837,
+          73.302
+        ],
+        [
+          66.791,
+          64.0
+        ],
+        [
+          80.744,
+          64.0
+        ],
+        [
+          91.907,
+          64.0
+        ]
+      ],
+      "anchor_units": "128px canvas; index is persistent fly ID"
+    },
+    "arrow": {
+      "anchors": [
+        [
+          31.015,
+          64.0
+        ],
+        [
+          37.806,
+          64.0
+        ],
+        [
+          44.597,
+          64.0
+        ],
+        [
+          51.388,
+          64.0
+        ],
+        [
+          58.179,
+          64.0
+        ],
+        [
+          64.97,
+          64.0
+        ],
+        [
+          71.761,
+          64.0
+        ],
+        [
+          78.552,
+          64.0
+        ],
+        [
+          85.343,
+          64.0
+        ],
+        [
+          103.776,
+          64.0
+        ],
+        [
+          96.985,
+          57.209
+        ],
+        [
+          90.194,
+          50.418
+        ],
+        [
+          83.403,
+          43.627
+        ],
+        [
+          83.403,
+          50.418
+        ],
+        [
+          83.403,
+          57.209
+        ],
+        [
+          83.403,
+          70.791
+        ],
+        [
+          83.403,
+          77.582
+        ],
+        [
+          83.403,
+          84.373
+        ],
+        [
+          90.194,
+          77.582
+        ],
+        [
+          96.985,
+          70.791
+        ],
+        [
+          90.194,
+          64.0
+        ],
+        [
+          29.075,
+          49.448
+        ],
+        [
+          34.896,
+          54.299
+        ],
+        [
+          40.717,
+          59.149
+        ],
+        [
+          29.075,
+          78.552
+        ],
+        [
+          34.896,
+          73.701
+        ],
+        [
+          40.717,
+          68.851
+        ],
+        [
+          25.1942,
+          54.299
+        ],
+        [
+          25.1942,
+          73.701
+        ],
+        [
+          58.179,
+          60.119
+        ],
+        [
+          64.97,
+          67.881
+        ],
+        [
+          71.761,
+          60.119
+        ]
+      ],
+      "anchor_units": "128px canvas; index is persistent fly ID"
+    },
+    "spear": {
+      "anchors": [
+        [
+          26.857,
+          62.095
+        ],
+        [
+          26.857,
+          65.905
+        ],
+        [
+          34.476,
+          62.095
+        ],
+        [
+          34.476,
+          65.905
+        ],
+        [
+          42.095,
+          62.095
+        ],
+        [
+          42.095,
+          65.905
+        ],
+        [
+          49.714,
+          62.095
+        ],
+        [
+          49.714,
+          65.905
+        ],
+        [
+          57.333,
+          62.095
+        ],
+        [
+          57.333,
+          65.905
+        ],
+        [
+          64.952,
+          62.095
+        ],
+        [
+          64.952,
+          65.905
+        ],
+        [
+          72.571,
+          62.095
+        ],
+        [
+          72.571,
+          65.905
+        ],
+        [
+          79.238,
+          64.0
+        ],
+        [
+          84.952,
+          55.429
+        ],
+        [
+          90.667,
+          56.857
+        ],
+        [
+          97.333,
+          61.143
+        ],
+        [
+          104.0,
+          64.0
+        ],
+        [
+          97.333,
+          66.857
+        ],
+        [
+          90.667,
+          71.143
+        ],
+        [
+          84.952,
+          72.571
+        ],
+        [
+          81.143,
+          49.714
+        ],
+        [
+          81.143,
+          78.286
+        ],
+        [
+          86.857,
+          49.714
+        ],
+        [
+          86.857,
+          78.286
+        ],
+        [
+          92.571,
+          53.999
+        ],
+        [
+          92.571,
+          74.001
+        ],
+        [
+          87.81,
+          64.0
+        ],
+        [
+          94.476,
+          64.0
+        ],
+        [
+          74.476,
+          56.857
+        ],
+        [
+          74.476,
+          71.143
+        ]
+      ],
+      "anchor_units": "128px canvas; index is persistent fly ID"
+    },
+    "spiked_mace": {
+      "anchors": [
+        [
+          25,
+          61
+        ],
+        [
+          25,
+          67
+        ],
+        [
+          33,
+          61
+        ],
+        [
+          33,
+          67
+        ],
+        [
+          41,
+          61
+        ],
+        [
+          41,
+          67
+        ],
+        [
+          49,
+          61
+        ],
+        [
+          49,
+          67
+        ],
+        [
+          64,
+          54
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          64,
+          74
+        ],
+        [
+          71,
+          47
+        ],
+        [
+          71,
+          56
+        ],
+        [
+          71,
+          66
+        ],
+        [
+          71,
+          76
+        ],
+        [
+          78,
+          44
+        ],
+        [
+          78,
+          54
+        ],
+        [
+          78,
+          64
+        ],
+        [
+          78,
+          74
+        ],
+        [
+          78,
+          84
+        ],
+        [
+          85,
+          47
+        ],
+        [
+          85,
+          57
+        ],
+        [
+          85,
+          67
+        ],
+        [
+          85,
+          77
+        ],
+        [
+          92,
+          54
+        ],
+        [
+          92,
+          64
+        ],
+        [
+          92,
+          74
+        ],
+        [
+          102,
+          64
+        ],
+        [
+          89,
+          37
+        ],
+        [
+          89,
+          91
+        ],
+        [
+          68,
+          35
+        ],
+        [
+          68,
+          93
+        ]
+      ],
+      "anchor_units": "128px canvas; index is persistent fly ID"
+    },
+    "cloud": {
+      "anchors": [
+        [
+          68.625,
+          64.0
+        ],
+        [
+          57.8,
+          70.219
+        ],
+        [
+          64.893,
+          53.318
+        ],
+        [
+          71.101,
+          72.862
+        ],
+        [
+          50.0,
+          63.083
+        ],
+        [
+          77.459,
+          55.188
+        ],
+        [
+          59.822,
+          78.705
+        ],
+        [
+          55.999,
+          50.803
+        ],
+        [
+          82.682,
+          68.621
+        ],
+        [
+          44.996,
+          71.076
+        ],
+        [
+          72.551,
+          47.786
+        ],
+        [
+          70.589,
+          81.916
+        ],
+        [
+          42.992,
+          53.549
+        ],
+        [
+          87.344,
+          60.545
+        ],
+        [
+          50.372,
+          81.187
+        ],
+        [
+          60.631,
+          40.887
+        ],
+        [
+          85.209,
+          80.808
+        ],
+        [
+          37.462,
+          63.664
+        ],
+        [
+          83.215,
+          46.093
+        ],
+        [
+          62.614,
+          91.468
+        ],
+        [
+          44.524,
+          41.934
+        ],
+        [
+          92.69,
+          67.856
+        ],
+        [
+          38.908,
+          81.322
+        ],
+        [
+          71.302,
+          34.465
+        ],
+        [
+          80.129,
+          89.763
+        ],
+        [
+          34.101,
+          56.047
+        ],
+        [
+          94.896,
+          49.754
+        ],
+        [
+          50.136,
+          93.019
+        ],
+        [
+          52.453,
+          35.266
+        ],
+        [
+          94.154,
+          77.637
+        ],
+        [
+          27.9,
+          72.63
+        ],
+        [
+          84.499,
+          37.051
+        ]
+      ],
+      "anchor_units": "128px canvas; persistent fly ID",
+      "design": "Filled irregular rounded cloud informed by original swarm-mockup-v2, with interior flies and uneven perimeter. No hollow arch/rainbow."
+    }
+  },
+  "validation": {
+    "anchor_count": "32 per formation",
+    "source_inspection": "Original source visually inspected; component measured at alpha>=128",
+    "rendered_motion": "pending Engineering capture; source/geometry checks are not visual acceptance",
+    "revision_2": "32 unique anchors per form; maximum anchor radius40;8px glyph corners plus conservative2px drift remain inside48px. No glyph, collision or damage growth.",
+    "revision_3": "32 unique filled-cloud anchors; all four v2 weapon anchor arrays preserved exactly. Formed visual extent increases deliberately; old48px visual-envelope acceptance no longer applies."
+  },
+  "death": {
+    "duration_authority": "Existing death animation total duration;0.64s in animation-v3",
+    "capture": "Freeze current displayed positions and phases as starting state; retain32identities. Disable contact immediately using existing death rules.",
+    "motion": "Each fly follows its own seeded outward direction from current local center, expanding by0..18px with smooth ease-out plus downward drift0..12px by end. Preserve individual orbital phase while amplitude decays.",
+    "alpha": "Hold initial alpha through first20% then smooth fade to0 by end; remove on existing death completion.",
+    "constraints": "No live formation or old whole-cloud atlas snapback. Scatter is harmless decoration; do not grow collider or spawn children. Existing death audio unchanged."
+  },
+  "revision": 3,
+  "previous_revision": "assets/bestiary/sewer-flies/weapon-formations-v2.json",
+  "revision_reason": "Sean clarified circular-ish filled cloud, not semicircular rainbow; weapon forms50percent larger.",
+  "weapon_visual_scale": {
+    "cloud": 1.0,
+    "formed_weapon": 1.5,
+    "interpolation": "1+0.5*smoothstep(morph_progress); scale weapon anchors, glyph dimensions and micro orbit together. Cloud remains original size.",
+    "contact": "Damage contact remains48px by Engineering direction; enlarged outerflies decorative. Separate terrain clearance requires Mechanics confirmation.",
+    "maximum_formed_visual_radius_pixels": 72
+  }
+}

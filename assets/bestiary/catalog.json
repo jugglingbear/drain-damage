@@ -87,6 +87,11 @@
         "death_variants": 1,
         "runtime_status": "Delivered in Prototype63/0.63.0; packaged checks pass; listening review pending",
         "listening_review": "pending"
+      },
+      "size_revision_145": {
+        "scale": 1.2,
+        "status": "Prototype145 packaged; scale and foot contact passed bounded still review; full motion review pending",
+        "source": "bestiary/flushfiend/monster.json#size_revision_145"
       }
     },
     {
@@ -120,9 +125,9 @@
         "status": "Flight/hurt/death integrated; composed live-to-death visual review pending"
       },
       "health": {
-        "max_hp": 135,
+        "max_hp": 101.25,
         "visible_by_default": false,
-        "status": "135 HP implemented in Prototype 84; validation and live-review status in handoffs/normal-density-refinement-delivery.json#prototype84",
+        "status": "101.25 HP in Prototype 146; reduced 25% from135 at user request",
         "source": "bestiary/the-hallowed-widow/monster.json#health"
       },
       "description": "White angel wings and a golden halo disguise a dark, bristling flying spider with red eyes and ivory fangs.",
@@ -276,7 +281,7 @@
     {
       "id": "sewer-fly-swarm",
       "name": "Gnatastrophe",
-      "description": "A tight cloud of tiny sewer flies with an unfortunate habit of drifting into everyone\u2019s way. They wander slowly without hunting, and contact harms plumbers and monsters alike.",
+      "description": "A cloud of sewer flies that wanders until a plumber approaches, then reforms into a flying weapon shape and gives chase.",
       "status": "Integrated in Prototype70/0.70.0: nine potential first-level swarms. Automated packaged verification passed; live visual, listening and fairness review pending.",
       "metadata": "bestiary/sewer-flies/monster.json",
       "art": "assets/bestiary/sewer-flies/swarm-mockup-v2.png",
@@ -325,6 +330,19 @@
           5610,
           7530
         ]
+      },
+      "approved_art_revision": {
+        "manifest": "assets/bestiary/sewer-flies/weapon-formations-v3.json",
+        "status": "Prototype145 packaged; rounded cloud and 1.5 weapon visual scale passed bounded still review; continuous motion review pending"
+      },
+      "art_review_status": "Packaged in Prototype144; bounded still review passed; full-cycle/all-angle animation review pending.",
+      "behavior_revision_147": {
+        "status": "Packaged cycle and regression checks passed; bounded rendered formation review complete",
+        "cycle": "Continuous70px/s wander and moving morph;140px/s straight charge at captured hero position; moving cloud reformation and repeat; random weapon per lock."
+      },
+      "behavior_revision_148": {
+        "status": "Packaged endpoint/contact checks and independent bounded grounded still review passed; continuous boundary motion remains unverified",
+        "change": "Grounded target center reachable with 4px terrain sweep and individual fly surface projection; trial hunt exceeds spawn pocket. Contact in all living phases includes outer rendered flies, with invulnerability and shared cooldown retained."
       }
     },
     {
@@ -393,6 +411,27 @@
       "prototype86_revision": {
         "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
         "attack": "No attack windup; 2.5-second repeat with the existing purple projectile. The initial 0.8-second visible introduction and spawn safety remain."
+      },
+      "charge_animation_contract": "assets/bestiary/opening-trial/sputtervalve-charge-v1.json",
+      "art_review_status": "Packaged in Prototype144; bounded still review passed; full-cycle/all-angle animation review pending.",
+      "ceiling_art_v1": {
+        "source": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.png",
+        "manifest": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.json",
+        "status": "Integrated in Prototype160; bounded supplied capture review passed; dense motion, full-route and all-angle review remain pending",
+        "dimensions": [
+          1536,
+          1024
+        ]
+      },
+      "current_trial_summary": {
+        "date": "2026-11-03",
+        "scope": "Current trial behavior; not comprehensive runtime/documentation parity",
+        "behavior": "Stationary shooter charges before purple-bolt volleys; pressure vibration and recoil preserve attached base. Normal cap2; recovery2.2s after last bolt. Exact timings vary by section.",
+        "contracts": [
+          "levels/first-call/three-screen-trial.json",
+          "levels/first-call/section-1-2.json"
+        ],
+        "ceiling_status": "Integrated in Prototype160; bounded supplied capture review passed; dense motion, full-route and all-angle review remain pending; no positive-Z shooter arrivals"
       }
     },
     {

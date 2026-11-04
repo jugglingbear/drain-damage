@@ -36,7 +36,7 @@ func run_checks() -> void:
 			game.respawn_after_death()
 			assert(art.hard_mode == (mode == "hard") and game.dispenser.hard_mode == art.hard_mode)
 	assert(JSON.stringify(game.Data.bundle.dispenser.art) == original_bundle)
-	assert(Prepared.textures.size() == 12)
+	assert(Prepared.textures.size() == 18)
 	for path in Prepared.textures:
 		var texture: Texture2D = Prepared.textures[path]
 		assert(Prepared.texture(path) == texture, "Preparation must be cached")
@@ -50,5 +50,5 @@ func run_checks() -> void:
 		assert(opaque > 0 and clear > 0)
 	game.queue_free()
 	await process_frame
-	print("PASS: 12 cached prepared sheets, both heroes, all costume paths, respawn and mode isolation")
+	print("PASS: 18 cached prepared sheets, both heroes, all costume paths, respawn and mode isolation")
 	quit()

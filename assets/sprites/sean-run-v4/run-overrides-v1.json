@@ -1,0 +1,1036 @@
+{
+  "schema_version": 1,
+  "status": "Authored run-only replacement; source passing/crossover inspected, composed gameplay review pending",
+  "hero": "sean",
+  "canvas": [
+    128,
+    128
+  ],
+  "registration_anchor": [
+    64,
+    104
+  ],
+  "alpha_preparation": {
+    "cutoff_byte": 240,
+    "rule": "Apply once on load for these exact three paths, retain original RGBA files."
+  },
+  "costumes": {
+    "normal": {
+      "path": "assets/sprites/sean-run-v4/normal-v1.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_scale": 0.18,
+      "phase": {
+        "loop": true,
+        "frames": [
+          {
+            "id": 0,
+            "path": "assets/sprites/sean-run-v4/normal-v1.png",
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              14.56,
+              25.16,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -6.44
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 1,
+            "path": "assets/sprites/sean-run-v4/normal-v1.png",
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              15.82,
+              24.62,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -5.54
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 2,
+            "path": "assets/sprites/sean-run-v4/normal-v1.png",
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              17.26,
+              24.62,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -7.699999999999999
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 3,
+            "path": "assets/sprites/sean-run-v4/normal-v1.png",
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              14.38,
+              21.92,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -9.5
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 4,
+            "path": "assets/sprites/sean-run-v4/normal-v1.png",
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              16.0,
+              21.74,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -9.14
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 5,
+            "path": "assets/sprites/sean-run-v4/normal-v1.png",
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              17.08,
+              21.2,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -10.58
+            ],
+            "duration": 0.09
+          }
+        ]
+      },
+      "registration": {
+        "path": "assets/sprites/sean-run-v4/normal-v1.png",
+        "expected_source_scale": 0.18,
+        "frames": [
+          {
+            "id": 0,
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                208,
+                180
+              ],
+              "ground_plane_anchor": [
+                253.5,
+                438
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              90,
+              29,
+              417,
+              439
+            ]
+          },
+          {
+            "id": 1,
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                713,
+                188
+              ],
+              "ground_plane_anchor": [
+                753.5,
+                441
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              151,
+              38,
+              332,
+              442
+            ]
+          },
+          {
+            "id": 2,
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                1217,
+                176
+              ],
+              "ground_plane_anchor": [
+                1275.5,
+                441
+              ],
+              "contact_state": "run-flight",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              155,
+              21,
+              348,
+              442
+            ]
+          },
+          {
+            "id": 3,
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                209,
+                693
+              ],
+              "ground_plane_anchor": [
+                254.0,
+                968
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              90,
+              31,
+              418,
+              457
+            ]
+          },
+          {
+            "id": 4,
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                712,
+                696
+              ],
+              "ground_plane_anchor": [
+                754.0,
+                969
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              152,
+              37,
+              332,
+              458
+            ]
+          },
+          {
+            "id": 5,
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                1218,
+                691
+              ],
+              "ground_plane_anchor": [
+                1274.5,
+                972
+              ],
+              "contact_state": "run-flight",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              154,
+              24,
+              347,
+              461
+            ]
+          }
+        ]
+      }
+    },
+    "easy": {
+      "path": "assets/sprites/easy-mode/sean-run-v4.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_scale": 0.17,
+      "phase": {
+        "loop": true,
+        "frames": [
+          {
+            "id": 0,
+            "path": "assets/sprites/easy-mode/sean-run-v4.png",
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              16.64,
+              27.33,
+              87.04,
+              87.04
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -5.22
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 1,
+            "path": "assets/sprites/easy-mode/sean-run-v4.png",
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              19.36,
+              27.16,
+              87.04,
+              87.04
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -4.54
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 2,
+            "path": "assets/sprites/easy-mode/sean-run-v4.png",
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              22.59,
+              27.16,
+              87.04,
+              87.04
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -5.73
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 3,
+            "path": "assets/sprites/easy-mode/sean-run-v4.png",
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              16.3,
+              25.46,
+              87.04,
+              87.04
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -6.24
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 4,
+            "path": "assets/sprites/easy-mode/sean-run-v4.png",
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              19.36,
+              25.46,
+              87.04,
+              87.04
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -5.73
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 5,
+            "path": "assets/sprites/easy-mode/sean-run-v4.png",
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              22.42,
+              25.29,
+              87.04,
+              87.04
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -6.41
+            ],
+            "duration": 0.09
+          }
+        ]
+      },
+      "registration": {
+        "path": "assets/sprites/easy-mode/sean-run-v4.png",
+        "expected_source_scale": 0.17,
+        "frames": [
+          {
+            "id": 0,
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                208,
+                185
+              ],
+              "ground_plane_anchor": [
+                259.5,
+                451
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              89,
+              15,
+              430,
+              452
+            ]
+          },
+          {
+            "id": 1,
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                704,
+                190
+              ],
+              "ground_plane_anchor": [
+                745.5,
+                452
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              139,
+              17,
+              328,
+              453
+            ]
+          },
+          {
+            "id": 2,
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                1197,
+                183
+              ],
+              "ground_plane_anchor": [
+                1250.0,
+                452
+              ],
+              "contact_state": "run-flight",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              124,
+              16,
+              328,
+              453
+            ]
+          },
+          {
+            "id": 3,
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                210,
+                702
+              ],
+              "ground_plane_anchor": [
+                261.5,
+                974
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              88,
+              16,
+              435,
+              463
+            ]
+          },
+          {
+            "id": 4,
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                704,
+                705
+              ],
+              "ground_plane_anchor": [
+                750.0,
+                974
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              142,
+              16,
+              334,
+              463
+            ]
+          },
+          {
+            "id": 5,
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                1198,
+                702
+              ],
+              "ground_plane_anchor": [
+                1248.0,
+                975
+              ],
+              "contact_state": "run-flight",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              122,
+              16,
+              326,
+              464
+            ]
+          }
+        ]
+      }
+    },
+    "hard": {
+      "path": "assets/sprites/hard-mode/sean-run-v4.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_scale": 0.18,
+      "phase": {
+        "loop": true,
+        "frames": [
+          {
+            "id": 0,
+            "path": "assets/sprites/hard-mode/sean-run-v4.png",
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              14.56,
+              24.98,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -6.62
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 1,
+            "path": "assets/sprites/hard-mode/sean-run-v4.png",
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              21.76,
+              24.44,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -6.08
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 2,
+            "path": "assets/sprites/hard-mode/sean-run-v4.png",
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              23.02,
+              24.44,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -7.699999999999999
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 3,
+            "path": "assets/sprites/hard-mode/sean-run-v4.png",
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              14.38,
+              21.74,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -9.68
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 4,
+            "path": "assets/sprites/hard-mode/sean-run-v4.png",
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              21.58,
+              21.74,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -9.14
+            ],
+            "duration": 0.09
+          },
+          {
+            "id": 5,
+            "path": "assets/sprites/hard-mode/sean-run-v4.png",
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              23.02,
+              21.2,
+              92.16,
+              92.16
+            ],
+            "pivot": [
+              64,
+              104
+            ],
+            "rotation_degrees": 0,
+            "attachment_offset": [
+              0,
+              -10.58
+            ],
+            "duration": 0.09
+          }
+        ]
+      },
+      "registration": {
+        "path": "assets/sprites/hard-mode/sean-run-v4.png",
+        "expected_source_scale": 0.18,
+        "frames": [
+          {
+            "id": 0,
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                208,
+                180
+              ],
+              "ground_plane_anchor": [
+                253.5,
+                439
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              89,
+              29,
+              418,
+              440
+            ]
+          },
+          {
+            "id": 1,
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                680,
+                186
+              ],
+              "ground_plane_anchor": [
+                723.5,
+                442
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              120,
+              38,
+              303,
+              443
+            ]
+          },
+          {
+            "id": 2,
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                1185,
+                177
+              ],
+              "ground_plane_anchor": [
+                1244.0,
+                442
+              ],
+              "contact_state": "run-flight",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              121,
+              20,
+              319,
+              443
+            ]
+          },
+          {
+            "id": 3,
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                209,
+                693
+              ],
+              "ground_plane_anchor": [
+                253.0,
+                969
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              88,
+              29,
+              418,
+              458
+            ]
+          },
+          {
+            "id": 4,
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                681,
+                696
+              ],
+              "ground_plane_anchor": [
+                722.5,
+                969
+              ],
+              "contact_state": "grounded",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              119,
+              34,
+              302,
+              458
+            ]
+          },
+          {
+            "id": 5,
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "landmarks": {
+              "front_shoulder": [
+                1185,
+                691
+              ],
+              "ground_plane_anchor": [
+                1242.5,
+                972
+              ],
+              "contact_state": "run-flight",
+              "suggested_run_flight_clearance_canvas_px": 0
+            },
+            "opaque_bounds_local": [
+              120,
+              23,
+              317,
+              461
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "integration": "Replace Tony run phase only after existing costume manifest load. Preserve every other phase,hero,aim and weapon. Use registered per-sheet source scale; older source sheets have different pixel density.",
+  "validation_limits": [
+    "Actual arm/socket composition at every aim direction pending",
+    "Runtime cadence and costume transition review pending"
+  ],
+  "review_notes": "Passing frames2and5 narrow boots beneath body; frame4 crossing knee differs from wide contact0and3. Original sheets preserved."
+}

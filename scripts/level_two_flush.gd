@@ -106,6 +106,8 @@ func surface_transform(point: Vector2) -> Transform2D:
 	return Transform2D(Vector2(1,gradient.x),Vector2(0,1+gradient.y/projection()),project(point))
 
 func begin(host: Node2D, retry := false) -> void:
+	host.specials.cancel("level transition")
+	host.specials.configure(host.employee.id,"level-two")
 	ride.music.stop()
 	active = true
 	state = "bowl"
@@ -405,7 +407,7 @@ func draw(host: Node2D) -> void:
 		draw_bowl_actors(host)
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("THE FLUSH",Vector2(24,27),22,host.MINT)
-	host.draw_vitals(Vector2(550,10))
+	host.draw_vitals(Vector2(550,4),"chain")
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:
 		host.box(0,0,960,540,Color(0.03,0.07,0.12,0.88))

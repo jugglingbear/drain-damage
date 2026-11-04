@@ -70,13 +70,19 @@ func run_checks() -> void:
 				game.clogfather.spawn_reinforcements(game)
 				assert(game.swarms.actors.size() == count,"Repeated event cannot refill a wave")
 				var actor: Dictionary = game.swarms.actors[0]
-				assert(actor.hp == 24 and actor.clogfather_reinforcement and actor.contact_ready)
+				assert(actor.hp == 24 and actor.clogfather_reinforcement and game.swarms.entry_active(actor))
+				assert(not actor.contact_ready and actor.pos.y+128 < 0,"Reinforcements begin completely above view")
 				game.player = actor.pos-Vector2(13,23)
 				game.invulnerable = 0
 				game.swarms.hero_cooldown = 0
 				var before_contact: int = game.health
 				game.swarms.step(game,1.0/120)
-				assert(game.health == before_contact-1,"Warned reinforcements have no hidden contact immunity")
+				assert(game.health == before_contact,"Arriving reinforcements cannot hurt the hero")
+				for tick in range(145): game.swarms.step(game,1.0/120)
+				assert(not game.swarms.entry_active(actor),"Reinforcement reaches its playable plane")
+				game.player = actor.pos-Vector2(13,23)
+				game.swarms.step(game,1.0/120)
+				assert(game.health == before_contact-1,"Landed reinforcement resumes normal contact")
 				game.health = game.employee.max_health
 				game.invulnerable = 1000
 				game.player = Vector2(14550,394)
@@ -94,9 +100,14 @@ func run_checks() -> void:
 					game.clogfather.advance(game,1.0/120)
 					game.swarms.step(game,1.0/120)
 					for swarm: Dictionary in game.swarms.actors:
-						assert(swarm.bounds.encloses(Rect2(swarm.pos-Vector2(48,48),Vector2(96,96))))
-						assert(not Rect2(swarm.pos-game.clogfather.ORIGIN-Vector2(64,64),
-							Vector2(128,128)).intersects(boss.safe_corridor))
+						assert(swarm.bounds.encloses(Rect2(swarm.pos-Vector2(4,4),Vector2(8,8))),"Hunting swarm center stays inside its bounds")
+						var safe_lane := Rect2(boss.safe_corridor.position+game.clogfather.ORIGIN,boss.safe_corridor.size)
+						assert(not game.swarms.overlaps(swarm,safe_lane),"Safe lane also excludes actual contact damage")
+						var half_size: float = 4*lerpf(1,game.swarms.WEAPON_SCALE,smoothstep(0,1,swarm.morph))
+						for offset: Vector2 in game.swarms.fly_offsets(swarm):
+							var glyph := Rect2(swarm.pos+offset-game.clogfather.ORIGIN-Vector2.ONE*half_size,
+								Vector2.ONE*half_size*2)
+							assert(not glyph.intersects(boss.safe_corridor),"Every visible/contact fly preserves safe lane")
 				assert(game.swarms.shot_hit(actor.pos-Vector2(100,0),actor.pos,0,2) >= 0)
 				for shot_index in range(2):
 					game.shots.append({"pos":actor.pos-Vector2(20,0),"dir":Vector2.RIGHT,

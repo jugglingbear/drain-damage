@@ -1,0 +1,837 @@
+{
+  "schema_version": 1,
+  "id": "first-call-section-1-2",
+  "date": "2026-11-03",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "runtime_owner": "Game Mechanics",
+  "status": "Prototype 160 built; packaged traversal and entry checks pass. Bounded visual review passes pictured geometry and mounts; full-route human pacing remains pending.",
+  "title": "Level 1.2",
+  "scope": "Another three-screen section; reuse approved assets/physics and tuned difficulty. No boss, new species or weapon rebalance. Engineering owns campaign connection/launcher.",
+  "world": {
+    "width": 2880,
+    "viewport": [
+      960,
+      540
+    ],
+    "floor_y": 440,
+    "spawn_feet": [
+      85,
+      440
+    ],
+    "finish_x": 2770
+  },
+  "movement": {
+    "preserve_existing": true,
+    "required_rise_max": 60,
+    "required_landing_width_min": 200,
+    "pit_overlap_fatal_fraction": 0.9
+  },
+  "geometry": {
+    "optional_route": {
+      "steps": [
+        [
+          300,
+          380,
+          160,
+          16
+        ]
+      ],
+      "catwalk": [
+        460,
+        320,
+        240,
+        16
+      ],
+      "collision": "One-way supported service ledges, passable lower lane; art brackets behind gameplay lane."
+    },
+    "mandatory_climb": {
+      "solid_rects": [
+        [
+          1740,
+          380,
+          200,
+          60
+        ],
+        [
+          1940,
+          320,
+          220,
+          120
+        ],
+        [
+          2160,
+          380,
+          200,
+          60
+        ]
+      ],
+      "runner_pursuit": {
+        "horizontal_body_envelope": [
+          1660,
+          2740
+        ],
+        "rule": "Actual supported step navigation; full enlarged bodies contained, no boundary pogo or teleport."
+      }
+    },
+    "pit": {
+      "opening_x": [
+        900,
+        1020
+      ],
+      "takeoff_clear_x": [
+        740,
+        900
+      ],
+      "landing_clear_x": [
+        1020,
+        1260
+      ],
+      "rule": "Equal-height 120px opening with approved visible-depth art. Section 1.2 begins falling at 90 percent footprint overlap; preserve swept landing checks. Baseline section 1.1 remains at 65 percent.",
+      "takeoff_clearance_rule": "Ground actor full body envelopes stay left of740: early shooter center700, enlarged runner center<=710 (halfwidth22.8 ends732.8). Verify actual shooter rendered/contact bounds end before740. Air/projectile safety remains dynamic under crossing guard, so clear terrain does not mean permanent combat immunity."
+    }
+  },
+  "crossing": {
+    "attack_hold_x": [
+      820,
+      1070
+    ],
+    "projectile_guard_x": [
+      840,
+      1100
+    ],
+    "landing_grace_seconds": 0.45,
+    "pursuit_unlock_x": 1100,
+    "pre_pit_air_max_x": 830,
+    "post_pit_air_min_x": 1150,
+    "rule": "Derive all inherited crossing guards from these coordinates. Grounded beyond1100 plus no crossing reservation unlocks surviving flyer navigation; never snap back. Preserve dynamic backtrack protection and cancel/recover conflicting windup/swoop. Whole visible bolt trajectories checked before admission; no bolt deletion.",
+    "airborne_trigger_x": [
+      760,
+      1080
+    ]
+  },
+  "difficulty": {
+    "easy": {
+      "active_patterns_max": 2,
+      "hostile_projectiles_max": 10,
+      "speed_multiplier": 0.8,
+      "burst_count": 2,
+      "arrival_warning_seconds": 1.2,
+      "recovery_seconds": 1.2,
+      "total_actors_max": 6,
+      "shot_warning_seconds": 0.55,
+      "burst_spacing_seconds": 0.18
+    },
+    "normal": {
+      "active_patterns_max": 4,
+      "hostile_projectiles_max": 18,
+      "speed_multiplier": 1.0,
+      "burst_count": 3,
+      "arrival_warning_seconds": 0.9,
+      "recovery_seconds": 2.2,
+      "total_actors_max": 10,
+      "shot_warning_seconds": 0.55,
+      "burst_spacing_seconds": 0.18,
+      "shooter_cap": 2,
+      "flyer_cap": 2
+    },
+    "hard": {
+      "active_patterns_max": 5,
+      "hostile_projectiles_max": 24,
+      "speed_multiplier": 1.15,
+      "burst_count": 4,
+      "arrival_warning_seconds": 0.7,
+      "recovery_seconds": 1.2,
+      "total_actors_max": 12,
+      "shot_warning_seconds": 0.55,
+      "burst_spacing_seconds": 0.18
+    }
+  },
+  "aggressive_replacement": {
+    "difficulty": {
+      "easy": {
+        "actor_cap": 6,
+        "pattern_cap": 2,
+        "projectile_cap": 10,
+        "projectile_speed_multiplier": 0.8,
+        "burst_count": 2,
+        "wave_spacing_multiplier": 1.4,
+        "recovery_seconds": 1.2
+      },
+      "normal": {
+        "actor_cap": 10,
+        "pattern_cap": 4,
+        "projectile_cap": 18,
+        "projectile_speed_multiplier": 1.0,
+        "burst_count": 3,
+        "wave_spacing_multiplier": 1.0,
+        "shooter_cap": 2,
+        "recovery_seconds": 2.2,
+        "flyer_cap": 2
+      },
+      "hard": {
+        "actor_cap": 12,
+        "pattern_cap": 5,
+        "projectile_cap": 24,
+        "projectile_speed_multiplier": 1.15,
+        "burst_count": 4,
+        "wave_spacing_multiplier": 0.8,
+        "recovery_seconds": 1.2
+      }
+    }
+  },
+  "event_specs": [
+    {
+      "id": "a-run1",
+      "role": "runner",
+      "trigger": 120,
+      "end": 680,
+      "feet": [
+        470,
+        440
+      ],
+      "bounds": [
+        180,
+        700
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "left"
+      }
+    },
+    {
+      "id": "a-shot1",
+      "role": "perched_shooter",
+      "trigger": 160,
+      "end": 700,
+      "feet": [
+        620,
+        320
+      ],
+      "bounds": [
+        620,
+        620
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "a-run2",
+      "role": "runner",
+      "trigger": 240,
+      "end": 700,
+      "feet": [
+        650,
+        440
+      ],
+      "bounds": [
+        180,
+        710
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "left"
+      }
+    },
+    {
+      "id": "a-fly1",
+      "role": "aggressive_flyer",
+      "trigger": 320,
+      "end": 820,
+      "feet": [
+        690,
+        190
+      ],
+      "bounds": [
+        180,
+        830
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "top"
+      }
+    },
+    {
+      "id": "a-run3",
+      "role": "runner",
+      "trigger": 370,
+      "end": 820,
+      "feet": [
+        520,
+        440
+      ],
+      "bounds": [
+        220,
+        710
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "left"
+      }
+    },
+    {
+      "id": "a-shot2",
+      "role": "perched_shooter",
+      "trigger": 440,
+      "end": 820,
+      "feet": [
+        700,
+        440
+      ],
+      "bounds": [
+        700,
+        700
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "a-fly2",
+      "role": "aggressive_flyer",
+      "trigger": 500,
+      "end": 820,
+      "feet": [
+        790,
+        180
+      ],
+      "bounds": [
+        220,
+        830
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "top"
+      }
+    },
+    {
+      "id": "a-run4",
+      "role": "runner",
+      "trigger": 570,
+      "end": 820,
+      "feet": [
+        670,
+        440
+      ],
+      "bounds": [
+        240,
+        710
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "left"
+      }
+    },
+    {
+      "id": "b-run1",
+      "role": "runner",
+      "trigger": 1390,
+      "end": 1740,
+      "feet": [
+        1450,
+        440
+      ],
+      "bounds": [
+        1270,
+        1710
+      ],
+      "depth": "foreground",
+      "source": [
+        1450,
+        600
+      ],
+      "entry": {
+        "mode": "foreground"
+      }
+    },
+    {
+      "id": "b-shot1",
+      "role": "perched_shooter",
+      "trigger": 1390,
+      "end": 1740,
+      "feet": [
+        1670,
+        440
+      ],
+      "bounds": [
+        1670,
+        1670
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "b-fly1",
+      "role": "aggressive_flyer",
+      "trigger": 1430,
+      "end": 1810,
+      "feet": [
+        1690,
+        180
+      ],
+      "bounds": [
+        1230,
+        2710
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "top"
+      }
+    },
+    {
+      "id": "b-run2",
+      "role": "runner",
+      "trigger": 1460,
+      "end": 1810,
+      "feet": [
+        1620,
+        440
+      ],
+      "bounds": [
+        1270,
+        1710
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "b-swarm",
+      "role": "swarm",
+      "trigger": 1490,
+      "end": 1880,
+      "feet": [
+        1690,
+        240
+      ],
+      "bounds": [
+        1230,
+        2740
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "bottom"
+      }
+    },
+    {
+      "id": "b-run3",
+      "role": "runner",
+      "trigger": 1540,
+      "end": 1880,
+      "feet": [
+        1570,
+        440
+      ],
+      "bounds": [
+        1270,
+        1710
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "b-shot2",
+      "role": "perched_shooter",
+      "trigger": 1580,
+      "end": 1940,
+      "feet": [
+        1850,
+        380
+      ],
+      "bounds": [
+        1850,
+        1850
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "b-run4",
+      "role": "runner",
+      "trigger": 1630,
+      "end": 1940,
+      "feet": [
+        1810,
+        380
+      ],
+      "bounds": [
+        1683,
+        2717
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "c-entry",
+      "role": "runner",
+      "trigger": 1740,
+      "end": 2390,
+      "feet": [
+        2040,
+        320
+      ],
+      "bounds": [
+        1683,
+        2717
+      ],
+      "depth": "background",
+      "source": [
+        2040,
+        180
+      ],
+      "entry": {
+        "mode": "background",
+        "source": [
+          2040,
+          180
+        ]
+      }
+    },
+    {
+      "id": "c-shot1",
+      "role": "perched_shooter",
+      "trigger": 1810,
+      "end": 2500,
+      "feet": [
+        2200,
+        380
+      ],
+      "bounds": [
+        2200,
+        2200
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "c-run2",
+      "role": "runner",
+      "trigger": 1870,
+      "end": 2500,
+      "feet": [
+        2250,
+        380
+      ],
+      "bounds": [
+        1683,
+        2717
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "floor"
+      }
+    },
+    {
+      "id": "c-fly1",
+      "role": "aggressive_flyer",
+      "trigger": 1940,
+      "end": 2770,
+      "feet": [
+        2470,
+        190
+      ],
+      "bounds": [
+        1230,
+        2760
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "right"
+      }
+    },
+    {
+      "id": "c-run3",
+      "role": "runner",
+      "trigger": 2050,
+      "end": 2770,
+      "feet": [
+        2460,
+        440
+      ],
+      "bounds": [
+        1683,
+        2717
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "right"
+      }
+    },
+    {
+      "id": "c-swarm",
+      "role": "swarm",
+      "trigger": 2160,
+      "end": 2770,
+      "feet": [
+        2560,
+        240
+      ],
+      "bounds": [
+        1230,
+        2760
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "top"
+      }
+    },
+    {
+      "id": "c-shot2",
+      "role": "perched_shooter",
+      "trigger": 2240,
+      "end": 2770,
+      "feet": [
+        2680,
+        180
+      ],
+      "bounds": [
+        2680,
+        2680
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "ceiling"
+      }
+    },
+    {
+      "id": "c-run4",
+      "role": "runner",
+      "trigger": 2340,
+      "end": 2770,
+      "feet": [
+        2640,
+        440
+      ],
+      "bounds": [
+        2383,
+        2740
+      ],
+      "depth": "",
+      "entry": {
+        "mode": "right"
+      }
+    }
+  ],
+  "pacing": {
+    "admission_interval_seconds": 0.45,
+    "dips": [
+      {
+        "x": [
+          700,
+          820
+        ],
+        "intent": "Read pit approach; no new warning admissions or new shooter windups while hero in interval."
+      },
+      {
+        "x": [
+          1220,
+          1390
+        ],
+        "intent": "Brief landing recovery and view of next approach; no new admissions/windups."
+      }
+    ],
+    "dip_rule": "Dip intervals delay new admissions and fresh shooter windups only. Already winding/volley attacks, actors and bullets continue normal lifecycle. No forced standstill/despawn. Pending finite entries may carry to next safe visible slot with0.45s admission spacing, never burst-admit together. Dips reduce pressure, not invulnerability.",
+    "sections": [
+      {
+        "x": [
+          120,
+          700
+        ],
+        "intent": "Choose low floor or optional catwalk under alternating ground/elevated singles; first air pressure arrives after route choice."
+      },
+      {
+        "x": [
+          1390,
+          1740
+        ],
+        "intent": "After early pit/recovery, foreground entry and air pressure on broad floor; room to evade without immediately jumping again."
+      },
+      {
+        "x": [
+          1740,
+          2770
+        ],
+        "intent": "Late two-rise machinery climb with pursuing runners, then a shorter final ground/air exchange. Different order from first trial."
+      }
+    ]
+  },
+  "asset_reuse": {
+    "world_manifest": "assets/world/three-screen-trial/manifest.json",
+    "rule": "Translate approved pieces to explicit geometry; never keep old art/collision or pipe-lip coordinates. Reuse same-scale supported deck and machinery crops where possible; Art checks composition before acceptance. No independently generated/code-drawn replacements.",
+    "background_arrival_anchor": [
+      2040,
+      320
+    ],
+    "foreground_arrival_anchor": [
+      1450,
+      440
+    ],
+    "placements": {
+      "pit_depth": [
+        900,
+        440,
+        120,
+        100
+      ],
+      "pit_left_rim": [
+        868,
+        440,
+        32,
+        32
+      ],
+      "pit_right_rim": [
+        1020,
+        440,
+        32,
+        32
+      ],
+      "pipe_back": [
+        2008,
+        148,
+        64,
+        64
+      ],
+      "pipe_lower_lip": [
+        2008,
+        180,
+        64,
+        32
+      ],
+      "arrival_ring_anchor": [
+        2040,
+        320
+      ]
+    },
+    "art_review": "No demonstrated new-art gap; source reuse viable pending actual renders. Old manifest coordinates are reference only. Use Art-approved uniform 207.68x120 support assembly centered beneath the 240-wide deck. Preserve approved 220x120 middle pump at x1940 and shift the 200x60 right step to x2160. No horizontal squashing. Rear supports stay behind the hero and the lower lane remains passable; active actors render above the pipe lip after emergence."
+  },
+  "invariants": [
+    "All monsters animate; current shared Gnat cycle retained, no obsolete hunting overrides.",
+    "Purple bolts persist until physical impact or full rendered exit, never TTL/range truncation.",
+    "Normal global live shooter<=2 and flyer<=2 including admission phases;2.2s lastbolt-to-nextwindup recovery. Easy/Hard retain current tuning.",
+    "Visible arrivals never disappear on proximity/end; settle vulnerable with overlap inhibition and fresh attack tell after separation.",
+    "No pit-ground runner crossing; no ceilingclamp false movement success; preserve collision-safe hero knockback.",
+    "Shared text-free vitals, selectedhero/lives, pause/reset/menu lifecycle retained."
+  ],
+  "validation": [
+    "Actual bothhero jump paths and enlargedrunner step paths at30/60/120/144Hz; no inherited2240pit or1650foreground assumptions.",
+    "Bothheroes/allmodes seeded full routes without healing; Normalcap/cooldown and camera/backtrack/deathslot checks.",
+    "Log event admissions, peak role/projectile counts, damage causes and actual dips; humanfun pending, no required6..12bolt target.",
+    "Inspect running approach/interaction/departure at earlypit, both dips, deptharrivals, lateclimb and exit; independentArt critique.",
+    "Finite24event IDs unique perrun; no offscreen attacks, sudden catchup wave, clearallgate or timerpadding.",
+    "Capture optional lowerlane/support joins, earlypit with clear fullbody takeoff, late three-step contact and both arrivals. Verify airborne crossing attack guard and0.45s landing rest after earlypit including previously committed dives."
+  ],
+  "delivery": {
+    "build": null,
+    "runtime_validated": false,
+    "visual_accepted": false
+  },
+  "roster_summary": {
+    "total": 24,
+    "runners": 12,
+    "shooters": 6,
+    "flying_spiders": 4,
+    "gnatastrophes": 2
+  },
+  "display_name": "Level 1.2",
+  "difficulty_precedence": "Runtime reads difficulty then overrides actor/pattern/projectile caps and projectile tuning from aggressive_replacement.difficulty. Mirrored values intentionally match: actors6/10/12,patterns2/4/5,projectiles10/18/24. Normal shooter/flyer caps2 and recovery2.2 remain authoritative in both. No legacy conflicting values.",
+  "authored_entry_revision": {
+    "status": "Integrated in Prototype 160; all 56 isolated event admissions validated. See canonical delivery for visual scope.",
+    "rules": [
+      "Every existing event has an explicit entrance; no additional enemies or density increase.",
+      "Normal retains two shooters, two flyers and 2.2-second shooter recovery.",
+      "Stationary shooters never use foreground positive-Z. Floor entries rise through a registered hatch at their supported feet.",
+      "Side runners require supported ingress from outside the current viewport to the first fully visible position, then use ordinary movement/contact. Reject unsafe paths; never interpolate through pits or machinery.",
+      "Top and bottom flying entries require a clear authored approach. Bottom entries must use a credible opening or safe staging path, never visibly cross solid floor.",
+      "Keep the existing single foreground runner and single background pipe runner; neither entry becomes a universal fallback.",
+      "Visible entrants complete continuously and consume caps; contact and firing wait for arrival and normal separation/tell rules."
+    ],
+    "ceiling_fixture": {
+      "event_id": "c-shot2",
+      "mount_anchor": [
+        2680,
+        180
+      ],
+      "support_destination": [
+        2620,
+        110.6622516556,
+        120,
+        69.3377483444
+      ],
+      "support_source_rect": [
+        885,
+        152,
+        604,
+        349
+      ],
+      "asset": "assets/world/opening-trial/platform-kit-v1.png",
+      "transform": "Uniform scale and vertical flip; connect upper posts to a visible overhead structural edge.",
+      "collision": "Fixture is decorative; actor body, muzzle and aiming transform must follow the hanging mount.",
+      "review": "Integrated articulated body/barrel and persistent support. Pictured assembly accepted by Art; see canonical delivery for motion coverage and remaining limits.",
+      "overhead_posts": {
+        "source_rect_candidate": [
+          900,
+          230,
+          66,
+          246
+        ],
+        "logical_width": 11,
+        "top_y": 0,
+        "rule": "Tile or crop at consistent scale from overhead to both upper flange centers; overlap rod ends and preserve joints. Posts continue behind HUD. Do not stretch the entire bracket.",
+        "registration": "Use exact post centers, tile dimensions and range in fixture_manifest."
+      },
+      "actor_manifest": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.json",
+      "actor_asset": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.png"
+    },
+    "floor_fixture": {
+      "asset": "assets/world/opening-trial/entry-fx-v1.png",
+      "source_rect_candidate": [
+        545,
+        275,
+        465,
+        180
+      ],
+      "front_sill_source_rect_candidate": [
+        545,
+        411,
+        465,
+        44
+      ],
+      "approximate_size": [
+        64,
+        25
+      ],
+      "rule": "Register aperture at supported feet; rear lid behind actor, same-crop sill in front during emergence, clip below support top. Art must verify aperture registration.",
+      "registration": "Use exact back/front destination offsets and scale in fixture_manifest; candidate dimensions here are descriptive only."
+    },
+    "bottom_approach": {
+      "event_id": "b-swarm",
+      "pit_center_x": 960,
+      "route_intent": [
+        [
+          960,
+          640
+        ],
+        [
+          960,
+          300
+        ]
+      ],
+      "rule": "One existing Gnatastrophe swarm rises through the actual pit opening, then flies to home. Confirm its complete animated envelope fits the 120px opening at native scale before admission. Defer while crossing or landing reservation is active. No contact or attacks during transit; never clip rims, shrink the creature, substitute foreground, or cross solid floor."
+    },
+    "fixture_manifest": "assets/world/three-screen-trial/shooter-entry-fixtures-v1.json"
+  }
+}

@@ -24,11 +24,11 @@
   },
   "damage_art_status": "Flight/hurt/death integrated; composed live-to-death visual review pending",
   "health": {
-    "max_hp": 135,
-    "spawn_hp": 135,
-    "status": "135 HP implemented in Prototype 84; validation and live-review status in handoffs/normal-density-refinement-delivery.json#prototype84",
-    "runtime_max_hp": 135,
-    "runtime_note": "First-level profile: 135 HP in all difficulties, reduced 25% from 180 HP; render scale remains 2.",
+    "max_hp": 101.25,
+    "spawn_hp": 101.25,
+    "status": "101.25 HP in Prototype 146; reduced 25% from135 at user request",
+    "runtime_max_hp": 101.25,
+    "runtime_note": "101.25 HP in all difficulties, production and trials; render scale remains2.",
     "encounter_stage": "first_level",
     "stage_status": "User requested durable opening hazard",
     "role": "mobile aerial threat",
@@ -41,20 +41,20 @@
     },
     "visual_policy": "assets/bestiary/damage/health-visuals.json",
     "balance_policy": "assets/bestiary/balance-policy.json",
-    "rationale": "12 Tony hits at 12 damage or 8 Sean hits at 18 damage; 1.76/1.68 seconds first-to-last firing plus travel and misses.",
+    "rationale": "9 Tony hits at12 damage or6 Sean hits at18 damage with first-level weapons.",
     "hits_to_defeat": {
-      "heavy-plunger-launcher": 6,
-      "pressure-gun": 23,
-      "drain-snake": 17,
-      "demolition-hammer": 3,
-      "pipe-wrench": 12,
-      "pipe-bomb-launcher": 3
+      "heavy-plunger-launcher": 5,
+      "pressure-gun": 17,
+      "drain-snake": 13,
+      "demolition-hammer": 2,
+      "pipe-wrench": 9,
+      "pipe-bomb-launcher": 2
     },
     "comparison_assumptions": "Base weapon catalog damage; first-level overrides compared separately. Full-health hits, no armor; melee may not reach flight.",
-    "comparison_balance_version": "widow-health-2026-10-20",
+    "comparison_balance_version": "widow-health-2026-11-02",
     "first_level_hits_to_defeat": {
-      "pressure-gun": 12,
-      "heavy-plunger-launcher": 8
+      "pressure-gun": 9,
+      "heavy-plunger-launcher": 6
     }
   },
   "proposed_quote": {
@@ -107,5 +107,10 @@
     "status": "Integrated in Prototype 86; packaged combat checks passed, live review pending",
     "health_unchanged": 135,
     "behavior": "Continuously reacquires the hero, including offscreen, at 300 pixels/second. Visible attacks retain the dive/rise/pause cycle. Blocked recovery slides around obstacles and returns to pursuit within 2.5 seconds without teleporting."
+  },
+  "trial_pursuit_revision_151": {
+    "status": "Packaged pursuit/contact and safety tests plus bounded Art review passed; high-origin HUD visibility and continuous motion remain review gaps",
+    "behavior": "Safe post-pit landing unlocks pursuit beyond original side; backtracking crossing cancels attacks without snapping actor home.",
+    "owner_record": "handoffs/three-screen-trial-delivery.json#correction_151"
   }
 }

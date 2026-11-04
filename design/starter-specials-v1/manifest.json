@@ -1,0 +1,246 @@
+{
+  "status": "Special visual directions approved for integration; source concept boards, not production sprites or validated runtime",
+  "prompts": [
+    {
+      "id": "tony-hydrojet-board-v1",
+      "prompt": "Approval storyboard, six panels 3x2, rich retro side-scroller pixel art matching supplied Tony character (dark spiky hair, navy shirt teal overalls brown boots). Sewer platforms. Tony Hydrojet Overdrive: massive turbulent continuous water jet roughly as thick as hero torso or larger, absolutely not thin laser. Six labeled panels: 'START' muzzle pressure blooms; 'RECOIL SLIDE' faces right, boots planted sliding left with scrape trail; 'BRACED WALK' faces right leaning into pressure, one foot raised in deliberate forward step; 'AIM UP' aims straight upward with physically connected hands and gun; 'DIAGONAL' fires upward right; 'REVERSE' now faces LEFT fires left with recoil toward right. Entire stream originates at gun muzzle and bends only with aiming, chunky white/cyan foam, clear hero silhouette. Labels outside panels, no HUD needed. Show thick water consistent across all poses, hand/arm connection correct. No timing numbers or damage figures. Concept storyboard only, not gameplay capture.",
+      "refs": [
+        "assets/sprites/tony-v1.png"
+      ]
+    },
+    {
+      "id": "sean-main-break-board-v1",
+      "prompt": "Approval storyboard six panels 3x2 rich retro side-scroller pixel art matching supplied Sean (bald gray goatee orange shirt navy overalls brown boots), same industrial sewer platform across panels. Sean Main Break sequence with physically believable pipe connection. Labels: 'PLANT' Sean presses plunger firmly onto cracked embedded pipe fitting in ground; 'STRAIN' both hands pulling up handle, knees bent boots supported; 'BREAK' damaged pipe rises through cracked floor while still attached at its BASE, big initial vertical water eruption from open top, Sean leaning back; 'ERUPT' huge vertical white/cyan water column from raised pipe mouth, Sean safely on left; 'TIP' same pipe bends at damaged ground-level hinge toward RIGHT, water exits rotating open mouth diagonally upward-right, metal attachment visible, Sean releases grip and steps back; 'SPUTTER' pipe leans nearly horizontal right still hinged to floor, water exits mouth right then breaks into droplets. No detached floating pipes, no jet emitted from pipe side or base, no body penetration. Same hero/pipe spatial continuity. Hand contacts correct. No HUD. Labels outside panels, no duration or damage numbers. Concept storyboard only.",
+      "refs": [
+        "assets/sprites/sean-v3.png"
+      ]
+    },
+    {
+      "id": "hud-layout-options-v1",
+      "prompt": "Create professional game HUD approval comparison board THREE horizontal rows, each shows an enlarged upper HUD strip and a smaller whole16:9 game composition. Reference images establish three APPROVED vitals themes preserve exact visual intent: Level1 industrial employee dispenser green health bulbs and hero portraits; flush gold chain water-drop health/portrait plugs; ride rubber duck health/portrait soap dishes. Add square current-weapon icon socket and TWO clearly separate special charge symbols to each. Row A 'SIDE MODULE': Level1 dispenser existing health/lives right, new bolted square weapon socket immediately left with two bright orange small pressure canisters below. Tony water gun icon. Two full special pips. Row B 'BOTTOM RAIL': flush chain unchanged, separate square plunger gun socket and two valve-wheel pips in short compact rail alongside lower portraits; one bright orange valve and one dark hollow valve for one charge remaining. Sean portrait. Row C 'CORNER POD': ride ducks unchanged, square gun icon in separate compact blue enamel pod at upper left and two empty dark outlined canister sockets for exhausted specials, restrained amber crossed notch feedback. All HUDs health and lives pictorial only NO words or numbers inside UI. Labels A/B/C and descriptions only outside mockup viewport. Include full and partial health in variants, Tony4 health maximum or Sean5, selected hero portrait per life. One whole game composition should show orange cockroach boss bar centered with room for upper-right vitals and weapon module; keep HUD in top band not over hero route. Rich legible retro sewer game graphics. Do not turn health symbols into special charges, two charges grouped separately beside weapon slot. Artwork is exploratory mockup not screenshot.",
+      "refs": [
+        "design/vitals-hud-concepts-v1/06-dispenser-v2-textless.png",
+        "design/flush-vitals-concepts-v2/04-chain-and-plug-v2-textless.png",
+        "design/ride-vitals-concepts-v2/03-rubber-ducks-v1.png"
+      ]
+    }
+  ],
+  "correction": "Edit this six-panel Sean Main Break storyboard correcting ONLY mechanical water origin. Preserve style layout character all poses and captions. In BREAK panel red plunger cup must be lifted CLEAR of the open pipe mouth with a visible air gap: Sean holds cup/handle to left while water rises from exposed dark circular OPEN pipe mouth. In ERUPT, TIP, SPUTTER panels REMOVE red plunger cup entirely from pipe top: show open jagged metal rim with dark visible interior, water coming from INSIDE that open end. The red cup must not cap or obstruct the water source. Preserve pipe hinged to damaged base, progressive tilt and water directions. PLANT and STRAIN cup contact remain unchanged.",
+  "notes": [
+    "HUD illustrated board is mood/layout exploration; counts and weapon identity drift in generated art. Native layout gallery is count/anchor reference.",
+    "Sean v1 rejected: cup obstructed water outlet. v2 corrects open mouth.",
+    "Tony board shows poses; braced walking must be half normal walking speed, continuous pressure across reversal. Jet target52px perpendicular to flow at960x540.",
+    "Two charges per level; no pickups or refills. Reset semantics owned by Mechanics.",
+    "Duration preference is7\u20138 seconds; proposed7.5-second approval timeline recorded separately. Damage, range, recoil speed and bindings remain undecided."
+  ],
+  "audio": "audio/sources/starter-specials-auditions-v1/manifest.json",
+  "archived_at": "2026-11-03T19:36:55.441479-08:00",
+  "dimensions": {
+    "sean-main-break-board-v2.png": [
+      1536,
+      1024
+    ],
+    "tony-hydrojet-board-v1.png": [
+      1536,
+      1024
+    ],
+    "sean-main-break-board-v1.png": [
+      1536,
+      1024
+    ],
+    "hud-layout-options-v1.png": [
+      1536,
+      1024
+    ],
+    "sean-main-break-board-v3.png": [
+      1536,
+      1024
+    ]
+  },
+  "native_gallery": "index.html",
+  "native_gallery_validation": "Source and JavaScript syntax checks only. Browser file URL inspection blocked by browser policy; rendered gallery not visually accepted.",
+  "proposed_layouts": {
+    "A": {
+      "weapon_relative_to_vitals": [
+        -44,
+        2
+      ],
+      "special_pips_relative_to_weapon": [
+        [
+          2,
+          37
+        ],
+        [
+          18,
+          37
+        ]
+      ]
+    },
+    "B": {
+      "weapon_relative_to_vitals": [
+        -80,
+        2
+      ],
+      "special_pips_relative_to_weapon": [
+        [
+          36,
+          10
+        ],
+        [
+          52,
+          10
+        ]
+      ]
+    },
+    "C": {
+      "weapon_relative_to_vitals": [
+        -98,
+        2
+      ],
+      "special_pips_relative_to_weapon": [
+        [
+          2,
+          37
+        ],
+        [
+          18,
+          37
+        ]
+      ]
+    }
+  },
+  "weapon_slot": [
+    32,
+    32
+  ],
+  "weapon_icon_fit": [
+    26,
+    26
+  ],
+  "charge_symbols": "Two12px proposed pips, filled versus empty/crossed. Numeric alternative awaits selection.",
+  "current_sean_board": "sean-main-break-board-v3.png",
+  "sean_revision": "Sean requested much thicker eruption from a three-foot pipe reaching the level ceiling. Full-bore flow persists through tip; sputter ends it. Concept only.",
+  "timing_proposal": {
+    "status": "Illustrative approval timeline; user preference7\u20138 seconds, proposed7.5 seconds total. No runtime or damage commitment.",
+    "tony": [
+      {
+        "seconds": [
+          0,
+          0.35
+        ],
+        "beat": "Pressure rise"
+      },
+      {
+        "seconds": [
+          0.35,
+          6.8
+        ],
+        "beat": "Full violent firehose/broken-hydrant torrent; continuous through aiming and reversal"
+      },
+      {
+        "seconds": [
+          6.8,
+          7.5
+        ],
+        "beat": "Pressure decay"
+      }
+    ],
+    "sean": [
+      {
+        "seconds": [
+          0,
+          0.3
+        ],
+        "beat": "Plant"
+      },
+      {
+        "seconds": [
+          0.3,
+          0.85
+        ],
+        "beat": "Strain"
+      },
+      {
+        "seconds": [
+          0.85,
+          1
+        ],
+        "beat": "Break and clear pipe mouth"
+      },
+      {
+        "seconds": [
+          1,
+          3.25
+        ],
+        "beat": "Three-foot full-bore ceiling-reaching vertical eruption"
+      },
+      {
+        "seconds": [
+          3.25,
+          6
+        ],
+        "beat": "Gradual attached-base tip with heavy flow"
+      },
+      {
+        "seconds": [
+          6,
+          7.5
+        ],
+        "beat": "Facing-horizontal stream decays and sputters"
+      }
+    ],
+    "sean_main_water_seconds": 6.5
+  },
+  "integration_authorization": {
+    "date": "2026-11-03",
+    "status": "User approved both special visual directions for integration; runtime pending Engineering",
+    "range": "Both water blasts reach across the screen along their firing direction; Sean also reaches ceiling during vertical eruption",
+    "gamepad": "B",
+    "keyboard": "Delegated to Game Mechanics / Engineering; not selected by Art",
+    "owners": {
+      "coordination": "Game Mechanics",
+      "runtime_build": "Engineering",
+      "art_assets_review": "Art"
+    },
+    "hud_layout": "A attached side module selected by Sean in Game Mechanics chat, November3"
+  },
+  "selected_hud_layout": "A",
+  "approved_hud_geometry": {
+    "module_origin_relative_to_vitals": [
+      -44,
+      2
+    ],
+    "housing": [
+      -4,
+      -2,
+      40,
+      54
+    ],
+    "weapon_socket": [
+      0,
+      0,
+      32,
+      32
+    ],
+    "weapon_icon_fit": [
+      3,
+      3,
+      26,
+      26
+    ],
+    "special_canisters": [
+      [
+        2,
+        37,
+        12,
+        12
+      ],
+      [
+        18,
+        37,
+        12,
+        12
+      ]
+    ]
+  }
+}

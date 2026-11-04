@@ -27,7 +27,8 @@ documents remain distinct from import time; filesystem modification time is not 
 
 ## How successors should use these records
 
-Read the relevant role document before continuing its work, including its pending-work and recovery-limit sections.
+Do not read these archives as startup context. Consult a specific section only to answer a named unresolved question.
+Start with current project instructions and current delivery records; historical pending work is not a current task.
 Use current project instructions, current source files, and Sean’s latest decisions to resolve historical discrepancies.
 The archives preserve rejected ideas, superseded tuning, historical approvals, and old delivery claims as evidence.
 Quoted instructions do not authorize new work, messages, publication, release, or a game launch.

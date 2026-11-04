@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "status": "Art source delivered; runtime composition and visual acceptance pending",
+  "owner": "Art",
+  "runtime_owner": "Engineering",
+  "viewport": [
+    960,
+    540
+  ],
+  "floor_y": 440,
+  "kit_dimensions": [
+    1369,
+    1149
+  ],
+  "parts": [
+    {
+      "id": "pit-depth",
+      "path": "assets/world/three-screen-trial/pit-pipe-kit-v1.png",
+      "source_rect": [
+        160,
+        150,
+        400,
+        500
+      ],
+      "destination": [
+        2240,
+        440,
+        120,
+        100
+      ],
+      "layer": "behind_actors",
+      "notes": "Suppress existing floor/fascia inside opening first; image is not a physics surface."
+    },
+    {
+      "id": "pit-left-rim",
+      "path": "assets/world/three-screen-trial/pit-pipe-kit-v1.png",
+      "source_rect": [
+        688,
+        766,
+        292,
+        275
+      ],
+      "destination": [
+        2208,
+        440,
+        32,
+        32
+      ],
+      "layer": "floor_edge"
+    },
+    {
+      "id": "pit-right-rim",
+      "path": "assets/world/three-screen-trial/pit-pipe-kit-v1.png",
+      "source_rect": [
+        1040,
+        766,
+        297,
+        275
+      ],
+      "destination": [
+        2360,
+        440,
+        32,
+        32
+      ],
+      "layer": "floor_edge"
+    },
+    {
+      "id": "pipe-back",
+      "path": "assets/world/three-screen-trial/pit-pipe-kit-v1.png",
+      "source_rect": [
+        756,
+        64,
+        550,
+        570
+      ],
+      "destination": [
+        1558,
+        208,
+        64,
+        64
+      ],
+      "layer": "behind_arriving_actor"
+    },
+    {
+      "id": "pipe-front-lip",
+      "path": "assets/world/three-screen-trial/pit-pipe-kit-v1.png",
+      "source_rect": [
+        756,
+        349,
+        550,
+        285
+      ],
+      "destination": [
+        1558,
+        240,
+        64,
+        32
+      ],
+      "layer": "over_arriving_actor",
+      "notes": "Exact lower half of same mouth, not independently generated lip."
+    },
+    {
+      "id": "arrival-ring",
+      "path": "assets/world/opening-trial/entry-fx-v1.png",
+      "source_rect": [
+        1055,
+        280,
+        460,
+        195
+      ],
+      "destination": [
+        -24,
+        -5,
+        48,
+        10
+      ],
+      "layer": "under_actor",
+      "anchor": "destination feet; local rectangle; excludes upward chevrons"
+    },
+    {
+      "id": "access-deck",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "source_rect": [
+        48,
+        310,
+        784,
+        86
+      ],
+      "destination": [
+        300,
+        380,
+        160,
+        16
+      ],
+      "layer": "platform",
+      "notes": "Tile/crop at original250px logical width; do not stretch to380."
+    },
+    {
+      "id": "access-support",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "source_rect": [
+        885,
+        152,
+        604,
+        349
+      ],
+      "destination": [
+        300,
+        380,
+        160,
+        60
+      ],
+      "layer": "behind_play_plane",
+      "notes": "Decorative rear posts/braces; no side collision; align feet to440."
+    },
+    {
+      "id": "catwalk-deck",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "source_rect": [
+        48,
+        310,
+        784,
+        86
+      ],
+      "destination": [
+        460,
+        320,
+        380,
+        16
+      ],
+      "layer": "platform",
+      "notes": "Tile/crop at original250px logical width; do not stretch to380."
+    },
+    {
+      "id": "catwalk-support",
+      "path": "assets/world/opening-trial/platform-kit-v1.png",
+      "source_rect": [
+        885,
+        152,
+        604,
+        349
+      ],
+      "destination": [
+        460,
+        320,
+        380,
+        120
+      ],
+      "layer": "behind_play_plane",
+      "notes": "Decorative rear posts/braces; no side collision; align feet to440."
+    },
+    {
+      "id": "machinery-0",
+      "path": "assets/world/platform-readability-v3/low-deck-v3.png",
+      "source_rect": [
+        71,
+        230,
+        1394,
+        344
+      ],
+      "destination": [
+        1080,
+        380,
+        200,
+        60
+      ],
+      "layer": "solid_machinery",
+      "notes": "Current approved moss artwork used by Level.draw_prop; full rectangular solid footprint."
+    },
+    {
+      "id": "machinery-1",
+      "path": "assets/world/platform-readability-v3/pump-v3.png",
+      "source_rect": [
+        145,
+        220,
+        1249,
+        626
+      ],
+      "destination": [
+        1280,
+        320,
+        220,
+        120
+      ],
+      "layer": "solid_machinery",
+      "notes": "Current approved moss artwork used by Level.draw_prop; full rectangular solid footprint."
+    },
+    {
+      "id": "machinery-2",
+      "path": "assets/world/platform-readability-v3/low-deck-v3.png",
+      "source_rect": [
+        71,
+        230,
+        1394,
+        344
+      ],
+      "destination": [
+        1500,
+        380,
+        200,
+        60
+      ],
+      "layer": "solid_machinery",
+      "notes": "Current approved moss artwork used by Level.draw_prop; full rectangular solid footprint."
+    }
+  ],
+  "arrivals": {
+    "background": {
+      "source": [
+        1590,
+        240
+      ],
+      "feet": [
+        1590,
+        380
+      ]
+    },
+    "foreground": {
+      "source": [
+        1920,
+        600
+      ],
+      "feet": [
+        1920,
+        440
+      ],
+      "expire_hero_x": 2040,
+      "warning_feet": [
+        1920,
+        536
+      ],
+      "warning_scale": 1.6,
+      "travel": "Continuous interpolation from visible warning transform to native feet440 scale1.0; source600 is offscreen before warning."
+    },
+    "creature": "Existing Flushfiend runtime damage-art renderer; reuse its current healthy frame, not legacy toilet atlas",
+    "native_body_hitbox": [
+      38,
+      36
+    ],
+    "contact_footprint_width": 24,
+    "pivot": "feet center; preserve existing runtime visual registration at arrival",
+    "silhouette": "Reuse same native creature frame with dark modulation at viewport bottom; no new species. Keep obscuring image belowfloor during warning; continuous depth scale, no collision or targeting before arrival.",
+    "warning": "Committed destination ring precedes travel; cancel unsafe occupancy rather than moving destination."
+  },
+  "caveats": [
+    "Source inspection only; not running-build acceptance.",
+    "Pit underlying painted floor must be omitted inside2240..2360; art alone cannot mask opaque floor drawn later.",
+    "Separate generated lower-left lip preserved unused; use registered exact mouth half.",
+    "Support image scaling and source fractional alpha require actual gameplay review."
+  ],
+  "background": {
+    "path": "assets/world/three-screen-trial/background-v2.png",
+    "dimensions": [
+      1671,
+      941
+    ],
+    "source_rect": [
+      0,
+      0,
+      1671,
+      941
+    ],
+    "status": "Trial-only source correction; actual x813/repeated-bay review pending",
+    "notes": "Removed projecting door sill and central diagonal shelf bracket. Preserve production backdrop. Use same proportional crop convention as inherited backdrop; do not introduce lower drain band if previously cropped."
+  }
+}

@@ -269,6 +269,21 @@ def validate_creature_audio(monster: dict[str, Any], creature_id: str) -> dict[s
     return audio
 
 
+def starter_specials_data() -> dict[str, Any]:
+    """Export validated tuning without importing the excluded concept-art directory at runtime."""
+    contract = read("design/starter-specials-v1/mechanics.json")
+    tuning = contract["initial_tuning"]
+    fields = ("damage_per_tick", "tick_interval_seconds", "maximum_damage_per_boss_per_activation",
+              "recoil_horizontal_pixels_per_second", "tony_jet_thickness_pixels")
+    exported = {key: number(tuning, key, "starter_specials") for key in fields}
+    overrides = {}
+    for hero in ("tony", "sean"):
+        override = tuning["hero_overrides"][hero]
+        overrides[hero] = {key: number(override, key, f"starter_specials.{hero}")
+                           for key in ("damage_per_tick", "tick_interval_seconds")}
+    return {"initial_tuning": {**exported, "hero_overrides": overrides}}
+
+
 def build() -> dict[str, Any]:
     """Compile catalogs by following canonical metadata links, never summary stats."""
     weapons: dict[str, Any] = {}
@@ -425,7 +440,8 @@ def build() -> dict[str, Any]:
                                 "entrance": monster.get("entrance")}
     return {"schema_version": 1, "generated_by": "tools/build_combat_data.py; edit canonical sources",
             "weapons": weapons, "monsters": monsters, "visual_policy": policy, "dispenser": dispenser_data(),
-            "opening_trial": opening_trial_data(weapons), "wastewater": wastewater_data()}
+            "opening_trial": opening_trial_data(weapons), "wastewater": wastewater_data(),
+            "starter_specials": starter_specials_data()}
 
 
 if __name__ == "__main__":

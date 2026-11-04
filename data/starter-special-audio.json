@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "status": "Audio helper delivered; game controller integration owned by Engineering",
+  "cues": {
+    "tony-start": {
+      "path": "assets/audio/sfx/starter-specials-v1/tony-start.wav",
+      "selected_candidate": "DD-S0126.4",
+      "slot_key": "proposed-starter-specials/tony-start",
+      "label": "Pressure startup",
+      "group": "Tony Hydrojet Overdrive",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0126/DD-S0126.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "742d1558ea38d659473db9c31641dda4cf95df51c58b5ef316f1c4003904556d"
+    },
+    "tony-core": {
+      "path": "assets/audio/sfx/starter-specials-v1/tony-core.wav",
+      "selected_candidate": "DD-S0127.4",
+      "slot_key": "proposed-starter-specials/tony-core",
+      "label": "Sustained core \u2014 loop-ready",
+      "group": "Tony Hydrojet Overdrive",
+      "gain_db": -8,
+      "loop": true,
+      "source": "audio/alternatives/DD-S0127/DD-S0127.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "6ac572b3e670d10a07dff88cc0c8e098138fd1728c599c01eef88a9c1f870320"
+    },
+    "tony-stop": {
+      "path": "assets/audio/sfx/starter-specials-v1/tony-stop.wav",
+      "selected_candidate": "DD-S0128.4",
+      "slot_key": "proposed-starter-specials/tony-stop",
+      "label": "Sputter / shutdown",
+      "group": "Tony Hydrojet Overdrive",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0128/DD-S0128.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "0f8358ee14794c525f3212b479dda23be124ee29771a9dbb566f2872a66a64ec"
+    },
+    "sean-seal": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-seal.wav",
+      "selected_candidate": "DD-S0130.3",
+      "slot_key": "proposed-starter-specials/sean-seal",
+      "label": "Plant / seal",
+      "group": "Sean Main Break",
+      "gain_db": -3,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0130/DD-S0130.3.wav",
+      "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
+      "sha256": "d6f67a0a13efbd9217ba1d9608140c23a2c24e5b0291730835f32adeac6336e3"
+    },
+    "sean-pull": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-pull.wav",
+      "selected_candidate": "DD-S0131.4",
+      "slot_key": "proposed-starter-specials/sean-pull",
+      "label": "Strained pull",
+      "group": "Sean Main Break",
+      "gain_db": -3,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0131/DD-S0131.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "8165ee9acf317b75de20c7b2c403bad6f829e60174ce9129d92c0bc16c448ec2"
+    },
+    "sean-break": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-break.wav",
+      "selected_candidate": "DD-S0132.3",
+      "slot_key": "proposed-starter-specials/sean-break",
+      "label": "Pipe break / release",
+      "group": "Sean Main Break",
+      "gain_db": -3,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0132/DD-S0132.3.wav",
+      "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
+      "sha256": "29967a5ad13d4dd1dd393bd4656c6e86f9b248cf5af2f2a4ba571344ec0e47dd"
+    },
+    "sean-erupt": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-erupt.wav",
+      "selected_candidate": "DD-S0133.4",
+      "slot_key": "proposed-starter-specials/sean-erupt",
+      "label": "Vertical water eruption",
+      "group": "Sean Main Break",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0133/DD-S0133.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "6598b8085ed960bcbad8a84e6f7f61c417858e06d6cf2f800278ffe7749e5fa0"
+    },
+    "sean-hinge": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-hinge.wav",
+      "selected_candidate": "DD-S0140.3",
+      "slot_key": "proposed-starter-specials/sean-hinge",
+      "label": "Base hinge / metal strain",
+      "group": "Sean Main Break",
+      "gain_db": -2,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0140/DD-S0140.3.wav",
+      "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
+      "sha256": "ac8f5753487106223da30c302038016a13376eb6bb4b33107a747c23ddf5c72c"
+    },
+    "sean-core": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-core.wav",
+      "selected_candidate": "DD-S0141.4",
+      "slot_key": "proposed-starter-specials/sean-core",
+      "label": "Following jet \u2014 loop-ready sustain",
+      "group": "Sean Main Break",
+      "gain_db": -8,
+      "loop": true,
+      "source": "audio/alternatives/DD-S0141/DD-S0141.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "122591f4667208c97866e85075125f60b3e5b75c19aa7a133470fee8cd015f40"
+    },
+    "sean-stop": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-stop.wav",
+      "selected_candidate": "DD-S0135.4",
+      "slot_key": "proposed-starter-specials/sean-stop",
+      "label": "Sputtering pressure decay",
+      "group": "Sean Main Break",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0135/DD-S0135.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "e5394e140f9048ea041334a01954fb2d35dc54990f6e70267aa0ee78836c5110"
+    },
+    "hud-empty": {
+      "path": "assets/audio/sfx/starter-specials-v1/hud-empty.wav",
+      "selected_candidate": "DD-S0137.1",
+      "slot_key": "proposed-starter-specials/hud-empty",
+      "label": "No special uses left",
+      "group": "Special HUD feedback",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0137/DD-S0137.1.wav",
+      "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
+      "sha256": "1fd263dfad5661a2ad6317090d5f3cede2574950ecb500856f219d79f7e559a8"
+    }
+  },
+  "duration": 7.5,
+  "heroes": {
+    "tony": {
+      "events": [
+        {
+          "time": 0,
+          "cue": "tony-start"
+        },
+        {
+          "time": 6.8,
+          "cue": "tony-stop"
+        }
+      ],
+      "sustain": {
+        "cue": "tony-core",
+        "start": 0.35,
+        "end": 6.8,
+        "fade_in": 0.1,
+        "fade_out": 0.12
+      }
+    },
+    "sean": {
+      "events": [
+        {
+          "time": 0,
+          "cue": "sean-seal"
+        },
+        {
+          "time": 0.3,
+          "cue": "sean-pull"
+        },
+        {
+          "time": 0.85,
+          "cue": "sean-break"
+        },
+        {
+          "time": 1,
+          "cue": "sean-erupt"
+        },
+        {
+          "time": 3.25,
+          "cue": "sean-hinge"
+        },
+        {
+          "time": 6,
+          "cue": "sean-stop"
+        }
+      ],
+      "sustain": {
+        "cue": "sean-core",
+        "start": 1.1,
+        "end": 6.1,
+        "fade_in": 0.12,
+        "fade_out": 0.18
+      }
+    }
+  },
+  "notes": [
+    "One loop plus two bounded transient voices. No accepted HUD cue.",
+    "Use simulation delta; pause freezes elapsed; turn/aim does not call begin again.",
+    "Caller stops on death/cancel/retry/scene exit. Empty only on fresh rejected press.",
+    "Master mute silences live streams; no deferred event replay when unmuting.",
+    "Initial production gains require listening under music; no audible mix acceptance claimed.",
+    "Recoil/step/tip/accepted alternatives remain available but are not separately triggered."
+  ]
+}

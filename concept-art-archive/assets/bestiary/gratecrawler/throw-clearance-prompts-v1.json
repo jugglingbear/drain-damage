@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-03",
+  "tool": "built-in imagegen",
+  "generations": [
+    {
+      "prompt": "Precise minimal sprite edit, preserve exact1536x1024 size,2x2cells of768x512 and original transparency. Change ONLY the outstretched throwing arm in BOTTOM LEFT frame. Raise the entire outstretched LEFT hand/palm center from imagecoordinate(150,690) to(150,667): exactly23pixels upward, samex. Lift forearm and adjust elbow/shoulder connection naturally to that raised hand, maintaining same arm thickness/style/length and leftward reach. Keep all feet, body, head, backpack grate, otherarm, and otherTHREE frames pixelpositions visually unchanged. Bottomleft sourcefootanchor stays(535,956). No ball added. Samegrimyolive muckmonster pixelart, no redesign no addedfeatures. Arm should slope slightly upward toward outstretchedhand, instead of level/downward release. Preserve crisp anatomy and emptytransparentbackground, no labels. This is a small collision-clearance correction to release hand only.",
+      "reference": "assets/bestiary/gratecrawler/throw-v2.png",
+      "output": "assets/bestiary/gratecrawler/throw-v3.png",
+      "status": "Raised 43 source pixels; Mechanics clearance evaluation pending"
+    },
+    {
+      "prompt": "Minimal correction to this1536x1024 sprite sheet. In BOTTOM LEFT frame ONLY, lower the extended throwing HAND by exactly20pixels, preserving its horizontalposition. The current arm is raised a little too high. Hand center should be at canvas(150,667), localbottomleft(150,155). Adjust forearm/elbow smoothly with it; feetanchor(535,956), body,head,backgrate andotherarm unchanged. Otherthreeframes unchanged. Keepoutstretchedarm slightlyrising towardleft, nottheoldflatarm. Samepixelart andtransparency. No ball, no labels orotherchanges.",
+      "reference": "assets/bestiary/gratecrawler/throw-v3.png",
+      "output": "assets/bestiary/gratecrawler/throw-v4.png",
+      "status": "Rejected: hand lowered instead of target lift"
+    },
+    {
+      "prompt": "Edit ONLY bottom-left pose of this exact sprite sheet. Raise the entire extended left throwing hand and forearm UP by 23 pixels from its ORIGINAL position in the reference. Hand currently around x150,y690; desired x150,y667. UP means closer to the TOP edge of image. Keep hand x unchanged. Bend elbow naturally upward to connect shoulder. Preserve body and feet, especially foot anchor535,956. Preserve other three frames exactly. Same 1536x1024 canvas and pixel art. No projectile. Transparent background with absolutely no haze. This is a small upward adjustment, not a redesign.",
+      "reference": "assets/bestiary/gratecrawler/throw-v2.png",
+      "output": "assets/bestiary/gratecrawler/throw-v5.png",
+      "status": "Retained alternate; larger lift than requested"
+    }
+  ]
+}

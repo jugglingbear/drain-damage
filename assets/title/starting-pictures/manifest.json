@@ -1,0 +1,53 @@
+{
+  "status": "Approved assets staged; directory-discovery runtime integration pending",
+  "directory": "assets/title/starting-pictures",
+  "filename_pattern": "start-*.png",
+  "recursive": false,
+  "selection": "Uniform random valid matching texture once per game launch; retain for session",
+  "manifest_role": "Provenance only; runtime discovers files rather than using entries as an allowlist",
+  "adding_art": "Add an approved Normal-costume, spoiler-safe 16:9 PNG named start-<description>.png to this directory, then import/export a new build. No selector code edits required. Keep superseded revisions outside this directory.",
+  "fallback": "Existing assets/title/drain-damage-v2.png if no valid candidates",
+  "export_validation": "Engineering must verify matching imported textures are discoverable and included in exported packages.",
+  "entries": [
+    {
+      "id": "level-1-01",
+      "title": "Basement Ambush",
+      "path": "assets/title/starting-pictures/start-basement-ambush.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "source_art": "assets/title/level-1-rotation-v1/level-1-01-v1.png"
+    },
+    {
+      "id": "level-1-02",
+      "title": "Something Above the Catwalk",
+      "path": "assets/title/starting-pictures/start-catwalk-ambush.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "source_art": "assets/title/level-1-rotation-v1/level-1-02-v1.png"
+    },
+    {
+      "id": "level-1-03",
+      "title": "Skitterling Chamber",
+      "path": "assets/title/starting-pictures/start-skitterling.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "source_art": "assets/title/level-1-rotation-v1/level-1-03-v2.png"
+    },
+    {
+      "id": "level-1-04",
+      "title": "The Clogfather",
+      "path": "assets/title/starting-pictures/start-clogfather.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "source_art": "assets/title/level-1-rotation-v1/level-1-04-v1.png"
+    }
+  ]
+}

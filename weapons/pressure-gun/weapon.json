@@ -98,5 +98,27 @@
     "source": "design/first-call-action/opening-trial-balance.json",
     "entry": "weapons.pressure-gun",
     "note": "Default first-level playtest uses this faster balance; top-level values retain the original baseline for comparison."
+  },
+  "special": {
+    "name": "Hydrojet Overdrive",
+    "status": "Authorized integration in progress; initial tunings pending playtest",
+    "contract": "design/starter-specials-v1/mechanics.json",
+    "uses_per_hero_per_logical_level": 2,
+    "duration_seconds": 7.5,
+    "damage_per_tick": 24,
+    "tick_interval_seconds": 0.1,
+    "boss_damage_cap_per_activation": 250,
+    "range": "Current viewport edge along visible water, blocked by solid scenery",
+    "input": {
+      "keyboard": "K",
+      "gamepad": "B",
+      "trigger": "fresh press"
+    },
+    "budget": "No refill on death, checkpoint, retry, subsection or boss; initialize on new run or first entry to logical level",
+    "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending",
+    "sustained_damage_per_second": 240,
+    "active_regular_sustained_damage_per_second": 75,
+    "special_to_regular_ratio": 3.2,
+    "activation": "Fresh press automatically sustains damage; neither special nor ordinary fire needs to remain held"
   }
 }

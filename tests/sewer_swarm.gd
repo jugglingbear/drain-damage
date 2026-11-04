@@ -41,12 +41,12 @@ func run_checks() -> void:
 			swarm.step_motion(a,1.0/120,solids)
 			swarm.step_motion(b,1.0/120,solids)
 			assert(a.pos == b.pos and a.animation == b.animation)
-			assert(region.grow(-48).has_point(a.pos))
-			assert(not solids[0].grow(48).has_point(a.pos), str([seed_value,tick,a.pos,a.velocity,solids]))
-			assert(a.velocity.length() <= 35.01)
+			assert(region.grow(-swarm.TERRAIN_RADIUS).has_point(a.pos))
+			assert(not solids[0].grow(swarm.TERRAIN_RADIUS).has_point(a.pos), str([seed_value,tick,a.pos,a.velocity,solids]))
+			assert(a.velocity.length() <= swarm.WANDER_SPEED+0.01)
 		paths += 1
 	var trapped: Dictionary = swarm.spawn(Vector2(50,50),Rect2(0,0,300,300),1)
-	var walls: Array[Rect2] = [Rect2(25,0,5,100),Rect2(70,0,5,100),Rect2(0,25,100,5),Rect2(0,70,100,5)]
+	var walls: Array[Rect2] = [Rect2(43,0,4,100),Rect2(53,0,4,100),Rect2(0,43,100,4),Rect2(0,53,100,4)]
 	for tick in range(240): swarm.step_motion(trapped,1.0/120,walls)
 	assert(trapped.blocked)
 	var old: Vector2 = trapped.pos
@@ -67,9 +67,11 @@ func run_checks() -> void:
 	game.player = Vector2(1100,394)
 	game.invulnerable = 0
 	game.health = 5
-	var overlap: Vector2 = game.player+Vector2(13,5)
+	var overlap: Vector2 = game.player+Vector2(13,-3) # Keep the 48px body above the solid floor.
 	swarm.actors.assign([swarm.spawn(overlap,Rect2(1000,200,330,240),1),
 		swarm.spawn(overlap,Rect2(1000,200,330,240),2)])
+	# Isolate shared contact cooldowns from the separate proximity acquisition tell.
+	for actor in swarm.actors: actor.reacquire_wait = 100.0
 	swarm.step(game,0)
 	assert(game.health == 4 and swarm.hero_cooldown == 1.5)
 	game.player = Vector2(1100,394)
@@ -126,6 +128,8 @@ func run_checks() -> void:
 		game.employee = person
 		game.reset_game()
 		var actor: Dictionary = swarm.actors[0]
+		swarm.step_motion(actor,actor.entry.duration,empty)
+		assert(not swarm.entry_active(actor),"Projectile fixture waits for arrival on playable plane")
 		var hits := 1 if person.id == "sean" else 4
 		for hit in range(hits):
 			game.shots.append({"pos":actor.pos-Vector2(50,0), "dir":Vector2.RIGHT, "damage":game.weapon.damage,

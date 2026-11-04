@@ -1,0 +1,678 @@
+{
+  "date": "2026-11-03",
+  "status": "Draft auditions only; no gameplay integration or selection",
+  "brief": "New horrifying ceiling devil spider: readable aim, web launch and attachment, alternating strained silk hauls, cocoon struggle, strand tearing and escape. Four recorded-source directions, no chiptune oscillators. Draft audition only; demonstration timing is illustrative, not an approved gameplay contract.",
+  "license": "CC0-1.0",
+  "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+  "recipe": "audio/sources/devil-spider-auditions-v1/generate.py",
+  "sources": {
+    "bug_01/1.12/650/6500": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/bug_01.ogg",
+      "sha256": "a7afae8bd3b448184e92bbb6162702e86322e5df58045715176c450ba4bbea3a",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=650,lowpass=f=6500",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "eat_01/1.12/650/6500": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/eat_01.ogg",
+      "sha256": "f17305072d3d0ca5556f72db8701866329d33561ca5df086e501f2a52e2022df",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=650,lowpass=f=6500",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "spit_01/1.12/650/6500": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/spit_01.ogg",
+      "sha256": "11185484afda924711008f5e565d0baa5ebb271457c028b7e19b9ed487f8c6bd",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=650,lowpass=f=6500",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "breath/1.12/650/6500": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/breath.ogg",
+      "sha256": "d6ecfd092c261059701fe81581957ce6e67c1737978449bbd98ec6d4f30abb7f",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=650,lowpass=f=6500",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "burble_02/0.83/140/4400": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/burble_02.ogg",
+      "sha256": "7cc51b6cf28a5d0ac13f34e54cb18ebb8d2b66aa144281d321d0af826f56a85b",
+      "filters": "aresample=44100,asetrate=36603,aresample=44100,highpass=f=140,lowpass=f=4400",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "eat_03/0.83/140/4400": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/eat_03.ogg",
+      "sha256": "3e7425cdf2cba7fe9c42e8306dc303a2c4f9a4f02358ee19329b734bf06591dd",
+      "filters": "aresample=44100,asetrate=36603,aresample=44100,highpass=f=140,lowpass=f=4400",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "spit_03/0.83/140/4400": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/spit_03.ogg",
+      "sha256": "dcc68b992278e58fc51776b23b4cf04a28f7d660c58fd5514b35cb3f0936277c",
+      "filters": "aresample=44100,asetrate=36603,aresample=44100,highpass=f=140,lowpass=f=4400",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "breath/0.83/250/4400": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/breath.ogg",
+      "sha256": "d6ecfd092c261059701fe81581957ce6e67c1737978449bbd98ec6d4f30abb7f",
+      "filters": "aresample=44100,asetrate=36603,aresample=44100,highpass=f=250,lowpass=f=4400",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "breath/0.94/1000/8500": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/breath.ogg",
+      "sha256": "d6ecfd092c261059701fe81581957ce6e67c1737978449bbd98ec6d4f30abb7f",
+      "filters": "aresample=44100,asetrate=41454,aresample=44100,highpass=f=1000,lowpass=f=8500",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "bug_03/0.94/1000/8500": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/bug_03.ogg",
+      "sha256": "947dad474b93a2786455b1772184f79f4881cf8bf212353638a42f662c808b7b",
+      "filters": "aresample=44100,asetrate=41454,aresample=44100,highpass=f=1000,lowpass=f=8500",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "spit_02/0.94/1000/8500": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/spit_02.ogg",
+      "sha256": "aa65f01311e914d2861f1992a4e59f431c03edcf020e09961e422728562a2657",
+      "filters": "aresample=44100,asetrate=41454,aresample=44100,highpass=f=1000,lowpass=f=8500",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "monster_06/0.65/90/3300": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/monster_06.ogg",
+      "sha256": "6b8df01eb7821fb0fcf66b4683a8eb997ca728fded26b6937734b84ff05852f9",
+      "filters": "aresample=44100,asetrate=28665,aresample=44100,highpass=f=90,lowpass=f=3300",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "eat_04/0.65/90/3300": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/eat_04.ogg",
+      "sha256": "1408d3cac16d7e8c99ce8702a76aa3c3fe18284d5326e88fc9b2c25331926ab8",
+      "filters": "aresample=44100,asetrate=28665,aresample=44100,highpass=f=90,lowpass=f=3300",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "spit_01/0.65/90/3300": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/spit_01.ogg",
+      "sha256": "11185484afda924711008f5e565d0baa5ebb271457c028b7e19b9ed487f8c6bd",
+      "filters": "aresample=44100,asetrate=28665,aresample=44100,highpass=f=90,lowpass=f=3300",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    },
+    "breath/0.65/250/3300": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/breath.ogg",
+      "sha256": "d6ecfd092c261059701fe81581957ce6e67c1737978449bbd98ec6d4f30abb7f",
+      "filters": "aresample=44100,asetrate=28665,aresample=44100,highpass=f=250,lowpass=f=3300",
+      "trim": "Leading signal below 2.5% peak, retaining 220 samples pre-onset",
+      "license": "CC0-1.0",
+      "author": "rubberduck",
+      "source_url": "https://opengameart.org/content/80-cc0-creature-sfx"
+    }
+  },
+  "families": [
+    {
+      "name": "A \u2014 Chitin rattle",
+      "description": "Dry, close clicking with a narrow rasp.",
+      "playback_rate": 1.12,
+      "semitones": 1.9619847873945546
+    },
+    {
+      "name": "B \u2014 Wet brood",
+      "description": "Throaty burbling, sticky pulls and wet spit.",
+      "playback_rate": 0.83,
+      "semitones": -3.2258011011336
+    },
+    {
+      "name": "C \u2014 Breath stalker",
+      "description": "Airy hiss, small ticks and whispery friction.",
+      "playback_rate": 0.94,
+      "semitones": -1.0712080571650489
+    },
+    {
+      "name": "D \u2014 Black maw",
+      "description": "Low rasping voice with heavier, slower-textured pulls.",
+      "playback_rate": 0.65,
+      "semitones": -7.457860520955242
+    }
+  ],
+  "sequence_timeline_seconds": [
+    [
+      "crawl",
+      0
+    ],
+    [
+      "aim",
+      1.35
+    ],
+    [
+      "launch",
+      2.65
+    ],
+    [
+      "attach",
+      3.15
+    ],
+    [
+      "haul",
+      3.7
+    ],
+    [
+      "struggle",
+      6.15
+    ],
+    [
+      "tear",
+      7.7
+    ],
+    [
+      "escape",
+      8.5
+    ]
+  ],
+  "outputs": [
+    {
+      "id": "DD-S0112.1",
+      "event": "sequence",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0112/DD-S0112.1-v2.wav",
+      "duration_seconds": 9.6,
+      "peak_dbfs": -9,
+      "sha256": "44714a2a4270bb9c84ab75c29780b6a764d3033dda07c04990e7145971de7849",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0112/DD-S0112.1.wav",
+        "sha256": "df37e2847aed0308292b42341eb829e259bb17d0f9290a6714508374d557a729"
+      }
+    },
+    {
+      "id": "DD-S0113.1",
+      "event": "aim",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0113/DD-S0113.1-v2.wav",
+      "duration_seconds": 1.05,
+      "peak_dbfs": -9,
+      "sha256": "4c7a4049680b92bc8e112f8145528bcdc747b596843f7cd902e5873ed74ad8eb",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0113/DD-S0113.1.wav",
+        "sha256": "15b700842dbe4c2d1f56e07f3c1a27d1848b3d5cdf634b707329facd90f080b2"
+      }
+    },
+    {
+      "id": "DD-S0114.1",
+      "event": "crawl",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0114/DD-S0114.1.wav",
+      "duration_seconds": 1.15,
+      "peak_dbfs": -17,
+      "sha256": "1f37745e2d646d3c6a2a525e4caba1c2f5c9e1ac392183a5129f102cecc19820"
+    },
+    {
+      "id": "DD-S0115.1",
+      "event": "launch",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0115/DD-S0115.1.wav",
+      "duration_seconds": 0.52,
+      "peak_dbfs": -9,
+      "sha256": "e12c41187d20160d4de31591e77d47f0b3934aa8c7cebff2e25cf23a6af6932d"
+    },
+    {
+      "id": "DD-S0116.1",
+      "event": "attach",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0116/DD-S0116.1.wav",
+      "duration_seconds": 0.38,
+      "peak_dbfs": -9,
+      "sha256": "33b97c3d489ecc4c26c61cdf93ea4b2be73af81832a5d23313450991c9bde571"
+    },
+    {
+      "id": "DD-S0117.1",
+      "event": "haul",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0117/DD-S0117.1.wav",
+      "duration_seconds": 2.2,
+      "peak_dbfs": -14,
+      "sha256": "beca76ba71445d534369e77f433cd82b6be60c9b9e1fa256fdfd6d9c6ec10999"
+    },
+    {
+      "id": "DD-S0118.1",
+      "event": "struggle",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0118/DD-S0118.1.wav",
+      "duration_seconds": 1.3,
+      "peak_dbfs": -14,
+      "sha256": "edfe80166c861b3fcdaff593281de0834a54d3e085901dbc3cf156aee2cbbcb4"
+    },
+    {
+      "id": "DD-S0119.1",
+      "event": "tear",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0119/DD-S0119.1.wav",
+      "duration_seconds": 0.6,
+      "peak_dbfs": -9,
+      "sha256": "948153ec2215be68ec68d1023bf7a2e13a25995c7aef3eb3064e573208da6964"
+    },
+    {
+      "id": "DD-S0120.1",
+      "event": "escape",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0120/DD-S0120.1.wav",
+      "duration_seconds": 0.85,
+      "peak_dbfs": -9,
+      "sha256": "b008542325bf944795a275893065eb7513b016057001f843c16a764eb82d4bc8"
+    },
+    {
+      "id": "DD-S0121.1",
+      "event": "rustle",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0121/DD-S0121.1.wav",
+      "duration_seconds": 1.4,
+      "peak_dbfs": -25,
+      "sha256": "2840a4b42b20f7111a2f7976e752bb9a562e6248eabd107e956b9023a00fcd0a"
+    },
+    {
+      "id": "DD-S0122.1",
+      "event": "hit",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0122/DD-S0122.1.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -9,
+      "sha256": "cf49faa60362c01e45614bbeaaf55bb3ee0140e9b9019784616371e9a035ca4a"
+    },
+    {
+      "id": "DD-S0123.1",
+      "event": "death",
+      "family": "A \u2014 Chitin rattle",
+      "path": "audio/alternatives/DD-S0123/DD-S0123.1.wav",
+      "duration_seconds": 1.6,
+      "peak_dbfs": -9,
+      "sha256": "0568a15782ef1e0f74cb263d04ecc284aa6df9430c732d89a621d3dc97346ba7"
+    },
+    {
+      "id": "DD-S0112.2",
+      "event": "sequence",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0112/DD-S0112.2-v2.wav",
+      "duration_seconds": 9.6,
+      "peak_dbfs": -9,
+      "sha256": "281451fe16e019e66ca0fa3d3c5ea0a6411286df4fa7d9e46898177d9c49a335",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0112/DD-S0112.2.wav",
+        "sha256": "476a8748c11c4b91fa76c8d3bbfe7af15f6d038e77a839802e0cd730f6d506a4"
+      }
+    },
+    {
+      "id": "DD-S0113.2",
+      "event": "aim",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0113/DD-S0113.2-v2.wav",
+      "duration_seconds": 1.05,
+      "peak_dbfs": -9,
+      "sha256": "cfa4d083d50dce9dd3706a27b4fa583f682c04e4b8dbd5a2926a2dc68e61af7a",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0113/DD-S0113.2.wav",
+        "sha256": "a4410b126255300dcd8e7ed21ee18ccdcd0e1b9baae61ff1d08ce55db82c818b"
+      }
+    },
+    {
+      "id": "DD-S0114.2",
+      "event": "crawl",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0114/DD-S0114.2.wav",
+      "duration_seconds": 1.15,
+      "peak_dbfs": -17,
+      "sha256": "4340be8c131cbacd3e9c98c437adf8f2612d87fb04a8af3d8dfd6640b1ece44a"
+    },
+    {
+      "id": "DD-S0115.2",
+      "event": "launch",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0115/DD-S0115.2.wav",
+      "duration_seconds": 0.52,
+      "peak_dbfs": -9,
+      "sha256": "4089e71f0765d820a85ffd5cca95a2ff3133e2ed37ffa59372acabb93963afb5"
+    },
+    {
+      "id": "DD-S0116.2",
+      "event": "attach",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0116/DD-S0116.2.wav",
+      "duration_seconds": 0.38,
+      "peak_dbfs": -9,
+      "sha256": "057c739d97d78268ed4e79144e35eea68ef12f72af353cfd91be3c48cfce5df3"
+    },
+    {
+      "id": "DD-S0117.2",
+      "event": "haul",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0117/DD-S0117.2.wav",
+      "duration_seconds": 2.2,
+      "peak_dbfs": -14,
+      "sha256": "642192b4b5d06983031bf8eeea97e6ebbd98c6ae1f26190b896f45f765cc5561"
+    },
+    {
+      "id": "DD-S0118.2",
+      "event": "struggle",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0118/DD-S0118.2.wav",
+      "duration_seconds": 1.3,
+      "peak_dbfs": -14,
+      "sha256": "d1ef6d8caa0e8ac09cbba9cd33cfe73a58fffd3e1b0d7c92a4a6c4996669dc20"
+    },
+    {
+      "id": "DD-S0119.2",
+      "event": "tear",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0119/DD-S0119.2.wav",
+      "duration_seconds": 0.6,
+      "peak_dbfs": -9,
+      "sha256": "53b2b68977bdf012c11613a6a387f42e38d33eb725065b37df23755b173dfa65"
+    },
+    {
+      "id": "DD-S0120.2",
+      "event": "escape",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0120/DD-S0120.2.wav",
+      "duration_seconds": 0.85,
+      "peak_dbfs": -9,
+      "sha256": "8794b3fb96bbf0785ae0f2179151de8081f51f49cbd51a9ce4d2087577c0ee95"
+    },
+    {
+      "id": "DD-S0121.2",
+      "event": "rustle",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0121/DD-S0121.2.wav",
+      "duration_seconds": 1.4,
+      "peak_dbfs": -25,
+      "sha256": "92f32d8ce516c42fc1e7f03775c4845fc4ff75042618924972584f0c409eece9"
+    },
+    {
+      "id": "DD-S0122.2",
+      "event": "hit",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0122/DD-S0122.2.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -9,
+      "sha256": "265f3ba01387f21bc18037123d18c85b8a8666bdba3a098ba9cd08c1cc183fa7"
+    },
+    {
+      "id": "DD-S0123.2",
+      "event": "death",
+      "family": "B \u2014 Wet brood",
+      "path": "audio/alternatives/DD-S0123/DD-S0123.2.wav",
+      "duration_seconds": 1.6,
+      "peak_dbfs": -9,
+      "sha256": "b8a674a74836f09754f2b67e5c88180b6e83c561521f541bfa37010de38350c8"
+    },
+    {
+      "id": "DD-S0112.3",
+      "event": "sequence",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0112/DD-S0112.3-v2.wav",
+      "duration_seconds": 9.6,
+      "peak_dbfs": -9,
+      "sha256": "a0c07b312c45c8aa32cbe44b645ba5e87b7ff381b453b6d55ea4b2a250d0938c",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0112/DD-S0112.3.wav",
+        "sha256": "eeca7cffd8e881428d6b64febe889d2be725dc8a81bbaeca7b005c70b521b480"
+      }
+    },
+    {
+      "id": "DD-S0113.3",
+      "event": "aim",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0113/DD-S0113.3-v2.wav",
+      "duration_seconds": 1.05,
+      "peak_dbfs": -9,
+      "sha256": "fb378f21fd2f9c0aa806ad05a4cccb9022c005772689e1c331935d900fa4b19b",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0113/DD-S0113.3.wav",
+        "sha256": "461b90af7caba3cd89db3f76883b3d5724250f0cbb1b6c86c3aa50dd378f5f65"
+      }
+    },
+    {
+      "id": "DD-S0114.3",
+      "event": "crawl",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0114/DD-S0114.3.wav",
+      "duration_seconds": 1.15,
+      "peak_dbfs": -17,
+      "sha256": "d40750a5baed19770d5b55d395d562dc9a8d2c292cb3268f4bc50e000573d561"
+    },
+    {
+      "id": "DD-S0115.3",
+      "event": "launch",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0115/DD-S0115.3.wav",
+      "duration_seconds": 0.52,
+      "peak_dbfs": -9,
+      "sha256": "8c5c48a90f2daaf3d85258c8a06e72de961bd1153d49ebc74137b297fd7f807e"
+    },
+    {
+      "id": "DD-S0116.3",
+      "event": "attach",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0116/DD-S0116.3.wav",
+      "duration_seconds": 0.38,
+      "peak_dbfs": -9,
+      "sha256": "32e620146490705828180205f0bc958729d4e1a9baafe65a63ab0ecea3ecddd3"
+    },
+    {
+      "id": "DD-S0117.3",
+      "event": "haul",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0117/DD-S0117.3.wav",
+      "duration_seconds": 2.2,
+      "peak_dbfs": -14,
+      "sha256": "09d176a183d9e8efdceb89da5cf23ac4d8d8b2aef7413eb95734085faa99f793"
+    },
+    {
+      "id": "DD-S0118.3",
+      "event": "struggle",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0118/DD-S0118.3.wav",
+      "duration_seconds": 1.3,
+      "peak_dbfs": -14,
+      "sha256": "0dc5254aa9733e5e2f07137f16dc14e3e041cdef6c943ed5eafea10a1d29a61f"
+    },
+    {
+      "id": "DD-S0119.3",
+      "event": "tear",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0119/DD-S0119.3.wav",
+      "duration_seconds": 0.6,
+      "peak_dbfs": -9,
+      "sha256": "f1794d13a577f8e7b1672866629a19d047a8bad5ed39b86ea8227cad747afd8d"
+    },
+    {
+      "id": "DD-S0120.3",
+      "event": "escape",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0120/DD-S0120.3.wav",
+      "duration_seconds": 0.85,
+      "peak_dbfs": -9,
+      "sha256": "7c6b0d3b9240175933463eccf92c9c7cb517c8a7b56a563fcd9583fc0944daa0"
+    },
+    {
+      "id": "DD-S0121.3",
+      "event": "rustle",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0121/DD-S0121.3.wav",
+      "duration_seconds": 1.4,
+      "peak_dbfs": -25,
+      "sha256": "23f8a92090392f24b0b8e88b478d2b24ca4f704d46e351eb79d45245655e5e45"
+    },
+    {
+      "id": "DD-S0122.3",
+      "event": "hit",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0122/DD-S0122.3.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -9,
+      "sha256": "84bec08e57d5c6dd4ae51e5916a08e864789b4c0f29c3b42e039c5420dd8d5b0"
+    },
+    {
+      "id": "DD-S0123.3",
+      "event": "death",
+      "family": "C \u2014 Breath stalker",
+      "path": "audio/alternatives/DD-S0123/DD-S0123.3.wav",
+      "duration_seconds": 1.6,
+      "peak_dbfs": -9,
+      "sha256": "5b9f55c3af6dc2322d5820bedecfdcbe3b28c1ebc2b05f403e55cbb0496a593c"
+    },
+    {
+      "id": "DD-S0112.4",
+      "event": "sequence",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0112/DD-S0112.4-v2.wav",
+      "duration_seconds": 9.6,
+      "peak_dbfs": -9,
+      "sha256": "979aa6dd6648ea3ae1e2ab2efae9039f5ee8e92fb16818d03fa47fd4a36b0a73",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0112/DD-S0112.4.wav",
+        "sha256": "2dee9ee2a95ff0df03b9be48410d3e8a442fe4113366d6d13d640ad968f197db"
+      }
+    },
+    {
+      "id": "DD-S0113.4",
+      "event": "aim",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0113/DD-S0113.4-v2.wav",
+      "duration_seconds": 1.05,
+      "peak_dbfs": -9,
+      "sha256": "d112c69d6d6080ffa7bf63947d441eb6efcddff5762c61e8b2fa209b6bed7b0f",
+      "preserved_first_render": {
+        "path": "audio/alternatives/DD-S0113/DD-S0113.4.wav",
+        "sha256": "cfc42a064c7e589e6d8da0868ac32bd0d73e009eca6dd8ed139fa674a0f24730"
+      }
+    },
+    {
+      "id": "DD-S0114.4",
+      "event": "crawl",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0114/DD-S0114.4.wav",
+      "duration_seconds": 1.15,
+      "peak_dbfs": -17,
+      "sha256": "633384571275e32a3044bcefd8c237eec988fedf5e47070ed70de6e55850d6bf"
+    },
+    {
+      "id": "DD-S0115.4",
+      "event": "launch",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0115/DD-S0115.4.wav",
+      "duration_seconds": 0.52,
+      "peak_dbfs": -9,
+      "sha256": "58268aaeabc74bcb61fc32c5880b1785dee1463ac13090ac3a73e96c479945cc"
+    },
+    {
+      "id": "DD-S0116.4",
+      "event": "attach",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0116/DD-S0116.4.wav",
+      "duration_seconds": 0.38,
+      "peak_dbfs": -9,
+      "sha256": "41c913becede5380fe26df547991dccc6e14f1cd5025c4cc8f026e3183d92784"
+    },
+    {
+      "id": "DD-S0117.4",
+      "event": "haul",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0117/DD-S0117.4.wav",
+      "duration_seconds": 2.2,
+      "peak_dbfs": -14,
+      "sha256": "87f06495c250abc4f581ff91330466240d85edd35b439661b54c8cea7368e727"
+    },
+    {
+      "id": "DD-S0118.4",
+      "event": "struggle",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0118/DD-S0118.4.wav",
+      "duration_seconds": 1.3,
+      "peak_dbfs": -14,
+      "sha256": "525502330fa1b0b940ccc4b7cf159edb5858f3d680b63b4fdbfeb503b40754c0"
+    },
+    {
+      "id": "DD-S0119.4",
+      "event": "tear",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0119/DD-S0119.4.wav",
+      "duration_seconds": 0.6,
+      "peak_dbfs": -9,
+      "sha256": "c641dc9171a6a4355d79e074287518d17dd2cfc9005f1d0eec617cfa2ca3794e"
+    },
+    {
+      "id": "DD-S0120.4",
+      "event": "escape",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0120/DD-S0120.4.wav",
+      "duration_seconds": 0.85,
+      "peak_dbfs": -9,
+      "sha256": "b379fad0d1dd3d6ba251e1f1a51aeec5e33fb99dc08c6ca52847bd6203346b34"
+    },
+    {
+      "id": "DD-S0121.4",
+      "event": "rustle",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0121/DD-S0121.4.wav",
+      "duration_seconds": 1.4,
+      "peak_dbfs": -25,
+      "sha256": "3d86de11b8f7f6bc7b6c0b0c9bad176a8c5200b14ada6e720b1c22d7f41814c7"
+    },
+    {
+      "id": "DD-S0122.4",
+      "event": "hit",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0122/DD-S0122.4.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -9,
+      "sha256": "d8b0ff789c119d449cdbba46bb9c5a1b96d6365ce5a9232414893bada13bfee6"
+    },
+    {
+      "id": "DD-S0123.4",
+      "event": "death",
+      "family": "D \u2014 Black maw",
+      "path": "audio/alternatives/DD-S0123/DD-S0123.4.wav",
+      "duration_seconds": 1.6,
+      "peak_dbfs": -9,
+      "sha256": "fff0df5881f493b2d274badeaddc378cdd4c298ed58ff43e60c1e3799c3aee5f"
+    }
+  ],
+  "limitations": [
+    "Timing is illustrative; no input counts or mechanics approved.",
+    "Mono sync-ready cues; runtime panning and mix not implemented.",
+    "Hauling is a finite four-pull demonstration, not a seamless loop.",
+    "Subjective listening acceptance remains with Sean."
+  ],
+  "finishing_recipe": "audio/sources/devil-spider-auditions-v1/finish.py"
+}

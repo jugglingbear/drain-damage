@@ -7,6 +7,11 @@ func _initialize() -> void:
 
 func run_checks() -> void:
 	assert(Launch.parse([]).is_empty())
+	assert(Launch.parse(["--level=2"]).target.initializer == "level-two-flush")
+	assert(Launch.parse(["--level=2.1"]).target.initializer == "level-two-landing")
+	assert(Launch.parse(["--level=camera-test"]).target.initializer == "camera-test")
+	assert(Launch.parse(["--level=1.1"]).target.initializer == "three-screen-trial")
+	assert(Launch.parse(["--level=1.2"]).target.initializer == "section-one-two")
 	assert(Launch.parse(["--agent-test"]).is_empty())
 	assert(Launch.parse(["--list-playtest-targets"]).list)
 	for arguments in [["--level=3"],["--boss=clogfather"],["--miniboss=none"],
@@ -27,7 +32,7 @@ func run_checks() -> void:
 			game.set_physics_process(false)
 			for target in Launch.registry().targets:
 				# Isolated 3D proof requires its own scene; covered by camera_test_integration.gd.
-				if target.initializer == "camera-test": continue
+				if target.initializer in ["camera-test", "three-screen-trial", "section-one-two"]: continue
 				var options := Launch.parse(PackedStringArray(["--%s=%s" % [target.kind,target.id],
 					"--hero="+["tony","sean"][hero],"--difficulty="+mode,"--seed=913"]))
 				assert(not options.has("error"))
@@ -41,7 +46,7 @@ func run_checks() -> void:
 				assert(game.skitterling.encounter.hp == game.skitterling.Encounter.MAX_HP and not game.skitterling.entered)
 				if target.id == "2":
 					assert(game.flush.active and game.flush.clock == 0 and game.checkpoint_index == 3)
-				elif target.id == "2-landing":
+				elif target.id == "2.1":
 					assert(game.flush.active and game.flush.state == "landing" and game.flush.clock == 45)
 					assert(game.flush.checkpoint_saved and game.flush.hazards.is_empty() and not game.won)
 					assert(game.flush.project(game.flush.position).is_equal_approx(Vector2(480,385)))
