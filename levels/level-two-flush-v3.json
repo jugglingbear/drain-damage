@@ -93,25 +93,25 @@
           "id": "flush-v3-easy-01",
           "at": 8.0,
           "duration": 2.7,
-          "count": 2
+          "count": 3
         },
         {
           "id": "flush-v3-easy-02",
           "at": 10.7,
           "duration": 2.7,
-          "count": 2
+          "count": 3
         },
         {
           "id": "flush-v3-easy-03",
           "at": 13.4,
           "duration": 2.7,
-          "count": 2
+          "count": 3
         },
         {
           "id": "flush-v3-easy-04",
           "at": 16.1,
           "duration": 2.7,
-          "count": 2
+          "count": 3
         },
         {
           "id": "flush-v3-easy-05",
@@ -153,7 +153,7 @@
       "count_stages": [
         {
           "at": 8,
-          "count": 2
+          "count": 3
         },
         {
           "at": 17,
@@ -177,7 +177,7 @@
         "tangent": "sqrt(total_speed^2-inward_speed^2), fixed clockwise direction",
         "minimum_net_steering_speed": 130
       },
-      "total_spawn_count": 26
+      "total_spawn_count": 30
     },
     "normal": {
       "waves": [
@@ -466,16 +466,16 @@
     "slot_angle_step_degrees": 30,
     "reserved_slots": 5,
     "max_eligible_slots": 7,
-    "reserved_rule": "Reserve the chosen pocket slot and two neighbors on each side. Assign the already-peeked mixed-size cohort to the other seven slots with seeded permutation. All nine types share the bag.",
-    "radius_at_commit": "For each assigned prop: clamp(hero_world_radius, inner(impact_time)+prop_radius, outer(impact_time)-prop_radius). Ordinary radius22; hamster40.",
+    "reserved_rule": "Each cohort first targets the hero current planar position and two seeded nearby cardinal sidesteps. Remaining objects use the existing permuted angular scatter slots. A full swept escape witness must clear all objects before commitment.",
+    "radius_at_commit": "The hero-targeted object keeps the exact sampled hero position. Two sidestep anchors use cardinal offsets80/112/144/176 world pixels inside the water, with their contact disks reaching the impact-time swimming area, and outside the drain. Remaining scatter objects retain size-aware annulus clamping.",
     "impact_time": "cohort.at + cohort.duration",
-    "locking": "Sample impact radius/positions only at cohort commitment, before any visible warning. Lock rings/landing points throughout descent. Use future bounds at impact so shrinking region cannot invalidate an announced landing.",
+    "locking": "Sample the exact hero anchor, nearby sidestep targets and scatter positions only at commitment before warnings. Lock every landing point through descent. Validate a full escape route against future shrinking bounds; no retargeting.",
     "pocket": "A time-varying path within future annulus, not one static disk. Use midpoint radius and48-world safe disk as candidate, then validate actual swept paths.",
     "reaction_seconds": 0.15,
     "safety": "Simulate all existing persistent floats, all announced future impacts and shrinking bounds through candidate cohort landing and escape. Use actual current and minimum net steering130/110/90. Preserve reachable continuation into next cohort; a safe endpoint or five reserved slots alone is insufficient. Use each existing and future prop radius, including hamster54 hero-expanded and102 pocket clearance. Never plan as ordinary22 and assign large art afterward.",
     "no_drop": "Relocate entire new pattern before warning until safe; never lower count, consume a type without spawning, erase old dangerous floats or backlog past35. If no full-count safe pattern exists, treat as validation failure and revise layout before release.",
     "combined_collision_radius_world": "hero14 + each prop radius: ordinary36, hamster54",
-    "mixed_size_spacing": "Require pairwise impact-center separation>=sum of prop radii. A cohort may contain two hamsters across a bag boundary; place them at least two30-degree slots apart when their radial positions would overlap at neighboring slots. Reassign slots before warning, without dropping or substituting types.",
+    "mixed_size_spacing": "Require pairwise impact-center separation at least the sum of each prop radius. Validate actual mixed-size targets and scatter objects, including two hamsters across a bag boundary, without omission or type substitution.",
     "recovery_admission": {
       "authorization": "Engineering explicitly approved this distinction after baseline-confirmed prior-warning contact at11.6s in idle Hard seed0.",
       "primary": "Require strict zero-contact continuation for all extant and incoming hazards through35; no immunity or inherited-ID exemption.",
@@ -491,11 +491,35 @@
       "provenance": "Ledger stores witness positions, mode, hero_speed, used_continuation and reaction_source. Reset clears eligibility."
     },
     "route_first_admission": "Verify old-debris route first from actual state with common reaction prefix; place full incoming cohort only when every120Hz impact/sweep is contact-free against that fixed route, regardless of immunity. Try other placements before another old route. Eligible full prior witness may be resimulated first. No physical feedback from props to hero/current is assumed.",
-    "active_pocket_route": "Old-hazard-free route tails integrate purposeful analytic120Hz steering toward candidate-angle/mid-annulus pocket through35, preserving reaction/fixed commands. Do not pad passive zero-input drift: future placements must reward active escape. Full prior route reuse originates from this active route."
+    "active_pocket_route": "Old-hazard-free route tails integrate purposeful analytic120Hz steering toward candidate-angle/mid-annulus pocket through35, preserving reaction/fixed commands. Do not pad passive zero-input drift: future placements must reward active escape. Full prior route reuse originates from this active route.",
+    "targeted_group": {
+      "count": 3,
+      "lock": "Warning start; no retargeting or homing during descent",
+      "sidestep_offsets_world": [
+        80,
+        112,
+        144,
+        176
+      ],
+      "directions": [
+        "left",
+        "right",
+        "up",
+        "down"
+      ],
+      "selection": "Two distinct size-separated valid points; prefer different directions. Near a rim or drain, two distances in one remaining valid direction are permitted.",
+      "minimum_cohort_count": 3,
+      "warning_seconds": {
+        "easy": 2.7,
+        "normal": 2.25,
+        "hard": 1.8
+      },
+      "validity": "Full prop stays inside water; its contact disk reaches the swimming area at impact. The hero footprint at a sidestep target must be nonlethal under actual drain-contact rules. Full escape proof retains conservative swept drain clearance."
+    }
   },
   "controls": "Swimming/dodging only. Full manual steering and damage both remain active through t<35; neither fades early. Fire and jump inputs have no gameplay effect.",
   "acceptance": [
-    "Exact wave counts26/48/85; all nine types actually spawn in each mode, no capped or lost objects",
+    "Exact wave counts30/48/85; all nine types actually spawn in each mode, no capped or lost objects",
     "Every landed visible prop retains danger until physical drain capture or t35",
     "Simultaneous overlapping floats deal at most one health loss per shared1.5s immunity window",
     "Held outward input cannot exceed current shrinking outer radius; late radius <=210",

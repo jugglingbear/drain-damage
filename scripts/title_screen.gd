@@ -43,6 +43,17 @@ var game: Node2D
 var clock := 0.0
 var muted := false
 var starting := false
+var pending_game: Node2D
+var loading_in_progress := false
+var loading_timeout_msec := 60000
+var loading_error := ""
+var loading_frames := 0
+var loading_started_msec := 0
+var loading_max_frame_msec := 0
+var loading_last_frame_msec := 0
+var loading_slice_usec := 0
+var loading_valve: Texture2D
+
 var screenshot_mode := false
 const ScreenshotFreeze = preload("res://scripts/screenshot_freeze.gd")
 var music: AudioStreamPlayer
@@ -52,6 +63,7 @@ var navigation_plays := 0
 var held_navigation_buttons: Dictionary = {}
 
 func _ready() -> void:
+	prepare_loading_valve()
 	var launch := PlaytestLaunch.parse(OS.get_cmdline_user_args())
 	if launch.has("error"):
 		printerr("Launch failed: "+launch.error)
@@ -104,11 +116,17 @@ func _exit_tree() -> void:
 
 func _process(delta: float) -> void:
 	clock += delta
+	if starting:
+		var now := Time.get_ticks_msec()
+		if loading_last_frame_msec > 0: loading_max_frame_msec = maxi(loading_max_frame_msec,now-loading_last_frame_msec)
+		loading_last_frame_msec = now
+		loading_frames += 1
 	selection_guard = maxf(0, selection_guard - delta)
 	queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if game != null or starting: return
+	if not loading_error.is_empty(): loading_error = ""
 	if is_confirm_event(event):
 		if not event.pressed:
 			confirm_blocked = false
@@ -420,12 +438,84 @@ func request_start() -> void:
 	get_viewport().set_input_as_handled()
 	call_deferred("start_game")
 
+func prepare_loading_valve() -> void:
+	var source: Texture2D = load("res://assets/ui/job-loading-v1/valve-source-v1.png")
+	if source == null: return
+	var pixels := source.get_image().get_region(Rect2i(48,48,1152,1152))
+	pixels.convert(Image.FORMAT_RGBA8)
+	var bytes := pixels.get_data()
+	for index in range(3,bytes.size(),4):
+		if bytes[index] < 240: bytes[index] = 0
+	pixels = Image.create_from_data(1152,1152,false,Image.FORMAT_RGBA8,bytes)
+	pixels.resize(112,112,Image.INTERPOLATE_LANCZOS)
+	loading_valve = ImageTexture.create_from_image(pixels)
+
+func loading_frame() -> void:
+	if Time.get_ticks_usec()-loading_slice_usec < 4000: return
+	await get_tree().process_frame
+	loading_slice_usec = Time.get_ticks_usec()
+
+func create_job() -> Node2D:
+	return GAME.new()
+
+func fail_loading() -> void:
+	loading_error = "Couldn’t prepare the job. Please try again."
+	if is_instance_valid(pending_game): pending_game.queue_free()
+	pending_game = null
+	starting = false
+	confirm_blocked = true
+	queue_redraw()
+
+func prepare_job() -> bool:
+	loading_error = ""
+	loading_frames = 0
+	loading_max_frame_msec = 0
+	loading_last_frame_msec = Time.get_ticks_msec()
+	loading_started_msec = loading_last_frame_msec
+	queue_redraw()
+	# Let the already-requested overlay reach the renderer before starting preparation.
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var hero_preparation = load("res://scripts/hero_aim_art.gd").new(true)
+	await hero_preparation.configure("normal",loading_frame)
+	var costume_preparation = load("res://scripts/hero_aim_art.gd").new(true)
+	await costume_preparation.configure(difficulty_copy.options[difficulty_index].id,loading_frame)
+	pending_game = create_job()
+	if pending_game == null:
+		fail_loading()
+		return false
+	await get_tree().process_frame
+	pending_game.employee = Crew.EMPLOYEES[selected]
+	pending_game.difficulty = difficulty_copy.options[difficulty_index].id
+	pending_game.music_director = music_director
+	pending_game.startup_yield = loading_frame
+	pending_game.process_mode = Node.PROCESS_MODE_DISABLED
+	pending_game.hide()
+	add_child(pending_game)
+	while is_instance_valid(pending_game) and not pending_game.startup_complete:
+		if Time.get_ticks_msec()-loading_started_msec > loading_timeout_msec:
+			fail_loading()
+			return false
+		await get_tree().process_frame
+	return is_instance_valid(pending_game) and pending_game.dialogue != null
+
 func start_game(launch: Dictionary = {}) -> void:
+	if loading_in_progress or game != null: return
+	var staged := starting and launch.is_empty()
+	if staged:
+		loading_in_progress = true
+		var prepared := await prepare_job()
+		loading_in_progress = false
+		if not prepared:
+			fail_loading()
+			return
 	navigation_voice.stop()
 	held_navigation_buttons.clear()
-	music_director.play_track("level")
 	var initializer: String = launch.get("target",{}).get("initializer","")
-	if initializer == "three-screen-trial":
+	if staged:
+		game = pending_game
+		pending_game = null
+	elif initializer == "three-screen-trial":
 		game = load("res://scripts/three_screen_trial_game.gd").new()
 	elif initializer == "section-one-two":
 		game = load("res://scripts/section_one_two_game.gd").new()
@@ -440,7 +530,7 @@ func start_game(launch: Dictionary = {}) -> void:
 	game.difficulty = difficulty_copy.options[difficulty_index].id
 	game.show_enemy_health_bars = show_enemy_health_bars
 	game.title_requested.connect(return_to_title, CONNECT_DEFERRED)
-	add_child(game)
+	if not game.is_inside_tree(): add_child(game)
 	if screenshot_mode:
 		var freeze := ScreenshotFreeze.new()
 		freeze.name = "ScreenshotFreeze"
@@ -455,6 +545,9 @@ func start_game(launch: Dictionary = {}) -> void:
 	else:
 		game.dialogue.start(Story.OPENING)
 		game.dialogue.release_guard = 0.4
+	game.show()
+	music_director.play_track("level")
+	game.process_mode = Node.PROCESS_MODE_INHERIT
 	set_process(false)
 	# Hide only this node's drawing; hiding the parent would also hide the gameplay child.
 	queue_redraw()
@@ -482,6 +575,19 @@ func caption(text: String, point: Vector2, size: int, color: Color) -> void:
 	draw_string(ThemeDB.fallback_font, point, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
 
 func _draw() -> void:
+	if game != null:
+		return
+	draw_menu_content()
+	if starting or not loading_error.is_empty():
+		draw_rect(Rect2(0,0,960,540),Color(0.015,0.025,0.035,0.78))
+		if starting and loading_valve != null:
+			draw_set_transform(Vector2(480,236),fmod(clock*PI,TAU))
+			draw_texture_rect(loading_valve,Rect2(-28,-28,56,56),false)
+			draw_set_transform(Vector2.ZERO)
+		var text := "Preparing the job…" if starting else loading_error
+		draw_string(ThemeDB.fallback_font,Vector2(180,300),text,HORIZONTAL_ALIGNMENT_CENTER,600,24,GOLD)
+
+func draw_menu_content() -> void:
 	if game != null:
 		return
 	if showing_controls:

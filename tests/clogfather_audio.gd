@@ -9,6 +9,14 @@ func run_checks() -> void:
 	var sound = load("res://scripts/clogfather_audio.gd").new()
 	sound.attach(host)
 	assert(host.get_child_count() == 4)
+	var mappings: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/creature-action-audio.json"))
+	for event in mappings.creatures.clogfather:
+		var cue: Dictionary = mappings.creatures.clogfather[event]
+		assert(absf(sound.streams[event][0].get_length()-float(cue.duration_seconds)) < .001)
+		assert(sound.gains[event][0] == float(cue.gain_db))
+	sound.handle_events(["arrival"])
+	assert(sound.starts.arrival == 1)
 	sound.handle_events(["damage_accepted", "damage_accepted", "projectile_hit", "projectile_hit"])
 	assert(sound.starts.damage_accepted == 1 and sound.starts.projectile_hit == 1)
 	sound.tick(.25)
@@ -34,7 +42,7 @@ func run_checks() -> void:
 	for warning_event in ["gas_warning", "reinforcements_warning"]:
 		sound.handle_events([warning_event, "projectile_hit", "idle_optional"])
 		assert(sound.voices[0].stream == sound.streams[warning_event][0])
-		assert(sound.voices[0].playing and sound.voices[0].volume_db == -5)
+		assert(sound.voices[0].playing and sound.voices[0].volume_db == -3)
 		assert(sound.starts.idle_optional == 1 and host.get_child_count() == 4)
 		var frozen_clock: float = sound.clock
 		sound.set_paused(true)

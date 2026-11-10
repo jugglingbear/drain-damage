@@ -35,11 +35,11 @@ func _initialize() -> void:
 				var expected := Portraits.expression(partner,reply.emotion,hard)
 				assert(view.portrait.atlas == expected.atlas and view.portrait.region == expected.region)
 				assert(view.progress >= previous)
-				if time < 11.8: assert(view.progress == 0)
-				if time > 11.9 and time < 13.3: assert(view.progress > 0 and view.progress < 1)
-				if time >= 13.4: assert(is_equal_approx(view.progress,1.0))
+				if frame == 1: assert(view.progress > 0, "Apology begins moving immediately")
+				if time > 9 and time < 10.6: assert(view.progress > 0 and view.progress < 1)
+				if time >= 10.6: assert(is_equal_approx(view.progress,1.0))
 				previous = view.progress
-				if frame == 68:
+				if frame == 16:
 					var clock: float = radio.line_clock
 					var position: Vector2 = view.destination
 					radio.advance(time+30,30,true)
@@ -50,7 +50,7 @@ func _initialize() -> void:
 			assert(radio.presentation().scale == 1 and radio.presentations().size() == 1)
 			# A skipped render interval keeps relocation on the response's authored timeline.
 			radio.configure(story.routes[hero],hard,false)
-			radio.advance(12.6,12.6,false)
+			radio.advance(9.8,9.8,false)
 			assert(radio.current.who == partner and radio.presentation().progress > 0 and radio.presentation().progress < 1)
 			radio.configure(story.routes[hero],hard,true)
 			for frame in range(320): radio.advance(frame*0.05,0.05,false)

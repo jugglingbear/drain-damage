@@ -1,6 +1,8 @@
 extends RefCounted
 ## Canonical creature cues use separate bounded pools and never consume gameplay RNG.
 const Data = preload("res://scripts/combat_data.gd")
+const Actions = preload("res://scripts/creature_action_audio.gd")
+var actions := Actions.new()
 static var next_token := 0
 var creature_id: String
 var definition: Dictionary
@@ -24,6 +26,7 @@ func _init(id: String) -> void:
 	creature_id = id
 
 func attach(game: Node) -> void:
+	actions.attach(game,creature_id)
 	definition = Data.monster(creature_id).audio
 	for event in ["hit", "death"]:
 		var spec: Dictionary = definition[event]
@@ -40,6 +43,16 @@ func attach(game: Node) -> void:
 			voice.volume_db = spec.variants[index % loaded.size()].gain_db
 			game.add_child(voice)
 			pool.append(voice)
+
+func play_action(event: String, actor: Dictionary) -> void:
+	if float(actor.get("hp",1)) <= 0: return
+	if not actor.has("audio_token"):
+		next_token += 1
+		actor.audio_token = next_token
+	actions.play(event,int(actor.audio_token),float(actor.get("age",0)))
+
+func stop_actor_actions(actor: Dictionary) -> void:
+	if actor.has("audio_token"): actions.stop_actor(int(actor.audio_token))
 
 func allowed() -> bool:
 	return not paused and not hit_voices.is_empty() and not AudioServer.is_bus_mute(0)
@@ -72,10 +85,12 @@ func play_defeat() -> void:
 	death_starts += 1
 
 func set_paused(value: bool) -> void:
+	actions.set_paused(value)
 	paused = value
 	for voice in hit_voices + death_voices: voice.stream_paused = value
 
 func stop() -> void:
+	actions.stop()
 	for voice in hit_voices + death_voices:
 		voice.stop()
 		voice.stream_paused = false
@@ -86,6 +101,7 @@ func stop() -> void:
 	variant_cursor = 0
 
 func dispose() -> void:
+	actions.dispose()
 	stop()
 	for voice in hit_voices + death_voices: voice.stream = null
 	hit_voices.clear()

@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "status": "Compact fallback source inspected; runtime handoff review pending",
+  "path": "assets/specials/starter-v1/spent-pipe-compact-v1.png",
+  "dimensions": [
+    2172,
+    724
+  ],
+  "uniform_scale": 0.1125,
+  "scale_basis": "Higher-resolution new source registered by approximately46px base-collar width, matching normal collapse collar. Not runtime shrinking or per-frame fitting.",
+  "alpha_cutoff": 240,
+  "frames": [
+    {
+      "id": 0,
+      "source_rect": [
+        0,
+        0,
+        724,
+        724
+      ],
+      "source_anchor": [
+        340,
+        668
+      ],
+      "destination": [
+        -38.25,
+        -75.15,
+        81.45,
+        81.45
+      ],
+      "opaque_bounds_source": [
+        135,
+        207,
+        600,
+        668
+      ],
+      "opaque_bounds_relative": [
+        -23.0625,
+        -51.862500000000004,
+        52.3125,
+        51.862500000000004
+      ],
+      "duration_seconds": 0.24,
+      "ground_contact_relative": [
+        [
+          -23,
+          0
+        ],
+        [
+          23,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 1,
+      "source_rect": [
+        724,
+        0,
+        724,
+        724
+      ],
+      "source_anchor": [
+        343,
+        668
+      ],
+      "destination": [
+        -38.5875,
+        -75.15,
+        81.45,
+        81.45
+      ],
+      "opaque_bounds_source": [
+        137,
+        290,
+        551,
+        668
+      ],
+      "opaque_bounds_relative": [
+        -23.175,
+        -42.525,
+        46.575,
+        42.525
+      ],
+      "duration_seconds": 0.39,
+      "ground_contact_relative": [
+        [
+          -23,
+          0
+        ],
+        [
+          23,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "source_rect": [
+        1448,
+        0,
+        724,
+        724
+      ],
+      "source_anchor": [
+        340,
+        668
+      ],
+      "destination": [
+        -38.25,
+        -75.15,
+        81.45,
+        81.45
+      ],
+      "opaque_bounds_source": [
+        126,
+        372,
+        563,
+        668
+      ],
+      "opaque_bounds_relative": [
+        -24.075,
+        -33.300000000000004,
+        49.1625,
+        33.300000000000004
+      ],
+      "duration_seconds": 0,
+      "ground_contact_relative": [
+        [
+          -23,
+          0
+        ],
+        [
+          23,
+          0
+        ]
+      ]
+    }
+  ],
+  "sequence": [
+    0,
+    1,
+    2
+  ],
+  "settled_frame": 2,
+  "handoff_seconds": 0.12,
+  "collapse_seconds": 0.63,
+  "total_post_water_seconds": 0.75,
+  "selection": "Choose before post-water handoff when ordinary collapse extents conflict with nearby solids; preserve original facing. No direct orientation flip.",
+  "origin": "Same fixed floor anchor; mirror all geometry about anchor for left-facing original pipe.",
+  "transition": "Blend old active mesh into compact frame0 over.12s, then progress frame0\u21921\u21922 over.63s. Same texture scale throughout; actual metal folds back over collar.",
+  "support": "All opaque frame extents lie inside[-32,+32]. Base grounded[-23,+23]. No clipping, anchor shift or activation eligibility change.",
+  "final_height_px": 33.3,
+  "final_width_px": 49.1625,
+  "tradeoff": "Compact pile is about33px high rather than normal25px: folded-back metal fits narrow64px space without losing material volume. Both materially lower than original64px.",
+  "acceptance": [
+    "Full opaque sequence inside original64px footprint",
+    "Same-facing active handoff",
+    "Collar scale match",
+    "No pose-swap pop",
+    "Both facings narrow-slot runtime capture"
+  ],
+  "preserve": "Normal collapse remains preferred where clear; all existing assets retained"
+}

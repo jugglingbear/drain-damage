@@ -3,7 +3,7 @@ const Costume = preload("res://scripts/hero_costume.gd")
 ## Event-driven checkpoint presentation; never waits for audio or animation callbacks.
 const Data = preload("res://scripts/combat_data.gd")
 const HardArt = preload("res://scripts/hard_costume_art.gd")
-const INSPECTION_CONTRACT := "res://assets/world/spare-employee-dispenser/inspection-contract-v1.json"
+const INSPECTION_CONTRACT := "res://assets/world/spare-employee-dispenser/inspection-contract-v2.json"
 var inspection: Dictionary = {}
 var hard_mode := false
 var costume := "normal"
@@ -44,6 +44,13 @@ func sample_impact(viewport_size: Vector2, unit := Vector2(-1,-1)) -> void:
 	for state in ["impact", "slide", "blood_trail"]:
 		bounds = bounds.merge(rect(states[state].destination))
 	bounds.position -= Vector2(64,64)
+	# The held ball has its own registered grip and scale; include its actual arrival envelope.
+	var thrown: Dictionary = inspection.hero_states[costume][hero].compress_stage_two
+	var thrown_bounds := rect(thrown.destination)
+	var ratio := rect(states.ball.destination).size.x/thrown_bounds.size.x
+	thrown_bounds.position = (thrown_bounds.position-vector(thrown.grip_anchor))*ratio
+	thrown_bounds.size *= ratio
+	bounds = bounds.merge(thrown_bounds)
 	var safe := Rect2(Vector2(12,minf(76,viewport_size.y*0.25)),Vector2.ZERO)
 	safe.size = viewport_size-safe.position-Vector2(12,12)
 	impact_scale = minf(1.9,minf(safe.size.x/bounds.size.x,safe.size.y/bounds.size.y))
@@ -76,6 +83,7 @@ func configure(value: Variant) -> void:
 	load_art(art.sleeping_heroes)
 	load_art(inspection.get("parts",{}))
 	load_art(inspection.get("diagnosis_art",{}))
+	load_art(inspection.get("verdict_art",{}))
 	load_art(inspection.get("hero_states",{}))
 
 func load_art(value: Variant) -> void:
@@ -148,8 +156,9 @@ func start(game: Node2D, kind: String, index: int, previous_health := -1) -> voi
 	skip_armed = not held_actions()
 	can_skip = kind != "injured" or full_sequence_seen
 	timeline = [{"time":0.4,"event":"release"}] if kind == "empty_arrival" else \
-		inspection_timeline() if kind == "injured" else art.short_paths[kind]
-	deadline = 7.0 if kind == "injured" else 2.0 if kind == "respawn" else 0.5
+		inspection_timeline() if kind in ["injured","full_health"] else art.short_paths[kind]
+	deadline = float(inspection.watchdog_seconds) if kind == "injured" else \
+		float(inspection.healthy_watchdog_seconds) if kind == "full_health" else 2.0 if kind == "respawn" else 0.5
 	game.shots.clear()
 	game.velocity = Vector2.ZERO
 	game.jump_buffer = 0
@@ -163,10 +172,19 @@ func inspection_timeline() -> Array:
 	var times: Dictionary = inspection.timing_seconds
 	var result: Array = []
 	for pair in [["grab","grab_lift"],["inspection_arm_deploy","inspection_arm_deploy"],
-		["inspect","inspect"],["diagnosis","diagnosis_visible"],
-		["inspection_arm_retract","inspection_arm_retract"],["compress","compress"],
-		["throw","throw"],["impact","impact"],["slide","slide_vend"],["vend","slide_vend"],
-		["emerge","emerge"],["look_left","look_left"],["look_right","look_right"],["shrug","shrug"]]:
+		["inspect","inspect"],["diagnosis","diagnosis_visible"]]:
+		result.append({"time":times[pair[1]][0],"event":pair[0]})
+	result.append({"time":times.diagnosis_visible[0],
+		"event":"inspection_pass" if mode == "full_health" else "inspection_fail"})
+	result.append({"time":times.inspection_arm_retract[0],"event":"inspection_arm_retract"})
+	if mode == "full_health":
+		result.append({"time":inspection.healthy_timing_seconds.set_down[0],"event":"set_down"})
+		result.append({"time":inspection.healthy_release_seconds,"event":"release"})
+		return result
+	for pair in [["compress_stage_one","compress_stage_one"],["compress_stage_two","compress_stage_two"],
+		["throw_windup","throw_windup"],["throw","throw"],["impact","impact"],
+		["slide","slide_vend"],["vend","slide_vend"],["emerge","emerge"],
+		["look_left","look_left"],["look_right","look_right"],["shrug","shrug"]]:
 		result.append({"time":times[pair[1]][0],"event":pair[0]})
 	result.append({"time":inspection.release_seconds-0.15,"event":"stamp"})
 	result.append({"time":inspection.release_seconds,"event":"release"})
@@ -188,6 +206,8 @@ func dispatch(game: Node2D) -> void:
 			finish(game,false)
 		else:
 			emit_event(event)
+			if event == "vend" and mode in ["injured","respawn"]:
+				game.health = game.employee.max_health
 
 func tick(game: Node2D, delta: float) -> void:
 	if actions_locked and not held_actions(): actions_locked = false
@@ -216,7 +236,7 @@ func finish(game: Node2D, silent: bool) -> void:
 	if mode in ["injured","respawn"]: consume_stock()
 	if mode == "injured": full_sequence_seen = true
 	game.player = game.respawn_point
-	game.health = game.employee.max_health
+	game.health = arrival_health if mode in ["full_health","empty_arrival"] else game.employee.max_health
 	game.velocity = Vector2.ZERO
 	game.grounded = true
 	game.animation_state = "idle"
@@ -232,7 +252,7 @@ func finish(game: Node2D, silent: bool) -> void:
 		phase = ""
 
 func hides_hero() -> bool:
-	return active and mode in ["respawn","injured"]
+	return active and mode in ["respawn","injured","full_health"]
 
 func overlay_visible() -> bool:
 	return active and mode == "injured" and elapsed >= inspection.timing_seconds.throw[0] \
@@ -296,7 +316,7 @@ func draw_machines(game: Node2D) -> void:
 	for index in range(game.Level.CHECKPOINTS.size()):
 		var state := "activated" if index <= game.checkpoint_index else "idle"
 		if active and index == checkpoint:
-			state = "scan" if mode == "injured" and elapsed < inspection.timing_seconds.throw[0] \
+			state = "scan" if mode in ["injured","full_health"] and elapsed < inspection.timing_seconds.throw[0] \
 				else "dispense" if mode != "full_health" else "activated"
 		var origin := machine_origin(game,index)
 		draw_frame(game,art.machine.states[state],origin)
@@ -304,34 +324,67 @@ func draw_machines(game: Node2D) -> void:
 			draw_frame(game,occupant.frame,origin,1,1,occupant.clip)
 		draw_frame(game,art.machine.glass_front,origin)
 
+func held_pose(game: Node2D) -> Dictionary:
+	var origin := machine_origin(game,checkpoint)
+	var times: Dictionary = inspection.timing_seconds
+	var feet: Vector2 = game.respawn_point+Vector2(13,46)
+	var held_feet := origin+vector(inspection.held_hero_feet)
+	var position := feet.lerp(held_feet,smoothstep(times.grab_lift[0],times.grab_lift[1],elapsed))
+	if mode == "full_health":
+		var lowering: Array = inspection.healthy_timing_seconds.set_down
+		position = position.lerp(feet,smoothstep(lowering[0],lowering[1],elapsed))
+	var grip := position-origin-Vector2(0,38)
+	var key := "grab"
+	var previous_key := ""
+	var blend := 1.0
+	if mode == "injured":
+		if elapsed >= times.compress_stage_two[0]: key = "compress_stage_two"
+		elif elapsed >= times.compress_stage_one[0]: key = "compress_stage_one"
+		if key != "grab":
+			var start: float = times[key][0]
+			blend = smoothstep(start,start+.1,elapsed)
+			previous_key = "grab" if key == "compress_stage_one" else "compress_stage_one"
+			grip.y -= 2*sin(PI*clampf((elapsed-start)/.18,0,1))
+		grip = grip.lerp(throw_origin_grip(),smoothstep(times.throw_windup[0],times.throw_windup[1],elapsed))
+	var frame: Dictionary = inspection.hero_states[costume][hero][key]
+	var pivot := vector(frame.get("grip_anchor",[64,66]))
+	var frame_origin := origin+grip-pivot
+	if mode == "full_health":
+		var lowering: Array = inspection.healthy_timing_seconds.set_down
+		grip = grip.lerp(vector(inspection.holding_arm_mount)-Vector2(15,0),
+			smoothstep(lowering[1],inspection.healthy_release_seconds,elapsed))
+	var result := {"frame":frame,"origin":frame_origin,"grip":grip,"blend":blend}
+	if not previous_key.is_empty() and blend < 1:
+		var previous: Dictionary = inspection.hero_states[costume][hero][previous_key]
+		result.previous = previous
+		result.previous_origin = origin+grip-vector(previous.grip_anchor)
+	return result
+
+func throw_origin_grip() -> Vector2:
+	return vector(inspection.get("throw_release_grip",[76,42]))
+
 func draw_world(game: Node2D) -> void:
-	if not active or mode in ["full_health","empty_arrival"]: return
+	if not active or mode == "empty_arrival": return
 	var origin := machine_origin(game,checkpoint)
 	var states: Dictionary = art.heroes[hero].states
 	var feet: Vector2 = game.respawn_point+Vector2(13,46)
 	var times: Dictionary = inspection.timing_seconds
-	if mode == "injured" and elapsed < times.throw[0]:
-		var grab_feet := origin+Vector2(inspection.held_hero_feet[0],inspection.held_hero_feet[1])
-		var progress := smoothstep(0,times.grab_lift[1],elapsed)
-		var position: Vector2 = feet.lerp(grab_feet,progress)
-		var state := "grab" if elapsed < times.compress[0] else "compress"
-		var grip: Vector2 = position-origin-Vector2(0,38)
-		draw_holding_arm(game,origin,grip,false)
-		var held_frame: Dictionary = states[state]
-		if state == "grab" and inspection.has("hero_states"):
-			held_frame = inspection.hero_states[costume][hero].grab
-		draw_frame(game,held_frame,position-Vector2(64,104))
-		draw_holding_arm(game,origin,grip,true)
+	if mode == "full_health" or mode == "injured" and elapsed < times.throw[0]:
+		var pose := held_pose(game)
+		draw_holding_arm(game,origin,pose.grip,false)
+		if pose.has("previous"): draw_frame(game,pose.previous,pose.previous_origin,1,1-pose.blend)
+		draw_frame(game,pose.frame,pose.origin,1,pose.blend)
+		draw_holding_arm(game,origin,pose.grip,true)
 		draw_inspection_arm(game,origin)
 		draw_diagnosis(game,origin)
 	elif mode == "injured" and elapsed < times.slide_vend[0]:
-		var grip := Vector2(34,67).lerp(Vector2(68,35),smoothstep(times.throw[0],times.throw[1],elapsed))
+		var grip := throw_origin_grip().lerp(Vector2(34,67),smoothstep(times.throw[0],times.throw[1],elapsed))
 		draw_holding_arm(game,origin,grip,false)
 		draw_holding_arm(game,origin,grip,true)
 	else:
 		if mode == "injured" and elapsed < times.slide_vend[0]+0.4:
 			var retract := clampf((elapsed-times.slide_vend[0])/0.4,0,1)
-			var grip := Vector2(68,35).lerp(Vector2(120,95),smoothstep(0,1,retract))
+			var grip := Vector2(34,67).lerp(Vector2(120,95),smoothstep(0,1,retract))
 			draw_holding_arm(game,origin,grip,false,1-retract)
 			draw_holding_arm(game,origin,grip,true,1-retract)
 		var emergence_start: float = times.emerge[0] if mode == "injured" else 0.3
@@ -360,10 +413,13 @@ func draw_overlay(game: Node2D) -> void:
 	var impact := impact_point
 	var times: Dictionary = inspection.timing_seconds
 	if elapsed < times.impact[0]:
-		var progress := clampf((elapsed-times.throw[0])/0.5,0,1)
-		var start := machine_origin(game,checkpoint)+Vector2(34,67)-Vector2(floorf(game.camera_x),0)
-		var scale_value := lerpf(minf(0.4,impact_scale),impact_scale,progress)
-		draw_frame(game,states.ball,start.lerp(impact,progress)-Vector2(64,64)*scale_value,scale_value)
+		var progress := clampf((elapsed-times.throw[0])/(times.impact[0]-times.throw[0]),0,1)
+		var start := machine_origin(game,checkpoint)+throw_origin_grip()-Vector2(floorf(game.camera_x),0)
+		var frame: Dictionary = inspection.hero_states[costume][hero].compress_stage_two
+		var pivot := vector(frame.get("grip_anchor",[64,64]))
+		var ratio := rect(states.ball.destination).size.x/rect(frame.destination).size.x
+		var scale_value := lerpf(1.0,impact_scale*ratio,progress)
+		draw_frame(game,frame,start.lerp(impact,progress)-pivot*scale_value,scale_value)
 	elif elapsed < times.slide_vend[0]:
 		draw_frame(game,states.impact,impact-Vector2(64,64)*impact_scale,impact_scale)
 	else:
@@ -383,6 +439,9 @@ func diagnosis_fraction() -> float:
 func draw_diagnosis(game: Node2D, origin: Vector2) -> void:
 	var timing: Array = inspection.timing_seconds.diagnosis_visible
 	if elapsed < timing[0] or elapsed >= timing[1] or not inspection.has("diagnosis_art"): return
+	var verdict: Dictionary = inspection.get("verdict_art",{})
+	var verdict_key := "pass" if mode == "full_health" else "fail"
+	if verdict.has(verdict_key): draw_frame(game,verdict[verdict_key],origin)
 	var pieces: Dictionary = inspection.diagnosis_art
 	draw_frame(game,pieces.frame,origin)
 	draw_frame(game,pieces.track,origin)
@@ -416,7 +475,16 @@ func articulated_part(game: Node2D, origin: Vector2, id: String, pivot_name: Str
 func draw_holding_arm(game: Node2D, origin: Vector2, grip: Vector2, front: bool, alpha := 1.0) -> void:
 	if inspection.get("parts",{}).is_empty(): return
 	var closing := smoothstep(0,0.2,elapsed)
-	closing *= 1-smoothstep(inspection.timing_seconds.throw[0],inspection.timing_seconds.throw[1],elapsed)
+	if mode == "full_health":
+		var set_down: Array = inspection.healthy_timing_seconds.set_down
+		closing *= 1-smoothstep(float(set_down[1])-.15,set_down[1],elapsed)
+	else:
+		closing *= 1-smoothstep(inspection.timing_seconds.throw[0],inspection.timing_seconds.throw[1],elapsed)
+	if mode == "injured":
+		for key in ["compress_stage_one","compress_stage_two"]:
+			var start: float = inspection.timing_seconds[key][0]
+			if elapsed >= start and elapsed < start+.1:
+				closing *= lerpf(.82,1.0,smoothstep(start,start+.1,elapsed))
 	var open_part: Dictionary = inspection.parts.hand_open
 	var closed_part: Dictionary = inspection.parts.hand_grip
 	var open_offset: Vector2 = (vector(open_part.source_pivots.wrist)-vector(open_part.source_pivots.grip))*open_part.scale

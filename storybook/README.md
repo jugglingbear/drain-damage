@@ -1,6 +1,6 @@
 # Drain Damage — In pictures
 
-Concept art and playable experiments. Gameplay captures through v0.162.0.
+Concept art and playable experiments. Gameplay captures through v0.166.0.
 
 ## Concept art
 
@@ -214,6 +214,46 @@ The pipe tilts, sweeping the stream downward. v0.162.0 · November 3, 2026 · Co
 
 Sean completes the sweep at floor level. v0.162.0 · November 3, 2026 · Controlled runtime review.
 
+![New supports reshape the service route.][image-53]
+
+New supports reshape the service route.
+v0.165.0 · November 4, 2026 · First candidate, before final visual review.
+
+![The corrected pit exposes its depth below the walkway.][image-54]
+
+The corrected pit exposes its depth below the walkway.
+v0.165.0 · November 4, 2026 · First candidate, before final visual review.
+
+![The devil spider burns in a staged death sequence.][image-55]
+
+The devil spider burns in a staged death sequence.
+v0.165.0 · November 4, 2026 · First candidate, before final visual review.
+
+![An angel spider joins the campaign.][image-56]
+
+An angel spider joins the campaign.
+v0.165.0 · November 4, 2026 · First candidate, before final visual review.
+
+![Brighter detached silk remains visible beneath the devil spider.][image-57]
+
+Brighter detached silk remains visible beneath the devil spider.
+v0.165.0 · November 4, 2026 · Final package; bounded Art review passed.
+
+![The early ceiling shooter fires from its mounted support.][image-58]
+
+The early ceiling shooter fires from its mounted support.
+v0.165.0 · November 4, 2026 · Final package; bounded Art review passed.
+
+![Radiator, softener and pipe stacks form a new climb.][image-59]
+
+Radiator, softener and pipe stacks form a new climb.
+v0.166.0 · November 4, 2026 · Candidate; bounded still review passed.
+
+![A utility sink becomes a raised landing.][image-60]
+
+A utility sink becomes a raised landing.
+v0.166.0 · November 4, 2026 · Candidate; bounded still review passed.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -270,3 +310,11 @@ To come. These images document development, not a finished game.
 [image-50]: 162-starter-specials/20261103-214721-sean-vertical.png
 [image-51]: 162-starter-specials/20261103-214807-sean-diagonal.png
 [image-52]: 162-starter-specials/20261103-214811-sean-horizontal.png
+[image-53]: 165-campaign-integration/20261104-143501-archived-support-packaged.png
+[image-54]: 165-campaign-integration/20261104-143501-archived-pit-packaged.png
+[image-55]: 165-campaign-integration/20261104-143501-archived-death-flame-packaged.png
+[image-56]: 165-campaign-integration/20261104-143501-archived-angel-motion-b-packaged.png
+[image-57]: 165-campaign-integration/20261104-144546-archived-web-readable-final.png
+[image-58]: 165-campaign-integration/20261104-144546-archived-ceiling-shooter-final.png
+[image-59]: 166-permanent-platforms/20261104-185313-archived-softener-contact.png
+[image-60]: 166-permanent-platforms/20261104-185313-archived-sink-contact.png

@@ -15,10 +15,10 @@ var poses: Dictionary = {}
 var textures: Dictionary = {}
 var animations: Dictionary = {}
 
-func _init() -> void:
-	configure(false)
+func _init(defer_preparation := false) -> void:
+	if not defer_preparation: configure(false)
 
-func configure(value: Variant) -> void:
+func configure(value: Variant, yield_frame := Callable()) -> void:
 	var selected := Costume.mode(value)
 	if not poses.is_empty() and costume == selected: return
 	costume = selected
@@ -31,6 +31,7 @@ func configure(value: Variant) -> void:
 	for pose: Dictionary in data.poses:
 		poses[pose.id] = pose
 		for layer: Dictionary in pose.layers:
+			if yield_frame.is_valid(): await yield_frame.call()
 			load_texture(layer.path)
 	animations = JSON.parse_string(FileAccess.get_file_as_string(animation_path))
 	for hero_id in RUN_OVERRIDES:
@@ -38,12 +39,18 @@ func configure(value: Variant) -> void:
 		animations.heroes[hero_id].phases.run = runs.costumes[costume].phase.duplicate(true)
 	for pose: Dictionary in animations.additional_aim_poses:
 		poses[pose.id] = pose
-		for layer: Dictionary in pose.layers: load_texture(layer.path)
+		for layer: Dictionary in pose.layers:
+			if yield_frame.is_valid(): await yield_frame.call()
+			load_texture(layer.path)
 	for hero: Dictionary in animations.heroes.values():
 		load_texture(hero.head_icon.path)
-		for frame: Dictionary in hero.death: load_texture(frame.path)
+		for frame: Dictionary in hero.death:
+			if yield_frame.is_valid(): await yield_frame.call()
+			load_texture(frame.path)
 		for phase: Dictionary in hero.phases.values():
-			for frame: Dictionary in phase.frames: load_texture(frame.path)
+			for frame: Dictionary in phase.frames:
+				if yield_frame.is_valid(): await yield_frame.call()
+				load_texture(frame.path)
 
 func load_texture(path: String) -> void:
 	if not textures.has(path): textures[path] = HardArt.texture(path)

@@ -51,8 +51,12 @@ Read the relevant sections before work in that area. These remain mandatory proj
   ceiling or wall fixtures with credible mounting and an appropriate animation. Include authored ceiling shooters
   for high coverage; preserve difficulty population limits and firing cooldowns.
 - Clarify surprising, broad interpretations with Sean before applying them across the game.
-- Keep creatures animated throughout transit. Attacks and contact begin only after arrival on the playable plane;
-  arrivals still consume population limits. Camera movement must not expose a teleport or unfinished spawn.
+- Keep creatures animated throughout transit. Attacks and contact begin after arrival on the playable plane,
+  except ground-gate entrants: their exposed bodies deal contact damage while emerging. Hidden bodies and unopened
+  gates do not deal contact damage. Arrivals still consume population limits. Camera movement must not expose a
+  teleport or unfinished spawn.
+- Regular monsters leave visible death remains instead of simply fading away. Remains are harmless and follow
+  world support; scrolling Level 2.1 may naturally leave them behind. Bosses and mini-bosses may use bespoke deaths.
 - Unless Sean explicitly requests an exception, monsters animate while walking, running, flying and charging attacks.
   Trials inherit this requirement; a static sprite translated across the screen is not a movement animation.
 - Gnatastrophe's weapon formations retain individual fly motion. Morphs preserve fly identity and continuous positions;
@@ -73,6 +77,15 @@ Read the relevant sections before work in that area. These remain mandatory proj
   do not hide a mismatch by applying a global rider offset.
 - Compare actual running views with the approved reference and inspect travel in motion. Frozen screenshots alone
   cannot validate environmental scrolling or the relationship between moving scenery and the rider.
+
+## Native macOS agent test launches
+
+- Launch graphical Godot tests outside the execution sandbox using the tool's escalation mechanism, subject to
+  its approval review and the existing foreground-window permission rules. Keep headless checks sandboxed when possible.
+- Do not first attempt a sandboxed graphical launch: on this Mac, it can abort in AppKit `_RegisterApplication`
+  before game startup and leave a delayed macOS crash dialog. This is not evidence of a game shutdown failure.
+- Track the owned test process, close it when testing ends, and check its exit status. Investigate crash reports
+  by launch time and stack before attributing a popup to shutdown. Do not disable macOS crash reporting.
 
 ## Visual acceptance and physical plausibility
 

@@ -46,7 +46,7 @@ var roach_pipe := RoachBody.new()
 var ceiling_rim: Texture2D
 var water := Water.new()
 
-func prepare() -> bool:
+func prepare(yield_frame := Callable()) -> bool:
 	if ready: return true
 	if not shared_cache.is_empty():
 		body = shared_cache.body
@@ -54,9 +54,9 @@ func prepare() -> bool:
 		textures = shared_cache.textures
 		images = shared_cache.images
 		frames = shared_cache.frames
-		roach_body.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
-		roach_front.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
-		roach_pipe.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+		await roach_body.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"],yield_frame)
+		await roach_front.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"],yield_frame)
+		await roach_pipe.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"],yield_frame)
 		_prepare_water()
 		_prepare_ceiling_rim()
 		ready = true
@@ -65,12 +65,15 @@ func prepare() -> bool:
 	room = _json(ROOM_PATH)
 	if body.is_empty() or room.is_empty(): return _fail("Missing Skitterling manifests")
 	for sheet: Dictionary in body.sheets:
+		if yield_frame.is_valid(): await yield_frame.call()
 		if not _load_texture(sheet.path, true): return false
 	for entry: Dictionary in [room.background, room.pipes, room.effects, room.portals]:
+		if yield_frame.is_valid(): await yield_frame.call()
 		if not _load_texture(entry.path, entry != room.background): return false
 	for sheet: Dictionary in body.sheets:
 		for frame: Dictionary in sheet.frames:
 			if not frame.enabled: continue
+			if yield_frame.is_valid(): await yield_frame.call()
 			var source := _recti(frame.source_rect)
 			var pixels: Image = images[sheet.path]
 			if not Rect2i(Vector2i.ZERO, pixels.get_size()).encloses(source):
@@ -84,9 +87,9 @@ func prepare() -> bool:
 			frames[key] = {"image":canvas, "textures":[ImageTexture.create_from_image(canvas)],
 				"bounds":Rect2(canvas.get_used_rect())}
 			if frame.has("anatomy"): frames[key].anatomy = frame.anatomy
-	roach_body.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
-	roach_front.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
-	roach_pipe.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"])
+	await roach_body.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"],yield_frame)
+	await roach_front.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"],yield_frame)
+	await roach_pipe.prepare(frames, images["assets/bestiary/cockroach-swarm/roach-layers-v1.png"],yield_frame)
 	_prepare_water()
 	_prepare_ceiling_rim()
 	shared_cache = {"body":body, "room":room, "textures":textures, "images":images, "frames":frames}
@@ -356,7 +359,7 @@ func pipe_parameters(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Dict
 func visible_target_regions(snapshot: Dictionary, world_origin := Vector2.ZERO) -> Array[Rect2]:
 	## Pure shot-target coverage: sample visible insect cells, excluding the authored rim and consumed insects.
 	var result: Array[Rect2] = []
-	if snapshot.get("state", "") != "rat_pipe_retreat": return result
+	if snapshot.get("state", "") not in ["rat_pipe_retreat","rat_pipe_launch","rat_pipe_abort"]: return result
 	var selection := _selection(snapshot)
 	var pipe := pipe_parameters(snapshot, world_origin)
 	for index in range(RoachBody.COUNT):

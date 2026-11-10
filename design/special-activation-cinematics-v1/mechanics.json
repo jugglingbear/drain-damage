@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "id": "starter-special-activation-cinematics-v1",
+  "date": "2026-11-05",
+  "timezone": "America/Los_Angeles",
+  "status": "Authorized production contract; assets, runtime integration and visual acceptance pending",
+  "owners": {
+    "package": "Bestiary / Art",
+    "mechanics_contract": "Game Mechanics",
+    "audio_assets": "Audio",
+    "runtime_integration_and_build": "Engineering"
+  },
+  "authorization": "Sean requested completion of both starter activation animations with Art and Mechanics, followed by Engineering handoff for his playtest.",
+  "timing_decision": "Art and Mechanics selected Tony 3.2 seconds and Sean 3.4 seconds for every accepted activation. Production targets within Sean's requested 3–4 seconds; not individually measured durations from reference games.",
+  "scope": {
+    "heroes": [
+      "tony",
+      "sean"
+    ],
+    "costumes": [
+      "normal",
+      "easy",
+      "hard"
+    ],
+    "facings": [
+      -1,
+      1
+    ],
+    "weapons": [
+      "pressure-gun",
+      "heavy-plunger-launcher"
+    ],
+    "excluded": [
+      "shortened-repeat mode",
+      "skip interaction",
+      "new settings UI",
+      "new QTE or button mashing",
+      "new damage or charge balance",
+      "new voice dialogue"
+    ]
+  },
+  "balance_invariants": {
+    "source": "design/starter-specials-v1/mechanics.json",
+    "regular_damage_per_tick": 24,
+    "boss_damage_per_tick": 12,
+    "tick_interval_seconds": 0.1,
+    "boss_total_cap": null,
+    "uses_per_hero_per_logical_level": 2,
+    "boss_gates": "Preserve the current integrated boss vulnerability rules, including current Clogfather enrage behavior. Do not restore obsolete recovery-only assumptions.",
+    "tony_effect_clock": {
+      "handoff_elapsed": 0.0,
+      "effect_end": 7.5,
+      "first_damage_tick": 0.1,
+      "last_potential_damage_tick": 7.4,
+      "ideal_eligible_ticks": 74
+    },
+    "sean_effect_clock": {
+      "handoff_elapsed": 1.0,
+      "effect_end": 7.5,
+      "first_damage_tick": 1.0,
+      "last_potential_damage_tick": 7.4,
+      "ideal_eligible_ticks": 65,
+      "upright_until": 1.5,
+      "horizontal_at": 4.75
+    },
+    "clock_rule": "The cinematic replaces Sean's existing one-second plant/pull presentation. Resume at the already-emerged pipe state with 6.5 seconds of water remaining. Do not replay preparation, start his effect at zero, or grant 7.5 seconds of water. Tony retains 7.5 seconds after handoff.",
+    "tick_handoff": "No damage ticks during cinematic. On Sean's first resumed simulation step, emit the due elapsed=1.0 tick exactly once; subsequent ticks follow 1.1, 1.2, etc. Do not catch up nonexistent cinematic damage or skip the first water tick. Tony's first tick remains elapsed=0.1.",
+    "stock": "Accept and spend exactly once before presentation. Empty or otherwise invalid requests neither spend nor animate. No refund for death, retry, cancellation or scene teardown. No second spend at handoff."
+  },
+  "shared_presentation": {
+    "native_viewport": [
+      960,
+      540
+    ],
+    "safe_rect": [
+      48,
+      32,
+      864,
+      476
+    ],
+    "world_freeze": [
+      "hero movement and velocity integration",
+      "enemies and projectiles",
+      "encounter and boss timers",
+      "damage and collision consequences",
+      "cooldowns and invulnerability timers",
+      "active gameplay VFX and existing spent-prop animation"
+    ],
+    "advancing": [
+      "cinematic timeline",
+      "cinematic-only animation and camera",
+      "cinematic audio"
+    ],
+    "pause": "Pause/menu/focus-loss pauses cinematic and cinematic audio at their current offsets. Resume the same offsets without replaying cues. Do not clear another system's freeze when the cinematic ends.",
+    "world_state": "Keep positions, velocities, HP, boss phase, projectile trajectories and gameplay camera baseline unchanged while presenting. Cinematic shake changes render offsets only, never collision geometry.",
+    "animation": "Opaque authored character poses with registered in-betweens; no dissolves between incompatible body/tool poses. Start with roughly 12–15 unique poses per second for broad motion and additional contact/slam poses where needed. These are asset-budget targets, not a fixed playback-rate requirement. Use variable frame durations driven by elapsed seconds.",
+    "interpolation": "Smoothly interpolate camera, gauge needle/dial and overlay fades at render rate. Preserve planted feet, cup and hand/tool registration. Do not interpolate body silhouettes by alpha blending or stretch a static hero to imitate effort.",
+    "camera": {
+      "sean_target_zoom": 2.0,
+      "zoom_range": [
+        1.0,
+        2.0
+      ],
+      "framing": "Reduce zoom and clamp translation as needed to keep Sean's head, overhead plunger, both feet, cup/socket and emerging pipe inside safe rect. No camera overshoot or out-of-world exposure. Exact zoom is subordinate to framing.",
+      "curve": "Smooth ease-in/out with zero endpoint velocity; restore exact baseline before returning control.",
+      "tony": "Keep world camera fixed under the gauge overlay."
+    },
+    "audio_mix": "Keep music continuous with Audio's proposed 4 dB duck, combining with other duck owners using the minimum gain rather than additive attenuation. Pause/fade world action loops so frozen enemies do not continue moving audibly. Restore prior mix ownership once on handoff/cancel; never overwrite user mute or volume. No extra full-screen flash.",
+    "control_return": "After reveal/camera restoration, use current held movement, aim and ordinary fire. Discard action edges accumulated during the movie; a second special requires release and fresh press. No new jump buffering feature in this delivery. Activation button never acts as skip or triggers two uses.",
+    "interruptions": "Reject activation when already dead, in dialogue, blocked cinematic/ride/flush state, or otherwise disallowed by current rules. Preserve Sean's supported-ground and pipe-clearance eligibility. Tony may retain his existing airborne eligibility: freeze and restore velocity rather than teleport to ground. Restart/title/scene teardown clears cinematic, audio, camera overrides and pending handoff. Forced cancellation never launches delayed damage.",
+    "completion": "Restore baseline camera and remove occluding overlay before the same atomic handoff that resumes world simulation and starts the effect. No hidden recovery delay and no extra invulnerability grant."
+  },
+  "tony": {
+    "weapon_id": "pressure-gun",
+    "special_name": "Hydrojet Overdrive",
+    "duration_seconds": 3.2,
+    "beats": [
+      {
+        "id": "gauge_reveal",
+        "start": 0.0,
+        "end": 0.25,
+        "action": "Freeze immediately; fade gauge assembly in with needle at one-third pressure."
+      },
+      {
+        "id": "read_start",
+        "start": 0.25,
+        "end": 0.55,
+        "action": "Hold starting pressure long enough to read the mechanical setup."
+      },
+      {
+        "id": "crank",
+        "start": 0.55,
+        "end": 1.75,
+        "action": "Separate dial turns clockwise through one full turn. Needle follows pressure rise from one-third through red to the physical maximum."
+      },
+      {
+        "id": "overpressure",
+        "start": 1.75,
+        "end": 2.75,
+        "action": "One full second of unit-local tremble; needle pinned at maximum, not a second loading hold. Keep dial attached and readable."
+      },
+      {
+        "id": "release",
+        "start": 2.75,
+        "end": 3.2,
+        "action": "Fade assembly away. Final pressure-release hiss connects to the actual weapon nozzle. Resume with Hydrojet Overdrive at elapsed zero."
+      }
+    ],
+    "layout": {
+      "assembly_height": 432,
+      "assembly_center": [
+        480,
+        270
+      ],
+      "width_limit": 720,
+      "gauge_fraction_start": 0.3333333333,
+      "gauge_fraction_end": 1.0,
+      "red_warning_fraction": [
+        0.75,
+        0.95
+      ],
+      "dial_clockwise_degrees": 360,
+      "tremble_peak_pixels": 2
+    },
+    "assets": [
+      "opaque gauge face/backplate with pressure markings",
+      "separate transparent needle with exact pivot and calibrated start/max angles",
+      "separate clockwise dial/crank with pivot and attachment",
+      "optional registered casing details for tremble"
+    ],
+    "coverage": "Gauge assembly shared across all three costumes and both facings; keep markings upright, never mirror text. Underlying gameplay Tony retains selected costume. No extra Tony portrait/full-body sprite is required for this gauge-only cinematic.",
+    "manifest": "Art supplies source rectangles, native destination bounds, layer order, needle/dial pivots, rotational clearance, calibrated arc endpoints and color-independent pressure markings. Do not assume art arc spans a particular angle."
+  },
+  "sean": {
+    "weapon_id": "heavy-plunger-launcher",
+    "special_name": "Main Break",
+    "duration_seconds": 3.4,
+    "beats": [
+      {
+        "id": "draw_zoom",
+        "start": 0.0,
+        "end": 0.3,
+        "action": "Freeze; draw plunger while camera eases toward Sean without moving his feet."
+      },
+      {
+        "id": "raise",
+        "start": 0.3,
+        "end": 0.85,
+        "action": "Raise plunger overhead; keep tool, hands and head fully framed."
+      },
+      {
+        "id": "slam",
+        "start": 0.85,
+        "end": 1.0,
+        "action": "Accelerating downward swing into the fixed floor socket."
+      },
+      {
+        "id": "impact_hold",
+        "start": 1.0,
+        "end": 1.08,
+        "action": "80 ms contact-pose hold with short decaying render-only shake; cup stays planted."
+      },
+      {
+        "id": "pull_one",
+        "start": 1.08,
+        "end": 1.78,
+        "action": "First effort: knees/hips load, shoulders rise, hands pull against sealed cup; eyes close and teeth grit at peak, then partial recoil."
+      },
+      {
+        "id": "pull_two",
+        "start": 1.78,
+        "end": 2.45,
+        "action": "Second stronger distinct effort with the same fixed cup/socket and readable facial strain."
+      },
+      {
+        "id": "break",
+        "start": 2.45,
+        "end": 2.7,
+        "action": "Seal gives way; tool and hands follow the release with controlled recoil."
+      },
+      {
+        "id": "pipe_reveal_return",
+        "start": 2.7,
+        "end": 3.4,
+        "action": "Existing pipe rises from the same socket while camera restores normal framing; Sean returns to matching gameplay pose. No water damage until handoff."
+      }
+    ],
+    "registration": {
+      "source_facing": 1,
+      "supported_facings": [
+        -1,
+        1
+      ],
+      "hero_feet_world": "player_top_left + Vector2(13,46)",
+      "pipe_socket_world": "captured_hero_feet + Vector2(44 * captured_facing,0)",
+      "pipe_anchor_local_to_feet_right": [
+        44,
+        0
+      ],
+      "pipe_base_world": "pipe_socket_world",
+      "emerged_bend_local_to_socket": [
+        0,
+        -32
+      ],
+      "emerged_mouth_local_to_socket": [
+        0,
+        -48
+      ],
+      "capture_rule": "Capture facing, feet, supported floor and socket once on accepted activation. Camera changes never rebase them. Left-facing geometry mirrors X about feet/socket consistently.",
+      "source_cell_proposal": [
+        320,
+        384
+      ],
+      "source_feet_anchor_proposal": [
+        160,
+        352
+      ],
+      "source_dimensions_status": "Working envelope for Art, not a runtime hard-coded scale. Art may revise with explicit measured native destinations and anchors; match current costume body size at ordinary camera scale.",
+      "required_per_frame": [
+        "source rectangle",
+        "duration",
+        "native destination",
+        "feet anchor",
+        "left and right grip anchors",
+        "cup/contact anchor",
+        "tool attachment",
+        "opaque bounds"
+      ],
+      "costumes": "Complete Normal/Easy/Hard sets with consistent feet/tool/socket anchors. Preserve each existing costume design and Sean's identity; no surnames or new outfit interpretation.",
+      "pose_handoff": "Match current gameplay Sean at start/end. The existing one-second plant/strain animation is NOT replayed after the movie. During final reveal, presentation-only pipe rise reaches the same upright vertices as existing effect elapsed=1.0. Return to that exact state, not a replacement pipe sprite."
+    },
+    "camera_return_start": 2.7,
+    "impact_shake": {
+      "start": 1.0,
+      "end": 1.18,
+      "peak_native_pixels": 3,
+      "rule": "Short decaying translation only; never shake collision bodies or introduce camera roll."
+    }
+  },
+  "audio_events": {
+    "tony": [
+      {
+        "time": 0.55,
+        "event": "crank_start",
+        "end": 1.75
+      },
+      {
+        "time": 1.75,
+        "event": "pressure_tremble",
+        "end": 2.75
+      },
+      {
+        "time": 2.75,
+        "event": "pressure_release_visual_tail",
+        "end": 3.2,
+        "audio_note": "No additional new transient required; Audio maps the existing water onset at handoff."
+      },
+      {
+        "time": 3.2,
+        "event": "existing_hydrojet_start"
+      }
+    ],
+    "sean": [
+      {
+        "time": 1.0,
+        "event": "slam_seal"
+      },
+      {
+        "time": 1.08,
+        "event": "pull_one"
+      },
+      {
+        "time": 1.78,
+        "event": "pull_two"
+      },
+      {
+        "time": 2.45,
+        "event": "break"
+      },
+      {
+        "time": 2.7,
+        "event": "pipe_lift",
+        "end": 3.4
+      },
+      {
+        "time": 3.4,
+        "event": "water_only_handoff"
+      }
+    ],
+    "handoff_rule": "Audio must provide a water-only Sean entry. Do not call legacy begin then advance through preparation, replay seal/pull/break, or delay water by another 1.1 seconds. Keep water sustain/taper aligned with remaining effect clock1.0–7.5. Audio owns exact cue mapping and approved reuse/new assets; retain original sources and update auditions.",
+    "hitch_rule": "Seek current presentation state without replaying all expired one-shots in a burst; dispatch each event at most once. Pause preserves offsets; cancellation stops voices and restores prior mix.",
+    "asset_contract": "audio/sources/starter-cinematic-v1/manifest.json",
+    "sean_tail": "At handoff+5.0 play existing1.5-second sean-stop transient; core ends+5.1 with0.1-second overlap. Tail continues through+6.5, matching water end. Stopping core must not terminate the tail voice."
+  },
+  "required_tests": [
+    "Accepted fresh press spends once; rejected, empty, airborne Sean and invalid clearance requests do not spend or animate.",
+    "Both heroes and all costumes, both facings, 30/60/120 Hz and variable/large frame steps reach exact production boundaries without duplicate cues or handoff.",
+    "Freeze positions, velocities, projectile paths, boss/encounter timers, HP and invulnerability timers throughout; no catch-up damage on resume.",
+    "Pause/focus-loss at every beat preserves timeline/audio; restart/title/scene exit cancels and clears render overrides without charge refund or delayed activation.",
+    "Held special never spends twice; current held aim/movement/fire resume immediately; stale button edges do not leak.",
+    "Tony preserves74 ideal water ticks; Sean preserves65 including exactly one tick at effect1.0; 24 regular/12 boss per tick, uncapped, with current boss vulnerability gates.",
+    "Sean has one plant/pull/slam presentation, one pipe emergence and one water onset; no old preparation replay or doubled audio start.",
+    "First/last camera transforms match baseline; floor/socket/grip anchors remain stable at edges, raised platforms, narrow clearance, both directions and all costumes.",
+    "Native960x540 running capture plus continuous-motion review: body proportions, overhead clearance, eye/teeth readability, gauge start/red/max readability, tool contact, causal pipe/nozzle handoff and no opacity body ghosts.",
+    "Independent Art review, Audio mix review, then Engineering integration/build checks and Sean playtest. Research/contract completion alone is not runtime or visual acceptance."
+  ],
+  "research": {
+    "evidence_limit": "No reference-game activation was frame-timed in this research. Numerical beat lengths, pose budgets, zoom and mix values are production proposals. Sources support design principles rather than a universal duration standard. Full source video playback was not audited; official descriptions/indexed primary slide text were used where full fetch was unavailable.",
+    "sources": [
+      {
+        "title": "Masahiro Sakurai: Stop for Big Moments!",
+        "url": "https://www.youtube.com/watch?v=OdVkEOzdCPw",
+        "basis": "Official creator description of hitstop and brief slow-motion emphasis; not evidence for a multi-second hitstop duration."
+      },
+      {
+        "title": "Junya Motomura: Guilty Gear Xrd's Art Style, GDC2015",
+        "url": "https://www.ggxrd.com/Motomura_Junya_GuiltyGearXrd.pdf",
+        "alternate": "https://www.gdcvault.com/play/1022031/GuiltyGearXrd-s-Art-Style-The",
+        "basis": "Indexed primary animation slide text discusses deliberate pose-by-pose animation and disabling automatic keyframe interpolation; full PDF fetch failed."
+      },
+      {
+        "title": "Michael Lyndon: Zip! Thwack! Ping!, GDC2018",
+        "url": "https://gdcvault.com/play/1025417/Visual-Effects-Bootcamp-Zip-Thwack",
+        "basis": "Primary talk overview and indexed slides apply animation principles, including anticipation, to real-time game VFX."
+      },
+      {
+        "title": "Microsoft Xbox Accessibility Guideline117",
+        "url": "https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117",
+        "basis": "Primary motion guidance recommends avoiding or allowing disabling shake; supports optional future reduced-motion discussion, not authorization of a settings expansion here."
+      }
+    ]
+  },
+  "delivery": {
+    "art_manifest": "Pending Art",
+    "audio_contract": "audio/sources/starter-cinematic-v1/manifest.json; source assets/registry validated by Audio, subjective mix and runtime handoff pending",
+    "runtime": "Not implemented by this contract",
+    "visual_review": "Pending",
+    "build": "Engineering-owned, no version change in this delivery"
+  }
+}

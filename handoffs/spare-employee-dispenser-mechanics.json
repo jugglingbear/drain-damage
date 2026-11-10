@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Current revision 2026-10-20 approved choreography; Engineering integration pending. Earlier top-level beats retained as historical contracts.",
+  "status": "Current revision2026-11-05 governs shared healthy/injured inspection; historical top-level contracts retained for provenance.",
   "owner": "Game Mechanics specification; Engineering runtime; Art and audio supplied separately",
   "approved_presentation": "Spare Employee Dispenser: injured hero compressed and thrown at screen; bloody cartoon SPLAT with X-eyed dead hero sliding down and leaving fading blood trail; intact same-hero clone emerges. BJ silent first use.",
   "timing": {
@@ -118,77 +118,92 @@
     ]
   },
   "current_revision": {
-    "date": "2026-10-20",
-    "authority": "Sean approval relayed by Level Design; Engineering owns delivery.",
-    "precedence": "This revision supersedes earlier scan-before-grab timings, historical checkpoint coordinates and preserve-kills-on-retry wording. Other cleanup, pause, input and cosmetic-impact contracts remain applicable.",
-    "status": "Mechanics and Art timing agreed; Engineering integration and live readability review pending",
-    "injured_target_seconds": 6.8,
-    "injured_hard_ceiling_seconds": 7.0,
+    "date": "2026-11-05",
+    "authority": "Sean approval relayed by Engineering; Game Mechanics runtime, Art and Audio contracts, Engineering build integration.",
+    "precedence": "This revision supersedes historical healthy stamp-only and single-crush timelines, including the old 0.5s healthy/7s injured caps. Existing one-use checkpoints, respawn, stock, pause, skip and cleanup rules remain.",
+    "status": "Runtime and tests complete; Art sampled visual review passed; Engineering final playback/audio/build integration pending.",
+    "injured_target_seconds": 8.05,
+    "injured_hard_ceiling_seconds": 8.5,
     "beats": [
       {
         "start": 0,
         "end": 0.8,
-        "action": "Left holding arm grabs/lifts hero left of cabinet."
+        "action": "Both branches grab and lift original hero."
       },
       {
         "start": 0.8,
         "end": 1.2,
-        "action": "Opposite right arm deploys magnifier over cabinet to held hero."
+        "action": "Deploy magnifier."
       },
       {
         "start": 1.2,
-        "end": 2.0,
-        "action": "Inspect held hero; diagnosis appears at1.6s."
+        "end": 2,
+        "action": "Inspect original arrival health."
       },
       {
-        "start": 2.0,
-        "end": 2.4,
-        "action": "Hold diagnosis and lens: pre-heal health/missingHP remain legible."
-      },
-      {
-        "start": 2.4,
+        "start": 2,
         "end": 2.65,
-        "action": "Magnifier withdraws without crossing stock window opaquely."
+        "action": "Healthy green check and positive ding; injured red X and alarm."
       },
       {
         "start": 2.65,
-        "end": 3.15,
-        "action": "Original holding hand crushes hero."
+        "end": 2.9,
+        "action": "Retract magnifier."
       },
       {
-        "start": 3.15,
-        "end": 3.65,
-        "action": "Holding hand throws toward sampled safe screen point."
+        "start": 2.9,
+        "end": 3.55,
+        "action": "Healthy branch lowers unchanged hero safely; release at3.75, no clone or life/stock consumption."
       },
       {
-        "start": 3.65,
-        "end": 3.85,
-        "action": "One synchronized bloody SPLAT and X-eyed impact."
+        "start": 2.9,
+        "end": 3.4,
+        "action": "Injured branch folds hero into first compression pose."
       },
       {
-        "start": 3.85,
-        "end": 5.35,
-        "action": "Existing slide/blood fade overlaps vending."
+        "start": 3.4,
+        "end": 3.9,
+        "action": "Second compression tightens into smaller ball."
       },
       {
-        "start": 5.35,
-        "end": 5.8,
-        "action": "Intact same-hero replacement emerges."
+        "start": 3.9,
+        "end": 4.4,
+        "action": "Visible holding-arm windup with ball still attached."
       },
       {
-        "start": 5.8,
-        "end": 6.1,
+        "start": 4.4,
+        "end": 4.9,
+        "action": "Release exact held ball from grip toward sampled safe viewport point."
+      },
+      {
+        "start": 4.9,
+        "end": 5.1,
+        "action": "Synchronized screen impact."
+      },
+      {
+        "start": 5.1,
+        "end": 6.6,
+        "action": "Slide/blood fade and one clone vend."
+      },
+      {
+        "start": 6.6,
+        "end": 7.05,
+        "action": "Intact same-hero clone emerges."
+      },
+      {
+        "start": 7.05,
+        "end": 7.35,
         "action": "Look left."
       },
       {
-        "start": 6.1,
-        "end": 6.4,
+        "start": 7.35,
+        "end": 7.65,
         "action": "Look right."
       },
       {
-        "start": 6.4,
-        "end": 6.8,
-        "action": "Shrug; HEALTH RESTORED / CHECKPOINT SAVED; natural release."
+        "start": 7.65,
+        "end": 8.05,
+        "action": "Shrug and release."
       }
     ],
     "diagnosis": {
@@ -199,28 +214,35 @@
         "missing_hp = max(0, arrival_max_hp-arrival_hp)"
       ],
       "capture": "Capture before atomic checkpoint/full-heal commit; never infer diagnosis from already healed HP.",
-      "display": "ARRIVAL HEALTH {arrival_hp}/{arrival_max_hp}; {missing_hp} HP MISSING; REPLACEMENT APPROVED",
-      "readability": "Show arrival-health/missingHP diagnosis continuously1.6\u20132.4s during inspection; at least0.8s. Do not recompute from healed HP.",
+      "display": "Arrival HP/max HP plus healthy green check or injured red X.",
+      "readability": "Shared arrival-health snapshot displayed2.0\u20132.65s with green check/red X and matching verdict cue; never infer from healed HP.",
       "completion": "HEALTH RESTORED / CHECKPOINT SAVED",
       "hard_mode": "Interface diagnosis stays interface text; existing all-caps rule applies to Sean/Tony dialogue only."
     },
     "commit_and_lives": "Commit checkpoint and full selected max HP atomically at eligible entry. Crush is presentation only; never call death handler or debit lives. Normal retry debit remains exactly once.",
     "short_paths": {
-      "healthy": "At full health, existing stamp/HEALTH FULL/CHECKPOINT SAVED in<=0.5s; no arms, magnifier, crush or clone consumption.",
-      "respawn": "Existing dispense-only in<=2s if stocked; spent machine uses existing short empty-arrival branch. No repeated diagnosis/crush.",
-      "stock": "Preserve one selected-hero clone per dispenser per run, no refill on death/retry. New checkpoint machines need independent stock state; healthy entry does not consume stock."
+      "healthy": "Full shared inspection, safe same-hero setdown,3.75s release/4s watchdog; no clone, life debit or stock consumption.",
+      "respawn": "Existing dispense-only branch <=2s, consumes available clone once.",
+      "empty_arrival": "Existing0.4s release, no inspection or clone."
     },
     "checkpoint_scope": "Use authoritative runtime checkpoint table, not historical x3300/6660/8190. Existing first checkpoint4650; approved new pre-Clogfather checkpoint13800 in current Level Design blockout.",
     "retry_reset": "Full reset of enemies/encounters owned by saved checkpoint segment; exclude earlier owned segments. Pre-Clogfather retry restores full boss HP and phase1 and clears hazards/adds/timers, while preserving defeated Skitterling and earlier progress. No older monsters chase from level start.",
-    "art_contract": "Separate holding and opposite magnifier arms; one hero anchor throughout lift/inspection/crush. Common scale and continuous interpolated movement. Reuse existing bloody impact/slide/vend, do not lengthen them to hide inspection. Art confirms sides/anchors; Engineering maps events and audio.",
-    "failure_paths": "Existing idempotent finalizer and7s watchdog, pause exclusions, first-full-sequence/session skip policy, safe exit and1.5s protection remain. Skip/watchdog/menu abort clears both arms, lens, diagnostic overlay, blood and sequence audio. Missing arm/art/audio cannot stall.",
-    "validation": [
-      "Both heroes at every positive injured HP; diagnosis uses exact pre-heal missing HP despite instant heal.",
-      "Healthy and spent-machine branches stay short and consume no extra clone/life.",
-      "First and new checkpoint stock independent; retry does not replenish either.",
-      "Pause/skip/watchdog/menu/restart in every beat clean all new layers and unlock exactly once.",
-      "Preboss death resets current encounter but never resurrects Skitterling or pre-checkpoint enemies.",
-      "Headless timing/logic checks plus permitted live readability/animation review; no visual completion claim from unit tests."
-    ]
+    "art_contract": "assets/world/spare-employee-dispenser/inspection-contract-v2.json",
+    "failure_paths": "Idempotent finalizer with8.5s injured/4s healthy watchdog, pause exclusions, existing first-injured-session skip policy, safe exit and1.5s protection. Skip/watchdog/menu abort clears arms, lens, diagnosis, blood and sequence audio; never await audio/animation callbacks.",
+    "validation": {
+      "status": "PASS focused runtime and sampled visual checks; final build not yet delivered",
+      "tests": {
+        "tests/dispenser_inspection.gd": "All six hero/costume combinations and all arrival HP; healthy setdown, verdicts, staged transitions, exact grip, pause, skip/watchdog, stock/lives, actual thrown bounds at three viewport sizes and four extreme endpoints.",
+        "tests/employee_dispenser.gd": "Checkpoint reuse, full/injured/respawn/spent paths, clone budget and guarded inputs pass.",
+        "tests/dispenser_registration.gd": "Both heroes/facings and emerge/look/shrug registration pass."
+      },
+      "evidence_directory": "previews/dispenser-inspection-v2-runtime-2026-11-05",
+      "visual": "Actual960x540 captures across six combinations; continuous60Hz sequences both heroes/branches plus100ms crush-boundary captures inspected. Art passed verdicts, healthy feet contact/idle transition, progressive crush/grip continuity, windup/release.",
+      "remaining": "Root final packaged real-time playback and in-game audio mix/build gates. Visual test audio muted; no auditory mix claim.",
+      "warnings": "Final inspection suite only baseline macOS CA warning; existing employee suite additionally reports61ObjectDB and10resource shutdown warnings."
+    },
+    "healthy_target_seconds": 3.75,
+    "healthy_hard_ceiling_seconds": 4.0,
+    "crush_transition": "Two registered poses: folded knees then36px ball, each held0.5s with100ms grip-anchored eased pose blend and2px synchronized recoil; no source stretching or looping."
   }
 }

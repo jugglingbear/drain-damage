@@ -60,6 +60,46 @@ with reciprocal top navigation from the magazine; its Storybook link sits immedi
 Historical capture gaps remain labeled.
 <a href="https://jugglingbear.github.io/drain-damage/storybook/storybook.html">Browse the storybook</a>.</p>
 <main class="wrap">
+<p><strong>November 10 — Prototype 174 Mac integration candidate:</strong> Engineering ownership transferred to the new
+Engineering chat. Clogfather now finishes exactly two aimed bursts before advancing; Sean can fire his regular weapon
+while Main Break remains active. Checkpoint healing waits for a replacement to dispense. Approved creature audio and
+boss music changes are integrated. Fresh Python, focused gameplay/audio and Clogfather integration checks pass. Cinematics remain blocked by incomplete/rejected bridge artwork;
+spent-pipe collapse remains pending Art approval, with the existing opaque pipe retained. Destructible platforms remain
+on the documented fit-review hold. The signed Mac build is preserved in builds/Prototype-174; packaged Level 1 initialization passes for both heroes.
+The lifecycle regression also passes (721 checks). Visual/listening acceptance and native Windows validation remain pending.
+Commit/push and magazine publication authorized November 10.</p>
+
+<p><strong>November 5 — starter activation cinematics, in progress:</strong> Audio delivered two new Tony preparation cues,
+mechanical crank DD-S0202.1 and pressure tremble DD-S0203.1, plus mappings to approved Sean suction/pull/break effects.
+Mechanics confirmed 3.2-second Tony and 3.4-second Sean cinematic timelines and direct water-only handoffs without
+replaying preparation. Mechanics delivered the timing, freeze, cancellation and damage-tick contract; existing special
+damage, use budgets and boss balance remain unchanged. Artwork, runtime integration and packaged visual/listening review
+are pending. Art owns the cinematic package; Engineering owns integration and build delivery. These cinematics are not
+yet playable. See the <a href="design/special-activation-cinematics-v1/mechanics.json">mechanics contract</a> and
+<a href="audio/sources/starter-cinematic-v1/manifest.json">audio timing and lifecycle contract</a>.</p>
+
+<p><strong>November 5 — creature audio integration authorized:</strong> Sean accepted 59 individual effects
+for Devil Spider, Hallowed Widow, Sputtervalve, Flushfiend, Clogfather and the revised wet-tissue/ghoul Gratecrawler.
+Engineering owns integration of the approved subsets, with Storyboarding identities and Level Design timings retained.
+Gnatastrophe revisions and Skitterling supplementary effects remain unapproved auditions. Sean also requested audible
+Clogfather music: proposed gain -4 dB and warning duck -6 dB, replacing -10/-12 dB. Runtime integration, build and
+in-game listening validation are pending. See the
+<a href="audio/sources/creature-materials-v2/manifest.json">approved delivery and exclusions</a> and
+<a href="audio/drain-damage-sound-auditions.html">sound catalog</a>.</p>
+
+<p><strong>November 5 — agent test launch correction:</strong> The eight latest macOS Godot crash reports
+show AppKit registration aborts during agent startup, rather than game shutdown. Graphical agent tests now require
+launching outside the execution sandbox, with normal approval review; the successful test exited cleanly.
+<a href="docs/agent-task-requirements.md#native-macos-agent-test-launches">Testing instructions</a> updated.
+No game build change is required for this workflow correction.</p>
+
+<p><strong>November 5 — Prototype 173 integration:</strong> Clogfather random 1–3 aimed shots with one-second pauses, two-second pressure-to-acid timing and recurring acid at 20% HP. Airborne Skitterling special vulnerability, retry-stable randomized entrances, loading music timing and outlet water clipping are integrated. Source checks pass; packaging and final visual review are in progress.</p>
+<p><strong>November 5 — Prototype 172 Skitterling action audio:</strong> Approved rat and alligator voices now follow formation, charge, pounce, sweep, submerged volley and surfacing states. Short faded warnings fit existing tells; interruption, retry and recovery stop obsolete sounds. Gameplay timings are unchanged. Runtime audio checks and all 123 catalog slots pass. In-game listening acceptance remains pending.</p>
+<p><strong>November 5 — Skitterling rat audio integrated:</strong> Prototype 171 maps the approved living chitter to assembly, wet mandible churn to rush anticipation, and pulsating brood to pounce anticipation. Warnings stop at attack onset; gameplay timings are unchanged. Runtime audio checks and the 122-slot catalog validation pass. Audible user review remains pending; alligator candidates remain audition-only.</p>
+<p><strong>November 5 — next build, continuous special damage:</strong> Implemented for both heroes: 24 damage
+every 0.10 seconds against regular enemies and 12 against vulnerable bosses, without a total-damage cutoff.
+Frame catch-up samples each scheduled damage tick. Source suites pass 2,395 checks, including both bosses
+taking damage beyond the former 250 cap. These changes shipped with the enemy-remains integration; Prototype 172 is the latest delivered build.</p>
 <p>October 19 workflow update: <a href="AGENTS.md#task-ownership-and-coordination">task ownership and coordination</a>
 now use one accountable owner, focused specialist contributions and concise linked handoffs. This policy changes
 coordination only; it does not change gameplay or delivery checks.</p>
@@ -105,7 +145,7 @@ Tony's Hydrojet Overdrive and Sean's Main Break are integrated into ordinary Lev
 K or gamepad B starts a 7.5-second attack without holding fire. Each hero gets two uses per logical level;
 death, retry, checkpoints and boss phases do not refill them. HUD A attaches a weapon icon and two charge canisters
 beside existing vitals in all three themes. Tony's corrected nozzle transition follows recoil and aim; sustained
-240 DPS is 3.2 times current regular fire. Sean remains at 60 DPS. Both preserve the 250 actual-damage boss cap.
+Both specials now deal 240 DPS to regular enemies and 120 DPS to vulnerable bosses, with no total boss-damage cap.
 Sean's supported main emerges, sweeps from upright to horizontal, tapers off and remains as an inert spent prop.
 Gratecrawler now raises its release hand and selects a higher clear arc when a nearby platform blocks the ordinary throw;
 full-radius scenery collision, damage and cadence remain intact. Scripted flush, ride and camera-test modes reject
@@ -155,11 +195,111 @@ is the intended count/anchor reference but has not yet been browser-render verif
 blocked by an explicit CUA access rejection; no workaround was attempted. Remaining approval evidence:
 native 960×540 captures showing 2/1/0 for both heroes, composition against the actual crowded boss header, and a
 Flushfiend-versus-52-pixel-jet scale inset. Full mockup readiness is not claimed. No runtime or build change.
-Devil-spider contents exploration remains active.</p>
-<p><strong>November 3 — devil-spider cage-abdomen concept selected; contents and audio pending:</strong>
-Sean selected option 5 from Art's five near-black devil-spider concepts, then requested whole dolls with a few limbs
-protruding from the cage abdomen. <a href="design/devil-spider-concepts-v2/">Revised contents explorations</a> are in
-progress; the initial five-way art selection is complete. Game Mechanics coordinates the design and audio work.
+Devil-spider contents selected November 4: B, cracked porcelain doll heads.</p>
+<p><strong>November 5 — Pit water continuity and concealed enemy doors:</strong>
+Sean requested a visible spill down the left pit wall and a pipe outlet feeding the right-hand channel, replacing
+abrupt water cutoffs. He also requested removal of advance enemy markers: entry doors become visible only when
+an enemy starts emerging. Devil-spider hauling must pass through platforms; escape restores collision,
+with fall-through for overlapping thin decks and upward clearance onto solid machinery. Art is preparing the transitions; Engineering owns integration, animation and running
+acceptance. November 5 follow-up: the apology now begins its slide immediately; Storyboarding audited current game text and replaced explicit curses with symbols. The board super now follows the rider as a sustained floor-to-ceiling brown cloud for eight seconds in Prototype 168, built and signed November 5. Packaged ride initialization, apology timing and 114 cosmetic-super checks pass.
+The flush planning hitch remains open. Art approved the replacement Maintenance Hand heel strike and wrist/housing.
+Engineering corrected the apparent upward strike with stable depth and removed the recovery camera jerk by preframing.
+Continuous source motion at both yaw and 242 withdrawal checks pass; Art approved the sampled corrected sequence.</p>
+<p><strong>November 5 — Flush pressure and board comedy:</strong> Approved work adds one falling object aimed at
+the swimmer and two nearby dodge targets per group, replaces gold warning rings with charcoal shadows, and removes
+the calm delay after the final introductory dialogue. Targeting performance remains under review. Sean approved
+Tony's “Oh, @#$%—I'm going under!” and Sean's “TONY! IT'S PULLING ME UNDER!”; canonical and generated dialogue now
+contain those lines. Weapon-disabled scenes use a poop/fart HUD icon. The approved board super is purely cosmetic:
+a huge fart cloud remains behind the rider for about eight seconds, without damage, movement forces or obstacle
+clearing. The original super, sound and HUD icon are integrated in candidate 167; the follow-up replaces the scrolling
+cloud with a rider-following brown column. Art approved early and late stills at both camera angles. Focused super integration passes 114 checks;
+HUD checks pass 342. Packaged Tony and Sean camera stills are captured; continuous motion and sound-mix acceptance
+remain pending. Sean’s pipe now begins tipping at 2 seconds and reaches horizontal at 4.75 seconds; the hinge
+sound follows the new timing, with total duration unchanged.</p>
+<p><strong>November 5 — Prototype 170 checkpoint inspection:</strong> Built and signed. Eligible healthy heroes
+are lifted and inspected, receive a green check and positive ding, then are set down intact without consuming
+clone stock or lives. Injured heroes receive a red X and alarm, two progressive crushes with brief grip-anchored
+transitions, a visible windup and randomized safe screen impact. Healthy release is 3.75 seconds; injured release
+is 8.05 seconds, with bounded watchdogs. Both packaged checkpoint suites pass for both heroes and all costumes,
+including pause, skip, cleanup and stock/life accounting. Art reviewed running captures and final transition samples;
+in-game sound balance remains unverified. Evidence is linked in the existing integration handoff. Prior builds remain preserved.</p>
+<p><strong>November 5 — Prototype 169:</strong> Built and signed with Sean’s approved DD-S0108.8
+watery track collapse and 2.4-second soft tail. Packaged one-shot playback, pause/resume and stop checks pass.
+Gain and fracture timing are unchanged; in-game listening balance remains pending. Prototype 168 is preserved.</p>
+<p><strong>November 5 — Skitterling recorded hybrid auditions:</strong> Sean requested crawling insect/cockroach
+sounds with rat-like character in the first phase and alligator-like character in the second. Three recorded-source
+signature calls per phase are available in the <a href="audio/drain-damage-sound-auditions.html">sound auditions</a>:
+The first DD-S0016.1–3 and DD-S0024.1–3 calls were rejected as too cute/harmless. Sean clarified the target as
+living, burbling organic sounds with stronger insect character. New DD-S0016.7–9 and DD-S0024.7–9 emphasize wet
+contracting tissue, fluid churn and restless chitin; the intermediate harsher .4–6 drafts are also preserved.
+<a href="audio/sources/skitterling-living-insect-v6/manifest.json">Living-insect recipes and source evidence</a>
+use retained CC0 recordings, with no reference-game samples. Sean approved rat calls DD-S0016.7–9 for move-specific integration: formation, charge warning and pounce warning.
+Rat calls are integrated in Prototype 171. Sean also approved alligator DD-S0024.10–12 and requested a full
+Level Design action-timing review for both forms. Audio delivered seven pitch-preserving edits: rat charge/pounce
+warnings .74/.92s, alligator formation1.85s, charge.82s, tail.90s, submerged-volley.72s and a distinct surface warning.90s.
+<a href="audio/sources/skitterling-action-sync-v8/manifest.json">Reviewed mapping and timing contract</a> preserves
+all attack windows and existing physical contacts. Engineering owns runtime integration and regression checks for
+cutoffs, retries and aborted moves; actual action/mix listening remains pending.
+<a href="audio/sources/skitterling-recorded-phases-v4/manifest.json">Sources and exact recipes</a> are retained.</p>
+<p><strong>November 5 — Level 2 watery track-collapse auditions:</strong> Sean requested a stronger watery
+break/collapse sound. Four new samples, DD-S0108.3–6, emphasize floodgate rupture, heavy plunge, cascading washout
+and violent channel collapse. They are ready in the <a href="audio/drain-damage-sound-auditions.html">sound auditions</a>;
+<a href="audio/sources/ride-watery-collapse-v2/manifest.json">source evidence and recipes</a> are preserved.
+Sean approved revised DD-S0108.7 and .8. Audio selected DD-S0108.8, the heavier collapse with a 2.4-second
+fading water tail, and updated the runtime track-smash mapping at the existing -4 dB gain. Catalog and source checks
+are part of this delivery; Engineering owns the next packaged build and in-game mix verification. All earlier
+candidates remain preserved.</p>
+<p><strong>November 4 — Prototype 166 platform variety candidate built:</strong>
+Sean selected the water heater, cast-iron boiler and pressure tank as harmless destructible platforms with animation
+and sound. Utility sink, pipe stack, water softener, duplex pump, expansion-tank rack and radiator become permanent
+platform variants. The crated toilet is dropped. Art owns production sprites, Level Design owns Level 1 distribution,
+Audio supplies material-specific cues and Engineering owns integration and acceptance. Originals and prompts remain in the
+<a href="design/basement-breakable-props-v1/manifest.json">concept manifest</a> and concept-art archive.
+Art delivered registered production sources and Audio delivered material-specific cues. Prototype 166 integrates
+seven permanent replacements using pipe stacks, radiators, a water softener and a utility sink. Rendering and collision
+use the same measured source geometry at uniform scale. Ten other placements retain the existing machinery after
+fit and runner-navigation checks rejected their replacements. All destructibles remain disabled pending safe placements;
+their animation sources and audio are retained, with runtime mapping and mix review still pending.
+Both heroes pass the packaged later-route checks at 60/120 Hz. Independent Art review passes the captured platform
+views; full-route human playtesting remains open. All final packaged boss-pressure, forward/reverse route, ending-input and Clogfather-to-flush transition gates pass.
+Launch this preserved build with <code>make run LEVEL=1 APP="builds/Prototype-166/Drain Damage.app"</code>.</p>
+<p><strong>November 4 — Audio catalog shortcut:</strong> Run <code>make audio-catalog</code> to open the
+local sound audition catalog in your browser. The command is also listed in <code>make help</code>.</p>
+<p><strong>November 4 — Prototype 165 campaign integration candidate built:</strong>
+Ordinary Level 1 now uses 80 finite authored encounter opportunities and one shared population budget, replacing
+legacy waves and additive swarms. Level 1.2 remains unchanged as the comparison baseline. Normal retains two
+shooters and two flyers at once, with varied entrances, relief stretches, replacement platforms and two pits.
+Checkpoint safety, quiet approaches, Skitterling and Clogfather fights and transitions are preserved.
+Packaged admission, lifecycle and later-route checks pass; continuous source traversal covers both heroes.
+Running package captures verify representative platforms, pit cutaways, ceiling attachment, controls and spider
+effects. These bounded samples do not establish full-route visual acceptance, continuous animation smoothness or
+human difficulty/fun balance. The <a href="handoffs/first-call-integration.json">delivery record</a> identifies
+the final package and retained first-candidate evidence. Launch with <code>make run LEVEL=1</code>.</p>
+<p>Sean's special attack is approved to match Tony's 240 damage per second (24 damage every 0.1 seconds).
+The 7.5-second duration and two uses per level remain unchanged; the former 250-damage boss cap is removed. Canonical data and the
+Prototype 165 package include the change; the special-attack regression passes.</p>
+<p><strong>November 4 — Prototype 163 spider integration candidate; visual review pending:</strong>
+Angel spiders now dive, land on verified support, scuttle toward the hero, take off and ascend. Devil spiders use the
+selected doll-head cage artwork, crawl along supported ceiling rails, fire collision-tested webs, haul cocooned heroes
+and leave missed floor snares. Six fresh gameplay-button presses escape a cocoon; three escape a floor snare. Each press
+opens the silk further. These are initial tuning values. One existing flyer encounter is replaced in each Level 1 trial
+and the eligible campaign route; population caps and the Easy campaign omission remain intact. Widow hit/death audio is
+an explicit temporary fallback; final devil audio selection remains pending.</p>
+<p>The signed Mac candidate also includes staged Start Job preparation, swept hit knockback, immediate special-effect
+cleanup on death without charge refunds, and killable Clogfather hazards that persist across attack phases. Packaged
+spider, collision, hazard, loading, special, flush and compatibility checks pass; 45 Python tests and 117 sound slots
+validate. Actual motion, foot/ceiling contact, web readability and human balance remain pending review;
+Sean granted standing test-window permission on November 4. Headless checks do not establish visual acceptance. See the
+<a href="handoffs/first-call-integration.json">current integration record</a> for package identity and limitations.</p>
+<p><strong>Prototype 164 follow-up candidate preserved:</strong> Angel return, stationary diagonal bumper aiming,
+random one-to-three purple volleys, faster devil web attacks and independent flame/ash/doll-head death effects are
+integrated. Packaged behavior checks pass. Art reviewed source death stills for flame readability, head scale and
+floor contact; unobstructed ash, web travel, continuous motion and packaged controls still need visual review.
+The selected death scream is integrated; this does not finalize every devil audio cue.</p>
+<p><strong>November 4 — devil-spider doll-head contents selected; final audio selection pending:</strong>
+Sean selected option 5's organic cage abdomen and finalized B, cracked porcelain doll heads, on November 4.
+<a href="design/devil-spider-concepts-v2/cage-sprite-studies-v1.png">The bottom-row doll-head studies</a> guide production;
+skull and whole-doll alternatives remain preserved. Game Mechanics coordinates the design and audio work.
 Four audio families are ready in the
 <a href="audio/drain-damage-sound-auditions.html">sound auditions</a>: Chitin Rattle, Wet Brood, Breath Stalker and
 Black Maw. Sean requested shorter cues to leave space for music and other monsters. The new SHORT v2 candidates
@@ -169,8 +309,8 @@ other short events use suffixes .5–8 in their existing slots. All 48 earlier d
 remain preserved. <a href="audio/sources/devil-spider-short-v2/manifest.json">Short-cue recipes and mix proposals</a>
 link the retained CC0 source evidence. Audition freshness and technical audio checks pass. Sean's listening and
 selection remain pending; voice limits, event timing and in-game balance are recommendations awaiting integration.
-Final contents treatment, animation studies and audio selection remain pending before runtime implementation;
-no build change is requested by this selection work. Proposed behavior separates the existing halo-and-dive angel spider, with a
+Contents selection is complete. Production sources and the Prototype 163 runtime candidate are now integrated as described above;
+actual motion acceptance and final audio selection remain pending. The behavior separates the existing halo-and-dive angel spider, with a
 brief grounded scuttle as an attack opening, from a ceiling-crawling devil spider. A direct web hit cocoons the hero;
 rear and side legs visibly haul taut silk while forelegs reach, and a short escape visibly tears the strands.
 Missed webs become floor snares ignored by the spider, requiring fewer escape inputs while other monsters behave
@@ -377,6 +517,19 @@ plus optional personal-best or target-record achievements and a skin, weapon or 
 regeneration, speed/duration, timer and retry rules, fair hero/difficulty records and rewards remain undecided.
 Boost would reduce reaction time; obstacle chains must remain physically feasible. Current fidget is unchanged;
 no implementation is approved. <a href="design-ideas.json">Idea and open questions</a>.</p>
+<p><strong>November 5 — soldering-torch teaser:</strong> Sean approved including the optional torch idea as a
+fifth tentative weapon teaser. Edition 38 is complete with Art's silhouette and independent page review. Eleven-page PDF checked; website publication pending.
+This approves magazine inclusion only, not weapon implementation, character ownership or a named special.</p>
+<p><strong>November 5 — magazine weapon/special redesign:</strong> Sean approved Tony's jetter action concept
+and requested weapon-plus-special layouts for all weapons, superseding the weapons-only page. Marketing is preparing
+edition 37 with Art's action illustrations and Mechanics' canonical ability descriptions. Only Hydrojet Overdrive and
+Main Break have approved named specials; the other four remain silhouette teasers. Backpack jetter presentation is
+concept art, not an integrated gameplay change. Both illustrations integrated; eleven-page PDF rendered and checked, with Art accepting both new pages. Website publication and live verification pending.</p>
+<p><strong>November 5 — magazine 36:</strong> Added a weapons feature on page 8 with Tony's Pressure Gun and
+Sean's Heavy Plunger Launcher in color above four black-silhouette previews with tentative names and
+“Coming Soon?” labels. The issue now has ten pages, with updated contents and numbering. All pages visually
+checked; Art accepted the new page. Normal-costume-only policy preserved. PDF ready; website publication and live
+verification pending. <a href="marketing/magazine/discharge-quarterly-v36.pdf">Edition 36</a>.</p>
 <p><strong>November 2 — magazine 35:</strong> Costume-spoiler correction replaces three gameplay images with
 normal-costume material and removes revealing copy. All nine pages were visually audited by Marketing;
 prior editions remain archived. Edition 35 is live and its PDF hash is verified; the low-text storybook is unchanged.</p>
@@ -406,7 +559,7 @@ pending; baseline dialogue-test failures and the shared swimming ripple are reco
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated November 2, 2026 · Current build: Prototype 153 / 0.153.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated November 4, 2026 · Current build: Prototype 166 / 0.166.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
 at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
 point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;

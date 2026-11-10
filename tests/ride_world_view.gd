@@ -75,8 +75,8 @@ func checks() -> void:
 	root.add_child(game)
 	game.set_process(false)
 	game.set_physics_process(false)
-	var target: Dictionary = Launch.parse(["--level=2-landing"]).target
-	Launch.initialize(game,target)
+	game.begin_level_two()
+	game.flush.enter_landing(game)
 	var view = game.flush.world_view
 	view.set_process(false)
 	view._process(0)
@@ -168,7 +168,7 @@ func checks() -> void:
 				var normal: Vector3 = view.camera.global_basis.z
 				var tangent := (delta-normal*delta.dot(normal)).normalized()
 				if age <= 3.05:
-					assert((-fist.basis.y).dot(tangent) > .999,"Raised/striking wrist must align with forearm")
+					assert(fist.basis.y.dot(Vector3.UP) > .999,"Pinky heel remains below fist during downward strike")
 				assert(hand.arm.position.is_equal_approx(hand.root_point),"Forearm remains rooted in hatch")
 				if is_equal_approx(age,2.9):
 					assert(absf(fist.position.y+hand.opaque_bottom("contact",fist.basis)) < .02,
@@ -187,7 +187,15 @@ func checks() -> void:
 			for actor: Node3D in view.actors.values():
 				if not actor.has_node("hand"): continue
 				var hand = actor.get_node("hand")
-				if sample == 0: raised_pose = hand.curled.basis
+				if sample == 0:
+					raised_pose = hand.curled.basis
+					var center: Vector3 = hand.opaque_center("curled",raised_pose)
+					var wrist: Array = hand.registration.frames.curled.wrist_px
+					for pixel: Array in hand.registration.frames.curled.opaque_convex_outline_px:
+						var point: Vector3 = raised_pose*Vector3(float(pixel[0])-float(wrist[0]),
+							float(wrist[1])-float(pixel[1]),0)*hand.PIXEL-center
+						assert(absf(point.x) < hand.aperture_size.x*.5 and absf(point.y) < hand.aperture_size.y*.5,
+							"Unscaled opaque fist fits through physical hatch without shaving heel")
 				assert(hand.curled.basis.is_equal_approx(raised_pose),"Withdrawal retains stable raised orientation")
 				assert(hand.arm.position.is_equal_approx(hand.root_point),"Withdrawal cannot drag root out of hatch")
 				var forearm: Dictionary = hand.registration.frames.forearm_a

@@ -64,7 +64,9 @@ func run_checks() -> void:
 					assert(game.enemies.is_empty() and game.actors.is_empty() and game.swarms.actors.is_empty())
 					game.respawn_after_death()
 					assert(game.player.x == 4650 and not game.skitterling.entered and game.run_seed == 913)
-					assert(game.swarm_schedule.report().excluded == {"easy":5,"normal":8,"hard":6}[mode] and not game.dispenser.stocked)
+					assert(not game.dispenser.stocked)
+					for spec in game.campaign.specs:
+						assert(game.ledger[spec.id] == ("pending" if mode in spec.enabled_difficulties and spec.owner_origin >= 4650 else "excluded"))
 			game.queue_free()
 			await process_frame
 	print("PASS: launch registry, invalid/conflicting/unimplemented targets, both heroes/all difficulties and checkpoint reset")

@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "status": "Registered source delivery; running compositing and seamless-loop acceptance pending",
+  "owner": "Art",
+  "integration_owner": "Engineering",
+  "prompts": "assets/world/pit-water-transition-v1/prompts.json",
+  "coordinate_system": "Logical pixels relative to stated runtime origin; original images preserved; all new-art destination scales uniform.",
+  "left_spill": {
+    "path": "assets/world/pit-water-transition-v1/spill-source-v1.png",
+    "frames": [
+      {
+        "id": 0,
+        "source_rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          340,
+          70
+        ],
+        "destination": [
+          -68.0,
+          -14.0,
+          102.4,
+          102.4
+        ]
+      },
+      {
+        "id": 1,
+        "source_rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          324,
+          70
+        ],
+        "destination": [
+          -64.8,
+          -14.0,
+          102.4,
+          102.4
+        ]
+      },
+      {
+        "id": 2,
+        "source_rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          324,
+          70
+        ],
+        "destination": [
+          -64.8,
+          -14.0,
+          102.4,
+          102.4
+        ]
+      },
+      {
+        "id": 3,
+        "source_rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          340,
+          60
+        ],
+        "destination": [
+          -68.0,
+          -12.0,
+          102.4,
+          102.4
+        ]
+      },
+      {
+        "id": 4,
+        "source_rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          324,
+          60
+        ],
+        "destination": [
+          -64.8,
+          -12.0,
+          102.4,
+          102.4
+        ]
+      },
+      {
+        "id": 5,
+        "source_rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          324,
+          60
+        ],
+        "destination": [
+          -64.8,
+          -12.0,
+          102.4,
+          102.4
+        ]
+      }
+    ],
+    "uniform_scale": 0.2,
+    "origin": "[pit_left, 520 - 56 * profile.sample(pit_left - epsilon).water]",
+    "clip_relative_x": [
+      -12,
+      26
+    ],
+    "clip_world_y": [
+      440,
+      540
+    ],
+    "frame_seconds": 0.08,
+    "loop": true,
+    "interpolation": "Blend neighboring phases continuously, including5\u21920; do not flip or ping-pong flow. Freeze on pause.",
+    "alpha_preparation": "Derived texture only: discard alpha below160 then remap160..254 to0..255. Inspect against dark wall; do not force opaque rectangle.",
+    "seam": "Overlap existing channel12px, feather only leftmost4px. Upper bend stays anchored; use runtime clipping, never stretch fall to floor.",
+    "visibility": "Only when sampled water>0; modulate strength with water amount; do not manufacture flow in dry/fully clogged section.",
+    "tail": "At driest emitting levels source descends beyond540; clip bottom, no bottom splash or apparent platform."
+  },
+  "right_outlet": {
+    "path": "assets/world/pit-water-transition-v1/outlet-source-v1.png",
+    "source_rect": [
+      0,
+      0,
+      793,
+      1983
+    ],
+    "source_anchor": [
+      635,
+      220
+    ],
+    "uniform_scale": 0.06,
+    "destination": [
+      -38.1,
+      -13.2,
+      47.58,
+      118.98
+    ],
+    "alpha_cutoff": 240,
+    "origin": "[pit_right + 8, sampled_right_water_surface + 8]",
+    "clip_world_y": [
+      440,
+      540
+    ],
+    "support": "Backing plates attach to right pit wall; vertical pipe continues below visible screen, never float a cropped elbow.",
+    "mouth_aperture_source": [
+      592,
+      108,
+      115,
+      246
+    ],
+    "discharge": {
+      "reuse_manifest": "assets/world/wastewater-cutaway/manifest-v1.json",
+      "reuse_asset": "water-a",
+      "origin_relative_to_mouth": [
+        0,
+        -4
+      ],
+      "logical_envelope": [
+        0,
+        -4,
+        48,
+        14
+      ],
+      "animation": "Continuous rightward source transport using existing water clock/flow; aperture-clip through mouth-relative x=4.32, continue immediately at that edge with same phase/y alignment; overlap downstream channel at least12px and feather last8px.",
+      "mask": "At mouth use elliptical aperture from registered source; draw discharge after pipe back, then redraw front rim over stream root. No water on outer pipe metal.",
+      "visibility": "Only when right-side sampled water>0; no new gameplay hazard or foothold.",
+      "aperture_clip_end_x": 4.32,
+      "clarification": "First8px in original contract was an overlap envelope, not a blank mask region. No gap between aperture root and downstream stream."
+    }
+  },
+  "hatch": {
+    "path": "assets/world/pit-water-transition-v1/hatch-source-v1.png",
+    "frames": [
+      {
+        "id": 0,
+        "source_rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          260,
+          425
+        ],
+        "destination": [
+          -38.25287356321839,
+          -62.52873563218391,
+          75.3287356321839,
+          75.3287356321839
+        ],
+        "front_source_rect": [
+          42,
+          425,
+          438,
+          35
+        ],
+        "front_destination": [
+          -32.0735632183908,
+          0,
+          64.44137931034483,
+          5.149425287356322
+        ]
+      },
+      {
+        "id": 1,
+        "source_rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          260,
+          425
+        ],
+        "destination": [
+          -38.25287356321839,
+          -62.52873563218391,
+          75.3287356321839,
+          75.3287356321839
+        ],
+        "front_source_rect": [
+          554,
+          425,
+          438,
+          35
+        ],
+        "front_destination": [
+          -32.0735632183908,
+          0,
+          64.44137931034483,
+          5.149425287356322
+        ]
+      },
+      {
+        "id": 2,
+        "source_rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          260,
+          425
+        ],
+        "destination": [
+          -38.25287356321839,
+          -62.52873563218391,
+          75.3287356321839,
+          75.3287356321839
+        ],
+        "front_source_rect": [
+          1066,
+          425,
+          438,
+          35
+        ],
+        "front_destination": [
+          -32.0735632183908,
+          0,
+          64.44137931034483,
+          5.149425287356322
+        ]
+      },
+      {
+        "id": 3,
+        "source_rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          260,
+          373
+        ],
+        "destination": [
+          -38.25287356321839,
+          -54.87816091954023,
+          75.3287356321839,
+          75.3287356321839
+        ],
+        "front_source_rect": [
+          42,
+          885,
+          438,
+          35
+        ],
+        "front_destination": [
+          -32.0735632183908,
+          0,
+          64.44137931034483,
+          5.149425287356322
+        ]
+      },
+      {
+        "id": 4,
+        "source_rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          260,
+          373
+        ],
+        "destination": [
+          -38.25287356321839,
+          -54.87816091954023,
+          75.3287356321839,
+          75.3287356321839
+        ],
+        "front_source_rect": [
+          554,
+          885,
+          438,
+          35
+        ],
+        "front_destination": [
+          -32.0735632183908,
+          0,
+          64.44137931034483,
+          5.149425287356322
+        ]
+      },
+      {
+        "id": 5,
+        "source_rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          260,
+          373
+        ],
+        "destination": [
+          -38.25287356321839,
+          -54.87816091954023,
+          75.3287356321839,
+          75.3287356321839
+        ],
+        "front_source_rect": [
+          1066,
+          885,
+          438,
+          35
+        ],
+        "front_destination": [
+          -32.0735632183908,
+          0,
+          64.44137931034483,
+          5.149425287356322
+        ]
+      }
+    ],
+    "uniform_scale": 0.1471264367816092,
+    "alpha_cutoff": 240,
+    "origin": "Actor feet / authored mount surface",
+    "opening_order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "opening_seconds": 0.3,
+    "closing_order": [
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ],
+    "lifecycle": "Render nothing while idle or merely scheduled. At actual entrance start play opening, reveal actor progressively; holdopen for mounted shooter; mobile closes after full body clears then hides. No rings/lamps.",
+    "floor_layers": [
+      "hatch full frame behind actor",
+      "actor clipped at support plane during emergence",
+      "registered front strip over actor base"
+    ],
+    "ceiling": "Reflect full destination, actor clipping and front strip vertically about mount surface. Permanent beam/posts remain. Lid swings into background behind emerging actor; never draw it over shooter body. Keep front strip above underside plane after reflection.",
+    "reflection_formula": "For destination[x,y,w,h], reflected positive rect[x,-y-h,w,h] with vertical texture flip. Apply identical transform to front strip.",
+    "motion_review": "Six actual hinge poses, no whole-frame squash or fade. Runtime cadence and handoff to actor are unverified; floor collision stays solid."
+  },
+  "acceptance_gaps": [
+    "Running first and late pit views at actual water levels",
+    "Downward spill motion and5\u21920 transition",
+    "Outlet water aperture and downstream join",
+    "Floor/ceiling door and actor occlusion in motion"
+  ],
+  "constraints": [
+    "Central pit stays dark/readable; clip spill to left26px and pipe to rightwall.",
+    "All water/pipe art belowfloor440.",
+    "No physics, population, timing or damage changes authorized by this art package."
+  ]
+}

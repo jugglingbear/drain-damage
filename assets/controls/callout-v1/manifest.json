@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "status": "Approved direction; clean art inspected; Engineering integration/native layout review pending",
+  "viewport": [
+    960,
+    540
+  ],
+  "controller": {
+    "path": "assets/controls/callout-v1/controller.png",
+    "source_size": [
+      1671,
+      941
+    ],
+    "destination": [
+      180,
+      100,
+      601.56,
+      338.76
+    ],
+    "alpha_cutoff": 240
+  },
+  "style": {
+    "background": "#0b1926",
+    "text": "#f5ead0",
+    "accent": "#8be2bd",
+    "font_minimum_px": 16,
+    "lines_px": 1.5
+  },
+  "layout_note": "Reproduce approved single-view callouts. All labels/lines runtime UI; do not use whole mockup as functional screen. Reserve footer below450 for context/navigation/toggles. Adapt typography to prevent collisions.",
+  "callouts": [
+    {
+      "label": "MOVE / AIM",
+      "button_points": [
+        [
+          543,
+          340
+        ],
+        [
+          663,
+          516
+        ]
+      ],
+      "label_position": [
+        40,
+        285
+      ],
+      "side": "left"
+    },
+    {
+      "label": "HOLD: AIM UP-LEFT",
+      "button_points": [
+        [
+          453,
+          147
+        ]
+      ],
+      "label_position": [
+        35,
+        155
+      ],
+      "side": "left"
+    },
+    {
+      "label": "HOLD: AIM UP-RIGHT",
+      "button_points": [
+        [
+          1211,
+          147
+        ]
+      ],
+      "label_position": [
+        735,
+        155
+      ],
+      "side": "right"
+    },
+    {
+      "label": "FIRE",
+      "button_points": [
+        [
+          1195,
+          58
+        ]
+      ],
+      "label_position": [
+        765,
+        112
+      ],
+      "side": "right"
+    },
+    {
+      "label": "FIRE",
+      "button_points": [
+        [
+          1045,
+          363
+        ]
+      ],
+      "label_position": [
+        785,
+        235
+      ],
+      "side": "right"
+    },
+    {
+      "label": "SPECIAL · 2 USES",
+      "button_points": [
+        [
+          1201,
+          363
+        ]
+      ],
+      "label_position": [
+        785,
+        278
+      ],
+      "side": "right"
+    },
+    {
+      "label": "JUMP",
+      "button_points": [
+        [
+          1128,
+          445
+        ]
+      ],
+      "label_position": [
+        785,
+        321
+      ],
+      "side": "right"
+    },
+    {
+      "label": "PAUSE",
+      "button_points": [
+        [
+          884,
+          375
+        ]
+      ],
+      "label_position": [
+        474,
+        117
+      ],
+      "side": "top"
+    }
+  ],
+  "point_space": "Button points are in full source texture pixels. worldUI=destination.xy+sourcePoint*.36. Line bends freely routed through margins; no crossed lines.",
+  "preserve": [
+    "Keyboard page",
+    "Menu/controller navigation and focus indication",
+    "Music toggle via Y/click in menus",
+    "Enemy bars toggle via View/click on controls",
+    "Menu/dialogue-specific A/B explanations",
+    "Back/resume behavior"
+  ],
+  "unbound": "No invented LT/rightstick actions. Stand-still note applies ONLY LB/RB diagonal holds.",
+  "prompt": "Use case: background-extraction. Extract ONLY the central tilted plumbing controller from this approved UI mockup. Remove ALL background, header, border, labels, callout lines and endpoint dots including lines over controller; reconstruct underlyingcontroller surface where lines were. Preserve exact controller design, angle and proportions: olivebody,copperstraps,bluePVCleftgrip,blackribbedrightgrip,topLT RT/LB RB,faceYXBA,Menu/View,two lowsticks,dpadupperleft. Real zeroalpha background, opaque controller. Do not invent extra buttons or change layout. Entirecontroller fullyinside canvas withmargin, no shadowsglowhaze. Highresolution transparentPNG."
+}

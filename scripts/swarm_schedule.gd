@@ -51,7 +51,7 @@ func additional_population(host: Node2D) -> int:
 func step(host: Node2D) -> void:
 	for index in range(host.swarms.actors.size()-1,-1,-1):
 		var actor: Dictionary = host.swarms.actors[index]
-		# Boss waves have their own bounded lifetime and never enter the route ledger.
+		# Boss waves use encounter-owned cleanup and never enter the route ledger.
 		if actor.get("clogfather_reinforcement",false): continue
 		var entry: Dictionary = ledger[actor.schedule_id]
 		var death_frames: Array = host.swarms.definition.animation.animations.death.frames

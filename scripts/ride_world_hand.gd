@@ -1,15 +1,16 @@
 extends Node3D
 ## Art-registered articulated cutouts, with world endpoints and unscaled fist silhouettes.
 const Props = preload("res://scripts/ride_world_props.gd")
-const REGISTRATION := "res://assets/world/ride-depth-v1/hand-registration.json"
-const PIXEL := 1.75/606.0
+const REGISTRATION := "res://assets/world/ride-depth-v1/hand-registration-v3.json"
+const PIXEL := 1.75/816.0
 var registration: Dictionary
 var contact: Sprite3D
 var curled: Sprite3D
 var arm: Sprite3D
 var aperture_material: ShaderMaterial
-var hatch_point := Vector3(4,.6,-1.99)
-var root_point := Vector3(4.7,.25,-2.05)
+var hatch_point := Vector3(4,.95,-1.99)
+var aperture_size := Vector2(2.0,1.8)
+var root_point := Vector3(4.7,.6,-2.05)
 
 func configure(materials: Dictionary) -> void:
 	registration = JSON.parse_string(FileAccess.get_file_as_string(REGISTRATION))
@@ -18,6 +19,7 @@ func configure(materials: Dictionary) -> void:
 render_mode unshaded, cull_disabled;
 uniform sampler2D artwork : source_color, filter_linear_mipmap;
 uniform mat4 hand_inverse;
+uniform vec4 aperture;
 varying vec3 hand_position;
 void vertex() {
  hand_position = (hand_inverse * MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -25,8 +27,8 @@ void vertex() {
 void fragment() {
  // The painted cutout may only cross the wall through the physical hatch.
  if (hand_position.z < -1.99 &&
-     (hand_position.x < 3.28 || hand_position.x > 4.72 ||
-      hand_position.y < 0.12 || hand_position.y > 1.08)) { discard; }
+     (hand_position.x < aperture.x || hand_position.x > aperture.z ||
+      hand_position.y < aperture.y || hand_position.y > aperture.w)) { discard; }
  if (hand_position.z < -2.32) { discard; }
  vec4 ink = texture(artwork, UV);
  ALBEDO = ink.rgb;
@@ -37,13 +39,16 @@ void fragment() {
 	aperture_material = ShaderMaterial.new()
 	aperture_material.shader = aperture_shader
 	aperture_material.set_shader_parameter("artwork",load("res://"+str(registration.path)))
-	for x in [-.8,.8]:
-		Props.box(self,Vector3(.08,1.12,.12),hatch_point+Vector3(x,0,0),materials.cast_iron)
-	for y in [-.56,.56]:
-		Props.box(self,Vector3(1.68,.08,.12),hatch_point+Vector3(0,y,0),materials.cast_iron)
+	var half := aperture_size*.5
+	aperture_material.set_shader_parameter("aperture",Vector4(hatch_point.x-half.x,
+		hatch_point.y-half.y,hatch_point.x+half.x,hatch_point.y+half.y))
+	for x in [-half.x-.12,half.x+.12]:
+		Props.box(self,Vector3(.24,aperture_size.y+.48,.5),hatch_point+Vector3(x,0,-.13),materials.cast_iron)
+	for y in [-half.y-.12,half.y+.12]:
+		Props.box(self,Vector3(aperture_size.x+.48,.24,.5),hatch_point+Vector3(0,y,-.13),materials.cast_iron)
 	var recess := materials.cast_iron.duplicate() as StandardMaterial3D
 	recess.albedo_color = Color(.08,.08,.08)
-	Props.box(self,Vector3(1.44,.96,.12),hatch_point-Vector3(0,0,.27),recess)
+	Props.box(self,Vector3(aperture_size.x,aperture_size.y,.12),hatch_point-Vector3(0,0,.27),recess)
 	contact = cutout("contact")
 	curled = cutout("curled")
 	arm = cutout("forearm_a")
@@ -89,7 +94,10 @@ func animate(age: float, timeline: Dictionary, camera: Camera3D) -> void:
 		var lowest := opaque_contact("contact",pose)
 		contact_height = -lowest.y
 		contact_x = -lowest.x
-	var wrist := Vector3(contact_x,lerpf(2.2,contact_height,strike),lerpf(1.5,-.35,strike))
+	# Recover toward the wall, not forward through the rider's jump corridor.
+	var raised_depth := -.35 if age < impact else -1.35
+	var raised_height := 1.25 if age < impact else 2.2
+	var wrist := Vector3(contact_x,lerpf(raised_height,contact_height,strike),lerpf(raised_depth,-.35,strike))
 	# Seat the painted fist at the opening before drawing it through the wall.
 	# Keep the proximal endpoint rooted in the hatch throughout withdrawal.
 	var hand_basis := wrist_basis(wrist,camera)
@@ -119,21 +127,23 @@ func animate(age: float, timeline: Dictionary, camera: Camera3D) -> void:
 		float(pivot[1])-float(overlap[1]),0)*PIXEL
 	var delta := interior-arm_root
 	var right := delta.normalized()
-	var normal := camera.global_basis.z.cross(right).normalized()
-	var source_delta := Vector2(608-44,-(1016-980))
+	var normal := (Vector3.UP-right*right.dot(Vector3.UP)).normalized()
+	var arm_frame: Dictionary = registration.frames.forearm_a
+	var source_delta := Vector2(float(arm_frame.wrist_px[0])-float(arm_frame.root_px[0]),
+		float(arm_frame.root_px[1])-float(arm_frame.wrist_px[1]))
 	# Match the narrower painted forearm terminal to the hand's wrist, not the
 	# full forearm bounding box; overlap hides the atlas cut beneath the palm.
-	var thickness := 230.0/160.0
+	var thickness := 1.0
 	arm.basis = Basis(right,normal,right.cross(normal))*Basis.from_scale(
 		Vector3((delta.length()+.06)/(source_delta.length()*PIXEL),thickness,1))*Basis(Vector3.BACK,-source_delta.angle())
 	arm.position = arm_root
 
-func wrist_basis(wrist: Vector3, camera: Camera3D) -> Basis:
-	var forward := camera.global_basis.z
-	var delta := wrist-root_point
-	var palm := (delta-forward*delta.dot(forward)).normalized()
-	var up := -palm
-	return Basis(up.cross(forward),up,forward)
+func wrist_basis(_wrist: Vector3, camera: Camera3D) -> Basis:
+	# Keep the pinky-side heel below the closed fist throughout the downward blow.
+	var right := -camera.global_basis.x
+	right.y = 0
+	right = right.normalized()
+	return Basis(right,Vector3.UP,right.cross(Vector3.UP))
 
 func opaque_bottom(id: String, pose: Basis) -> float:
 	return opaque_contact(id,pose).y

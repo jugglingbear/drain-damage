@@ -4,6 +4,7 @@ const BuildVersion = preload("res://scripts/build_version.gd")
 ## Plumbing action prototype with pixel world art and illustrated dialogue.
 
 signal title_requested
+var startup_yield := Callable()
 
 const VitalsHUD = preload("res://scripts/vitals_hud.gd")
 var vitals_hud := VitalsHUD.new()
@@ -129,9 +130,9 @@ var tone_phase := 0.0
 
 func _ready() -> void:
 	Data.load_data()
-	special_art.prepare()
+	await special_art.prepare(startup_yield)
 	# Never process the damage atlas on the first visible enemy during gameplay.
-	world_art.damage_art.prepare("toilet")
+	await world_art.damage_art.prepare("toilet",startup_yield)
 	assert(wastewater_art.configure(Data.bundle.wastewater))
 	add_child(boss_hud)
 	RenderingServer.set_default_clear_color(INK)
@@ -142,6 +143,8 @@ func _ready() -> void:
 	add_action("aim_down", [KEY_S, KEY_DOWN])
 	add_action("shoot", [KEY_ENTER, KEY_KP_ENTER, KEY_J, KEY_X])
 	add_action("special", [KEY_K])
+	add_action("aim_up_left_stationary", [KEY_Z])
+	add_action("aim_up_right_stationary", [KEY_V])
 	add_action("dialogue_next", [KEY_ENTER, KEY_KP_ENTER, KEY_SPACE])
 	add_action("dialogue_skip", [KEY_TAB])
 	if InputMap.has_action("restart"): InputMap.erase_action("restart")
@@ -154,6 +157,8 @@ func _ready() -> void:
 	add_pad_button("aim_down", JOY_BUTTON_DPAD_DOWN)
 	add_pad_button("shoot", JOY_BUTTON_X)
 	add_pad_button("special", JOY_BUTTON_B)
+	add_pad_button("aim_up_left_stationary", JOY_BUTTON_LEFT_SHOULDER)
+	add_pad_button("aim_up_right_stationary", JOY_BUTTON_RIGHT_SHOULDER)
 	add_pad_button("pause_game", JOY_BUTTON_START)
 	add_pad_button("dialogue_next", JOY_BUTTON_A)
 	add_pad_button("dialogue_skip", JOY_BUTTON_B)
@@ -342,6 +347,9 @@ func _input(event: InputEvent) -> void:
 	if handle_developer_restart(event):
 		get_viewport().set_input_as_handled()
 		return
+	if not paused and life_state == "alive":
+		if event.is_action_pressed("aim_up_left_stationary"): facing = -1
+		elif event.is_action_pressed("aim_up_right_stationary"): facing = 1
 	if not paused and not (won and pause_menu.visible): return
 	if death_popup_locked or (won and (dialogue.awaiting_release or dialogue.release_guard > 0)):
 		get_viewport().set_input_as_handled()
@@ -493,7 +501,6 @@ func activate_checkpoint(index: int = 0) -> void:
 	checkpoint_index = index
 	checkpoint_active = true
 	respawn_point = Vector2(Level.CHECKPOINTS[index], FLOOR_Y - PLAYER_SIZE.y)
-	health = employee.max_health
 	dispenser.start(self,kind,index,previous_health)
 
 func complete_job() -> void:
@@ -619,7 +626,8 @@ func player_shot_solids() -> Array[Rect2]:
 func specials_allowed(ignore_active := false) -> bool:
 	return life_state == "alive" and not paused and not won and not dispenser.actions_locked \
 		and restart_guard_device < 0 and dialogue != null and not dialogue.active \
-		and dialogue.release_guard <= 0 and not dialogue.awaiting_release and (ignore_active or not specials.active)
+		and dialogue.release_guard <= 0 and not dialogue.awaiting_release \
+		and not dispenser.active and not dispenser.just_finished and (ignore_active or not specials.active)
 
 func special_floor_solids() -> Array[Rect2]:
 	return [Rect2(0,FLOOR_Y,WORLD_WIDTH,100)]
@@ -663,10 +671,12 @@ func step_player(delta: float) -> void:
 	jump_buffer = maxf(0.0, jump_buffer - delta)
 	if not dispenser.actions_locked and Input.is_action_just_pressed("jump"):
 		jump_buffer = 0.14
-	var direction := Input.get_axis("left", "right")
+	var stationary_aim := stationary_aim_direction()
+	var direction := 0.0 if stationary_aim != 0 else Input.get_axis("left", "right")
+	if stationary_aim != 0: facing = stationary_aim
 	var target_speed := specials.movement_speed(direction,float(employee.move_speed),aim_direction())
 	velocity.x = move_toward(velocity.x, target_speed, 1900.0 * delta)
-	if specials.rooted(): velocity.x = 0
+	if specials.rooted() or (stationary_aim != 0 and not specials.active): velocity.x = 0
 	if direction != 0:
 		facing = signf(direction)
 	if jump_buffer > 0 and coyote > 0 and not specials.rooted():
@@ -689,7 +699,7 @@ func step_player(delta: float) -> void:
 	if specials.active and specials.hero_id == "tony" and grounded and is_zero_approx(direction):
 		animation_state = "idle"
 	specials.step(self,delta)
-	if not specials.active and not dispenser.actions_locked and Input.is_action_pressed("shoot") and fire_timer <= 0 and not restart_inputs_held():
+	if (not specials.active or specials.hero_id == "sean") and not dispenser.actions_locked and Input.is_action_pressed("shoot") and fire_timer <= 0 and not restart_inputs_held():
 		var aim := current_aim
 		if aim == Vector2.ZERO: return
 		var muzzle := world_art.hero_aim_art.muzzle(self)
@@ -725,6 +735,8 @@ func update_animation(delta: float) -> void:
 func step_combat(delta: float) -> void:
 	for enemy: Dictionary in enemies:
 		enemy.phase += delta * 4.5
+		enemy.age = float(enemy.get("age",0))+delta
+		var was_grounded: bool = enemy.get("grounded",false)
 
 		var pursuit: Dictionary = Data.monster(enemy.id).pursuit
 		var distance: float = player.x - enemy.pos.x
@@ -757,6 +769,16 @@ func step_combat(delta: float) -> void:
 		enemy.pos = FlushfiendGeometry.legacy_from_body(motion.pos)
 		enemy.vertical_speed = motion.velocity.y
 		enemy.grounded = motion.grounded
+		if enemy.pos.x >= camera_x and enemy.pos.x <= camera_x+960:
+			if not enemy.get("audio_arrived",false):
+				enemy.audio_arrived = true
+				creature_audio[enemy.id].play_action("arrival",enemy)
+			if was_grounded and not enemy.grounded and vy < 0:
+				creature_audio[enemy.id].play_action("hop",enemy)
+			elif not was_grounded and enemy.grounded:
+				creature_audio[enemy.id].play_action("land",enemy)
+			elif enemy.grounded and absf(dx) > 1:
+				creature_audio[enemy.id].play_action("step",enemy)
 		enemy.flash = maxf(0.0, enemy.flash - delta)
 		if Rect2(player, PLAYER_SIZE).intersects(FlushfiendGeometry.body(enemy.pos)):
 			hurt_player()
@@ -831,9 +853,19 @@ func pursuit_velocity(enemy: Dictionary, distance: float, pursuit: Dictionary, d
 	enemy.horizontal_speed = horizontal
 	return horizontal
 
+func stationary_aim_direction() -> float:
+	var left := Input.is_action_pressed("aim_up_left_stationary")
+	var right := Input.is_action_pressed("aim_up_right_stationary")
+	if left and right: return -1.0 if facing < 0 else 1.0
+	return -1.0 if left else 1.0 if right else 0.0
+
 func aim_direction() -> Vector2:
 	var x := signf(Input.get_axis("left", "right"))
 	var y := signf(Input.get_axis("aim_up", "aim_down"))
+	var stationary := stationary_aim_direction()
+	if stationary != 0:
+		x = stationary
+		y = -1.0
 	var direction := Vector2(x, y)
 	if direction == Vector2.ZERO or (grounded and y > 0 and x == 0): direction = Vector2(facing, 0)
 	var names := {Vector2.LEFT:"left", Vector2.RIGHT:"right", Vector2.UP:"up", Vector2.DOWN:"down",
@@ -878,6 +910,7 @@ func damage_enemy(index: int, amount: float, impact: Vector2, player_credit := t
 	burst(impact, MINT)
 	if enemy.hp > 0: creature_audio[enemy.id].play_hit(enemy, elapsed)
 	if enemy.hp == 0:
+		creature_audio[enemy.id].stop_actor_actions(enemy)
 		creature_audio[enemy.id].play_defeat()
 		enemy.death_time = 0.0
 		enemy.death_velocity = 0.0
@@ -899,12 +932,15 @@ func hurt_player() -> void:
 	invulnerable = 1.5
 	hurt_time = 0.15
 	velocity.y = -220.0
-	player.x = maxf(22.0, player.x - 45.0)
+	# Hit displacement must use the same solid/one-way rules as ordinary movement.
+	player = move_player_body(player,Vector2(-45,0),PLAYER_SIZE,1.0).pos
 	if health > 0: play_tone(65.0, 0.15)
 	if health <= 0:
 		health = 0
 		lives -= 1
 		life_state = "dying"
+		specials.clear_transients()
+		special_audio.stop()
 		starter_weapon_audio.stop()
 		tone_time = 0
 		hero_death_audio.play_death()
@@ -941,11 +977,14 @@ func step_death(delta: float) -> void:
 	set_paused(true)
 
 func respawn_after_death() -> void:
+	specials.clear_transients()
+	special_audio.stop()
 	starter_weapon_audio.stop()
 	for sound in creature_audio.values(): sound.stop()
 	if lives <= 0: return
 	life_state = "alive"
-	health = employee.max_health
+	if not checkpoint_active or dispenser.spent_checkpoints.has(checkpoint_index):
+		health = employee.max_health
 	player = respawn_point
 	camera_x = clampf(player.x - 320.0, 0.0, WORLD_WIDTH - 960.0)
 	invulnerable = 3.0

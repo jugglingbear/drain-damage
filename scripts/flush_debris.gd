@@ -6,6 +6,7 @@ const STEP := 1.0/120.0
 const CUTOFF := 35.0
 const NEAR_HAZARD_CLEARANCE := 110.0
 const IMPACT_LOOKAHEAD := 0.25
+const TARGET_OFFSETS := [80.0,112.0,144.0,176.0]
 var layout: Dictionary = {}
 var mode := "normal"
 var items: Array[Dictionary] = []
@@ -225,32 +226,69 @@ func prior_reaction(origin: Vector2, time: float, hero_speed: float) -> Array:
 	if origin.distance_to(prior.witness_positions[index]) > 0.01: return []
 	return prior.witness.slice(index,index+18)
 
+func sidestep_choices(origin: Vector2) -> Array[Dictionary]:
+	var choices: Array[Dictionary] = []
+	for direction: Vector2 in [Vector2.LEFT,Vector2.RIGHT,Vector2.UP,Vector2.DOWN]:
+		for distance: float in TARGET_OFFSETS:
+			var point := origin+direction*distance
+			if Flow.drain_contact(point,drain_radii,drain_projection,drain_depth,
+				drain_footprint_radius): continue
+			choices.append({"point":point,"direction":direction})
+	return choices
+
+func targeted_points(origin: Vector2, impact: float, types: Array,
+		prepared: Array[Dictionary] = []) -> Array[Vector2]:
+	# Lock once at warning admission. Prefer different cardinal directions; near a rim/drain,
+	# two separated distances on the remaining valid direction avoid inventing an off-water target.
+	var choices: Array[Dictionary] = prepared.duplicate() if not prepared.is_empty() else sidestep_choices(origin)
+	choices.assign(shuffled(choices))
+	for distinct in [true,false]:
+		for first in choices:
+			if not valid_sidestep(first.point,impact,radius_for(types[1])): continue
+			if first.point.distance_to(origin) < radius_for(types[0])+radius_for(types[1]): continue
+			for second in choices:
+				if distinct and first.direction == second.direction: continue
+				if not valid_sidestep(second.point,impact,radius_for(types[2])): continue
+				if second.point.distance_to(origin) < radius_for(types[0])+radius_for(types[2]): continue
+				if second.point.distance_to(first.point) < radius_for(types[1])+radius_for(types[2]): continue
+				return [origin,first.point,second.point]
+	return []
+
+func valid_sidestep(point: Vector2, impact: float, radius: float) -> bool:
+	return point.length()+radius <= float(layout.geometry.water_radii[0]) \
+		and point.length()-radius-float(layout.geometry.hero_collision_radius) < Flow.annulus(impact).y
+
 func spawn_wave(model: RefCounted, wave: Dictionary, immunity: float, hero_speed: float) -> bool:
 	proof_cache.clear()
 	reaction_commands = prior_reaction(model.position,model.clock,hero_speed)
-	var types := peek_props(int(wave.count))
+	# Three targeted anchors are one atomic group; larger waves retain their existing count.
+	var count := maxi(3,int(wave.count))
+	var types := peek_props(count)
 	var impact := float(wave.at)+float(wave.duration)
 	var bounds := Flow.annulus(impact)
 	var candidates: Array[Dictionary] = []
+	var target_choices := sidestep_choices(model.position)
 	var offsets := shuffled([0.0,15.0,-15.0,30.0,-30.0,45.0,-45.0,60.0,-60.0,90.0,-90.0,135.0,-135.0,180.0])
 	for offset in offsets:
 		var angle: float = model.position.angle()+deg_to_rad(float(offset))
 		for assignment in range(8):
 			var slots := shuffled([3,4,5,6,7,8,9])
 			var incoming: Array[Dictionary] = []
+			var targets := targeted_points(model.position,impact,types,target_choices)
+			if targets.size() != 3: continue
 			var separated := true
 			for index in range(types.size()):
 				var id := str(types[index])
 				var radius := radius_for(id)
 				var distance := clampf(model.position.length(),bounds.x+radius,bounds.y-radius)
-				var point := Vector2.from_angle(angle+float(slots[index])*TAU/12)*distance
+				var point: Vector2 = targets[index] if index < 3 else Vector2.from_angle(angle+float(slots[index])*TAU/12)*distance
 				for other in incoming:
 					if point.distance_to(other.pos) < radius+float(other.radius): separated = false
 				incoming.append({"id":str(wave.id)+"-"+str(spawned+index),"prop":PROP_NAMES.get(id,id),
 					"source_prop":id,"radius":radius,"warning_radius":radius+14,"at":float(wave.at),
 					"duration":float(wave.duration),"impact_at":impact,"pos":point,"impact_pos":point,
 					"height":maxf(0,minf(220,model.project(point).y-72-prop_extent(id))),
-					"impacted":false,"retired":false})
+					"impacted":false,"retired":false,"target_kind":"hero" if index == 0 else "sidestep" if index < 3 else "scatter"})
 			if not separated: continue
 			candidates.append({"angle":angle,"items":incoming})
 			break
@@ -278,6 +316,16 @@ func spawn_wave(model: RefCounted, wave: Dictionary, immunity: float, hero_speed
 			if incoming_clear(witness,model.clock,placement.items):
 				commit_wave(model,wave,placement.items,route_candidate.angle,witness,"strict",immunity,0)
 				return true
+	# Targeted anchors may intersect every previously preferred route. Search a new route
+	# against the complete announced group, rather than weakening collision or dropping a prop.
+	for placement in candidates:
+		proof_cache.clear()
+		var witness := safe_route(model.position,placement.items,model.clock,placement.angle,
+			model.last_steering,hero_speed)
+		if witness.safe and incoming_clear(witness,model.clock,placement.items):
+			witness.proof_strategy = "joint-targeted-route"
+			commit_wave(model,wave,placement.items,placement.angle,witness,"strict",immunity,0)
+			return true
 	# Only baseline-confirmed old contact permits recovery. New props must cause zero contact, even while immune.
 	if old_contact_in_reaction(model.position,model.clock,model.last_steering,hero_speed):
 		var baselines: Array[Dictionary] = []
@@ -296,6 +344,8 @@ func spawn_wave(model: RefCounted, wave: Dictionary, immunity: float, hero_speed
 				baseline.witness.paired_baseline_hits = baseline_hits
 				commit_wave(model,wave,placement.items,baseline.angle,baseline.witness,"recovery",immunity,baseline_hits)
 				return true
+	last_failure.candidate_count = candidates.size()
+	last_failure.target_points = targeted_points(model.position,impact,types,target_choices)
 	fail_wave(wave,"no full-count placement avoids a verified old-debris route; no props consumed")
 	return false
 
@@ -329,19 +379,20 @@ func incoming_clear(witness: Dictionary, start: float, incoming: Array[Dictionar
 func commit_wave(model: RefCounted, wave: Dictionary, incoming: Array[Dictionary], angle: float,
 		witness: Dictionary, admission: String, immunity: float, baseline_hits: int) -> void:
 	var bounds := Flow.annulus(float(wave.at)+float(wave.duration))
-	var entry := {"id":wave.id,"at":wave.at,"duration":wave.duration,"count":wave.count,
+	var entry := {"id":wave.id,"at":wave.at,"duration":wave.duration,"count":incoming.size(),"target_origin":model.position,"targets_locked_at":model.clock,
 		"safe_point":route_target(angle,bounds),"witness":witness.commands,
 		"witness_start":model.clock,"witness_end":CUTOFF,"witness_positions":witness.positions,
 		"used_continuation":not reaction_commands.is_empty(),"mode":mode,"hero_speed":witness.hero_speed,
 		"reaction_source":ledger[-1].id if not reaction_commands.is_empty() else "constant-input",
-		"incoming_contacts":0,"proof_strategy":"old-route-then-incoming",
-		"reused_previous_route":witness.get("reused_previous_route",false),"inherited_contacts":[],"props":[],"positions":[],
+		"incoming_contacts":0,"proof_strategy":witness.get("proof_strategy","old-route-then-incoming"),
+		"reused_previous_route":witness.get("reused_previous_route",false),"inherited_contacts":[],"props":[],"positions":[],"target_kinds":[],
 		"admission":admission,"starting_immunity":immunity,"baseline_hits":baseline_hits,
 		"projected_hits":witness.hits,"paired_baseline_hits":witness.get("paired_baseline_hits",0)}
 	for item in incoming:
 		items.append(item)
 		bag.pop_front()
 		spawned += 1
+		entry.target_kinds.append(item.target_kind)
 		entry.props.append(item.prop)
 		entry.positions.append(item.impact_pos)
 	ledger.append(entry)

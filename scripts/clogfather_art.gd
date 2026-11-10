@@ -68,7 +68,7 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 	frame(canvas,body,origin,Vector2.ZERO,Vector2(1+breathing,1-breathing))
 	var recoil := 0.0
 	if snapshot.state == "volley": recoil = maxf(0,sin(snapshot.elapsed*PI*5))*2.0
-	var swelling := smoothstep(0,0.9,snapshot.elapsed) if snapshot.state == "volley_warning" else 0.0
+	var swelling := smoothstep(0,0.9,snapshot.elapsed) if snapshot.state == "volley_warning" or snapshot.get("gun_warning",false) else 0.0
 	# The nozzle is stationary at emission; only the authored warning swells its relaxed skin.
 	frame(canvas,"sludge_relaxed",origin,Vector2(recoil,0),Vector2.ONE,0,1-swelling)
 	frame(canvas,"sludge_swell",origin,Vector2.ZERO,Vector2.ONE,0,swelling)
@@ -99,7 +99,7 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 				origin,hazard.rect.get_center(),0,Color(2,2,2) if hazard.get("flash",0.0) > 0 else Color.WHITE)
 			if hazard.age < 0.3: place(canvas,"gas_emit",origin,snapshot.nozzle)
 		else:
-			place(canvas,"acid_puddle" if snapshot.state == "acid_puddle" else "acid_drop",origin,hazard.pos)
+			place(canvas,"acid_puddle" if float(hazard.get("age",0)) >= 0.6 else "acid_drop",origin,hazard.pos)
 
 func place(canvas: Node2D, id: String, origin: Vector2, position: Vector2, rotation := 0.0, tint := Color.WHITE) -> void:
 	if not definition.frames.has(id): return

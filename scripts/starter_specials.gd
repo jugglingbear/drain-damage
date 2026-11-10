@@ -61,17 +61,26 @@ func begin(host: Node2D) -> bool:
 	return true
 
 func cancel(_reason := "") -> void:
-	retire_pipe()
+	clear_transients()
+
+func clear_transients() -> void:
+	# Props belong to the current attempt; ending an attempt never refunds its level budget.
+	spent_pipes.clear()
 	if audio != null: audio.stop()
 	active = false
 	elapsed = 0
 	tick_clock = 0
+	boss_used.clear()
 
 func pipe_state() -> Dictionary:
 	return {"anchor":anchor,"angle":pipe_angle(),"elapsed":elapsed,"costume":costume}
 
-func retire_pipe() -> void:
-	if active and hero_id == "sean" and elapsed > 0.26: spent_pipes.append(pipe_state())
+func retire_pipe(host: Node2D) -> void:
+	if active and hero_id == "sean" and elapsed > 0.26:
+		var state := pipe_state()
+		state.spent_age = 0.0
+		state.spent_variant = host.special_art.spent_variant(state,host.special_solids())
+		spent_pipes.append(state)
 
 func rooted() -> bool:
 	return active and hero_id == "sean" and elapsed < 1.0
@@ -85,30 +94,37 @@ func movement_speed(direction: float, normal_speed: float, aim: Vector2) -> floa
 	return direction*normal_speed+recoil
 
 func step(host: Node2D, delta: float) -> void:
-	if not active: return
 	if host.life_state != "alive":
-		cancel("death")
-		host.special_audio.stop()
+		if active or not spent_pipes.is_empty():
+			cancel("death")
+			host.special_audio.stop()
 		return
 	if not host.specials_allowed(true): return
-	var used := minf(maxf(delta,0),DURATION-elapsed)
-	elapsed += used
+	var advance := maxf(delta,0)
+	for state: Dictionary in spent_pipes:
+		state.spent_age = float(state.get("spent_age",0))+advance
+	if not active: return
+	var used := minf(advance,DURATION-elapsed)
+	var end_time := elapsed+used
 	host.special_audio.advance(used)
-	tick_clock += used
 	var tuning: Dictionary = definition.initial_tuning.hero_overrides[hero_id]
 	var interval: float = tuning.tick_interval_seconds
-	while tick_clock+0.000001 >= interval:
-		tick_clock -= interval
+	# Sample each scheduled pose, including catch-up ticks, rather than the frame's final pose.
+	while (tick_serial+1)*interval <= end_time+0.000001:
 		tick_serial += 1
+		elapsed = tick_serial*interval
 		var segments := water_segments(host)
 		if segments.is_empty(): continue
-		var budget := {}
-		for key in ["skitterling","clogfather"]:
-			budget[key] = maxf(0,float(definition.initial_tuning.maximum_damage_per_boss_per_activation)-float(boss_used.get(key,0)))
-		var applied: Dictionary = host.special_damage(segments,float(tuning.damage_per_tick),activation_id,budget)
+		var boss_tick_damage := {"skitterling":float(tuning.boss_damage_per_tick),
+			"clogfather":float(tuning.boss_damage_per_tick)}
+		var applied: Dictionary = host.special_damage(segments,float(tuning.damage_per_tick),activation_id,boss_tick_damage)
 		for key in applied: boss_used[key] = float(boss_used.get(key,0))+float(applied[key])
+	elapsed = end_time
+	tick_clock = maxf(0,elapsed-tick_serial*interval)
 	if elapsed >= DURATION:
-		retire_pipe()
+		retire_pipe(host)
+		if hero_id == "sean" and not spent_pipes.is_empty():
+			spent_pipes.back().spent_age = maxf(0,advance-used)
 		active = false
 		host.special_audio.stop()
 
@@ -123,7 +139,7 @@ func water_width() -> float:
 	return float(definition.initial_tuning.tony_jet_thickness_pixels)*strength
 
 func pipe_angle() -> float:
-	return locked_facing*PI*0.5*smoothstep(3.25,6.0,elapsed)
+	return locked_facing*PI*0.5*smoothstep(1.5,4.75,elapsed)
 
 func outlet(host: Node2D) -> Dictionary:
 	if hero_id == "tony":

@@ -20,7 +20,8 @@
     "marketing_portrait": "bestiary/the-hallowed-widow/marketing-v1.png",
     "catalog": "assets/bestiary/catalog.json",
     "damage_sprite_sheet": "assets/bestiary/damage/hallowed-widow-damage-v3.png",
-    "damage_animation_spec": "assets/bestiary/damage/the-hallowed-widow-damage.json"
+    "damage_animation_spec": "assets/bestiary/damage/the-hallowed-widow-damage.json",
+    "ground_animation_spec": "assets/bestiary/angel-ground-v1/manifest.json"
   },
   "damage_art_status": "Flight/hurt/death integrated; composed live-to-death visual review pending",
   "health": {
@@ -77,13 +78,13 @@
   "audio": {
     "schema_version": 1,
     "status": "runtime_integrated",
-    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "manifest": "audio/sources/creature-materials-v2/manifest.json",
     "hit": {
       "variants": [
         {
-          "path": "assets/audio/sfx/monster-damage-v1/widow-hit.wav",
+          "path": "assets/audio/sfx/creature-materials-v1/DD-S0013.1.wav",
           "gain_db": -3,
-          "sha256": "6d324d52d9e16aecff10e3ded6a5fd142cf0f6b909992eaeb8a5bf7f202bb7d1"
+          "sha256": "4d21bd54ced22a23cc23756351ed0a4e3841ee7d38a70a24b85e55a6f30541fb"
         }
       ],
       "cooldown_seconds": 0.1,
@@ -93,9 +94,9 @@
     "death": {
       "variants": [
         {
-          "path": "assets/audio/sfx/monster-damage-v1/widow-death.wav",
+          "path": "assets/audio/sfx/creature-materials-v1/DD-S0014.1.wav",
           "gain_db": -3,
-          "sha256": "7f13ee83cbf7411078b7acc06bd5e0d8ca9e302da0fa26e56d016575a7dd7f90"
+          "sha256": "3faa3f4499a169a6fb528db324d63e14ab0810edaa4a38bf78bfbbda723c1e4c"
         }
       ],
       "cooldown_seconds": 0.0,
@@ -112,5 +113,6 @@
     "status": "Packaged pursuit/contact and safety tests plus bounded Art review passed; high-origin HUD visibility and continuous motion remain review gaps",
     "behavior": "Safe post-pit landing unlocks pursuit beyond original side; backtracking crossing cancels attacks without snapping actor home.",
     "owner_record": "handoffs/three-screen-trial-delivery.json#correction_151"
-  }
+  },
+  "ground_art_status": "Landing/scuttle/takeoff source delivered November4; runtime contact and motion review pending"
 }

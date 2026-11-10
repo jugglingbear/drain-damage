@@ -14,6 +14,7 @@ var obstacle_art := Art.new()
 var audio := Audio.new()
 var music := Music.new()
 var fidget := Fidget.new()
+var super_held := false
 var audio_definition: Dictionary = {}
 var mechanism_cycle := -1
 var fractured: Dictionary = {}
@@ -21,11 +22,11 @@ var visual_obstacles: Array[Dictionary] = []
 const FALL_DURATION := 1.35
 const VIEWPORT := Rect2(0,0,960,540)
 
-func attach(host: Node2D) -> void:
+func attach(host: Node2D, yield_frame := Callable()) -> void:
 	audio_definition = JSON.parse_string(FileAccess.get_file_as_string("res://data/level-two-ride.json"))
 	audio.attach(host,audio_definition.audio.cues)
 	music.attach(host,audio_definition.music)
-	art.configure(JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-ride-v1/manifest.json")))
+	await art.configure(JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-ride-v1/manifest.json")),yield_frame)
 	if FileAccess.file_exists(SHOWCASE_ART):
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHOWCASE_ART))
 		var hand: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(HAND_ART))
@@ -52,12 +53,13 @@ func attach(host: Node2D) -> void:
 		manifest["flow"] = water.flow
 		var clarity: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ride-surface-clarity-v1/manifest.json"))
 		manifest.frames.merge(clarity.frames,true)
-		obstacle_art.configure(manifest)
+		await obstacle_art.configure(manifest,yield_frame)
 
 func begin(host: Node2D, index := -1) -> void:
 	visual_obstacles.clear()
 	fractured.clear()
 	fidget.reset()
+	super_held = Input.is_action_pressed("special")
 	super.begin(host,checkpoint_index if index < 0 else index)
 	audio.stop()
 	music.stop()
@@ -204,6 +206,19 @@ func process_audio(host: Node2D, delta: float) -> void:
 		fidget.step(self,Input.is_action_pressed("shoot"),0,not complete,host.paused,host.life_state == "alive")
 	audio.advance(delta,host.paused,not complete and host.life_state == "alive",
 		host.life_state == "dying" and events.has("fall"))
+	sample_super(host,Input.is_action_pressed("special"))
+
+func sample_super(host: Node2D, pressed: bool) -> bool:
+	var fresh := pressed and not super_held
+	super_held = pressed
+	if not fresh or host.paused or host.life_state != "alive" or complete or host.won: return false
+	if not host.flush.active or host.flush.state != "ride" or host.flush.input_guard: return false
+	if host.specials.remaining() <= 0: return false
+	var key: String = host.specials.level_key+":"+host.specials.hero_id
+	host.specials.budgets[key] = host.specials.remaining()-1
+	fidget.emit_super(self)
+	audio.play("board_super_fart")
+	return true
 
 func draw_strip(host: Node2D, id: String, scroll: float, clip := VIEWPORT) -> void:
 	var first := int(floor(scroll/960.0))

@@ -19,6 +19,8 @@ func run_checks() -> void:
 	assert(sound.clock == before and sound.target == 1)
 	sound.set_paused(false)
 	sound.event("rat_assembly")
+	assert(not sound.event_starts.has("assembly_layer"))
+	assert(sound.streams.rat_assembly.get_length() > 1.1)
 	sound.step(.15)
 	assert(sound.target == 0 and sound.levels == [1.0,0.0])
 	sound.event("rat_phase_defeat")
@@ -69,8 +71,8 @@ func run_checks() -> void:
 	sound.step(1)
 	assert(not sound.cue_cutoffs.is_empty(), "Pause freezes assembly cutoff")
 	sound.set_paused(false)
-	sound.step(.061)
-	assert(sound.cue_cutoffs.is_empty(), "Assembly tail stops at the shortened transition")
+	sound.step(.511)
+	assert(sound.cue_cutoffs.is_empty(), "Assembly voice may span ready but ends before dive")
 	sound.event("water_emerge")
 	sound.step(.15)
 	assert(sound.target == 0)
@@ -102,6 +104,28 @@ func run_checks() -> void:
 		assert(not sound.warning.playing)
 		sound.event("rat_pounce_land")
 		assert(host.get_child_count() == node_count and sound.target == 0)
+	var encounter = load("res://scripts/skitterling_encounter.gd")
+	assert(encounter.EVENTS.alligator_surface_warning == "surface_warning")
+	for timing in [["rat_rush_warning", .8], ["rat_pounce_warning", 1.0],
+		["alligator_jaw_warning", .9], ["alligator_tail_warning", 1.0],
+		["tail_warning", .8], ["surface_warning", 1.0]]:
+		assert(sound.streams[timing[0]].get_length() < timing[1])
+	for interrupt in ["swim_start", "water_dive", "water_emerge", "rat_pipe_hide", "rat_phase_defeat"]:
+		sound.event("surface_warning")
+		sound.event(interrupt)
+		assert(not sound.warning.playing, "Interrupted warning stops: "+interrupt)
+	var pipe_starts: int = int(sound.event_starts.get("pipe_warning", 0))
+	for retry in range(3):
+		sound.event("pipe_warning")
+		assert(sound.event_starts.pipe_warning == pipe_starts+retry+1)
+		sound.event("rat_pipe_hide")
+		assert(not sound.warning.playing)
+	sound.event("pipe_warning")
+	sound.step(1.91)
+	assert(not sound.warning.playing, "Pipe warning finishes before launch")
+	sound.event("rat_rush")
+	sound.event("motion_end")
+	for voice in sound.effects: assert(not voice.playing)
 	AudioServer.set_bus_mute(0,true)
 	var pounce_starts: int = sound.event_starts.rat_pounce_warning
 	sound.event("rat_pounce_warning")

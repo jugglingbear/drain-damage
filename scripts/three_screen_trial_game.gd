@@ -136,6 +136,13 @@ func authored_entries(specs: Array[Dictionary]) -> Array[Dictionary]:
 			spec.entry = spec.entry.duplicate(true)
 			if spec.entry.has("source") and spec.entry.source is Array:
 				spec.entry.source = Vector2(spec.entry.source[0],spec.entry.source[1])
+	for spec in specs:
+		if spec.id not in ["pressure-aggressive_flyer-0","b-fly1"]: continue
+		spec.variant = "devil"
+		spec.feet = Vector2(620,110) if spec.id == "pressure-aggressive_flyer-0" else Vector2(1580,110)
+		spec.devil_limits = Vector2(480,760) if spec.id == "pressure-aggressive_flyer-0" else Vector2(1450,1690)
+		spec.bounds = spec.devil_limits
+		spec.entry = {"mode":"top"}
 	return specs
 
 func entry_route(spec: Dictionary) -> Dictionary:
@@ -206,7 +213,9 @@ func special_floor_solids() -> Array[Rect2]:
 	return trial_level.floor_solids()
 
 func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: float) -> Dictionary:
-	var result := trial_level.move_body(position, motion, size, delta)
+	if size == PLAYER_SIZE and devil_spiders.locked() and devil_spiders.captured_actor().devil.capture_kind == "snare":
+		return {"pos":position,"velocity":Vector2.ZERO,"grounded":true,"falling":false}
+	var result := devil_spiders.move_body(self,position,motion,size,delta)
 	if result.falling: pit_falling = true
 	return result
 
@@ -296,7 +305,8 @@ func issue_event() -> void:
 			ledger[spec.id] = "active"
 			next_warning = trial_clock+0.25
 			return
-		create_actor({"id":spec.id,"role":spec.role,"warning_seconds":tuning.arrival_warning_seconds},spec.feet)
+		create_actor({"id":spec.id,"role":spec.role,"warning_seconds":tuning.arrival_warning_seconds,
+			"variant":spec.get("variant",""),"devil_limits":spec.get("devil_limits",spec.bounds)},spec.feet)
 		var actor: Dictionary = actors.back()
 		actor.merge({"depth":spec.depth, "source":spec.get("source",spec.feet), "bounds":spec.bounds,
 			"end":spec.end, "mount":"ceiling" if spec.entry.mode == "ceiling" else "floor" if spec.entry.mode == "floor" else "", "phase":"warning", "volley_left":0, "volley_clock":0.0,
@@ -352,6 +362,9 @@ func _physics_process(delta: float) -> void:
 
 func begin_pit_fall() -> void:
 	if life_state != "alive": return
+	devil_spiders.clear(self,"pit_death")
+	specials.clear_transients()
+	special_audio.stop()
 	lives -= 1
 	health = 0
 	life_state = "dying"
@@ -373,6 +386,11 @@ func step_death(delta: float) -> void:
 	super.step_death(delta)
 
 func step_trial_actors(delta: float) -> void:
+	if paused or life_state != "alive" or dispenser.active or dialogue.active or delta <= 0: return
+	step_three_actors(delta)
+	for actor: Dictionary in actors: sync_trial_action_motion(actor)
+
+func step_three_actors(delta: float) -> void:
 	for index in range(actors.size()-1,-1,-1):
 		var actor: Dictionary = actors[index]
 		actor.age += delta
@@ -394,7 +412,7 @@ func step_trial_actors(delta: float) -> void:
 			actor.active = true
 			actor.phase = "combat"
 			actor.activation_time = trial_clock
-			actor.arrival_guard = actor_rect(actor).grow(24).intersects(Rect2(player,PLAYER_SIZE))
+			actor.arrival_guard = actor.get("mount","") != "floor" and actor_rect(actor).grow(24).intersects(Rect2(player,PLAYER_SIZE))
 			ledger[actor.event_id] = "active"
 			arrival_log.append({"id":actor.event_id,"outcome":"active","time":trial_clock,"feet":[actor.feet.x,actor.feet.y]})
 		if actor.get("arrival_guard",false):
@@ -403,7 +421,8 @@ func step_trial_actors(delta: float) -> void:
 			if not actor_rect(actor).grow(24).intersects(Rect2(player,PLAYER_SIZE)):
 				actor.arrival_guard = false
 				actor.rearm_until = actor.age+float(tuning.arrival_warning_seconds)
-		if actor.feet.x < camera_x - 100:
+		if actor.feet.x < camera_x - 100 and (actor.role != "aggressive_flyer" or actor.get("variant","") == "devil"):
+			stop_trial_actions(actor)
 			ledger[actor.event_id] = "retired"
 			actors.remove_at(index)
 			continue
@@ -432,10 +451,11 @@ func step_trial_actors(delta: float) -> void:
 			if not actor.get("arrival_guard",false) and actor.age >= actor.get("rearm_until",0.0) \
 				and actor_rect(actor).grow(120).intersects(Rect2(player,PLAYER_SIZE)) and can_pattern(actor.event_id):
 				actor.contact_live = true
-			if actor.contact_live and actor_rect(actor).intersects(Rect2(player,PLAYER_SIZE)): hurt_player()
+			if actor.contact_live and actor_rect(actor).intersects(Rect2(player,PLAYER_SIZE)): trial_actor_contact(actor)
 		elif actor.role == "aggressive_flyer":
+			if actor.get("variant","") == "devil": continue
 			if actor.get("post_pit_pursuit",false) and crossing_reserved() \
-					and actor.get("attack_state","") in ["windup","swoop"]:
+					and actor.get("attack_state","") in ["windup","swoop","landing","scuttle","takeoff"]:
 				# Backtracking into the crossing cancels contact, without snapping the flyer home.
 				end_flyer_pattern(actor)
 				actor.attack_state = "recover"
@@ -444,8 +464,8 @@ func step_trial_actors(delta: float) -> void:
 				actor.recovery_origin = actor.feet
 				actor.recovery_target = Vector2(actor.feet.x,actor.attack_origin.y)
 			step_flyer(actor,delta)
-			if actor.contact_live and actor.attack_state == "swoop" and actor_rect(actor).intersects(Rect2(player,PLAYER_SIZE)):
-				hurt_player()
+			if actor.contact_live and actor.attack_state in ["swoop","landing","scuttle","takeoff"] and actor_rect(actor).intersects(Rect2(player,PLAYER_SIZE)):
+				trial_actor_contact(actor)
 		elif not actor.get("arrival_guard",false) and actor.age >= actor.get("rearm_until",0.0):
 			step_three_shooter(actor,delta)
 
@@ -495,6 +515,7 @@ func step_trial_swarms(delta: float) -> void:
 			swarms.step_motion(actor,delta,actor_solids())
 			continue
 		if actor.pos.x+maxf(64,swarms.visual_radius) < camera_x:
+			stop_trial_actions(actor)
 			ledger[actor.event_id] = "retired"
 			swarms.actors.remove_at(index)
 			continue
@@ -542,6 +563,7 @@ func step_three_shooter(actor: Dictionary, delta: float) -> void:
 		return
 	if not shooter_allowed(actor):
 		count_shooter("outside_or_crossing")
+		stop_trial_actions(actor)
 		actor.winding = false
 		actor.warn_clock = 0
 		return
@@ -555,6 +577,7 @@ func step_three_shooter(actor: Dictionary, delta: float) -> void:
 		actor.windup_started = actor.age
 		actor.windup_duration = float(tuning.shot_warning_seconds)
 		actor.winding = true
+		play_trial_action(actor,"charge")
 		actor.warn_clock = 0
 		actor.clock = 0
 		actor.facing = signf(player.x-actor.feet.x)
@@ -565,14 +588,23 @@ func step_three_shooter(actor: Dictionary, delta: float) -> void:
 	if not admitted_trajectory(shot_origin(actor),actor.committed_dir):
 		count_shooter("unsafe_ray")
 		suppressed_volleys += 1
+		stop_trial_actions(actor)
 		actor.winding = false
 		actor.recovery = float(tuning.recovery_seconds)
 		return
-	actor.volley_left = int(tuning.burst_count) if actor.event_id.begins_with("pressure-") else \
-		1 if actor.event_id == "opening-single" or actor.volley_index % 2 == 0 else int(tuning.burst_count)
+	actor.volley_left = next_volley_size(actor)
 	actor.volley_index += 1
+	stop_trial_actions(actor)
 	actor.winding = false
 	emit_trial_shot(actor)
+
+func next_volley_size(actor: Dictionary) -> int:
+	# Per-shooter seeded randomness preserves reproducible retries without predictable alternation.
+	if not actor.has("volley_rng"):
+		var rng := RandomNumberGenerator.new()
+		rng.seed = run_seed+str(actor.event_id).hash()
+		actor.volley_rng = rng
+	return actor.volley_rng.randi_range(1,3)
 
 func emit_trial_shot(actor: Dictionary) -> void:
 	var origin := shot_origin(actor)
@@ -580,6 +612,7 @@ func emit_trial_shot(actor: Dictionary) -> void:
 	if hostile_shots.size() < int(tuning.hostile_projectiles_max) and shooter_allowed(actor) \
 		and admitted_trajectory(origin,direction):
 		count_shooter("fired")
+		play_trial_action(actor,"fire")
 		shot_serial += 1
 		hostile_shots.append({"id":"three-%d" % shot_serial, "owner":actor.event_id,
 			"pos":origin, "previous":origin, "dir":direction, "age":0.0, "radius":BULLET_RADIUS,
@@ -644,6 +677,8 @@ func step_hostile_projectiles(delta: float) -> void:
 			var fraction := segment_hit(shot.pos,end,solid.grow(BULLET_RADIUS))
 			if fraction >= 0: wall = minf(wall,fraction)
 		shot.age += delta
+		if hit >= 0 or wall <= 1:
+			play_trial_impact(shot,shot.pos.lerp(end,minf(hit if hit >= 0 else 2.0,wall)))
 		if hit >= 0 and hit < wall: hurt_player()
 		if hit >= 0 or wall <= 1 or purple_bolt_offscreen(end):
 			count_shooter("wall_early" if wall <= 1 and shot.age < 0.3 else "retired_other")
@@ -710,13 +745,15 @@ func draw_environment() -> void:
 		else: draw_scene_part(item)
 
 func draw_entry_fixture(_actor: Dictionary, _front := false) -> void:
-	# Authored fixtures are permanent scenery, including after the occupant is defeated.
+	# Batch doors behind/in front of the actors rather than drawing each one twice.
 	pass
 
 func draw_authored_entry_fixtures(front := false) -> void:
-	for spec in event_specs():
-		if spec.entry.mode in ["floor","ceiling"]:
-			super.draw_entry_fixture({"mount":spec.entry.mode,"home":spec.feet},front)
+	if not front:
+		for spec in event_specs():
+			if spec.entry.mode == "ceiling": draw_ceiling_entry_support(spec.feet)
+	for actor: Dictionary in actors:
+		super.draw_entry_fixture(actor,front)
 
 func draw_depth_actor(actor: Dictionary) -> void:
 	draw_entry_actor(actor)
@@ -725,6 +762,7 @@ func _draw() -> void:
 	if trial_data.is_empty(): return
 	draw_set_transform(Vector2(-floorf(camera_x),0))
 	draw_environment()
+	for fixture: Dictionary in devil_spiders.placements(self): devil_spider_art.draw_support(self,fixture)
 	draw_authored_entry_fixtures()
 	# Only enemies still emerging from the wall belong behind the pipe lip.
 	for actor in actors:
@@ -734,11 +772,7 @@ func _draw() -> void:
 	for corpse: Dictionary in corpses:
 		world_art.draw_toilet(self,corpse)
 	for actor in actors:
-		if actor.hp > 0 and actor.active \
-			and (actor.get("arrival_guard",false) or actor.age < actor.get("rearm_until",0.0)):
-			draw_scene_part(art_part("arrival-ring"),actor.feet)
 		if not actor.active and actor.hp > 0:
-			draw_scene_part(art_part("arrival-ring"),actor.home)
 			if MonsterEntry.active(actor):
 				if (actor.entry.mode != "background" or not actor.entry.clip.has_area()) and not foreground_entry(actor): draw_entry_actor(actor)
 				continue
@@ -757,6 +791,9 @@ func _draw() -> void:
 			box(0,-5,5,11,Color("e57356"))
 		draw_set_transform(Vector2(-floorf(camera_x),0))
 	for shot in hostile_shots: draw_hostile_shot(shot)
+	devil_spider_art.draw_effects(self)
+	shooter_remains.draw(self)
+	regular_remains.draw(self)
 	special_art.draw_front(self)
 	draw_foreground_entries()
 	draw_set_transform(Vector2.ZERO)

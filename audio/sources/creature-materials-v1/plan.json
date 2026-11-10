@@ -1,0 +1,2535 @@
+{
+  "date": "2026-11-05",
+  "consultation": {
+    "storyboarding": "Current eight canonical profiles reviewed by Storyboarding; response 2026-11-05. Material interpretations only, no invented lore.",
+    "level_design": "Reviewed current runtime 2026-11-05; action timings and cancellation contracts incorporated.",
+    "timings_seconds": {
+      "devil_spider_windup": 0.7,
+      "widow_tell": 0.65,
+      "widow_swoop": 0.8,
+      "sputtervalve_tell": 0.55,
+      "sputtervalve_shot_spacing": 0.18,
+      "gratecrawler_windup": 0.3,
+      "gnatastrophe_tell": 0.8,
+      "gnatastrophe_morph": 0.65,
+      "clogfather_shortest_tell": 0.55,
+      "clogfather_collapse": 1.2
+    }
+  },
+  "cues": [
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-creature-materials/devil-spider/arrival",
+      "label": "Hook ticks and cage flex",
+      "duration": 0.48,
+      "layers": [
+        [
+          "eat_02",
+          1.1,
+          1000,
+          7000,
+          0,
+          0.08,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "stone",
+          0.8,
+          600,
+          7000,
+          0.12,
+          0.16,
+          0,
+          0.3,
+          false
+        ],
+        [
+          "eat_04",
+          0.7,
+          150,
+          7000,
+          0.08,
+          0.36,
+          0,
+          0.3,
+          false
+        ]
+      ],
+      "peak_dbfs": -17,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/aim",
+      "label": "Tensing silk glands",
+      "duration": 0.34,
+      "layers": [
+        [
+          "breath",
+          0.8,
+          1000,
+          7000,
+          0,
+          0.32,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "eat_01",
+          0.8,
+          150,
+          7000,
+          0.08,
+          0.22,
+          0,
+          0.45,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/crawl",
+      "label": "Single hooked footfall",
+      "duration": 0.1,
+      "layers": [
+        [
+          "eat_02",
+          1.2,
+          1400,
+          7000,
+          0,
+          0.08,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "stone",
+          1.1,
+          1000,
+          7000,
+          0,
+          0.08,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -23,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/launch",
+      "label": "Wet silk spit",
+      "duration": 0.22,
+      "layers": [
+        [
+          "spit_02",
+          0.94,
+          150,
+          7000,
+          0,
+          0.2,
+          0,
+          1,
+          false
+        ],
+        [
+          "breath",
+          1.1,
+          1800,
+          7000,
+          0.03,
+          0.16,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -11,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/attach",
+      "label": "Sticky fibrous catch",
+      "duration": 0.14,
+      "layers": [
+        [
+          "eat_01",
+          1.1,
+          150,
+          7000,
+          0,
+          0.14,
+          0,
+          1,
+          false
+        ],
+        [
+          "spit_03",
+          0.9,
+          150,
+          7000,
+          0,
+          0.1,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/haul",
+      "label": "One taut silk pull",
+      "duration": 0.25,
+      "layers": [
+        [
+          "eat_04",
+          0.72,
+          500,
+          7000,
+          0,
+          0.24,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "bug_03",
+          0.9,
+          1200,
+          7000,
+          0.07,
+          0.15,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -18,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/hunger",
+      "label": "Restrained mouth contraction",
+      "duration": 0.36,
+      "layers": [
+        [
+          "burble_02",
+          0.72,
+          220,
+          4000,
+          0,
+          0.3,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "eat_02",
+          1.05,
+          1200,
+          7000,
+          0.12,
+          0.13,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -17,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/escape",
+      "label": "Fibrous web tear",
+      "duration": 0.25,
+      "layers": [
+        [
+          "eat_04",
+          1.1,
+          900,
+          7000,
+          0,
+          0.22,
+          0,
+          0.9,
+          false
+        ],
+        [
+          "spit_01",
+          1.05,
+          150,
+          7000,
+          0.04,
+          0.16,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -12,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/tear",
+      "label": "Silk separation",
+      "duration": 0.18,
+      "layers": [
+        [
+          "eat_04",
+          1.18,
+          1200,
+          7000,
+          0,
+          0.16,
+          0,
+          1,
+          false
+        ],
+        [
+          "breath",
+          1.1,
+          2000,
+          7000,
+          0,
+          0.15,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -16,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/struggle",
+      "label": "Brief web strain",
+      "duration": 0.2,
+      "layers": [
+        [
+          "eat_01",
+          0.85,
+          600,
+          7000,
+          0,
+          0.19,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "bug_04",
+          1.1,
+          150,
+          7000,
+          0.05,
+          0.12,
+          0,
+          0.3,
+          false
+        ]
+      ],
+      "peak_dbfs": -19,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-devil-spider/rustle",
+      "label": "Cage contents shift",
+      "duration": 0.18,
+      "layers": [
+        [
+          "glass",
+          0.7,
+          1000,
+          7000,
+          0,
+          0.13,
+          0,
+          0.3,
+          false
+        ],
+        [
+          "eat_02",
+          1.1,
+          800,
+          7000,
+          0,
+          0.15,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "peak_dbfs": -22,
+      "integration": "Short action-bound gesture; haul/hunger stop on escape or release. Limit quiet footfalls."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "creature/devil-spider/hit",
+      "label": "Ceramic chatter and damp constriction",
+      "duration": 0.18,
+      "layers": [
+        [
+          "glass",
+          0.7,
+          900,
+          7000,
+          0,
+          0.14,
+          0,
+          0.3,
+          false
+        ],
+        [
+          "eat_01",
+          0.76,
+          150,
+          7000,
+          0,
+          0.16,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "hurt_03",
+          0.85,
+          150,
+          7000,
+          0,
+          0.12,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/arrival",
+      "label": "Heavy wings and bristling rasp",
+      "duration": 0.55,
+      "layers": [
+        [
+          "breath",
+          0.85,
+          600,
+          7000,
+          0,
+          0.45,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "bug_04",
+          0.78,
+          1000,
+          7000,
+          0.06,
+          0.4,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -12,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/wingbeat",
+      "label": "One coarse wing buffet",
+      "duration": 0.16,
+      "layers": [
+        [
+          "breath",
+          1.1,
+          1000,
+          7000,
+          0,
+          0.15,
+          0,
+          1,
+          false
+        ],
+        [
+          "bug_01",
+          0.85,
+          1800,
+          7000,
+          0,
+          0.1,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -22,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/attack",
+      "label": "Predatory wing rush",
+      "duration": 0.26,
+      "layers": [
+        [
+          "breath",
+          1.18,
+          900,
+          7000,
+          0,
+          0.24,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "bug_04",
+          0.85,
+          500,
+          7000,
+          0,
+          0.22,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/contact",
+      "label": "Fang and bristle contact",
+      "duration": 0.12,
+      "layers": [
+        [
+          "eat_02",
+          1.2,
+          1000,
+          7000,
+          0,
+          0.1,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "spit_03",
+          1.1,
+          150,
+          7000,
+          0,
+          0.1,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "creature/spider/hit",
+      "label": "Chitin stress and breath rasp",
+      "duration": 0.18,
+      "layers": [
+        [
+          "bug_03",
+          0.83,
+          700,
+          7000,
+          0,
+          0.17,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "breath",
+          0.9,
+          1200,
+          7000,
+          0,
+          0.16,
+          0,
+          0.45,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "creature/spider/death",
+      "label": "Faltering wings and body collapse",
+      "duration": 0.82,
+      "layers": [
+        [
+          "bug_04",
+          0.62,
+          150,
+          7000,
+          0,
+          0.38,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "breath",
+          0.7,
+          150,
+          7000,
+          0.12,
+          0.45,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "stone",
+          0.7,
+          150,
+          7000,
+          0.42,
+          0.24,
+          0,
+          0.28,
+          false
+        ],
+        [
+          "breath",
+          0.9,
+          150,
+          7000,
+          0.61,
+          0.18,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -11,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Sputtervalve",
+      "key": "proposed-creature-materials/sputtervalve/arrival",
+      "label": "Bolted fixture seats",
+      "duration": 0.3,
+      "layers": [
+        [
+          "heavy",
+          0.85,
+          150,
+          7000,
+          0,
+          0.23,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "metal",
+          1.15,
+          150,
+          7000,
+          0.15,
+          0.12,
+          0,
+          0.45,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Sputtervalve",
+      "key": "proposed-creature-materials/sputtervalve/charge",
+      "label": "Trapped pressure and gauge chatter",
+      "duration": 0.42,
+      "layers": [
+        [
+          "water",
+          1.15,
+          700,
+          6500,
+          0,
+          0.4,
+          0,
+          0.65,
+          true
+        ],
+        [
+          "metal",
+          1.2,
+          150,
+          7000,
+          0.05,
+          0.07,
+          0,
+          0.2,
+          false
+        ],
+        [
+          "metal",
+          1.2,
+          150,
+          7000,
+          0.18,
+          0.07,
+          0,
+          0.25,
+          false
+        ],
+        [
+          "metal",
+          1.2,
+          150,
+          7000,
+          0.29,
+          0.07,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Sputtervalve",
+      "key": "proposed-creature-materials/sputtervalve/fire",
+      "label": "Pressure spit and abrasive snap",
+      "duration": 0.15,
+      "layers": [
+        [
+          "spit_01",
+          0.9,
+          150,
+          7000,
+          0,
+          0.14,
+          0,
+          0.65,
+          false
+        ],
+        [
+          "metal",
+          1.4,
+          1800,
+          7000,
+          0,
+          0.12,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "water",
+          1.4,
+          1000,
+          7000,
+          0,
+          0.14,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -11,
+      "integration": "One 0.15s discharge per admitted projectile, shorter than 0.18s shot spacing; no budget-rejected cue."
+    },
+    {
+      "creature": "Sputtervalve",
+      "key": "proposed-creature-materials/sputtervalve/vent",
+      "label": "Short pressure bleed",
+      "duration": 0.28,
+      "layers": [
+        [
+          "water",
+          1.2,
+          1800,
+          7000,
+          0,
+          0.27,
+          0,
+          0.9,
+          false
+        ],
+        [
+          "metal",
+          0.9,
+          150,
+          7000,
+          0.11,
+          0.1,
+          0,
+          0.2,
+          false
+        ]
+      ],
+      "peak_dbfs": -20,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Sputtervalve",
+      "key": "creature/sputtervalve/hit",
+      "label": "Iron strike and gasket leak",
+      "duration": 0.18,
+      "layers": [
+        [
+          "metal",
+          0.85,
+          150,
+          7000,
+          0,
+          0.16,
+          0,
+          1,
+          false
+        ],
+        [
+          "water",
+          1.2,
+          1800,
+          7000,
+          0.04,
+          0.13,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Sputtervalve",
+      "key": "creature/sputtervalve/death",
+      "label": "Gasket rupture and gauge collapse",
+      "duration": 0.76,
+      "layers": [
+        [
+          "heavy",
+          0.75,
+          150,
+          7000,
+          0,
+          0.25,
+          0,
+          0.9,
+          false
+        ],
+        [
+          "water",
+          1.1,
+          900,
+          7000,
+          0.08,
+          0.61,
+          0,
+          0.65,
+          false
+        ],
+        [
+          "metal",
+          0.9,
+          150,
+          7000,
+          0.35,
+          0.15,
+          0,
+          0.4,
+          false
+        ],
+        [
+          "metal",
+          1.15,
+          150,
+          7000,
+          0.57,
+          0.12,
+          0,
+          0.2,
+          false
+        ]
+      ],
+      "peak_dbfs": -11,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Gratecrawler",
+      "key": "proposed-creature-materials/gratecrawler/arrival",
+      "label": "Rusty grate and suction release",
+      "duration": 0.62,
+      "layers": [
+        [
+          "heavy",
+          0.7,
+          150,
+          7000,
+          0,
+          0.2,
+          0,
+          0.4,
+          false
+        ],
+        [
+          "metal",
+          0.8,
+          150,
+          7000,
+          0.18,
+          0.16,
+          0,
+          0.35,
+          false
+        ],
+        [
+          "eat_01",
+          0.65,
+          150,
+          7000,
+          0.22,
+          0.35,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "peak_dbfs": -12,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Gratecrawler",
+      "key": "proposed-creature-materials/gratecrawler/step",
+      "label": "Heavy adhesive plod",
+      "duration": 0.15,
+      "layers": [
+        [
+          "eat_01",
+          0.75,
+          150,
+          7000,
+          0,
+          0.13,
+          0,
+          0.9,
+          false
+        ],
+        [
+          "metal",
+          0.8,
+          150,
+          7000,
+          0,
+          0.09,
+          0,
+          0.12,
+          false
+        ]
+      ],
+      "peak_dbfs": -22,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Gratecrawler",
+      "key": "proposed-creature-materials/gratecrawler/throw",
+      "label": "Thick muck heave",
+      "duration": 0.22,
+      "layers": [
+        [
+          "burble_01",
+          0.72,
+          150,
+          7000,
+          0,
+          0.19,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "spit_03",
+          0.8,
+          150,
+          7000,
+          0.05,
+          0.15,
+          0,
+          0.6,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Gratecrawler",
+      "key": "proposed-creature-materials/gratecrawler/impact",
+      "label": "Sticky muck impact",
+      "duration": 0.24,
+      "layers": [
+        [
+          "spit_03",
+          0.7,
+          150,
+          7000,
+          0,
+          0.22,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "splash",
+          0.75,
+          150,
+          7000,
+          0,
+          0.19,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Gratecrawler",
+      "key": "creature/gratecrawler/hit",
+      "label": "Sludge compression and tooth click",
+      "duration": 0.18,
+      "layers": [
+        [
+          "burble_01",
+          0.75,
+          150,
+          7000,
+          0,
+          0.16,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "glass",
+          0.8,
+          900,
+          7000,
+          0,
+          0.08,
+          0,
+          0.2,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Gratecrawler",
+      "key": "creature/gratecrawler/death",
+      "label": "Sludge slump and fallen strainer",
+      "duration": 0.85,
+      "layers": [
+        [
+          "burble_02",
+          0.57,
+          150,
+          7000,
+          0,
+          0.49,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "splash",
+          0.7,
+          150,
+          7000,
+          0.16,
+          0.48,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "heavy",
+          0.82,
+          150,
+          7000,
+          0.45,
+          0.24,
+          0,
+          0.45,
+          false
+        ],
+        [
+          "metal",
+          1.05,
+          150,
+          7000,
+          0.65,
+          0.13,
+          0,
+          0.2,
+          false
+        ]
+      ],
+      "peak_dbfs": -11,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Flushfiend",
+      "key": "proposed-creature-materials/flushfiend/arrival",
+      "label": "Ceramic mass on pipe feet",
+      "duration": 0.32,
+      "layers": [
+        [
+          "stone",
+          0.85,
+          150,
+          7000,
+          0,
+          0.18,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "metal",
+          0.9,
+          150,
+          7000,
+          0,
+          0.15,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "water",
+          0.8,
+          150,
+          7000,
+          0.04,
+          0.25,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Flushfiend",
+      "key": "proposed-creature-materials/flushfiend/step",
+      "label": "Pipe foot and tank knock",
+      "duration": 0.12,
+      "layers": [
+        [
+          "metal",
+          0.9,
+          150,
+          7000,
+          0,
+          0.1,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "stone",
+          1.1,
+          900,
+          7000,
+          0,
+          0.1,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -22,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Flushfiend",
+      "key": "proposed-creature-materials/flushfiend/hop",
+      "label": "Tank slosh at takeoff",
+      "duration": 0.2,
+      "layers": [
+        [
+          "water",
+          1.1,
+          400,
+          7000,
+          0,
+          0.18,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "metal",
+          1.1,
+          150,
+          7000,
+          0,
+          0.1,
+          0,
+          0.3,
+          false
+        ]
+      ],
+      "peak_dbfs": -18,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Flushfiend",
+      "key": "proposed-creature-materials/flushfiend/land",
+      "label": "Weighted ceramic landing",
+      "duration": 0.23,
+      "layers": [
+        [
+          "stone",
+          0.8,
+          150,
+          7000,
+          0,
+          0.18,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "metal",
+          0.8,
+          150,
+          7000,
+          0,
+          0.14,
+          0,
+          0.35,
+          false
+        ],
+        [
+          "splash",
+          0.8,
+          150,
+          7000,
+          0.03,
+          0.18,
+          0,
+          0.3,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Flushfiend",
+      "key": "creature/toilet/hit",
+      "label": "Ceramic knock and trapped air",
+      "duration": 0.17,
+      "layers": [
+        [
+          "stone",
+          1.15,
+          650,
+          7000,
+          0,
+          0.14,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "glass",
+          0.9,
+          900,
+          7000,
+          0,
+          0.12,
+          0,
+          0.25,
+          false
+        ],
+        [
+          "spit_01",
+          0.6,
+          150,
+          7000,
+          0,
+          0.12,
+          0,
+          0.2,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Flushfiend",
+      "key": "creature/toilet/death",
+      "label": "Porcelain fracture with tank spill",
+      "duration": 0.9,
+      "layers": [
+        [
+          "glass",
+          0.9,
+          350,
+          7000,
+          0,
+          0.44,
+          0,
+          0.65,
+          false
+        ],
+        [
+          "stone",
+          0.8,
+          150,
+          7000,
+          0,
+          0.28,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "splash",
+          0.8,
+          150,
+          7000,
+          0.2,
+          0.6,
+          0,
+          0.45,
+          false
+        ],
+        [
+          "metal",
+          0.8,
+          150,
+          7000,
+          0.61,
+          0.15,
+          0,
+          0.2,
+          false
+        ]
+      ],
+      "peak_dbfs": -11,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Skitterling",
+      "key": "skitterling/swarm_entry",
+      "label": "Many small chitin feet",
+      "duration": 0.65,
+      "layers": [
+        [
+          "bug_02",
+          0.95,
+          900,
+          7000,
+          0,
+          0.55,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "eat_02",
+          1.3,
+          1300,
+          7000,
+          0,
+          0.15,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "eat_02",
+          1.1,
+          1000,
+          7000,
+          0.2,
+          0.18,
+          0,
+          0.4,
+          false
+        ],
+        [
+          "eat_04",
+          1.2,
+          1400,
+          7000,
+          0.3,
+          0.3,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -18,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Skitterling",
+      "key": "creature/cockroach-swarm/hit",
+      "label": "Brief swarm desynchronization",
+      "duration": 0.18,
+      "layers": [
+        [
+          "bug_02",
+          0.9,
+          800,
+          7000,
+          0,
+          0.16,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "eat_04",
+          1.2,
+          1000,
+          7000,
+          0,
+          0.16,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Skitterling",
+      "key": "skitterling/rat_phase_defeat",
+      "label": "Form loosens and regathers",
+      "duration": 0.95,
+      "layers": [
+        [
+          "eat_04",
+          0.8,
+          150,
+          7000,
+          0,
+          0.4,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "bug_02",
+          0.9,
+          150,
+          7000,
+          0.1,
+          0.35,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "eat_02",
+          1.2,
+          900,
+          7000,
+          0.61,
+          0.18,
+          0,
+          0.45,
+          false
+        ],
+        [
+          "bug_03",
+          1.1,
+          150,
+          7000,
+          0.73,
+          0.2,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Skitterling",
+      "key": "creature/cockroach-swarm/death",
+      "label": "Final diminishing insect scatter",
+      "duration": 1.05,
+      "layers": [
+        [
+          "eat_04",
+          0.7,
+          150,
+          7000,
+          0,
+          0.4,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "bug_02",
+          0.8,
+          150,
+          7000,
+          0.1,
+          0.55,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "eat_02",
+          1.1,
+          1100,
+          7000,
+          0.62,
+          0.14,
+          0,
+          0.3,
+          false
+        ],
+        [
+          "eat_02",
+          1.3,
+          1400,
+          7000,
+          0.84,
+          0.1,
+          0,
+          0.13,
+          false
+        ]
+      ],
+      "peak_dbfs": -11,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Gnatastrophe",
+      "key": "proposed-creature-materials/gnatastrophe/arrival",
+      "label": "Loose fly cloud",
+      "duration": 0.5,
+      "layers": [
+        [
+          "bug_01",
+          1.18,
+          800,
+          7000,
+          0,
+          0.47,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "bug_03",
+          1.33,
+          1000,
+          7000,
+          0.04,
+          0.4,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -20,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Gnatastrophe",
+      "key": "proposed-creature-materials/gnatastrophe/form",
+      "label": "Swarm tightens into pursuit",
+      "duration": 0.4,
+      "layers": [
+        [
+          "bug_01",
+          1.15,
+          700,
+          7000,
+          0,
+          0.35,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "bug_03",
+          1.25,
+          1000,
+          7000,
+          0.04,
+          0.35,
+          0,
+          0.7,
+          false
+        ]
+      ],
+      "peak_dbfs": -16,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Gnatastrophe",
+      "key": "proposed-creature-materials/gnatastrophe/pass",
+      "label": "Aggressive insect near-pass",
+      "duration": 0.25,
+      "layers": [
+        [
+          "bug_01",
+          1.4,
+          900,
+          7000,
+          0,
+          0.23,
+          0,
+          0.75,
+          false
+        ],
+        [
+          "breath",
+          1.5,
+          1800,
+          7000,
+          0,
+          0.22,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -17,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Gnatastrophe",
+      "key": "creature/sewer-fly-swarm/hit",
+      "label": "Broken wingbeat scatter",
+      "duration": 0.15,
+      "layers": [
+        [
+          "bug_03",
+          1.3,
+          1000,
+          7000,
+          0,
+          0.14,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "bug_01",
+          1.5,
+          150,
+          7000,
+          0.04,
+          0.1,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Gnatastrophe",
+      "key": "creature/sewer-fly-swarm/death",
+      "label": "Cloud falls into isolated sputters",
+      "duration": 0.72,
+      "layers": [
+        [
+          "bug_01",
+          1.1,
+          900,
+          7000,
+          0,
+          0.27,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "bug_03",
+          1.25,
+          150,
+          7000,
+          0.3,
+          0.16,
+          0,
+          0.4,
+          false
+        ],
+        [
+          "bug_01",
+          1.4,
+          150,
+          7000,
+          0.51,
+          0.1,
+          0,
+          0.2,
+          false
+        ],
+        [
+          "bug_03",
+          1.5,
+          150,
+          7000,
+          0.64,
+          0.06,
+          0,
+          0.1,
+          false
+        ]
+      ],
+      "peak_dbfs": -12,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "proposed-creature-materials/clogfather/arrival",
+      "label": "Fatberg strains against pipework",
+      "duration": 1.35,
+      "layers": [
+        [
+          "burble_02",
+          0.5,
+          60,
+          3500,
+          0,
+          0.9,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "eat_04",
+          0.55,
+          100,
+          7000,
+          0.2,
+          0.9,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "heavy",
+          0.55,
+          150,
+          7000,
+          0.65,
+          0.3,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/volley_warning",
+      "label": "Clogged pressure inhale",
+      "duration": 0.5,
+      "layers": [
+        [
+          "burble_01",
+          0.6,
+          80,
+          7000,
+          0,
+          0.48,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "breath",
+          0.6,
+          150,
+          7000,
+          0.06,
+          0.4,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/acid_warning",
+      "label": "Acid throat churn",
+      "duration": 0.5,
+      "layers": [
+        [
+          "burble_02",
+          0.57,
+          80,
+          7000,
+          0,
+          0.48,
+          0,
+          0.9,
+          false
+        ],
+        [
+          "spit_03",
+          0.7,
+          150,
+          7000,
+          0.17,
+          0.25,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/gas_warning",
+      "label": "Swelling trapped gas",
+      "duration": 0.5,
+      "layers": [
+        [
+          "breath",
+          0.6,
+          120,
+          3000,
+          0,
+          0.48,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "burble_01",
+          0.5,
+          80,
+          7000,
+          0,
+          0.45,
+          0,
+          0.6,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/projectile_spawn",
+      "label": "Heavy waste cough",
+      "duration": 0.25,
+      "layers": [
+        [
+          "spit_02",
+          0.6,
+          80,
+          7000,
+          0,
+          0.23,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "burble_01",
+          0.65,
+          150,
+          7000,
+          0,
+          0.18,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/projectile_hit",
+      "label": "Weighty waste splat",
+      "duration": 0.3,
+      "layers": [
+        [
+          "spit_03",
+          0.55,
+          80,
+          7000,
+          0,
+          0.28,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "splash",
+          0.7,
+          150,
+          7000,
+          0,
+          0.25,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/acid_impact",
+      "label": "Caustic wet burst",
+      "duration": 0.38,
+      "layers": [
+        [
+          "spit_01",
+          0.7,
+          150,
+          7000,
+          0,
+          0.25,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "water",
+          1.2,
+          1500,
+          7000,
+          0,
+          0.35,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/major_stagger",
+      "label": "Fatberg fibres tear",
+      "duration": 0.52,
+      "layers": [
+        [
+          "eat_04",
+          0.5,
+          80,
+          7000,
+          0,
+          0.5,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "burble_02",
+          0.5,
+          60,
+          7000,
+          0,
+          0.45,
+          0,
+          0.6,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/closed_shell_hit",
+      "label": "Dense greasy shell impact",
+      "duration": 0.16,
+      "layers": [
+        [
+          "eat_01",
+          0.6,
+          100,
+          7000,
+          0,
+          0.14,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "stone",
+          0.7,
+          150,
+          7000,
+          0,
+          0.1,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "Fit existing event; warning stops at attack onset. No timing changes."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "creature/clogfather/hit",
+      "label": "Massive internal rupture",
+      "duration": 0.25,
+      "layers": [
+        [
+          "burble_02",
+          0.48,
+          60,
+          7000,
+          0,
+          0.23,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "eat_04",
+          0.6,
+          80,
+          7000,
+          0,
+          0.2,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -13,
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "creature/clogfather/death",
+      "label": "Wet structural collapse and released water",
+      "duration": 1.18,
+      "layers": [
+        [
+          "eat_04",
+          0.48,
+          70,
+          7000,
+          0,
+          0.38,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "burble_02",
+          0.48,
+          60,
+          7000,
+          0.1,
+          0.55,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "splash",
+          0.6,
+          100,
+          7000,
+          0.35,
+          0.7,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "water",
+          0.8,
+          100,
+          7000,
+          0.5,
+          0.65,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -10,
+      "integration": "1.18s fits terminal 1.2s collapse; death preempts every boss voice. Portal audio stays separate."
+    },
+    {
+      "creature": "Devil Spider",
+      "key": "proposed-creature-materials/devil-spider/capture",
+      "label": "Silk cocoon constricts",
+      "duration": 0.2,
+      "layers": [
+        [
+          "eat_01",
+          0.8,
+          150,
+          7000,
+          0,
+          0.18,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "spit_03",
+          0.85,
+          150,
+          7000,
+          0,
+          0.15,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/warning",
+      "label": "Bristling predatory intake",
+      "duration": 0.55,
+      "layers": [
+        [
+          "bug_04",
+          0.8,
+          700,
+          7000,
+          0,
+          0.5,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "breath",
+          0.75,
+          900,
+          7000,
+          0,
+          0.5,
+          0,
+          0.6,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "0.55s within 0.65s committed tell; cancel on lost visibility, stop at swoop."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/land",
+      "label": "Spider weight meets ground",
+      "duration": 0.18,
+      "layers": [
+        [
+          "stone",
+          0.85,
+          150,
+          7000,
+          0,
+          0.14,
+          0,
+          0.3,
+          false
+        ],
+        [
+          "eat_02",
+          1.1,
+          1000,
+          7000,
+          0,
+          0.16,
+          0,
+          0.7,
+          false
+        ]
+      ],
+      "peak_dbfs": -15,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/scuttle",
+      "label": "Brittle supported leg step",
+      "duration": 0.09,
+      "layers": [
+        [
+          "eat_02",
+          1.2,
+          1300,
+          7000,
+          0,
+          0.08,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "peak_dbfs": -23,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Hallowed Widow",
+      "key": "proposed-creature-materials/hallowed-widow/takeoff",
+      "label": "Feathers kick air",
+      "duration": 0.18,
+      "layers": [
+        [
+          "breath",
+          1.1,
+          900,
+          7000,
+          0,
+          0.17,
+          0,
+          0.9,
+          false
+        ],
+        [
+          "bug_04",
+          0.9,
+          150,
+          7000,
+          0,
+          0.12,
+          0,
+          0.3,
+          false
+        ]
+      ],
+      "peak_dbfs": -18,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Sputtervalve",
+      "key": "proposed-creature-materials/sputtervalve/impact",
+      "label": "Wet electrical contact crack",
+      "duration": 0.14,
+      "layers": [
+        [
+          "metal",
+          1.45,
+          1600,
+          7000,
+          0,
+          0.1,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "spit_01",
+          1.2,
+          150,
+          7000,
+          0,
+          0.12,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Gratecrawler",
+      "key": "proposed-creature-materials/gratecrawler/gather",
+      "label": "Muck gathers in throwing hand",
+      "duration": 0.24,
+      "layers": [
+        [
+          "burble_01",
+          0.8,
+          150,
+          7000,
+          0,
+          0.22,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "eat_01",
+          0.85,
+          150,
+          7000,
+          0,
+          0.19,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -18,
+      "integration": "0.24s inside 0.30s windup; stop on abort. Throw/release sound only for an admitted projectile."
+    },
+    {
+      "creature": "Gnatastrophe",
+      "key": "proposed-creature-materials/gnatastrophe/disperse",
+      "label": "Living cloud loosens",
+      "duration": 0.38,
+      "layers": [
+        [
+          "bug_01",
+          1.35,
+          1100,
+          7000,
+          0,
+          0.22,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "bug_03",
+          1.1,
+          150,
+          7000,
+          0.1,
+          0.26,
+          0,
+          0.35,
+          false
+        ]
+      ],
+      "peak_dbfs": -20,
+      "integration": "Reform onset only; still dangerous. No safe-state flourish. Preserve single shared ambient voice."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/reinforcements_warning",
+      "label": "Pipeborne organic summons",
+      "duration": 0.9,
+      "layers": [
+        [
+          "burble_01",
+          0.55,
+          80,
+          7000,
+          0,
+          0.6,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "heavy",
+          0.65,
+          150,
+          7000,
+          0.5,
+          0.25,
+          0,
+          0.25,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/gas_started",
+      "label": "Wet gas pressure escapes",
+      "duration": 0.4,
+      "layers": [
+        [
+          "breath",
+          0.65,
+          400,
+          7000,
+          0,
+          0.38,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "burble_01",
+          0.7,
+          150,
+          7000,
+          0,
+          0.28,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/gas_damaged",
+      "label": "Brief caustic sputter",
+      "duration": 0.12,
+      "layers": [
+        [
+          "spit_01",
+          1.1,
+          900,
+          7000,
+          0,
+          0.11,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/gas_destroyed",
+      "label": "Gas pocket tears apart",
+      "duration": 0.28,
+      "layers": [
+        [
+          "breath",
+          1.1,
+          700,
+          7000,
+          0,
+          0.26,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "spit_03",
+          1.1,
+          150,
+          7000,
+          0,
+          0.18,
+          0,
+          0.5,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    },
+    {
+      "creature": "Clogfather",
+      "key": "clogfather/weak_point_open",
+      "label": "Adhesive fibres peel open",
+      "duration": 0.35,
+      "layers": [
+        [
+          "eat_04",
+          0.65,
+          250,
+          7000,
+          0,
+          0.33,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "burble_01",
+          0.6,
+          150,
+          7000,
+          0,
+          0.25,
+          0,
+          0.4,
+          false
+        ]
+      ],
+      "peak_dbfs": -14,
+      "integration": "Play once on actual event; stop on cancellation/death/reset."
+    }
+  ],
+  "mix_contract": [
+    "Auditions only. No runtime mapping or user selections changed.",
+    "At integration: one warning voice per actor; stop/replace on action transition, abort, death and reset; pause freezes playback.",
+    "Movement cues are quiet, proximity-limited and throttled; no per-frame/per-leg playback. Shared movement budget at most two voices.",
+    "Attack warnings outrank footfalls and ambience. Hurt short and throttled; death once per actor. Master mute honored.",
+    "Reels use listening gaps, not a staged gameplay demonstration. New events require Engineering hooks and runtime validation.",
+    "Devil Spider: windup hook needed; haul varies with distance, stop pull/hunger on release; rapid tear inputs must not stack long tails.",
+    "Widow: cancel warning offscreen; no scream through 0.8s swoop or recovery; contact, scuttle and takeoff follow actual states.",
+    "Sputtervalve: one pressure tell per volley, actual admitted bolts only; no sound on trajectory/budget rejection.",
+    "Gratecrawler: gather before 0.3s release; impact follows physical collision, never a timed delay from launch.",
+    "Flushfiend: no invented attack warning; navigation hops and reversals do not imply safe or invulnerable states.",
+    "Gnatastrophe: shared existing ambient voice retained, all living forms dangerous; new near-pass stops at blocked/finished charge.",
+    "Clogfather: warnings fit Hard timings and outrank roars; final collapse fits 1.2s; no added sounds imply portal lore."
+  ],
+  "preserved": [
+    "Approved Skitterling rat and alligator voices and v8 timing edits.",
+    "Devil Spider approved scream/burn death, all selected music and current runtime effects.",
+    "Existing recorded Sputtervalve death, Flushfiend shatter and all old auditions remain available.",
+    "Existing Gnatastrophe continuous buzz and Clogfather roars remain; new effects supplement or audition replacements."
+  ]
+}

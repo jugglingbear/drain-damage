@@ -43,10 +43,10 @@ func run_checks() -> void:
 		game.clogfather.encounter.state = state
 		game.clogfather.encounter.elapsed = 4.3 if state == "recovery" else 0
 		game.clogfather.sync_music_warning(game)
-		assert(director.warning_active and director.warning_duck_db == -12)
+		assert(director.warning_active and director.warning_duck_db == -6)
 	director.duck_db = -4
 	director.apply_volume()
-	assert(is_equal_approx(director.player.volume_db,director.BOSS_GAIN_DB-12))
+	assert(is_equal_approx(director.player.volume_db,director.BOSS_GAIN_DB-6))
 	director.duck_db = 0
 	game.clogfather.encounter.state = "volley"
 	game.clogfather.sync_music_warning(game)
@@ -88,6 +88,6 @@ func run_checks() -> void:
 	assert(director.current == "title" and not director.player.stream.loop)
 	assert(director.get_child_count() == 1)
 	title.queue_free()
-	await process_frame
+	await create_timer(.3).timeout
 	print("PASS: actual host boss entry/retry, finished fades, pause/mute/gain, loop wrap, victory and title transition")
 	quit()

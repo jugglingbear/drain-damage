@@ -1,0 +1,353 @@
+{
+  "date": "2026-11-04",
+  "status": "Delivered for environmental prop integration; no runtime mapping yet",
+  "brief": "Harmless basement environmental props: water-heater metal split, water gush and settling; cast-iron boiler heavy collapse and steam; pressure-tank seam pop, crumple and water. Short nonlethal hit cues. Target 0.8s destruction animation with visual debris allowed to linger silently. No monster screams, explosive fireball sounds or implications of hero damage.",
+  "recipe": "audio/sources/basement-platforms-v1/render.py",
+  "helper_recipe": "audio/sources/starter-specials-auditions-v1/generate.py",
+  "sources": {
+    "metal": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_light_001.ogg",
+      "sha256": "fba69c467ddd85da7b1d82e259f936b876d9ba6a3d6f1b24bdd10468e46bfe08",
+      "license_evidence": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    },
+    "iron": {
+      "path": "audio/sources/ride-human-fall-and-smash-v1/sfx_breaking_and_falling/bfh1_metal_hit_04.ogg",
+      "sha256": "9888a711535c4474f8599dbb427f591858ecf1a2fd77d1ed86e4234631d82e92",
+      "license_evidence": "audio/sources/ride-human-fall-and-smash-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "water": {
+      "path": "audio/sources/player-death-flush-v1/toilet_01.ogg",
+      "sha256": "502393b0cf4ef7be08eee5955d0c451e42f9b192b181fecd1f28ada0329c2257",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "fall": {
+      "path": "audio/sources/ride-human-fall-and-smash-v1/sfx_breaking_and_falling/bfh1_metal_falling_02.ogg",
+      "sha256": "e40e73a05a9b1ae7d45e24aa898bf610b32334dae80a5c00abe3e2ce0f7d207a",
+      "license_evidence": "audio/sources/ride-human-fall-and-smash-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "splash": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_01.ogg",
+      "sha256": "8d48e8da680fbdfd3c885aa2f69d8e83ad16717bae43d178861d7af08d142849",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "heavy": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_heavy_002.ogg",
+      "sha256": "b914c8f1eb7c0f34bb165d7c77f4be0351f6be0660c13c53e65424e262e2c093",
+      "license_evidence": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    }
+  },
+  "processing": [
+    {
+      "source": "metal",
+      "filters": "aresample=44100,asetrate=37485,aresample=44100,highpass=f=100,lowpass=f=6000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "fall",
+      "filters": "aresample=44100,asetrate=37485,aresample=44100,highpass=f=100,lowpass=f=5000",
+      "leading_trim_samples": 1036
+    },
+    {
+      "source": "iron",
+      "filters": "aresample=44100,asetrate=28665,aresample=44100,highpass=f=60,lowpass=f=2800",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=29547,aresample=44100,highpass=f=65,lowpass=f=3000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=39690,aresample=44100,highpass=f=100,lowpass=f=6500",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=41895,aresample=44100,highpass=f=130,lowpass=f=5000",
+      "leading_trim_samples": 5676
+    }
+  ],
+  "timelines_seconds": {
+    "water-heater": [
+      [
+        "split",
+        0
+      ],
+      [
+        "gush",
+        0.12
+      ],
+      [
+        "settle",
+        0.6
+      ]
+    ],
+    "cast-iron-boiler": [
+      [
+        "collapse",
+        0
+      ],
+      [
+        "steam",
+        0.15
+      ],
+      [
+        "settle",
+        0.58
+      ]
+    ],
+    "pressure-tank": [
+      [
+        "seam-pop",
+        0
+      ],
+      [
+        "crumple",
+        0.09
+      ],
+      [
+        "water",
+        0.3
+      ]
+    ]
+  },
+  "outputs": [
+    {
+      "id": "DD-S0144.1",
+      "prop": "water-heater",
+      "event": "break",
+      "loop": false,
+      "suggested_gain_db": -3,
+      "audition": "audio/alternatives/DD-S0144/DD-S0144.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/water-heater-break.wav",
+      "duration_seconds": 0.8,
+      "peak_dbfs": -9.0,
+      "sha256": "d946823aff72ba69644225926f6be9ec7b5f74f753a9b46271cd876c8fee8ab3"
+    },
+    {
+      "id": "DD-S0145.1",
+      "prop": "water-heater",
+      "event": "hit",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0145/DD-S0145.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/water-heater-hit.wav",
+      "duration_seconds": 0.12,
+      "peak_dbfs": -17.001,
+      "sha256": "0646e6d9592ca86539b5142cfe90cd3da1cfd3a05abd7a6267e0486747ed41f4"
+    },
+    {
+      "id": "DD-S0146.1",
+      "prop": "water-heater",
+      "event": "split",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0146/DD-S0146.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/water-heater-split.wav",
+      "duration_seconds": 0.27,
+      "peak_dbfs": -10.0,
+      "sha256": "17189df6119bd840d74035b1983979f5d6a4863dcda0dabcdf83ea4e4d8609b2"
+    },
+    {
+      "id": "DD-S0147.1",
+      "prop": "water-heater",
+      "event": "gush",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0147/DD-S0147.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/water-heater-gush.wav",
+      "duration_seconds": 0.52,
+      "peak_dbfs": -15.0,
+      "sha256": "8a699906fef83bb6906e16841a084473471ff4d59241b6fefc3b92526840f80e"
+    },
+    {
+      "id": "DD-S0148.1",
+      "prop": "water-heater",
+      "event": "settle",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0148/DD-S0148.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/water-heater-settle.wav",
+      "duration_seconds": 0.2,
+      "peak_dbfs": -21.001,
+      "sha256": "de8cbecaff94b85e0882e041d36843b182396b5e7a18ae8dd17251576d54dba9"
+    },
+    {
+      "id": "DD-S0149.1",
+      "prop": "cast-iron-boiler",
+      "event": "break",
+      "loop": false,
+      "suggested_gain_db": -3,
+      "audition": "audio/alternatives/DD-S0149/DD-S0149.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/cast-iron-boiler-break.wav",
+      "duration_seconds": 0.8,
+      "peak_dbfs": -9.0,
+      "sha256": "9444d74d70f08e5beba971cad92067f7e2d55886aa067e8c730cc82b7f05fb75"
+    },
+    {
+      "id": "DD-S0150.1",
+      "prop": "cast-iron-boiler",
+      "event": "hit",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0150/DD-S0150.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/cast-iron-boiler-hit.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -16.0,
+      "sha256": "23b6c3e05be2ec215fc8819e38e3cca4c3ccc02d384e546126b6b6b1bcac2272"
+    },
+    {
+      "id": "DD-S0151.1",
+      "prop": "cast-iron-boiler",
+      "event": "collapse",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0151/DD-S0151.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/cast-iron-boiler-collapse.wav",
+      "duration_seconds": 0.4,
+      "peak_dbfs": -10.0,
+      "sha256": "531d423351fb8b70ed14674b084b34f390c84381eae7d088b52ab785fccf6bdd"
+    },
+    {
+      "id": "DD-S0152.1",
+      "prop": "cast-iron-boiler",
+      "event": "steam",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0152/DD-S0152.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/cast-iron-boiler-steam.wav",
+      "duration_seconds": 0.5,
+      "peak_dbfs": -18.999,
+      "sha256": "9f4f510d351a9e4779f0c25dd2125cc7c8fd2411fc56023dc5bcf400e9d1e614"
+    },
+    {
+      "id": "DD-S0153.1",
+      "prop": "cast-iron-boiler",
+      "event": "settle",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0153/DD-S0153.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/cast-iron-boiler-settle.wav",
+      "duration_seconds": 0.22,
+      "peak_dbfs": -22.999,
+      "sha256": "21a3106ec2352d4444146ea927b12da92775ece06cf9aa440c7c56662a020003"
+    },
+    {
+      "id": "DD-S0154.1",
+      "prop": "pressure-tank",
+      "event": "break",
+      "loop": false,
+      "suggested_gain_db": -3,
+      "audition": "audio/alternatives/DD-S0154/DD-S0154.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/pressure-tank-break.wav",
+      "duration_seconds": 0.8,
+      "peak_dbfs": -9.0,
+      "sha256": "ad03163f2a29e16c36cede901de5a9f30622185f4c24e3c47b3dd34541d31b0a"
+    },
+    {
+      "id": "DD-S0155.1",
+      "prop": "pressure-tank",
+      "event": "hit",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0155/DD-S0155.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/pressure-tank-hit.wav",
+      "duration_seconds": 0.1,
+      "peak_dbfs": -18.0,
+      "sha256": "a1fedc92409a54f3aa36583542faa39ccf14fdc3722bc96f8453101deb33cdda"
+    },
+    {
+      "id": "DD-S0156.1",
+      "prop": "pressure-tank",
+      "event": "seam-pop",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0156/DD-S0156.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/pressure-tank-seam-pop.wav",
+      "duration_seconds": 0.16,
+      "peak_dbfs": -11.0,
+      "sha256": "195e6d98e4ef6e2a5bf67ba99dc5a89726907f555a4d005ad8a4d6236f703e56"
+    },
+    {
+      "id": "DD-S0157.1",
+      "prop": "pressure-tank",
+      "event": "crumple",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0157/DD-S0157.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/pressure-tank-crumple.wav",
+      "duration_seconds": 0.31,
+      "peak_dbfs": -15.0,
+      "sha256": "35ea51f406d322255ec551fd52ad116e709a958af9886e3ba37a48ce8d9936e2"
+    },
+    {
+      "id": "DD-S0158.1",
+      "prop": "pressure-tank",
+      "event": "water",
+      "loop": false,
+      "suggested_gain_db": -2,
+      "audition": "audio/alternatives/DD-S0158/DD-S0158.1.wav",
+      "path": "assets/audio/sfx/basement-platforms-v1/pressure-tank-water.wav",
+      "duration_seconds": 0.45,
+      "peak_dbfs": -17.001,
+      "sha256": "16d6151615930221339bf75071ac22bbc78ddea8b60c8173254b96f8892e2106"
+    }
+  ],
+  "trigger_guidance": [
+    "Use combined break once on intact-to-destroyed transition OR schedule components; never both.",
+    "Nonlethal accepted damage plays hit only; lethal damage plays break only, not hit plus break.",
+    "Suggested hit cooldown 0.12s; bounded shared environmental voices with pause/mute/reset disposal.",
+    "No loop, no lingering debris chatter. Death/break and water are harmless to the hero.",
+    "0.8s timing fits a 0.6\u20131.0s collapse; adapt animation event offsets without stretching all clips."
+  ],
+  "limitations": "Technical checks only; final in-game listening/mix and runtime implementation are pending.",
+  "integration_recommendations": {
+    "combined_break_preferred": true,
+    "shared_max_voices": 2,
+    "hit_cooldown_seconds": 0.12,
+    "break_once_per_prop": true,
+    "hit_gain_db": -2,
+    "break_gain_db": -3,
+    "priority": "Break replaces oldest hit when both voices are occupied; never add isolated stages over combined break.",
+    "pause": "Pause/resume active voices with simulation; do not replay hits or restart breaks on resume.",
+    "reset": "Stop and clear voices on level reset/retry, menu, scene teardown or disposal.",
+    "marker_status": "Proposed audiovisual markers only; Art/Engineering confirm support removal against animation.",
+    "markers_seconds": {
+      "water-heater": {
+        "hit": 0,
+        "break_release": 0,
+        "support_release": 0.12,
+        "debris_settle": 0.6,
+        "end": 0.8
+      },
+      "cast-iron-boiler": {
+        "hit": 0,
+        "break_release": 0,
+        "support_release": 0.15,
+        "debris_settle": 0.58,
+        "end": 0.8
+      },
+      "pressure-tank": {
+        "hit": 0,
+        "break_release": 0,
+        "support_release": 0.09,
+        "debris_settle": 0.55,
+        "end": 0.8
+      }
+    },
+    "marker_note": "hit belongs to a separate nonlethal event; support_release is a proposed visual marker, not audio-triggered physics."
+  }
+}

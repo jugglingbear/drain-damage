@@ -76,13 +76,12 @@ static func initialize(game: Node2D, target: Dictionary) -> void:
 		game.reset_observation()
 		game.player = Vector2(6410,394)
 		game.camera_x = game.skitterling.camera_position(game.player.x)
-		game.route_progress = game.player.x
 		game.grounded = true
 		game.velocity = Vector2.ZERO
-		game.wave_clock = 2
+		game.trial_clock = 2
 		game.skitterling.clear_prior(game)
 		# The shortcut has passed the pump pocket; it must not appear behind the player.
-		game.swarm_schedule.ledger["pump-overhead"].state = "bypassed"
+		game.campaign.expire(game.player.x)
 	game.dialogue.release_guard = 0
 	game.invulnerable = 1.0
 

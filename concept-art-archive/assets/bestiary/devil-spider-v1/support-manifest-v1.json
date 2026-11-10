@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "Existing approved pipe-bundle top rail reused; running support/contact review pending",
+  "source": "assets/world/first-call/pipe-bundle-v1.png",
+  "source_rect": [
+    72,
+    208,
+    1904,
+    100
+  ],
+  "source_caps": [
+    120,
+    128
+  ],
+  "logical_height": 18,
+  "logical_caps": [
+    22,
+    23
+  ],
+  "contact": "Rail underside at ceiling_socket_y110; top92. Draw behind spider so hooks overlap underside by1px. Keep metal rail continuous across patrol range plus full visible hook reach; anchored bronze bolts are baked in.",
+  "render": "Three-part horizontal stretch: left120sourcepx ->22logicalpx; right128 ->23; middle remaining1656sourcepx stretches to requested width-45. Preserve18px height. No generated/code-drawn support required.",
+  "alpha_cutoff": 240,
+  "extent": "Use min/max actual ceiling_contacts and patrol bounds, not body hitbox. Expected width~376; allow wider if100–120px sprite needs it.",
+  "validation": "Source rail inspected: steel depth, bronze bolts, end brackets. Crop excludes plumbing below. Native running screenshot required."
+}

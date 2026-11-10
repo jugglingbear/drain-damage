@@ -23,7 +23,7 @@ func checks() -> void:
 				host.specials.count = count
 				var commands := hud.commands(host,origin,theme)
 				assert(commands.size() == 5)
-				assert(commands[2].weapon == hero.weapon_id)
+				assert(commands[2].weapon == (hero.weapon_id if theme == "dispenser" else "fidget"))
 				var filled := 0
 				for command in commands:
 					assert(bounds.encloses(command.rect))

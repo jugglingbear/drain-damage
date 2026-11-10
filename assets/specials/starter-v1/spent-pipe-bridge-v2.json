@@ -1,0 +1,148 @@
+{
+  "status": "Candidate bridge artwork; runtime sequence review required, especially collar continuity into retained final frames",
+  "path": "assets/specials/starter-v1/spent-pipe-bridge-v2.png",
+  "alpha_cutoff": 240,
+  "frames": [
+    {
+      "index": 0,
+      "source_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        87,
+        106,
+        430,
+        461
+      ],
+      "source_anchor": [
+        258.5,
+        461
+      ],
+      "uniform_scale": 0.18
+    },
+    {
+      "index": 1,
+      "source_rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        74,
+        115,
+        422,
+        461
+      ],
+      "source_anchor": [
+        248.0,
+        461
+      ],
+      "uniform_scale": 0.18
+    },
+    {
+      "index": 2,
+      "source_rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        69,
+        146,
+        423,
+        461
+      ],
+      "source_anchor": [
+        246.0,
+        461
+      ],
+      "uniform_scale": 0.18
+    },
+    {
+      "index": 3,
+      "source_rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        88,
+        81,
+        430,
+        430
+      ],
+      "source_anchor": [
+        259.0,
+        430
+      ],
+      "uniform_scale": 0.18
+    },
+    {
+      "index": 4,
+      "source_rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        74,
+        139,
+        421,
+        430
+      ],
+      "source_anchor": [
+        247.5,
+        430
+      ],
+      "uniform_scale": 0.18
+    },
+    {
+      "index": 5,
+      "source_rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha_bounds": [
+        66,
+        192,
+        423,
+        429
+      ],
+      "source_anchor": [
+        244.5,
+        429
+      ],
+      "uniform_scale": 0.18
+    }
+  ],
+  "frame_zero": {
+    "right": "previews/spent-pipe-collapse-runtime/spent-outgoing-1.png",
+    "left": "previews/spent-pipe-collapse-runtime/spent-outgoing--1.png",
+    "anchor": [
+      64,
+      96
+    ],
+    "scale": 1,
+    "instruction": "Use exact outgoing render unchanged; do not regenerate frame zero."
+  },
+  "normal_candidate_sequence": [
+    0,
+    1,
+    2
+  ],
+  "compact_candidate_sequence": [
+    3,
+    4,
+    5
+  ],
+  "integration": "Opaque held frames only. Replace entire assembly including collar. Preserve floor anchor/facing. Existing finals remain unchanged. Do not claim accepted until native sequence review."
+}

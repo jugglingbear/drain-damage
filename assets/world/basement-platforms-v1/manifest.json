@@ -1,0 +1,2097 @@
+{
+  "schema_version": 1,
+  "status": "Production source package delivered for integration; measured footprints supersede nominal requests; running acceptance pending",
+  "owner": "Art",
+  "runtime_owner": "Engineering",
+  "placement_owner": "Level Design",
+  "tool": "built-in image_gen",
+  "selection_source": "design/basement-breakable-props-v1/manifest.json",
+  "placement_source": "levels/first-call/platform-variety-v1.json",
+  "audio_manifest": "audio/sources/basement-platforms-v1/manifest.json",
+  "rules": [
+    "All props inert; only three selected props take damage.",
+    "All destruction, effects and debris deal zero hero damage.",
+    "Use a single uniform source scale per body; never fit independently on x/y.",
+    "Transparent source padding is not collision.",
+    "Collision geometry and destruction timing require actual running capture review.",
+    "Original atlases retained; rejected FX row must not render."
+  ],
+  "assets": [
+    {
+      "id": "water-heater",
+      "destructible": true,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.8181818181818182,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        164,
+        305
+      ],
+      "source_tread": [
+        96,
+        85,
+        230,
+        85
+      ],
+      "top_support_segments": [
+        [
+          -55.63636,
+          -180,
+          54.0,
+          -180
+        ]
+      ],
+      "top_width": 109.63636,
+      "height": 180,
+      "collision_rects": [
+        [
+          -55.63636,
+          -180.0,
+          111.27273,
+          155.45455
+        ],
+        [
+          -55.63636,
+          -24.54545,
+          21.27273,
+          24.54545
+        ],
+        [
+          33.54545,
+          -24.54545,
+          22.09091,
+          24.54545
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            96,
+            20,
+            232,
+            305
+          ],
+          "source_anchor": [
+            164,
+            305
+          ],
+          "destination": [
+            -134.1818181818182,
+            -249.54545454545456,
+            256.90909090909093,
+            256.90909090909093
+          ]
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            314,
+            0,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            95,
+            20,
+            231,
+            305
+          ],
+          "source_anchor": [
+            164,
+            305
+          ],
+          "destination": [
+            -134.1818181818182,
+            -249.54545454545456,
+            256.0909090909091,
+            256.90909090909093
+          ]
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            627,
+            0,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            96,
+            20,
+            232,
+            305
+          ],
+          "source_anchor": [
+            164,
+            305
+          ],
+          "destination": [
+            -134.1818181818182,
+            -249.54545454545456,
+            256.0909090909091,
+            256.90909090909093
+          ]
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            940,
+            0,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            96,
+            20,
+            233,
+            305
+          ],
+          "source_anchor": [
+            164,
+            305
+          ],
+          "destination": [
+            -134.1818181818182,
+            -249.54545454545456,
+            256.90909090909093,
+            256.90909090909093
+          ]
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            314,
+            314,
+            313
+          ],
+          "source_opaque_bounds": [
+            92,
+            19,
+            242,
+            303
+          ],
+          "source_anchor": [
+            164,
+            303
+          ],
+          "destination": [
+            -134.1818181818182,
+            -247.90909090909093,
+            256.90909090909093,
+            256.0909090909091
+          ]
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            314,
+            314,
+            313,
+            313
+          ],
+          "source_opaque_bounds": [
+            83,
+            26,
+            250,
+            303
+          ],
+          "source_anchor": [
+            164,
+            303
+          ],
+          "destination": [
+            -134.1818181818182,
+            -247.90909090909093,
+            256.0909090909091,
+            256.0909090909091
+          ]
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            627,
+            314,
+            313,
+            313
+          ],
+          "source_opaque_bounds": [
+            78,
+            68,
+            259,
+            303
+          ],
+          "source_anchor": [
+            164,
+            303
+          ],
+          "destination": [
+            -134.1818181818182,
+            -247.90909090909093,
+            256.0909090909091,
+            256.0909090909091
+          ]
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            940,
+            314,
+            314,
+            313
+          ],
+          "source_opaque_bounds": [
+            74,
+            117,
+            261,
+            303
+          ],
+          "source_anchor": [
+            164,
+            303
+          ],
+          "destination": [
+            -134.1818181818182,
+            -247.90909090909093,
+            256.90909090909093,
+            256.0909090909091
+          ]
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            114,
+            125,
+            209,
+            211
+          ],
+          "source_anchor": [
+            161.5,
+            168.0
+          ],
+          "destination": [
+            -35.53,
+            -36.96,
+            69.08,
+            69.08
+          ],
+          "contact_bottom": 9.46,
+          "contact_half_width": 10.45
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            314,
+            940,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            131,
+            119,
+            183,
+            201
+          ],
+          "source_anchor": [
+            157.0,
+            160.0
+          ],
+          "destination": [
+            -34.54,
+            -35.2,
+            68.86,
+            69.08
+          ],
+          "contact_bottom": 9.02,
+          "contact_half_width": 5.72
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            627,
+            940,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            119,
+            117,
+            203,
+            205
+          ],
+          "source_anchor": [
+            161.0,
+            161.0
+          ],
+          "destination": [
+            -35.42,
+            -35.42,
+            68.86,
+            69.08
+          ],
+          "contact_bottom": 9.68,
+          "contact_half_width": 9.24
+        },
+        {
+          "id": 15,
+          "source_rect": [
+            940,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            74,
+            123,
+            261,
+            305
+          ],
+          "source_anchor": [
+            164,
+            305
+          ],
+          "destination": [
+            -134.1818181818182,
+            -249.54545454545456,
+            256.90909090909093,
+            256.90909090909093
+          ]
+        }
+      ],
+      "states": {
+        "intact": [
+          0
+        ],
+        "damage_light": [
+          1
+        ],
+        "damage_heavy": [
+          2
+        ],
+        "break": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          15
+        ],
+        "wreck": [
+          15
+        ]
+      },
+      "break_durations": [
+        0.1,
+        0.12,
+        0.14,
+        0.14,
+        0.14,
+        0.16
+      ],
+      "events": {
+        "hit": "on nonlethal hit, throttled",
+        "break_release": 0.0,
+        "support_release": 0.22,
+        "debris_settle": 0.8
+      },
+      "debris_frames": [
+        12,
+        13,
+        14
+      ],
+      "wreck_collision": "None by default; placement review must account for decorative wreck silhouette.",
+      "animation_review": "Six registered collapse keys delivered; renderer must validate cadence and top/body removal in motion. No smoothness claim from atlas.",
+      "rejected_source_regions": {
+        "frames": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "reason": "Overlapping FX gutters; use separate effects-v2 atlas."
+      },
+      "effects": {
+        "path": "assets/world/basement-platforms-v1/water-heater-effects-v2.png",
+        "frames": [
+          {
+            "id": 0,
+            "source_rect": [
+              0,
+              0,
+              636,
+              618
+            ],
+            "source_anchor": [
+              349.0,
+              541
+            ],
+            "destination": [
+              -97.72000000000001,
+              -151.48000000000002,
+              178.08,
+              173.04000000000002
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 1,
+            "source_rect": [
+              636,
+              0,
+              635,
+              618
+            ],
+            "source_anchor": [
+              292.5,
+              545
+            ],
+            "destination": [
+              -81.9,
+              -152.60000000000002,
+              177.8,
+              173.04000000000002
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 2,
+            "source_rect": [
+              0,
+              618,
+              636,
+              619
+            ],
+            "source_anchor": [
+              339.5,
+              505
+            ],
+            "destination": [
+              -95.06,
+              -141.4,
+              178.08,
+              173.32000000000002
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 3,
+            "source_rect": [
+              636,
+              618,
+              635,
+              619
+            ],
+            "source_anchor": [
+              304.0,
+              503
+            ],
+            "destination": [
+              -85.12,
+              -140.84,
+              177.8,
+              173.32000000000002
+            ],
+            "duration": 0.16
+          }
+        ],
+        "alpha_cutoff": 0,
+        "draw_origin": [
+          0,
+          -54.0
+        ],
+        "damage": 0,
+        "loop": false,
+        "fade_tail_seconds": 0.16
+      }
+    },
+    {
+      "id": "cast-iron-boiler",
+      "destructible": true,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.8450704225352113,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        151,
+        261
+      ],
+      "source_tread": [
+        22,
+        119,
+        280,
+        119
+      ],
+      "top_support_segments": [
+        [
+          -109.01408,
+          -120,
+          109.01408,
+          -120
+        ]
+      ],
+      "top_width": 218.02817,
+      "height": 120,
+      "collision_rects": [
+        [
+          -109.01408,
+          -120.0,
+          218.02817,
+          100.56338
+        ],
+        [
+          -107.32394,
+          -19.43662,
+          39.71831,
+          19.43662
+        ],
+        [
+          71.83099,
+          -19.43662,
+          40.56338,
+          19.43662
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            13,
+            55,
+            307,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            265.3521126760563,
+            265.3521126760563
+          ]
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            314,
+            0,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            13,
+            55,
+            307,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            264.50704225352115,
+            265.3521126760563
+          ]
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            627,
+            0,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            15,
+            55,
+            307,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            264.50704225352115,
+            265.3521126760563
+          ]
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            940,
+            0,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            14,
+            55,
+            307,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            265.3521126760563,
+            265.3521126760563
+          ]
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            314,
+            314,
+            313
+          ],
+          "source_opaque_bounds": [
+            14,
+            54,
+            306,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            265.3521126760563,
+            264.50704225352115
+          ]
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            314,
+            314,
+            313,
+            313
+          ],
+          "source_opaque_bounds": [
+            13,
+            55,
+            306,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            264.50704225352115,
+            264.50704225352115
+          ]
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            627,
+            314,
+            313,
+            313
+          ],
+          "source_opaque_bounds": [
+            15,
+            54,
+            307,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            264.50704225352115,
+            264.50704225352115
+          ]
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            940,
+            314,
+            314,
+            313
+          ],
+          "source_opaque_bounds": [
+            14,
+            55,
+            308,
+            261
+          ],
+          "source_anchor": [
+            151,
+            261
+          ],
+          "destination": [
+            -127.6056338028169,
+            -220.56338028169014,
+            265.3521126760563,
+            264.50704225352115
+          ]
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            108,
+            109,
+            205,
+            240
+          ],
+          "source_anchor": [
+            156.5,
+            174.5
+          ],
+          "destination": [
+            -34.43,
+            -38.39,
+            69.08,
+            69.08
+          ],
+          "contact_bottom": 14.41,
+          "contact_half_width": 10.67
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            314,
+            940,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            99,
+            111,
+            227,
+            217
+          ],
+          "source_anchor": [
+            163.0,
+            164.0
+          ],
+          "destination": [
+            -35.86,
+            -36.08,
+            68.86,
+            69.08
+          ],
+          "contact_bottom": 11.66,
+          "contact_half_width": 14.08
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            627,
+            940,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            119,
+            133,
+            193,
+            202
+          ],
+          "source_anchor": [
+            156.0,
+            167.5
+          ],
+          "destination": [
+            -34.32,
+            -36.85,
+            68.86,
+            69.08
+          ],
+          "contact_bottom": 7.59,
+          "contact_half_width": 8.14
+        },
+        {
+          "id": 15,
+          "source_rect": [
+            940,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            15,
+            109,
+            307,
+            262
+          ],
+          "source_anchor": [
+            151,
+            262
+          ],
+          "destination": [
+            -127.6056338028169,
+            -221.40845070422534,
+            265.3521126760563,
+            265.3521126760563
+          ]
+        }
+      ],
+      "states": {
+        "intact": [
+          0
+        ],
+        "damage_light": [
+          1
+        ],
+        "damage_heavy": [
+          2
+        ],
+        "break": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          15
+        ],
+        "wreck": [
+          15
+        ]
+      },
+      "break_durations": [
+        0.1,
+        0.12,
+        0.14,
+        0.14,
+        0.14,
+        0.16
+      ],
+      "events": {
+        "hit": "on nonlethal hit, throttled",
+        "break_release": 0.0,
+        "support_release": 0.22,
+        "debris_settle": 0.8
+      },
+      "debris_frames": [
+        12,
+        13,
+        14
+      ],
+      "wreck_collision": "None by default; placement review must account for decorative wreck silhouette.",
+      "animation_review": "Six registered collapse keys delivered; renderer must validate cadence and top/body removal in motion. No smoothness claim from atlas.",
+      "rejected_source_regions": {
+        "frames": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "reason": "Overlapping FX gutters; use separate effects-v2 atlas."
+      },
+      "effects": {
+        "path": "assets/world/basement-platforms-v1/cast-iron-boiler-effects-v2.png",
+        "frames": [
+          {
+            "id": 0,
+            "source_rect": [
+              0,
+              0,
+              627,
+              627
+            ],
+            "source_anchor": [
+              310.5,
+              559
+            ],
+            "destination": [
+              -86.94000000000001,
+              -156.52,
+              175.56000000000003,
+              175.56000000000003
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 1,
+            "source_rect": [
+              627,
+              0,
+              627,
+              627
+            ],
+            "source_anchor": [
+              311.0,
+              560
+            ],
+            "destination": [
+              -87.08000000000001,
+              -156.8,
+              175.56000000000003,
+              175.56000000000003
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 2,
+            "source_rect": [
+              0,
+              627,
+              627,
+              627
+            ],
+            "source_anchor": [
+              327.0,
+              543
+            ],
+            "destination": [
+              -91.56,
+              -152.04000000000002,
+              175.56000000000003,
+              175.56000000000003
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 3,
+            "source_rect": [
+              627,
+              627,
+              627,
+              627
+            ],
+            "source_anchor": [
+              281.0,
+              543
+            ],
+            "destination": [
+              -78.68,
+              -152.04000000000002,
+              175.56000000000003,
+              175.56000000000003
+            ],
+            "duration": 0.16
+          }
+        ],
+        "alpha_cutoff": 0,
+        "draw_origin": [
+          0,
+          -36.0
+        ],
+        "damage": 0,
+        "loop": false,
+        "fade_tail_seconds": 0.16
+      }
+    },
+    {
+      "id": "pressure-tank",
+      "destructible": true,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.9302325581395349,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        164,
+        265
+      ],
+      "source_tread": [
+        74,
+        136,
+        254,
+        136
+      ],
+      "top_support_segments": [
+        [
+          -83.72093,
+          -120,
+          83.72093,
+          -120
+        ]
+      ],
+      "top_width": 167.44186,
+      "height": 120,
+      "collision_rects": [
+        [
+          -83.72093,
+          -120.0,
+          167.44186,
+          11.16279
+        ],
+        [
+          -124.65116,
+          -108.83721,
+          232.55814,
+          83.72093
+        ],
+        [
+          -120.0,
+          -25.11628,
+          37.2093,
+          25.11628
+        ],
+        [
+          62.32558,
+          -25.11628,
+          37.2093,
+          25.11628
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            15,
+            75,
+            305,
+            265
+          ],
+          "source_anchor": [
+            164,
+            265
+          ],
+          "destination": [
+            -152.5581395348837,
+            -246.51162790697674,
+            292.09302325581393,
+            292.09302325581393
+          ]
+        },
+        {
+          "id": 1,
+          "source_rect": [
+            314,
+            0,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            14,
+            75,
+            305,
+            265
+          ],
+          "source_anchor": [
+            164,
+            265
+          ],
+          "destination": [
+            -152.5581395348837,
+            -246.51162790697674,
+            291.16279069767444,
+            292.09302325581393
+          ]
+        },
+        {
+          "id": 2,
+          "source_rect": [
+            627,
+            0,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            16,
+            75,
+            306,
+            265
+          ],
+          "source_anchor": [
+            164,
+            265
+          ],
+          "destination": [
+            -152.5581395348837,
+            -246.51162790697674,
+            291.16279069767444,
+            292.09302325581393
+          ]
+        },
+        {
+          "id": 3,
+          "source_rect": [
+            940,
+            0,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            16,
+            75,
+            306,
+            265
+          ],
+          "source_anchor": [
+            164,
+            265
+          ],
+          "destination": [
+            -152.5581395348837,
+            -246.51162790697674,
+            292.09302325581393,
+            292.09302325581393
+          ]
+        },
+        {
+          "id": 4,
+          "source_rect": [
+            0,
+            314,
+            314,
+            313
+          ],
+          "source_opaque_bounds": [
+            14,
+            74,
+            305,
+            264
+          ],
+          "source_anchor": [
+            164,
+            264
+          ],
+          "destination": [
+            -152.5581395348837,
+            -245.58139534883722,
+            292.09302325581393,
+            291.16279069767444
+          ]
+        },
+        {
+          "id": 5,
+          "source_rect": [
+            314,
+            314,
+            313,
+            313
+          ],
+          "source_opaque_bounds": [
+            15,
+            74,
+            305,
+            264
+          ],
+          "source_anchor": [
+            164,
+            264
+          ],
+          "destination": [
+            -152.5581395348837,
+            -245.58139534883722,
+            291.16279069767444,
+            291.16279069767444
+          ]
+        },
+        {
+          "id": 6,
+          "source_rect": [
+            627,
+            314,
+            313,
+            313
+          ],
+          "source_opaque_bounds": [
+            17,
+            74,
+            305,
+            264
+          ],
+          "source_anchor": [
+            164,
+            264
+          ],
+          "destination": [
+            -152.5581395348837,
+            -245.58139534883722,
+            291.16279069767444,
+            291.16279069767444
+          ]
+        },
+        {
+          "id": 7,
+          "source_rect": [
+            940,
+            314,
+            314,
+            313
+          ],
+          "source_opaque_bounds": [
+            18,
+            75,
+            306,
+            264
+          ],
+          "source_anchor": [
+            164,
+            264
+          ],
+          "destination": [
+            -152.5581395348837,
+            -245.58139534883722,
+            292.09302325581393,
+            291.16279069767444
+          ]
+        },
+        {
+          "id": 12,
+          "source_rect": [
+            0,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            112,
+            119,
+            210,
+            217
+          ],
+          "source_anchor": [
+            161.0,
+            168.0
+          ],
+          "destination": [
+            -35.42,
+            -36.96,
+            69.08,
+            69.08
+          ],
+          "contact_bottom": 10.78,
+          "contact_half_width": 10.78
+        },
+        {
+          "id": 13,
+          "source_rect": [
+            314,
+            940,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            110,
+            97,
+            203,
+            220
+          ],
+          "source_anchor": [
+            156.5,
+            158.5
+          ],
+          "destination": [
+            -34.43,
+            -34.87,
+            68.86,
+            69.08
+          ],
+          "contact_bottom": 13.53,
+          "contact_half_width": 10.23
+        },
+        {
+          "id": 14,
+          "source_rect": [
+            627,
+            940,
+            313,
+            314
+          ],
+          "source_opaque_bounds": [
+            114,
+            113,
+            207,
+            215
+          ],
+          "source_anchor": [
+            160.5,
+            164.0
+          ],
+          "destination": [
+            -35.31,
+            -36.08,
+            68.86,
+            69.08
+          ],
+          "contact_bottom": 11.22,
+          "contact_half_width": 10.23
+        },
+        {
+          "id": 15,
+          "source_rect": [
+            940,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            17,
+            118,
+            305,
+            256
+          ],
+          "source_anchor": [
+            164,
+            256
+          ],
+          "destination": [
+            -152.5581395348837,
+            -238.13953488372093,
+            292.09302325581393,
+            292.09302325581393
+          ]
+        }
+      ],
+      "states": {
+        "intact": [
+          0
+        ],
+        "damage_light": [
+          1
+        ],
+        "damage_heavy": [
+          2
+        ],
+        "break": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          15
+        ],
+        "wreck": [
+          15
+        ]
+      },
+      "break_durations": [
+        0.1,
+        0.12,
+        0.14,
+        0.14,
+        0.14,
+        0.16
+      ],
+      "events": {
+        "hit": "on nonlethal hit, throttled",
+        "break_release": 0.0,
+        "support_release": 0.22,
+        "debris_settle": 0.8
+      },
+      "debris_frames": [
+        12,
+        13,
+        14
+      ],
+      "wreck_collision": "None by default; placement review must account for decorative wreck silhouette.",
+      "animation_review": "Six registered collapse keys delivered; renderer must validate cadence and top/body removal in motion. No smoothness claim from atlas.",
+      "rejected_source_regions": {
+        "frames": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "reason": "Overlapping FX gutters; use separate effects-v2 atlas."
+      },
+      "effects": {
+        "path": "assets/world/basement-platforms-v1/pressure-tank-effects-v2.png",
+        "frames": [
+          {
+            "id": 0,
+            "source_rect": [
+              0,
+              0,
+              634,
+              620
+            ],
+            "source_anchor": [
+              305.0,
+              560
+            ],
+            "destination": [
+              -85.4,
+              -156.8,
+              177.52,
+              173.60000000000002
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 1,
+            "source_rect": [
+              634,
+              0,
+              634,
+              620
+            ],
+            "source_anchor": [
+              284.0,
+              560
+            ],
+            "destination": [
+              -79.52000000000001,
+              -156.8,
+              177.52,
+              173.60000000000002
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 2,
+            "source_rect": [
+              0,
+              620,
+              634,
+              620
+            ],
+            "source_anchor": [
+              315.0,
+              562
+            ],
+            "destination": [
+              -88.2,
+              -157.36,
+              177.52,
+              173.60000000000002
+            ],
+            "duration": 0.16
+          },
+          {
+            "id": 3,
+            "source_rect": [
+              634,
+              620,
+              634,
+              620
+            ],
+            "source_anchor": [
+              321.0,
+              562
+            ],
+            "destination": [
+              -89.88000000000001,
+              -157.36,
+              177.52,
+              173.60000000000002
+            ],
+            "duration": 0.16
+          }
+        ],
+        "alpha_cutoff": 0,
+        "draw_origin": [
+          0,
+          -36.0
+        ],
+        "damage": 0,
+        "loop": false,
+        "fade_tail_seconds": 0.16
+      }
+    },
+    {
+      "id": "utility-sink",
+      "destructible": false,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/utility-sink-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.18547140649149924,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        623,
+        1182
+      ],
+      "source_tread": [
+        120,
+        535,
+        1126,
+        535
+      ],
+      "top_support_segments": [
+        [
+          -93.29212,
+          -120,
+          93.29212,
+          -120
+        ]
+      ],
+      "top_width": 186.58423,
+      "height": 120,
+      "collision_rects": [
+        [
+          -93.29212,
+          -120.0,
+          186.58423,
+          47.29521
+        ],
+        [
+          -81.23648,
+          -72.70479,
+          17.61978,
+          72.70479
+        ],
+        [
+          66.21329,
+          -72.70479,
+          17.61978,
+          72.70479
+        ],
+        [
+          -48.77898,
+          -72.70479,
+          14.83771,
+          72.70479
+        ],
+        [
+          32.82844,
+          -72.70479,
+          14.83771,
+          72.70479
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "source_opaque_bounds": [
+            120,
+            72,
+            1130,
+            1182
+          ],
+          "source_anchor": [
+            623,
+            1182
+          ],
+          "destination": [
+            -115.54868624420402,
+            -219.2272024729521,
+            232.58114374034005,
+            232.58114374034005
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pipe-stack",
+      "destructible": false,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/pipe-stack-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.14814814814814814,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        627,
+        1175
+      ],
+      "source_tread": [
+        65,
+        770,
+        1190,
+        770
+      ],
+      "top_support_segments": [
+        [
+          -83.25926,
+          -60,
+          83.40741,
+          -60
+        ]
+      ],
+      "top_width": 166.66667,
+      "height": 60,
+      "collision_rects": [
+        [
+          -83.25926,
+          -60.0,
+          166.66667,
+          51.11111
+        ],
+        [
+          -64.74074,
+          -8.88889,
+          50.37037,
+          8.88889
+        ],
+        [
+          12.88889,
+          -8.88889,
+          48.88889,
+          8.88889
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "source_opaque_bounds": [
+            59,
+            720,
+            1196,
+            1175
+          ],
+          "source_anchor": [
+            627,
+            1175
+          ],
+          "destination": [
+            -92.88888888888889,
+            -174.07407407407408,
+            185.77777777777777,
+            185.77777777777777
+          ]
+        }
+      ]
+    },
+    {
+      "id": "water-softener",
+      "destructible": false,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/water-softener-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.1671309192200557,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        611,
+        1156
+      ],
+      "source_tread": [
+        145,
+        438,
+        1077,
+        438
+      ],
+      "top_support_segments": [
+        [
+          -77.88301,
+          -120,
+          77.88301,
+          -120
+        ]
+      ],
+      "top_width": 155.76602,
+      "height": 120,
+      "collision_rects": [
+        [
+          -77.88301,
+          -120.0,
+          155.76602,
+          113.64903
+        ],
+        [
+          -72.03343,
+          -6.35097,
+          25.06964,
+          6.35097
+        ],
+        [
+          48.30084,
+          -6.35097,
+          25.06964,
+          6.35097
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "source_opaque_bounds": [
+            145,
+            302,
+            1194,
+            1156
+          ],
+          "source_anchor": [
+            611,
+            1156
+          ],
+          "destination": [
+            -102.11699164345404,
+            -193.2033426183844,
+            209.58217270194987,
+            209.58217270194987
+          ]
+        }
+      ]
+    },
+    {
+      "id": "duplex-pump",
+      "destructible": false,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/duplex-pump-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.20270270270270271,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        627,
+        1122
+      ],
+      "source_tread": [
+        74,
+        530,
+        1180,
+        530
+      ],
+      "top_support_segments": [
+        [
+          -112.09459,
+          -120,
+          112.09459,
+          -120
+        ]
+      ],
+      "top_width": 224.18919,
+      "height": 120,
+      "collision_rects": [
+        [
+          -112.09459,
+          -120.0,
+          224.18919,
+          8.91892
+        ],
+        [
+          -109.86486,
+          -111.08108,
+          15.2027,
+          96.89189
+        ],
+        [
+          95.87838,
+          -111.08108,
+          15.2027,
+          96.89189
+        ],
+        [
+          -94.66216,
+          -67.2973,
+          71.95946,
+          52.7027
+        ],
+        [
+          -13.58108,
+          -67.2973,
+          73.98649,
+          52.7027
+        ],
+        [
+          -116.55405,
+          -14.18919,
+          233.10811,
+          14.18919
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "source_opaque_bounds": [
+            52,
+            443,
+            1202,
+            1122
+          ],
+          "source_anchor": [
+            627,
+            1122
+          ],
+          "destination": [
+            -127.0945945945946,
+            -227.43243243243245,
+            254.1891891891892,
+            254.1891891891892
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expansion-tank-rack",
+      "destructible": false,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/expansion-tank-rack-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.1664355062413315,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        627,
+        1148
+      ],
+      "source_tread": [
+        137,
+        427,
+        1117,
+        427
+      ],
+      "top_support_segments": [
+        [
+          -81.5534,
+          -120,
+          81.5534,
+          -120
+        ]
+      ],
+      "top_width": 163.1068,
+      "height": 120,
+      "collision_rects": [
+        [
+          -81.5534,
+          -120.0,
+          163.1068,
+          7.15673
+        ],
+        [
+          -78.05825,
+          -112.84327,
+          9.98613,
+          103.19001
+        ],
+        [
+          70.40222,
+          -112.84327,
+          9.98613,
+          103.19001
+        ],
+        [
+          -67.73925,
+          -87.87795,
+          46.60194,
+          41.60888
+        ],
+        [
+          -19.47295,
+          -87.87795,
+          46.60194,
+          41.60888
+        ],
+        [
+          28.79334,
+          -87.87795,
+          39.11234,
+          41.60888
+        ],
+        [
+          -78.05825,
+          -21.30374,
+          158.4466,
+          8.32178
+        ],
+        [
+          -81.05409,
+          -9.65326,
+          13.31484,
+          9.65326
+        ],
+        [
+          67.90569,
+          -9.65326,
+          13.31484,
+          9.65326
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "source_opaque_bounds": [
+            137,
+            358,
+            1117,
+            1148
+          ],
+          "source_anchor": [
+            627,
+            1148
+          ],
+          "destination": [
+            -104.35506241331484,
+            -191.06796116504856,
+            208.71012482662968,
+            208.71012482662968
+          ]
+        }
+      ]
+    },
+    {
+      "id": "radiator",
+      "destructible": false,
+      "status": "Registered production source; runtime contact and motion acceptance pending",
+      "path": "assets/world/basement-platforms-v1/radiator-source-v1.png",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "uniform_scale": 0.1834862385321101,
+      "alpha_cutoff": 240,
+      "source_floor_center": [
+        620,
+        1157
+      ],
+      "source_tread": [
+        170,
+        830,
+        1070,
+        830
+      ],
+      "top_support_segments": [
+        [
+          -82.56881,
+          -60,
+          82.56881,
+          -60
+        ]
+      ],
+      "top_width": 165.13761,
+      "height": 60,
+      "collision_rects": [
+        [
+          -82.56881,
+          -60.0,
+          165.13761,
+          50.45872
+        ],
+        [
+          -80.73394,
+          -9.54128,
+          18.34862,
+          9.54128
+        ],
+        [
+          64.22018,
+          -9.54128,
+          18.34862,
+          9.54128
+        ]
+      ],
+      "contact_notes": "Front tread is support plane; rear fittings/top perspective are decoration. Do not stretch or pad collision to old footprint.",
+      "frames": [
+        {
+          "id": 0,
+          "source_rect": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "source_opaque_bounds": [
+            156,
+            807,
+            1083,
+            1157
+          ],
+          "source_anchor": [
+            620,
+            1157
+          ],
+          "destination": [
+            -113.76146788990826,
+            -212.2935779816514,
+            230.09174311926606,
+            230.09174311926606
+          ]
+        }
+      ]
+    }
+  ],
+  "remaining_gaps": [
+    "Runtime animation and contact acceptance",
+    "Placement revalidation using measured support and collider extents",
+    "In-game audio mix",
+    "Clean alpha check against game background"
+  ]
+}

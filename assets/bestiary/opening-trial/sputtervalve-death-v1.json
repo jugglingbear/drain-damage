@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "status": "Source inspected; runtime floor/ceiling death and debris review pending",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "facing": "left; mirror around runtime anchor for right",
+  "uniform_scale": 0.15,
+  "scale_rule": "Base logical source scale. Apply same existing actor visual multiplier to every phase; do not normalize each pose to same height.",
+  "alpha_preparation": "Derived runtime texture alpha cutoff240 removes generated background haze; retain raw RGBA source.",
+  "frames": [
+    {
+      "id": 0,
+      "path": "assets/bestiary/opening-trial/sputtervalve-death-v1.png",
+      "source_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "source_anchor": [
+        256,
+        466
+      ],
+      "destination": [
+        -38.4,
+        -69.89999999999999,
+        76.8,
+        76.8
+      ],
+      "duration_seconds": 0.08
+    },
+    {
+      "id": 1,
+      "path": "assets/bestiary/opening-trial/sputtervalve-death-v1.png",
+      "source_rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "source_anchor": [
+        256,
+        466
+      ],
+      "destination": [
+        -38.4,
+        -69.89999999999999,
+        76.8,
+        76.8
+      ],
+      "duration_seconds": 0.1
+    },
+    {
+      "id": 2,
+      "path": "assets/bestiary/opening-trial/sputtervalve-death-v1.png",
+      "source_rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "source_anchor": [
+        256,
+        466
+      ],
+      "destination": [
+        -38.4,
+        -69.89999999999999,
+        76.8,
+        76.8
+      ],
+      "duration_seconds": 0.1
+    },
+    {
+      "id": 3,
+      "path": "assets/bestiary/opening-trial/sputtervalve-death-v1.png",
+      "source_rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "source_anchor": [
+        256,
+        444
+      ],
+      "destination": [
+        -38.4,
+        -66.6,
+        76.8,
+        76.8
+      ],
+      "duration_seconds": 0.12
+    },
+    {
+      "id": 4,
+      "path": "assets/bestiary/opening-trial/sputtervalve-death-v1.png",
+      "source_rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "source_anchor": [
+        256,
+        443
+      ],
+      "destination": [
+        -38.4,
+        -66.45,
+        76.8,
+        76.8
+      ],
+      "duration_seconds": 0.14
+    },
+    {
+      "id": 5,
+      "path": "assets/bestiary/opening-trial/sputtervalve-death-v1.png",
+      "source_rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "source_anchor": [
+        256,
+        445
+      ],
+      "destination": [
+        -38.4,
+        -66.75,
+        76.8,
+        76.8
+      ],
+      "duration_seconds": 0
+    }
+  ],
+  "death_seconds": 0.54,
+  "sequence": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "floor": {
+    "origin": "Existing actor support/feet anchor",
+    "support": "Keep base supported during first3 frames; clip below actual support plane for tiny falling fragments so none embed underground.",
+    "motion": "One-way crack, separation, collapse, bounce, settle; no looping, sad-pose hold or whole-enemy fade.",
+    "remains": "Frame5 stays fully visible at support after0.54s. Persist with same world/remains lifecycle as toilets. Noncolliding and harmless; do not disappear with actor removal."
+  },
+  "ceiling": {
+    "initial": "Do not flip floor base into hanging debris. Use existing ceiling body/barrel as detached components at actual death transforms.",
+    "body_reuse": "assets/bestiary/opening-trial/sputtervalve-ceiling-v1.json",
+    "fall": "Detach body and barrel from mount, disable attacks immediately; gravity/rotation toward real supporting surface below. Retain fixed mount plate if physically attached. No hanging floor wreck.",
+    "landing": "At actual support contact play frames3,4,5 upright, matched gauge size; permanent pile on that floor/platform. If over pit, fall visibly into pit, do not invent floating debris.",
+    "ownership": "Engineering owns support queries and trajectory; source provides landing collapse/remains."
+  },
+  "debris_identity": [
+    "Broken brass cannon barrel",
+    "Shattered pressure gauge with dark eyes",
+    "Red valve wheel",
+    "Rusty teal housing and bolts"
+  ],
+  "audio_markers": {
+    "crack": 0,
+    "metal_separation": 0.08,
+    "first_floor_impact": 0.28,
+    "settle": 0.54
+  },
+  "audio_note": "Markers are visual suggestions; reuse suitable existing metal break/settle cues or consult Audio. Ceiling impact marker follows actual landing.",
+  "scope": "Sputtervalve floor/ceiling only; broader regular-monster death-sign policy belongs to Engineering, possible scrolling2.1 exception not resolved here.",
+  "preserve": "Original shooter atlases and manifests retained"
+}

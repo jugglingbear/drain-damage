@@ -51,6 +51,14 @@ func attach(host: Node) -> void:
 			if event == "ambient_roar": gain = -8.0
 			if event == "reactive_roar": gain = -6.0
 			gains[event].append(gain)
+	var action_data: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/creature-action-audio.json"))
+	for event in action_data.creatures.clogfather:
+		var cue: Dictionary = action_data.creatures.clogfather[event]
+		var stream: AudioStreamWAV = load("res://"+str(cue.path)).duplicate()
+		stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
+		streams[event] = [stream]
+		gains[event] = [float(cue.gain_db)]
 	var definition: Dictionary = Data.monster("clogfather").audio
 	hit_cooldown = float(definition.hit.cooldown_seconds)
 	for pair in [["damage_accepted", "hit"], ["death_started", "death"]]:

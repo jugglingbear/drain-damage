@@ -3,6 +3,36 @@
 [magazine.json](magazine.json) is the canonical editable source for the magazine. It contains publication metadata,
 ordered pages, text, captions, image references and layout templates. The PDF is generated output.
 
+## Soldering-torch teaser — edition 38, November 5, 2026
+
+Sean approved the optional torch idea for magazine inclusion. Page 8 now contains three tentative silhouettes:
+Pipe Wrench, Drain Snake and Soldering Torch. The torch description is "A short-range sweep of flame?" and its
+special remains undecided. This does not approve gameplay implementation or assign exclusive character ownership.
+The issue remains eleven pages. `current.pdf` matches edition 38; website publication/live verification are pending.
+Art accepted the revised page; changed pages visually checked and nine unchanged renders matched edition 37.
+Art provenance: `guide-assets-v38/weapons/provenance.json`. Validation: `guide-assets-v38/provenance.json`.
+
+## Weapon and special feature — edition 37, November 5, 2026
+
+Sean requested weapon-plus-special layouts after approving Tony's jetter action concept. The editable source now
+has a two-page feature: Tony / Hydrojet Overdrive and Sean / Main Break, with four future weapon silhouette teasers.
+Mechanics confirmed that those four weapons have no approved named specials; question marks are intentional teasers.
+The backpack jetter is concept presentation, not an integrated weapon-art change. Only normal costumes are permitted.
+Art supplied both action illustrations; the issue now has eleven pages. The contents and flush-page number are updated.
+Edition 37 is preserved. Art accepted both final page renders; text/layout and unchanged-page checks passed.
+Validation and provenance: `guide-assets-v37/provenance.json`. Website publication/live verification remain pending.
+
+## Weapons page — edition 36, November 5, 2026
+
+Edition 36 adds a weapons feature on page 8. Tony's Pressure Gun and Sean's Heavy Plunger Launcher appear
+in full color at the top. Pipe Wrench, Drain Snake, Demolition Hammer and Pipe-Bomb Launcher are black silhouette
+previews, each labelled "Coming Soon?" with a tentative name and brief description. These previews make no release
+promise. The issue now has ten pages; the contents and flush feature page number are updated.
+
+Artwork provenance is recorded in `guide-assets-v36/weapons/`. The normal-costume-only policy remains in force.
+All ten pages were rendered and visually checked; Art independently accepted page 8. Edition 36 is preserved.
+Validation and checksum: `guide-assets-v36/provenance.json`. Website publication/live verification remain pending.
+
 ## Costume spoiler policy and edition 35 — November 2, 2026
 
 Only normal-costume portraits, sprites and gameplay images belong in the magazine. Easy- and Hard-Mode costumes
@@ -10,7 +40,7 @@ and revealing copy are player surprises and must be excluded from every future r
 Sean resumed the October 30 credit-deferred correction on November 2. Edition 35 replaces all three page 6
 costume screenshots with normal Tony swimming, normal Sean riding and the existing normal Tony pressure-gun sprite.
 Costume copy is removed. All nine rendered pages, image references and extracted text were audited.
-`current.pdf` matches edition 35. Historical editions and original assets remain preserved.
+Historical editions and original assets remain preserved.
 The replacement screenshots are controlled actual captures from 136 and 133; version badges remain visible.
 Engineering confirmed the normal swimming capture, including its known thin ripple streak. No new game launch occurred.
 Evidence and hash: `guide-assets-v35/provenance.json`. Release and Engineering own publication/live verification.

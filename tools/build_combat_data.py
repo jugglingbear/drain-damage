@@ -19,13 +19,13 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
-def read(path: str) -> dict[str, Any]:
+def read(path: str, schema_version: int = 1) -> dict[str, Any]:
     """Read one project-relative JSON object."""
     source = (ROOT / path).resolve()
     require(source.is_relative_to(ROOT), f"Path escapes project: {path}")
     data = json.loads(source.read_text())
     require(isinstance(data, dict), f"{path}: expected object")
-    require(data.get("schema_version", 1) == 1, f"{path}: unsupported schema")
+    require(data.get("schema_version", 1) == schema_version, f"{path}: unsupported schema")
     return data
 
 
@@ -104,10 +104,12 @@ def dispenser_data() -> dict[str, Any]:
                 validate_frames(child)
 
     validate_frames(art)
-    inspection = read("assets/world/spare-employee-dispenser/inspection-contract-v1.json")
+    inspection = read("assets/world/spare-employee-dispenser/inspection-contract-v2.json", schema_version=2)
     validate_art_regions(inspection)
-    require(0 < inspection["release_seconds"] < inspection["watchdog_seconds"] <= 7,
+    require(0 < inspection["release_seconds"] < inspection["watchdog_seconds"] <= 8.5,
             "Inspection must release before its watchdog")
+    require(0 < inspection["healthy_release_seconds"] < inspection["healthy_watchdog_seconds"] <= 4,
+            "Healthy inspection must release before its watchdog")
     for cue in audio["cues"]:
         path = ROOT / cue["path"]
         require(path.is_file(), f"Missing dispenser audio: {path}")
@@ -273,15 +275,67 @@ def starter_specials_data() -> dict[str, Any]:
     """Export validated tuning without importing the excluded concept-art directory at runtime."""
     contract = read("design/starter-specials-v1/mechanics.json")
     tuning = contract["initial_tuning"]
-    fields = ("damage_per_tick", "tick_interval_seconds", "maximum_damage_per_boss_per_activation",
+    require("maximum_damage_per_boss_per_activation" not in tuning, "starter_specials: obsolete boss cap")
+    fields = ("damage_per_tick", "tick_interval_seconds", "boss_damage_per_tick",
               "recoil_horizontal_pixels_per_second", "tony_jet_thickness_pixels")
     exported = {key: number(tuning, key, "starter_specials") for key in fields}
     overrides = {}
     for hero in ("tony", "sean"):
         override = tuning["hero_overrides"][hero]
         overrides[hero] = {key: number(override, key, f"starter_specials.{hero}")
-                           for key in ("damage_per_tick", "tick_interval_seconds")}
+                           for key in ("damage_per_tick", "boss_damage_per_tick", "tick_interval_seconds")}
+        weapon_id = "pressure-gun" if hero == "tony" else "heavy-plunger-launcher"
+        special = read(f"weapons/{weapon_id}/weapon.json")["special"]
+        for key, value in overrides[hero].items():
+            require(special.get(key) == value, f"{weapon_id}: special {key} differs from mechanics")
+        require("boss_damage_cap_per_activation" not in special, f"{weapon_id}: obsolete boss cap")
     return {"initial_tuning": {**exported, "hero_overrides": overrides}}
+
+
+def validate_ceiling_spider(monster: dict[str, Any]) -> dict[str, Any]:
+    """Validate registered action poses instead of requiring legacy health-stage artwork."""
+    spec = read(monster["assets"]["animation_spec"])
+    require(spec.get("canvas") == [128, 128] and spec.get("anchor") == [64, 12],
+            "Devil spider ceiling registration mismatch")
+    validate_art_regions(spec)
+    frames = {frame["id"]: frame for frame in spec["frames"]}
+    require(len(frames) == len(spec["frames"]), "Duplicate devil spider frame")
+    required = {"idle", "crawl", "windup", "fire", "recover", "haul", "hurt", "death"}
+    require(required <= spec["states"].keys(), "Missing devil spider animation")
+    for name, animation in spec["states"].items():
+        require(bool(animation["frames"]) and len(animation["frames"]) == len(animation["durations"]),
+                f"Devil spider {name}: incomplete timing")
+        require(all(frame in frames for frame in animation["frames"]), f"Devil spider {name}: missing frame")
+        for duration in animation["durations"]:
+            number({"duration": duration}, "duration", f"devil_spider.{name}")
+    require(spec["states"]["death"]["loop"] is False, "Devil spider death cannot loop")
+    for frame in frames.values():
+        for key in ("web_emitter", "body_center", "ceiling_anchor"):
+            point = frame[key]
+            require(len(point) == 2 and all(type(value) in (int, float) and math.isfinite(value) for value in point),
+                    f"Devil spider {frame['id']}: invalid {key}")
+    effects = read(monster["assets"]["web_effects_spec"])
+    require({"cocoon_intact", "cocoon_torn", "cocoon_break", "snare_intact", "snare_torn",
+             "snare_break", "projectile", "silk_tile"} <= effects["components"].keys(), "Missing spider silk effects")
+    for component in effects["components"].values():
+        validate_art_regions({**component, "path": effects["source"]})
+    death = read(monster["assets"]["death_revision_spec"])
+    require(death["canvas"] == [128, 128] and death["anchor"] == [64, 12],
+            "Devil spider revised death registration mismatch")
+    duration = number(death, "duration_seconds", "devil_spider.death")
+    release = number(death, "head_release_seconds", "devil_spider.death")
+    ash_release = number(death["ash"], "release_seconds", "devil_spider.ash")
+    require(release < ash_release < duration, "Devil spider debris release order is invalid")
+    require(2 <= len(death["head_props"]) <= 3, "Devil spider death requires two or three doll heads")
+    require(len({head["id"] for head in death["head_props"]}) == len(death["head_props"]),
+            "Duplicate devil spider doll-head ID")
+    for component in death["frames"] + death["head_props"] + [death["ash"]]:
+        validate_art_regions({**component, "path": death["source"]})
+    line = read(monster["assets"]["web_projectile_revision_spec"])
+    require({"tip", "trail", "spent"} <= line["components"].keys(), "Missing devil spider web-line components")
+    for component in line["components"].values():
+        validate_art_regions({**component, "path": line["source"]})
+    return spec
 
 
 def build() -> dict[str, Any]:
@@ -353,6 +407,11 @@ def build() -> dict[str, Any]:
             require(weapon_id in weapons, f"{monster_id}: unknown weapon {weapon_id}")
             require(hits == math.ceil(maximum / weapons[weapon_id]["damage"]),
                     f"{monster_id}: stale hit comparison for {weapon_id}")
+        if monster_id == "devil-spider":
+            spec = validate_ceiling_spider(monster)
+            monsters[monster_id] = {"audio": audio, "health": health, "name": monster["name"], "damage_art": None,
+                                   "animation": spec, "runtime_support": "ceiling_spider"}
+            continue
         if monster_id == "sewer-fly-swarm":
             movement = monster["movement"]
             require(movement["model"] == "bounded_correlated_wander", "Unsupported swarm movement")

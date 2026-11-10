@@ -9,7 +9,7 @@ func checks() -> void:
 	root.add_child(game)
 	game.set_process(false)
 	game.set_physics_process(false)
-	Launch.initialize(game,Launch.parse(["--level=2-landing"]).target)
+	game.begin_level_two()
 	var view = game.flush.world_view
 	view.set_process(false)
 	view._process(0)
@@ -65,6 +65,30 @@ func checks() -> void:
 										hero_bottom = maxf(hero_bottom,pixel.y)
 										if not Rect2(12,104,936,424).has_point(pixel) and errors.size() < 20:
 											errors.append("Hero clips viewport/HUD: %s %s anchor%s yaw%s bank%s height%s age%s pixel%s" % [hero.id,mode,anchor,angle,bank,height,age,pixel])
+	# The heel must descend on screen toward the same track point while the camera holds still.
+	ride.position = Vector2(300,330)
+	ride.render_height = 0
+	for angle in [-18.0,18.0]:
+		view.yaw = angle
+		var previous := -INF
+		var held_camera := Transform3D.IDENTITY
+		for sample in range(19):
+			ride.clock = 2.72+sample*.01
+			ride.encounter_clock = ride.clock
+			ride.encounter_scroll = ride.clock*ride.scroll_speed
+			view.update_world()
+			if sample == 0: held_camera = view.camera.global_transform
+			assert(view.camera.global_transform.is_equal_approx(held_camera),"Strike cannot be canceled by camera motion")
+			for actor: Node3D in view.actors.values():
+				if not actor.has_node("hand"): continue
+				var hand = actor.get_node("hand")
+				var heel: Vector3 = hand.contact.position+hand.opaque_contact("contact",hand.contact.basis)
+				var projected: Vector2 = view.camera.unproject_position(hand.to_global(heel))
+				var track: Vector2 = view.camera.unproject_position(hand.to_global(Vector3(0,0,-.35+hand.opaque_contact("contact",hand.contact.basis).z)))
+				var separation := projected.y-track.y
+				assert(separation >= previous-.01 and separation <= .1,"Projected heel descends toward track without overshoot")
+				if sample == 18: assert(absf(separation) < .1,"Gap creation coincides with visible heel contact")
+				previous = separation
 	print("PROJECTION gap",pixels," hero Y",hero_top,"..",hero_bottom)
 	game.free()
 	if not errors.is_empty():

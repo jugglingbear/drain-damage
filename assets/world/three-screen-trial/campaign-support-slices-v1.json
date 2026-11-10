@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "status": "Independent Art source-build still review passed for160x60 and240x120; packaged/full-route motion review pending",
+  "source": "assets/world/opening-trial/platform-kit-v1.png",
+  "source_rect": [
+    885,
+    152,
+    604,
+    349
+  ],
+  "reference_logical_size": [
+    250,
+    120
+  ],
+  "supported_widths": [
+    160,
+    200,
+    240
+  ],
+  "supported_heights": [
+    60,
+    120
+  ],
+  "alpha_cutoff": 240,
+  "source_columns": [
+    185,
+    234,
+    185
+  ],
+  "source_rows": [
+    142,
+    183,
+    24
+  ],
+  "destination_caps": {
+    "left": 76.5728476821192,
+    "right": 76.5728476821192,
+    "top": 48.825214899713465,
+    "bottom": 8.25214899713467
+  },
+  "patches": [
+    {
+      "id": "upper_left",
+      "source_rect": [
+        885,
+        152,
+        185,
+        142
+      ],
+      "column": 0,
+      "row": 0
+    },
+    {
+      "id": "beam_middle",
+      "source_rect": [
+        1070,
+        152,
+        234,
+        142
+      ],
+      "column": 1,
+      "row": 0
+    },
+    {
+      "id": "upper_right",
+      "source_rect": [
+        1304,
+        152,
+        185,
+        142
+      ],
+      "column": 2,
+      "row": 0
+    },
+    {
+      "id": "left_shaft",
+      "source_rect": [
+        885,
+        294,
+        185,
+        183
+      ],
+      "column": 0,
+      "row": 1
+    },
+    {
+      "id": "right_shaft",
+      "source_rect": [
+        1304,
+        294,
+        185,
+        183
+      ],
+      "column": 2,
+      "row": 1
+    },
+    {
+      "id": "left_foot",
+      "source_rect": [
+        885,
+        477,
+        185,
+        24
+      ],
+      "column": 0,
+      "row": 2
+    },
+    {
+      "id": "right_foot",
+      "source_rect": [
+        1304,
+        477,
+        185,
+        24
+      ],
+      "column": 2,
+      "row": 2
+    }
+  ],
+  "assembly": [
+    "Top corners include beam endbolt, post upper collar and complete diagonal brace. Do not tile or crop these corners.",
+    "Fixed left/right widths76.5728476821 each and top48.8252148997/bottom8.2521489971 preserve reference proportions. Horizontal center width = targetwidth-left-right.",
+    "Middle shaft height = targetheight-top-bottom. At60height this is2.9226361032: near-ground knee braces with very short exposed posts, not squashed diagonals. At120height middle62.9226361032. Requires visual check for cramped look at60.",
+    "Tile/crop beam_middle horizontally at reference width96.8543046358; retain full top-row height. Its lower portion is transparent.",
+    "Tile/crop shaft regions vertically using reference segment height62.9226361032. Prefer bottom-align cropping to retain lower post material joining foot; never repeat entire gantry.",
+    "Middle-center and bottom-center empty: draw nothing. Position feet at targetfloor440; upper beam top equals decktop, deck overlays beam.",
+    "160width leaves6.8543046358 beam center between intact mirrored brace caps;200leaves46.8543 and240leaves86.8543. Never use below154width without new assembly.",
+    "Render behind hero; supports are background visual structure, do not invent solid collision in open middle."
+  ],
+  "validation": "Visually inspected source: diagonals contained above294, feet below477, inner gap between1070..1304. Alpha cleanup derived only; original unchanged. Native160x60 and240x120 capture required.",
+  "runtime_review": {
+    "evidence": "builds/Prototype-165/evidence/support-source.png",
+    "version_stamp": "0.164.0",
+    "result": "Both posts/feet intact, braces join beam and posts, short support squat but plausible, no obvious bolt squash.",
+    "scope": "Two sampled sizes only; no full-route or motion acceptance."
+  }
+}

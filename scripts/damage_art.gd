@@ -6,7 +6,7 @@ static var textures: Dictionary = {}
 static var regions: Dictionary = {}
 static var anchors: Dictionary = {}
 
-func prepare(id: String) -> void:
+func prepare(id: String, yield_frame := Callable()) -> void:
 	if textures.has(id): return
 	var spec: Dictionary = Data.monster(id).damage_art
 	var source: Texture2D = load("res://" + spec.image)
@@ -18,6 +18,7 @@ func prepare(id: String) -> void:
 			var color := pixels.get_pixel(x, y)
 			color.a = 1.0 if color.a >= spec.runtime_preparation.alpha_cutoff else 0.0
 			pixels.set_pixel(x, y, color)
+		if y%16 == 0 and yield_frame.is_valid(): await yield_frame.call()
 	textures[id] = ImageTexture.create_from_image(pixels)
 	var frames: Array[Rect2] = []
 	var points: Array[Vector2] = []

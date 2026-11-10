@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "Source delivered; native running review pending",
+  "source": "assets/ui/job-loading-v1/valve-source-v1.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "source_rect": [
+    48,
+    48,
+    1152,
+    1152
+  ],
+  "source_pivot": [
+    624,
+    624
+  ],
+  "destination": [
+    -28,
+    -28,
+    56,
+    56
+  ],
+  "rotation_box": [
+    64,
+    64
+  ],
+  "alpha_cutoff": 240,
+  "preparation": "Discard alpha below240 in derived runtime texture only. Preserve original. Crop is square; pivot at crop center. Do not rotate around opaque bounds.",
+  "animation": "Continuous rotation suggested one revolution per2seconds; no progress percentage or artificial delay. Stop on transition.",
+  "label": "Preparing the job…",
+  "background": "Immediately dim existing menu background; no replacement background artwork.",
+  "prompt": "Single production game UI sprite: front-facing circular plumbing valve HANDWHEEL only, viewed perfectly straight on, centered with generous transparent padding. Weathered red-orange enamel outer ring, four thick spokes, small brass hexagonal central hub. Broad readable silhouette at56x56 pixels, chunky crisp pixel-art shading matching gritty illustrated sewer platformer, dark outline, warm brass chips, restrained teal oxidation. Circular rim, symmetric geometry, no perspective ellipse. ONE small bright brass patch on rim at top for visible rotation. No pipe behind it, no mounting plate, no text, no arrows, no shadow on background, no surrounding particles or glow. Transparent background including holes between spokes. One isolated wheel, square1024x1024 image. Wheel diameter about760px. Game-ready asset, not mockup.",
+  "validation": {
+    "source": "Front-facing four-spoke wheel inspected; transparent holes and corner alpha0; alpha240 artwork bounds69,62–1177,1190 contained in crop.",
+    "remaining": "Native56px readability, rotation centering and loading composition in running build."
+  }
+}

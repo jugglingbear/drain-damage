@@ -12,6 +12,7 @@ export GODOT LEVEL MINIBOSS BOSS HERO DIFFICULTY SEED APP SCREENSHOT_MODE
 INSTALL_FLAGS ?=
 
 .PHONY: help install install-check install-plan check build build-all build-macos build-android build-ios build-windows run run-preview run-targets run-check editor combat-data
+.PHONY: audio-catalog
 
 help: ## Show available commands
 	@printf '\n\033[1mDrain Damage — available commands:\033[0m\n'
@@ -86,6 +87,14 @@ run-targets: ## List implemented level/miniboss/boss launch selectors without op
 
 run-check: combat-data ## Verify selected target initialization headlessly; optional APP=/path/to/game.app
 	@python3 tools/run_game.py --check
+
+audio-catalog: ## Open the audio audition catalog in your browser
+	@printf '🌐 Opening the audio catalog…\n'
+ifeq ($(HOST_OS),Darwin)
+	@open "audio/drain-damage-sound-auditions.html"
+else
+	@xdg-open "audio/drain-damage-sound-auditions.html"
+endif
 
 editor: check ## Open this project in the Godot editor
 	@printf '🛠️ Opening Godot editor…\n'

@@ -42,15 +42,17 @@ func configure(data: Dictionary) -> bool:
 	ready = true
 	return true
 
-func draw(game: Node2D, camera: float, clock: float, trial := false) -> void:
+func draw(game: Node2D, camera: float, clock: float, trial := false,
+		dry_intervals: Array[Vector2] = []) -> void:
 	## Call inside _draw with world transform active. Does not change transforms or advance time.
-	for command: Dictionary in commands(camera, clock, trial):
+	for command: Dictionary in commands(camera, clock, trial, dry_intervals):
 		var destination: Rect2 = command.rect
 		if command.flip: destination.size.x = -destination.size.x
 		game.draw_texture_rect_region(textures[assets[command.id].path], destination,
 			command.source, Color(1, 1, 1, command.alpha))
 
-func commands(camera: float, clock: float, trial := false) -> Array[Dictionary]:
+func commands(camera: float, clock: float, trial := false,
+		dry_intervals: Array[Vector2] = []) -> Array[Dictionary]:
 	## Deterministic, inspectable draw plan. Frozen gameplay clock means frozen animation.
 	var output: Array[Dictionary] = []
 	if not ready: return output
@@ -89,7 +91,38 @@ func commands(camera: float, clock: float, trial := false) -> Array[Dictionary]:
 		_tiled(output, "rim-top", x, end, 456, 8, 0)
 		_tiled(output, "rim-bottom", x, end, 520, 8, 0)
 		x = end
-	return output
+	return _exclude_water(output, dry_intervals)
+
+func _exclude_water(plan: Array[Dictionary], intervals: Array[Vector2]) -> Array[Dictionary]:
+	if intervals.is_empty(): return plan
+	var result: Array[Dictionary] = []
+	for command: Dictionary in plan:
+		if command.id != "water-a" and command.id not in debris_ids:
+			result.append(command)
+			continue
+		var pieces: Array[Dictionary] = [command]
+		for interval: Vector2 in intervals:
+			var remaining: Array[Dictionary] = []
+			for piece: Dictionary in pieces:
+				var destination: Rect2 = piece.rect
+				if destination.end.x <= interval.x or destination.position.x >= interval.y:
+					remaining.append(piece)
+					continue
+				for span: Vector2 in [Vector2(destination.position.x, minf(destination.end.x, interval.x)),
+						Vector2(maxf(destination.position.x, interval.y), destination.end.x)]:
+					if span.y <= span.x: continue
+					var clipped: Dictionary = piece.duplicate()
+					var source: Rect2 = piece.source
+					var ratio := source.size.x / destination.size.x
+					# Mirrored tiles consume the source from the opposite end when cropped.
+					source.position.x += (destination.end.x - span.y if piece.flip else span.x - destination.position.x) * ratio
+					source.size.x = (span.y - span.x) * ratio
+					clipped.rect = Rect2(span.x, destination.position.y, span.y - span.x, destination.size.y)
+					clipped.source = source
+					remaining.append(clipped)
+			pieces = remaining
+		result.append_array(pieces)
+	return result
 
 func _tiled(output: Array[Dictionary], id: String, left: float, right: float,
 		y: float, height: float, phase: float, alpha := 1.0) -> void:

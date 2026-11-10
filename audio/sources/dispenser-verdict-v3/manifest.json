@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-05",
+  "brief": "Full-health checkpoint inspection displays green check with a short happy positive ding and safe set-down. Injured hero displays red X with a distinct error/klaxon before progressive crushing. Brief readable verdicts, no speech, no continuous alarm, no changes to existing throw/splat.",
+  "status": "Canonical event mapping delivered; root bundle/runtime integration pending",
+  "recipe": "audio/sources/dispenser-verdict-v3/render.py",
+  "cues": [
+    {
+      "cue_id": "inspection-pass",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/inspection-pass.wav",
+      "duration_seconds": 0.42,
+      "gain_db": -3,
+      "peak_dbfs": -14,
+      "loop": false,
+      "sha256": "dca814e313e8eed193bfb86a07ebdcc8d220e7a87c970b04b4d3d852f12ee775",
+      "candidate": "DD-S0160.1"
+    },
+    {
+      "cue_id": "inspection-fail",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/inspection-fail.wav",
+      "duration_seconds": 0.5,
+      "gain_db": -3,
+      "peak_dbfs": -14,
+      "loop": false,
+      "sha256": "6f6589f438eee20f7dddea762f5f99909c931464ea47616bae69239d86685091",
+      "candidate": "DD-S0161.1"
+    },
+    {
+      "cue_id": "compress-stage-one",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/compress-stage-one.wav",
+      "duration_seconds": 0.38,
+      "gain_db": -6,
+      "loop": false,
+      "sha256": "b748721817d123221e8077c4b580dcbfb2f8bded21a6005008d32193c1c6072a",
+      "candidate": "DD-S0162.1"
+    },
+    {
+      "cue_id": "compress-stage-two",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/compress-stage-two-v2.wav",
+      "duration_seconds": 0.44,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "1b4a8af02c0b230c8285fb012c63fcbfffc6106aa3dfcff66dd13dccf037e055",
+      "candidate": "DD-S0163.1"
+    }
+  ],
+  "provenance": "Original sample-free sine/inharmonic synthesis; no third-party samples or voice models.",
+  "mix": "Pass is a bright consonant bell; fail is a low descending dissonant double buzzer.",
+  "trigger": "Exactly once with the visible verdict; do not layer pass and fail or repeat with HP display.",
+  "validation_limit": "Technical validation only; in-game balance remains unverified.",
+  "compression_recipes": [
+    {
+      "event": "compress-stage-one",
+      "command": [
+        "ffmpeg",
+        "-v",
+        "error",
+        "-n",
+        "-i",
+        "/Users/sfoley/repos/drain_damage/assets/audio/sfx/spare-employee-dispenser-v1/compression-squeak.wav",
+        "-i",
+        "/Users/sfoley/repos/drain_damage/assets/audio/sfx/spare-employee-dispenser-v1/vending-clunk.wav",
+        "-filter_complex",
+        "[0:a]atrim=duration=0.38,asetpts=N/SR/TB,afade=t=in:d=0.005,afade=t=out:st=0.33:d=0.05[out]",
+        "-map",
+        "[out]",
+        "-ar",
+        "44100",
+        "-ac",
+        "1",
+        "-c:a",
+        "pcm_s16le",
+        "/Users/sfoley/repos/drain_damage/assets/audio/sfx/dispenser-verdict-v3/compress-stage-one.wav"
+      ]
+    },
+    {
+      "event": "compress-stage-two",
+      "command": [
+        "ffmpeg",
+        "-v",
+        "error",
+        "-n",
+        "-i",
+        "/Users/sfoley/repos/drain_damage/assets/audio/sfx/spare-employee-dispenser-v1/compression-squeak.wav",
+        "-i",
+        "/Users/sfoley/repos/drain_damage/assets/audio/sfx/spare-employee-dispenser-v1/vending-clunk.wav",
+        "-filter_complex",
+        "[0:a]asetrate=26240,aresample=44100,atrim=duration=0.46[a];[1:a]aresample=44100,asetrate=33075,aresample=44100,volume=0.45[b];[a][b]amix=inputs=2:normalize=0,apad,atrim=duration=0.46,alimiter=limit=0.2511886:level=0,afade=t=in:d=0.005,afade=t=out:st=0.39:d=0.07[out]",
+        "-map",
+        "[out]",
+        "-ar",
+        "44100",
+        "-ac",
+        "1",
+        "-c:a",
+        "pcm_s16le",
+        "/Users/sfoley/repos/drain_damage/assets/audio/sfx/dispenser-verdict-v3/compress-stage-two.wav"
+      ]
+    }
+  ],
+  "compression_sources": [
+    {
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/compression-squeak.wav",
+      "sha256": "154f19aacb71b5765d3b756bc975e224b9bd3cff1fe4ba1ca3f86e3fb3820022"
+    },
+    {
+      "path": "assets/audio/sfx/spare-employee-dispenser-v1/vending-clunk.wav",
+      "sha256": "9158457bec9285f90f2fdb3b0dfd02bc260e2a330e2254e8eb73fbf931f34587"
+    }
+  ],
+  "compression_recipe": "audio/sources/dispenser-verdict-v3/add_crush.py",
+  "preserved_stage_two": {
+    "cue_id": "compress-stage-two",
+    "path": "assets/audio/sfx/dispenser-verdict-v3/compress-stage-two.wav",
+    "duration_seconds": 0.46,
+    "gain_db": -3,
+    "loop": false,
+    "sha256": "bf7bc6580cc223b549bf8966ec5f4ef96ed1b35c52d32db38bc05da6a2125498",
+    "candidate": "DD-S0163.1"
+  },
+  "finish_command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-n",
+    "-i",
+    "/Users/sfoley/repos/drain_damage/assets/audio/sfx/dispenser-verdict-v3/compress-stage-two.wav",
+    "-af",
+    "atrim=duration=0.44,afade=t=out:st=0.36:d=0.08",
+    "-c:a",
+    "pcm_s16le",
+    "/Users/sfoley/repos/drain_damage/assets/audio/sfx/dispenser-verdict-v3/compress-stage-two-v2.wav"
+  ]
+}

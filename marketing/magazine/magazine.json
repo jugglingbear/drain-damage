@@ -3,13 +3,13 @@
   "publication": {
     "title": "Discharge Quarterly",
     "game": "Drain Damage",
-    "edition": 35,
-    "date": "2026-11-02",
+    "edition": 38,
+    "date": "2026-11-05",
     "subtitle": "The Official Journal of the Plumbing, Heating & Creature Containment Association",
-    "pdf_title": "DISCHARGE QUARTERLY - Edition 35 - Drain Damage",
+    "pdf_title": "DISCHARGE QUARTERLY - Edition 38 - Drain Damage",
     "author": "Drain Damage / Marketing"
   },
-  "output": "marketing/magazine/discharge-quarterly-v35.pdf",
+  "output": "marketing/magazine/discharge-quarterly-v38.pdf",
   "layout": {
     "page_width": 612,
     "page_height": 792,
@@ -38,7 +38,9 @@
     "disclaimers": "Do not add fictional-company, fictional-publication or non-affiliation disclaimers to reader-facing magazine content.",
     "creature_order": "Five non-bosses first, then Skitterling miniboss, then Clogfather. No current playability claim for unintegrated encounters.",
     "skitterling": "Skitterling is the official name, explicitly confirmed by Sean on 2026-10-17, unless he changes it. No working-name label. Existing conceptual art, no origin lore or fight-solution claims.",
-    "costume_surprises": "Only normal-costume portraits, sprites and gameplay images. Never reveal Easy or Hard costumes or describe them in reader copy."
+    "costume_surprises": "Only normal-costume portraits, sprites and gameplay images. Never reveal Easy or Hard costumes or describe them in reader copy.",
+    "weapon_previews": "Two hero pages pair default weapons with approved named specials. Four future weapons retain silhouettes and tentative names; SPECIAL / ??? means no approved special exists. These are intentional teasers, not missing copy or promises. Backpack jetter action illustration is concept art, not a runtime claim.",
+    "torch_teaser": "Sean approved inclusion of the optional soldering torch as a tentative magazine teaser on November 5. This does not approve implementation, ownership or a named special. Grouped on Tony page as an idea, not an exclusive character assignment."
   },
   "pages": [
     {
@@ -320,7 +322,7 @@
         {
           "id": "cover-030",
           "type": "text",
-          "text": "THE CREW  02     \u2022     CREATURE FEATURE  04     \u2022     ACTION GALLERY  07",
+          "text": "THE CREW  02     •     CREATURE FEATURE  04     •     ACTION GALLERY  07",
           "x": 28,
           "y": 16,
           "size": 10,
@@ -330,7 +332,7 @@
         {
           "id": "cover-issue-number",
           "type": "text",
-          "text": "EDITION 35",
+          "text": "EDITION 38",
           "x": 537,
           "y": 15,
           "size": 8,
@@ -723,9 +725,9 @@
         {
           "id": "contents-flush-number",
           "type": "text",
-          "text": "08",
+          "text": "10",
           "x": 34,
-          "y": 280,
+          "y": 175,
           "size": 32,
           "font": "Display",
           "color": "FFF000"
@@ -735,7 +737,7 @@
           "type": "text",
           "text": "THE FLUSH",
           "x": 34,
-          "y": 252,
+          "y": 151,
           "size": 17,
           "font": "Display",
           "color": "FFFFFF"
@@ -744,6 +746,38 @@
           "id": "contents-flush-caption",
           "type": "para",
           "text": "An unusual inventory",
+          "x": 34,
+          "top": 139,
+          "width": 102,
+          "size": 10,
+          "leading": 11.6,
+          "max_height": 40,
+          "color": "FFFFFF"
+        },
+        {
+          "id": "contents-weapons-number",
+          "type": "text",
+          "text": "08",
+          "x": 34,
+          "y": 280,
+          "size": 32,
+          "font": "Display",
+          "color": "FFF000"
+        },
+        {
+          "id": "contents-weapons-title",
+          "type": "text",
+          "text": "TOOL SHED",
+          "x": 34,
+          "y": 252,
+          "size": 17,
+          "font": "Display",
+          "color": "FFFFFF"
+        },
+        {
+          "id": "contents-weapons-caption",
+          "type": "para",
+          "text": "Weapons + special abilities",
           "x": 34,
           "top": 238,
           "width": 102,
@@ -970,7 +1004,7 @@
         {
           "id": "layout29-018",
           "type": "columns",
-          "text": "Mainframe Plumbing &amp; Supply would like you to know that arrangements have been made. The Spare Employee Dispenser stands ready between service calls, its glass front offering a reassuring view of the company\u2019s preparations. There is rust around the hinges and something familiar about the occupants. The accompanying leaflet describes them as reserve personnel. It asks employees to respect their rest and directs all further questions to the same leaflet.<br/><br/>The leaflet is particularly clear on continuity of service. Your assignments will remain on the schedule, your tools will still be required, and your name will stay on the rota. Several paragraphs explain how much the company values an experienced employee. The section headed \u201cWhat this means for you\u201d refers back to those paragraphs. We would have preferred a little more detail, but the cabinet does appear to be well stocked.",
+          "text": "Mainframe Plumbing &amp; Supply would like you to know that arrangements have been made. The Spare Employee Dispenser stands ready between service calls, its glass front offering a reassuring view of the company’s preparations. There is rust around the hinges and something familiar about the occupants. The accompanying leaflet describes them as reserve personnel. It asks employees to respect their rest and directs all further questions to the same leaflet.<br/><br/>The leaflet is particularly clear on continuity of service. Your assignments will remain on the schedule, your tools will still be required, and your name will stay on the rota. Several paragraphs explain how much the company values an experienced employee. The section headed “What this means for you” refers back to those paragraphs. We would have preferred a little more detail, but the cabinet does appear to be well stocked.",
           "boxes": [
             [
               24,
@@ -1405,7 +1439,7 @@
         {
           "id": "layout29-031",
           "type": "para",
-          "text": "A rusty drain strainer sits in this sludge creature\u2019s back, above a mouth full of porcelain teeth. It climbs from a grate and patrols the floor. Watch its hands: it pauses, faces you and throws a ball of muck before moving on.",
+          "text": "A rusty drain strainer sits in this sludge creature’s back, above a mouth full of porcelain teeth. It climbs from a grate and patrols the floor. Watch its hands: it pauses, faces you and throws a ball of muck before moving on.",
           "x": 466,
           "top": 197,
           "width": 113,
@@ -1545,7 +1579,7 @@
         {
           "id": "layout29-010",
           "type": "para",
-          "text": "<b>Service tip:</b> Keep moving past the outlet. Don\u2019t wait for a charge warning before dodging.",
+          "text": "<b>Service tip:</b> Keep moving past the outlet. Don’t wait for a charge warning before dodging.",
           "x": 32,
           "top": 486,
           "width": 230,
@@ -2412,8 +2446,697 @@
       ]
     },
     {
-      "id": "flush-feature",
+      "id": "tony-weapon-special",
       "number": 8,
+      "template": "custom",
+      "section": "TONY: Hydrojet Overdrive",
+      "elements": [
+        {
+          "id": "TONY-weapons-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "FFF8DF"
+        },
+        {
+          "id": "TONY-weapons-001",
+          "type": "rect",
+          "x": 0,
+          "y": 695,
+          "w": 612,
+          "h": 97,
+          "color": "101B2D"
+        },
+        {
+          "id": "TONY-weapons-002",
+          "type": "text",
+          "text": "THE TOOL SHED / WEAPONS & SPECIAL ABILITIES",
+          "x": 24,
+          "y": 768,
+          "size": 10,
+          "color": "00BADA",
+          "font": "Bold"
+        },
+        {
+          "id": "TONY-weapons-003",
+          "type": "text",
+          "text": "HYDROJET OVERDRIVE",
+          "x": 24,
+          "y": 721,
+          "size": 40,
+          "color": "FFF000",
+          "font": "Display"
+        },
+        {
+          "id": "TONY-weapons-004",
+          "type": "image",
+          "path": "marketing/magazine/weapon-special-concepts/tony-hallowed-widow.png",
+          "x": 24,
+          "y": 366,
+          "width": 564,
+          "height": 317
+        },
+        {
+          "id": "TONY-weapons-005",
+          "type": "text",
+          "text": "BACKPACK JETTER CONCEPT",
+          "x": 24,
+          "y": 352,
+          "size": 7,
+          "color": "008C70",
+          "font": "Bold"
+        },
+        {
+          "id": "TONY-weapons-006",
+          "type": "text",
+          "text": "TONY / DEFAULT WEAPON",
+          "x": 140,
+          "y": 352,
+          "size": 10,
+          "color": "008C70",
+          "font": "Bold"
+        },
+        {
+          "id": "TONY-weapons-007",
+          "type": "text",
+          "text": "PRESSURE GUN",
+          "x": 140,
+          "y": 330,
+          "size": 20,
+          "color": "101B2D",
+          "font": "Display"
+        },
+        {
+          "id": "TONY-weapons-008",
+          "type": "image",
+          "path": "weapons/pressure-gun/marketing/portrait-v1.png",
+          "x": 24,
+          "y": 222,
+          "width": 103,
+          "height": 113
+        },
+        {
+          "id": "TONY-weapons-009",
+          "type": "para",
+          "text": "Tony starts with a compact pressure gun that fires quick water shots. Keep a steady aim when the creatures close in.",
+          "x": 140,
+          "top": 311,
+          "width": 132,
+          "max_height": 88,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "TONY-weapons-010",
+          "type": "text",
+          "text": "SPECIAL ABILITY",
+          "x": 287,
+          "y": 312,
+          "size": 10,
+          "color": "008C70",
+          "font": "Bold"
+        },
+        {
+          "id": "TONY-weapons-011",
+          "type": "para",
+          "text": "A thick water jet keeps blasting while the recoil pushes Tony backward. Keep room behind you when you open the nozzle.",
+          "x": 287,
+          "top": 294,
+          "width": 139,
+          "max_height": 89,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "TONY-weapons-012",
+          "type": "rect",
+          "x": 442,
+          "y": 229,
+          "w": 146,
+          "h": 86,
+          "color": "FFF000"
+        },
+        {
+          "id": "TONY-weapons-013",
+          "type": "text",
+          "text": "MAKE IT COUNT",
+          "x": 452,
+          "y": 296,
+          "size": 14,
+          "color": "101B2D",
+          "font": "Display"
+        },
+        {
+          "id": "TONY-weapons-014",
+          "type": "para",
+          "text": "Two special uses per level. Save one for the moment you need room most.",
+          "x": 452,
+          "top": 283,
+          "width": 126,
+          "max_height": 48,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "TONY-weapons-015",
+          "type": "rect",
+          "x": 24,
+          "y": 198,
+          "w": 564,
+          "h": 23,
+          "color": "008C70"
+        },
+        {
+          "id": "TONY-weapons-016",
+          "type": "text",
+          "text": "Coming Soon?",
+          "x": 33,
+          "y": 203,
+          "size": 18,
+          "color": "FFFFFF",
+          "font": "Display"
+        },
+        {
+          "id": "TONY-weapons-017",
+          "type": "text",
+          "text": "TENTATIVE NAMES / SPECIALS STILL A MYSTERY",
+          "x": 205,
+          "y": 205,
+          "size": 9,
+          "color": "FFFFFF",
+          "font": "Bold"
+        },
+        {
+          "id": "teaser38-pipe-wrench-name",
+          "type": "text",
+          "text": "PIPE WRENCH",
+          "x": 24,
+          "y": 177,
+          "size": 16,
+          "font": "Display",
+          "color": "008C70"
+        },
+        {
+          "id": "teaser38-pipe-wrench-image",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v36/weapons/pipe-wrench.png",
+          "x": 24,
+          "y": 105,
+          "width": 168,
+          "height": 63
+        },
+        {
+          "id": "teaser38-pipe-wrench-copy",
+          "type": "para",
+          "text": "A quick swing for close company.",
+          "x": 24,
+          "top": 98,
+          "width": 170,
+          "max_height": 28,
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "teaser38-pipe-wrench-special",
+          "type": "text",
+          "text": "SPECIAL / ???",
+          "x": 24,
+          "y": 60,
+          "size": 10,
+          "font": "Display",
+          "color": "101B2D"
+        },
+        {
+          "id": "teaser38-pipe-wrench-soon",
+          "type": "text",
+          "text": "Coming Soon?",
+          "x": 113,
+          "y": 60,
+          "size": 10,
+          "font": "Display",
+          "color": "DF1684"
+        },
+        {
+          "id": "teaser38-drain-snake-name",
+          "type": "text",
+          "text": "DRAIN SNAKE",
+          "x": 216,
+          "y": 177,
+          "size": 16,
+          "font": "Display",
+          "color": "008C70"
+        },
+        {
+          "id": "teaser38-drain-snake-image",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v36/weapons/drain-snake.png",
+          "x": 216,
+          "y": 105,
+          "width": 168,
+          "height": 63
+        },
+        {
+          "id": "teaser38-drain-snake-copy",
+          "type": "para",
+          "text": "A coiled cable with a little extra reach.",
+          "x": 216,
+          "top": 98,
+          "width": 170,
+          "max_height": 28,
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "teaser38-drain-snake-special",
+          "type": "text",
+          "text": "SPECIAL / ???",
+          "x": 216,
+          "y": 60,
+          "size": 10,
+          "font": "Display",
+          "color": "101B2D"
+        },
+        {
+          "id": "teaser38-drain-snake-soon",
+          "type": "text",
+          "text": "Coming Soon?",
+          "x": 305,
+          "y": 60,
+          "size": 10,
+          "font": "Display",
+          "color": "DF1684"
+        },
+        {
+          "id": "teaser38-soldering-torch-name",
+          "type": "text",
+          "text": "SOLDERING TORCH",
+          "x": 408,
+          "y": 177,
+          "size": 16,
+          "font": "Display",
+          "color": "008C70"
+        },
+        {
+          "id": "teaser38-soldering-torch-image",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v38/weapons/soldering-torch.png",
+          "x": 408,
+          "y": 105,
+          "width": 168,
+          "height": 63
+        },
+        {
+          "id": "teaser38-soldering-torch-copy",
+          "type": "para",
+          "text": "A short-range sweep of flame?",
+          "x": 408,
+          "top": 98,
+          "width": 170,
+          "max_height": 28,
+          "size": 10,
+          "leading": 11.6,
+          "color": "101B2D"
+        },
+        {
+          "id": "teaser38-soldering-torch-special",
+          "type": "text",
+          "text": "SPECIAL / ???",
+          "x": 408,
+          "y": 60,
+          "size": 10,
+          "font": "Display",
+          "color": "101B2D"
+        },
+        {
+          "id": "teaser38-soldering-torch-soon",
+          "type": "text",
+          "text": "Coming Soon?",
+          "x": 497,
+          "y": 60,
+          "size": 10,
+          "font": "Display",
+          "color": "DF1684"
+        },
+        {
+          "id": "TONY-weapons-028",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "TONY-weapons-029",
+          "type": "text",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "y": 13,
+          "size": 7.5,
+          "color": "101B2D",
+          "font": "Bold"
+        },
+        {
+          "id": "TONY-weapons-030",
+          "type": "text",
+          "text": "08",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "color": "101B2D",
+          "font": "Display"
+        }
+      ]
+    },
+    {
+      "id": "sean-weapon-special",
+      "number": 9,
+      "template": "custom",
+      "section": "SEAN: Main Break",
+      "elements": [
+        {
+          "id": "SEAN-weapons-000",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 792,
+          "color": "FFF8DF"
+        },
+        {
+          "id": "SEAN-weapons-001",
+          "type": "rect",
+          "x": 0,
+          "y": 695,
+          "w": 612,
+          "h": 97,
+          "color": "101B2D"
+        },
+        {
+          "id": "SEAN-weapons-002",
+          "type": "text",
+          "text": "THE TOOL SHED / WEAPONS & SPECIAL ABILITIES",
+          "x": 24,
+          "y": 768,
+          "size": 10,
+          "color": "00BADA",
+          "font": "Bold"
+        },
+        {
+          "id": "SEAN-weapons-003",
+          "type": "text",
+          "text": "MAIN BREAK",
+          "x": 24,
+          "y": 721,
+          "size": 53,
+          "color": "FFF000",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-004",
+          "type": "image",
+          "path": "marketing/magazine/weapon-special-concepts/sean-main-break.png",
+          "x": 24,
+          "y": 366,
+          "width": 564,
+          "height": 317
+        },
+        {
+          "id": "SEAN-weapons-005",
+          "type": "text",
+          "text": "CONCEPT ART",
+          "x": 24,
+          "y": 352,
+          "size": 9,
+          "color": "E62A32",
+          "font": "Bold"
+        },
+        {
+          "id": "SEAN-weapons-006",
+          "type": "text",
+          "text": "SEAN / DEFAULT WEAPON",
+          "x": 140,
+          "y": 352,
+          "size": 10,
+          "color": "E62A32",
+          "font": "Bold"
+        },
+        {
+          "id": "SEAN-weapons-007",
+          "type": "text",
+          "text": "HEAVY PLUNGER LAUNCHER",
+          "x": 140,
+          "y": 330,
+          "size": 20,
+          "color": "101B2D",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-008",
+          "type": "image",
+          "path": "weapons/heavy-plunger-launcher/marketing/portrait-v1.png",
+          "x": 24,
+          "y": 222,
+          "width": 103,
+          "height": 113
+        },
+        {
+          "id": "SEAN-weapons-009",
+          "type": "para",
+          "text": "Sean starts with a hefty launcher that fires rubber plungers. The shots hit hard, but leave yourself room between them.",
+          "x": 140,
+          "top": 311,
+          "width": 132,
+          "max_height": 88,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "SEAN-weapons-010",
+          "type": "text",
+          "text": "SPECIAL ABILITY",
+          "x": 287,
+          "y": 312,
+          "size": 10,
+          "color": "E62A32",
+          "font": "Bold"
+        },
+        {
+          "id": "SEAN-weapons-011",
+          "type": "para",
+          "text": "Sean plants his plunger and pulls. A pipe erupts with water, then tips forward as the blast dwindles. Face the trouble before you start.",
+          "x": 287,
+          "top": 294,
+          "width": 139,
+          "max_height": 89,
+          "size": 11,
+          "leading": 12.76,
+          "color": "101B2D"
+        },
+        {
+          "id": "SEAN-weapons-012",
+          "type": "rect",
+          "x": 442,
+          "y": 229,
+          "w": 146,
+          "h": 86,
+          "color": "FFF000"
+        },
+        {
+          "id": "SEAN-weapons-013",
+          "type": "text",
+          "text": "MAKE IT COUNT",
+          "x": 452,
+          "y": 296,
+          "size": 14,
+          "color": "101B2D",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-014",
+          "type": "para",
+          "text": "Two special uses per level. Save one for the moment you need room most.",
+          "x": 452,
+          "top": 283,
+          "width": 126,
+          "max_height": 48,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "SEAN-weapons-015",
+          "type": "rect",
+          "x": 24,
+          "y": 198,
+          "w": 564,
+          "h": 23,
+          "color": "E62A32"
+        },
+        {
+          "id": "SEAN-weapons-016",
+          "type": "text",
+          "text": "Coming Soon?",
+          "x": 33,
+          "y": 203,
+          "size": 18,
+          "color": "FFFFFF",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-017",
+          "type": "text",
+          "text": "TENTATIVE NAMES / SPECIALS STILL A MYSTERY",
+          "x": 205,
+          "y": 205,
+          "size": 9,
+          "color": "FFFFFF",
+          "font": "Bold"
+        },
+        {
+          "id": "SEAN-weapons-018",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v36/weapons/demolition-hammer.png",
+          "x": 24,
+          "y": 65,
+          "width": 114,
+          "height": 112
+        },
+        {
+          "id": "SEAN-weapons-019",
+          "type": "text",
+          "text": "DEMOLITION HAMMER",
+          "x": 148,
+          "y": 171,
+          "size": 12.5,
+          "color": "E62A32",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-020",
+          "type": "para",
+          "text": "A weighty answer to a stubborn blockage.",
+          "x": 148,
+          "top": 153,
+          "width": 139,
+          "max_height": 39,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "SEAN-weapons-021",
+          "type": "text",
+          "text": "SPECIAL / ???",
+          "x": 148,
+          "y": 100,
+          "size": 12,
+          "color": "101B2D",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-022",
+          "type": "text",
+          "text": "Coming Soon?",
+          "x": 148,
+          "y": 78,
+          "size": 12,
+          "color": "DF1684",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-023",
+          "type": "image",
+          "path": "marketing/magazine/guide-assets-v36/weapons/pipe-bomb-launcher.png",
+          "x": 318,
+          "y": 65,
+          "width": 114,
+          "height": 112
+        },
+        {
+          "id": "SEAN-weapons-024",
+          "type": "text",
+          "text": "PIPE-BOMB LAUNCHER",
+          "x": 442,
+          "y": 171,
+          "size": 12.5,
+          "color": "E62A32",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-025",
+          "type": "para",
+          "text": "Lob a little demolition down the corridor.",
+          "x": 442,
+          "top": 153,
+          "width": 139,
+          "max_height": 39,
+          "size": 10.5,
+          "leading": 12.18,
+          "color": "101B2D"
+        },
+        {
+          "id": "SEAN-weapons-026",
+          "type": "text",
+          "text": "SPECIAL / ???",
+          "x": 442,
+          "y": 100,
+          "size": 12,
+          "color": "101B2D",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-027",
+          "type": "text",
+          "text": "Coming Soon?",
+          "x": 442,
+          "y": 78,
+          "size": 12,
+          "color": "DF1684",
+          "font": "Display"
+        },
+        {
+          "id": "SEAN-weapons-028",
+          "type": "rect",
+          "x": 24,
+          "y": 30,
+          "w": 564,
+          "h": 1,
+          "color": "101B2D"
+        },
+        {
+          "id": "SEAN-weapons-029",
+          "type": "text",
+          "text": "DISCHARGE QUARTERLY / OCTOBER 2026",
+          "x": 24,
+          "y": 13,
+          "size": 7.5,
+          "color": "101B2D",
+          "font": "Bold"
+        },
+        {
+          "id": "SEAN-weapons-030",
+          "type": "text",
+          "text": "09",
+          "x": 565,
+          "y": 10,
+          "size": 18,
+          "color": "101B2D",
+          "font": "Display"
+        }
+      ]
+    },
+    {
+      "id": "flush-feature",
+      "number": 10,
       "template": "custom",
       "section": "It All Ends up in the Same Place Anyway...",
       "elements": [
@@ -2748,7 +3471,7 @@
         {
           "id": "flush-number",
           "type": "text",
-          "text": "08",
+          "text": "10",
           "x": 565,
           "y": 10,
           "size": 18,
@@ -2759,7 +3482,7 @@
     },
     {
       "id": "back-cover",
-      "number": 9,
+      "number": 11,
       "template": "custom",
       "section": "Spare Employee Dispenser advertisement",
       "elements": [
@@ -2777,7 +3500,7 @@
     }
   ],
   "design_guidance": {
-    "format": "Eight-page 1990s editorial magazine. Distinct article layouts, narrow flowing columns, asymmetric artwork and inset captions; avoid repeated horizontal cards.",
+    "format": "Eleven-page 1990s editorial magazine. Narrow columns, asymmetric artwork and distinct article layouts.",
     "creatures": "Seven creatures in two dense pages: five non-bosses before both bosses.",
     "references": "User-supplied Nintendo Power / GamePro spreads; layouts reinterpreted with original game artwork.",
     "action_gallery": "Asymmetric action study with a dominant Widow image, offset sprite sequences and narrow caption columns."

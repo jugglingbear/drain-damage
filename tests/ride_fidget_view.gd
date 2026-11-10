@@ -42,6 +42,29 @@ func checks() -> void:
 			model.fidget.step(model,false,4)
 			view.update_world()
 			assert(model.fidget.effects.is_empty() and view.fidget_view.instances.is_empty(),"Full projected offscreen retirement")
+			model.fidget.emit_super(model)
+			var special: Dictionary = model.fidget.effects[0]
+			for age in [.15,4.0,7.5]:
+				var delta: float = age-float(special.age)
+				model.clock += delta
+				model.position.y = 330+age*5
+				model.fidget.step(model,false,delta)
+				view.update_world()
+				assert(model.fidget.effects.has(special),"Sustained cloud cannot scroll away")
+				var giant: MeshInstance3D = view.fidget_view.instances[special.id]
+				assert(giant.get_child_count() == 2,"Three overlapping brown lobes")
+				assert(giant.material_override.get_shader_parameter("opacity") >= .84,"Dense full-duration hold")
+				var bounds: Rect2 = view.fidget_view.super_bounds
+				var size: Vector2 = giant.mesh.size
+				var bottom: Vector2 = view.camera.unproject_position(giant.to_global(
+					Vector3((bounds.end.x-.5)*size.x,.5-bounds.end.y,0)))
+				var top_lobe: MeshInstance3D = giant.get_child(1)
+				var top: Vector2 = view.camera.unproject_position(top_lobe.to_global(
+					Vector3(0,.5-bounds.position.y,0)))
+				var floor_point: Vector2 = view.camera.unproject_position(view.world(model.position-Vector2(45,0),0))
+				assert(absf(bottom.y-floor_point.y) < .1,"Cloud touches water")
+				assert(absf(top.y) < .1,"Cloud reaches gameplay ceiling at either yaw")
+				assert(bottom.x < floor_point.x,"Leading edge remains behind rider")
 	game.free()
 	print("PASS: both heroes/angles airborne release, fixed world anchor, buoyant rise, full-silhouette offscreen cleanup")
 	quit()

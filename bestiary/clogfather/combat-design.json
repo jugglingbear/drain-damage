@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "clogfather-encounter",
   "name": "The Clogfather",
-  "updated": "2026-10-23",
+  "updated": "2026-11-05",
   "status": "Prototype96 integration: mode-specific pressure; live balance review pending",
   "scope": "First mission boss; rooted giant fatberg with moving pipe mouths and extensions.",
   "canonical_metadata_note": "Bestiary owns monster.json and artwork. This encounter proposal is not registered as a playable creature. Promote accepted HP into monster.json.health before runtime integration; runtime must not read duplicate health values from this proposal.",
@@ -96,9 +96,14 @@
       "projectile_speed_pixels_per_second": 210,
       "shot_spacing_seconds": 0.45,
       "projectile_max_lifetime_seconds": 2.5,
-      "aim": "Ground-height lane at windup start; no homing and no retargeting during volley.",
-      "counterplay": "Jump over the separated low shots or remain in reserved safe corridor; no overhead shots in the same volley.",
-      "finish": "Wait until every projectile is gone, then approach grace and recovery."
+      "aim": "Aim separately at current hero position at each emission; projectiles do not home.",
+      "counterplay": "Dodge current-position aimed shots; use the one-second burst gap.",
+      "finish": "Repeat during active combat; stop immediately on death/reset.",
+      "shots_per_burst": [
+        1,
+        3
+      ],
+      "burst_gap_seconds": 1
     },
     "ceiling_acid": {
       "telegraph_seconds": 1.2,
@@ -109,7 +114,7 @@
       "fall_duration_seconds": 0.6,
       "puddle_duration_seconds": 0.8,
       "counterplay": "Walk out of marked columns; chosen corridor must be reachable before impact.",
-      "finish": "Clear every falling drop and puddle before approach grace and recovery."
+      "finish": "Each drop lasts0.6s falling plus0.8s puddle. At<=20%HP next simultaneous volley begins2s after prior emission, with warning inside that cooldown and weak-point access retained."
     },
     "summon_flushfiend": {
       "creature_id": "toilet",
@@ -173,7 +178,7 @@
     "one_pattern_at_a_time": true,
     "cooldown_between_patterns_seconds": 0.5,
     "rules": [
-      "No sludge during acid or live summons.",
+      "Continuous gun bursts may overlap acid and surviving summons; keep warnings readable.",
       "Never shorten telegraphs in later phases.",
       "Later phases add coverage, not simultaneous unavoidable hazards.",
       "Start each phase at the first item of its loop; phase advancement occurs after recovery.",
@@ -242,25 +247,25 @@
       "summon_flushfiend",
       "optional_valves"
     ],
-    "loop": "One Easy or two separately aimed Normal/Hard sludge rounds, each with a warning; alternating acid and pressure waves. Every attack clears before the unchanged0.8s approach and full5s alternating low/high weak-point window.",
+    "loop": "Continuous seeded 1\u20133-shot gun bursts during active combat; each shot aims at the current hero position and then travels without homing. Exactly 1s from the final shot to the next burst. Initial warning retained. Pressure waves lead to actual acid emission after 2s, with difficulty-specific warnings inside that interval. Above20%HP retain approach and5s weak-point windows; at or below20%HP keep weak-point access and repeat acid emission every2s until death.",
     "window": "Mouth unfolds during approach; becomes damageable for the full5s window. Body contact disabled for approach and recovery. No threshold truncation; phase advances after full window, lethal hit immediate.",
     "geometry": "Room-local960x540,floor440,HUD0..110. Artroot810,440; shellRect(700,120,255,320); weakpointRect(626,377,48,42); sludge nozzle(675,255). Walkable/acid span0..700 covers both edges. Harmless rootwisps may extend left to615; configure geometry before start.",
     "acid_safety": "Locked columns include splash width. Reserve connected corridor>=180px reachable at235px/s with0.15s reaction margin and actual hero width; at most35% floor marked. If no safe plan, skip pattern into recovery.",
-    "projectile_safety": "Separated low nonhoming sludge, no overlapping acid, swept collision exposure; caller handles one shared-invulnerability hit per tick. No invisible or offscreen instant hit.",
+    "projectile_safety": "Existing projectile speed, per-mode spacing, swept collision and finite lifetime retained. Burst-gap warning remains visible; gun continues through other active combat states. Death stops emissions and clears hazards.",
     "retry": "Preboss checkpoint; full boss and selected hero HP,phase1,empty hazards/timers,normal life debit once. Keep completed Skitterling and earlier segments completed; suppress repeated banter.",
     "death": "Clear danger immediately,nonlooping1.2s collapse,one boss_defeated event; progression outcome belongs to Storyboarding/Engineering.",
     "api": "scripts/clogfather_encounter.gd provides reset/start/step/hit/drain_events/hurt_rects/snapshot; Engineering maps world coordinates, rendering, music and actual hero damage.",
     "balance_validation": "Measure both heroes; target40\u201360s is a playtest aim, not guaranteed by HP. Current starters75DPS each; ideal1080HP firing14.24/14.16s before travel/misses.",
     "art": "Existing source sheets need smooth pressure/sludge/acid/lowmouth open-close/hit/death and coherent health-stage compositing. Gross HUD must preserve readable continuous actual HP and existing green/yellow/red thresholds.",
     "checkpoint": "World checkpoint13800; arena14150..15110,commit14230,completion15150 afterterminaldefeat. Engineering owns worldadapter; no portal ininitialdelivery.",
-    "phase_progression": "At thirds, update phase after complete recovery; retain sludge/acid alternation so successful damage does not skip acid entirely.",
+    "phase_progression": "Phase changes remain at recovery boundaries. At or below20%HP, the current weak-point selection stays accessible and acid repeats without waiting for a new recovery. Existing high-point airborne-attack requirement retained.",
     "source_validation": {
       "status": "Isolated controller tests passed; integrated route/render/audio/playtest pending Engineering",
       "test": "tests/clogfather_encounter.gd",
       "coverage": [
         "60/120Hz timers and full5s windows",
         "90Tony/60Sean successful hits with active cadence; both see acid before defeat",
-        "phase3 four-shot volley and three acid columns",
+        "seeded1–3-shot repeated bursts,1s gap, per-shot aim; phase3 acid columns retained",
         "50 deterministic acid plans including both walkable corners; reachable180px corridor and<=35% marked floor",
         "pause in every attack/window state; no pauseddamage",
         "deduplicated hit IDs; lethal death-only signal; one completion; full retryreset",
@@ -281,9 +286,9 @@
         "hard": 0.55
       },
       "gas_active_seconds_by_mode": {
-        "easy": 2,
-        "normal": 4,
-        "hard": 4.5
+        "easy": 0.8,
+        "normal": 1.1,
+        "hard": 1.3
       },
       "gas_speed_pixels_per_second_by_mode": {
         "easy": 30,
@@ -298,9 +303,9 @@
       },
       "reinforcement_warning_seconds": 1.2,
       "reinforcement_active_seconds_by_mode": {
-        "easy": 3,
-        "normal": 4,
-        "hard": 5
+        "easy": 0.8,
+        "normal": 1.1,
+        "hard": 1.3
       },
       "reinforcement_id": "sewer-fly-swarm",
       "reinforcement_hp": 24,
@@ -310,10 +315,10 @@
         180,
         440
       ],
-      "clear_seconds": 0.25,
+      "clear_seconds": 0,
       "open_window_seconds": 5,
       "approach_seconds": 0.8,
-      "policy": "Exact complete formations; no silent drops or refill. All expire before original attacks/windows and clear on death/reset. Normal damage and shared immunity; no cough/control interruption.",
+      "policy": "Exact complete formations; no silent drops or mid-wave refill. Live gas and reinforcement monsters persist through acid, sludge, recovery and subsequent waves until killed. Pressure durations schedule the next attack; they are not hazard lifetimes. Pause freezes hazards; boss defeat and encounter reset/retry clear them. Normal damage, hit/death feedback and shared immunity remain active in every phase. No cough/control interruption. No automatic population cap or age-based removal; surviving waves accumulate. Escape corridors exclude only the newly scheduled attack, not older surviving hazards. Pressure-only time ends when the acid warning starts; the total appearance-to-drop interval is2s.",
       "acid_warning_seconds_by_mode": {
         "easy": 1.2,
         "normal": 0.9,
@@ -346,11 +351,7 @@
         "normal": 0.5,
         "hard": 0.6
       },
-      "volley_rounds_by_mode": {
-        "easy": 1,
-        "normal": 2,
-        "hard": 2
-      },
+      "volley_rounds_by_mode": "Unbounded repeated bursts while active, ending on death/reset.",
       "volley_warning_seconds_by_mode": {
         "easy": 0.9,
         "normal": 0.7,
@@ -361,16 +362,25 @@
         "normal": 0.35,
         "hard": 0.25
       },
-      "shots_per_round_by_phase": [
-        3,
-        4,
-        4
-      ],
       "audio_provenance": [
         "audio/sources/clogfather-festering-v3/manifest.json",
         "audio/sources/clogfather-v1/manifest.json",
         "audio/sources/sewer-fly-buzz-v1/manifest.json"
-      ]
+      ],
+      "acid_timing": {
+        "appearance_to_first_drop_seconds": 2,
+        "enrage_hp_fraction": 0.2,
+        "last_drop_to_next_first_drop_seconds": 2,
+        "warning_within_delay": true,
+        "fall_seconds": 0.6,
+        "puddle_seconds": 0.8,
+        "simultaneous_columns": true
+      },
+      "shots_per_burst_range": [
+        1,
+        3
+      ],
+      "burst_gap_seconds": 1
     }
   }
 }

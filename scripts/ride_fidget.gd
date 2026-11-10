@@ -13,6 +13,13 @@ var cooldown := 0.0
 var last_clock := -1.0
 var next_id := 0
 
+func emit_super(model: RefCounted) -> void:
+	# Cosmetic only: the sustained cloud follows the rider without changing motion or contacts.
+	next_id += 1
+	effects.append({"id":next_id,"age":0.0,"alpha":0.0,"material":"cloud","super":true,
+		"lifetime":8.0,"center":model.position+Vector2(model.clock*model.scroll_speed-45,0),
+		"release_height":model.render_height+8.0,"height":model.render_height+8.0})
+
 func sync_input(held_fire: bool) -> void:
 	held = held_fire
 
@@ -116,7 +123,14 @@ func step(model: RefCounted, held_fire: bool, delta: float, enabled := true, pau
 		var effect := effects[index]
 		effect.age += dt
 		if effect.material == "cloud":
-			# Course-space X/bank remain fixed at release; only a small buoyant rise is allowed.
+			if effect.get("super",false) and effect.age >= effect.lifetime:
+				effects.remove_at(index)
+				continue
+			if effect.get("super",false):
+				effect.center = model.position+Vector2(model.clock*model.scroll_speed-45,0)
+				effect.height = 0.0
+				continue
+			# Ordinary airborne deposits remain fixed at release.
 			effect.height = effect.release_height+minf(25.0,effect.age*8.0)
 			continue
 		if effect.age >= effect.lifetime:
@@ -171,4 +185,4 @@ func step(model: RefCounted, held_fire: bool, delta: float, enabled := true, pau
 func retire_cloud(id: int) -> void:
 	# The renderer retires a cloud only after its complete projected silhouette leaves the viewport.
 	for index in range(effects.size()-1,-1,-1):
-		if effects[index].id == id and effects[index].material == "cloud": effects.remove_at(index)
+		if effects[index].id == id and effects[index].material == "cloud" and not effects[index].get("super",false): effects.remove_at(index)

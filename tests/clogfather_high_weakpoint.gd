@@ -34,6 +34,8 @@ func run_checks() -> void:
 		open_window(game,1)
 		assert(boss.snapshot().weak_point_level == "low" and boss.weak_point_rect() == Rect2(626,377,48,42))
 		open_window(game,2)
+		# Isolate mouth trajectory: persistent destructible gas can legitimately absorb the shot.
+		boss.hazards.clear()
 		assert(boss.snapshot().weak_point_level == "high" and boss.weak_point_rect() == Rect2(692,304,48,42))
 		# Both trajectories are actual weapon projectiles. An otherwise valid ground-fired high hit is armored.
 		var previous: int = boss.hp

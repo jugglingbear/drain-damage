@@ -69,11 +69,12 @@ func run_checks() -> void:
 			# Each dispenser owns a separate single clone. Check-in never charges a life.
 			game.health = 1
 			game.activate_checkpoint(0)
-			if not check(game.dispenser.mode == "injured" and game.health == game.employee.max_health,
-				"first check-in must select injured before healing"): return
+			if not check(game.dispenser.mode == "injured" and game.health == 1,
+				"first check-in must preserve health until replacement dispensing"): return
 			game.dispenser.finish(game,true)
 			unlock(game)
-			if not check(game.dispenser.spent_checkpoints.has(0) and game.lives == 3,"first clone stock/lives"): return
+			if not check(game.dispenser.spent_checkpoints.has(0) and game.lives == 3
+				and game.health == game.employee.max_health,"first clone health/stock/lives"): return
 			game.skitterling.restore_completed()
 			game.player = Vector2(13800,394)
 			game.health = 1
@@ -130,11 +131,8 @@ func run_checks() -> void:
 			if not check(game.skitterling.encounter.exit_open and game.skitterling.released
 				and boss.hp == 1080 and boss.state == "idle" and not game.clogfather.entered,
 				"retry resurrected Skitterling or retained damaged Clogfather"): return
-			for event in game.run_plan.later:
-				if not check(game.encounter_states[event.id] == "excluded","earlier route remains eligible after preboss retry"): return
-			for event in game.trial_state.results().events:
-				if event.id.begins_with("opening-"):
-					if not check(event.state == "unavailable","opening revived after preboss retry"): return
+			for event in game.campaign.specs:
+				if not check(game.ledger[event.id] == "excluded","earlier route remains eligible after preboss retry"): return
 			if not check(game.actors.is_empty() and game.enemies.is_empty() and game.shots.is_empty()
 				and game.hostile_shots.is_empty() and game.swarms.actors.is_empty(),"retry retained old actors/projectiles"): return
 			enter_room(game)

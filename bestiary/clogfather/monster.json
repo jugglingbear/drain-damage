@@ -138,13 +138,13 @@
   "audio": {
     "schema_version": 1,
     "status": "profile_ready",
-    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "manifest": "audio/sources/creature-materials-v2/manifest.json",
     "hit": {
       "variants": [
         {
-          "path": "assets/audio/sfx/clogfather-v1/hurt.wav",
-          "gain_db": -5,
-          "sha256": "4ba97b36d114997e1fa5fb907ba172b249d3bc7ca4e352c4de3fd7cdf5827a1f"
+          "path": "assets/audio/sfx/creature-materials-v1/DD-S0001.1.wav",
+          "gain_db": -3,
+          "sha256": "cf2a2b34526238ab2f8ce51a8ca3c402f8559f6f3f8280d95b1ca38d7e211ae8"
         }
       ],
       "cooldown_seconds": 0.25,
@@ -154,9 +154,9 @@
     "death": {
       "variants": [
         {
-          "path": "assets/audio/sfx/clogfather-v1/collapse.wav",
-          "gain_db": -5,
-          "sha256": "f8d172e96942969b725b44d6c1f318a6672484f268be30f17fb0e2c04d81e281"
+          "path": "assets/audio/sfx/creature-materials-v1/DD-S0002.1.wav",
+          "gain_db": -3,
+          "sha256": "d222f7e1d7f8cd332643e4a12621a075f6d98f2b4247a9fe7bef4daf564817dd"
         }
       ],
       "cooldown_seconds": 0.0,
@@ -213,7 +213,7 @@
       2,
       2
     ],
-    "policy": "Gas first, then reinforcements; after recovery and before next acid/volley. No refill. Clear before original attacks and windows, death and reset; pause freezes. Normal damage/immunity, no cough or control/fire interruption. Geometry may admit fewer swarms.",
+    "policy": "Historical Prototype92 policy, superseded by prototype96_pressure.policy for persistent hazards: Gas first, then reinforcements; after recovery and before next acid/volley. No refill. Clear before original attacks and windows, death and reset; pause freezes. Normal damage/immunity, no cough or control/fire interruption. Geometry may admit fewer swarms.",
     "duration_note": "Adds 3.45s gas / 4.45s swarm activity between original cycles; human duration and readability review pending.",
     "audio_provenance": [
       "audio/sources/clogfather-v1/manifest.json",
@@ -265,7 +265,7 @@
     "clear_seconds": 0.25,
     "open_window_seconds": 5,
     "approach_seconds": 0.8,
-    "policy": "Exact complete formations; no silent drops or refill. All expire before original attacks/windows and clear on death/reset. Normal damage and shared immunity; no cough/control interruption.",
+    "policy": "Exact complete formations; no silent drops or mid-wave refill. Live gas and reinforcement monsters persist through acid, sludge, recovery and subsequent waves until killed. Pressure durations schedule the next attack; they are not hazard lifetimes. Pause freezes hazards; boss defeat and encounter reset/retry clear them. Normal damage, hit/death feedback and shared immunity remain active in every phase. No cough/control interruption. No automatic population cap or age-based removal; surviving waves accumulate. Escape corridors exclude only the newly scheduled attack, not older surviving hazards.",
     "acid_warning_seconds_by_mode": {
       "easy": 1.2,
       "normal": 0.9,

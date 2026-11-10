@@ -43,16 +43,16 @@ var damage_taken := 0
 var shots_fired := 0
 var input_guard := true
 
-func attach(host: Node2D) -> void:
+func attach(host: Node2D, yield_frame := Callable()) -> void:
 	definition = JSON.parse_string(FileAccess.get_file_as_string(CONTENT))
 	prelude_duration = float(definition.story.timing.calm_prelude_seconds)
 	host.add_child(radio)
 	audio.attach(host,definition.audio.cues)
 	music.attach(host,definition.music)
-	art.configure(definition.art)
-	ride.attach(host)
+	await art.configure(definition.art,yield_frame)
+	await ride.attach(host,yield_frame)
 	world_view = WorldView.new()
-	world_view.attach(host,self)
+	await world_view.attach(host,self,yield_frame)
 	radio.transmission.connect(func() -> void: audio.play("radio_chirp"))
 
 func reset() -> void:
@@ -259,6 +259,12 @@ func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _
 		if host.life_state != "alive": return
 		sync_hero(host)
 		radio.advance(prelude_duration-prelude_remaining,reading_delta,false)
+		if prelude_remaining <= 0:
+			# The intro already supplied the calm interval; start the first full warning now.
+			clock = float(definition.layout.difficulty[host.difficulty].waves[0].at)
+			debris.advance(self,host,0)
+			announced.onset = true
+			audio.play("flush_onset")
 		delta -= reading_delta
 		if delta <= 0.000001: return
 	# Resolve the final controllable interval before making the finale immune.

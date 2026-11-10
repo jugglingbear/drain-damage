@@ -172,7 +172,7 @@ func run_checks() -> void:
 	boss.drain_events()
 	boss.step(.01, intruder)
 	check(boss.state == "rat_pipe_abort" and boss.hurt_regions().is_empty(), "Late intrusion aborts harmlessly")
-	check(boss.damage(12) == 0 and boss.landing == locked_landing, "Return cannot retarget or accept damage")
+	check(boss.damage(12) == 12 and boss.landing == locked_landing, "Airborne return accepts damage without retargeting")
 	boss.step(.6, intruder)
 	check(boss.state == "rat_inside_pipe", "Aborted launch returns inside pipe")
 	check(not boss.drain_events().has("pipe_land"), "Abort must not emit a successful landing")

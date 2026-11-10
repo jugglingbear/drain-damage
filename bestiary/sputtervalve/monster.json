@@ -69,18 +69,13 @@
   "audio": {
     "schema_version": 1,
     "status": "runtime_integrated",
-    "manifest": "audio/sources/monster-damage-v1/manifest.json",
+    "manifest": "audio/sources/creature-materials-v2/manifest.json",
     "hit": {
       "variants": [
         {
-          "path": "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+          "path": "assets/audio/sfx/creature-materials-v1/DD-S0011.1.wav",
           "gain_db": -3,
-          "sha256": "22a77d3d43ea0c80584f0291d67fe780a6a6e055b7f497b45660ae971d711cbb"
-        },
-        {
-          "path": "assets/audio/sfx/sputtervalve-v1/hit-b.wav",
-          "gain_db": -3,
-          "sha256": "ee9b1b5f84d68b7571c3082268f9e89dfa249c903eaba8feae28c83d2cea5b5e"
+          "sha256": "f2216b89bd3360756c7ae8b780f4bca4c2c5169a41e0c574503dbbf4de15b61f"
         }
       ],
       "cooldown_seconds": 0.1,
@@ -90,9 +85,9 @@
     "death": {
       "variants": [
         {
-          "path": "assets/audio/sfx/sputtervalve-v1/death.wav",
+          "path": "assets/audio/sfx/creature-materials-v1/DD-S0012.1.wav",
           "gain_db": -3,
-          "sha256": "2b8391d1a3365d929c6f0ff5f2d41432fcba25884e3dec37d85002c21119094a"
+          "sha256": "c03bdf3df4b59f2ec24f67f02ea05c9d18bb916c73e91c4be02f0fdbceb413a7"
         }
       ],
       "cooldown_seconds": 0.0,

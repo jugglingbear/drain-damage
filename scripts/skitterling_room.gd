@@ -20,10 +20,10 @@ var clock := 0.0
 var hit_actor := {"hp":Encounter.MAX_HP}
 var kill_recorded := false
 
-func attach(host: Node2D) -> void:
+func attach(host: Node2D, yield_frame := Callable()) -> void:
 	audio.attach(host)
 	art = load("res://scripts/skitterling_art.gd").new()
-	var prepared: bool = art.prepare()
+	var prepared: bool = await art.prepare(yield_frame)
 	assert(prepared,"Skitterling authored art failed preparation")
 
 func reset(seed_value: int) -> void:
@@ -142,16 +142,13 @@ func target_rect() -> Rect2:
 	return body.intersection(art.collision_bounds(encounter.snapshot(),ORIGIN))
 
 func target_regions() -> Array[Rect2]:
-	## Retreat shots can hit only the exposed swarm, never insects concealed by pipe metal.
-	var result: Array[Rect2] = []
+	## Pipe transit can be shot while airborne; only exposed insects are targets, never pipe metal.
+	if not encounter.damageable(): return []
+	if encounter.state in ["rat_pipe_retreat","rat_pipe_launch","rat_pipe_abort"]:
+		return art.visible_target_regions(encounter.snapshot(),ORIGIN)
 	var baseline := target_rect()
-	if not baseline.has_area(): return result
-	if encounter.state != "rat_pipe_retreat":
-		result.append(baseline)
-		return result
-	for visible: Rect2 in art.visible_target_regions(encounter.snapshot(), ORIGIN):
-		var clipped := baseline.intersection(visible)
-		if clipped.has_area(): result.append(clipped)
+	var result: Array[Rect2] = []
+	if baseline.has_area(): result.append(baseline)
 	return result
 
 func allowed_body(body: Rect2) -> bool:

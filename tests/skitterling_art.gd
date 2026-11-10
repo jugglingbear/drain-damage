@@ -15,12 +15,12 @@ class ArtCanvas extends Node2D:
 
 func _initialize() -> void:
 	var art := Art.new()
-	assert(art.prepare(), art.last_error)
+	assert(await art.prepare(), art.last_error)
 	assert(art.frames.size() > 70)
 	var cached = art.frames["rat-source-v2:1"].textures[0]
-	assert(art.prepare() and art.frames["rat-source-v2:1"].textures[0] == cached)
+	assert(await art.prepare() and art.frames["rat-source-v2:1"].textures[0] == cached)
 	var second := Art.new()
-	assert(second.prepare() and second.frames["rat-source-v2:1"].textures[0] == cached)
+	assert(await second.prepare() and second.frames["rat-source-v2:1"].textures[0] == cached)
 	var masks: Array[Rect2] = art.portal_occlusion_rects(Vector2(6570, 0), true, false)
 	assert(masks[0].encloses(Rect2(6550, 394, 26, 46)))
 	assert(masks[1].encloses(Rect2(7510, 394, 26, 46)))

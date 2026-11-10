@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "Readability revision: 12px destination with existing-texture outline; final packaged review pending",
+  "source": "assets/bestiary/devil-spider-v1/web-line-source-v2.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_cutoff": 240,
+  "prompt": "Production sprite sheet for a game spider silk LINE projectile, not a ball.1536x1024 transparent canvas. Three separate HORIZONTAL ivory silk strands stacked at y200,y500,y800, all faceRIGHT. TOP: straight twisted silk cord fromx160tox1376, about20px thick, matched flat ends for repeatingtile, subtle dark gray edge. MIDDLE: leadingtip, a long thin tapered pointed strand fromx160tox1376, tail atleft thin18px, tipatright needlelike, no roundblob, tiny frayedbarbs only. BOTTOM: spent snappedstrand withsmallgentlecurves, samewidth, shortfrays, no roundforms. Crisp pixel-art threads readable whenrendered3\u20135pixels thick, ivory highlights darkoutline. Onlythree isolated strands, huge transparent gaps. No text/background/glow/haze/circles/spider/characters. This is directional projectile art plus repeatabletrail, not beam/lightning.",
+  "facing": "Right; rotate by velocity.angle, unlike old left-facing ball",
+  "components": {
+    "trail": {
+      "source_rect": [
+        176,
+        202,
+        1200,
+        32
+      ],
+      "destination": [
+        -64,
+        -2,
+        64,
+        4
+      ],
+      "repeat_pitch": 62
+    },
+    "tip": {
+      "source_rect": [
+        160,
+        490,
+        1240,
+        50
+      ],
+      "destination": [
+        -64,
+        -6,
+        64,
+        12
+      ],
+      "tip_anchor": [
+        0,
+        0
+      ]
+    },
+    "spent": {
+      "source_rect": [
+        160,
+        788,
+        1240,
+        52
+      ],
+      "destination": [
+        -64,
+        -3,
+        64,
+        6
+      ]
+    }
+  },
+  "integration": [
+    "Projectile world position is leadingtip. Draw tip backward along actual travel; repeattrail behind if needed. Trail detaches from mouth after shot, never permanently connects to moving spider. Hauling tether remains independent.",
+    "Aim locked to hero position at launch per Mechanics; no homing inferred from artwork.",
+    "Crop source ends with exact measured bounds; transparentpadding and cutoff may make final few tip pixels invisible. Actual hazard hit region must match readable strand, not old ball radius.",
+    "Preserve original webball as historicalsource; current attack uses line only."
+  ]
+}

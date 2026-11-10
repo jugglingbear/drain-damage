@@ -14,8 +14,8 @@ const HEALTH_RECT := Rect2(498, 492, 430, 34)
 const MUSIC_RECT := Rect2(32, 492, 446, 34)
 const PRIMARY := [
 	[["MOVE", "A / D   or   Left / Right"], ["JUMP", "Space"],
-		["FIRE", "Enter / J / X"], ["PAUSE", "Esc"]],
-	[["MOVE", "Left stick / D-pad"], ["JUMP", "A"], ["FIRE", "X / Right trigger"], ["PAUSE", "Menu  ≡"]],
+		["FIRE", "Enter / J / X"], ["SPECIAL", "K — two uses / level"], ["PAUSE", "Esc"]],
+	[["MOVE", "Left stick / D-pad"], ["JUMP", "A"], ["FIRE", "X / Right trigger"], ["SPECIAL", "B — two uses / level"], ["PAUSE", "Menu  ≡"]],
 ]
 
 static func tab_rect(index: int) -> Rect2:
@@ -56,12 +56,12 @@ static func draw(canvas: Node2D, page: int, muted: bool, health_bars := false) -
 		canvas.draw_texture_rect(KEYBOARD, Rect2(35, 133, 564, 188), false)
 	else:
 		canvas.draw_texture_rect(GAMEPAD, Rect2(160, 125, 315, 210), false)
-	for index in range(4):
-		var y := 122.0 + index * 56
-		panel(canvas, Rect2(622, y, 306, 48), Color("1c3037"))
-		text(canvas, PRIMARY[page][index][0], Vector2(638, y + 19), 11, MINT)
-		text(canvas, PRIMARY[page][index][1], Vector2(638, y + 39), 17)
-	text(canvas, "Aim: WASD / arrows or stick / D-pad. Only straight down needs a jump.", Vector2(42, 363), 14, MINT)
+	for index in range(PRIMARY[page].size()):
+		var y := 122.0 + index * 44
+		panel(canvas, Rect2(622, y, 306, 40), Color("1c3037"))
+		text(canvas, PRIMARY[page][index][0], Vector2(638, y + 15), 11, MINT)
+		text(canvas, PRIMARY[page][index][1], Vector2(638, y + 33), 17)
+	text(canvas, "Hold Z / V: aim up-left / up-right, stand still." if page == 0 else "Hold LB / RB: aim up-left / up-right, stand still.", Vector2(42, 363), 14, MINT)
 	if page == 0:
 		reference_card(canvas, 32, "DURING A JOB", ["K  Special (two uses per level)", "Hold fire for continuous shots", "Q  Title when paused / complete"])
 		reference_card(canvas, 336, "MENUS & PAGES", ["WASD / arrows  Navigate", "Enter / Space  Confirm; mouse works", "Esc  Back (quits on title)"])

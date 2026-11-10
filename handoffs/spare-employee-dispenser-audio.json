@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-16",
-  "status": "Revised cartoon splat/slide v2 ready for integration; listening and runtime validation pending",
+  "status": "Verdict/staged-compression audio v3 delivered; new runtime/bundle integration pending",
   "manifest": "audio/sources/spare-employee-dispenser-v1/manifest.json",
   "reference_audio": "audio/sources/spare-employee-dispenser-v2/sequence-reference-v2-5.5s.wav",
   "source_generator": "audio/sources/spare-employee-dispenser-v1/generate.py",
@@ -41,6 +41,24 @@
     ],
     "inspect": [
       "inspect-scan"
+    ],
+    "inspection_pass": [
+      "inspection-pass"
+    ],
+    "inspection_fail": [
+      "inspection-fail"
+    ],
+    "compress_stage_one": [
+      "compress-stage-one"
+    ],
+    "compress_stage_two": [
+      "compress-stage-two"
+    ],
+    "throw_windup": [
+      "inspect-servo"
+    ],
+    "set_down": [
+      "inspect-servo"
     ]
   },
   "timing_contract": {
@@ -182,6 +200,40 @@
       "peak_dbfs": -12,
       "sha256": "bc8989be0666fcf23e8aeb9d0da652ee79e473eb03f281c731bff442847602d7",
       "loop": false
+    },
+    {
+      "cue_id": "inspection-pass",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/inspection-pass.wav",
+      "duration_seconds": 0.42,
+      "gain_db": -3,
+      "peak_dbfs": -14,
+      "loop": false,
+      "sha256": "dca814e313e8eed193bfb86a07ebdcc8d220e7a87c970b04b4d3d852f12ee775"
+    },
+    {
+      "cue_id": "inspection-fail",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/inspection-fail.wav",
+      "duration_seconds": 0.5,
+      "gain_db": -3,
+      "peak_dbfs": -14,
+      "loop": false,
+      "sha256": "6f6589f438eee20f7dddea762f5f99909c931464ea47616bae69239d86685091"
+    },
+    {
+      "cue_id": "compress-stage-one",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/compress-stage-one.wav",
+      "duration_seconds": 0.38,
+      "gain_db": -6,
+      "loop": false,
+      "sha256": "b748721817d123221e8077c4b580dcbfb2f8bded21a6005008d32193c1c6072a"
+    },
+    {
+      "cue_id": "compress-stage-two",
+      "path": "assets/audio/sfx/dispenser-verdict-v3/compress-stage-two-v2.wav",
+      "duration_seconds": 0.44,
+      "gain_db": -3,
+      "loop": false,
+      "sha256": "1b4a8af02c0b230c8285fb012c63fcbfffc6106aa3dfcff66dd13dccf037e055"
     }
   ],
   "engineering_contract": "handoffs/spare-employee-dispenser-engineering.json",
@@ -217,5 +269,27 @@
     "timing": "Injured sequence only, after lift and before compress. Art markers provisional; Engineering owns final6.5\u20137s timing and bundle regeneration. Healthy.4s and respawn1.9s unchanged.",
     "lifecycle": "Same existing dispenser voice ownership, pause, skip/reset/exit cleanup. No loop, diagnosis beep, glass break, or audio-driven delay.",
     "validation": "Both original asset hashes match; gains-8/-9dB, nonloop; no audition."
+  },
+  "verdict_revision": {
+    "date": "2026-11-05",
+    "manifest": "audio/sources/dispenser-verdict-v3/manifest.json",
+    "status": "Canonical audio ready; root bundle/runtime integration pending",
+    "events_seconds": {
+      "inspection_pass": 2.0,
+      "inspection_fail": 2.0,
+      "compress_stage_one": 2.9,
+      "compress_stage_two": 3.4,
+      "throw_windup": 3.9,
+      "throw": 4.4,
+      "impact": 4.9,
+      "set_down_healthy": 2.9,
+      "release_healthy": 3.75
+    },
+    "rules": [
+      "Pass and fail mutually exclusive, once with verdict. Do not emit generic compress in the revised sequence.",
+      "Second compression is lower and harder; stages end before the next .5s phase.",
+      "Existing throw/splat/slide retained. Healthy path does not stamp, vend or play a death cue.",
+      "Existing bounded dispenser ownership; pause/resume without replay, stop on skip/reset/menu/exit."
+    ]
   }
 }

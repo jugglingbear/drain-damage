@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "Approved source reuse and animation direction; runtime size/motion/occlusion acceptance pending",
+  "selection": "Sean: huge cosmetic fart, giant cloud behind player, approximately8seconds; no forces or damage.",
+  "source_manifest": "assets/world/ride-fidget-cloud-v1/manifest.json",
+  "path": "assets/world/ride-fidget-cloud-v1/airborne-cloud-v1.png",
+  "source_rect": [
+    0,
+    0,
+    1536,
+    1024
+  ],
+  "visible_bounds_alpha64_px": [
+    111,
+    210,
+    1419,
+    817
+  ],
+  "source_preservation": "Reuse existing approved PNG unchanged; preserve native partial alpha, no hard scissor.",
+  "ordinary_fidget": "Existing ordinary cloud and small bubble effect remain independent; do not change their lifetime or material.",
+  "duration_seconds": 8.0,
+  "anchor": {
+    "space": "World coordinates captured once on activation",
+    "location": "Behind rider rear/seat, in airborne space above board; snapshot travel direction at release.",
+    "growth": "Keep leading visible cloud edge behind release point; expand predominantly backward. Compute center from anchored leading edge and current half-width; never parent or re-anchor to moving rider.",
+    "leading_clearance_m": 0.35,
+    "upward_drift_m_per_second": 0.035,
+    "upward_drift_cap_m": 0.22
+  },
+  "animation": {
+    "visible_width_m": [
+      1.8,
+      3.4
+    ],
+    "growth_interval_seconds": [
+      0,
+      0.8
+    ],
+    "growth_curve": "smoothstep; thereafter continuous very small billow, no frame flipping",
+    "billow": {
+      "period_seconds": 2.4,
+      "secondary_period_seconds": 3.1,
+      "maximum_edge_displacement_fraction": 0.035,
+      "method": "Smooth localized UV/mesh deformation of existing cloud texture; pin leading edge, constrain displacement to transparent texture margins. No scrolling whole-cloud texture wrap."
+    },
+    "opacity_keyframes": [
+      [
+        0,
+        0
+      ],
+      [
+        0.12,
+        0.55
+      ],
+      [
+        0.8,
+        0.65
+      ],
+      [
+        5.5,
+        0.55
+      ],
+      [
+        7,
+        0.25
+      ],
+      [
+        8,
+        0
+      ]
+    ],
+    "opacity_curve": "Continuous eased interpolation; all motion and lifetime freeze on pause.",
+    "note": "Source has a soft irregular silhouette and internal curls; do not create a giant opaque brown rectangle."
+  },
+  "rendering": {
+    "orientation": "Camera-facing billboard using existing cloud renderer; preserve texture aspect ratio.",
+    "depth_test": true,
+    "cast_shadow": false,
+    "emission": false,
+    "material": "Dedicated instance opacity/deformation parameters, not shared ordinary-fidget material.",
+    "priority": "Behind rider and forthcoming gameplay hazards. Keep cloud volume behind release; if camera projection overlaps hero or upcoming hazard, locally reduce opacity rather than hide that hazard.",
+    "readability": "No HUD coverage. The rider must visibly leave the cloud behind. Offscreen travel may shorten visible screen time; never chase the camera to force8seconds onscreen."
+  },
+  "lifecycle": {
+    "end": "Expire at8seconds; safe offscreen cleanup allowed when no return visibility is possible. Clear on death/retry/scene teardown.",
+    "activation": "Use approved super input/charge policy supplied by Engineering; this art contract does not alter counts or cooldown.",
+    "safety": "No collision, damage, impulse, hop, propulsion, obstacle removal or enemy effect."
+  },
+  "acceptance": [
+    "Inspect activation/growth/hold/fade at native play size for bothheroes and supportedcameraangles.",
+    "Verify fixedworldanchor during board movement, turn and camera movement.",
+    "Confirm hero and upcoming hazards stay readable; eight-second lifecycle may leaveviewport naturally.",
+    "Confirm ordinaryfidget unchanged and cloud cleared onreset; no mechanics effects."
+  ]
+}

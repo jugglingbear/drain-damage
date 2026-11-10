@@ -8,9 +8,6 @@ const ACID_WIDTH := 64.0
 const CORRIDOR_WIDTH := 180.0
 const SAFE_SPEED := 235.0
 const PRESSURE_WARNING := 1.2
-const GAS_SECONDS := 2.0
-const REINFORCEMENT_SECONDS := 3.0
-const PRESSURE_CLEAR := 0.25
 const GAS_SPEED := 30.0
 const GAS_SIZE := Vector2(100,64)
 const DURATIONS := {"volley_warning":0.9,"acid_warning":1.2,"acid_fall":0.6,
@@ -47,6 +44,10 @@ var _frozen := false
 var _pattern := "sludge"
 var _aim := Vector2.LEFT
 var _shots := 0
+var _burst_count := 1
+var _gun_started := false
+var _gun_wait := 0.0
+var _acid_clock := -1.0
 var volley_round := 0
 var _closing_warned := false
 
@@ -60,13 +61,13 @@ func configure_difficulty(mode: String, active_weapon_damage: int = 12) -> void:
 
 func gas_targets() -> Array[Dictionary]:
 	var targets: Array[Dictionary] = []
-	if _frozen or not active or state != "pressure_active": return targets
+	if _frozen or not active or hp <= 0: return targets
 	for hazard in hazards:
 		if hazard.kind == "gas" and hazard.hp > 0: targets.append({"id":hazard.id,"rect":hazard.rect})
 	return targets
 
 func hit_gas(id: String, amount: int, attack_id: String) -> int:
-	if _frozen or not active or state != "pressure_active" or amount <= 0 or attack_id.is_empty(): return 0
+	if _frozen or not active or hp <= 0 or amount <= 0 or attack_id.is_empty(): return 0
 	var key := id+":"+attack_id
 	if _gas_hits.has(key): return 0
 	for index in range(hazards.size()):
@@ -78,8 +79,6 @@ func hit_gas(id: String, amount: int, attack_id: String) -> int:
 		hazard.flash = 0.08
 		if hazard.hp == 0:
 			hazards.remove_at(index)
-			_hurts.clear()
-			for remaining in hazards: _hurts.append(remaining.rect)
 			_events.append("gas_destroyed")
 		else: _events.append("gas_damaged")
 		return accepted
@@ -90,8 +89,7 @@ func pressure_warning_seconds() -> float:
 	return 0.75 if difficulty == "normal" else 0.55
 
 func pressure_active_seconds() -> float:
-	if pressure_kind == "gas": return 2.0 if difficulty == "easy" else 4.0 if difficulty == "normal" else 4.5
-	return 3.0 if difficulty == "easy" else 4.0 if difficulty == "normal" else 5.0
+	return 2.0-acid_warning_seconds()
 
 func acid_warning_seconds() -> float:
 	return 1.2 if difficulty == "easy" else 0.9 if difficulty == "normal" else 0.7
@@ -129,6 +127,9 @@ func reset(seed_value: int = 1) -> void:
 	_aim = Vector2.LEFT
 	_pattern = "sludge"
 	_shots = 0
+	_gun_started = false
+	_gun_wait = 0
+	_acid_clock = -1
 	volley_round = 0
 	_closing_warned = false
 
@@ -140,7 +141,10 @@ func start(hero_rect: Rect2) -> void:
 	_begin_pattern()
 
 func damageable() -> bool:
-	return active and not _frozen and state == "recovery" and hp > 0
+	return active and not _frozen and (state == "recovery" or enraged()) and hp > 0
+
+func enraged() -> bool:
+	return hp > 0 and hp*5 <= max_hp
 
 func body_rect() -> Rect2:
 	return shell if active and hp > 0 else Rect2()
@@ -174,6 +178,8 @@ func drain_events() -> Array[String]:
 func hurt_rects() -> Array[Rect2]:
 	if _frozen or not active or hp <= 0: return []
 	var result := _hurts.duplicate()
+	for hazard in hazards:
+		if hazard.kind == "gas": result.append(hazard.rect)
 	if state not in ["approach","recovery"]: result.append(shell)
 	return result
 
@@ -183,9 +189,9 @@ func snapshot() -> Dictionary:
 		"weak_point_rect":weak_point_rect(),"hazards":hazards.duplicate(true),
 		"warnings":warnings.duplicate(),"safe_corridor":safe_corridor,"nozzle":nozzle,
 		"weak_point_level":"high" if recovery_index > 0 and recovery_index % 2 == 0 else "low",
-		"recovery_index":recovery_index,"aim":_aim,"closing":state == "recovery" and elapsed >= 4.25,
+		"recovery_index":recovery_index,"aim":_aim,"closing":state == "recovery" and elapsed >= 4.25 and not enraged(),
 		"pressure_kind":pressure_kind,"pressure_wave":pressure_wave,"difficulty":difficulty,"gas_hp":gas_hp,
-		"volley_round":volley_round,
+		"volley_round":volley_round,"gun_warning":_gun_started and _shots >= _burst_count,
 		"reinforcement_requests":reinforcement_requests.duplicate(true)}
 
 func step(delta: float, hero_rect: Rect2, frozen := false) -> void:
@@ -224,17 +230,20 @@ func _begin_pattern() -> void:
 		_enter("approach")
 
 func _begin_volley_round() -> void:
+	_gun_started = false
+	_gun_wait = 0
 	_aim = (_hero.get_center()-nozzle).normalized()
 	if _aim.x >= -0.05: _aim = Vector2(-1,0.2).normalized()
 	_shots = 0
+	_burst_count = _rng.randi_range(1,3)
 	_enter("volley_warning")
 	_events.append("volley_warning")
 
 func _clear_pressure() -> void:
+	# End the spawning window, not the lifetime of surviving destructible hazards.
 	if not pressure_kind.is_empty(): _events.append("pressure_cleared")
 	pressure_kind = ""
 	reinforcement_requests.clear()
-	hazards.clear()
 	warnings.clear()
 	_hurts.clear()
 	safe_corridor = Rect2()
@@ -243,9 +252,7 @@ func _begin_pressure() -> void:
 	pressure_wave += 1
 	pressure_kind = "gas" if pressure_wave % 2 == 1 else "reinforcements"
 	warnings.clear()
-	hazards.clear()
 	_gas_plans.clear()
-	_gas_hits.clear()
 	reinforcement_requests.clear()
 	safe_corridor = Rect2()
 	var left := maxf(80.0,floor_span.position.x)
@@ -339,82 +346,65 @@ func _plan_acid() -> bool:
 		if warnings.size() == count: break
 	return not warnings.is_empty()
 
+func _advance_gas(dt: float) -> void:
+	for hazard in hazards:
+		if hazard.kind != "gas": continue
+		hazard.age = float(hazard.age)+dt
+		hazard.flash = maxf(0,float(hazard.flash)-dt)
+		var next: Rect2 = hazard.rect
+		next.position += hazard.velocity*dt
+		var minimum: float = hazard.bounds.position.x+20
+		var maximum: float = hazard.bounds.end.x-120
+		if next.position.x < minimum or next.position.x > maximum:
+			hazard.velocity.x *= -1
+			next.position.x = clampf(next.position.x,minimum,maximum)
+		hazard.rect = next
+
 func _tick(dt: float) -> void:
+	_advance_gas(dt)
+	_advance_projectiles(dt)
+	_advance_acid(dt)
+	if state == "volley" and _gun_started and hp > 0: _advance_gun(dt)
+	if _acid_clock >= 0: _acid_clock += dt
 	elapsed += dt
 	if state == "pressure_warning":
 		if elapsed+0.000001 >= pressure_warning_seconds():
 			_enter("pressure_active")
+			_acid_clock = 0
 			warnings.clear()
 			if pressure_kind == "gas":
-				hazards.assign(_gas_plans.duplicate(true))
+				hazards.append_array(_gas_plans.duplicate(true))
 				_events.append("gas_started")
 			else: _events.append("reinforcements_spawn")
 		return
 	if state == "pressure_active":
-		for hazard in hazards:
-			var previous: Rect2 = hazard.rect
-			hazard.age = float(hazard.age)+dt
-			hazard.flash = maxf(0,float(hazard.flash)-dt)
-			var next: Rect2 = hazard.rect
-			next.position += hazard.velocity*dt
-			var minimum: float = hazard.bounds.position.x+20
-			var maximum: float = hazard.bounds.end.x-120
-			if next.position.x < minimum or next.position.x > maximum:
-				hazard.velocity.x *= -1
-				next.position.x = clampf(next.position.x,minimum,maximum)
-			hazard.rect = next
-			_hurts.append(previous.merge(hazard.rect))
 		if elapsed+0.000001 >= pressure_active_seconds():
 			_clear_pressure()
-			_enter("pressure_clear")
-		return
-	if state == "pressure_clear":
-		if elapsed+0.000001 >= PRESSURE_CLEAR: _begin_pattern()
+			_begin_acid_warning()
 		return
 	if state == "volley_warning" and elapsed+0.000001 >= (0.9 if difficulty == "easy" else 0.7 if difficulty == "normal" else 0.55):
 		_enter("volley")
+		_gun_started = true
+		_advance_gun(0)
 	if state == "volley":
-		var count := 3 if phase == 1 else 4
-		while _shots < count and elapsed+0.000001 >= _shots*(0.45 if difficulty == "easy" else 0.35 if difficulty == "normal" else 0.25):
-			hazards.append({"kind":"sludge","pos":nozzle,"velocity":_aim*SLUDGE_SPEED,"age":0.0})
-			_shots += 1
-			_events.append("projectile_spawn")
-		for index in range(hazards.size()-1,-1,-1):
-			var hazard: Dictionary = hazards[index]
-			var old: Vector2 = hazard.pos
-			hazard.age += dt
-			hazard.pos += hazard.velocity*dt
-			var next: Vector2 = hazard.pos
-			_hurts.append(Rect2(old,Vector2.ZERO).expand(next).grow(SLUDGE_RADIUS))
-			if next.x < -SLUDGE_RADIUS or next.y >= FLOOR_Y-SLUDGE_RADIUS or hazard.age >= 4.0:
-				hazards.remove_at(index)
-				_events.append("projectile_hit")
-		if _shots == count and hazards.is_empty():
-			if difficulty != "easy" and volley_round == 1:
-				volley_round = 2
-				_begin_volley_round()
-			else: _enter("approach")
+		if volley_round == 2 and not _gun_started: _enter("approach")
 	elif state == "acid_warning" and elapsed+0.000001 >= acid_warning_seconds():
 		_enter("acid_fall")
-		for mark in warnings: hazards.append({"kind":"acid","pos":Vector2(mark.get_center().x,110)})
-	elif state == "acid_fall":
-		for hazard in hazards:
-			var old_y: float = hazard.pos.y
-			hazard.pos.y = lerpf(110,FLOOR_Y,minf(1,elapsed/DURATIONS.acid_fall))
-			_hurts.append(Rect2(hazard.pos.x-32,old_y,64,maxf(1,hazard.pos.y-old_y)))
-		if elapsed+0.000001 >= DURATIONS.acid_fall:
-			_enter("acid_puddle")
-			_events.append("acid_impact")
-	elif state == "acid_puddle":
-		for hazard in hazards: _hurts.append(Rect2(hazard.pos.x-32,FLOOR_Y-12,64,12))
-		if elapsed+0.000001 >= DURATIONS.acid_puddle:
-			hazards.clear()
-			warnings.clear()
-			_enter("approach")
+		_acid_clock = 0
+		for mark in warnings:
+			hazards.append({"kind":"acid","pos":Vector2(mark.get_center().x,110),"age":0.0})
+	elif state == "acid_fall" and elapsed+0.000001 >= DURATIONS.acid_fall:
+		_enter("acid_puddle")
+		_events.append("acid_impact")
+	elif state == "acid_puddle" and not enraged() and elapsed+0.000001 >= DURATIONS.acid_puddle:
+		_acid_clock = -1
+		_enter("approach")
+	elif state == "acid_cooldown" or (enraged() and state in ["acid_fall","acid_puddle"]):
+		if _acid_clock+0.000001 >= 2.0-acid_warning_seconds(): _begin_acid_warning()
 	elif state == "approach" and elapsed+0.000001 >= DURATIONS.approach:
 		_enter("recovery")
 	elif state == "recovery":
-		if elapsed >= 4.25 and not _closing_warned:
+		if elapsed >= 4.25 and not _closing_warned and not enraged():
 			_closing_warned = true
 			_events.append("weak_point_closing")
 		if elapsed+0.000001 >= DURATIONS.recovery:
@@ -423,9 +413,65 @@ func _tick(dt: float) -> void:
 			if next_phase != phase:
 				phase = next_phase
 				_events.append("phase_changed")
-			_begin_pressure()
+			if enraged():
+				_acid_clock = 0
+				_enter("acid_cooldown")
+			else: _begin_pressure()
 	elif state == "collapse" and elapsed+0.000001 >= DURATIONS.collapse:
 		active = false
 		exit_open = true
 		_enter("complete")
 		_events.append("boss_defeated")
+
+func _begin_acid_warning() -> void:
+	warnings.clear()
+	safe_corridor = Rect2()
+	if _plan_acid():
+		_enter("acid_warning")
+		_events.append("acid_warning")
+	else:
+		_acid_clock = 0 if enraged() else -1
+		_enter("acid_cooldown" if enraged() else "approach")
+
+func _advance_gun(dt: float) -> void:
+	_gun_wait -= dt
+	if _gun_wait > 0.000001: return
+	if _shots >= _burst_count:
+		_burst_count = _rng.randi_range(1,3)
+		_shots = 0
+		volley_round += 1
+	_aim = (_hero.get_center()-nozzle).normalized()
+	hazards.append({"kind":"sludge","pos":nozzle,"velocity":_aim*SLUDGE_SPEED,"age":0.0})
+	_shots += 1
+	_events.append("projectile_spawn")
+	if _shots == _burst_count:
+		if volley_round == 2:
+			_gun_started = false
+		else:
+			_gun_wait += 1.0
+			_events.append("volley_warning")
+	else: _gun_wait += 0.45 if difficulty == "easy" else 0.35 if difficulty == "normal" else 0.25
+
+func _advance_projectiles(dt: float) -> void:
+	for index in range(hazards.size()-1,-1,-1):
+		var hazard: Dictionary = hazards[index]
+		if hazard.kind != "sludge": continue
+		var old: Vector2 = hazard.pos
+		hazard.age += dt
+		hazard.pos += hazard.velocity*dt
+		_hurts.append(Rect2(old,Vector2.ZERO).expand(hazard.pos).grow(SLUDGE_RADIUS))
+		if hazard.pos.x < -SLUDGE_RADIUS or hazard.pos.y >= FLOOR_Y-SLUDGE_RADIUS or hazard.age >= 4.0:
+			hazards.remove_at(index)
+			_events.append("projectile_hit")
+
+func _advance_acid(dt: float) -> void:
+	for index in range(hazards.size()-1,-1,-1):
+		var hazard: Dictionary = hazards[index]
+		if hazard.kind != "acid": continue
+		var old_y: float = hazard.pos.y
+		hazard.age = float(hazard.get("age",0))+dt
+		if hazard.age >= DURATIONS.acid_fall+DURATIONS.acid_puddle:
+			hazards.remove_at(index)
+			continue
+		hazard.pos.y = lerpf(110,FLOOR_Y,minf(1,hazard.age/DURATIONS.acid_fall))
+		_hurts.append(Rect2(hazard.pos.x-32,minf(old_y,FLOOR_Y-12),64,maxf(12,hazard.pos.y-old_y)))

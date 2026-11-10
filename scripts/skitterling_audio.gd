@@ -3,10 +3,12 @@ extends RefCounted
 const CreatureAudio = preload("res://scripts/creature_audio.gd")
 const V1 := "res://assets/audio/sfx/cockroach-swarm-v1/"
 const V2 := "res://assets/audio/sfx/cockroach-swarm-v2/"
-const V3 := "res://assets/audio/sfx/cockroach-swarm-v3/"
+const V4 := "res://assets/audio/sfx/skitterling-rat-recorded-v4/"
+const V8 := "res://assets/audio/sfx/skitterling-action-sync-v8/"
 const CUES := {
+	"surface_warning": [V8+"surface_warning.wav", -3.0],
 	"swarm_entry": [V2+"swarm-entry.wav", -4.0],
-	"rat_assembly": [V2+"insect-shriek.wav", -3.0],
+	"rat_assembly": [V4+"rat_assembly.wav", -4.0],
 	"assembly_layer": [V2+"assembly.wav", -5.0],
 	"rat_bite_warning": [V1+"rat-warning.wav", -3.0],
 	"rat_pipe_hide": [V2+"swarm-entry.wav", -4.0],
@@ -14,22 +16,22 @@ const CUES := {
 	"pipe_launch": [V2+"pipe-launch.wav", -3.0],
 	"pipe_land": [V2+"landing.wav", -3.0],
 	"rat_phase_defeat": [V2+"rat-false-collapse.wav", -4.0],
-	"alligator_assembly": [V2+"assembly.wav", -5.0],
-	"alligator_jaw_warning": [V1+"alligator-warning.wav", -3.0],
+	"alligator_assembly": [V8+"alligator_assembly.wav", -4.0],
+	"alligator_jaw_warning": [V8+"alligator_jaw_warning.wav", -4.0],
 	"water_dive": [V2+"water-dive.wav", -4.0],
 	"water_emerge": [V2+"water-emerge.wav", -4.0],
-	"tail_warning": [V2+"tail-warning.wav", -3.0],
+	"tail_warning": [V8+"tail_warning.wav", -4.0],
 	"debris_release": [V2+"debris-release.wav", -4.0],
 	"debris_impact": [V2+"debris-impact.wav", -4.0],
 	# The roach jaws use the existing chitin contact, with no animal voice or extra loop.
 	"jaw_snap": [V2+"debris-release.wav", -4.0],
 	"rat_climb": [V2+"swarm-entry.wav", -4.0],
-	"rat_pounce_warning": [V3+"rat-insect-pounce-warning.wav", -3.0],
+	"rat_pounce_warning": [V8+"rat_pounce_warning.wav", -4.0],
 	"rat_pounce": [V2+"pipe-launch.wav", -3.0],
 	"rat_pounce_land": [V2+"landing.wav", -3.0],
-	"rat_rush_warning": [V1+"rat-warning.wav", -3.0],
+	"rat_rush_warning": [V8+"rat_rush_warning.wav", -4.0],
 	"rat_rush": [V2+"swarm-entry.wav", -4.0],
-	"alligator_tail_warning": [V2+"tail-warning.wav", -3.0],
+	"alligator_tail_warning": [V8+"alligator_tail_warning.wav", -4.0],
 	"alligator_tail_sweep": [V2+"debris-release.wav", -4.0],
 }
 var damage = CreatureAudio.new("cockroach-swarm")
@@ -86,8 +88,13 @@ func event(name: String) -> void:
 		warning.stop()
 		for voice in effects: voice.stop()
 	if name in ["pipe_launch", "rat_pipe_hide", "water_dive", "debris_release", "jaw_snap"]: warning.stop()
-	if name == "attack_start": warning.stop()
+	if name in ["attack_start", "swim_start", "water_emerge", "reskitter", "motion_end"]: warning.stop()
 	if name in ["rat_pounce", "rat_pounce_land", "rat_rush", "alligator_tail_sweep"]: warning.stop()
+	# New tells and interrupted movement must not inherit an earlier motion/launch tail.
+	if name.ends_with("warning") or name in ["rat_pipe_hide", "reskitter", "motion_end", "rat_pounce_land"]:
+		for old_voice in effects:
+			old_voice.stop()
+			cue_cutoffs.erase(old_voice)
 	if not streams.has(name) or AudioServer.is_bus_mute(0): return
 	if name == "debris_impact":
 		if clock < impact_after: return
@@ -96,13 +103,13 @@ func event(name: String) -> void:
 	if voice != warning: cursor = (cursor+1)%effects.size()
 	cue_cutoffs.erase(voice)
 	# The original assembly source is longer than the revised gameplay transition.
-	if name in ["assembly_layer", "alligator_assembly"]:
-		cue_cutoffs[voice] = {"end": clock+1.4, "gain": float(CUES[name][1])}
+	if name in ["assembly_layer", "alligator_assembly", "pipe_warning"]:
+		var duration: float = {"assembly_layer":1.4, "alligator_assembly":1.85, "pipe_warning":1.9}[name]
+		cue_cutoffs[voice] = {"end": clock+duration, "gain": float(CUES[name][1])}
 	voice.stream = streams[name]
 	voice.volume_db = CUES[name][1]
 	voice.play()
 	event_starts[name] = int(event_starts.get(name, 0))+1
-	if name == "rat_assembly": event("assembly_layer")
 
 func play_hit(actor: Dictionary, now := -1.0) -> void:
 	if not defeated: damage.play_hit(actor, now if now >= 0 else clock)

@@ -130,7 +130,11 @@ func check_motion_and_geometry() -> void:
 	game.facing = -1
 	check(special.anchor == anchor and special.locked_facing == 1,"Hero/camera/turn cannot rebase pipe or reverse sweep")
 	check(special.outlet(game).direction.is_equal_approx(Vector2.UP),"Eruption starts vertically")
-	special.elapsed = 6
+	special.elapsed = 1.5
+	check(is_zero_approx(special.pipe_angle()),"Half a second of upright spray before tipping")
+	special.elapsed = 1.6
+	check(special.pipe_angle() > 0,"Pipe begins tipping immediately after upright hold")
+	special.elapsed = 4.75
 	check(special.outlet(game).direction.is_equal_approx(Vector2.RIGHT),"Pipe reaches locked-facing horizontal")
 	check(not special.water_segments(game).is_empty(),"Horizontal pipe flow clears supporting floor")
 	special.elapsed = 7
@@ -171,21 +175,53 @@ func check_boss_damage() -> void:
 	boss.recovery_index = 1
 	game.camera_x = game.clogfather.ORIGIN.x
 	game.player = game.clogfather.ORIGIN+Vector2(300,394)
-	check(game.specials.begin(game),"Boss cap test begins")
+	check(game.specials.begin(game),"Sustained boss damage test begins")
 	var before: int = boss.hp
 	for tick in range(900): game.specials.step(game,1.0/120)
-	check(before-boss.hp == 250,"Sustained special applies at most250 actual boss damage")
+	check(before-boss.hp == 888,"Full eligible Tony stream applies888 boss damage, beyond old250 cap")
 	check(not game.specials.active,"Action ends after7.5s")
+	boss.hp = boss.max_hp # Closed-state check must stay above the173 enraged threshold.
 	boss.state = "warning"
 	var region: Rect2 = boss.weak_point
 	region.position += game.clogfather.ORIGIN
 	var segments: Array[Dictionary] = [{"origin":region.position-Vector2(50,0),"end":region.end,"width":100}]
 	before = boss.hp
-	game.special_damage(segments,12,100,{"clogfather":250})
+	game.special_damage(segments,12,100,{"clogfather":12})
 	check(boss.hp == before,"Closed boss remains invulnerable")
+	for hero in ["tony","sean"]:
+		game.specials.configure(hero,"first-call")
+		var tuning: Dictionary = game.specials.definition.initial_tuning.hero_overrides[hero]
+		boss.hp = boss.max_hp
+		boss.state = "recovery"
+		boss.recovery_index = 1
+		var rat = game.skitterling.encounter
+		rat.active = true
+		rat.phase = "rat"
+		rat.state = "rat_ready"
+		rat.position = Vector2(600,440)
+		rat.hp = rat.MAX_HP
+		var rat_regions: Array[Rect2] = game.skitterling.target_regions()
+		check(not rat_regions.is_empty(),"Rat exposes a real target for "+hero)
+		var both: Array[Dictionary] = segments.duplicate(true)
+		for rect: Rect2 in rat_regions:
+			both.append({"origin":rect.position-Vector2(50,0),"end":rect.end,"width":300})
+		for tick in range(30):
+			game.specials.tick_serial += 1
+			var applied: Dictionary = game.special_damage(both,tuning.damage_per_tick,200 if hero == "tony" else 201,
+				{"skitterling":tuning.boss_damage_per_tick,"clogfather":tuning.boss_damage_per_tick})
+			check(applied.get("skitterling",0) == 12 and applied.get("clogfather",0) == 12,
+				"Both bosses receive12 every eligible tick, including after250: "+hero)
+		check(rat.MAX_HP-rat.hp == 360 and boss.max_hp-boss.hp == 360,"Both bosses take360 in30 ticks: "+hero)
+		rat.state = "rat_inside_pipe"
+		boss.recovery_index = 2
+		var rat_before: int = rat.hp
+		var boss_before: int = boss.hp
+		game.specials.tick_serial += 1
+		game.special_damage(both,24,202,{"skitterling":12,"clogfather":12})
+		check(rat.hp == rat_before and boss.hp == boss_before,"Hidden rat and grounded high-window hits remain blocked")
 	dispose(game)
 
-func check_sean_damage_unchanged(hz: int) -> void:
+func check_sean_damage_parity(hz: int) -> void:
 	var game := prepare(Section,"sean")
 	game.create_actor({"id":"sean-water-target","role":"runner","warning_seconds":0},Vector2(177,240))
 	var target: Dictionary = game.actors.back()
@@ -195,9 +231,10 @@ func check_sean_damage_unchanged(hz: int) -> void:
 	target.hp = 10000
 	target.max_hp = 10000
 	check(game.specials.begin(game),"Sean comparison begins")
-	game.specials.elapsed = 1.05
+	game.specials.step(game,1.05)
+	target.hp = 10000
 	for tick in range(hz): game.step_player(1.0/hz)
-	check(is_equal_approx(10000-target.hp,60),"Sean remains60DPS at "+str(hz)+"Hz")
+	check(is_equal_approx(10000-target.hp,240),"Sean matches Tony at240DPS at "+str(hz)+"Hz")
 	dispose(game)
 
 func check_physical_recoil(hz: int) -> void:
@@ -273,9 +310,8 @@ func check_skitterling_transition() -> void:
 		if not game.specials.active: break
 	check(collapsed and changed,"Actual encounter performs rat collapse and alligator assembly")
 	check(before-boss.hp > 12,"Same activation also reaches vulnerable alligator")
-	check(before-boss.hp <= 250,"Combined rat/alligator damage obeys shared boss cap")
 	check(is_equal_approx(float(before-boss.hp),float(game.specials.boss_used.get("skitterling",0))),
-		"Shared cap records actual applied damage across both forms")
+		"Telemetry records actual applied damage across both forms")
 	dispose(game)
 
 func check_spent_pipes() -> void:
@@ -292,11 +328,11 @@ func check_spent_pipes() -> void:
 	special.step(game,0.6)
 	game.life_state = "dying"
 	special.step(game,0.01)
-	check(special.spent_pipes.size() == 2,"Death retains the actually emerged second main")
-	check(special.spent_pipes[0] == first,"Later activation does not move the first main")
-	check(is_equal_approx(special.spent_pipes[1].elapsed,0.6),"Interrupted main keeps its emerged pose")
+	check(special.spent_pipes.is_empty(),"Death clears both expired and interrupted mains")
+	check(not special.active and special.water_segments(game).is_empty(),"Death stops water immediately")
+	check(special.remaining() == 0,"Death does not refund either spent use")
 	special.cancel("repeated death")
-	check(special.spent_pipes.size() == 2,"Repeated cancellation does not duplicate props")
+	check(special.spent_pipes.is_empty(),"Repeated cancellation keeps props cleared")
 	game.reset_game()
 	check(special.spent_pipes.is_empty() and special.remaining() == 0,"Reset clears props without refund")
 	special.configure("sean","another-level")
@@ -307,11 +343,29 @@ func check_spent_pipes() -> void:
 	check(special.spent_pipes.is_empty(),"Pre-emergence death does not conjure a pipe")
 	dispose(game)
 
+func check_regular_fire_during_special() -> void:
+	for hero in ["tony","sean"]:
+		var game := prepare(Section,hero)
+		game.player = Vector2(500,394)
+		check(game.specials.begin(game),"Fire fixture activates "+hero)
+		game.specials.step(game,1.2)
+		Input.action_press("shoot")
+		game.fire_timer = 0
+		game.step_player(1.0/60)
+		check((not game.shots.is_empty()) == (hero == "sean"),"Sean fires regular weapon during active special")
+		check(game.specials.active and game.specials.remaining() == 1,"Regular fire preserves special and budget")
+		var count: int = game.shots.size()
+		game.step_player(1.0/60)
+		check(game.shots.size() == count,"Ordinary weapon cooldown remains enforced")
+		Input.action_release("shoot")
+		dispose(game)
+
 func checks() -> void:
+	check_regular_fire_during_special()
 	for hero in ["tony","sean"]: check_budget_and_input(hero)
 	check_motion_and_geometry()
 	for hz in [30,60,120]: check_damage_cadence(hz)
-	for hz in [30,60,120]: check_sean_damage_unchanged(hz)
+	for hz in [30,60,120]: check_sean_damage_parity(hz)
 	check_boss_damage()
 	for hz in [30,120]: check_physical_recoil(hz)
 	for script in [Section,Integrated]: check_actual_respawn(script)

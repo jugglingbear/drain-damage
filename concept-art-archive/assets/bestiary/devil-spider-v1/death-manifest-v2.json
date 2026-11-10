@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "status": "Versioned source delivered; runtime flame progression/debris acceptance pending",
+  "source": "assets/bestiary/devil-spider-v1/death-source-v2.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "canvas": [
+    128,
+    128
+  ],
+  "anchor": [
+    64,
+    12
+  ],
+  "source_scale": 0.25,
+  "alpha_cutoff": 240,
+  "prompt": "Production pixel-art death-animation sprite sheet for exact porcelain DOLL HEAD cage-abdomen devil spider in reference.1536x1024,3columns2rows,512squarecells. TOP ROW three consecutive whole-spider death keys, same size and position as reference:1 sudden orange flame tongues erupt around organic black cage,legs recoiling, three porcelain heads still visible;2 roaring orange/yellow fire engulfs black cage, cage splits open and EMPTY interior (dollheads have detached for runtime separate props), curledburninglegs;3 black gray ash silhouette crumbling downward with sparse embers, no dollheads remaining, no intactspider. All topframe bodies fullwithin cells, ceilinganchor local256,48, bodycenter256,280, margin32. Flameopaque cores crisp withtransparentgaps, no giant rectangular glow. BOTTOM ROW: THREE SEPARATE porcelain DOLL HEAD props, one percell, same identities as reference: wide-eyed rosy-cheek girl, sinister grinning face, cracked startled boy. Heads ONLY no bodies, no cage, eachabout180pxwide220high centered local256,280. Clearly artificial ceramic toys, no blood/gore. Keep eachprop intact enough to recognize, chipped/cracked glaze with darkoutline. Uniform pixelart style to reference, no labels/grid/floor. True transparent background no haze. Six isolated assets; preserve scale in topsequence. Reference is identity only, flames are new death effect.",
+  "duration_seconds": 1.2,
+  "head_release_seconds": 0.4,
+  "release_frame": 1,
+  "frames": [
+    {
+      "id": "ignite",
+      "source_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        0,
+        -3,
+        128,
+        128
+      ],
+      "duration_seconds": 0.4
+    },
+    {
+      "id": "burn",
+      "source_rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        0,
+        -3,
+        128,
+        128
+      ],
+      "duration_seconds": 0.4
+    },
+    {
+      "id": "ash",
+      "source_rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "destination": [
+        0,
+        -3,
+        128,
+        128
+      ],
+      "duration_seconds": 0.4
+    }
+  ],
+  "head_props": [
+    {
+      "id": "wide-eyed",
+      "source_rect": [
+        110,
+        600,
+        320,
+        340
+      ],
+      "destination": [
+        -10,
+        -11,
+        20,
+        22
+      ],
+      "release_socket": [
+        61,
+        39.5
+      ],
+      "contact_half_width": 9,
+      "contact_bottom": 10
+    },
+    {
+      "id": "grinning",
+      "source_rect": [
+        610,
+        600,
+        320,
+        340
+      ],
+      "destination": [
+        -10,
+        -11,
+        20,
+        22
+      ],
+      "release_socket": [
+        58,
+        56.25
+      ],
+      "contact_half_width": 9,
+      "contact_bottom": 10
+    },
+    {
+      "id": "cracked",
+      "source_rect": [
+        1120,
+        600,
+        320,
+        340
+      ],
+      "destination": [
+        -10,
+        -11,
+        20,
+        22
+      ],
+      "release_socket": [
+        75,
+        64.25
+      ],
+      "contact_half_width": 9,
+      "contact_bottom": 10
+    }
+  ],
+  "ash": {
+    "source_rect": [
+      1024,
+      0,
+      512,
+      512
+    ],
+    "destination": [
+      -32,
+      -32,
+      64,
+      64
+    ],
+    "release_socket": [
+      70,
+      75.75
+    ],
+    "contact_half_width": 22,
+    "contact_bottom": 28,
+    "release_seconds": 0.8
+  },
+  "coordinate_contract": "release_socket values are logical128canvas points. World = actor ceiling socket + Vector2((x-64)*facing,y-12). Destinations are local to debris center after release; head contact dimensions logical world pixels at runtime1x. Full creature death fixed.25 source scale, no existing actor2x. Mirror aroundx64. Head art can rotate about center with conservative collision envelope.",
+  "integration": [
+    "Trigger death scream once at onset; no replay per frame.",
+    "Detach exactly3heads once at0.4s as burn key removes heads. Original head-bearing frame must end then; do not blend it beyond release.",
+    "Fullbody ash key starts0.8s; replace at that time with falling ash component, not duplicate stationary ash plus debris. Ash depiction is initial cloud; compress/fade while settling rather than leaving a rigid spider silhouette.",
+    "Heads fall and remain until level retry/reset; root owns gravity/collision and persistence.",
+    "Three authored death keys require runtime timing/particle or texture modulation review to avoid flipbook; source is not smoothness acceptance.",
+    "Original v1 death retained. No enemy population change."
+  ],
+  "source_runtime_review": {
+    "evidence": [
+      "builds/Prototype-164/evidence/death-onset.png",
+      "builds/Prototype-164/evidence/death-release.png",
+      "builds/Prototype-164/evidence/death-settled.png"
+    ],
+    "version_stamp": "0.163.0 source build",
+    "pass": "Readable flames; coherent release position;3recognizable porcelain heads at plausible scale with apparent floor contact; rail persists.",
+    "remaining": "Ash obscured by hero: need unobstructed settled view. Continuous motion, long-term persistence and packaged164 not established. Captures use staged deaths (kill counts differ)."
+  }
+}

@@ -1,0 +1,652 @@
+{
+  "schema_version": 1,
+  "status": "Static registration independently accepted; timing and full motion candidate",
+  "alpha_cutoff": 240,
+  "alpha_preparation": "Engineering derive transparent texture using established alpha cutoff240. Preserve original files. Inspect edge cleanup on native dark/light backgrounds.",
+  "facing": "Mirror around fixed feet world anchor for left; source is right-facing. Never change facing during cinematic.",
+  "feet_world": "player_top_left + (13,46)",
+  "socket_world": "feet_world + (44*facing,0)",
+  "costumes": {
+    "normal": {
+      "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+      "frames": [
+        {
+          "frame_zero_based": 0,
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            496,
+            496
+          ],
+          "measured_cup_bottom": 496,
+          "measured_red_cup_center_x": 446.0,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 1,
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            496,
+            496
+          ],
+          "measured_cup_bottom": 496,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 2,
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            496,
+            496
+          ],
+          "measured_cup_bottom": 496,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 3,
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            464,
+            464
+          ],
+          "measured_cup_bottom": 464,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 4,
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            464,
+            464
+          ],
+          "measured_cup_bottom": 464,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 5,
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            464,
+            464
+          ],
+          "measured_cup_bottom": 464,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        }
+      ]
+    },
+    "easy": {
+      "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+      "frames": [
+        {
+          "frame_zero_based": 0,
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            496,
+            496
+          ],
+          "measured_cup_bottom": 498,
+          "measured_red_cup_center_x": 446.0,
+          "max_contact_deviation_native": 0.34,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 1,
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            496,
+            496
+          ],
+          "measured_cup_bottom": 497,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 2,
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            496,
+            496
+          ],
+          "measured_cup_bottom": 497,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 3,
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            463,
+            463
+          ],
+          "measured_cup_bottom": 465,
+          "measured_red_cup_center_x": 446.0,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 4,
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            464,
+            463
+          ],
+          "measured_cup_bottom": 465,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 5,
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            463,
+            464
+          ],
+          "measured_cup_bottom": 465,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        }
+      ]
+    },
+    "hard": {
+      "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+      "frames": [
+        {
+          "frame_zero_based": 0,
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            495,
+            495
+          ],
+          "measured_cup_bottom": 496,
+          "measured_red_cup_center_x": 446.0,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 1,
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            495,
+            495
+          ],
+          "measured_cup_bottom": 496,
+          "measured_red_cup_center_x": 446.0,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 2,
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            496
+          ],
+          "source_socket_anchor": [
+            446,
+            496
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            495,
+            495
+          ],
+          "measured_cup_bottom": 496,
+          "measured_red_cup_center_x": 446.0,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 3,
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            464,
+            464
+          ],
+          "measured_cup_bottom": 464,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 4,
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            464,
+            464
+          ],
+          "measured_cup_bottom": 464,
+          "measured_red_cup_center_x": 446.0,
+          "max_contact_deviation_native": 0.0,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        },
+        {
+          "frame_zero_based": 5,
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_anchor": [
+            187.1765,
+            464
+          ],
+          "source_socket_anchor": [
+            446,
+            464
+          ],
+          "uniform_scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "measured_boot_bottoms": [
+            463,
+            463
+          ],
+          "measured_cup_bottom": 464,
+          "measured_red_cup_center_x": 445.5,
+          "max_contact_deviation_native": 0.17,
+          "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+        }
+      ]
+    }
+  },
+  "effort_sequence": [
+    {
+      "start": 1.08,
+      "end": 1.2,
+      "frame": 0
+    },
+    {
+      "start": 1.2,
+      "end": 1.34,
+      "frame": 1
+    },
+    {
+      "start": 1.34,
+      "end": 1.56,
+      "frame": 2
+    },
+    {
+      "start": 1.56,
+      "end": 1.68,
+      "frame": 1
+    },
+    {
+      "start": 1.68,
+      "end": 1.78,
+      "frame": 3
+    },
+    {
+      "start": 1.78,
+      "end": 1.92,
+      "frame": 4
+    },
+    {
+      "start": 1.92,
+      "end": 2.45,
+      "frame": 5
+    }
+  ],
+  "contact_hold": {
+    "start": 1.0,
+    "end": 1.08,
+    "frame": 0
+  },
+  "grip_note": "Vertical tool stays at sourcex446; both hands are baked into sprites. Do not independently transform tool or hands. Source hand/grip heights vary slightly by posture and are not sockets for overlay art.",
+  "release": "Not covered by effort frames; use separately registered release/recovery poses, without changing floor socket.",
+  "remaining": [
+    "prefix/slam contact and body-size match",
+    "release and exact gameplay handoff",
+    "native continuous motion both facings and all costumes"
+  ],
+  "second_pull_note": "Single stronger pull ends in held strain; no extra recoil/re-pull beat."
+}

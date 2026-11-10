@@ -5,22 +5,23 @@ var manifest: Dictionary = {}
 var textures: Dictionary = {}
 static var prepared_textures: Dictionary = {}
 
-func configure(data: Dictionary) -> void:
+func configure(data: Dictionary, yield_frame := Callable()) -> void:
 	manifest = data
 	textures.clear()
-	for frame: Dictionary in manifest.frames.values(): load_frame(frame)
+	for frame: Dictionary in manifest.frames.values(): await load_frame(frame,yield_frame)
 	for animation: Dictionary in manifest.animations.values():
-		for frame: Dictionary in animation.frames: load_frame(frame)
+		for frame: Dictionary in animation.frames: await load_frame(frame,yield_frame)
 
-func load_frame(frame: Dictionary) -> void:
+func load_frame(frame: Dictionary, yield_frame := Callable()) -> void:
+	if yield_frame.is_valid(): await yield_frame.call()
 	if frame.has("layers"):
-		for layer: Dictionary in frame.layers: load_frame(layer)
+		for layer: Dictionary in frame.layers: await load_frame(layer,yield_frame)
 		return
 	if not textures.has(frame.path): textures[frame.path] = load("res://"+str(frame.path))
 	if frame.has("alpha_cutoff") or bool(frame.get("force_opaque",false)):
-		prepare_texture(frame)
+		await prepare_texture(frame,yield_frame)
 
-func prepare_texture(frame: Dictionary) -> void:
+func prepare_texture(frame: Dictionary, yield_frame := Callable()) -> void:
 	# Normalize authored transparency once, never in the render loop; original files stay intact.
 	var key := str(frame.path)+str(frame.source_rect)+str(frame.get("alpha_cutoff",0))+str(frame.get("force_opaque",false))+str(frame.get("edge_feather",0))
 	if not prepared_textures.has(key):
@@ -33,6 +34,7 @@ func prepare_texture(frame: Dictionary) -> void:
 		var cutoff := float(frame.get("alpha_cutoff",0))
 		var feather := float(frame.get("edge_feather",0))*cropped.get_width()/float(frame.destination[2])
 		for pixel in range(cropped.get_width()*cropped.get_height()):
+			if pixel%16384 == 0 and yield_frame.is_valid(): await yield_frame.call()
 			var alpha := 1.0 if bool(frame.get("force_opaque",false)) else clampf((bytes[pixel*4+3]/255.0-cutoff)/(1-cutoff),0,1)
 			if feather > 0:
 				var x := pixel%cropped.get_width()
@@ -146,17 +148,14 @@ func debris(host: Node2D, model: RefCounted, item: Dictionary) -> void:
 		draw_frame(host,frame_at("splash",age),point)
 
 func shadows(host: Node2D, model: RefCounted, item: Dictionary) -> void:
-	if model.clock < float(item.impact_at):
-		var radius := float(item.get("radius",40.0 if item.prop == "dead_hamster" else 22.0))
-		var warning_radius := float(item.get("warning_radius",radius+14.0))
-		var warning_size := Vector2(warning_radius*2.0/float(manifest.frames.warning.destination[2]),
-			warning_radius*2.0*model.projection()/float(manifest.frames.warning.destination[3]))
-		host.draw_set_transform_matrix(model.surface_transform(item.impact_pos)
-			*Transform2D(0,warning_size,0,Vector2.ZERO))
-		draw_named(host,"warning",Vector2.ZERO,Color(1,1,1,0.75+0.25*sin(model.clock*12)))
-		host.draw_set_transform(Vector2.ZERO)
-		var remaining: float = (float(item.impact_at)-model.clock)/float(item.duration)
-		var size := lerpf(1.0,0.35,clampf(remaining,0,1))*radius/22.0
-		host.draw_set_transform_matrix(model.surface_transform(item.pos)*Transform2D(0,Vector2.ONE*size,0,Vector2.ZERO))
-		draw_named(host,"shadow",Vector2.ZERO,Color(1,1,1,lerpf(0.9,0.3,remaining)))
-		host.draw_set_transform(Vector2.ZERO)
+	if model.clock >= float(item.impact_at): return
+	var frame: Dictionary = manifest.frames[str(item.prop)]
+	var radius := float(item.get("radius",22.0))
+	var remaining := clampf((float(item.impact_at)-model.clock)/float(item.duration),0,1)
+	var footprint := Vector2(radius*2.0/float(frame.destination[2]),
+		radius*2.0*model.projection()/float(frame.destination[3]))
+	host.draw_set_transform_matrix(model.surface_transform(item.impact_pos)
+		*Transform2D(0,footprint,0,Vector2.ZERO))
+	# Project the actual object's alpha silhouette; no advance gold target ring.
+	draw_named(host,str(item.prop),Vector2.ZERO,Color(0,0,0,lerpf(.75,.50,remaining)))
+	host.draw_set_transform(Vector2.ZERO)

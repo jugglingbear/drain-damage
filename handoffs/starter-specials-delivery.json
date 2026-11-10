@@ -101,5 +101,61 @@
       "reason": "161 onset and water tile seams rejected in actual running captures; pipe review bounded, motion pending."
     }
   },
-  "storybook": "storybook/162-starter-specials/captures.json"
+  "storybook": "storybook/162-starter-specials/captures.json",
+  "followup_163": {
+    "date": "2026-11-04T12:52:33.111103-08:00",
+    "status": "Signed candidate; visual recheck pending permission",
+    "app": "builds/Prototype-163/Drain Damage.app",
+    "changes": "Death/pit/retry/title clear active and spent special visuals/audio/damage immediately; ordinary expiry retains spent pipe during the same living attempt; charges are not refunded",
+    "source_checks": {
+      "starter_specials": 1573,
+      "special_death_cleanup": 721
+    },
+    "packaged_checks": {
+      "starter_specials": 1573,
+      "special_death_cleanup": 721
+    },
+    "pck_sha256": "70bd78cde09ca254451a30c99ea00cf06b98545e994f4d77921e408bceb6b79d"
+  },
+  "source_followup_sean_parity": {
+    "date": "2026-11-04",
+    "status": "Integrated in signed Prototype 165; source special regression passed",
+    "damage_per_tick": 24,
+    "interval_seconds": 0.1,
+    "damage_per_second": 240,
+    "duration_seconds": 7.5,
+    "uses_per_level": 2,
+    "boss_damage_cap": 250,
+    "validation": {
+      "starter_specials_checks": 1573,
+      "failures": 0,
+      "log": "/tmp/sean-special-parity.log",
+      "packaged_checks": 1573,
+      "packaged_log": "/tmp/165-final-specials.log"
+    },
+    "note": "Supersedes the Sean unchanged description in the historical Prototype 162 implemented list; no retroactive package claim.",
+    "app": "builds/Prototype-165/Drain Damage.app"
+  },
+  "art_followups_2026_11_05": {
+    "activation_cinematics": {
+      "status": "In progress; not integrated or ready for playtest",
+      "mechanics": "design/special-activation-cinematics-v1/mechanics.json",
+      "art_candidates": "assets/specials/activation-cinematics-v1/",
+      "blocker": "Sean planted cup slides and fails fixed socket registration; correction artwork in progress",
+      "review": "assets/specials/activation-cinematics-v1/registration-review.json",
+      "audio": "audio/sources/starter-cinematic-v1/manifest.json"
+    },
+    "spent_pipe": {
+      "status": "Rejected transition remains; final flattened poses accepted in sampled stills only",
+      "blocker": "Opaque registered bridge needed; do not use mesh dissolve as accepted result",
+      "candidate": "assets/specials/starter-v1/spent-pipe-bridge-v2.json"
+    },
+    "concept_delivery": {
+      "status": "Saved and archived; not runtime assets",
+      "activation": "design/special-activation-cinematics-v1/",
+      "backpack": "design/backpack-jetter-concepts-v1/",
+      "action_art": "design/special-ability-action-concepts-v1/",
+      "marketing": "Both action images delivered; magazine v37 pages08/09 Art-reviewed"
+    }
+  }
 }

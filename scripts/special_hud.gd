@@ -1,6 +1,7 @@
 extends RefCounted
 ## Selected attached side module; existing health and life artwork remains independent.
 const MANIFEST := "res://assets/ui/specials-module-v1/manifest.json"
+const FIDGET_MANIFEST := "res://assets/ui/disabled-weapon-fidget-v1/manifest.json"
 var definition: Dictionary = {}
 var textures: Dictionary = {}
 
@@ -27,6 +28,9 @@ func prepare() -> void:
 		var weapon: Dictionary = definition.weapons[key]
 		var source: Texture2D = load("res://"+weapon.path)
 		textures[key] = texture_crop(source.get_image(),weapon.source_rect)
+	var fidget: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(FIDGET_MANIFEST)).icon
+	var fidget_source: Texture2D = load("res://"+fidget.path)
+	textures["fidget"] = texture_crop(fidget_source.get_image(),fidget.source_rect)
 
 func destination(origin: Vector2, values: Array) -> Rect2:
 	return Rect2(origin+Vector2(values[0],values[1]),Vector2(values[2],values[3]))
@@ -44,6 +48,7 @@ func commands(game: Node2D, origin: Vector2, theme: String) -> Array[Dictionary]
 	var offset: Array = geometry.module_origin_relative_to_vitals
 	var position := origin+Vector2(offset[0],offset[1])
 	var weapon: String = game.employee.weapon_id
+	if theme in ["chain","rubber-ducks"]: weapon = "fidget"
 	var output: Array[Dictionary] = [
 		{"kind":"housing","texture":textures[theme+"-housing"],"rect":destination(position,geometry.housing)},
 		{"kind":"socket","texture":textures[theme+"-socket"],"rect":destination(position,geometry.weapon_socket)},

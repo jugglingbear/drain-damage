@@ -160,7 +160,21 @@
         "grounded_down_input": "Down plus left/right aims diagonally down on ground; only straight down requires airborne state. Down alone on ground falls back to horizontal facing.",
         "vector_rule": "Normalize diagonal direction so projectile speed and cumulative travel range match cardinal shots",
         "range_rule": "Keep existing max_travel_distance_pixels in every direction",
-        "input_note": "Preserve keyboard and controller support. Resolve existing up-to-jump binding conflict so aiming up does not unintentionally jump.",
+        "input_note": "W/up aims without jumping; Space/controller A jumps. Z/LB and V/RB hold stationary up-left and up-right aim.",
+        "stationary_diagonal_controls": {
+          "up_left": {
+            "keyboard": "Z",
+            "gamepad": "LB"
+          },
+          "up_right": {
+            "keyboard": "V",
+            "gamepad": "RB"
+          },
+          "activation": "Hold; releasing restores ordinary movement and aiming inputs",
+          "movement": "Stops ordinary horizontal movement immediately, including held stick/direction input; does not cancel Tony special water recoil",
+          "precedence": "Stationary diagonal overrides directional aim while held; if both are held, most recent press sets facing and diagonal",
+          "escape": "Each fresh press is a gameplay escape input; held inputs do not repeat"
+        },
         "art_note": "Directional held-weapon/hero poses require Bestiary / Art collaboration before new artwork is created",
         "visual_aim": {
           "status": "Approved correction; Engineering integration pending",
@@ -189,7 +203,6 @@
         "duration_seconds": 7.5,
         "damage_per_tick": 24,
         "tick_interval_seconds": 0.1,
-        "boss_damage_cap_per_activation": 250,
         "range": "Current viewport edge along visible water, blocked by solid scenery",
         "input": {
           "keyboard": "K",
@@ -201,7 +214,10 @@
         "sustained_damage_per_second": 240,
         "active_regular_sustained_damage_per_second": 75,
         "special_to_regular_ratio": 3.2,
-        "activation": "Fresh press automatically sustains damage; neither special nor ordinary fire needs to remain held"
+        "activation": "Fresh press automatically sustains damage; neither special nor ordinary fire needs to remain held",
+        "boss_damage_per_tick": 12,
+        "boss_sustained_damage_per_second": 120,
+        "boss_damage_rules": "No total cap; existing vulnerability and weak-point gates apply"
       }
     },
     "demolition-hammer": {
@@ -323,7 +339,21 @@
         "grounded_down_input": "Down plus left/right aims diagonally down on ground; only straight down requires airborne state. Down alone on ground falls back to horizontal facing.",
         "vector_rule": "Normalize diagonal direction so projectile speed and cumulative travel range match cardinal shots",
         "range_rule": "Keep existing max_travel_distance_pixels in every direction",
-        "input_note": "Preserve keyboard and controller support. Resolve existing up-to-jump binding conflict so aiming up does not unintentionally jump.",
+        "input_note": "W/up aims without jumping; Space/controller A jumps. Z/LB and V/RB hold stationary up-left and up-right aim.",
+        "stationary_diagonal_controls": {
+          "up_left": {
+            "keyboard": "Z",
+            "gamepad": "LB"
+          },
+          "up_right": {
+            "keyboard": "V",
+            "gamepad": "RB"
+          },
+          "activation": "Hold; releasing restores ordinary movement and aiming inputs",
+          "movement": "Stops ordinary horizontal movement immediately, including held stick/direction input; does not cancel Tony special water recoil",
+          "precedence": "Stationary diagonal overrides directional aim while held; if both are held, most recent press sets facing and diagonal",
+          "escape": "Each fresh press is a gameplay escape input; held inputs do not repeat"
+        },
         "art_note": "Directional held-weapon/hero poses require Bestiary / Art collaboration before new artwork is created",
         "visual_aim": {
           "status": "Approved correction; Engineering integration pending",
@@ -350,9 +380,8 @@
         "contract": "design/starter-specials-v1/mechanics.json",
         "uses_per_hero_per_logical_level": 2,
         "duration_seconds": 7.5,
-        "damage_per_tick": 12,
-        "tick_interval_seconds": 0.2,
-        "boss_damage_cap_per_activation": 250,
+        "damage_per_tick": 24,
+        "tick_interval_seconds": 0.1,
         "range": "Current viewport edge along visible water, blocked by solid scenery",
         "input": {
           "keyboard": "K",
@@ -360,7 +389,10 @@
           "trigger": "fresh press"
         },
         "budget": "No refill on death, checkpoint, retry, subsection or boss; initialize on new run or first entry to logical level",
-        "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending"
+        "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending",
+        "boss_damage_per_tick": 12,
+        "boss_sustained_damage_per_second": 120,
+        "boss_damage_rules": "No total cap; existing vulnerability and weak-point gates apply"
       }
     },
     "pipe-bomb-launcher": {
@@ -422,13 +454,13 @@
       "audio": {
         "schema_version": 1,
         "status": "runtime_integrated",
-        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "manifest": "audio/sources/creature-materials-v2/manifest.json",
         "hit": {
           "variants": [
             {
-              "path": "assets/audio/sfx/monster-damage-v1/flushfiend-hit.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0005.1.wav",
               "gain_db": -3,
-              "sha256": "bac4444e3426f9fcfdc129333bc0a0bed4804404fc799caa8466a290bfb34825"
+              "sha256": "01d4bfb5524655c300abb65f054f0c36ab0a02f525ddc8fc04360203bf11356d"
             }
           ],
           "cooldown_seconds": 0.1,
@@ -438,9 +470,9 @@
         "death": {
           "variants": [
             {
-              "path": "assets/audio/sfx/flushfiend-shatter-v1/porcelain-break.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0006.1.wav",
               "gain_db": -3,
-              "sha256": "fb36d36e31ab4310847447de55ebe2f58b1a40ce0cf5ca5b870184b33e0afb40"
+              "sha256": "f6d2976668fdca2d75bf0fec0360751143cdbb51a0636e93b5cda66dd8646a1f"
             }
           ],
           "cooldown_seconds": 0.0,
@@ -962,13 +994,13 @@
       "audio": {
         "schema_version": 1,
         "status": "runtime_integrated",
-        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "manifest": "audio/sources/creature-materials-v2/manifest.json",
         "hit": {
           "variants": [
             {
-              "path": "assets/audio/sfx/monster-damage-v1/widow-hit.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0013.1.wav",
               "gain_db": -3,
-              "sha256": "6d324d52d9e16aecff10e3ded6a5fd142cf0f6b909992eaeb8a5bf7f202bb7d1"
+              "sha256": "4d21bd54ced22a23cc23756351ed0a4e3841ee7d38a70a24b85e55a6f30541fb"
             }
           ],
           "cooldown_seconds": 0.1,
@@ -978,9 +1010,9 @@
         "death": {
           "variants": [
             {
-              "path": "assets/audio/sfx/monster-damage-v1/widow-death.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0014.1.wav",
               "gain_db": -3,
-              "sha256": "7f13ee83cbf7411078b7acc06bd5e0d8ca9e302da0fa26e56d016575a7dd7f90"
+              "sha256": "3faa3f4499a169a6fb528db324d63e14ab0810edaa4a38bf78bfbbda723c1e4c"
             }
           ],
           "cooldown_seconds": 0.0,
@@ -1473,13 +1505,13 @@
       "audio": {
         "schema_version": 1,
         "status": "profile_ready",
-        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "manifest": "audio/sources/creature-materials-v2/manifest.json",
         "hit": {
           "variants": [
             {
-              "path": "assets/audio/sfx/clogfather-v1/hurt.wav",
-              "gain_db": -5,
-              "sha256": "4ba97b36d114997e1fa5fb907ba172b249d3bc7ca4e352c4de3fd7cdf5827a1f"
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0001.1.wav",
+              "gain_db": -3,
+              "sha256": "cf2a2b34526238ab2f8ce51a8ca3c402f8559f6f3f8280d95b1ca38d7e211ae8"
             }
           ],
           "cooldown_seconds": 0.25,
@@ -1489,9 +1521,9 @@
         "death": {
           "variants": [
             {
-              "path": "assets/audio/sfx/clogfather-v1/collapse.wav",
-              "gain_db": -5,
-              "sha256": "f8d172e96942969b725b44d6c1f318a6672484f268be30f17fb0e2c04d81e281"
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0002.1.wav",
+              "gain_db": -3,
+              "sha256": "d222f7e1d7f8cd332643e4a12621a075f6d98f2b4247a9fe7bef4daf564817dd"
             }
           ],
           "cooldown_seconds": 0.0,
@@ -2128,18 +2160,13 @@
       "audio": {
         "schema_version": 1,
         "status": "runtime_integrated",
-        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "manifest": "audio/sources/creature-materials-v2/manifest.json",
         "hit": {
           "variants": [
             {
-              "path": "assets/audio/sfx/sputtervalve-v1/hit-a.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0011.1.wav",
               "gain_db": -3,
-              "sha256": "22a77d3d43ea0c80584f0291d67fe780a6a6e055b7f497b45660ae971d711cbb"
-            },
-            {
-              "path": "assets/audio/sfx/sputtervalve-v1/hit-b.wav",
-              "gain_db": -3,
-              "sha256": "ee9b1b5f84d68b7571c3082268f9e89dfa249c903eaba8feae28c83d2cea5b5e"
+              "sha256": "f2216b89bd3360756c7ae8b780f4bca4c2c5169a41e0c574503dbbf4de15b61f"
             }
           ],
           "cooldown_seconds": 0.1,
@@ -2149,9 +2176,9 @@
         "death": {
           "variants": [
             {
-              "path": "assets/audio/sfx/sputtervalve-v1/death.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0012.1.wav",
               "gain_db": -3,
-              "sha256": "2b8391d1a3365d929c6f0ff5f2d41432fcba25884e3dec37d85002c21119094a"
+              "sha256": "c03bdf3df4b59f2ec24f67f02ea05c9d18bb916c73e91c4be02f0fdbceb413a7"
             }
           ],
           "cooldown_seconds": 0.0,
@@ -2202,13 +2229,13 @@
       "audio": {
         "schema_version": 1,
         "status": "runtime_integrated",
-        "manifest": "audio/sources/monster-damage-v1/manifest.json",
+        "manifest": "audio/sources/creature-materials-v2/manifest.json",
         "hit": {
           "variants": [
             {
-              "path": "assets/audio/sfx/monster-damage-v1/gratecrawler-hit.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0007.2.wav",
               "gain_db": -3,
-              "sha256": "3759fa41aa80255efbe91b47f8d3c044792bddaf48d865fae0cbc4e38d5ea747"
+              "sha256": "16f9c75f8997443f0aa736c739e7e6affecc1966ac6da574870a7c7fb97becf4"
             }
           ],
           "cooldown_seconds": 0.1,
@@ -2218,9 +2245,9 @@
         "death": {
           "variants": [
             {
-              "path": "assets/audio/sfx/monster-damage-v1/gratecrawler-death.wav",
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0008.2.wav",
               "gain_db": -3,
-              "sha256": "bcb3986bc195d70f6a2c37afb3f1cad3179272f16c94a596af2277ec7a07b24c"
+              "sha256": "41c7d933fef7298daf96ef6048745b831bbaf1de5be0f72a2df8eda4ba3a50dd"
             }
           ],
           "cooldown_seconds": 0.0,
@@ -2413,6 +2440,1202 @@
       "name": "Skitterling",
       "damage_art": null,
       "runtime_support": "compound_boss"
+    },
+    "devil-spider": {
+      "audio": {
+        "schema_version": 1,
+        "status": "runtime_integrated",
+        "manifest": "audio/sources/creature-materials-v2/manifest.json",
+        "hit": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/creature-materials-v1/DD-S0142.1.wav",
+              "gain_db": -3,
+              "sha256": "79b3b8e6c79eb100e7472157803f28400c987b0e2b40cd18bfbdb24e01ad9ab7"
+            }
+          ],
+          "cooldown_seconds": 0.1,
+          "max_voices": 2,
+          "loop": false
+        },
+        "death": {
+          "variants": [
+            {
+              "path": "assets/audio/sfx/devil-spider-death-v1/scream-burn.wav",
+              "gain_db": -4,
+              "sha256": "bf7c237bd091deb19f892739fc14946b4b280fe781c136856335b214101d0ecc"
+            }
+          ],
+          "cooldown_seconds": 0.0,
+          "max_voices": 2,
+          "loop": false
+        },
+        "provenance_note": "Approved widow hit fallback retained; death uses requested scream/fire cue DD-S0143.1. Final web audio remains separate."
+      },
+      "health": {
+        "max_hp": 135,
+        "spawn_hp": 135,
+        "status": "Engineering provisional initial balance; Mechanics confirmation pending",
+        "bar": {
+          "enabled": true,
+          "visible_by_default": false,
+          "display": "continuous",
+          "setting": "Show enemy health bars",
+          "value_source": "current_hp / max_hp"
+        },
+        "visual_policy": "assets/bestiary/damage/health-visuals.json",
+        "balance_policy": "assets/bestiary/balance-policy.json",
+        "hits_to_defeat": {
+          "pipe-wrench": 12,
+          "drain-snake": 17,
+          "pressure-gun": 23,
+          "demolition-hammer": 3,
+          "heavy-plunger-launcher": 6,
+          "pipe-bomb-launcher": 3
+        }
+      },
+      "name": "Cuddlebug",
+      "damage_art": null,
+      "animation": {
+        "schema_version": 1,
+        "status": "Production source candidate; source inspection complete, runtime registration/motion review pending",
+        "canvas": [
+          128,
+          128
+        ],
+        "anchor": [
+          64,
+          12
+        ],
+        "facing": "Right; mirror all coordinates and destinations around x64 for left",
+        "source_scale": 0.25,
+        "frames": [
+          {
+            "id": "move-0",
+            "path": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              82,
+              93.5
+            ],
+            "silk_grips": [
+              [
+                41,
+                109.75
+              ],
+              [
+                58.75,
+                98.75
+              ]
+            ],
+            "front_reach": [
+              109.5,
+              102.25
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "move-1",
+            "path": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              77.5,
+              93.75
+            ],
+            "silk_grips": [
+              [
+                79.75,
+                114
+              ],
+              [
+                30.25,
+                110
+              ]
+            ],
+            "front_reach": [
+              112,
+              86
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "move-2",
+            "path": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              75,
+              91.25
+            ],
+            "silk_grips": [
+              [
+                68.5,
+                114.25
+              ],
+              [
+                46.5,
+                93.5
+              ]
+            ],
+            "front_reach": [
+              107.5,
+              97
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "move-3",
+            "path": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              81,
+              97.75
+            ],
+            "silk_grips": [
+              [
+                40.5,
+                114.25
+              ],
+              [
+                59.75,
+                104.25
+              ]
+            ],
+            "front_reach": [
+              110,
+              106
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "move-4",
+            "path": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              78.5,
+              96.25
+            ],
+            "silk_grips": [
+              [
+                79,
+                116.75
+              ],
+              [
+                31.5,
+                111
+              ]
+            ],
+            "front_reach": [
+              112.5,
+              88.5
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "move-5",
+            "path": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              76.5,
+              96.25
+            ],
+            "silk_grips": [
+              [
+                69.25,
+                117
+              ],
+              [
+                46,
+                97.75
+              ]
+            ],
+            "front_reach": [
+              107.5,
+              102.5
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "action-0",
+            "path": "assets/bestiary/devil-spider-v1/action-source-v1.png",
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              81.75,
+              92
+            ],
+            "silk_grips": [
+              [
+                40,
+                109.5
+              ],
+              [
+                57.75,
+                98.25
+              ]
+            ],
+            "front_reach": [
+              108.75,
+              82.25
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "action-1",
+            "path": "assets/bestiary/devil-spider-v1/action-source-v1.png",
+            "source_rect": [
+              512,
+              0,
+              536,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              134,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              78.5,
+              91.75
+            ],
+            "silk_grips": [
+              [
+                98.75,
+                110
+              ],
+              [
+                34.5,
+                108.75
+              ]
+            ],
+            "front_reach": [
+              130.75,
+              82.25
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "action-2",
+            "path": "assets/bestiary/devil-spider-v1/action-source-v1.png",
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              77,
+              91.5
+            ],
+            "silk_grips": [
+              [
+                69,
+                112.75
+              ],
+              [
+                46.25,
+                94.25
+              ]
+            ],
+            "front_reach": [
+              111.5,
+              96.25
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "action-3",
+            "path": "assets/bestiary/devil-spider-v1/action-source-v1.png",
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              81.5,
+              92.25
+            ],
+            "silk_grips": [
+              [
+                112.5,
+                117.5
+              ],
+              [
+                112,
+                110.25
+              ]
+            ],
+            "front_reach": [
+              125.5,
+              87
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "action-4",
+            "path": "assets/bestiary/devil-spider-v1/action-source-v1.png",
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              78.25,
+              92.25
+            ],
+            "silk_grips": [
+              [
+                76.25,
+                104.75
+              ],
+              [
+                78.75,
+                99.5
+              ]
+            ],
+            "front_reach": [
+              125.75,
+              86.75
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "action-5",
+            "path": "assets/bestiary/devil-spider-v1/action-source-v1.png",
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              77.25,
+              91.25
+            ],
+            "silk_grips": [
+              [
+                61.5,
+                121
+              ],
+              [
+                70,
+                103.5
+              ]
+            ],
+            "front_reach": [
+              122.5,
+              85
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "reaction-0",
+            "path": "assets/bestiary/devil-spider-v1/reactions-source-v1.png",
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              81.25,
+              92.75
+            ],
+            "silk_grips": [
+              [
+                33,
+                107.25
+              ],
+              [
+                58,
+                97.25
+              ]
+            ],
+            "front_reach": [
+              117.5,
+              106
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "reaction-1",
+            "path": "assets/bestiary/devil-spider-v1/reactions-source-v1.png",
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              78.75,
+              92.75
+            ],
+            "silk_grips": [
+              [
+                77.75,
+                113.75
+              ],
+              [
+                33.75,
+                105.75
+              ]
+            ],
+            "front_reach": [
+              110.25,
+              85
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "reaction-2",
+            "path": "assets/bestiary/devil-spider-v1/reactions-source-v1.png",
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              -3,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              75.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [
+              [
+                25,
+                12
+              ],
+              [
+                47.5,
+                12
+              ],
+              [
+                105,
+                12
+              ]
+            ],
+            "web_emitter": [
+              77.25,
+              92.25
+            ],
+            "silk_grips": [
+              [
+                65.75,
+                110.25
+              ],
+              [
+                45.5,
+                92.75
+              ]
+            ],
+            "front_reach": [
+              107.75,
+              109.25
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "reaction-3",
+            "path": "assets/bestiary/devil-spider-v1/reactions-source-v1.png",
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [],
+            "web_emitter": [
+              80,
+              98.75
+            ],
+            "silk_grips": [
+              [
+                45.5,
+                106
+              ],
+              [
+                54.5,
+                98.25
+              ]
+            ],
+            "front_reach": [
+              102.25,
+              98.25
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "reaction-4",
+            "path": "assets/bestiary/devil-spider-v1/reactions-source-v1.png",
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [],
+            "web_emitter": [
+              67.5,
+              104.25
+            ],
+            "silk_grips": [
+              [
+                66,
+                115.75
+              ],
+              [
+                53.25,
+                104.25
+              ]
+            ],
+            "front_reach": [
+              93.75,
+              102.25
+            ],
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "reaction-5",
+            "path": "assets/bestiary/devil-spider-v1/reactions-source-v1.png",
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "destination": [
+              0,
+              0,
+              128,
+              128
+            ],
+            "body_center": [
+              70,
+              78.75
+            ],
+            "ceiling_anchor": [
+              64,
+              12
+            ],
+            "ceiling_contacts": [],
+            "web_emitter": [
+              73.5,
+              112
+            ],
+            "silk_grips": [
+              [
+                58,
+                109.25
+              ],
+              [
+                50.75,
+                104.5
+              ]
+            ],
+            "front_reach": [
+              97.25,
+              108.25
+            ],
+            "alpha_cutoff": 240
+          }
+        ],
+        "states": {
+          "idle": {
+            "frames": [
+              "move-0",
+              "move-5"
+            ],
+            "durations": [
+              0.18,
+              0.18
+            ],
+            "loop": true
+          },
+          "crawl": {
+            "frames": [
+              "move-0",
+              "move-1",
+              "move-2",
+              "move-3",
+              "move-4",
+              "move-5"
+            ],
+            "durations": [
+              0.09,
+              0.09,
+              0.09,
+              0.09,
+              0.09,
+              0.09
+            ],
+            "loop": true
+          },
+          "windup": {
+            "frames": [
+              "move-0",
+              "action-0",
+              "action-1"
+            ],
+            "durations": [
+              0.1,
+              0.1,
+              0.1
+            ],
+            "loop": false,
+            "blend_seconds": 0.06,
+            "note": "Anticipation progression only; projectile emission occurs solely on Mechanics fire event, not entry into action-1 pose. Keep ceiling anchor fixed."
+          },
+          "fire": {
+            "frames": [
+              "action-1"
+            ],
+            "durations": [
+              0.1
+            ],
+            "loop": false
+          },
+          "recover": {
+            "frames": [
+              "action-2"
+            ],
+            "durations": [
+              0.14
+            ],
+            "loop": false,
+            "then": "idle",
+            "note": "After first0.14s continue idle loop for remaining cooldown; do not hold static."
+          },
+          "haul": {
+            "frames": [
+              "action-3",
+              "action-4",
+              "action-5",
+              "action-4"
+            ],
+            "durations": [
+              0.1,
+              0.1,
+              0.1,
+              0.1
+            ],
+            "loop": true
+          },
+          "catch": {
+            "frames": [
+              "reaction-0"
+            ],
+            "durations": [
+              0.12
+            ],
+            "loop": false
+          },
+          "escape": {
+            "frames": [
+              "reaction-1"
+            ],
+            "durations": [
+              0.16
+            ],
+            "loop": false
+          },
+          "hurt": {
+            "frames": [
+              "reaction-2"
+            ],
+            "durations": [
+              0.12
+            ],
+            "loop": false
+          },
+          "death": {
+            "frames": [
+              "reaction-3",
+              "reaction-4",
+              "reaction-5"
+            ],
+            "durations": [
+              0.16,
+              0.16,
+              0.16
+            ],
+            "loop": false
+          }
+        },
+        "notes": [
+          "Source cells512square, fire crop536wide preserves extended limb in gutter; no neighbor pixels in crop.",
+          "Silhouette approximately100\u2013120px wide; extension can exceed128canvas. Keep fixed scale and allow drawing overhang, collision body independently authored.",
+          "Ceiling points represent visible upper hooks; source poses retain approximate hook band. Static support during crawl may need runtime planted-foot treatment or additional pose refinement after motion inspection.",
+          "Contact anchors visually measured on source; runtime strands should end on listed silk_grips and web_emitter, no invisible guessed sockets.",
+          "No baked tether; draw separately from web-effects manifest. Floor snare independent, never hauled.",
+          "Alpha240 cleanup on derived copies only. Raw source and prompts archived.",
+          "Death ceiling contacts empty; runtime releases support and may fall, no teleport."
+        ],
+        "prompts": {
+          "locomotion": "Production pixel-art animation sheet of selected B DOLL HEAD spider from reference BOTTOM ROW ONLY. Preserve near-black eight hooked legs, tiny pale eyes, tall organic chitin-rib cage abdomen containing THREE cracked porcelain DOLL HEADS, no skulls, no whole dolls or toy limbs. EXACT1536x1024,3columns2rows,512squarecells. SIX ceiling locomotion poses rowmajor: idle, stepA, passingA, stepB, passingB, settledidle. All face RIGHT threequarter side view, cage above small head. Each complete silhouette within local x64..448,y48..480. Ceiling contact at y48, upperfeet visibly hook imaginary ceiling; body below. Body center local256,280. Same identity/scale allsix, alternate ceiling supporting legs with bent raised stepping legs, front legs below reaching forward. No wings. Four upper hooked feet and four lower articulated legs, exactlyeight. Broad pale dollheads readable through widely spaced ribs. Entire pose fits cell withclear gutters. Genuine transparent background, no haze, no floor/ceiling, no text/grid, no web strand across cells. Clean sprite production source, not poster. Reference used only for identity; convert frontview to slightly right-facing side view without losing cage faces.",
+          "action": "Create second production animation sprite sheet for EXACT same doll-head cage spider as reference. Preserve FOUR visible porcelain doll heads identities in organic black cage and body scale; no whole dolls/skulls/wings.1536x1024 exact3columns2rows512cells, transparent no haze. Source facesRIGHT. Entire silhouette eachcell x48..464 y48..480, upper hooked feet at ceilingy48. TOP ROW poses:1 aim/windup head turned slightlyright, front legs cocked;2 webfire mouthopen fangs apart frontlegs extendingRIGHT;3 recover frontlegs lowering. BOTTOM ROW THREE DISTINCT HAUL poses: rear/side lowerleg pair reaches DOWN AND RIGHT to grasp invisible taut silk at local(380,420); nextpose thoselegs bent drawing grip back towardbody at(300,380); thirdpose resets oneleg forward while otherholds at(340,400). Frontmost pair stretches toward preyRIGHT in allhaulposes. Fourupperlegs gripceiling, lowerfourlegs dohaul/reach. SHOW strong smooth successive limb changes, connectedanatomy, believable joints, samebodyregistration. NO silk strands baked in, runtime draws thread separately. Keep uniform scale same as reference with bodycenter256,280 and cagebelowceiling. Crisp pixelart. No floor orenvironment text labels grid. Six full figures.",
+          "reactions": "Production sprite sheet same exact doll-head cage spider reference, four porcelain dollheads inside black organic ribbed abdomen, eight legs, right facing.1536x1024 3columns2rows512cells. TOP ROW: catch reaction frontlegs brace, escape reaction arms recoil when silkbreaks, hurt flinch bodytilts slightly. BOTTOM ROW THREE sequential DEATH poses: ceilinghooks release andlegs curl; falling body rotates slightly withlooselycurledlegs andcagecracks; collapsed curledlegs undercage withbroken porcelain dollhead fragments. Inanimate porcelain only, no blood or organs. Preserve scale and recognizable body/head, keep complete silhouettes insidecells with48px gutters. Living topframes ceilingcontacty48 andbodycenter256,280. Death completebody staysinsidecell, no clipping, no flyingfragments crossingcells. No silk baked, no backdrop floor text labels. Genuine transparent background no haze. Pixelart consistent with reference, notpaintedconcept. Six visuallydistinct readableposes, no extra limbs."
+        }
+      },
+      "runtime_support": "ceiling_spider"
     }
   },
   "visual_policy": {
@@ -3855,6 +5078,40 @@
           "peak_dbfs": -12,
           "sha256": "bc8989be0666fcf23e8aeb9d0da652ee79e473eb03f281c731bff442847602d7",
           "loop": false
+        },
+        {
+          "cue_id": "inspection-pass",
+          "path": "assets/audio/sfx/dispenser-verdict-v3/inspection-pass.wav",
+          "duration_seconds": 0.42,
+          "gain_db": -3,
+          "peak_dbfs": -14,
+          "loop": false,
+          "sha256": "dca814e313e8eed193bfb86a07ebdcc8d220e7a87c970b04b4d3d852f12ee775"
+        },
+        {
+          "cue_id": "inspection-fail",
+          "path": "assets/audio/sfx/dispenser-verdict-v3/inspection-fail.wav",
+          "duration_seconds": 0.5,
+          "gain_db": -3,
+          "peak_dbfs": -14,
+          "loop": false,
+          "sha256": "6f6589f438eee20f7dddea762f5f99909c931464ea47616bae69239d86685091"
+        },
+        {
+          "cue_id": "compress-stage-one",
+          "path": "assets/audio/sfx/dispenser-verdict-v3/compress-stage-one.wav",
+          "duration_seconds": 0.38,
+          "gain_db": -6,
+          "loop": false,
+          "sha256": "b748721817d123221e8077c4b580dcbfb2f8bded21a6005008d32193c1c6072a"
+        },
+        {
+          "cue_id": "compress-stage-two",
+          "path": "assets/audio/sfx/dispenser-verdict-v3/compress-stage-two-v2.wav",
+          "duration_seconds": 0.44,
+          "gain_db": -3,
+          "loop": false,
+          "sha256": "1b4a8af02c0b230c8285fb012c63fcbfffc6106aa3dfcff66dd13dccf037e055"
         }
       ],
       "event_mapping": {
@@ -3893,6 +5150,24 @@
         ],
         "inspect": [
           "inspect-scan"
+        ],
+        "inspection_pass": [
+          "inspection-pass"
+        ],
+        "inspection_fail": [
+          "inspection-fail"
+        ],
+        "compress_stage_one": [
+          "compress-stage-one"
+        ],
+        "compress_stage_two": [
+          "compress-stage-two"
+        ],
+        "throw_windup": [
+          "inspect-servo"
+        ],
+        "set_down": [
+          "inspect-servo"
         ]
       }
     }
@@ -6545,19 +7820,21 @@
   },
   "starter_specials": {
     "initial_tuning": {
-      "damage_per_tick": 12,
-      "tick_interval_seconds": 0.2,
-      "maximum_damage_per_boss_per_activation": 250,
+      "damage_per_tick": 24,
+      "tick_interval_seconds": 0.1,
+      "boss_damage_per_tick": 12,
       "recoil_horizontal_pixels_per_second": 30,
       "tony_jet_thickness_pixels": 52,
       "hero_overrides": {
         "tony": {
           "damage_per_tick": 24,
+          "boss_damage_per_tick": 12,
           "tick_interval_seconds": 0.1
         },
         "sean": {
-          "damage_per_tick": 12,
-          "tick_interval_seconds": 0.2
+          "damage_per_tick": 24,
+          "boss_damage_per_tick": 12,
+          "tick_interval_seconds": 0.1
         }
       }
     }

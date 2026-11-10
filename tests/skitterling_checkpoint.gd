@@ -64,15 +64,11 @@ func die_and_retry(game: Node) -> void:
 	assert(not game.boss_hud.active)
 	for solid: Rect2 in game.actor_solids():
 		assert(not Rect2(game.player,game.PLAYER_SIZE).grow(-0.01).intersects(solid),"Safe exit spawn")
-	for event in game.run_plan.opening:
-		for report in game.trial_state.results().events:
-			if report.id == event.id: assert(report.state == "unavailable")
 	var pending_after := 0
-	for event in game.run_plan.later:
-		if event.trigger >= 7650 and event.trigger < 9450 and event.enabled:
-			assert(event.owner_origin >= 7650 and game.encounter_states[event.id] == "pending",
-				"Post-boss encounters must survive checkpoint ownership filtering")
-			pending_after += 1
+	for event in game.campaign.specs:
+		var enabled: bool = game.difficulty in event.enabled_difficulties
+		assert(game.ledger[event.id] == ("pending" if enabled and event.owner_origin >= 7650 else "excluded"))
+		if enabled and event.owner_origin >= 7650: pending_after += 1
 	assert(pending_after > 0)
 
 func check_later_checkpoint(game: Node) -> void:
@@ -129,7 +125,8 @@ func run_checks() -> void:
 					unlock(game)
 					game.player = Vector2(7900,394)
 					game.camera_x = 7580
-					game.step_encounters(2)
+					game.trial_clock += 2
+					game.issue_event()
 					assert(game.ordinary_population() > 0,"Post-boss route still admits enemies")
 					die_and_retry(game)
 				else:

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 138 / 0.138.0",
-  "status": "138 source and candidate packages pushed;34 runtime suites pass; magazine34 and low-text storybook live and hash-verified; game release tag/assets held for dialogue visual check",
-  "app": "builds/Prototype-138/Drain Damage.app",
-  "release_records": "dist/v0.138.0/",
+  "build": "Prototype 174 / 0.174.0",
+  "status": "Signed Mac integration candidate built November 10. Packaged Level 1 initialization passes for both heroes; final visual/audio acceptance and native Windows validation remain open.",
+  "app": "builds/Prototype-174/Drain Damage.app",
+  "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "Prototype137 and earlier builds retained.",
+  "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -21,7 +21,11 @@
     "brushes": "make run LEVEL=2-04",
     "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-138/Drain Damage.app\"",
     "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-138/Drain Damage.app\"",
-    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-138/Drain Damage.app\""
+    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-138/Drain Damage.app\"",
+    "section_1_1": "make run LEVEL=1.1 APP=\"builds/Prototype-165/Drain Damage.app\"",
+    "section_1_2": "make run LEVEL=1.2 APP=\"builds/Prototype-165/Drain Damage.app\"",
+    "ride": "make run LEVEL=2.1",
+    "campaign": "make run LEVEL=1 APP=\"builds/Prototype-166/Drain Damage.app\""
   },
   "ui_and_retry_137": {
     "build": "Prototype 137 / 0.137.0",
@@ -158,22 +162,54 @@
     },
     "archive_sha256": "935d7825fb789a62f6cd08b3e3c40580e0e5182247632750dbb8fb85137913fc"
   },
-  "source_content_commit": "72028d78270bac111203bd34f732032a965276e3",
+  "source_content_commit": "a0634ef",
   "source_dirty_at_build": true,
-  "source_commit_at_build": "d9ad95c2b780ad540c49ec6e0308ef6225ac0ec3",
+  "source_commit_at_build": "a0634ef92280f6d711fd84e12f3a26340e3a82a3",
   "changes": [
-    "Full macOS universal and Windows x86_64 prototype distribution",
-    "Long dialogue fits above Skip at stable reveal font size",
-    "Magazine34 and self-contained low-text illustrated storybook"
+    "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
+    "Normal two purple shooters/two flyers, seeded 1\u20133 bolt volleys and 2.2-second recovery",
+    "Varied continuous entrances, replacement supported traversal and two 65%-overlap pits; independent trials unchanged",
+    "Checkpoint-owned retry and boss transitions/adds preserved",
+    "Angel return, devil aimed silk line, flame/scream/ash and three persistent doll heads",
+    "Stationary Z/V or LB/RB diagonal aim and updated controls; Sean special matches Tony at 240 DPS",
+    "make audio-catalog opens the local audio catalog"
   ],
   "remaining_gaps": [
-    "138 actual dialogue visual check pending user permission",
-    "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
+    "No human full-route fun/difficulty acceptance",
+    "Sampled captures are not uninterrupted animation review or full-route visual approval",
+    "Angel landing/scuttle/takeoff contact still lacks a complete visual cycle",
+    "Audio event lifecycle tested; final death-scream audibility/mix not independently reviewed",
+    "No native Windows validation"
   ],
   "checks": {
-    "release_validation": "dist/v0.138.0/macos-universal/validation-results.json",
-    "windows": "dist/v0.138.0/windows-x86_64/validation-results.json",
-    "site": "Nine magazine pages generated; magazine and36-image storybook asset links resolve locally"
+    "build": "Export and ad-hoc signing verification passed; /tmp/build165-final.log",
+    "packaged_initial_165": {
+      "campaign_encounters": 202738,
+      "campaign_lifecycle": 10782,
+      "campaign_late_traversal": 12284,
+      "logs": [
+        "/tmp/165-package-campaign.log",
+        "/tmp/165-package-lifecycle.log",
+        "/tmp/165-package-late.log"
+      ],
+      "scope": "Before final render-only silk readability change; initial PCK retained"
+    },
+    "final_package": {
+      "level_1_launch": "passed /tmp/165-final-launch.log",
+      "devil_runtime": 680,
+      "log": "/tmp/165-final-devil.log",
+      "starter_specials": 1573,
+      "specials_log": "/tmp/165-final-specials.log"
+    },
+    "source_regressions": {
+      "three_screen_mechanics": 218,
+      "section_one_two": 35468,
+      "starter_specials": 1573,
+      "python_tests": 45,
+      "audio_slots": 117
+    },
+    "continuous_source": "18 mode/hero/seed runs through 9450; four Normal seed42 runs from9450 through13710, real movement/fire/jumps without health topup in late test",
+    "warnings": "macOS sandbox log/certificate/editor-settings warnings and ObjectDB/resource shutdown warnings retained; no script errors in final passing gates"
   },
   "publication_verification": "dist/v0.138.0/publication-verification.json",
   "dialogue_verification_138_resume": {
@@ -186,5 +222,345 @@
       "Independent Art critique of actual packaged captures"
     ],
     "background_capture": "No documented guaranteed hidden native Godot capture path; no game currently running; no launch attempted"
+  },
+  "historical_138_delivery": {
+    "build": "Prototype 138 / 0.138.0",
+    "status": "138 source and candidate packages pushed;34 runtime suites pass; magazine34 and low-text storybook live and hash-verified; game release tag/assets held for dialogue visual check",
+    "app": "builds/Prototype-138/Drain Damage.app",
+    "release_records": "dist/v0.138.0/",
+    "changes": [
+      "Full macOS universal and Windows x86_64 prototype distribution",
+      "Long dialogue fits above Skip at stable reveal font size",
+      "Magazine34 and self-contained low-text illustrated storybook"
+    ],
+    "checks": {
+      "release_validation": "dist/v0.138.0/macos-universal/validation-results.json",
+      "windows": "dist/v0.138.0/windows-x86_64/validation-results.json",
+      "site": "Nine magazine pages generated; magazine and36-image storybook asset links resolve locally"
+    },
+    "remaining_gaps": [
+      "138 actual dialogue visual check pending user permission",
+      "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
+    ]
+  },
+  "pck_sha256": "31258506e86cfeff8144901646a7687a6821ab0e192d1854f2e414ec028183df",
+  "followup_164": {
+    "build": "Prototype 164 / 0.164.0",
+    "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
+    "app": "builds/Prototype-164/Drain Damage.app",
+    "pck_sha256": "38fc5bc3c2fa2cf6536898e3ac1336d9df41d1ea19a24d8608c0d53272f2b47d",
+    "packaged_checks": {
+      "angel_offscreen_return": 99450,
+      "devil_spider_runtime": 675,
+      "devil_spider_debris": 84,
+      "bumper_stationary_aim": 166,
+      "shooter_random_volley": "passed all outcomes and retry sequence"
+    },
+    "known_check_warnings": "Sandbox log/certificate errors and shutdown ObjectDB/resource warnings remain in retained logs.",
+    "visual_evidence": "builds/Prototype-164/evidence; existing death captures use source version stamp 0.163.0, not packaged acceptance.",
+    "visual_remaining": [
+      "Unobstructed settled ash",
+      "Web-line travel and contact",
+      "Continuous angel/devil motion",
+      "Controls and stationary aim"
+    ],
+    "window_cleanup": "Agent review and leftover Godot Project Manager closed November 4 after user reported them."
+  },
+  "campaign_conversion": {
+    "status": "Integrated in signed Prototype 165; technical and bounded visual evidence recorded",
+    "contract": "levels/first-call/campaign-encounters.json",
+    "owners": {
+      "integration": "Engineering",
+      "runtime": "Game Mechanics",
+      "layout": "Level Design"
+    },
+    "preserve": [
+      "Standalone Level 1.2 baseline",
+      "Boss fights and transitions",
+      "Checkpoint safety"
+    ],
+    "validation": "Pending integrated runtime and running-build visual review",
+    "authored_opportunities": 80
+  },
+  "test_window_authorization": "Sean directly granted standing permission November 4: agents may open needed test windows unless revoked. Close owned windows promptly after each review.",
+  "historical_163_summary": {
+    "build": "Prototype 163 / 0.163.0",
+    "app": "builds/Prototype-163/Drain Damage.app",
+    "pck_sha256": "70bd78cde09ca254451a30c99ea00cf06b98545e994f4d77921e408bceb6b79d",
+    "changes": [
+      "Responsive staged Start Job preparation with animated valve and retryable failure state",
+      "Swept hit knockback and immediate special transient cleanup on death/retry without charge refunds",
+      "Killable Clogfather gas and reinforcements persist across attack phases until killed or encounter cleanup",
+      "Angel dive, supported landing/scuttle/takeoff and ascent with registered animation source",
+      "Devil ceiling crawler with swept webs, cocoon hauling, six-press escape and three-press floor snares; replaces existing flyer slots under the existing population caps"
+    ],
+    "remaining_gaps": [
+      "Actual running spider motion, ceiling/foot contact, web/escape readability and independent Art review await direct foreground permission",
+      "Human balance/playtest and final devil audio selection remain pending; existing approved widow hit/death cues are temporary",
+      "120 gas clouds accumulated in 600 simulated Hard seconds; CPU-only soak is not rendering/performance acceptance",
+      "No native Windows verification for this build",
+      "Headless checks retain macOS CA/log/editor-settings permission warnings and ObjectDB/resource shutdown warnings"
+    ],
+    "checks": {
+      "mac_export_and_signature": "pass",
+      "python_tests": 45,
+      "sound_slots_fresh": 117,
+      "packaged_angel": 1348,
+      "packaged_devil_runtime": 675,
+      "packaged_knockback": 8408,
+      "packaged_clogfather_persistence": 431,
+      "packaged_specials": 1573,
+      "packaged_special_cleanup": 721,
+      "packaged_loading": "pass: duplicate guard, readiness, failure return; 407 yielded frames, maximum 207ms headless frame interval",
+      "packaged_compatibility": [
+        "flush_landing",
+        "sprite_alignment",
+        "controls",
+        "playtest_launch",
+        "creature_audio"
+      ],
+      "audio_fixture_update": "Updated catalog count for eighth creature and explicitly completed swarm arrival before testing damage; no runtime change in final rebuild",
+      "logs": "/tmp/163-*.log",
+      "shutdown_warnings": "CA/log/editor-settings sandbox warnings; ObjectDB/resource shutdown warnings remain, no script errors in successful gates"
+    }
+  },
+  "visual_165": {
+    "evidence": "builds/Prototype-165/evidence",
+    "first_candidate_pck": "builds/Prototype-165/pre-visual-fixes.pck",
+    "first_candidate_context": "builds/Prototype-165/evidence/package-capture-context.json",
+    "final_captures": [
+      "ceiling-shooter-final.png",
+      "web-readable-final.png"
+    ],
+    "staging": "Fixed hero/camera and isolated real scheduler; staged death/web timings, three live angel samples; no full route capture claim",
+    "art_review": "Bounded Art pass: supports/pump, packaged pit/support/rail/controls/death stills, final web readability and active early ceiling attachment. Missing-fixture routing suspicion withdrawn after coordinate/staging diagnosis; no late active attachment or continuous animation/audio approval.",
+    "windows": "All owned previews closed; Godot absent in final app inventory"
+  },
+  "platform_variety_166": {
+    "status": "Integrated in signed Prototype166; source and packaged technical gates pass; bounded Art visual review passes.",
+    "placement_record": "levels/first-call/platform-variety-v1.json",
+    "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+    "enabled_support_ids": [
+      "pump-machine-0",
+      "approach-machine-0-0",
+      "approach-machine-0-1",
+      "approach-machine-0-2",
+      "approach-machine-1-0",
+      "approach-machine-1-1",
+      "approach-machine-1-2"
+    ],
+    "retained_original_count": 10,
+    "breakables_enabled": false,
+    "geometry": "Uniform registered art scale; actual material collision pieces replace former solid rectangles, preserving voids.",
+    "placement_checks": "20 hero transfers,20 runner transfers,39 runner admissions; sink160 runs/57600 steps without penetration or pocket entry (LD scratch probe).",
+    "package_checks": {
+      "late_route": "12284 checks,0 failures; both heroes60/120Hz; /tmp/166-package-late.log",
+      "launch": "Normal Tony Level1 initialized at85/394; /tmp/166-package-launch.log",
+      "build": "make build and codesign verify exit0; /tmp/166-build.log",
+      "boss_transition": "/tmp/platform166-clogfather_integration.log:6 mode/hero cases pass through actual portal\u2192flush",
+      "boss_pressure": "/tmp/platform166-clogfather_pressure_integration.log:6 mode/hero lifecycle/no-refill cases pass",
+      "ending_input": "/tmp/platform166-ending_input.log:both heroes pass canonical dialogue/debounce/release",
+      "forward_reverse": "/tmp/platform166-clogfather_route_traversal.log:12 mode/hero/Hz cases pass",
+      "sean_launch": "/tmp/166-package-launch-sean.log:Level1 initialized successfully",
+      "summary": "All final gates exit0, no SCRIPT ERROR or missing-resource failures. Earlier failed obsolete tests retained in logs and corrected."
+    },
+    "visual": {
+      "date": "2026-11-04",
+      "timezone": "America/Los_Angeles",
+      "exact_capture_time": "not recorded",
+      "captures": [
+        "builds/Prototype-166/evidence/softener-contact.png",
+        "builds/Prototype-166/evidence/sink-contact.png",
+        "builds/Prototype-166/evidence/pump-pipe-contact.png",
+        "builds/Prototype-166/evidence/radiator-contact.png"
+      ],
+      "engineering": "Inspected all four captured running package views; contact,proportions,floor support and readability pass.",
+      "art": "Independent bounded still pass for softener,sink,pump-pipe; retained shooter fixtures intentional. Not continuous/full-route visual approval.",
+      "window": "Closed; Godot absent verified with CUA."
+    },
+    "remaining": [
+      "Human full-route fun/difficulty review",
+      "Continuous full-route visual review",
+      "All breakable placement/runtime/animation/audio integration deferred",
+      "Held duplex/rack and conflicting replacements retain original art"
+    ],
+    "warnings": "Sandbox CA/editor-settings warnings and exit ObjectDB/resource warnings remain; initial pre-import late check invalidated and rerun after import.",
+    "source_checks": {
+      "campaign_admission": "202738 checks,0 failures",
+      "campaign_lifecycle": "10782 checks,0 failures",
+      "difficulty_traversal": "18 E/N/H hero/seed runs through Skitterling at60/120Hz",
+      "reverse_route": "12 forward/reverse E/N/H hero/Hz cases",
+      "retry": "All four origins and Skitterling checkpoint ownership",
+      "boss_exit": "All six mode/hero cases: actual Clogfather defeat,aftermath and portal\u2192flush",
+      "other": "Pressure reinforcement lifecycle,canonical ending input and first-level ending pass;45 Python tests;117 sound slots current"
+    },
+    "test_migrations": [
+      "tests/clogfather_integration.gd",
+      "tests/clogfather_route_traversal.gd",
+      "tests/clogfather_pressure_integration.gd",
+      "tests/ending_input.gd"
+    ],
+    "test_migration_note": "Old schedule APIs,corpse count assumptions and hardcoded dialogue length migrated without runtime changes; final package uses external corrected scripts.",
+    "storybook": "storybook/166-permanent-platforms/"
+  },
+  "candidate_167": {
+    "status": "Built and signed; review candidate, not final acceptance",
+    "date": "2026-11-05",
+    "app": "builds/Prototype-167/Drain Damage.app",
+    "changes": [
+      "Devil haul platform phasing and safe release",
+      "Concealed entry doors and pit-water transition art",
+      "Flush one direct/two nearby targeted falls and charcoal object shadows",
+      "Immediate post-intro first warning",
+      "Approved panicked drain dialogue",
+      "Weapon-disabled HUD fidget icon",
+      "Eight-second purely cosmetic board super using existing level-two charges"
+    ],
+    "validation": [
+      "make build and signature verification passed /tmp/167-build.log",
+      "Cosmetic super114/0 /tmp/bugs-ride-super-verified.log",
+      "HUD342pass /tmp/167-special-hud.log",
+      "Fidget model/integration/view pass",
+      "Flush reading-time and retry bothheroes/allmodes pass",
+      "Devil capture1980/0 and runtime82/0",
+      "Pit water4655/0",
+      "Packaged staged screenshots in builds/Prototype-167/evidence; owned test windows closed"
+    ],
+    "remaining": [
+      "Targeted flush planner intermittent synchronous hitch unresolved; median77/max176ms reported before experimental optimization, which was not retained",
+      "Flush initial shadow readability under Art review",
+      "Continuous super billow/fade and both camera motion acceptance incomplete",
+      "Hatch opening/closing and devil release running visual checks pending",
+      "Late-pit water and phasewrap motion acceptance pending",
+      "Super sound in-game mix and native Windows unverified"
+    ]
+  },
+  "followup_168": {
+    "status": "Built and signed; packaged ride initialization, dialogue and 114 cosmetic-super checks pass.",
+    "changes": [
+      "Apology slide starts at reply onset, preserving 1.6 second slide and existing reading time.",
+      "Storyboarding audited current game text; three explicit curses replaced with symbol strings.",
+      "Board super follows hero with three huge brown lobes for eight seconds; ordinary fidget unchanged.",
+      "Maintenance Hand uses pinky-side heel strike at stable depth, continuous wrist attachment and preframed camera.",
+      "Sean pipe starts tipping at 2 seconds and reaches horizontal at 4.75; hinge audio synchronized."
+    ],
+    "validation": [
+      "tests/flush_radio_gag.gd passes both heroes and all modes",
+      "Mechanics reports cosmetic super114 checks and fidget/view tests pass",
+      "Art bounded still approval for sustained cloud at4s Tony+18 and7.5s Sean-18",
+      "Mechanics starter specials1575checks pass; Audio timing lifecycle and118catalogslots pass",
+      "Art final-v2 still approval: impact heel, wrist continuity, thick supported housing and HUD clearance; Engineering inspected impact and withdrawal.",
+      "Mechanics continuous 120Hz run at both yaw: downward strike, contact at 2.9s, rebound and connected withdrawal; Art sampled-sequence approval with positive-yaw timing covered by Engineering.",
+      "242 opaque withdrawal checks and projected heel/contact/camera regressions pass.",
+      "Packaged ride initialization and apology test pass; cosmetic super 114 checks, zero failures. Baseline macOS certificate diagnostic and shutdown ObjectDB warning remain."
+    ],
+    "remaining": [
+      "Existing flush planning hitch remains unresolved.",
+      "Cloud continuous motion/sound-mix and earlier pipe tipping visual acceptance remain limited; cloud early/late running stills and lifecycle checks pass.",
+      "Native Windows and full-route human playtest not performed for this build."
+    ],
+    "evidence": {
+      "build_log": "/tmp/168-build.log",
+      "motion_sheet": "/tmp/hand-motion-fixed-sheet.png",
+      "motion_test": "/tmp/hand-motion-final-test.log",
+      "withdrawal_test": "/tmp/hand-motion-fix-world.log",
+      "packaged_smoke": "/tmp/168-package-smoke.log",
+      "packaged_super": "/tmp/168-packaged-super.log",
+      "pck_sha256": "b1de03767d110ed6b2dc0c5038cd2ddbe7891ebdce4c2ab69f2ace5e20c890ac"
+    }
+  },
+  "followup_169": {
+    "change": "Approved DD-S0108.8 track collapse, 2.4 second soft water tail; gain -4 and fracture trigger unchanged.",
+    "asset": "assets/audio/sfx/ride-watery-collapse-v3/track-smash.wav",
+    "validation": "Packaged stream length, nonloop playback, pause/resume without retrigger and stop pass. Audio catalog 118-slot freshness and six tests pass.",
+    "build_log": "/tmp/169-build.log",
+    "audio_log": "/tmp/169-packaged-track-audio.log",
+    "pck_sha256": "d47f7acf68026e582a8c2ae0895ed289e7e57b77edaf5a80570e801835cea917",
+    "remaining": [
+      "In-game listening/mix acceptance pending.",
+      "Legacy tests/ride_audio.gd expects four voices although adapter has six; targeted actual-adapter test used.",
+      "Baseline macOS certificate diagnostic remains."
+    ]
+  },
+  "followup_170": {
+    "status": "Built and signed; packaged inspection and lifecycle suites pass.",
+    "changes": [
+      "Healthy arrival uses grab, lens inspection, original HP display, green check and ding, then supported intact setdown.",
+      "Injured arrival shows red X and alarm, two progressive crushes, windup, then randomized safe screen impact and existing replacement.",
+      "Preserve checkpoint, lives, clone stock, pause and cleanup semantics."
+    ],
+    "validation": [
+      "14 combat metadata and six sound catalog tests pass; 122 audio slots current.",
+      "Packaged tests/dispenser_inspection.gd and tests/employee_dispenser.gd pass: both heroes/all costumes/arrival HP, verdicts, supported setdown, staged grip transitions, safe throw bounds, pause, skip/watchdog, stock and lives.",
+      "Mechanics reviewed actual 60Hz branch sequences; Art approved healthy setdown, verdicts, staged crush, windup and release. Final 100ms blends checked in fresh boundary captures; root inspected sheets.",
+      "Baseline macOS certificate diagnostic and pre-existing lifecycle shutdown resource warnings remain; no SCRIPT ERROR."
+    ],
+    "remaining": [
+      "In-game auditory mix not listened to; visual runs muted.",
+      "Final blend motion acceptance uses sampled boundary captures after prior continuous runs.",
+      "Existing flush planning hitch remains unresolved."
+    ],
+    "evidence": {
+      "visual_directory": "previews/dispenser-inspection-v2-runtime-2026-11-05/",
+      "build_log": "/tmp/170-build.log",
+      "inspection_log": "/tmp/170-packaged-inspection.log",
+      "lifecycle_log": "/tmp/170-packaged-dispenser.log",
+      "pck_sha256": "d031d81b28f5ff86d0c8addf98641782b9e5cdd9262e335cf1ec25f19e0b5f00"
+    }
+  },
+  "followup_171_specials": {
+    "status": "Source verified; build deferred while same-batch enemy remains integration is in progress.",
+    "approved": "Both heroes: regular 24 per 0.10 seconds, bosses 12 per 0.10 seconds, no total boss cap. Preserve vulnerability gates, duration and two uses.",
+    "validation": [
+      "starter_specials: 1640 checks passed",
+      "special_tick_boundaries: 755 checks passed",
+      "Both heroes against both actual bosses: 30 successive ticks apply 360 damage."
+    ],
+    "evidence": "previews/mechanics-integration-171/",
+    "remaining": [
+      "Package and packaged validation after remaining integration."
+    ]
+  },
+  "skitterling_action_audio_172": {
+    "status": "Prototype 172 exported and signed; packaged audio checks pass; listening acceptance pending",
+    "manifest": "audio/sources/skitterling-action-sync-v8/manifest.json",
+    "changes": [
+      "Seven approved timed clips mapped; V4 rat assembly retained",
+      "Surface warning event added; exclusive warning preemption and motion-tail cleanup",
+      "Attack timings unchanged; alligator formation allowed through ready"
+    ],
+    "validation": [
+      "Skitterling audio lifecycle and timing checks pass",
+      "123 sound catalog slots validate",
+      "Packaged Skitterling audio regression passes; encounter regression passes"
+    ],
+    "remaining": [
+      "In-game listening review of pounce and full alligator cycle"
+    ],
+    "build": "builds/Prototype-172/Drain Damage.app"
+  },
+  "engineering_owner": {
+    "title": "Engineering",
+    "chat_id": "01a1af5b-36f9-7a61-91a5-c5fad5d51eeb",
+    "project_id": "ee1159b9-4ea1-4749-9cd3-4152636b3070",
+    "supersedes": "01a19e0e-c1b7-74f1-998f-952dcc81d673",
+    "routing": "All nine current-project peers notified; retired Engineering1 must never be contacted."
+  },
+  "followup_174": {
+    "status": "Signed Mac candidate built and regression checked; publication authorized November 10; visual/audio acceptance and native Windows validation remain open",
+    "changes": [
+      "Exactly two aimed Clogfather bursts with one-second separation",
+      "Sean regular fire during Main Break",
+      "Health restoration at replacement dispensing; active machine blocks special activation",
+      "Approved creature action/hit/death audio and Clogfather music -4 dB / warning duck -6 dB",
+      "Preserve opaque spent pipe; rejected dissolve not rendered"
+    ],
+    "deferred": [
+      "Activation cinematics: incomplete candidate package, rejected Hard bridge; source assets retained, not runtime integrated",
+      "Spent pipe physical collapse: Art approval pending",
+      "Destructible platforms: existing geometry/fit hold remains"
+    ],
+    "validation": "November 10 fresh verification: 45 Python tests, sound catalog CI check (158 slots), 20 focused Godot suites, and Clogfather integration across all six mode/hero combinations pass. Packaged Level 1 initialization passes for Tony and Sean. Lifecycle suite passed 721 checks in 171 seconds on serial rerun after the initial 150-second concurrent limit. Exit resource-leak warnings remain; no graphical acceptance claimed.",
+    "test_evidence": "previews/engineering-resume-174/ (ignored local logs)"
   }
 }

@@ -10,8 +10,8 @@ func run_checks() -> void:
 		game.set_process(false)
 		game.set_physics_process(false)
 		game.dialogue.finish()
-		assert(game.Data.bundle.monsters.size() == 7)
-		assert(game.creature_audio.size() == 5 and not game.creature_audio.has("clogfather"))
+		assert(game.Data.bundle.monsters.size() == 8 and game.Data.bundle.monsters.has("devil-spider"))
+		assert(game.creature_audio.size() == 6 and not game.creature_audio.has("clogfather"))
 		for id in game.Data.bundle.monsters:
 			for event in ["hit", "death"]:
 				for cue in game.Data.monster(id).audio[event].variants:
@@ -72,6 +72,9 @@ func run_checks() -> void:
 		var hits: int = swarm_bank.hit_starts
 		var deaths: int = swarm_bank.death_starts
 		game.swarms.damage(0,1)
+		assert(swarm_bank.hit_starts == hits,"Arriving swarm is not damageable")
+		game.swarms.actors[0].erase("entry")
+		game.swarms.damage(0,1)
 		game.swarms.damage(0,10000)
 		game.swarms.damage(0,10000)
 		assert(swarm_bank.hit_starts == hits+1 and swarm_bank.death_starts == deaths+1)
@@ -98,5 +101,5 @@ func run_checks() -> void:
 		for bank in banks: assert(bank.hit_voices.is_empty() and bank.death_voices.is_empty())
 	# Let the audio server drain deferred playback removals before checking process shutdown.
 	await create_timer(0.3).timeout
-	print("PASS: six complete audio profiles, five runtime controllers, all damage paths, caps/cooldowns and lifecycle")
+	print("PASS: eight complete audio profiles, six runtime controllers, all damage paths, caps/cooldowns and lifecycle")
 	quit()

@@ -4,7 +4,10 @@ const CeilingShooterArt = preload("res://scripts/ceiling_shooter_art.gd")
 var ceiling_shooter_art := CeilingShooterArt.new()
 var entry_fixtures: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
 	"res://assets/world/three-screen-trial/shooter-entry-fixtures-v1.json"))
+var entry_door_art := preload("res://scripts/entry_door_art.gd").new()
 const MonsterEntry = preload("res://scripts/monster_entry.gd")
+const DevilSpiderRuntime = preload("res://scripts/devil_spider_runtime.gd")
+var devil_spiders := DevilSpiderRuntime.new()
 const TrialState = preload("res://scripts/opening_trial_state.gd")
 const TrialLevel = preload("res://scripts/opening_trial_level.gd")
 var trial_state := TrialState.new()
@@ -15,6 +18,13 @@ var hostile_shots: Array[Dictionary] = []
 var trial_textures: Dictionary = {}
 var muck_art: Dictionary = {}
 var muck_throw_art: Dictionary = {}
+var angel_ground_art: Dictionary = {}
+const DevilSpiderArt = preload("res://scripts/devil_spider_art.gd")
+var devil_spider_art := DevilSpiderArt.new()
+const DevilDebris = preload("res://scripts/devil_spider_debris.gd")
+var devil_debris := DevilDebris.new()
+var regular_remains := preload("res://scripts/regular_remains.gd").new()
+var shooter_remains := preload("res://scripts/shooter_remains.gd").new()
 var shot_serial := 0
 var result_shown := false
 var retry_after: Dictionary = {}
@@ -30,17 +40,31 @@ func _ready() -> void:
 	trial_data = Data.bundle.opening_trial
 	trial_level.configure(trial_data.layout)
 	trial_state.configure(trial_data.layout,trial_data.balance)
-	load_trial_textures(trial_data.environment)
-	load_trial_textures(trial_data.role_art)
+	await load_trial_textures(trial_data.environment,startup_yield)
+	await load_trial_textures(trial_data.role_art,startup_yield)
 	muck_art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/bestiary/gratecrawler/muck-ball-manifest-v1.json"))
-	load_trial_textures(muck_art)
+	await load_trial_textures(muck_art,startup_yield)
 	muck_throw_art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/bestiary/gratecrawler/throw-manifest-v1.json"))
-	load_trial_textures(muck_throw_art)
-	super._ready()
+	await load_trial_textures(muck_throw_art,startup_yield)
+	angel_ground_art = JSON.parse_string(FileAccess.get_file_as_string(
+		"res://assets/bestiary/angel-ground-v1/manifest.json"))
+	for frame: Dictionary in angel_ground_art.frames:
+		frame.path = angel_ground_art.source
+		frame.alpha_cutoff = angel_ground_art.alpha_cutoff
+	await load_trial_textures(angel_ground_art,startup_yield)
+	await devil_spider_art.prepare(self,startup_yield)
+	await shooter_remains.prepare(self,startup_yield)
+	await regular_remains.prepare(self,startup_yield)
+	await entry_door_art.prepare(self,startup_yield)
+	await super._ready()
+	var devil_audio := CreatureAudio.new("devil-spider")
+	devil_audio.attach(self)
+	creature_audio["devil-spider"] = devil_audio
 
-func load_trial_textures(value: Variant) -> void:
+func load_trial_textures(value: Variant, yield_frame := Callable()) -> void:
 	if value is Dictionary:
-		if value.has("path") and value.has("source_rect"):
+		if value.has("path") and value.has("source_rect") and not trial_textures.has(value.path):
+			if yield_frame.is_valid(): await yield_frame.call()
 			trial_textures[value.path] = load("res://"+value.path)
 			if value.has("alpha_cutoff"):
 				var pixels: Image = trial_textures[value.path].get_image()
@@ -50,15 +74,19 @@ func load_trial_textures(value: Variant) -> void:
 					if bytes[index] < int(value.alpha_cutoff): bytes[index] = 0
 				trial_textures[value.path] = ImageTexture.create_from_image(Image.create_from_data(
 					pixels.get_width(),pixels.get_height(),false,Image.FORMAT_RGBA8,bytes))
-		for child in value.values(): load_trial_textures(child)
+		for child in value.values(): await load_trial_textures(child,yield_frame)
 	elif value is Array:
-		for child in value: load_trial_textures(child)
+		for child in value: await load_trial_textures(child,yield_frame)
 
 func reset_game() -> void:
 	super.reset_game()
 	reset_observation()
 
 func reset_observation() -> void:
+	devil_debris.reset()
+	shooter_remains.reset()
+	regular_remains.reset()
+	devil_spiders.clear(self,"retry")
 	for sound in creature_audio.values(): sound.stop()
 	dispenser.cancel()
 	elapsed = 0.0
@@ -76,8 +104,8 @@ func reset_observation() -> void:
 		weapon[key] = trial_data.balance.weapons[employee.weapon_id][key]
 
 func respawn_after_death() -> void:
-	super.respawn_after_death()
 	if lives > 0: reset_observation()
+	super.respawn_after_death()
 
 func resume_or_retry() -> void:
 	if death_popup_locked: return
@@ -87,7 +115,9 @@ func resume_or_retry() -> void:
 	super.resume_or_retry()
 
 func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: float) -> Dictionary:
-	return trial_level.move_body(position,motion,size,delta)
+	if size == PLAYER_SIZE and devil_spiders.locked() and devil_spiders.captured_actor().devil.capture_kind == "snare":
+		return {"pos":position,"velocity":Vector2.ZERO,"grounded":true,"falling":false}
+	return devil_spiders.move_body(self,position,motion,size,delta)
 
 func actor_solids() -> Array[Rect2]:
 	var solids := trial_level.actor_solids()
@@ -103,6 +133,49 @@ func hurt_player() -> void:
 	var before := health
 	super.hurt_player()
 	if health < before: trial_state.record_damage(before-health)
+	if life_state != "alive": devil_spiders.clear(self,"hero_death")
+
+func _input(event: InputEvent) -> void:
+	devil_spiders.input_event(self,event)
+	super._input(event)
+
+func specials_allowed(ignore_active := false) -> bool:
+	return not devil_spiders.locked() and super.specials_allowed(ignore_active)
+
+func step_player(delta: float) -> void:
+	devil_debris.step(self,delta)
+	shooter_remains.step(self,delta)
+	regular_remains.step(self,delta)
+	devil_spiders.step(self,delta)
+	if devil_spiders.locked() and devil_spiders.captured_actor().devil.capture_kind == "snare":
+		# Floor silk blocks walking/jumping, while the ordinary weapon can still defend the hero.
+		var snared_position := player
+		var supported := grounded
+		grounded = false
+		coyote = 0
+		jump_buffer = 0
+		super.step_player(delta)
+		player = snared_position
+		grounded = supported
+		velocity = Vector2.ZERO
+		jump_buffer = 0
+		return
+	if devil_spiders.locked():
+		invulnerable = maxf(0,invulnerable-delta)
+		hurt_time = maxf(0,hurt_time-delta)
+		fire_timer = maxf(0,fire_timer-delta)
+		velocity = Vector2.ZERO
+		jump_buffer = 0
+		return
+	super.step_player(delta)
+
+func request_title() -> void:
+	if not death_popup_locked: devil_spiders.clear(self,"title")
+	super.request_title()
+
+func _exit_tree() -> void:
+	devil_spiders.clear(self,"teardown")
+	super._exit_tree()
 
 func _physics_process(delta: float) -> void:
 	if paused or result_shown or life_state in ["game_over","death_popup"]: return
@@ -145,6 +218,7 @@ func ceiling_direction(actor: Dictionary) -> Vector2:
 	return (player+PLAYER_SIZE*0.5-ceiling_shooter_art.pivot(actor.feet)).normalized()
 
 func actor_shape(actor: Dictionary) -> Rect2:
+	if actor.get("variant","") == "devil": return DevilSpiderRuntime.BODY
 	if actor.get("mount","") == "ceiling":
 		return ceiling_shooter_art.bounds(Vector2.ZERO,ceiling_direction(actor))
 	return event_size(actor.role)
@@ -223,6 +297,8 @@ func create_actor(event: Dictionary, home: Vector2) -> void:
 		"runner":Data.spawn("toilet",home-Vector2(19,36))})
 
 	var actor: Dictionary = actors.back()
+	if role == "aggressive_flyer" and event.get("variant","") == "devil" and devil_spiders.production_ready():
+		devil_spiders.register(actor,event)
 	var radius := actor_render_radius(actor.role)
 	if home.x+radius >= camera_x and home.x-radius <= camera_x+960:
 		start_actor_entry(actor,"top" if role == "aggressive_flyer" else "floor")
@@ -268,44 +344,65 @@ func start_actor_entry(actor: Dictionary, mode: String, mouth := Vector2.ZERO, d
 	actor.winding = false
 
 func step_actor_entry(actor: Dictionary, delta: float) -> bool:
-	if not MonsterEntry.active(actor): return false
+	if not MonsterEntry.active(actor):
+		if not actor.active: hurt_from_exposed_entry(actor)
+		return false
 	MonsterEntry.advance(actor.entry,delta)
 	actor.feet = actor.entry.pos
 	actor.contact_live = false
 	actor.winding = false
+	if actor.entry.complete: actor.entry_cleared_age = actor.age
+	hurt_from_exposed_entry(actor)
 	return not actor.entry.complete
 
+func exposed_entry_rect(actor: Dictionary) -> Rect2:
+	if actor.hp <= 0 or actor.get("mount","") != "floor": return Rect2()
+	var entry: Dictionary = actor.get("entry",{})
+	if entry.is_empty() or entry.get("mode","") != "floor" or float(entry.clock) <= 0: return Rect2()
+	# Match the rendered clipping plane: hidden body below the gate cannot hit the hero.
+	return actor_rect(actor).intersection(entry.clip)
+
+func hurt_from_exposed_entry(actor: Dictionary) -> void:
+	var exposed := exposed_entry_rect(actor)
+	if exposed.has_area() and exposed.intersects(Rect2(player,PLAYER_SIZE)): hurt_player()
+
+func entry_door_open_fraction(actor: Dictionary) -> float:
+	# Negative means concealed; admission warnings alone never reveal a future doorway.
+	if actor.get("mount","") not in ["floor","ceiling"] or not actor.has("entry"): return -1
+	if float(actor.entry.get("clock",0)) <= 0: return -1
+	if actor.hp <= 0:
+		var death_close := float(actor.get("death",0))/0.25
+		return -1 if death_close >= 1 else 1-smoothstep(0,1,death_close)
+	if actor.entry.complete and actor.role in ["runner","rear_runner"]:
+		var close := (float(actor.age)-float(actor.get("entry_cleared_age",actor.age)))/0.25
+		return -1 if close >= 1 else 1-smoothstep(0,1,close)
+	return smoothstep(0,0.3,float(actor.entry.clock))
+
 func draw_entry_fixture(actor: Dictionary, front := false) -> void:
-	var mode: String = actor.get("mount","")
-	if mode not in ["floor","ceiling"]: return
-	var fixture: Dictionary = entry_fixtures[mode]
+	entry_door_art.draw(self,actor,entry_door_open_fraction(actor),front)
+
+func draw_ceiling_entry_support(home: Vector2) -> void:
+	# Permanent architecture remains; only the concealed door follows the occupant lifecycle.
+	var fixture: Dictionary = entry_fixtures.ceiling
 	var texture: Texture2D = load("res://"+fixture.path)
-	if mode == "floor":
-		var part := "front" if front else "back"
-		var destination := region(fixture[part+"_destination_offset"])
-		destination.position += actor.home
-		draw_texture_rect_region(texture,destination,region(fixture[part+"_source_rect"]))
-	elif not front:
-		var destination := region(fixture.support_destination_offset)
-		destination.position += actor.home
-		var support_source := region(fixture.support_source_rect)
-		# Flip UVs within the authored destination; negative rectangle sizes shift the visible mount.
-		var corners := PackedVector2Array([destination.position,
-			Vector2(destination.end.x,destination.position.y),destination.end,
-			Vector2(destination.position.x,destination.end.y)])
-		var uvs := PackedVector2Array([Vector2(support_source.position.x,support_source.end.y),
-			support_source.end,Vector2(support_source.end.x,support_source.position.y),support_source.position])
-		for index in range(uvs.size()): uvs[index] /= texture.get_size()
-		draw_polygon(corners,PackedColorArray([Color.WHITE]),uvs,texture)
-		for offset in fixture.post_center_offsets_x:
-			var y := 0.0
-			var end: float = actor.home.y+float(fixture.support_destination_offset[1])+2
-			while y < end:
-				var height := minf(float(fixture.post_logical_tile_height),end-y)
-				var source := region(fixture.post_source_rect)
-				source.size.y *= height/float(fixture.post_logical_tile_height)
-				draw_texture_rect_region(texture,Rect2(actor.home.x+float(offset)-5.5,y,11,height),source)
-				y += height
+	var destination := region(fixture.support_destination_offset)
+	destination.position += home
+	var source := region(fixture.support_source_rect)
+	var corners := PackedVector2Array([destination.position,Vector2(destination.end.x,destination.position.y),
+		destination.end,Vector2(destination.position.x,destination.end.y)])
+	var uvs := PackedVector2Array([Vector2(source.position.x,source.end.y),source.end,
+		Vector2(source.end.x,source.position.y),source.position])
+	for index in range(uvs.size()): uvs[index] /= texture.get_size()
+	draw_polygon(corners,PackedColorArray([Color.WHITE]),uvs,texture)
+	for offset in fixture.post_center_offsets_x:
+		var y := 0.0
+		var end: float = home.y+float(fixture.support_destination_offset[1])+2
+		while y < end:
+			var height := minf(float(fixture.post_logical_tile_height),end-y)
+			var post := region(fixture.post_source_rect)
+			post.size.y *= height/float(fixture.post_logical_tile_height)
+			draw_texture_rect_region(texture,Rect2(home.x+float(offset)-5.5,y,11,height),post)
+			y += height
 
 func draw_entry_actor(actor: Dictionary) -> void:
 	var entry: Dictionary = actor.entry
@@ -342,6 +439,47 @@ func draw_entry_actor(actor: Dictionary) -> void:
 		# The ordinary role renderer supplies current animation frames and registered pivots.
 		draw_actor(actor,true)
 
+func stop_trial_actions(actor: Dictionary) -> void:
+	var id: String = "devil-spider" if actor.get("variant","") == "devil" else AUDIO_IDS[actor.role]
+	if creature_audio.has(id): creature_audio[id].stop_actor_actions(actor)
+
+func play_trial_action(actor: Dictionary, event: String) -> void:
+	if actor.hp <= 0 or not actor.active or paused or life_state != "alive" or dialogue.active or dispenser.active: return
+	if not actor_rect(actor).intersects(Rect2(camera_x,0,960,540)): return
+	var id: String = "devil-spider" if actor.get("variant","") == "devil" else AUDIO_IDS[actor.role]
+	if creature_audio.has(id): creature_audio[id].play_action(event,actor)
+
+func sync_trial_action_motion(actor: Dictionary) -> void:
+	var previous: Vector2 = actor.get("action_audio_feet",actor.feet)
+	actor.action_audio_feet = actor.feet
+	if actor.hp <= 0 or not actor.active or not actor_rect(actor).intersects(Rect2(camera_x,0,960,540)):
+		stop_trial_actions(actor)
+		return
+	if not actor.get("action_audio_arrived",false):
+		actor.action_audio_arrived = true
+		play_trial_action(actor,"arrival")
+	if actor.role == "perched_shooter" and actor.get("fire_age",-1.0) >= 0:
+		if actor.age-actor.fire_age >= 0.15 and actor.get("audio_vent_fire_age",-1.0) != actor.fire_age:
+			actor.audio_vent_fire_age = actor.fire_age
+			play_trial_action(actor,"vent")
+	if actor.get("variant","") == "devil": return
+	if not actor.feet.is_equal_approx(previous):
+		if actor.role == "floor_emerger": play_trial_action(actor,"step")
+		elif actor.role == "aggressive_flyer":
+			play_trial_action(actor,"scuttle" if actor.get("attack_state","") == "scuttle" else "wingbeat")
+
+func play_trial_impact(shot: Dictionary, position: Vector2) -> void:
+	if paused or dialogue.active or dispenser.active: return
+	if not Rect2(camera_x,0,960,540).has_point(position): return
+	var id := "gratecrawler" if shot.get("kind","") == "muck" else "sputtervalve"
+	if creature_audio.has(id): creature_audio[id].play_action("impact",shot)
+
+func trial_actor_contact(actor: Dictionary) -> void:
+	var before := health
+	hurt_player()
+	if health < before and actor.role == "aggressive_flyer" and actor.get("variant","") != "devil":
+		play_trial_action(actor,"contact")
+
 func damage_trial_actor(actor: Dictionary, amount: float) -> void:
 	if amount <= 0 or not is_finite(amount) or actor.hp <= 0: return
 	var previous_hp: float = actor.hp
@@ -351,7 +489,7 @@ func damage_trial_actor(actor: Dictionary, amount: float) -> void:
 	if actor.hp == 0:
 		finish_trial_defeat(actor)
 	elif actor.hp < previous_hp:
-		creature_audio[AUDIO_IDS[actor.role]].play_hit(actor, float(actor.get("age", elapsed)))
+		creature_audio["devil-spider" if actor.get("variant","") == "devil" else AUDIO_IDS[actor.role]].play_hit(actor, float(actor.get("age", elapsed)))
 
 func special_damage(segments: Array[Dictionary], amount: float, activation: int, boss_remaining: Dictionary) -> Dictionary:
 	var applied := super.special_damage(segments,amount,activation,boss_remaining)
@@ -361,9 +499,21 @@ func special_damage(segments: Array[Dictionary], amount: float, activation: int,
 	return applied
 
 func finish_trial_defeat(actor: Dictionary) -> void:
+	stop_trial_actions(actor)
+	if actor.get("variant","") == "devil": devil_debris.begin(actor,devil_spider_art.death_spec)
+	devil_spiders.owner_killed(self,actor)
 	if actor.get("defeat_recorded",false): return
 	actor.defeat_recorded = true
-	creature_audio[AUDIO_IDS[actor.role]].play_defeat()
+	if actor.role == "perched_shooter":
+		actor.contact_live = false
+		actor.winding = false
+		actor.volley_left = 0
+		shooter_remains.begin(self,actor)
+	elif actor.role == "floor_emerger" or (actor.role == "aggressive_flyer" and actor.get("variant","") != "devil"):
+		actor.contact_live = false
+		actor.winding = false
+		regular_remains.begin(self,actor)
+	creature_audio["devil-spider" if actor.get("variant","") == "devil" else AUDIO_IDS[actor.role]].play_defeat()
 	trial_state.death(actor.event_id)
 	kills += 1
 	player_kills += 1
@@ -398,6 +548,11 @@ func move_ground_actor(actor: Dictionary, dx: float, delta: float) -> void:
 		actor.facing = -signf(dx)
 
 func step_trial_actors(delta: float) -> void:
+	if paused or life_state != "alive" or dispenser.active or dialogue.active or delta <= 0: return
+	step_opening_actors(delta)
+	for actor: Dictionary in actors: sync_trial_action_motion(actor)
+
+func step_opening_actors(delta: float) -> void:
 	if paused or life_state != "alive" or dispenser.active or dialogue.active or delta <= 0: return
 	for actor in actors:
 		actor.age += delta
@@ -447,14 +602,15 @@ func step_trial_actors(delta: float) -> void:
 			move_ground_actor(actor,dx,delta)
 		var pattern := "contact-"+str(actor.event_id)
 		# Hold a contact slot for the entire visible threat, not just the collision tick.
-		if actor.role != "perched_shooter":
+		if actor.role != "perched_shooter" and actor.get("variant","") != "devil":
 			if visible and not actor.contact_live:
 				actor.contact_live = trial_state.begin_pattern(pattern,actor.event_id)
 			elif not visible and actor.contact_live:
 				trial_state.end_pattern(pattern)
 				actor.contact_live = false
-			if actor.contact_live and actor_rect(actor).intersects(Rect2(player,PLAYER_SIZE)): hurt_player()
+			if actor.contact_live and actor_rect(actor).intersects(Rect2(player,PLAYER_SIZE)): trial_actor_contact(actor)
 		if actor.role != "aggressive_flyer" and (actor.feet.x < camera_x-160 or actor.feet.x > actor_world_limit()+160):
+			stop_trial_actions(actor)
 			trial_state.retire(actor.event_id)
 			actor.hp = -1
 			actor.death = 1
@@ -489,10 +645,100 @@ func begin_flyer_pattern(actor: Dictionary) -> bool:
 	return trial_state.begin_pattern("contact-"+str(actor.event_id),actor.event_id)
 
 func end_flyer_pattern(actor: Dictionary) -> void:
+	stop_trial_actions(actor)
 	trial_state.end_pattern("contact-"+str(actor.event_id))
 	actor.contact_live = false
 
+func begin_flyer_recovery(actor: Dictionary) -> void:
+	var stats: Dictionary = trial_data.balance.roles.flyer
+	actor.attack_state = "recover"
+	actor.attack_clock = 0.0
+	actor.erase("recovery_escape")
+	actor.recovery_origin = actor.feet
+	var forward_distance := maxf(absf(actor.feet.x-actor.attack_origin.x),
+		float(stats.speed_pixels_per_second)*float(stats.recovery_seconds))
+	# Recovery stays near the fight; reaching the bound still uses the full-body sweep.
+	var shape := event_size("aggressive_flyer")
+	var left := maxf(-shape.position.x,camera_x-shape.position.x)
+	var right := minf(actor_world_limit()-shape.end.x,camera_x+960-shape.end.x)
+	actor.recovery_target = Vector2(clampf(actor.feet.x+actor.attack_direction*forward_distance,left,right),
+		actor.attack_origin.y)
+
+func flyer_support(position: Vector2, reach: float, minimum_overlap := 0.65) -> Dictionary:
+	var shape := event_size("aggressive_flyer")
+	var body := Rect2(position+shape.position,shape.size)
+	var result: Dictionary = {}
+	for solid in actor_solids():
+		var overlap := minf(body.end.x,solid.end.x)-maxf(body.position.x,solid.position.x)
+		var gap := solid.position.y-body.end.y
+		if overlap < body.size.x*minimum_overlap or gap < -0.01 or gap > reach: continue
+		if result.is_empty() or solid.position.y < float(result.y):
+			var supported_left := solid.position.x+shape.size.x*.65-shape.end.x
+			var supported_right := solid.end.x-shape.size.x*.65-shape.position.x
+			if supported_left > supported_right: continue
+			result = {"y":solid.position.y,"x":clampf(position.x,supported_left,supported_right)}
+	return result
+
+func step_flyer_landing(actor: Dictionary, delta: float) -> void:
+	var descent := 240.0*delta
+	var support := flyer_support(actor.feet,descent+1.01,0.01)
+	var destination: Vector2 = actor.feet+Vector2(0,descent)
+	if not support.is_empty():
+		# A diagonal dive can touch a top before enough legs overlap it. Ease inward at crawl
+		# speed while staying above the surface, instead of rejecting that landing indefinitely.
+		destination.x = move_toward(actor.feet.x,float(support.x),65.0*delta)
+		destination.y = float(support.y)-event_size("aggressive_flyer").end.y
+	move_flyer_clear(actor,destination)
+	# The aerial sweep leaves a tiny separation. Snap only after reaching a verified clear surface.
+	if not support.is_empty() and actor.feet.distance_to(destination) <= 1.01:
+		var body := Rect2(destination+event_size("aggressive_flyer").position,event_size("aggressive_flyer").size)
+		for solid in actor_solids():
+			if body.intersects(solid):
+				if actor.attack_clock >= 1.0: begin_flyer_recovery(actor)
+				return
+		actor.feet = destination
+		if flyer_support(destination,.02).is_empty():
+			if actor.attack_clock >= 1.0: begin_flyer_recovery(actor)
+			return
+		actor.attack_state = "scuttle"
+		play_trial_action(actor,"land")
+		actor.attack_clock = 0.0
+		actor.scuttle_direction = actor.attack_direction
+	elif actor.attack_clock >= 1.0:
+		begin_flyer_recovery(actor)
+
+func begin_flyer_takeoff(actor: Dictionary) -> void:
+	if flyer_support(actor.feet,0.02).is_empty():
+		begin_flyer_recovery(actor)
+		return
+	actor.attack_state = "takeoff"
+	stop_trial_actions(actor)
+	play_trial_action(actor,"takeoff")
+	actor.attack_clock = 0.0
+
+func step_flyer_scuttle(actor: Dictionary, delta: float) -> void:
+	var destination: Vector2 = actor.feet+Vector2(float(actor.scuttle_direction)*65.0*delta,0)
+	var support := flyer_support(destination,0.02)
+	# Take off before unsupported motion; do not crawl across a pit or fall through a platform edge.
+	if support.is_empty() or actor.attack_clock+0.000001 >= 1.2:
+		begin_flyer_takeoff(actor)
+		return
+	move_flyer_clear(actor,destination)
+	# Aerial movement reserves a one-pixel floor gap, including the section override.
+	# Restore contact only when the whole destination body is clear and the sweep reached it.
+	if absf(actor.feet.x-destination.x) < 0.01 and absf(actor.feet.y-destination.y) <= 1.01:
+		var shape := event_size("aggressive_flyer")
+		var body := Rect2(destination+shape.position,shape.size)
+		for solid in actor_solids():
+			if body.intersects(solid):
+				begin_flyer_takeoff(actor)
+				return
+		actor.feet = destination
+	else:
+		begin_flyer_takeoff(actor)
+
 func step_flyer(actor: Dictionary, delta: float) -> void:
+	if actor.get("variant","") == "devil": return
 	if actor.hp <= 0 or paused or life_state != "alive" or dispenser.active or dialogue.active: return
 	var stats: Dictionary = trial_data.balance.roles.flyer
 	if not actor.has("attack_state"):
@@ -510,6 +756,7 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 					actor.contact_live = begin_flyer_pattern(actor)
 				if not actor.contact_live: return
 				actor.attack_state = "windup"
+				play_trial_action(actor,"warning")
 				actor.attack_clock = 0.0
 				actor.attack_origin = actor.feet
 				# Lock the warned target even if the hero crosses behind during the approach.
@@ -530,18 +777,22 @@ func step_flyer(actor: Dictionary, delta: float) -> void:
 				actor.attack_clock = 0.0
 			elif actor.attack_clock >= stats.attack_warning_seconds:
 				actor.attack_state = "swoop"
+				stop_trial_actions(actor)
+				play_trial_action(actor,"attack")
 				actor.attack_clock = 0.0
 		"swoop":
 			var t := clampf(actor.attack_clock/float(stats.swoop_seconds),0,1)
 			var clear := move_flyer_clear(actor,actor.attack_origin.lerp(actor.attack_target,t))
 			if not clear or t >= 1:
-				actor.attack_state = "recover"
+				actor.attack_state = "landing"
 				actor.attack_clock = 0.0
-				actor.erase("recovery_escape")
-				actor.recovery_origin = actor.feet
-				var forward_distance := maxf(absf(actor.feet.x-actor.attack_origin.x),
-					float(stats.speed_pixels_per_second)*float(stats.recovery_seconds))
-				actor.recovery_target = Vector2(actor.feet.x+actor.attack_direction*forward_distance,actor.attack_origin.y)
+		"landing":
+			step_flyer_landing(actor,delta)
+		"scuttle":
+			step_flyer_scuttle(actor,delta)
+		"takeoff":
+			if flyer_support(actor.feet,0.02).is_empty() or actor.attack_clock+0.000001 >= 0.2:
+				begin_flyer_recovery(actor)
 		"recover":
 			var t := clampf(actor.attack_clock/float(stats.recovery_seconds),0,1)
 			var clear := move_flyer_clear(actor,actor.recovery_origin.lerp(actor.recovery_target,t))
@@ -570,6 +821,7 @@ func step_shooter(actor: Dictionary, delta: float, visible: bool) -> void:
 	actor.shot_clock += delta
 	var pattern := "fire-"+str(actor.event_id)
 	if not visible:
+		stop_trial_actions(actor)
 		actor.winding = false
 		actor.visible_age = 0
 		actor.shot_clock = 0
@@ -583,6 +835,7 @@ func step_shooter(actor: Dictionary, delta: float, visible: bool) -> void:
 	if not actor.winding:
 		if not trial_state.begin_pattern(pattern,actor.event_id): return
 		actor.winding = true
+		play_trial_action(actor,"charge")
 		actor.windup_started = actor.age
 		return
 	if actor.age-float(actor.windup_started)+0.000001 < 0.65: return
@@ -590,28 +843,34 @@ func step_shooter(actor: Dictionary, delta: float, visible: bool) -> void:
 	actor.facing = -1.0 if actor.target.x < actor.feet.x else 1.0
 	var muzzle: Vector2 = actor.feet+Vector2(actor.facing*22,-25)
 	if not purple_shot_allowed(muzzle,(actor.target-muzzle).normalized()):
+		stop_trial_actions(actor)
 		actor.winding = false
 		actor.shot_clock = 0
 		trial_state.end_pattern(pattern)
 		return
 	for solid in player_shot_solids():
 		if segment_hit(muzzle,actor.target,solid) >= 0:
+			stop_trial_actions(actor)
 			actor.winding = false
 			actor.shot_clock = 0
 			trial_state.end_pattern(pattern)
 			return
 	var token := "bullet-%s-%s" % [actor.event_id,actor.age]
 	if not trial_state.add_bullet(token):
+		stop_trial_actions(actor)
 		actor.winding = false
 		actor.shot_clock = 0
 		trial_state.end_pattern(pattern)
 		return
 	hostile_shots.append({"id":token,"pos":muzzle,"dir":(actor.target-muzzle).normalized(),"age":0.0})
+	stop_trial_actions(actor)
 	actor.winding = false
 	actor.shot_clock = 0
 	actor.fire_age = actor.age
+	play_trial_action(actor,"fire")
 
 func cancel_muck_throw(actor: Dictionary) -> void:
+	stop_trial_actions(actor)
 	if not actor.get("throw_state","").is_empty():
 		actor.facing = actor.patrol_facing
 		actor.fire_age = actor.age
@@ -678,6 +937,7 @@ func step_muck_thrower(actor: Dictionary, delta: float, visible: bool) -> void:
 		actor.throw_target = player+PLAYER_SIZE*0.5
 		actor.facing = -1.0 if actor.throw_target.x < actor.feet.x else 1.0
 		actor.throw_state = "windup"
+		play_trial_action(actor,"gather")
 		actor.throw_clock = 0.0
 		actor.winding = true
 		return
@@ -691,6 +951,7 @@ func step_muck_thrower(actor: Dictionary, delta: float, visible: bool) -> void:
 	# Advance to the authored release pose before sampling its hand. Aim stays committed even if the hero crosses.
 	actor.throw_clock = float(muck_throw_art.release_seconds)
 	actor.throw_state = "recover"
+	stop_trial_actions(actor)
 	var target: Vector2 = actor.throw_target
 	var origin := muck_hand(actor)
 	var gravity := float(stats.muck_gravity)
@@ -699,6 +960,7 @@ func step_muck_thrower(actor: Dictionary, delta: float, visible: bool) -> void:
 	var velocity: Vector2 = trajectory.get("velocity",Vector2.ZERO)
 	var token := "muck-%s-%s" % [actor.event_id,actor.age]
 	if clear and trial_state.add_bullet(token):
+		play_trial_action(actor,"throw")
 		hostile_shots.append({"id":token,"kind":"muck","pos":origin,"dir":velocity.normalized(),
 			"velocity":velocity,"gravity":gravity,"radius":12.0,"age":0.0,"target":target})
 	actor.winding = false
@@ -782,6 +1044,8 @@ func step_hostile_projectiles(delta: float) -> void:
 				var hit := segment_hit(shot.pos,end,solid.grow(radius))
 				if hit >= 0: wall = minf(wall,hit)
 			shot.age += dt
+			if fraction >= 0 or wall <= 1:
+				play_trial_impact(shot,shot.pos.lerp(end,minf(fraction if fraction >= 0 else 2.0,wall)))
 			if fraction >= 0 and fraction < wall: hurt_player()
 			var expired: bool = shot.age > 3.5 if shot.get("kind","") == "muck" else purple_bolt_offscreen(end)
 			if fraction >= 0 or wall <= 1 or expired:
@@ -803,6 +1067,7 @@ func show_results() -> void:
 	title_button.release_focus()
 
 func _process(delta: float) -> void:
+	devil_spiders.sync_lifecycle(self)
 	if result_shown:
 		update_death_popup_guard(delta)
 		queue_redraw()
@@ -854,6 +1119,8 @@ func draw_foreground_entries() -> void:
 		if actor.hp > 0 and foreground_entry(actor): draw_entry_actor(actor)
 
 func draw_actor(actor: Dictionary, entry_render := false) -> void:
+	if actor.hp <= 0 and (actor.role in ["perched_shooter","floor_emerger"] or
+		(actor.role == "aggressive_flyer" and actor.get("variant","") != "devil")): return
 	if MonsterEntry.active(actor) and not entry_render:
 		draw_entry_actor(actor)
 		return
@@ -871,6 +1138,9 @@ func draw_actor_body(actor: Dictionary, entry_render: bool) -> void:
 		return
 	if MonsterEntry.active(actor) and not entry_render:
 		draw_entry_actor(actor)
+		return
+	if actor.get("variant","") == "devil":
+		devil_spider_art.draw(self,actor,entry_render)
 		return
 	if actor.hp <= 0 and actor.role in ["runner","rear_runner"]: return
 	if actor.role in ["runner","rear_runner"]:
@@ -896,9 +1166,20 @@ func draw_actor_body(actor: Dictionary, entry_render: bool) -> void:
 	elif actor.fire_age >= 0 and actor.age-actor.fire_age < 0.5: state = "recover"
 	if actor.flash > 0: state = "hurt"
 	if actor.hp <= 0: state = "death"
+	var ground_pose := false
+	if actor.role == "aggressive_flyer" and actor.hp > 0 and actor.flash <= 0:
+		var ground_state: String = actor.get("attack_state", "")
+		if ground_state == "scuttle":
+			ground_state = "landing" if actor.attack_clock < 0.18 else "ground_scuttle"
+		elif ground_state == "landing": ground_state = "flight"
+		if angel_ground_art.get("states",{}).has(ground_state):
+			spec = angel_ground_art
+			state = ground_state
+			ground_pose = true
 	var animation: Dictionary = spec.states[state]
 	var frames: Array = animation.frames
 	var clock_value: float = actor.death if actor.hp <= 0 else actor.clock
+	if ground_pose: clock_value = float(actor.attack_clock)
 	if state == "windup": clock_value = actor.age-float(actor.get("windup_started",actor.age-actor.clock))
 	elif state == "fire": clock_value = actor.age-actor.fire_age
 	elif state == "recover": clock_value = actor.age-actor.fire_age-0.15
@@ -923,6 +1204,10 @@ func draw_actor_body(actor: Dictionary, entry_render: bool) -> void:
 	var destination := region(frame.destination)
 	var anchor := Vector2(spec.anchor[0],spec.anchor[1])
 	destination.position -= anchor
+	if ground_pose:
+		# Registered feet follow the actual support plane, without rescaling individual poses.
+		var foot_y := float(frame.foot_contacts[0][1])-anchor.y
+		destination.position.y += event_size(actor.role).end.y/role_scale(actor.role)-foot_y
 	if actor.get("mount","") == "floor":
 		var visible_height := minf(destination.end.y,(actor.home.y-actor.feet.y)/role_scale(actor.role))-destination.position.y
 		if visible_height <= 0: return
@@ -976,11 +1261,9 @@ func _draw() -> void:
 	if trial_data.is_empty(): return
 	draw_set_transform(Vector2(-floorf(camera_x),0))
 	draw_environment()
+	for fixture: Dictionary in devil_spiders.placements(self): devil_spider_art.draw_support(self,fixture)
 	wastewater_art.draw(self,camera_x,trial_state.elapsed,true)
 	for actor in actors:
-		if not actor.active and actor.hp > 0:
-			effect("grate-warning" if actor.role == "floor_emerger" else "landing-warning",
-				Vector2(clampf(actor.home.x,camera_x+35,camera_x+925),minf(actor.home.y,440)))
 		if not foreground_entry(actor): draw_actor(actor)
 	special_art.draw_back(self)
 	if life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0: draw_sean(player)
@@ -995,6 +1278,9 @@ func _draw() -> void:
 			box(0,-5,5,11,Color("e57356"))
 		draw_set_transform(Vector2(-floorf(camera_x),0))
 	for shot in hostile_shots: draw_hostile_shot(shot)
+	devil_spider_art.draw_effects(self)
+	shooter_remains.draw(self)
+	regular_remains.draw(self)
 	special_art.draw_front(self)
 	draw_foreground_entries()
 	draw_set_transform(Vector2.ZERO)
@@ -1014,3 +1300,7 @@ func _draw() -> void:
 			draw_pause_plates()
 		else:
 			draw_pause_panel()
+
+func _on_swarm_damaged(actor: Dictionary, lethal: bool) -> void:
+	super._on_swarm_damaged(actor,lethal)
+	if lethal: regular_remains.begin_swarm(self,actor)

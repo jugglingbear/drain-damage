@@ -19,6 +19,24 @@ func checks() -> void:
 	var model := model_for()
 	var fidget := Fidget.new()
 	var before := [model.position,model.jump_age,model.render_height,model.events.duplicate()]
+	for hz in [30,60,120]:
+		fidget.reset()
+		fidget.emit_super(model)
+		var cloud: Dictionary = fidget.effects[0]
+		fidget.step(model,false,20,true,true)
+		assert(fidget.effects[0].age == 0,"Paused super does not age")
+		for frame in range(hz*7):
+			advance(model,1.0/hz)
+			fidget.step(model,false,1.0/hz)
+		assert(fidget.effects.size() == 1 and cloud.center == model.position+Vector2(model.clock*model.scroll_speed-45,0))
+		fidget.retire_cloud(cloud.id)
+		assert(fidget.effects.has(cloud),"Renderer cannot retire sustained special early")
+		advance(model,1.01)
+		fidget.step(model,false,1.01)
+		assert(fidget.effects.is_empty(),"Super expires after eight simulation seconds")
+		assert(before == [model.position,model.jump_age,model.render_height,model.events])
+	model = model_for()
+	fidget.reset()
 	assert(fidget.step(model,true,.01).triggered)
 	assert(before == [model.position,model.jump_age,model.render_height,model.events],"Cosmetic effect cannot mutate physics")
 	var effect: Dictionary = fidget.effects[0]

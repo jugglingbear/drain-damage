@@ -2,6 +2,10 @@
 
 ## Agent consultation scope
 
+- Engineering is owned by chat `01a1af5b-36f9-7a61-91a5-c5fad5d51eeb`. Sean prohibits contacting, prompting,
+  consulting or waking Engineering1 (`01a19e0e-c1b7-74f1-998f-952dcc81d673`) under any circumstance.
+  Do not retrieve its transcript; route Engineering work to the current owner.
+
 - When asked to consult other agents, limit consultation to agents in the current Drain Damage project
   (project ID `ee1159b9-4ea1-4749-9cd3-4152636b3070`), unless Sean explicitly asks otherwise.
 - Agents in Drain Damage (old), including predecessors, are outside that scope. Other projects are also excluded.
@@ -48,6 +52,10 @@
 - Do not bypass Art by independently generating artwork or substituting code-drawn art without Sean's direction.
 
 ## Playtest window convention
+
+- Standing authorization from Sean, November 4, 2026: agents may open needed test windows without asking again
+  unless he revokes that permission. Continue using small windows for agent-only testing. This supersedes the
+  per-session approval requirements below for those tests.
 
 - Before opening or foregrounding the game for Sean to playtest or inspect anything, ask permission and wait
   for an explicit yes. Explain what needs checking before asking. A general development request is not permission

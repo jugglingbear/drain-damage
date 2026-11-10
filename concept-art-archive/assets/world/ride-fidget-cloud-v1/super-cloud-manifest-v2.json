@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "status": "Sean correction: sustained hero-following floor-to-ceiling cloud; running acceptance pending",
+  "selection": "Huge BROWN cosmetic cloud follows behind hero for full8seconds and spans water-to-top gameplay height.",
+  "source_manifest": "assets/world/ride-fidget-cloud-v1/manifest.json",
+  "path": "assets/world/ride-fidget-cloud-v1/airborne-cloud-v1.png",
+  "source_rect": [
+    0,
+    0,
+    1536,
+    1024
+  ],
+  "visible_bounds_alpha64_px": [
+    111,
+    210,
+    1419,
+    817
+  ],
+  "source_preservation": "Reuse existing approved PNG unchanged; preserve native partial alpha, no hard scissor.",
+  "ordinary_fidget": "Existing ordinary cloud and small bubble effect remain independent; do not change their lifetime or material.",
+  "duration_seconds": 8.0,
+  "anchor": {
+    "space": "Follow rider every simulation update for full active duration; camera-aware projection for both supported angles.",
+    "location": "Leading edge stays just behind hero silhouette/board rear; not fixed to release location.",
+    "leading_clearance_screen_px": 8,
+    "growth": "Expand backward and vertically; target bottom at waterline behind rider and top at gameplay viewport ceiling below HUD.",
+    "coverage": "Size from projected gameplay height rather than fixed3.4m width. Do not let scrolling carry it offscreen."
+  },
+  "animation": {
+    "growth_interval_seconds": [
+      0,
+      0.15
+    ],
+    "duration_seconds": 8.0,
+    "hold_interval_seconds": [
+      0.15,
+      7.85
+    ],
+    "opacity_keyframes": [
+      [
+        0,
+        0.4
+      ],
+      [
+        0.15,
+        0.85
+      ],
+      [
+        7.85,
+        0.85
+      ],
+      [
+        8,
+        0
+      ]
+    ],
+    "billow": {
+      "period_seconds": 2.4,
+      "secondary_period_seconds": 3.1,
+      "maximum_edge_displacement_fraction": 0.04,
+      "method": "Continuously deform existing curls slightly and offset overlapping lobes smoothly with independent phase; no repeated frame toggles."
+    },
+    "assembly": {
+      "source": "Reuse existing brown cloud unchanged in three overlapping camera-facing lobes; no need for new raster.",
+      "preserve_aspect_ratio": true,
+      "lobe_visible_height_fraction": 0.45,
+      "vertical_overlap_fraction": 0.18,
+      "composition": "Adjust three center positions to cover the full target height with no horizontal seams or holes. Stagger trailing edges/scale modestly, keep leading extent behind hero. Bound count to three.",
+      "color": "Native warm brown/ochre source color, unshaded; no green tint, gray wash or luminous emission. Maintain dense brown center and translucent billowing perimeter."
+    },
+    "pause": "Freeze clock and billow while paused; resume without phase jump."
+  },
+  "rendering": {
+    "orientation": "Camera-facing lobes sized from projected water-to-gameplay-ceiling extent for each camera angle.",
+    "material": "Dedicated super instance parameters; ordinary fidget materials unchanged.",
+    "priority": "Behind hero/board and HUD; keep upcoming route on forward side readable. Cosmetic cloud may obscure scenery behind rider.",
+    "clipping": "Clip against gameplay viewport below HUD; soft irregular perimeter, no rectangular backing or horizontal fog stripe.",
+    "depth": "Root selects depth/composite arrangement that achieves water-to-ceiling coverage without water plane cutting cloud in half. Hero/board retain priority.",
+    "cast_shadow": false,
+    "emission": false,
+    "readability": "Cloud must remain visibly massive for entire hold and follow hero through movement and camera changes."
+  },
+  "lifecycle": {
+    "end": "Expire at8seconds; no offscreen-retirement while active merely because original release point scrolled away. Clear on death/retry/scene teardown.",
+    "activation": "Use approved super input/charge policy supplied by Engineering; this art contract does not alter counts or cooldown.",
+    "safety": "No collision, damage, impulse, hop, propulsion, obstacle removal or enemy effect."
+  },
+  "acceptance": [
+    "Both heroes at both cameraangles: cloud follows behind during movement, spanningwater-to-top throughout hold.",
+    "Inspect growth, sustainedmiddle,7.5secondframe and finalfade; no premature fade/scrolldeparture.",
+    "Hero,board,HUD and forward route readable; no brightorgraywash, seams or rectangular texture backing.",
+    "Purely cosmetic: no damage, hop, forces or obstacle effects; ordinaryfidget unchanged."
+  ],
+  "supersedes": "super-cloud-manifest-v1.json for board super only; original ordinary fidget unchanged"
+}

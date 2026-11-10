@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "devil-spider",
+  "slug": "devil-spider",
+  "name": "Cuddlebug",
+  "name_status": "Approved by Sean November 5, 2026; formerly Devil Spider. Internal devil-spider ID retained.",
+  "creature_type": "Ceiling-crawling cage-abdomen spider",
+  "description": "Near-black hooked legs support an organic cage abdomen holding cracked porcelain doll heads.",
+  "implementation_status": "Integrated in Prototype 163 candidate; packaged checks pass; actual-build visual acceptance pending",
+  "selection": {
+    "date": "2026-11-04",
+    "body": "Option5 organic cage abdomen",
+    "contents": "B: porcelain doll heads",
+    "authority": "Sean explicit selection"
+  },
+  "assets": {
+    "game_sprite_sheet": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+    "animation_spec": "assets/bestiary/devil-spider-v1/manifest.json",
+    "catalog": "assets/bestiary/catalog.json",
+    "web_effects_spec": "assets/bestiary/devil-spider-v1/web-effects-manifest-v1.json",
+    "death_revision_spec": "assets/bestiary/devil-spider-v1/death-manifest-v2.json",
+    "web_projectile_revision_spec": "assets/bestiary/devil-spider-v1/web-line-manifest-v2.json"
+  },
+  "health": {
+    "max_hp": 135,
+    "spawn_hp": 135,
+    "status": "Engineering provisional initial balance; Mechanics confirmation pending",
+    "bar": {
+      "enabled": true,
+      "visible_by_default": false,
+      "display": "continuous",
+      "setting": "Show enemy health bars",
+      "value_source": "current_hp / max_hp"
+    },
+    "visual_policy": "assets/bestiary/damage/health-visuals.json",
+    "balance_policy": "assets/bestiary/balance-policy.json",
+    "hits_to_defeat": {
+      "pipe-wrench": 12,
+      "drain-snake": 17,
+      "pressure-gun": 23,
+      "demolition-hammer": 3,
+      "heavy-plunger-launcher": 6,
+      "pipe-bomb-launcher": 3
+    }
+  },
+  "audio": {
+    "schema_version": 1,
+    "status": "runtime_integrated",
+    "manifest": "audio/sources/creature-materials-v2/manifest.json",
+    "hit": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/creature-materials-v1/DD-S0142.1.wav",
+          "gain_db": -3,
+          "sha256": "79b3b8e6c79eb100e7472157803f28400c987b0e2b40cd18bfbdb24e01ad9ab7"
+        }
+      ],
+      "cooldown_seconds": 0.1,
+      "max_voices": 2,
+      "loop": false
+    },
+    "death": {
+      "variants": [
+        {
+          "path": "assets/audio/sfx/devil-spider-death-v1/scream-burn.wav",
+          "gain_db": -4,
+          "sha256": "bf7c237bd091deb19f892739fc14946b4b280fe781c136856335b214101d0ecc"
+        }
+      ],
+      "cooldown_seconds": 0.0,
+      "max_voices": 2,
+      "loop": false
+    },
+    "provenance_note": "Approved widow hit fallback retained; death uses requested scream/fire cue DD-S0143.1. Final web audio remains separate."
+  },
+  "behavior_status": "Ceiling crawl, aimed web, cocoon hauling and six-press escape, independent three-press floor snares implemented; initial balance awaits playtest",
+  "art_revision_v2": "User-approved line web and flame/ash death with3persistent falling dollheads: sources delivered, runtime integration/visual review pending"
+}

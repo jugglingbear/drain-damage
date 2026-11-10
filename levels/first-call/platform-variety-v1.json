@@ -1,0 +1,1746 @@
+{
+  "schema_version": 1,
+  "id": "level-one-platform-variety",
+  "date": "2026-11-04",
+  "status": "Seven permanent placements integrated in signed Prototype 166; ten originals retained; all breakables disabled",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "art_owner": "Bestiary / Art",
+  "campaign_contract": "levels/first-call/campaign-encounters.json",
+  "native_family_proposal": {
+    "water-heater": [
+      120,
+      180
+    ],
+    "cast-iron-boiler": [
+      200,
+      120
+    ],
+    "pressure-tank": [
+      200,
+      120
+    ],
+    "utility-sink": [
+      160,
+      120
+    ],
+    "pipe-stack": [
+      160,
+      60
+    ],
+    "water-softener": [
+      160,
+      120
+    ],
+    "duplex-pump": [
+      200,
+      120
+    ],
+    "expansion-tank-rack": [
+      160,
+      120
+    ],
+    "radiator": [
+      160,
+      60
+    ]
+  },
+  "distribution_intent": [
+    "Opening late pump establishes plumbing machinery; service stretch mixes pipe/rack/radiator.",
+    "Checkpoint pump stretch retains tall/narrow engineered assembly with sink and radiator variation.",
+    "Return uses duplex pump as central landmark; approach groups progress softener, sink and expansion rack with alternating low pipe/radiator steps."
+  ],
+  "placements": [
+    {
+      "id": "variety-entry-machine-1",
+      "section_id": "1.1",
+      "replaces_support_id": "entry-machine-1",
+      "family": "duplex-pump",
+      "destructible": false,
+      "existing_rect": [
+        1940,
+        320,
+        220,
+        120
+      ],
+      "floor_center_anchor": [
+        2050.0,
+        440
+      ],
+      "target_visual_rect": [
+        1950.0,
+        320,
+        200,
+        120
+      ],
+      "target_top_y": 320,
+      "native_size": [
+        200,
+        120
+      ],
+      "status": "Held pending exact-shape traversal and visual review; preserve existing artwork until accepted",
+      "footprint_policy": "Narrower by 20px; leave real side gaps, never retain invisible old width. Validate both-way jump/contact and enemy support.",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          1937.90541,
+          320,
+          2162.09459,
+          320
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          1937.90541,
+          320.0,
+          224.18919,
+          8.91892
+        ],
+        [
+          1940.13514,
+          328.91892,
+          15.2027,
+          96.89189
+        ],
+        [
+          2145.87838,
+          328.91892,
+          15.2027,
+          96.89189
+        ],
+        [
+          1955.33784,
+          372.7027,
+          71.95946,
+          52.7027
+        ],
+        [
+          2036.41892,
+          372.7027,
+          73.98649,
+          52.7027
+        ],
+        [
+          1933.44595,
+          425.81081,
+          233.10811,
+          14.18919
+        ]
+      ],
+      "registered_top_width": 224.18919,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [
+          "entry-machine-0",
+          "entry-machine-2"
+        ],
+        "status": "Hold: actual colliders overlap neighboring solid"
+      },
+      "disposition": "Retain existing asset at this slot; exact body collision overlaps adjacent machinery.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-service-machine-0",
+      "section_id": "1.2",
+      "replaces_support_id": "service-machine-0",
+      "family": "pipe-stack",
+      "destructible": false,
+      "existing_rect": [
+        3500,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        3580.0,
+        440
+      ],
+      "target_visual_rect": [
+        3500.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Held after runner traversal probe; no collision filling or encounter relocation permitted.",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          3496.74074,
+          380,
+          3663.40741,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          3496.74074,
+          380.0,
+          166.66667,
+          51.11111
+        ],
+        [
+          3515.25926,
+          431.11111,
+          50.37037,
+          8.88889
+        ],
+        [
+          3592.88889,
+          431.11111,
+          48.88889,
+          8.88889
+        ]
+      ],
+      "registered_top_width": 166.66667,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap in combined proposed layout; traversal/contact review still required"
+      },
+      "disposition": "Retain original group: exact expansion-rack parts fail runner ascent from both sides; retaining original180px center also invalidates widened neighboring low pieces.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-service-machine-1",
+      "section_id": "1.2",
+      "replaces_support_id": "service-machine-1",
+      "family": "expansion-tank-rack",
+      "destructible": false,
+      "existing_rect": [
+        3660,
+        320,
+        180,
+        120
+      ],
+      "floor_center_anchor": [
+        3750.0,
+        440
+      ],
+      "target_visual_rect": [
+        3670.0,
+        320,
+        160,
+        120
+      ],
+      "target_top_y": 320,
+      "native_size": [
+        160,
+        120
+      ],
+      "status": "Held after runner traversal probe; no collision filling or encounter relocation permitted.",
+      "footprint_policy": "Narrower by 20px; leave real side gaps, never retain invisible old width. Validate both-way jump/contact and enemy support.",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          3668.4466,
+          320,
+          3831.5534,
+          320
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          3668.4466,
+          320.0,
+          163.1068,
+          7.15673
+        ],
+        [
+          3671.94175,
+          327.15673,
+          9.98613,
+          103.19001
+        ],
+        [
+          3820.40222,
+          327.15673,
+          9.98613,
+          103.19001
+        ],
+        [
+          3682.26075,
+          352.12205,
+          46.60194,
+          41.60888
+        ],
+        [
+          3730.52705,
+          352.12205,
+          46.60194,
+          41.60888
+        ],
+        [
+          3778.79334,
+          352.12205,
+          39.11234,
+          41.60888
+        ],
+        [
+          3671.94175,
+          418.69626,
+          158.4466,
+          8.32178
+        ],
+        [
+          3668.94591,
+          430.34674,
+          13.31484,
+          9.65326
+        ],
+        [
+          3817.90569,
+          430.34674,
+          13.31484,
+          9.65326
+        ]
+      ],
+      "registered_top_width": 163.1068,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap in combined proposed layout; traversal/contact review still required"
+      },
+      "disposition": "Retain original group: exact expansion-rack parts fail runner ascent from both sides; retaining original180px center also invalidates widened neighboring low pieces.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-service-machine-2",
+      "section_id": "1.2",
+      "replaces_support_id": "service-machine-2",
+      "family": "radiator",
+      "destructible": false,
+      "existing_rect": [
+        3840,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        3920.0,
+        440
+      ],
+      "target_visual_rect": [
+        3840.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Held after runner traversal probe; no collision filling or encounter relocation permitted.",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          3837.43119,
+          380,
+          4002.56881,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          3837.43119,
+          380.0,
+          165.13761,
+          50.45872
+        ],
+        [
+          3839.26606,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ],
+        [
+          3984.22018,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ]
+      ],
+      "registered_top_width": 165.13761,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap in combined proposed layout; traversal/contact review still required"
+      },
+      "disposition": "Retain original group: exact expansion-rack parts fail runner ascent from both sides; retaining original180px center also invalidates widened neighboring low pieces.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-pump-machine-0",
+      "section_id": "1.3",
+      "replaces_support_id": "pump-machine-0",
+      "family": "pipe-stack",
+      "destructible": false,
+      "existing_rect": [
+        4850,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        4930.0,
+        440
+      ],
+      "target_visual_rect": [
+        4850.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Integrated in Prototype 166; bounded runtime and Art still review passed; human full-route review open",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          4846.74074,
+          380,
+          5013.40741,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          4846.74074,
+          380.0,
+          166.66667,
+          51.11111
+        ],
+        [
+          4865.25926,
+          431.11111,
+          50.37037,
+          8.88889
+        ],
+        [
+          4942.88889,
+          431.11111,
+          48.88889,
+          8.88889
+        ]
+      ],
+      "registered_top_width": 166.66667,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap; integrated subset passed bounded runtime traversal checks."
+      },
+      "disposition": "Integrated through scripts/basement_platforms.gd whitelist with exact Art material colliders and render frames; coordinates and candidate flag frozen during final package validation.",
+      "integration_candidate": true
+    },
+    {
+      "id": "variety-pump-machine-1",
+      "section_id": "1.3",
+      "replaces_support_id": "pump-machine-1",
+      "family": "utility-sink",
+      "destructible": false,
+      "existing_rect": [
+        5010,
+        320,
+        180,
+        120
+      ],
+      "floor_center_anchor": [
+        5100.0,
+        440
+      ],
+      "target_visual_rect": [
+        5020.0,
+        320,
+        160,
+        120
+      ],
+      "target_top_y": 320,
+      "native_size": [
+        160,
+        120
+      ],
+      "status": "Held pending exact-shape traversal and visual review; preserve existing artwork until accepted",
+      "footprint_policy": "Narrower by 20px; leave real side gaps, never retain invisible old width. Validate both-way jump/contact and enemy support.",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          5006.70788,
+          320,
+          5193.29212,
+          320
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          5006.70788,
+          320.0,
+          186.58423,
+          47.29521
+        ],
+        [
+          5018.76352,
+          367.29521,
+          17.61978,
+          72.70479
+        ],
+        [
+          5166.21329,
+          367.29521,
+          17.61978,
+          72.70479
+        ],
+        [
+          5051.22102,
+          367.29521,
+          14.83771,
+          72.70479
+        ],
+        [
+          5132.82844,
+          367.29521,
+          14.83771,
+          72.70479
+        ]
+      ],
+      "registered_top_width": 186.58423,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [
+          "pump-machine-2"
+        ],
+        "status": "Hold: actual colliders overlap neighboring solid"
+      },
+      "disposition": "Retain existing asset at this slot; exact body collision overlaps adjacent machinery.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-pump-machine-4",
+      "section_id": "1.3",
+      "replaces_support_id": "pump-machine-4",
+      "family": "radiator",
+      "destructible": false,
+      "existing_rect": [
+        5450,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        5530.0,
+        440
+      ],
+      "target_visual_rect": [
+        5450.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Held pending exact-shape traversal and visual review; preserve existing artwork until accepted",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          5447.43119,
+          380,
+          5612.56881,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          5447.43119,
+          380.0,
+          165.13761,
+          50.45872
+        ],
+        [
+          5449.26606,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ],
+        [
+          5594.22018,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ]
+      ],
+      "registered_top_width": 165.13761,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [
+          "pump-machine-3"
+        ],
+        "status": "Hold: actual colliders overlap neighboring solid"
+      },
+      "disposition": "Retain existing asset at this slot; exact body collision overlaps adjacent machinery.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-return-machine-1",
+      "section_id": "1.4",
+      "replaces_support_id": "return-machine-1",
+      "family": "duplex-pump",
+      "destructible": false,
+      "existing_rect": [
+        8800,
+        320,
+        220,
+        120
+      ],
+      "floor_center_anchor": [
+        8910.0,
+        440
+      ],
+      "target_visual_rect": [
+        8810.0,
+        320,
+        200,
+        120
+      ],
+      "target_top_y": 320,
+      "native_size": [
+        200,
+        120
+      ],
+      "status": "Held pending exact-shape traversal and visual review; preserve existing artwork until accepted",
+      "footprint_policy": "Narrower by 20px; leave real side gaps, never retain invisible old width. Validate both-way jump/contact and enemy support.",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          8797.90541,
+          320,
+          9022.09459,
+          320
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          8797.90541,
+          320.0,
+          224.18919,
+          8.91892
+        ],
+        [
+          8800.13514,
+          328.91892,
+          15.2027,
+          96.89189
+        ],
+        [
+          9005.87838,
+          328.91892,
+          15.2027,
+          96.89189
+        ],
+        [
+          8815.33784,
+          372.7027,
+          71.95946,
+          52.7027
+        ],
+        [
+          8896.41892,
+          372.7027,
+          73.98649,
+          52.7027
+        ],
+        [
+          8793.44595,
+          425.81081,
+          233.10811,
+          14.18919
+        ]
+      ],
+      "registered_top_width": 224.18919,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [
+          "return-machine-0",
+          "return-machine-2"
+        ],
+        "status": "Hold: actual colliders overlap neighboring solid"
+      },
+      "disposition": "Retain existing asset at this slot; exact body collision overlaps adjacent machinery.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-approach-machine-0-0",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-0-0",
+      "family": "radiator",
+      "destructible": false,
+      "existing_rect": [
+        9740,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        9820.0,
+        440
+      ],
+      "target_visual_rect": [
+        9740.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Integrated in Prototype 166; bounded runtime and Art still review passed; human full-route review open",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          9737.43119,
+          380,
+          9902.56881,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          9737.43119,
+          380.0,
+          165.13761,
+          50.45872
+        ],
+        [
+          9739.26606,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ],
+        [
+          9884.22018,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ]
+      ],
+      "registered_top_width": 165.13761,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap; integrated subset passed bounded runtime traversal checks."
+      },
+      "disposition": "Integrated through scripts/basement_platforms.gd whitelist with exact Art material colliders and render frames; coordinates and candidate flag frozen during final package validation.",
+      "integration_candidate": true
+    },
+    {
+      "id": "variety-approach-machine-0-1",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-0-1",
+      "family": "water-softener",
+      "destructible": false,
+      "existing_rect": [
+        9900,
+        320,
+        180,
+        120
+      ],
+      "floor_center_anchor": [
+        9990.0,
+        440
+      ],
+      "target_visual_rect": [
+        9910.0,
+        320,
+        160,
+        120
+      ],
+      "target_top_y": 320,
+      "native_size": [
+        160,
+        120
+      ],
+      "status": "Integrated in Prototype 166; bounded runtime and Art still review passed; human full-route review open",
+      "footprint_policy": "Narrower by 20px; leave real side gaps, never retain invisible old width. Validate both-way jump/contact and enemy support.",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          9912.11699,
+          320,
+          10067.88301,
+          320
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          9912.11699,
+          320.0,
+          155.76602,
+          113.64903
+        ],
+        [
+          9917.96657,
+          433.64903,
+          25.06964,
+          6.35097
+        ],
+        [
+          10038.30084,
+          433.64903,
+          25.06964,
+          6.35097
+        ]
+      ],
+      "registered_top_width": 155.76602,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap; integrated subset passed bounded runtime traversal checks."
+      },
+      "disposition": "Integrated through scripts/basement_platforms.gd whitelist with exact Art material colliders and render frames; coordinates and candidate flag frozen during final package validation.",
+      "integration_candidate": true
+    },
+    {
+      "id": "variety-approach-machine-0-2",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-0-2",
+      "family": "pipe-stack",
+      "destructible": false,
+      "existing_rect": [
+        10080,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        10160.0,
+        440
+      ],
+      "target_visual_rect": [
+        10080.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Integrated in Prototype 166; bounded runtime and Art still review passed; human full-route review open",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          10076.74074,
+          380,
+          10243.40741,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          10076.74074,
+          380.0,
+          166.66667,
+          51.11111
+        ],
+        [
+          10095.25926,
+          431.11111,
+          50.37037,
+          8.88889
+        ],
+        [
+          10172.88889,
+          431.11111,
+          48.88889,
+          8.88889
+        ]
+      ],
+      "registered_top_width": 166.66667,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap; integrated subset passed bounded runtime traversal checks."
+      },
+      "disposition": "Integrated through scripts/basement_platforms.gd whitelist with exact Art material colliders and render frames; coordinates and candidate flag frozen during final package validation.",
+      "integration_candidate": true
+    },
+    {
+      "id": "variety-approach-machine-1-0",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-1-0",
+      "family": "pipe-stack",
+      "destructible": false,
+      "existing_rect": [
+        11180,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        11260.0,
+        440
+      ],
+      "target_visual_rect": [
+        11180.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Integrated in Prototype 166; bounded runtime and Art still review passed; human full-route review open",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          11176.74074,
+          380,
+          11343.40741,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          11176.74074,
+          380.0,
+          166.66667,
+          51.11111
+        ],
+        [
+          11195.25926,
+          431.11111,
+          50.37037,
+          8.88889
+        ],
+        [
+          11272.88889,
+          431.11111,
+          48.88889,
+          8.88889
+        ]
+      ],
+      "registered_top_width": 166.66667,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap; integrated subset passed bounded runtime traversal checks."
+      },
+      "disposition": "Integrated through scripts/basement_platforms.gd whitelist with exact Art material colliders and render frames; coordinates and candidate flag frozen during final package validation.",
+      "integration_candidate": true
+    },
+    {
+      "id": "variety-approach-machine-1-1",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-1-1",
+      "family": "utility-sink",
+      "destructible": false,
+      "existing_rect": [
+        11340,
+        320,
+        180,
+        120
+      ],
+      "floor_center_anchor": [
+        11430.0,
+        440
+      ],
+      "target_visual_rect": [
+        11350.0,
+        320,
+        160,
+        120
+      ],
+      "target_top_y": 320,
+      "native_size": [
+        160,
+        120
+      ],
+      "status": "Integrated in Prototype 166; bounded runtime and Art still review passed; human full-route review open",
+      "footprint_policy": "Narrower by 20px; leave real side gaps, never retain invisible old width. Validate both-way jump/contact and enemy support.",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          11336.70788,
+          320,
+          11523.29212,
+          320
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          11336.70788,
+          320.0,
+          186.58423,
+          47.29521
+        ],
+        [
+          11348.76352,
+          367.29521,
+          17.61978,
+          72.70479
+        ],
+        [
+          11496.21329,
+          367.29521,
+          17.61978,
+          72.70479
+        ],
+        [
+          11381.22102,
+          367.29521,
+          14.83771,
+          72.70479
+        ],
+        [
+          11462.82844,
+          367.29521,
+          14.83771,
+          72.70479
+        ]
+      ],
+      "registered_top_width": 186.58423,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap; integrated subset passed bounded runtime traversal checks."
+      },
+      "disposition": "Integrated through scripts/basement_platforms.gd whitelist with exact Art material colliders and render frames; coordinates and candidate flag frozen during final package validation.",
+      "integration_candidate": true,
+      "underbody_review": "160 reachable-exterior runs / 57,600 steps at 60/120 Hz, both heroes, both directions, walk/jump and actual hurt_player knockback: no material penetration or enclosed-pocket entry. Voids preserved; Art bounded still review passed; motion and human full-route acceptance remain open."
+    },
+    {
+      "id": "variety-approach-machine-1-2",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-1-2",
+      "family": "radiator",
+      "destructible": false,
+      "existing_rect": [
+        11520,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        11600.0,
+        440
+      ],
+      "target_visual_rect": [
+        11520.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Integrated in Prototype 166; bounded runtime and Art still review passed; human full-route review open",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          11517.43119,
+          380,
+          11682.56881,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          11517.43119,
+          380.0,
+          165.13761,
+          50.45872
+        ],
+        [
+          11519.26606,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ],
+        [
+          11664.22018,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ]
+      ],
+      "registered_top_width": 165.13761,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap; integrated subset passed bounded runtime traversal checks."
+      },
+      "disposition": "Integrated through scripts/basement_platforms.gd whitelist with exact Art material colliders and render frames; coordinates and candidate flag frozen during final package validation.",
+      "integration_candidate": true
+    },
+    {
+      "id": "variety-approach-machine-2-0",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-2-0",
+      "family": "radiator",
+      "destructible": false,
+      "existing_rect": [
+        12540,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        12620.0,
+        440
+      ],
+      "target_visual_rect": [
+        12540.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Held after runner traversal probe; no collision filling or encounter relocation permitted.",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          12537.43119,
+          380,
+          12702.56881,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          12537.43119,
+          380.0,
+          165.13761,
+          50.45872
+        ],
+        [
+          12539.26606,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ],
+        [
+          12684.22018,
+          430.45871999999997,
+          18.34862,
+          9.54128
+        ]
+      ],
+      "registered_top_width": 165.13761,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap in combined proposed layout; traversal/contact review still required"
+      },
+      "disposition": "Retain original group: exact expansion-rack parts fail runner ascent from both sides; retaining original180px center also invalidates widened neighboring low pieces.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-approach-machine-2-1",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-2-1",
+      "family": "expansion-tank-rack",
+      "destructible": false,
+      "existing_rect": [
+        12700,
+        320,
+        180,
+        120
+      ],
+      "floor_center_anchor": [
+        12790.0,
+        440
+      ],
+      "target_visual_rect": [
+        12710.0,
+        320,
+        160,
+        120
+      ],
+      "target_top_y": 320,
+      "native_size": [
+        160,
+        120
+      ],
+      "status": "Held after runner traversal probe; no collision filling or encounter relocation permitted.",
+      "footprint_policy": "Narrower by 20px; leave real side gaps, never retain invisible old width. Validate both-way jump/contact and enemy support.",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          12708.4466,
+          320,
+          12871.5534,
+          320
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          12708.4466,
+          320.0,
+          163.1068,
+          7.15673
+        ],
+        [
+          12711.94175,
+          327.15673,
+          9.98613,
+          103.19001
+        ],
+        [
+          12860.40222,
+          327.15673,
+          9.98613,
+          103.19001
+        ],
+        [
+          12722.26075,
+          352.12205,
+          46.60194,
+          41.60888
+        ],
+        [
+          12770.52705,
+          352.12205,
+          46.60194,
+          41.60888
+        ],
+        [
+          12818.79334,
+          352.12205,
+          39.11234,
+          41.60888
+        ],
+        [
+          12711.94175,
+          418.69626,
+          158.4466,
+          8.32178
+        ],
+        [
+          12708.94591,
+          430.34674,
+          13.31484,
+          9.65326
+        ],
+        [
+          12857.90569,
+          430.34674,
+          13.31484,
+          9.65326
+        ]
+      ],
+      "registered_top_width": 163.1068,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap in combined proposed layout; traversal/contact review still required"
+      },
+      "disposition": "Retain original group: exact expansion-rack parts fail runner ascent from both sides; retaining original180px center also invalidates widened neighboring low pieces.",
+      "integration_candidate": false
+    },
+    {
+      "id": "variety-approach-machine-2-2",
+      "section_id": "1.5",
+      "replaces_support_id": "approach-machine-2-2",
+      "family": "pipe-stack",
+      "destructible": false,
+      "existing_rect": [
+        12880,
+        380,
+        160,
+        60
+      ],
+      "floor_center_anchor": [
+        12960.0,
+        440
+      ],
+      "target_visual_rect": [
+        12880.0,
+        380,
+        160,
+        60
+      ],
+      "target_top_y": 380,
+      "native_size": [
+        160,
+        60
+      ],
+      "status": "Held after runner traversal probe; no collision filling or encounter relocation permitted.",
+      "footprint_policy": "Exact match",
+      "colliders": "Consume Art manifest actual body/leg colliders and top segments; do not fill visual voids.",
+      "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+      "registered_top_segments_world": [
+        [
+          12876.74074,
+          380,
+          13043.40741,
+          380
+        ]
+      ],
+      "registered_collision_rects_world": [
+        [
+          12876.74074,
+          380.0,
+          166.66667,
+          51.11111
+        ],
+        [
+          12895.25926,
+          431.11111,
+          50.37037,
+          8.88889
+        ],
+        [
+          12972.88889,
+          431.11111,
+          48.88889,
+          8.88889
+        ]
+      ],
+      "registered_top_width": 166.66667,
+      "nominal_target_superseded": true,
+      "static_fit_review": {
+        "overlapping_solid_ids": [],
+        "status": "No inter-prop collider overlap in combined proposed layout; traversal/contact review still required"
+      },
+      "disposition": "Retain original group: exact expansion-rack parts fail runner ascent from both sides; retaining original180px center also invalidates widened neighboring low pieces.",
+      "integration_candidate": false
+    }
+  ],
+  "retained": [
+    "All existing one-way access steps and catwalks retain their approved gantries and supports.",
+    "pump-machine-2 retains existing200x180 tall pump construction.",
+    "pump-machine-3 retains approved60x120 crop.",
+    "Other unlisted machinery, all pits/rims, ceiling fixtures, devil rail and boss/checkpoint geometry remain existing."
+  ],
+  "breakables": {
+    "status": "All three breakable candidates remain disabled; separate placement and bypass design required",
+    "families": [
+      "water-heater",
+      "cast-iron-boiler",
+      "pressure-tank"
+    ],
+    "reason": "Existing permanent access steps and decks can reach these intact tops. Each added solid occupies previously open floor, so this is an explicit route addition requiring review, not a drop-in gantry replacement.",
+    "required_design_step": "Engineering must accept the new lower-lane obstacles with permanent upper approaches, or reject them under a strict keep-all-floor-lanes-open interpretation. No runtime placement is authorized by this proposal alone.",
+    "constraints": [
+      "Actual solid body colliders; no pass-through vessel or rear-alcove fiction.",
+      "Safe continuous floor beneath every breakable; no pit bridge, checkpoint, boss or mandatory foothold dependency.",
+      "Remove every breakable simultaneously and verify the full route and all required jumps remain viable.",
+      "Water, debris and destruction cannot damage the hero.",
+      "No extra enemies or density increase; report any required encounter-coordinate change for explicit Engineering review."
+    ],
+    "candidates": [
+      {
+        "id": "optional-return-boiler",
+        "family": "cast-iron-boiler",
+        "section_id": "1.4",
+        "rect": [
+          8290,
+          320,
+          200,
+          120
+        ],
+        "floor_center_anchor": [
+          8390,
+          440
+        ],
+        "permanent_approach": [
+          "return-access",
+          "return-deck"
+        ],
+        "approach_top_y": 320,
+        "rise_from_approach": 0,
+        "approach_overlap_x": [
+          8290,
+          8330
+        ],
+        "safe_ground_below": [
+          8290,
+          8490
+        ],
+        "route_intent": "Continue from permanent return deck across boiler at same height; destruction leaves ordinary floor. Permanent deck and all machinery remain.",
+        "specific_checks": [
+          "Boiler ends8490; existing runner home8520 is only30px beyond edge, so actual full silhouette must clear.",
+          "Returning floor runners must negotiate intact vessel without unreachable120px wall or patrol snapping.",
+          "Do not occlude the existing return swarm at8420,220 or existing deck shooter8210,320."
+        ],
+        "validation": {
+          "status": "Held: required reliable permanent bypass not established",
+          "evidence": "builds/boiler-bypass-results.json",
+          "probe": "builds/boiler-bypass-probe.gd",
+          "scope": "Provisional200x120 solid box with actual campaign collision, hero26x46, speeds Tony270/Sean235, gravity1250 and jump465; full-held running jumps at60/120Hz.",
+          "findings": [
+            "Tony can jump forward without landing on boiler from the final permanent-deck launch positions.",
+            "Sean did not clear boiler forward from fully supported permanent-deck launch positions.",
+            "Neither hero cleared reverse from the next permanent60px step to the prior deck without touching boiler.",
+            "Removal leaves safe supported floor across8290..8490.",
+            "Existing runner8520 actual body collider does not overlap provisional boiler. Full render, arrival and pursuit not accepted."
+          ],
+          "decision": "Do not integrate this placement as a reliable optional bypass. Exact Art width/contact is pending; a permanent bypass/layout change would require a new bounded proposal.",
+          "exact_source_disposition": "Reject this location: measured body at anchor8390 overlaps existing runner8520 body; prior nominal bypass already failed for Sean/reverse. Do not relocate actor silently."
+        },
+        "registered_top_segments_world": [
+          [
+            8280.98592,
+            320,
+            8499.01408,
+            320
+          ]
+        ],
+        "registered_collision_rects_world": [
+          [
+            8280.98592,
+            320.0,
+            218.02817,
+            100.56338
+          ],
+          [
+            8282.67606,
+            420.56338,
+            39.71831,
+            19.43662
+          ],
+          [
+            8461.83099,
+            420.56338,
+            40.56338,
+            19.43662
+          ]
+        ],
+        "nominal_rect_superseded": true,
+        "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+        "registered_body_review": {
+          "runner_home_x": 8520,
+          "runner_body_overlap": true
+        }
+      },
+      {
+        "id": "optional-approach-heater",
+        "family": "water-heater",
+        "section_id": "1.5",
+        "rect": [
+          10730,
+          260,
+          120,
+          180
+        ],
+        "floor_center_anchor": [
+          10790,
+          440
+        ],
+        "permanent_approach": [
+          "approach-access-0",
+          "approach-deck-0"
+        ],
+        "approach_top_y": 320,
+        "rise_from_approach": 60,
+        "approach_overlap_x": [
+          10730,
+          10760
+        ],
+        "safe_ground_below": [
+          10730,
+          10850
+        ],
+        "route_intent": "Optional60px jump from existing120px-high deck onto heater; safe floor after destruction, no additional permanent step required.",
+        "specific_checks": [
+          "Existing runner10880 has only30px center clearance from heater edge; measure full silhouette.",
+          "Devil rail begins10760 above this area: test hero jump headroom, web visibility and ceiling body overlap.",
+          "Existing shooter10640,320 stays on permanent deck; heater must not conceal its muzzle or block all shots.",
+          "Confirm floor-runner pursuit around intact180px vessel; do not silently relocate encounters."
+        ],
+        "validation": {
+          "status": "Held; actual Art width/contact, runner ingress, devil interaction and relief preservation not yet validated.",
+          "exact_source_disposition": "Held; nominal-box evidence does not certify measured body/leg geometry or wreck passage."
+        },
+        "registered_top_segments_world": [
+          [
+            10734.36364,
+            260,
+            10844.0,
+            260
+          ]
+        ],
+        "registered_collision_rects_world": [
+          [
+            10734.36364,
+            260.0,
+            111.27273,
+            155.45455
+          ],
+          [
+            10734.36364,
+            415.45455,
+            21.27273,
+            24.54545
+          ],
+          [
+            10823.54545,
+            415.45455,
+            22.09091,
+            24.54545
+          ]
+        ],
+        "nominal_rect_superseded": true,
+        "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+        "registered_body_review": {
+          "runner_home_x": 10880,
+          "runner_body_overlap": false
+        }
+      },
+      {
+        "id": "optional-east-pressure-tank",
+        "family": "pressure-tank",
+        "section_id": "1.5",
+        "rect": [
+          12190,
+          320,
+          200,
+          120
+        ],
+        "floor_center_anchor": [
+          12290,
+          440
+        ],
+        "permanent_approach": [
+          "approach-access-1",
+          "approach-deck-1"
+        ],
+        "approach_top_y": 320,
+        "rise_from_approach": 0,
+        "approach_gap": 10,
+        "safe_ground_below": [
+          12190,
+          12390
+        ],
+        "route_intent": "Short10px horizontal hop from permanent deck to optional tank top, then drop to clear floor before next machinery.",
+        "specific_checks": [
+          "Existing runner home12450 remains60px beyond tank edge; keep floor hatch unobstructed.",
+          "Tank overlaps12180..12320 relief range spatially: do not add combat or extend mandatory jump chains through that recovery.",
+          "Existing runner12100 is left of vessel; confirm its authored patrol maximum12150 does not intersect the tank.",
+          "Verify first-visible side entry routes across this pocket after adding solid body."
+        ],
+        "validation": {
+          "status": "Held; actual Art width/contact, runner ingress, devil interaction and relief preservation not yet validated.",
+          "exact_source_disposition": "Held; nominal-box evidence does not certify measured body/leg geometry or wreck passage."
+        },
+        "registered_top_segments_world": [
+          [
+            12206.27907,
+            320,
+            12373.72093,
+            320
+          ]
+        ],
+        "registered_collision_rects_world": [
+          [
+            12206.27907,
+            320.0,
+            167.44186,
+            11.16279
+          ],
+          [
+            12165.34884,
+            331.16279,
+            232.55814,
+            83.72093
+          ],
+          [
+            12170.0,
+            414.88372,
+            37.2093,
+            25.11628
+          ],
+          [
+            12352.32558,
+            414.88372,
+            37.2093,
+            25.11628
+          ]
+        ],
+        "nominal_rect_superseded": true,
+        "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+        "registered_body_review": {
+          "runner_home_x": 12450,
+          "runner_body_overlap": false
+        }
+      }
+    ],
+    "removal_validation": "All three removed: existing campaign geometry is exactly restored; no current permanent support is removed. Intact approach and pursuit checks still required."
+  },
+  "excluded": {
+    "crated-toilet": "Dropped by Sean; archive retained by Art."
+  },
+  "validation": {
+    "runtime_passed": true,
+    "visual_accepted": false,
+    "checks": [
+      "Confirm native sizes with Engineering and Art before production.",
+      "Map every replacement top segment/body-leg collider from delivered Art manifest.",
+      "Validate both heroes and runners over narrowed footprints and across real side gaps; retain60px rise family.",
+      "Check encounter feet remain supported on actual top segments; sink/rack gaps cannot be filled invisibly.",
+      "Inspect running approach/contact/departure, material proportions, supports and independent Art review."
+    ],
+    "scope": "Seven integrated permanent placements only; held replacements and breakables are not accepted.",
+    "integration_build": "Prototype 166",
+    "runtime_evidence": "Engineering reports source campaign traversal, lifecycle, forward/reverse and boss-to-flush checks passed; packaged late-route checks: 12,284 passed, zero failures.",
+    "visual_evidence": "builds/Prototype-166/evidence",
+    "visual_scope": "Art bounded still review passed, as reported by Engineering; this is not motion or human full-route acceptance.",
+    "remaining": "Final packaged boss, pressure, ending-input and forward/reverse traversal gates pass. Continuous visual and human full-route review remain open; see handoffs/first-call-integration.json for consolidated delivery."
+  },
+  "measured_size_policy": "Exact manifest top segments and collision pieces supersede all nominal dimensions/rects. Do not stretch or fill gaps; preserve existing art until per-placement traversal and visual review pass.",
+  "measured_family_sizes": {
+    "water-heater": [
+      109.63636,
+      180
+    ],
+    "cast-iron-boiler": [
+      218.02817,
+      120
+    ],
+    "pressure-tank": [
+      167.44186,
+      120
+    ],
+    "utility-sink": [
+      186.58423,
+      120
+    ],
+    "pipe-stack": [
+      166.66667,
+      60
+    ],
+    "water-softener": [
+      155.76602,
+      120
+    ],
+    "duplex-pump": [
+      224.18919,
+      120
+    ],
+    "expansion-tank-rack": [
+      163.1068,
+      120
+    ],
+    "radiator": [
+      165.13761,
+      60
+    ]
+  },
+  "exact_geometry_review": {
+    "eligible_permanent_count": 7,
+    "held_permanent_count": 10,
+    "evidence": "builds/platform-fit-results.json",
+    "probe": "builds/platform-fit-probe.gd",
+    "hero_rising_transfer_checks": 20,
+    "runner_transfer_checks": 20,
+    "runner_arrival_checks": 39,
+    "failures_in_revised_subset": 0,
+    "prior_rejection": "13-candidate probe had8 failed runner ascents: both directions into service-machine-1 and approach-machine-2-1 at60/120Hz. Retain both original three-piece groups, because widened neighbor replacements would overlap restored centers.",
+    "underbody": [
+      {
+        "clear_floor_pockets": 0,
+        "enclosed_pockets": 0,
+        "horizontal_open_pockets": 0,
+        "scope": "Geometric floor-pocket classification; enclosed void is not proof of reachable trap.",
+        "support": "pump-machine-0"
+      },
+      {
+        "clear_floor_pockets": 0,
+        "enclosed_pockets": 0,
+        "horizontal_open_pockets": 0,
+        "scope": "Geometric floor-pocket classification; enclosed void is not proof of reachable trap.",
+        "support": "approach-machine-0-0"
+      },
+      {
+        "clear_floor_pockets": 0,
+        "enclosed_pockets": 0,
+        "horizontal_open_pockets": 0,
+        "scope": "Geometric floor-pocket classification; enclosed void is not proof of reachable trap.",
+        "support": "approach-machine-0-1"
+      },
+      {
+        "clear_floor_pockets": 0,
+        "enclosed_pockets": 0,
+        "horizontal_open_pockets": 0,
+        "scope": "Geometric floor-pocket classification; enclosed void is not proof of reachable trap.",
+        "support": "approach-machine-0-2"
+      },
+      {
+        "clear_floor_pockets": 0,
+        "enclosed_pockets": 0,
+        "horizontal_open_pockets": 0,
+        "scope": "Geometric floor-pocket classification; enclosed void is not proof of reachable trap.",
+        "support": "approach-machine-1-0"
+      },
+      {
+        "clear_floor_pockets": 10,
+        "enclosed_pockets": 10,
+        "horizontal_open_pockets": 0,
+        "scope": "Geometric floor-pocket classification; enclosed void is not proof of reachable trap.",
+        "support": "approach-machine-1-1"
+      },
+      {
+        "clear_floor_pockets": 0,
+        "enclosed_pockets": 0,
+        "horizontal_open_pockets": 0,
+        "scope": "Geometric floor-pocket classification; enclosed void is not proof of reachable trap.",
+        "support": "approach-machine-1-2"
+      }
+    ],
+    "scope": "Exact combined material geometry with held originals retained. Both hero speeds and26x46body at60/120Hz; runner45.6x43.2body uses shared navigation at90px/s; isolated actual scheduler admission across5px hero/camera samples.",
+    "limits": "Bounded movement/navigation/admission checks only; no exhaustive input proof or full-route/visual acceptance. Real underbody voids remain unfilled.",
+    "sink_exterior_sweep": {
+      "failures": [],
+      "limits": "Four-second bounded sweeps, full-held jumps; not exhaustive input sequences or visual acceptance.",
+      "runs": 160,
+      "starts": "Both external floor sides, both adjacent low tops, sink top; walking/jumping, both directions, with/without actual hurt_player at0.2s intervals.",
+      "steps": 57600
+    },
+    "sink_disposition": "Integrated in Prototype 166: no penetration or enclosed-pocket entry observed from reachable exterior poses in bounded exact-geometry movement and actual damage-knockback sweeps."
+  }
+}

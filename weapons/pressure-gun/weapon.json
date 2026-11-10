@@ -78,7 +78,21 @@
     "grounded_down_input": "Down plus left/right aims diagonally down on ground; only straight down requires airborne state. Down alone on ground falls back to horizontal facing.",
     "vector_rule": "Normalize diagonal direction so projectile speed and cumulative travel range match cardinal shots",
     "range_rule": "Keep existing max_travel_distance_pixels in every direction",
-    "input_note": "Preserve keyboard and controller support. Resolve existing up-to-jump binding conflict so aiming up does not unintentionally jump.",
+    "input_note": "W/up aims without jumping; Space/controller A jumps. Z/LB and V/RB hold stationary up-left and up-right aim.",
+    "stationary_diagonal_controls": {
+      "up_left": {
+        "keyboard": "Z",
+        "gamepad": "LB"
+      },
+      "up_right": {
+        "keyboard": "V",
+        "gamepad": "RB"
+      },
+      "activation": "Hold; releasing restores ordinary movement and aiming inputs",
+      "movement": "Stops ordinary horizontal movement immediately, including held stick/direction input; does not cancel Tony special water recoil",
+      "precedence": "Stationary diagonal overrides directional aim while held; if both are held, most recent press sets facing and diagonal",
+      "escape": "Each fresh press is a gameplay escape input; held inputs do not repeat"
+    },
     "art_note": "Directional held-weapon/hero poses require Bestiary / Art collaboration before new artwork is created",
     "visual_aim": {
       "status": "Approved correction; Engineering integration pending",
@@ -107,7 +121,6 @@
     "duration_seconds": 7.5,
     "damage_per_tick": 24,
     "tick_interval_seconds": 0.1,
-    "boss_damage_cap_per_activation": 250,
     "range": "Current viewport edge along visible water, blocked by solid scenery",
     "input": {
       "keyboard": "K",
@@ -119,6 +132,9 @@
     "sustained_damage_per_second": 240,
     "active_regular_sustained_damage_per_second": 75,
     "special_to_regular_ratio": 3.2,
-    "activation": "Fresh press automatically sustains damage; neither special nor ordinary fire needs to remain held"
+    "activation": "Fresh press automatically sustains damage; neither special nor ordinary fire needs to remain held",
+    "boss_damage_per_tick": 12,
+    "boss_sustained_damage_per_second": 120,
+    "boss_damage_rules": "No total cap; existing vulnerability and weak-point gates apply"
   }
 }

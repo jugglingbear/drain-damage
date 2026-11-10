@@ -19,16 +19,36 @@ const SEAN_AREAS: Array[Rect2i] = [
 	Rect2i(0, 730, 310, 430), Rect2i(340, 680, 277, 360),
 	Rect2i(615, 740, 340, 420), Rect2i(956, 740, 298, 420),
 ]
-var sean_frames: Array[Rect2] = []
-var tony_frames: Array[Rect2] = []
-var toilet_frames: Array[Rect2] = []
+var sean_frames: Array[Rect2]:
+	get:
+		prepare_legacy_frames()
+		var result: Array[Rect2] = []
+		result.assign(legacy_frames.sean)
+		return result
+var tony_frames: Array[Rect2]:
+	get:
+		prepare_legacy_frames()
+		var result: Array[Rect2] = []
+		result.assign(legacy_frames.tony)
+		return result
+var toilet_frames: Array[Rect2]:
+	get:
+		prepare_legacy_frames()
+		var result: Array[Rect2] = []
+		result.assign(legacy_frames.toilet)
+		return result
+var legacy_frames: Dictionary = {}
 
-func _init() -> void:
+func prepare_legacy_frames() -> void:
+	# Production heroes use registered manifests; only legacy preview consumers need atlas scans.
+	if not legacy_frames.is_empty(): return
+	legacy_frames = {"sean":[],"tony":[],"toilet":[]}
+
 	var image := SEAN.get_image()
 	for area in SEAN_AREAS:
-		sean_frames.append(opaque_region(image, area))
-	tony_frames = atlas_regions(TONY, 4, 2)
-	toilet_frames = atlas_regions(TOILET, 2, 2)
+		legacy_frames.sean.append(opaque_region(image, area))
+	legacy_frames.tony = atlas_regions(TONY, 4, 2)
+	legacy_frames.toilet = atlas_regions(TOILET, 2, 2)
 
 func atlas_regions(texture: Texture2D, columns: int, rows: int) -> Array[Rect2]:
 	var result: Array[Rect2] = []
@@ -96,7 +116,7 @@ func draw_room(game: Node2D) -> void:
 		game.box(x + 213, 239, 2, 2, game.GOLD)
 		game.label_at([game.Crew.COMPANY_NAME, "02 / PRESSURE WORKS", "03 / MAINTENANCE →"][index],
 			Vector2(x + 12, 223), 10 if index == 0 else 12, game.MINT)
-		game.label_at(["NO JOB TOO SHITTY.", "CAUTION: BAD PRESSURE", "KEEP THE EXIT CLEAR"][index],
+		game.label_at(["NO JOB TOO @#$%.", "CAUTION: BAD PRESSURE", "KEEP THE EXIT CLEAR"][index],
 			Vector2(x + 12, 239), 11, game.GOLD)
 	game.box(0, 440, int(game.WORLD_WIDTH), 100, Color("101d25"))
 	game.box(0, 440, int(game.WORLD_WIDTH), 3, Color("aac1b1"))

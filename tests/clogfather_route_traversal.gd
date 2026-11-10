@@ -20,17 +20,17 @@ func prepare(mode: String, hero: int) -> Node2D:
 	game.dialogue.release_guard = 0
 	game.dispenser.cancel()
 	# This fixture starts after the prior fight; it does not claim to defeat Skitterling.
-	game.respawn_origin = 4650
+	game.respawn_origin = 7650
 	game.reset_observation()
 	game.skitterling.restore_completed()
 	game.skitterling.clear_prior(game)
 	game.checkpoint_active = true
 	game.checkpoint_index = 0
-	game.respawn_point = Vector2(4650,394)
+	game.respawn_point = Vector2(7650,394)
 	game.player = Vector2(START,394)
 	game.velocity = Vector2.ZERO
 	game.camera_x = START-320
-	game.route_progress = START
+	game.campaign.expire(START)
 	game.grounded = true
 	return game
 
@@ -56,6 +56,9 @@ func travel(game: Node2D, direction: int, hz: int) -> int:
 		else:
 			Input.action_press("shoot")
 		if game.grounded:
+			for pit in game.campaign.level.pits:
+				var gap: float = pit.x-game.player.x-game.PLAYER_SIZE.x if direction > 0 else game.player.x-pit.y
+				if gap >= -1 and gap <= 15: game.jump_buffer = 0.14
 			for solid: Rect2 in game.trial_level.plinths:
 				var gap: float = solid.position.x-(game.player.x+26) if direction > 0 else game.player.x-solid.end.x
 				if gap >= -0.01 and gap < 70 and solid.position.y < game.player.y+46:
@@ -78,22 +81,30 @@ func run_checks() -> void:
 		for hero in [0,1]:
 			for hz in [60,120]:
 				var game := prepare(mode,hero)
-				for solid in Route.SOLIDS: assert(game.player_shot_solids().has(solid))
-				for ledge in Route.LEDGES: assert(not game.player_shot_solids().has(ledge))
+				# Registered props use material pieces; old rectangular envelopes are not colliders.
+				for section in game.campaign.contract.sections:
+					for item in section.geometry:
+						if item.kind == "solid":
+							var pieces: Array = game.campaign.level.platforms.colliders(item.id) \
+								if game.campaign.level.platforms.placements.has(item.id) else [Rect2(item.rect[0],item.rect[1],item.rect[2],item.rect[3])]
+							for piece in pieces: assert(game.player_shot_solids().has(piece))
+				for ledge in game.trial_level.decks: assert(not game.player_shot_solids().has(ledge))
 				var contacts := travel(game,1,hz)
 				assert(game.checkpoint_index == 1 and game.respawn_point.x == Route.CHECKPOINT)
 				assert(game.skitterling.released and game.skitterling.encounter.exit_open)
 				var admitted := 0
-				for id in game.route_admitted:
-					if id.begins_with("clog-approach-"): admitted += 1
-				assert(admitted > 0 and game.wave_spawned[4] == admitted,"Extension role events did not admit")
 				var swarm_count := 0
-				for slot in Route.SWARMS:
-					var entry: Dictionary = game.swarm_schedule.ledger[slot.id]
-					assert(entry.issued and entry.visible,"New swarm was not encountered: "+slot.id)
-					swarm_count += 1
+				for event in game.campaign.specs:
+					if event.section_id != "1.5": continue
+					if game.ledger[event.id] in ["warning","active","retired","killed"]:
+						admitted += 1
+						if event.role == "swarm": swarm_count += 1
+				assert(admitted > 0,"Continuation admitted no campaign opportunities")
+				var settled: Dictionary = game.ledger.duplicate(true)
 				contacts += travel(game,-1,hz)
 				assert(game.checkpoint_index == 1,"Reverse traversal regressed checkpoint")
+				for id in settled:
+					if settled[id] != "pending": assert(game.ledger[id] != "pending","Backtrack reopened a finite opportunity")
 				print("ROUTE ",JSON.stringify({"mode":mode,"hero":hero,"hz":hz,
 					"admitted":admitted,"swarms":swarm_count,"contacts":contacts,"reverse_x":game.player.x}))
 				for action in ["left","right","shoot"]: Input.action_release(action)

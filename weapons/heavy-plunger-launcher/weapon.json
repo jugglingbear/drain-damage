@@ -78,7 +78,21 @@
     "grounded_down_input": "Down plus left/right aims diagonally down on ground; only straight down requires airborne state. Down alone on ground falls back to horizontal facing.",
     "vector_rule": "Normalize diagonal direction so projectile speed and cumulative travel range match cardinal shots",
     "range_rule": "Keep existing max_travel_distance_pixels in every direction",
-    "input_note": "Preserve keyboard and controller support. Resolve existing up-to-jump binding conflict so aiming up does not unintentionally jump.",
+    "input_note": "W/up aims without jumping; Space/controller A jumps. Z/LB and V/RB hold stationary up-left and up-right aim.",
+    "stationary_diagonal_controls": {
+      "up_left": {
+        "keyboard": "Z",
+        "gamepad": "LB"
+      },
+      "up_right": {
+        "keyboard": "V",
+        "gamepad": "RB"
+      },
+      "activation": "Hold; releasing restores ordinary movement and aiming inputs",
+      "movement": "Stops ordinary horizontal movement immediately, including held stick/direction input; does not cancel Tony special water recoil",
+      "precedence": "Stationary diagonal overrides directional aim while held; if both are held, most recent press sets facing and diagonal",
+      "escape": "Each fresh press is a gameplay escape input; held inputs do not repeat"
+    },
     "art_note": "Directional held-weapon/hero poses require Bestiary / Art collaboration before new artwork is created",
     "visual_aim": {
       "status": "Approved correction; Engineering integration pending",
@@ -105,9 +119,8 @@
     "contract": "design/starter-specials-v1/mechanics.json",
     "uses_per_hero_per_logical_level": 2,
     "duration_seconds": 7.5,
-    "damage_per_tick": 12,
-    "tick_interval_seconds": 0.2,
-    "boss_damage_cap_per_activation": 250,
+    "damage_per_tick": 24,
+    "tick_interval_seconds": 0.1,
     "range": "Current viewport edge along visible water, blocked by solid scenery",
     "input": {
       "keyboard": "K",
@@ -115,6 +128,9 @@
       "trigger": "fresh press"
     },
     "budget": "No refill on death, checkpoint, retry, subsection or boss; initialize on new run or first entry to logical level",
-    "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending"
+    "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending",
+    "boss_damage_per_tick": 12,
+    "boss_sustained_damage_per_second": 120,
+    "boss_damage_rules": "No total cap; existing vulnerability and weak-point gates apply"
   }
 }

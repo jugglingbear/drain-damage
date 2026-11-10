@@ -1,0 +1,284 @@
+{
+  "date": "2026-11-05",
+  "status": "Assets and Mechanics-reviewed timing contract ready for Art package and Engineering integration.",
+  "brief": "Starter activation cinematic: Tony cranks a heavy water weapon then it trembles with trapped pressure. Short mechanical crank and escalating hardware chatter from retained CC0 metal/water recordings. Do not sound the full discharge until gameplay handoff. Sean reuses approved suction/strain/break cues. No dialogue or new damage timing.",
+  "sources": {
+    "metal": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_light_001.ogg",
+      "sha256": "fba69c467ddd85da7b1d82e259f936b876d9ba6a3d6f1b24bdd10468e46bfe08",
+      "source_manifest": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    },
+    "heavy": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_heavy_002.ogg",
+      "sha256": "b914c8f1eb7c0f34bb165d7c77f4be0351f6be0660c13c53e65424e262e2c093",
+      "source_manifest": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    },
+    "water": {
+      "path": "audio/sources/player-death-flush-v1/toilet_01.ogg",
+      "sha256": "502393b0cf4ef7be08eee5955d0c451e42f9b192b181fecd1f28ada0329c2257",
+      "source_manifest": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    }
+  },
+  "processing": [
+    {
+      "source": "metal",
+      "filters": "aresample=44100,asetrate=37485,aresample=44100,highpass=f=300,lowpass=f=6500",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=140,lowpass=f=5000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=500,lowpass=f=3800",
+      "leading_trim_samples": 7331
+    }
+  ],
+  "outputs": [
+    {
+      "id": "DD-S0202.1",
+      "cue": "tony-crank",
+      "gain_db": -5,
+      "loop": false,
+      "path": "audio/alternatives/DD-S0202/DD-S0202.1.wav",
+      "duration_seconds": 1.2,
+      "peak_dbfs": -14.0,
+      "sha256": "9518c033b14b01fa8aa5e142c65dbb46142c70fafa5e8d6a8cc107a8029fe08c"
+    },
+    {
+      "id": "DD-S0203.1",
+      "cue": "tony-pressure",
+      "gain_db": -5,
+      "loop": false,
+      "path": "audio/alternatives/DD-S0203/DD-S0203.1.wav",
+      "duration_seconds": 1.0,
+      "peak_dbfs": -14.0,
+      "sha256": "918f9cbc4aca5b51cd0c7503c2d97c4fd178a74fef9fd061e8da21e14a54226f"
+    }
+  ],
+  "recipe": "audio/sources/starter-cinematic-v1/render.py",
+  "runtime_owner": "Engineering",
+  "package_owner": "Art",
+  "listening": "Technical validation only; subjective mix pending.",
+  "reuse": {
+    "tony-start": {
+      "path": "assets/audio/sfx/starter-specials-v1/tony-start.wav",
+      "selected_candidate": "DD-S0126.4",
+      "slot_key": "proposed-starter-specials/tony-start",
+      "label": "Pressure startup",
+      "group": "Tony Hydrojet Overdrive",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0126/DD-S0126.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "742d1558ea38d659473db9c31641dda4cf95df51c58b5ef316f1c4003904556d",
+      "duration_seconds": 0.35
+    },
+    "tony-core": {
+      "path": "assets/audio/sfx/starter-specials-v1/tony-core.wav",
+      "selected_candidate": "DD-S0127.4",
+      "slot_key": "proposed-starter-specials/tony-core",
+      "label": "Sustained core \u2014 loop-ready",
+      "group": "Tony Hydrojet Overdrive",
+      "gain_db": -8,
+      "loop": true,
+      "source": "audio/alternatives/DD-S0127/DD-S0127.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "6ac572b3e670d10a07dff88cc0c8e098138fd1728c599c01eef88a9c1f870320",
+      "duration_seconds": 3.0
+    },
+    "tony-stop": {
+      "path": "assets/audio/sfx/starter-specials-v1/tony-stop.wav",
+      "selected_candidate": "DD-S0128.4",
+      "slot_key": "proposed-starter-specials/tony-stop",
+      "label": "Sputter / shutdown",
+      "group": "Tony Hydrojet Overdrive",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0128/DD-S0128.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "0f8358ee14794c525f3212b479dda23be124ee29771a9dbb566f2872a66a64ec",
+      "duration_seconds": 0.7
+    },
+    "sean-seal": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-seal.wav",
+      "selected_candidate": "DD-S0130.3",
+      "slot_key": "proposed-starter-specials/sean-seal",
+      "label": "Plant / seal",
+      "group": "Sean Main Break",
+      "gain_db": -3,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0130/DD-S0130.3.wav",
+      "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
+      "sha256": "d6f67a0a13efbd9217ba1d9608140c23a2c24e5b0291730835f32adeac6336e3",
+      "duration_seconds": 0.18
+    },
+    "sean-pull": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-pull.wav",
+      "selected_candidate": "DD-S0131.4",
+      "slot_key": "proposed-starter-specials/sean-pull",
+      "label": "Strained pull",
+      "group": "Sean Main Break",
+      "gain_db": -3,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0131/DD-S0131.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "8165ee9acf317b75de20c7b2c403bad6f829e60174ce9129d92c0bc16c448ec2",
+      "duration_seconds": 0.55
+    },
+    "sean-break": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-break.wav",
+      "selected_candidate": "DD-S0132.3",
+      "slot_key": "proposed-starter-specials/sean-break",
+      "label": "Pipe break / release",
+      "group": "Sean Main Break",
+      "gain_db": -3,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0132/DD-S0132.3.wav",
+      "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
+      "sha256": "29967a5ad13d4dd1dd393bd4656c6e86f9b248cf5af2f2a4ba571344ec0e47dd",
+      "duration_seconds": 0.24
+    },
+    "sean-hinge": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-hinge.wav",
+      "selected_candidate": "DD-S0140.3",
+      "slot_key": "proposed-starter-specials/sean-hinge",
+      "label": "Base hinge / metal strain",
+      "group": "Sean Main Break",
+      "gain_db": -2,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0140/DD-S0140.3.wav",
+      "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
+      "sha256": "ac8f5753487106223da30c302038016a13376eb6bb4b33107a747c23ddf5c72c",
+      "duration_seconds": 0.26
+    },
+    "sean-erupt": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-erupt.wav",
+      "selected_candidate": "DD-S0133.4",
+      "slot_key": "proposed-starter-specials/sean-erupt",
+      "label": "Vertical water eruption",
+      "group": "Sean Main Break",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0133/DD-S0133.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "6598b8085ed960bcbad8a84e6f7f61c417858e06d6cf2f800278ffe7749e5fa0",
+      "duration_seconds": 0.65
+    },
+    "sean-core": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-core.wav",
+      "selected_candidate": "DD-S0141.4",
+      "slot_key": "proposed-starter-specials/sean-core",
+      "label": "Following jet \u2014 loop-ready sustain",
+      "group": "Sean Main Break",
+      "gain_db": -8,
+      "loop": true,
+      "source": "audio/alternatives/DD-S0141/DD-S0141.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "122591f4667208c97866e85075125f60b3e5b75c19aa7a133470fee8cd015f40",
+      "duration_seconds": 3.0
+    },
+    "sean-stop": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-stop.wav",
+      "selected_candidate": "DD-S0135.4",
+      "slot_key": "proposed-starter-specials/sean-stop",
+      "label": "Sputtering pressure decay",
+      "group": "Sean Main Break",
+      "gain_db": -4,
+      "loop": false,
+      "source": "audio/alternatives/DD-S0135/DD-S0135.4.wav",
+      "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
+      "sha256": "e5394e140f9048ea041334a01954fb2d35dc54990f6e70267aa0ee78836c5110",
+      "duration_seconds": 1.5
+    }
+  },
+  "cinematic_timeline": {
+    "tony": {
+      "duration": 3.2,
+      "events": [
+        {
+          "time": 0.55,
+          "cue": "tony-crank"
+        },
+        {
+          "time": 1.75,
+          "cue": "tony-pressure"
+        }
+      ]
+    },
+    "sean": {
+      "duration": 3.4,
+      "events": [
+        {
+          "time": 1.0,
+          "cue": "sean-seal"
+        },
+        {
+          "time": 1.08,
+          "cue": "sean-pull"
+        },
+        {
+          "time": 1.78,
+          "cue": "sean-pull"
+        },
+        {
+          "time": 2.45,
+          "cue": "sean-break"
+        },
+        {
+          "time": 2.7,
+          "cue": "sean-hinge"
+        }
+      ]
+    }
+  },
+  "handoff_contract": {
+    "method": "Dedicated water-only entry; never begin+advance through preparation events.",
+    "tony": {
+      "action_elapsed": 0,
+      "remaining_seconds": 7.5,
+      "transient_at_handoff": "tony-start",
+      "loop_at_handoff": "tony-core",
+      "loop_offset_seconds": 0,
+      "loop_fade_in_seconds": 0.1,
+      "stop_event_after_handoff": 6.8,
+      "loop_end_after_handoff": 6.8
+    },
+    "sean": {
+      "action_elapsed": 1.0,
+      "remaining_seconds": 6.5,
+      "transient_at_handoff": "sean-erupt",
+      "loop_at_handoff": "sean-core",
+      "loop_offset_seconds": 0,
+      "loop_fade_in_seconds": 0.1,
+      "hinge_event_after_handoff": 0.5,
+      "stop_event_after_handoff": 5.0,
+      "loop_end_after_handoff": 5.1,
+      "damage": "First scheduled water tick at action elapsed1.0 once on first resumed simulation step; no pre-water damage.",
+      "hinge_distinction": "Cinematic hinge at2.70 accompanies pipe extraction; gameplay hinge0.5 after handoff marks tipping at action1.5.",
+      "stop_cue_duration_seconds": 1.5,
+      "stop_tail_end_after_handoff": 6.5,
+      "shutdown_overlap_note": "Stop/sputter starts at +5.0 and runs 1.5s through +6.5. Core fades out by +5.1; 0.1s overlap. Do not stop the transient when core stops; final 1.4s uses the decaying sputter tail."
+    },
+    "lifecycle": [
+      "Cinematic cues use cinematic elapsed, independent of frozen world time.",
+      "Do not start water during cinematic. Stop preparation voices at handoff, then dispatch water entry exactly once.",
+      "No skip/short-repeat in first delivery. No catchup replay of obsolete preparation cues.",
+      "Pause/focus loss freezes cinematic and audio at current offset; resume from same offset.",
+      "Death/retry/scene exit stops cues and restores mix; no refund.",
+      "Two bounded transient voices plus one water loop. Crossing event thresholds dispatches once, not every frame.",
+      "Music duck proposal -4 dB during cinematic; combine with combat duck using minimum, never add them.",
+      "Restore prior music duck ownership on handoff/cancel; do not reset user music volume/mute.",
+      "Muted cinematic events are consumed, not queued for unmute."
+    ],
+    "approved_asset_gains": "Reuse gain_db values; new crank/pressure -5 dB. Mix listening pending."
+  }
+}

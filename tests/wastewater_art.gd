@@ -36,6 +36,26 @@ func _initialize() -> void:
 	var early: Array = renderer.commands(0, 10)
 	assert(early != renderer.commands(0, 11), "Water and debris must animate")
 	assert(renderer.commands(14150, 10) == renderer.commands(14150, 11), "Terminal must be motionless")
+	var exclusions: Array[Vector2] = [Vector2(1020, 1187.08943), Vector2(13320, 13487.08943)]
+	for camera in [900.0, 13000.0]:
+		for clock in [0.0, 10.0, 23.5]:
+			var original := renderer.commands(camera, clock)
+			var clipped := renderer.commands(camera, clock, false, exclusions)
+			for command: Dictionary in clipped:
+				if command.id != "water-a" and command.id not in renderer.debris_ids:
+					assert(command in original, "Dry pipe interior and rims must remain unchanged")
+					continue
+				for interval: Vector2 in exclusions:
+					assert(command.rect.end.x <= interval.x or command.rect.position.x >= interval.y,
+						"Water and floating debris must not render behind outlet")
+	# Cropping a mirrored tile must retain the correct source edge.
+	var tile: Array[Dictionary] = [{"id":"water-a", "rect":Rect2(0,464,100,56),
+		"source":Rect2(200,0,200,56), "flip":true, "alpha":1.0}]
+	var cut: Array[Vector2] = [Vector2(40,60)]
+	var pieces := renderer._exclude_water(tile, cut)
+	assert(pieces.size() == 2)
+	assert(pieces[0].source == Rect2(320,0,80,56))
+	assert(pieces[1].source == Rect2(200,0,80,56))
 	var plug_width := 0.0
 	for command: Dictionary in renderer.commands(14150, 10):
 		if command.id == "plug":

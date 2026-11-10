@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-05",
+  "status": "Sean approved three rat voices; assets delivered, Engineering runtime/build pending",
+  "source_manifest": "audio/sources/skitterling-living-insect-v6/manifest.json",
+  "cues": [
+    {
+      "event": "rat_assembly",
+      "path": "assets/audio/sfx/skitterling-rat-recorded-v4/rat_assembly.wav",
+      "source_candidate": "DD-S0016.7",
+      "slot_candidate": "DD-S0016.7",
+      "gain_db": -4,
+      "sha256": "703a366d695e95ba9ce0bd45f862f88498dc08fd7544906891e86cb0fdf0697f",
+      "loop": false
+    },
+    {
+      "event": "rat_rush_warning",
+      "path": "assets/audio/sfx/skitterling-rat-recorded-v4/rat_rush_warning.wav",
+      "source_candidate": "DD-S0016.8",
+      "slot_candidate": "DD-S0036.1",
+      "gain_db": -4,
+      "sha256": "a50f5e1c2a8fe44fb2c06112dea9af3468478986b044b62cb48fcf0e894eeeed",
+      "loop": false
+    },
+    {
+      "event": "rat_pounce_warning",
+      "path": "assets/audio/sfx/skitterling-rat-recorded-v4/rat_pounce_warning.wav",
+      "source_candidate": "DD-S0016.9",
+      "slot_candidate": "DD-S0033.1",
+      "gain_db": -4,
+      "sha256": "ae15907def2c1b66017241238966cf846cc79f80cffdb22640a9ab98bd9f7eba",
+      "loop": false
+    }
+  ],
+  "plan": [
+    "Living chitter on rat formation; omit previous shriek/assembly layer for this event.",
+    "Wet mandible churn on charge warning; pulsating brood on pounce warning.",
+    "One warning voice; attack onset terminates warning with a short fade if supported. Never delay attack timing.",
+    "Original samples retain full duration for audition; gameplay may bound playback to the warning window.",
+    "Do not add a constant voice loop. Keep pause/mute/reset/disposal and existing bed ducking.",
+    "Alligator changes are separate auditions, not selected for runtime."
+  ]
+}

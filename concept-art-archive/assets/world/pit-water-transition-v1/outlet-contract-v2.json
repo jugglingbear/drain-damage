@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "status": "Art dimensions registered; runtime compositing review pending",
+  "supersedes": "manifest.json right_outlet only; left spill and hatch unchanged",
+  "path": "assets/world/pit-water-transition-v1/outlet-source-v1.png",
+  "source_rect": [
+    0,
+    0,
+    793,
+    1983
+  ],
+  "source_anchor": [
+    649.5,
+    231
+  ],
+  "uniform_scale": 0.22764227642276422,
+  "destination": [
+    -147.85365853658536,
+    -52.58536585365854,
+    180.520325203252,
+    451.4146341463414
+  ],
+  "origin": "[pit_right + 154, 492]",
+  "clip_world_y": [
+    440,
+    540
+  ],
+  "mouth_aperture_source": [
+    592,
+    108,
+    115,
+    246
+  ],
+  "mouth_aperture_height_px": 56,
+  "mouth_top_world_y": 464,
+  "mouth_bottom_world_y": 520,
+  "alpha_cutoff": 240,
+  "placement": "Full source left edge is pit_right+6.15. Keep enlarged elbow entirely downstream of pit right wall; never leave old+8 mouth origin which would cover the gap. Backing/riser seated in solid right bank, extends below viewport.",
+  "discharge": {
+    "reuse_manifest": "assets/world/wastewater-cutaway/manifest-v1.json",
+    "reuse_asset": "water-a",
+    "full_channel_depth_px": 56,
+    "origin_relative_to_mouth": [
+      -13.0894308943,
+      -28
+    ],
+    "logical_envelope": [
+      -13.0894308943,
+      -28,
+      96,
+      56
+    ],
+    "water_surface": "520 - 56 * right.water",
+    "water_bottom": 520,
+    "aperture_clip_end_x": 13.0894308943,
+    "mask": "Ellipse clipping only while inside mouth. Continue immediately at aperture right edge, same worldY and phase. Draw front rim after discharge.",
+    "animation": "Continuous existing rightward water transport; sourceV maps full56px channel. End overlaps downstream water and feathers final8px. No fourteen-pixel jet.",
+    "partial_water": "Pipe metal stays fixed at full bore; water fills only below sampled surface. Never shrink or vertically chase water level with pipe.",
+    "visibility": "No discharge when dry/fully clogged; pipe may remain as inert installed hardware per runtime lifecycle."
+  },
+  "acceptance": [
+    "56px full aperture aligned464..520",
+    "No water over outer metal",
+    "No upward spill through floor440",
+    "Central pit remains open and dark",
+    "Water-level changes do not move metal",
+    "No blank seam at mouth exit"
+  ],
+  "source_preservation": "Original source and v1 manifest unchanged; no new raster required"
+}

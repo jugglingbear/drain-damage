@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "status": "Art source inspected; transition from active mesh and supported runtime review pending",
+  "path": "assets/specials/starter-v1/spent-pipe-collapse-v1.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "uniform_scale": 0.1787709497206704,
+  "alpha_cutoff": 240,
+  "source_facing": "right",
+  "origin": "Existing fixed pipe floor anchor; mirrorX about anchor for facing-1.",
+  "frames": [
+    {
+      "id": 0,
+      "source_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "source_anchor": [
+        190,
+        484
+      ],
+      "destination": [
+        -33.96648044692738,
+        -86.52513966480447,
+        91.53072625698324,
+        91.53072625698324
+      ],
+      "opaque_bounds_source": [
+        60,
+        126,
+        423,
+        484
+      ],
+      "opaque_bounds_relative": [
+        -23.24022346368715,
+        -64.0,
+        64.89385474860336,
+        64.0
+      ],
+      "ground_contact_relative": [
+        [
+          -23.0,
+          0
+        ],
+        [
+          23.0,
+          0
+        ]
+      ],
+      "duration_seconds": 0.12
+    },
+    {
+      "id": 1,
+      "source_rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "source_anchor": [
+        160,
+        484
+      ],
+      "destination": [
+        -28.603351955307264,
+        -86.52513966480447,
+        91.53072625698324,
+        91.53072625698324
+      ],
+      "opaque_bounds_source": [
+        29,
+        200,
+        421,
+        484
+      ],
+      "opaque_bounds_relative": [
+        -23.418994413407823,
+        -50.770949720670394,
+        70.07821229050279,
+        50.770949720670394
+      ],
+      "ground_contact_relative": [
+        [
+          -23.0,
+          0
+        ],
+        [
+          23.0,
+          0
+        ]
+      ],
+      "duration_seconds": 0.12
+    },
+    {
+      "id": 2,
+      "source_rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "source_anchor": [
+        160,
+        484
+      ],
+      "destination": [
+        -28.603351955307264,
+        -86.52513966480447,
+        91.53072625698324,
+        91.53072625698324
+      ],
+      "opaque_bounds_source": [
+        30,
+        255,
+        424,
+        484
+      ],
+      "opaque_bounds_relative": [
+        -23.24022346368715,
+        -40.93854748603352,
+        70.43575418994413,
+        40.93854748603352
+      ],
+      "ground_contact_relative": [
+        [
+          -23.0,
+          0
+        ],
+        [
+          23.0,
+          0
+        ]
+      ],
+      "duration_seconds": 0.12
+    },
+    {
+      "id": 3,
+      "source_rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "source_anchor": [
+        190,
+        452
+      ],
+      "destination": [
+        -33.96648044692738,
+        -80.80446927374302,
+        91.53072625698324,
+        91.53072625698324
+      ],
+      "opaque_bounds_source": [
+        61,
+        234,
+        452,
+        452
+      ],
+      "opaque_bounds_relative": [
+        -23.061452513966483,
+        -38.97206703910614,
+        69.89944134078212,
+        38.97206703910614
+      ],
+      "ground_contact_relative": [
+        [
+          -23.0,
+          0
+        ],
+        [
+          23.0,
+          0
+        ]
+      ],
+      "duration_seconds": 0.12
+    },
+    {
+      "id": 4,
+      "source_rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "source_anchor": [
+        160,
+        452
+      ],
+      "destination": [
+        -28.603351955307264,
+        -80.80446927374302,
+        91.53072625698324,
+        91.53072625698324
+      ],
+      "opaque_bounds_source": [
+        29,
+        278,
+        447,
+        452
+      ],
+      "opaque_bounds_relative": [
+        -23.418994413407823,
+        -31.10614525139665,
+        74.72625698324022,
+        31.10614525139665
+      ],
+      "ground_contact_relative": [
+        [
+          -23.0,
+          0
+        ],
+        [
+          23.0,
+          0
+        ]
+      ],
+      "duration_seconds": 0.15
+    },
+    {
+      "id": 5,
+      "source_rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "source_anchor": [
+        160,
+        452
+      ],
+      "destination": [
+        -28.603351955307264,
+        -80.80446927374302,
+        91.53072625698324,
+        91.53072625698324
+      ],
+      "opaque_bounds_source": [
+        29,
+        310,
+        460,
+        452
+      ],
+      "opaque_bounds_relative": [
+        -23.418994413407823,
+        -25.385474860335197,
+        77.05027932960894,
+        25.385474860335197
+      ],
+      "ground_contact_relative": [
+        [
+          -23.0,
+          0
+        ],
+        [
+          23.0,
+          0
+        ]
+      ],
+      "duration_seconds": 0
+    }
+  ],
+  "sequence": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "settled_frame": 5,
+  "collapse_seconds": 0.63,
+  "trigger": "Only after water fully ends; preserve active special blast and damage timeline.",
+  "handoff": {
+    "seconds": 0.12,
+    "method": "During first phase blend existing final active assembly to frame0 at same floor anchor. Never snap or shift collar. Full new frames include base collar; fade old collar with old assembly to avoid doubled base.",
+    "constraint": "Generated frame0 matches material/scale but not exact active mesh silhouette. Verify both facings in motion; if blend reads as pop, extend authored transition rather than shrink or floor-clip metal.",
+    "timing": "Separate0.12s handoff precedes0.63s authored sequence; no overlap."
+  },
+  "interpolation": "Blend adjacent authored phases over their duration with eased weight; one-way progression, no ping-pong, no uniform or nonuniform shrinking. Final frame remains opaque.",
+  "support": {
+    "required_contact_interval": [
+      -23,
+      23
+    ],
+    "existing_supported_footprint": [
+      -32,
+      32
+    ],
+    "note": "Collar remains planted within existing64px footprint. Flattened outlet projects to about+54px as connected cantilever above ground; do not invent collision under projection.",
+    "ledge_rule": "Keep original outlet facing through handoff. If overhang intersects adjacent solid or fails ledge support review, flag placement or animate a continuous articulated turn/fall; never crossfade directly to opposite facing, move anchor or widen gameplay platform.",
+    "final_visible_height_px": 25.385474860335197,
+    "final_opaque_width_px": 77.05027932960894
+  },
+  "lifecycle": "Advance cosmetic spent animation independently of active ability; freeze with gameplay pause/dialogue. Preserve existing death/retry/level cleanup. No collision, damage, charge refunds or additional blasts.",
+  "preserved": "pipe-components-v1/v2, pipe-manifest-v2 and all active action/water sources unchanged",
+  "acceptance": [
+    "Active-to-spent blend no pose pop",
+    "Both facings collar fixed",
+    "Final approximately25px height",
+    "No floor slicing or stretched texture",
+    "Raised-platform contact/overhang",
+    "Pause/retry cleanup"
+  ],
+  "total_post_water_seconds": 0.75
+}

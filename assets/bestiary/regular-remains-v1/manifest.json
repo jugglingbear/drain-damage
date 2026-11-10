@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "status": "Source inspected and registered; runtime grounding and motion review pending",
+  "owner": "Art",
+  "runtime_owner": "Engineering",
+  "alpha_cutoff": 240,
+  "coordinate_system": "Destinations relative to actual support/contact anchor unless explicitly airborne; uniform scales only.",
+  "angel": {
+    "frames": [
+      {
+        "id": 0,
+        "path": "assets/bestiary/regular-remains-v1/angel-death-v1.png",
+        "source_rect": [
+          0,
+          0,
+          724,
+          724
+        ],
+        "source_anchor": [
+          380,
+          390
+        ],
+        "destination": [
+          -38.0,
+          -39.0,
+          72.4,
+          72.4
+        ],
+        "kind": "airborne_dead"
+      },
+      {
+        "id": 1,
+        "path": "assets/bestiary/regular-remains-v1/angel-death-v1.png",
+        "source_rect": [
+          724,
+          0,
+          724,
+          724
+        ],
+        "source_anchor": [
+          370,
+          586
+        ],
+        "destination": [
+          -37.0,
+          -58.6,
+          72.4,
+          72.4
+        ],
+        "kind": "landing"
+      },
+      {
+        "id": 2,
+        "path": "assets/bestiary/regular-remains-v1/angel-death-v1.png",
+        "source_rect": [
+          1448,
+          0,
+          724,
+          724
+        ],
+        "source_anchor": [
+          370,
+          585
+        ],
+        "destination": [
+          -37.0,
+          -58.5,
+          72.4,
+          72.4
+        ],
+        "kind": "settled"
+      }
+    ],
+    "source_scale": 0.1,
+    "role_scale": "Apply existing actor visual multiplier once, currently2x. Compare body mass at death transition; do not fit each frame separately.",
+    "death": "Immediately stop flight loop/attacks. Use frame0 dark eyes/limp wings during gravity fall, translated from current body center. On actual support contact use frame1 for.12s then frame2 permanently.",
+    "landing_registration": "Airborne anchor is body center; ground anchors are lowest opaque support. Reconcile body center through landing, no jump between origins.",
+    "remains": "Curled legs, collapsed white wings, dark eyes, fallen halo. No airborne frozen corpse; fall through pits if no support."
+  },
+  "gratecrawler": {
+    "reuse_frame": {
+      "id": 7,
+      "path": "assets/bestiary/opening-trial/gratecrawler-v1.png",
+      "source_rect": [
+        1130,
+        512,
+        406,
+        512
+      ],
+      "destination": [
+        20.18,
+        18.64,
+        52.78,
+        66.56
+      ],
+      "anchor": [
+        48,
+        80
+      ],
+      "duration_seconds": 0.12
+    },
+    "origin": "Existing logical hero-style canvas: world feet minus[48,80], with same actor scale.",
+    "death": "Keep existing hurt/collapse lead-in then hold authored frame7 sludge-and-grate permanently; remove global alpha fade.",
+    "remains": "Actual collapsed sludge with fallen grate, not crouching living frame. Preserve existing registered baseline and role scale."
+  },
+  "sewer_swarm": {
+    "frames": [
+      {
+        "id": 0,
+        "path": "assets/bestiary/regular-remains-v1/dead-flies-v1.png",
+        "source_rect": [
+          0,
+          0,
+          724,
+          724
+        ],
+        "source_anchor": [
+          357.0,
+          578
+        ],
+        "destination": [
+          -42.839999999999996,
+          -69.36,
+          86.88,
+          86.88
+        ],
+        "opaque_width_px": 65.52,
+        "opaque_height_px": 15.12
+      },
+      {
+        "id": 1,
+        "path": "assets/bestiary/regular-remains-v1/dead-flies-v1.png",
+        "source_rect": [
+          724,
+          0,
+          724,
+          724
+        ],
+        "source_anchor": [
+          361.0,
+          579
+        ],
+        "destination": [
+          -43.32,
+          -69.48,
+          86.88,
+          86.88
+        ],
+        "opaque_width_px": 67.2,
+        "opaque_height_px": 13.799999999999999
+      },
+      {
+        "id": 2,
+        "path": "assets/bestiary/regular-remains-v1/dead-flies-v1.png",
+        "source_rect": [
+          1448,
+          0,
+          724,
+          724
+        ],
+        "source_anchor": [
+          364.5,
+          582
+        ],
+        "destination": [
+          -43.739999999999995,
+          -69.84,
+          86.88,
+          86.88
+        ],
+        "opaque_width_px": 65.16,
+        "opaque_height_px": 12.48
+      }
+    ],
+    "source_scale": 0.12,
+    "role_scale": "Already final logical size: about65px wide\u00d714px tall per cluster; do not multiply by living swarm128px footprint.",
+    "death": "Existing dispersal may run; transfer dead flies into gravity fall. On actual supporting ground show one seeded cluster variant, optionally2spaced clusters across prior swarm footprint.",
+    "remains": "Settled side/back bodies with curled legs and collapsed pale wings, no hover animation or oscillation. Maintain world position/support.",
+    "fall_registration": "Do not instantly teleport airborne death to floor; individual dead components or descending cluster must visibly bridge death-to-contact."
+  },
+  "shared": {
+    "lifecycle": "Persist using toilet-remains world lifecycle independent of removed combat actor. Clear on level reset, not0.6s death timer.",
+    "physics": "Harmless, no collision or platform support for hero, no attacks. Ground on actual existing platform/top surface; never leave floating wrecks.",
+    "support_loss": "If support is removed, fall again; never hover. If death occurs over pit, retain visible fall then cull below view.",
+    "bounds": "Use opaque extents; respect ledge support and avoid drawing through solids.",
+    "scope": "Regular Level1 creatures. Any scrolling Level2.1 exception is a separate runtime decision."
+  },
+  "validation": [
+    "Original sources visually inspected",
+    "New corpse sources visibly dead",
+    "Source bounds and uniform destinations checked"
+  ],
+  "acceptance_gaps": [
+    "Actual landing/surface contact",
+    "Live-to-dead scale match",
+    "Persistence after actor removal",
+    "Continuous fall and settle",
+    "Readability at960x540"
+  ]
+}

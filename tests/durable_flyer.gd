@@ -46,6 +46,9 @@ func prepare(game: Node, direction: int = -1) -> Dictionary:
 	assert(game.trial_state.activate(event.id))
 	game.create_actor(event,Vector2(1000 if direction < 0 else 900,250))
 	var actor: Dictionary = game.actors[0]
+	# This fixture starts after the authored arrival, at its actual home.
+	actor.erase("entry")
+	actor.feet = actor.home
 	actor.active = true
 	actor.facing = direction
 	return actor

@@ -28,6 +28,7 @@
     "gamepad_b_context": "Dialogue/menu B behavior stays; release before gameplay special can activate",
     "empty": "No action or spend; optional short feedback only on fresh press",
     "normal_fire": "Suppressed during active special",
+    "stationary_diagonal_aim": "Hold Z/LB for up-left or V/RB for up-right. Tony can steer his active jet with these controls; recoil remains. Sean retains his activation-facing lock.",
     "unsupported_mode": "Reject activation without spending; retain logical-level budget for supported combat."
   },
   "lifecycle": {
@@ -62,16 +63,14 @@
     }
   },
   "initial_tuning": {
-    "status": "Mechanics-selected initial values. Tony updated for requested 3\u20134x active regular sustained DPS; Sean unchanged.",
-    "damage_per_tick": 12,
-    "tick_interval_seconds": 0.2,
-    "maximum_damage_per_boss_per_activation": 250,
-    "boss_budget_key": "Stable encounter identity across phase/form changes",
-    "boss_rules": "Respect existing invulnerability, weak-point and phase transition gates; cap counts actual applied damage",
+    "status": "Sean approved 240 DPS against regular enemies and 120 DPS against bosses, with no total boss damage cap.",
+    "damage_per_tick": 24,
+    "tick_interval_seconds": 0.1,
+    "boss_rules": "Respect existing invulnerability, weak-point and phase transition gates; no total damage cap. Track actual applied damage as telemetry only.",
     "enemy_rules": "At most one tick per enemy per interval across all stream pieces; no frame-rate or multi-segment multiplication",
     "recoil_horizontal_pixels_per_second": 30,
     "tony_jet_thickness_pixels": 52,
-    "default_damage_scope": "Sean Main Break only; Tony uses the explicit per-hero override below.",
+    "default_damage_scope": "Both starter specials; explicit per-hero values below match these defaults.",
     "hero_overrides": {
       "tony": {
         "damage_per_tick": 24,
@@ -81,15 +80,21 @@
         "active_regular_interval_seconds": 0.16,
         "active_regular_sustained_damage_per_second": 75,
         "special_to_regular_ratio": 3.2,
-        "comparison": "Current First Call profile, not legacy canonical 6 damage / 0.15 seconds. Assumes continuous overlap and an eligible target."
+        "comparison": "Current First Call profile, not legacy canonical 6 damage / 0.15 seconds. Assumes continuous overlap and an eligible target.",
+        "boss_damage_per_tick": 12,
+        "boss_sustained_damage_per_second": 120
       },
       "sean": {
-        "damage_per_tick": 12,
-        "tick_interval_seconds": 0.2,
-        "sustained_damage_per_second": 60,
-        "status": "Unchanged; Tony-only rebalance"
+        "damage_per_tick": 24,
+        "tick_interval_seconds": 0.1,
+        "sustained_damage_per_second": 240,
+        "status": "User-approved parity: 240 regular-enemy DPS and 120 boss DPS, uncapped",
+        "boss_damage_per_tick": 12,
+        "boss_sustained_damage_per_second": 120
       }
-    }
+    },
+    "boss_damage_per_tick": 12,
+    "boss_sustained_damage_per_second": 120
   },
   "geometry": {
     "damage": "Only actual visible water envelope can damage; no global screen damage",
@@ -146,11 +151,16 @@
       {
         "phase": "vertical",
         "start": 1,
-        "end": 3.25
+        "end": 1.5
       },
       {
         "phase": "tilt",
-        "start": 3.25,
+        "start": 1.5,
+        "end": 4.75
+      },
+      {
+        "phase": "horizontal",
+        "start": 4.75,
         "end": 6
       },
       {
@@ -185,10 +195,10 @@
     "Tony idle slide, half-speed counterwalk, aim reversal and jump stay collision-safe",
     "Sean unsupported activation rejected, stable world anchor, ceiling-to-horizontal sweep and sputter match visible water",
     "Visible-envelope-only damage and solid occlusion; stable results at30/60/120Hz",
-    "Boss damage cap survives form changes and respects closed weak points",
+    "Uncapped boss damage continues across form changes and respects closed weak points",
     "Current weapon icon and2/1/0 indicators preserve selected-hero HP/lives and approved themes",
     "Art reviews captured actual motion, contact, jet scale and crowded boss framing; Audio checks sustained loops and mix",
-    "Tony: release special and ordinary fire after activation; visible water keeps damaging at 24 per 0.1 seconds (240 sustained DPS) at 30/60/120Hz. Sean stays 12 per 0.2 seconds. Boss cap remains 250 actual damage per activation across forms."
+    "Tony: release special and ordinary fire after activation; visible water keeps damaging at 24 per 0.1 seconds (240 sustained DPS) at 30/60/120Hz. Sean also deals 24 per 0.1 seconds (240 sustained DPS). Bosses receive 12 per 0.1 seconds (120 DPS) with no total cap, respecting vulnerability gates."
   ],
   "runtime_interface": {
     "script": "scripts/starter_specials.gd",
@@ -211,7 +221,7 @@
       "end",
       "width"
     ],
-    "host_damage_callback": "special_damage(segments, amount, activation_id, boss_remaining) -> Dictionary; reports actual boss damage",
+    "host_damage_callback": "special_damage(segments, amount, activation_id, boss_tick_damage) -> Dictionary; reports actual boss damage for telemetry",
     "tuning_source": "Generated data/combat.json; canonical weapon metadata carries special settings. This design contract is documentation and is not required in the exported package."
   }
 }

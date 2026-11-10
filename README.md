@@ -26,7 +26,9 @@ See the [macOS installation guide](dist/v0.138.0/macos-universal/INSTALL.md) or
 been tested on native Windows hardware. The Mac app is ad-hoc signed; the Windows executable is unsigned.
 
 Choose Tony or Sean, then fight your way through the job. The in-game Controls screen covers keyboard and controller
-bindings. This is a work in progress, so expect rough edges and changing artwork, sound, and balance.
+bindings. Hold **Z / V** (keyboard) or **LB / RB** (controller) to aim up-left / up-right while standing still.
+Use **K / B** for the special attack, with two uses per level. This is a work in progress, so expect rough edges
+and changing artwork, sound, and balance.
 
 ## Behind the scenes
 

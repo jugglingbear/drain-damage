@@ -108,11 +108,27 @@ def discover() -> dict[str, dict[str, Any]]:
                 [cue["path"]], "data/level-two-ride.json#/audio")
             if "trigger" in cue:
                 slots[f"level-two-ride/{cue['event']}"]["trigger"] = cue["trigger"]
+    source = "scripts/level_two_ride_audio.gd"
+    ride_audio = (ROOT / source).read_text()
+    super_fart = re.search(
+        r'cues\["board_super_fart"\]\s*=\s*\{[^\n]*?"stream":load\("res://([^"\n]+)"\)', ride_audio)
+    if super_fart is None:
+        raise ValueError("Board-super runtime mapping changed; update its discovery adapter.")
+    add("proposed-board-super/fart", "Level 2", "Board super — huge cosmetic fart",
+        [super_fart[1]], source + ": board_super_fart")
     special_path = ROOT / "data/starter-special-audio.json"
     if special_path.exists():
         for cue in json.loads(special_path.read_text())["cues"].values():
             add(cue["slot_key"], SECTIONS[1], cue["label"], [cue["path"]],
                 "data/starter-special-audio.json#/cues")
+    action_path = ROOT / "data/creature-action-audio.json"
+    if action_path.exists():
+        names = {"devil-spider": "Cuddlebug", "spider": "Hallowed Widow", "toilet": "Flushfiend"}
+        for creature, cues in json.loads(action_path.read_text())["creatures"].items():
+            for event, cue in cues.items():
+                owner = names.get(creature, creature.title())
+                add(cue["slot_key"], "Level 1", f"{owner} — {event.replace('_', ' ')}",
+                    [cue["path"]], "data/creature-action-audio.json#/creatures")
     return slots
 
 

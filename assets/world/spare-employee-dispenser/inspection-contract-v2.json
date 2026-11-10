@@ -1,0 +1,1156 @@
+{
+  "status": "Source art and six costume registrations prepared; live healthy/injured motion review pending",
+  "machine_canvas": [
+    192,
+    192
+  ],
+  "machine_world_origin": "checkpointX-32,248",
+  "visible_cabinet": [
+    25.5,
+    27.6,
+    132.9,
+    164.4
+  ],
+  "holding_arm_mount": [
+    144,
+    95
+  ],
+  "inspection_arm_mount": [
+    26,
+    95
+  ],
+  "held_hero_feet": [
+    34,
+    105
+  ],
+  "inspection_lens_center": [
+    34,
+    47
+  ],
+  "hero_canvas": [
+    128,
+    128
+  ],
+  "hero_anchor": [
+    64,
+    104
+  ],
+  "hero_scale": "Preserve existing normal/Hard dispenser visual scale and identity",
+  "layers": [
+    "cabinet interior and sleeping stock",
+    "glass front",
+    "rear holding-arm segments",
+    "held hero",
+    "gripping fingers",
+    "inspection arm and transparent lens",
+    "diagnosis readout"
+  ],
+  "timing_seconds": {
+    "grab_lift": [
+      0,
+      0.8
+    ],
+    "inspection_arm_deploy": [
+      0.8,
+      1.2
+    ],
+    "inspect": [
+      1.2,
+      2
+    ],
+    "diagnosis_visible": [
+      2,
+      2.65
+    ],
+    "inspection_arm_retract": [
+      2.65,
+      2.9
+    ],
+    "compress_stage_one": [
+      2.9,
+      3.4
+    ],
+    "compress_stage_two": [
+      3.4,
+      3.9
+    ],
+    "throw_windup": [
+      3.9,
+      4.4
+    ],
+    "throw": [
+      4.4,
+      4.9
+    ],
+    "impact": [
+      4.9,
+      5.1
+    ],
+    "slide_vend": [
+      5.1,
+      6.6
+    ],
+    "emerge": [
+      6.6,
+      7.05
+    ],
+    "look_left": [
+      7.05,
+      7.35
+    ],
+    "look_right": [
+      7.35,
+      7.65
+    ],
+    "shrug": [
+      7.65,
+      8.05
+    ]
+  },
+  "release_seconds": 8.05,
+  "watchdog_seconds": 8.5,
+  "diagnosis": "Show actual arrival HP, green check for healthy or red X for injured; never substitute healed HP.",
+  "preserve": [
+    "Existing machine and magnifier/held anchors",
+    "Same intact healthy hero and costume on set-down",
+    "Actual arrival HP snapshot",
+    "Existing respawn path",
+    "Existing random safe screen impact and slide/vend",
+    "Both heroes in normal, easy and hard costumes",
+    "No extra life debit",
+    "Original sources and v1 contract retained"
+  ],
+  "motion": "Continuous articulated arm transforms with authored hand pose transitions; stable pivots and transparent lens; no two-state flipping",
+  "review_needed": "Both branches, both heroes/all costumes, readable verdict at960x540, grip continuity and actual motion.",
+  "parts": {
+    "holding_upper": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        0,
+        0,
+        720,
+        370
+      ],
+      "source_pivots": {
+        "mount": [
+          120,
+          220
+        ],
+        "elbow": [
+          620,
+          220
+        ]
+      },
+      "scale": 0.13,
+      "destination": [
+        0,
+        0,
+        93.60000000000001,
+        48.1
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "holding_fore": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        720,
+        0,
+        654,
+        370
+      ],
+      "source_pivots": {
+        "elbow": [
+          540,
+          220
+        ],
+        "wrist": [
+          55,
+          220
+        ]
+      },
+      "scale": 0.13,
+      "destination": [
+        0,
+        0,
+        85.02,
+        48.1
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "hand_open": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        0,
+        370,
+        720,
+        360
+      ],
+      "source_pivots": {
+        "wrist": [
+          610,
+          205
+        ],
+        "grip": [
+          220,
+          205
+        ]
+      },
+      "scale": 0.08,
+      "destination": [
+        0,
+        0,
+        57.6,
+        28.8
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "hand_grip": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        720,
+        370,
+        654,
+        360
+      ],
+      "source_pivots": {
+        "wrist": [
+          515,
+          210
+        ],
+        "grip": [
+          220,
+          210
+        ]
+      },
+      "scale": 0.08,
+      "destination": [
+        0,
+        0,
+        52.32,
+        28.8
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "inspection_segment": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        0,
+        730,
+        720,
+        415
+      ],
+      "source_pivots": {
+        "mount": [
+          105,
+          190
+        ],
+        "end": [
+          650,
+          190
+        ]
+      },
+      "scale": 0.075,
+      "destination": [
+        0,
+        0,
+        54.0,
+        31.125
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    },
+    "magnifier": {
+      "path": "assets/world/spare-employee-dispenser/inspection-parts-v1.png",
+      "source_rect": [
+        720,
+        730,
+        654,
+        415
+      ],
+      "source_pivots": {
+        "lens": [
+          250,
+          140
+        ],
+        "handle": [
+          515,
+          325
+        ]
+      },
+      "scale": 0.1,
+      "destination": [
+        0,
+        0,
+        65.4,
+        41.5
+      ],
+      "registration": "Pivots measured from source; articulated placement follows named endpoints, not destination origin"
+    }
+  },
+  "grip_center": [
+    34,
+    67
+  ],
+  "clearance_notes": "Lens raised from provisional34,65 to34,47 to inspect face above chest grip34,67. Held feet34,105. Upper/fore lengths65/63 support reach from mount144,95. Inspection uses two copies of thin segment with continuous elbow routing; scale may extend modestly to reach lens without crossing grip. Verify composition.",
+  "diagnosis_art": {
+    "status": "Reuse approved existing industrial plate and authored track/fill; no speech bubble or chibi",
+    "frame": {
+      "path": "assets/title/dripping-menu-v1.png",
+      "source_rect": [
+        0,
+        0,
+        2172,
+        362
+      ],
+      "destination": [
+        -42,
+        -32,
+        152,
+        44
+      ]
+    },
+    "track": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        325,
+        1932,
+        48
+      ],
+      "destination": [
+        -25,
+        -9,
+        118,
+        9
+      ]
+    },
+    "fill": {
+      "path": "assets/bestiary/the-clogfather/health-bar-v1.png",
+      "source_rect": [
+        120,
+        424,
+        1932,
+        48
+      ],
+      "destination": [
+        -25,
+        -9,
+        118,
+        9
+      ]
+    },
+    "aperture": [
+      -25,
+      -9,
+      118,
+      9
+    ],
+    "label_baseline": [
+      -25,
+      -13
+    ],
+    "text": "Actual pre-heal HP / maximum HP, live text",
+    "fraction": "Clamp pre_heal_hp / max_hp; never baked value",
+    "coordinate_space": "machine-local"
+  },
+  "hero_states": {
+    "normal": {
+      "tony": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            0,
+            0,
+            627,
+            627
+          ],
+          "destination": [
+            12.25,
+            13.100000000000009,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2,
+          "grip_anchor": [
+            64,
+            66
+          ]
+        },
+        "compress_stage_one": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            418,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            26.4635761589404,
+            17.443708609271525,
+            71.97350993377484,
+            77.48344370860927
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 52,
+          "source_visible_bounds": [
+            105,
+            131,
+            331,
+            433
+          ]
+        },
+        "compress_stage_two": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            33.72093023255814,
+            24.69767441860465,
+            58.325581395348834,
+            62.7906976744186
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            94,
+            167,
+            340,
+            425
+          ]
+        },
+        "throw_windup": {
+          "path": "assets/world/spare-employee-dispenser/tony-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            33.72093023255814,
+            24.69767441860465,
+            58.325581395348834,
+            62.7906976744186
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            94,
+            167,
+            340,
+            425
+          ]
+        }
+      },
+      "sean": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            627,
+            0,
+            627,
+            627
+          ],
+          "destination": [
+            18.325000000000003,
+            13.100000000000009,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2,
+          "grip_anchor": [
+            64,
+            66
+          ]
+        },
+        "compress_stage_one": {
+          "path": "assets/world/spare-employee-dispenser/sean-v3.png",
+          "source_rect": [
+            418,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            25.13978494623656,
+            11.483870967741936,
+            77.9068100358423,
+            82.93906810035843
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 52,
+          "source_visible_bounds": [
+            111,
+            153,
+            306,
+            432
+          ]
+        },
+        "compress_stage_two": {
+          "path": "assets/world/spare-employee-dispenser/sean-v3.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            31.379912663755455,
+            20.803493449781655,
+            65.7117903930131,
+            69.95633187772926
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            94,
+            173,
+            321,
+            402
+          ]
+        },
+        "throw_windup": {
+          "path": "assets/world/spare-employee-dispenser/sean-v3.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            31.379912663755455,
+            20.803493449781655,
+            65.7117903930131,
+            69.95633187772926
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            94,
+            173,
+            321,
+            402
+          ]
+        }
+      }
+    },
+    "hard": {
+      "tony": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            0,
+            627,
+            627,
+            627
+          ],
+          "destination": [
+            12.175000000000004,
+            16.400000000000006,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2,
+          "grip_anchor": [
+            64,
+            66
+          ]
+        },
+        "compress_stage_one": {
+          "path": "assets/sprites/hard-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            418,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            26.59800664451827,
+            17.19601328903655,
+            72.2126245847176,
+            77.74086378737542
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 52,
+          "source_visible_bounds": [
+            103,
+            132,
+            330,
+            433
+          ]
+        },
+        "compress_stage_two": {
+          "path": "assets/sprites/hard-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            34.161538461538456,
+            25.015384615384612,
+            57.87692307692308,
+            62.307692307692314
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            94,
+            166,
+            337,
+            426
+          ]
+        },
+        "throw_windup": {
+          "path": "assets/sprites/hard-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            450
+          ],
+          "destination": [
+            34.161538461538456,
+            25.015384615384612,
+            57.87692307692308,
+            62.307692307692314
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            94,
+            166,
+            337,
+            426
+          ]
+        }
+      },
+      "sean": {
+        "grab": {
+          "path": "assets/world/spare-employee-dispenser/held-heroes-v1.png",
+          "source_rect": [
+            627,
+            627,
+            627,
+            627
+          ],
+          "destination": [
+            18.625,
+            16.10000000000001,
+            94.05,
+            94.05
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2,
+          "grip_anchor": [
+            64,
+            66
+          ]
+        },
+        "compress_stage_one": {
+          "path": "assets/sprites/hard-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            418,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            24.765342960288805,
+            11.090252707581229,
+            78.46931407942239,
+            83.53790613718412
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 52,
+          "source_visible_bounds": [
+            112,
+            154,
+            306,
+            431
+          ]
+        },
+        "compress_stage_two": {
+          "path": "assets/sprites/hard-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            30.854625550660792,
+            20.40528634361233,
+            66.29074889867842,
+            70.57268722466961
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            96,
+            174,
+            322,
+            401
+          ]
+        },
+        "throw_windup": {
+          "path": "assets/sprites/hard-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            836,
+            0,
+            418,
+            445
+          ],
+          "destination": [
+            30.854625550660792,
+            20.40528634361233,
+            66.29074889867842,
+            70.57268722466961
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            96,
+            174,
+            322,
+            401
+          ]
+        }
+      }
+    },
+    "easy": {
+      "tony": {
+        "grab": {
+          "path": "assets/sprites/easy-mode/held-heroes-v1.png",
+          "source_rect": [
+            140,
+            5,
+            421,
+            617
+          ],
+          "destination": [
+            34.53484602917342,
+            16.04213938411671,
+            61.41004862236628,
+            89.99999999999999
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2,
+          "grip_anchor": [
+            64,
+            66
+          ]
+        },
+        "compress_stage_one": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            515,
+            105,
+            258,
+            340
+          ],
+          "destination": [
+            43.655589123867074,
+            39.37160120845921,
+            40.531722054380666,
+            53.413897280966765
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 52,
+          "source_visible_bounds": [
+            5,
+            4,
+            254,
+            335
+          ]
+        },
+        "compress_stage_two": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            935,
+            148,
+            259,
+            297
+          ],
+          "destination": [
+            47.806228373702425,
+            47.501730103806224,
+            32.26297577854671,
+            36.996539792387544
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            5,
+            4,
+            255,
+            293
+          ]
+        },
+        "throw_windup": {
+          "path": "assets/sprites/easy-mode/tony-dispenser-v1.png",
+          "source_rect": [
+            935,
+            148,
+            259,
+            297
+          ],
+          "destination": [
+            47.806228373702425,
+            47.501730103806224,
+            32.26297577854671,
+            36.996539792387544
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            5,
+            4,
+            255,
+            293
+          ]
+        }
+      },
+      "sean": {
+        "grab": {
+          "path": "assets/sprites/easy-mode/held-heroes-v1.png",
+          "source_rect": [
+            726,
+            50,
+            420,
+            571
+          ],
+          "destination": [
+            31.530647985989496,
+            16.049036777583197,
+            66.19964973730298,
+            89.99999999999999
+          ],
+          "anchor": [
+            64,
+            104
+          ],
+          "mirror_x": false,
+          "duration_seconds": 0.2,
+          "grip_anchor": [
+            64,
+            66
+          ]
+        },
+        "compress_stage_one": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            523,
+            105,
+            235,
+            332
+          ],
+          "destination": [
+            45.083591331269346,
+            39.195046439628484,
+            37.8328173374613,
+            53.44891640866873
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 52,
+          "source_visible_bounds": [
+            4,
+            5,
+            231,
+            328
+          ]
+        },
+        "compress_stage_two": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            913,
+            154,
+            275,
+            271
+          ],
+          "destination": [
+            45.1787072243346,
+            47.452471482889734,
+            37.6425855513308,
+            37.09505703422053
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            4,
+            4,
+            271,
+            267
+          ]
+        },
+        "throw_windup": {
+          "path": "assets/sprites/easy-mode/sean-dispenser-v1.png",
+          "source_rect": [
+            913,
+            154,
+            275,
+            271
+          ],
+          "destination": [
+            45.1787072243346,
+            47.452471482889734,
+            37.6425855513308,
+            37.09505703422053
+          ],
+          "anchor": [
+            64,
+            66
+          ],
+          "duration_seconds": 0.5,
+          "mirror_x": false,
+          "grip_anchor": [
+            64,
+            66
+          ],
+          "visible_height_px": 36,
+          "source_visible_bounds": [
+            4,
+            4,
+            271,
+            267
+          ]
+        }
+      }
+    }
+  },
+  "hero_pose_notes": "Two distinct existing authored poses: folded knees then tight ball; uniformly registered at grip.",
+  "schema_version": 2,
+  "healthy_timing_seconds": {
+    "set_down": [
+      2.9,
+      3.55
+    ]
+  },
+  "healthy_release_seconds": 3.75,
+  "healthy_watchdog_seconds": 4,
+  "verdict_art": {
+    "pass": {
+      "path": "assets/world/spare-employee-dispenser/inspection-verdicts-v2.png",
+      "source_rect": [
+        47,
+        44,
+        875,
+        768
+      ],
+      "destination": [
+        114.0,
+        -24.04342857142857,
+        32.0,
+        28.086857142857145
+      ]
+    },
+    "fail": {
+      "path": "assets/world/spare-employee-dispenser/inspection-verdicts-v2.png",
+      "source_rect": [
+        1035,
+        35,
+        786,
+        784
+      ],
+      "destination": [
+        114.0,
+        -25.959287531806616,
+        32.0,
+        31.918575063613233
+      ]
+    }
+  },
+  "motion_contract": {
+    "healthy": "Use grab unchanged while lifting, inspecting and lowering. Open fingers only after feet reach original support; do not vend or replace hero.",
+    "crush": "Stage one folds knees at52px visible height. Stage two tightens to36px ball. Keep grip fixed through pose transitions; smooth hand closure and short restrained squeeze recoil, no alternating poses.",
+    "registration": "All grip_anchor values are hero-canvas coordinates. Draw origin=actual grip minus grip_anchor. Preserve uniform scale.",
+    "windup": "Move grip from[34,67] toward[76,42] during3.9\u20134.4: back toward machine and up, continuous elbow articulation. Stage-two ball stays attached. Release at[76,42]; subsequent flight moves toward sampled safe screen point.",
+    "release": "First projectile frame uses exact stage-two frame, scale and grip position. Grow toward screen-impact scale only after release. Do not substitute oversized legacy ball on first flight frame.",
+    "verdict": "Display pass/fail for full diagnosis interval beside original HP plate; icon32px, no color-only distinction.",
+    "layers": "Rear arm, hero, gripping fingers; lens in front of face and clear of grip. Verdict above all machine layers."
+  },
+  "throw_release_grip": [
+    76,
+    42
+  ]
+}

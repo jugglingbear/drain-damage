@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-05",
+  "status": "Approved behavior; audio delivered for runtime integration",
+  "candidate": "DD-S0159.1",
+  "runtime": "assets/audio/sfx/board-super-fart-v1/huge-fart.wav",
+  "audition": "audio/alternatives/DD-S0159/DD-S0159.1.wav",
+  "duration_seconds": 2.1,
+  "sha256": "bf1a7f60e2200ec95f3a71946f4548f7ab49f986fe817d9c00fdd30a02439122",
+  "gain_db": -5,
+  "loop": false,
+  "brief": "Approved board super: huge purely cosmetic fart with a giant cloud behind rider lasting about eight seconds. One exaggerated low wet flutter with a brief sputtering finish; sound shorter than cloud, no hop or gameplay effect.",
+  "sources": [
+    {
+      "path": "audio/alternatives/DD-S0109/DD-S0109.1.wav",
+      "sha256": "67243578c2b66b822795892847bb7e84315ea07e09023367a83ee9ffcd147447"
+    },
+    {
+      "path": "audio/alternatives/DD-S0109/DD-S0109.2.wav",
+      "sha256": "143866c51e017ec12bc5274a39082471ec18df96483f08c394f912e86dcf8ea1"
+    }
+  ],
+  "provenance": "LFA Gastric Distress, CC0-1.0, performed mouth/hand foley.",
+  "license_evidence": "audio/sources/ride-fidget-fart-v1/manifest.json",
+  "source_url": "https://opengameart.org/content/gastric-distress",
+  "recipe": "audio/sources/board-super-fart-v1/render.py",
+  "ffmpeg_command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-n",
+    "-i",
+    "/Users/sfoley/repos/drain_damage/audio/alternatives/DD-S0109/DD-S0109.1.wav",
+    "-i",
+    "/Users/sfoley/repos/drain_damage/audio/alternatives/DD-S0109/DD-S0109.2.wav",
+    "-filter_complex",
+    "[0:a]asetrate=28665,aresample=44100,highpass=f=45,lowpass=f=4200,volume=1.1[a];[1:a]asetrate=35280,aresample=44100,highpass=f=65,volume=0.55,adelay=1250[b];[a][b]amix=inputs=2:normalize=0,apad,atrim=duration=2.1,loudnorm=I=-20:TP=-7:LRA=7,aresample=44100,afade=t=in:d=0.008,afade=t=out:st=1.8:d=0.3[out]",
+    "-map",
+    "[out]",
+    "-ar",
+    "44100",
+    "-ac",
+    "1",
+    "-c:a",
+    "pcm_s16le",
+    "/Users/sfoley/repos/drain_damage/assets/audio/sfx/board-super-fart-v1/huge-fart.wav"
+  ],
+  "trigger": "One accepted super press; never loop for cloud duration. Ordinary fidget remains separate.",
+  "playback": "One bounded voice; suppress ordinary fart during this cue. Pause/resume, mute and stop on death/reset/menu/dispose; no motion, damage or physics effect.",
+  "cloud_seconds": 8,
+  "validation_limit": "In-game mix acceptance pending; charge behavior owned by Engineering."
+}

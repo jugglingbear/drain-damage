@@ -39,19 +39,18 @@ func checks() -> void:
 			flush.process_audio(game,0)
 			assert(not flush.music.voice.playing and flush.audio.voices.current.playing)
 			for frame in range(3120): flush.tick(game,1.0/120,flush.position.normalized(),false,false)
-			assert(flush.prelude_remaining == 0 and absf(flush.clock) < 0.00001)
-			assert(flush.hazards.is_empty() and flush.debris.spawned == 0)
+			var onset: float = flush.definition.layout.difficulty[mode].waves[0].at
+			assert(flush.prelude_remaining == 0 and absf(flush.clock-onset) < 0.00001)
+			assert(not flush.hazards.is_empty() and flush.debris.spawned > 0)
 			flush.process_audio(game,0.01)
-			assert(flush.music.voice.playing and flush.music.seek_time < 0.01)
+			assert(flush.music.voice.playing and absf(flush.music.seek_time-onset) < 0.01)
 			var reading: float = flush.radio.line_clock
 			game.set_paused(true)
 			flush.tick(game,10,Vector2.ONE,false,false)
-			assert(flush.clock == 0 and flush.radio.line_clock == reading)
+			assert(flush.clock == onset and flush.radio.line_clock == reading)
 			game.set_paused(false)
-			for frame in range(959): flush.tick(game,1.0/120,flush.position.normalized(),false,false)
-			assert(flush.debris.spawned == 0)
-			flush.tick(game,1.0/120,flush.position.normalized(),false,false)
-			assert(flush.debris.spawned > 0 and flush.radio.current.is_empty())
+			for item: Dictionary in flush.hazards:
+				assert(is_equal_approx(item.impact_at-flush.clock,item.duration),"First warning keeps full dodge interval")
 			# Isolate later presentation boundaries from the independently tested debris planner.
 			flush.hazards.clear()
 			flush.debris.next_wave = flush.definition.layout.difficulty[mode].waves.size()
@@ -68,5 +67,5 @@ func checks() -> void:
 			assert(flush.state == "ride")
 			game.queue_free()
 			await process_frame
-	print("PASS: all 15 reading durations doubled, no overlap/truncation, 26s prelude, music26..71, hazards34, drain61 and landing71..77; both heroes/all modes")
+	print("PASS: all 15 reading durations doubled, no overlap/truncation, 26s prelude, immediate post-dialogue warnings, full dodge interval, hazard-relative music/drain/landing; both heroes/all modes")
 	quit()

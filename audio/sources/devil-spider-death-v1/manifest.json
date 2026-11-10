@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-04",
+  "status": "Directly requested death cue; ready for Engineering mapping",
+  "candidate": "DD-S0143.1",
+  "runtime": "assets/audio/sfx/devil-spider-death-v1/scream-burn.wav",
+  "audition": "audio/alternatives/DD-S0143/DD-S0143.1.wav",
+  "duration_seconds": 0.95,
+  "sha256": "bf7c237bd091deb19f892739fc14946b4b280fe781c136856335b214101d0ecc",
+  "peak_dbfs": -7,
+  "suggested_gain_db": -4,
+  "loop": false,
+  "brief": "Direct devil-spider death request: burst into flames, short horrifying creature scream, ash collapse, doll heads fall and persist. One readable lethal cue, fire onset then scream and short crackling tail; no continuous bed or repeated head-impact clutter. Distinct from still-unselected web auditions.",
+  "recipe": "audio/sources/devil-spider-death-v1/generate.py",
+  "source": {
+    "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/scream_01.ogg",
+    "sha256": "54da7bba4c4272b0b77dc3fe26a91d0a26d9280797fecb8197d716b47745eb85",
+    "author": "rubberduck",
+    "license": "CC0-1.0",
+    "url": "https://opengameart.org/content/80-cc0-creature-sfx",
+    "evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+    "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=180,lowpass=f=6200",
+    "pitch_semitones": -3.8631371386483475,
+    "leading_trim_samples": 1124
+  },
+  "fire_layer": "Original deterministic filtered-noise fire burst/crackle, seed 114043; no samples.",
+  "trigger": "Exactly once on lethal damage; suppress nonlethal hit cue on same event.",
+  "sync": "Fire onset at 0s; scream onset 0.025s, fades out by 0.76s; ash crackles end 0.95s.",
+  "limits": "Use bounded death voices with pause/mute/cancel. No per-head impact cues needed.",
+  "validation_limit": "Technical validation only; in-game mix and subjective listening remain unverified."
+}

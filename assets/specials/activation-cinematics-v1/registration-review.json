@@ -1,0 +1,1688 @@
+{
+  "schema_version": 1,
+  "status": "Changes required; not approved for runtime integration",
+  "owner": "Game Mechanics",
+  "scope": "Independent registration review of three candidate Sean sheets; no artwork or runtime edits",
+  "source_grid": {
+    "sheet": [
+      1448,
+      1086
+    ],
+    "cell": [
+      362,
+      362
+    ],
+    "columns": 4,
+    "frames": 12,
+    "indexing": "Zero-based row-major; planted frames 5 through 10 are one-based 6 through 11. Zero-based 4 is airborne swing, not contact."
+  },
+  "measurement": {
+    "provisional_native_scale": 0.24,
+    "method": "Pillow pixel inspection; alpha >= 240. Cup red body: r > 80, g/r < .4, b/r < .4, y > 320. Rear boot brown sole: x 30..139, y > 345, r > 40, .4 < g/r < .85, b/g < .85. Centers are visible-color bounds, not final authored skeletal anchors.",
+    "uncertainty_source_pixels": 2,
+    "feet_anchor_status": "Final hero feet anchor must be supplied by Art; rear boot is a stable diagnostic datum, not a replacement runtime feet anchor. Front boot is partially occluded by cup in later frames; do not infer foot drift from truncated visible front-boot bounds.",
+    "scale_status": "Review scale only; match current gameplay costume size before freezing native destinations."
+  },
+  "required_world_registration": {
+    "feet": "player_top_left + (13,46), captured once",
+    "socket": "captured feet + (44 * facing, 0), captured once",
+    "source_feet_to_socket_x_at_review_scale": 183.333333,
+    "cup_contact_y": "Same supported floor as planted soles"
+  },
+  "measurements": [
+    {
+      "costume": "normal",
+      "frame_zero_based": 5,
+      "frame_one_based": 6,
+      "cup_red_body_bottom_center_source": [
+        295.0,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        85.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 50.28,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "normal",
+      "frame_zero_based": 6,
+      "frame_one_based": 7,
+      "cup_red_body_bottom_center_source": [
+        273.5,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.0,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 45.0,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "normal",
+      "frame_zero_based": 7,
+      "frame_one_based": 8,
+      "cup_red_body_bottom_center_source": [
+        257.5,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        84.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 41.52,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "normal",
+      "frame_zero_based": 8,
+      "frame_one_based": 9,
+      "cup_red_body_bottom_center_source": [
+        262.5,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.24,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "normal",
+      "frame_zero_based": 9,
+      "frame_one_based": 10,
+      "cup_red_body_bottom_center_source": [
+        261.0,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.0,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.0,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "normal",
+      "frame_zero_based": 10,
+      "frame_one_based": 11,
+      "cup_red_body_bottom_center_source": [
+        263.5,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.48,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "easy",
+      "frame_zero_based": 5,
+      "frame_one_based": 6,
+      "cup_red_body_bottom_center_source": [
+        295.0,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        84.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 50.52,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "easy",
+      "frame_zero_based": 6,
+      "frame_one_based": 7,
+      "cup_red_body_bottom_center_source": [
+        275.5,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        85.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 45.6,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "easy",
+      "frame_zero_based": 7,
+      "frame_one_based": 8,
+      "cup_red_body_bottom_center_source": [
+        259.0,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        85.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 41.64,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "easy",
+      "frame_zero_based": 8,
+      "frame_one_based": 9,
+      "cup_red_body_bottom_center_source": [
+        264.0,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        85.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.84,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "easy",
+      "frame_zero_based": 9,
+      "frame_one_based": 10,
+      "cup_red_body_bottom_center_source": [
+        264.0,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        85.0,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.96,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "easy",
+      "frame_zero_based": 10,
+      "frame_one_based": 11,
+      "cup_red_body_bottom_center_source": [
+        265.5,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        85.5,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 43.2,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "hard",
+      "frame_zero_based": 5,
+      "frame_one_based": 6,
+      "cup_red_body_bottom_center_source": [
+        295.0,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.0,
+        352
+      ],
+      "cup_minus_rear_boot_native_x": 50.16,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "hard",
+      "frame_zero_based": 6,
+      "frame_one_based": 7,
+      "cup_red_body_bottom_center_source": [
+        274.0,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.0,
+        352
+      ],
+      "cup_minus_rear_boot_native_x": 45.12,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "hard",
+      "frame_zero_based": 7,
+      "frame_one_based": 8,
+      "cup_red_body_bottom_center_source": [
+        258.5,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.0,
+        352
+      ],
+      "cup_minus_rear_boot_native_x": 41.4,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "hard",
+      "frame_zero_based": 8,
+      "frame_one_based": 9,
+      "cup_red_body_bottom_center_source": [
+        262.0,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        87.0,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.0,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "hard",
+      "frame_zero_based": 9,
+      "frame_one_based": 10,
+      "cup_red_body_bottom_center_source": [
+        262.0,
+        353
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.0,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.24,
+      "result": "fail_fixed_socket"
+    },
+    {
+      "costume": "hard",
+      "frame_zero_based": 10,
+      "frame_one_based": 11,
+      "cup_red_body_bottom_center_source": [
+        262.5,
+        354
+      ],
+      "rear_boot_brown_sole_center_source": [
+        86.0,
+        353
+      ],
+      "cup_minus_rear_boot_native_x": 42.36,
+      "result": "fail_fixed_socket"
+    }
+  ],
+  "findings": [
+    "All 18 planted costume/pose combinations fail fixed socket continuity as a sequence. Cup shifts from source x about 295 to 258 while rear sole remains around x 85; approximately 9 native pixels of sliding.",
+    "Rear sole positions remain within about 2 source pixels horizontally and 1 vertically. This is primarily cup/arm registration failure, not justification for moving the entire hero.",
+    "A provisional feet midpoint near source x 145 would require cup x about 328.33 at scale .24. Current cup centers 257.5..295 are short by roughly 8..17 native pixels. Final exact correction depends on authored feet anchor.",
+    "At cup radius about 34 source pixels, x 328.33 leaves essentially no right-edge padding in a 362 cell. Widen transparent canvas if needed; do not clip the cup or shrink the body.",
+    "Visible colored edge speckles exist on source sheets. Inspect and clean against light and dark backgrounds; opacity threshold used for measurements is not approval of fringe quality."
+  ],
+  "corrective_spec": [
+    "Supply exact feet, both sole/contact landmarks, both hand grips, shaft/tool attachment, cup floor-contact, source rectangle, duration and native destination for every pose.",
+    "Keep one uniform costume scale. Fix the planted cup to the same source location relative to the authored feet anchor for frames 5..10. Redraw tool and gripping arms where necessary; preserve feet and meaningful torso strain.",
+    "Do not stretch, squash, frame-scale, dissolve, or translate the entire hero to conceal cup drift. Keep shaft length and cup shape materially consistent.",
+    "Add authored in-betweens for overhead-to-downstroke-to-impact, first pull loading/recoil, stronger second pull, and release into the existing gameplay pose. Twelve still poses alone do not establish smooth motion or the 80 ms impact hold.",
+    "Preserve Easy pacifier; express exertion through brows, cheeks, posture and arms rather than requiring visible gritted teeth.",
+    "Match the final release to the existing emerged pipe at action elapsed 1.0 and the current gameplay costume; do not replace the registered pipe shape."
+  ],
+  "evidence": "previews/sean-registration-review/planted-native-scale.png",
+  "acceptance_remaining": [
+    "Corrected sheets and exact authored anchors",
+    "Normal-size runtime capture in both facings and all costumes",
+    "Continuous motion review of slam, both pulls and gameplay handoff",
+    "Independent Art and Engineering acceptance"
+  ],
+  "effort_v2_review": {
+    "status": "Normal planted-effort static registration passes conditionally; full cinematic remains unapproved",
+    "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+    "grid": [
+      3,
+      2
+    ],
+    "cell": [
+      512,
+      512
+    ],
+    "uniform_scale": 0.17,
+    "measurement_method": "Opaque alpha >=240 boot/cup lower extent and red cup body bounds, reviewed visually. Source pixel tolerance approximately 1\u20132 pixels. Source currently contains translucent colored background; threshold only used for diagnostic preview, source left unchanged.",
+    "measurements": [
+      {
+        "frame_zero_based": 0,
+        "source_rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "authored_feet_anchor": [
+          187.1765,
+          496
+        ],
+        "measured_opaque_boot_baseline": 496,
+        "measured_opaque_cup_baseline": 496,
+        "red_cup_center_x": 446.0,
+        "cup_offset_native_x": 44.0,
+        "native_destination_relative_to_feet": [
+          -31.820005,
+          -84.32,
+          87.04,
+          87.04
+        ]
+      },
+      {
+        "frame_zero_based": 1,
+        "source_rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "authored_feet_anchor": [
+          187.1765,
+          496
+        ],
+        "measured_opaque_boot_baseline": 496,
+        "measured_opaque_cup_baseline": 496,
+        "red_cup_center_x": 445.5,
+        "cup_offset_native_x": 43.915,
+        "native_destination_relative_to_feet": [
+          -31.820005,
+          -84.32,
+          87.04,
+          87.04
+        ]
+      },
+      {
+        "frame_zero_based": 2,
+        "source_rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "authored_feet_anchor": [
+          187.1765,
+          496
+        ],
+        "measured_opaque_boot_baseline": 496,
+        "measured_opaque_cup_baseline": 496,
+        "red_cup_center_x": 445.5,
+        "cup_offset_native_x": 43.915,
+        "native_destination_relative_to_feet": [
+          -31.820005,
+          -84.32,
+          87.04,
+          87.04
+        ]
+      },
+      {
+        "frame_zero_based": 3,
+        "source_rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "authored_feet_anchor": [
+          187.1765,
+          464
+        ],
+        "measured_opaque_boot_baseline": 464,
+        "measured_opaque_cup_baseline": 464,
+        "red_cup_center_x": 445.5,
+        "cup_offset_native_x": 43.915,
+        "native_destination_relative_to_feet": [
+          -31.820005,
+          -78.88,
+          87.04,
+          87.04
+        ]
+      },
+      {
+        "frame_zero_based": 4,
+        "source_rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "authored_feet_anchor": [
+          187.1765,
+          464
+        ],
+        "measured_opaque_boot_baseline": 464,
+        "measured_opaque_cup_baseline": 464,
+        "red_cup_center_x": 445.5,
+        "cup_offset_native_x": 43.915,
+        "native_destination_relative_to_feet": [
+          -31.820005,
+          -78.88,
+          87.04,
+          87.04
+        ]
+      },
+      {
+        "frame_zero_based": 5,
+        "source_rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "authored_feet_anchor": [
+          187.1765,
+          464
+        ],
+        "measured_opaque_boot_baseline": 464,
+        "measured_opaque_cup_baseline": 464,
+        "red_cup_center_x": 445.5,
+        "cup_offset_native_x": 43.915,
+        "native_destination_relative_to_feet": [
+          -31.820005,
+          -78.88,
+          87.04,
+          87.04
+        ]
+      }
+    ],
+    "findings": [
+      "Cup red-body center is446 in frame0 and445.5 in remaining frames: <=0.085 native pixel center drift. Opaque cup/sole floor baselines coincide in all six poses.",
+      "Use local y496 for first row and464 for second row. Row normalization must be explicit in source rectangles/destinations; leaving all rows at496 produces a5.44-pixel lift.",
+      "Existing starter Normal plant manifest uses feet x187.1765, scale.17 and cup x446: nominal44-pixel socket offset is consistent with this revision. This anchor has provenance in existing gameplay metadata, unlike the earlier provisional362-cell anchor.",
+      "Effort expressions read at native size; torso/head loading changes while cup and boots remain stable. The second pull still needs timing/motion review to establish stronger exertion."
+    ],
+    "remaining": [
+      "Prepare transparent runtime-derived crops and inspect edges on light/dark backgrounds; keep source originals. Current source alpha ranges0..254 with visible translucent glow.",
+      "Review Easy and Hard equivalents separately; do not assume costume swaps retain registration.",
+      "Review12-pose prefix size, overhead arc, contact and release-to-gameplay handoff; this six-pose effort registration does not approve them.",
+      "Inspect continuous animation in both facings before full acceptance."
+    ],
+    "evidence": "previews/sean-registration-review/normal-effort-v2-native-scale.png"
+  },
+  "effort_v2_all_costumes": {
+    "status": "Static planted registration accepted within stated tolerance; not full animation acceptance",
+    "registration_rule": "Use shared x187.1765 and fixed row baselines496/464 at uniform.17; this revision inherits Normal template geometry. Do not reuse old costume-specific x anchors or auto-fit individual frames.",
+    "tolerance_native_pixels": 0.5,
+    "tolerance_scope": "Raster outline contact only; does not authorize systematic sliding or body deformation.",
+    "costumes": {
+      "normal": {
+        "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+        "frames": [
+          {
+            "frame_zero_based": 0,
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              496,
+              496
+            ],
+            "measured_cup_bottom": 496,
+            "measured_red_cup_center_x": 446.0,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 1,
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              496,
+              496
+            ],
+            "measured_cup_bottom": 496,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 2,
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              496,
+              496
+            ],
+            "measured_cup_bottom": 496,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 3,
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              464,
+              464
+            ],
+            "measured_cup_bottom": 464,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 4,
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              464,
+              464
+            ],
+            "measured_cup_bottom": 464,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 5,
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              464,
+              464
+            ],
+            "measured_cup_bottom": 464,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          }
+        ]
+      },
+      "easy": {
+        "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+        "frames": [
+          {
+            "frame_zero_based": 0,
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              496,
+              496
+            ],
+            "measured_cup_bottom": 498,
+            "measured_red_cup_center_x": 446.0,
+            "max_contact_deviation_native": 0.34,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 1,
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              496,
+              496
+            ],
+            "measured_cup_bottom": 497,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 2,
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              496,
+              496
+            ],
+            "measured_cup_bottom": 497,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 3,
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              463,
+              463
+            ],
+            "measured_cup_bottom": 465,
+            "measured_red_cup_center_x": 446.0,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 4,
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              464,
+              463
+            ],
+            "measured_cup_bottom": 465,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 5,
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              463,
+              464
+            ],
+            "measured_cup_bottom": 465,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          }
+        ]
+      },
+      "hard": {
+        "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+        "frames": [
+          {
+            "frame_zero_based": 0,
+            "source_rect": [
+              0,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              495,
+              495
+            ],
+            "measured_cup_bottom": 496,
+            "measured_red_cup_center_x": 446.0,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 1,
+            "source_rect": [
+              512,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              495,
+              495
+            ],
+            "measured_cup_bottom": 496,
+            "measured_red_cup_center_x": 446.0,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 2,
+            "source_rect": [
+              1024,
+              0,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              496
+            ],
+            "source_socket_anchor": [
+              446,
+              496
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -84.32,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              495,
+              495
+            ],
+            "measured_cup_bottom": 496,
+            "measured_red_cup_center_x": 446.0,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 3,
+            "source_rect": [
+              0,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              464,
+              464
+            ],
+            "measured_cup_bottom": 464,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 4,
+            "source_rect": [
+              512,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              464,
+              464
+            ],
+            "measured_cup_bottom": 464,
+            "measured_red_cup_center_x": 446.0,
+            "max_contact_deviation_native": 0.0,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          },
+          {
+            "frame_zero_based": 5,
+            "source_rect": [
+              1024,
+              512,
+              512,
+              512
+            ],
+            "source_feet_anchor": [
+              187.1765,
+              464
+            ],
+            "source_socket_anchor": [
+              446,
+              464
+            ],
+            "uniform_scale": 0.17,
+            "destination_relative_to_feet": [
+              -31.820005,
+              -78.88,
+              87.04,
+              87.04
+            ],
+            "measured_boot_bottoms": [
+              463,
+              463
+            ],
+            "measured_cup_bottom": 464,
+            "measured_red_cup_center_x": 445.5,
+            "max_contact_deviation_native": 0.17,
+            "timing": "Unassigned; Art must map to existing first/second pull beats and supply duration.",
+            "registration_status": "Accepted for static layout within0.5 native pixel contact tolerance; motion and handoff pending"
+          }
+        ]
+      }
+    },
+    "findings": [
+      "Normal cup and boot opaque bottoms agree exactly. Easy cup extends1\u20132 source pixels below shared floor; Hard first-row boot soles are1 source pixel above it. Maximum deviation0.34 native pixels.",
+      "All costumes retain stable cup horizontal registration near446 and fixed boot silhouettes at native scale. Hard muscles and Easy bonnet/pacifier are readable.",
+      "The shared anchor preserves a44-pixel socket; posture/size transition from each existing gameplay costume remains separately unverified.",
+      "Use transparent derived frames; source alpha includes background glow. No source pixels were changed by this review."
+    ],
+    "required_before_final_acceptance": [
+      "Authored upper/lower hand grip and tool attachment anchors",
+      "Durations mapped to the two pull beats and continuous playback inspection",
+      "Matched prefix slam/contact and release/gameplay transition",
+      "Both facings and all costumes rendered in game",
+      "Art transparent-crop edge acceptance and Engineering final acceptance"
+    ],
+    "evidence": "previews/sean-registration-review/all-effort-v2-native-scale.png"
+  },
+  "prefix_release_review": {
+    "status": "Feasible capture candidate with explicit gaps; not approved continuous animation",
+    "effort_timing": {
+      "result": "Beat boundaries match contract and audio event starts",
+      "seal": 1.0,
+      "pull_starts": [
+        1.08,
+        1.78
+      ],
+      "break": 2.45,
+      "notes": [
+        "First peak frame2 at1.34\u20131.56 is inside first pull cue1.08\u20131.63; relaxed frame3 at1.68\u20131.78 follows its tail.",
+        "Second strong frame5 starts1.92; alternating4/5 through2.45 could read as a third tug. Prefer one continuous stronger pull with a sustained terminal strain, unless native playback proves the alternation reads as trembling.",
+        "No waveform peak synchronization claimed; audio event times alone do not locate acoustic peaks."
+      ]
+    },
+    "prefix_diagnostic_records": {
+      "normal": [
+        {
+          "frame_zero_based": 0,
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 99.0,
+          "measured_rear_boot_opaque_baseline": 355,
+          "provisional_source_feet_anchor": [
+            183.725,
+            355
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 1,
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 84.5,
+          "measured_rear_boot_opaque_baseline": 355,
+          "provisional_source_feet_anchor": [
+            169.225,
+            355
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 2,
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 84.5,
+          "measured_rear_boot_opaque_baseline": 355,
+          "provisional_source_feet_anchor": [
+            169.225,
+            355
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 3,
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 85.0,
+          "measured_rear_boot_opaque_baseline": 355,
+          "provisional_source_feet_anchor": [
+            169.725,
+            355
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 4,
+          "source_rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 86.5,
+          "measured_rear_boot_opaque_baseline": 356,
+          "provisional_source_feet_anchor": [
+            171.225,
+            356
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        }
+      ],
+      "easy": [
+        {
+          "frame_zero_based": 0,
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 99.5,
+          "measured_rear_boot_opaque_baseline": 356,
+          "provisional_source_feet_anchor": [
+            184.225,
+            356
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 1,
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 83.5,
+          "measured_rear_boot_opaque_baseline": 356,
+          "provisional_source_feet_anchor": [
+            168.225,
+            356
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 2,
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 85.0,
+          "measured_rear_boot_opaque_baseline": 356,
+          "provisional_source_feet_anchor": [
+            169.725,
+            356
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 3,
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 85.5,
+          "measured_rear_boot_opaque_baseline": 356,
+          "provisional_source_feet_anchor": [
+            170.225,
+            356
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 4,
+          "source_rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 85.5,
+          "measured_rear_boot_opaque_baseline": 357,
+          "provisional_source_feet_anchor": [
+            170.225,
+            357
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        }
+      ],
+      "hard": [
+        {
+          "frame_zero_based": 0,
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 99.0,
+          "measured_rear_boot_opaque_baseline": 354,
+          "provisional_source_feet_anchor": [
+            183.725,
+            354
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 1,
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 85.5,
+          "measured_rear_boot_opaque_baseline": 354,
+          "provisional_source_feet_anchor": [
+            170.225,
+            354
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 2,
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 86.0,
+          "measured_rear_boot_opaque_baseline": 354,
+          "provisional_source_feet_anchor": [
+            170.725,
+            354
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 3,
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 86.0,
+          "measured_rear_boot_opaque_baseline": 354,
+          "provisional_source_feet_anchor": [
+            170.725,
+            354
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        },
+        {
+          "frame_zero_based": 4,
+          "source_rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "measured_rear_boot_brown_center_x": 87.0,
+          "measured_rear_boot_opaque_baseline": 354,
+          "provisional_source_feet_anchor": [
+            171.725,
+            354
+          ],
+          "uniform_scale": 0.2,
+          "status": "Diagnostic stance matching only; requires native comparison and authored final anchor"
+        }
+      ]
+    },
+    "prefix_anchor_rule": "Boot midpoint is not the gameplay logical feet anchor. Existing effort template rear boot brown center87.5 at scale.17 relative to feet187.1765 is native x-16.945. Diagnostic prefix anchors match that rear boot at scale.20. Do not auto-center each frame. These measured anchors require Art confirmation; do not translate body at runtime to hide authored drift.",
+    "contact_gap": "Prefix frame4 cup center about310 at scale.20 and diagnostic feet about171: cup is around28 native pixels forward, not44, and remains airborne. A direct cut to effort0 jumps the cup roughly16 pixels horizontally as well as downward. Needs a fast authored downstroke/extended-reach contact bridge with fixed boot landmarks.",
+    "scale_note": "Uniform.20 is plausible for body height, but compare head/boot size and width against effort. Matching overall height alone is not body continuity acceptance.",
+    "release_review": [
+      "Existing512 frames1\u20133 already have cup x44-relative registration, but cup rises from approximately-12 to-29 to-43 native y. Transition from effort to frame1 jumps the cup about12 pixels upward unless authored extraction in-betweens cover the break.",
+      "Schedule extraction only after break cue2.45. Keep rising pipe/socket geometry in agreement; do not lift a sealed cup before the break.",
+      "Frames1\u20133 alone leave the raised plunger over the water outlet. Include existing release4 and recover5 or equivalent authored clearing motion before water resumes at3.4.",
+      "Old Hard frames have costume-specific foot anchors and stance differences; reuse metadata only for its exact source sheet, never apply those anchors to new effort frames. Verify Hard transition independently.",
+      "Do not return actual hero abruptly while leaving a floating or duplicated tool; final pose must match real gameplay hero and clear outlet."
+    ],
+    "recommended_candidate_gate": "Engineering may assemble a clearly labeled diagnostic capture with documented missing bridges; it must not be presented as motion-ready. Art still owns source and final frame manifest."
+  },
+  "normal_bridges_v1_review": {
+    "status": "Contact registration suitable for diagnostic candidate; transition motion unapproved",
+    "source": "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png",
+    "frames": [
+      {
+        "frame_zero_based": 0,
+        "source_rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "source_feet_anchor": [
+          187.1765,
+          497
+        ],
+        "uniform_scale": 0.17,
+        "destination_relative_to_feet": [
+          -31.820005,
+          -84.49,
+          87.04,
+          87.04
+        ],
+        "measured_red_cup_bottom_center": [
+          438.0,
+          391
+        ],
+        "cup_relative_to_feet": [
+          42.64,
+          -18.02
+        ],
+        "measurement_tolerance_source_pixels": 2
+      },
+      {
+        "frame_zero_based": 1,
+        "source_rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "source_feet_anchor": [
+          187.1765,
+          497
+        ],
+        "uniform_scale": 0.17,
+        "destination_relative_to_feet": [
+          -31.820005,
+          -84.49,
+          87.04,
+          87.04
+        ],
+        "measured_red_cup_bottom_center": [
+          445.5,
+          455
+        ],
+        "cup_relative_to_feet": [
+          43.91,
+          -7.14
+        ],
+        "measurement_tolerance_source_pixels": 2
+      },
+      {
+        "frame_zero_based": 2,
+        "source_rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "source_feet_anchor": [
+          187.1765,
+          497
+        ],
+        "uniform_scale": 0.17,
+        "destination_relative_to_feet": [
+          -31.820005,
+          -84.49,
+          87.04,
+          87.04
+        ],
+        "measured_red_cup_bottom_center": [
+          445.0,
+          497
+        ],
+        "cup_relative_to_feet": [
+          43.83,
+          0.0
+        ],
+        "measurement_tolerance_source_pixels": 2
+      },
+      {
+        "frame_zero_based": 3,
+        "source_rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "source_feet_anchor": [
+          187.1765,
+          465
+        ],
+        "uniform_scale": 0.17,
+        "destination_relative_to_feet": [
+          -31.820005,
+          -79.05,
+          87.04,
+          87.04
+        ],
+        "measured_red_cup_bottom_center": [
+          455.0,
+          462
+        ],
+        "cup_relative_to_feet": [
+          45.53,
+          -0.51
+        ],
+        "measurement_tolerance_source_pixels": 2
+      },
+      {
+        "frame_zero_based": 4,
+        "source_rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "source_feet_anchor": [
+          187.1765,
+          465
+        ],
+        "uniform_scale": 0.17,
+        "destination_relative_to_feet": [
+          -31.820005,
+          -79.05,
+          87.04,
+          87.04
+        ],
+        "measured_red_cup_bottom_center": [
+          456.0,
+          454
+        ],
+        "cup_relative_to_feet": [
+          45.7,
+          -1.87
+        ],
+        "measurement_tolerance_source_pixels": 2
+      },
+      {
+        "frame_zero_based": 5,
+        "source_rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "source_feet_anchor": [
+          187.1765,
+          465
+        ],
+        "uniform_scale": 0.17,
+        "destination_relative_to_feet": [
+          -31.820005,
+          -79.05,
+          87.04,
+          87.04
+        ],
+        "measured_red_cup_bottom_center": [
+          450.5,
+          438
+        ],
+        "cup_relative_to_feet": [
+          44.76,
+          -4.59
+        ],
+        "measurement_tolerance_source_pixels": 2
+      }
+    ],
+    "evidence": "previews/sean-registration-review/normal-bridges-v1-native-scale.png",
+    "findings": [
+      "Measured foot baselines497/465, not496/464. Use measured row anchors for this sheet only.",
+      "Bridge2 cup at(43.83,0) native relative to feet matches fixed44-pixel socket within0.17 pixels.",
+      "Downstroke cup heights-18.02,-7.14,0 are monotonic. Extraction cup heights-0.51,-1.87,-4.59 are monotonic after break.",
+      "Post-break horizontal offset peaks45.70 versus socket44; acceptable as free-cup motion candidate, not a reason to move pipe socket.",
+      "Bridge5 to old strain1 still jumps from about-4.59 to-11.9 native cup height; remaining gap7.3pixels. Review as fast extraction, add in-between if it pops.",
+      "Bridge2 has gritted-teeth impact expression; effort0 is neutral. Avoid changing to neutral during the80ms impact hold.",
+      "Prefix4 is not an accepted splice: corrected stance puts its cup near28 native pixels forward, versus bridge0 at42.64. Adding all frames blindly still produces a lateral jump."
+    ],
+    "diagnostic_timeline": [
+      {
+        "start": 0,
+        "end": 0.85,
+        "source": "prefix0\u20133",
+        "note": "Draw/raise beats retained; omit prefix4 until authored reach/arc matches bridge0. Overhead-to-bridge0 remains a fast-transition review gap."
+      },
+      {
+        "start": 0.85,
+        "end": 0.925,
+        "source": "bridge0"
+      },
+      {
+        "start": 0.925,
+        "end": 1.0,
+        "source": "bridge1"
+      },
+      {
+        "start": 1.0,
+        "end": 1.08,
+        "source": "bridge2",
+        "note": "First contact and seal cue at1.0; hold exactly80ms. Replace contact_hold source effort0 for this candidate."
+      },
+      {
+        "start": 1.08,
+        "end": 2.45,
+        "source": "effort-manifest-v2 sequence",
+        "note": "Updated single stronger second pull; inspect bridge2-to-effort0 relaxation at1.08."
+      },
+      {
+        "start": 2.45,
+        "end": 2.52,
+        "source": "bridge3"
+      },
+      {
+        "start": 2.52,
+        "end": 2.6,
+        "source": "bridge4"
+      },
+      {
+        "start": 2.6,
+        "end": 2.7,
+        "source": "bridge5"
+      },
+      {
+        "start": 2.7,
+        "end": 2.8,
+        "source": "old strain1"
+      },
+      {
+        "start": 2.8,
+        "end": 2.93,
+        "source": "old pull2"
+      },
+      {
+        "start": 2.93,
+        "end": 3.08,
+        "source": "old raised3"
+      },
+      {
+        "start": 3.08,
+        "end": 3.2,
+        "source": "old release4"
+      },
+      {
+        "start": 3.2,
+        "end": 3.34,
+        "source": "old recover5"
+      },
+      {
+        "start": 3.34,
+        "end": 3.4,
+        "source": "actual gameplay hero pose",
+        "note": "Presentation-only final state; world remains frozen until3.40. Water begins only at3.40."
+      }
+    ],
+    "remaining": [
+      "Easy/Hard bridge measurements",
+      "Prefix overhead-to-bridge0 arc and body continuity",
+      "Extraction gap and old Hard stance changes",
+      "Transparent edges and continuous native playback both facings",
+      "Exact final hero/pipe handoff; no duplicate tool or water before3.40"
+    ]
+  }
+}

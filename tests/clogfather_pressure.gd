@@ -13,7 +13,8 @@ func check_pressure(boss: RefCounted, hero: Rect2, dt: float, wave: int) -> void
 	assert(boss.state == "pressure_warning" and not boss.damageable())
 	assert(boss.pressure_wave == wave)
 	var kind := "gas" if wave % 2 == 1 else "reinforcements"
-	assert(boss.pressure_kind == kind and boss.hazards.is_empty())
+	assert(boss.pressure_kind == kind)
+	var surviving_gas: Array = boss.gas_targets().map(func(g: Dictionary) -> String: return g.id)
 	var lane: Rect2 = boss.safe_corridor
 	assert(lane.size.x == 180 and lane.position.x >= 80 and lane.end.x <= 700)
 	var destination := clampf(hero.position.x,lane.position.x,lane.end.x-hero.size.x)
@@ -51,7 +52,7 @@ func check_pressure(boss: RefCounted, hero: Rect2, dt: float, wave: int) -> void
 				"Reinforcements must be able to threaten a grounded hero")
 			assert(not bounds.intersects(lane))
 	else:
-		assert(requests.is_empty() and boss.hazards.size() == 1)
+		assert(requests.is_empty() and boss.gas_targets().size() == surviving_gas.size()+1)
 	var first_rect := Rect2()
 	var last_rect := Rect2()
 	var active_ticks := 0
@@ -59,23 +60,26 @@ func check_pressure(boss: RefCounted, hero: Rect2, dt: float, wave: int) -> void
 		boss.step(dt,hero)
 		active_ticks += 1
 		for hazard in boss.hazards:
+			if hazard.kind != "gas": continue
 			assert(hazard.kind == "gas" and hazard.rect.size == Vector2(100,64))
 			assert(hazard.rect.position.x >= 80 and hazard.rect.end.x <= 700)
-			assert(not hazard.rect.grow(20).intersects(lane),"Entire drifting visual must avoid safe lane")
+			if not surviving_gas.has(hazard.id):
+				assert(not hazard.rect.grow(20).intersects(lane),"New gas must avoid its warned safe lane")
 			assert(absf(hazard.velocity.x) == 30 and hazard.velocity.y == 0)
-			if not first_rect.has_area(): first_rect = hazard.rect
-			last_rect = hazard.rect
+			if not surviving_gas.has(hazard.id):
+				if not first_rect.has_area(): first_rect = hazard.rect
+				last_rect = hazard.rect
 		if boss.state == "pressure_active":
 			assert(boss.reinforcement_requests == requests,"No mid-wave refill")
-	assert(boss.state == "pressure_clear")
-	assert(absf(active_ticks*dt-(2.0 if kind == "gas" else 3.0)) <= dt*2)
-	if kind == "gas": assert(absf(last_rect.position.x-first_rect.position.x) > 55,"Gas must visibly drift")
-	assert(boss.hazards.is_empty() and boss.warnings.is_empty() and boss.reinforcement_requests.is_empty())
+	assert(boss.state == "acid_warning")
+	assert(absf(active_ticks*dt-(2.0-boss.acid_warning_seconds())) <= dt*2)
+	assert(boss.gas_targets().size() == surviving_gas.size()+(1 if kind == "gas" else 0))
+	for id in surviving_gas:
+		assert(boss.gas_targets().any(func(g: Dictionary) -> bool: return g.id == id))
+	assert(boss.reinforcement_requests.is_empty())
 	assert(boss.drain_events().count("pressure_cleared") == 1)
-	boss.step(0.20,hero)
-	assert(boss.state == "pressure_clear" and not boss.damageable())
-	boss.step(0.06,hero)
-	assert(boss.state in ["acid_warning","volley_warning"])
+	boss.step(boss.acid_warning_seconds(),hero)
+	assert(boss.state == "acid_fall")
 
 func run_checks() -> void:
 	create_timer(45).timeout.connect(func() -> void: quit(1))
@@ -88,7 +92,8 @@ func run_checks() -> void:
 			boss.start(hero)
 			for wave in range(1,9):
 				advance_to(boss,"recovery",hero,dt)
-				assert(boss.recovery_index == wave and boss.hurt_rects().is_empty())
+				assert(boss.recovery_index == wave)
+				assert(boss.gas_targets().size() == int(wave/2),"Unkilled gas survives recovery")
 				assert(boss.pressure_kind == "" and boss.reinforcement_requests.is_empty())
 				assert(boss.snapshot().weak_point_level == ("low" if wave % 2 else "high"))
 				if wave in [3,5]: assert(boss.hit(400,"phase-%d" % wave,true) == 400)

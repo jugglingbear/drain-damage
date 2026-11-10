@@ -35,7 +35,7 @@ def validate_radio_gag(story: dict[str, Any]) -> None:
         if reply["who"] != partner or not reply["radio"]:
             raise ValueError(f"Partner must own the moving reply and portrait: {hero}")
         start, end = reply["slide_line_seconds"]
-        if (request["at"] + request["duration"] != reply["at"] or not 0 <= start < end < reply["duration"]
+        if (request["at"] + request["duration"] != reply["at"] or start != 0 or not start < end < reply["duration"]
                 or reply["at"] + reply["duration"] > safe_until):
             raise ValueError(f"Window response must finish moving during the safe opening: {hero}")
 

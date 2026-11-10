@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "Art measured integration candidate; native motion review required",
+  "path": "assets/specials/activation-cinematics-v1/gauge-components-v1.png",
+  "canvas": [
+    1536,
+    1024
+  ],
+  "alpha_cutoff": 240,
+  "viewport": [
+    960,
+    540
+  ],
+  "housing": {
+    "source_rect": [
+      180,
+      0,
+      720,
+      1024
+    ],
+    "destination": [
+      328.125,
+      54,
+      303.75,
+      432
+    ],
+    "source_gauge_pivot": [
+      535,
+      373
+    ],
+    "source_wheel_socket": [
+      537,
+      753
+    ]
+  },
+  "needle": {
+    "source_rect": [
+      1160,
+      20,
+      110,
+      470
+    ],
+    "source_pivot": [
+      53,
+      420
+    ],
+    "scale_relative_to_housing": 0.46,
+    "zero_direction": "up",
+    "start_rotation_degrees": -43,
+    "maximum_rotation_degrees": 146,
+    "note": "Arc begins lower left; 33percent starts upper-left. Maximum passes end of red at lower-right."
+  },
+  "wheel": {
+    "source_rect": [
+      995,
+      540,
+      440,
+      440
+    ],
+    "source_pivot": [
+      217,
+      224
+    ],
+    "scale_relative_to_housing": 0.58,
+    "clockwise_turn_degrees": 300
+  },
+  "animation": "Use Mechanics timeline. Rotate needle and wheel independently at display refresh; opaque components except whole-overlay fade. Clamp tremble to small offsets; no flashing. Hide underlying HUD during overlay as necessary, restore at handoff.",
+  "source_measurement": "Manual reference measurement, approx3sourcepx tolerance. Confirm layered assembly at runtime before acceptance."
+}

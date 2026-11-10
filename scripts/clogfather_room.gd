@@ -77,6 +77,7 @@ func advance(host: Node2D, delta: float) -> void:
 		host.skitterling.clear_prior(host,true)
 		encounter.configure_difficulty(host.difficulty,int(host.weapon.damage))
 		encounter.start(hero)
+		audio.handle_events(["arrival"])
 		host.boss_hud.begin_encounter("clogfather")
 		if host.music_director != null: host.music_director.play_track("clogfather",true)
 	var camera := camera_position(host.player.x)
@@ -100,7 +101,7 @@ func flush_events(host: Node2D) -> void:
 	art.events(events)
 	sync_music_warning(host)
 	audio.handle_events(events)
-	if events.has("pressure_cleared") or events.has("death_started") or events.has("boss_defeated"):
+	if events.has("death_started") or events.has("boss_defeated"):
 		clear_reinforcements()
 	elif events.has("reinforcements_spawn"):
 		spawn_reinforcements(host)
@@ -120,7 +121,6 @@ func clear_reinforcements() -> void:
 func spawn_reinforcements(host: Node2D) -> void:
 	if encounter.state != "pressure_active" or encounter.pressure_kind != "reinforcements" \
 			or spawned_wave == encounter.pressure_wave: return
-	clear_reinforcements()
 	spawned_wave = encounter.pressure_wave
 	for request: Dictionary in encounter.reinforcement_requests:
 		var bounds: Rect2 = request.bounds

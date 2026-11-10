@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-11-04",
   "creatures": [
     {
       "id": "toilet",
@@ -611,6 +611,18 @@
         "source": "bestiary/cockroach-swarm/monster.json#game_art/alligator_animation_revision",
         "remaining": "Live gait, foot sliding, gameplay-background contrast and GPU performance review; actual gameplay captures pending."
       }
+    },
+    {
+      "id": "devil-spider",
+      "name": "Devil Spider",
+      "status": "Prototype 163 runtime integration candidate; visual acceptance pending",
+      "art": "assets/bestiary/devil-spider-v1/locomotion-source-v1.png",
+      "metadata": "bestiary/devil-spider/monster.json",
+      "animation_spec": "assets/bestiary/devil-spider-v1/manifest.json",
+      "remaining": [
+        "Actual-build visual and motion acceptance",
+        "Final audio selection and balance"
+      ]
     }
   ],
   "gallery": "bestiary/bestiary.html",

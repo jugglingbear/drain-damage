@@ -12,7 +12,7 @@ var displayed := PackedVector2Array()
 var previous_clock := -1.0
 var anatomy_reference: Dictionary = {}
 
-func prepare(frames: Dictionary, insect_source: Image) -> void:
+func prepare(frames: Dictionary, insect_source: Image, yield_frame := Callable()) -> void:
 	for phase in range(4):
 		var columns := [0, 313, 627, 940, 1254]
 		var image := insect_source.get_region(Rect2i(columns[phase], 0, columns[phase + 1] - columns[phase], 313))
@@ -38,14 +38,16 @@ func prepare(frames: Dictionary, insect_source: Image) -> void:
 						var cell := Rect2(Vector2(x, y), Vector2(4, 4))
 						if opaque_cell(cell, Vector2.ZERO, insect_size(index), angle): cells.append(cell)
 				prepared_cells[Vector2i(index, facing)] = cells
+			if yield_frame.is_valid(): await yield_frame.call()
 	if not prepared_targets.is_empty():
 		targets = prepared_targets
 		return
 	for key: String in frames:
 		if key.begins_with("roach-layers"): continue
+		if yield_frame.is_valid(): await yield_frame.call()
 		var image: Image = frames[key].image
 		if frames[key].has("anatomy"):
-			targets[key] = _anatomy_targets(image, frames[key].anatomy)
+			targets[key] = await _anatomy_targets(image, frames[key].anatomy,yield_frame)
 			continue
 		var pixels := PackedVector2Array()
 		var shades := PackedColorArray()
@@ -88,7 +90,7 @@ func prepare(frames: Dictionary, insect_source: Image) -> void:
 		targets[key] = {"points":points, "colors":colors, "shapes":shapes}
 	prepared_targets = targets
 
-func _anatomy_targets(image: Image, anatomy: Array) -> Dictionary:
+func _anatomy_targets(image: Image, anatomy: Array, yield_frame := Callable()) -> Dictionary:
 	## Keep insect identities within authored limbs instead of moving them through mouth and belly gaps.
 	var points := PackedVector2Array()
 	var colors := PackedColorArray()
@@ -96,6 +98,7 @@ func _anatomy_targets(image: Image, anatomy: Array) -> Dictionary:
 	var groups: Array[String] = []
 	var claimed: Dictionary = {}
 	for group: Dictionary in anatomy:
+		if yield_frame.is_valid(): await yield_frame.call()
 		var polygon := PackedVector2Array()
 		for vertex: Array in group.polygon: polygon.append(Vector2(vertex[0], vertex[1]))
 		var mask := Image.create(image.get_width(), image.get_height(), false, Image.FORMAT_RGBA8)
@@ -232,7 +235,7 @@ func draw(host: CanvasItem, key: String, next_key: String, blend: float, origin:
 				var uvs := PackedVector2Array()
 				var inverse := transform.affine_inverse()
 				for vertex in polygon: uvs.append(inverse*vertex+Vector2(0.5,0.5))
-				host.draw_polygon(polygon,PackedColorArray([tint]),uvs,image)
+				host.draw_primitive(polygon,PackedColorArray([tint]),uvs,image)
 			continue
 		meshes[phase].set_instance_transform_2d(counts[phase], transform)
 		var tint: Color = targets[pose.key].colors[index].lerp(targets[pose.next_key].colors[index], pose.blend)
@@ -258,7 +261,22 @@ static func clipped_insect(transform: Transform2D, mouth: Vector2, radius: Vecto
 		quad.append(transform*corner)
 	var aperture := PackedVector2Array()
 	for index in range(48): aperture.append(mouth+Vector2.from_angle(index*TAU/48)*radius)
-	return Geometry2D.intersect_polygons(quad,aperture)
+	var triangles: Array[PackedVector2Array] = []
+	for intersection: PackedVector2Array in Geometry2D.intersect_polygons(quad,aperture):
+		# Both inputs are convex. Rebuild their convex intersection to remove duplicate/collinear
+		# clipping vertices. Submit the fan as textured primitives: polygon triangulation loses
+		# precision on near-tangent slivers at room coordinates, even for valid triangles.
+		var hull := Geometry2D.convex_hull(intersection)
+		if hull.size() < 4: continue
+		# convex_hull repeats its first vertex at the end.
+		for index in range(1,hull.size()-2):
+			var a := hull[0]
+			var b := hull[index]
+			var c := hull[index+1]
+			# Only discard subpixel zero-area remnants, never a whole partially visible insect.
+			if absf((b-a).cross(c-a)) <= 0.0001: continue
+			triangles.append(PackedVector2Array([a,b,c]))
+	return triangles
 
 static func pipe_sample(index: int, point: Vector2, pipe: Dictionary) -> Dictionary:
 	if pipe.is_empty(): return {"position":point, "scale":1.0, "visible":true}

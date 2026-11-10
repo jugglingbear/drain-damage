@@ -1,0 +1,3062 @@
+{
+  "schema_version": 1,
+  "id": "first-call-campaign-encounters",
+  "date": "2026-11-04",
+  "status": "Authored integration candidate; runtime reachability, pressure and visual validation pending",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "baseline_contract": "levels/first-call/section-1-2.json",
+  "world": {
+    "width": 15200,
+    "floor_y": 440,
+    "viewport": [
+      960,
+      540
+    ]
+  },
+  "section_numbering": "Campaign ranges only; independent LEVEL=1.2 trial remains untouched as the approved comparison.",
+  "difficulty": {
+    "easy": {
+      "active_patterns_max": 2,
+      "hostile_projectiles_max": 10,
+      "speed_multiplier": 0.8,
+      "burst_count": 2,
+      "arrival_warning_seconds": 1.2,
+      "recovery_seconds": 1.2,
+      "total_actors_max": 6,
+      "shot_warning_seconds": 0.55,
+      "burst_spacing_seconds": 0.18
+    },
+    "normal": {
+      "active_patterns_max": 4,
+      "hostile_projectiles_max": 18,
+      "speed_multiplier": 1.0,
+      "burst_count": 3,
+      "arrival_warning_seconds": 0.9,
+      "recovery_seconds": 2.2,
+      "total_actors_max": 10,
+      "shot_warning_seconds": 0.55,
+      "burst_spacing_seconds": 0.18,
+      "shooter_cap": 2,
+      "flyer_cap": 2
+    },
+    "hard": {
+      "active_patterns_max": 5,
+      "hostile_projectiles_max": 24,
+      "speed_multiplier": 1.15,
+      "burst_count": 4,
+      "arrival_warning_seconds": 0.7,
+      "recovery_seconds": 1.2,
+      "total_actors_max": 12,
+      "shot_warning_seconds": 0.55,
+      "burst_spacing_seconds": 0.18
+    }
+  },
+  "admission_interval_seconds": 0.45,
+  "budget_rules": [
+    "All enemies, swarms and visible arrivals consume the same total actor budget.",
+    "Angel and devil spiders share the two-flyer Normal cap through every living phase.",
+    "All floor and ceiling shooters share the two-shooter Normal cap and 2.2-second last-bolt recovery.",
+    "Replace old opening/wave/density/additive swarm schedules; never run them alongside this list.",
+    "Normal roster is an upper authored opportunity count, not a quota that must be forced into play.",
+    "Do not accumulate a pending backlog across checkpoint, boss or quiet boundaries.",
+    "Expire never-visible events at end; visible actors finish safely without disappearance or forced kills.",
+    "Carry surviving enemies within the same budget and suppress fresh admissions until pressure permits."
+  ],
+  "boundaries": {
+    "checkpoints": [
+      4650,
+      13800
+    ],
+    "post_skitterling_respawn": 7650,
+    "skitterling_quiet": [
+      5610,
+      6570
+    ],
+    "skitterling_room": [
+      6570,
+      7530
+    ],
+    "skitterling_exit": [
+      7410,
+      7650
+    ],
+    "clogfather_quiet_start": 13710,
+    "clogfather_containment": 13650,
+    "clogfather_arena": [
+      14150,
+      15110
+    ]
+  },
+  "fixture_manifest": "assets/world/three-screen-trial/shooter-entry-fixtures-v1.json",
+  "geometry_policy": "Section geometry replaces ordinary traversal geometry in its span, not an additive overlay. Preserve boss/tunnel geometry and anchors. Geometry is proposed until both-hero and Art validation.",
+  "sections": [
+    {
+      "id": "1.1",
+      "start": 0,
+      "end": 3120,
+      "owner_origin": 85,
+      "quiet_ranges": [],
+      "relief_ranges": [
+        [
+          700,
+          820
+        ],
+        [
+          1220,
+          1390
+        ],
+        [
+          2770,
+          3120
+        ]
+      ],
+      "traversal_intent": "Approved 1.2 encounter order adapted as the campaign opening: optional deck, early pit, relief, late climb.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": [
+        {
+          "id": "entry-access",
+          "kind": "one_way",
+          "rect": [
+            300,
+            380,
+            160,
+            16
+          ]
+        },
+        {
+          "id": "entry-catwalk",
+          "kind": "one_way",
+          "rect": [
+            460,
+            320,
+            240,
+            16
+          ]
+        },
+        {
+          "id": "entry-machine-0",
+          "kind": "solid",
+          "rect": [
+            1740,
+            380,
+            200,
+            60
+          ]
+        },
+        {
+          "id": "entry-machine-1",
+          "kind": "solid",
+          "rect": [
+            1940,
+            320,
+            220,
+            120
+          ]
+        },
+        {
+          "id": "entry-machine-2",
+          "kind": "solid",
+          "rect": [
+            2160,
+            380,
+            200,
+            60
+          ]
+        },
+        {
+          "id": "entry-pit",
+          "kind": "pit",
+          "rect": [
+            900,
+            440,
+            120,
+            100
+          ],
+          "takeoff_clear_x": [
+            740,
+            900
+          ],
+          "landing_clear_x": [
+            1020,
+            1260
+          ],
+          "overlap_fatal_fraction": 0.65,
+          "landing_grace_seconds": 0.45
+        },
+        {
+          "id": "entry-pipe",
+          "kind": "background_opening",
+          "rect": [
+            2008,
+            148,
+            64,
+            64
+          ],
+          "mouth": [
+            2040,
+            180
+          ],
+          "landing_support": "entry-machine-1"
+        },
+        {
+          "id": "entry-ceiling-turret",
+          "kind": "ceiling_fixture",
+          "rect": [
+            2620,
+            110.6622516556,
+            120,
+            69.3377483444
+          ],
+          "mount": [
+            2680,
+            180
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1.2",
+      "start": 3120,
+      "end": 4650,
+      "owner_origin": 85,
+      "quiet_ranges": [
+        [
+          4450,
+          4650
+        ]
+      ],
+      "relief_ranges": [
+        [
+          3120,
+          3280
+        ],
+        [
+          4050,
+          4190
+        ]
+      ],
+      "traversal_intent": "Forced machinery rise first, optional late upper route; clear approach to checkpoint4650.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": [
+        {
+          "id": "service-machine-0",
+          "kind": "solid",
+          "rect": [
+            3500,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "service-machine-1",
+          "kind": "solid",
+          "rect": [
+            3660,
+            320,
+            180,
+            120
+          ]
+        },
+        {
+          "id": "service-machine-2",
+          "kind": "solid",
+          "rect": [
+            3840,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "service-access",
+          "kind": "one_way",
+          "rect": [
+            4070,
+            380,
+            160,
+            16
+          ]
+        },
+        {
+          "id": "service-deck",
+          "kind": "one_way",
+          "rect": [
+            4230,
+            320,
+            200,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1.3",
+      "start": 4650,
+      "end": 5610,
+      "owner_origin": 4650,
+      "quiet_ranges": [
+        [
+          4650,
+          4850
+        ]
+      ],
+      "relief_ranges": [
+        [
+          5480,
+          5610
+        ]
+      ],
+      "traversal_intent": "Retain existing tall connected pump staircase and descending60px exit; short combat after checkpoint grace.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": [
+        {
+          "id": "pump-machine-0",
+          "kind": "solid",
+          "rect": [
+            4850,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "pump-machine-1",
+          "kind": "solid",
+          "rect": [
+            5010,
+            320,
+            180,
+            120
+          ]
+        },
+        {
+          "id": "pump-machine-2",
+          "kind": "solid",
+          "rect": [
+            5190,
+            260,
+            200,
+            180
+          ]
+        },
+        {
+          "id": "pump-machine-3",
+          "kind": "solid",
+          "rect": [
+            5390,
+            320,
+            60,
+            120
+          ]
+        },
+        {
+          "id": "pump-machine-4",
+          "kind": "solid",
+          "rect": [
+            5450,
+            380,
+            160,
+            60
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skitterling-approach",
+      "start": 5610,
+      "end": 6570,
+      "owner_origin": 4650,
+      "quiet_ranges": [
+        [
+          5610,
+          6570
+        ]
+      ],
+      "relief_ranges": [],
+      "traversal_intent": "Preserve the authored empty approach and entrance tunnel.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": []
+    },
+    {
+      "id": "skitterling-room",
+      "start": 6570,
+      "end": 7650,
+      "owner_origin": 4650,
+      "quiet_ranges": [
+        [
+          6570,
+          7650
+        ]
+      ],
+      "relief_ranges": [],
+      "traversal_intent": "Preserve mini-boss, fixed camera and exit tunnel; no ordinary encounters.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": []
+    },
+    {
+      "id": "1.4",
+      "start": 7650,
+      "end": 9500,
+      "owner_origin": 7650,
+      "quiet_ranges": [
+        [
+          7650,
+          7850
+        ]
+      ],
+      "relief_ranges": [
+        [
+          8270,
+          8430
+        ],
+        [
+          9310,
+          9500
+        ]
+      ],
+      "traversal_intent": "Boss-exit recovery, optional deck fight, then a required two-rise climb and broad exit floor.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": [
+        {
+          "id": "return-access",
+          "kind": "one_way",
+          "rect": [
+            7930,
+            380,
+            160,
+            16
+          ]
+        },
+        {
+          "id": "return-deck",
+          "kind": "one_way",
+          "rect": [
+            8090,
+            320,
+            240,
+            16
+          ]
+        },
+        {
+          "id": "return-machine-0",
+          "kind": "solid",
+          "rect": [
+            8600,
+            380,
+            200,
+            60
+          ]
+        },
+        {
+          "id": "return-machine-1",
+          "kind": "solid",
+          "rect": [
+            8800,
+            320,
+            220,
+            120
+          ]
+        },
+        {
+          "id": "return-machine-2",
+          "kind": "solid",
+          "rect": [
+            9020,
+            380,
+            200,
+            60
+          ]
+        },
+        {
+          "id": "return-pipe",
+          "kind": "background_opening",
+          "rect": [
+            8858,
+            148,
+            64,
+            64
+          ],
+          "mouth": [
+            8890,
+            180
+          ],
+          "landing_support": "return-machine-1"
+        }
+      ]
+    },
+    {
+      "id": "1.5",
+      "start": 9500,
+      "end": 13710,
+      "owner_origin": 7650,
+      "quiet_ranges": [],
+      "relief_ranges": [
+        [
+          10240,
+          10400
+        ],
+        [
+          11040,
+          11180
+        ],
+        [
+          12180,
+          12320
+        ],
+        [
+          13040,
+          13200
+        ],
+        [
+          13680,
+          13710
+        ]
+      ],
+      "traversal_intent": "Three distinct machinery groups with optional upper routes; ceiling devil on open floor; late familiar pit and final relief.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": [
+        {
+          "id": "approach-machine-0-0",
+          "kind": "solid",
+          "rect": [
+            9740,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "approach-machine-0-1",
+          "kind": "solid",
+          "rect": [
+            9900,
+            320,
+            180,
+            120
+          ]
+        },
+        {
+          "id": "approach-machine-0-2",
+          "kind": "solid",
+          "rect": [
+            10080,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "approach-machine-1-0",
+          "kind": "solid",
+          "rect": [
+            11180,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "approach-machine-1-1",
+          "kind": "solid",
+          "rect": [
+            11340,
+            320,
+            180,
+            120
+          ]
+        },
+        {
+          "id": "approach-machine-1-2",
+          "kind": "solid",
+          "rect": [
+            11520,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "approach-machine-2-0",
+          "kind": "solid",
+          "rect": [
+            12540,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "approach-machine-2-1",
+          "kind": "solid",
+          "rect": [
+            12700,
+            320,
+            180,
+            120
+          ]
+        },
+        {
+          "id": "approach-machine-2-2",
+          "kind": "solid",
+          "rect": [
+            12880,
+            380,
+            160,
+            60
+          ]
+        },
+        {
+          "id": "approach-deck-0",
+          "kind": "one_way",
+          "rect": [
+            10520,
+            320,
+            240,
+            16
+          ]
+        },
+        {
+          "id": "approach-access-0",
+          "kind": "one_way",
+          "rect": [
+            10360,
+            380,
+            160,
+            16
+          ]
+        },
+        {
+          "id": "approach-deck-1",
+          "kind": "one_way",
+          "rect": [
+            11940,
+            320,
+            240,
+            16
+          ]
+        },
+        {
+          "id": "approach-access-1",
+          "kind": "one_way",
+          "rect": [
+            11780,
+            380,
+            160,
+            16
+          ]
+        },
+        {
+          "id": "approach-devil-rail",
+          "kind": "ceiling_rail",
+          "rect": [
+            10760,
+            93,
+            340,
+            18
+          ],
+          "socket": [
+            10920,
+            110
+          ],
+          "crawl_range": [
+            10820,
+            11040
+          ],
+          "art_rule": "Use Art support-manifest-v1 rail: preserve22/23px endcaps, stretch center only. Underside111 matches socket110; hooks reach60px beyond crawl centers. Permanent rail behind hooks."
+        },
+        {
+          "id": "approach-pit",
+          "kind": "pit",
+          "rect": [
+            13200,
+            440,
+            120,
+            100
+          ],
+          "takeoff_clear_x": [
+            13040,
+            13200
+          ],
+          "landing_clear_x": [
+            13320,
+            13560
+          ],
+          "overlap_fatal_fraction": 0.65,
+          "landing_grace_seconds": 0.45
+        },
+        {
+          "id": "approach-ceiling-turret",
+          "kind": "ceiling_fixture",
+          "rect": [
+            13530,
+            110.6622516556,
+            120,
+            69.3377483444
+          ],
+          "mount": [
+            13590,
+            180
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clogfather-staging",
+      "start": 13710,
+      "end": 14150,
+      "owner_origin": 13800,
+      "quiet_ranges": [
+        [
+          13710,
+          14150
+        ]
+      ],
+      "relief_ranges": [],
+      "traversal_intent": "Preserve checkpoint13800, dramatic intro and boss approach.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": []
+    },
+    {
+      "id": "clogfather-room",
+      "start": 14150,
+      "end": 15200,
+      "owner_origin": 13800,
+      "quiet_ranges": [
+        [
+          14150,
+          15200
+        ]
+      ],
+      "relief_ranges": [],
+      "traversal_intent": "Preserve rooted boss fight, completion and portal.",
+      "relief_intent": "Delay fresh admissions and attack windups; visible actors and projectiles finish normally.",
+      "geometry": []
+    }
+  ],
+  "encounters": [
+    {
+      "id": "campaign-entry-a-run1",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 120,
+      "end": 680,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          470,
+          440
+        ],
+        "bounds": [
+          180,
+          700
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-a-shot1",
+      "section_id": "1.1",
+      "role": "perched_shooter",
+      "trigger": 160,
+      "end": 700,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          620,
+          320
+        ],
+        "bounds": [
+          620,
+          620
+        ],
+        "support": "entry-catwalk"
+      }
+    },
+    {
+      "id": "campaign-entry-a-run2",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 240,
+      "end": 700,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          650,
+          440
+        ],
+        "bounds": [
+          180,
+          710
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-a-fly1",
+      "section_id": "1.1",
+      "role": "aggressive_flyer",
+      "trigger": 320,
+      "end": 820,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          690,
+          190
+        ],
+        "bounds": [
+          180,
+          830
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-entry-a-run3",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 370,
+      "end": 820,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          520,
+          440
+        ],
+        "bounds": [
+          220,
+          710
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-a-shot2",
+      "section_id": "1.1",
+      "role": "perched_shooter",
+      "trigger": 440,
+      "end": 820,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          700,
+          440
+        ],
+        "bounds": [
+          700,
+          700
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-a-fly2",
+      "section_id": "1.1",
+      "role": "aggressive_flyer",
+      "trigger": 500,
+      "end": 820,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          790,
+          180
+        ],
+        "bounds": [
+          220,
+          830
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-entry-a-run4",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 570,
+      "end": 820,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          670,
+          440
+        ],
+        "bounds": [
+          240,
+          710
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-b-run1",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 1390,
+      "end": 1740,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "foreground"
+      },
+      "placement": {
+        "feet": [
+          1450,
+          440
+        ],
+        "bounds": [
+          1270,
+          1710
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-b-shot1",
+      "section_id": "1.1",
+      "role": "perched_shooter",
+      "trigger": 1390,
+      "end": 1740,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          1670,
+          440
+        ],
+        "bounds": [
+          1670,
+          1670
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-b-fly1",
+      "section_id": "1.1",
+      "role": "aggressive_flyer",
+      "trigger": 1430,
+      "end": 1810,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          1690,
+          180
+        ],
+        "bounds": [
+          1230,
+          2710
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-entry-b-run2",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 1460,
+      "end": 1810,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          1620,
+          440
+        ],
+        "bounds": [
+          1270,
+          1710
+        ],
+        "support": "floor"
+      },
+      "arrival_variation": {
+        "group": "1.1",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-entry-b-swarm",
+      "section_id": "1.1",
+      "role": "swarm",
+      "trigger": 1490,
+      "end": 1880,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "bottom",
+        "source": [
+          960,
+          700
+        ],
+        "waypoints": [
+          [
+            960,
+            280
+          ]
+        ],
+        "opening_id": "entry-pit"
+      },
+      "placement": {
+        "feet": [
+          1690,
+          240
+        ],
+        "bounds": [
+          1230,
+          2740
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-entry-b-run3",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 1540,
+      "end": 1880,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          1570,
+          440
+        ],
+        "bounds": [
+          1270,
+          1710
+        ],
+        "support": "floor"
+      },
+      "arrival_variation": {
+        "group": "1.1",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-entry-b-shot2",
+      "section_id": "1.1",
+      "role": "perched_shooter",
+      "trigger": 1580,
+      "end": 1940,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          1850,
+          380
+        ],
+        "bounds": [
+          1850,
+          1850
+        ],
+        "support": "entry-machine-0"
+      }
+    },
+    {
+      "id": "campaign-entry-b-run4",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 1630,
+      "end": 1940,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          1810,
+          380
+        ],
+        "bounds": [
+          1683,
+          2717
+        ],
+        "support": "entry-machine-0"
+      }
+    },
+    {
+      "id": "campaign-entry-c-entry",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 1740,
+      "end": 2390,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "background",
+        "source": [
+          2040,
+          180
+        ],
+        "opening_id": "entry-pipe"
+      },
+      "placement": {
+        "feet": [
+          2040,
+          320
+        ],
+        "bounds": [
+          1683,
+          2717
+        ],
+        "support": "entry-machine-1"
+      }
+    },
+    {
+      "id": "campaign-entry-c-shot1",
+      "section_id": "1.1",
+      "role": "perched_shooter",
+      "trigger": 1810,
+      "end": 2500,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          2200,
+          380
+        ],
+        "bounds": [
+          2200,
+          2200
+        ],
+        "support": "entry-machine-2"
+      }
+    },
+    {
+      "id": "campaign-entry-c-run2",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 1870,
+      "end": 2500,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          2250,
+          380
+        ],
+        "bounds": [
+          1683,
+          2717
+        ],
+        "support": "entry-machine-2"
+      }
+    },
+    {
+      "id": "campaign-entry-c-fly1",
+      "section_id": "1.1",
+      "role": "aggressive_flyer",
+      "trigger": 1940,
+      "end": 2770,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "right"
+      },
+      "placement": {
+        "feet": [
+          2470,
+          190
+        ],
+        "bounds": [
+          1230,
+          2760
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-entry-c-run3",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 2050,
+      "end": 2770,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "right"
+      },
+      "placement": {
+        "feet": [
+          2460,
+          440
+        ],
+        "bounds": [
+          1683,
+          2717
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-entry-c-swarm",
+      "section_id": "1.1",
+      "role": "swarm",
+      "trigger": 2160,
+      "end": 2770,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          2560,
+          240
+        ],
+        "bounds": [
+          1230,
+          2760
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-entry-c-shot2",
+      "section_id": "1.1",
+      "role": "perched_shooter",
+      "trigger": 2240,
+      "end": 2770,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "ceiling"
+      },
+      "placement": {
+        "feet": [
+          2680,
+          180
+        ],
+        "bounds": [
+          2680,
+          2680
+        ],
+        "support": "entry-ceiling-turret"
+      }
+    },
+    {
+      "id": "campaign-entry-c-run4",
+      "section_id": "1.1",
+      "role": "runner",
+      "trigger": 2340,
+      "end": 2770,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "right"
+      },
+      "placement": {
+        "feet": [
+          2640,
+          440
+        ],
+        "bounds": [
+          2383,
+          2740
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-service-run1",
+      "section_id": "1.2",
+      "role": "runner",
+      "trigger": 3280,
+      "end": 3800,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          3400,
+          440
+        ],
+        "bounds": [
+          3300,
+          3475
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-service-shot1",
+      "section_id": "1.2",
+      "role": "perched_shooter",
+      "trigger": 3320,
+      "end": 3900,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          3580,
+          380
+        ],
+        "bounds": [
+          3580,
+          3580
+        ],
+        "support": "service-machine-0"
+      }
+    },
+    {
+      "id": "campaign-service-fly1",
+      "section_id": "1.2",
+      "role": "aggressive_flyer",
+      "trigger": 3380,
+      "end": 4000,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          3760,
+          190
+        ],
+        "bounds": [
+          3320,
+          4380
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-service-run2",
+      "section_id": "1.2",
+      "role": "runner",
+      "trigger": 3450,
+      "end": 4000,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          3750,
+          320
+        ],
+        "bounds": [
+          3320,
+          4380
+        ],
+        "support": "service-machine-1"
+      },
+      "arrival_variation": {
+        "group": "1.2",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-service-run3",
+      "section_id": "1.2",
+      "role": "runner",
+      "trigger": 3580,
+      "end": 4050,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          3920,
+          380
+        ],
+        "bounds": [
+          3320,
+          4380
+        ],
+        "support": "service-machine-2"
+      },
+      "arrival_variation": {
+        "group": "1.2",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-service-swarm",
+      "section_id": "1.2",
+      "role": "swarm",
+      "trigger": 3710,
+      "end": 4050,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          4040,
+          220
+        ],
+        "bounds": [
+          3320,
+          4380
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-service-run4",
+      "section_id": "1.2",
+      "role": "runner",
+      "trigger": 3860,
+      "end": 4050,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "right"
+      },
+      "placement": {
+        "feet": [
+          4140,
+          440
+        ],
+        "bounds": [
+          4030,
+          4390
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-service-shot2",
+      "section_id": "1.2",
+      "role": "perched_shooter",
+      "trigger": 4190,
+      "end": 4420,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          4340,
+          320
+        ],
+        "bounds": [
+          4340,
+          4340
+        ],
+        "support": "service-deck"
+      }
+    },
+    {
+      "id": "campaign-service-fly2",
+      "section_id": "1.2",
+      "role": "aggressive_flyer",
+      "trigger": 4300,
+      "end": 4420,
+      "owner_origin": 85,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          4360,
+          190
+        ],
+        "bounds": [
+          4030,
+          4400
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-pump-run1",
+      "section_id": "1.3",
+      "role": "runner",
+      "trigger": 4850,
+      "end": 5250,
+      "owner_origin": 4650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          4930,
+          380
+        ],
+        "bounds": [
+          4875,
+          5585
+        ],
+        "support": "pump-machine-0"
+      },
+      "arrival_variation": {
+        "group": "1.3",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-pump-shot1",
+      "section_id": "1.3",
+      "role": "perched_shooter",
+      "trigger": 4900,
+      "end": 5300,
+      "owner_origin": 4650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          5100,
+          320
+        ],
+        "bounds": [
+          5100,
+          5100
+        ],
+        "support": "pump-machine-1"
+      }
+    },
+    {
+      "id": "campaign-pump-fly1",
+      "section_id": "1.3",
+      "role": "aggressive_flyer",
+      "trigger": 4960,
+      "end": 5380,
+      "owner_origin": 4650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          5300,
+          160
+        ],
+        "bounds": [
+          4880,
+          5480
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-pump-run2",
+      "section_id": "1.3",
+      "role": "runner",
+      "trigger": 5050,
+      "end": 5380,
+      "owner_origin": 4650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          5280,
+          260
+        ],
+        "bounds": [
+          4875,
+          5585
+        ],
+        "support": "pump-machine-2"
+      }
+    },
+    {
+      "id": "campaign-pump-swarm",
+      "section_id": "1.3",
+      "role": "swarm",
+      "trigger": 5150,
+      "end": 5400,
+      "owner_origin": 4650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          5360,
+          200
+        ],
+        "bounds": [
+          4890,
+          5480
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-pump-run3",
+      "section_id": "1.3",
+      "role": "runner",
+      "trigger": 5270,
+      "end": 5450,
+      "owner_origin": 4650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          5530,
+          380
+        ],
+        "bounds": [
+          4875,
+          5585
+        ],
+        "support": "pump-machine-4"
+      },
+      "arrival_variation": {
+        "group": "1.3",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-return-run1",
+      "section_id": "1.4",
+      "role": "runner",
+      "trigger": 7850,
+      "end": 8250,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          7950,
+          440
+        ],
+        "bounds": [
+          7875,
+          8500
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-return-shot1",
+      "section_id": "1.4",
+      "role": "perched_shooter",
+      "trigger": 7900,
+      "end": 8270,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          8210,
+          320
+        ],
+        "bounds": [
+          8210,
+          8210
+        ],
+        "support": "return-deck"
+      }
+    },
+    {
+      "id": "campaign-return-fly1",
+      "section_id": "1.4",
+      "role": "aggressive_flyer",
+      "trigger": 7960,
+      "end": 8270,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          8210,
+          190
+        ],
+        "bounds": [
+          7890,
+          8510
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-return-run2",
+      "section_id": "1.4",
+      "role": "runner",
+      "trigger": 8030,
+      "end": 8270,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          8170,
+          440
+        ],
+        "bounds": [
+          7875,
+          8500
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-return-swarm",
+      "section_id": "1.4",
+      "role": "swarm",
+      "trigger": 8190,
+      "end": 8270,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          8420,
+          220
+        ],
+        "bounds": [
+          7890,
+          8510
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-return-run4",
+      "section_id": "1.4",
+      "role": "runner",
+      "trigger": 8430,
+      "end": 9000,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          8520,
+          440
+        ],
+        "bounds": [
+          8450,
+          9370
+        ],
+        "support": "floor"
+      },
+      "arrival_variation": {
+        "group": "1.4",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-return-shot2",
+      "section_id": "1.4",
+      "role": "perched_shooter",
+      "trigger": 8470,
+      "end": 9100,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          8700,
+          380
+        ],
+        "bounds": [
+          8700,
+          8700
+        ],
+        "support": "return-machine-0"
+      }
+    },
+    {
+      "id": "campaign-return-fly2",
+      "section_id": "1.4",
+      "role": "aggressive_flyer",
+      "trigger": 8530,
+      "end": 9200,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          8870,
+          190
+        ],
+        "bounds": [
+          8460,
+          9370
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-return-run5",
+      "section_id": "1.4",
+      "role": "runner",
+      "trigger": 8650,
+      "end": 9200,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "background",
+        "source": [
+          8890,
+          180
+        ],
+        "opening_id": "return-pipe"
+      },
+      "placement": {
+        "feet": [
+          8890,
+          320
+        ],
+        "bounds": [
+          8450,
+          9370
+        ],
+        "support": "return-machine-1"
+      }
+    },
+    {
+      "id": "campaign-return-run6",
+      "section_id": "1.4",
+      "role": "runner",
+      "trigger": 8790,
+      "end": 9250,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          9110,
+          380
+        ],
+        "bounds": [
+          8450,
+          9370
+        ],
+        "support": "return-machine-2"
+      },
+      "arrival_variation": {
+        "group": "1.4",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-return-shot3",
+      "section_id": "1.4",
+      "role": "perched_shooter",
+      "trigger": 8910,
+      "end": 9250,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          9130,
+          380
+        ],
+        "bounds": [
+          9130,
+          9130
+        ],
+        "support": "return-machine-2"
+      }
+    },
+    {
+      "id": "campaign-return-run7",
+      "section_id": "1.4",
+      "role": "runner",
+      "trigger": 9050,
+      "end": 9310,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          9340,
+          440
+        ],
+        "bounds": [
+          9245,
+          9410
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-return-fly3",
+      "section_id": "1.4",
+      "role": "aggressive_flyer",
+      "trigger": 9140,
+      "end": 9310,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          9350,
+          190
+        ],
+        "bounds": [
+          8470,
+          9410
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-approach-run01",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 9500,
+      "end": 10000,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          9650,
+          440
+        ],
+        "bounds": [
+          9530,
+          10210
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-approach-shot01",
+      "section_id": "1.5",
+      "role": "perched_shooter",
+      "trigger": 9570,
+      "end": 10220,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          9820,
+          380
+        ],
+        "bounds": [
+          9820,
+          9820
+        ],
+        "support": "approach-machine-0-0"
+      }
+    },
+    {
+      "id": "campaign-approach-run02",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 9650,
+      "end": 10220,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          9980,
+          320
+        ],
+        "bounds": [
+          9530,
+          10210
+        ],
+        "support": "approach-machine-0-1"
+      }
+    },
+    {
+      "id": "campaign-approach-fly01",
+      "section_id": "1.5",
+      "role": "aggressive_flyer",
+      "trigger": 9720,
+      "end": 10220,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          10030,
+          190
+        ],
+        "bounds": [
+          9560,
+          10200
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-approach-run03",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 9850,
+      "end": 10220,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          10160,
+          380
+        ],
+        "bounds": [
+          9530,
+          10210
+        ],
+        "support": "approach-machine-0-2"
+      }
+    },
+    {
+      "id": "campaign-approach-swarm01",
+      "section_id": "1.5",
+      "role": "swarm",
+      "trigger": 9960,
+      "end": 10220,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          10200,
+          220
+        ],
+        "bounds": [
+          9560,
+          10200
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-approach-shot02",
+      "section_id": "1.5",
+      "role": "perched_shooter",
+      "trigger": 10400,
+      "end": 11020,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          10640,
+          320
+        ],
+        "bounds": [
+          10640,
+          10640
+        ],
+        "support": "approach-deck-0"
+      }
+    },
+    {
+      "id": "campaign-approach-run04",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 10440,
+      "end": 11020,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          10580,
+          440
+        ],
+        "bounds": [
+          10270,
+          11150
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-approach-devil",
+      "section_id": "1.5",
+      "role": "aggressive_flyer",
+      "trigger": 10450,
+      "end": 11040,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          10920,
+          110
+        ],
+        "bounds": [
+          10820,
+          11040
+        ],
+        "support": "approach-devil-rail",
+        "socket": [
+          10920,
+          110
+        ],
+        "crawl_range": [
+          10820,
+          11040
+        ]
+      },
+      "variant": "devil"
+    },
+    {
+      "id": "campaign-approach-run05",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 10540,
+      "end": 11020,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          10880,
+          440
+        ],
+        "bounds": [
+          10270,
+          11150
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-approach-swarm02",
+      "section_id": "1.5",
+      "role": "swarm",
+      "trigger": 10670,
+      "end": 11020,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          10960,
+          230
+        ],
+        "bounds": [
+          10790,
+          11040
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-approach-run06",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 10810,
+      "end": 11020,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          11030,
+          440
+        ],
+        "bounds": [
+          10270,
+          11150
+        ],
+        "support": "floor"
+      },
+      "arrival_variation": {
+        "group": "1.5",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-approach-run07",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 11180,
+      "end": 11820,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          11260,
+          380
+        ],
+        "bounds": [
+          11205,
+          12150
+        ],
+        "support": "approach-machine-1-0"
+      }
+    },
+    {
+      "id": "campaign-approach-shot03",
+      "section_id": "1.5",
+      "role": "perched_shooter",
+      "trigger": 11230,
+      "end": 11900,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          11420,
+          320
+        ],
+        "bounds": [
+          11420,
+          11420
+        ],
+        "support": "approach-machine-1-1"
+      }
+    },
+    {
+      "id": "campaign-approach-fly02",
+      "section_id": "1.5",
+      "role": "aggressive_flyer",
+      "trigger": 11310,
+      "end": 12000,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          11620,
+          190
+        ],
+        "bounds": [
+          11200,
+          12140
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-approach-run08",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 11430,
+      "end": 12000,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          11600,
+          380
+        ],
+        "bounds": [
+          11205,
+          12150
+        ],
+        "support": "approach-machine-1-2"
+      },
+      "arrival_variation": {
+        "group": "1.5",
+        "alternative": {
+          "mode": "foreground"
+        }
+      }
+    },
+    {
+      "id": "campaign-approach-run09",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 11570,
+      "end": 12100,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "right"
+      },
+      "placement": {
+        "feet": [
+          11800,
+          440
+        ],
+        "bounds": [
+          11710,
+          12150
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-approach-swarm03",
+      "section_id": "1.5",
+      "role": "swarm",
+      "trigger": 11660,
+      "end": 12150,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          11900,
+          220
+        ],
+        "bounds": [
+          11200,
+          12140
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-approach-shot04",
+      "section_id": "1.5",
+      "role": "perched_shooter",
+      "trigger": 11760,
+      "end": 12150,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          12060,
+          320
+        ],
+        "bounds": [
+          12060,
+          12060
+        ],
+        "support": "approach-deck-1"
+      }
+    },
+    {
+      "id": "campaign-approach-run10",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 11870,
+      "end": 12150,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          12100,
+          440
+        ],
+        "bounds": [
+          11710,
+          12150
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-approach-run11",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 12320,
+      "end": 12880,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "left"
+      },
+      "placement": {
+        "feet": [
+          12450,
+          440
+        ],
+        "bounds": [
+          12345,
+          13010
+        ],
+        "support": "floor"
+      }
+    },
+    {
+      "id": "campaign-approach-shot05",
+      "section_id": "1.5",
+      "role": "perched_shooter",
+      "trigger": 12370,
+      "end": 12900,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          12620,
+          380
+        ],
+        "bounds": [
+          12620,
+          12620
+        ],
+        "support": "approach-machine-2-0"
+      }
+    },
+    {
+      "id": "campaign-approach-fly03",
+      "section_id": "1.5",
+      "role": "aggressive_flyer",
+      "trigger": 12450,
+      "end": 12920,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          12720,
+          190
+        ],
+        "bounds": [
+          12340,
+          12970
+        ],
+        "support": null
+      },
+      "variant": "angel"
+    },
+    {
+      "id": "campaign-approach-run12",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 12530,
+      "end": 12950,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          12790,
+          320
+        ],
+        "bounds": [
+          12345,
+          13010
+        ],
+        "support": "approach-machine-2-1"
+      }
+    },
+    {
+      "id": "campaign-approach-run13",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 12630,
+      "end": 12980,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          12960,
+          380
+        ],
+        "bounds": [
+          12345,
+          13010
+        ],
+        "support": "approach-machine-2-2"
+      }
+    },
+    {
+      "id": "campaign-approach-swarm04",
+      "section_id": "1.5",
+      "role": "swarm",
+      "trigger": 12740,
+      "end": 13000,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "top"
+      },
+      "placement": {
+        "feet": [
+          12970,
+          210
+        ],
+        "bounds": [
+          12340,
+          12970
+        ],
+        "support": null
+      }
+    },
+    {
+      "id": "campaign-approach-run14",
+      "section_id": "1.5",
+      "role": "runner",
+      "trigger": 12850,
+      "end": 13020,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "floor"
+      },
+      "placement": {
+        "feet": [
+          12940,
+          380
+        ],
+        "bounds": [
+          12345,
+          13010
+        ],
+        "support": "approach-machine-2-2"
+      }
+    },
+    {
+      "id": "campaign-approach-shot06",
+      "section_id": "1.5",
+      "role": "perched_shooter",
+      "trigger": 13560,
+      "end": 13680,
+      "owner_origin": 7650,
+      "enabled_difficulties": [
+        "easy",
+        "normal",
+        "hard"
+      ],
+      "arrival": {
+        "mode": "ceiling"
+      },
+      "placement": {
+        "feet": [
+          13590,
+          180
+        ],
+        "bounds": [
+          13590,
+          13590
+        ],
+        "support": "approach-ceiling-turret"
+      }
+    }
+  ],
+  "validation": {
+    "runtime_passed": false,
+    "visual_accepted": false,
+    "requirements": [
+      "Validate both heroes against all solid/one-way surfaces and pit thresholds in both directions.",
+      "Audit every event at actual cameras for continuous visible ingress, supported arrival and no patrol-bound snapping.",
+      "Validate swarm bottom full animated envelope through entry-pit and landing protection; no terrain clipping.",
+      "Check ordinary attacks cannot leak into quiet/boss/checkpoint regions, including webs, swarms and persistent bolts.",
+      "Measure rolling three-screen Normal population, projectiles, overlap and damage causes against untouched1.2.",
+      "Run seeded E/N/H routes with rush, slow play, backtrack, death/retry and boss transitions; no duplicate scheduling.",
+      "Inspect each changed assembly, entry, angel scuttle and devil web interaction in actual motion with independent Art review."
+    ]
+  },
+  "roster_summary": {
+    "total": 80,
+    "by_section": {
+      "1.1": 24,
+      "1.2": 9,
+      "1.3": 6,
+      "1.4": 13,
+      "1.5": 28
+    },
+    "by_role": {
+      "runner": 39,
+      "perched_shooter": 18,
+      "aggressive_flyer": 14,
+      "swarm": 9
+    },
+    "max_authored_triggers_per_2880px": 24,
+    "note": "Authored opportunities only; actual concurrent pressure requires runtime telemetry."
+  },
+  "pit_policy": "Campaign retains established65 percent footprint policy; independent approved section1.2 remains90 percent. Both hero landing and edge captures required.",
+  "art_reuse_rules": [
+    "All one-way slabs retain established wall brackets/support artwork behind playable lower lanes.",
+    "pump-machine-3 retains existing narrow crop construction; never squeeze full machinery into60px width.",
+    "Tall180px pump uses existing tall construction, not stretched60px artwork.",
+    "Pipe mouths require continuous140px emergence/fall onto summit and foreground rim occlusion.",
+    "Devil rail bolts/support remain visible before arrival and after death; inspect hook contact at patrol extremes."
+  ],
+  "entrance_variation": {
+    "version": 1,
+    "selection": "One foreground replacement per authored group, selected by run seed and stable group/id ordering; all other arrivals remain authored.",
+    "seed_lifecycle": "Reuse run seed across death and checkpoint resets; change only for a genuinely new run.",
+    "constraints": [
+      "No extra actors, trigger changes, landing changes, budget changes or new artwork.",
+      "Only listed mobile runners may vary; stationary shooters, devil mounts, pit-bottom and background openings stay authored.",
+      "Selected depth entries retain existing population/pattern admission and landing safety guards."
+    ],
+    "validation": {
+      "focused_test": "tests/campaign_entrance_variants.gd",
+      "checks": 2155,
+      "seed_samples": 64,
+      "candidate_slots": 10,
+      "foreground_per_run": 6,
+      "campaign_regression_checks": 202738,
+      "failures": 0,
+      "scope": "Seed stability across checkpoint/difficulty/reordering; both alternatives at every candidate have clear supported destinations and feasible admission windows; existing campaign population/projectile/pattern checks at30/60/120Hz.",
+      "remaining": "Engineering caller wiring, combined packaged build and running foreground motion/occlusion review."
+    }
+  }
+}

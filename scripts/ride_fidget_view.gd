@@ -10,8 +10,21 @@ var cloud_material: ShaderMaterial
 var cloud_mesh: QuadMesh
 var cloud_size := Vector2.ONE
 var cloud_pivot := Vector2(.5,.68)
+var super_definition: Dictionary = {}
+var super_texture: Texture2D
+var super_mesh: QuadMesh
+var super_bounds := Rect2()
 
 func configure() -> void:
+	super_definition = JSON.parse_string(FileAccess.get_file_as_string(
+		"res://assets/world/ride-fidget-cloud-v1/super-cloud-manifest-v2.json"))
+	super_texture = load("res://"+str(super_definition.path))
+	var source: Array = super_definition.source_rect
+	var visible: Array = super_definition.visible_bounds_alpha64_px
+	super_bounds = Rect2(float(visible[0])/source[2],float(visible[1])/source[3],
+		float(visible[2]-visible[0])/source[2],float(visible[3]-visible[1])/source[3])
+	super_mesh = QuadMesh.new()
+	super_mesh.size = Vector2(float(source[2])/source[3],1)
 	var definition: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
 	for asset: Dictionary in definition.assets:
 		var kind := "water" if asset.id == "water" else "solid"
@@ -33,9 +46,14 @@ shader_type spatial;
 render_mode unshaded, cull_disabled, depth_draw_never;
 uniform sampler2D artwork : source_color, filter_linear_mipmap;
 uniform float opacity = 1.0;
+uniform float billow_age = 0.0;
+uniform float billow_strength = 0.0;
 uniform vec4 uv_region = vec4(0.0,0.0,1.0,1.0);
 void fragment() {
  vec2 uv = uv_region.xy + UV * uv_region.zw;
+ float envelope = sin(UV.x * 3.14159265) * sin(UV.y * 3.14159265);
+ uv += vec2(sin(UV.y * 9.0 + billow_age * 2.61799),
+            sin(UV.x * 11.0 - billow_age * 2.02683)) * envelope * billow_strength;
  // Diffusion is support-clipped by the model before this mesh is rendered.
  vec4 ink = texture(artwork, uv);
  ALBEDO = ink.rgb;
@@ -55,7 +73,7 @@ void fragment() {
 func prepare_warmup() -> Array[MeshInstance3D]:
 	# Upload all effect textures and compile the transparent shader before the first fire press.
 	var nodes: Array[MeshInstance3D] = []
-	for texture in [cloud_texture,textures.water,textures.solid]:
+	for texture in [cloud_texture,super_texture,textures.water,textures.solid]:
 		var node := MeshInstance3D.new()
 		node.mesh = QuadMesh.new()
 		node.mesh.surface_get_arrays(0)
@@ -123,6 +141,16 @@ func update_cloud(view: Node3D, model: RefCounted, effect: Dictionary) -> bool:
 		# Retain the exact mesh/material warmed during startup; new clouds only need a transform.
 		node.mesh = cloud_mesh
 		node.material_override = cloud_material
+		if effect.get("super",false):
+			node.mesh = super_mesh
+			node.material_override = cloud_material.duplicate()
+			node.material_override.set_shader_parameter("artwork",super_texture)
+			for index in range(2):
+				var lobe := MeshInstance3D.new()
+				lobe.mesh = super_mesh
+				lobe.material_override = node.material_override.duplicate()
+				lobe.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				node.add_child(lobe)
 		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		add_child(node)
 		instances[id] = node
@@ -130,6 +158,43 @@ func update_cloud(view: Node3D, model: RefCounted, effect: Dictionary) -> bool:
 	var center: Vector2 = effect.center-Vector2(model.clock*model.scroll_speed,0)
 	node.position = view.world(center,effect.height)
 	node.basis = view.camera.global_basis.scaled(Vector3.ONE*(1.0+.15*(1.0-exp(-effect.age))))
+	if effect.get("super",false):
+		# Fit the visible artwork from the water to the gameplay ceiling, with its leading edge
+		# behind the rider. Camera-space axes keep this floor contact correct at either yaw.
+		var floor_anchor: Vector3 = view.world(center,0)
+		var screen: Vector2 = view.camera.unproject_position(floor_anchor)
+		var depth: float = -view.camera.to_local(floor_anchor).z
+		var ceiling: Vector3 = view.camera.project_position(Vector2(screen.x,0),depth)
+		var height := maxf(.1,floor_anchor.distance_to(ceiling))
+		var scale_factor := height*.45/super_bounds.size.y
+		node.basis = view.camera.global_basis.scaled(Vector3.ONE*scale_factor)
+		var visible_right := (super_bounds.end.x-.5)*super_mesh.size.x
+		var visible_bottom := .5-super_bounds.end.y
+		var clearance: float = super_definition.anchor.leading_clearance_screen_px
+		floor_anchor = view.camera.project_position(Vector2(screen.x-clearance,screen.y),depth)
+		node.position = floor_anchor-node.basis*Vector3(visible_right,visible_bottom,0)
+		for index in range(node.get_child_count()):
+			var lobe: MeshInstance3D = node.get_child(index)
+			var bottom: Vector3 = floor_anchor+view.camera.global_basis.y*height*.275*(index+1)
+			bottom -= view.camera.global_basis.x*height*.04*(index+1)
+			lobe.global_transform = Transform3D(node.basis,
+				bottom-node.basis*Vector3(visible_right,visible_bottom,0))
+		var keys: Array = super_definition.animation.opacity_keyframes
+		var opacity := 0.0
+		for index in range(1,keys.size()):
+			if effect.age <= keys[index][0]:
+				opacity = lerpf(keys[index-1][1],keys[index][1],
+					smoothstep(keys[index-1][0],keys[index][0],float(effect.age)))
+				break
+		node.material_override.set_shader_parameter("opacity",opacity)
+		node.material_override.set_shader_parameter("billow_age",float(effect.age))
+		node.material_override.set_shader_parameter("billow_strength",.025)
+		for index in range(node.get_child_count()):
+			var lobe: MeshInstance3D = node.get_child(index)
+			lobe.material_override.set_shader_parameter("opacity",opacity)
+			lobe.material_override.set_shader_parameter("billow_age",float(effect.age)+index*.8)
+			lobe.material_override.set_shader_parameter("billow_strength",.025)
+		return false # Sustained specials expire on simulation time, never viewport travel.
 	# Check the full billboard including transparent margins, not just its release point.
 	var bounds := Rect2()
 	var first := true

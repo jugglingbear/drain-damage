@@ -1,0 +1,1414 @@
+{
+  "date": "2026-11-05",
+  "status": "Approved subsets handed to Engineering; unselected candidates remain auditions.",
+  "brief": "Material-led creature audio: dangerous, disturbing and physical, with distinct creature identities. Recorded foley and performed organic textures replace electronic beep-boop character. Short action-bound gestures leave space for music and crowds. Preserve all approved sounds and originals. These are designed fictional effects, not field recordings of the represented animals or materials. Revision: Gratecrawler layers low performed monster moans and wet tissue. Gnatastrophe combines four detuned original fly-buzz voices with CC0 insect texture; synthesis is insect wing buzz, not a musical beep.",
+  "recipe": "audio/sources/creature-materials-v2/render.py",
+  "plan": "audio/sources/creature-materials-v2/plan.json",
+  "consultation": {
+    "storyboarding": "Current eight canonical profiles reviewed by Storyboarding; response 2026-11-05. Material interpretations only, no invented lore.",
+    "level_design": "Reviewed current runtime 2026-11-05; action timings and cancellation contracts incorporated.",
+    "timings_seconds": {
+      "devil_spider_windup": 0.7,
+      "widow_tell": 0.65,
+      "widow_swoop": 0.8,
+      "sputtervalve_tell": 0.55,
+      "sputtervalve_shot_spacing": 0.18,
+      "gratecrawler_windup": 0.3,
+      "gnatastrophe_tell": 0.8,
+      "gnatastrophe_morph": 0.65,
+      "clogfather_shortest_tell": 0.55,
+      "clogfather_collapse": 1.2
+    },
+    "revision": "Sean requested wetter living tissue/zombie moan for Gratecrawler and more buzzing for Gnatastrophe; same reviewed timing limits."
+  },
+  "sources": {
+    "metal": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_light_001.ogg",
+      "sha256": "fba69c467ddd85da7b1d82e259f936b876d9ba6a3d6f1b24bdd10468e46bfe08",
+      "license_evidence": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    },
+    "eat_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/eat_01.ogg",
+      "sha256": "f17305072d3d0ca5556f72db8701866329d33561ca5df086e501f2a52e2022df",
+      "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "eat_04": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/eat_04.ogg",
+      "sha256": "1408d3cac16d7e8c99ce8702a76aa3c3fe18284d5326e88fc9b2c25331926ab8",
+      "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "moan": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/starninjas/monster.13.ogg",
+      "sha256": "eb9bafa33e86361e8dfd9afe13293bb49429dd942dd2d85e9492ed5f3d69ba23",
+      "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "StarNinjas",
+      "license": "CC0-1.0"
+    },
+    "burble_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/burble_01.ogg",
+      "sha256": "f4c27a1839ef9e82d29e1bb175c0ebf73c65b6839b2914108d0c219fc1f42445",
+      "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "bug_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/bug_01.ogg",
+      "sha256": "a7afae8bd3b448184e92bbb6162702e86322e5df58045715176c450ba4bbea3a",
+      "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "buzz": {
+      "path": "assets/audio/sfx/sewer-fly-buzz-v1/swarm-loop.wav",
+      "sha256": "b627a972eb7eb9d2327f3f7af999ddb0c5bf8379c8919fce780c516960ebddf4",
+      "license_evidence": "audio/sources/sewer-fly-buzz-v1/manifest.json",
+      "author": "Drain Damage",
+      "license": "Original synthesis"
+    },
+    "heavy": {
+      "path": "audio/sources/sputtervalve-v1/impactMetal_heavy_002.ogg",
+      "sha256": "b914c8f1eb7c0f34bb165d7c77f4be0351f6be0660c13c53e65424e262e2c093",
+      "license_evidence": "audio/sources/sputtervalve-v1/manifest.json",
+      "author": "Kenney",
+      "license": "CC0-1.0"
+    },
+    "glass": {
+      "path": "audio/sources/flushfiend-shatter-v1/bfh1_glass_breaking_02.ogg",
+      "sha256": "35dcb1dc69338bad745e1cd56c676d04e4afb6687b9aa6d05ba83a255252747b",
+      "license_evidence": "audio/sources/flushfiend-shatter-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "splash": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_01.ogg",
+      "sha256": "8d48e8da680fbdfd3c885aa2f69d8e83ad16717bae43d178861d7af08d142849",
+      "license_evidence": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "spit_03": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/spit_03.ogg",
+      "sha256": "dcc68b992278e58fc51776b23b4cf04a28f7d660c58fd5514b35cb3f0936277c",
+      "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    },
+    "burble_02": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/burble_02.ogg",
+      "sha256": "7cc51b6cf28a5d0ac13f34e54cb18ebb8d2b66aa144281d321d0af826f56a85b",
+      "license_evidence": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0"
+    }
+  },
+  "processing": [
+    {
+      "source": "eat_01",
+      "filters": "aresample=44100,asetrate=28665,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 739
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=30870,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "metal",
+      "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "eat_04",
+      "filters": "aresample=44100,asetrate=28665,aresample=44100,highpass=f=120,lowpass=f=4800",
+      "leading_trim_samples": 1641
+    },
+    {
+      "source": "moan",
+      "filters": "aresample=44100,asetrate=29106,aresample=44100,highpass=f=90,lowpass=f=3200",
+      "leading_trim_samples": 11902
+    },
+    {
+      "source": "eat_01",
+      "filters": "aresample=44100,asetrate=33075,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 627
+    },
+    {
+      "source": "burble_01",
+      "filters": "aresample=44100,asetrate=31752,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 3573
+    },
+    {
+      "source": "spit_03",
+      "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 812
+    },
+    {
+      "source": "spit_03",
+      "filters": "aresample=44100,asetrate=30870,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 941
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=33075,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "burble_01",
+      "filters": "aresample=44100,asetrate=33075,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 3426
+    },
+    {
+      "source": "glass",
+      "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=900,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "burble_02",
+      "filters": "aresample=44100,asetrate=25137,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 3555
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=30870,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "heavy",
+      "filters": "aresample=44100,asetrate=36162,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "metal",
+      "filters": "aresample=44100,asetrate=46305,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "buzz",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=350,lowpass=f=7500",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "buzz",
+      "filters": "aresample=44100,asetrate=40131,aresample=44100,highpass=f=350,lowpass=f=7500",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "buzz",
+      "filters": "aresample=44100,asetrate=48951,aresample=44100,highpass=f=350,lowpass=f=7500",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "buzz",
+      "filters": "aresample=44100,asetrate=54684,aresample=44100,highpass=f=350,lowpass=f=7500",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "bug_01",
+      "filters": "aresample=44100,asetrate=55125,aresample=44100,highpass=f=1500,lowpass=f=8500",
+      "leading_trim_samples": 2867
+    },
+    {
+      "source": "buzz",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=700,lowpass=f=7000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "buzz",
+      "filters": "aresample=44100,asetrate=57330,aresample=44100,highpass=f=900,lowpass=f=8000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "burble_01",
+      "filters": "aresample=44100,asetrate=35280,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 3206
+    },
+    {
+      "source": "eat_01",
+      "filters": "aresample=44100,asetrate=37485,aresample=44100,highpass=f=150,lowpass=f=7000",
+      "leading_trim_samples": 542
+    }
+  ],
+  "outputs": [
+    {
+      "id": "DD-S0174.2",
+      "key": "proposed-creature-materials/gratecrawler/arrival",
+      "creature": "Gratecrawler",
+      "label": "Living tissue / low moan \u2014 Rusty grate and suction release",
+      "path": "audio/alternatives/DD-S0174/DD-S0174.2.wav",
+      "duration_seconds": 0.62,
+      "peak_dbfs": -12.0,
+      "sha256": "db5bd628d9c960038e1b29376e28be372dca46bcc644d0b25d37fe6a6572b78e",
+      "layers": [
+        [
+          "eat_01",
+          0.65,
+          150,
+          7000,
+          0.22,
+          0.35,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "heavy",
+          0.7,
+          150,
+          7000,
+          0,
+          0.2,
+          0,
+          0.24,
+          false
+        ],
+        [
+          "metal",
+          0.8,
+          150,
+          7000,
+          0.18,
+          0.16,
+          0,
+          0.21,
+          false
+        ],
+        [
+          "eat_04",
+          0.65,
+          120,
+          4800,
+          0,
+          0.62,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "moan",
+          0.66,
+          90,
+          3200,
+          0,
+          0.62,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0175.2",
+      "key": "proposed-creature-materials/gratecrawler/step",
+      "creature": "Gratecrawler",
+      "label": "Living tissue / low moan \u2014 Heavy adhesive plod",
+      "path": "audio/alternatives/DD-S0175/DD-S0175.2.wav",
+      "duration_seconds": 0.15,
+      "peak_dbfs": -21.999,
+      "sha256": "8b0117600d5306d254b142def9048e5673821a4928c228b55a35f9ddac3b4175",
+      "layers": [
+        [
+          "eat_01",
+          0.75,
+          150,
+          7000,
+          0,
+          0.13,
+          0,
+          0.9,
+          false
+        ],
+        [
+          "metal",
+          0.8,
+          150,
+          7000,
+          0,
+          0.09,
+          0,
+          0.072,
+          false
+        ],
+        [
+          "eat_04",
+          0.65,
+          120,
+          4800,
+          0,
+          0.15,
+          0,
+          0.55,
+          false
+        ]
+      ],
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0176.2",
+      "key": "proposed-creature-materials/gratecrawler/throw",
+      "creature": "Gratecrawler",
+      "label": "Living tissue / low moan \u2014 Thick muck heave",
+      "path": "audio/alternatives/DD-S0176/DD-S0176.2.wav",
+      "duration_seconds": 0.22,
+      "peak_dbfs": -13.0,
+      "sha256": "704ff27200b0624132bd529a3de64674425f9a7b5da19e077bc3b53b51487e0d",
+      "layers": [
+        [
+          "burble_01",
+          0.72,
+          150,
+          7000,
+          0,
+          0.19,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "spit_03",
+          0.8,
+          150,
+          7000,
+          0.05,
+          0.15,
+          0,
+          0.6,
+          false
+        ],
+        [
+          "eat_04",
+          0.65,
+          120,
+          4800,
+          0,
+          0.22,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "moan",
+          0.66,
+          90,
+          3200,
+          0,
+          0.22,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0177.2",
+      "key": "proposed-creature-materials/gratecrawler/impact",
+      "creature": "Gratecrawler",
+      "label": "Living tissue / low moan \u2014 Sticky muck impact",
+      "path": "audio/alternatives/DD-S0177/DD-S0177.2.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -15.0,
+      "sha256": "b214141736eeb5c8d73cb7c18bef03e7b66ebfb991c4785491085b23fb39e81a",
+      "layers": [
+        [
+          "spit_03",
+          0.7,
+          150,
+          7000,
+          0,
+          0.22,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "splash",
+          0.75,
+          150,
+          7000,
+          0,
+          0.19,
+          0,
+          0.35,
+          false
+        ],
+        [
+          "eat_04",
+          0.65,
+          120,
+          4800,
+          0,
+          0.24,
+          0,
+          0.55,
+          false
+        ]
+      ],
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0007.2",
+      "key": "creature/gratecrawler/hit",
+      "creature": "Gratecrawler",
+      "label": "Living tissue / low moan \u2014 Sludge compression and tooth click",
+      "path": "audio/alternatives/DD-S0007/DD-S0007.2.wav",
+      "duration_seconds": 0.18,
+      "peak_dbfs": -14.0,
+      "sha256": "16f9c75f8997443f0aa736c739e7e6affecc1966ac6da574870a7c7fb97becf4",
+      "layers": [
+        [
+          "burble_01",
+          0.75,
+          150,
+          7000,
+          0,
+          0.16,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "glass",
+          0.8,
+          900,
+          7000,
+          0,
+          0.08,
+          0,
+          0.12,
+          false
+        ],
+        [
+          "eat_04",
+          0.65,
+          120,
+          4800,
+          0,
+          0.18,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "moan",
+          0.66,
+          90,
+          3200,
+          0,
+          0.18,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0008.2",
+      "key": "creature/gratecrawler/death",
+      "creature": "Gratecrawler",
+      "label": "Living tissue / low moan \u2014 Sludge slump and fallen strainer",
+      "path": "audio/alternatives/DD-S0008/DD-S0008.2.wav",
+      "duration_seconds": 0.85,
+      "peak_dbfs": -11.0,
+      "sha256": "41c7d933fef7298daf96ef6048745b831bbaf1de5be0f72a2df8eda4ba3a50dd",
+      "layers": [
+        [
+          "burble_02",
+          0.57,
+          150,
+          7000,
+          0,
+          0.49,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "splash",
+          0.7,
+          150,
+          7000,
+          0.16,
+          0.48,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "heavy",
+          0.82,
+          150,
+          7000,
+          0.45,
+          0.24,
+          0,
+          0.27,
+          false
+        ],
+        [
+          "metal",
+          1.05,
+          150,
+          7000,
+          0.65,
+          0.13,
+          0,
+          0.12,
+          false
+        ],
+        [
+          "eat_04",
+          0.65,
+          120,
+          4800,
+          0,
+          0.85,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "moan",
+          0.66,
+          90,
+          3200,
+          0,
+          0.85,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0182.2",
+      "key": "proposed-creature-materials/gnatastrophe/arrival",
+      "creature": "Gnatastrophe",
+      "label": "Layered swarm buzz \u2014 Loose fly cloud",
+      "path": "audio/alternatives/DD-S0182/DD-S0182.2.wav",
+      "duration_seconds": 0.5,
+      "peak_dbfs": -19.999,
+      "sha256": "8ee2784031bbbb26e9b087f37ce7faa6df6106d708320bf9a19792c02fe9155a",
+      "layers": [
+        [
+          "buzz",
+          1,
+          350,
+          7500,
+          0,
+          0.5,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "buzz",
+          0.91,
+          350,
+          7500,
+          0,
+          0.5,
+          0.3,
+          0.55,
+          false
+        ],
+        [
+          "buzz",
+          1.11,
+          350,
+          7500,
+          0.02,
+          0.48,
+          0.6,
+          0.45,
+          false
+        ],
+        [
+          "buzz",
+          1.24,
+          350,
+          7500,
+          0.04,
+          0.46,
+          0.9,
+          0.3,
+          false
+        ],
+        [
+          "bug_01",
+          1.25,
+          1500,
+          8500,
+          0,
+          0.5,
+          0,
+          0.15,
+          false
+        ]
+      ],
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation.",
+      "loop": false
+    },
+    {
+      "id": "DD-S0183.2",
+      "key": "proposed-creature-materials/gnatastrophe/form",
+      "creature": "Gnatastrophe",
+      "label": "Layered swarm buzz \u2014 Swarm tightens into pursuit",
+      "path": "audio/alternatives/DD-S0183/DD-S0183.2.wav",
+      "duration_seconds": 0.4,
+      "peak_dbfs": -16.0,
+      "sha256": "228e4b93e40efe8c38d1d1ce31f0b35f2ec2809392fbf9fedfea471497c8755f",
+      "layers": [
+        [
+          "buzz",
+          1,
+          350,
+          7500,
+          0,
+          0.4,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "buzz",
+          0.91,
+          350,
+          7500,
+          0,
+          0.4,
+          0.3,
+          0.55,
+          false
+        ],
+        [
+          "buzz",
+          1.11,
+          350,
+          7500,
+          0.02,
+          0.38,
+          0.6,
+          0.45,
+          false
+        ],
+        [
+          "buzz",
+          1.24,
+          350,
+          7500,
+          0.04,
+          0.36000000000000004,
+          0.9,
+          0.3,
+          false
+        ],
+        [
+          "bug_01",
+          1.25,
+          1500,
+          8500,
+          0,
+          0.4,
+          0,
+          0.15,
+          false
+        ]
+      ],
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation.",
+      "loop": false
+    },
+    {
+      "id": "DD-S0184.2",
+      "key": "proposed-creature-materials/gnatastrophe/pass",
+      "creature": "Gnatastrophe",
+      "label": "Layered swarm buzz \u2014 Aggressive insect near-pass",
+      "path": "audio/alternatives/DD-S0184/DD-S0184.2.wav",
+      "duration_seconds": 0.25,
+      "peak_dbfs": -17.001,
+      "sha256": "7092ce25f0b98c88ea31ca832a266ccac86bde95a42b2e9da9f153f7fcf1dc8f",
+      "layers": [
+        [
+          "buzz",
+          1,
+          350,
+          7500,
+          0,
+          0.25,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "buzz",
+          0.91,
+          350,
+          7500,
+          0,
+          0.25,
+          0.3,
+          0.55,
+          false
+        ],
+        [
+          "buzz",
+          1.11,
+          350,
+          7500,
+          0.02,
+          0.23,
+          0.6,
+          0.45,
+          false
+        ],
+        [
+          "buzz",
+          1.24,
+          350,
+          7500,
+          0.04,
+          0.21,
+          0.9,
+          0.3,
+          false
+        ],
+        [
+          "bug_01",
+          1.25,
+          1500,
+          8500,
+          0,
+          0.25,
+          0,
+          0.15,
+          false
+        ]
+      ],
+      "integration": "Proposed hook only; trigger once at actual event, never on a timer unrelated to animation.",
+      "loop": false
+    },
+    {
+      "id": "DD-S0009.2",
+      "key": "creature/sewer-fly-swarm/hit",
+      "creature": "Gnatastrophe",
+      "label": "Layered swarm buzz \u2014 Broken wingbeat scatter",
+      "path": "audio/alternatives/DD-S0009/DD-S0009.2.wav",
+      "duration_seconds": 0.15,
+      "peak_dbfs": -15.0,
+      "sha256": "3ac3ec61bd93d16be27c0c74b548284597167c01911d11d2fbb080fea5614891",
+      "layers": [
+        [
+          "buzz",
+          1,
+          350,
+          7500,
+          0,
+          0.15,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "buzz",
+          0.91,
+          350,
+          7500,
+          0,
+          0.15,
+          0.3,
+          0.55,
+          false
+        ],
+        [
+          "buzz",
+          1.11,
+          350,
+          7500,
+          0.02,
+          0.13,
+          0.6,
+          0.45,
+          false
+        ],
+        [
+          "buzz",
+          1.24,
+          350,
+          7500,
+          0.04,
+          0.10999999999999999,
+          0.9,
+          0.3,
+          false
+        ],
+        [
+          "bug_01",
+          1.25,
+          1500,
+          8500,
+          0,
+          0.15,
+          0,
+          0.15,
+          false
+        ]
+      ],
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior.",
+      "loop": false
+    },
+    {
+      "id": "DD-S0010.2",
+      "key": "creature/sewer-fly-swarm/death",
+      "creature": "Gnatastrophe",
+      "label": "Layered swarm buzz \u2014 Cloud falls into isolated sputters",
+      "path": "audio/alternatives/DD-S0010/DD-S0010.2.wav",
+      "duration_seconds": 0.72,
+      "peak_dbfs": -12.0,
+      "sha256": "c043d0570fcbe525df56cc7b16ed01f6eee7e3dc07844efe49fdcd9eef149a4e",
+      "layers": [
+        [
+          "buzz",
+          1,
+          350,
+          7500,
+          0,
+          0.25,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "buzz",
+          0.91,
+          350,
+          7500,
+          0,
+          0.25,
+          0.3,
+          0.55,
+          false
+        ],
+        [
+          "buzz",
+          1.11,
+          350,
+          7500,
+          0.02,
+          0.25,
+          0.6,
+          0.45,
+          false
+        ],
+        [
+          "buzz",
+          1.24,
+          350,
+          7500,
+          0.04,
+          0.25,
+          0.9,
+          0.3,
+          false
+        ],
+        [
+          "bug_01",
+          1.25,
+          1500,
+          8500,
+          0,
+          0.25,
+          0,
+          0.15,
+          false
+        ],
+        [
+          "buzz",
+          1.1,
+          700,
+          7000,
+          0.32,
+          0.12,
+          0.4,
+          0.25,
+          false
+        ],
+        [
+          "buzz",
+          1.3,
+          900,
+          8000,
+          0.55,
+          0.08,
+          0.7,
+          0.1,
+          false
+        ]
+      ],
+      "integration": "One shot at the named event; stop on death/reset. No new gameplay behavior.",
+      "loop": false
+    },
+    {
+      "id": "DD-S0192.2",
+      "key": "proposed-creature-materials/gratecrawler/gather",
+      "creature": "Gratecrawler",
+      "label": "Living tissue / low moan \u2014 Muck gathers in throwing hand",
+      "path": "audio/alternatives/DD-S0192/DD-S0192.2.wav",
+      "duration_seconds": 0.24,
+      "peak_dbfs": -18.0,
+      "sha256": "d999ef06a0d228c5d60ec0e365979687b3e6112f0ae62dbc8cc4fcf86c1660a2",
+      "layers": [
+        [
+          "burble_01",
+          0.8,
+          150,
+          7000,
+          0,
+          0.22,
+          0,
+          0.7,
+          false
+        ],
+        [
+          "eat_01",
+          0.85,
+          150,
+          7000,
+          0,
+          0.19,
+          0,
+          0.5,
+          false
+        ],
+        [
+          "eat_04",
+          0.65,
+          120,
+          4800,
+          0,
+          0.24,
+          0,
+          0.55,
+          false
+        ],
+        [
+          "moan",
+          0.66,
+          90,
+          3200,
+          0,
+          0.24,
+          0,
+          0.8,
+          false
+        ]
+      ],
+      "integration": "0.24s inside 0.30s windup; stop on abort. Throw/release sound only for an admitted projectile.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0193.2",
+      "key": "proposed-creature-materials/gnatastrophe/disperse",
+      "creature": "Gnatastrophe",
+      "label": "Layered swarm buzz \u2014 Living cloud loosens",
+      "path": "audio/alternatives/DD-S0193/DD-S0193.2.wav",
+      "duration_seconds": 0.38,
+      "peak_dbfs": -19.999,
+      "sha256": "e0b15a7fc0afcd9aa7ae0f8313758167e0120a56d3ee46e6b0630b54c16d2b2b",
+      "layers": [
+        [
+          "buzz",
+          1,
+          350,
+          7500,
+          0,
+          0.38,
+          0,
+          0.8,
+          false
+        ],
+        [
+          "buzz",
+          0.91,
+          350,
+          7500,
+          0,
+          0.38,
+          0.3,
+          0.55,
+          false
+        ],
+        [
+          "buzz",
+          1.11,
+          350,
+          7500,
+          0.02,
+          0.36,
+          0.6,
+          0.45,
+          false
+        ],
+        [
+          "buzz",
+          1.24,
+          350,
+          7500,
+          0.04,
+          0.34,
+          0.9,
+          0.3,
+          false
+        ],
+        [
+          "bug_01",
+          1.25,
+          1500,
+          8500,
+          0,
+          0.38,
+          0,
+          0.15,
+          false
+        ]
+      ],
+      "integration": "Reform onset only; still dangerous. No safe-state flourish. Preserve single shared ambient voice.",
+      "loop": false
+    },
+    {
+      "id": "DD-S0197.2",
+      "key": "proposed-creature-materials/preview-gratecrawler",
+      "creature": "Gratecrawler",
+      "label": "START HERE \u2014 spaced cue reel",
+      "path": "audio/alternatives/DD-S0197/DD-S0197.2.wav",
+      "duration_seconds": 7.35,
+      "peak_dbfs": -11.0,
+      "sha256": "0987057fa928fcc5857e34df1efdbeb0717779cc1c10a73fa24ef3d8de2f272a",
+      "timeline": [
+        {
+          "candidate": "DD-S0174.2",
+          "at_seconds": 0.3
+        },
+        {
+          "candidate": "DD-S0175.2",
+          "at_seconds": 1.57
+        },
+        {
+          "candidate": "DD-S0176.2",
+          "at_seconds": 2.37
+        },
+        {
+          "candidate": "DD-S0177.2",
+          "at_seconds": 3.24
+        },
+        {
+          "candidate": "DD-S0007.2",
+          "at_seconds": 4.13
+        },
+        {
+          "candidate": "DD-S0008.2",
+          "at_seconds": 4.96
+        },
+        {
+          "candidate": "DD-S0192.2",
+          "at_seconds": 6.46
+        }
+      ],
+      "integration": "Audition reel only; gaps are not gameplay timing.",
+      "loop": false,
+      "review_status": "Accepted for use; Engineering integration authorized."
+    },
+    {
+      "id": "DD-S0200.2",
+      "key": "proposed-creature-materials/preview-gnatastrophe",
+      "creature": "Gnatastrophe",
+      "label": "START HERE \u2014 spaced cue reel",
+      "path": "audio/alternatives/DD-S0200/DD-S0200.2.wav",
+      "duration_seconds": 6.6,
+      "peak_dbfs": -12.0,
+      "sha256": "af052aec1ae24792d16417ab30aa3e4a7c4aebe8dd447016e6abc16a4392473e",
+      "timeline": [
+        {
+          "candidate": "DD-S0182.2",
+          "at_seconds": 0.3
+        },
+        {
+          "candidate": "DD-S0183.2",
+          "at_seconds": 1.45
+        },
+        {
+          "candidate": "DD-S0184.2",
+          "at_seconds": 2.5
+        },
+        {
+          "candidate": "DD-S0009.2",
+          "at_seconds": 3.4
+        },
+        {
+          "candidate": "DD-S0010.2",
+          "at_seconds": 4.2
+        },
+        {
+          "candidate": "DD-S0193.2",
+          "at_seconds": 5.57
+        }
+      ],
+      "integration": "Audition reel only; gaps are not gameplay timing.",
+      "loop": false
+    }
+  ],
+  "mix_contract": [
+    "Auditions only. No runtime mapping or user selections changed.",
+    "At integration: one warning voice per actor; stop/replace on action transition, abort, death and reset; pause freezes playback.",
+    "Movement cues are quiet, proximity-limited and throttled; no per-frame/per-leg playback. Shared movement budget at most two voices.",
+    "Attack warnings outrank footfalls and ambience. Hurt short and throttled; death once per actor. Master mute honored.",
+    "Reels use listening gaps, not a staged gameplay demonstration. New events require Engineering hooks and runtime validation.",
+    "Devil Spider: windup hook needed; haul varies with distance, stop pull/hunger on release; rapid tear inputs must not stack long tails.",
+    "Widow: cancel warning offscreen; no scream through 0.8s swoop or recovery; contact, scuttle and takeoff follow actual states.",
+    "Sputtervalve: one pressure tell per volley, actual admitted bolts only; no sound on trajectory/budget rejection.",
+    "Gratecrawler: gather before 0.3s release; impact follows physical collision, never a timed delay from launch.",
+    "Flushfiend: no invented attack warning; navigation hops and reversals do not imply safe or invulnerable states.",
+    "Gnatastrophe: shared existing ambient voice retained, all living forms dangerous; new near-pass stops at blocked/finished charge.",
+    "Clogfather: warnings fit Hard timings and outrank roars; final collapse fits 1.2s; no added sounds imply portal lore."
+  ],
+  "preserved": [
+    "Approved Skitterling rat and alligator voices and v8 timing edits.",
+    "Devil Spider approved scream/burn death, all selected music and current runtime effects.",
+    "Existing recorded Sputtervalve death, Flushfiend shatter and all old auditions remain available.",
+    "Existing Gnatastrophe continuous buzz and Clogfather roars remain; new effects supplement or audition replacements."
+  ],
+  "integration_delivery": {
+    "date": "2026-11-05",
+    "owner": "Engineering",
+    "accepted_individual_candidates": [
+      "DD-S0001.1",
+      "DD-S0002.1",
+      "DD-S0005.1",
+      "DD-S0006.1",
+      "DD-S0007.2",
+      "DD-S0008.2",
+      "DD-S0011.1",
+      "DD-S0012.1",
+      "DD-S0013.1",
+      "DD-S0014.1",
+      "DD-S0042.1",
+      "DD-S0043.1",
+      "DD-S0044.1",
+      "DD-S0045.1",
+      "DD-S0046.1",
+      "DD-S0047.1",
+      "DD-S0048.1",
+      "DD-S0049.1",
+      "DD-S0050.1",
+      "DD-S0051.1",
+      "DD-S0053.1",
+      "DD-S0054.1",
+      "DD-S0055.1",
+      "DD-S0113.5",
+      "DD-S0114.9",
+      "DD-S0115.9",
+      "DD-S0116.9",
+      "DD-S0117.9",
+      "DD-S0118.5",
+      "DD-S0119.5",
+      "DD-S0120.9",
+      "DD-S0121.5",
+      "DD-S0124.5",
+      "DD-S0142.1",
+      "DD-S0165.1",
+      "DD-S0166.1",
+      "DD-S0167.1",
+      "DD-S0168.1",
+      "DD-S0169.1",
+      "DD-S0170.1",
+      "DD-S0171.1",
+      "DD-S0172.1",
+      "DD-S0173.1",
+      "DD-S0174.2",
+      "DD-S0175.2",
+      "DD-S0176.2",
+      "DD-S0177.2",
+      "DD-S0178.1",
+      "DD-S0179.1",
+      "DD-S0180.1",
+      "DD-S0181.1",
+      "DD-S0185.1",
+      "DD-S0186.1",
+      "DD-S0187.1",
+      "DD-S0188.1",
+      "DD-S0189.1",
+      "DD-S0190.1",
+      "DD-S0191.1",
+      "DD-S0192.2"
+    ],
+    "excluded": [
+      "Gnatastrophe revisions unapproved",
+      "Skitterling supplementary reel unapproved",
+      "All preview reels"
+    ],
+    "music_request": {
+      "track": "Clogfather Festering Pressure",
+      "boss_gain_db": -4,
+      "warning_duck_db": -6,
+      "reason": "Sean cannot hear the battle music. Raise normal playback 6 dB and warning playback 12 dB.",
+      "validation": "Verify host and packaged playback, pause/mute/retry, warning readability and listening mix."
+    },
+    "runtime_profiles": [
+      {
+        "creature": "devil-spider",
+        "event": "hit",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0142.1.wav",
+        "candidate": "DD-S0142.1",
+        "slot_key": "creature/devil-spider/hit",
+        "gain_db": -3,
+        "duration_seconds": 0.18,
+        "sha256": "79b3b8e6c79eb100e7472157803f28400c987b0e2b40cd18bfbdb24e01ad9ab7"
+      },
+      {
+        "creature": "spider",
+        "event": "hit",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0013.1.wav",
+        "candidate": "DD-S0013.1",
+        "slot_key": "creature/spider/hit",
+        "gain_db": -3,
+        "duration_seconds": 0.18,
+        "sha256": "4d21bd54ced22a23cc23756351ed0a4e3841ee7d38a70a24b85e55a6f30541fb"
+      },
+      {
+        "creature": "spider",
+        "event": "death",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0014.1.wav",
+        "candidate": "DD-S0014.1",
+        "slot_key": "creature/spider/death",
+        "gain_db": -3,
+        "duration_seconds": 0.82,
+        "sha256": "3faa3f4499a169a6fb528db324d63e14ab0810edaa4a38bf78bfbbda723c1e4c"
+      },
+      {
+        "creature": "sputtervalve",
+        "event": "hit",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0011.1.wav",
+        "candidate": "DD-S0011.1",
+        "slot_key": "creature/sputtervalve/hit",
+        "gain_db": -3,
+        "duration_seconds": 0.18,
+        "sha256": "f2216b89bd3360756c7ae8b780f4bca4c2c5169a41e0c574503dbbf4de15b61f"
+      },
+      {
+        "creature": "sputtervalve",
+        "event": "death",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0012.1.wav",
+        "candidate": "DD-S0012.1",
+        "slot_key": "creature/sputtervalve/death",
+        "gain_db": -3,
+        "duration_seconds": 0.76,
+        "sha256": "c03bdf3df4b59f2ec24f67f02ea05c9d18bb916c73e91c4be02f0fdbceb413a7"
+      },
+      {
+        "creature": "toilet",
+        "event": "hit",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0005.1.wav",
+        "candidate": "DD-S0005.1",
+        "slot_key": "creature/toilet/hit",
+        "gain_db": -3,
+        "duration_seconds": 0.17,
+        "sha256": "01d4bfb5524655c300abb65f054f0c36ab0a02f525ddc8fc04360203bf11356d"
+      },
+      {
+        "creature": "toilet",
+        "event": "death",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0006.1.wav",
+        "candidate": "DD-S0006.1",
+        "slot_key": "creature/toilet/death",
+        "gain_db": -3,
+        "duration_seconds": 0.9,
+        "sha256": "f6d2976668fdca2d75bf0fec0360751143cdbb51a0636e93b5cda66dd8646a1f"
+      },
+      {
+        "creature": "clogfather",
+        "event": "hit",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0001.1.wav",
+        "candidate": "DD-S0001.1",
+        "slot_key": "creature/clogfather/hit",
+        "gain_db": -3,
+        "duration_seconds": 0.25,
+        "sha256": "cf2a2b34526238ab2f8ce51a8ca3c402f8559f6f3f8280d95b1ca38d7e211ae8"
+      },
+      {
+        "creature": "clogfather",
+        "event": "death",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0002.1.wav",
+        "candidate": "DD-S0002.1",
+        "slot_key": "creature/clogfather/death",
+        "gain_db": -3,
+        "duration_seconds": 1.18,
+        "sha256": "d222f7e1d7f8cd332643e4a12621a075f6d98f2b4247a9fe7bef4daf564817dd"
+      },
+      {
+        "creature": "gratecrawler",
+        "event": "hit",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0007.2.wav",
+        "candidate": "DD-S0007.2",
+        "slot_key": "creature/gratecrawler/hit",
+        "gain_db": -3,
+        "duration_seconds": 0.18,
+        "sha256": "16f9c75f8997443f0aa736c739e7e6affecc1966ac6da574870a7c7fb97becf4"
+      },
+      {
+        "creature": "gratecrawler",
+        "event": "death",
+        "path": "assets/audio/sfx/creature-materials-v1/DD-S0008.2.wav",
+        "candidate": "DD-S0008.2",
+        "slot_key": "creature/gratecrawler/death",
+        "gain_db": -3,
+        "duration_seconds": 0.85,
+        "sha256": "41c7d933fef7298daf96ef6048745b831bbaf1de5be0f72a2df8eda4ba3a50dd"
+      }
+    ],
+    "runtime_actions": "data/creature-action-audio.json",
+    "audio_controller_delivery": {
+      "status": "Controllers and mapping data implemented; host hooks/profile bundle/build owned by Engineering.",
+      "files": [
+        "scripts/creature_action_audio.gd",
+        "scripts/creature_audio.gd",
+        "scripts/clogfather_audio.gd",
+        "scripts/music_director.gd",
+        "data/creature-action-audio.json",
+        "tools/build_sound_auditions.py"
+      ],
+      "validation": [
+        "59 runtime WAV hashes match exact approved allowlist",
+        "48 action cue durations/nonloop and lifecycle test pass",
+        "Clogfather action mappings and lifecycle pass",
+        "Music director and actual host -4/-6 playback tests pass",
+        "158 catalog slots refresh/check and 6 catalog tests pass"
+      ],
+      "pending": [
+        "Host event coverage",
+        "Canonical profile/build integration",
+        "In-game subjective listening"
+      ],
+      "cinematics": "Deferred for this build; no cinematic audio runtime integrated."
+    }
+  }
+}

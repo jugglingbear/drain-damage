@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "status": "Source art delivered; actual26px HUD and in-game effect review pending",
+  "tool": "built-in image_gen",
+  "icon": {
+    "path": "assets/ui/disabled-weapon-fidget-v1/icon-source-v1.png",
+    "source_rect": [
+      101,
+      127,
+      1059,
+      1034
+    ],
+    "fit": [
+      3,
+      3,
+      26,
+      26
+    ],
+    "alpha_cutoff": 240,
+    "notes": "Uniform fit in existing32pxsocket; no text or weapon outside weapon-disabled scenes."
+  },
+  "effect": {
+    "path": "assets/ui/disabled-weapon-fidget-v1/fidget-source-v1.png",
+    "frames": [
+      {
+        "id": 0,
+        "source_rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          155,
+          385
+        ],
+        "destination": [
+          -17.05,
+          -42.35,
+          56.32,
+          56.32
+        ],
+        "duration": 0.075
+      },
+      {
+        "id": 1,
+        "source_rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          155,
+          385
+        ],
+        "destination": [
+          -17.05,
+          -42.35,
+          56.32,
+          56.32
+        ],
+        "duration": 0.075
+      },
+      {
+        "id": 2,
+        "source_rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "source_anchor": [
+          155,
+          385
+        ],
+        "destination": [
+          -17.05,
+          -42.35,
+          56.32,
+          56.32
+        ],
+        "duration": 0.075
+      },
+      {
+        "id": 3,
+        "source_rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          155,
+          340
+        ],
+        "destination": [
+          -17.05,
+          -37.4,
+          56.32,
+          56.32
+        ],
+        "duration": 0.075
+      },
+      {
+        "id": 4,
+        "source_rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          155,
+          340
+        ],
+        "destination": [
+          -17.05,
+          -37.4,
+          56.32,
+          56.32
+        ],
+        "duration": 0.075
+      },
+      {
+        "id": 5,
+        "source_rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "source_anchor": [
+          155,
+          340
+        ],
+        "destination": [
+          -17.05,
+          -37.4,
+          56.32,
+          56.32
+        ],
+        "duration": 0.075
+      }
+    ],
+    "loop": false,
+    "duration_seconds": 0.45,
+    "alpha_preparation": "Derived texture: discard alpha below180, remap180..254 to0..255 to remove broad generated glow; inspect wisps at small size.",
+    "anchor": "Hero rear/seat projected into scene; orient trailing away from motion. Use existing board_fart emitter and cooldown where available.",
+    "fade_tail_seconds": 0.12,
+    "max_visible_extent": 32,
+    "damage": 0,
+    "collision": false,
+    "forces": false,
+    "audio": "Reuse board_fart DD-S0109.1 once per accepted existing fidget."
+  },
+  "shadow_treatment": {
+    "source": "Use actual falling object alpha silhouettes; no new raster",
+    "rgb": "#171b1d",
+    "opacity_start": 0.25,
+    "opacity_end": 0.65,
+    "projection": "Existing surface_transform at predicted landing footprint",
+    "soft_underlay": {
+      "path": "assets/world/level-two-flush-v2/effects-v1.png",
+      "source_rect": [
+        448,
+        240,
+        450,
+        190
+      ]
+    },
+    "rules": [
+      "No gold rings or pulsing radius outlines.",
+      "No advance spawn shadow for absent scheduled monsters.",
+      "Only actual airborne/depth arrivals cast body shadows; hatches show emergence.",
+      "Do not change timing or hazard geometry."
+    ]
+  },
+  "scope": "Ordinary harmless fire fidget and weapon-disabled HUD only. Super art/mechanics not included."
+}

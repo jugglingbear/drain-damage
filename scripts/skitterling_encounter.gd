@@ -46,12 +46,14 @@ const EVENTS := {
 	"rat_wall_climb": "rat_climb", "rat_pounce_tell": "rat_pounce_warning",
 	"rat_pounce": "rat_pounce", "rat_pounce_recovery": "rat_pounce_land",
 	"rat_rush_tell": "rat_rush_warning", "rat_rush": "rat_rush",
+	"rat_rush_recovery": "motion_end",
 	"rat_pipe_retreat": "rat_pipe_hide", "rat_pipe_abort": "rat_pipe_hide", "rat_pipe_warning": "pipe_warning",
 	"rat_pipe_launch": "pipe_launch", "rat_landing_recovery": "pipe_land",
 	"rat_collapse": "rat_phase_defeat", "reskitter": "reskitter",
 	"alligator_assembly": "alligator_assembly", "alligator_water_dive": "water_dive",
 	"alligator_surface_return": "water_dive",
 	"alligator_water_warning": "tail_warning", "alligator_surface": "water_emerge",
+	"alligator_surface_warning": "surface_warning",
 	"terminal_death": "terminal_death",
 	"alligator_swim": "swim_start", "alligator_surface_swim": "swim_start",
 	"alligator_charge_tell": "alligator_jaw_warning", "alligator_charge_turn": "alligator_jaw_warning",
@@ -60,7 +62,7 @@ const EVENTS := {
 }
 const VULNERABLE := ["rat_ready", "rat_wall_approach", "rat_wall_climb", "rat_pounce_tell",
 	"rat_pounce", "rat_pounce_recovery", "rat_rush_setup", "rat_rush_tell", "rat_rush", "rat_rush_recovery",
-	"rat_pipe_retreat", "rat_pipe_launch", "rat_landing_recovery", "alligator_ready",
+	"rat_pipe_retreat", "rat_pipe_launch", "rat_pipe_abort", "rat_landing_recovery", "alligator_ready",
 	"alligator_jaw_recovery",
 	"alligator_water_dive", "alligator_surface_recovery",
 	"alligator_charge_tell", "alligator_charge_turn", "alligator_charge",
@@ -149,12 +151,12 @@ func start(hero_rect: Rect2) -> void:
 	_enter("entry_skitter")
 
 func damageable() -> bool:
-	return active and not _frozen and state in VULNERABLE and (
-		state != "rat_pipe_launch" or _fully_emerged())
+	return active and not _frozen and state in VULNERABLE
 
 func rat_contact_active() -> bool:
 	## The room intersects the rendered insects, not the empty corners of the logical body.
-	return phase == "rat" and damageable()
+	return phase == "rat" and damageable() and state != "rat_pipe_abort" and (
+		state != "rat_pipe_launch" or _fully_emerged())
 
 func _fully_emerged() -> bool:
 	var bounds := body_rect()

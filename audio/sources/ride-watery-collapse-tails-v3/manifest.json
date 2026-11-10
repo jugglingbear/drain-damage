@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-05",
+  "status": "Sean approved .7 and .8; Audio selected .8 and updated runtime source mapping; packaged build pending",
+  "brief": "Sean favors DD-S0108.5 and .6 but hears abrupt endings. Keep the sharp rupture, then soften the rubble and let a quieter water wash diminish smoothly to silence. No new constant environment loop or runtime change.",
+  "recipe": "audio/sources/ride-watery-collapse-tails-v3/render.py",
+  "outputs": [
+    {
+      "id": "DD-S0108.7",
+      "parent": "DD-S0108.5",
+      "parent_path": "audio/alternatives/DD-S0108/DD-S0108.5.wav",
+      "parent_sha256": "d63ecc25ecc7d970179ff8bcf5a7f0a36382ec87f607bbe0757c884b45bb318e",
+      "attack_unchanged_until_seconds": 0.58,
+      "path": "audio/alternatives/DD-S0108/DD-S0108.7.wav",
+      "duration_seconds": 2.05,
+      "peak_dbfs": -6.0,
+      "sha256": "cde178062d31c09c8feff6ed4c4178a345090d07bdda24579312ac9b4fa738df"
+    },
+    {
+      "id": "DD-S0108.8",
+      "parent": "DD-S0108.6",
+      "parent_path": "audio/alternatives/DD-S0108/DD-S0108.6.wav",
+      "parent_sha256": "13bb6506178e9db56528e448e6020576376e76b9598ba00897d8120ae0f53559",
+      "attack_unchanged_until_seconds": 0.72,
+      "path": "audio/alternatives/DD-S0108/DD-S0108.8.wav",
+      "duration_seconds": 2.4,
+      "peak_dbfs": -6.0,
+      "sha256": "ddef199ff7f90cb986a1ff404ed7361373e229bcd7f52c3510d40e959da4bffe"
+    }
+  ],
+  "parent_sources": "audio/sources/ride-watery-collapse-v2/manifest.json",
+  "tail_source": {
+    "path": "audio/sources/player-death-flush-v1/toilet_01.ogg",
+    "sha256": "502393b0cf4ef7be08eee5955d0c451e42f9b192b181fecd1f28ada0329c2257",
+    "license": "CC0-1.0",
+    "author": "rubberduck",
+    "evidence": "audio/sources/player-death-flush-v1/manifest.json"
+  },
+  "processing": [
+    {
+      "source": "water",
+      "filters": "aresample=44100,asetrate=34398,aresample=44100,highpass=f=100,lowpass=f=2300",
+      "leading_trim_samples": 6936
+    }
+  ],
+  "mix_note": "Low-pass water at 2300Hz, quiet tail with exponential decay; event fades to silence.",
+  "runtime_note": "Current runtime track smash unchanged. Existing current_loop is configured at -12dB; its perceived audibility under music has not been verified. No ambience added.",
+  "selected_candidate": "DD-S0108.8",
+  "runtime": "assets/audio/sfx/ride-watery-collapse-v3/track-smash.wav",
+  "gain_db": -4
+}

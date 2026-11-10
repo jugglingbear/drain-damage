@@ -47,7 +47,7 @@ func _exit_tree() -> void:
 		rider.free()
 		fidget_view.free()
 
-func attach(game: Node2D, model: RefCounted) -> void:
+func attach(game: Node2D, model: RefCounted, yield_frame := Callable()) -> void:
 	host = game
 	flush = model
 	container = SubViewportContainer.new()
@@ -66,8 +66,8 @@ func attach(game: Node2D, model: RefCounted) -> void:
 	host.add_action("ride_camera_turn",[KEY_C])
 	host.add_pad_button("ride_camera_turn",JOY_BUTTON_RIGHT_SHOULDER)
 	# Prepare while the game scene is being initialized, not on the live flush/ride timeline.
-	configure()
-	prepare_actors()
+	await configure(yield_frame)
+	await prepare_actors(yield_frame)
 	warm_graphics()
 
 func _process(delta: float) -> void:
@@ -83,9 +83,10 @@ func _process(delta: float) -> void:
 static func world(point: Vector2, height := 0.0) -> Vector3:
 	return Vector3(point.x/UNIT,height/UNIT,(point.y-330)/UNIT*BANK_SCALE)
 
-func configure() -> void:
+func configure(yield_frame := Callable()) -> void:
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ride-depth-v1/manifest.json"))
 	for key: String in source.materials:
+		if yield_frame.is_valid(): await yield_frame.call()
 		materials[key] = material_loader.material_from(source.materials[key])
 	for key in ["cast_iron","copper","rubber","bristles"]:
 		materials[key].uv1_triplanar = true
@@ -166,11 +167,12 @@ func make_actor(obstacle: Dictionary) -> Node3D:
 	actor_build_count += 1
 	return actor
 
-func prepare_actors() -> void:
+func prepare_actors(yield_frame := Callable()) -> void:
 	var start := Time.get_ticks_usec()
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride-showcase.json"))
 	for encounter: Dictionary in source.encounters:
 		for obstacle: Dictionary in encounter.obstacles:
+			if yield_frame.is_valid(): await yield_frame.call()
 			var key := actor_signature(obstacle)
 			if not actor_pool.has(key): actor_pool[key] = []
 			actor_pool[key].append(make_actor(obstacle))
@@ -245,9 +247,10 @@ func update_world() -> void:
 	# Frame the full-width fracture during its telegraph/impact, then ease back after withdrawal.
 	if riding and model.encounter_index == 10:
 		var age: float = model.encounter_clock
-		var framing := smoothstep(1.25,2.35,age)*(1-smoothstep(3.05,3.65,age))
-		focus.y -= .68*framing
-		camera.size = lerpf(5.5,7.4,framing)
+		var framing := smoothstep(1.25,2.35,age)*(1-smoothstep(3.65,4.1,age))
+		# Establish the full strike/recovery frame during the warning, then hold it still.
+		focus.y += .35*framing
+		camera.size = lerpf(5.5,9.0,framing)
 	var angle := deg_to_rad(yaw)
 	var tilt := deg_to_rad(35)
 	focus.y -= (point.x/UNIT-focus.x)*sin(angle)*tan(tilt)
@@ -317,7 +320,8 @@ func update_actors(model: RefCounted) -> void:
 			animate_actor(actor,obstacle,model)
 			if actor.has_node("hand") and actor.get_node("hand").visible:
 				var center: Vector3 = actor.get_node("hand").hatch_point+actor.position
-				hatches.append(Vector4(center.x-.72,center.y-.48,center.x+.72,center.y+.48))
+				var half: Vector2 = actor.get_node("hand").aperture_size*.5
+				hatches.append(Vector4(center.x-half.x,center.y-half.y,center.x+half.x,center.y+half.y))
 	far_wall.set_shader_parameter("hatch_count",mini(hatches.size(),8))
 	hatches.resize(8)
 	far_wall.set_shader_parameter("hatches",hatches)

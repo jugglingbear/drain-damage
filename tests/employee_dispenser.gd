@@ -34,9 +34,9 @@ func run_checks() -> void:
 		assert(dispenser.stocked and dispenser.sleeping_frames(game.employee.id,0).size() == 1)
 		dispenser.full_sequence_seen = false
 		game.activate_checkpoint(0)
-		advance(game,0.42)
+		advance(game,3.8)
 		assert(dispenser.mode == "full_health" and dispenser.stocked and dispenser.dispenses == 0)
-		assert(game.lives == 3 and dispenser.events == ["stamp","release"])
+		assert(game.lives == 3 and dispenser.events == ["grab","inspection_arm_deploy","inspect","diagnosis","inspection_pass","inspection_arm_retract","set_down","release"])
 		game.health = 1
 		game.activate_checkpoint(0)
 		assert(not dispenser.active and game.health == 1,"Revisit must not heal or reset stock")
@@ -59,13 +59,13 @@ func run_checks() -> void:
 		assert(dispenser.mode == "injured" and dispenser.stocked and not dispenser.can_skip)
 		assert(dispenser.arrival_health == 1 and dispenser.arrival_max_health == game.employee.max_health)
 		advance(game,1)
-		assert(dispenser.stocked and game.health == game.employee.max_health)
+		assert(dispenser.stocked and game.health == 1)
 		var clock_value: float = dispenser.elapsed
 		game.set_paused(true)
 		advance(game,2)
 		assert(dispenser.elapsed == clock_value and dispenser.stocked)
 		game.set_paused(false)
-		advance(game,2.9)
+		advance(game,4.2)
 		assert(not dispenser.stocked and dispenser.dispenses == 1 and dispenser.overlay_visible())
 		advance(game,3.0)
 		assert(not dispenser.active and dispenser.finalizations == 1 and game.lives == 3)

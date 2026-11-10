@@ -16,10 +16,12 @@ func attach(host: Node, definitions: Array) -> void:
 		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD if cue.loop else AudioStreamWAV.LOOP_DISABLED
 		stream.loop_end = roundi(stream.get_length()*stream.mix_rate)
 		cues[cue.event] = {"stream":stream,"gain":float(cue.gain_db)}
+	cues["board_super_fart"] = {"stream":load("res://assets/audio/sfx/board-super-fart-v1/huge-fart.wav"),"gain":-5.0}
 
 func play(event: String) -> void:
 	if frozen or AudioServer.is_bus_mute(0) or not cues.has(event): return
-	var channel := "fidget" if event == "board_fart" else "fracture" if event == "track_smash" else "fatal" if event == "fall_panic" else "current" if event == "current_loop" else "mechanism" if event == "hinge_move" else "contact"
+	var channel := "fidget" if event in ["board_fart","board_super_fart"] else "fracture" if event == "track_smash" else "fatal" if event == "fall_panic" else "current" if event == "current_loop" else "mechanism" if event == "hinge_move" else "contact"
+	if event == "board_fart" and voices.fidget.playing and voices.fidget.stream == cues.board_super_fart.stream: return
 	if channel == "contact" and cooldown > 0: return
 	if channel == "mechanism" and voices[channel].playing: return
 	var voice: AudioStreamPlayer = voices[channel]
