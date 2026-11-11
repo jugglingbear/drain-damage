@@ -988,6 +988,8 @@ func step_hostile_projectiles(delta: float) -> void:
 			var fraction := segment_hit(shot.pos,end,solid.grow(BULLET_RADIUS))
 			if fraction >= 0: wall = minf(wall,fraction)
 		shot.age += delta
+		if hit >= 0 or wall <= 1:
+			play_trial_impact(shot,shot.pos.lerp(end,minf(hit if hit >= 0 else 2.0,wall)))
 		if hit >= 0 and hit < wall: hurt_player()
 		if hit >= 0 or wall <= 1 or purple_bolt_offscreen(end):
 			count_shooter("wall_early" if wall <= 1 and shot.age < 0.3 else "retired_other")

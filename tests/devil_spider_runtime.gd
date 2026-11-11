@@ -169,9 +169,10 @@ func check_host(game: Node2D) -> void:
 	game.devil_spiders.clear(game,"test")
 	if game.has_method("event_specs"):
 		var selected: Array = game.event_specs().filter(func(spec: Dictionary) -> bool: return spec.get("variant","") == "devil")
-		check(selected.size() == 1,"Exactly one authored flyer replaced")
+		var expected: int = 1+game.campaign.variant_supports.size() if game.get_script() == Campaign else 1
+		check(selected.size() == expected,"Authored Cuddlebug slots match the selected trial")
 		check(selected[0].feet.y == 110 and selected[0].entry.mode == "top","Authored socket and continuous top entry")
-		check(game.devil_spiders.placements(game).size() == 1,"Support available before admission")
+		check(game.devil_spiders.placements(game).size() == expected,"Each authored slot has support before admission")
 	else:
 		check(game.route_home({"id":"clog-approach-06"}) == Vector2(10920,110),"Campaign fixed socket")
 	game.reset_observation()

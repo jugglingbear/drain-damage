@@ -99,7 +99,10 @@ func run_checks() -> void:
 			click.position = title.DifficultyScreen.CONFIRM.get_center()
 			title._unhandled_input(click)
 			await process_frame
-			assert(title.game != null)
+			var deadline := Time.get_ticks_msec()+30000
+			while title.loading_in_progress and Time.get_ticks_msec() < deadline:
+				await process_frame
+			assert(title.game != null and not title.loading_in_progress)
 			title.game.set_process(false)
 			title.game.set_physics_process(false)
 			assert(title.game.employee.id == ["tony","sean"][hero])

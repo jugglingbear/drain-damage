@@ -43,12 +43,13 @@ static func reference_card(canvas: Node2D, x: float, heading: String, lines: Arr
 	for index in range(lines.size()):
 		text(canvas, str(lines[index]), Vector2(x + 16, 427 + index * 18), 13, PAPER)
 
-static func draw(canvas: Node2D, page: int, muted: bool, health_bars := false) -> void:
+static func draw(canvas: Node2D, page: int, muted: bool, health_bars := false, focus := -1) -> void:
+	if focus < 0: focus = page
 	canvas.draw_rect(Rect2(0, 0, 960, 540), INK)
 	text(canvas, "CONTROLS", Vector2(32, 45), 26, PAPER)
 	for index in range(2):
-		Buttons.compact(canvas,tab_rect(index),["KEYBOARD","GAMEPAD"][index],page == index,17)
-	Buttons.compact(canvas,BACK_RECT,"BACK",false,17,false,34)
+		Buttons.compact(canvas,tab_rect(index),["KEYBOARD","GAMEPAD"][index],focus == index,17)
+	Buttons.compact(canvas,BACK_RECT,"BACK",focus == 2,17,false,34)
 	text(canvas, "FIELD GUIDE  /  " + ("KEYBOARD" if page == 0 else "GAMEPAD"), Vector2(33, 88), 13, GOLD)
 	text(canvas, Crew.COMPANY_NAME, Vector2(33, 109), 13, MUTED)
 	panel(canvas, Rect2(32, 122, 570, 218), Color("0b151b"))

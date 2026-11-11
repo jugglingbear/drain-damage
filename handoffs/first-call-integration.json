@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "build": "Prototype 174 / 0.174.0",
-  "status": "Signed Mac integration candidate built November 10. Packaged Level 1 initialization passes for both heroes; final visual/audio acceptance and native Windows validation remain open.",
-  "app": "builds/Prototype-174/Drain Damage.app",
+  "build": "Prototype 175 / 0.175.0",
+  "status": "Signed Mac candidate built November 11. Menu navigation and campaign impact audio checks pass against the exact packaged PCK; menu visual acceptance remains unverified.",
+  "app": "builds/Prototype-175/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
   "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
@@ -243,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "31258506e86cfeff8144901646a7687a6821ab0e192d1854f2e414ec028183df",
+  "pck_sha256": "6b73f2c2f1197b887b19ca19ddac4ce20a29d5965ce876bd9826997f22cfa5f7",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -562,5 +562,34 @@
     ],
     "validation": "November 10 fresh verification: 45 Python tests, sound catalog CI check (158 slots), 20 focused Godot suites, and Clogfather integration across all six mode/hero combinations pass. Packaged Level 1 initialization passes for Tony and Sean. Lifecycle suite passed 721 checks in 171 seconds on serial rerun after the initial 150-second concurrent limit. Exit resource-leak warnings remain; no graphical acceptance claimed.",
     "test_evidence": "previews/engineering-resume-174/ (ignored local logs)"
+  },
+  "followup_175": {
+    "status": "Signed Mac candidate built; source and packaged checks passed; visual acceptance unverified",
+    "changes": [
+      "Controls focus separates displayed page from Back selection",
+      "Employee selection controller access to Back and Clock In",
+      "Approved campaign projectile impact audio hook",
+      "Normal employee-file portraits retained after returning from difficulty selection"
+    ],
+    "previous_build": "builds/Prototype-174/Drain Damage.app",
+    "remaining_gaps": [
+      "No human full-route fun/difficulty acceptance",
+      "Sampled captures are not uninterrupted animation review or full-route visual approval",
+      "Angel landing/scuttle/takeoff contact still lacks a complete visual cycle",
+      "Audio event lifecycle tested; final death-scream audibility/mix not independently reviewed",
+      "No native Windows validation"
+    ],
+    "validation": {
+      "python": "45 passed",
+      "controls": "controls_navigation, controls, menu_audio passed (Bugs fresh checks)",
+      "difficulty_menu": "Passed with bounded async-loading wait",
+      "devil_runtime": "82 checks passed; stale campaign exactly-one expectation corrected",
+      "campaign_impact_audio": "Passed actual campaign collision hook",
+      "audio_catalog": "158 slots checked",
+      "visual": "Capture targeting inconsistent windows; no menu visual acceptance claimed",
+      "warnings": "Godot sandbox user-log/certificate diagnostics and shutdown resource leaks remain",
+      "packaged": "controls_navigation and campaign_impact_audio against exact PCK; codesign verification passed"
+    },
+    "test_evidence": "previews/engineering-175/ (ignored local logs)"
   }
 }

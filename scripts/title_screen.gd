@@ -26,6 +26,7 @@ const GOLD := Color("ffe18d")
 var menu_index := 0
 var showing_controls := false
 var controls_page := 0
+var controls_focus := 0
 var show_enemy_health_bars := false
 const DifficultyScreen = preload("res://scripts/difficulty_screen.gd")
 var difficulty_copy: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/difficulty-ui.json"))
@@ -37,6 +38,7 @@ var difficulty_hover := -1
 var confirm_blocked := false
 var selecting := false
 var selected := 0
+var selection_focus := 0
 var selection_guard := 0.0
 var stick_latched := false
 var game: Node2D
@@ -148,10 +150,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			directional = true
 	elif event is InputEventJoypadMotion:
 		directional = event.axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y] and absf(event.axis_value) > 0.6
-	var before := Vector4i(menu_index,controls_page,selected,difficulty_focus)
+	var before := Vector4i(menu_index,controls_focus if showing_controls else controls_page,selection_focus if selecting else selected,difficulty_focus)
 	var screen := Vector3i(int(showing_controls),int(selecting),int(choosing_difficulty))
 	handle_pre_game_input(event)
-	if directional and game == null and not starting and before != Vector4i(menu_index,controls_page,selected,difficulty_focus) \
+	if directional and game == null and not starting and before != Vector4i(menu_index,controls_focus if showing_controls else controls_page,selection_focus if selecting else selected,difficulty_focus) \
 		and screen == Vector3i(int(showing_controls),int(selecting),int(choosing_difficulty)):
 		# The existing Master bus is the shared SFX route; music mute is independent.
 		if not AudioServer.is_bus_mute(AudioServer.get_bus_index(navigation_voice.bus)):
@@ -231,7 +233,10 @@ func handle_menu(event: InputEvent) -> bool:
 		match menu_index:
 			0:
 				request_start()
-			1: showing_controls = true
+			1:
+				showing_controls = true
+				controls_focus = controls_page
+				stick_latched = false
 			2: get_tree().quit()
 		return true
 	return false
@@ -240,59 +245,93 @@ func handle_controls(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode == KEY_ESCAPE: showing_controls = false
 		if event.physical_keycode == KEY_H: show_enemy_health_bars = not show_enemy_health_bars
-		if event.physical_keycode in [KEY_LEFT, KEY_A]: controls_page = 0
-		if event.physical_keycode in [KEY_RIGHT, KEY_D]: controls_page = 1
+		if event.physical_keycode in [KEY_LEFT, KEY_A]: move_controls_focus(-1)
+		if event.physical_keycode in [KEY_RIGHT, KEY_D]: move_controls_focus(1)
+		if event.physical_keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE] and controls_focus == 2:
+			showing_controls = false
 		if event.physical_keycode == KEY_M: toggle_sound()
 	elif event is InputEventJoypadButton and event.pressed:
 		if event.button_index == JOY_BUTTON_B: showing_controls = false
 		if event.button_index == JOY_BUTTON_BACK: show_enemy_health_bars = not show_enemy_health_bars
-		if event.button_index == JOY_BUTTON_DPAD_LEFT: controls_page = 0
-		if event.button_index == JOY_BUTTON_DPAD_RIGHT: controls_page = 1
+		if event.button_index == JOY_BUTTON_DPAD_LEFT: move_controls_focus(-1)
+		if event.button_index == JOY_BUTTON_DPAD_RIGHT: move_controls_focus(1)
+		if event.button_index in [JOY_BUTTON_A,JOY_BUTTON_START] and controls_focus == 2:
+			showing_controls = false
 		if event.button_index == JOY_BUTTON_Y: toggle_sound()
 	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_X:
-		if event.axis_value < -0.6: controls_page = 0
-		if event.axis_value > 0.6: controls_page = 1
+		if absf(event.axis_value) < 0.25: stick_latched = false
+		elif absf(event.axis_value) > 0.6 and not stick_latched:
+			move_controls_focus(int(signf(event.axis_value)))
+			stick_latched = true
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var point: Vector2 = event.position
 		for index in range(2):
-			if Controls.tab_rect(index).has_point(point): controls_page = index
+			if Controls.tab_rect(index).has_point(point):
+				controls_page = index
+				controls_focus = index
 		if Controls.BACK_RECT.has_point(point): showing_controls = false
 		if Controls.setting_at_point(point) == "health": show_enemy_health_bars = not show_enemy_health_bars
 		if Controls.setting_at_point(point) == "music": toggle_sound()
 
+func move_controls_focus(direction: int) -> void:
+	controls_focus = posmod(controls_focus+direction,3)
+	if controls_focus < 2: controls_page = controls_focus
+
+func move_selection_focus(direction: Vector2i) -> void:
+	if direction.y > 0: selection_focus = 2
+	elif direction.y < 0: selection_focus = selected
+	elif selection_focus >= 2:
+		selection_focus = 2 if direction.x < 0 else 3
+	else:
+		selected = 0 if direction.x < 0 else 1
+		selection_focus = selected
+
 func handle_selection(event: InputEvent) -> bool:
+	var direction := Vector2i.ZERO
+	var confirm := false
+	var back := false
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.physical_keycode in [KEY_A, KEY_LEFT, KEY_D, KEY_RIGHT]:
-			selected = 0 if event.physical_keycode in [KEY_A, KEY_LEFT] else 1
-			return true
-		if event.physical_keycode == KEY_ESCAPE:
-			selecting = false
-			return true
+		if event.physical_keycode in [KEY_A,KEY_LEFT]: direction.x = -1
+		if event.physical_keycode in [KEY_D,KEY_RIGHT]: direction.x = 1
+		if event.physical_keycode in [KEY_W,KEY_UP]: direction.y = -1
+		if event.physical_keycode in [KEY_S,KEY_DOWN]: direction.y = 1
+		back = event.physical_keycode == KEY_ESCAPE
+		confirm = event.physical_keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE]
 	elif event is InputEventJoypadButton and event.pressed:
-		if event.button_index in [JOY_BUTTON_DPAD_LEFT, JOY_BUTTON_DPAD_RIGHT]:
-			selected = 0 if event.button_index == JOY_BUTTON_DPAD_LEFT else 1
-			return true
-		if event.button_index == JOY_BUTTON_B:
-			selecting = false
-			return true
-	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_X:
-		if absf(event.axis_value) < 0.25:
-			stick_latched = false
+		if event.button_index == JOY_BUTTON_DPAD_LEFT: direction.x = -1
+		if event.button_index == JOY_BUTTON_DPAD_RIGHT: direction.x = 1
+		if event.button_index == JOY_BUTTON_DPAD_UP: direction.y = -1
+		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction.y = 1
+		back = event.button_index == JOY_BUTTON_B
+		confirm = event.button_index in [JOY_BUTTON_A,JOY_BUTTON_START]
+	elif event is InputEventJoypadMotion and event.axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]:
+		if absf(event.axis_value) < 0.25: stick_latched = false
 		elif absf(event.axis_value) > 0.6 and not stick_latched:
-			selected = 0 if event.axis_value < 0 else 1
+			direction[event.axis] = int(signf(event.axis_value))
 			stick_latched = true
-		return true
+		else: return true
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var point: Vector2 = event.position
-		if Rect2(28, 473, 100, 35).has_point(point):
-			selecting = false
-			return true
+		if Rect2(28,473,100,35).has_point(point):
+			selection_focus = 2
+			back = true
 		for index in range(2):
-			if Rect2(65 + index * 765, 260, 65, 80).has_point(point):
+			if Rect2(65+index*765,260,65,80).has_point(point):
 				selected = index
+				selection_focus = index
 				return true
 		if CLOCK_IN_RECT.has_point(point):
-			request_start()
+			selection_focus = 3
+			confirm = true
+		if not back and not confirm: return true
+	if back or (confirm and selection_focus == 2):
+		selecting = false
+		return true
+	if direction != Vector2i.ZERO:
+		move_selection_focus(direction)
+		return true
+	if confirm:
+		request_start()
 		return true
 	return false
 
@@ -373,8 +412,8 @@ func draw_selection() -> void:
 	var ink := Color("263634")
 	caption("EMPLOYEE FILE", Vector2(266, 219), 14, ink)
 	caption("%d / %d" % [selected + 1, Crew.EMPLOYEES.size()], Vector2(640, 219), 14, ink)
-	EmployeePhoto.draw(self, Portraits.expression(person.id, "afraid" if person.id == "sean" else "neutral",
-		difficulty_copy.options[difficulty_index].id),
+	# Employee files keep their standard portraits regardless of the next job's difficulty.
+	EmployeePhoto.draw(self, Portraits.expression(person.id, "afraid" if person.id == "sean" else "neutral"),
 		person.name)
 	caption(person.name, Vector2(430, 247), 23, ink)
 	caption("Fourth-generation plumber" if selected == 0 else "Apprentice", Vector2(430, 270), 14, ink)
@@ -394,17 +433,17 @@ func draw_selection() -> void:
 		row.draw(get_canvas_item(), Vector2(452, trait_y), ink)
 		trait_y += maxf(22, row.get_size().y + 4)
 	for index in range(2):
-		Buttons.compact(self,Rect2(65+index*765,260,65,80),"<" if index == 0 else ">",selected == index,20,false,26)
+		Buttons.compact(self,Rect2(65+index*765,260,65,80),"<" if index == 0 else ">",selection_focus == index,20,false,26)
 	draw_rect(Rect2(0, 510, 960, 30), Color("0d1526"))
-	Buttons.compact(self,Rect2(28,473,100,35),"BACK")
+	Buttons.compact(self,Rect2(28,473,100,35),"BACK",selection_focus == 2)
 	# The punch clock stays outside the clipboard and shares its button bounds with input.
 	draw_texture_rect_region(PUNCH_CLOCK, PUNCH_CLOCK_RECT, PUNCH_CLOCK_SOURCE)
-	Buttons.prop_focus(self,CLOCK_IN_RECT,true,selection_guard > 0 or confirm_blocked)
+	Buttons.prop_focus(self,CLOCK_IN_RECT,selection_focus == 3,selection_guard > 0 or confirm_blocked)
 	var font := ThemeDB.fallback_font
 	var label_size := font.get_string_size("CLOCK IN", HORIZONTAL_ALIGNMENT_LEFT, -1, 18)
 	var baseline := 448.0 + (font.get_ascent(18) - font.get_descent(18)) / 2.0
 	caption("CLOCK IN", Vector2(870 - label_size.x / 2.0, baseline), 18, Color("172725"))
-	caption("Left / Right: employee     Enter / A: confirm     Esc / B: back", Vector2(230, 526), 13, MINT)
+	caption("Arrows / D-pad: navigate     Enter / A: confirm     Esc / B: back", Vector2(230, 526), 13, MINT)
 
 func toggle_sound() -> void:
 	muted = not muted
@@ -416,6 +455,8 @@ func request_start() -> void:
 	if not selecting:
 		selecting = true
 		selected = 0
+		selection_focus = 0
+		stick_latched = false
 		difficulty_index = 1
 		difficulty_hover = -1
 		confirm_blocked = true
@@ -591,7 +632,7 @@ func draw_menu_content() -> void:
 	if game != null:
 		return
 	if showing_controls:
-		Controls.draw(self, controls_page, muted, show_enemy_health_bars)
+		Controls.draw(self, controls_page, muted, show_enemy_health_bars, controls_focus)
 		return
 	if choosing_difficulty:
 		DifficultyScreen.draw(self)
