@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "build": "Prototype 175 / 0.175.0",
-  "status": "Signed Mac candidate built November 11. Menu navigation and campaign impact audio checks pass against the exact packaged PCK; menu visual acceptance remains unverified.",
-  "app": "builds/Prototype-175/Drain Damage.app",
+  "build": "Prototype 176 / 0.176.0 diagnostic",
+  "status": "Cinematic diagnostic integration; technical checks pass, native capture/Art motion and listening acceptance blocked or pending. Not visually accepted.",
+  "app": "builds/Prototype-176/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
   "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
@@ -243,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "6b73f2c2f1197b887b19ca19ddac4ce20a29d5965ce876bd9826997f22cfa5f7",
+  "pck_sha256": "4a31ccf33e083e4dc7652fd886ffff52f4d56cd36ad2976c40ef9e3cadaea0d5",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -591,5 +591,36 @@
       "packaged": "controls_navigation and campaign_impact_audio against exact PCK; codesign verification passed"
     },
     "test_evidence": "previews/engineering-175/ (ignored local logs)"
+  },
+  "followup_176": {
+    "status": "diagnostic build, not visually accepted",
+    "date": "2026-11-11",
+    "changes": [
+      "Tony 3.2-second gauge and Sean 3.4-second registered pose cinematic",
+      "Freeze simulation, pause world audio, minimum music duck, preserve pause/cancellation and charge budgets",
+      "Tony action clock0 and Sean water-only action clock1.0 with first tick due once",
+      "Opaque authored poses, render-only camera zoom/shake; restore baseline before action"
+    ],
+    "source_contract": "assets/specials/activation-cinematics-v1/candidate-timeline.json",
+    "checks": {
+      "timer": 1450,
+      "geometry": 29812,
+      "host": 32,
+      "starter_specials": 1648,
+      "tick_boundaries": 755,
+      "python": 45,
+      "audio": "cinematic and legacy lifecycle pass;160 catalog slots",
+      "packaged_host": "32 checks passed against exact176PCK",
+      "signature": "codesign --verify --deep --strict passed"
+    },
+    "remaining": [
+      "Native captures blocked by CUA selecting different windows/project manager; no new cinematic screenshot acceptance",
+      "Art native-motion review: prefix/body match, extraction gap/Hard stance, release/handoff, alpha edges, gauge assembly",
+      "Edge safe margin cannot always coexist with current world coverage; diagnostic review required",
+      "Subjective audio mix and continuous motion not reviewed",
+      "Native Windows and full-route human acceptance remain unverified"
+    ],
+    "evidence": "previews/cinematic-integration-176/ (ignored logs, diagnostic harness)",
+    "previous_build_preserved": "builds/Prototype-175/Drain Damage.app"
   }
 }

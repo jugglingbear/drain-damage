@@ -62,8 +62,29 @@
       224
     ],
     "scale_relative_to_housing": 0.58,
-    "clockwise_turn_degrees": 300
+    "clockwise_turn_degrees": 360
   },
   "animation": "Use Mechanics timeline. Rotate needle and wheel independently at display refresh; opaque components except whole-overlay fade. Clamp tremble to small offsets; no flashing. Hide underlying HUD during overlay as necessary, restore at handoff.",
-  "source_measurement": "Manual reference measurement, approx3sourcepx tolerance. Confirm layered assembly at runtime before acceptance."
+  "source_measurement": "Manual reference measurement, approx3sourcepx tolerance. Confirm layered assembly at runtime before acceptance.",
+  "assembly_coordinates": {
+    "coordinate_rule": "Housing pivots are absolute sheet coordinates; needle and wheel pivots are local to their source rectangles.",
+    "housing_scale": 0.421875,
+    "gauge_pivot_native": [
+      477.890625,
+      211.359375
+    ],
+    "wheel_pivot_native": [
+      478.734375,
+      371.671875
+    ],
+    "needle_scale_native": 0.1940625,
+    "wheel_scale_native": 0.2446875,
+    "rotation_rule": "Rotate clockwise in screen coordinates about local pivot, then translate to corresponding native pivot; rotate the entire wheel with its marker.",
+    "draw_order": [
+      "housing",
+      "needle",
+      "wheel"
+    ],
+    "inspection": "Source components visually inspected Nov11. Geometry fits safe rect; final assembled/native animation review is pending Engineering diagnostic."
+  }
 }

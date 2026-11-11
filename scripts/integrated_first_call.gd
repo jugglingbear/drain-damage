@@ -324,6 +324,7 @@ func special_damage(segments: Array[Dictionary], amount: float, activation: int,
 	return applied
 
 func _physics_process(delta: float) -> void:
+	if cinematic.active or cinematic_resume_frame == Engine.get_process_frames(): return
 	if flush.active:
 		if paused or won or life_state in ["death_popup","game_over"]: return
 		if life_state == "dying":
@@ -551,7 +552,7 @@ func _draw() -> void:
 	if ending.state == "pull":
 		ending.draw_hero(self)
 	elif ending.state != "complete" and not dispenser.hides_hero() \
-		and (life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
+		and (cinematic.active or life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
 	for shot in shots:
 		# Reuse the existing original projectile presentation.
 		draw_set_transform(shot.pos-Vector2(floorf(camera_x),0),shot.dir.angle())
@@ -577,6 +578,7 @@ func _draw() -> void:
 	draw_set_transform_matrix(transform.affine_inverse())
 	draw_hud()
 	dispenser.draw_overlay(self)
+	draw_cinematic_overlay()
 	draw_set_transform_matrix(transform.affine_inverse())
 	if paused or (won and not dialogue.active):
 		box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
@@ -584,10 +586,12 @@ func _draw() -> void:
 		else: draw_pause_panel()
 
 func _process(delta: float) -> void:
+	if process_special_cinematic(delta): return
 	sync_boss_presentation()
 	var frozen_intro := boss_intro.blocking()
 	if frozen_intro: dialogue.tick(delta,paused)
 	super._process(0.0 if frozen_intro else delta)
+	if cinematic.active: return
 	for sound in creature_audio.values(): sound.set_paused(paused or frozen_intro)
 	if frozen_intro:
 		door_audio.set_paused(true)
@@ -629,6 +633,7 @@ func set_paused(value: bool) -> void:
 	if flush.active: flush.process_audio(self,0.0)
 	skitterling.audio.set_paused(value or life_state != "alive")
 	clogfather.audio.set_paused(value or life_state != "alive")
+	if cinematic.active: freeze_special_world_audio(true)
 
 func request_title() -> void:
 	if death_popup_locked: return
@@ -1138,3 +1143,8 @@ func _on_swarm_damaged(actor: Dictionary, lethal: bool) -> void:
 		if lethal: sound.play_defeat()
 		else: sound.play_hit(actor,elapsed)
 	else: super._on_swarm_damaged(actor,lethal)
+
+func freeze_special_world_audio(value: bool) -> void:
+	super.freeze_special_world_audio(value)
+	skitterling.audio.set_paused(value or paused or boss_intro.blocking())
+	clogfather.audio.set_paused(value or paused or boss_intro.blocking())

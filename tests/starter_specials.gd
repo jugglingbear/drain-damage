@@ -154,6 +154,7 @@ func check_damage_cadence(hz: int) -> void:
 	target.max_hp = 10000
 	Input.action_release("shoot")
 	check(game.specials.sample_input(game,true),"Fresh special press begins automatic torrent")
+	game.process_special_cinematic(3.2)
 	game.specials.sample_input(game,false)
 	for tick in range(hz): game.step_player(1.0/hz)
 	check(is_equal_approx(10000-target.hp,240),"Released-button automatic damage is240 at "+str(hz)+"Hz")

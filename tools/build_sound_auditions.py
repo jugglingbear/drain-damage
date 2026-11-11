@@ -121,6 +121,12 @@ def discover() -> dict[str, dict[str, Any]]:
         for cue in json.loads(special_path.read_text())["cues"].values():
             add(cue["slot_key"], SECTIONS[1], cue["label"], [cue["path"]],
                 "data/starter-special-audio.json#/cues")
+    cinematic_path = ROOT / "data/starter-cinematic-audio.json"
+    if cinematic_path.exists():
+        for event, cue in json.loads(cinematic_path.read_text())["cues"].items():
+            if "slot_key" in cue:
+                add(cue["slot_key"], SECTIONS[1], f"Starter cinematic — {event}", [cue["path"]],
+                    "data/starter-cinematic-audio.json#/cues")
     action_path = ROOT / "data/creature-action-audio.json"
     if action_path.exists():
         names = {"devil-spider": "Cuddlebug", "spider": "Hallowed Widow", "toilet": "Flushfiend"}

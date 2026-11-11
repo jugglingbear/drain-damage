@@ -178,6 +178,7 @@ func _exit_tree() -> void:
 	super._exit_tree()
 
 func _physics_process(delta: float) -> void:
+	if cinematic.active or cinematic_resume_frame == Engine.get_process_frames(): return
 	if paused or result_shown or life_state in ["game_over","death_popup"]: return
 	if life_state == "dying":
 		step_death(delta)
@@ -1067,6 +1068,7 @@ func show_results() -> void:
 	title_button.release_focus()
 
 func _process(delta: float) -> void:
+	if process_special_cinematic(delta): return
 	devil_spiders.sync_lifecycle(self)
 	if result_shown:
 		update_death_popup_guard(delta)
@@ -1266,7 +1268,7 @@ func _draw() -> void:
 	for actor in actors:
 		if not foreground_entry(actor): draw_actor(actor)
 	special_art.draw_back(self)
-	if life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0: draw_sean(player)
+	if cinematic.active or life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0: draw_sean(player)
 	for shot in shots:
 		# Reuse the existing original projectile presentation.
 		draw_set_transform(shot.pos-Vector2(floorf(camera_x),0),shot.dir.angle())
@@ -1283,8 +1285,9 @@ func _draw() -> void:
 	regular_remains.draw(self)
 	special_art.draw_front(self)
 	draw_foreground_entries()
-	draw_set_transform(Vector2.ZERO)
+	draw_set_transform_matrix(transform.affine_inverse())
 	draw_hud()
+	draw_cinematic_overlay()
 	if paused:
 		box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
 		if life_state in ["game_over","death_popup"]:

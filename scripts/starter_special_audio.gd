@@ -11,6 +11,7 @@ var paused := false
 var hero := ""
 var elapsed := 0.0
 var next_event := 0
+var cinematic_entry := false
 var cursor := 0
 var loop_active := false
 var loop_starts := 0
@@ -47,6 +48,20 @@ func begin(id: String) -> void:
 	active = true
 	_dispatch()
 
+func begin_from_cinematic(id: String) -> void:
+	if active or paused or not definition.get("heroes",{}).has(id): return
+	if not is_instance_valid(loop_voice): return
+	stop()
+	hero = id
+	active = true
+	cinematic_entry = true
+	elapsed = 1.0 if hero == "sean" else 0.0
+	var events: Array = definition.heroes[hero].events
+	while next_event < events.size() and float(events[next_event].time) <= elapsed:
+		next_event += 1
+	_play("sean-erupt" if hero == "sean" else "tony-start")
+	_dispatch()
+
 func advance(delta: float, is_paused: bool = false) -> void:
 	set_paused(is_paused)
 	if paused or not active: return
@@ -65,7 +80,10 @@ func _dispatch() -> void:
 		# Frame stalls skip expired transients instead of bursting every missed sound at once.
 		_play(str(event.cue),offset)
 		next_event += 1
-	var core: Dictionary = schedule.sustain
+	var core: Dictionary = schedule.sustain.duplicate()
+	if cinematic_entry:
+		core.start = 1.0 if hero == "sean" else 0.0
+		core.fade_in = .1
 	var in_core := elapsed >= float(core.start) and elapsed < float(core.end)
 	if in_core:
 		var cue: Dictionary = definition.cues[core.cue]
@@ -110,6 +128,7 @@ func stop() -> void:
 	hero = ""
 	elapsed = 0.0
 	next_event = 0
+	cinematic_entry = false
 	cursor = 0
 	loop_active = false
 	set_paused(false)

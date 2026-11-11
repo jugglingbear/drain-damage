@@ -1,0 +1,82 @@
+{
+  "heroes": {
+    "tony": {
+      "duration": 3.2,
+      "events": [
+        {
+          "time": 0.55,
+          "cue": "tony-crank"
+        },
+        {
+          "time": 1.75,
+          "cue": "tony-pressure"
+        }
+      ]
+    },
+    "sean": {
+      "duration": 3.4,
+      "events": [
+        {
+          "time": 1.0,
+          "cue": "sean-seal"
+        },
+        {
+          "time": 1.08,
+          "cue": "sean-pull"
+        },
+        {
+          "time": 1.78,
+          "cue": "sean-pull"
+        },
+        {
+          "time": 2.45,
+          "cue": "sean-break"
+        },
+        {
+          "time": 2.7,
+          "cue": "sean-hinge"
+        }
+      ]
+    }
+  },
+  "cues": {
+    "tony-crank": {
+      "path": "assets/audio/sfx/starter-cinematic-v1/tony-crank.wav",
+      "gain_db": -5,
+      "candidate": "DD-S0202.1",
+      "slot_key": "proposed-starter-cinematic/tony-crank",
+      "sha256": "9518c033b14b01fa8aa5e142c65dbb46142c70fafa5e8d6a8cc107a8029fe08c"
+    },
+    "tony-pressure": {
+      "path": "assets/audio/sfx/starter-cinematic-v1/tony-pressure.wav",
+      "gain_db": -5,
+      "candidate": "DD-S0203.1",
+      "slot_key": "proposed-starter-cinematic/tony-pressure",
+      "sha256": "918f9cbc4aca5b51cd0c7503c2d97c4fd178a74fef9fd061e8da21e14a54226f"
+    },
+    "sean-seal": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-seal.wav",
+      "gain_db": -3,
+      "candidate": "DD-S0130.3",
+      "sha256": "d6f67a0a13efbd9217ba1d9608140c23a2c24e5b0291730835f32adeac6336e3"
+    },
+    "sean-pull": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-pull.wav",
+      "gain_db": -3,
+      "candidate": "DD-S0131.4",
+      "sha256": "8165ee9acf317b75de20c7b2c403bad6f829e60174ce9129d92c0bc16c448ec2"
+    },
+    "sean-break": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-break.wav",
+      "gain_db": -3,
+      "candidate": "DD-S0132.3",
+      "sha256": "29967a5ad13d4dd1dd393bd4656c6e86f9b248cf5af2f2a4ba571344ec0e47dd"
+    },
+    "sean-hinge": {
+      "path": "assets/audio/sfx/starter-specials-v1/sean-hinge.wav",
+      "gain_db": -2,
+      "candidate": "DD-S0140.3",
+      "sha256": "ac8f5753487106223da30c302038016a13376eb6bb4b33107a747c23ddf5c72c"
+    }
+  }
+}

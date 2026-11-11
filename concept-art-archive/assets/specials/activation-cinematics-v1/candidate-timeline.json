@@ -1,0 +1,1652 @@
+{
+  "schema_version": 1,
+  "id": "starter-special-cinematic-candidate-v1",
+  "date": "2026-11-11",
+  "status": "Source-complete diagnostic pose candidate; not native-motion accepted or playable-release approved",
+  "owners": {
+    "art": "Bestiary / Art",
+    "registration_timing": "Game Mechanics",
+    "runtime_acceptance": "Engineering"
+  },
+  "production_contract": "design/special-activation-cinematics-v1/mechanics.json",
+  "audio_contract": "audio/sources/starter-cinematic-v1/manifest.json",
+  "viewport": [
+    960,
+    540
+  ],
+  "safe_rect": [
+    48,
+    32,
+    864,
+    476
+  ],
+  "alpha_cutoff": 240,
+  "sampling": "Intervals are start-inclusive/end-exclusive; choose final state at duration. Use opaque held authored poses, no sprite crossfade, stretch or automatic fit. Camera transforms remain continuous.",
+  "registration": {
+    "feet_world": "Capture player_top_left + (13,46) once on accepted activation",
+    "socket_world": "Captured feet + (44 * captured_facing,0)",
+    "source_rect_coordinates": "Atlas pixels; pivots are relative to cropped cell, not whole atlas",
+    "right_facing_transform": "world = captured_feet + (source_pixel - source_feet_pivot) * scale",
+    "left_facing_transform": "Mirror local X around captured feet: world = captured_feet + ((source_x-pivot_x)*scale*facing,(source_y-pivot_y)*scale), facing=-1",
+    "pivot_rule": "Use exact pose source pivot and uniform scale. No frame auto-centering or camera-dependent rebasing."
+  },
+  "tony": {
+    "duration": 3.2,
+    "beats": [
+      {
+        "id": "gauge_reveal",
+        "start": 0.0,
+        "end": 0.25,
+        "action": "Freeze immediately; fade gauge assembly in with needle at one-third pressure."
+      },
+      {
+        "id": "read_start",
+        "start": 0.25,
+        "end": 0.55,
+        "action": "Hold starting pressure long enough to read the mechanical setup."
+      },
+      {
+        "id": "crank",
+        "start": 0.55,
+        "end": 1.75,
+        "action": "Separate dial turns clockwise through one full turn. Needle follows pressure rise from one-third through red to the physical maximum."
+      },
+      {
+        "id": "overpressure",
+        "start": 1.75,
+        "end": 2.75,
+        "action": "One full second of unit-local tremble; needle pinned at maximum, not a second loading hold. Keep dial attached and readable."
+      },
+      {
+        "id": "release",
+        "start": 2.75,
+        "end": 3.2,
+        "action": "Fade assembly away. Final pressure-release hiss connects to the actual weapon nozzle. Resume with Hydrojet Overdrive at elapsed zero."
+      }
+    ],
+    "layout": {
+      "assembly_height": 432,
+      "assembly_center": [
+        480,
+        270
+      ],
+      "width_limit": 720,
+      "gauge_fraction_start": 0.3333333333,
+      "gauge_fraction_end": 1.0,
+      "red_warning_fraction": [
+        0.75,
+        0.95
+      ],
+      "dial_clockwise_degrees": 360,
+      "tremble_peak_pixels": 2
+    },
+    "art_manifest": "assets/specials/activation-cinematics-v1/gauge-manifest.json",
+    "source": "assets/specials/activation-cinematics-v1/gauge-components-v1.png",
+    "layer_geometry": "Use source rectangles and component pivots from Art-owned gauge-manifest.json; do not mirror gauge for left-facing hero.",
+    "clockwise_turn_degrees": 360,
+    "gauge_review_status": "Art reconciled full360-degree turn and explicit coordinate metadata; layered native motion acceptance pending.",
+    "handoff_effect_elapsed": 0.0
+  },
+  "sean": {
+    "duration": 3.4,
+    "poses_by_costume": {
+      "normal": {
+        "prefix_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-v1.png",
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            183.725,
+            355
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -36.745,
+            -71.0,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-v1.png",
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            169.225,
+            355
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -33.845,
+            -71.0,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-v1.png",
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            169.225,
+            355
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -33.845,
+            -71.0,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-v1.png",
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            169.725,
+            355
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -33.945,
+            -71.0,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "bridge_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            497
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.49,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            497
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.49,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            497
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.49,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            465
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.05,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_4": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            465
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.05,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_5": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            465
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.05,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_4": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_5": {
+          "source": "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "legacy_1": {
+          "source": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            495
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005000000002,
+            -84.15,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            446,
+            425
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_2": {
+          "source": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            188.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.990005000000004,
+            -84.32000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            447,
+            328
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_3": {
+          "source": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            463
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005000000002,
+            -78.71000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            446,
+            208
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_4": {
+          "source": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187,
+            463
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.790000000000003,
+            -78.71000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            318,
+            238
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_5": {
+          "source": "assets/specials/starter-v1/sean-normal-extended-v4.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187,
+            463
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.790000000000003,
+            -78.71000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            76,
+            307
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        }
+      },
+      "easy": {
+        "prefix_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-v1.png",
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            184.225,
+            356
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -36.845,
+            -71.2,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-v1.png",
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            168.225,
+            356
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -33.645,
+            -71.2,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-v1.png",
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            169.725,
+            356
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -33.945,
+            -71.2,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-v1.png",
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            170.225,
+            356
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -34.045,
+            -71.2,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "bridge_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            498
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.66,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            498
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.66,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            498
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.66,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            466
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.22,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_4": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            466
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.22,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_5": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            466
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.22,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_4": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_5": {
+          "source": "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "legacy_1": {
+          "source": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            497
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005000000002,
+            -84.49000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            446,
+            425
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_2": {
+          "source": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            188.1765,
+            497
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.990005000000004,
+            -84.49000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            447,
+            328
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_3": {
+          "source": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            463
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005000000002,
+            -78.71000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            446,
+            208
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_4": {
+          "source": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.790000000000003,
+            -78.88000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            318,
+            238
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_5": {
+          "source": "assets/specials/starter-v1/sean-easy-extended-v3.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187,
+            463
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.790000000000003,
+            -78.71000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            76,
+            307
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        }
+      },
+      "hard": {
+        "prefix_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-v1.png",
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            183.725,
+            354
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -36.745,
+            -70.8,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-v1.png",
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            170.225,
+            354
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -34.045,
+            -70.8,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-v1.png",
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            170.725,
+            354
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -34.145,
+            -70.8,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "prefix_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-v1.png",
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "source_feet_pivot": [
+            170.725,
+            354
+          ],
+          "scale": 0.2,
+          "destination_relative_to_feet": [
+            -34.145,
+            -70.8,
+            72.4,
+            72.4
+          ],
+          "registration_status": "Diagnostic rear-sole match; body continuity pending"
+        },
+        "bridge_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-bridges-v2.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            498
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.66,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-bridges-v2.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            498
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.66,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-bridges-v2.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            498
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.66,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-bridges-v2.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            466
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.22,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_4": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-bridges-v2.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            466
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.22,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "bridge_5": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-bridges-v2.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            466
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -79.22,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_0": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_1": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_2": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -84.32,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_3": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_4": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "effort_5": {
+          "source": "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.820005,
+            -78.88,
+            87.04,
+            87.04
+          ],
+          "registration_status": "Static registration reviewed; motion pending"
+        },
+        "legacy_1": {
+          "source": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            169.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -28.760005000000003,
+            -84.32000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            428,
+            425
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_2": {
+          "source": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            188.1765,
+            496
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.990005000000004,
+            -84.32000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            447,
+            328
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_3": {
+          "source": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            161.1765,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -27.400005000000004,
+            -78.88000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            420,
+            208
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_4": {
+          "source": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.790000000000003,
+            -78.88000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            310,
+            238
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        },
+        "legacy_5": {
+          "source": "assets/specials/starter-v1/sean-hard-extended-v2.png",
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_feet_pivot": [
+            187,
+            464
+          ],
+          "scale": 0.17,
+          "destination_relative_to_feet": [
+            -31.790000000000003,
+            -78.88000000000001,
+            87.04,
+            87.04
+          ],
+          "source_cup_contact": [
+            72,
+            307
+          ],
+          "registration_status": "Existing exact-source registration; new transition pending"
+        }
+      }
+    },
+    "sequence": [
+      {
+        "start": 0,
+        "end": 0.15,
+        "pose": "prefix_0"
+      },
+      {
+        "start": 0.15,
+        "end": 0.3,
+        "pose": "prefix_1"
+      },
+      {
+        "start": 0.3,
+        "end": 0.55,
+        "pose": "prefix_2"
+      },
+      {
+        "start": 0.55,
+        "end": 0.85,
+        "pose": "prefix_3"
+      },
+      {
+        "start": 0.85,
+        "end": 0.925,
+        "pose": "bridge_0"
+      },
+      {
+        "start": 0.925,
+        "end": 1.0,
+        "pose": "bridge_1"
+      },
+      {
+        "start": 1.0,
+        "end": 1.08,
+        "pose": "bridge_2"
+      },
+      {
+        "start": 1.08,
+        "end": 1.2,
+        "pose": "effort_0"
+      },
+      {
+        "start": 1.2,
+        "end": 1.34,
+        "pose": "effort_1"
+      },
+      {
+        "start": 1.34,
+        "end": 1.56,
+        "pose": "effort_2"
+      },
+      {
+        "start": 1.56,
+        "end": 1.68,
+        "pose": "effort_1"
+      },
+      {
+        "start": 1.68,
+        "end": 1.78,
+        "pose": "effort_3"
+      },
+      {
+        "start": 1.78,
+        "end": 1.92,
+        "pose": "effort_4"
+      },
+      {
+        "start": 1.92,
+        "end": 2.45,
+        "pose": "effort_5"
+      },
+      {
+        "start": 2.45,
+        "end": 2.52,
+        "pose": "bridge_3"
+      },
+      {
+        "start": 2.52,
+        "end": 2.6,
+        "pose": "bridge_4"
+      },
+      {
+        "start": 2.6,
+        "end": 2.7,
+        "pose": "bridge_5"
+      },
+      {
+        "start": 2.7,
+        "end": 2.8,
+        "pose": "legacy_1"
+      },
+      {
+        "start": 2.8,
+        "end": 2.93,
+        "pose": "legacy_2"
+      },
+      {
+        "start": 2.93,
+        "end": 3.08,
+        "pose": "legacy_3"
+      },
+      {
+        "start": 3.08,
+        "end": 3.2,
+        "pose": "legacy_4"
+      },
+      {
+        "start": 3.2,
+        "end": 3.34,
+        "pose": "legacy_5"
+      },
+      {
+        "start": 3.34,
+        "end": 3.4,
+        "pose": "gameplay_pose"
+      }
+    ],
+    "gameplay_pose": {
+      "renderer": "Existing selected-costume gameplay hero at captured feet/facing; no external sprite source",
+      "start": 3.34,
+      "world_remains_frozen_until": 3.4
+    },
+    "contact_hold": {
+      "start": 1.0,
+      "end": 1.08,
+      "pose": "bridge_2",
+      "replaces": "effort-manifest-v2 contact_hold effort frame0"
+    },
+    "impact_shake": {
+      "start": 1.0,
+      "end": 1.18,
+      "peak_native_pixels": 3,
+      "rule": "Short decaying translation only; never shake collision bodies or introduce camera roll."
+    },
+    "pipe_reveal": {
+      "start": 2.7,
+      "end": 3.4,
+      "renderer": "Existing pipe geometry only; presentation-only rise to exact action elapsed1.0 state at fixed socket",
+      "water_before_end": false
+    },
+    "handoff_effect_elapsed": 1.0,
+    "first_damage_tick": "Due once at1.0 on first resumed simulation step; never advance damage through cinematic",
+    "water_remaining_seconds": 6.5,
+    "upright_until_effect_elapsed": 1.5,
+    "horizontal_at_effect_elapsed": 4.75
+  },
+  "source_sha256": {
+    "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png": "862cc0aa9fb53b51060afea5a9b0c060da48070a0076190e378e7a06c4b52876",
+    "assets/specials/activation-cinematics-v1/sean-easy-effort-v2.png": "dd2b0fa96a022e6a9df3cb2d4d820ccc37e95f3bc929bd79f705c4497d92c08a",
+    "assets/specials/activation-cinematics-v1/sean-easy-v1.png": "001061b8b8d8f66c027a1814877710ba9639c31756c274c2e4be56aef911e7d4",
+    "assets/specials/activation-cinematics-v1/sean-hard-bridges-v2.png": "7ed42e69a473c25a1ac862640b27c03250dcf9641011f5a7c042f8f843c4a6ea",
+    "assets/specials/activation-cinematics-v1/sean-hard-effort-v2.png": "8913d8af363e398cc265dac51ac543c05c28524d0b1d7e1efa21a3ce58701783",
+    "assets/specials/activation-cinematics-v1/sean-hard-v1.png": "0b6b2b11fbde6872bb9c92618d0c8e948e4989dd9d8a304227abb64d7e32a8a4",
+    "assets/specials/activation-cinematics-v1/sean-normal-bridges-v1.png": "27b6fca2f7a96b89bd5f51de78dda3f4661df11e14f887a44b2fa80d970d04cc",
+    "assets/specials/activation-cinematics-v1/sean-normal-effort-v2.png": "f724fdc437138a92370c89befda4f8b8b081c1055665d0e827a68b159eaaf76b",
+    "assets/specials/activation-cinematics-v1/sean-normal-v1.png": "170e13958c7e77782491b47809a8a2e481e1da990beb05bff2826ffe977467b8",
+    "assets/specials/starter-v1/sean-easy-extended-v3.png": "626baace97cdfdbbc3464a8b03b3dda535e6d9bb2240161b28617718db0c1260",
+    "assets/specials/starter-v1/sean-hard-extended-v2.png": "e2cd8fa80d7da7eb83c5b41c450b48c2556c45df8796d9d25ca37568ee77bf40",
+    "assets/specials/starter-v1/sean-normal-extended-v4.png": "ed1e9abb2f1f10da507e03ca9eb1d21222bb58f3531716c91788708392ab1bd6"
+  },
+  "remaining_native_checks": [
+    "Prefix body size and overhead-to-bridge0 arc; original prefix4 and planted5\u201310 excluded",
+    "Bridge2-to-effort0 expression reset after impact hold",
+    "Bridge5-to-legacy1 extraction jump around7pixels; old Hard stance differences",
+    "Legacy release4/recover5 clears outlet and matches gameplay pose without duplicate tool",
+    "All costumes and both facings, transparent edges on light/dark backgrounds, supported floor contact",
+    "Gauge layering/rotation clearance, camera return, audio sync, freeze/pause/cancel/teardown, exact tick handoff"
+  ],
+  "validation": "All referenced Sean sources exist; source rectangles in bounds; pivots/destinations agree; sequence contiguous0\u20133.4; static Easy/Hard contact within0.5nativepixel. No runtime validation claimed."
+}

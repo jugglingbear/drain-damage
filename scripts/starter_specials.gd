@@ -18,6 +18,7 @@ var locked_facing := 1.0
 var costume := "normal"
 var audio: RefCounted
 var spent_pipes: Array[Dictionary] = []
+var presentation_host: WeakRef
 
 func _init() -> void:
 	Data.load_data()
@@ -38,11 +39,11 @@ func sample_input(host: Node2D, pressed: bool) -> bool:
 	var fresh := pressed and not held
 	held = pressed
 	if not fresh or not host.specials_allowed(): return false
-	var accepted := begin(host)
+	var accepted := begin(host,true)
 	if not accepted: host.special_audio.empty()
 	return accepted
 
-func begin(host: Node2D) -> bool:
+func begin(host: Node2D, present := false) -> bool:
 	if active or not host.specials_allowed() or remaining() <= 0: return false
 	var proposed: Vector2 = host.player+Vector2(13+44*host.facing,46)
 	if hero_id == "sean" and (not host.grounded or not host.special_pipe_clear(proposed)): return false
@@ -57,13 +58,19 @@ func begin(host: Node2D) -> bool:
 	locked_facing = host.facing
 	costume = host.world_art.hero_aim_art.costume
 	audio = host.special_audio
-	host.special_audio.begin(hero_id)
+	if present and host.has_method("start_special_cinematic"):
+		presentation_host = weakref(host)
+		host.start_special_cinematic()
+	else: host.special_audio.begin(hero_id)
 	return true
 
 func cancel(_reason := "") -> void:
 	clear_transients()
 
 func clear_transients() -> void:
+	if presentation_host != null and is_instance_valid(presentation_host.get_ref()):
+		presentation_host.get_ref().cancel_special_cinematic()
+	presentation_host = null
 	# Props belong to the current attempt; ending an attempt never refunds its level budget.
 	spent_pipes.clear()
 	if audio != null: audio.stop()
@@ -187,3 +194,12 @@ static func overlaps(segments: Array[Dictionary], rect: Rect2) -> bool:
 		for shape in shapes:
 			if not Geometry2D.intersect_polygons(shape,target).is_empty(): return true
 	return false
+
+func resume_from_cinematic(host: Node2D) -> void:
+	if not active or presentation_host == null: return
+	presentation_host = null
+	elapsed = 1.0 if hero_id == "sean" else 0.0
+	# The first water tick is due, not already consumed, at Sean's handoff.
+	tick_serial = 9 if hero_id == "sean" else 0
+	tick_clock = 0
+	host.special_audio.begin_from_cinematic(hero_id)

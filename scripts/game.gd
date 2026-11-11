@@ -14,6 +14,19 @@ var special_art := StarterSpecialArt.new()
 const StarterSpecialAudio = preload("res://scripts/starter_special_audio.gd")
 var specials := StarterSpecials.new()
 var special_audio := StarterSpecialAudio.new()
+const StarterCinematic = preload("res://scripts/starter_cinematic.gd")
+const StarterCinematicArt = preload("res://scripts/starter_cinematic_art.gd")
+const StarterCinematicAudio = preload("res://scripts/starter_cinematic_audio.gd")
+var cinematic := StarterCinematic.new()
+var cinematic_art := StarterCinematicArt.new()
+var cinematic_audio := StarterCinematicAudio.new()
+var cinematic_feet := Vector2.ZERO
+var cinematic_facing := 1.0
+var cinematic_costume := "normal"
+var cinematic_baseline := Transform2D.IDENTITY
+var cinematic_duck := 0.0
+var cinematic_resume_frame := -1
+
 
 const BossHUD = preload("res://scripts/boss_hud.gd")
 var boss_hud := BossHUD.new()
@@ -131,6 +144,7 @@ var tone_phase := 0.0
 func _ready() -> void:
 	Data.load_data()
 	await special_art.prepare(startup_yield)
+	await cinematic_art.prepare(startup_yield)
 	# Never process the damage atlas on the first visible enemy during gameplay.
 	await world_art.damage_art.prepare("toilet",startup_yield)
 	assert(wastewater_art.configure(Data.bundle.wastewater))
@@ -183,6 +197,7 @@ func _ready() -> void:
 	sound_playback = audio_player.get_stream_playback()
 	starter_weapon_audio.attach(self)
 	special_audio.attach(self)
+	cinematic_audio.attach(self)
 	dialogue = Dialogue.new()
 	add_child(dialogue)
 	create_pause_menu()
@@ -196,6 +211,7 @@ func _ready() -> void:
 
 func create_pause_menu() -> void:
 	pause_menu = Control.new()
+	pause_menu.set_as_top_level(true)
 	pause_menu.z_index = 30
 	add_child(pause_menu)
 	var buttons: Array[Button] = []
@@ -230,6 +246,7 @@ func create_pause_menu() -> void:
 
 func set_paused(value: bool) -> void:
 	paused = value
+	cinematic_audio.set_paused(value)
 	starter_weapon_audio.set_paused(value)
 	door_audio.set_paused(value)
 	for sound in creature_audio.values(): sound.set_paused(value)
@@ -244,8 +261,9 @@ func set_paused(value: bool) -> void:
 		resume_button.release_focus()
 		title_button.release_focus()
 		# A confirmation press must be released before gameplay can use it.
-		dialogue.awaiting_release = true
-		dialogue.release_guard = 0.2
+		if not cinematic.active:
+			dialogue.awaiting_release = true
+			dialogue.release_guard = 0.2
 		dispenser.skip_armed = false
 	queue_redraw()
 
@@ -390,6 +408,7 @@ func request_title() -> void:
 func _exit_tree() -> void:
 	specials.cancel("teardown")
 	special_audio.dispose()
+	cinematic_audio.dispose()
 	starter_weapon_audio.dispose()
 	door_audio.dispose()
 	swarm_audio.dispose()
@@ -511,7 +530,11 @@ func complete_job() -> void:
 	play_tone(540.0, 0.3)
 
 func _process(delta: float) -> void:
+	if process_special_cinematic(delta): return
 	specials.sample_input(self,Input.is_action_pressed("special"))
+	if cinematic.active:
+		queue_redraw()
+		return
 	if life_state != "alive" or won:
 		specials.cancel("inactive")
 		special_audio.stop()
@@ -562,6 +585,7 @@ func update_completion_button() -> void:
 	if not locked and (was_disabled or not title_button.has_focus()): title_button.grab_focus()
 
 func _physics_process(delta: float) -> void:
+	if cinematic.active or cinematic_resume_frame == Engine.get_process_frames(): return
 	if dispenser.just_finished:
 		dispenser.just_finished = false
 		return
@@ -624,7 +648,7 @@ func player_shot_solids() -> Array[Rect2]:
 	return Level.solids(mission.current_zone,gate_progress)
 
 func specials_allowed(ignore_active := false) -> bool:
-	return life_state == "alive" and not paused and not won and not dispenser.actions_locked \
+	return life_state == "alive" and not paused and not won and not cinematic.active and not dispenser.actions_locked \
 		and restart_guard_device < 0 and dialogue != null and not dialogue.active \
 		and dialogue.release_guard <= 0 and not dialogue.awaiting_release \
 		and not dispenser.active and not dispenser.just_finished and (ignore_active or not specials.active)
@@ -925,6 +949,7 @@ func damage_enemy(index: int, amount: float, impact: Vector2, player_credit := t
 		if enemy.has("mission_id"): mission.register_defeat(enemy.mission_id)
 
 func hurt_player() -> void:
+	if cinematic.active or cinematic_resume_frame == Engine.get_process_frames(): return
 	if dispenser.active or invulnerable > 0 or life_state != "alive":
 		return
 	health -= 1
@@ -1040,7 +1065,7 @@ func _draw() -> void:
 		draw_toilet(enemy)
 	dispenser.draw_world(self)
 	special_art.draw_back(self)
-	if not dispenser.hides_hero() and (life_state != "alive" or invulnerable <= 0 or int(elapsed * 12) % 2 == 0):
+	if not dispenser.hides_hero() and (cinematic.active or life_state != "alive" or invulnerable <= 0 or int(elapsed * 12) % 2 == 0):
 		draw_sean(player)
 	for shot: Dictionary in shots:
 		var p: Vector2 = shot.pos
@@ -1059,10 +1084,11 @@ func _draw() -> void:
 		box(particle.pos.x, particle.pos.y, 4, 4, particle.color)
 	special_art.draw_front(self)
 	draw_set_transform(Vector2.ZERO)
-	draw_set_transform(Vector2(0, boss_hud.reserved_height()))
+	draw_set_transform_matrix(transform.affine_inverse()*Transform2D(0,Vector2(0,boss_hud.reserved_height())))
 	draw_hud()
 	draw_set_transform(Vector2.ZERO)
 	dispenser.draw_overlay(self)
+	draw_cinematic_overlay()
 	if paused or (won and not dialogue.active):
 		box(0, 0, 960, 540, Color(0.03, 0.07, 0.12, 0.88))
 		if life_state in ["death_popup", "game_over"]:
@@ -1104,7 +1130,8 @@ func draw_room() -> void:
 	world_art.draw_room(self)
 
 func draw_sean(_position: Vector2) -> void:
-	if special_art.draw_hero(self): return
+	if cinematic_art.draw_hero(self): return
+	if not cinematic.active and special_art.draw_hero(self): return
 	world_art.draw_sean(self)
 
 func draw_toilet(enemy: Dictionary) -> void:
@@ -1173,3 +1200,68 @@ func step_encounters(_delta: float) -> void:
 			enemy.direction = signf(player.x-x)
 			enemies.append(enemy)
 			return
+
+func start_special_cinematic() -> void:
+	cinematic_feet = player+Vector2(13,46)
+	cinematic_facing = facing
+	cinematic_costume = world_art.hero_aim_art.costume
+	cinematic_baseline = transform
+	cinematic_duck = music_director.duck_db if music_director != null else 0.0
+	assert(cinematic.begin(employee.id))
+	cinematic_audio.begin(employee.id)
+	freeze_special_world_audio(true)
+
+func freeze_special_world_audio(value: bool) -> void:
+	if is_instance_valid(audio_player): audio_player.stream_paused = value or paused
+	if is_instance_valid(swarm_audio.voice): swarm_audio.voice.stream_paused = value or paused
+	starter_weapon_audio.set_paused(value or paused)
+	door_audio.set_paused(value or paused)
+	for sound in creature_audio.values(): sound.set_paused(value or paused)
+	if music_director != null:
+		music_director.duck_db = minf(cinematic_duck,-4.0) if value else cinematic_duck
+		music_director.apply_volume()
+
+func cancel_special_cinematic() -> void:
+	if cinematic.active or not cinematic.hero_id.is_empty():
+		transform = cinematic_baseline
+		freeze_special_world_audio(false)
+	cinematic.cancel()
+	cinematic_audio.stop()
+	queue_redraw()
+
+func process_special_cinematic(delta: float) -> bool:
+	if not cinematic.active: return false
+	if life_state != "alive" or won:
+		specials.cancel("cinematic interruption")
+		return true
+	# Only pause/title input is consumed while the simulation is frozen.
+	if Input.is_action_just_pressed("pause_game") and not suppress_pause_frame:
+		set_paused(not paused)
+	if paused and Input.is_action_just_pressed("return_title"):
+		request_title()
+		return true
+	if paused and Input.is_action_just_pressed("dialogue_skip"): set_paused(false)
+	suppress_pause_frame = false
+	specials.held = Input.is_action_pressed("special")
+	cinematic_audio.set_paused(paused)
+	freeze_special_world_audio(true)
+	if not paused: cinematic_audio.advance(delta)
+	cinematic.advance(delta,paused)
+	transform = cinematic_baseline*cinematic_art.camera_transform(self)
+	var completed: String = cinematic.take_completion()
+	if not completed.is_empty():
+		cinematic_resume_frame = Engine.get_process_frames()
+		transform = cinematic_baseline
+		cinematic_audio.stop()
+		freeze_special_world_audio(false)
+		specials.resume_from_cinematic(self)
+		cinematic.cancel()
+	queue_redraw()
+	return true
+
+func draw_cinematic_overlay() -> void:
+	draw_set_transform_matrix(transform.affine_inverse())
+	cinematic_art.draw_overlay(self)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and cinematic.active: set_paused(true)

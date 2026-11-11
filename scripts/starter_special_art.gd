@@ -211,11 +211,13 @@ func draw_spent_pipe(game: Node2D, state: Dictionary) -> void:
 
 func draw_back(game: Node2D) -> void:
 	for state: Dictionary in game.specials.spent_pipes: draw_spent_pipe(game,state)
+	if game.has_method("start_special_cinematic") and game.cinematic.active: return
 	if not game.specials.active or game.specials.hero_id != "sean": return
 	draw_pipe_piece(game,"lower",game.specials.pipe_state())
 	draw_pipe_piece(game,"upper_back",game.specials.pipe_state())
 
 func draw_front(game: Node2D) -> void:
+	if game.has_method("start_special_cinematic") and game.cinematic.active: return
 	draw_water(game)
 	if game.specials.active and game.specials.hero_id == "sean":
 		draw_pipe_piece(game,"front_rim",game.specials.pipe_state())

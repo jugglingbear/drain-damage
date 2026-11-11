@@ -327,6 +327,7 @@ func issue_event() -> void:
 		return
 
 func _physics_process(delta: float) -> void:
+	if cinematic.active or cinematic_resume_frame == Engine.get_process_frames(): return
 	if paused or result_shown or life_state in ["game_over","death_popup"]: return
 	if life_state == "dying":
 		step_death(delta)

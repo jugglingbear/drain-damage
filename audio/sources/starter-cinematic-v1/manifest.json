@@ -280,5 +280,38 @@
       "Muted cinematic events are consumed, not queued for unmute."
     ],
     "approved_asset_gains": "Reuse gain_db values; new crank/pressure -5 dB. Mix listening pending."
+  },
+  "runtime_delivery": {
+    "date": "2026-11-11",
+    "status": "Audio controllers tested; diagnostic host integration owned by Engineering.",
+    "files": [
+      "scripts/starter_cinematic_audio.gd",
+      "scripts/starter_special_audio.gd",
+      "data/starter-cinematic-audio.json"
+    ],
+    "api": {
+      "cinematic": [
+        "attach(host)",
+        "begin(hero)",
+        "advance(delta)",
+        "seek(seconds)",
+        "set_paused(bool)",
+        "stop()",
+        "dispose()"
+      ],
+      "handoff": "Host stops cinematic audio then special_audio.begin_from_cinematic(hero) exactly once.",
+      "seek": "Restores only still-live gestures at destination; expired events are consumed, pause state preserved.",
+      "music": "Host owns -4dB minimum-combined cinematic duck and restoration; audio controllers do not alter music."
+    },
+    "validation": [
+      "tests/starter_cinematic_audio.gd PASS",
+      "tests/starter_special_audio.gd PASS normal entry regression",
+      "Catalog refresh/check and six Python catalog tests PASS"
+    ],
+    "remaining": [
+      "Host synchronization and first gameplay water tick",
+      "Packaged integration",
+      "Subjective listening"
+    ]
   }
 }
