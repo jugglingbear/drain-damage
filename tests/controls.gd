@@ -4,7 +4,7 @@ func _initialize() -> void:
 	call_deferred("run_checks")
 func run_checks() -> void:
 	assert(Controls.KEYBOARD.get_size() == Vector2(2172, 724))
-	assert(Controls.GAMEPAD.get_size() == Vector2(1536, 1024))
+	assert(Controls.GAMEPAD.get_size() == Vector2(1671, 941))
 	for page in Controls.PRIMARY:
 		for action in page:
 			assert(ThemeDB.fallback_font.get_string_size(action[1], HORIZONTAL_ALIGNMENT_LEFT, -1, 17).x < 274)

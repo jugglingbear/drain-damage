@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "build": "Prototype 176 / 0.176.0 diagnostic",
-  "status": "Cinematic diagnostic integration; technical checks pass, native capture/Art motion and listening acceptance blocked or pending. Not visually accepted.",
-  "app": "builds/Prototype-176/Drain Damage.app",
+  "build": "Prototype 177 / 0.177.0",
+  "status": "Controller layout accepted; cinematic motion remains diagnostic",
+  "app": "builds/Prototype-177/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
   "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
@@ -164,10 +164,10 @@
   },
   "source_content_commit": "a0634ef",
   "source_dirty_at_build": true,
-  "source_commit_at_build": "a0634ef92280f6d711fd84e12f3a26340e3a82a3",
+  "source_commit_at_build": "b21d08ab3c7f2489add05f0d808d298b13e41f69",
   "changes": [
     "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
-    "Normal two purple shooters/two flyers, seeded 1\u20133 bolt volleys and 2.2-second recovery",
+    "Normal two purple shooters/two flyers, seeded 1–3 bolt volleys and 2.2-second recovery",
     "Varied continuous entrances, replacement supported traversal and two 65%-overlap pits; independent trials unchanged",
     "Checkpoint-owned retry and boss transitions/adds preserved",
     "Angel return, devil aimed silk line, flame/scream/ash and three persistent doll heads",
@@ -243,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "4a31ccf33e083e4dc7652fd886ffff52f4d56cd36ad2976c40ef9e3cadaea0d5",
+  "pck_sha256": "d39c699b910bd285ad570994e81e115ac0d5e940543ad43a52d56fb57b9387de",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -357,7 +357,7 @@
       "late_route": "12284 checks,0 failures; both heroes60/120Hz; /tmp/166-package-late.log",
       "launch": "Normal Tony Level1 initialized at85/394; /tmp/166-package-launch.log",
       "build": "make build and codesign verify exit0; /tmp/166-build.log",
-      "boss_transition": "/tmp/platform166-clogfather_integration.log:6 mode/hero cases pass through actual portal\u2192flush",
+      "boss_transition": "/tmp/platform166-clogfather_integration.log:6 mode/hero cases pass through actual portal→flush",
       "boss_pressure": "/tmp/platform166-clogfather_pressure_integration.log:6 mode/hero lifecycle/no-refill cases pass",
       "ending_input": "/tmp/platform166-ending_input.log:both heroes pass canonical dialogue/debounce/release",
       "forward_reverse": "/tmp/platform166-clogfather_route_traversal.log:12 mode/hero/Hz cases pass",
@@ -391,7 +391,7 @@
       "difficulty_traversal": "18 E/N/H hero/seed runs through Skitterling at60/120Hz",
       "reverse_route": "12 forward/reverse E/N/H hero/Hz cases",
       "retry": "All four origins and Skitterling checkpoint ownership",
-      "boss_exit": "All six mode/hero cases: actual Clogfather defeat,aftermath and portal\u2192flush",
+      "boss_exit": "All six mode/hero cases: actual Clogfather defeat,aftermath and portal→flush",
       "other": "Pressure reinforcement lifecycle,canonical ending input and first-level ending pass;45 Python tests;117 sound slots current"
     },
     "test_migrations": [
@@ -622,5 +622,32 @@
     ],
     "evidence": "previews/cinematic-integration-176/ (ignored logs, diagnostic harness)",
     "previous_build_preserved": "builds/Prototype-175/Drain Damage.app"
+  },
+  "followup_177": {
+    "date": "2026-11-11",
+    "changes": [
+      "Approved controller callout artwork integrated with runtime labels/lines",
+      "Preserved keyboard page, header navigation, toggles and context hints",
+      "Preserved new fly auditions and revised ride-dialogue proposal without runtime promotion"
+    ],
+    "checks": [
+      "Source controls and navigation pass",
+      "Exact177 PCK controls pass",
+      "Native exact-package screenshot inspected; independent Art final layout PASS",
+      "160-slot audio catalog check passes",
+      "macOS export and strict codesign verification pass"
+    ],
+    "warnings": [
+      "Sandbox denied editor-settings save; export/signature succeeded",
+      "Navigation test reports20 ObjectDB instances and1 resource at shutdown; assertions pass"
+    ],
+    "capture": "storybook/177-controller-callouts/capture.json",
+    "remaining": [
+      "Cinematic176 native-motion acceptance pending",
+      "Backpack runtime artwork production/integration pending",
+      "Level2 dialogue lines and curated checkpoints unapproved; no runtime promotion",
+      "Windows native verification pending"
+    ],
+    "previous_build_preserved": "builds/Prototype-176/Drain Damage.app"
   }
 }

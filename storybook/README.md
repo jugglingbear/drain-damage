@@ -254,6 +254,11 @@ v0.166.0 · November 4, 2026 · Candidate; bounded still review passed.
 A utility sink becomes a raised landing.
 v0.166.0 · November 4, 2026 · Candidate; bounded still review passed.
 
+![The plumbing controller maps each action to its button.][image-61]
+
+The approved controller illustration now has runtime callouts and contextual controls.
+v0.177.0 · November 11, 2026 · Packaged native capture; independent Art layout review passed.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -318,3 +323,4 @@ To come. These images document development, not a finished game.
 [image-58]: 165-campaign-integration/20261104-144546-archived-ceiling-shooter-final.png
 [image-59]: 166-permanent-platforms/20261104-185313-archived-softener-contact.png
 [image-60]: 166-permanent-platforms/20261104-185313-archived-sink-contact.png
+[image-61]: 177-controller-callouts/20261111-145249-packaged-controller-callouts.png

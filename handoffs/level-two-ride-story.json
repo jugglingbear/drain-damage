@@ -1,101 +1,218 @@
 {
   "id": "level_two_ride_story_proposal_v1",
-  "date": "2026-10-25",
-  "status": "Proposed dialogue only; awaiting Sean approval; do not integrate",
+  "date": "2026-11-11",
+  "status": "Beginning/end/checkpoint-only proposal; lines await Sean approval; do not integrate",
   "implementation_authorized": false,
-  "scope_authorization": "Engineering relays Sean via PM: 30–60-second forced-forward ride slice, movement/dodging only; three obstacle types; landing checkpoint preserved. Dialogue separately awaits direct review.",
+  "scope_authorization": "Sean explicitly limits ride dialogue to the beginning, end and intermediate checkpoints. No chatter triggered by individual obstacles, encounters, steering, jumps or gaps.",
   "unchanged": "Existing flush, landing, first-level dialogue and overlay gag remain unchanged.",
   "deferred": [
-    "Full 3–4-minute ride",
-    "Level three",
-    "Combat",
-    "Weapon decisions beyond this slice"
+    "Exact production checkpoint placement and event binding pending Engineering confirmation",
+    "Proposed lines await Sean review",
+    "Earth-return staging must be confirmed before binding the proposed ending"
   ],
-  "presentation": "Existing compact radio overlay in calm stretches before obstacles. No new gag. Timing depends on readable layout; pause with gameplay, cancel stale lines on failure/retry. Preserve landing checkpoint. Partner has no visual feed.",
+  "presentation": "Compact nonblocking radio overlay only at approved beginning/end/checkpoint beats. Never queue chatter during mixed obstacles or attach it to an encounter boundary by default. Partner has audio only, no visual feed. Pause with gameplay and discard stale lines on failure/retry. Do not replay automatically on every retry; replay policy awaits integration review.",
   "routes": {
     "tony": [
       {
-        "beat": "steer",
-        "who": "tony",
-        "emotion": "neutral",
-        "text": "Pipe supports ahead. I’ve got room to go around.",
-        "radio": false,
-        "status": "proposed_not_approved"
-      },
-      {
-        "beat": "jump",
-        "who": "tony",
-        "emotion": "worried",
-        "text": "Low pipe across the water. I’m going over it.",
-        "radio": false,
-        "status": "proposed_not_approved"
-      },
-      {
-        "beat": "gap",
-        "who": "tony",
-        "emotion": "surprised",
-        "text": "Sean, the channel ends!",
-        "radio": false,
-        "status": "proposed_not_approved"
-      },
-      {
-        "beat": "gap_reply",
+        "beat": "beginning",
         "who": "sean",
         "emotion": "worried",
-        "text": "Can you make the jump?",
+        "text": "Tony? Tell me you found something to stand on.",
         "radio": true,
         "status": "proposed_not_approved"
       },
       {
-        "beat": "gap_answer",
+        "beat": "beginning",
         "who": "tony",
         "emotion": "worried",
-        "text": "I’ll let you know when I land.",
+        "text": "I did. I am furious about what it is.",
         "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "intermediate_checkpoint_unassigned",
+        "who": "sean",
+        "emotion": "worried",
+        "text": "How are you holding up?",
+        "radio": true,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "intermediate_checkpoint_unassigned",
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Ask me when I’m standing on something I can disinfect.",
+        "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "end_after_confirmed_earth_return",
+        "who": "tony",
+        "emotion": "worried",
+        "text": "Concrete. Actual concrete. I could kiss it.",
+        "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "end_after_confirmed_earth_return",
+        "who": "sean",
+        "emotion": "neutral",
+        "text": "Please wash first.",
+        "radio": true,
         "status": "proposed_not_approved"
       }
     ],
     "sean": [
       {
-        "beat": "steer",
+        "beat": "beginning",
         "who": "sean",
         "emotion": "worried",
-        "text": "There are supports sticking out of the water!",
+        "text": "Tony, it’s moving. I haven’t agreed to any of this!",
         "radio": false,
         "status": "proposed_not_approved"
       },
       {
-        "beat": "steer_reply",
+        "beat": "beginning",
         "who": "tony",
-        "emotion": "neutral",
-        "text": "Take the open side, Sean.",
+        "emotion": "worried",
+        "text": "I know. Keep your balance. I’m here.",
         "radio": true,
         "status": "proposed_not_approved"
       },
       {
-        "beat": "jump",
+        "beat": "intermediate_checkpoint_unassigned",
+        "who": "tony",
+        "emotion": "worried",
+        "text": "You still with me, Sean?",
+        "radio": true,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "intermediate_checkpoint_unassigned",
         "who": "sean",
         "emotion": "worried",
-        "text": "There’s a pipe right across my path!",
+        "text": "Yes. I would like that noted in my performance review.",
         "radio": false,
         "status": "proposed_not_approved"
       },
       {
-        "beat": "jump_reply",
-        "who": "tony",
-        "emotion": "worried",
-        "text": "Can you jump it?",
-        "radio": true,
-        "status": "proposed_not_approved"
-      },
-      {
-        "beat": "gap",
+        "beat": "end_after_confirmed_earth_return",
         "who": "sean",
         "emotion": "surprised",
-        "text": "There’s a gap! Why is there a gap?!",
+        "text": "I’m back! Tony, I’m back! Don’t let anybody flush anything!",
         "radio": false,
+        "status": "proposed_not_approved"
+      },
+      {
+        "beat": "end_after_confirmed_earth_return",
+        "who": "tony",
+        "emotion": "neutral",
+        "text": "Take a breath, Sean. You’re out.",
+        "radio": true,
         "status": "proposed_not_approved"
       }
     ]
+  },
+  "superseded_test_slice_proposal": {
+    "date": "2026-10-25",
+    "status": "Superseded November 11, 2026; obstacle-triggered dialogue prohibited; never approved for runtime",
+    "routes": {
+      "tony": [
+        {
+          "beat": "steer",
+          "who": "tony",
+          "emotion": "neutral",
+          "text": "Pipe supports ahead. I’ve got room to go around.",
+          "radio": false,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "jump",
+          "who": "tony",
+          "emotion": "worried",
+          "text": "Low pipe across the water. I’m going over it.",
+          "radio": false,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "gap",
+          "who": "tony",
+          "emotion": "surprised",
+          "text": "Sean, the channel ends!",
+          "radio": false,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "gap_reply",
+          "who": "sean",
+          "emotion": "worried",
+          "text": "Can you make the jump?",
+          "radio": true,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "gap_answer",
+          "who": "tony",
+          "emotion": "worried",
+          "text": "I’ll let you know when I land.",
+          "radio": false,
+          "status": "proposed_not_approved"
+        }
+      ],
+      "sean": [
+        {
+          "beat": "steer",
+          "who": "sean",
+          "emotion": "worried",
+          "text": "There are supports sticking out of the water!",
+          "radio": false,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "steer_reply",
+          "who": "tony",
+          "emotion": "neutral",
+          "text": "Take the open side, Sean.",
+          "radio": true,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "jump",
+          "who": "sean",
+          "emotion": "worried",
+          "text": "There’s a pipe right across my path!",
+          "radio": false,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "jump_reply",
+          "who": "tony",
+          "emotion": "worried",
+          "text": "Can you jump it?",
+          "radio": true,
+          "status": "proposed_not_approved"
+        },
+        {
+          "beat": "gap",
+          "who": "sean",
+          "emotion": "surprised",
+          "text": "There’s a gap! Why is there a gap?!",
+          "radio": false,
+          "status": "proposed_not_approved"
+        }
+      ]
+    }
+  },
+  "checkpoint_coordination": {
+    "owner": "Engineering 01a1af5b-36f9-7a61-91a5-c5fad5d51eeb",
+    "status": "Engineering confirmed runtime events; curated intermediate dialogue checkpoint locations still pending",
+    "constraint": "Engineering will confirm curated dialogue checkpoint locations separately. No obstacle or mixed-encounter chatter; internal encounter retry checkpoints are not dialogue slots. Intermediate exchange remains an unassigned sample.",
+    "runtime_source": "levels/level-two-ride-showcase.json",
+    "runtime_model": "scripts/ride_showcase_model.gd",
+    "runtime_events": {
+      "begin": "Ride entry; candidate beginning hook only after dialogue approval",
+      "encounter_started": "Emitted for every encounter; _start_encounter sets checkpoint_index = encounter_index. Retry checkpoint only, never automatic dialogue trigger.",
+      "finished": "Completion sets phase complete and host.won, then emits finished. Does not itself establish Earth-return staging."
+    }
   }
 }
