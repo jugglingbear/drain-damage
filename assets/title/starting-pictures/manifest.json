@@ -1,5 +1,5 @@
 {
-  "status": "Approved assets staged; directory-discovery runtime integration pending",
+  "status": "Runtime integrated in Prototype 178; native title framing and independent Art review pending",
   "directory": "assets/title/starting-pictures",
   "filename_pattern": "start-*.png",
   "recursive": false,
@@ -49,5 +49,11 @@
       ],
       "source_art": "assets/title/level-1-rotation-v1/level-1-04-v1.png"
     }
-  ]
+  ],
+  "integration_validation": {
+    "build": "Prototype 178",
+    "reported_by": "Engineering",
+    "checks": "Source and exact exported-package discovery tests pass; all four imported PNG names discovered.",
+    "native_review": "Pending; attempted capture selected unrelated window, so no title visual acceptance claimed."
+  }
 }

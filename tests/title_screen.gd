@@ -70,6 +70,10 @@ func run_checks() -> void:
 		title._unhandled_input(key(KEY_ENTER,false))
 		title._unhandled_input(key(KEY_ENTER))
 		await process_frame
+		var deadline := Time.get_ticks_msec()+30000
+		while title.loading_in_progress and Time.get_ticks_msec() < deadline:
+			await process_frame
+		assert(title.game != null and not title.loading_in_progress)
 		assert(title.music_director.requested == "level", "Gameplay requests the level track")
 		assert(title.game.employee.id == ["tony", "sean"][index])
 		assert(title.game.health == [4, 5][index])
@@ -80,7 +84,9 @@ func run_checks() -> void:
 		assert(title.game.dialogue.active and title.game.dialogue.lines.size() == 7)
 		title.game.dialogue.finish()
 		title.game.activate_checkpoint()
-		assert(title.game.health == [4,5][index] and title.game.dispenser.active)
+		assert(title.game.health == 1 and title.game.dispenser.active)
+		title.game.dispenser.finish(title.game,true)
+		assert(title.game.health == [4,5][index])
 		var previous = title.game
 		title._unhandled_input(key(KEY_ENTER))
 		assert(title.game == previous)
@@ -119,6 +125,9 @@ func run_checks() -> void:
 		pad.pressed = true
 		title._unhandled_input(pad)
 		await process_frame
+		var deadline := Time.get_ticks_msec()+30000
+		while title.loading_in_progress and Time.get_ticks_msec() < deadline:
+			await process_frame
 		assert(title.game != null)
 		title.return_to_title()
 		await process_frame

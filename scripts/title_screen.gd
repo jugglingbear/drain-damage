@@ -14,6 +14,8 @@ const PUNCH_CLOCK_RECT := Rect2(790, 315, 160, 160.0 * 1200.0 / 1110.0)
 const EmployeePhoto = preload("res://scripts/employee_photo.gd")
 const CLIPBOARD = preload("res://assets/selection/clipboard-stack-v2.png")
 const ART = preload("res://assets/title/drain-damage-v2.png")
+const StartingPicture = preload("res://scripts/starting_picture.gd")
+var starting_picture: Texture2D
 const MENU_ART = preload("res://assets/title/dripping-menu-v1.png")
 const MENU_LABELS := ["START", "CONTROLS", "QUIT"]
 const Crew = preload("res://scripts/crew.gd")
@@ -65,6 +67,7 @@ var navigation_plays := 0
 var held_navigation_buttons: Dictionary = {}
 
 func _ready() -> void:
+	starting_picture = StartingPicture.for_session()
 	prepare_loading_valve()
 	var launch := PlaytestLaunch.parse(OS.get_cmdline_user_args())
 	if launch.has("error"):
@@ -640,7 +643,7 @@ func draw_menu_content() -> void:
 	if selecting:
 		draw_selection()
 		return
-	draw_texture_rect(ART, Rect2(0, 0, 960, 540), false)
+	draw_texture_rect(starting_picture, Rect2(0, 0, 960, 540), false)
 	for index in range(MENU_LABELS.size()):
 		var hit_area := menu_rect(index)
 		var chosen := menu_index == index

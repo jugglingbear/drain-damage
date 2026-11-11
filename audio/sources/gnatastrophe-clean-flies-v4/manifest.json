@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-11",
+  "status": "Audition only; subjective residual-noise review pending",
+  "brief": "Sean likes actual fly buzz but hears birds at the beginning of DD-S0200.3 and water-like ambience in .4/.5. Compare a new indoor fly recording with a cropped, band-limited cleanup of .3. Preserve original recordings and candidates; audition only. Background isolation is not guaranteed.",
+  "recipe": "audio/sources/gnatastrophe-clean-flies-v4/render.py",
+  "outputs": [
+    {
+      "id": "DD-S0200.6",
+      "path": "audio/alternatives/DD-S0200/DD-S0200.6.wav",
+      "name": "CLEAN FLIES v4 \u00b7 A \u2014 Indoor flies, natural buzz",
+      "source_manifest": "audio/sources/gnatastrophe-clean-flies-v4/manifest.json",
+      "generation_prompt": "Sean likes actual fly buzz but hears birds at the beginning of DD-S0200.3 and water-like ambience in .4/.5. Compare a new indoor fly recording with a cropped, band-limited cleanup of .3. Preserve original recordings and candidates; audition only. Background isolation is not guaranteed.",
+      "provenance": "CC0 BeeProductive indoor flies, or processed PuzzleAudio outdoor recording.",
+      "duration_seconds": 6.0,
+      "peak_dbfs": -12.0,
+      "sha256": "d1814ddd1a16734d499a79fb7bd506547006dca2660be94903fd9ed474551ce8",
+      "source_key": "indoor",
+      "layers": [
+        [
+          1.0,
+          250,
+          6000,
+          4,
+          0.9
+        ],
+        [
+          1.03,
+          300,
+          6000,
+          16,
+          0.6
+        ]
+      ]
+    },
+    {
+      "id": "DD-S0200.7",
+      "path": "audio/alternatives/DD-S0200/DD-S0200.7.wav",
+      "name": "CLEAN FLIES v4 \u00b7 B \u2014 Indoor flies, dense cloud",
+      "source_manifest": "audio/sources/gnatastrophe-clean-flies-v4/manifest.json",
+      "generation_prompt": "Sean likes actual fly buzz but hears birds at the beginning of DD-S0200.3 and water-like ambience in .4/.5. Compare a new indoor fly recording with a cropped, band-limited cleanup of .3. Preserve original recordings and candidates; audition only. Background isolation is not guaranteed.",
+      "provenance": "CC0 BeeProductive indoor flies, or processed PuzzleAudio outdoor recording.",
+      "duration_seconds": 6.0,
+      "peak_dbfs": -12.0,
+      "sha256": "23b7cd3fe3f42169c83ef66264ad5a30bc626b962cf4f55c4c510bb02d25694f",
+      "source_key": "indoor",
+      "layers": [
+        [
+          0.96,
+          230,
+          5500,
+          2,
+          0.7
+        ],
+        [
+          1.0,
+          250,
+          6000,
+          9,
+          0.8
+        ],
+        [
+          1.04,
+          300,
+          6000,
+          17,
+          0.6
+        ],
+        [
+          1.08,
+          400,
+          6500,
+          21,
+          0.4
+        ]
+      ]
+    },
+    {
+      "id": "DD-S0200.8",
+      "path": "audio/alternatives/DD-S0200/DD-S0200.8.wav",
+      "name": "CLEAN FLIES v4 \u00b7 C \u2014 Earlier close flies, cropped and filtered",
+      "source_manifest": "audio/sources/gnatastrophe-clean-flies-v4/manifest.json",
+      "generation_prompt": "Sean likes actual fly buzz but hears birds at the beginning of DD-S0200.3 and water-like ambience in .4/.5. Compare a new indoor fly recording with a cropped, band-limited cleanup of .3. Preserve original recordings and candidates; audition only. Background isolation is not guaranteed.",
+      "provenance": "CC0 BeeProductive indoor flies, or processed PuzzleAudio outdoor recording.",
+      "duration_seconds": 4.4,
+      "peak_dbfs": -12.0,
+      "sha256": "f765ea1f33042cf307b08523197a6704484abb69afedb26dba92bbad0159c98b",
+      "source_key": "outdoor",
+      "layers": [
+        [
+          1.0,
+          250,
+          1700,
+          1.5,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "processing": [
+    {
+      "source": "indoor",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=250,lowpass=f=6000",
+      "leading_trim_samples": 19953
+    },
+    {
+      "source": "indoor",
+      "filters": "aresample=44100,asetrate=45423,aresample=44100,highpass=f=300,lowpass=f=6000",
+      "leading_trim_samples": 19369
+    },
+    {
+      "source": "indoor",
+      "filters": "aresample=44100,asetrate=42336,aresample=44100,highpass=f=230,lowpass=f=5500",
+      "leading_trim_samples": 20789
+    },
+    {
+      "source": "indoor",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=250,lowpass=f=6000",
+      "leading_trim_samples": 19953
+    },
+    {
+      "source": "indoor",
+      "filters": "aresample=44100,asetrate=45864,aresample=44100,highpass=f=300,lowpass=f=6000",
+      "leading_trim_samples": 19182
+    },
+    {
+      "source": "indoor",
+      "filters": "aresample=44100,asetrate=47628,aresample=44100,highpass=f=400,lowpass=f=6500",
+      "leading_trim_samples": 18465
+    },
+    {
+      "source": "outdoor",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=250,lowpass=f=1700",
+      "leading_trim_samples": 766
+    }
+  ],
+  "indoor_source": {
+    "author": "BeeProductive",
+    "title": "Fly.wav",
+    "license": "CC0-1.0",
+    "page": "https://freesound.org/people/BeeProductive/sounds/395593/",
+    "description": "Author describes a fly buzzing around a room.",
+    "download": "https://cdn.freesound.org/previews/395/395593_4298084-hq.mp3",
+    "path": "audio/sources/gnatastrophe-clean-flies-v4/indoor-fly-hq.mp3",
+    "sha256": "d1ea36f841707f035d9913bee592b918897b066ab9fca7720e08f589306f22f1",
+    "license_evidence": "audio/sources/gnatastrophe-clean-flies-v4/source-page.html",
+    "format_note": "Public HQ MP3 preview, not original lossless WAV.",
+    "preprocess": "highpass=f=220,lowpass=f=6500,afftdn=nr=10:nf=-35:tn=1"
+  },
+  "outdoor_source": "audio/sources/gnatastrophe-real-flies-v3/manifest.json",
+  "notes": [
+    "A/B use indoor source only, with mild spectral denoising before layering.",
+    "C removes first 1.5s of prior A and attenuates high-frequency bird/noise energy.",
+    "C also loses upper buzz detail; filtering cannot perfectly separate overlapping sources.",
+    "No channel isolation claim: source is mixed to mono. All previous candidates retained."
+  ]
+}

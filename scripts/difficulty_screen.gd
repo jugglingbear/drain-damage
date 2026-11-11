@@ -69,7 +69,8 @@ static func draw(host: Node2D) -> void:
 			host.draw_texture_rect_region(host.MENU_ART,art_rect(index),
 				source,hard_tint(chosen,hovered)*state.tint)
 			var rim: Color = host.GOLD if chosen else HARD_HOVER if hovered else HARD_NORMAL
-			host.draw_rect(rect,rim,false,3 if chosen else 2)
+			if chosen or hovered:
+				host.draw_rect(rect,rim,false,3 if chosen else 2)
 			if chosen:
 				for corner in [rect.position,Vector2(rect.end.x,rect.position.y),rect.end,
 					Vector2(rect.position.x,rect.end.y)]:

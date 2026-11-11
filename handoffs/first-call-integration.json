@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "build": "Prototype 177 / 0.177.0",
-  "status": "Controller layout accepted; cinematic motion remains diagnostic",
-  "app": "builds/Prototype-177/Drain Damage.app",
+  "build": "Prototype 178 / 0.178.0 candidate",
+  "status": "Title rotation technical checks passed; native visual acceptance pending",
+  "app": "builds/Prototype-178/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
   "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
@@ -164,7 +164,7 @@
   },
   "source_content_commit": "a0634ef",
   "source_dirty_at_build": true,
-  "source_commit_at_build": "b21d08ab3c7f2489add05f0d808d298b13e41f69",
+  "source_commit_at_build": "45b2364d33d77c23d6afab4be6177b6609599f2c",
   "changes": [
     "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
     "Normal two purple shooters/two flyers, seeded 1–3 bolt volleys and 2.2-second recovery",
@@ -243,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "d39c699b910bd285ad570994e81e115ac0d5e940543ad43a52d56fb57b9387de",
+  "pck_sha256": "b1697ae5e1244a9bfea983394c00d405d9a54982d60d10f123714036d94ba78f",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -649,5 +649,31 @@
       "Windows native verification pending"
     ],
     "previous_build_preserved": "builds/Prototype-176/Drain Damage.app"
+  },
+  "followup_178": {
+    "date": "2026-11-11",
+    "changes": [
+      "Approved Level1 title-art directory discovery, valid texture filtering, uniform random selection once per launch with session persistence and original-art fallback",
+      "Hard difficulty rim only when selected/hovered",
+      "Refreshed title lifecycle test waits and authored vend-time health expectation"
+    ],
+    "checks": [
+      "Source and exact exportedPCK discovery of all4 images, fallback and title recreation persistence pass",
+      "macOS export and strict signature verification pass",
+      "Difficulty suite passes both heroes/all3 modes and input paths",
+      "Full title lifecycle suite passes after stale async/vend test expectations updated",
+      "160-slot audition catalog check passes"
+    ],
+    "remaining": [
+      "Native four-picture framing and independent Art acceptance",
+      "Native idle Hard rim capture",
+      "Cinematic motion and backpack integration remain separately pending"
+    ],
+    "evidence": "previews/title-rotation-178/",
+    "previous_build_preserved": "builds/Prototype-177/Drain Damage.app",
+    "warnings": [
+      "Sandbox editor-settings save denied; export/signature succeeded",
+      "Shutdown ObjectDB/resource warnings remain in headless menu tests"
+    ]
   }
 }
