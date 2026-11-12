@@ -67,8 +67,8 @@ func draw(canvas: Node2D, snapshot: Dictionary, origin: Vector2, clock: float) -
 	if not definition.frames.has(body): body = "body"
 	frame(canvas,body,origin,Vector2.ZERO,Vector2(1+breathing,1-breathing))
 	var recoil := 0.0
-	if snapshot.state == "volley": recoil = maxf(0,sin(snapshot.elapsed*PI*5))*2.0
-	var swelling := smoothstep(0,0.9,snapshot.elapsed) if snapshot.state == "volley_warning" or snapshot.get("gun_warning",false) else 0.0
+	if snapshot.get("gun_active",false): recoil = maxf(0,sin(snapshot.get("gun_elapsed",0.0)*PI*5))*2.0
+	var swelling := smoothstep(0,0.9,snapshot.elapsed if snapshot.state == "volley_warning" else snapshot.get("gun_elapsed",0.0)) if snapshot.state == "volley_warning" or snapshot.get("gun_warning",false) else 0.0
 	# The nozzle is stationary at emission; only the authored warning swells its relaxed skin.
 	frame(canvas,"sludge_relaxed",origin,Vector2(recoil,0),Vector2.ONE,0,1-swelling)
 	frame(canvas,"sludge_swell",origin,Vector2.ZERO,Vector2.ONE,0,swelling)

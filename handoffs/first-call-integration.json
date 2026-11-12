@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "build": "Prototype 180 / 0.180.0",
-  "status": "Pre-game navigation audit and bounded native UI review passed; Tony firing gain halved",
-  "app": "builds/Prototype-180/Drain Damage.app",
+  "build": "Prototype 181 / 0.181.0",
+  "status": "Clogfather aimed-fire recurrence integrated; spent-pipe correction awaiting Art",
+  "app": "builds/Prototype-181/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
   "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
@@ -164,7 +164,7 @@
   },
   "source_content_commit": "a0634ef",
   "source_dirty_at_build": true,
-  "source_commit_at_build": "d8945294af18fbea11335e5e1e41d65ec74cd6ab",
+  "source_commit_at_build": "07fad0d0cb810b772f913b1bc9ea82cce652fb08",
   "changes": [
     "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
     "Normal two purple shooters/two flyers, seeded 1–3 bolt volleys and 2.2-second recovery",
@@ -243,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "415e10a26c05df4f0ed3462778d9d4f99ada2e813fba0c699d7d6c899c1b3a08",
+  "pck_sha256": "ee6cfcfa45feab3cfdb503291589fb71bfdd955d0078e0b205ea80db23205efb",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -739,5 +739,40 @@
     ],
     "previous_build_preserved": "builds/Prototype-179/Drain Damage.app",
     "capture_scope": "Final Controls hint captures use finalPCK; employee/difficulty captures precede only those hint edits, with unchanged employee/difficulty rendering."
+  },
+  "followup_181": {
+    "date": "2026-11-12",
+    "changes": [
+      "Recurring warned bounded two-burst Clogfather groups across normal attack cycles and enrage",
+      "Independent low-health gun warnings preserve acid2s cadence; no new emissions in approach/recovery",
+      "Updated stale continuous/unbounded combat metadata and pressure regression expectations"
+    ],
+    "checks": [
+      "139716 sustained recurrence checks across3difficulties,30/60/120Hz and4healthbands; source and exactPCK pass",
+      "Encounter,difficulty,pressure,burst/acid,hazard persistence,highweakpoint,audio and art suites pass",
+      "7671 burst/acid checks pass",
+      "600simulatedseconds hazard persistence,431checks pass",
+      "Native exactPCK later volley afterrecovery2/pressure1 and lowhealth projectiles observed alongside acid/gas",
+      "ExactPCK all6hero/difficulty integration combinations pass: real shots,armor/weakpoint,dedup,pause/death/retry,stock and terminalgate",
+      "160-slot audio catalog check and strict macOS signature verification pass"
+    ],
+    "evidence": "previews/clogfather-recurrence-181/",
+    "native_captures": [
+      "native-a.png",
+      "native-b.png",
+      "native-c.png"
+    ],
+    "remaining": [
+      "Independent Art review of bounded native boss captures pending",
+      "Human boss balance and full-route gameplay acceptance",
+      "Spent-pipe upper-only correction not delivered; existing static fallback retained",
+      "Earlier activation-cinematic motion and full title-rotation review remain separate gates",
+      "Approved flush-to-ride arrival queued after active pipe work"
+    ],
+    "previous_build_preserved": "builds/Prototype-180/Drain Damage.app",
+    "warnings": [
+      "Integrated boss test reports40ObjectDB instances and1resource at shutdown; assertions pass",
+      "Sandbox CA/editor-settings diagnostics remain; export/signature succeeded"
+    ]
   }
 }

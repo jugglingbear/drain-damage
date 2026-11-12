@@ -50,6 +50,8 @@ var _gun_wait := 0.0
 var _acid_clock := -1.0
 var volley_round := 0
 var _closing_warned := false
+var _gun_warning_remaining := -1.0
+var _gun_elapsed := 0.0
 
 func _init() -> void:
 	reset()
@@ -132,6 +134,8 @@ func reset(seed_value: int = 1) -> void:
 	_acid_clock = -1
 	volley_round = 0
 	_closing_warned = false
+	_gun_warning_remaining = -1
+	_gun_elapsed = 0
 
 func start(hero_rect: Rect2) -> void:
 	if active or exit_open: return
@@ -191,7 +195,8 @@ func snapshot() -> Dictionary:
 		"weak_point_level":"high" if recovery_index > 0 and recovery_index % 2 == 0 else "low",
 		"recovery_index":recovery_index,"aim":_aim,"closing":state == "recovery" and elapsed >= 4.25 and not enraged(),
 		"pressure_kind":pressure_kind,"pressure_wave":pressure_wave,"difficulty":difficulty,"gas_hp":gas_hp,
-		"volley_round":volley_round,"gun_warning":_gun_started and _shots >= _burst_count,
+		"volley_round":volley_round,"gun_warning":_gun_warning_remaining >= 0 or (_gun_started and _shots >= _burst_count),
+		"gun_active":_gun_started,"gun_elapsed":_gun_elapsed,
 		"reinforcement_requests":reinforcement_requests.duplicate(true)}
 
 func step(delta: float, hero_rect: Rect2, frozen := false) -> void:
@@ -209,6 +214,8 @@ func _enter(next_state: String) -> void:
 	state = next_state
 	elapsed = 0
 	if state in ["approach","recovery","collapse","complete"]:
+		_gun_started = false
+		_gun_warning_remaining = -1
 		_hurts.clear()
 		warnings.clear()
 		safe_corridor = Rect2()
@@ -229,9 +236,13 @@ func _begin_pattern() -> void:
 	else:
 		_enter("approach")
 
+func gun_warning_seconds() -> float:
+	return 0.9 if difficulty == "easy" else 0.7 if difficulty == "normal" else 0.55
+
 func _begin_volley_round() -> void:
 	_gun_started = false
 	_gun_wait = 0
+	_gun_elapsed = 0
 	_aim = (_hero.get_center()-nozzle).normalized()
 	if _aim.x >= -0.05: _aim = Vector2(-1,0.2).normalized()
 	_shots = 0
@@ -364,7 +375,17 @@ func _tick(dt: float) -> void:
 	_advance_gas(dt)
 	_advance_projectiles(dt)
 	_advance_acid(dt)
-	if state == "volley" and _gun_started and hp > 0: _advance_gun(dt)
+	if _gun_warning_remaining >= 0:
+		_gun_elapsed += dt
+		_gun_warning_remaining -= dt
+		if _gun_warning_remaining <= 0.000001:
+			_gun_warning_remaining = -1
+			_gun_started = true
+			_gun_elapsed = 0
+			_advance_gun(0)
+	elif _gun_started and hp > 0:
+		_gun_elapsed += dt
+		_advance_gun(dt)
 	if _acid_clock >= 0: _acid_clock += dt
 	elapsed += dt
 	if state == "pressure_warning":
@@ -382,7 +403,7 @@ func _tick(dt: float) -> void:
 			_clear_pressure()
 			_begin_acid_warning()
 		return
-	if state == "volley_warning" and elapsed+0.000001 >= (0.9 if difficulty == "easy" else 0.7 if difficulty == "normal" else 0.55):
+	if state == "volley_warning" and elapsed+0.000001 >= gun_warning_seconds():
 		_enter("volley")
 		_gun_started = true
 		_advance_gun(0)
@@ -416,6 +437,7 @@ func _tick(dt: float) -> void:
 			if enraged():
 				_acid_clock = 0
 				_enter("acid_cooldown")
+			elif _pattern == "sludge": _begin_pattern()
 			else: _begin_pressure()
 	elif state == "collapse" and elapsed+0.000001 >= DURATIONS.collapse:
 		active = false
@@ -424,6 +446,16 @@ func _tick(dt: float) -> void:
 		_events.append("boss_defeated")
 
 func _begin_acid_warning() -> void:
+	if enraged():
+		# Independent warning preserves the two-second acid cadence and never queues missed volleys.
+		if not _gun_started and _gun_warning_remaining < 0:
+			volley_round = 1
+			_shots = 0
+			_burst_count = _rng.randi_range(1,3)
+			_gun_wait = 0
+			_gun_elapsed = 0
+			_gun_warning_remaining = gun_warning_seconds()
+			_events.append("volley_warning")
 	warnings.clear()
 	safe_corridor = Rect2()
 	if _plan_acid():

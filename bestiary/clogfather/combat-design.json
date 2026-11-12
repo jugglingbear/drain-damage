@@ -2,8 +2,8 @@
   "schema_version": 1,
   "id": "clogfather-encounter",
   "name": "The Clogfather",
-  "updated": "2026-11-05",
-  "status": "Prototype96 integration: mode-specific pressure; live balance review pending",
+  "updated": "2026-11-12",
+  "status": "Prototype181 recurring aimed volleys integrated; native and balance review pending",
   "scope": "First mission boss; rooted giant fatberg with moving pipe mouths and extensions.",
   "canonical_metadata_note": "Bestiary owns monster.json and artwork. This encounter proposal is not registered as a playable creature. Promote accepted HP into monster.json.health before runtime integration; runtime must not read duplicate health values from this proposal.",
   "story_boundaries": [
@@ -169,16 +169,16 @@
   "scheduler": {
     "sequence": [
       "pattern telegraph",
-      "single active pattern",
+      "single scheduled pattern; enrage gun groups may overlap acid",
       "hazard clear",
       "approach grace",
       "five-second recovery",
       "next pattern"
     ],
-    "one_pattern_at_a_time": true,
+    "one_pattern_at_a_time": false,
     "cooldown_between_patterns_seconds": 0.5,
     "rules": [
-      "Continuous gun bursts may overlap acid and surviving summons; keep warnings readable.",
+      "Warned two-burst groups alternate with pressure/acid above20%HP; during enrage, independent warned groups may overlap acid and surviving summons. No new gun emissions during approach/recovery.",
       "Never shorten telegraphs in later phases.",
       "Later phases add coverage, not simultaneous unavoidable hazards.",
       "Start each phase at the first item of its loop; phase advancement occurs after recovery.",
@@ -222,7 +222,7 @@
     "Measure completion time with both plumbers before accepting 720 HP and the 40\u201375-second target."
   ],
   "current_implementation_contract": {
-    "date": "2026-10-23",
+    "date": "2026-11-12",
     "owner": "Engineering delivery; Game Mechanics isolated controller; Art assets/anchors; Level Design placement",
     "health": "1080 HP initial playtest candidate, canonical monster.json source; no difficulty HP multiplier.",
     "starters": {
@@ -247,11 +247,11 @@
       "summon_flushfiend",
       "optional_valves"
     ],
-    "loop": "Continuous seeded 1\u20133-shot gun bursts during active combat; each shot aims at the current hero position and then travels without homing. Exactly 1s from the final shot to the next burst. Initial warning retained. Pressure waves lead to actual acid emission after 2s, with difficulty-specific warnings inside that interval. Above20%HP retain approach and5s weak-point windows; at or below20%HP keep weak-point access and repeat acid emission every2s until death.",
+    "loop": "Opening warned two-burst volley, then alternate pressure-to-acid and warned two-burst volleys, each followed by0.8s approach and full5s recovery. Each burst rolls1\u20133 shots; every shot aims at the current hero, with no homing and exactly1s between bursts. At or below20%HP preserve two-second acid emissions and continuous weak-point access: each acid-warning boundary may arm a separately warned two-burst gun group only when the previous group is fully idle. Skip busy opportunities without backlog. No new gun emissions during approach/recovery.",
     "window": "Mouth unfolds during approach; becomes damageable for the full5s window. Body contact disabled for approach and recovery. No threshold truncation; phase advances after full window, lethal hit immediate.",
     "geometry": "Room-local960x540,floor440,HUD0..110. Artroot810,440; shellRect(700,120,255,320); weakpointRect(626,377,48,42); sludge nozzle(675,255). Walkable/acid span0..700 covers both edges. Harmless rootwisps may extend left to615; configure geometry before start.",
     "acid_safety": "Locked columns include splash width. Reserve connected corridor>=180px reachable at235px/s with0.15s reaction margin and actual hero width; at most35% floor marked. If no safe plan, skip pattern into recovery.",
-    "projectile_safety": "Existing projectile speed, per-mode spacing, swept collision and finite lifetime retained. Burst-gap warning remains visible; gun continues through other active combat states. Death stops emissions and clears hazards.",
+    "projectile_safety": "Existing projectile speed, per-mode spacing, swept collision and finite lifetime retained. Independent enrage warning is visible and audible without resetting acid timing. Death/reset cancel warnings and emissions.",
     "retry": "Preboss checkpoint; full boss and selected hero HP,phase1,empty hazards/timers,normal life debit once. Keep completed Skitterling and earlier segments completed; suppress repeated banter.",
     "death": "Clear danger immediately,nonlooping1.2s collapse,one boss_defeated event; progression outcome belongs to Storyboarding/Engineering.",
     "api": "scripts/clogfather_encounter.gd provides reset/start/step/hit/drain_events/hurt_rects/snapshot; Engineering maps world coordinates, rendering, music and actual hero damage.",
@@ -265,7 +265,7 @@
       "coverage": [
         "60/120Hz timers and full5s windows",
         "90Tony/60Sean successful hits with active cadence; both see acid before defeat",
-        "seeded1–3-shot repeated bursts,1s gap, per-shot aim; phase3 acid columns retained",
+        "seeded1\u20133-shot repeated bursts,1s gap, per-shot aim; phase3 acid columns retained",
         "50 deterministic acid plans including both walkable corners; reachable180px corridor and<=35% marked floor",
         "pause in every attack/window state; no pauseddamage",
         "deduplicated hit IDs; lethal death-only signal; one completion; full retryreset",
@@ -351,7 +351,7 @@
         "normal": 0.5,
         "hard": 0.6
       },
-      "volley_rounds_by_mode": "Unbounded repeated bursts while active, ending on death/reset.",
+      "volley_rounds_by_mode": "Two bounded bursts per group on all difficulties. Groups recur in alternating attack cycles, or at idle acid-warning opportunities during enrage.",
       "volley_warning_seconds_by_mode": {
         "easy": 0.9,
         "normal": 0.7,

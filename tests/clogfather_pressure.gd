@@ -93,7 +93,7 @@ func run_checks() -> void:
 			for wave in range(1,9):
 				advance_to(boss,"recovery",hero,dt)
 				assert(boss.recovery_index == wave)
-				assert(boss.gas_targets().size() == int(wave/2),"Unkilled gas survives recovery")
+				assert(boss.gas_targets().size() == int((boss.pressure_wave+1)/2),"Unkilled gas survives recovery")
 				assert(boss.pressure_kind == "" and boss.reinforcement_requests.is_empty())
 				assert(boss.snapshot().weak_point_level == ("low" if wave % 2 else "high"))
 				if wave in [3,5]: assert(boss.hit(400,"phase-%d" % wave,true) == 400)
@@ -101,7 +101,10 @@ func run_checks() -> void:
 				boss.step(4.8,hero)
 				assert(boss.state == "recovery" and boss.phase == phase,"Preserve useful full damage window")
 				boss.step(0.21,hero)
-				check_pressure(boss,hero,dt,wave)
+				if wave % 2 == 1:
+					check_pressure(boss,hero,dt,int((wave+1)/2))
+				else:
+					assert(boss.state == "volley_warning","Interleave warned gun groups between pressure waves")
 			assert(boss.phase == 3)
 			advance_to(boss,"recovery",hero,dt)
 			boss.drain_events()
