@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 185 / 0.185.0",
-  "status": "Signed Mac build validated in isolation; backpack, destructible props and pipe support-loss integrated",
-  "app": "builds/Prototype-185/Drain Damage.app",
+  "build": "Prototype 186 / 0.186.0",
+  "status": "Signed Mac build validated in isolation; machinery proportions and LIFE LOST label fixed",
+  "app": "builds/Prototype-186/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-184/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-185/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -938,5 +938,30 @@
       "Storybook width, links and whitespace checks pass; full markdownlint is unavailable."
     ],
     "storybook": "storybook/185-backpack-and-breakables/captures.json; four preserved isolated-package originals, three curated views"
+  },
+  "followup_186": {
+    "date": "2026-11-12",
+    "status": "Signed Mac build; focused isolated checks and bounded native static Art acceptance passed",
+    "changes": [
+      "Replace whole-image machinery stretching with Art-authored uniformly scaled source patches across all seven existing collision footprints.",
+      "Remove only the standalone yellow BJ name under the LIFE LOST portrait; retain the illustration, baked lettering, quip and buttons."
+    ],
+    "collision_changes": false,
+    "adapter": "assets/world/platform-readability-v3/prop-layouts-v1.json",
+    "pck_sha256": "23f996211be65baf514e994755b4a32a545532beb4fc9050a1bdf5a81f581135",
+    "checks": {
+      "machinery_proportions": "658 checks, zero failures in source and isolated package",
+      "death_popup": "PASS source and isolated package",
+      "first_call_python": "2 tests pass",
+      "build": "make build PASS; ad-hoc signature verified",
+      "late_campaign": "6156 checks, 12 failures in both source186 and unchanged isolated185. Combat death before final approach surfaces; pre-existing limitation, no combat rebalance."
+    },
+    "native_capture": "previews/machinery-186/packed/; packed.log asserts source_visible=false and version0.186.0",
+    "art_review": "Art independently approved six campaign source stills and final isolated186 base-low180, pump-cluster, reported-dispenser and life-lost captures. Proportions, complete frames, joins, floor contact and popup layout pass; no full motion/route claim.",
+    "warnings": [
+      "Sandbox CA, user log and editor-settings access warnings; source death-popup fixture shutdown leak warnings.",
+      "No native Windows verification or full human route/motion acceptance."
+    ],
+    "previous_build_preserved": "builds/Prototype-185/Drain Damage.app"
   }
 }

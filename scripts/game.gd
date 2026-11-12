@@ -1144,7 +1144,6 @@ func draw_death_popup() -> void:
 	paragraph.width = 425
 	paragraph.add_string(death_message.text, ThemeDB.fallback_font, 21)
 	paragraph.draw(get_canvas_item(), Vector2(350, 175), Color("f1eee4"))
-	label_at("BJ", Vector2(170, 318), 17, GOLD)
 	label_at("%d %s remaining" % [lives, "life" if lives == 1 else "lives"], Vector2(245, 510), 14, MINT)
 	draw_pause_plates()
 

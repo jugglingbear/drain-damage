@@ -22,6 +22,9 @@ const TEXTURES = [preload("res://assets/world/platform-readability-v3/low-deck-v
 const CROPS := [Rect2(71,230,1394,344), Rect2(145,220,1249,626),
 	Rect2(87,130,1148,936), Rect2(365,36,244,1534)]
 
+const PROP_LAYOUTS := "res://assets/world/platform-readability-v3/prop-layouts-v1.json"
+static var prop_layouts: Dictionary = {}
+
 static func solids(stage: int, gate_progress: Array[float] = []) -> Array[Rect2]:
 	var result: Array[Rect2] = PROPS.duplicate()
 	for index in range(GATES.size()):
@@ -60,15 +63,28 @@ static func move_body(position: Vector2, velocity: Vector2, size: Vector2,
 	if grounded: vel.y = 0
 	return {"pos":pos, "velocity":vel, "grounded":grounded}
 
+
+static func prop_patches(rect: Rect2) -> Array[Dictionary]:
+	if prop_layouts.is_empty():
+		prop_layouts = JSON.parse_string(FileAccess.get_file_as_string(PROP_LAYOUTS)).layouts
+	var key := "%dx%d" % [roundi(rect.size.x),roundi(rect.size.y)]
+	assert(prop_layouts.has(key),"Machinery footprint requires an Art-approved proportional layout: "+key)
+	var result: Array[Dictionary] = []
+	for item: Dictionary in prop_layouts[key].patches:
+		var source: Array = item.source_rect
+		var destination: Array = item.destination
+		result.append({"texture_index":int(item.texture_index),
+			"source_rect":Rect2(source[0],source[1],source[2],source[3]),
+			"destination":Rect2(rect.position+Vector2(destination[0],destination[1]),
+				Vector2(destination[2],destination[3]))})
+	return result
+
 static func draw_prop(canvas: Node2D, rect: Rect2, shutter := false) -> void:
-	var index := 3 if shutter else 0 if rect.size.y == 60 else 1 if rect.size.y == 120 else 2
-	var source: Rect2 = CROPS[index]
-	if index == 1 and rect.size.x < 180:
-		# Keep the exposed right edge at its authored scale on the shortened approach stair.
-		var right := source.end.x
-		source.size.x *= rect.size.x / 180.0
-		source.position.x = right - source.size.x
-	canvas.draw_texture_rect_region(TEXTURES[index], rect, source)
+	if shutter:
+		canvas.draw_texture_rect_region(TEXTURES[3],rect,CROPS[3])
+		return
+	for patch: Dictionary in prop_patches(rect):
+		canvas.draw_texture_rect_region(TEXTURES[patch.texture_index],patch.destination,patch.source_rect)
 
 static func gate_rect(index: int, progress: float) -> Rect2:
 	var drop := 260.0 * clampf(progress, 0, 1)
