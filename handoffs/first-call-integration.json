@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 186 / 0.186.0",
-  "status": "Signed Mac build validated in isolation; machinery proportions and LIFE LOST label fixed",
-  "app": "builds/Prototype-186/Drain Damage.app",
+  "build": "Prototype 187 / 0.187.0",
+  "status": "Signed Mac build validated in isolation; offscreen swarm cleanup runtime error fixed",
+  "app": "builds/Prototype-187/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-185/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-186/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -963,5 +963,31 @@
       "No native Windows verification or full human route/motion acceptance."
     ],
     "previous_build_preserved": "builds/Prototype-185/Drain Damage.app"
+  },
+  "followup_187": {
+    "date": "2026-11-12",
+    "status": "Signed Mac build; isolated lifecycle regression passed with no script errors",
+    "cause": "Ordinary campaign swarm retirement called stop_trial_actions, whose creature-audio lookup expects actor.role. Swarm dictionaries have no role and use shared swarm_audio.tick instead.",
+    "fix": "Remove the incorrect creature action-audio cleanup call from offscreen swarm retirement. Preserve ledger retirement, removal and shared swarm audio lifecycle.",
+    "regression": "Campaign lifecycle now checks two role-less offscreen swarms for both heroes; intercepts incorrect creature cleanup dispatch; checks retirement, ledger and shared audio stop.",
+    "before_evidence": "/tmp/187-lifecycle-before.log reproduces the supplied stack while old assertions still pass; explicit dispatch check added.",
+    "scope": "Runtime cleanup only; no visual, combat tuning or sound asset/mapping change.",
+    "remaining_gaps": [
+      "Existing late-route combat-death coverage limitation from185/186 remains.",
+      "Full human route/motion playtest and native Windows verification remain open."
+    ],
+    "pck_sha256": "482affda161cf754ba79ab87e47679f59d0525cb35cfb814e416bab893aaa275",
+    "validation": {
+      "build": "make build and ad-hoc signature verification PASS",
+      "combat_metadata": "make combat-data PASS",
+      "isolated_package": "10792 lifecycle checks, zero failures; no SCRIPT ERROR; exit0",
+      "baseline186": "Same updated regression:10792 checks, one distinct failure; exact missing-role stack; exit1",
+      "logs": [
+        "/tmp/187-lifecycle-packed.log",
+        "/tmp/187-lifecycle-baseline186.log"
+      ],
+      "isolation": "Absolute external script and --main-pack; empty temp working directory; no --path",
+      "warnings": "Existing fixture ObjectDB shutdown warning occurs on both builds; sandbox CA/log/editor-settings access warnings remain."
+    }
   }
 }

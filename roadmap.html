@@ -60,6 +60,11 @@ with reciprocal top navigation from the magazine; its Storybook link sits immedi
 Historical capture gaps remain labeled.
 <a href="https://jugglingbear.github.io/drain-damage/storybook/storybook.html">Browse the storybook</a>.</p>
 <main class="wrap">
+<p><strong>November 12 — Prototype 187 swarm cleanup fix:</strong> Offscreen campaign swarms no longer call
+ordinary creature action-audio cleanup, which expected a missing <code>role</code> field and printed a runtime error.
+Their existing shared ambient voice still updates from the remaining swarm population. The signed Mac export passes 10,792 isolated lifecycle checks with no script errors;
+the same regression fails on unchanged Prototype 186. No art, combat tuning or sound mapping changes.</p>
+
 <p><strong>November 12 — Prototype 186 built:</strong> Machinery beside the Spare Employee dispenser and
 other shared placements now uses Art-authored proportional parts instead of stretching whole images. All seven
 existing collision footprints remain fixed. The separate yellow BJ name below the LIFE LOST portrait is removed;
@@ -688,7 +693,7 @@ pending; baseline dialogue-test failures and the shared swimming ripple are reco
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated November 12, 2026 · Current build: Prototype 186 / 0.186.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated November 12, 2026 · Current build: Prototype 187 / 0.187.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
 at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
 point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;

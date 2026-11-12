@@ -1144,7 +1144,7 @@ func step_campaign_swarms(delta: float) -> void:
 			swarms.step_motion(actor,delta,actor_solids())
 			continue
 		if ordinary and actor.pos.x+maxf(64,swarms.visual_radius) < camera_x:
-			stop_trial_actions(actor)
+			# Swarms share one ambient voice, refreshed from surviving actors by swarm_audio.tick.
 			ledger[actor.event_id] = "retired"
 			swarms.actors.remove_at(index)
 			continue

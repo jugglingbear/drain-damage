@@ -1,5 +1,11 @@
 extends SceneTree
 const Game = preload("res://scripts/integrated_first_call.gd")
+class CheckedGame extends Game:
+	var invalid_action_cleanup := 0
+	func stop_trial_actions(actor: Dictionary) -> void:
+		if not actor.has("role"): invalid_action_cleanup += 1
+		super.stop_trial_actions(actor)
+
 var checks := 0
 var failures: Array[String] = []
 func _initialize() -> void: call_deferred("run_checks")
@@ -23,7 +29,7 @@ func unlock(game) -> void:
 	game.intro_input_release = false
 func run_checks() -> void:
 	for hero in [0,1]:
-		var game = Game.new()
+		var game = CheckedGame.new()
 		game.employee = game.Crew.EMPLOYEES[hero]
 		game.seed_override = 42
 		root.add_child(game)
@@ -31,6 +37,19 @@ func run_checks() -> void:
 		game.set_process(false)
 		game.set_physics_process(false)
 		unlock(game)
+		game.camera_x = 1000
+		for index in range(2):
+			var swarm: Dictionary = game.swarms.spawn(Vector2(100+index*100,200),Rect2(0,80,2000,340),42+index)
+			swarm.merge({"event_id":"retirement-test-"+str(index),"seen":true})
+			game.ledger[swarm.event_id] = "active"
+			game.swarms.actors.append(swarm)
+		game.step_campaign_swarms(1.0/60)
+		check(game.invalid_action_cleanup == 0,"Swarms never enter ordinary creature action-audio cleanup")
+		check(game.swarms.actors.is_empty(),"Offscreen swarms retire without ordinary creature role metadata")
+		for index in range(2):
+			check(game.ledger["retirement-test-"+str(index)] == "retired","Swarm retirement updates its ledger")
+		game.swarm_audio.tick(game,1.0/60)
+		check(not game.swarm_audio.voice.playing,"Shared swarm audio stops after the last swarm retires")
 		for origin in [85.0,4650.0,7650.0,13800.0]:
 			game.reset_game()
 			unlock(game)
