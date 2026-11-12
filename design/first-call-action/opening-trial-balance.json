@@ -13,7 +13,7 @@
     "heavy-plunger-launcher": {
       "owner": "sean",
       "damage": 18,
-      "attack_interval_seconds": 0.24
+      "attack_interval_seconds": 0.32
     }
   },
   "preserve": [
@@ -189,7 +189,7 @@
       }
     },
     "timing": "Record input sampling, successful shot timestamps and impact timestamps. Immediate first eligible shot within one physics tick; sustained intervals quantized to physics tick within one tick tolerance, not animation duration. Test while idle, running, aiming, jumping and after action-release guards.",
-    "miss_recovery": "After a deliberate miss, next eligible shot within configured0.16/0.24s plus one physics tick. Separate travel time from input/cooldown latency.",
+    "miss_recovery": "After a deliberate miss, next eligible shot within configured0.16/0.32s plus one physics tick. Separate travel time from input/cooldown latency.",
     "travel_240px_seconds": {
       "tony": 0.315789,
       "sean": 0.461538

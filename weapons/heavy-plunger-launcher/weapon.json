@@ -4,7 +4,7 @@
   "name": "Heavy Plunger Launcher",
   "owner": "sean",
   "exclusive": true,
-  "balance_version": "range-and-pursuit-2026-10-14",
+  "balance_version": "hero-balance-2026-11-12",
   "status": "Integrated in Prototype 26; packaged headless checks pass; live balance playtest pending",
   "type": "ranged",
   "introduction": {
@@ -12,7 +12,7 @@
     "status": "Proposed progression placement"
   },
   "damage": 24,
-  "attack_interval_seconds": 1.0,
+  "attack_interval_seconds": 1.3333333333333333,
   "attack_timing": "Interval is start-to-start and includes windup and recovery; damage occurs once per target per attack.",
   "windup_seconds": 0.0,
   "melee_reach_pixels": null,
@@ -111,7 +111,7 @@
     "since_build": "Prototype45",
     "source": "design/first-call-action/opening-trial-balance.json",
     "entry": "weapons.heavy-plunger-launcher",
-    "note": "Default first-level playtest uses this faster balance; top-level values retain the original baseline for comparison."
+    "note": "Active first-level profile applies the same 25% attack-rate reduction: interval 0.24 to 0.32 seconds. Top-level original-mode interval changes from 1 to 4/3 seconds."
   },
   "special": {
     "name": "Main Break",

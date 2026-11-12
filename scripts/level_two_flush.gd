@@ -337,7 +337,7 @@ func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool, ca
 		if aim == Vector2.ZERO: aim = input.normalized()
 		host.facing = -1 if aim.x < 0 else 1
 	last_steering = input
-	position = Flow.swim(position,input,float(host.employee.move_speed),clock,delta,
+	position = Flow.swim(position,input,float(host.employee.swim_speed),clock,delta,
 		definition.layout.difficulty[host.difficulty].flow)
 	if clock < 35 and drain_contact(position):
 		var low := 0.0

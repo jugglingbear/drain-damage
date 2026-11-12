@@ -114,7 +114,7 @@ func run_checks() -> void:
 			if boss.damageable() and cooldown <= 0:
 				assert(boss.hit(damage,"shot-%d" % hits,true) > 0)
 				hits += 1
-				cooldown = 0.16 if damage == 12 else 0.24
+				cooldown = 0.16 if damage == 12 else 0.32
 			if boss.hp == 0: break
 		assert(hits == (90 if damage == 12 else 60) and saw_acid)
 	var paused = Boss.new()

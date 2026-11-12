@@ -43,6 +43,10 @@ func configure(hero: String, level: String) -> void:
 func remaining(hero := "") -> int:
 	return int(budgets.get(level_key+":"+(hero_id if hero.is_empty() else hero),2))
 
+func refill_level(hero: String, level: String) -> void:
+	configure(hero,level)
+	budgets[level+":"+hero] = 2
+
 func sample_input(host: Node2D, pressed: bool) -> bool:
 	var fresh := pressed and not held
 	held = pressed

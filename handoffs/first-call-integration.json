@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 187 / 0.187.0",
-  "status": "Signed Mac build validated in isolation; offscreen swarm cleanup runtime error fixed",
-  "app": "builds/Prototype-187/Drain Damage.app",
+  "build": "Prototype 188 / 0.188.0",
+  "status": "Signed Mac build validated; approved hero balance and new-level restoration integrated",
+  "app": "builds/Prototype-188/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-186/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-187/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -989,5 +989,62 @@
       "isolation": "Absolute external script and --main-pack; empty temp working directory; no --path",
       "warnings": "Existing fixture ObjectDB shutdown warning occurs on both builds; sandbox CA/log/editor-settings access warnings remain."
     }
+  },
+  "followup_188": {
+    "date": "2026-11-12",
+    "status": "Signed Mac build; focused tests and bounded native HUD acceptance pass",
+    "numbers": {
+      "tony_run_pixels_per_second": [
+        270,
+        337.5
+      ],
+      "tony_jump_launch_pixels_per_second": [
+        -465,
+        -519.8858047687012
+      ],
+      "tony_ideal_jump_height_pixels": [
+        86.49,
+        108.1125
+      ],
+      "sean_max_health": [
+        5,
+        6
+      ],
+      "sean_active_attack_interval_seconds": [
+        0.24,
+        0.32
+      ],
+      "sean_active_regular_dps": [
+        75,
+        56.25
+      ],
+      "sean_base_attack_interval_seconds": [
+        1,
+        1.3333333333333333
+      ]
+    },
+    "level_boundaries": "Fresh title-run starts Level1 full; begin_level_two explicitly heals/refills two while preserving lives. Sections1.1/1.2, bosses, flush landing/ride sections and retries are not new levels. Existing respawn healing remains; special budget is preserved.",
+    "preserved": [
+      "Both weapon special definitions unchanged from187",
+      "Tony swimming270 and Sean swimming235; flush dodge planner uses same swimming speed",
+      "Board physics and ordinary shot damage unchanged"
+    ],
+    "hud": "Six markers use16px spacing, existing4/5 layouts retain18px; duck markers end130 before shelf132.",
+    "validation": {
+      "hero_balance_source": "120 checks PASS",
+      "vitals_source": "71058 checks PASS",
+      "clogfather": "PASS with active Sean cadence updated",
+      "package": "123 hero-balance and1615 starter-special checks PASS; no script errors",
+      "native": "previews/hero-balance-188/packed-final/ and packed-final.log: six HUD states and ten Tony movement frames; source_visible=false; Engineering inspected final package",
+      "flush_retry": "All heroes/difficulties and repeated retries PASS",
+      "art": "All six188 candidate HUD stills independently approved; final re-export changes only swim-planner speed consistency",
+      "warnings": "Existing fixture ObjectDB shutdown warnings and sandbox CA/log/editor-settings warnings"
+    },
+    "pck_sha256": "561fe47402d2e6cd47429e4caada202a924534b676befe6f901aa4bbfb20774f",
+    "remaining_gaps": [
+      "Full-route human balance playtest",
+      "Native Windows verification"
+    ],
+    "next_task": "Flush unfinished-dialogue retry and bottom-window fresh-Jump advancement; separate next integration."
   }
 }

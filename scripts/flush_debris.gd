@@ -192,7 +192,7 @@ func advance(model: RefCounted, host: Node2D, delta: float) -> void:
 		if end-float(waves[next_wave].at) > STEP+0.00001:
 			fail_wave(waves[next_wave],"caller skipped cohort boundary; substep the runtime")
 			return
-		if not spawn_wave(model,waves[next_wave],float(host.invulnerable),float(host.employee.move_speed)):
+		if not spawn_wave(model,waves[next_wave],float(host.invulnerable),float(host.employee.swim_speed)):
 			return
 		next_wave += 1
 

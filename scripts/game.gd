@@ -731,7 +731,8 @@ func step_player(delta: float) -> void:
 	if direction != 0:
 		facing = signf(direction)
 	if jump_buffer > 0 and coyote > 0 and not specials.rooted():
-		velocity.y = JUMP_SPEED
+		# With unchanged gravity, jump height scales with the square of launch speed.
+		velocity.y = JUMP_SPEED*sqrt(float(employee.jump_height_multiplier))
 		jump_buffer = 0.0
 		coyote = 0.0
 		grounded = false

@@ -88,11 +88,12 @@ func commands(game: Node2D, origin: Vector2, theme := "dispenser") -> Array[Dict
 	var output: Array[Dictionary] = []
 	output.append({"kind":"housing","texture":art.housing,
 		"rect":fitted(art.housing,Rect2(origin,Vector2(160,56)))})
+	var health_spacing := 16 if game.employee.max_health > 5 else 18
 	for index in range(game.employee.max_health):
 		var filled: bool = index < game.health
 		var texture: Texture2D = art.health_active if filled else art.health_depleted
 		output.append({"kind":"health","filled":filled,"texture":texture,
-			"rect":fitted(texture,Rect2(origin+Vector2(34+18*index,8),Vector2(16,16)))})
+			"rect":fitted(texture,Rect2(origin+Vector2(34+health_spacing*index,8),Vector2(16,16)))})
 	var renderer = game.world_art.hero_aim_art
 	var icon: Dictionary = renderer.animations.heroes[game.employee.id].head_icon
 	var r: Array = icon.source_rect

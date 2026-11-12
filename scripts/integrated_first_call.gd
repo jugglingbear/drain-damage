@@ -696,7 +696,8 @@ func begin_level_two() -> void:
 	devil_spiders.clear(self,"level_transition")
 	specials.cancel("level transition")
 	special_audio.stop()
-	specials.configure(employee.id,"level-two")
+	health = employee.max_health
+	specials.refill_level(employee.id,"level-two")
 	flush.ride.checkpoint_index = 0
 	flush.begin(self)
 
