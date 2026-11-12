@@ -1381,14 +1381,28 @@
       "key": "swarm_audio.gd/0",
       "id": "DD-S0059",
       "uuid": "cbbd6cd0-9e06-48a1-85a6-24d2f4cb4f79",
-      "alternatives": [],
+      "alternatives": [
+        {
+          "id": "DD-S0059.1",
+          "path": "audio/alternatives/DD-S0059/DD-S0059.1.wav",
+          "name": "ACCEPTED SOURCES \u00b7 dense indoor swarm \u00b7 gap-free 2.4s loop",
+          "source_manifest": "audio/sources/gnatastrophe-selected-v5/manifest.json",
+          "source_candidates": [
+            "DD-S0200.7",
+            "DD-S0200.6"
+          ],
+          "provenance": "CC0 BeeProductive indoor fly recording; approved excerpts, periodic overlap edits.",
+          "review_status": "Sean approved .6/.7; Audio chose .7 as main body with .6 support. In-game review pending."
+        }
+      ],
       "section": "Level 1",
       "name": "Gnatastrophe \u2014 ambient swarm \u2014 swarm-loop",
       "paths": [
-        "assets/audio/sfx/sewer-fly-buzz-v1/swarm-loop.wav"
+        "assets/audio/sfx/gnatastrophe-recorded-v5/swarm-loop.wav"
       ],
       "source": "scripts/swarm_audio.gd",
-      "status": "current"
+      "status": "current",
+      "selected_candidate": "DD-S0059.1"
     },
     {
       "key": "flushfiend_death_audio.gd/0",
@@ -6110,7 +6124,8 @@
           "name": "CLEAN FLIES v4 \u00b7 A \u2014 Indoor flies, natural buzz",
           "source_manifest": "audio/sources/gnatastrophe-clean-flies-v4/manifest.json",
           "generation_prompt": "Sean likes actual fly buzz but hears birds at the beginning of DD-S0200.3 and water-like ambience in .4/.5. Compare a new indoor fly recording with a cropped, band-limited cleanup of .3. Preserve original recordings and candidates; audition only. Background isolation is not guaranteed.",
-          "provenance": "CC0 BeeProductive indoor flies, or processed PuzzleAudio outdoor recording."
+          "provenance": "CC0 BeeProductive indoor flies, or processed PuzzleAudio outdoor recording.",
+          "review_status": "Accepted by Sean; trim quiet passages; Audio may choose either/both."
         },
         {
           "id": "DD-S0200.7",
@@ -6118,7 +6133,8 @@
           "name": "CLEAN FLIES v4 \u00b7 B \u2014 Indoor flies, dense cloud",
           "source_manifest": "audio/sources/gnatastrophe-clean-flies-v4/manifest.json",
           "generation_prompt": "Sean likes actual fly buzz but hears birds at the beginning of DD-S0200.3 and water-like ambience in .4/.5. Compare a new indoor fly recording with a cropped, band-limited cleanup of .3. Preserve original recordings and candidates; audition only. Background isolation is not guaranteed.",
-          "provenance": "CC0 BeeProductive indoor flies, or processed PuzzleAudio outdoor recording."
+          "provenance": "CC0 BeeProductive indoor flies, or processed PuzzleAudio outdoor recording.",
+          "review_status": "Accepted by Sean; trim quiet passages; Audio may choose either/both."
         },
         {
           "id": "DD-S0200.8",

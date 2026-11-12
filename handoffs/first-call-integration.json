@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "build": "Prototype 178 / 0.178.0 candidate",
-  "status": "Title rotation technical checks passed; native visual acceptance pending",
-  "app": "builds/Prototype-178/Drain Damage.app",
+  "build": "Prototype 179 / 0.179.0",
+  "status": "Approved recorded fly loop integrated; listening and earlier visual acceptance gaps remain",
+  "app": "builds/Prototype-179/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
   "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
@@ -164,7 +164,7 @@
   },
   "source_content_commit": "a0634ef",
   "source_dirty_at_build": true,
-  "source_commit_at_build": "45b2364d33d77c23d6afab4be6177b6609599f2c",
+  "source_commit_at_build": "4009443eb4eb5fb5d863a6c8d594f66d4a9fa1ac",
   "changes": [
     "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
     "Normal two purple shooters/two flyers, seeded 1–3 bolt volleys and 2.2-second recovery",
@@ -243,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "b1697ae5e1244a9bfea983394c00d405d9a54982d60d10f123714036d94ba78f",
+  "pck_sha256": "9d3d8fcef4aaecfbd8d1350c30eeb8a9fb64bd62e2b3b2a125c2ce280559b42e",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -675,5 +675,29 @@
       "Sandbox editor-settings save denied; export/signature succeeded",
       "Shutdown ObjectDB/resource warnings remain in headless menu tests"
     ]
+  },
+  "followup_179": {
+    "date": "2026-11-11",
+    "changes": [
+      "Selected DD-S0059.1 recorded fly loop replaces synthesized ambient buzz",
+      "Existing shared voice, proximity, -8dB cap, pause/mute/death/retry behavior retained; attack/death cues unchanged"
+    ],
+    "checks": [
+      "Source swarm-audio lifecycle passes",
+      "Exact179 PCK swarm lifecycle and playback beyond2.4s loop boundary pass",
+      "Source checksum, mono44.1k PCM16,105840frames,identical endpoints,no clipping and no silent50ms windows pass",
+      "160-slot refreshed audio catalog passes",
+      "macOS export and strict signature verification pass"
+    ],
+    "remaining": [
+      "In-game listening and subjective mix acceptance",
+      "Earlier title/difficulty native capture, cinematic motion and backpack integration gaps remain"
+    ],
+    "warnings": [
+      "Headless test reports1 ObjectDB instance at shutdown",
+      "Sandbox editor-settings save denied; export/signature succeeded"
+    ],
+    "evidence": "previews/swarm-audio-179/",
+    "previous_build_preserved": "builds/Prototype-178/Drain Damage.app"
   }
 }

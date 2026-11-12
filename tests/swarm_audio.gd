@@ -18,6 +18,10 @@ func run_checks() -> void:
 	assert(buzz.voice.playing and buzz.starts == 1 and buzz.voice.volume_db <= -8)
 	for index in range(20): buzz.tick(game,0.016)
 	assert(buzz.starts == 1)
+	assert(buzz.voice.stream.loop_mode == AudioStreamWAV.LOOP_FORWARD)
+	assert(buzz.voice.stream.loop_end == 105840)
+	await create_timer(buzz.voice.stream.get_length()+0.15).timeout
+	assert(buzz.voice.playing and buzz.starts == 1,"Loop wrap retains the shared voice")
 	game.paused = true
 	buzz.tick(game,1)
 	assert(buzz.voice.stream_paused and buzz.starts == 1)

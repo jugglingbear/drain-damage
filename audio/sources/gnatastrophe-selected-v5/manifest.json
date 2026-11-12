@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-11",
+  "status": "Integrated in Prototype179; technical loop and playback checks pass; in-game listening pending",
+  "selected_candidate": "DD-S0059.1",
+  "runtime": "assets/audio/sfx/gnatastrophe-recorded-v5/swarm-loop.wav",
+  "gain_db": -8,
+  "loop": true,
+  "duration_seconds": 2.4,
+  "sha256": "bba913710756fd597d2ddd2eff0df6246e9e1a870a83de018913f46671b50650",
+  "recipe": "audio/sources/gnatastrophe-selected-v5/render.py",
+  "layers_candidate_start_duration_spacing_gain": [
+    [
+      "DD-S0200.7",
+      1.76,
+      0.7,
+      0.4,
+      1.0
+    ],
+    [
+      "DD-S0200.6",
+      4.35,
+      0.6,
+      0.8,
+      0.45
+    ]
+  ],
+  "source_manifest": "audio/sources/gnatastrophe-clean-flies-v4/manifest.json",
+  "quietest_50ms_rms_dbfs": -36.21118688228695,
+  "loudest_50ms_rms_dbfs": -23.542148824749134,
+  "loop_boundary_step_pcm": 0,
+  "integration": [
+    "Replace only scripts/swarm_audio.gd LOOP; preserve one shared proximity voice and -8dB cap.",
+    "No new attack/death cues selected: leave those mappings unchanged.",
+    "Preserve pause/mute/death/retry cleanup. Do not restart the loop on swarm phase changes."
+  ]
+}

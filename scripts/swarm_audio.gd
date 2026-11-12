@@ -1,6 +1,6 @@
 extends RefCounted
 ## One bounded ambient voice avoids stacking gain from overlapping swarms.
-const LOOP = preload("res://assets/audio/sfx/sewer-fly-buzz-v1/swarm-loop.wav")
+const LOOP = preload("res://assets/audio/sfx/gnatastrophe-recorded-v5/swarm-loop.wav")
 const MAX_GAIN_DB := -8.0
 const HEARING_RADIUS := 520.0
 var voice: AudioStreamPlayer
