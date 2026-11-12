@@ -61,9 +61,12 @@ func update_hp(value: float) -> void:
 	# Encounter retries explicitly call begin_encounter; phase changes never refill this bar.
 	var next := clampf(value, 0, hp)
 	if next == hp: return
+	# Start the delay only when the previous damage trail has caught up. Sustained
+	# 0.10-second hits must not indefinitely restart its 0.15-second hold.
+	if trail <= hp/maximum+0.000001:
+		trail_start = trail
+		since_hit = 0
 	hp = next
-	trail_start = trail
-	since_hit = 0
 	if hp == 0:
 		trail = 0
 		death_time = 0

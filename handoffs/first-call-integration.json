@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 183 / 0.183.0",
-  "status": "Main Break upward geyser and viewport rain integrated; bounded native review complete, independent real-time motion and listening pending",
-  "app": "builds/Prototype-183/Drain Damage.app",
+  "build": "Prototype 184 / 0.184.0",
+  "status": "Sustained boss-health damage trail fixed; reusable backpack and safe destructible placements in progress",
+  "app": "builds/Prototype-184/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-182/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-183/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -846,5 +846,25 @@
       "Gameplay regression5ObjectDB leaks; damage adapter8ObjectDB/4CanvasItem/3resources at shutdown; assertions pass"
     ],
     "previous_build_preserved": "builds/Prototype-182/Drain Damage.app"
+  },
+  "followup_184": {
+    "date": "2026-11-12",
+    "change": "Boss HUD damage trail no longer restarts its delay on every sustained hit; actual damage tuning unchanged.",
+    "cause": "Tony hits every0.10s repeatedly reset0.15s trail delay, visually hiding immediate encounter/HUD HP loss until fire stopped.",
+    "checks": [
+      "Existing boss HUD feedback/death/retry/phase suite passes",
+      "147 actual Tony/Skitterling encounter-and-HUD checks pass",
+      "Native live capture shows active effect HP1440\u21921320at1s\u2192960at4s and visible trail catchup duringcontact",
+      "macOS export and strict signature verification pass",
+      "Exact184PCK actual Tony/Skitterling147checks pass",
+      "Independent Art bounded static PASS: meter visibly decreases between1s and4s withbeamactive"
+    ],
+    "evidence": "previews/tony-skitterling-hud-184/tony.log and tony-060.png/tony-240.png",
+    "staging": "Tony explicitlyselected; real special/contact/damage/HUD controllers; bossheldinratready, physicsdisabled, mutedmaster, actualspecialadvanced1/60.",
+    "remaining": [
+      "Native screenshots are source-fix captures labeled183; exact184package validated by encounter/HUD regression",
+      "Backpack production integration and safe destructible placements remain separate active deliveries"
+    ],
+    "previous_build_preserved": "builds/Prototype-183/Drain Damage.app"
   }
 }
