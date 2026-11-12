@@ -4,8 +4,9 @@ Open [the live sound page](https://jugglingbear.github.io/drain-damage/audio/dra
 in a browser. It embeds the audio
 and works offline.
 Groups and sound tables start collapsed. Search by ID, character, action, or filename.
-For example, search `gnat`, then expand Gnatastrophe to open all its sound tables. Playback uses source volume, not the
-game's mix. Nothing autoplays.
+For example, search `gnat`, then expand Gnatastrophe to open all its sound tables. Playback uses source volume except
+current starter-weapon rows, which apply the runtime gain and label any attenuation. Alternatives retain original volume;
+other game mixing is not simulated. Nothing autoplays.
 
 Regenerate after **every audio creation or change**, including audition-only changes, and commit the result with
 the audio. Keep all auditions in the repository unless Sean explicitly requests otherwise. Rejected candidates and

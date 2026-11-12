@@ -43,7 +43,8 @@ func run_checks() -> void:
 			Input.action_release("shoot")
 			assert(sound.pools.tony.size() == 3 and sound.pools.sean.size() == 1)
 			for voice: AudioStreamPlayer in sound.pools[person.id]:
-				assert(voice.volume_db == 0 and voice.stream.loop_mode == AudioStreamWAV.LOOP_DISABLED)
+				assert(is_equal_approx(db_to_linear(voice.volume_db),0.5 if person.id == "tony" else 1.0))
+				assert(voice.stream.loop_mode == AudioStreamWAV.LOOP_DISABLED)
 			game.set_paused(true)
 			sound.play_shot(person.id)
 			assert(sound.starts[person.id] == before+1)

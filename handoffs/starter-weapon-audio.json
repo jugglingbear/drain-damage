@@ -24,11 +24,13 @@
     "sha256": "05a16df97ec9fc501b4da4bf7e1351f8f559db08590d59c11f2d93c4fd47fe99",
     "duration_seconds": 0.4,
     "format": "44100 Hz mono PCM16 WAV",
-    "suggested_gain_db": 0,
+    "suggested_gain_db": -6.020599913279624,
     "provenance": "Original sample-free project synthesis; no third-party samples or attribution obligations.",
     "recipe": "audio/sources/starter-weapons-audition-v1/water-round-2/generate.py",
     "behavior": "One single-shot cue per successful Tony shot; bounded overlap preserves the 0.4-second tail at rapid fire. Preserve SFX mute, pause and cleanup. Do not use repeated demo.",
-    "max_voices": 3
+    "max_voices": 3,
+    "runtime_gain_linear": 0.5,
+    "gain_change": "November 11: Sean requested ordinary Tony firing at 50% gain; WAV and other audio unchanged."
   },
   "preservation": "Keep every audition sound, repeated demo, source, manifest and both audition tables for Tony to compare. Sean selected T11 and S1; Tony has not reviewed them yet.",
   "validation": {

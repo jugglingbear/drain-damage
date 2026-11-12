@@ -69,8 +69,12 @@ def discover() -> dict[str, dict[str, Any]]:
     source = "scripts/starter_weapon_audio.gd"
     text = (ROOT / source).read_text()
     base = re.search(r'"res://([^"\n]+/)"', text)[1]
+    gain_block = re.search(r'const GAINS := \{([^}]+)\}', text)[1]
+    weapon_gains = {hero: float(gain) for hero, gain in re.findall(r'"(tony|sean)":([\d.]+)', gain_block)}
     for hero, filename in re.findall(r'"(tony|sean)"\s*:\s*"([^"]+\.wav)"', text):
         add(f"weapon/{hero}/shot", SECTIONS[1], f"{hero.title()} — starter weapon shot", [base + filename], source)
+        slots[f"weapon/{hero}/shot"]["runtime_gain_linear"] = weapon_gains[hero]
+        slots[f"weapon/{hero}/shot"]["runtime_gain_db"] = 20 * math.log10(weapon_gains[hero])
 
     dispenser = json.loads((ROOT / "data/combat.json").read_text())["dispenser"]["audio"]
     for cue in dispenser["cues"]:
@@ -205,8 +209,28 @@ def tone_bytes(frequency: float, duration: float) -> bytes:
     return buffer.getvalue()
 
 
+def gain_adjusted_wav(payload: bytes, gain: float) -> bytes:
+    """Scale an embedded PCM16 preview without modifying its source asset."""
+    if gain == 1.0:
+        return payload
+    if not 0 <= gain <= 1:
+        raise ValueError("Preview attenuation must be between zero and one")
+    with wave.open(io.BytesIO(payload), "rb") as source:
+        if source.getsampwidth() != 2 or source.getcomptype() != "NONE":
+            raise ValueError("Runtime gain preview requires uncompressed PCM16")
+        params = source.getparams()
+        raw = source.readframes(source.getnframes())
+    samples = struct.unpack("<" + "h" * (len(raw) // 2), raw)
+    scaled = struct.pack("<" + "h" * len(samples), *(round(value * gain) for value in samples))
+    output = io.BytesIO()
+    with wave.open(output, "wb") as target:
+        target.setparams(params)
+        target.writeframes(scaled)
+    return output.getvalue()
+
+
 def render(registry: dict[str, Any]) -> str:
-    """Embed original audio bytes in a searchable, offline audition page."""
+    """Embed audio, applying known runtime attenuation only to current playback rows."""
     esc = html.escape
     style = (ROOT / "audio/sources/starter-weapons-audition-v1/index.html").read_text()
     style = style.split("<style>")[1].split("</style>")[0]
@@ -253,7 +277,11 @@ def render(registry: dict[str, Any]) -> str:
                     parts.append(f'<p>{esc(record["trigger"])}</p>')
                 parts.append('<div class="table-wrap"><table><thead><tr><th>ID</th><th>Version</th>'
                              '<th>Listen</th></tr></thead><tbody>')
-                clips = [(identity, "Current", path, (ROOT / path).read_bytes()) for path in record["paths"]]
+                gain = float(record.get("runtime_gain_linear", 1.0))
+                label = ("Current" if gain == 1 else
+                         f"Current — runtime gain {gain:.0%} ({20 * math.log10(gain):.2f} dB)")
+                clips = [(identity, label, path, gain_adjusted_wav((ROOT / path).read_bytes(), gain))
+                         for path in record["paths"]]
                 if "tone" in record:
                     clips.append((identity, "Current — synthesized preview (reset phase)", "",
                                   tone_bytes(*record["tone"])))

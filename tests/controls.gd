@@ -34,6 +34,11 @@ func run_checks() -> void:
 	assert(title.show_enemy_health_bars)
 	event.physical_keycode = KEY_RIGHT
 	title.handle_controls(event)
+	assert(title.controls_focus == 3 and title.controls_page == 0,"Mouse-selected footer keeps spatial focus")
+	event.physical_keycode = KEY_UP
+	title.handle_controls(event)
+	event.physical_keycode = KEY_RIGHT
+	title.handle_controls(event)
 	assert(title.controls_page == 1)
 	var pad := InputEventJoypadButton.new()
 	pad.pressed = true

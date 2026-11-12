@@ -55,7 +55,7 @@ static func draw(canvas: Node2D, page: int, muted: bool, health_bars := false, f
 	Buttons.compact(canvas,BACK_RECT,"BACK",focus == 2,17,false,34)
 	if page == 1:
 		draw_gamepad(canvas)
-		draw_settings(canvas,page,muted,health_bars)
+		draw_settings(canvas,page,muted,health_bars,focus)
 		return
 	text(canvas, "FIELD GUIDE  /  " + ("KEYBOARD" if page == 0 else "GAMEPAD"), Vector2(33, 88), 13, GOLD)
 	text(canvas, Crew.COMPANY_NAME, Vector2(33, 109), 13, MUTED)
@@ -73,18 +73,18 @@ static func draw(canvas: Node2D, page: int, muted: bool, health_bars := false, f
 	if page == 0:
 		reference_card(canvas, 32, "DURING A JOB", ["K  Special (two uses per level)", "Hold fire for continuous shots", "Q  Title when paused / complete"])
 		reference_card(canvas, 336, "MENUS & PAGES", ["WASD / arrows  Navigate", "Enter / Space  Confirm; mouse works", "Esc  Back (quits on title)"])
-		reference_card(canvas, 640, "CONVERSATIONS", ["Enter / Space  Reveal / continue", "Tab  Skip conversation", "Left / Right or A / D  Controls page"])
+		reference_card(canvas, 640, "CONVERSATIONS", ["Enter / Space  Reveal / continue", "Tab  Skip conversation", "Arrows / WASD  Navigate controls"])
 	else:
 		reference_card(canvas, 32, "DURING A JOB", ["B  Special (two uses per level)", "Hold fire for continuous shots", "B  Back / resume when paused"])
 		reference_card(canvas, 336, "MENUS & PAGES", ["Stick / D-pad  Navigate", "A / Menu  Confirm; B  Back", "Left / Right  Controls page"])
 		reference_card(canvas, 640, "CONVERSATIONS", ["A  Reveal / continue", "B  Skip conversation", "Guide button belongs to the OS"])
-	draw_settings(canvas,page,muted,health_bars)
+	draw_settings(canvas,page,muted,health_bars,focus)
 
-static func draw_settings(canvas: Node2D, page: int, muted: bool, health_bars: bool) -> void:
+static func draw_settings(canvas: Node2D, page: int, muted: bool, health_bars: bool, focus: int) -> void:
 	Buttons.compact(canvas,MUSIC_RECT,"Music  %s  ·  %s / click (menus)" % ["OFF" if muted else "ON",
-		"M" if page == 0 else "Y"],not muted,14)
+		"M" if page == 0 else "Y"],focus == 3,14)
 	Buttons.compact(canvas,HEALTH_RECT,"Enemy bars  %s  ·  %s / click (here)" % ["ON" if health_bars else "OFF",
-		"H" if page == 0 else "View"],health_bars,14)
+		"H" if page == 0 else "View"],focus == 4,14)
 
 static func prepare_callouts() -> void:
 	if callout_texture != null: return
@@ -118,5 +118,19 @@ static func draw_gamepad(canvas: Node2D) -> void:
 			if callout.side == "top": bend = Vector2(start.x,point.y-24)
 			canvas.draw_polyline(PackedVector2Array([start,bend,point]),PAPER,1.5,true)
 			canvas.draw_circle(point,3,PAPER)
-	text(canvas,"MENUS: stick / D-pad navigate · Left / Right tabs · A / Menu confirm · B back",Vector2(32,454),16)
+	text(canvas,"MENUS: stick / D-pad navigate · A / Menu confirm · B back",Vector2(32,454),16)
 	text(canvas,"DIALOGUE: A reveal / continue · B skip     PAUSED: B resume",Vector2(32,478),16)
+
+static func control_at(point: Vector2) -> int:
+	for index in range(2):
+		if tab_rect(index).has_point(point): return index
+	if BACK_RECT.has_point(point): return 2
+	if MUSIC_RECT.has_point(point): return 3
+	if HEALTH_RECT.has_point(point): return 4
+	return -1
+
+static func neighbor(focus: int, direction: Vector2i) -> int:
+	if direction.y != 0:
+		return [3,4,4,0,1][focus]
+	if focus < 3: return posmod(focus+direction.x,3)
+	return 4 if focus == 3 else 3

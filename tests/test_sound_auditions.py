@@ -1,9 +1,14 @@
 """Regression checks for permanent audio identities and audition validation."""
 
+import base64
 import copy
 import importlib.util
+import io
 import json
+import re
+import struct
 import unittest
+import wave
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -74,6 +79,29 @@ class SoundAuditionsTests(unittest.TestCase):
         proposed["status"] = "proposed"
         with self.assertRaises(ValueError):
             MODULE.validate(self.registry, self.slots)
+
+    def test_current_weapon_gain_embedded_without_altering_alternatives(self) -> None:
+        registry = json.loads(MODULE.REGISTRY.read_text())
+        records = [r for r in registry["sounds"] if r["key"] in ["weapon/tony/shot", "weapon/sean/shot"]]
+        for record in records:
+            page = MODULE.render({"sounds": [record]})
+            payloads = re.findall(r'src="data:audio/wav;base64,([^"]+)"', page)
+            original = (MODULE.ROOT / record["paths"][0]).read_bytes()
+            current = base64.b64decode(payloads[0])
+            if record["key"] == "weapon/tony/shot":
+                self.assertIn("runtime gain 50%", page)
+                with wave.open(io.BytesIO(original)) as source, wave.open(io.BytesIO(current)) as preview:
+                    self.assertEqual(source.getparams(), preview.getparams())
+                    a = source.readframes(source.getnframes())
+                    b = preview.readframes(preview.getnframes())
+                samples = struct.unpack("<" + "h" * (len(a) // 2), a)
+                scaled = struct.unpack("<" + "h" * (len(b) // 2), b)
+                self.assertEqual(scaled, tuple(round(value * .5) for value in samples))
+            else:
+                self.assertEqual(current, original)
+            if record["alternatives"]:
+                self.assertEqual(base64.b64decode(payloads[1]),
+                                 (MODULE.ROOT / record["alternatives"][0]["path"]).read_bytes())
 
     def test_live_catalog_and_tone_preview(self) -> None:
         registry = json.loads(MODULE.REGISTRY.read_text())

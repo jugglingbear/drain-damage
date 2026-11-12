@@ -2,6 +2,7 @@ extends RefCounted
 ## Fixed voice pools preserve the selected shot tails without unbounded allocations.
 const BASE := "res://assets/audio/sfx/starter-weapons-v1/"
 const CUES := {"tony":"tony-water-gush.wav","sean":"sean-suction-pop.wav"}
+const GAINS := {"tony":0.5,"sean":1.0}
 const LIMITS := {"tony":3,"sean":1}
 var pools: Dictionary = {}
 var cursors := {"tony":0,"sean":0}
@@ -16,7 +17,7 @@ func attach(host: Node) -> void:
 		for index in range(LIMITS[id]):
 			var voice := AudioStreamPlayer.new()
 			voice.stream = stream
-			voice.volume_db = 0
+			voice.volume_db = linear_to_db(float(GAINS[id]))
 			host.add_child(voice)
 			pools[id].append(voice)
 

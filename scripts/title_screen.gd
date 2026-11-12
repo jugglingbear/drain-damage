@@ -43,6 +43,7 @@ var selected := 0
 var selection_focus := 0
 var selection_guard := 0.0
 var stick_latched := false
+var navigation_stick := Vector2.ZERO
 var game: Node2D
 var clock := 0.0
 var muted := false
@@ -214,18 +215,15 @@ func handle_menu(event: InputEvent) -> bool:
 		if event.button_index == JOY_BUTTON_DPAD_UP: direction = -1
 		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction = 1
 		confirm = event.button_index in [JOY_BUTTON_A, JOY_BUTTON_START]
-	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_Y:
-		if absf(event.axis_value) < 0.25: stick_latched = false
-		elif absf(event.axis_value) > 0.6 and not stick_latched:
-			direction = int(signf(event.axis_value))
-			stick_latched = true
+	elif event is InputEventJoypadMotion:
+		direction = stick_direction(event).y
 	elif event is InputEventMouseMotion:
-		var hovered := menu_at_point(get_global_mouse_position())
+		var hovered := menu_at_point(event.position)
 		if hovered >= 0:
 			menu_index = hovered
 			return true
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var clicked := menu_at_point(get_global_mouse_position())
+		var clicked := menu_at_point(event.position)
 		if clicked >= 0:
 			menu_index = clicked
 			confirm = true
@@ -244,40 +242,61 @@ func handle_menu(event: InputEvent) -> bool:
 		return true
 	return false
 
+func stick_direction(event: InputEventJoypadMotion) -> Vector2i:
+	if event.axis not in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]: return Vector2i.ZERO
+	navigation_stick[event.axis] = event.axis_value
+	if maxf(absf(navigation_stick.x),absf(navigation_stick.y)) < 0.25:
+		stick_latched = false
+	elif maxf(absf(navigation_stick.x),absf(navigation_stick.y)) > 0.6 and not stick_latched:
+		stick_latched = true
+		if absf(navigation_stick.x) > absf(navigation_stick.y):
+			return Vector2i(int(signf(navigation_stick.x)),0)
+		return Vector2i(0,int(signf(navigation_stick.y)))
+	return Vector2i.ZERO
+
+func activate_controls_focus() -> void:
+	match controls_focus:
+		0,1: controls_page = controls_focus
+		2: showing_controls = false
+		3: toggle_sound()
+		4: show_enemy_health_bars = not show_enemy_health_bars
+
 func handle_controls(event: InputEvent) -> void:
+	var direction := Vector2i.ZERO
+	var confirm := false
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode == KEY_ESCAPE: showing_controls = false
 		if event.physical_keycode == KEY_H: show_enemy_health_bars = not show_enemy_health_bars
-		if event.physical_keycode in [KEY_LEFT, KEY_A]: move_controls_focus(-1)
-		if event.physical_keycode in [KEY_RIGHT, KEY_D]: move_controls_focus(1)
-		if event.physical_keycode in [KEY_ENTER,KEY_KP_ENTER,KEY_SPACE] and controls_focus == 2:
-			showing_controls = false
+		if event.physical_keycode in [KEY_LEFT,KEY_A]: direction.x = -1
+		if event.physical_keycode in [KEY_RIGHT,KEY_D]: direction.x = 1
+		if event.physical_keycode in [KEY_UP,KEY_W]: direction.y = -1
+		if event.physical_keycode in [KEY_DOWN,KEY_S]: direction.y = 1
+		if event.physical_keycode == KEY_TAB:
+			controls_focus = posmod(controls_focus+(-1 if event.shift_pressed else 1),5)
+			if controls_focus < 2: controls_page = controls_focus
+		confirm = is_confirm_event(event)
 		if event.physical_keycode == KEY_M: toggle_sound()
 	elif event is InputEventJoypadButton and event.pressed:
 		if event.button_index == JOY_BUTTON_B: showing_controls = false
 		if event.button_index == JOY_BUTTON_BACK: show_enemy_health_bars = not show_enemy_health_bars
-		if event.button_index == JOY_BUTTON_DPAD_LEFT: move_controls_focus(-1)
-		if event.button_index == JOY_BUTTON_DPAD_RIGHT: move_controls_focus(1)
-		if event.button_index in [JOY_BUTTON_A,JOY_BUTTON_START] and controls_focus == 2:
-			showing_controls = false
+		if event.button_index == JOY_BUTTON_DPAD_LEFT: direction.x = -1
+		if event.button_index == JOY_BUTTON_DPAD_RIGHT: direction.x = 1
+		if event.button_index == JOY_BUTTON_DPAD_UP: direction.y = -1
+		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction.y = 1
+		confirm = is_confirm_event(event)
 		if event.button_index == JOY_BUTTON_Y: toggle_sound()
-	elif event is InputEventJoypadMotion and event.axis == JOY_AXIS_LEFT_X:
-		if absf(event.axis_value) < 0.25: stick_latched = false
-		elif absf(event.axis_value) > 0.6 and not stick_latched:
-			move_controls_focus(int(signf(event.axis_value)))
-			stick_latched = true
-	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var point: Vector2 = event.position
-		for index in range(2):
-			if Controls.tab_rect(index).has_point(point):
-				controls_page = index
-				controls_focus = index
-		if Controls.BACK_RECT.has_point(point): showing_controls = false
-		if Controls.setting_at_point(point) == "health": show_enemy_health_bars = not show_enemy_health_bars
-		if Controls.setting_at_point(point) == "music": toggle_sound()
+	elif event is InputEventJoypadMotion:
+		direction = stick_direction(event)
+	elif event is InputEventMouseMotion or event is InputEventMouseButton:
+		var control := Controls.control_at(event.position)
+		if control >= 0:
+			controls_focus = control
+			confirm = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+	if direction != Vector2i.ZERO: move_controls_focus(direction)
+	if confirm: activate_controls_focus()
 
-func move_controls_focus(direction: int) -> void:
-	controls_focus = posmod(controls_focus+direction,3)
+func move_controls_focus(direction: Vector2i) -> void:
+	controls_focus = Controls.neighbor(controls_focus,direction)
 	if controls_focus < 2: controls_page = controls_focus
 
 func move_selection_focus(direction: Vector2i) -> void:
@@ -307,12 +326,8 @@ func handle_selection(event: InputEvent) -> bool:
 		if event.button_index == JOY_BUTTON_DPAD_DOWN: direction.y = 1
 		back = event.button_index == JOY_BUTTON_B
 		confirm = event.button_index in [JOY_BUTTON_A,JOY_BUTTON_START]
-	elif event is InputEventJoypadMotion and event.axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]:
-		if absf(event.axis_value) < 0.25: stick_latched = false
-		elif absf(event.axis_value) > 0.6 and not stick_latched:
-			direction[event.axis] = int(signf(event.axis_value))
-			stick_latched = true
-		else: return true
+	elif event is InputEventJoypadMotion:
+		direction = stick_direction(event)
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var point: Vector2 = event.position
 		if Rect2(28,473,100,35).has_point(point):
@@ -370,14 +385,8 @@ func handle_difficulty(event: InputEvent) -> void:
 		if event.button_index == JOY_BUTTON_DPAD_RIGHT: direction.x = 1
 		back = event.button_index == JOY_BUTTON_B
 		confirm = is_confirm_event(event)
-	elif event is InputEventJoypadMotion and event.axis in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]:
-		if event.axis == JOY_AXIS_LEFT_X: difficulty_stick.x = event.axis_value
-		else: difficulty_stick.y = event.axis_value
-		if maxf(absf(difficulty_stick.x),absf(difficulty_stick.y)) < 0.25: stick_latched = false
-		elif maxf(absf(difficulty_stick.x),absf(difficulty_stick.y)) > 0.6 and not stick_latched:
-			if absf(difficulty_stick.x) > absf(difficulty_stick.y): direction.x = int(signf(difficulty_stick.x))
-			else: direction.y = int(signf(difficulty_stick.y))
-			stick_latched = true
+	elif event is InputEventJoypadMotion:
+		direction = stick_direction(event)
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var control := DifficultyScreen.control_at(event.position)
 		if control >= 0: focus_difficulty(control)

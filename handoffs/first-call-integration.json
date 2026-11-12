@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "build": "Prototype 179 / 0.179.0",
-  "status": "Approved recorded fly loop integrated; listening and earlier visual acceptance gaps remain",
-  "app": "builds/Prototype-179/Drain Damage.app",
+  "build": "Prototype 180 / 0.180.0",
+  "status": "Pre-game navigation audit and bounded native UI review passed; Tony firing gain halved",
+  "app": "builds/Prototype-180/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
   "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
@@ -164,7 +164,7 @@
   },
   "source_content_commit": "a0634ef",
   "source_dirty_at_build": true,
-  "source_commit_at_build": "4009443eb4eb5fb5d863a6c8d594f66d4a9fa1ac",
+  "source_commit_at_build": "d8945294af18fbea11335e5e1e41d65ec74cd6ab",
   "changes": [
     "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
     "Normal two purple shooters/two flyers, seeded 1–3 bolt volleys and 2.2-second recovery",
@@ -243,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "9d3d8fcef4aaecfbd8d1350c30eeb8a9fb64bd62e2b3b2a125c2ce280559b42e",
+  "pck_sha256": "415e10a26c05df4f0ed3462778d9d4f99ada2e813fba0c699d7d6c899c1b3a08",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -699,5 +699,45 @@
     ],
     "evidence": "previews/swarm-audio-179/",
     "previous_build_preserved": "builds/Prototype-178/Drain Damage.app"
+  },
+  "followup_180": {
+    "date": "2026-11-11",
+    "changes": [
+      "Controls five-button spatial focus, footer confirmation and distinct focus/state rendering",
+      "Shared two-axis stick neutral latch across pre-game menus; main-menu mouse hit test uses event position",
+      "Save the World! difficulty confirmation label",
+      "Tony ordinary pressure-gun gain0.5; Sean1.0; original WAVs preserved",
+      "Current Tony audition preview applies runtime50% gain; original WAV and alternative previews unchanged"
+    ],
+    "checks": [
+      "66 all-start/menu/device reachability graphs pass source and exactPCK",
+      "Controls confirmation/back,mouse switching,Dpad/key repeat and two-axis stick neutral regression pass",
+      "Existing controls/header navigation, full title lifecycle and bothhero/allmode difficulty suites pass",
+      "ExactPCK Tony/Sean weapon gains and complete shot lifecycle test pass",
+      "ExactPCK Quit menu confirmation exits0",
+      "Signed macOS export verified",
+      "Native keyboard-Music,gamepad-EnemyBars,employee-ClockIn,difficulty-confirmation captures inspected; independent Art PASS",
+      "7audio-catalog tests pass, including every embedded Tony current-preview PCM sample at50% and unchanged Sean/alternatives",
+      "160-slot audition catalog refreshed and checked"
+    ],
+    "evidence": "previews/menu-navigation-180/",
+    "capture_files": [
+      "keyboard-music-final.png",
+      "gamepad-bars-final.png",
+      "employee-clock-focus.png",
+      "difficulty-save-world-focus.png"
+    ],
+    "capture_method": "Isolated existing QA app launched via open -n -g with exact180PCK; actual keyboard input traversed footer and toggled Enemy Bars. Owned test processes verified closed.",
+    "remaining": [
+      "Subjective Tony firing loudness listening",
+      "Full title-art rotation coverage and cinematic motion remain separate pending visual gates",
+      "Backpack runtime delivery pending"
+    ],
+    "warnings": [
+      "Some headless menu/audio suites report4–5ObjectDB instances and1resource at shutdown",
+      "Sandbox editor-settings save denied; build/signature succeeded"
+    ],
+    "previous_build_preserved": "builds/Prototype-179/Drain Damage.app",
+    "capture_scope": "Final Controls hint captures use finalPCK; employee/difficulty captures precede only those hint edits, with unchanged employee/difficulty rendering."
   }
 }
