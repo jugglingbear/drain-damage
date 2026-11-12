@@ -31,6 +31,11 @@ class Host extends Node2D:
 		boss_damage += accepted
 		return {"skitterling":accepted}
 
+	func special_rain_damage(amount: float, _activation: int, tick: int, _remainders: Dictionary) -> Dictionary:
+		total += amount
+		times.append(float(tick))
+		return {}
+
 func _initialize() -> void:
 	for hero in ["tony","sean"]:
 		for steps in [[1.0/30],[1.0/60],[1.0/120],[.017,.24,.043,.6],[7.5]]:
@@ -44,15 +49,15 @@ func _initialize() -> void:
 				index += 1
 			var label: String = hero+" "+str(steps)
 			check(not probe.active,"Ends on time: "+label)
-			check(probe.tick_serial == 75,"75 scheduled ticks: "+label)
-			check(host.times.size() == (74 if hero == "tony" else 65),"Visible tick count: "+label)
-			check(host.total == (1776 if hero == "tony" else 1560),"Uncapped potential independent of timestep: "+label)
-			check(host.boss_damage == host.total*0.5 and probe.boss_used.skitterling == host.boss_damage,
+			check(probe.tick_serial == (75 if hero == "tony" else 7),"Expected scheduled ticks: "+label)
+			check(host.times.size() == (74 if hero == "tony" else 7),"Visible tick count: "+label)
+			check(host.total == (1776 if hero == "tony" else 262.5),"Uncapped potential independent of timestep: "+label)
+			if hero == "tony": check(host.boss_damage == host.total*0.5 and probe.boss_used.skitterling == host.boss_damage,
 				"Uncapped boss damage stays at half regular damage beyond250: "+label)
 			check(is_equal_approx(host.times[0],.1 if hero == "tony" else 1.0),"First eligible tick boundary: "+label)
-			check(is_equal_approx(host.times.back(),7.4),"Zero-width endpoint does not hit: "+label)
+			check(is_equal_approx(host.times.back(),7.4 if hero == "tony" else 7.0),"Final eligible tick: "+label)
 			for tick in range(1,host.times.size()):
-				check(is_equal_approx(host.times[tick]-host.times[tick-1],.1),"Every eligible tick stays0.10s apart")
+				check(is_equal_approx(host.times[tick]-host.times[tick-1],.1 if hero == "tony" else 1.0),"Every eligible tick keeps the hero interval")
 			host.free()
 	print("Special tick boundaries: ",checks," checks, ",failures.size()," failures")
 	quit(0 if failures.is_empty() else 1)

@@ -662,13 +662,40 @@ func special_solids() -> Array[Rect2]:
 	return result
 
 func special_pipe_clear(point: Vector2) -> bool:
-	var supported := false
-	var envelope := Rect2(point-Vector2(32,64),Vector2(64,63.9))
-	for solid: Rect2 in special_solids():
-		if absf(solid.position.y-point.y) < 0.1 and point.x-32 >= solid.position.x and point.x+32 <= solid.end.x:
-			supported = true
-		if envelope.intersects(solid): return false
-	return supported
+	return special_art.rain.placement_clear(point,special_solids())
+
+func special_rain_damage(amount: float, activation: int, tick: int, remainders: Dictionary) -> Dictionary:
+	return preload("res://scripts/main_break_rain_damage.gd").apply(self,amount,activation,tick,remainders)
+
+func main_break_rain_targets(_activation: int, _tick: int) -> Array[Dictionary]:
+	var rain = preload("res://scripts/main_break_rain_damage.gd")
+	var result: Array[Dictionary] = []
+	# Reverse order preserves damage_enemy's index when a lethal hit removes an entry.
+	for index in range(enemies.size()-1,-1,-1):
+		var enemy: Dictionary = enemies[index]
+		if enemy.hp <= 0: continue
+		var feet := FlushfiendGeometry.feet(enemy.pos)
+		# Base `entering` selects edge-walk pursuit and never clears; it is not a depth-entry immunity gate.
+		# These enemies already occupy the playable plane. Rain admits their exposed viewport intersection.
+		result.append({"id":rain.target_id(enemy),"hp":enemy.hp,
+			"regions":[FlushfiendGeometry.projectile_rect(feet)],
+			"damage":func(amount: float) -> float:
+				var before: float = enemy.hp
+				damage_enemy(index,amount,feet)
+				return before-float(enemy.hp)})
+	for index in range(swarms.actors.size()):
+		var swarm: Dictionary = swarms.actors[index]
+		if swarm.hp <= 0: continue
+		var regions: Array[Rect2] = []
+		if not swarms.entry_active(swarm):
+			for offset: Vector2 in swarms.fly_offsets(swarm):
+				regions.append(Rect2(swarm.pos+offset-Vector2(6,6),Vector2(12,12)))
+		result.append({"id":rain.target_id(swarm),"hp":swarm.hp,"regions":regions,
+			"damage":func(amount: float) -> float:
+				var before: float = swarm.hp
+				swarms.damage(index,amount)
+				return before-float(swarm.hp)})
+	return result
 
 func special_damage(segments: Array[Dictionary], amount: float, _activation: int, _boss_remaining: Dictionary) -> Dictionary:
 	for index in range(enemies.size()-1,-1,-1):
@@ -1252,9 +1279,9 @@ func process_special_cinematic(delta: float) -> bool:
 	if not completed.is_empty():
 		cinematic_resume_frame = Engine.get_process_frames()
 		transform = cinematic_baseline
-		cinematic_audio.stop()
 		freeze_special_world_audio(false)
 		specials.resume_from_cinematic(self)
+		cinematic_audio.stop()
 		cinematic.cancel()
 	queue_redraw()
 	return true

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 182 / 0.182.0",
-  "status": "Spent-pipe collapse integrated; geyser/rain redesign approved and awaiting production",
-  "app": "builds/Prototype-182/Drain Damage.app",
+  "build": "Prototype 183 / 0.183.0",
+  "status": "Main Break upward geyser and viewport rain integrated; bounded native review complete, independent real-time motion and listening pending",
+  "app": "builds/Prototype-183/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-181/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-182/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -810,5 +810,41 @@
       "resolution": "Preserve approved rain tuning in main_break_revision.approved_tuning; initial_tuning retains shipped Prototype182 values until atomic integration.",
       "runtime_change": false
     }
+  },
+  "followup_183": {
+    "date": "2026-11-12",
+    "changes": [
+      "Sean huge upright pipe and cinematic upward geyser replace horizontal special",
+      "Independent7.5-second gameplay rain clock with seven37.5damage pulses; no cinematic damage",
+      "Current viewport targets include eligible hostiles, bosses and destructible HP hazards; vulnerability gates and accepted integer fractions preserved",
+      "Free Sean movement and ordinary fire, existing charges/lifecycle, Tony unchanged",
+      "Continuous rain audio receives existing cinematic eruption voice once; rain stops at7.5",
+      "Normal and compact authored collapses retain facing and floor anchor;94px base support and160px clearance required"
+    ],
+    "checks": [
+      "1660 timeline checks; source and exactPCK pass",
+      "26 viewport/target/fraction/boss/hazard checks; source and exactPCK pass",
+      "1615 starter-special gameplay checks including both heroes ordinary fire pass",
+      "460 tick-boundary,33 cinematic-host,721 death-cleanup checks pass",
+      "29812 cinematic pose/framing checks pass",
+      "Source and exactPCK support/ceiling/variant placement checks pass",
+      "Source and exactPCK audio timing/voice-transfer/pause/cancel/fade tests pass",
+      "161-slot audio catalog and7catalog tests pass per Audio",
+      "macOS export and strict signature verification pass",
+      "ExactPCK native log observes7ticks and7.5rainelapsed for each facing"
+    ],
+    "native_evidence": "previews/main-break-rain-183/",
+    "capture_staging": "Exact183PCK, native800x450 viewport, enemies removed for readability, fixed camera/hero, actual controllers advanced at1/60, muted master; compact diagnostic separately positions retained prop. Harness bypasses desktop focus pause for agent capture only.",
+    "art_review": "Independent Art bounded static PASS on exact183 left normal anchor, compact raised-platform contact, rain readability and connected geyser outlet; no remaining defect in reviewed samples. Independent real-time smoothness/listening not certified.",
+    "remaining": [
+      "Independent real-time temporal smoothness and full-route visual acceptance",
+      "Subjective rain audio listening review",
+      "Approved flush-to-ride arrival remains queued; ride animation concepts await Sean approval"
+    ],
+    "warnings": [
+      "Sandbox CA/editor-settings diagnostics during checks/export",
+      "Gameplay regression5ObjectDB leaks; damage adapter8ObjectDB/4CanvasItem/3resources at shutdown; assertions pass"
+    ],
+    "previous_build_preserved": "builds/Prototype-182/Drain Damage.app"
   }
 }

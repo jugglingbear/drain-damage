@@ -49,7 +49,7 @@ func framing_bounds(costume: String, feet: Vector2, facing: int) -> Rect2:
 	for pose: Dictionary in timeline.sean.poses_by_costume[costume].values():
 		var size := Vector2(pose.source_rect[2],pose.source_rect[3])
 		bounds = bounds.merge(pose_transform(pose,feet,facing)*Rect2(Vector2.ZERO,size))
-	return bounds.merge(Rect2(feet+Vector2(44*facing-40,-64),Vector2(80,64)))
+	return bounds.merge(Rect2(feet+Vector2(44*facing-48,-160),Vector2(96,160)))
 
 func camera_transform(game: Node2D) -> Transform2D:
 	if not game.cinematic.active or game.cinematic.hero_id != "sean": return Transform2D.IDENTITY
@@ -85,8 +85,7 @@ func pipe_state(game: Node2D) -> Dictionary:
 
 func draw_hero(game: Node2D) -> bool:
 	if not game.cinematic.active or game.cinematic.hero_id != "sean": return false
-	var state := pipe_state(game)
-	for key in ["lower","upper_back"]: game.special_art.draw_pipe_piece(game,key,state)
+	game.special_art.rain.draw_cinematic_pipe(game,timeline)
 	var id := pose_id(game.cinematic.elapsed)
 	if id != "gameplay_pose":
 		var pose: Dictionary = timeline.sean.poses_by_costume[game.cinematic_costume][id]
@@ -95,7 +94,6 @@ func draw_hero(game: Node2D) -> bool:
 		game.draw_set_transform_matrix(basis)
 		game.draw_texture(poses[game.cinematic_costume][id],Vector2.ZERO)
 		game.draw_set_transform(Vector2(-floorf(game.camera_x),0))
-	for key in ["front_rim","collar"]: game.special_art.draw_pipe_piece(game,key,state)
 	return id != "gameplay_pose"
 
 func gauge_state(elapsed: float) -> Dictionary:

@@ -115,13 +115,13 @@
   },
   "special": {
     "name": "Main Break",
-    "status": "Authorized integration in progress; initial tunings pending playtest",
+    "status": "Viewport rain integration in progress; validation pending",
     "contract": "design/starter-specials-v1/mechanics.json",
     "uses_per_hero_per_logical_level": 2,
     "duration_seconds": 7.5,
-    "damage_per_tick": 24,
-    "tick_interval_seconds": 0.1,
-    "range": "Current viewport edge along visible water, blocked by solid scenery",
+    "damage_per_tick": 37.5,
+    "tick_interval_seconds": 1.0,
+    "range": "Current visible gameplay viewport; walls do not shelter eligible hostile damageables",
     "input": {
       "keyboard": "K",
       "gamepad": "B",
@@ -129,8 +129,9 @@
     },
     "budget": "No refill on death, checkpoint, retry, subsection or boss; initialize on new run or first entry to logical level",
     "availability": "Ordinary First Call combat and trials; scripted flush/ride and camera proof currently block activation without spending",
-    "boss_damage_per_tick": 12,
-    "boss_sustained_damage_per_second": 120,
-    "boss_damage_rules": "No total cap; existing vulnerability and weak-point gates apply"
+    "boss_damage_per_tick": 37.5,
+    "boss_sustained_damage_per_second": 37.5,
+    "boss_damage_rules": "Same requested damage with existing vulnerability, weakpoint and airborne-hero gates; accepted-hit integer remainder per target; no total cap",
+    "duration_clock": "Gameplay rain starts at zero after the cinematic; seven ticks at seconds1\u20137, no immediate or expiry bonus"
   }
 }

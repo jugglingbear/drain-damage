@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Sean viewport-rain redesign approved November12; runtime/assets pending. Tony retains current behavior.",
+  "status": "Sean viewport rain integrated in Prototype183; Tony unchanged; real-time visual/audio acceptance gaps recorded in delivery.",
   "owner": "Game Mechanics",
   "runtime_owner": "Engineering",
   "art_owner": "Art",
@@ -63,14 +63,14 @@
     }
   },
   "initial_tuning": {
-    "status": "Shipped Prototype182 tuning consumed by combat-data. Approved rain replacement is preserved in main_break_revision.approved_tuning and is not active yet.",
+    "status": "Active Prototype183 tuning: Sean viewport rain37.5 per1s pulse; Tony unchanged.",
     "damage_per_tick": 24,
     "tick_interval_seconds": 0.1,
     "boss_rules": "Respect existing invulnerability, weak-point and phase transition gates; no total damage cap. Track actual applied damage as telemetry only.",
-    "enemy_rules": "At most one tick per enemy per interval across all stream pieces; no frame-rate or multi-segment multiplication",
+    "enemy_rules": "At most one hit per logical target per scheduled tick; never multiply by drops, body regions or stream pieces.",
     "recoil_horizontal_pixels_per_second": 30,
     "tony_jet_thickness_pixels": 52,
-    "default_damage_scope": "Both starter specials; explicit per-hero values below match these defaults.",
+    "default_damage_scope": "Shared24/.1 and12boss fields remain Tony defaults only. Sean uses explicit hero override.",
     "hero_overrides": {
       "tony": {
         "damage_per_tick": 24,
@@ -85,12 +85,19 @@
         "boss_sustained_damage_per_second": 120
       },
       "sean": {
-        "damage_per_tick": 24,
-        "tick_interval_seconds": 0.1,
-        "sustained_damage_per_second": 240,
-        "status": "User-approved parity: 240 regular-enemy DPS and 120 boss DPS, uncapped",
-        "boss_damage_per_tick": 12,
-        "boss_sustained_damage_per_second": 120
+        "damage_per_tick": 37.5,
+        "tick_interval_seconds": 1.0,
+        "sustained_damage_per_second": 37.5,
+        "active_regular_damage": 18,
+        "active_regular_interval_seconds": 0.24,
+        "active_regular_sustained_damage_per_second": 75,
+        "special_to_regular_ratio": 0.5,
+        "reference_profile": "design/first-call-action/opening-trial-balance.json#weapons.heavy-plunger-launcher",
+        "status": "User-approved half-normal-DPS viewport rain; current18/.24 profile verified November12. Legacy top-level weapon24/1 is not runtime balance.",
+        "boss_damage_per_tick": 37.5,
+        "boss_sustained_damage_per_second": 37.5,
+        "boss_total_cap": null,
+        "boss_rules": "Same37.5 requested for all eligible hostile damageables supersedes prior separate boss rate. Preserve existing vulnerability/phase/high-weakpoint rules, including hero-airborne qualification where required; rain direction alone does not bypass gates."
       }
     },
     "boss_damage_per_tick": 12,
@@ -253,7 +260,7 @@
     "implementation_defaults": "Preserve3.4s presentation, two-use budget, current boss gates and no boss total cap. Explicit clarified rain duration7.5s after handoff supersedes earlier proposed6.5s legacy-offset mapping. First pulse after one full second.",
     "supersedes": "Sean facing sweep, tilting/horizontal damaging jet,0.1s ticks,240 regular/120 boss DPS and immediate effectelapsed1.0 damage. Preserve source artwork and prior evidence.",
     "approved_tuning": {
-      "status": "Tony unchanged at240 regular/120 boss DPS. Sean rain approved at half current normal75DPS =37.5DPS.",
+      "status": "Main Break rain runtime integration in progress; Tony unchanged.",
       "damage_per_tick": 24,
       "tick_interval_seconds": 0.1,
       "boss_rules": "Respect existing invulnerability, weak-point and phase transition gates; no total damage cap. Track actual applied damage as telemetry only.",
@@ -293,6 +300,6 @@
       "boss_damage_per_tick": 12,
       "boss_sustained_damage_per_second": 120
     },
-    "integration_gate": "Approved tuning is pending production assets and atomic runtime/weapon/generated-data integration. The build consumes initial_tuning, which retains Prototype182 behavior until that delivery."
+    "integration_gate": "Approved tuning activated with matching runtime, weapon metadata and generated data in Prototype183; see handoffs/first-call-integration.json for bounded validation and remaining gaps."
   }
 }

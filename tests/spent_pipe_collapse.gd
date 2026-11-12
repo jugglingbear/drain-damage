@@ -46,7 +46,7 @@ func _initialize() -> void:
 	probe.hero_id = "sean"
 	probe.active = true
 	probe.elapsed = 7.4
-	probe.tick_serial = 74
+	probe.tick_serial = 7
 	probe.step(host,.2)
 	assert(not probe.active and probe.spent_pipes.size() == 1)
 	assert(is_equal_approx(probe.spent_pipes[0].spent_age,.1))

@@ -19,5 +19,36 @@
     "workflow": "https://github.com/jugglingbear/drain-damage/actions/runs/42919830850",
     "url": "https://jugglingbear.github.io/drain-damage/magazine.pdf",
     "sha256": "f8df0832f0beef01e8616b542f1fc1f522f5c0723d3dc3ecfec968bbcd733b09"
+  },
+  "pending_editorial_corrections": {
+    "date": "2026-11-12",
+    "audit": "design/sean-likeness-audit-2026-11-12.json",
+    "status": "Published edition preserved; replacement edition pending corrected assets and review.",
+    "owners": {
+      "art": "Sean likeness/proportions and versioned replacement artwork",
+      "marketing": "Magazine layout, copy, PDF and page validation"
+    },
+    "placements": [
+      {
+        "page": 1,
+        "source": "marketing/magazine/guide-assets-v3/tony-sean-horde-cover-v2.png",
+        "required": "Remove sunglasses and match established Sean portrait/expressions.",
+        "status": "Corrected asset pending"
+      },
+      {
+        "page": 9,
+        "source": "marketing/magazine/weapon-special-concepts/sean-main-break.png",
+        "required": "Replace obsolete horizontal blast with geyser/rain concept v2; align copy to 7.5 seconds of gameplay rain after cinematic.",
+        "candidate": "marketing/magazine/weapon-special-concepts/sean-geyser-rain-concept-v2.png",
+        "status": "Sean said Better per Art; preferred replacement awaiting editorial integration/review. Confirm runtime status before publication; otherwise label redesign concept."
+      },
+      {
+        "page": 11,
+        "source": "marketing/spare-employee-dispenser/ad-concepts-v1/02-industrial-v2.png",
+        "required": "Preserve cabinet/ad design; correct face and facial hair, adult seated proportions, leg space and boot scale. Uniform PDF scaling verified; distortion is in source.",
+        "status": "Priority corrected asset pending"
+      }
+    ],
+    "preservation": "Do not overwrite originals or published PDF during audit; rejected geyser v1 excluded."
   }
 }

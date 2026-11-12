@@ -1,6 +1,6 @@
 {
   "date": "2026-11-05",
-  "status": "Assets and Mechanics-reviewed timing contract ready for Art package and Engineering integration.",
+  "status": "Tony contract retained; Sean bent-jet mapping superseded by pending rain redesign proposal.",
   "brief": "Starter activation cinematic: Tony cranks a heavy water weapon then it trembles with trapped pressure. Short mechanical crank and escalating hardware chatter from retained CC0 metal/water recordings. Do not sound the full discharge until gameplay handoff. Sean reuses approved suction/strain/break cues. No dialogue or new damage timing.",
   "sources": {
     "metal": {
@@ -313,5 +313,75 @@
       "Packaged integration",
       "Subjective listening"
     ]
+  },
+  "sean_rain_redesign": {
+    "date": "2026-11-12",
+    "status": "Audio runtime delivered; host/package/Art clearance/listening pending.",
+    "supersedes": "Sean bent-jet handoff_contract and runtime_delivery mapping only; retain original assets and Tony behavior.",
+    "cinematic_reuse": [
+      {
+        "time": 1.0,
+        "cue": "sean-seal"
+      },
+      {
+        "time": 1.08,
+        "cue": "sean-pull"
+      },
+      {
+        "time": 1.78,
+        "cue": "sean-pull"
+      },
+      {
+        "time": 2.45,
+        "cue": "sean-break"
+      },
+      {
+        "time": 2.7,
+        "cue": "sean-hinge",
+        "meaning": "Pipe extraction only; not post-handoff tilting."
+      }
+    ],
+    "geyser": {
+      "onset_candidate": 3.2,
+      "requires": "Art confirms tool cleared and first visible eruption.",
+      "reuse": "DD-S0133.4",
+      "path": "assets/audio/sfx/starter-specials-v1/sean-erupt.wav",
+      "source_duration": 0.65,
+      "proposal": "Play approved onset once at visual eruption. At3.4 crossfade remaining onset into rain over0.1s, then stop onset. Do not retrigger at handoff.",
+      "no_extra_asset_needed": true
+    },
+    "rain": {
+      "start": "Cinematic3.4 / gameplay rain clock0",
+      "duration": 7.5,
+      "needed_asset": "DD-S0204.1 broad rain loop authored as candidate; listening/runtime adoption pending.",
+      "fade_in": 0.1,
+      "fade_out_start": 6.9,
+      "fade_out_end": 7.5,
+      "proposed_gain_db": -8,
+      "stop": "Stop loop exactly7.5; no old DD-S0135.4 tail and no dedicated new end cue required.",
+      "damage": "No audio on individual1Hz damage ticks; no cinematic/instant damage; Mechanics owns seven ticks1..7.",
+      "handoff": "Dedicated rain entry at elapsed0, never old begin_from_cinematic Sean elapsed1.0.",
+      "phase_changes": "Do not restart or add streams for movement/facing/jump/ordinary fire.",
+      "candidate_manifest": "audio/sources/main-break-rain-v1/manifest.json"
+    },
+    "collapse": {
+      "existing_audio": "No dedicated pipe collapse cue currently mapped.",
+      "proposal": "Keep inert collapse silent initially; no old hinge or extended water. Optional short existing metal settle only after Art defines actual contact marker; not a delivery blocker."
+    },
+    "lifecycle": [
+      "One sustain voice and bounded preparation/onset transients.",
+      "Cinematic-to-gameplay clock handoff must consume onset once even across a hitch.",
+      "On seek past onset, only restore remaining live sound; never burst expired preparation.",
+      "Pause/focus loss freezes playback offsets; cancel/death/retry/scene exit stops all audio.",
+      "Preserve minimum-combined cinematic music duck and restore its ownership at handoff/cancel.",
+      "No new dialogue. Tony audio unchanged."
+    ],
+    "owners": {
+      "Audio": "Rain asset and final sync mapping",
+      "Art": "Tool clearance/geyser/rain/collapse visual markers",
+      "Engineering": "Runtime/controller/data integration and build",
+      "Mechanics": "Gameplay timing/damage"
+    },
+    "runtime_contract": "audio/sources/main-break-rain-v1/manifest.json#runtime_delivery"
   }
 }

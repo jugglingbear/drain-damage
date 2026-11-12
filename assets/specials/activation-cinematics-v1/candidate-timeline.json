@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "starter-special-cinematic-candidate-v1",
   "date": "2026-11-11",
-  "status": "Source-complete diagnostic pose candidate; not native-motion accepted or playable-release approved",
+  "status": "Main Break upright geyser/rain integration; native review in progress",
   "owners": {
     "art": "Bestiary / Art",
     "registration_timing": "Game Mechanics",
@@ -1616,15 +1616,15 @@
     },
     "pipe_reveal": {
       "start": 2.7,
-      "end": 3.4,
-      "renderer": "Existing pipe geometry only; presentation-only rise to exact action elapsed1.0 state at fixed socket",
-      "water_before_end": false
+      "end": 3.2,
+      "renderer": "Registered huge upright pipe translated through floor; cup detached at3.08; geyser at3.2 with zero cinematic damage",
+      "water_before_end": true,
+      "art_manifest": "assets/specials/main-break-rain-v1/manifest.json"
     },
-    "handoff_effect_elapsed": 1.0,
-    "first_damage_tick": "Due once at1.0 on first resumed simulation step; never advance damage through cinematic",
-    "water_remaining_seconds": 6.5,
-    "upright_until_effect_elapsed": 1.5,
-    "horizontal_at_effect_elapsed": 4.75
+    "handoff_effect_elapsed": 0.0,
+    "first_damage_tick": "First rain pulse at gameplay elapsed1.0; cinematic contributes no rain time or damage",
+    "water_remaining_seconds": 7.5,
+    "upright_until_effect_elapsed": 7.5
   },
   "source_sha256": {
     "assets/specials/activation-cinematics-v1/sean-easy-bridges-v1.png": "862cc0aa9fb53b51060afea5a9b0c060da48070a0076190e378e7a06c4b52876",

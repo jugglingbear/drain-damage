@@ -4124,6 +4124,13 @@
           "source_manifest": "audio/sources/starter-specials-torrent-v2/manifest.json",
           "generation_prompt": "Sean requests Tony's jetter to sound like a loud fire hose or broken hydrant: tons of water, violent and powerful. Sean's plunger and water spout should last longer. Starting target is 7\u20138 seconds for each whole special. Create a dense water roar with recorded liquid texture and original filtered turbulence, preserving headroom. Keep separate startup, sustain and shutdown assets; no gameplay implementation.",
           "provenance": "CC0 rubberduck water/splash recordings plus original deterministic filtered turbulence; earlier CC0 metal/original suction cues in Sean preview. Not a literal hydrant recording."
+        },
+        {
+          "id": "DD-S0129.5",
+          "path": "audio/alternatives/DD-S0129/DD-S0129.5.wav",
+          "name": "RAIN v1 \u00b7 7.5s rain phase with complete ending",
+          "source_manifest": "audio/sources/main-break-rain-v1/manifest.json",
+          "provenance": "Original rain-like texture layered from retained rubberduck CC0 water/splash recordings."
         }
       ]
     },
@@ -6215,6 +6222,28 @@
           "source_manifest": "audio/sources/starter-cinematic-v1/manifest.json",
           "generation_prompt": "Starter activation cinematic: Tony cranks a heavy water weapon then it trembles with trapped pressure. Short mechanical crank and escalating hardware chatter from retained CC0 metal/water recordings. Do not sound the full discharge until gameplay handoff. Sean reuses approved suction/strain/break cues. No dialogue or new damage timing.",
           "provenance": "Retained Kenney/rubberduck CC0 recordings."
+        }
+      ]
+    },
+    {
+      "id": "DD-S0204",
+      "uuid": "78abe7ca-7218-4f30-ae91-aa35ee98f7ea",
+      "key": "proposed-starter-specials/sean-rain-core",
+      "section": "Weapon sounds",
+      "group": "Sean Main Break",
+      "name": "Broad rain sustain",
+      "status": "current",
+      "paths": [
+        "assets/audio/sfx/main-break-rain-v1/rain-loop.wav"
+      ],
+      "source": "data/starter-special-audio.json#/cues",
+      "alternatives": [
+        {
+          "id": "DD-S0204.1",
+          "path": "audio/alternatives/DD-S0204/DD-S0204.1.wav",
+          "name": "RAIN v1 \u00b7 continuous3s loop",
+          "source_manifest": "audio/sources/main-break-rain-v1/manifest.json",
+          "provenance": "Original rain-like texture layered from retained rubberduck CC0 water/splash recordings."
         }
       ]
     }

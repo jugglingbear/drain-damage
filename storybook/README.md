@@ -1,6 +1,6 @@
 # Drain Damage — In pictures
 
-Concept art and playable experiments. Gameplay captures through v0.166.0.
+Concept art and playable experiments. Gameplay captures through v0.183.0.
 
 ## Concept art
 
@@ -259,6 +259,21 @@ v0.166.0 · November 4, 2026 · Candidate; bounded still review passed.
 The approved controller illustration now has runtime callouts and contextual controls.
 v0.177.0 · November 11, 2026 · Packaged native capture; independent Art layout review passed.
 
+![Sean pulls the main open.][image-62]
+
+Sean pulls the main open.
+v0.183.0 · Archived November 12, 2026 · Staged packaged review.
+
+![A huge upright geyser erupts.][image-63]
+
+A huge upright geyser erupts.
+v0.183.0 · Archived November 12, 2026 · Staged packaged review.
+
+![The burst becomes rain across the screen.][image-64]
+
+The burst becomes rain across the screen.
+v0.183.0 · Archived November 12, 2026 · Staged packaged review.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -324,3 +339,6 @@ To come. These images document development, not a finished game.
 [image-59]: 166-permanent-platforms/20261104-185313-archived-softener-contact.png
 [image-60]: 166-permanent-platforms/20261104-185313-archived-sink-contact.png
 [image-61]: 177-controller-callouts/20261111-145249-packaged-controller-callouts.png
+[image-62]: 183-main-break-rain/20261112-140211-archived-packed-1-183.png
+[image-63]: 183-main-break-rain/20261112-140211-archived-packed-1-196.png
+[image-64]: 183-main-break-rain/20261112-140211-archived-packed-1-390.png

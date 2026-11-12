@@ -13,6 +13,7 @@ var activation_id := 0
 var tick_clock := 0.0
 var tick_serial := 0
 var boss_used: Dictionary = {}
+var rain_remainders: Dictionary = {}
 var anchor := Vector2.ZERO
 var locked_facing := 1.0
 var costume := "normal"
@@ -54,6 +55,7 @@ func begin(host: Node2D, present := false) -> bool:
 	tick_serial = 0
 	activation_id += 1
 	boss_used.clear()
+	rain_remainders.clear()
 	anchor = proposed
 	locked_facing = host.facing
 	costume = host.world_art.hero_aim_art.costume
@@ -78,19 +80,20 @@ func clear_transients() -> void:
 	elapsed = 0
 	tick_clock = 0
 	boss_used.clear()
+	rain_remainders.clear()
 
 func pipe_state() -> Dictionary:
-	return {"anchor":anchor,"angle":pipe_angle(),"elapsed":elapsed,"costume":costume}
+	return {"anchor":anchor,"angle":0.0,"elapsed":1.0,"costume":costume,"rain_pipe":true,"facing":locked_facing}
 
 func retire_pipe(host: Node2D) -> void:
-	if active and hero_id == "sean" and elapsed > 0.26:
+	if active and hero_id == "sean":
 		var state := pipe_state()
 		state.spent_age = 0.0
 		state.spent_variant = host.special_art.spent_variant(state,host.special_solids())
 		spent_pipes.append(state)
 
 func rooted() -> bool:
-	return active and hero_id == "sean" and elapsed < 1.0
+	return false
 
 func movement_speed(direction: float, normal_speed: float, aim: Vector2) -> float:
 	if rooted(): return 0
@@ -106,13 +109,14 @@ func step(host: Node2D, delta: float) -> void:
 			cancel("death")
 			host.special_audio.stop()
 		return
-	if not host.specials_allowed(true): return
-	var advance := maxf(delta,0)
+	if presentation_host != null or not host.specials_allowed(true): return
+	var advance := maxf(delta,0) if is_finite(delta) else 0.0
 	for state: Dictionary in spent_pipes:
 		state.spent_age = float(state.get("spent_age",0))+advance
 	if not active: return
 	var used := minf(advance,DURATION-elapsed)
 	var end_time := elapsed+used
+	if end_time >= DURATION-0.000000001: end_time = DURATION
 	host.special_audio.advance(used)
 	var tuning: Dictionary = definition.initial_tuning.hero_overrides[hero_id]
 	var interval: float = tuning.tick_interval_seconds
@@ -120,11 +124,15 @@ func step(host: Node2D, delta: float) -> void:
 	while (tick_serial+1)*interval <= end_time+0.000001:
 		tick_serial += 1
 		elapsed = tick_serial*interval
-		var segments := water_segments(host)
-		if segments.is_empty(): continue
-		var boss_tick_damage := {"skitterling":float(tuning.boss_damage_per_tick),
-			"clogfather":float(tuning.boss_damage_per_tick)}
-		var applied: Dictionary = host.special_damage(segments,float(tuning.damage_per_tick),activation_id,boss_tick_damage)
+		var applied: Dictionary
+		if hero_id == "sean":
+			applied = host.special_rain_damage(float(tuning.damage_per_tick),activation_id,tick_serial,rain_remainders)
+		else:
+			var segments := water_segments(host)
+			if segments.is_empty(): continue
+			var boss_tick_damage := {"skitterling":float(tuning.boss_damage_per_tick),
+				"clogfather":float(tuning.boss_damage_per_tick)}
+			applied = host.special_damage(segments,float(tuning.damage_per_tick),activation_id,boss_tick_damage)
 		for key in applied: boss_used[key] = float(boss_used.get(key,0))+float(applied[key])
 	elapsed = end_time
 	tick_clock = maxf(0,elapsed-tick_serial*interval)
@@ -133,20 +141,16 @@ func step(host: Node2D, delta: float) -> void:
 		if hero_id == "sean" and not spent_pipes.is_empty():
 			spent_pipes.back().spent_age = maxf(0,advance-used)
 		active = false
+		rain_remainders.clear()
 		host.special_audio.stop()
 
 func water_width() -> float:
-	if not active: return 0
-	var strength := 1.0
-	if hero_id == "tony":
-		strength = minf(clampf(elapsed/0.35,0,1),clampf((DURATION-elapsed)/0.7,0,1))
-	else:
-		if elapsed < 1: return 0
-		strength = clampf((DURATION-elapsed)/1.5,0,1)
+	if not active or hero_id == "sean": return 0
+	var strength := minf(clampf(elapsed/0.35,0,1),clampf((DURATION-elapsed)/0.7,0,1))
 	return float(definition.initial_tuning.tony_jet_thickness_pixels)*strength
 
 func pipe_angle() -> float:
-	return locked_facing*PI*0.5*smoothstep(1.5,4.75,elapsed)
+	return 0.0
 
 func outlet(host: Node2D) -> Dictionary:
 	if hero_id == "tony":
@@ -198,8 +202,8 @@ static func overlaps(segments: Array[Dictionary], rect: Rect2) -> bool:
 func resume_from_cinematic(host: Node2D) -> void:
 	if not active or presentation_host == null: return
 	presentation_host = null
-	elapsed = 1.0 if hero_id == "sean" else 0.0
-	# The first water tick is due, not already consumed, at Sean's handoff.
-	tick_serial = 9 if hero_id == "sean" else 0
+	elapsed = 0.0
+	# Presentation never consumes rain time or creates damage debt.
+	tick_serial = 0
 	tick_clock = 0
-	host.special_audio.begin_from_cinematic(hero_id)
+	host.special_audio.begin_from_cinematic(hero_id,host.cinematic_audio)

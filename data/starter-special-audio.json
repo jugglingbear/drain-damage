@@ -133,6 +133,17 @@
       "source": "audio/alternatives/DD-S0137/DD-S0137.1.wav",
       "source_manifest": "audio/sources/starter-specials-auditions-v1/manifest.json",
       "sha256": "1fd263dfad5661a2ad6317090d5f3cede2574950ecb500856f219d79f7e559a8"
+    },
+    "sean-rain": {
+      "path": "assets/audio/sfx/main-break-rain-v1/rain-loop.wav",
+      "selected_candidate": "DD-S0204.1",
+      "slot_key": "proposed-starter-specials/sean-rain-core",
+      "label": "Broad rain sustain",
+      "group": "Sean Main Break",
+      "gain_db": -8,
+      "loop": true,
+      "sha256": "0ff2d170e98d81c55d5e42577641fba75ea3009e6d93df1b4d4975538c416892",
+      "source_manifest": "audio/sources/main-break-rain-v1/manifest.json"
     }
   },
   "duration": 7.5,
@@ -157,38 +168,13 @@
       }
     },
     "sean": {
-      "events": [
-        {
-          "time": 0,
-          "cue": "sean-seal"
-        },
-        {
-          "time": 0.3,
-          "cue": "sean-pull"
-        },
-        {
-          "time": 0.85,
-          "cue": "sean-break"
-        },
-        {
-          "time": 1,
-          "cue": "sean-erupt"
-        },
-        {
-          "time": 1.5,
-          "cue": "sean-hinge"
-        },
-        {
-          "time": 6,
-          "cue": "sean-stop"
-        }
-      ],
+      "events": [],
       "sustain": {
-        "cue": "sean-core",
-        "start": 1.1,
-        "end": 6.1,
-        "fade_in": 0.12,
-        "fade_out": 0.18
+        "cue": "sean-rain",
+        "start": 0,
+        "end": 7.5,
+        "fade_in": 0.1,
+        "fade_out": 0.6
       }
     }
   },

@@ -1,0 +1,363 @@
+{
+  "status": "first integration increment; native visual acceptance pending",
+  "pipe": {
+    "texture": "res://assets/specials/main-break-rain-v1/pipe-upright-v1.png",
+    "source_rect": [
+      75,
+      78,
+      843,
+      1439
+    ],
+    "native_size": [
+      93.73,
+      160
+    ],
+    "uniform_scale": 0.11118832522585129,
+    "foot_source": [
+      496,
+      1517
+    ],
+    "outlet_source": [
+      496,
+      164
+    ],
+    "outlet_native_from_foot": [
+      0,
+      -150.44
+    ],
+    "world_foot_offset_from_hero": [
+      44,
+      0
+    ],
+    "layer": "behind hero; floor occludes unrevealed lower portion",
+    "alpha_handling": "alpha scissor threshold0.06 removes generated near-transparent outer haze; do not display hidden RGB",
+    "native_destination_relative_floor": [
+      -46.81,
+      -160,
+      93.73,
+      160
+    ]
+  },
+  "timing": {
+    "cup_detach": 3.08,
+    "geyser_onset": 3.2,
+    "rain_start": 3.4,
+    "rain_gameplay_duration": 7.5,
+    "reveal": "Keep outlet attached to cup through3.08 at no more than43px above floor; then raise outlet to150.44 by3.2. Do not scale pipe during reveal; translate and floor-clip."
+  },
+  "water": {
+    "texture": "res://assets/specials/main-break-rain-v1/water-atlas-v1.png",
+    "geyser_a_rect": [
+      0,
+      0,
+      627,
+      627
+    ],
+    "geyser_b_rect": [
+      627,
+      0,
+      627,
+      627
+    ],
+    "rain_rect": [
+      0,
+      627,
+      627,
+      627
+    ],
+    "splash_rect": [
+      627,
+      890,
+      627,
+      250
+    ],
+    "render_notes": [
+      "Geyser origins near source local(310,608) and(310,608); anchor at outlet, crop floor-like base ripples under front lip.",
+      "Use continuous texture motion/deformation with staggered layers, not slow two-state alternation.",
+      "Rain: use sparse sampled streaks and continuous downward travel; no opaque full-screen texture. Keep HUD excluded.",
+      "Splash atlas is static motif; stagger particles at floor contacts.",
+      "Atlas is first increment; crown clipped at source top, intended to exit screen above. Native checks required."
+    ],
+    "alpha_handling": "soft alpha, no additive blend by default",
+    "rain_native_tile_size": [
+      180,
+      180
+    ],
+    "rain_scroll_speed": [
+      -20,
+      480
+    ],
+    "rain_opacity": 0.35,
+    "geyser_native_destination_relative_outlet": [
+      -100,
+      -430,
+      200,
+      430
+    ],
+    "layering": "rear duplicate alpha0.2 offset-5px, main core alpha0.9, narrow front spray alpha0.25; pipe front lip over base; hero above pipe. Separate authored front-lip extraction pending native need."
+  },
+  "remaining": [
+    "native motion/readability review and possible frame refinement",
+    "collapse platform fit: final187.4pxwide; Engineering must choose inward placement/clip only at credible floor edges",
+    "front-lip occlusion check",
+    "rain alpha/density check"
+  ],
+  "collapse": {
+    "texture": "res://assets/specials/main-break-rain-v1/pipe-collapse-v1.png",
+    "uniform_scale": 0.3426124197002141,
+    "alpha_handling": "alpha scissor0.06; background RGB must never be displayed",
+    "frames": [
+      {
+        "source_rect": [
+          99,
+          31,
+          278,
+          467
+        ],
+        "anchor_source": [
+          238,
+          498
+        ],
+        "native_destination_relative_floor": [
+          -47.62312633832976,
+          -160.0,
+          95.24625267665952,
+          160.0
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          592,
+          40,
+          324,
+          458
+        ],
+        "anchor_source": [
+          735,
+          498
+        ],
+        "native_destination_relative_floor": [
+          -48.993576017130614,
+          -156.91648822269806,
+          111.00642398286938,
+          156.91648822269806
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          1079,
+          117,
+          374,
+          381
+        ],
+        "anchor_source": [
+          1235,
+          498
+        ],
+        "native_destination_relative_floor": [
+          -53.4475374732334,
+          -130.5353319057816,
+          128.1370449678801,
+          130.5353319057816
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          33,
+          671,
+          390,
+          320
+        ],
+        "anchor_source": [
+          225,
+          991
+        ],
+        "native_destination_relative_floor": [
+          -65.78158458244111,
+          -109.63597430406851,
+          133.6188436830835,
+          109.63597430406851
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          474,
+          784,
+          472,
+          207
+        ],
+        "anchor_source": [
+          710,
+          991
+        ],
+        "native_destination_relative_floor": [
+          -80.85653104925053,
+          -70.92077087794432,
+          161.71306209850107,
+          70.92077087794432
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          968,
+          872,
+          547,
+          119
+        ],
+        "anchor_source": [
+          1240,
+          991
+        ],
+        "native_destination_relative_floor": [
+          -93.19057815845824,
+          -40.77087794432548,
+          187.4089935760171,
+          40.77087794432548
+        ],
+        "duration_seconds": 0.125
+      }
+    ],
+    "duration_seconds": 0.75,
+    "final_height": 40.77087794432548,
+    "final_width": 187.4089935760171,
+    "facing": "mirror destination around world floor anchor only",
+    "notes": "Candidate crumple; all frames source scale matched by first frame160px. Preserve original upright for initial hold; discrete six-pose cadence needs native review. Final retained pile is40.8pxhigh, not yet approved low-profile silhouette."
+  },
+  "collapse_compact": {
+    "texture": "res://assets/specials/main-break-rain-v1/pipe-collapse-compact-v2.png",
+    "uniform_scale": 0.3418803418803419,
+    "alpha_handling": "alpha scissor0.06",
+    "frames": [
+      {
+        "source_rect": [
+          99,
+          29,
+          277,
+          468
+        ],
+        "anchor_source": [
+          237.5,
+          497
+        ],
+        "native_destination_relative_floor": [
+          -47.35042735042735,
+          -160.0,
+          94.7008547008547,
+          160.0
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          618,
+          107,
+          279,
+          389
+        ],
+        "anchor_source": [
+          757.5,
+          496
+        ],
+        "native_destination_relative_floor": [
+          -47.69230769230769,
+          -132.991452991453,
+          95.38461538461539,
+          132.991452991453
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          1135,
+          207,
+          290,
+          290
+        ],
+        "anchor_source": [
+          1280.0,
+          497
+        ],
+        "native_destination_relative_floor": [
+          -49.572649572649574,
+          -99.14529914529915,
+          99.14529914529915,
+          99.14529914529915
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          98,
+          756,
+          284,
+          239
+        ],
+        "anchor_source": [
+          240.0,
+          995
+        ],
+        "native_destination_relative_floor": [
+          -48.547008547008545,
+          -81.70940170940172,
+          97.09401709401709,
+          81.70940170940172
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          612,
+          816,
+          291,
+          179
+        ],
+        "anchor_source": [
+          757.5,
+          995
+        ],
+        "native_destination_relative_floor": [
+          -49.743589743589745,
+          -61.1965811965812,
+          99.48717948717949,
+          61.1965811965812
+        ],
+        "duration_seconds": 0.125
+      },
+      {
+        "source_rect": [
+          1133,
+          850,
+          296,
+          145
+        ],
+        "anchor_source": [
+          1281.0,
+          995
+        ],
+        "native_destination_relative_floor": [
+          -50.598290598290596,
+          -49.572649572649574,
+          101.19658119658119,
+          49.572649572649574
+        ],
+        "duration_seconds": 0.125
+      }
+    ],
+    "duration_seconds": 0.75,
+    "native_union_bounds": [
+      -50.598290598290596,
+      -160,
+      101.19658119658119,
+      160
+    ],
+    "final_height": 49.572649572649574,
+    "final_width": 101.19658119658119,
+    "status": "candidate requiring native review; slightly exceeds94pxtarget",
+    "notes": "Fixed source scale across frames, grounded center anchors. Actualmaxwidth101.2px, finalheight49.6px; do not clip to94. Dense inward fold retains flange mass; no per-frame resizing."
+  }
+}

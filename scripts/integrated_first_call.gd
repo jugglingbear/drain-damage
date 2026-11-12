@@ -311,6 +311,27 @@ func specials_allowed(ignore_active := false) -> bool:
 	return not flush.active and not boss_intro.blocking() and not ending.active() \
 		and not intro_input_release and super.specials_allowed(ignore_active)
 
+func main_break_rain_targets(activation: int, tick: int) -> Array[Dictionary]:
+	var result := super.main_break_rain_targets(activation,tick)
+	var attack_id := "rain-%d-%d" % [activation,tick]
+	if skitterling.encounter.hp > 0:
+		result.append({"id":"skitterling","hp":skitterling.encounter.hp,"integer":true,
+			"regions":skitterling.target_regions(),
+			"damage":func(amount: float) -> float: return skitterling.damage(self,int(amount))})
+	if clogfather.encounter.hp > 0:
+		result.append({"id":"clogfather","hp":clogfather.encounter.hp,"integer":true,
+			"regions":[clogfather.target_rect()],
+			"damage":func(amount: float) -> float:
+				return clogfather.damage(self,int(amount),attack_id,not grounded)})
+	for target: Dictionary in clogfather.gas_targets():
+		for hazard: Dictionary in clogfather.encounter.hazards:
+			if hazard.kind != "gas" or hazard.id != target.id: continue
+			result.append({"id":"gas-"+str(target.id),"hp":hazard.hp,"integer":true,"regions":[target.rect],
+				"damage":func(amount: float) -> float:
+					return clogfather.damage_gas(self,str(target.id),int(amount),attack_id)})
+			break
+	return result
+
 func special_damage(segments: Array[Dictionary], amount: float, activation: int, boss_tick_damage: Dictionary) -> Dictionary:
 	var applied := super.special_damage(segments,amount,activation,boss_tick_damage)
 	for region: Rect2 in skitterling.target_regions():

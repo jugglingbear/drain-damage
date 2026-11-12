@@ -3,6 +3,8 @@ extends RefCounted
 const WATER := "res://assets/specials/starter-v1/water-manifest-v1.json"
 const PIPE := "res://assets/specials/starter-v1/pipe-manifest-v2.json"
 const SPENT := "res://assets/specials/spent-pipe-collapse-v3/manifest-v4.json"
+const RainArt = preload("res://scripts/main_break_rain_art.gd")
+var rain := RainArt.new()
 const ACTIONS := "res://assets/specials/starter-v1/sean-actions-manifest-v1.json"
 var water: Dictionary = {}
 var frames: Dictionary = {}
@@ -47,6 +49,7 @@ func extracted(original: Image, region: Array, opaque := false) -> Texture2D:
 
 func prepare(yield_frame := Callable()) -> void:
 	if not water.is_empty(): return
+	rain.prepare()
 	water = JSON.parse_string(FileAccess.get_file_as_string(WATER))
 	var source: Texture2D = load("res://"+water.path)
 	var original := source.get_image()
@@ -97,31 +100,9 @@ func pipe_rise(state: Dictionary) -> float:
 	var height: float = 48+poses[3].cup_relative_to_feet[1]
 	return height*(1-smoothstep(0.85,1,state.elapsed))
 
-func draw_hero(game: Node2D) -> bool:
-	var special = game.specials
-	if not special.active or special.hero_id != "sean" or special.elapsed >= 1: return false
-	var feet: Vector2 = game.player+Vector2(13,46)
-	var activation_feet: Vector2 = special.anchor-Vector2(44*special.locked_facing,0)
-	# Knockback must not visually tether the hero to a pipe he is no longer reaching.
-	if not game.grounded or feet.distance_to(activation_feet) > 4: return false
-	var pose := action_pose(special.elapsed,special.costume)
-	var poses: Array = actions.heroes[special.costume].frames
-	game.draw_ellipse_shadow(feet,Vector2(23,3))
-	var basis := Transform2D(Vector2(special.locked_facing,0),Vector2(0,1),Vector2.ZERO)
-	basis.origin = feet-Vector2(floorf(game.camera_x),0)-basis*Vector2(64,104)
-	game.draw_set_transform_matrix(basis)
-	for index in range(2):
-		var frame: int = pose.index+index
-		if frame >= poses.size(): continue
-		var alpha: float = 1-pose.blend if index == 0 else pose.blend
-		if alpha <= 0: continue
-		var d: Array = poses[frame].destination
-		game.draw_texture_rect(action_textures[special.costume][frame],Rect2(d[0],d[1],d[2],d[3]),
-			false,Color(1,1,1,alpha))
-	if pose.index == 5:
-		game.world_art.hero_aim_art.draw(game,Color(1,1,1,pose.blend))
-	game.draw_set_transform(Vector2(-floorf(game.camera_x),0))
-	return true
+func draw_hero(_game: Node2D) -> bool:
+	# Hero/tool poses belong to the cinematic; rain never replays the old planting action.
+	return false
 
 func pipe_vertices(state: Dictionary, key: String, crop: Rect2) -> PackedVector2Array:
 	var layer: Dictionary = pipe.layers[key]
@@ -177,6 +158,7 @@ func draw_pipe_piece(game: Node2D, key: String, state: Dictionary, alpha := 1.0)
 					draw_clipped(game,clipped,clipped_uv,pipe_textures[key],PackedColorArray([Color(1,1,1,alpha)]))
 
 func spent_variant(state: Dictionary, solids: Array[Rect2]) -> String:
+	if state.get("rain_pipe",false): return rain.spent_variant(state,solids)
 	# Check every pose, including the widest intermediate fold, before locking the variant.
 	for frame: Dictionary in spent.variants.normal.frames:
 		var d: Array = frame.assembly_bounds_ltrb
@@ -195,6 +177,9 @@ func spent_pose(age: float, variant := "normal") -> Dictionary:
 	return {"index":int(contract.settled_frame)}
 
 func draw_spent_pipe(game: Node2D, state: Dictionary) -> void:
+	if state.get("rain_pipe",false):
+		rain.draw_spent(game,state)
+		return
 	var variant: String = state.spent_variant
 	var pose := spent_pose(state.spent_age,variant)
 	if pose.index < 0:
@@ -217,15 +202,13 @@ func draw_back(game: Node2D) -> void:
 	for state: Dictionary in game.specials.spent_pipes: draw_spent_pipe(game,state)
 	if game.has_method("start_special_cinematic") and game.cinematic.active: return
 	if not game.specials.active or game.specials.hero_id != "sean": return
-	draw_pipe_piece(game,"lower",game.specials.pipe_state())
-	draw_pipe_piece(game,"upper_back",game.specials.pipe_state())
+	rain.draw_active_pipe(game)
 
 func draw_front(game: Node2D) -> void:
 	if game.has_method("start_special_cinematic") and game.cinematic.active: return
 	draw_water(game)
 	if game.specials.active and game.specials.hero_id == "sean":
-		draw_pipe_piece(game,"front_rim",game.specials.pipe_state())
-		draw_pipe_piece(game,"collar",game.specials.pipe_state())
+		rain.draw_rain(game)
 
 func water_patch(game: Node2D, texture: Texture2D, destination: Rect2, segment: Dictionary,
 		color := Color.WHITE, role := "bloom") -> void:

@@ -11,6 +11,7 @@ var elapsed := 0.0
 var next_event := 0
 var cursor := 0
 var event_starts: Dictionary = {}
+var voice_events: Array[String] = []
 
 func attach(host: Node) -> void:
 	dispose()
@@ -24,6 +25,7 @@ func attach(host: Node) -> void:
 		voice.bus = "Master"
 		host.add_child(voice)
 		voices.append(voice)
+		voice_events.append("")
 	event_starts.clear()
 
 func begin(id: String) -> void:
@@ -37,8 +39,10 @@ func advance(delta: float) -> void:
 	if not active or paused: return
 	elapsed += maxf(delta,0)
 	if elapsed >= float(definition.heroes[hero].duration):
-		for voice in voices: voice.stop()
 		elapsed = float(definition.heroes[hero].duration)
+		_dispatch()
+		for index in range(voices.size()):
+			if hero != "sean" or voice_events[index] != "sean-erupt": voices[index].stop()
 		active = false
 		return
 	_dispatch()
@@ -65,6 +69,7 @@ func _play(event: String, offset: float) -> void:
 	var stream: AudioStreamWAV = streams[event]
 	if offset >= stream.get_length() or AudioServer.is_bus_mute(0): return
 	var voice := voices[cursor]
+	voice_events[cursor] = event
 	cursor = (cursor+1) % voices.size()
 	voice.stop()
 	voice.stream = stream
@@ -72,6 +77,15 @@ func _play(event: String, offset: float) -> void:
 	voice.play(offset)
 	voice.stream_paused = paused
 	event_starts[event] = int(event_starts.get(event,0))+1
+
+func exchange_geyser_voice(replacement: AudioStreamPlayer) -> AudioStreamPlayer:
+	for index in range(voices.size()):
+		if voice_events[index] == "sean-erupt" and voices[index].playing:
+			var result := voices[index]
+			voices[index] = replacement
+			voice_events[index] = ""
+			return result
+	return null
 
 func set_paused(value: bool) -> void:
 	paused = value
@@ -94,5 +108,6 @@ func dispose() -> void:
 		voice.stream = null
 		voice.queue_free()
 	voices.clear()
+	voice_events.clear()
 	streams.clear()
 	definition.clear()

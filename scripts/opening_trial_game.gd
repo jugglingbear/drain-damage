@@ -492,6 +492,20 @@ func damage_trial_actor(actor: Dictionary, amount: float) -> void:
 	elif actor.hp < previous_hp:
 		creature_audio["devil-spider" if actor.get("variant","") == "devil" else AUDIO_IDS[actor.role]].play_hit(actor, float(actor.get("age", elapsed)))
 
+func main_break_rain_targets(activation: int, tick: int) -> Array[Dictionary]:
+	var result := super.main_break_rain_targets(activation,tick)
+	var rain = preload("res://scripts/main_break_rain_damage.gd")
+	for actor: Dictionary in actors:
+		if actor.hp <= 0: continue
+		var regions: Array[Rect2] = []
+		if actor.active and not MonsterEntry.active(actor): regions.append(actor_projectile_rect(actor))
+		result.append({"id":rain.target_id(actor),"hp":actor.hp,"regions":regions,
+			"damage":func(amount: float) -> float:
+				var before: float = actor.hp
+				damage_trial_actor(actor,amount)
+				return before-float(actor.hp)})
+	return result
+
 func special_damage(segments: Array[Dictionary], amount: float, activation: int, boss_remaining: Dictionary) -> Dictionary:
 	var applied := super.special_damage(segments,amount,activation,boss_remaining)
 	for actor: Dictionary in actors:

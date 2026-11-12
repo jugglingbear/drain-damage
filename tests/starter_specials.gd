@@ -122,7 +122,7 @@ func check_motion_and_geometry() -> void:
 	game.grounded = true
 	check(special.begin(game),"Sean begins at supported clear pipe site")
 	var anchor: Vector2 = special.anchor
-	check(special.rooted() and special.water_segments(game).is_empty(),"Plant phase roots Sean without premature damage")
+	check(not special.rooted() and special.water_segments(game).is_empty(),"Sean moves freely without legacy jet damage")
 	special.elapsed = 1
 	check(not special.rooted(),"Sean can move after release")
 	game.player.x += 100
@@ -131,14 +131,14 @@ func check_motion_and_geometry() -> void:
 	check(special.anchor == anchor and special.locked_facing == 1,"Hero/camera/turn cannot rebase pipe or reverse sweep")
 	check(special.outlet(game).direction.is_equal_approx(Vector2.UP),"Eruption starts vertically")
 	special.elapsed = 1.5
-	check(is_zero_approx(special.pipe_angle()),"Half a second of upright spray before tipping")
+	check(is_zero_approx(special.pipe_angle()),"Rain source stays upright after onset")
 	special.elapsed = 1.6
-	check(special.pipe_angle() > 0,"Pipe begins tipping immediately after upright hold")
+	check(is_zero_approx(special.pipe_angle()),"Rain source stays upright")
 	special.elapsed = 4.75
-	check(special.outlet(game).direction.is_equal_approx(Vector2.RIGHT),"Pipe reaches locked-facing horizontal")
-	check(not special.water_segments(game).is_empty(),"Horizontal pipe flow clears supporting floor")
+	check(special.outlet(game).direction.is_equal_approx(Vector2.UP),"Rain source remains vertical")
+	check(special.water_segments(game).is_empty(),"Rain bypasses legacy pipe jet")
 	special.elapsed = 7
-	check(special.water_width() > 0 and special.water_width() < 52,"Sputter narrows visible and damaging envelope")
+	check(special.water_width() == 0,"Rain never enables legacy jet damage")
 	dispose(game)
 
 func check_damage_cadence(hz: int) -> void:
@@ -189,7 +189,7 @@ func check_boss_damage() -> void:
 	before = boss.hp
 	game.special_damage(segments,12,100,{"clogfather":12})
 	check(boss.hp == before,"Closed boss remains invulnerable")
-	for hero in ["tony","sean"]:
+	for hero in ["tony"]:
 		game.specials.configure(hero,"first-call")
 		var tuning: Dictionary = game.specials.definition.initial_tuning.hero_overrides[hero]
 		boss.hp = boss.max_hp
@@ -222,7 +222,7 @@ func check_boss_damage() -> void:
 		check(rat.hp == rat_before and boss.hp == boss_before,"Hidden rat and grounded high-window hits remain blocked")
 	dispose(game)
 
-func check_sean_damage_parity(hz: int) -> void:
+func check_sean_rain_cadence(hz: int) -> void:
 	var game := prepare(Section,"sean")
 	game.create_actor({"id":"sean-water-target","role":"runner","warning_seconds":0},Vector2(177,240))
 	var target: Dictionary = game.actors.back()
@@ -235,7 +235,7 @@ func check_sean_damage_parity(hz: int) -> void:
 	game.specials.step(game,1.05)
 	target.hp = 10000
 	for tick in range(hz): game.step_player(1.0/hz)
-	check(is_equal_approx(10000-target.hp,240),"Sean matches Tony at240DPS at "+str(hz)+"Hz")
+	check(is_equal_approx(10000-target.hp,37.5),"Sean receives one 37.5 rain tick at "+str(hz)+"Hz")
 	dispose(game)
 
 func check_physical_recoil(hz: int) -> void:
@@ -323,7 +323,7 @@ func check_spent_pipes() -> void:
 	check(not special.active and special.spent_pipes.size() == 1,"Expiry retains one spent main")
 	check(special.water_segments(game).is_empty() and not game.special_audio.active,"Spent main has no water or audio")
 	var first: Dictionary = special.spent_pipes[0].duplicate()
-	check(is_equal_approx(first.angle,PI*0.5),"Completed main retains horizontal angle")
+	check(is_zero_approx(first.angle) and first.rain_pipe,"Completed rain main retains upright collapse origin")
 	game.player.x += 120
 	check(special.begin(game),"Second use begins separately")
 	special.step(game,0.6)
@@ -366,7 +366,7 @@ func checks() -> void:
 	for hero in ["tony","sean"]: check_budget_and_input(hero)
 	check_motion_and_geometry()
 	for hz in [30,60,120]: check_damage_cadence(hz)
-	for hz in [30,60,120]: check_sean_damage_parity(hz)
+	for hz in [30,60,120]: check_sean_rain_cadence(hz)
 	check_boss_damage()
 	for hz in [30,120]: check_physical_recoil(hz)
 	for script in [Section,Integrated]: check_actual_respawn(script)
