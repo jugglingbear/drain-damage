@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Integration contract; user-approved behavior with initial tunings pending playtest",
+  "status": "Sean viewport-rain redesign approved November12; runtime/assets pending. Tony retains current behavior.",
   "owner": "Game Mechanics",
   "runtime_owner": "Engineering",
   "art_owner": "Art",
@@ -10,7 +10,7 @@
     "refills": false,
     "duration_starting_point_seconds": 7.5,
     "gamepad": "B",
-    "range": "Reach the current viewport edge along the stream direction",
+    "range": "Tony: aimed stream to current viewport edge. Sean: current gameplay viewport AoE, sampled independently each rain pulse.",
     "hud": "Option A approved by Sean: attached side module with square current-weapon icon and two special-use indicators; preserve existing pictorial health/lives."
   },
   "input": {
@@ -27,8 +27,8 @@
     ],
     "gamepad_b_context": "Dialogue/menu B behavior stays; release before gameplay special can activate",
     "empty": "No action or spend; optional short feedback only on fresh press",
-    "normal_fire": "Suppressed during active special",
-    "stationary_diagonal_aim": "Hold Z/LB for up-left or V/RB for up-right. Tony can steer his active jet with these controls; recoil remains. Sean retains his activation-facing lock.",
+    "normal_fire": "Tony remains suppressed during special. Preserve current Sean regular fire after cinematic/control return; do not reintroduce suppression.",
+    "stationary_diagonal_aim": "Existing stationary diagonal controls continue to steer Tony jet and ordinary weapon aim. Sean rain coverage is independent of aim; capture facing only for animation/socket registration.",
     "unsupported_mode": "Reject activation without spending; retain logical-level budget for supported combat."
   },
   "lifecycle": {
@@ -63,7 +63,7 @@
     }
   },
   "initial_tuning": {
-    "status": "Sean approved 240 DPS against regular enemies and 120 DPS against bosses, with no total boss damage cap.",
+    "status": "Shipped Prototype182 tuning consumed by combat-data. Approved rain replacement is preserved in main_break_revision.approved_tuning and is not active yet.",
     "damage_per_tick": 24,
     "tick_interval_seconds": 0.1,
     "boss_rules": "Respect existing invulnerability, weak-point and phase transition gates; no total damage cap. Track actual applied damage as telemetry only.",
@@ -97,12 +97,13 @@
     "boss_sustained_damage_per_second": 120
   },
   "geometry": {
-    "damage": "Only actual visible water envelope can damage; no global screen damage",
+    "damage": "Tony damages only its visible stream envelope; Sean damages eligible targets in the visible rain-covered gameplay viewport.",
     "reach": "Ray extends from registered outlet to current viewport boundary in aimed direction",
     "occlusion": "Clip visible stream and damage against actual projectile-blocking solid geometry; scenery decoration does not block",
     "thickness": "Use full stream width for occlusion and hit tests; no damaging unseen strips past a wall",
     "world_anchors": "Pipe and outlet remain world-anchored through camera scroll; no camera-driven teleport",
-    "fade": "Visible shrinking water and damaging envelope shrink together"
+    "fade": "Visible shrinking water and damaging envelope shrink together",
+    "scope": "Existing stream envelope/occlusion/reach/thickness/fade fields below apply to Tony only. Sean uses sean.rain_targeting."
   },
   "tony": {
     "weapon": "pressure-gun",
@@ -134,57 +135,76 @@
     "name": "Main Break",
     "timeline": [
       {
-        "phase": "plant",
+        "phase": "viewport_rain_after_cinematic",
         "start": 0,
-        "end": 0.3
-      },
-      {
-        "phase": "strain",
-        "start": 0.3,
-        "end": 0.85
-      },
-      {
-        "phase": "break",
-        "start": 0.85,
-        "end": 1
-      },
-      {
-        "phase": "vertical",
-        "start": 1,
-        "end": 1.5
-      },
-      {
-        "phase": "tilt",
-        "start": 1.5,
-        "end": 4.75
-      },
-      {
-        "phase": "horizontal",
-        "start": 4.75,
-        "end": 6
-      },
-      {
-        "phase": "sputter",
-        "start": 6,
         "end": 7.5
       }
     ],
     "activation": "Requires supported ground and room for the Art-registered pipe assembly; rejected activation does not consume charge",
-    "movement": "Root during first second; then normal movement while pipe continues independently at original position",
-    "facing": "Lock sweep direction at accepted activation",
-    "water": "Three-foot main with full-bore ceiling-reaching eruption; rotate outlet and water together toward facing horizontal, maintaining heavy flow until sputter",
-    "art": "Use approved v3 direction, physically connected base and outlet; no cup blocking emitted water",
+    "movement": "Cinematic freezes gameplay. At handoff start rain clock0 and restore normal movement/jump/ordinary fire immediately. Pipe is already emerged; never root Sean or replay preparation based on rain elapsed. Pipe stays world anchored; rain follows current viewport.",
+    "facing": "Captured facing registers hero/tool/socket only. Pipe eruption is straight up; no tilt or horizontal sweep.",
+    "water": "Huge vertical geyser during final cinematic reveal, after cup clears outlet; no cinematic damage. At control return, rain covers current gameplay screen for7.5seconds. Individual drops are presentation only.",
+    "art": "Art supplies upright pipe/geyser and layered rain preserving silhouettes, HUD readability and selected costume. Reuse registered effort poses; no duplicated board/tool/pipe or unsupported outlet. Preserve existing sources.",
     "damage_window_seconds": [
-      1,
+      0,
       7.5
     ],
     "spent_pipe": {
-      "presentation": "Retain the bent main at its original world anchor as inert scenery behind the hero after the special expires.",
+      "presentation": "Only after rain ends, begin the currently approved inert pipe retirement/collapse treatment from its ACTUAL upright final pose. Previously reviewed horizontal-start collapse cannot be assumed compatible.",
       "gameplay": "No collision, support, damage, water or continuing special audio. Never count as a platform or change navigation.",
-      "interruption": "On death or cancellation, freeze the last actually rendered pipe pose at its supported anchor; do not create a pipe if none has emerged. Stop water and special audio immediately.",
-      "lifetime": "Clear at level teardown or scene reset; scene cleanup does not refund spent charges.",
+      "interruption": "Death/cancel clears active rain, active/spent props and all special audio under current attempt cleanup; no refund.",
+      "lifetime": "Clear at attempt teardown/reset; any retained/collapsing prop is harmless scenery and never extends rain damage.",
       "limit": "At most two retained pipes per logical level, matching its two-use budget.",
       "visual_review": "Keep ground contact and scenery occlusion correct; verify the spent prop does not obscure floor hazards, hero feet or active enemies."
+    },
+    "rain_clock": {
+      "clock_domain": "Independent gameplay rain clock, starts0 AFTER cinematic finishes; never charge presentation time against rain duration.",
+      "effect_handoff_elapsed": 0.0,
+      "effect_end_elapsed": 7.5,
+      "rain_duration_seconds": 7.5,
+      "first_tick_after_handoff_seconds": 1.0,
+      "tick_interval_seconds": 1.0,
+      "tick_effect_elapsed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "last_tick_after_handoff_seconds": 7.0,
+      "eligible_ticks_per_activation": 7,
+      "ideal_damage_per_target": 262.5,
+      "expiry": "Visual rain ends at handoff+7.5; no immediate tick, expiry bonus or fractional last tick. No damage during entire cinematic, pause or teardown.",
+      "hitches": "Process each genuinely elapsed rain interval once; no presentation catch-up. Host simulation must substep camera/target state if processing several intervals.",
+      "pose_handoff": "Clock0 means rain start, not old plant pose. Preserve fully emerged upright pipe and free hero control independently of legacy special elapsed."
+    },
+    "rain_targeting": {
+      "viewport": "Current host gameplay viewport in world coordinates at each pulse, normally Rect2(camera_x,0,960,540); use restored gameplay camera, not cinematic zoom.",
+      "eligibility": "Living hostile entity currently admitted/damageable, with a positive-area intersection between an existing damageable region and viewport. Re-evaluate each pulse; newly admitted entrants may be hit on next pulse, offscreen targets cannot. Fully hidden/pre-entry/spawn-immune actors remain excluded.",
+      "include": [
+        "Regular enemies including flyers and Cuddlebugs",
+        "Bosses/mini-bosses through current damage/vulnerability APIs",
+        "Existing hostile objects with destructible HP, including Clogfather gas and reinforcement monsters"
+      ],
+      "exclude": [
+        "Sean/Tony/other allies",
+        "Scenery/platforms/props/water regardless of destructibility",
+        "Corpses and inert spent pipes",
+        "Indestructible projectiles, acid pools, floor webs or other hazards without a damageable HP API"
+      ],
+      "occlusion": "Viewport-wide rain supersedes Sean line-of-sight/solid clipping; ordinary walls/platforms do not shield eligible on-screen targets. Do not alter Tony occlusion.",
+      "dedup": "One hit per logical target per activation/tick. One aggregate swarm HP pool, one boss despite multiple body regions; each independent destructible hazard its own stable ID.",
+      "boss_gates": "Preserve closed-shell, weak-point, phase and airborne-hero qualifications; no damage banked while ineligible.",
+      "no_extra_effects": "No self/environment damage, stun, slow, forced displacement or projectile clearing added."
+    },
+    "fractional_damage": {
+      "float_hp": "Apply37.5 directly through float-capable target APIs.",
+      "integer_api": "Maintain remainder per activation and stable target identity. On an eligible accepted hit, total=37.5+remainder; deal floor(total), retain fractional remainder. First/second eligible hits37/38, then repeat; never truncate every tick to37.",
+      "rejected_hits": "Blocked/invulnerable/offscreen ticks neither accumulate nor consume remainder. Existing accepted remainder survives temporary ineligibility only within same activation; no skipped damage catch-up.",
+      "identity": "Do not share remainder between targets; boss identity may span forms only when same logical health pool. New target/respawn gets fresh remainder.",
+      "cleanup": "Clear on target death, effect expiry, cancel, level/reset/teardown; no carry into another activation. HP clamp/kill occurs through existing target API."
     }
   },
   "acceptance": [
@@ -193,12 +213,15 @@
     "Death/checkpoint/retry preserve remaining budget; genuine new level/new run initializes two",
     "Pause and teardown correctly control effect/audio lifecycle",
     "Tony idle slide, half-speed counterwalk, aim reversal and jump stay collision-safe",
-    "Sean unsupported activation rejected, stable world anchor, ceiling-to-horizontal sweep and sputter match visible water",
-    "Visible-envelope-only damage and solid occlusion; stable results at30/60/120Hz",
     "Uncapped boss damage continues across form changes and respects closed weak points",
     "Current weapon icon and2/1/0 indicators preserve selected-hero HP/lives and approved themes",
     "Art reviews captured actual motion, contact, jet scale and crowded boss framing; Audio checks sustained loops and mix",
-    "Tony: release special and ordinary fire after activation; visible water keeps damaging at 24 per 0.1 seconds (240 sustained DPS) at 30/60/120Hz. Sean also deals 24 per 0.1 seconds (240 sustained DPS). Bosses receive 12 per 0.1 seconds (120 DPS) with no total cap, respecting vulnerability gates."
+    "Sean: cinematic vertical eruption causes no damage; control return begins7.5s viewport rain; exactly seven pulses at+1..+7seconds,37.5 per eligible target per pulse.",
+    "Tony remains24/.1 regular,12/.1 boss, unchanged stream clipping/aim/recoil/duration.",
+    "Sean: camera movement, entrants/exits, multi-region bosses and aggregate swarms receive one eligible hit per pulse; no extra raindrop hits or wall shelter.",
+    "Fractional float and integer37/38 paths preserve intended average; rejected hits do not bank damage; boss gates, target death and remaining charges remain correct.",
+    "Pause/cinematic/cancel have zero rain-clock advancement or late ticks; variable30/60/120Hz and large-step behavior matches tick count.",
+    "Pipe retirement begins after rain ends; upright geometry transitions need Art/native review."
   ],
   "runtime_interface": {
     "script": "scripts/starter_specials.gd",
@@ -221,7 +244,55 @@
       "end",
       "width"
     ],
-    "host_damage_callback": "special_damage(segments, amount, activation_id, boss_tick_damage) -> Dictionary; reports actual boss damage for telemetry",
+    "host_damage_callback": "Tony retains special_damage(segments,amount,activation_id,boss_tick_damage). Engineering adds viewport-target enumeration for Sean rain using existing target damage APIs, stable target IDs and per-tick dedup; no synthetic raindrop projectiles.",
     "tuning_source": "Generated data/combat.json; canonical weapon metadata carries special settings. This design contract is documentation and is not required in the exported package."
+  },
+  "main_break_revision": {
+    "date": "2026-11-12",
+    "approved": "Sean pulls up huge pipe; huge water blast straight up during cinematic, followed by screen-wide rain. Everything eligible hostile on screen takes damage every1.0seconds at half Sean normal weapon DPS. Tony unchanged. Sean subsequently clarified actual rain lasts7.5seconds AFTER cinematic; presentation does not consume rain time.",
+    "implementation_defaults": "Preserve3.4s presentation, two-use budget, current boss gates and no boss total cap. Explicit clarified rain duration7.5s after handoff supersedes earlier proposed6.5s legacy-offset mapping. First pulse after one full second.",
+    "supersedes": "Sean facing sweep, tilting/horizontal damaging jet,0.1s ticks,240 regular/120 boss DPS and immediate effectelapsed1.0 damage. Preserve source artwork and prior evidence.",
+    "approved_tuning": {
+      "status": "Tony unchanged at240 regular/120 boss DPS. Sean rain approved at half current normal75DPS =37.5DPS.",
+      "damage_per_tick": 24,
+      "tick_interval_seconds": 0.1,
+      "boss_rules": "Respect existing invulnerability, weak-point and phase transition gates; no total damage cap. Track actual applied damage as telemetry only.",
+      "enemy_rules": "At most one hit per logical target per scheduled tick; never multiply by drops, body regions or stream pieces.",
+      "recoil_horizontal_pixels_per_second": 30,
+      "tony_jet_thickness_pixels": 52,
+      "default_damage_scope": "Shared24/.1 and12boss fields remain Tony defaults only. Sean uses explicit hero override.",
+      "hero_overrides": {
+        "tony": {
+          "damage_per_tick": 24,
+          "tick_interval_seconds": 0.1,
+          "sustained_damage_per_second": 240,
+          "active_regular_damage": 12,
+          "active_regular_interval_seconds": 0.16,
+          "active_regular_sustained_damage_per_second": 75,
+          "special_to_regular_ratio": 3.2,
+          "comparison": "Current First Call profile, not legacy canonical 6 damage / 0.15 seconds. Assumes continuous overlap and an eligible target.",
+          "boss_damage_per_tick": 12,
+          "boss_sustained_damage_per_second": 120
+        },
+        "sean": {
+          "damage_per_tick": 37.5,
+          "tick_interval_seconds": 1.0,
+          "sustained_damage_per_second": 37.5,
+          "active_regular_damage": 18,
+          "active_regular_interval_seconds": 0.24,
+          "active_regular_sustained_damage_per_second": 75,
+          "special_to_regular_ratio": 0.5,
+          "reference_profile": "design/first-call-action/opening-trial-balance.json#weapons.heavy-plunger-launcher",
+          "status": "User-approved half-normal-DPS viewport rain; current18/.24 profile verified November12. Legacy top-level weapon24/1 is not runtime balance.",
+          "boss_damage_per_tick": 37.5,
+          "boss_sustained_damage_per_second": 37.5,
+          "boss_total_cap": null,
+          "boss_rules": "Same37.5 requested for all eligible hostile damageables supersedes prior separate boss rate. Preserve existing vulnerability/phase/high-weakpoint rules, including hero-airborne qualification where required; rain direction alone does not bypass gates."
+        }
+      },
+      "boss_damage_per_tick": 12,
+      "boss_sustained_damage_per_second": 120
+    },
+    "integration_gate": "Approved tuning is pending production assets and atomic runtime/weapon/generated-data integration. The build consumes initial_tuning, which retains Prototype182 behavior until that delivery."
   }
 }

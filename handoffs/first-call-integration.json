@@ -803,6 +803,12 @@
     "warnings": [
       "Starter specials test reports7ObjectDB instances at shutdown; assertions pass",
       "Sandbox CA/editor-settings diagnostics; export and signing succeeded"
-    ]
+    ],
+    "build_input_repair": {
+      "date": "2026-11-12",
+      "cause": "Pending rain tuning was written into active initial_tuning before weapon/runtime integration, breaking combat-data validation.",
+      "resolution": "Preserve approved rain tuning in main_break_revision.approved_tuning; initial_tuning retains shipped Prototype182 values until atomic integration.",
+      "runtime_change": false
+    }
   }
 }

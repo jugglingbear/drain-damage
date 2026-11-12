@@ -3,7 +3,7 @@
   "id": "starter-special-activation-cinematics-v1",
   "date": "2026-11-05",
   "timezone": "America/Los_Angeles",
-  "status": "Authorized production contract; assets, runtime integration and visual acceptance pending",
+  "status": "Production cinematic contract updated for approved November12 Sean rain redesign; asset/runtime revision and native acceptance pending.",
   "owners": {
     "package": "Bestiary / Art",
     "mechanics_contract": "Game Mechanics",
@@ -11,7 +11,7 @@
     "runtime_integration_and_build": "Engineering"
   },
   "authorization": "Sean requested completion of both starter activation animations with Art and Mechanics, followed by Engineering handoff for his playtest.",
-  "timing_decision": "Art and Mechanics selected Tony 3.2 seconds and Sean 3.4 seconds for every accepted activation. Production targets within Sean's requested 3–4 seconds; not individually measured durations from reference games.",
+  "timing_decision": "Art and Mechanics selected Tony 3.2 seconds and Sean 3.4 seconds for every accepted activation. Production targets within Sean's requested 3\u20134 seconds; not individually measured durations from reference games.",
   "scope": {
     "heroes": [
       "tony",
@@ -35,9 +35,9 @@
       "skip interaction",
       "new settings UI",
       "new QTE or button mashing",
-      "new damage or charge balance",
       "new voice dialogue"
-    ]
+    ],
+    "balance_exception": "Sean rain redesign specified in design/starter-specials-v1/mechanics.json; no Tony balance or charge-count changes."
   },
   "balance_invariants": {
     "source": "design/starter-specials-v1/mechanics.json",
@@ -55,17 +55,28 @@
       "ideal_eligible_ticks": 74
     },
     "sean_effect_clock": {
-      "handoff_elapsed": 1.0,
+      "clock_domain": "Gameplay rain time since cinematic handoff",
+      "handoff_elapsed": 0.0,
       "effect_end": 7.5,
       "first_damage_tick": 1.0,
-      "last_potential_damage_tick": 7.4,
-      "ideal_eligible_ticks": 65,
-      "upright_until": 1.5,
-      "horizontal_at": 4.75
+      "last_potential_damage_tick": 7.0,
+      "ideal_eligible_ticks": 7,
+      "rain_seconds_after_handoff": 7.5,
+      "upright_only": true,
+      "pose_state": "Fully emerged pipe at rain clock0; no plant/pull replay or old first-second root."
     },
-    "clock_rule": "The cinematic replaces Sean's existing one-second plant/pull presentation. Resume at the already-emerged pipe state with 6.5 seconds of water remaining. Do not replay preparation, start his effect at zero, or grant 7.5 seconds of water. Tony retains 7.5 seconds after handoff.",
-    "tick_handoff": "No damage ticks during cinematic. On Sean's first resumed simulation step, emit the due elapsed=1.0 tick exactly once; subsequent ticks follow 1.1, 1.2, etc. Do not catch up nonexistent cinematic damage or skip the first water tick. Tony's first tick remains elapsed=0.1.",
-    "stock": "Accept and spend exactly once before presentation. Empty or otherwise invalid requests neither spend nor animate. No refund for death, retry, cancellation or scene teardown. No second spend at handoff."
+    "clock_rule": "Explicit Sean clarification: cinematic time consumes none of the7.5s actual rain. Start rain clock0 after3.4s presentation; first damage after one full gameplay second. Tony retains its unchanged7.5s after handoff.",
+    "tick_handoff": "No damage during cinematic. Sean starts rain clock0, pulses1..7, ends7.5; no immediate or fractional-final tick. Tony first tick remains0.1.",
+    "stock": "Accept and spend exactly once before presentation. Empty or otherwise invalid requests neither spend nor animate. No refund for death, retry, cancellation or scene teardown. No second spend at handoff.",
+    "shared_damage_scope": "These three legacy fields describe Tony only; Sean explicit overrides below.",
+    "sean_damage": {
+      "damage_per_tick": 37.5,
+      "boss_damage_per_tick": 37.5,
+      "tick_interval_seconds": 1.0,
+      "normal_weapon_dps": 75,
+      "normal_dps_fraction": 0.5,
+      "fractional_handling_source": "design/starter-specials-v1/mechanics.json#sean.fractional_damage"
+    }
   },
   "shared_presentation": {
     "native_viewport": [
@@ -93,7 +104,7 @@
     ],
     "pause": "Pause/menu/focus-loss pauses cinematic and cinematic audio at their current offsets. Resume the same offsets without replaying cues. Do not clear another system's freeze when the cinematic ends.",
     "world_state": "Keep positions, velocities, HP, boss phase, projectile trajectories and gameplay camera baseline unchanged while presenting. Cinematic shake changes render offsets only, never collision geometry.",
-    "animation": "Opaque authored character poses with registered in-betweens; no dissolves between incompatible body/tool poses. Start with roughly 12–15 unique poses per second for broad motion and additional contact/slam poses where needed. These are asset-budget targets, not a fixed playback-rate requirement. Use variable frame durations driven by elapsed seconds.",
+    "animation": "Opaque authored character poses with registered in-betweens; no dissolves between incompatible body/tool poses. Start with roughly 12\u201315 unique poses per second for broad motion and additional contact/slam poses where needed. These are asset-budget targets, not a fixed playback-rate requirement. Use variable frame durations driven by elapsed seconds.",
     "interpolation": "Smoothly interpolate camera, gauge needle/dial and overlay fades at render rate. Preserve planted feet, cup and hand/tool registration. Do not interpolate body silhouettes by alpha blending or stretch a static hero to imitate effort.",
     "camera": {
       "sean_target_zoom": 2.0,
@@ -222,7 +233,7 @@
         "id": "pipe_reveal_return",
         "start": 2.7,
         "end": 3.4,
-        "action": "Existing pipe rises from the same socket while camera restores normal framing; Sean returns to matching gameplay pose. No water damage until handoff."
+        "action": "Huge pipe rises at fixed socket while camera restores framing. Once plunger clears outlet, huge geyser fires straight UP during cinematic. At3.4 restore gameplay and replace eruption with viewport-wide rain. Visual eruption causes no damage."
       }
     ],
     "registration": {
@@ -267,7 +278,7 @@
         "opaque bounds"
       ],
       "costumes": "Complete Normal/Easy/Hard sets with consistent feet/tool/socket anchors. Preserve each existing costume design and Sean's identity; no surnames or new outfit interpretation.",
-      "pose_handoff": "Match current gameplay Sean at start/end. The existing one-second plant/strain animation is NOT replayed after the movie. During final reveal, presentation-only pipe rise reaches the same upright vertices as existing effect elapsed=1.0. Return to that exact state, not a replacement pipe sprite."
+      "pose_handoff": "Keep registered feet/socket and selected costume continuity. Final cinematic pipe remains fully emerged/upright; start separate rain clock0 without replaying preparation or rooting the hero. Art owns new geyser/rain dimensions; no horizontal sweep."
     },
     "camera_return_start": 2.7,
     "impact_shake": {
@@ -275,6 +286,15 @@
       "end": 1.18,
       "peak_native_pixels": 3,
       "rule": "Short decaying translation only; never shake collision bodies or introduce camera roll."
+    },
+    "eruption_handoff": {
+      "proposed_visual_geyser_start": 3.2,
+      "cinematic_end": 3.4,
+      "rule": "Use final cleared-tool/recovery poses before visual geyser; never emit through cup.3.2 onset is a candidate reuse point, not a separate user-approved duration. Art/Engineering may retime within existing final reveal without changing3.4duration or rain clock.",
+      "rain_start": 3.4,
+      "first_rain_damage_presentation_plus_gameplay_time": 4.4,
+      "damage_while_cinematic": false,
+      "pipe_direction": "up only; no facing sweep"
     }
   },
   "audio_events": {
@@ -323,14 +343,19 @@
         "end": 3.4
       },
       {
+        "time": 3.2,
+        "event": "vertical_geyser_visual_onset",
+        "audio_note": "Candidate sync after tool clears; Audio reviews onset/transition, no extra gameplay delay."
+      },
+      {
         "time": 3.4,
-        "event": "water_only_handoff"
+        "event": "rain_gameplay_handoff"
       }
     ],
-    "handoff_rule": "Audio must provide a water-only Sean entry. Do not call legacy begin then advance through preparation, replay seal/pull/break, or delay water by another 1.1 seconds. Keep water sustain/taper aligned with remaining effect clock1.0–7.5. Audio owns exact cue mapping and approved reuse/new assets; retain original sources and update auditions.",
+    "handoff_rule": "Tony audio unchanged. Sean preparation cues stay synchronized; vertical cinematic geyser transitions to rain at3.4. No late old seal/pull/break replay or post-handoff hinge/tilt cue. Rain sustain/tail ends with7.5s post-cinematic rain lifetime; Audio updates mapping/auditions and preserves original sources.",
     "hitch_rule": "Seek current presentation state without replaying all expired one-shots in a burst; dispatch each event at most once. Pause preserves offsets; cancellation stops voices and restores prior mix.",
     "asset_contract": "audio/sources/starter-cinematic-v1/manifest.json",
-    "sean_tail": "At handoff+5.0 play existing1.5-second sean-stop transient; core ends+5.1 with0.1-second overlap. Tail continues through+6.5, matching water end. Stopping core must not terminate the tail voice."
+    "sean_tail": "Previous bent-jet sustain/hinge/tail mapping is superseded for Sean. Audio owns rain transition/sustain/fade mapping; stop at expiry/cancel with no delayed rain damage or charge changes."
   },
   "required_tests": [
     "Accepted fresh press spends once; rejected, empty, airborne Sean and invalid clearance requests do not spend or animate.",
@@ -338,11 +363,11 @@
     "Freeze positions, velocities, projectile paths, boss/encounter timers, HP and invulnerability timers throughout; no catch-up damage on resume.",
     "Pause/focus-loss at every beat preserves timeline/audio; restart/title/scene exit cancels and clears render overrides without charge refund or delayed activation.",
     "Held special never spends twice; current held aim/movement/fire resume immediately; stale button edges do not leak.",
-    "Tony preserves74 ideal water ticks; Sean preserves65 including exactly one tick at effect1.0; 24 regular/12 boss per tick, uncapped, with current boss vulnerability gates.",
-    "Sean has one plant/pull/slam presentation, one pipe emergence and one water onset; no old preparation replay or doubled audio start.",
     "First/last camera transforms match baseline; floor/socket/grip anchors remain stable at edges, raised platforms, narrow clearance, both directions and all costumes.",
     "Native960x540 running capture plus continuous-motion review: body proportions, overhead clearance, eye/teeth readability, gauge start/red/max readability, tool contact, causal pipe/nozzle handoff and no opacity body ghosts.",
-    "Independent Art review, Audio mix review, then Engineering integration/build checks and Sean playtest. Research/contract completion alone is not runtime or visual acceptance."
+    "Independent Art review, Audio mix review, then Engineering integration/build checks and Sean playtest. Research/contract completion alone is not runtime or visual acceptance.",
+    "Tony preserves74 ideal ticks at24regular/12boss; Sean rain delivers seven37.5pulses at gameplay+1..+7seconds over7.5seconds, with no immediate handoff damage.",
+    "Sean has one emergence, one visual-only upright cinematic geyser and one rain onset; cup cleared before eruption. No former tilt/horizontal attack or duplicated onset."
   ],
   "research": {
     "evidence_limit": "No reference-game activation was frame-timed in this research. Numerical beat lengths, pose budgets, zoom and mix values are production proposals. Sources support design principles rather than a universal duration standard. Full source video playback was not audited; official descriptions/indexed primary slide text were used where full fetch was unavailable.",
@@ -375,6 +400,7 @@
     "audio_contract": "audio/sources/starter-cinematic-v1/manifest.json; source assets/registry validated by Audio, subjective mix and runtime handoff pending",
     "runtime": "Not implemented by this contract",
     "visual_review": "Pending",
-    "build": "Engineering-owned, no version change in this delivery"
+    "build": "Engineering-owned, no version change in this delivery",
+    "rain_redesign": "Engineering must synchronize candidate-timeline/render handoff, generated combat/weapon metadata and runtime; Art supplies upright eruption/rain and reviews any upright-to-spent collapse; Audio owns new mapping. Existing assets preserved."
   }
 }
