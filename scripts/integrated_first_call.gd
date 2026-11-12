@@ -380,6 +380,7 @@ func _physics_process(delta: float) -> void:
 	for index in range(count):
 		var dt := delta/count
 		trial_clock += dt
+		if campaign.level.platforms.advance(dt): campaign.level.refresh_platforms()
 		trial_state.advance(dt)
 		step_gates(dt)
 		var old_count := shots.size()
@@ -440,26 +441,37 @@ func step_trial_shots(delta: float) -> void:
 		var clog_target := false
 		var clog_weak := false
 		var gas_target := ""
+		var platform_target := ""
 		for solid in player_shot_solids():
 			var hit := projectile_hit(start,end,solid,direction)
 			if hit >= 0: nearest = minf(nearest,hit)
+		# A breakable owns its material collision at the same sweep time; nearer walls still occlude it.
+		for target: Dictionary in campaign.level.platforms.targets():
+			for region: Rect2 in target.regions:
+				var hit := projectile_hit(start,end,region,direction)
+				if hit >= 0 and hit <= nearest:
+					nearest = hit
+					platform_target = target.id
 		for a in range(actors.size()):
 			if actors[a].hp <= 0 or not actors[a].active: continue
 			var hit := projectile_hit(start,end,actor_projectile_rect(actors[a]),direction)
 			if hit >= 0 and hit < nearest:
 				nearest = hit
 				actor_target = a
+				platform_target = ""
 		for e in range(enemies.size()):
 			var hit := projectile_hit(start,end,flushfiend_projectile_rect(enemies[e].pos+Vector2(19,36)),direction)
 			if hit >= 0 and hit < nearest:
 				nearest = hit
 				enemy_target = e
+				platform_target = ""
 				actor_target = -1
 		for swarm_index in range(swarms.actors.size()):
 			var hit: float = swarms.shot_hit(start,end,swarm_index,7.0 if employee.id == "sean" else 2.0)
 			if hit >= 0 and hit < nearest:
 				nearest = hit
 				swarm_target = swarm_index
+				platform_target = ""
 				actor_target = -1
 				enemy_target = -1
 		for boss_rect: Rect2 in skitterling.target_regions():
@@ -467,6 +479,7 @@ func step_trial_shots(delta: float) -> void:
 			if hit >= 0 and hit < nearest:
 				nearest = hit
 				boss_target = true
+				platform_target = ""
 				actor_target = -1
 				enemy_target = -1
 				swarm_target = -1
@@ -478,6 +491,7 @@ func step_trial_shots(delta: float) -> void:
 			if hit >= 0 and hit < nearest:
 				nearest = hit
 				clog_target = true
+				platform_target = ""
 				clog_weak = region_index == 0
 				boss_target = false
 				actor_target = -1
@@ -488,6 +502,7 @@ func step_trial_shots(delta: float) -> void:
 			if hit >= 0 and hit < nearest:
 				nearest = hit
 				gas_target = target.id
+				platform_target = ""
 				clog_target = false
 				boss_target = false
 				actor_target = -1
@@ -497,7 +512,9 @@ func step_trial_shots(delta: float) -> void:
 		shot.distance += travel
 		if nearest <= 1 or shot.distance >= shot.range:
 			if shot.has("trial_id"): trial_state.resolve_shot(shot.trial_id,actor_target >= 0 or enemy_target >= 0 or swarm_target >= 0 or boss_target or clog_target or not gas_target.is_empty())
-			if not gas_target.is_empty():
+			if not platform_target.is_empty():
+				campaign.level.platforms.damage(platform_target,float(shot.damage))
+			elif not gas_target.is_empty():
 				clogfather.damage_gas(self,gas_target,int(shot.damage),
 					str(shot.get("trial_id","shot-%d" % shot_serial)))
 			elif clog_target:
@@ -607,6 +624,8 @@ func _draw() -> void:
 		else: draw_pause_panel()
 
 func _process(delta: float) -> void:
+	campaign.level.platforms.set_paused(paused or cinematic.active or dialogue.active or boss_intro.blocking()
+		or dispenser.active or life_state != "alive")
 	if process_special_cinematic(delta): return
 	sync_boss_presentation()
 	var frozen_intro := boss_intro.blocking()
@@ -651,6 +670,7 @@ func hurt_player() -> void:
 
 func set_paused(value: bool) -> void:
 	super.set_paused(value)
+	campaign.level.platforms.set_paused(value)
 	if flush.active: flush.process_audio(self,0.0)
 	skitterling.audio.set_paused(value or life_state != "alive")
 	clogfather.audio.set_paused(value or life_state != "alive")
@@ -658,18 +678,21 @@ func set_paused(value: bool) -> void:
 
 func request_title() -> void:
 	if death_popup_locked: return
+	campaign.level.platforms.stop_audio()
 	flush.reset()
 	skitterling.audio.stop()
 	clogfather.audio.stop()
 	super.request_title()
 
 func _exit_tree() -> void:
+	campaign.level.platforms.dispose()
 	flush.dispose()
 	skitterling.audio.dispose()
 	clogfather.audio.dispose()
 	super._exit_tree()
 
 func begin_level_two() -> void:
+	campaign.level.platforms.stop_audio()
 	devil_spiders.clear(self,"level_transition")
 	specials.cancel("level transition")
 	special_audio.stop()
@@ -1167,5 +1190,6 @@ func _on_swarm_damaged(actor: Dictionary, lethal: bool) -> void:
 
 func freeze_special_world_audio(value: bool) -> void:
 	super.freeze_special_world_audio(value)
+	campaign.level.platforms.set_paused(value or paused)
 	skitterling.audio.set_paused(value or paused or boss_intro.blocking())
 	clogfather.audio.set_paused(value or paused or boss_intro.blocking())

@@ -8,6 +8,8 @@ const RUN_OVERRIDES := {
 	"sean":"res://assets/sprites/sean-run-v4/run-overrides-v1.json",
 }
 const ANCHOR := Vector2(64, 104)
+const BackpackArt = preload("res://scripts/backpack_jetter_art.gd")
+var backpack := BackpackArt.new()
 const HardArt = preload("res://scripts/hard_costume_art.gd")
 var hard_mode := false
 var costume := "normal"
@@ -21,6 +23,7 @@ func _init(defer_preparation := false) -> void:
 func configure(value: Variant, yield_frame := Callable()) -> void:
 	var selected := Costume.mode(value)
 	if not poses.is_empty() and costume == selected: return
+	backpack.prepare()
 	costume = selected
 	hard_mode = costume == "hard"
 	poses.clear()
@@ -116,8 +119,23 @@ func muzzle(game: Node2D) -> Vector2:
 func draw(game: Node2D, tint := Color.WHITE) -> void:
 	var base := world_transform(game)
 	base.origin.x -= floorf(game.camera_x)
-	var layers: Array = [death_frame(game)] if game.life_state != "alive" else selected_pose(game).layers
+	var pose := selected_pose(game)
+	var layers: Array = [death_frame(game)] if game.life_state != "alive" else pose.layers
+	var equipment := backpack.enabled(game)
+	var body := body_frame(game)
+	var offset := Vector2.ZERO if body.is_empty() else Vector2(body.attachment_offset[0],body.attachment_offset[1])
+	var death_equipment: Dictionary = {}
+	if equipment:
+		if game.life_state == "alive":
+			backpack.draw_back(game,base,game.employee.id,costume,pose,offset,tint)
+		else:
+			var stage: int = animations.heroes[game.employee.id].death.find(layers[0])
+			death_equipment = backpack.death_transforms(game.employee.id,costume,stage)
+			backpack.draw_death_back(game,base,death_equipment,tint)
 	for layer: Dictionary in layers:
+		if equipment and layer.get("role","") == "weapon":
+			backpack.draw_nozzle(game,base,pose,tint)
+			continue
 		var pivot := Vector2(layer.pivot[0], layer.pivot[1])
 		var rotation := Transform2D(deg_to_rad(layer.rotation_degrees), Vector2.ZERO)
 		rotation.origin = pivot - rotation * pivot
@@ -127,6 +145,10 @@ func draw(game: Node2D, tint := Color.WHITE) -> void:
 		game.draw_texture_rect_region(textures[layer.path],
 			Rect2(dest[0], dest[1], dest[2], dest[3]),
 			Rect2(source[0], source[1], source[2], source[3]),tint)
+		if equipment and game.life_state == "alive" and layer.get("role","") == "body":
+			backpack.draw_strap(game,base,game.employee.id,costume,offset,tint)
+	if not death_equipment.is_empty():
+		backpack.draw_part(game,"nozzle",base*death_equipment.nozzle,tint)
 	game.draw_set_transform(Vector2(-floorf(game.camera_x), 0))
 
 func draw_lives(game: Node2D, origin: Vector2) -> void:

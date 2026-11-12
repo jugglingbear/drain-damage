@@ -1,6 +1,6 @@
 # Drain Damage — In pictures
 
-Concept art and playable experiments. Gameplay captures through v0.183.0.
+Concept art and playable experiments. Gameplay captures through v0.185.0.
 
 ## Concept art
 
@@ -274,6 +274,21 @@ v0.183.0 · Archived November 12, 2026 · Staged packaged review.
 The burst becomes rain across the screen.
 v0.183.0 · Archived November 12, 2026 · Staged packaged review.
 
+![Tony’s jetter now uses a backpack, hose and nozzle.][image-65]
+
+Tony’s jetter now uses a backpack, hose and nozzle.
+v0.185.0 · Archived November 12, 2026 · Isolated package, staged review.
+
+![Basement machinery doubles as destructible footing.][image-66]
+
+Basement machinery doubles as destructible footing.
+v0.185.0 · Archived November 12, 2026 · Isolated package, staged review.
+
+![Destroyed machinery leaves low, persistent rubble.][image-67]
+
+Destroyed machinery leaves low, persistent rubble.
+v0.185.0 · Archived November 12, 2026 · Isolated package, staged review.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -342,3 +357,6 @@ To come. These images document development, not a finished game.
 [image-62]: 183-main-break-rain/20261112-140211-archived-packed-1-183.png
 [image-63]: 183-main-break-rain/20261112-140211-archived-packed-1-196.png
 [image-64]: 183-main-break-rain/20261112-140211-archived-packed-1-390.png
+[image-65]: 185-backpack-and-breakables/20261112-150625-archived-backpack.png
+[image-66]: 185-backpack-and-breakables/20261112-150625-archived-intact-boiler.png
+[image-67]: 185-backpack-and-breakables/20261112-150625-archived-boiler-rubble.png

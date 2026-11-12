@@ -50,7 +50,10 @@ func draw_part(host: Node2D, id: String, destination: Rect2) -> void:
 
 func draw_deck(host: Node2D, rect: Rect2) -> void:
 	# Preserve both complete brace/post/foot caps; only straight middle pieces change length.
-	draw_support(host,Rect2(rect.position,Vector2(rect.size.x,440-rect.position.y)))
+	if is_equal_approx(rect.size.x,float(support.narrow_pedestal.width)):
+		draw_pedestal(host,rect)
+	else:
+		draw_support(host,Rect2(rect.position,Vector2(rect.size.x,440-rect.position.y)))
 	var offset := 0.0
 	while offset < rect.size.x:
 		var width := minf(250,rect.size.x-offset)
@@ -59,6 +62,31 @@ func draw_deck(host: Node2D, rect: Rect2) -> void:
 		host.draw_asset(deck,Rect2(rect.position+Vector2(offset,0),Vector2(width,16)),
 			Color(1.15,1.15,1.15))
 		offset += width
+
+func draw_pedestal(host: Node2D, rect: Rect2) -> void:
+	var spec: Dictionary = support.narrow_pedestal
+	var scale: float = spec.uniform_scale
+	var collar: Rect2 = host.region(spec.collar_source_rect)
+	var shaft: Rect2 = host.region(spec.shaft_source_rect)
+	var foot: Rect2 = host.region(spec.foot_source_rect)
+	var center := rect.get_center().x
+	var collar_y := rect.position.y+float(spec.collar_offset_y)
+	var foot_y := 440-foot.size.y*scale
+	var shaft_y := collar_y+collar.size.y*scale-float(spec.join_overlap)
+	var shaft_end := foot_y+float(spec.join_overlap)
+	while shaft_y < shaft_end-0.0001:
+		var height := minf(shaft.size.y*scale,shaft_end-shaft_y)
+		var crop := Rect2(shaft.position,Vector2(shaft.size.x,height/scale))
+		draw_pedestal_part(host,crop,Vector2(center-shaft.size.x*scale/2,shaft_y),scale)
+		if shaft_y+height >= shaft_end-0.0001: break
+		shaft_y += height-float(spec.join_overlap)
+	draw_pedestal_part(host,collar,Vector2(center-collar.size.x*scale/2,collar_y),scale)
+	draw_pedestal_part(host,foot,Vector2(center-foot.size.x*scale/2,foot_y),scale)
+
+func draw_pedestal_part(host: Node2D, source: Rect2, position: Vector2, scale: float) -> void:
+	var asset: Dictionary = support.duplicate()
+	asset.source_rect = [source.position.x,source.position.y,source.size.x,source.size.y]
+	host.draw_asset(asset,Rect2(position,source.size*scale),Color(0.65,0.65,0.65))
 
 func draw(host: Node2D) -> void:
 	if parts.is_empty(): return
@@ -75,7 +103,7 @@ func draw(host: Node2D) -> void:
 			x += width
 	for section: Dictionary in host.campaign.contract.sections:
 		for item: Dictionary in section.get("geometry",[]):
-			var rect: Rect2 = host.region(item.rect)
+			var rect: Rect2 = host.region(host.campaign.level.platforms.overrides.get(item.id,item.rect))
 			if not rect.grow(120).intersects(view): continue
 			match item.kind:
 				"solid":
@@ -93,6 +121,15 @@ func draw(host: Node2D) -> void:
 					host.devil_spider_art.draw_support(host,{
 						"home":Vector2(item.socket[0],item.socket[1]),
 						"bounds":Vector2(item.crawl_range[0],item.crawl_range[1])})
+	for id: String in host.campaign.level.platforms.placements:
+		var item: Dictionary = host.campaign.level.platforms.placements[id]
+		if item.get("replaces_support_id") == null or str(item.replaces_support_id).is_empty():
+			host.campaign.level.platforms.draw(host,id)
+	for item: Dictionary in host.campaign.level.platforms.supplemental:
+		var rect: Rect2 = host.region(item.rect)
+		if not rect.grow(120).intersects(view): continue
+		if item.kind == "solid": Level.draw_prop(host,rect)
+		elif item.kind == "one_way": draw_deck(host,rect)
 	# Run-owned supports persist after their occupant dies; authored devil rail stays separate.
 	for fixture: Dictionary in host.campaign.variant_supports:
 		var support_bounds := Rect2(fixture.bounds.x - 60, fixture.home.y - 17,

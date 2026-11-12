@@ -354,27 +354,30 @@
         {
           "id": 15,
           "source_rect": [
-            940,
-            940,
-            314,
-            314
+            28,
+            340,
+            2116,
+            129
           ],
           "source_opaque_bounds": [
-            74,
-            123,
-            261,
-            305
+            0,
+            0,
+            2116,
+            129
           ],
           "source_anchor": [
-            164,
-            305
+            1058.0,
+            129
           ],
           "destination": [
-            -134.1818181818182,
-            -249.54545454545456,
-            256.90909090909093,
-            256.90909090909093
-          ]
+            -55.636365,
+            -6.783639966918715,
+            111.27273,
+            6.783639966918715
+          ],
+          "path": "assets/world/basement-platforms-v1/water-heater-rubble-v1.png",
+          "alpha_cutoff": 240,
+          "uniform_scale": 0.05258635633270321
         }
       ],
       "states": {
@@ -521,6 +524,828 @@
         "damage": 0,
         "loop": false,
         "fade_tail_seconds": 0.16
+      },
+      "terminal_rubble_review": {
+        "status": "Native source transition samples and terminal stills pass for both heroes",
+        "reason": "Remove standable-looking tread and wall from noncolliding wreck.",
+        "original_frame_15": {
+          "id": 15,
+          "source_rect": [
+            940,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            74,
+            123,
+            261,
+            305
+          ],
+          "source_anchor": [
+            164,
+            305
+          ],
+          "destination": [
+            -134.1818181818182,
+            -249.54545454545456,
+            256.90909090909093,
+            256.90909090909093
+          ]
+        },
+        "original_path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+        "evidence": "previews/destructible-platforms-185/fragments/",
+        "observed_scope": "Both heroes/all3 props: break12,13,29,38,47,89 sampled. Material separates at release, descends and remains grounded. No full playback/audio/packaged acceptance.",
+        "remaining_issue": "Packaged proof and real-time/audio verification remain outside this review."
+      },
+      "collapse_pieces": {
+        "status": "Native source transition samples pass; packaged proof pending",
+        "source_frame_id": 4,
+        "start_time": 0.22,
+        "end_time": 0.8,
+        "coordinate_space": "World offsets from unchanged floor center",
+        "pieces": [
+          {
+            "id": "hardware-shard-0-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              148,
+              352,
+              19,
+              5
+            ],
+            "source_pivot": [
+              9.5,
+              2.5
+            ],
+            "destination_size": [
+              15.545454545454547,
+              4.090909090909091
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -5.318181818181813,
+              -214.7727272727273
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -16.318181818181813,
+              -2.449444435522692
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-0-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              333,
+              54,
+              24
+            ],
+            "source_pivot": [
+              27.0,
+              12.0
+            ],
+            "destination_size": [
+              44.18181818181819,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              24.54545454545456,
+              -222.54545454545456
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              24.54545454545456,
+              -10.960875192775394
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              117,
+              357,
+              50,
+              24
+            ],
+            "source_pivot": [
+              25.0,
+              12.0
+            ],
+            "destination_size": [
+              40.909090909090914,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -18.0,
+              -202.90909090909093
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -22.0,
+              -10.875234537105122
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              357,
+              53,
+              24
+            ],
+            "source_pivot": [
+              26.5,
+              12.0
+            ],
+            "destination_size": [
+              43.36363636363637,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              24.136363636363654,
+              -202.90909090909093
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              31.136363636363654,
+              -10.939465028857827
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              97,
+              381,
+              70,
+              24
+            ],
+            "source_pivot": [
+              35.0,
+              12.0
+            ],
+            "destination_size": [
+              57.27272727272727,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -26.181818181818187,
+              -183.2727272727273
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -23.181818181818187,
+              -11.303437815456482
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              381,
+              64,
+              24
+            ],
+            "source_pivot": [
+              32.0,
+              12.0
+            ],
+            "destination_size": [
+              52.36363636363637,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              28.636363636363654,
+              -183.2727272727273
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              19.636363636363654,
+              -11.174976831951074
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              100,
+              405,
+              67,
+              24
+            ],
+            "source_pivot": [
+              33.5,
+              12.0
+            ],
+            "destination_size": [
+              54.81818181818182,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -24.954545454545453,
+              -163.63636363636365
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -14.954545454545453,
+              -11.239207323703777
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              405,
+              68,
+              24
+            ],
+            "source_pivot": [
+              34.0,
+              12.0
+            ],
+            "destination_size": [
+              55.63636363636364,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              30.27272727272728,
+              -163.63636363636365
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              27.342468099169306,
+              -11.260617487621346
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              100,
+              429,
+              67,
+              24
+            ],
+            "source_pivot": [
+              33.5,
+              12.0
+            ],
+            "destination_size": [
+              54.81818181818182,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -24.954545454545453,
+              -144.0
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -27.750988363387098,
+              -11.239207323703777
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              429,
+              65,
+              24
+            ],
+            "source_pivot": [
+              32.5,
+              12.0
+            ],
+            "destination_size": [
+              53.18181818181819,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              29.04545454545456,
+              -144.0
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              28.56805889182265,
+              -11.196386995868641
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              108,
+              453,
+              59,
+              24
+            ],
+            "source_pivot": [
+              29.5,
+              12.0
+            ],
+            "destination_size": [
+              48.27272727272727,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -21.681818181818187,
+              -124.36363636363639
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -20.681818181818187,
+              -11.067926012363234
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              453,
+              75,
+              24
+            ],
+            "source_pivot": [
+              37.5,
+              12.0
+            ],
+            "destination_size": [
+              61.36363636363637,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              33.136363636363654,
+              -124.36363636363639
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              22.136363636363654,
+              -11.41048863504432
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              98,
+              477,
+              69,
+              24
+            ],
+            "source_pivot": [
+              34.5,
+              12.0
+            ],
+            "destination_size": [
+              56.45454545454546,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -25.772727272727266,
+              -104.72727272727275
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -17.772727272727266,
+              -11.282027651538913
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              477,
+              75,
+              24
+            ],
+            "source_pivot": [
+              37.5,
+              12.0
+            ],
+            "destination_size": [
+              61.36363636363637,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              33.136363636363654,
+              -104.72727272727275
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              24.482756249644847,
+              -11.41048863504432
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              92,
+              501,
+              75,
+              24
+            ],
+            "source_pivot": [
+              37.5,
+              12.0
+            ],
+            "destination_size": [
+              61.36363636363637,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -28.22727272727272,
+              -85.0909090909091
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -24.48274624964486,
+              -11.41048863504432
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              501,
+              66,
+              24
+            ],
+            "source_pivot": [
+              33.0,
+              12.0
+            ],
+            "destination_size": [
+              54.0,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              29.454545454545467,
+              -85.0909090909091
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              28.15952862760487,
+              -11.217797159786208
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-8-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              92,
+              525,
+              75,
+              24
+            ],
+            "source_pivot": [
+              37.5,
+              12.0
+            ],
+            "destination_size": [
+              61.36363636363637,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -28.22727272727272,
+              -65.45454545454547
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -24.48274624964486,
+              -11.41048863504432
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-8-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              525,
+              61,
+              24
+            ],
+            "source_pivot": [
+              30.5,
+              12.0
+            ],
+            "destination_size": [
+              49.909090909090914,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              27.409090909090907,
+              -65.45454545454547
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              30.202179948693768,
+              -11.11074634019837
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-9-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              98,
+              549,
+              69,
+              24
+            ],
+            "source_pivot": [
+              34.5,
+              12.0
+            ],
+            "destination_size": [
+              56.45454545454546,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -25.772727272727266,
+              -45.81818181818184
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -19.772727272727266,
+              -11.282027651538913
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-9-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              549,
+              65,
+              24
+            ],
+            "source_pivot": [
+              32.5,
+              12.0
+            ],
+            "destination_size": [
+              53.18181818181819,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              29.04545454545456,
+              -45.81818181818184
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              23.04545454545456,
+              -11.196386995868641
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-10-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              99,
+              573,
+              68,
+              24
+            ],
+            "source_pivot": [
+              34.0,
+              12.0
+            ],
+            "destination_size": [
+              55.63636363636364,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -25.36363636363636,
+              -26.181818181818187
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -27.342458099169317,
+              -11.260617487621346
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-10-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              573,
+              63,
+              24
+            ],
+            "source_pivot": [
+              31.5,
+              12.0
+            ],
+            "destination_size": [
+              51.54545454545455,
+              19.636363636363637
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              28.22727272727272,
+              -26.181818181818187
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              29.22727272727272,
+              -11.153566668033505
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-11-0",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              96,
+              597,
+              71,
+              20
+            ],
+            "source_pivot": [
+              35.5,
+              10.0
+            ],
+            "destination_size": [
+              58.09090909090909,
+              16.363636363636363
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              -26.590909090909093,
+              -8.181818181818187
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -26.20250796218625,
+              -9.690726922502927
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-11-1",
+            "path": "assets/world/basement-platforms-v1/water-heater-source-v1.png",
+            "source_rect": [
+              167,
+              597,
+              65,
+              20
+            ],
+            "source_pivot": [
+              32.5,
+              10.0
+            ],
+            "destination_size": [
+              53.18181818181819,
+              16.363636363636363
+            ],
+            "uniform_scale": 0.8181818181818182,
+            "start_position": [
+              29.04545454545456,
+              -8.181818181818187
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              28.65369954749292,
+              -9.56226593899752
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          }
+        ],
+        "rules": [
+          "At0.22 replace frame4 with these pieces at exact start transforms; do not also render frames5/6/7.",
+          "Source cuts partition visible alpha240 material of frame4; hardware is intentionally fractured into shards.",
+          "Use fixed destination_size throughout. Source pivot is cell-local center; positions refer to that pivot.",
+          "Interpolate downward start_position to settled_position with accelerating progress; x uses smooth progress.",
+          "Rotation = lerp(0,settled_rotation,u) + flight_rotation*sin(pi*u), u clamped elapsed/settle duration.",
+          "Clamp pivot y so rotated bounding-box bottom never exceeds floor0; settle without penetrating ground.",
+          "Keep settled pieces visible permanently behind hero, harmless and noncolliding. Never swap them off at0.8.",
+          "New frame15 rubble may draw beneath fragments after first piece lands; do not replace the rigid pieces.",
+          "No scale squash, no opacity fade, no tiled grid motion: alternating spin and individual settle times separate shards.",
+          "Keep collision release0.22 and existing sound timing; motion acceptance still required."
+        ]
       }
     },
     {
@@ -860,27 +1685,30 @@
         {
           "id": 15,
           "source_rect": [
-            940,
-            940,
-            314,
-            314
+            29,
+            357,
+            2116,
+            125
           ],
           "source_opaque_bounds": [
-            15,
-            109,
-            307,
-            262
+            0,
+            0,
+            2116,
+            125
           ],
           "source_anchor": [
-            151,
-            262
+            1058.0,
+            125
           ],
           "destination": [
-            -127.6056338028169,
-            -221.40845070422534,
-            265.3521126760563,
-            265.3521126760563
-          ]
+            -110.70422500000001,
+            -13.079421668241968,
+            221.40845000000002,
+            13.079421668241968
+          ],
+          "path": "assets/world/basement-platforms-v1/cast-iron-boiler-rubble-v1.png",
+          "alpha_cutoff": 240,
+          "uniform_scale": 0.10463537334593574
         }
       ],
       "states": {
@@ -1027,6 +1855,1084 @@
         "damage": 0,
         "loop": false,
         "fade_tail_seconds": 0.16
+      },
+      "terminal_rubble_review": {
+        "status": "Native source transition samples and terminal stills pass for both heroes",
+        "reason": "Remove standable-looking tread and wall from noncolliding wreck.",
+        "original_frame_15": {
+          "id": 15,
+          "source_rect": [
+            940,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            15,
+            109,
+            307,
+            262
+          ],
+          "source_anchor": [
+            151,
+            262
+          ],
+          "destination": [
+            -127.6056338028169,
+            -221.40845070422534,
+            265.3521126760563,
+            265.3521126760563
+          ]
+        },
+        "original_path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+        "evidence": "previews/destructible-platforms-185/fragments/",
+        "observed_scope": "Both heroes/all3 props: break12,13,29,38,47,89 sampled. Material separates at release, descends and remains grounded. No full playback/audio/packaged acceptance.",
+        "remaining_issue": "Packaged proof and real-time/audio verification remain outside this review."
+      },
+      "collapse_pieces": {
+        "status": "Native source transition samples pass; packaged proof pending",
+        "source_frame_id": 4,
+        "start_time": 0.22,
+        "end_time": 0.8,
+        "coordinate_space": "World offsets from unchanged floor center",
+        "pieces": [
+          {
+            "id": "hardware-shard-0-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              232,
+              385,
+              1,
+              5
+            ],
+            "source_pivot": [
+              0.5,
+              2.5
+            ],
+            "destination_size": [
+              0.8450704225352113,
+              4.225352112676056
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              68.87323943661971,
+              -158.45070422535213
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              79.87323943661971,
+              -2.131894491555977
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-0-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              368,
+              37,
+              24
+            ],
+            "source_pivot": [
+              18.5,
+              12.0
+            ],
+            "destination_size": [
+              31.267605633802816,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              84.92957746478874,
+              -164.7887323943662
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              83.92957746478874,
+              -10.945157414830435
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              66,
+              415,
+              4,
+              1
+            ],
+            "source_pivot": [
+              2.0,
+              0.5
+            ],
+            "destination_size": [
+              3.380281690140845,
+              0.8450704225352113
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -70.14084507042253,
+              -134.7887323943662
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -74.14084507042253,
+              -0.5104112787576123
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-1",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              140,
+              415,
+              6,
+              1
+            ],
+            "source_pivot": [
+              3.0,
+              0.5
+            ],
+            "destination_size": [
+              5.070422535211268,
+              0.8450704225352113
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -6.760563380281681,
+              -134.7887323943662
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              0.23943661971831887,
+              -0.5546388474136212
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              392,
+              66,
+              24
+            ],
+            "source_pivot": [
+              33.0,
+              12.0
+            ],
+            "destination_size": [
+              55.774647887323944,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              97.18309859154931,
+              -144.50704225352115
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              84.01453384071866,
+              -11.586457160342565
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              25,
+              416,
+              62,
+              24
+            ],
+            "source_pivot": [
+              31.0,
+              12.0
+            ],
+            "destination_size": [
+              52.394366197183096,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -80.28169014084506,
+              -124.22535211267606
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -77.28169014084506,
+              -11.498002023030546
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-1",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              87,
+              416,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -23.239436619718305,
+              -124.22535211267606
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -32.239436619718305,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              160,
+              416,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              38.450704225352126,
+              -124.22535211267606
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              40.450704225352126,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              416,
+              67,
+              24
+            ],
+            "source_pivot": [
+              33.5,
+              12.0
+            ],
+            "destination_size": [
+              56.61971830985915,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              97.6056338028169,
+              -124.22535211267606
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              83.59257769927306,
+              -11.608570944670568
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              14,
+              440,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -84.92957746478874,
+              -103.94366197183099
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -74.92957746478874,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-1",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              87,
+              440,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -23.239436619718305,
+              -103.94366197183099
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -25.239436619718305,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              160,
+              440,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              38.450704225352126,
+              -103.94366197183099
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              47.450704225352126,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              440,
+              67,
+              24
+            ],
+            "source_pivot": [
+              33.5,
+              12.0
+            ],
+            "destination_size": [
+              56.61971830985915,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              97.6056338028169,
+              -103.94366197183099
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              83.59257769927306,
+              -11.608570944670568
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              14,
+              464,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -84.92957746478874,
+              -83.66197183098592
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -77.6805508505995,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-1",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              87,
+              464,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -23.239436619718305,
+              -83.66197183098592
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -18.239436619718305,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              160,
+              464,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              38.450704225352126,
+              -83.66197183098592
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              31.450704225352126,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              464,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              100.14084507042253,
+              -83.66197183098592
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              81.0608408505995,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              14,
+              488,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -84.92957746478874,
+              -63.38028169014086
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -77.6805508505995,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-1",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              87,
+              488,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -23.239436619718305,
+              -63.38028169014086
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -34.239436619718305,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              160,
+              488,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              38.450704225352126,
+              -63.38028169014086
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              38.450704225352126,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              488,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              100.14084507042253,
+              -63.38028169014086
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              81.0608408505995,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              14,
+              512,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -84.92957746478874,
+              -43.098591549295776
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -76.92957746478874,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-1",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              87,
+              512,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -23.239436619718305,
+              -43.098591549295776
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -27.239436619718305,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              160,
+              512,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              38.450704225352126,
+              -43.098591549295776
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              45.450704225352126,
+              -11.741253650638596
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              512,
+              56,
+              24
+            ],
+            "source_pivot": [
+              28.0,
+              12.0
+            ],
+            "destination_size": [
+              47.32394366197183,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              92.95774647887325,
+              -43.098591549295776
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              87.95774647887325,
+              -11.36531931706252
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              30,
+              536,
+              57,
+              24
+            ],
+            "source_pivot": [
+              28.5,
+              12.0
+            ],
+            "destination_size": [
+              48.16901408450704,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -78.16901408450704,
+              -22.81690140845072
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -84.43184911372902,
+              -11.387433101390524
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-1",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              87,
+              536,
+              73,
+              23
+            ],
+            "source_pivot": [
+              36.5,
+              11.5
+            ],
+            "destination_size": [
+              61.690140845070424,
+              19.43661971830986
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -23.239436619718305,
+              -23.239436619718305
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -20.239436619718305,
+              -11.319297509193
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              160,
+              536,
+              73,
+              20
+            ],
+            "source_pivot": [
+              36.5,
+              10.0
+            ],
+            "destination_size": [
+              61.690140845070424,
+              16.901408450704224
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              38.450704225352126,
+              -24.50704225352112
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              29.450704225352126,
+              -10.053429084856216
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              536,
+              46,
+              24
+            ],
+            "source_pivot": [
+              23.0,
+              12.0
+            ],
+            "destination_size": [
+              38.87323943661972,
+              20.281690140845072
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              88.73239436619718,
+              -22.81690140845072
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              90.73239436619718,
+              -11.144181473782476
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-8-0",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              24,
+              560,
+              51,
+              15
+            ],
+            "source_pivot": [
+              25.5,
+              7.5
+            ],
+            "destination_size": [
+              43.098591549295776,
+              12.676056338028168
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              -85.77464788732394,
+              -6.3380281690140805
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -86.77464788732394,
+              -7.457145122412145
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-8-2",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              229,
+              567,
+              4,
+              8
+            ],
+            "source_pivot": [
+              2.0,
+              4.0
+            ],
+            "destination_size": [
+              3.380281690140845,
+              6.76056338028169
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              67.6056338028169,
+              -3.380281690140862
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              65.6056338028169,
+              -3.4641042688767745
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-8-3",
+            "path": "assets/world/basement-platforms-v1/cast-iron-boiler-source-v1.png",
+            "source_rect": [
+              233,
+              560,
+              53,
+              15
+            ],
+            "source_pivot": [
+              26.5,
+              7.5
+            ],
+            "destination_size": [
+              44.7887323943662,
+              12.676056338028168
+            ],
+            "uniform_scale": 0.8450704225352113,
+            "start_position": [
+              91.69014084507043,
+              -6.3380281690140805
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              89.69898773846343,
+              -7.501372691068154
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          }
+        ],
+        "rules": [
+          "At0.22 replace frame4 with these pieces at exact start transforms; do not also render frames5/6/7.",
+          "Source cuts partition visible alpha240 material of frame4; hardware is intentionally fractured into shards.",
+          "Use fixed destination_size throughout. Source pivot is cell-local center; positions refer to that pivot.",
+          "Interpolate downward start_position to settled_position with accelerating progress; x uses smooth progress.",
+          "Rotation = lerp(0,settled_rotation,u) + flight_rotation*sin(pi*u), u clamped elapsed/settle duration.",
+          "Clamp pivot y so rotated bounding-box bottom never exceeds floor0; settle without penetrating ground.",
+          "Keep settled pieces visible permanently behind hero, harmless and noncolliding. Never swap them off at0.8.",
+          "New frame15 rubble may draw beneath fragments after first piece lands; do not replace the rigid pieces.",
+          "No scale squash, no opacity fade, no tiled grid motion: alternating spin and individual settle times separate shards.",
+          "Keep collision release0.22 and existing sound timing; motion acceptance still required."
+        ]
       }
     },
     {
@@ -1372,27 +3278,30 @@
         {
           "id": 15,
           "source_rect": [
-            940,
-            940,
+            34,
             314,
-            314
+            2075,
+            141
           ],
           "source_opaque_bounds": [
-            17,
-            118,
-            305,
-            256
+            0,
+            0,
+            2075,
+            141
           ],
           "source_anchor": [
-            164,
-            256
+            1037.5,
+            141
           ],
           "destination": [
-            -152.5581395348837,
-            -238.13953488372093,
-            292.09302325581393,
-            292.09302325581393
-          ]
+            -116.27907,
+            -15.802745898795182,
+            232.55814,
+            15.802745898795182
+          ],
+          "path": "assets/world/basement-platforms-v1/pressure-tank-rubble-v1.png",
+          "alpha_cutoff": 240,
+          "uniform_scale": 0.11207621204819278
         }
       ],
       "states": {
@@ -1539,6 +3448,1020 @@
         "damage": 0,
         "loop": false,
         "fade_tail_seconds": 0.16
+      },
+      "terminal_rubble_review": {
+        "status": "Native source transition samples and terminal stills pass for both heroes",
+        "reason": "Remove standable-looking tread and wall from noncolliding wreck.",
+        "original_frame_15": {
+          "id": 15,
+          "source_rect": [
+            940,
+            940,
+            314,
+            314
+          ],
+          "source_opaque_bounds": [
+            17,
+            118,
+            305,
+            256
+          ],
+          "source_anchor": [
+            164,
+            256
+          ],
+          "destination": [
+            -152.5581395348837,
+            -238.13953488372093,
+            292.09302325581393,
+            292.09302325581393
+          ]
+        },
+        "original_path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+        "evidence": "previews/destructible-platforms-185/fragments/",
+        "observed_scope": "Both heroes/all3 props: break12,13,29,38,47,89 sampled. Material separates at release, descends and remains grounded. No full playback/audio/packaged acceptance.",
+        "remaining_issue": "Packaged proof and real-time/audio verification remain outside this review."
+      },
+      "collapse_pieces": {
+        "status": "Native source transition samples pass; packaged proof pending",
+        "source_frame_id": 4,
+        "start_time": 0.22,
+        "end_time": 0.8,
+        "coordinate_space": "World offsets from unchanged floor center",
+        "pieces": [
+          {
+            "id": "hardware-shard-0-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              71,
+              388,
+              16,
+              24
+            ],
+            "source_pivot": [
+              8.0,
+              12.0
+            ],
+            "destination_size": [
+              14.883720930232558,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -79.06976744186045,
+              -165.58139534883722
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -90.06976744186045,
+              -11.536969364649709
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-0-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              388,
+              13,
+              24
+            ],
+            "source_pivot": [
+              6.5,
+              12.0
+            ],
+            "destination_size": [
+              12.093023255813954,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -65.58139534883719,
+              -165.58139534883722
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -65.58139534883719,
+              -11.46394244896188
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              48,
+              412,
+              39,
+              24
+            ],
+            "source_pivot": [
+              19.5,
+              12.0
+            ],
+            "destination_size": [
+              36.27906976744186,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -89.76744186046511,
+              -143.25581395348837
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -93.76744186046511,
+              -12.096842384923061
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              412,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -37.67441860465115,
+              -143.25581395348837
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -30.67441860465115,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-2",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              160,
+              428,
+              72,
+              8
+            ],
+            "source_pivot": [
+              36.0,
+              4.0
+            ],
+            "destination_size": [
+              66.97674418604652,
+              7.441860465116279
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              29.76744186046514,
+              -135.8139534883721
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              24.76744186046514,
+              -5.46847680350165
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "hardware-shard-1-3",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              232,
+              426,
+              27,
+              10
+            ],
+            "source_pivot": [
+              13.5,
+              5.0
+            ],
+            "destination_size": [
+              25.11627906976744,
+              9.30232558139535
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              75.8139534883721,
+              -136.74418604651163
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              81.8139534883721,
+              -5.302030774932661
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              29,
+              436,
+              58,
+              24
+            ],
+            "source_pivot": [
+              29.0,
+              12.0
+            ],
+            "destination_size": [
+              53.95348837209302,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -98.60465116279069,
+              -120.93023255813955
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -95.60465116279069,
+              -12.55934618427931
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              436,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -37.67441860465115,
+              -120.93023255813955
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -46.67441860465115,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-2",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              160,
+              436,
+              72,
+              24
+            ],
+            "source_pivot": [
+              36.0,
+              12.0
+            ],
+            "destination_size": [
+              66.97674418604652,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              29.76744186046514,
+              -120.93023255813955
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              31.76744186046514,
+              -12.900138457489177
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-2-3",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              232,
+              436,
+              49,
+              24
+            ],
+            "source_pivot": [
+              24.5,
+              12.0
+            ],
+            "destination_size": [
+              45.58139534883721,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              86.046511627907,
+              -120.93023255813955
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              76.046511627907,
+              -12.340265437215823
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              16,
+              460,
+              71,
+              24
+            ],
+            "source_pivot": [
+              35.5,
+              12.0
+            ],
+            "destination_size": [
+              66.04651162790698,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -104.65116279069767,
+              -98.6046511627907
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -91.08894608492773,
+              -12.8757961522599
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              460,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -37.67441860465115,
+              -98.6046511627907
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -39.67441860465115,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-2",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              160,
+              460,
+              72,
+              24
+            ],
+            "source_pivot": [
+              36.0,
+              12.0
+            ],
+            "destination_size": [
+              66.97674418604652,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              29.76744186046514,
+              -98.6046511627907
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              38.76744186046514,
+              -12.900138457489177
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "cap-shard-3-3",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              232,
+              460,
+              64,
+              24
+            ],
+            "source_pivot": [
+              32.0,
+              12.0
+            ],
+            "destination_size": [
+              59.53488372093023,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              93.02325581395351,
+              -98.6046511627907
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              77.59611805854726,
+              -12.705400015654966
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              14,
+              484,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -105.58139534883719,
+              -76.27906976744188
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -90.15998837817929,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              484,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -37.67441860465115,
+              -76.27906976744188
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -32.67441860465115,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-2",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              160,
+              484,
+              72,
+              24
+            ],
+            "source_pivot": [
+              36.0,
+              12.0
+            ],
+            "destination_size": [
+              66.97674418604652,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              29.76744186046514,
+              -76.27906976744188
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              22.76744186046514,
+              -12.900138457489177
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-4-3",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              232,
+              484,
+              70,
+              24
+            ],
+            "source_pivot": [
+              35.0,
+              12.0
+            ],
+            "destination_size": [
+              65.11627906976744,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              95.8139534883721,
+              -76.27906976744188
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              74.80924493830196,
+              -12.851453847030625
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              17,
+              508,
+              70,
+              24
+            ],
+            "source_pivot": [
+              35.0,
+              12.0
+            ],
+            "destination_size": [
+              65.11627906976744,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -104.1860465116279,
+              -53.953488372093034
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -91.55342493830196,
+              -12.851453847030625
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              508,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -37.67441860465115,
+              -53.953488372093034
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -48.67441860465115,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-2",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              160,
+              508,
+              72,
+              24
+            ],
+            "source_pivot": [
+              36.0,
+              12.0
+            ],
+            "destination_size": [
+              66.97674418604652,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              29.76744186046514,
+              -53.953488372093034
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              29.76744186046514,
+              -12.900138457489177
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-5-3",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              232,
+              508,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              97.2093023255814,
+              -53.953488372093034
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              73.41580837817929,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              33,
+              532,
+              54,
+              24
+            ],
+            "source_pivot": [
+              27.0,
+              12.0
+            ],
+            "destination_size": [
+              50.23255813953488,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -96.74418604651162,
+              -31.627906976744185
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -88.74418604651162,
+              -12.461976963362204
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.68,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              532,
+              73,
+              24
+            ],
+            "source_pivot": [
+              36.5,
+              12.0
+            ],
+            "destination_size": [
+              67.90697674418604,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -37.67441860465115,
+              -31.627906976744185
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -41.67441860465115,
+              -12.924480762718453
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-2",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              160,
+              532,
+              72,
+              24
+            ],
+            "source_pivot": [
+              36.0,
+              12.0
+            ],
+            "destination_size": [
+              66.97674418604652,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              29.76744186046514,
+              -31.627906976744185
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              36.76744186046514,
+              -12.900138457489177
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-6-3",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              232,
+              532,
+              69,
+              24
+            ],
+            "source_pivot": [
+              34.5,
+              12.0
+            ],
+            "destination_size": [
+              64.18604651162791,
+              22.325581395348838
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              95.34883720930233,
+              -31.627906976744185
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              75.27372379167616,
+              -12.827111541801347
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-0",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              35,
+              556,
+              52,
+              22
+            ],
+            "source_pivot": [
+              26.0,
+              11.0
+            ],
+            "destination_size": [
+              48.372093023255815,
+              20.46511627906977
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -95.81395348837208,
+              -10.232558139534888
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -99.96272890949646,
+              -11.484334646155212
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.72,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-1",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              87,
+              556,
+              73,
+              11
+            ],
+            "source_pivot": [
+              36.5,
+              5.5
+            ],
+            "destination_size": [
+              67.90697674418604,
+              10.232558139534884
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              -37.67441860465115,
+              -15.348837209302332
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              -34.67441860465115,
+              -6.886255668853587
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.76,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-2",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              160,
+              556,
+              72,
+              17
+            ],
+            "source_pivot": [
+              36.0,
+              8.5
+            ],
+            "destination_size": [
+              66.97674418604652,
+              15.813953488372093
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              29.76744186046514,
+              -12.558139534883736
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              20.76744186046514,
+              -9.648786483869634
+            ],
+            "settled_rotation_degrees": -3,
+            "flight_rotation_degrees": -65,
+            "settle_time": 0.8,
+            "alpha_cutoff": 240
+          },
+          {
+            "id": "shell-shard-7-3",
+            "path": "assets/world/basement-platforms-v1/pressure-tank-source-v1.png",
+            "source_rect": [
+              232,
+              556,
+              38,
+              22
+            ],
+            "source_pivot": [
+              19.0,
+              11.0
+            ],
+            "destination_size": [
+              35.348837209302324,
+              20.46511627906977
+            ],
+            "uniform_scale": 0.9302325581395349,
+            "start_position": [
+              80.93023255813955,
+              -10.232558139534888
+            ],
+            "start_rotation_degrees": 0,
+            "settled_position": [
+              82.93023255813955,
+              -11.143542372945344
+            ],
+            "settled_rotation_degrees": 3,
+            "flight_rotation_degrees": 65,
+            "settle_time": 0.64,
+            "alpha_cutoff": 240
+          }
+        ],
+        "rules": [
+          "At0.22 replace frame4 with these pieces at exact start transforms; do not also render frames5/6/7.",
+          "Source cuts partition visible alpha240 material of frame4; hardware is intentionally fractured into shards.",
+          "Use fixed destination_size throughout. Source pivot is cell-local center; positions refer to that pivot.",
+          "Interpolate downward start_position to settled_position with accelerating progress; x uses smooth progress.",
+          "Rotation = lerp(0,settled_rotation,u) + flight_rotation*sin(pi*u), u clamped elapsed/settle duration.",
+          "Clamp pivot y so rotated bounding-box bottom never exceeds floor0; settle without penetrating ground.",
+          "Keep settled pieces visible permanently behind hero, harmless and noncolliding. Never swap them off at0.8.",
+          "New frame15 rubble may draw beneath fragments after first piece lands; do not replace the rigid pieces.",
+          "No scale squash, no opacity fade, no tiled grid motion: alternating spin and individual settle times separate shards.",
+          "Keep collision release0.22 and existing sound timing; motion acceptance still required."
+        ]
       }
     },
     {

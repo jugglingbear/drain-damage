@@ -2,6 +2,8 @@ extends RefCounted
 ## Per-run level budgets and simulation-driven starter-special geometry.
 const Data = preload("res://scripts/combat_data.gd")
 const DURATION := 7.5
+const PIPE_GRAVITY := 1250.0
+const PIPE_MANIFEST := "res://assets/specials/main-break-rain-v1/manifest.json"
 var definition: Dictionary
 var hero_id := "tony"
 var level_key := "first-call"
@@ -15,6 +17,8 @@ var tick_serial := 0
 var boss_used: Dictionary = {}
 var rain_remainders: Dictionary = {}
 var anchor := Vector2.ZERO
+var pipe_fall_speed := 0.0
+var pipe_contact := Vector2.ZERO
 var locked_facing := 1.0
 var costume := "normal"
 var audio: RefCounted
@@ -24,6 +28,9 @@ var presentation_host: WeakRef
 func _init() -> void:
 	Data.load_data()
 	definition = Data.bundle.starter_specials
+	var pipe_art: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PIPE_MANIFEST))
+	var foot: Array = pipe_art.pipe.native_destination_relative_floor
+	pipe_contact = Vector2(float(foot[0]),float(foot[0])+float(foot[2]))
 
 func configure(hero: String, level: String) -> void:
 	if hero != hero_id or level != level_key: cancel("configuration change")
@@ -57,6 +64,7 @@ func begin(host: Node2D, present := false) -> bool:
 	boss_used.clear()
 	rain_remainders.clear()
 	anchor = proposed
+	pipe_fall_speed = 0
 	locked_facing = host.facing
 	costume = host.world_art.hero_aim_art.costume
 	audio = host.special_audio
@@ -77,13 +85,15 @@ func clear_transients() -> void:
 	spent_pipes.clear()
 	if audio != null: audio.stop()
 	active = false
+	pipe_fall_speed = 0
 	elapsed = 0
 	tick_clock = 0
 	boss_used.clear()
 	rain_remainders.clear()
 
 func pipe_state() -> Dictionary:
-	return {"anchor":anchor,"angle":0.0,"elapsed":1.0,"costume":costume,"rain_pipe":true,"facing":locked_facing}
+	return {"anchor":anchor,"angle":0.0,"elapsed":1.0,"costume":costume,"rain_pipe":true,"facing":locked_facing,
+		"fall_speed":pipe_fall_speed}
 
 func retire_pipe(host: Node2D) -> void:
 	if active and hero_id == "sean":
@@ -111,10 +121,20 @@ func step(host: Node2D, delta: float) -> void:
 		return
 	if presentation_host != null or not host.specials_allowed(true): return
 	var advance := maxf(delta,0) if is_finite(delta) else 0.0
+	var supports: Array[Rect2] = []
+	if (active and hero_id == "sean") or not spent_pipes.is_empty():
+		supports = host.special_solids().duplicate()
+		if host.has_method("actor_solids"): supports.append_array(host.actor_solids())
 	for state: Dictionary in spent_pipes:
 		state.spent_age = float(state.get("spent_age",0))+advance
+		fall_pipe(state,advance,supports)
 	if not active: return
 	var used := minf(advance,DURATION-elapsed)
+	if hero_id == "sean":
+		var moving_pipe := pipe_state()
+		fall_pipe(moving_pipe,used,supports)
+		anchor = moving_pipe.anchor
+		pipe_fall_speed = moving_pipe.fall_speed
 	var end_time := elapsed+used
 	if end_time >= DURATION-0.000000001: end_time = DURATION
 	host.special_audio.advance(used)
@@ -140,9 +160,43 @@ func step(host: Node2D, delta: float) -> void:
 		retire_pipe(host)
 		if hero_id == "sean" and not spent_pipes.is_empty():
 			spent_pipes.back().spent_age = maxf(0,advance-used)
+			fall_pipe(spent_pipes.back(),maxf(0,advance-used),supports)
 		active = false
 		rain_remainders.clear()
 		host.special_audio.stop()
+
+func fall_pipe(state: Dictionary, delta: float, solids: Array[Rect2]) -> void:
+	if delta <= 0: return
+	var start: Vector2 = state.anchor
+	var speed: float = state.get("fall_speed",0.0)
+	var end_y := start.y+speed*delta+0.5*PIPE_GRAVITY*delta*delta
+	var landing := INF
+	var left := start.x+pipe_contact.x
+	var right := start.x+pipe_contact.y
+	for solid: Rect2 in solids:
+		var top := solid.position.y
+		if top < start.y-0.001 or top > end_y+0.001 or top >= landing: continue
+		if supported_interval(left,right,top,solids): landing = top
+	if is_finite(landing):
+		state.anchor = Vector2(start.x,landing)
+		state.fall_speed = 0.0
+	else:
+		state.anchor = Vector2(start.x,end_y)
+		state.fall_speed = speed+PIPE_GRAVITY*delta
+
+func supported_interval(left: float, right: float, top: float, solids: Array[Rect2]) -> bool:
+	# Use the registered base, not decorative compact-collapse bolt overhang. Adjacent material can share support.
+	var intervals: Array[Vector2] = []
+	for solid: Rect2 in solids:
+		if absf(solid.position.y-top) <= 0.001 and solid.end.x > left and solid.position.x < right:
+			intervals.append(Vector2(solid.position.x,solid.end.x))
+	intervals.sort_custom(func(a: Vector2,b: Vector2) -> bool: return a.x < b.x)
+	var covered := left
+	for interval in intervals:
+		if interval.x > covered+0.001: return false
+		covered = maxf(covered,interval.y)
+		if covered >= right-0.001: return true
+	return false
 
 func water_width() -> float:
 	if not active or hero_id == "sean": return 0

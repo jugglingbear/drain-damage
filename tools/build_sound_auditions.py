@@ -139,6 +139,13 @@ def discover() -> dict[str, dict[str, Any]]:
                 owner = names.get(creature, creature.title())
                 add(cue["slot_key"], "Level 1", f"{owner} — {event.replace('_', ' ')}",
                     [cue["path"]], "data/creature-action-audio.json#/creatures")
+    basement_source = "scripts/basement_platforms.gd"
+    basement_text = (ROOT / basement_source).read_text()
+    for path, prop, event in re.findall(
+            r'"res://(assets/audio/sfx/basement-platforms-v1/'
+            r'(water-heater|cast-iron-boiler|pressure-tank)-(hit|break)\.wav)"', basement_text):
+        add(f"proposed-basement-props/{prop}/{event}", "Level 1",
+            f"{prop.replace('-', ' ').title()} — {event}", [path], basement_source)
     return slots
 
 

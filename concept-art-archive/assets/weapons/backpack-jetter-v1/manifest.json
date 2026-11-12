@@ -1,0 +1,629 @@
+{
+  "schema_version": 1,
+  "status": "production candidate awaiting Engineering anchor refinement and native acceptance",
+  "texture": "res://assets/weapons/backpack-jetter-v1/atlas-v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "alpha_handling": "alpha scissor0.06 to remove generated near-transparent haze; retain original source",
+  "equipment_id": "backpack-jetter",
+  "weapon_ids": [
+    "pressure-gun"
+  ],
+  "loadout_rule": "Only existing pressure-gun mapping changes; no new hero loadout assignment. Reusable hardware for both heroes/all costumes.",
+  "parts": {
+    "pack": {
+      "source_rect": [
+        80,
+        80,
+        384,
+        441
+      ],
+      "uniform_scale": 0.046875,
+      "native_size": [
+        18,
+        20.671875
+      ],
+      "mount_source": [
+        442,
+        155
+      ],
+      "outlet_source": [
+        105,
+        483
+      ],
+      "layer": "behind back_arm and body"
+    },
+    "strap": {
+      "source_rect": [
+        617,
+        90,
+        256,
+        422
+      ],
+      "native_height": 17,
+      "layer": "above body, below arms",
+      "notes": "Align shoulder arc to selected torso; do not cover face."
+    },
+    "nozzle": {
+      "source_rect": [
+        1004,
+        267,
+        504,
+        91
+      ],
+      "grip_source": [
+        1120,
+        313
+      ],
+      "support_source": [
+        1272,
+        313
+      ],
+      "muzzle_source": [
+        1498,
+        313
+      ],
+      "hose_inlet_source": [
+        1012,
+        313
+      ],
+      "layer": "existing weapon layer below front arm",
+      "notes": "Uniform rotate/scale grip-to-muzzle to selected pose pair. Existing support hand may need small dedicated arm adapter; verify contact, do not move muzzle to conceal mismatch."
+    },
+    "hose_straight": {
+      "source_rect": [
+        47,
+        745,
+        442,
+        74
+      ],
+      "native_thickness": 2.5,
+      "layer": "behind hands",
+      "notes": "Repeat/deform along continuous path; avoid scaling thickness with hose length."
+    },
+    "hose_curve": {
+      "source_rect": [
+        580,
+        640,
+        387,
+        303
+      ],
+      "endpoints_source": [
+        [
+          620,
+          652
+        ],
+        [
+          932,
+          652
+        ]
+      ],
+      "layer": "behind hands",
+      "notes": "Source shape guide; prefer flexible textured path for arbitrary aims."
+    },
+    "coupling_brass": {
+      "source_rect": [
+        1096,
+        716,
+        132,
+        109
+      ],
+      "native_width": 3
+    },
+    "coupling_silver": {
+      "source_rect": [
+        1321,
+        717,
+        129,
+        105
+      ],
+      "native_width": 3
+    }
+  },
+  "hero_registrations": {
+    "tony": {
+      "normal": {
+        "logical_canvas": [
+          128,
+          128
+        ],
+        "feet": [
+          64,
+          104
+        ],
+        "pack_mount": [
+          49,
+          56
+        ],
+        "status": "provisional native review required; hardware identical across costumes",
+        "follow": "torso attachment_offset exactly once; mirror entire equipment coordinate transform about feet.x"
+      },
+      "easy": {
+        "logical_canvas": [
+          128,
+          128
+        ],
+        "feet": [
+          64,
+          104
+        ],
+        "pack_mount": [
+          49,
+          56
+        ],
+        "status": "provisional native review required; hardware identical across costumes",
+        "follow": "torso attachment_offset exactly once; mirror entire equipment coordinate transform about feet.x"
+      },
+      "hard": {
+        "logical_canvas": [
+          128,
+          128
+        ],
+        "feet": [
+          64,
+          104
+        ],
+        "pack_mount": [
+          46,
+          56
+        ],
+        "status": "provisional native review required; hardware identical across costumes",
+        "follow": "torso attachment_offset exactly once; mirror entire equipment coordinate transform about feet.x"
+      }
+    },
+    "sean": {
+      "normal": {
+        "logical_canvas": [
+          128,
+          128
+        ],
+        "feet": [
+          64,
+          104
+        ],
+        "pack_mount": [
+          49,
+          56
+        ],
+        "status": "provisional native review required; hardware identical across costumes",
+        "follow": "torso attachment_offset exactly once; mirror entire equipment coordinate transform about feet.x"
+      },
+      "easy": {
+        "logical_canvas": [
+          128,
+          128
+        ],
+        "feet": [
+          64,
+          104
+        ],
+        "pack_mount": [
+          49,
+          56
+        ],
+        "status": "provisional native review required; hardware identical across costumes",
+        "follow": "torso attachment_offset exactly once; mirror entire equipment coordinate transform about feet.x"
+      },
+      "hard": {
+        "logical_canvas": [
+          128,
+          128
+        ],
+        "feet": [
+          64,
+          104
+        ],
+        "pack_mount": [
+          46,
+          56
+        ],
+        "status": "provisional native review required; hardware identical across costumes",
+        "follow": "torso attachment_offset exactly once; mirror entire equipment coordinate transform about feet.x"
+      }
+    }
+  },
+  "reference": "design/backpack-jetter-concepts-v1/backpack-game.png",
+  "limitations": [
+    "Generated pump silhouette is wider than18:28 target. Uniform width18 givesheight20.67; do not distort to18x28. At height28 actualwidth24.38. Select after native sizing review.",
+    "Source anchors measured visually; runtime arm/support/nozzle alignment needs review across aim,run,jump and costumes.",
+    "All six hero/costume registrations provisional; no claim all poses production-validated."
+  ],
+  "death_adapters": {
+    "status": "v2 prone registration correction; native recheck required",
+    "coordinate_space": "logical128 canvas, feet64,104; absolute destinations already include death-frame placement, DO NOT add living locomotion offset",
+    "pack_native_height": 28,
+    "draw_order": [
+      "pack",
+      "hose",
+      "hero_death_frame",
+      "released_nozzle"
+    ],
+    "released_nozzle_rule": "Loose harmless equipment, connected hose follows both endpoints. Interpolate between stage anchors to avoid teleport; stop firing immediately. Final source-bounds floor contact must be checked.",
+    "heroes": {
+      "tony": {
+        "normal": {
+          "animation_manifest": "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+          "frames": [
+            {
+              "frame_index": 0,
+              "pack_mount": [
+                42.6,
+                61.0
+              ],
+              "pack_rotation_degrees": -18,
+              "released_nozzle_grip": [
+                79,
+                78
+              ],
+              "released_nozzle_rotation_degrees": 25,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 1,
+              "pack_mount": [
+                41.8,
+                60.6
+              ],
+              "pack_rotation_degrees": -35,
+              "released_nozzle_grip": [
+                88,
+                87
+              ],
+              "released_nozzle_rotation_degrees": 40,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 2,
+              "pack_mount": [
+                71.4,
+                87.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            },
+            {
+              "frame_index": 3,
+              "pack_mount": [
+                70.8,
+                92.6
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            }
+          ]
+        },
+        "easy": {
+          "animation_manifest": "assets/sprites/easy-mode/animation-manifest-v1.json",
+          "frames": [
+            {
+              "frame_index": 0,
+              "pack_mount": [
+                45.6,
+                61.0
+              ],
+              "pack_rotation_degrees": -18,
+              "released_nozzle_grip": [
+                79,
+                78
+              ],
+              "released_nozzle_rotation_degrees": 25,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 1,
+              "pack_mount": [
+                45.0,
+                68.2
+              ],
+              "pack_rotation_degrees": -35,
+              "released_nozzle_grip": [
+                88,
+                87
+              ],
+              "released_nozzle_rotation_degrees": 40,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 2,
+              "pack_mount": [
+                75.2,
+                86.4
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            },
+            {
+              "frame_index": 3,
+              "pack_mount": [
+                73.1,
+                93.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            }
+          ]
+        },
+        "hard": {
+          "animation_manifest": "assets/sprites/hard-mode/animation-manifest-v1.json",
+          "frames": [
+            {
+              "frame_index": 0,
+              "pack_mount": [
+                42.6,
+                61.0
+              ],
+              "pack_rotation_degrees": -18,
+              "released_nozzle_grip": [
+                79,
+                78
+              ],
+              "released_nozzle_rotation_degrees": 25,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 1,
+              "pack_mount": [
+                41.8,
+                60.6
+              ],
+              "pack_rotation_degrees": -35,
+              "released_nozzle_grip": [
+                88,
+                87
+              ],
+              "released_nozzle_rotation_degrees": 40,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 2,
+              "pack_mount": [
+                71.4,
+                87.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            },
+            {
+              "frame_index": 3,
+              "pack_mount": [
+                70.8,
+                92.6
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            }
+          ]
+        }
+      },
+      "sean": {
+        "normal": {
+          "animation_manifest": "assets/sprites/hero-animation-v2/manifest-beard-v3.json",
+          "frames": [
+            {
+              "frame_index": 0,
+              "pack_mount": [
+                42.0,
+                59.6
+              ],
+              "pack_rotation_degrees": -18,
+              "released_nozzle_grip": [
+                79,
+                78
+              ],
+              "released_nozzle_rotation_degrees": 25,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 1,
+              "pack_mount": [
+                42.0,
+                59.6
+              ],
+              "pack_rotation_degrees": -35,
+              "released_nozzle_grip": [
+                88,
+                87
+              ],
+              "released_nozzle_rotation_degrees": 40,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 2,
+              "pack_mount": [
+                72.8,
+                85.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            },
+            {
+              "frame_index": 3,
+              "pack_mount": [
+                70.8,
+                92.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            }
+          ]
+        },
+        "easy": {
+          "animation_manifest": "assets/sprites/easy-mode/animation-manifest-v1.json",
+          "frames": [
+            {
+              "frame_index": 0,
+              "pack_mount": [
+                45.6,
+                61.2
+              ],
+              "pack_rotation_degrees": -18,
+              "released_nozzle_grip": [
+                79,
+                78
+              ],
+              "released_nozzle_rotation_degrees": 25,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 1,
+              "pack_mount": [
+                44.4,
+                68.2
+              ],
+              "pack_rotation_degrees": -35,
+              "released_nozzle_grip": [
+                88,
+                87
+              ],
+              "released_nozzle_rotation_degrees": 40,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 2,
+              "pack_mount": [
+                75.6,
+                85.2
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            },
+            {
+              "frame_index": 3,
+              "pack_mount": [
+                72.9,
+                93.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            }
+          ]
+        },
+        "hard": {
+          "animation_manifest": "assets/sprites/hard-mode/animation-manifest-v1.json",
+          "frames": [
+            {
+              "frame_index": 0,
+              "pack_mount": [
+                42.0,
+                59.6
+              ],
+              "pack_rotation_degrees": -18,
+              "released_nozzle_grip": [
+                79,
+                78
+              ],
+              "released_nozzle_rotation_degrees": 25,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 1,
+              "pack_mount": [
+                42.0,
+                59.6
+              ],
+              "pack_rotation_degrees": -35,
+              "released_nozzle_grip": [
+                88,
+                87
+              ],
+              "released_nozzle_rotation_degrees": 40,
+              "released_nozzle_native_grip_to_muzzle": 28.28
+            },
+            {
+              "frame_index": 2,
+              "pack_mount": [
+                72.8,
+                85.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            },
+            {
+              "frame_index": 3,
+              "pack_mount": [
+                70.8,
+                92.0
+              ],
+              "pack_rotation_degrees": 90,
+              "released_nozzle_grip": [
+                94,
+                100
+              ],
+              "released_nozzle_rotation_degrees": 0,
+              "released_nozzle_native_grip_to_muzzle": 28.28,
+              "review_note": "Native v1 prone pack sat above head; move12towardtorso and8down inlogical right-facing space. Await revisednativecapture."
+            }
+          ]
+        }
+      }
+    }
+  }
+}

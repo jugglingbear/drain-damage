@@ -2,7 +2,7 @@
   "schema_version": 1,
   "weapon_id": "pressure-gun",
   "assigned_to": "Bestiary",
-  "status": "Nine source-art cells delivered; runtime slicing, anchors, alpha cleanup, and integration pending",
+  "status": "Prototype 185 integrated: backpack, hose and nozzle replace held-gun rendering; original source cells retained",
   "style": "Chunky SNES-inspired pixel art with navy outlines",
   "path_base": "project root",
   "source_brief": "Compact brass-and-teal water gun with pressure gauge; crisp blue water bolts.",
@@ -245,5 +245,17 @@
         "Hero contact and motion"
       ]
     }
+  },
+  "runtime_equipment": {
+    "manifest": "assets/weapons/backpack-jetter-v1/manifest.json",
+    "renderer": "scripts/backpack_jetter_art.gd",
+    "loadout": "Existing Tony pressure-gun only; reusable registration does not authorize Sean assignment",
+    "costumes": [
+      "normal",
+      "easy",
+      "hard"
+    ],
+    "registration": "Existing grip and muzzle preserved; one body offset while alive; absolute authored death adapters",
+    "validation": "Living and revised death source captures independently accepted; isolated Prototype185 packaged checks and sampled native views pass."
   }
 }

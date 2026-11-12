@@ -60,6 +60,25 @@ with reciprocal top navigation from the magazine; its Storybook link sits immedi
 Historical capture gaps remain labeled.
 <a href="https://jugglingbear.github.io/drain-damage/storybook/storybook.html">Browse the storybook</a>.</p>
 <main class="wrap">
+<p><strong>November 12 — editorial and comic studies:</strong> Seven wedding-comic cover style examples are
+<a href="design/wedding-comic-covers-v1/manifest.json">delivered</a>. Sean prefers the original pulp direction; the original plus four
+<a href="design/wedding-comic-pulp-refinements-v1/manifest.json">close refinements</a> are available for final selection.
+Publication approval remains open. Marketing has delivered a local edition 39 review draft with coherent articles, narrower grids and less
+duplication; independent Art review and corrected cover/ad likeness assets remain pending. There is no 12-page cap; the magazine can expand as content grows. Normal-only
+and spoiler rules remain. Published edition 38 stays live while the review candidate awaits corrected likeness artwork
+and review. These editorial deliveries do not change the game runtime.</p>
+
+<p><strong>November 12 — Prototype 185 built and validated:</strong> Tony’s pressure-gun loadout now draws
+an authored backpack, connected hose and hand-aligned nozzle in all three costumes, including registered death poses.
+Water heater, cast-iron boiler and pressure tank now take ordinary friendly projectile damage, animate their collapse,
+play material-specific sounds and release support after 0.22 seconds. Initial playtest tuning is 54 HP; specials and
+hostile shots do not damage scenery. The tank and heater have been relocated onto verified solid floor, with four permanent approach supports.
+Both existing pits remain unchanged. Narrow support art and low terminal rubble are corrected. Rigid panels and fittings now collapse continuously when support releases. Sean’s active and spent pipes
+follow lost support to the floor. Independent Art accepted the source samples; isolated packaged native captures and ten regression suites pass.
+Rain audio now validates imported resources correctly in exports. The signed Mac app is preserved at
+<code>builds/Prototype-185/Drain Damage.app</code>. Full-route human playtesting, audiovisual review and native Windows
+verification remain open.</p>
+
 <p><strong>November 12 — Prototype 184 sustained boss-health feedback:</strong> Tony’s repeated water hits already
 applied damage during contact, but each hit restarted the health bar’s delayed-damage hold. The trail now catches up
 during sustained attacks. Actual Skitterling encounter/HUD checks confirm 0.10-second damage and live meter updates;
@@ -136,7 +155,7 @@ capture remain pending because capture targeting selected an unrelated running g
 <p><strong>November 11 — Prototype 177 controller callouts:</strong> The approved controller artwork now uses runtime
 labels and button leaders. Keyboard controls, navigation, settings and context hints remain available.
 Packaged controls checks and independent Art review of the native capture pass; the signed Mac build is preserved.
-Cinematic motion review remains pending. The reusable backpack jetter awaits Art production and integration;
+Cinematic motion review remains pending. The reusable backpack jetter is integrated in Prototype 185;
 current hero loadout permissions remain unchanged. Level 2 dialogue remains proposal-only at beginning/end and
 curated intermediate checkpoints, with no per-obstacle chatter.</p>
 
@@ -357,8 +376,9 @@ Audio supplies material-specific cues and Engineering owns integration and accep
 Art delivered registered production sources and Audio delivered material-specific cues. Prototype 166 integrates
 seven permanent replacements using pipe stacks, radiators, a water softener and a utility sink. Rendering and collision
 use the same measured source geometry at uniform scale. Ten other placements retain the existing machinery after
-fit and runner-navigation checks rejected their replacements. All destructibles remain disabled pending safe placements;
-their animation sources and audio are retained, with runtime mapping and mix review still pending.
+fit and runner-navigation checks rejected their replacements. Destructibles remained disabled in Prototype 166. Prototype 185 adds three reviewed placements, live damage,
+registered collapse and sound; isolated packaged checks and bounded native visual acceptance pass.
+In-game mix review remains pending.
 Both heroes pass the packaged later-route checks at 60/120 Hz. Independent Art review passes the captured platform
 views; full-route human playtesting remains open. All final packaged boss-pressure, forward/reverse route, ending-input and Clogfather-to-flush transition gates pass.
 Launch this preserved build with <code>make run LEVEL=1 APP="builds/Prototype-166/Drain Damage.app"</code>.</p>
@@ -658,7 +678,7 @@ pending; baseline dialogue-test failures and the shared swimming ripple are reco
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated November 4, 2026 · Current build: Prototype 166 / 0.166.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated November 12, 2026 · Current build: Prototype 185 / 0.185.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
 at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
 point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;

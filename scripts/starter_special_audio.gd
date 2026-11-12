@@ -24,10 +24,13 @@ func attach(host: Node) -> void:
 	definition = JSON.parse_string(FileAccess.get_file_as_string(DEFINITION_PATH))
 	for event: String in definition.cues:
 		var cue: Dictionary = definition.cues[event]
+		var path := "res://"+str(cue.path)
 		if event == "sean-rain":
-			assert(FileAccess.file_exists("res://"+str(cue.path)),"Rain asset missing; do not substitute old jet")
-			assert(FileAccess.get_sha256("res://"+str(cue.path)) == str(cue.sha256),"Rain asset hash mismatch")
-		var stream: AudioStreamWAV = load("res://"+str(cue.path)).duplicate()
+			assert(ResourceLoader.exists(path),"Rain asset missing; do not substitute old jet")
+			# Exports contain the imported audio resource; the original WAV hash applies to source checkouts.
+			if FileAccess.file_exists(path):
+				assert(FileAccess.get_sha256(path) == str(cue.sha256),"Rain asset hash mismatch")
+		var stream: AudioStreamWAV = load(path).duplicate()
 		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD if cue.loop else AudioStreamWAV.LOOP_DISABLED
 		if cue.loop:
 			stream.loop_begin = 0

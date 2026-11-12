@@ -17,8 +17,15 @@ func run_checks() -> void:
 			game.actors.clear()
 			game.enemies.clear()
 			game.swarms.actors.clear()
+			var hostile_speed := 150.0
+			if path.ends_with("integrated_first_call.gd"):
+				hostile_speed = game.BULLET_SPEED*float(game.tuning.speed_multiplier)
+				# Isolate classification from live breakable targets elsewhere in the level.
+				game.campaign.level.platforms.placements.clear()
 			game.player = Vector2(4000,394)
 			var center := Vector2(2000,200)
+			# Keep the sweep visible so viewport expiry cannot masquerade as a solid hit.
+			game.camera_x = center.x-480
 			game.trial_state.advance(10)
 			var shooter_id := "opening-05"
 			assert(game.trial_state.reserve(shooter_id))
@@ -44,14 +51,14 @@ func run_checks() -> void:
 						if not solid: assert(game.shots[0].pos.is_equal_approx(center+direction*150))
 						game.shots.clear()
 					game.hostile_shots.assign([{"id":"fixture","pos":center-direction*150,
-						"dir":direction,"age":0.0}])
-					game.step_trial_shots(2.0)
+						"dir":direction,"age":0.0,"distance":0.0}])
+					game.step_trial_shots(300.0/hostile_speed)
 					assert(game.hostile_shots.is_empty() == solid,"Hostile swept classification failed")
 					game.hostile_shots.clear()
 				game.player = center+Vector2(-13,77)
 				var shooter := {"event_id":shooter_id,"hp":36.0,"visible_age":1.0,"feet":center-Vector2(22,80),
 					"target":center+Vector2(0,100),"facing":1.0,"winding":true,
-					"shot_clock":2.5,"fire_age":-1.0,"age":1.0}
+					"shot_clock":2.5,"fire_age":-1.0,"age":1.0,"windup_started":0.0,"role":"perched_shooter","active":false}
 				game.step_shooter(shooter,0,true)
 				assert(game.hostile_shots.is_empty() == solid,"Shooter sightline must match projectile geometry")
 				for shot in game.hostile_shots: game.trial_state.remove_bullet(shot.id)

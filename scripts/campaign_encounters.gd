@@ -11,26 +11,38 @@ var variant_supports: Array[Dictionary] = []
 class Geometry extends "res://scripts/three_screen_trial_level.gd":
 	var pits: Array[Vector2] = []
 	var platforms := preload("res://scripts/basement_platforms.gd").new()
+	var permanent_plinths: Array[Rect2] = []
 
 	func configure(data: Dictionary) -> bool:
 		width = float(data.world.width)
 		floor_y = float(data.world.floor_y)
 		fatal_fraction = 0.65
 		plinths.clear()
+		permanent_plinths.clear()
+		platforms.reset()
 		decks.clear()
 		pits.clear()
 		for section: Dictionary in data.sections:
 			for item: Dictionary in section.get("geometry",[]):
-				var values: Array = item.rect
+				var values: Array = platforms.overrides.get(item.id,item.rect)
 				var rect := Rect2(values[0],values[1],values[2],values[3])
 				match item.kind:
 					"solid":
-						if platforms.placements.has(item.id): plinths.append_array(platforms.colliders(item.id))
-						else: plinths.append(rect)
+						if not platforms.placements.has(item.id): permanent_plinths.append(rect)
 					"one_way": decks.append(rect)
 					"pit": pits.append(Vector2(rect.position.x,rect.end.x))
+		for item: Dictionary in platforms.supplemental:
+			var values: Array = item.rect
+			var rect := Rect2(values[0],values[1],values[2],values[3])
+			if item.kind == "solid": permanent_plinths.append(rect)
+			elif item.kind == "one_way": decks.append(rect)
+		refresh_platforms()
 		pits.sort_custom(func(a: Vector2,b: Vector2) -> bool: return a.x < b.x)
 		return true
+
+	func refresh_platforms() -> void:
+		plinths.assign(permanent_plinths)
+		for id: String in platforms.placements: plinths.append_array(platforms.colliders(id))
 
 	func pit_overlap_fraction(body: Rect2) -> float:
 		var overlap := 0.0

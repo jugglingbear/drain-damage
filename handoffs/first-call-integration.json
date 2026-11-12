@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 184 / 0.184.0",
-  "status": "Sustained boss-health damage trail fixed; reusable backpack and safe destructible placements in progress",
-  "app": "builds/Prototype-184/Drain Damage.app",
+  "build": "Prototype 185 / 0.185.0",
+  "status": "Signed Mac build validated in isolation; backpack, destructible props and pipe support-loss integrated",
+  "app": "builds/Prototype-185/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-183/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-184/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -866,5 +866,77 @@
       "Backpack production integration and safe destructible placements remain separate active deliveries"
     ],
     "previous_build_preserved": "builds/Prototype-183/Drain Damage.app"
+  },
+  "followup_185": {
+    "date": "2026-11-12",
+    "status": "Signed Mac export and ten isolated packaged suites pass; bounded native visuals accepted",
+    "changes": [
+      "Reusable authored backpack, flexible textured hose and registered nozzle for existing Tony pressure-gun loadout, all costumes and death poses; firing anchors unchanged.",
+      "Three harmless destructibles with initial 54 HP, ordinary friendly shot damage only, 0.22-second support release, collapse/wreck frames and six material sounds.",
+      "Four permanent one-way supports supplement safe approaches; all three props stand on real floor and both existing pits remain unchanged.",
+      "Active and spent Sean pipes fall continuously onto remaining support if a destructible beneath them collapses; rain timing and damage remain unchanged."
+    ],
+    "remaining": [
+      "Full-route human playtesting and balance review of initial54HP props",
+      "Real-time audiovisual and audio-mix review",
+      "Native Windows verification"
+    ],
+    "previous_build_preserved": "builds/Prototype-184/Drain Damage.app",
+    "checks": [
+      "Backpack: 11,751 checks pass, including all 24 death adapters and unchanged firing anchors.",
+      "Hero animation: 240 combinations pass. Hero lifecycle passes.",
+      "Projectile collision classification passes for both heroes and both game hosts.",
+      "Corrected authored placements: 27,933 checks pass across all eight destruction combinations, both hero speeds and 60/120 Hz.",
+      "Destructible runtime: 19,486 checks pass, including rigid-piece continuity, floor bounds, persistence, support release, retry and shot exclusions. New fixture resource leaks corrected.",
+      "Sound catalog: seven tests pass. Project version: two tests pass.",
+      "Permanent authored placement regression: 940 checks pass, including a negative control for the rejected over-pit location.",
+      "Pipe support release: 58 checks pass at 30/60/120 Hz; existing starter specials 1,615, rain timeline 1,660 and rain damage 26 checks pass."
+    ],
+    "visual_review": [
+      "Art accepted54 living sourcecaptures and24 revised death endpoints",
+      "Art accepted bounded death-transition samples18\u201320 and25\u201330, not real-time playback",
+      "Initial prop captures rejected: unsafepitplacement, narrowbraces, sparsewreckID and misleadingtallwreck",
+      "Replacement terminal rubble accepted for all three props; transition from tall damaged vessel rejected as abrupt. Art and Mechanics correcting with registered rigid fragments.",
+      "Rigid fragments accepted by independent Art review: both heroes, all three props, 36 sampled release/fall/settled views; pieces remain visible and grounded.",
+      "Independent Art accepted eight active/spent pipe support-loss and landing samples; unchanged form/facing and correct floor contact."
+    ],
+    "pck_sha256": "9d1b3e4c507358ec94001300800c11a0269f92de028a612463b7e4678191b0e8",
+    "packaged_checks": {
+      "working_directory": "/private/tmp/drain-damage-185-isolated",
+      "source_fallback": false,
+      "suites": {
+        "backpack_jetter": 11751,
+        "destructible_platforms": 19486,
+        "destructible_placement_safety": 940,
+        "pipe_support_release": 58,
+        "starter_specials": 1615,
+        "main_break_rain_timeline": 1660,
+        "main_break_rain_damage": 26,
+        "tony_skitterling_hud": 147,
+        "platform_projectiles": "PASS",
+        "starter_special_audio": "PASS, including --packaged source-isolation assertion"
+      },
+      "logs": "/tmp/185-isolated-*.log",
+      "codesign": "verify --deep --strict passed"
+    },
+    "native_evidence": {
+      "backpack": "previews/backpack-185/packed/ (78 frames); packed-isolated.log",
+      "props": "previews/destructible-platforms-185/packed/ (102 frames); /tmp/destructible-packed-final-native.log",
+      "pipe_support": "previews/destructible-platforms-185/packed/pipe-fall/ (24 frames); /tmp/pipe-packed-final-native.log",
+      "scope": "Controlled, muted native fixtures; source access explicitly false. Engineering inspected packaged samples; independent Art accepted source construction and sampled transitions."
+    },
+    "packaging_repair": {
+      "cause": "Rain audio asserted existence/hash of raw WAV, which Godot replaces with an imported resource in exports. A repository --path masked the issue.",
+      "fix": "ResourceLoader.exists validates the imported resource; raw SHA verification remains when the original source is present. No fallback audio cue.",
+      "rejected_candidate": "builds/Prototype-185-rejected-audio/Drain Damage.app",
+      "rejected_pck_sha256": "da510c97d962f9b6bf22e285860ae9d0032d02bf910ffe5857b161efc9298da2",
+      "regression": "tests/starter_special_audio.gd --packaged rejects source-visible validation"
+    },
+    "warnings": [
+      "Sandbox macOS certificate warning; export could not save editor settings outside workspace, but build and signature verification succeeded.",
+      "Existing rain-damage/projectile test fixtures emit resource/ObjectDB shutdown warnings; assertions pass. New destructible fixture cleanup passes without those leaks.",
+      "Storybook width, links and whitespace checks pass; full markdownlint is unavailable."
+    ],
+    "storybook": "storybook/185-backpack-and-breakables/captures.json; four preserved isolated-package originals, three curated views"
   }
 }

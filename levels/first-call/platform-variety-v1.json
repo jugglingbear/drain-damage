@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "id": "level-one-platform-variety",
-  "date": "2026-11-04",
-  "status": "Seven permanent placements integrated in signed Prototype 166; ten originals retained; all breakables disabled",
+  "date": "2026-11-12",
+  "status": "Seven permanent replacements retained; three corrected destructible placements pass authored-floor checks; runtime/visual integration pending",
   "owner": "Level Design",
   "integration_owner": "Engineering",
   "art_owner": "Bestiary / Art",
@@ -1358,14 +1358,14 @@
     "Other unlisted machinery, all pits/rims, ceiling fixtures, devil rail and boss/checkpoint geometry remain existing."
   ],
   "breakables": {
-    "status": "All three breakable candidates remain disabled; separate placement and bypass design required",
+    "status": "Integrated in Prototype185; authored geometry checks and bounded native acceptance pass",
     "families": [
       "water-heater",
       "cast-iron-boiler",
       "pressure-tank"
     ],
-    "reason": "Existing permanent access steps and decks can reach these intact tops. Each added solid occupies previously open floor, so this is an explicit route addition requiring review, not a drop-in gantry replacement.",
-    "required_design_step": "Engineering must accept the new lower-lane obstacles with permanent upper approaches, or reject them under a strict keep-all-floor-lanes-open interpretation. No runtime placement is authorized by this proposal alone.",
+    "reason": "Boiler replaces entry-machine-1; pressure tank at2940 occupies continuous floor beyond opening runner containment; heater at4490 uses existing service-deck left approach and two new right steps. Both authored pits and their reservations remain unchanged.",
+    "required_design_step": "Use admitted runtime placements and permanent supports; superseded over-pit candidates remain rejected.",
     "constraints": [
       "Actual solid body colliders; no pass-through vessel or rear-alcove fiction.",
       "Safe continuous floor beneath every breakable; no pit bridge, checkpoint, boss or mandatory foothold dependency.",
@@ -1456,7 +1456,8 @@
         "registered_body_review": {
           "runner_home_x": 8520,
           "runner_body_overlap": true
-        }
+        },
+        "superseded_by": "breakables.runtime_placements; retained as rejected/held proposal evidence only"
       },
       {
         "id": "optional-approach-heater",
@@ -1530,7 +1531,8 @@
         "registered_body_review": {
           "runner_home_x": 10880,
           "runner_body_overlap": false
-        }
+        },
+        "superseded_by": "breakables.runtime_placements; retained as rejected/held proposal evidence only"
       },
       {
         "id": "optional-east-pressure-tank",
@@ -1607,10 +1609,217 @@
         "registered_body_review": {
           "runner_home_x": 12450,
           "runner_body_overlap": false
-        }
+        },
+        "superseded_by": "breakables.runtime_placements; retained as rejected/held proposal evidence only"
       }
     ],
-    "removal_validation": "All three removed: existing campaign geometry is exactly restored; no current permanent support is removed. Intact approach and pursuit checks still required."
+    "removal_validation": "Actual Campaign.Geometry tests all8 destruction combinations with explicit falling checks, plus full removed collision-footprint floor samples. Standing destruction through0.22s release lands on real floor; original pits900..1020 and13200..13320 retain65% threshold.",
+    "runtime_placements": [
+      {
+        "id": "breakable-entry-boiler",
+        "family": "cast-iron-boiler",
+        "enabled": true,
+        "destructible": true,
+        "floor_center_anchor": [
+          2050,
+          440
+        ],
+        "replaces_support_id": "entry-machine-1",
+        "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+        "registered_collision_rects_world": [
+          [
+            1940.98592,
+            320.0,
+            218.02817,
+            100.56338
+          ],
+          [
+            1942.67606,
+            420.56338,
+            39.71831,
+            19.43662
+          ],
+          [
+            2121.83099,
+            420.56338,
+            40.56338,
+            19.43662
+          ]
+        ],
+        "registered_top_segments_world": [
+          [
+            1940.98592,
+            320,
+            2159.01408,
+            320
+          ]
+        ],
+        "safe_ground_below": true,
+        "status": "Integrated185; source Art and isolated packaged sampled views accepted; full-route human playtest pending"
+      },
+      {
+        "id": "breakable-late-pressure-tank",
+        "family": "pressure-tank",
+        "enabled": true,
+        "destructible": true,
+        "floor_center_anchor": [
+          2940,
+          440
+        ],
+        "replaces_support_id": "",
+        "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+        "registered_collision_rects_world": [
+          [
+            2856.27907,
+            320.0,
+            167.44186,
+            11.16279
+          ],
+          [
+            2815.34884,
+            331.16279,
+            232.55814,
+            83.72093
+          ],
+          [
+            2820.0,
+            414.88372,
+            37.2093,
+            25.11628
+          ],
+          [
+            3002.32558,
+            414.88372,
+            37.2093,
+            25.11628
+          ]
+        ],
+        "registered_top_segments_world": [
+          [
+            2856.27907,
+            320,
+            3023.72093,
+            320
+          ]
+        ],
+        "safe_ground_below": true,
+        "status": "Integrated185; source Art and isolated packaged sampled views accepted; full-route human playtest pending"
+      },
+      {
+        "id": "breakable-late-water-heater",
+        "family": "water-heater",
+        "enabled": true,
+        "destructible": true,
+        "floor_center_anchor": [
+          4490,
+          440
+        ],
+        "replaces_support_id": "",
+        "art_manifest": "assets/world/basement-platforms-v1/manifest.json",
+        "registered_collision_rects_world": [
+          [
+            4434.36364,
+            260.0,
+            111.27273,
+            155.45455
+          ],
+          [
+            4434.36364,
+            415.45455,
+            21.27273,
+            24.54545
+          ],
+          [
+            4523.54545,
+            415.45455,
+            22.09091,
+            24.54545
+          ]
+        ],
+        "registered_top_segments_world": [
+          [
+            4434.36364,
+            260,
+            4544.0,
+            260
+          ]
+        ],
+        "safe_ground_below": true,
+        "status": "Integrated185; source Art and isolated packaged sampled views accepted; full-route human playtest pending"
+      }
+    ],
+    "supplemental_geometry": [
+      {
+        "id": "breakable-pressure-west-access",
+        "kind": "one_way",
+        "rect": [
+          2661,
+          380,
+          154,
+          16
+        ]
+      },
+      {
+        "id": "breakable-pressure-east-access",
+        "kind": "one_way",
+        "rect": [
+          3048,
+          380,
+          154,
+          16
+        ]
+      },
+      {
+        "id": "breakable-heater-east-access",
+        "kind": "one_way",
+        "rect": [
+          4546,
+          320,
+          50,
+          16
+        ]
+      },
+      {
+        "id": "breakable-heater-east-low",
+        "kind": "one_way",
+        "rect": [
+          4596,
+          380,
+          50,
+          16
+        ]
+      }
+    ],
+    "geometry_overrides": [],
+    "initial_tuning": {
+      "hit_points": 54,
+      "damage_sources": [
+        "ordinary_friendly_projectile"
+      ],
+      "status": "Initial playtest tuning; numeric HP not yet reviewed by Sean"
+    },
+    "placement_validation": {
+      "date": "2026-11-12",
+      "probe": "builds/destructible-safe-floor-probe.gd",
+      "evidence": "builds/destructible-safe-floor-results.json",
+      "log": "/tmp/destructible-safe-floor.log",
+      "checks": 27933,
+      "failures": 0,
+      "destruction_combinations": 8,
+      "scope": "Actual current Campaign.Geometry and live platform damage/advance/release: both60/120Hz, three top positions per prop per combination, explicit no-falling and supported landing; standing destruction; full removed collision-footprint sampling; required upward/same-height transfers for both235/270 hero speeds; both original pit65% thresholds.",
+      "runner_containment": "Additive pressure left2815.34884 exceeds opening runner bound2740 plus body margin; heater left4434.36364 exceeds service runner bound4390 plus body margin. Campaign-only containment required. Boiler runner crossing checked separately in prior bounded probe.",
+      "rejected_layout": "Superseded pressure13220/heater13420 layout rejected: pressure overlapped actual approach-pit13200..13320. Prior120-check result invalid because it did not assert falling/full floor coverage. All five former late steps removed; pit not filled or moved.",
+      "support_art": "Pressure decks154px wide use existing full-brace construction. Art supplied existing-source centered pedestal adapter for two50px heater decks; running120/60px-height captures pending.",
+      "limitations": [
+        "Transfer probes use immediate horizontal control; final input/motion acceptance remains Engineering work.",
+        "Descending players may drop to safe floor instead of landing on every optional step.",
+        "Intact additive props obstruct the floor; ordinary friendly shots clear them without a mandatory jump.",
+        "Boiler occupant and background-arrival release/remount must pass final Mechanics lifecycle checks.",
+        "No uninterrupted full-route combat, native visual acceptance or new build claimed."
+      ],
+      "retained_regression": "tests/destructible_placement_safety.gd: 940 checks, including rejected-location negative control",
+      "delivery": "handoffs/first-call-integration.json#followup_185"
+    }
   },
   "excluded": {
     "crated-toilet": "Dropped by Sean; archive retained by Art."

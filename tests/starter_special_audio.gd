@@ -4,6 +4,9 @@ const SpecialAudio = preload("res://scripts/starter_special_audio.gd")
 func _initialize() -> void: call_deferred("checks")
 
 func checks() -> void:
+	if "--packaged" in OS.get_cmdline_user_args():
+		assert(not FileAccess.file_exists("res://tests/starter_special_audio.gd"),
+			"Packaged validation must run outside the source checkout")
 	var host := Node.new()
 	root.add_child(host)
 	var audio := SpecialAudio.new()

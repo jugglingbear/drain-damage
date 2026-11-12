@@ -40,7 +40,7 @@
         "source": "marketing/magazine/weapon-special-concepts/sean-main-break.png",
         "required": "Replace obsolete horizontal blast with geyser/rain concept v2; align copy to 7.5 seconds of gameplay rain after cinematic.",
         "candidate": "marketing/magazine/weapon-special-concepts/sean-geyser-rain-concept-v2.png",
-        "status": "Sean said Better per Art; preferred replacement awaiting editorial integration/review. Confirm runtime status before publication; otherwise label redesign concept."
+        "status": "Corrected geyser v2 preferred after Sean said Better per Art; editorial integration/page review pending. Mechanic implemented in Prototype 183 per Engineering; retain concept-art label for illustration."
       },
       {
         "page": 11,
@@ -49,6 +49,15 @@
         "status": "Priority corrected asset pending"
       }
     ],
-    "preservation": "Do not overwrite originals or published PDF during audit; rejected geyser v1 excluded."
+    "preservation": "Do not overwrite originals or published PDF during audit; rejected geyser v1 excluded.",
+    "main_break_integration": {
+      "build": 183,
+      "commit": "66fa890",
+      "source": "Current Engineering delivery notice",
+      "status": "Implemented; huge upright pipe/geyser cinematic followed by 7.5 seconds visible viewport rain, seven 37.5-damage pulses; Sean may move/fire.",
+      "validation": "Engineering reports exact-package tests/signature pass and bounded native Art static acceptance.",
+      "remaining": "Full-route, independent real-time motion and listening checks pending.",
+      "editorial_rule": "May describe mechanic as implemented in Prototype 183; concept artwork remains labelled concept art, not a runtime screenshot."
+    }
   }
 }
