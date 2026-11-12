@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "status": "Art source-complete integration candidate; native motion acceptance pending",
+  "date": "2026-11-12",
+  "scope": "Post-water cosmetic pipe collapse only; no hero, costume, collision, damage or activation changes",
+  "duration_seconds": 0.75,
+  "alpha_cutoff": 240,
+  "sampling": "Nearest-neighbor; derived alpha >=240 becomes255, lower becomes0; preserve originals",
+  "source_facing": "right",
+  "mirror": "Reflect upper destinations and exact retained collar about existing fixed floor anchor for left-facing; never flip direction mid-sequence",
+  "collar": {
+    "manifest": "assets/specials/starter-v1/pipe-manifest-v2.json",
+    "key": "collar",
+    "rule": "Keep exact existing opaque runtime collar geometry and floor clip. Draw collar last, above upper neck. Never render old lower/upper_back/front_rim after outgoing hold. No additional generated collar."
+  },
+  "upper_socket_native": [
+    0,
+    -4
+  ],
+  "outgoing_hold": {
+    "start": 0,
+    "end": 0.09,
+    "rule": "Draw exact complete final active assembly unchanged; age0 begins only after water fully ends. Do not reset active angle/geometry.",
+    "reference_right": "previews/spent-pipe-collapse-runtime/spent-outgoing-1.png",
+    "reference_left": "previews/spent-pipe-collapse-runtime/spent-outgoing--1.png"
+  },
+  "interpolation": "Opaque held authored poses only; no dissolve, crossfade, uniform shrinking, per-frame normalization or automatic sprite stretching",
+  "variants": {
+    "normal": {
+      "path": "assets/specials/spent-pipe-collapse-v3/normal-upper-v3.png",
+      "sha256": "ae19dd56b611663b2d3cadd44fac38c0a9091f26c4b1e130c895976a2e07869b",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_anchor": [
+            272.5,
+            500
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -40.875,
+            -79.0,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -10.875,
+            -62.5,
+            11.025,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -62.5,
+            32,
+            0
+          ],
+          "start": 0.09,
+          "end": 0.18
+        },
+        {
+          "index": 1,
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_anchor": [
+            233,
+            500
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -34.95,
+            -79.0,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -10.05,
+            -63.1,
+            19.8,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -63.1,
+            32,
+            0
+          ],
+          "start": 0.18,
+          "end": 0.29
+        },
+        {
+          "index": 2,
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_anchor": [
+            201.5,
+            500
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -30.225,
+            -79.0,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -10.425,
+            -61.6,
+            31.575,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -61.6,
+            32,
+            0
+          ],
+          "start": 0.29,
+          "end": 0.4
+        },
+        {
+          "index": 3,
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_anchor": [
+            213,
+            449
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -31.95,
+            -71.35,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -10.65,
+            -53.05,
+            39.6,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -53.05,
+            39.6,
+            0
+          ],
+          "start": 0.4,
+          "end": 0.52
+        },
+        {
+          "index": 4,
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_anchor": [
+            145.5,
+            449
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -21.825,
+            -71.35,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -9.975,
+            -32.8,
+            49.875,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -32.8,
+            49.875,
+            0
+          ],
+          "start": 0.52,
+          "end": 0.64
+        },
+        {
+          "index": 5,
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_anchor": [
+            115,
+            449
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -17.25,
+            -71.35,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -9.9,
+            -17.2,
+            49.2,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -17.2,
+            49.2,
+            0
+          ],
+          "start": 0.64,
+          "end": 0.75
+        }
+      ],
+      "settled_frame": 5,
+      "whole_sequence_union_ltrb": [
+        -32,
+        -63.1,
+        49.875,
+        0
+      ],
+      "settled_height": 17.2
+    },
+    "compact": {
+      "path": "assets/specials/spent-pipe-collapse-v3/compact-upper-v3.png",
+      "sha256": "b26cdb513079b18a32dda5944868a3313a9fb86d858690c45744a9b5d77a842f",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "source_rect": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "source_anchor": [
+            272.5,
+            501
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -40.875,
+            -79.15,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -10.875,
+            -62.8,
+            10.875,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -62.8,
+            32,
+            0
+          ],
+          "start": 0.09,
+          "end": 0.18
+        },
+        {
+          "index": 1,
+          "source_rect": [
+            512,
+            0,
+            512,
+            512
+          ],
+          "source_anchor": [
+            233,
+            501
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -34.95,
+            -79.15,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -10.5,
+            -63.4,
+            19.65,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -63.4,
+            32,
+            0
+          ],
+          "start": 0.18,
+          "end": 0.29
+        },
+        {
+          "index": 2,
+          "source_rect": [
+            1024,
+            0,
+            512,
+            512
+          ],
+          "source_anchor": [
+            200.5,
+            501
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -30.075,
+            -79.15,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -10.575,
+            -62.2,
+            31.875,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -62.2,
+            32,
+            0
+          ],
+          "start": 0.29,
+          "end": 0.4
+        },
+        {
+          "index": 3,
+          "source_rect": [
+            0,
+            512,
+            512,
+            512
+          ],
+          "source_anchor": [
+            220,
+            448
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -33.0,
+            -71.2,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -8.85,
+            -49.45,
+            26.1,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -49.45,
+            32,
+            0
+          ],
+          "start": 0.4,
+          "end": 0.52
+        },
+        {
+          "index": 4,
+          "source_rect": [
+            512,
+            512,
+            512,
+            512
+          ],
+          "source_anchor": [
+            205,
+            448
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -30.75,
+            -71.2,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -13.05,
+            -35.95,
+            26.1,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -35.95,
+            32,
+            0
+          ],
+          "start": 0.52,
+          "end": 0.64
+        },
+        {
+          "index": 5,
+          "source_rect": [
+            1024,
+            512,
+            512,
+            512
+          ],
+          "source_anchor": [
+            200,
+            448
+          ],
+          "uniform_scale": 0.15,
+          "destination": [
+            -30.0,
+            -71.2,
+            76.8,
+            76.8
+          ],
+          "upper_opaque_bounds_ltrb": [
+            -14.4,
+            -28.15,
+            23.4,
+            -4.0
+          ],
+          "assembly_bounds_ltrb": [
+            -32,
+            -28.15,
+            32,
+            0
+          ],
+          "start": 0.64,
+          "end": 0.75
+        }
+      ],
+      "settled_frame": 5,
+      "whole_sequence_union_ltrb": [
+        -32,
+        -63.4,
+        32,
+        0
+      ],
+      "settled_height": 28.15
+    }
+  },
+  "selection": "Determine variant once before collapse using all measured union bounds and existing platform/solid checks. Prefer normal if clear, compact otherwise. Preserve original footprint and facing. No new invisible support/collision.",
+  "lifecycle": "Freeze with gameplay pause/dialogue. Retain settled frame after0.75. Existing death/retry/scene cleanup removes prop.",
+  "native_acceptance_required": [
+    "Exact outgoing to frame0 silhouette/material continuity",
+    "Stable neck/collar in both facings",
+    "No ghosting, anchor jumps, floor slicing or disappearing metal",
+    "Normal overhang and compact narrow-platform support",
+    "Continuous0.75s motion and final lower obstruction",
+    "Pause and lifecycle cleanup"
+  ]
+}

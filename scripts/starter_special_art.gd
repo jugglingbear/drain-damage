@@ -2,17 +2,14 @@ extends RefCounted
 ## Registered artwork follows the same clipped water geometry used for contact damage.
 const WATER := "res://assets/specials/starter-v1/water-manifest-v1.json"
 const PIPE := "res://assets/specials/starter-v1/pipe-manifest-v2.json"
-const SPENT := "res://assets/specials/starter-v1/spent-pipe-collapse-v1.json"
-const COMPACT := "res://assets/specials/starter-v1/spent-pipe-compact-v1.json"
+const SPENT := "res://assets/specials/spent-pipe-collapse-v3/manifest-v4.json"
 const ACTIONS := "res://assets/specials/starter-v1/sean-actions-manifest-v1.json"
 var water: Dictionary = {}
 var frames: Dictionary = {}
 var pipe: Dictionary = {}
 var pipe_textures: Dictionary = {}
 var spent: Dictionary = {}
-var spent_textures: Array[Texture2D] = []
-var compact: Dictionary = {}
-var compact_textures: Array[Texture2D] = []
+var spent_textures: Dictionary = {}
 var actions: Dictionary = {}
 var action_textures: Dictionary = {}
 
@@ -37,13 +34,14 @@ func draw_clipped(game: Node2D, points: PackedVector2Array, uv: PackedVector2Arr
 	if absf(area) < 0.01 or Geometry2D.triangulate_polygon(clean).is_empty(): return
 	game.draw_polygon(clean,clean_colors,clean_uv,texture)
 
-func extracted(original: Image, region: Array) -> Texture2D:
+func extracted(original: Image, region: Array, opaque := false) -> Texture2D:
 	var pixels := original.get_region(Rect2i(region[0],region[1],region[2],region[3]))
 	pixels.convert(Image.FORMAT_RGBA8)
 	var bytes := pixels.get_data()
 	# Art-approved haze removal only; original source colors and files remain intact.
 	for index in range(3,bytes.size(),4):
 		if bytes[index] < 240: bytes[index] = 0
+		elif opaque: bytes[index] = 255
 	return ImageTexture.create_from_image(Image.create_from_data(
 		pixels.get_width(),pixels.get_height(),false,Image.FORMAT_RGBA8,bytes))
 
@@ -63,15 +61,12 @@ func prepare(yield_frame := Callable()) -> void:
 		pipe_textures[key] = extracted(source_pipe.get_image(),pipe.layers[key].source_rect)
 		if yield_frame.is_valid(): await yield_frame.call()
 	spent = JSON.parse_string(FileAccess.get_file_as_string(SPENT))
-	var spent_source: Texture2D = load("res://"+spent.path)
-	for frame: Dictionary in spent.frames:
-		spent_textures.append(extracted(spent_source.get_image(),frame.source_rect))
-		if yield_frame.is_valid(): await yield_frame.call()
-	compact = JSON.parse_string(FileAccess.get_file_as_string(COMPACT))
-	var compact_source: Texture2D = load("res://"+compact.path)
-	for frame: Dictionary in compact.frames:
-		compact_textures.append(extracted(compact_source.get_image(),frame.source_rect))
-		if yield_frame.is_valid(): await yield_frame.call()
+	for variant in spent.variants:
+		spent_textures[variant] = []
+		for frame: Dictionary in spent.variants[variant].frames:
+			var atlas: Texture2D = load("res://"+frame.get("path",spent.variants[variant].path))
+			spent_textures[variant].append(extracted(atlas.get_image(),frame.source_rect,true))
+			if yield_frame.is_valid(): await yield_frame.call()
 	actions = JSON.parse_string(FileAccess.get_file_as_string(ACTIONS))
 	for costume in actions.heroes:
 		action_textures[costume] = []
@@ -182,9 +177,10 @@ func draw_pipe_piece(game: Node2D, key: String, state: Dictionary, alpha := 1.0)
 					draw_clipped(game,clipped,clipped_uv,pipe_textures[key],PackedColorArray([Color(1,1,1,alpha)]))
 
 func spent_variant(state: Dictionary, solids: Array[Rect2]) -> String:
-	for frame: Dictionary in spent.frames:
-		var d: Array = frame.opaque_bounds_relative
-		var body := Rect2(d[0],d[1],d[2],d[3])
+	# Check every pose, including the widest intermediate fold, before locking the variant.
+	for frame: Dictionary in spent.variants.normal.frames:
+		var d: Array = frame.assembly_bounds_ltrb
+		var body := Rect2(d[0],d[1],d[2]-d[0],d[3]-d[1])
 		if state.angle < 0: body.position.x = -body.end.x
 		body.position += state.anchor
 		for solid: Rect2 in solids:
@@ -192,22 +188,30 @@ func spent_variant(state: Dictionary, solids: Array[Rect2]) -> String:
 	return "normal"
 
 func spent_pose(age: float, variant := "normal") -> Dictionary:
-	var contract := compact if variant == "compact" else spent
-	var handoff: float = contract.handoff_seconds if variant == "compact" else contract.handoff.seconds
-	if age < handoff:
-		return {"index":0,"next":0,"blend":0.0,"mesh_alpha":1-smoothstep(0,handoff,age)}
-	var remaining := age-handoff
-	for index in range(contract.frames.size()-1):
-		var duration: float = contract.frames[index].duration_seconds
-		if remaining < duration:
-			return {"index":index,"next":index+1,"blend":smoothstep(0,duration,remaining),"mesh_alpha":0.0}
-		remaining -= duration
-	return {"index":int(contract.settled_frame),"next":int(contract.settled_frame),"blend":0.0,"mesh_alpha":0.0}
+	if age < float(spent.outgoing_hold.end): return {"index":-1}
+	var contract: Dictionary = spent.variants[variant]
+	for frame: Dictionary in contract.frames:
+		if age < float(frame.end): return {"index":int(frame.index)}
+	return {"index":int(contract.settled_frame)}
 
 func draw_spent_pipe(game: Node2D, state: Dictionary) -> void:
-	# Keep the existing opaque pipe until Art approves a physical collapse transition.
-	for key in ["lower","upper_back","front_rim","collar"]:
-		draw_pipe_piece(game,key,state)
+	var variant: String = state.spent_variant
+	var pose := spent_pose(state.spent_age,variant)
+	if pose.index < 0:
+		for key in ["lower","upper_back","front_rim","collar"]:
+			draw_pipe_piece(game,key,state)
+		return
+	var frame: Dictionary = spent.variants[variant].frames[pose.index]
+	var d: Array = frame.destination
+	var facing := -1.0 if state.angle < 0 else 1.0
+	var vertices := PackedVector2Array()
+	for point in [Vector2(d[0],d[1]),Vector2(d[0]+d[2],d[1]),
+			Vector2(d[0]+d[2],d[1]+d[3]),Vector2(d[0],d[1]+d[3])]:
+		vertices.append(state.anchor+Vector2(point.x*facing,point.y))
+	draw_clipped(game,vertices,PackedVector2Array([Vector2.ZERO,Vector2.RIGHT,Vector2.ONE,Vector2.DOWN]),
+		spent_textures[variant][pose.index],PackedColorArray([Color.WHITE]))
+	# Retain the exact active collar, covering the authored neck at the same floor anchor.
+	draw_pipe_piece(game,"collar",state)
 
 func draw_back(game: Node2D) -> void:
 	for state: Dictionary in game.specials.spent_pipes: draw_spent_pipe(game,state)

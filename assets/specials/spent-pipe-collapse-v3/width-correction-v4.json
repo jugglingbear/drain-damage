@@ -1,0 +1,7 @@
+{
+  "prompt": "Correct this existing six-pose upper-pipe sprite sheet, preserve1536x1024 3x2 grid. Critical change: top-row FIRST TWO upper pipe sprites are too skinny. Make their pipe body and opening physically 50percent WIDER while preserving exact height,bottomsocketcenter, rustediron texture scale, side-on perspective. Firstframe currently width146sourcepx must become220sourcepx, height390 stays390, bottomcenterx272.5,y500. Secondframe lowerneckwidth134 must become200, centerx233,y500. Thirdframe needs similarly wider connected lowerneck and substantial body mass. Do not rescale whole image/cells, do not grow height. Keep bottomrow folding progression and same footprint limits; add corresponding thick folded metal volume where needed but bottomrow normalfinal extent stays x49..443 and y361..449. No collars/baseflanges/ground: runtime retains exact base. Preserve existing top/bottom row baselines and six positions. No text, water or background haze; transparent clean alpha. This is a corrected wider circular pipe viewed edge-on, not a flat metal strip. Allsprites complete opaque connected silhouettes.",
+  "source": "normal-upper-v3.png",
+  "output": "wider-upper-v4.png",
+  "used_frames": "0,1 shared;2 normal only; retained v3 final poses",
+  "status": "Native transition review pending"
+}

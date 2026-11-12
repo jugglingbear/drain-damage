@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 181 / 0.181.0",
-  "status": "Clogfather aimed-fire recurrence integrated; spent-pipe correction awaiting Art",
-  "app": "builds/Prototype-181/Drain Damage.app",
+  "build": "Prototype 182 / 0.182.0",
+  "status": "Spent-pipe collapse integrated; geyser/rain redesign approved and awaiting production",
+  "app": "builds/Prototype-182/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-169/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-181/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -167,7 +167,7 @@
   "source_commit_at_build": "07fad0d0cb810b772f913b1bc9ea82cce652fb08",
   "changes": [
     "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
-    "Normal two purple shooters/two flyers, seeded 1–3 bolt volleys and 2.2-second recovery",
+    "Normal two purple shooters/two flyers, seeded 1\u20133 bolt volleys and 2.2-second recovery",
     "Varied continuous entrances, replacement supported traversal and two 65%-overlap pits; independent trials unchanged",
     "Checkpoint-owned retry and boss transitions/adds preserved",
     "Angel return, devil aimed silk line, flame/scream/ash and three persistent doll heads",
@@ -357,7 +357,7 @@
       "late_route": "12284 checks,0 failures; both heroes60/120Hz; /tmp/166-package-late.log",
       "launch": "Normal Tony Level1 initialized at85/394; /tmp/166-package-launch.log",
       "build": "make build and codesign verify exit0; /tmp/166-build.log",
-      "boss_transition": "/tmp/platform166-clogfather_integration.log:6 mode/hero cases pass through actual portal→flush",
+      "boss_transition": "/tmp/platform166-clogfather_integration.log:6 mode/hero cases pass through actual portal\u2192flush",
       "boss_pressure": "/tmp/platform166-clogfather_pressure_integration.log:6 mode/hero lifecycle/no-refill cases pass",
       "ending_input": "/tmp/platform166-ending_input.log:both heroes pass canonical dialogue/debounce/release",
       "forward_reverse": "/tmp/platform166-clogfather_route_traversal.log:12 mode/hero/Hz cases pass",
@@ -391,7 +391,7 @@
       "difficulty_traversal": "18 E/N/H hero/seed runs through Skitterling at60/120Hz",
       "reverse_route": "12 forward/reverse E/N/H hero/Hz cases",
       "retry": "All four origins and Skitterling checkpoint ownership",
-      "boss_exit": "All six mode/hero cases: actual Clogfather defeat,aftermath and portal→flush",
+      "boss_exit": "All six mode/hero cases: actual Clogfather defeat,aftermath and portal\u2192flush",
       "other": "Pressure reinforcement lifecycle,canonical ending input and first-level ending pass;45 Python tests;117 sound slots current"
     },
     "test_migrations": [
@@ -734,7 +734,7 @@
       "Backpack runtime delivery pending"
     ],
     "warnings": [
-      "Some headless menu/audio suites report4–5ObjectDB instances and1resource at shutdown",
+      "Some headless menu/audio suites report4\u20135ObjectDB instances and1resource at shutdown",
       "Sandbox editor-settings save denied; build/signature succeeded"
     ],
     "previous_build_preserved": "builds/Prototype-179/Drain Damage.app",
@@ -773,6 +773,36 @@
     "warnings": [
       "Integrated boss test reports40ObjectDB instances and1resource at shutdown; assertions pass",
       "Sandbox CA/editor-settings diagnostics remain; export/signature succeeded"
+    ]
+  },
+  "followup_182": {
+    "date": "2026-11-12",
+    "changes": [
+      "Post-water Sean pipe folds through six opaque authored poses with exact retained collar",
+      "Normal and compact variants use fixed floor anchors and locked facing; settled prop persists",
+      "Water, damage, charges and lifecycle unchanged; approved geyser/rain redesign remains pending production"
+    ],
+    "art_contract": "assets/specials/spent-pipe-collapse-v3/manifest-v4.json",
+    "checks": [
+      "Source and exact-PCK spent-pipe geometry/lifecycle pass",
+      "1648 starter-special behavior checks pass",
+      "755 tick-boundary checks pass",
+      "721 death-cleanup checks pass",
+      "Native sequential captures of normal/compact in both facings inspected by Engineering",
+      "Independent Art sampled-frame PASS for v4; original v3 narrowing and collar gap rejected and corrected",
+      "macOS export and strict signature verification pass",
+      "Exact Prototype182 native captures match corrected first and settled poses in both facings"
+    ],
+    "evidence": "previews/spent-pipe-v3/",
+    "remaining": [
+      "Independent real-time temporal smoothness review; sequential PNG review does not establish this",
+      "Main Break upward-geyser and viewport rain redesign awaiting new production art and mechanics contract",
+      "Approved flush-to-ride arrival queued; proposed ride animations await Sean approval"
+    ],
+    "previous_build_preserved": "builds/Prototype-181/Drain Damage.app",
+    "warnings": [
+      "Starter specials test reports7ObjectDB instances at shutdown; assertions pass",
+      "Sandbox CA/editor-settings diagnostics; export and signing succeeded"
     ]
   }
 }
