@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-12",
+  "status": "Revised landing comic prop for review; interaction requirements sent to Marketing",
+  "tool": "built-in image_gen",
+  "prompt": "Edit this exact landing-page artwork. Change ONLY the cover of the leftmost comic book. Preserve everything else: wall title, no slogan/signs, glossy Discharge Quarterly magazine, Dev Journey scrapbook,1990s CD ROM game box, four readable navigation plaques, entire arrangement and warm vintage ink illustration. Comic must be a SINGLE unified dramatic cover illustration with NO sequential panels, NO panel grid, NO inset scenes, NO strip along bottom. Emulate general classic1960s/1970s comic-cover visual conventions, not a particular copyrighted cover: dominant masthead, small ISSUE01 corner box, one small jagged promotional burst and a compact slanted teaser caption over negative space. Cover art one large dramatically foreshortened drainpipe erupting water with energetic diagonals, cream foam, red/orange background, bold ink and halftone. Masthead exact DRAIN DAMAGE using selected Burst Pressure look: bold orange-red comic block letters with black shadow, small pipe couplings integrated into strokes and small water spray from cracked fitting. Little yellow burst reads 'COMIC SPECIAL'; small cream teaser reads 'PRESSURE RISING!' Do not use speech balloons or generic UH-OH. Let continuous illustration extend all the way to bottom cover edge. Preserve lightly worn matte paper, small corner curl and modest edge fray. No characters or invented mascots. Do not add a slogan anywhere on webpage. Do not change any other object or text.",
+  "source": "/Users/sfoley/.codex/generated_images/01a14b9d-7a07-7a62-9628-04f20542ab75/exec-51901840-c1f5-4d7d-8a75-4da92f777786.png",
+  "output": "01-service-desk-v4.png",
+  "reference": "01-service-desk-v3.png",
+  "research": {
+    "method": "Web image search reference review, including multi-cover collection results; general layout motifs only, no copied composition.",
+    "examples": [
+      "Avengers176",
+      "Avengers189",
+      "Thor257",
+      "Avengers149",
+      "Hulk178",
+      "Defenders70",
+      "Avengers129",
+      "Avengers137",
+      "Flash231",
+      "Justice League79",
+      "House of Mystery236",
+      "House of Mystery222",
+      "House of Secrets96",
+      "House of Mystery176",
+      "House of Mystery190",
+      "Detective370",
+      "Detective470",
+      "House of Mystery193",
+      "Detective368",
+      "Detective372",
+      "Detective374",
+      "Hulk181",
+      "Fantastic Four119",
+      "Fantastic Four120",
+      "Fantastic Four121",
+      "Fantastic Four122",
+      "Fantastic Four143"
+    ],
+    "sources": [
+      "https://www.dc.com/blog/2022/09/08/worth-a-thousand-words-ten-covers-that-tell-a-story",
+      "https://www.excaliburauctions.com/auction/lot/lot-393---fantastic-four-116-to-128-13-in-lot--/?lot=42154&sd=1",
+      "https://www.comicconnect.com/item/1032436",
+      "https://www.excaliburauctions.com/auction/lot/lot-20---detective-comics-batman-368-372-374---3/?lot=1406&sd=1"
+    ],
+    "takeaways": [
+      "Single dominant illustration",
+      "Large masthead",
+      "Small corner issue box",
+      "Short teaser caption and occasional burst",
+      "High contrast accents and restrained wear"
+    ]
+  },
+  "interaction": {
+    "targets": "Entire object plus associated label acts as one semantic link for each of Comic,Magazine,Journey,Game.",
+    "hover": "Warm outline, brighter label, subtle upward lift; highlight object and label together.",
+    "keyboard": "Same visible treatment with focus-visible; Enter activates.",
+    "touch": "Clear permanent labels and generous tappable objects; no hover dependency.",
+    "motion": "Short subtle transition; disable translation for reduced-motion preference.",
+    "destinations": "Comic,Magazine,Journey use verified owner routes; Game links to dist/ downloads, never browser play."
+  },
+  "review": "Single illustration replaces panel strip; corner issue box, burst and teaser visible. Magazine gloss, Journey design, CD ROM spine and removed slogans retained."
+}

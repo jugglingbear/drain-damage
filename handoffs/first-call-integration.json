@@ -1075,5 +1075,39 @@
     ],
     "warnings": "Existing fixture ObjectDB/resource shutdown warnings and sandbox CA/log/editor-settings warnings.",
     "pck_sha256": "8580b858b21a33436b0fcb48450e9bdbf8418e0b789cd2b35573f4ba1d4a8f12"
+  },
+  "release_gate_189": {
+    "date": "2026-11-12",
+    "status": "Engineering readiness gate passed; Release may package/publish frozen inputs after asset availability guard",
+    "authorization": "Sean authorized full release after both landings and Engineering gate; Release sole publication owner.",
+    "game_source_commit": "7754e28",
+    "mac_app": "builds/Prototype-189/Drain Damage.app",
+    "mac_pck_sha256": "8580b858b21a33436b0fcb48450e9bdbf8418e0b789cd2b35573f4ba1d4a8f12",
+    "windows_zip": "builds/Drain-Damage-0.189.0-windows-x86_64-20261113-012441-385206Z.zip",
+    "windows_zip_sha256": "a4d58c65b0abd4c97c2e9c363e0fce0cdb37e090987ff70d423500b271e465ee",
+    "windows_host_targets": [
+      "1",
+      "2",
+      "2.1",
+      "2-01",
+      "2-12",
+      "2-13"
+    ],
+    "windows_runtime_tested": false,
+    "site": "builds/magazine-site;331MB;root ServiceDesk,comic/,magazine/,magazine.pdf,storybook/,dist/",
+    "validation": [
+      "Marketing functional checks and independent Art desktop/mobile still reviews passed for both landings",
+      "11 generated production routes and assets HTTP200; no localhost URLs in entry pages/scripts; no enabled comic links",
+      "2 site packaging tests,3 Windows packaging tests,generated JS syntax and diff hygiene PASS",
+      "Ad-hoc Mac signature verified; Windows export and six isolated resource-pack initialization checks PASS"
+    ],
+    "release_order": "Release owns final packaging and publication. Pages workflow HEAD-checks both release asset URLs before deployment; upload assets before deploying links.",
+    "comic_packages": "N/A: no completed issues; future completed issues require PDF,CBZ,genuine RAR CBR. Do not publish unfinished work or block release for creation.",
+    "remaining_gaps": [
+      "Native Windows execution",
+      "Full human playthrough; existing late-route combat-death fixture limitation",
+      "Possible earlier BJ opening-dialogue overflow deferred/unverified at Sean request; not a confirmed189 regression"
+    ],
+    "preserved": "Approved magazine38 remains current;39 draft and unrelated Art/Comic edits excluded."
   }
 }

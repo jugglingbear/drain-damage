@@ -1,6 +1,7 @@
 """Check Windows packaging rejects unsuitable binaries and retains export parity."""
 
 import configparser
+import json
 import struct
 import tempfile
 import unittest
@@ -13,6 +14,17 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class WindowsExportTests(unittest.TestCase):
     """Exercise binary validation and the shared runtime export contract."""
+
+    def test_release_smoke_targets_are_current(self) -> None:
+        registry = json.loads((ROOT / 'data/playtest-targets.json').read_text())
+        levels = {item['id'] for item in registry['targets'] if item['kind'] == 'level'}
+        targets = ('1', '2', '2.1', '2-01', '2-12', '2-13')
+        self.assertTrue(set(targets).issubset(levels))
+        for script in ('tools/build_windows.py', 'tools/test_windows.ps1'):
+            content = (ROOT / script).read_text()
+            self.assertNotIn("'2-landing'", content)
+            for target in targets:
+                self.assertIn(repr(target), content)
 
     def test_pe_architecture_and_truncation(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

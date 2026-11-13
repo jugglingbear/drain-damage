@@ -1,10 +1,12 @@
-name: Publish magazine
+name: Publish Drain Damage site
 
 on:
   push:
     branches: [main]
     paths:
       - marketing/magazine/current.pdf
+      - marketing/landing-page/**
+      - dist/**
       - storybook/**
       - audio/drain-damage-sound-auditions.html
       - tools/build_magazine_site.py
@@ -24,14 +26,28 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Fetch publication media from Git LFS
-        run: git lfs pull --include="marketing/magazine/current.pdf,storybook/**" --exclude=""
+        run: git lfs pull --include="marketing/magazine/current.pdf,marketing/landing-page/**,storybook/**" --exclude=""
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Install PDF renderer
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - uses: actions/configure-pages@v5
-      - name: Build magazine reader
+      - name: Require published game downloads before deploying links
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          links = re.findall(r'https://github.com/jugglingbear/drain-damage/releases/download/[^"\s]+',
+                             Path('dist/index.html').read_text())
+          assert len(set(links)) >= 2, 'Expected Mac and Windows release downloads'
+          for link in sorted(set(links)):
+              request = Request(link, method='HEAD', headers={'User-Agent': 'DrainDamageReleaseCheck'})
+              with urlopen(request, timeout=60) as response:
+                  assert response.status == 200, link
+          PY
+      - name: Build public site
         run: python3 tools/build_magazine_site.py
       - uses: actions/upload-pages-artifact@v4
         with:

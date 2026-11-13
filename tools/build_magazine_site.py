@@ -1,4 +1,4 @@
-"""Publish the approved PDF as a layout-preserving, static magazine reader."""
+"""Assemble the approved Service Desk, comic landing, magazine reader and release links."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PDF = ROOT / 'marketing/magazine/current.pdf'
 
 
-def build_site(destination: Path) -> None:
+def build_magazine_reader(destination: Path) -> None:
     """Render every PDF page and write a standalone, portable HTML reader."""
     if not PDF.read_bytes().startswith(b'%PDF-'):
         raise ValueError('current.pdf is not a PDF. Fetch Git LFS assets first.')
@@ -34,10 +34,10 @@ def build_site(destination: Path) -> None:
             raise ValueError('Rendered page count does not match PDF.')
         for number, page in enumerate(pages, 1):
             shutil.copyfile(page, destination / f'page-{number}.jpg')
-    shutil.copyfile(PDF, destination / 'magazine.pdf')
-    shutil.copytree(ROOT / 'storybook', destination / 'storybook', dirs_exist_ok=True,
+    shutil.copyfile(PDF, destination.parent / 'magazine.pdf')
+    shutil.copytree(ROOT / 'storybook', destination.parent / 'storybook', dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns('.gdignore', '.DS_Store'))
-    audio_destination = destination / 'audio'
+    audio_destination = destination.parent / 'audio'
     audio_destination.mkdir(exist_ok=True)
     shutil.copyfile(ROOT / 'audio/drain-damage-sound-auditions.html',
                     audio_destination / 'drain-damage-sound-auditions.html')
@@ -67,12 +67,12 @@ footer{color:#bac3c9} @media(max-width:600px){main{padding:16px 0}header,footer{
 </style></head><body>
 <header><div class="masthead"><p>DRAIN DAMAGE</p>
 <div class="header-actions">
-<a class="repo-link" href="audio/drain-damage-sound-auditions.html">Sound auditions →</a>
-<a class="repo-link" href="storybook/storybook.html">Storybook →</a>
+<a class="repo-link" href="../audio/drain-damage-sound-auditions.html">Sound auditions →</a>
+<a class="repo-link" href="../storybook/storybook.html">Storybook →</a>
 <a class="repo-link" href="https://github.com/jugglingbear/drain-damage"
 aria-label="Drain Damage repository on GitHub">GitHub ↗</a></div></div><h1>__TITLE__</h1>
 <p>The magazine for plumbing's least ordinary working day.</p>
-<p><a href="magazine.pdf">Open the original PDF</a> · <a href="magazine.pdf" download>Download magazine</a></p>
+<p><a href="../magazine.pdf">Open the original PDF</a> · <a href="../magazine.pdf" download>Download magazine</a></p>
 <nav aria-label="Magazine pages">__LINKS__</nav></header><main aria-label="Magazine">__FIGURES__</main>
 <footer>Pages reproduce the original PDF layout. Open the PDF for selectable text and full-resolution zoom.</footer>
 </body></html>
@@ -81,6 +81,69 @@ aria-label="Drain Damage repository on GitHub">GitHub ↗</a></div></div><h1>__T
                                           .replace('__FIGURES__', figures), encoding='utf-8')
     (destination / '.nojekyll').touch()
     print(f'Published {count} pages to {destination}')
+
+
+def assemble_landings(destination: Path) -> None:
+    """Copy only approved public assets and translate preview routes for the site root."""
+    source = ROOT / 'marketing/landing-page'
+    files = (
+        'index.html', 'landing.css', 'landing.js', 'desk-interaction-geometry-v1.json',
+        'concepts-v1/01-service-desk-v4.png', 'comic/index.html', 'comic/comic-shop-shelf-v1.png',
+    )
+    for name in files:
+        if (source / name).read_bytes().startswith(b'version https://git-lfs.github.com/spec/v1'):
+            raise ValueError(f'Unresolved publication media: {name}')
+        target = destination / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source / name, target)
+    routes = {
+        '../magazine/current.pdf': 'magazine/',
+        '../../storybook/storybook.html': 'storybook/storybook.html',
+        '../../dist/': 'dist/',
+    }
+    for name in ('index.html', 'landing.js'):
+        path = destination / name
+        content = path.read_text()
+        for preview, production in routes.items():
+            if preview not in content:
+                raise ValueError(f'Missing expected preview route in {name}: {preview}')
+            content = content.replace(preview, production)
+        content = content.replace('Interactive preview · Choose an item to explore.', '')
+        content = content.replace('class="preview-note"', 'class="site-status" role="status"')
+        content = content.replace("'.preview-note'", "'.site-status'")
+        content = content.replace('The preview could not load.', 'The links could not load.')
+        if 'localhost' in content or '127.0.0.1' in content:
+            raise ValueError(f'Local-only address in public {name}')
+        path.write_text(content)
+    stylesheet = destination / 'landing.css'
+    stylesheet.write_text(stylesheet.read_text().replace('.preview-note', '.site-status')
+                          + '\n.site-status:empty { display: none; }\n')
+    if not (ROOT / 'dist/index.html').is_file():
+        raise ValueError('Release must supply dist/index.html before publication.')
+    # Downloads live on the release asset host; never copy historical executable payloads into Pages.
+    for path in (ROOT / 'dist').rglob('*'):
+        if path.is_file() and path.suffix in {'.html', '.json', '.sha256', '.txt'}:
+            target = destination / 'dist' / path.relative_to(ROOT / 'dist')
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(path, target)
+
+
+def build_site(destination: Path) -> None:
+    """Build into fresh staging so obsolete publication files cannot survive a rebuild."""
+    destination = destination.resolve()
+    if ROOT.is_relative_to(destination) or (destination.is_relative_to(ROOT)
+                                           and not destination.is_relative_to(ROOT / 'builds')):
+        raise ValueError('Site output must not replace repository source directories.')
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='site-stage-', dir=destination.parent) as temporary:
+        staging = Path(temporary) / 'site'
+        assemble_landings(staging)
+        build_magazine_reader(staging / 'magazine')
+        (staging / '.nojekyll').touch()
+        if destination.exists():
+            shutil.rmtree(destination)
+        shutil.move(str(staging), destination)
+    print(f'Built public site at {destination}')
 
 
 if __name__ == '__main__':

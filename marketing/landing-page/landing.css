@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #102b29; color: #fff1ce; font-family: Georgia, serif; }
+main { max-width: min(1600px, calc((100svh - 48px) * 1487 / 1058)); margin: auto; }
+.desk { position: relative; display: block; }
+.scene { width: 100%; height: auto; display: block; }
+.destination { position: absolute; inset: 0; pointer-events: none; color: inherit; outline: none; }
+.destination svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.thumbnail { display: none; }
+.hit { pointer-events: auto; fill: transparent; cursor: pointer; }
+.highlight { opacity: 0; pointer-events: none; transition: opacity 160ms ease, transform 160ms ease; }
+.object-outline { fill: #ffe4a413; stroke: #ffcf72; stroke-width: 4; stroke-linejoin: round; }
+.plaque-light { fill: #fff4be; fill-opacity: .22; stroke: #ffdc8d; stroke-width: 4; }
+.destination:focus-visible .highlight { opacity: 1; transform: translateY(-3px); }
+@media (hover: hover) {
+  .destination:hover .highlight { opacity: 1; transform: translateY(-3px); }
+}
+.preview-note { margin: 0; padding: 14px 20px; text-align: center; font: 14px/1.4 system-ui, sans-serif; color: #ddd1b5; }
+.mobile-label { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+@media (max-width: 600px) {
+  main { max-width: none; }
+  .desk { overflow: hidden; }
+  .scene-frame { height: 54vw; overflow: hidden; }
+  .scene { width: 170%; max-width: none; margin-left: -42%; }
+  #destinations { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 16px; background: #102b29; }
+  .destination { position: relative; pointer-events: auto; text-decoration: none; border: 1px solid #b58b50; background: #254139; border-radius: 7px; overflow: hidden; }
+  .destination svg { height: auto; aspect-ratio: 1 / 1.15; overflow: hidden; }
+  .thumbnail { display: block; }
+  .mobile-label { display: block; padding: 10px 5px; background: #f3ddaa; color: #211c15; text-align: center; font-size: 23px; font-weight: bold; }
+  .mobile-label small { display: block; font: 11px/1.6 system-ui, sans-serif; }
+  .destination:focus-visible { outline: 4px solid #ffcf72; outline-offset: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .highlight { transition: none; }
+  .destination:hover .highlight, .destination:focus-visible .highlight { transform: none; }
+}
