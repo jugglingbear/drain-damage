@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 191 / 0.191.0",
-  "status": "Signed Mac build: Tony running bonus reduced to15percent; source and isolated-package balance checks pass",
-  "app": "builds/Prototype-191/Drain Damage.app",
+  "build": "Prototype 192 / 0.192.0",
+  "status": "Signed Mac build: Main Break continues through spider capture; final mouth-bite pose synchronized.",
+  "app": "builds/Prototype-192/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-190/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-191/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -1177,5 +1177,24 @@
       "/private/tmp/191-build.log"
     ],
     "gaps": "Human movement feel and native Windows unverified; prior190 continuous-slice playtest gaps remain."
+  },
+  "main_break_capture_192": {
+    "changes": [
+      "Deployed Sean rain survives web capture and advances during cocoon hauling; new activation stays blocked.",
+      "Final haul pose is synchronized before mouth-bite damage, including the frame that clears capture state."
+    ],
+    "validation": "Source and isolated native Mac PCK: 44 checks, zero failures across 30/60/120 Hz. Seven pulses over 7.5 gameplay seconds, pause, capturer death, projectile damage, ordinary grace expiry, mouth bite/release, and Tony capture cancellation. Existing capture collision: 2160 checks, zero failures.",
+    "pck_sha256": "d500832890b8017787b3ffdfaf246ecdc24826f97bae548a9fb36474cabae74d",
+    "evidence": [
+      "/private/tmp/192-build.log",
+      "/private/tmp/web-rain-final.log",
+      "/private/tmp/192-capture-collision.log",
+      "previews/webbed-main-break-192/native-final.log",
+      "previews/webbed-main-break-192/native-visual.log",
+      "previews/webbed-main-break-192/rain-90.png",
+      "previews/webbed-main-break-192/rain-270.png"
+    ],
+    "gaps": "Human playtesting and native Windows verification remain open. Automated shutdown reports ObjectDB leak warnings; source runs also report local log/certificate access warnings.",
+    "visual": "Engineering inspected native captures at approximately 3.5 seconds during cocoon haul and 6.5 seconds after release: rain remains visible and framing intact. Independent Art static PASS: rain visible in both states, readable cocoon/tether/spider and release platform contact, HUD clear. Fixed-step captures do not establish real-time motion or audio acceptance."
   }
 }

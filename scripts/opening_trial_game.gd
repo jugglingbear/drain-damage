@@ -140,7 +140,8 @@ func _input(event: InputEvent) -> void:
 	super._input(event)
 
 func specials_allowed(ignore_active := false) -> bool:
-	return not devil_spiders.locked() and super.specials_allowed(ignore_active)
+	var deployed_rain := ignore_active and specials.active and specials.hero_id == "sean"
+	return (not devil_spiders.locked() or deployed_rain) and super.specials_allowed(ignore_active)
 
 func step_player(delta: float) -> void:
 	devil_debris.step(self,delta)
@@ -166,6 +167,8 @@ func step_player(delta: float) -> void:
 		fire_timer = maxf(0,fire_timer-delta)
 		velocity = Vector2.ZERO
 		jump_buffer = 0
+		# Movement is locked, but a deployed world effect keeps its gameplay clock.
+		specials.step(self,delta)
 		return
 	super.step_player(delta)
 

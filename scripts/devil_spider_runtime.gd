@@ -124,6 +124,7 @@ func step(host: Node2D, delta: float) -> void:
 		if state.state == "windup":
 			actor.facing = -1.0 if host.player.x+host.PLAYER_SIZE.x*0.5 < state.position.x else 1.0
 		update_emitter(actor)
+		var was_cocoon: bool = state.capture_kind == "cocoon"
 		var previous_state: String = state.state
 		var previous: Vector2 = state.position
 		state.step(delta,host.player+host.PLAYER_SIZE*0.5)
@@ -140,7 +141,8 @@ func step(host: Node2D, delta: float) -> void:
 		elif state.state == "haul": host.play_trial_action(actor,"haul")
 		if state.movement_locked(): host.play_trial_action(actor,"struggle")
 		if not can_attack: host.stop_trial_actions(actor)
-		if state.capture_kind == "cocoon":
+		# The mouth release clears capture_kind; still apply its final haul pose before bite damage.
+		if was_cocoon:
 			var desired: Vector2 = state.captive_position-host.PLAYER_SIZE*0.5
 			host.player = desired
 			state.captive_position = host.player+host.PLAYER_SIZE*0.5
@@ -181,8 +183,10 @@ func consume_events(host: Node2D, actor: Dictionary) -> void:
 				pending_press = false
 				host.velocity = Vector2.ZERO
 				host.jump_buffer = 0
-				host.specials.cancel("web_capture")
-				host.special_audio.stop()
+				# Main Break is already deployed in the world; restraining Sean cannot turn off the rain.
+				if not (host.specials.active and host.specials.hero_id == "sean"):
+					host.specials.cancel("web_capture")
+					host.special_audio.stop()
 			"released":
 				host.stop_trial_actions(actor)
 				if event.reason == "escaped": host.play_trial_action(actor,"escape")
