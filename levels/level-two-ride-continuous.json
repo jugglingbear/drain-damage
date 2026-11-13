@@ -1,0 +1,53 @@
+{
+  "id": "level-two-continuous-slice",
+  "version": 1,
+  "world_start": 300,
+  "world_finish": 14300,
+  "retry_world_x": [
+    300,
+    6000,
+    9000
+  ],
+  "spacing": {
+    "easy": 800,
+    "normal": 650,
+    "hard": 620
+  },
+  "instances": [
+    {
+      "id": "slice-slalom",
+      "source": "2-01",
+      "centers": [
+        2600,
+        3250,
+        3900
+      ]
+    },
+    {
+      "id": "slice-flange",
+      "source": "2-05",
+      "translate_x": 2600,
+      "obstacle_x_offsets": {
+        "flange-back": -24
+      }
+    },
+    {
+      "id": "slice-caps",
+      "source": "2-07",
+      "translate_x": 4690
+    },
+    {
+      "id": "slice-strainer",
+      "source": "2-12",
+      "translate_x": 8000
+    },
+    {
+      "id": "slice-exit-baffle",
+      "source": "2-01",
+      "obstacle_ids": [
+        "valve-b"
+      ],
+      "translate_x": 9080
+    }
+  ]
+}

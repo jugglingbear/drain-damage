@@ -1,5 +1,7 @@
 extends RefCounted
 ## Deterministic showcase physics. Rendering/audio remain in the ride wrapper.
+const ContinuousCourse = preload("res://scripts/ride_continuous_course.gd")
+var continuous := false
 const SOURCE := "res://levels/level-two-ride-showcase.json"
 const STEP := 1.0/120.0
 const HALF := Vector2(45,14)
@@ -54,8 +56,9 @@ func emit_event(name: String, id := "") -> void:
 	last_event = {"event":name,"obstacle_id":id,"clock":clock,"encounter":encounter_index}
 
 func begin(host: Node2D, index := 0) -> void:
-	if definition.is_empty():
+	if definition.is_empty() or continuous or definition.get("continuous",false):
 		definition = JSON.parse_string(FileAccess.get_file_as_string(SOURCE))
+		if continuous: definition = ContinuousCourse.build(definition,str(host.get("difficulty")))
 	clock = 0
 	position = Vector2(300,330)
 	jump_age = -1
@@ -74,7 +77,12 @@ func begin(host: Node2D, index := 0) -> void:
 	events.clear()
 	landing_material = "water"
 	host.won = false
-	_start_encounter(clampi(index,0,definition.encounters.size()-1))
+	_start_encounter(0 if continuous else clampi(index,0,definition.encounters.size()-1))
+	if continuous:
+		checkpoint_index = clampi(index,0,definition.retry_world_x.size()-1)
+		encounter_scroll = float(definition.retry_world_x[checkpoint_index])-300
+		clock = encounter_scroll/scroll_speed
+		encounter_clock = clock
 	sync_hero(host)
 
 func _start_encounter(index: int) -> void:
@@ -211,6 +219,7 @@ func hero_head_height(host: Node2D) -> float:
 	return 84.0 if str(host.employee.id) == "tony" else 72.0
 
 func motion_offset(obstacle: Dictionary, time: float) -> Vector2:
+	time -= float(obstacle.get("timeline_origin",0))
 	var motion: Dictionary = obstacle.get("motion",{})
 	if motion.is_empty(): return Vector2.ZERO
 	var value := float(motion.get("amplitude",0))*sin(TAU*time/maxf(0.01,float(motion.get("period",2)))+float(motion.get("phase",0)))
@@ -991,6 +1000,10 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 	host.invulnerable = maxf(0,host.invulnerable-(dt-processed))
 	encounter_clock += dt
 	_advance_air_motion(dt)
+	if continuous and jump_age < 0 and ground_height <= EPS:
+		for index in range(definition.retry_world_x.size()):
+			if position.x+encounter_scroll >= float(definition.retry_world_x[index]):
+				checkpoint_index = maxi(checkpoint_index,index)
 	if _encounter_clear():
 		rest_remaining = _rest_duration()
 		if rest_remaining <= EPS:
@@ -1048,6 +1061,7 @@ func _rest_duration() -> float:
 	return maxf(0,float(encounter.get("rest_after_seconds",rest.get("duration",3.0))))
 
 func _encounter_clear() -> bool:
+	if continuous: return encounter_scroll >= float(definition.world_finish)-300
 	# Legacy positive-rest fixtures retain their quiet landing boundary; zero-rest rides never wait for flight.
 	if _rest_duration() > EPS and jump_age >= 0: return false
 	if ramp_active or recovery_clock > EPS or not contact_latches.is_empty(): return false

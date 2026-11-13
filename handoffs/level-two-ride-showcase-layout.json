@@ -345,7 +345,7 @@
     "art": "Art frozen: source-previews/elbow-v2.png and interpolated waterfall GIF show the far route. Exact collision-plane bounds checked by layout tests; Engineering owns animated render acceptance."
   },
   "proposed_mixed_course": {
-    "status": "Plan only; Sean approval required before replacing isolated showcase or its three-second rests",
+    "status": "Superseded by approved_continuous_course on 2026-11-13; retain earlier example as design history.",
     "owner": "Level Design",
     "integration_owner": "Engineering",
     "current_03": "Far/top-bank hanging plug remains appropriate. Overhead describes vertical clearance, not bank position. bottom_z64 obstructs both Tony84 and Sean72 heads, so jump does not bypass; use near-bank solids to create opposite-side pressure.",
@@ -982,5 +982,268 @@
     "build": "Prototype 112 / 0.112.0",
     "record": "handoffs/first-call-integration.json",
     "status": "13 encounters, giant brushes, two strainers and zero explicit rests integrated. Final 45 packaged suites pass; actual rendered fall spot checks captured. Paced obstacle and audio acceptance remain pending."
+  },
+  "approved_continuous_course": {
+    "date": "2026-11-13",
+    "status": "Implementation authorized; concrete layout seed delivered, runtime feasibility pending",
+    "authorization": "Sean: Work up something specific and then let us get the team working to implement it. Adapt as we go.",
+    "design_owner": "Level Design",
+    "delivery_owner": "Engineering",
+    "scope": "Static continuous obstacle course using existing 13 showcase families. Preserve isolated showcase for regression/audition.",
+    "exclusions": [
+      "No random selection yet",
+      "No new enemy, weapon, boss or hazard family",
+      "No artwork scaling or physics changes merely to fit pacing"
+    ],
+    "full_course": {
+      "target_seconds": [
+        75,
+        90
+      ],
+      "duration_status": "Pacing target, not a validated runtime duration",
+      "sections": [
+        {
+          "id": "balance",
+          "seconds": 10,
+          "sequence": [
+            "Two baffles",
+            "Flange hop",
+            "Short clear water"
+          ],
+          "pressure": "moderate"
+        },
+        {
+          "id": "slalom",
+          "seconds": 13,
+          "sequence": [
+            "Valve slalom",
+            "Hanging plug",
+            "Float arm"
+          ],
+          "pressure": "high"
+        },
+        {
+          "id": "breach",
+          "seconds": 8,
+          "sequence": [
+            "Elbow breach",
+            "Recovery water"
+          ],
+          "pressure": "medium then low"
+        },
+        {
+          "id": "wreckage",
+          "seconds": 13,
+          "sequence": [
+            "Cap islands",
+            "Safe landing",
+            "Brush curtain"
+          ],
+          "pressure": "high"
+        },
+        {
+          "id": "overhead",
+          "seconds": 11,
+          "sequence": [
+            "Middle-lane strainer",
+            "Maintenance hand"
+          ],
+          "pressure": "two separated peaks"
+        },
+        {
+          "id": "gauntlet",
+          "seconds": 18,
+          "sequence": [
+            "Basin hopscotch",
+            "Recovery water",
+            "Two-lane strainer",
+            "Familiar slalom",
+            "Grate hop"
+          ],
+          "pressure": "highest"
+        },
+        {
+          "id": "escape",
+          "seconds": 10,
+          "sequence": [
+            "Ramp alignment",
+            "Flume launch",
+            "Catch basin",
+            "Safe finish"
+          ],
+          "pressure": "climax then release"
+        }
+      ]
+    },
+    "first_slice": {
+      "target_seconds": 25,
+      "world_start": 300,
+      "world_finish": 14300,
+      "scroll_speed": 560,
+      "coordinate_rule": "One continuous world coordinate. Source obstacle x values translate; never reset scroll at a module boundary.",
+      "layout_status": "Starting geometry for Mechanics validation; no safe-route claim before continuous tests.",
+      "instances": [
+        {
+          "id": "slice-slalom",
+          "source": "2-01",
+          "obstacle_centers_x": [
+            2600,
+            3250,
+            3900
+          ],
+          "purpose": "Three bank choices; Normal uses 650px center spacing instead of source 520px."
+        },
+        {
+          "id": "slice-flange",
+          "source": "2-05",
+          "translate_x": 2600,
+          "bounds_x": [
+            5188,
+            5284
+          ],
+          "purpose": "Continuous-course pair uses72px center separation; each24px joint unchanged. Original showcase retained.",
+          "obstacle_overrides": {
+            "flange-back": {
+              "source_x": 2672
+            }
+          }
+        },
+        {
+          "id": "slice-caps",
+          "source": "2-07",
+          "translate_x": 4690,
+          "bounds_x": [
+            7200,
+            8460
+          ],
+          "purpose": "Preserve all deck widths, gap dimensions and full-board support rules."
+        },
+        {
+          "id": "slice-strainer",
+          "source": "2-12",
+          "translate_x": 8000,
+          "bounds_x": [
+            10530,
+            10670
+          ],
+          "purpose": "Steer around middle-lane break or jump; retain both routes."
+        },
+        {
+          "id": "slice-exit-baffle",
+          "source": "2-01",
+          "obstacle_ids": [
+            "valve-b"
+          ],
+          "translate_x": 9080,
+          "bounds_x": [
+            12140,
+            12260
+          ],
+          "purpose": "One easy grounded bank choice, then safe runout."
+        }
+      ],
+      "retry_world_x": [
+        300,
+        6000,
+        9000
+      ],
+      "retry_rule": "Safe water, centered bank, grounded, jump available; clear transient attacks and replay advance cues.",
+      "timelines": "Hand/strainer activation must use instance-local approach clocks. Do not reuse original absolute seconds on the global course clock.",
+      "warnings": "Measure visible warning to earliest possible contact including forward anchor and motion; target >=1.5s Normal lethal warning. If camera cannot provide it, adjust staging or existing cue timing with Art, not invisible collisions.",
+      "validation": "Actual adapter route evidence recorded below. Layout references remain Normal coordinates; mode reflow belongs to runtime data."
+    },
+    "difficulty": {
+      "shared": [
+        "560 scroll",
+        "400 horizontal steering",
+        "350 bank steering",
+        "Existing jump and ramp physics",
+        "Existing damage and fall policy"
+      ],
+      "reversal_center_spacing_px": {
+        "easy": 800,
+        "normal": 650,
+        "hard": 620
+      },
+      "spacing_rule": "Only configurable simple baffle reversals. Reflow downstream instances; do not uniformly scale geometry.",
+      "recovery_seconds": {
+        "easy": [
+          3,
+          4
+        ],
+        "normal": [
+          2,
+          3
+        ],
+        "hard": [
+          1,
+          2
+        ]
+      },
+      "mode_rule": "Retain every family. Tune combinations and recovery before damage; all warning and movement budgets require actual-model validation."
+    },
+    "module_contract": [
+      "Stable instance ID, source family ID and version, world origin, full physical/motion bounds",
+      "Entry and exit bank intervals, grounded/airborne state and jump cooldown constraints",
+      "Explicit preview, commitment, active, recovery and safe restart regions",
+      "Instance-local attack timeline, deterministic phase and teardown on death/retry/exit",
+      "Unique obstacle IDs and world-art dispatch independent of current single encounter index",
+      "Compatible successor tags and validated connector budgets; later seeded selection uses only compatible alternatives",
+      "First release uses fixed sequence; retry preserves sequence and attack phases"
+    ],
+    "acceptance": [
+      "Both heroes, all modes, 30/60/120Hz; rear/neutral/front anchors and mixed horizontal steering",
+      "Continuous no-hit witness plus early/late input tolerance; reject frame-perfect required actions",
+      "Straight-only and repeated-jump routes must not bypass every demand",
+      "Validate every boundary with ongoing jump, cooldown, bank position, moving phase and physical extents",
+      "Deaths at each pit, ordinary collision recovery, retries, pause, game over and exit preserve health/lives policy",
+      "Inspect running captures and motion for physical contact, cues, water occlusion, mounts and both hero silhouettes",
+      "Human Normal playtest determines fun/difficulty; automated feasibility is not balance approval"
+    ],
+    "file_ownership": {
+      "Level Design": [
+        "This handoff approved_continuous_course field; review revised layout"
+      ],
+      "Engineering": [
+        "Runtime adapter and mode entry",
+        "Course sequence data after handoff",
+        "Build/export",
+        "roadmap.html",
+        "Consolidated delivery"
+      ],
+      "Game Mechanics": [
+        "New focused continuous-course validation tests after confirming filenames with Engineering; runtime edits coordinated"
+      ],
+      "Art": [
+        "Independent visual/asset reuse review; any necessary art through existing Art pipeline"
+      ]
+    },
+    "delivery_steps": [
+      "Validate and implement first slice",
+      "Capture and review native motion",
+      "Report build/version and open balance gaps",
+      "Tune slice from playtest, then expand full seven-section course without waiting for dynamic generation"
+    ],
+    "validation_progress": {
+      "status": "Mechanical layout frozen Hard620/flange72; final export and packaged retest pending",
+      "hard_spacing": "620 passed130/130 targeted checks including mixed\u00b125ms and fixed\u00b150ms for both heroes, all anchors and30/60/120Hz. Smallest tested robust candidate, not exhaustive minimum.",
+      "rejected_spacing": [
+        "560 failed nominal mixed steering",
+        "600 passed baseline282 matrix but failed ten mixed+25ms delayed-steering cases"
+      ],
+      "flange": "72px center spacing; common sampled trigger5042..5112 before mode shift,2px resolution; center5077.125ms total window; composed\u00b150ms passes.",
+      "cap_support": "Full source cap geometry retained;36 cases tolerate\u00b10.1horizontal input (40px/s) during commitment.",
+      "other_coverage": [
+        "Easy800 and Normal650 unchanged pass",
+        "Retries and alternative strainer jump",
+        "Baseline282 route checks plus extended mixed timing; Hard final targeted130 checks"
+      ],
+      "evidence": [
+        "/tmp/ride-hard620.log",
+        "/tmp/flange72-actual.log",
+        "/tmp/ride-continuous-final.log"
+      ],
+      "limitations": "Mechanics-reported source/runtime feasibility only. Final package must contain620/72 and pass packaged checks. Art native approval and human fun/difficulty acceptance remain separate; no human balance approval claimed."
+    }
   }
 }

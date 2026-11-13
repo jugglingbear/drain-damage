@@ -73,6 +73,9 @@ func _start_encounter(index: int) -> void:
 		visual["visual_started"] = clock
 		visual_obstacles.append(visual)
 
+func mechanism_age(obstacle: Dictionary) -> float:
+	return visual_age(obstacle)-float(obstacle.get("timeline_origin",0))
+
 func visual_age(obstacle: Dictionary) -> float:
 	return clock-float(obstacle.visual_started) if obstacle.has("visual_started") else encounter_clock
 
@@ -295,14 +298,14 @@ func float_assembly(obstacle: Dictionary) -> Dictionary:
 		{"id":"float_rod_socket_v2","transform":Transform2D(angle,socket)}]}
 
 func hand_assembly(obstacle: Dictionary) -> Dictionary:
-	return Hand.assembly(obstacle_art.manifest,obstacle_position(obstacle),visual_age(obstacle))
+	return Hand.assembly(obstacle_art.manifest,obstacle_position(obstacle),mechanism_age(obstacle))
 
 func obstacle_active(obstacle: Dictionary) -> bool:
 	return visual_age(obstacle) >= float(obstacle.get("activates_at",0))
 
 func hazard_assembly(obstacle: Dictionary) -> Dictionary:
 	if obstacle_frame_id(obstacle).begins_with("strainer_gap_"):
-		return Strainer.assembly(obstacle_art.manifest,obstacle_position(obstacle),float(obstacle.depth),visual_age(obstacle))
+		return Strainer.assembly(obstacle_art.manifest,obstacle_position(obstacle),float(obstacle.depth),mechanism_age(obstacle))
 	return hand_assembly(obstacle)
 
 func draw_hand(host: Node2D, obstacle: Dictionary) -> void:
@@ -484,7 +487,7 @@ func draw_rider(host: Node2D, flush: RefCounted) -> void:
 func draw(host: Node2D, flush: RefCounted) -> void:
 	host.draw_set_transform(Vector2.ZERO)
 	host.box(0,0,960,64,Color("101d29"))
-	host.label_at("RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)
+	host.label_at("POOP-BOARD RIDE" if continuous else "RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)
 	host.draw_vitals(Vector2(550,4),"rubber-ducks")
 	host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(830,52),14,host.MINT)
 	if phase == "rest":
@@ -499,6 +502,14 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 			host.box(550,470,410,44,Color("101d29"))
 			host.label_at("TRACK BREAK AHEAD →" if not obstacle_active(pit) else response,
 				Vector2(580,496),18,host.GOLD)
+
+	if continuous and phase == "encounter":
+		for obstacle: Dictionary in course.obstacles:
+			if not obstacle.has("warning_at"): continue
+			var point := obstacle_position(obstacle)
+			if encounter_clock >= float(obstacle.warning_at) and point.x+float(obstacle.width)*.5 > position.x-HALF.x:
+				host.box(550,470,410,44,Color("101d29"))
+				host.label_at("DODGE FAR OR JUMP →",Vector2(580,496),18,host.GOLD)
 
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:

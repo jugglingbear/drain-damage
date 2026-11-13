@@ -170,7 +170,10 @@ func make_actor(obstacle: Dictionary) -> Node3D:
 func prepare_actors(yield_frame := Callable()) -> void:
 	var start := Time.get_ticks_usec()
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride-showcase.json"))
-	for encounter: Dictionary in source.encounters:
+	var prepared: Array = source.encounters.duplicate()
+	for difficulty in ["easy","normal","hard"]:
+		prepared.append_array(preload("res://scripts/ride_continuous_course.gd").build(source,difficulty).encounters)
+	for encounter: Dictionary in prepared:
 		for obstacle: Dictionary in encounter.obstacles:
 			if yield_frame.is_valid(): await yield_frame.call()
 			var key := actor_signature(obstacle)
@@ -383,8 +386,11 @@ func build_actor(actor: Node3D, obstacle: Dictionary) -> void:
 			var machine := Node3D.new()
 			machine.name = "machine"
 			actor.add_child(machine)
-			Props.strainer(machine,width,depth,materials)
-			for offset in [-8.0,8.0]:
+			# The continuous approach stages its basket ahead of the target; support that whole travel path.
+			var extended := obstacle.has("instance_id")
+			Props.strainer(machine,width,depth,materials,-16.0 if extended else -8.0)
+			machine.set_meta("rail_origin_x",-4.0 if extended else 0.0)
+			for offset in ([-16.0,-8.0,8.0] if extended else [-8.0,8.0]):
 				var support := Node3D.new()
 				actor.add_child(support)
 				support.position.x = offset
@@ -527,14 +533,14 @@ func animate_actor(actor: Node3D, obstacle: Dictionary, model: RefCounted) -> vo
 	if actor.has_node("debris"):
 		animate_fragments(actor,model.visual_age(obstacle)-float(obstacle.activates_at))
 	if str(obstacle.art_id) == "maintenance_hand_gap":
-		actor.get_node("hand").animate(model.visual_age(obstacle),model.obstacle_art.manifest.hand_timeline,camera)
+		actor.get_node("hand").animate(model.mechanism_age(obstacle),model.obstacle_art.manifest.hand_timeline,camera)
 	if str(obstacle.art_id) == "float_ball":
 		var pivot := Vector3(0,.55,-WATER_HALF-actor.position.z)
 		actor.get_node("pivot").position = pivot
 		Props.align_rod(actor.get_node("arm"),pivot,Vector3(0,-.05,0))
 	if str(obstacle.art_id).begins_with("strainer_gap_"):
 		var machine: Node3D = actor.get_node("machine")
-		var age: float = model.visual_age(obstacle)
+		var age: float = model.mechanism_age(obstacle)
 		machine.visible = age >= 1.0
 		if not machine.visible: return
 		var assembly: Dictionary = model.hazard_assembly(obstacle)
@@ -547,7 +553,7 @@ func animate_actor(actor: Node3D, obstacle: Dictionary, model: RefCounted) -> vo
 			var clear := float(source.strainer_timeline.clear)
 			machine.position.x += 6.0*smoothstep(clear,clear+.45,age)
 			# The basket travels beneath a fixed supported rail; the rail never follows the trolley.
-			machine.get_node("rail").position.x = -machine.position.x
+			machine.get_node("rail").position.x = -machine.position.x+float(machine.get_meta("rail_origin_x",0.0))
 			var height := clampf((model.obstacle_position(obstacle).y+float(obstacle.depth)*.5-bottom.y)/UNIT,0,1.5)
 			machine.get_node("basket").position.y = height
 			for name in ["chain_left","chain_right"]:

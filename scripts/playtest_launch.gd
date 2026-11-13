@@ -63,9 +63,12 @@ static func initialize(game: Node2D, target: Dictionary) -> void:
 	game.dialogue.release_guard = 0
 	game.dispenser.cancel()
 	game.dispenser.just_finished = false
-	if target.initializer in ["level-two-flush","level-two-landing","ride-encounter"]:
+	if target.initializer in ["level-two-flush","level-two-landing","ride-encounter","ride-continuous"]:
 		game.begin_level_two()
 		if target.initializer == "level-two-landing": game.flush.enter_landing(game)
+		if target.initializer == "ride-continuous":
+			game.flush.ride.continuous = true
+			game.flush.enter_ride(game,0)
 		if target.initializer == "ride-encounter": game.flush.enter_ride(game,int(target.encounter_index))
 	if target.initializer == "skitterling-approach":
 		# Rebuild checkpoint ownership before placing the hero at the real walk-in approach.

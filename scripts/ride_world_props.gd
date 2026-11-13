@@ -201,8 +201,8 @@ static func torn_grate_tooth(parent: Node3D, at: Vector3, width: float, height: 
 	surface.generate_normals()
 	mesh(parent,surface.commit(),at,material)
 
-static func strainer(parent: Node3D, w: float, d: float, m: Dictionary) -> void:
-	box(parent,Vector3(16,.12,.16),Vector3(0,3.3,0),m.cast_iron,"rail")
+static func strainer(parent: Node3D, w: float, d: float, m: Dictionary, rail_start := -8.0) -> void:
+	box(parent,Vector3(8.0-rail_start,.12,.16),Vector3((8.0+rail_start)*.5,3.3,0),m.cast_iron,"rail")
 	var winch := cylinder(parent,.16,.32,Vector3(0,3.08,0),m.copper)
 	winch.rotation.x = PI*.5
 	var basket := Node3D.new()

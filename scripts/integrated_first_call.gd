@@ -701,6 +701,7 @@ func begin_level_two() -> void:
 	health = employee.max_health
 	specials.refill_level(employee.id,"level-two")
 	flush.ride.checkpoint_index = 0
+	flush.ride.continuous = false
 	flush.begin(self)
 
 func step_death(delta: float) -> void:

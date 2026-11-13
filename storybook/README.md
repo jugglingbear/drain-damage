@@ -1,6 +1,6 @@
 # Drain Damage — In pictures
 
-Concept art and playable experiments. Gameplay captures through v0.185.0.
+Concept art and playable experiments. Gameplay captures through v0.190.0.
 
 ## Concept art
 
@@ -289,6 +289,21 @@ v0.185.0 · Archived November 12, 2026 · Isolated package, staged review.
 Destroyed machinery leaves low, persistent rubble.
 v0.185.0 · Archived November 12, 2026 · Isolated package, staged review.
 
+![The first continuous ride slice links obstacles along a 25-second course.][image-68]
+
+The first continuous ride slice links obstacles along a 25-second course.
+v0.190.0 · Archived November 13, 2026 · Isolated package, scripted review.
+
+![Sean crosses a raised cleanout cap.][image-69]
+
+Sean crosses a raised cleanout cap.
+v0.190.0 · Archived November 13, 2026 · Isolated package, scripted review.
+
+![A suspended strainer waits farther along the channel.][image-70]
+
+A suspended strainer waits farther along the channel.
+v0.190.0 · Archived November 13, 2026 · Isolated package, scripted review.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -360,3 +375,6 @@ To come. These images document development, not a finished game.
 [image-65]: 185-backpack-and-breakables/20261112-150625-archived-backpack.png
 [image-66]: 185-backpack-and-breakables/20261112-150625-archived-intact-boiler.png
 [image-67]: 185-backpack-and-breakables/20261112-150625-archived-boiler-rubble.png
+[image-68]: 190-continuous-ride-slice/20261113-100500-archived-slalom.png
+[image-69]: 190-continuous-ride-slice/20261113-100500-archived-cap-contact.png
+[image-70]: 190-continuous-ride-slice/20261113-100500-archived-strainer.png

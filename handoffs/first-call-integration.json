@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 189 / 0.189.0",
-  "status": "Signed Mac build validated; completion-aware flush dialogue retry and fresh-Jump advancement integrated",
-  "app": "builds/Prototype-189/Drain Damage.app",
+  "build": "Prototype 190 / 0.190.0",
+  "status": "Signed Mac continuous-course slice validated mechanically; final Art review pending",
+  "app": "builds/Prototype-190/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-188/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-189/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -25,7 +25,8 @@
     "section_1_1": "make run LEVEL=1.1 APP=\"builds/Prototype-165/Drain Damage.app\"",
     "section_1_2": "make run LEVEL=1.2 APP=\"builds/Prototype-165/Drain Damage.app\"",
     "ride": "make run LEVEL=2.1",
-    "campaign": "make run LEVEL=1 APP=\"builds/Prototype-166/Drain Damage.app\""
+    "campaign": "make run LEVEL=1 APP=\"builds/Prototype-166/Drain Damage.app\"",
+    "continuous": "make run LEVEL=2-course APP=\"builds/Prototype-190/Drain Damage.app\""
   },
   "ui_and_retry_137": {
     "build": "Prototype 137 / 0.137.0",
@@ -1135,5 +1136,34 @@
       "assets": "Unmodified issue-01-cover-v5.png and issue-01-placement-v1.json",
       "issues_selectable": false
     }
+  },
+  "continuous_course_190": {
+    "scope": "Fixed five-instance first slice: slalom, flange pair, cap islands, middle strainer, exit baffle. Normal target25s; full seven-section83s course not implemented.",
+    "definition": "levels/level-two-ride-continuous.json; scripts/ride_continuous_course.gd; approved design in handoffs/level-two-ride-showcase-layout.json#approved_continuous_course",
+    "behavior": "Continuous world scroll, unique instance/obstacle IDs, local mechanism clocks, explicit safe runout and three grounded retry points. Isolated13encounter showcase retained; new2-course launch only.",
+    "geometry": "Easy800/Normal650/Hard620 slalom spacing; downstream reflow. Course-only flange separation72px, each joint24px unchanged; cap geometry and shared physics unchanged.",
+    "presentation": "Prewarm60 actors; no runtime allocation during four captured routes. Extended existing fixed strainer rail/cantilever supports early recognition; independent Art proposed reuse and accepted corrected sampled support/flange views.",
+    "pck_sha256": "e542921833aa5d430ca30c0c2e48fda2622f2ef84d3e4a733d1d48fe4ef4cb17",
+    "validation": [
+      "Final isolated PCK390routes,0failures: bothheroes/allmodes/30,60,120Hz; rear,neutral,front anchors; fixed inputs±50ms, mixed inputs±25ms, retries, alternate strainerjump and±0.1cap drift.",
+      "54sampled straight/repeated-hop demand checks; conservative strainer recognition-to-frontcontact2.026785714s in allmodes. Not an exhaustive exploit proof.",
+      "Final PCK actual game lifecycle6hero/modecases: pause,3checkpoint retries, bothpitfalls during immunity, gameoverretry, ordinarydamage, explicitfinish, fresh isolatedmode restoration.",
+      "Existing54showcase routes702encounters pass;7Python launch tests pass; Mac export/ad-hoc strict signature and diff hygiene pass.",
+      "Final native4complete routes1000frames at10fps: bothheroes, Normal+18degree and Hard-18degree views, neutral/front anchors; nohit,60prewarmedactors. Engineering inspected keyframes; Art final review pending."
+    ],
+    "evidence": {
+      "mechanics": "/private/tmp/190-final-package-mechanics.log",
+      "lifecycle": "/private/tmp/190-final-package-integration.log",
+      "native": "previews/continuous-190/delivery/; delivery.log; four videos/contact sheets in parent",
+      "build": "/private/tmp/course190-620-build.log"
+    },
+    "rejected_candidates": "Hard560/600 failed mixed steering tolerance. Original96px flange pair offered only82ms common window;72px pair gives125ms common window centered at5077. Initial native recognition lacked visible rail support; corrected. One provisional capture interrupted by moving its package; discarded partial coverage and reran final package.",
+    "remaining_gaps": [
+      "Human Normal playtest and difficulty/fun approval before expansion",
+      "Full83s seven-section course",
+      "Native Windows execution/export not delivered for190",
+      "Final independent Art motion/capture review pending"
+    ],
+    "warnings": "Known headless macOS CA/editor-settings/log-path warnings; final native capture has no script errors. No GitHub release/publication requested for190."
   }
 }
