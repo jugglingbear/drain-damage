@@ -1105,8 +1105,7 @@
     "comic_packages": "N/A: no completed issues; future completed issues require PDF,CBZ,genuine RAR CBR. Do not publish unfinished work or block release for creation.",
     "remaining_gaps": [
       "Native Windows execution",
-      "Full human playthrough; existing late-route combat-death fixture limitation",
-      "Possible earlier BJ opening-dialogue overflow deferred/unverified at Sean request; not a confirmed189 regression"
+      "Full human playthrough; existing late-route combat-death fixture limitation"
     ],
     "preserved": "Approved magazine38 remains current;39 draft and unrelated Art/Comic edits excluded.",
     "reference_cleanup": {
@@ -1121,6 +1120,13 @@
     },
     "release_url": "https://github.com/jugglingbear/drain-damage/releases/tag/v0.189.0",
     "published_assets": "12 assets: two platform ZIPs, eight platform metadata files, approved magazine38 PDF, source-history mapping JSON",
-    "publication_receipt": "dist/v0.189.0/publication-verification.json"
+    "publication_receipt": "dist/v0.189.0/publication-verification.json",
+    "bj_opening_visual_review": {
+      "status": "No overflow reproduced; Bugs independent review pending",
+      "build": "0.189.0 native Mac packaged PCK; source_visible=false",
+      "coverage": "84 captures: all 7 lines, both heroes, normal and Hard dialogue/portraits, keyboard and controller Skip hints; windows 960x540,800x600,960x400 retain 16:9 viewports 960x540,800x450,711x400",
+      "result": "Text fits within96px; no clipping, portrait, page-counter or Skip-hint overlap. Matching hero dialogue regions pixel-identical. No runtime change or rebuild. Native Windows untested.",
+      "evidence": "previews/bj-opening-189/packed/; contact sheets in parent; packed.log; capture.gd"
+    }
   }
 }

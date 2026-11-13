@@ -79,22 +79,26 @@ playtesting and native Windows verification remain open.</p>
 and authorized full release after Marketing’s completed handoff and Engineering’s readiness gate.
 <a href="https://github.com/jugglingbear/drain-damage/releases/tag/v0.189.0">GitHub release v0.189.0</a> is published
 with 12 assets: two platform ZIPs, eight platform metadata files, magazine edition 38 PDF, and source-history mapping.
-Main is pushed, Pages deployment passed, and both public ZIP checksums match. Both pages are
-frozen; Marketing’s desktop/mobile interaction checks and independent Art still reviews passed. Production packaging
+Main is pushed, Pages deployment passed, and both public ZIP checksums match. The published versions passed Marketing’s desktop/mobile interaction checks and independent Art still reviews. Production packaging
 makes Service Desk the home page, keeps the magazine reader at <code>magazine/</code> and approved PDF at
 <code>magazine.pdf</code>, and serves Journey at <code>storybook/storybook.html</code> and downloads at <code>dist/</code>.
 The magazine remains approved edition 38; edition 39 is a separate review draft.</p>
 <p>Comic shows the illustrated two-row, three-column shelf, Issue 01’s black “Coming soon!” silhouette, and five
 empty spaces. No issue is selectable. There are no finished comics to release; do not delay release for comic creation.
-Every finished issue will require PDF, CBZ, and genuine RAR-based CBR packages. No unfinished issue is published.</p>
+Every finished issue will require PDF, CBZ, and genuine RAR-based CBR packages. No unfinished issue is published.
+<strong>Revision in progress:</strong> Sean requested the actual Issue 01 cover with “Coming Soon!” revealed on hover,
+while keeping the issue non-clickable. Marketing owns HTML/CSS and Art supplies the authoritative cover/shelf integration.
+The comic remains unfinished; this revision requires no game build or comic archive regeneration.</p>
 <p>Engineering verified generated production routes, media, JavaScript syntax and packaging checks. The Windows
 export passes all six current launch checks after replacing a stale test alias; native Windows and full human
 playthrough verification remain open. Release remains the sole publication and remote-verification owner;
 download assets are published before the site links deploy. Wider masthead rollout remains separate. Removed signs and paired A/B punchline
 slogans must not return. This website integration does not alter game behavior.</p>
-<p><strong>Deferred TODO:</strong> Possible BJ opening-dialogue overflow is an unverified earlier report, not a
-confirmed Prototype 189 regression. Sean explicitly deferred investigation because of the remaining credit budget;
-preserve the newer dialogue acceptance evidence and do not inspect or fix this item now.</p>
+<p><strong>BJ opening dialogue — verified, no overflow reproduced:</strong> At Sean’s renewed request, Engineering
+checked all seven opening lines for both heroes in normal and Hard dialogue modes on the native Mac Prototype 189 package.
+All 84 captures across 960×540, 800×600 and 960×400 windows retain the intended 16:9 viewport; text, portraits,
+page counters and keyboard/controller Skip hints remain separated. Evidence: <code>previews/bj-opening-189/</code>.
+Bugs independent review is pending. No runtime change or rebuild was needed; native Windows remains untested.</p>
 
 <p><strong>November 12 — Prototype 187 swarm cleanup fix:</strong> Offscreen campaign swarms no longer call
 ordinary creature action-audio cleanup, which expected a missing <code>role</code> field and printed a runtime error.
