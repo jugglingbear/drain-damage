@@ -7,7 +7,7 @@ This repository is the result of finding out. It's a retro 2D action game about 
 with a job that has gone horribly wrong. Expect sewer monsters, questionable plumbing equipment, and adult humour.
 The game is still being built, and learning how to make it is as much a part of the project as the game itself.
 
-- **[Read the magazine](https://jugglingbear.github.io/drain-damage/)** — Discharge Quarterly introduces the
+- **[Read the magazine](https://jugglingbear.github.io/drain-damage/magazine/)** — Discharge Quarterly introduces the
   characters, creatures, and world.
 - **[Explore the storybook](https://jugglingbear.github.io/drain-damage/storybook/storybook.html)** — screenshots and
   milestones documenting how the game has evolved.
@@ -16,13 +16,12 @@ The game is still being built, and learning how to make it is as much a part of 
 
 ## Try the game
 
-The [0.138.0 prototype candidate](dist/v0.138.0/) includes
-**macOS (Apple Silicon and Intel)** and **Windows x86_64** packages. Final release publication awaits the dialogue
-visual check. Play Level 1, its bosses, and the Level 2
+The [0.189.0 prototype release](https://github.com/jugglingbear/drain-damage/releases/tag/v0.189.0) includes
+**macOS (Apple Silicon and Intel)** and **Windows x86_64** packages. Play Level 1, its bosses, and the Level 2
 flush, landing and 13-encounter ride showcase. The campaign is still unfinished.
 
-See the [macOS installation guide](dist/v0.138.0/macos-universal/INSTALL.md) or
-[Windows installation and test guide](dist/v0.138.0/windows-x86_64/INSTALL.md). Windows is exported but has not yet
+See the [macOS installation guide](dist/v0.189.0/macos-universal/INSTALL.md) or
+[Windows installation and test guide](dist/v0.189.0/windows-x86_64/INSTALL.md). Windows is exported but has not yet
 been tested on native Windows hardware. The Mac app is ad-hoc signed; the Windows executable is unsigned.
 
 Choose Tony or Sean, then fight your way through the job. The in-game Controls screen covers keyboard and controller
