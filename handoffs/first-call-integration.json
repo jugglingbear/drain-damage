@@ -1078,7 +1078,7 @@
   },
   "release_gate_189": {
     "date": "2026-11-12",
-    "status": "GitHub release published; main push, Pages deployment and remote ZIP checksum verification in progress under Release",
+    "status": "Published and verified: main pushed, Pages deployment succeeded, both public ZIP SHA-256 checks passed",
     "authorization": "Sean authorized full release after both landings and Engineering gate; Release sole publication owner.",
     "game_source_commit": "7754e28",
     "mac_app": "builds/Prototype-189/Drain Damage.app",
@@ -1120,6 +1120,7 @@
       "publication": "Normal protected tag push succeeded; no scanner bypass or published-history rewrite."
     },
     "release_url": "https://github.com/jugglingbear/drain-damage/releases/tag/v0.189.0",
-    "published_assets": "12 assets: two platform ZIPs, eight platform metadata files, approved magazine38 PDF, source-history mapping JSON"
+    "published_assets": "12 assets: two platform ZIPs, eight platform metadata files, approved magazine38 PDF, source-history mapping JSON",
+    "publication_receipt": "dist/v0.189.0/publication-verification.json"
   }
 }
