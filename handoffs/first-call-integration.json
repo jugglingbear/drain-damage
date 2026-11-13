@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 190 / 0.190.0",
-  "status": "Signed Mac continuous-course slice ready for human playtest; bounded independent Art sequence review passed",
-  "app": "builds/Prototype-190/Drain Damage.app",
+  "build": "Prototype 191 / 0.191.0",
+  "status": "Signed Mac build: Tony running bonus reduced to15percent; source and isolated-package balance checks pass",
+  "app": "builds/Prototype-191/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-189/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-190/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -1165,5 +1165,17 @@
       "Real-time smoothness, audio/input and human balance remain unverified; brief Sean front-anchor lower-body strainer overlap is a nonblocking watch item"
     ],
     "warnings": "Known headless macOS CA/editor-settings/log-path warnings; final native capture has no script errors. No GitHub release/publication requested for190."
+  },
+  "tony_running_191": {
+    "change": "Tony move_speed337.5→310.5 (270×1.15); only running speed changed.",
+    "preserved": "Jump-height multiplier1.25, swim_speed270, boardphysics and all other balance unchanged.",
+    "checks": "Source and isolated191PCK hero_balance:123checks0failures, actual run/jump at30/60/120Hz; existing cadence/health/special/transition expectations pass.",
+    "pck_sha256": "97b5c7720f8eabc8dc7fdac685895b85f454fb013d9e715f9e85b40cebf07a3f",
+    "evidence": [
+      "/private/tmp/191-hero-balance.log",
+      "/private/tmp/191-package-balance.log",
+      "/private/tmp/191-build.log"
+    ],
+    "gaps": "Human movement feel and native Windows unverified; prior190 continuous-slice playtest gaps remain."
   }
 }

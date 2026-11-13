@@ -9,7 +9,7 @@ const TONY := {
 	"id": "tony", "name": "TONY",
 	"role": "4TH-GENERATION PLUMBER", "weapon": "PRESSURE GUN",
 	"weapon_id": "pressure-gun",
-	"max_health": 4, "move_speed": 337.5, "swim_speed": 270.0, "jump_height_multiplier": 1.25,
+	"max_health": 4, "move_speed": 310.5, "swim_speed": 270.0, "jump_height_multiplier": 1.25,
 	"biography": "A fourth-generation plumber with decades of experience installing, building, and keeping essential systems running.",
 	"traits": ["Agile", "Faster attacks", "Lower health"],
 	"strength": "Fast shots. Quick corrections.", "weakness": "Light hits. Keep the pressure on.",

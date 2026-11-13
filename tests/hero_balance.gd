@@ -57,7 +57,7 @@ func run() -> void:
 			Input.action_press("right")
 			for tick in range(hz): game.step_player(dt)
 			Input.action_release("right")
-			check(is_equal_approx(game.velocity.x,337.5 if hero.id == "tony" else 235.0),"Actual running speed")
+			check(is_equal_approx(game.velocity.x,310.5 if hero.id == "tony" else 235.0),"Actual running speed")
 			unlock(game)
 			game.jump_buffer = 0.14
 			var apex := 394.0
