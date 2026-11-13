@@ -1,8 +1,8 @@
 {
   "id": "level_two_flush_story_v1",
-  "date": "2026-10-29",
-  "status": "User-approved single-window arrival correction; Engineering integration pending",
-  "authorization": "Sean explicitly approved complete flush dialogue integration October28, including partner-first intro, no buddy after opening, and exact censored Tony landing outburst. October29: Sean explicitly requires one unified chat window and revised complaint wording; supersedes retained-partner staging.",
+  "date": "2026-11-12",
+  "status": "Prototype189 runtime integrated; automatic reading, fresh-Jump advancement and completion-aware retry checks pass",
+  "authorization": "Sean explicitly approved complete flush dialogue integration October28, including partner-first intro, no buddy after opening, and exact censored Tony landing outburst. October29: Sean explicitly requires one unified chat window and revised complaint wording; supersedes retained-partner staging. November12: Sean requested replay of unfinished opening dialogue after death and fresh Jump advancement once the window reaches bottom.",
   "owner": "Storyboarding narrative; Engineering runtime/radio integration",
   "scope": "Selected hero alone in giant bowl; partner outside via radio. No BJ, portal origin or new antagonist lore.",
   "target_playable_seconds": 45,
@@ -152,21 +152,21 @@
   "events": {
     "arrival": {
       "trigger": "Presentation0–16: arrival0–5, request5–9, partner reply9–16.",
-      "gag": "One unified window throughout: remote partner centered0–5; selected hero replaces portrait/text in the same centered window5–9; partner reply replaces content9–16 and moves that same window to bottom at11.8–13.4, remaining there through16. Never show separate center and bottom dialogue windows simultaneously. No hazards during exchange.",
-      "safety": "No hazards before presentation34 (physics8). No new gag; preserve per-run seen behavior. Any lingering blocking panel must not admit hazards."
+      "gag": "One unified window: partner centered0–5, hero centered5–9, partner reply9–16 moves the same window from9 to10.6. Fresh Jump may advance only once it reaches bottom; no hazards during the opening.",
+      "safety": "First falling cohort starts only after every opening line finishes or is dismissed. Center drain contact can still kill; unfinished dialogue restarts on retry."
     },
     "flush": {
-      "trigger": "Presentation16–34 Tony /16–28 Sean exchange. Hazards begin presentation34 (physics8), after both routes finish."
+      "trigger": "Automatic dialogue ends at34 for Tony and28 for Sean; bottom-window Jump can finish sooner. Completion starts hazard clock8 with a full warning."
     },
     "drain": {
       "trigger": "Presentation61 (physics35) safe automatic drain; existing shout lasts4seconds, through65. Physics drain/submersion timings unchanged."
     },
     "landing": {
-      "trigger": "Harmless drain/landing physics35–45 corresponds to presentation61–71. Actual landing at71 shows existing line for6seconds, then enters authorized ride at77. Preserve landing checkpoint.",
+      "trigger": "Hazard clock35–45 retains safe drain timing; landing shows existing six-second line, or fresh Jump advances to the ride. Preserve landing checkpoint.",
       "boundary": "Continue to existing authorized short ride; no new ride dialogue."
     },
     "retry": {
-      "rule": "Reset presentation and physics clocks, hazard schedule and seed as before. Preserve full calm prelude and physics0–8 warmup; skip arrival/gag text only when already seen. Do not jump to hazard pressure. Preserve per-run gag flag; new run clears."
+      "rule": "Early death replays the whole unfinished opening from line1. After actual completion, repeated death and game-over retries start directly at first cohort, hazard clock8. A new run clears completion."
     }
   },
   "radio_ui": {
@@ -175,20 +175,20 @@
     "portraits": "Existing portrait library; compact740x82 panel at110,452 with70px portrait/text17, subject to Engineering fit checks. HUD0..64; radio zone450..540.",
     "static": "Brief chirp at connection/event start only, not every line; Audio owns cue selection and audition-registry updates if needed",
     "queue": "Only current event sequence; cancel on death/reset/title, no stale backlog. Use pause-aware presentation clock for route scheduling; landing uses its local clock. Drain/landing replace obsolete speech.",
-    "skip": "Skip arrival snaps panel bottom without advancing hazards before presentation34. Landing skip follows existing safe transition into authorized ride.",
-    "retry": "Checkpoint retry cancels all pending lines; preserve per-run gag-seen; new run clears event/gag flags",
+    "skip": "Fresh mapped Jump advances one line only after the window is fully at bottom; held input never repeats. Last opening line starts first warning immediately; landing dismissal enters ride.",
+    "retry": "Early death replays the whole unfinished opening from line1. After actual completion, repeated death and game-over retries start directly at first cohort, hazard clock8. A new run clears completion.",
     "readability": "Durations explicit per line; do not truncate for combat. Gate arrival before hazards and place remaining short exchanges in safe intervals.",
     "safety": "Dialogue never grants remote partner a visual feed or ability to touch hero.",
     "window_policy": "Exactly one unified chat window. Speaker changes replace its portrait/text in place; the arrival reply animates the same window from center to bottom. No retained partner card or duplicate window."
   },
   "validation_required": [
-    "Approved wording, speakers and radio flags match canonical routes; preserve doubled durations.",
-    "Exactly one window: partner centered0–5; hero replaces content centered5–9; partner reply9–16 slides same window11.8–13.4. Never simultaneous center and bottom windows.",
-    "Tony flush exchange16–34; Sean16–28; hazards begin34 at physics8",
-    "Physics timeline45seconds unchanged after26second prelude; music26–71",
-    "Drain shout61–65; landing71–77; ride begins77",
-    "Pause freezes both clocks; retry/skip/reset cannot introduce stale dialogue or early hazards",
-    "Landing checkpoint preserved; Tony approved censored text including emoji must display legibly; Sean landing unchanged."
+    "Approved dialogue wording, speakers, portraits and automatic line durations remain unchanged.",
+    "One shared window: partner0–5, hero5–9, partner reply9–16 slides9–10.6; early Jump cannot alter this order.",
+    "Automatic opening completes at34 Tony or28 Sean; fresh bottom Jump can accelerate it without invisible waits.",
+    "First warning begins at hazard clock8 only after complete dialogue; hazard schedule and full dodge interval remain unchanged.",
+    "Drain reaction follows hazard clock35; landing follows45, with six-second auto reading or fresh-Jump advancement.",
+    "Test keyboard and controller fresh/held input, death before/after completion, repeated retries, pause and new-run reset.",
+    "Landing checkpoint and approved censored text/emoji remain legible."
   ],
   "landing_routes": {
     "tony": [
@@ -211,19 +211,28 @@
     ]
   },
   "timing": {
-    "clock_basis": "Pause-aware elapsed presentation seconds from flush entry, not real elapsed time while paused. Route at values use this presentation clock.",
+    "clock_basis": "Opening at values are authored reading positions; fresh Jump advances only after the shared window reaches bottom. Later reactions remain hazard-relative using the legacy26-second radio offset.",
     "calm_prelude_seconds": 26,
     "physics_seconds": 45,
-    "physics_clock": "max(0, presentation_clock - 26), capped at45",
+    "physics_clock": "Frozen at0 through the complete opening; set to first cohort at8 immediately after final line expiry/dismissal, then advance to45. Retry skips only a completed opening.",
     "hazards_start": 34,
     "control_damage_end": 61,
     "landing_start": 71,
     "landing_dialogue_seconds": 6,
     "ride_start": 77,
-    "music_start": 26,
+    "music_start": 34,
     "music_end": 71,
-    "music_seconds": 45,
-    "unchanged": "Physics schedule, hazard totals, speeds, durations and obstacle behavior unchanged; approved intro wording/speakers/placement and Tony landing text updated."
+    "music_seconds": 37,
+    "unchanged": "Physics schedule, hazard totals, speeds, durations and obstacle behavior unchanged; approved intro wording/speakers/placement and Tony landing text updated.",
+    "opening_duration_seconds": {
+      "tony": 34,
+      "sean": 28
+    },
+    "calm_prelude_seconds_note": "Legacy offset for later radio events, not the opening completion timer.",
+    "opening_completion": "Only final arrival/flush line expiry or dismissal completes conversation. Early death restarts all lines; completed retries retain hazard checkpoint.",
+    "jump_advancement": "Fresh mapped Jump press after bottom relocation advances one line; holding never repeats. Center gag order and automatic durations retained. Final dismissal starts first full warning without invisible waiting.",
+    "hazards_start_note": "Runtime onset follows actual conversation completion; hazards_start34 is the authored radio-clock boundary, not a fixed wall-clock wait.",
+    "music_start_note": "In authored later-radio coordinates, music starts34 (hazard8) and ends71 (hazard45); actual elapsed time depends on hero reading duration and Jump advancement."
   },
   "character_voice_rule": "Tony may use buddy once in the opening tire-iron line; no subsequent dialogue uses it. Sean direct instruction October28."
 }

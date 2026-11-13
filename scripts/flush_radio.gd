@@ -35,8 +35,8 @@ func advance(clock: float, delta: float, frozen: bool) -> void:
 	if frozen: return
 	if not current.is_empty():
 		line_clock += delta
-		if line_clock >= float(current.get("duration",4.0)): current = {}
-	while next_index < entries.size() and float(entries[next_index].at) <= clock:
+		if line_clock >= float(current.get("duration",4.0))-0.000001: current = {}
+	while next_index < entries.size() and float(entries[next_index].at) <= clock+0.000001:
 		var line: Dictionary = entries[next_index]
 		next_index += 1
 		# Optional late reactions are dropped rather than building a distracting backlog.
@@ -54,6 +54,12 @@ func clear() -> void:
 	current = {}
 	entries.clear()
 	queue_redraw()
+
+func advance_bottom(clock: float) -> float:
+	if current.is_empty() or float(presentation().progress) < 1.0: return clock
+	var next_clock := maxf(clock,float(current.at)+float(current.get("duration",4.0)))
+	advance(next_clock,next_clock-clock,false)
+	return next_clock
 
 func presentation() -> Dictionary:
 	return line_presentation(current,line_clock)

@@ -25,8 +25,9 @@ var state := "idle"
 var clock := 0.0
 var prelude_remaining := 0.0
 var prelude_duration := 26.0
+var gameplay_radio_offset := 26.0
 var landing_clock := 0.0
-var gag_seen := false
+var intro_complete := false
 var checkpoint_saved := false
 var position := Vector2.ZERO
 var aim := Vector2.RIGHT
@@ -45,7 +46,7 @@ var input_guard := true
 
 func attach(host: Node2D, yield_frame := Callable()) -> void:
 	definition = JSON.parse_string(FileAccess.get_file_as_string(CONTENT))
-	prelude_duration = float(definition.story.timing.calm_prelude_seconds)
+	gameplay_radio_offset = float(definition.story.timing.calm_prelude_seconds)
 	host.add_child(radio)
 	audio.attach(host,definition.audio.cues)
 	music.attach(host,definition.music)
@@ -61,7 +62,7 @@ func reset() -> void:
 	ride.checkpoint_index = 0
 	active = false
 	state = "idle"
-	gag_seen = false
+	intro_complete = false
 	checkpoint_saved = false
 	clock = 0
 	prelude_remaining = 0
@@ -112,6 +113,11 @@ func begin(host: Node2D, retry := false) -> void:
 	active = true
 	state = "bowl"
 	clock = 0
+	var lines: Array = definition.story.routes[host.employee.id]
+	prelude_duration = 0
+	for line: Dictionary in lines:
+		if line.event in ["arrival","flush"]:
+			prelude_duration = maxf(prelude_duration,float(line.at)+float(line.duration))
 	prelude_remaining = prelude_duration
 	landing_clock = 0
 	checkpoint_saved = false
@@ -137,8 +143,9 @@ func begin(host: Node2D, retry := false) -> void:
 	hazards = debris.items
 	audio.stop()
 	music.stop()
-	radio.configure(definition.story.routes[host.employee.id],host.difficulty,retry or gag_seen)
-	gag_seen = true
+	var skip_intro := retry and intro_complete
+	if not retry: intro_complete = false
+	radio.configure(lines,host.difficulty,skip_intro)
 	host.won = false
 	host.camera_x = 0
 	host.boss_hud.end_encounter()
@@ -164,7 +171,7 @@ func begin(host: Node2D, retry := false) -> void:
 	host.animation_state = "idle"
 	host.transform = Transform2D.IDENTITY
 	if host.music_director != null: host.music_director.stop_music()
-	if retry:
+	if skip_intro:
 		# Restore the authored hazard boundary, rather than simulating skipped intro time.
 		# A fresh scheduler receives exactly its first cohort, with the full warning duration.
 		clock = float(definition.layout.difficulty[host.difficulty].waves[0].at)
@@ -173,11 +180,13 @@ func begin(host: Node2D, retry := false) -> void:
 		# An introductory line ending exactly at the checkpoint is already over.
 		while radio.next_index < radio.entries.size():
 			var line: Dictionary = radio.entries[radio.next_index]
-			if float(line.at)+float(line.get("duration",4.0)) > clock+prelude_duration: break
+			if line.event not in ["arrival","flush"]: break
 			radio.next_index += 1
-		radio.advance(clock+prelude_duration,0,false)
+		radio.advance(clock+gameplay_radio_offset,0,false)
 		announced.onset = true
 		audio.play("flush_onset")
+	else:
+		radio.advance(0,0,false)
 	sync_hero(host)
 
 func enter_landing(host: Node2D) -> void:
@@ -222,6 +231,9 @@ func sync_hero(host: Node2D) -> void:
 	host.grounded = jump_height <= 0
 
 func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing: bool) -> void:
+	if not active or host.paused or host.life_state != "alive" or host.won: return
+	# The caller supplies a fresh Jump edge once, not once per physics substep.
+	if _jumping and state != "ride": advance_dialogue(host)
 	# Bound collision travel and split exactly where the scripted capture takes ownership.
 	if state in ["ride","landing"]:
 		_tick_step(host,delta,steering,_jumping,_firing)
@@ -233,6 +245,28 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 		elif clock < 35: step = minf(step,35-clock)
 		_tick_step(host,step,steering,_jumping,_firing)
 		remaining -= step
+
+func finish_intro(host: Node2D) -> void:
+	intro_complete = true
+	prelude_remaining = 0
+	clock = float(definition.layout.difficulty[host.difficulty].waves[0].at)
+	debris.advance(self,host,0)
+	announced.onset = true
+	audio.play("flush_onset")
+
+func advance_dialogue(host: Node2D) -> void:
+	if prelude_remaining > 0:
+		var elapsed := prelude_duration-prelude_remaining
+		var advanced := radio.advance_bottom(elapsed)
+		prelude_remaining = maxf(0,prelude_duration-advanced)
+		if prelude_remaining <= 0: finish_intro(host)
+	elif state == "landing":
+		landing_clock = radio.advance_bottom(landing_clock)
+	else:
+		# Later hazard reactions can be dismissed without advancing the hazard simulation.
+		if not radio.current.is_empty() and float(radio.presentation().progress) >= 1.0:
+			radio.current = {}
+			radio.queue_redraw()
 
 func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing: bool) -> void:
 	if not active or host.paused or host.life_state != "alive" or host.won: return
@@ -260,11 +294,7 @@ func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _
 		sync_hero(host)
 		radio.advance(prelude_duration-prelude_remaining,reading_delta,false)
 		if prelude_remaining <= 0:
-			# The intro already supplied the calm interval; start the first full warning now.
-			clock = float(definition.layout.difficulty[host.difficulty].waves[0].at)
-			debris.advance(self,host,0)
-			announced.onset = true
-			audio.play("flush_onset")
+			finish_intro(host)
 		delta -= reading_delta
 		if delta <= 0.000001: return
 	# Resolve the final controllable interval before making the finale immune.
@@ -306,7 +336,7 @@ func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _
 		debris.advance(self,host,delta)
 		if host.life_state != "alive": return
 	sync_hero(host)
-	radio.advance(clock+prelude_duration,delta,false)
+	radio.advance(clock+gameplay_radio_offset,delta,false)
 	if clock >= 8 and not announced.has("onset"):
 		announced.onset = true
 		audio.play("flush_onset")

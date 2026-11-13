@@ -49,7 +49,18 @@ func checks() -> void:
 			var flush = game.flush
 			check(flush.clock == 0 and flush.prelude_remaining == flush.prelude_duration,"Fresh entry retains intro")
 			check(flush.hazards.is_empty() and flush.debris.next_wave == 0,"Fresh entry no hazards")
-			# Actual drain deaths exercise retries during the intro and twice during hazards.
+			for attempt in 2:
+				game.lives = 3
+				flush.position = Vector2.ZERO
+				flush.tick(game,1.0/120,Vector2.ZERO,false,false)
+				check(game.life_state == "dying" and not flush.intro_complete,"Early death leaves intro unfinished")
+				game.respawn_after_death()
+				check(flush.clock == 0 and flush.prelude_remaining == flush.prelude_duration,"Early retry restarts whole intro")
+				check(flush.radio.current.at == 0 and flush.radio.next_index == 1,"Early retry displays first line")
+			for frame in range(roundi(flush.prelude_duration*120)):
+				flush.tick(game,1.0/120,flush.position.normalized(),false,false)
+			check(flush.intro_complete,"Only completed conversation enables retry skip")
+			# Completed intros skip directly to hazards on repeated deaths.
 			for attempt in 3:
 				game.lives = 3
 				flush.position = Vector2.ZERO

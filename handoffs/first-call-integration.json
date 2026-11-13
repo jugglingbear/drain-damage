@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "build": "Prototype 188 / 0.188.0",
-  "status": "Signed Mac build validated; approved hero balance and new-level restoration integrated",
-  "app": "builds/Prototype-188/Drain Damage.app",
+  "build": "Prototype 189 / 0.189.0",
+  "status": "Signed Mac build validated; completion-aware flush dialogue retry and fresh-Jump advancement integrated",
+  "app": "builds/Prototype-189/Drain Damage.app",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-187/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-188/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -1037,7 +1037,7 @@
       "package": "123 hero-balance and1615 starter-special checks PASS; no script errors",
       "native": "previews/hero-balance-188/packed-final/ and packed-final.log: six HUD states and ten Tony movement frames; source_visible=false; Engineering inspected final package",
       "flush_retry": "All heroes/difficulties and repeated retries PASS",
-      "art": "All six188 candidate HUD stills independently approved; final re-export changes only swim-planner speed consistency",
+      "art": "Independent Art PASS for all six HUD states; final package HUD regions verified pixel-identical to approved captures.",
       "warnings": "Existing fixture ObjectDB shutdown warnings and sandbox CA/log/editor-settings warnings"
     },
     "pck_sha256": "561fe47402d2e6cd47429e4caada202a924534b676befe6f901aa4bbfb20774f",
@@ -1046,5 +1046,34 @@
       "Native Windows verification"
     ],
     "next_task": "Flush unfinished-dialogue retry and bottom-window fresh-Jump advancement; separate next integration."
+  },
+  "followup_189": {
+    "date": "2026-11-12",
+    "status": "Signed Mac build; isolated tests and bounded native acceptance passed",
+    "changes": [
+      "Track actual opening conversation completion; early death replays whole opening, completed death/game-over retries retain first-hazard checkpoint.",
+      "Fresh mapped Jump advances one line only after bottom relocation; held input and center/sliding presses do not skip. Landing dialogue also supports fresh-Jump advancement.",
+      "Derive opening duration from final authored line: Tony34s,Sean28s. Immediate first full warning after final automatic/manual dismissal; preserve hazard-relative later reactions."
+    ],
+    "preserved": [
+      "All dialogue wording, portraits, center-to-bottom animation and automatic line durations",
+      "Hazard schedule, full dodge-warning duration, landing checkpoint and189 inherits188 balance"
+    ],
+    "validation": {
+      "source_controls": "44checks PASS keyboard/controller, both heroes, early/completed deaths, held input and landing",
+      "source_retry": "PASS allheroes/difficulties repeated early/hazard/gameover retries and full remaining flush route",
+      "package_controls": "44checks PASS again on final metadata-aligned export; no script errors",
+      "package_radio_gag": "PASS allcostumes/heroes shared-panel order, movement, pause, lateframe and reset",
+      "package_reading": "PASS both heroes/all modes: authored durations, full intro, full warning, hazard-relative music/drain/landing",
+      "native": "previews/flush-dialogue-189/packed-final/16frames and packed-final.log; isolated0.189.0 source_visible=false; Engineering inspected final center-to-bottom samples and clear completed-retry hazard view",
+      "art": "Independent Art PASS for14 candidate189 stills across both heroes: opening replay, center-to-bottom positions, text/portrait containment, changed bottom content and no stale panels at hazard onset. Final export changes only timing descriptions; no new continuous-motion/input claim.",
+      "build": "make build PASS; ad-hoc signature and version metadata verified"
+    },
+    "remaining_gaps": [
+      "Full human playtest",
+      "Native Windows verification"
+    ],
+    "warnings": "Existing fixture ObjectDB/resource shutdown warnings and sandbox CA/log/editor-settings warnings.",
+    "pck_sha256": "8580b858b21a33436b0fcb48450e9bdbf8418e0b789cd2b35573f4ba1d4a8f12"
   }
 }

@@ -67,8 +67,10 @@ func _ready() -> void:
 func reset_game() -> void:
 	var retry_ride := flush.active and flush.checkpoint_saved
 	var retry_flush := flush.active
+	var completed_intro := flush.intro_complete
 	var ride_checkpoint: int = flush.ride.checkpoint_index
 	flush.reset()
+	flush.intro_complete = retry_flush and completed_intro
 	boss_intro.reset(true)
 	intro_input_release = false
 	dialogue.hard_portraits = difficulty == "hard"

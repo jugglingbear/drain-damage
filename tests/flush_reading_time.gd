@@ -38,7 +38,10 @@ func checks() -> void:
 			flush.input_guard = false
 			flush.process_audio(game,0)
 			assert(not flush.music.voice.playing and flush.audio.voices.current.playing)
-			for frame in range(3120): flush.tick(game,1.0/120,flush.position.normalized(),false,false)
+			assert(flush.prelude_duration == (34 if hero == 0 else 28))
+			for frame in range(roundi(flush.prelude_duration*120)):
+				flush.tick(game,1.0/120,flush.position.normalized(),false,false)
+			assert(flush.intro_complete and flush.radio.current.is_empty(),"Final authored intro line finishes")
 			var onset: float = flush.definition.layout.difficulty[mode].waves[0].at
 			assert(flush.prelude_remaining == 0 and absf(flush.clock-onset) < 0.00001)
 			assert(not flush.hazards.is_empty() and flush.debris.spawned > 0)
@@ -67,5 +70,5 @@ func checks() -> void:
 			assert(flush.state == "ride")
 			game.queue_free()
 			await process_frame
-	print("PASS: all 15 reading durations doubled, no overlap/truncation, 26s prelude, immediate post-dialogue warnings, full dodge interval, hazard-relative music/drain/landing; both heroes/all modes")
+	print("PASS: authored reading durations, complete34s/28s intros, immediate warnings, full dodge interval, hazard-relative music/drain/landing; both heroes/all modes")
 	quit()

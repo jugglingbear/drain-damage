@@ -67,9 +67,19 @@ Tony runs at 337.5 instead of 270 pixels/second and jumps 25% higher at unchange
 physics retain their existing speeds. Six health markers fit the shared HUD. Special damage is unchanged.
 Isolated package checks pass: 123 hero-balance and 1,615 special checks. Shared vitals passes 71,058 checks;
 Art approved all six HUD states and Engineering inspected final package captures. Full human balance playtesting remains open.</p>
-<p><strong>Next — flush conversation controls:</strong> Restart unfinished opening dialogue after an early death;
-completed dialogue still skips on retry. After the chat window reaches the bottom, fresh Jump presses advance
-lines and keep hazard timing synchronized. Engineering owns the follow-up integration.</p>
+<p><strong>November 12 — Prototype 189 flush conversation fix delivered:</strong> Early death restarts
+unfinished opening dialogue from the first line. Once the final line finishes or is dismissed, repeated retries skip
+directly to the first full obstacle warning. Fresh Jump presses advance one line after the shared window reaches
+the bottom; held input and presses during the centered gag do not skip. Automatic reading preserves every authored
+line (34 seconds for Tony, 28 for Sean). Final dismissal starts hazards immediately, without an invisible wait.
+The signed Mac build passes isolated dialogue-control, reading-time and shared-window checks. Engineering inspected
+16 final native captures; independent Art approved both heroes’ sampled dialogue and cleared hazard views. Full human
+playtesting and native Windows verification remain open.</p>
+<p><strong>Landing-page concepts — delivered for selection:</strong> Sean commissioned four visual directions for Comic,
+Magazine, Journey (making-of storybook), and Game destinations. Art delivered four mockups in
+<code>marketing/landing-page/concepts-v1/</code>; Marketing coordinates presentation and selection. Maintenance
+service desk, four-way pipe junction, basement newsstand, and BJ terminal remain selection candidates only. No live implementation
+or publication is authorized, and this concept work is not a game-build dependency.</p>
 
 <p><strong>November 12 — Prototype 187 swarm cleanup fix:</strong> Offscreen campaign swarms no longer call
 ordinary creature action-audio cleanup, which expected a missing <code>role</code> field and printed a runtime error.
@@ -704,7 +714,7 @@ pending; baseline dialogue-test failures and the shared swimming ripple are reco
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated November 12, 2026 · Current build: Prototype 188 / 0.188.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated November 12, 2026 · Current build: Prototype 189 / 0.189.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
 at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
 point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;
