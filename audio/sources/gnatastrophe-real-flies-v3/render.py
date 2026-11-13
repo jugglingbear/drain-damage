@@ -68,7 +68,7 @@ def main() -> None:
                    'download': 'https://cdn.freesound.org/previews/440/440809_8523759-hq.mp3',
                    'format_note': 'Public HQ MP3 preview, not the original lossless WAV.',
                    'recording_description': 'Flies recorded with Rode NT3 and ZOOM H6.',
-                   'license_evidence': str((HERE / 'source-page.html').relative_to(ROOT)),
+                   'license_evidence': 'https://freesound.org/people/PuzzleAudio/sounds/440809/',
                    'path': str(SOURCE.relative_to(ROOT)), 'sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest()},
         'recipe': str(Path(__file__).relative_to(ROOT)), 'processing': H.PROCESSING, 'outputs': outputs,
         'notes': ['Six-second continuous textures; not individual action mappings or runtime loops.',

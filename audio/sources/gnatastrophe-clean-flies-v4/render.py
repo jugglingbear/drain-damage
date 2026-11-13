@@ -72,7 +72,7 @@ def main() -> None:
                           'download': (HERE / 'source-url.txt').read_text().strip(),
                           'path': str(source.relative_to(ROOT)),
                           'sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
-                          'license_evidence': str((HERE / 'source-page.html').relative_to(ROOT)),
+                          'license_evidence': 'https://freesound.org/people/BeeProductive/sounds/395593/',
                           'format_note': 'Public HQ MP3 preview, not original lossless WAV.',
                           'preprocess': filters},
         'outdoor_source': 'audio/sources/gnatastrophe-real-flies-v3/manifest.json',
