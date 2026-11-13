@@ -75,20 +75,22 @@ line (34 seconds for Tony, 28 for Sean). Final dismissal starts hazards immediat
 The signed Mac build passes isolated dialogue-control, reading-time and shared-window checks. Engineering inspected
 16 final native captures; independent Art approved both heroes’ sampled dialogue and cleared hazard views. Full human
 playtesting and native Windows verification remain open.</p>
-<p><strong>Landing page — local Service Desk preview in progress:</strong> Sean authorized a working local
-interactive preview. Marketing owns HTML/CSS under <code>marketing/landing-page/</code>; Art owns independent
-object-highlight assets. The v4 visual concept remains the review reference.
-The <a href="marketing/landing-page/concepts-v1/01-service-desk-v4.png">revised v4 concept</a> gives the comic one
-dramatic cover illustration, retaining the glossy magazine, Journey scrapbook, and 1990s cardboard PC game box
-with CD ROM spine. Sean selected Burst Pressure masthead option 2; wider brand rollout remains separate.
-Both “Clock in. Dive in.” and “The service desk” signs remain removed. Do not reintroduce paired A/B punchline slogans.</p>
-<p>Interaction requirements for the preview: each whole object and its label form one semantic link;
-hover adds a warm outline, brighter label, and subtle lift. Keyboard focus is visible and Enter activates the link.
-Touch works without hover, and reduced motion suppresses lift. Magazine links to
-<code>marketing/magazine/current.pdf</code>, Journey to <code>storybook/storybook.html</code>, and Game to
-<code>dist/</code> downloads. Marketing is confirming Comic with Storyboarding; no reader destination is verified yet.
+<p><strong>Landing page — local preview ready for Sean’s review:</strong> Marketing delivered the
+<a href="http://127.0.0.1:8767/marketing/landing-page/">interactive Service Desk preview</a> using
+<code>index.html</code>, <code>landing.css</code>, and <code>landing.js</code> under <code>marketing/landing-page/</code>,
+with Art’s v4 concept and <code>desk-interaction-geometry-v1.json</code>. Marketing owns the preview files;
+Art owns geometry and assets. Independent Art desktop/mobile screenshot review remains pending.</p>
+<p>Four object/plaque semantic links provide highlights and visible keyboard focus. The mobile layout uses a
+responsive 2×2 arrangement, and reduced motion suppresses lift. Marketing reports desktop/mobile inspection,
+mouse and keyboard Comic-dialog and Game-link tests, Magazine/Storybook HTTP 200 responses, JavaScript syntax,
+and diff-hygiene checks passed. The Comic reader is confirmed unavailable; its link opens an explicit in-preparation
+dialog. Magazine links to <code>marketing/magazine/current.pdf</code>, Journey to <code>storybook/storybook.html</code>,
+and Game to <code>dist/</code> downloads.</p>
+<p>The concept retains one dramatic comic cover, glossy magazine, Journey scrapbook, and 1990s cardboard PC game
+box with CD ROM spine. Burst Pressure masthead option 2 is selected; wider brand rollout remains separate.
+Both “Clock in. Dive in.” and “The service desk” signs remain removed; do not reintroduce paired A/B punchline slogans.
 See the <a href="marketing/landing-page/concepts-v1/desk-revision-v4.json">canonical v4 requirements</a>.
-Local implementation is in progress; publication is not authorized. There is no runtime or game-build dependency.</p>
+Publication has not started or been authorized, and the live site is unchanged. There is no runtime or game-build dependency.</p>
 
 <p><strong>November 12 — Prototype 187 swarm cleanup fix:</strong> Offscreen campaign swarms no longer call
 ordinary creature action-audio cleanup, which expected a missing <code>role</code> field and printed a runtime error.
