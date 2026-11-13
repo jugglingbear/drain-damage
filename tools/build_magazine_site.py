@@ -89,6 +89,7 @@ def assemble_landings(destination: Path) -> None:
     files = (
         'index.html', 'landing.css', 'landing.js', 'desk-interaction-geometry-v1.json',
         'concepts-v1/01-service-desk-v4.png', 'comic/index.html', 'comic/comic-shop-shelf-v1.png',
+        'comic/issue-01-cover-v5.png',
     )
     for name in files:
         if (source / name).read_bytes().startswith(b'version https://git-lfs.github.com/spec/v1'):

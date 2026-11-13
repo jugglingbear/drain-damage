@@ -18,7 +18,8 @@ class PublicSiteTests(unittest.TestCase):
             source = root / 'marketing/landing-page'
             source.mkdir(parents=True)
             for name in ('index.html', 'landing.css', 'landing.js', 'desk-interaction-geometry-v1.json',
-                         'concepts-v1/01-service-desk-v4.png', 'comic/index.html', 'comic/comic-shop-shelf-v1.png'):
+                         'concepts-v1/01-service-desk-v4.png', 'comic/index.html', 'comic/comic-shop-shelf-v1.png',
+                         'comic/issue-01-cover-v5.png'):
                 target = source / name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(site.ROOT / 'marketing/landing-page' / name, target)
@@ -35,6 +36,8 @@ class PublicSiteTests(unittest.TestCase):
             self.assertNotIn('../', script)
             self.assertNotIn('Interactive preview', (output / 'index.html').read_text())
             self.assertNotIn('<a ', (output / 'comic/index.html').read_text())
+            self.assertEqual((source / 'comic/issue-01-cover-v5.png').read_bytes(),
+                             (output / 'comic/issue-01-cover-v5.png').read_bytes())
             self.assertFalse((output / 'dist/private.zip').exists())
             self.assertTrue((output / 'dist/index.html').exists())
 

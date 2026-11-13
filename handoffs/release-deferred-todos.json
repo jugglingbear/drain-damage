@@ -3,12 +3,13 @@
   "items": [
     {
       "id": "bj-opening-dialogue-possible-overflow",
-      "status": "deferred",
+      "status": "tested-not-reproduced",
       "owner": "Engineering",
       "description": "Inspect possible overflow in BJ's opening dialogue and correct it if reproduced.",
-      "verification": "Unverified earlier review concern; not established as a regression in Prototype 189.",
-      "decision": "Sean requested TODO only because remaining credits are limited; do not inspect or fix now.",
-      "release_handling": "Record as an unresolved limitation, not a new repair gate."
+      "verification": "Prototype 189 native packaged review: 84 frames, seven lines, both heroes, normal/Hard and three window sizes; no overflow reproduced. Bugs independently inspected Sean 800x600 Hard.",
+      "decision": "Sean subsequently authorized visual verification; no correction or binary rebuild needed.",
+      "release_handling": "Remove stale unverified overflow notice from download page.",
+      "evidence": "previews/bj-opening-189/packed/; Engineering record commit ca869ea"
     }
   ]
 }

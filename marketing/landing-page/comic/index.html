@@ -8,16 +8,34 @@
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #102b29; }
-    main { width: 100%; }
+    main { position: relative; width: min(100vw, 100svh); }
     img { display: block; width: 100%; height: auto; max-height: 100svh; object-fit: contain; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+    .issue { position: absolute; left: 12.5199%; top: 29.9043%; width: 22.1691%; height: 25.5183%;
+      background: #090b09; cursor: default; }
+    .issue-cover { position: absolute; left: 11.5108%; top: 0; width: 76.7386%; height: 100%; object-fit: contain; }
+    .coming-soon { position: absolute; inset: 0; display: grid; place-items: center; background: #07100cd9;
+      color: #fff0c5; opacity: 0; transition: opacity 150ms ease; pointer-events: none; }
+    .coming-soon span { transform: rotate(-20deg); font: italic bold clamp(12px, 4.5vmin, 40px)/1.1 Georgia, serif;
+      text-align: center; text-shadow: 0 2px 3px #000; }
+    .issue:hover .coming-soon, .issue:focus-visible .coming-soon { opacity: 1; }
+    .issue:focus-visible { outline: 3px solid #ffd579; outline-offset: 2px; }
+    @media (hover: none) {
+      .coming-soon { opacity: 1; top: auto; padding: 5px 2px; }
+      .coming-soon span { transform: none; font-size: clamp(11px, 3vw, 20px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .coming-soon { transition: none; } }
   </style>
 </head>
 <body>
   <main>
     <h1 class="sr-only">Drain Damage comics</h1>
     <img src="comic-shop-shelf-v1.png" width="1254" height="1254"
-      alt="A comic book shop display with two rows of three issue spaces. Issue 01 is a black comic silhouette with Coming soon! written diagonally across it. The other five spaces are reserved for future issues.">
+      alt="A comic book shop display with two rows of three issue spaces. The Issue 01 cover occupies the top-left space. The other five spaces are reserved for future issues.">
+    <div class="issue" tabindex="0" role="img" aria-label="Issue 01. Coming soon! Not available to open.">
+      <img class="issue-cover" src="issue-01-cover-v5.png" width="1024" height="1536" alt="">
+      <div class="coming-soon" aria-hidden="true"><span>Coming<br>Soon!</span></div>
+    </div>
     <p class="sr-only">No issues are available to select yet.</p>
   </main>
 </body>
