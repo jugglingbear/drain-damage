@@ -19,8 +19,11 @@ Review output: `discharge-quarterly-v39-review.pdf`.
 
 Cover and back-cover Sean likeness corrections are still pending Art assets and visibly flagged in this review.
 On November 14, Sean authorized publishing this draft for remote phone feedback before those fixes and independent
-Art review. The canonical `magazine.json` and `current.pdf` now contain edition 39; website deployment is pending.
+Art review. The canonical `magazine.json` and `current.pdf` now contain edition 39; the draft is published for phone feedback.
 The promoted PDF is byte-identical to the previously inspected review. Edition 38 remains preserved separately.
+
+[Read the live draft](https://jugglingbear.github.io/drain-damage/magazine/).
+[Deployment 43617991532](https://github.com/jugglingbear/drain-damage/actions/runs/43617991532) passed.
 
 ```shell
 python3 marketing/magazine/build_guide.py \
@@ -32,7 +35,7 @@ python3 marketing/magazine/build_guide.py \
 Sean approved the optional torch idea for magazine inclusion. Page 8 now contains three tentative silhouettes:
 Pipe Wrench, Drain Snake and Soldering Torch. The torch description is "A short-range sweep of flame?" and its
 special remains undecided. This does not approve gameplay implementation or assign exclusive character ownership.
-The issue remains eleven pages. `current.pdf` matches edition 38, published November 10, 2026. The live PDF SHA-256 matches the approved file:
+This historical issue contains eleven pages and was published November 10, 2026. Its approved PDF SHA-256 is:
 `f8df0832f0beef01e8616b542f1fc1f522f5c0723d3dc3ecfec968bbcd733b09`.
 [Publication run](https://github.com/jugglingbear/drain-damage/actions/runs/42919830850) succeeded for commit `96758f6`.
 Art accepted the revised page; changed pages visually checked and nine unchanged renders matched edition 37.
