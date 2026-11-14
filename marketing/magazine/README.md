@@ -3,6 +3,30 @@
 [magazine.json](magazine.json) is the canonical editable source for the magazine. It contains publication metadata,
 ordered pages, text, captions, image references and layout templates. The PDF is generated output.
 
+## Editorial review 39 — November 12, 2026
+
+Sean approved executing the article-based reorganization, with no fixed page limit. This first pass uses twelve
+pages for the available material; future level and creature coverage can expand or reshape the issue.
+
+The review separates contents from crew profiles, pairs the starting weapons and specials, folds creature action
+advice into the field guide, combines Flush material into one feature, and gathers five tentative weapons on one
+preview page. Main Break uses the preferred corrected geyser/rain concept v2 and the implemented rain description.
+Normal-costume and spoiler restrictions remain in force. Existing gameplay captures retain their visible versions.
+
+Review source: `guide-assets-v39/magazine-review.json`.
+
+Review output: `discharge-quarterly-v39-review.pdf`.
+
+Cover and back-cover Sean likeness corrections are still pending Art assets and visibly flagged in this review.
+On November 14, Sean authorized publishing this draft for remote phone feedback before those fixes and independent
+Art review. The canonical `magazine.json` and `current.pdf` now contain edition 39; website deployment is pending.
+The promoted PDF is byte-identical to the previously inspected review. Edition 38 remains preserved separately.
+
+```shell
+python3 marketing/magazine/build_guide.py \
+  --source marketing/magazine/guide-assets-v39/magazine-review.json --no-current
+```
+
 ## Soldering-torch teaser — edition 38, November 5, 2026
 
 Sean approved the optional torch idea for magazine inclusion. Page 8 now contains three tentative silhouettes:

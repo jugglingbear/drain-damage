@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import shutil
 from math import cos, pi, sin
@@ -16,7 +17,11 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = Path(__file__).with_name("magazine.json")
+PARSER = argparse.ArgumentParser(description=__doc__)
+PARSER.add_argument("--source", type=Path, default=Path(__file__).with_name("magazine.json"))
+PARSER.add_argument("--no-current", action="store_true", help="Render a review without replacing current.pdf")
+ARGS = PARSER.parse_args()
+SOURCE = ARGS.source
 DOCUMENT = json.loads(SOURCE.read_text(encoding="utf-8"))
 LAYOUT = DOCUMENT["layout"]
 PUBLICATION = DOCUMENT["publication"]
@@ -177,7 +182,7 @@ for page_number, page_data in enumerate(DOCUMENT["pages"], 1):
     C.showPage()
 C.save()
 # Stable tracked publication path lets Pages follow new editions without workflow edits.
-CURRENT = SOURCE.with_name("current.pdf")
-if OUT.resolve() != CURRENT.resolve():
+CURRENT = Path(__file__).with_name("current.pdf")
+if not ARGS.no_current and OUT.resolve() != CURRENT.resolve():
     shutil.copyfile(OUT, CURRENT)
 print(OUT)
