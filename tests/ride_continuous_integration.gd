@@ -52,7 +52,8 @@ func checks() -> void:
 					ride.encounter_scroll = float(obstacle.x)-300-(240 if pit_instance == "slice-caps" else 0)
 					ride.clock = ride.encounter_scroll/ride.scroll_speed
 					ride.encounter_clock = ride.clock
-					ride.position.y = 330
+					ride.position.y = float(obstacle.y)
+					break
 				ride.tick(game,1.0/60,Vector2.ZERO,false)
 				assert(game.life_state != "alive" and game.lives == 2 and ride.events.has("fall"))
 				game.respawn_after_death()

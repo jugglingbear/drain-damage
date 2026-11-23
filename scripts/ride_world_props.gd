@@ -60,6 +60,18 @@ static func build(parent: Node3D, o: Dictionary, m: Dictionary, bank_scale := 1.
 	var id := str(o.art_id)
 	var structural: Material = m.get("support_iron",m.cast_iron)
 	if id.begins_with("valve_"):
+		if id == "valve_center_v2" and o.get("instance_id","") == "slice-slalom":
+			box(parent,Vector3(w,1.1,d),Vector3(0,-.25,0),structural)
+			for x in [-w*.35,w*.35]:
+				for z in [-d*.35,d*.35]:
+					cylinder(parent,.06,.08,Vector3(x,.33,z),m.copper)
+			cylinder(parent,.38,1.55,Vector3(0,1.0,0),m.copper)
+			cylinder(parent,.16,.6,Vector3(0,1.95,0),structural)
+			ring(parent,.47,.06,Vector3(0,2.24,0),m.copper)
+			for i in 4:
+				var spoke := Vector3(cos(i*PI*.5)*.47,0,sin(i*PI*.5)*.47)
+				rod(parent,Vector3.UP*2.24,Vector3.UP*2.24+spoke,.04,m.copper)
+			return
 		box(parent,Vector3(w,1.8,d),Vector3(0,.1,0),structural)
 		# Recessed gate face and load-bearing frame retain the original baffle envelope.
 		box(parent,Vector3(w-.18,.72,.035),Vector3(0,.53,d*.5+.018),m.cast_iron)
@@ -201,8 +213,8 @@ static func torn_grate_tooth(parent: Node3D, at: Vector3, width: float, height: 
 	surface.generate_normals()
 	mesh(parent,surface.commit(),at,material)
 
-static func strainer(parent: Node3D, w: float, d: float, m: Dictionary, rail_start := -8.0) -> void:
-	box(parent,Vector3(8.0-rail_start,.12,.16),Vector3((8.0+rail_start)*.5,3.3,0),m.cast_iron,"rail")
+static func strainer(parent: Node3D, w: float, d: float, m: Dictionary, rail_start := -8.0, rail_end := 8.0) -> void:
+	box(parent,Vector3(rail_end-rail_start,.12,.16),Vector3((rail_end+rail_start)*.5,3.3,0),m.cast_iron,"rail")
 	var winch := cylinder(parent,.16,.32,Vector3(0,3.08,0),m.copper)
 	winch.rotation.x = PI*.5
 	var basket := Node3D.new()

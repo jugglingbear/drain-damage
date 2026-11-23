@@ -152,6 +152,7 @@ func configure(yield_frame := Callable()) -> void:
 	configured = true
 
 func actor_signature(obstacle: Dictionary) -> String:
+	if obstacle.get("station",false): return "station:%s:%s" % [obstacle.y,obstacle.depth]
 	var definition := obstacle.duplicate(true)
 	definition.erase("visual_started")
 	return JSON.stringify(definition)
@@ -387,10 +388,11 @@ func build_actor(actor: Node3D, obstacle: Dictionary) -> void:
 			machine.name = "machine"
 			actor.add_child(machine)
 			# The continuous approach stages its basket ahead of the target; support that whole travel path.
-			var extended := obstacle.has("instance_id")
-			Props.strainer(machine,width,depth,materials,-16.0 if extended else -8.0)
+			var station: bool = obstacle.get("station",false)
+			var extended := obstacle.has("instance_id") and not station
+			Props.strainer(machine,width,depth,materials,-1.0 if station else (-16.0 if extended else -8.0),1.0 if station else 8.0)
 			machine.set_meta("rail_origin_x",-4.0 if extended else 0.0)
-			for offset in ([-16.0,-8.0,8.0] if extended else [-8.0,8.0]):
+			for offset in ([0.0] if station else ([-16.0,-8.0,8.0] if extended else [-8.0,8.0])):
 				var support := Node3D.new()
 				actor.add_child(support)
 				support.position.x = offset
@@ -541,8 +543,17 @@ func animate_actor(actor: Node3D, obstacle: Dictionary, model: RefCounted) -> vo
 	if str(obstacle.art_id).begins_with("strainer_gap_"):
 		var machine: Node3D = actor.get_node("machine")
 		var age: float = model.mechanism_age(obstacle)
-		machine.visible = age >= 1.0
+		var station: bool = obstacle.get("station",false)
+		machine.visible = station or age >= 1.0
 		if not machine.visible: return
+		if station:
+			var lift := 2.7*(1.0-smoothstep(2.75,3.1,age)+smoothstep(3.1,3.45,age))
+			machine.get_node("basket").position.y = lift
+			for chain_name in ["chain_left","chain_right"]:
+				var chain: Node3D = machine.get_node(chain_name)
+				chain.position.y = lift+.45
+				chain.scale.y = 3.24-lift-.45
+			return
 		var assembly: Dictionary = model.hazard_assembly(obstacle)
 		var source: Dictionary = model.obstacle_art.manifest
 		for part: Dictionary in assembly.parts:

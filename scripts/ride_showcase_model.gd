@@ -58,7 +58,7 @@ func emit_event(name: String, id := "") -> void:
 func begin(host: Node2D, index := 0) -> void:
 	if definition.is_empty() or continuous or definition.get("continuous",false):
 		definition = JSON.parse_string(FileAccess.get_file_as_string(SOURCE))
-		if continuous: definition = ContinuousCourse.build(definition,str(host.get("difficulty")))
+		if continuous: definition = ContinuousCourse.build(definition,str(host.get("difficulty")),int(host.run_seed) if "run_seed" in host else 42)
 	clock = 0
 	position = Vector2(300,330)
 	jump_age = -1

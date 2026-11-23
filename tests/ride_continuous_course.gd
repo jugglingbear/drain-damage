@@ -2,14 +2,18 @@ extends SceneTree
 ## Composed input witnesses validate real physics; arbitrary steering is not promised safe.
 const Model = preload("res://scripts/ride_showcase_model.gd")
 const Host = preload("res://tests/ride_showcase_course.gd").Host
+class SeededHost extends Host:
+	var run_seed := 42
+
 var failures: Array[Dictionary] = []
 var routes := 0
 
 func _initialize() -> void: call_deferred("checks")
 
 func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float, mixed: bool,
-		retry := 0, strainer_jump := false, cap_drift := 0.0) -> void:
-	var host := Host.new()
+		retry := 0, strainer_jump := false, cap_drift := 0.0, seed_value := 42) -> void:
+	var host := SeededHost.new()
+	host.run_seed = seed_value
 	host.employee.id = hero
 	host.difficulty = mode
 	var model := Model.new()
@@ -18,11 +22,22 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 	model.position.x = anchor
 	var spacing: float = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://levels/level-two-ride-continuous.json")).spacing[mode]
-	var shift := 2*(spacing-650)
-	var jumps := [5077.0+shift,7422.0+shift,7872.0+shift]
-	if strainer_jump: jumps.append(10432.0+shift)
-	var points := [[2200.0,380.0],[2740.0,280.0],[2740.0+spacing,400.0],
-		[4300.0+shift,330.0],[9900.0+shift,330.0 if strainer_jump else 270.0],[11000.0+shift,270.0]]
+	var shift := 7*(spacing-410)
+	var jumps := [5077.0+shift,7390.0+shift-cap_drift*200,7800.0+shift+maxf(0,cap_drift)*200]
+
+	var points := [[750,395]]
+	var banks := [375,260,260,395,280,400,400,280]
+	for i in range(1,banks.size()):
+		points.append([1450+(i-1)*spacing+100,banks[i]])
+	points.append_array([[1450+7*spacing+120,330],[6900+shift,265],[7390+shift,395],[7800+shift,265]])
+	for gap: Dictionary in model.course.obstacles:
+		if not gap.get("station",false): continue
+		var bank := 395 if gap.y <= 330 else 265
+		if strainer_jump and gap.id == "drop-0-0":
+			bank = int(gap.y)
+			jumps.append(float(gap.x)-168)
+		points.append([float(gap.x)-330,bank])
+	points.append([13045+shift,265])
 	var next_jump := 0
 	while next_jump < jumps.size() and jumps[next_jump] < model.position.x+model.encounter_scroll:
 		next_jump += 1
@@ -35,7 +50,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 		var x: float = model.position.x+model.encounter_scroll
 		# Reposition through the approach and connectors; settle before precision cap landings.
 		var horizontal := 0.0
-		if mixed and (x < 4700+shift or (x > 5600+shift and x < 6800+shift) or x > 11000+shift):
+		if mixed and (x < 1200 or (x > 5600+shift and x < 6800+shift) or x > 13600+shift):
 			horizontal = 1.0 if int(model.clock/0.7)%2 == 0 else -1.0
 			horizontal_frames += 1
 		if x > 7000+shift and x < 8500+shift: horizontal = cap_drift
@@ -51,7 +66,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 		previous_scroll = model.encounter_scroll
 		if model.complete or host.health < 5: break
 	var record := {"hero":hero,"mode":mode,"anchor":anchor,"hz":hz,"offset":offset,"mixed":mixed,
-		"retry":retry,"cap_drift":cap_drift,"strainer_jump":strainer_jump,"x":model.position.x+model.encounter_scroll,
+		"retry":retry,"seed":seed_value,"cap_drift":cap_drift,"strainer_jump":strainer_jump,"x":model.position.x+model.encounter_scroll,
 		"event":model.last_event}
 	if not model.complete or host.health != 5 or host.lives != 3 or host.life_state != "alive":
 		failures.append(record)
@@ -105,6 +120,8 @@ func check_warning_budget() -> void:
 func checks() -> void:
 	check_demands()
 	check_warning_budget()
+	for seed_value in 24:
+		run_route("sean","normal",300,60,0,false,2,seed_value%2 == 0,0,seed_value)
 	for hero in ["tony","sean"]:
 		for mode in ["easy","normal","hard"]:
 			for anchor in [180.0,300.0,650.0]:

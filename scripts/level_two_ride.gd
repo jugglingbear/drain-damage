@@ -489,34 +489,17 @@ func draw(host: Node2D, flush: RefCounted) -> void:
 	host.box(0,0,960,64,Color("101d29"))
 	host.label_at("POOP-BOARD RIDE" if continuous else "RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)
 	host.draw_vitals(Vector2(550,4),"rubber-ducks")
-	host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(830,52),14,host.MINT)
+	if not continuous: host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(830,52),14,host.MINT)
 	if phase == "rest":
 		host.label_at("REST — %.1f s" % rest_remaining,Vector2(24,92),22,host.MINT)
-	elif phase == "encounter":
+	elif phase == "encounter" and not continuous:
 		host.label_at("%02d  %s" % [encounter_index+1,str(encounter.get("title",""))],Vector2(24,92),22,host.GOLD)
-	if phase == "encounter" and (encounter.has("hand_timeline") or encounter.has("strainer_timeline")):
-		var warning := float(encounter.get("hand_timeline",encounter.get("strainer_timeline",{})).warning_at)
-		var pit: Dictionary = course.obstacles[0]
-		if encounter_clock >= warning and obstacle_position(pit).x+float(pit.width)*0.5 > position.x-HALF.x:
-			var response := "DODGE FAR OR JUMP →" if encounter.has("strainer_timeline") else "JUMP THE FULL-WIDTH GAP →"
-			host.box(550,470,410,44,Color("101d29"))
-			host.label_at("TRACK BREAK AHEAD →" if not obstacle_active(pit) else response,
-				Vector2(580,496),18,host.GOLD)
-
-	if continuous and phase == "encounter":
-		for obstacle: Dictionary in course.obstacles:
-			if not obstacle.has("warning_at"): continue
-			var point := obstacle_position(obstacle)
-			if encounter_clock >= float(obstacle.warning_at) and point.x+float(obstacle.width)*.5 > position.x-HALF.x:
-				host.box(550,470,410,44,Color("101d29"))
-				host.label_at("DODGE FAR OR JUMP →",Vector2(580,496),18,host.GOLD)
-
 	host.BuildVersion.draw(host)
 	if host.paused or host.won:
 		host.box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
 		if host.life_state in ["death_popup","game_over"]: host.draw_death_popup()
 		elif host.won:
-			host.label_at("OBSTACLE TEST COMPLETE",Vector2(270,195),28,host.GOLD)
-			host.label_at("All %d encounters finished" % definition.encounters.size(),Vector2(330,230),21,host.MINT)
+			host.label_at("COURSE COMPLETE" if continuous else "OBSTACLE TEST COMPLETE",Vector2(270,195),28,host.GOLD)
+			if not continuous: host.label_at("All %d encounters finished" % definition.encounters.size(),Vector2(330,230),21,host.MINT)
 			host.draw_pause_plates()
 		else: host.draw_pause_panel()

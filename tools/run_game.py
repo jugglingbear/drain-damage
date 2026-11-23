@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import secrets
 import plistlib
 import subprocess
 import sys
@@ -34,7 +35,7 @@ def launch_arguments(environment: dict[str, str]) -> list[str]:
         raise ValueError(f"Unknown or unimplemented {kind}={target}. Run make run-targets.")
     hero = environment.get("HERO") or "tony"
     difficulty = environment.get("DIFFICULTY") or "normal"
-    seed = environment.get("SEED") or "42"
+    seed = environment.get("SEED") or (str(secrets.randbelow(2**31)) if target == "2-course" else "42")
     if hero not in REGISTRY["heroes"]:
         raise ValueError(f"Unknown HERO={hero}; choose tony or sean.")
     if difficulty not in REGISTRY["difficulties"]:
