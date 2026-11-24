@@ -23,7 +23,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 	var spacing: float = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://levels/level-two-ride-continuous.json")).spacing[mode]
 	var shift := 7*(spacing-410)
-	var jumps := [5077.0+shift,7390.0+shift-cap_drift*200,7800.0+shift+maxf(0,cap_drift)*200]
+	var jumps := [1450+1.5*spacing-123,1450+4.5*spacing-159,5077.0+shift,7390.0+shift-cap_drift*200,7800.0+shift+maxf(0,cap_drift)*200,9407+shift,11342+shift]
 
 	var points := [[750,395]]
 	var banks := [375,260,260,395,280,400,400,280]
@@ -38,6 +38,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 			jumps.append(float(gap.x)-168)
 		points.append([float(gap.x)-330,bank])
 	points.append([13045+shift,265])
+	jumps.sort()
 	var next_jump := 0
 	while next_jump < jumps.size() and jumps[next_jump] < model.position.x+model.encounter_scroll:
 		next_jump += 1

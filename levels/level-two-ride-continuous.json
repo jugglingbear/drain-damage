@@ -33,6 +33,12 @@
       "id": "slice-flange",
       "source": "2-05",
       "translate_x": 2600,
+      "additional_flange_beats": [
+        {"slalom_index": 1.5, "offsets": [0]},
+        {"slalom_index": 4.5, "offsets": [-36, 36]},
+        {"world_x": 9530, "offsets": [0]},
+        {"world_x": 11465, "offsets": [0]}
+      ],
       "obstacle_x_offsets": {
         "flange-back": -24
       }

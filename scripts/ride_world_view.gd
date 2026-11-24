@@ -25,6 +25,7 @@ var preparation_usec := 0
 var graphics_warmup_usec := 0
 var manifest: Dictionary = {}
 var configured := false
+var rider_overlay := Node3D.new()
 var hero_key := ""
 var yaw := 18.0
 var target_yaw := 18.0
@@ -230,6 +231,10 @@ func rebuild_rider() -> void:
 	var key: String = host.employee.id+mode
 	if key == hero_key: return
 	hero_key = key
+	if rider_overlay.get_parent() == rider: rider.remove_child(rider_overlay)
+	for child in rider_overlay.get_children():
+		rider_overlay.remove_child(child)
+		child.queue_free()
 	for child in rider.get_children():
 		rider.remove_child(child)
 		child.queue_free()
@@ -238,6 +243,18 @@ func rebuild_rider() -> void:
 	material_loader.rider = rider
 	for frame: Dictionary in flush.art.manifest.landing[host.employee.id][mode].front:
 		material_loader.add_rider_frame(frame,Vector2(contact[0],contact[1]))
+
+	# An aligned translucent copy only shows through a foreground slalom valve during a close pass.
+	for sprite: Sprite3D in rider.get_children():
+		var overlay := sprite.duplicate() as Sprite3D
+		overlay.no_depth_test = true
+		overlay.alpha_cut = SpriteBase3D.ALPHA_CUT_DISABLED
+		overlay.modulate.a = .60
+		overlay.render_priority = 2
+		overlay.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		rider_overlay.add_child(overlay)
+	rider.add_child(rider_overlay)
+	rider_overlay.visible = false
 
 func update_world() -> void:
 	rebuild_rider()
@@ -289,6 +306,7 @@ func update_world() -> void:
 		(model.clock if riding else flush.landing_clock)*.14,0))
 
 func update_actors(model: RefCounted) -> void:
+	rider_overlay.visible = false
 	var live: Dictionary = {}
 	var openings := PackedVector4Array()
 	var hatches := PackedVector4Array()
@@ -315,6 +333,9 @@ func update_actors(model: RefCounted) -> void:
 			actor.visible = true
 			var point: Vector2 = model.obstacle_position(obstacle)
 			actor.position = world(point)
+			if obstacle.get("instance_id","") == "slice-slalom" and rider.position.z < actor.position.z:
+				var separation := absf(camera.basis.x.dot(rider.position-actor.position))
+				if separation < 1.4: rider_overlay.visible = true
 			if obstacle.kind in ["gap","long_pit"]:
 				actor.get_node("opening").visible = model.obstacle_active(obstacle)
 				if model.obstacle_active(obstacle):

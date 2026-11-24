@@ -8,6 +8,7 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 	var obstacles: Array[Dictionary] = []
 	var modules: Array[Dictionary] = []
 	var spacing := float(layout.spacing.get(difficulty,410))
+	var slalom_start := float(layout.instances[0].start_x)
 	var downstream := 7*(spacing-410)
 	for instance: Dictionary in layout.instances:
 		var source: Dictionary = {}
@@ -46,6 +47,15 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 				obstacle.activates_at = float(obstacle.activates_at)+float(obstacle.timeline_origin)
 				obstacle["warning_at"] = float(timeline.warning_at)+float(obstacle.timeline_origin)
 			obstacles.append(obstacle)
+			if obstacle.source_id == "flange-front":
+				for beat: Dictionary in instance.get("additional_flange_beats",[]):
+					var center := float(beat.get("world_x",0))+downstream
+					if beat.has("slalom_index"): center = slalom_start+float(beat.slalom_index)*spacing
+					for offset: float in beat.offsets:
+						var joint := obstacle.duplicate(true)
+						joint.x = center+offset
+						joint.id = "flange-at-%d" % int(joint.x)
+						obstacles.append(joint)
 	# Two waves of three drop stations. Each wave visits every bank once, with bounded timing jitter.
 	var rng := RandomNumberGenerator.new()
 	rng.seed = run_seed
