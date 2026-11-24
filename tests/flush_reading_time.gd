@@ -62,7 +62,7 @@ func checks() -> void:
 			assert(flush.radio.current.event == "drain" and flush.radio.current.duration == 4)
 			for frame in range(1199): flush.tick(game,1.0/120,flush.position.normalized(),false,false)
 			flush.tick(game,1.0/120,flush.position.normalized(),false,false)
-			assert(flush.state == "landing" and flush.clock == 45 and flush.checkpoint_saved)
+			assert(flush.state == "landing" and flush.clock == 45 and not game.checkpoint_active)
 			assert(flush.radio.current.duration == 6 and not flush.music.voice.playing)
 			for frame in range(719): flush.tick(game,1.0/120,flush.position.normalized(),false,false)
 			assert(flush.state == "landing")

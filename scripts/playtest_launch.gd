@@ -68,8 +68,11 @@ static func initialize(game: Node2D, target: Dictionary) -> void:
 		if target.initializer == "level-two-landing": game.flush.enter_landing(game)
 		if target.initializer == "ride-continuous":
 			game.flush.ride.continuous = true
+			game.flush.debug_ride_start = 0
 			game.flush.enter_ride(game,0)
-		if target.initializer == "ride-encounter": game.flush.enter_ride(game,int(target.encounter_index))
+		if target.initializer == "ride-encounter":
+			game.flush.debug_ride_start = int(target.encounter_index)
+			game.flush.enter_ride(game,game.flush.debug_ride_start)
 	if target.initializer == "skitterling-approach":
 		# Rebuild checkpoint ownership before placing the hero at the real walk-in approach.
 		game.checkpoint_active = true
@@ -103,4 +106,4 @@ static func summary(game: Node2D, options: Dictionary) -> Dictionary:
 		"ride_encounter":game.flush.ride.encounter_index+1,"ride_phase":game.flush.ride.phase,
 		"screenshot_mode":game.has_node("ScreenshotFreeze"),
 		"camera_test":game.get_script().resource_path == "res://scripts/camera_test_game.gd",
-		"landing_checkpoint":game.flush.checkpoint_saved,"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}
+		"landing_checkpoint":false,"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}

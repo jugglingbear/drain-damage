@@ -65,10 +65,9 @@ func _ready() -> void:
 	startup_complete = true
 
 func reset_game() -> void:
-	var retry_ride := flush.active and flush.checkpoint_saved
 	var retry_flush := flush.active
 	var completed_intro := flush.intro_complete
-	var ride_checkpoint: int = flush.ride.checkpoint_index
+	var replay_bowl_intro := flush.state in ["ride","landing","drain_death"]
 	flush.reset()
 	flush.intro_complete = retry_flush and completed_intro
 	boss_intro.reset(true)
@@ -87,8 +86,7 @@ func reset_game() -> void:
 	if startup_complete and music_director != null: music_director.play_track("level")
 	super.reset_game()
 	if retry_flush:
-		flush.begin(self,true)
-		if retry_ride: flush.enter_ride(self,ride_checkpoint)
+		restart_level_two(replay_bowl_intro)
 
 func reset_observation() -> void:
 	if rebuilding_respawn: return
@@ -129,15 +127,18 @@ func reset_observation() -> void:
 	mission.current_zone = 2
 	gate_progress.fill(1)
 
+func restart_level_two(replay_bowl_intro: bool) -> void:
+	# Level 2 has no formal checkpoint. A direct ride launch restarts its selected test entry.
+	flush.begin(self,not replay_bowl_intro)
+	if flush.debug_ride_start >= 0:
+		flush.enter_ride(self,flush.debug_ride_start)
+
 func respawn_after_death() -> void:
 	if flush.active:
 		if lives <= 0: return
-		var retry_ride := flush.checkpoint_saved
-		var ride_checkpoint: int = flush.ride.checkpoint_index
 		health = employee.max_health
 		invulnerable = 3.0
-		flush.begin(self,true)
-		if retry_ride: flush.enter_ride(self,ride_checkpoint)
+		restart_level_two(flush.state in ["ride","landing","drain_death"])
 		return
 	if lives <= 0: return
 	respawn_origin = respawn_point.x
@@ -700,6 +701,7 @@ func begin_level_two() -> void:
 	special_audio.stop()
 	health = employee.max_health
 	specials.refill_level(employee.id,"level-two")
+	flush.debug_ride_start = -1
 	flush.ride.checkpoint_index = 0
 	flush.ride.continuous = false
 	flush.begin(self)
@@ -723,8 +725,10 @@ func step_death(delta: float) -> void:
 	death_popup_guard = 0.35
 	resume_button.disabled = true
 	title_button.disabled = true
-	resume_button.text = ("Retry Encounter" if lives == 0 else "Continue at Encounter") if flush.checkpoint_saved \
-		else ("Retry Flush" if lives == 0 else "Continue at Bowl")
+	if flush.debug_ride_start >= 0:
+		resume_button.text = "Restart Course" if flush.ride.continuous else "Restart Encounter"
+	else:
+		resume_button.text = "Restart Level 2" if flush.state in ["ride","landing","drain_death"] else ("Retry Flush" if lives == 0 else "Continue at Bowl")
 	resume_button.position = Vector2(245,326)
 	title_button.position = Vector2(245,416)
 	style_pause_buttons()

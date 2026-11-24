@@ -74,7 +74,7 @@ func checks() -> void:
 			var lives: int = game.lives
 			flush.tick(game,0.1,Vector2.ZERO,false,false)
 			assert(game.life_state == "dying" and game.lives == lives-1 and game.health == 0)
-			assert(flush.state == "drain_death" and not flush.checkpoint_saved)
+			assert(flush.state == "drain_death" and not game.checkpoint_active)
 			flush.tick(game,50,Vector2.ONE,false,false)
 			assert(game.lives == lives-1 and flush.state == "drain_death")
 			game.set_paused(true)
@@ -85,6 +85,7 @@ func checks() -> void:
 			assert(flush.sink_depth > 0)
 			game.respawn_after_death()
 			assert(game.life_state == "alive" and flush.state == "bowl" and flush.sink_depth == 0)
+			assert(flush.clock == 0 and flush.prelude_remaining == flush.prelude_duration)
 			assert(not flush.drain_contact(flush.position))
 			game.lives = 3
 		# A straddling frame must resolve inward drift before scripted capture takes over.
@@ -107,7 +108,7 @@ func checks() -> void:
 		flush.position = Vector2.ZERO
 		flush.tick(game,10,Vector2.ZERO,false,false)
 		assert(game.life_state == "alive" and game.lives == 3)
-		assert(flush.state == "landing" and flush.checkpoint_saved)
+		assert(flush.state == "landing" and not game.checkpoint_active)
 		flush.tick(game,7,Vector2.ZERO,false,false)
 		assert(flush.state == "ride" and game.lives == 3)
 		game.queue_free()

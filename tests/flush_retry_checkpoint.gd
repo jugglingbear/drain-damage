@@ -90,7 +90,7 @@ func checks() -> void:
 				elapsed += 1.0/120
 				if flush.clock >= 35: check(flush.state in ["drain","landing"],"Capture boundary")
 			check(game.life_state == "alive" and flush.state == "landing","Retry reaches landing")
-			check(absf(elapsed-37) < .02 and flush.checkpoint_saved,"Remaining duration and checkpoint")
+			check(absf(elapsed-37) < .02 and not game.checkpoint_active,"Remaining duration and checkpoint")
 			check(flush.debris.safety_failures == 0,"No scheduler boundary skipped")
 			print("RETRY PASS ",mode," hero",hero)
 	game.queue_free()

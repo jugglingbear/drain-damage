@@ -50,7 +50,7 @@ func checks() -> void:
 			for frame in range(8521):
 				game.invulnerable = 10
 				game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
-			assert(game.flush.clock == 45 and game.flush.checkpoint_saved and not game.won)
+			assert(game.flush.clock == 45 and not game.checkpoint_active and not game.won)
 			assert(not game.flush.radio.current.is_empty())
 			for frame in range(721): game.flush.tick(game,1.0/120,Vector2.ZERO,false,false)
 			assert(not game.won and game.flush.state == "ride")
@@ -59,7 +59,7 @@ func checks() -> void:
 			assert(game.flush.debris.spawned == {"easy":26,"normal":48,"hard":85}[mode])
 			assert(game.weapon.id == weapon_id)
 			game.reset_game()
-			assert(game.flush.active and game.flush.state == "ride" and game.health == game.employee.max_health and game.lives == 3)
+			assert(game.flush.active and game.flush.state == "bowl" and game.health == game.employee.max_health and game.lives == 3)
 			game.queue_free()
 			await process_frame
 	print("PASS: flush both heroes/all modes, carry state, pause/death/retry, survival-only landing and new attempt")

@@ -81,7 +81,7 @@ func checks() -> void:
 	view.set_process(false)
 	view._process(0)
 	assert(view.configured and view.container.visible)
-	assert(game.flush.state == "landing" and game.flush.checkpoint_saved)
+	assert(game.flush.state == "landing" and not game.checkpoint_active)
 	for hero in game.Crew.EMPLOYEES:
 		game.employee = hero
 		for difficulty in ["normal","hard"]:

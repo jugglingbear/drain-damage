@@ -28,7 +28,7 @@ var prelude_duration := 26.0
 var gameplay_radio_offset := 26.0
 var landing_clock := 0.0
 var intro_complete := false
-var checkpoint_saved := false
+var debug_ride_start := -1
 var position := Vector2.ZERO
 var aim := Vector2.RIGHT
 var jump_height := 0.0
@@ -63,7 +63,6 @@ func reset() -> void:
 	active = false
 	state = "idle"
 	intro_complete = false
-	checkpoint_saved = false
 	clock = 0
 	prelude_remaining = 0
 	hazards.clear()
@@ -120,7 +119,6 @@ func begin(host: Node2D, retry := false) -> void:
 			prelude_duration = maxf(prelude_duration,float(line.at)+float(line.duration))
 	prelude_remaining = prelude_duration
 	landing_clock = 0
-	checkpoint_saved = false
 	var spawn: Array = definition.layout.geometry.hero_spawn
 	position = Vector2(float(spawn[0])-center().x,(float(spawn[1])-center().y)/projection())
 	aim = Vector2.RIGHT
@@ -162,8 +160,8 @@ func begin(host: Node2D, retry := false) -> void:
 	host.swarm_audio.stop()
 	host.starter_weapon_audio.stop()
 	host.hero_death_audio.stop()
-	host.checkpoint_active = true
-	host.checkpoint_index = 3
+	host.checkpoint_active = false
+	host.checkpoint_index = -1
 	host.respawn_origin = 15200
 	host.life_state = "alive"
 	host.velocity = Vector2.ZERO
@@ -196,7 +194,6 @@ func enter_landing(host: Node2D) -> void:
 	clock = 45.0
 	prelude_remaining = 0
 	landing_clock = 0.0
-	checkpoint_saved = true
 	position = unproject(Vector2(480,385))
 	jump_height = 0
 	jump_velocity = 0
@@ -215,7 +212,6 @@ func enter_landing(host: Node2D) -> void:
 
 func enter_ride(host: Node2D, encounter_index := -1) -> void:
 	state = "ride"
-	checkpoint_saved = true
 	radio.clear()
 	audio.stop()
 	music.stop()

@@ -60,7 +60,7 @@ func begin(host: Node2D, index := -1) -> void:
 	fractured.clear()
 	fidget.reset()
 	super_held = Input.is_action_pressed("special")
-	super.begin(host,checkpoint_index if index < 0 else index)
+	super.begin(host,maxi(0,index))
 	audio.stop()
 	music.stop()
 	mechanism_cycle = -1

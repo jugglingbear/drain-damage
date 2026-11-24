@@ -45,14 +45,14 @@ func run_checks() -> void:
 				assert(not game.dialogue.active and not game.dispenser.active and game.dialogue.release_guard == 0)
 				assert(game.skitterling.encounter.hp == game.skitterling.Encounter.MAX_HP and not game.skitterling.entered)
 				if target.id == "2":
-					assert(game.flush.active and game.flush.clock == 0 and game.checkpoint_index == 3)
+					assert(game.flush.active and game.flush.clock == 0 and game.checkpoint_index == -1)
 				elif target.id == "2.1":
 					assert(game.flush.active and game.flush.state == "landing" and game.flush.clock == 45)
-					assert(game.flush.checkpoint_saved and game.flush.hazards.is_empty() and not game.won)
+					assert(not game.checkpoint_active and game.flush.hazards.is_empty() and not game.won)
 					assert(game.flush.project(game.flush.position).is_equal_approx(Vector2(480,385)))
 					assert(not game.flush.radio.current.is_empty() and game.flush.landing_clock == 0)
 				elif target.initializer == "ride-encounter":
-					assert(game.flush.active and game.flush.state == "ride" and game.flush.checkpoint_saved)
+					assert(game.flush.active and game.flush.state == "ride" and not game.checkpoint_active)
 					assert(game.flush.ride.encounter_index == int(target.encounter_index))
 					assert(game.flush.ride.phase == "encounter" and game.flush.ride.clock == 0)
 					game.respawn_after_death()

@@ -1000,10 +1000,6 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 	host.invulnerable = maxf(0,host.invulnerable-(dt-processed))
 	encounter_clock += dt
 	_advance_air_motion(dt)
-	if continuous and jump_age < 0 and ground_height <= EPS:
-		for index in range(definition.retry_world_x.size()):
-			if position.x+encounter_scroll >= float(definition.retry_world_x[index]):
-				checkpoint_index = maxi(checkpoint_index,index)
 	if _encounter_clear():
 		rest_remaining = _rest_duration()
 		if rest_remaining <= EPS:
