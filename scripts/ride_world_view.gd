@@ -442,17 +442,6 @@ func build_actor(actor: Node3D, obstacle: Dictionary) -> void:
 			var extended := obstacle.has("instance_id") and not station
 			var rail_half := maxf(1.0,width*.5+.25)
 			Props.strainer(machine,width,depth,materials,-rail_half if station else (-16.0 if extended else -8.0),rail_half if station else 8.0)
-			if station:
-				var warning := Node3D.new()
-				warning.name = "footprint_warning"
-				actor.add_child(warning)
-				var ink := StandardMaterial3D.new()
-				ink.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-				ink.albedo_color = Color(1.0,.65,.12)
-				for z in [-depth*.5+.025,depth*.5-.025]:
-					Props.box(warning,Vector3(width,.012,.035),Vector3(0,.025,z),ink)
-				for x in [-width*.5+.025,width*.5-.025]:
-					Props.box(warning,Vector3(.035,.012,depth),Vector3(x,.025,0),ink)
 			machine.set_meta("rail_origin_x",-4.0 if extended else 0.0)
 			for offset in ([-width*.35,width*.35] if station else ([-16.0,-8.0,8.0] if extended else [-8.0,8.0])):
 				var support := Node3D.new()
@@ -609,7 +598,6 @@ func animate_actor(actor: Node3D, obstacle: Dictionary, model: RefCounted) -> vo
 		machine.visible = station or age >= 1.0
 		if not machine.visible: return
 		if station:
-			actor.get_node("footprint_warning").visible = age >= 1.25 and age < 3.1
 			var lift := 2.7*(1.0-smoothstep(2.75,3.1,age)+smoothstep(3.1,3.45,age))
 			machine.get_node("basket").position.y = lift
 			for chain_name in ["chain_left_far","chain_left_near","chain_right_far","chain_right_near"]:
