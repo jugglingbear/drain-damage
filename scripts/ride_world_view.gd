@@ -244,7 +244,7 @@ func rebuild_rider() -> void:
 	for frame: Dictionary in flush.art.manifest.landing[host.employee.id][mode].front:
 		material_loader.add_rider_frame(frame,Vector2(contact[0],contact[1]))
 
-	# An aligned translucent copy only shows through a foreground slalom valve during a close pass.
+	# An aligned translucent copy only shows through foreground machinery during a close pass.
 	for sprite: Sprite3D in rider.get_children():
 		var overlay := sprite.duplicate() as Sprite3D
 		overlay.no_depth_test = true
@@ -333,7 +333,8 @@ func update_actors(model: RefCounted) -> void:
 			actor.visible = true
 			var point: Vector2 = model.obstacle_position(obstacle)
 			actor.position = world(point)
-			if obstacle.get("instance_id","") == "slice-slalom" and rider.position.z < actor.position.z:
+			var can_occlude: bool = obstacle.get("instance_id","") == "slice-slalom" or obstacle.get("station",false)
+			if can_occlude and host.life_state == "alive" and rider.position.z < actor.position.z:
 				var separation := absf(camera.basis.x.dot(rider.position-actor.position))
 				if separation < 1.4: rider_overlay.visible = true
 			if obstacle.kind in ["gap","long_pit"]:
