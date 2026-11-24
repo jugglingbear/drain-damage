@@ -24,10 +24,10 @@ func checks() -> void:
 				assert(model.events.jump == 1 and model.jump_height > 0 and model.position.x > 300)
 				# One accepted edge cannot repeat while flight/cooldown continue through a large rest tick.
 				model.tick(host,.6-dt,Vector2.ZERO,false)
-				assert(model.events.landed == 1 and model.cooldown > 0)
+				assert(model.events.landed == 1 and model.cooldown == 0)
 				model.tick(host,dt,Vector2.ZERO,true)
 				model.tick(host,.2,Vector2.ZERO,false)
-				assert(model.events.jump == 1 and model.events.landed == 1 and model.cooldown <= 0)
+				assert(model.events.jump == 2 and model.events.landed == 1 and model.jump_age >= 0)
 				# A press during flight is discarded rather than buffered for landing.
 				model.tick(host,dt,Vector2.ZERO,true)
 				model.tick(host,.1,Vector2.ZERO,false)

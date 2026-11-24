@@ -27,6 +27,10 @@ var manifest: Dictionary = {}
 var configured := false
 var rider_overlay := Node3D.new()
 var hero_key := ""
+var animated_rider: Sprite3D
+var animated_overlay: Sprite3D
+var landing_pose_until := 0.0
+var previous_airborne := false
 var yaw := 18.0
 var target_yaw := 18.0
 var water: ShaderMaterial
@@ -240,7 +244,9 @@ func retire_actor(key: String) -> void:
 
 func rebuild_rider() -> void:
 	var mode: String = host.difficulty
-	var key: String = host.employee.id+mode
+	var atlas_path := "res://assets/world/ride-animation-v1/%s-normal.png" % host.employee.id
+	var animated: bool = flush.state == "ride" and mode == "normal" and ResourceLoader.exists(atlas_path)
+	var key: String = host.employee.id+mode+str(animated)
 	if key == hero_key: return
 	hero_key = key
 	if rider_overlay.get_parent() == rider: rider.remove_child(rider_overlay)
@@ -253,8 +259,25 @@ func rebuild_rider() -> void:
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(Proof.MANIFEST))
 	var contact: Array = source.rider_support_contacts[host.employee.id][mode]
 	material_loader.rider = rider
-	for frame: Dictionary in flush.art.manifest.landing[host.employee.id][mode].front:
-		material_loader.add_rider_frame(frame,Vector2(contact[0],contact[1]))
+	animated_rider = null
+	animated_overlay = null
+	previous_airborne = false
+	landing_pose_until = 0
+	if animated:
+		animated_rider = Sprite3D.new()
+		animated_rider.texture = load(atlas_path)
+		animated_rider.hframes = 4
+		animated_rider.vframes = 4
+		animated_rider.pixel_size = .005
+		animated_rider.offset = Vector2(0,96)
+		animated_rider.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+		animated_rider.alpha_scissor_threshold = .3
+		animated_rider.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR
+		animated_rider.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+		rider.add_child(animated_rider)
+	else:
+		for frame: Dictionary in flush.art.manifest.landing[host.employee.id][mode].front:
+			material_loader.add_rider_frame(frame,Vector2(contact[0],contact[1]))
 
 	# An aligned translucent copy only shows through foreground machinery during a close pass.
 	for sprite: Sprite3D in rider.get_children():
@@ -265,8 +288,30 @@ func rebuild_rider() -> void:
 		overlay.render_priority = 2
 		overlay.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		rider_overlay.add_child(overlay)
+		if animated: animated_overlay = overlay
 	rider.add_child(rider_overlay)
 	rider_overlay.visible = false
+
+func update_rider_pose(model: RefCounted) -> void:
+	var airborne: bool = model.jump_age >= 0
+	if previous_airborne and not airborne: landing_pose_until = model.clock+.12
+	previous_airborne = airborne
+	var frame := 0
+	var intent: Vector2 = model.steering_input
+	if intent.is_zero_approx() and model.steering_velocity.length_squared() > 1.0:
+		intent = model.steering_velocity.normalized()
+	if airborne:
+		var progress := clampf(model.jump_age/model.active_jump_duration,0,1)
+		frame = 8+mini(5,int(progress*6))
+	elif model.clock < landing_pose_until and landing_pose_until-model.clock <= .12:
+		frame = 14 if landing_pose_until-model.clock > .06 else 15
+	elif intent.length_squared() > .01:
+		if absf(intent.x) > absf(intent.y): frame = 6 if intent.x < 0 else 7
+		else: frame = 4 if intent.y < 0 else 5
+	else:
+		frame = int(model.clock*4)%4
+	animated_rider.frame = frame
+	animated_overlay.frame = frame
 
 func update_world() -> void:
 	rebuild_rider()
@@ -309,7 +354,9 @@ func update_world() -> void:
 	var projected := Vector2(camera.basis.x.dot(tangent),camera.basis.y.dot(tangent))
 	var facing := Basis(Vector3(1/cos(angle),tan(angle)*tan(tilt),0),Vector3(0,1/cos(tilt),0),Vector3.BACK)
 	var posture := Basis.IDENTITY
-	if riding and host.life_state == "alive":
+	if animated_rider and riding and host.life_state == "alive":
+		update_rider_pose(model)
+	elif riding and host.life_state == "alive":
 		# Combined rider/board artwork cannot articulate limbs. Displace only with height
 		# above the contact plane: its horizontal underside keeps the physical slope basis.
 		var intent: Vector2 = model.steering_input

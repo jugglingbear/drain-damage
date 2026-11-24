@@ -63,6 +63,22 @@ func checks() -> void:
 	model.uncovered_spans(model.course.obstacles[0],Vector2(474,330),Vector2(482,330),0,Model.STEP)
 	print("ELLIPSE boundary_step_us=",Time.get_ticks_usec()-began)
 	pair[0].free()
+	for hz in [30,60,120]:
+		for early in [false,true]:
+			pair = setup()
+			model = pair[1]
+			model.encounter_scroll = 450
+			var dt := 1.0/float(hz)
+			model.tick(pair[0],dt,Vector2.ZERO,true)
+			while model.jump_age >= 0 and model.jump_age < .55:
+				model.tick(pair[0],dt,Vector2.ZERO,false)
+			if early: model.tick(pair[0],dt,Vector2.ZERO,true)
+			for frame in range(hz):
+				if model.events.get("landed",0) > 0: break
+				model.tick(pair[0],dt,Vector2.ZERO,false)
+			if not early: model.tick(pair[0],dt,Vector2.ZERO,true)
+			if not require(model.events.jump == 2 and model.jump_age >= 0,"Second cap lost a touchdown jump"): return
+			pair[0].free()
 	for landing in [false,true]:
 		pair = setup()
 		model = pair[1]

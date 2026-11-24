@@ -34,6 +34,8 @@ var jump_duration: float:
 	get: return active_jump_duration
 var jump_apex: float:
 	get: return active_jump_apex
+const LANDING_INPUT_WINDOW := 0.075
+var landing_input_remaining := 0.0
 var cooldown := 0.0
 var boosted := false
 var ballistic := false
@@ -71,6 +73,7 @@ func begin(host: Node2D, index := 0) -> void:
 	ground_height = 0
 	launch_height = 0
 	cooldown = 0
+	landing_input_remaining = 0
 	recovery_clock = 0
 	boosted = false
 	ballistic = false
@@ -171,7 +174,7 @@ func _land_on(support: Dictionary) -> void:
 	jump_age = -1
 	boosted = false
 	ballistic = false
-	cooldown = .1
+	cooldown = 0
 	jump_height = ground_height
 	render_height = ground_height
 	render_pitch = 0
@@ -855,6 +858,8 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 	steering_input = steering.limit_length()
 	var remaining := delta
 	var pressed := jumping
+	if jumping and jump_age >= 0:
+		landing_input_remaining = LANDING_INPUT_WINDOW
 	while remaining > EPS and not complete and host.life_state == "alive":
 		var dt := minf(STEP,remaining)
 		if phase == "rest": dt = minf(dt,rest_remaining)
@@ -873,6 +878,10 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 				_advance_encounter(host)
 		else:
 			_step(host,dt,steering,pressed)
+		if landing_input_remaining > 0 and jump_age < 0 and not ramp_active and not complete and host.life_state == "alive":
+			_launch()
+			landing_input_remaining = 0
+		landing_input_remaining = maxf(0,landing_input_remaining-dt)
 		remaining -= dt
 		pressed = false
 	if host.life_state != "alive":

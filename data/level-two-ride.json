@@ -173,7 +173,8 @@
     "duration_seconds": 0.6,
     "height": 54,
     "curve": "z=4*54*u*(1-u), u=clamp(jump_age/0.6,0,1). Ramp trajectory is defined by the showcase model.",
-    "landing_cooldown_seconds": 0.1,
+    "landing_cooldown_seconds": 0,
+    "landing_input_buffer_seconds": 0.075,
     "input": "Accept a fresh jump press while grounded, alive, active and cooldown0. No double jump, held repeat or coyote extension in this slice. Steering remains available in air.",
     "shadow": "Render board/rider at water anchor minus z; shadow remains on water anchor and changes opacity/size. Collision uses planar footprint plus z, never screen-render position.",
     "release": "A jump on landing dialogue dismissal is not accepted until input is released and pressed again."
