@@ -7,10 +7,12 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 	var result := showcase.duplicate(true)
 	var obstacles: Array[Dictionary] = []
 	var modules: Array[Dictionary] = []
+	var stations: Array = []
 	var spacing := float(layout.spacing.get(difficulty,410))
 	var slalom_start := float(layout.instances[0].start_x)
 	var downstream := 7*(spacing-410)
 	for instance: Dictionary in layout.instances:
+		if instance.has("stations"): stations = instance.stations
 		var source: Dictionary = {}
 		for candidate: Dictionary in showcase.encounters:
 			if candidate.id == instance.source: source = candidate
@@ -56,7 +58,7 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 						joint.x = center+offset
 						joint.id = "flange-at-%d" % int(joint.x)
 						obstacles.append(joint)
-	# Two waves of three drop stations. Each wave visits every bank once, with bounded timing jitter.
+	# Two waves of three drop stations with bounded timing jitter.
 	var rng := RandomNumberGenerator.new()
 	rng.seed = run_seed
 	var prototype: Dictionary
@@ -64,22 +66,35 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 		if obstacles[i].instance_id == "slice-strainer":
 			prototype = obstacles.pop_at(i)
 			break
-	for wave in 2:
-		var lanes := [275,330,385]
-		for station in 3:
-			var gap := prototype.duplicate(true)
-			var lane: int = lanes.pop_at(rng.randi_range(0,lanes.size()-1))
-			gap.id = "drop-%d-%d" % [wave,station]
-			gap["station"] = true
-			gap.x = 10000+downstream+wave*1950+station*490
-			gap.y = lane
-			gap.depth = 90 if lane == 330 else 110
-			gap.timeline_origin = (float(gap.x)-2600)/float(showcase.scroll_speed)+rng.randf_range(-.12,.12)
-			gap.activates_at = gap.timeline_origin+3.1
-			gap.warning_at = gap.timeline_origin+1.25
-			obstacles.append(gap)
+	# Mirror the whole bank sequence so each seeded pattern preserves its tested transitions.
+	var mirror := -1 if rng.randi_range(0,1) == 0 else 1
+	for index in stations.size():
+		var station: Dictionary = stations[index]
+		var gap := prototype.duplicate(true)
+		gap.id = "drop-%d-%d" % [floori(index/3.0),index%3]
+		gap["station"] = true
+		gap.x = float(station.x)+downstream
+		gap.y = 330+mirror*float(station.bank_offset)
+		gap.width = station.length
+		gap.depth = station.depth
+		# Keep the original approach lead measured from the upstream edge, including on long cuts.
+		gap.timeline_origin = (float(gap.x)-float(gap.width)*.5-2540)/float(showcase.scroll_speed)+rng.randf_range(-.12,.12)
+		gap.activates_at = gap.timeline_origin+3.1
+		gap.warning_at = gap.timeline_origin+1.25
+		obstacles.append(gap)
+		if station.get("opposite_baffle",false):
+			var baffle: Dictionary
+			for valve in obstacles:
+				if valve.source_id == ("valve-b" if gap.y < 330 else "valve-a"):
+					baffle = valve.duplicate(true)
+					break
+			baffle.id = "strainer-side-baffle"
+			baffle.x = gap.x
+			baffle.depth = 65
+			baffle.y = 397.5 if gap.y < 330 else 262.5
+			obstacles.append(baffle)
 	for obstacle in obstacles:
-		if obstacle.instance_id == "slice-exit-baffle": obstacle.x += 1320
+		if obstacle.instance_id == "slice-exit-baffle": obstacle.x += 1530
 	result["continuous"] = true
 	result["retry_world_x"] = [300,6000+downstream,9000+downstream]
 	result["world_finish"] = float(layout.world_finish)+downstream

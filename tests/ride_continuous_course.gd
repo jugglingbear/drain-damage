@@ -11,7 +11,7 @@ var routes := 0
 func _initialize() -> void: call_deferred("checks")
 
 func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float, mixed: bool,
-		retry := 0, strainer_jump := false, cap_drift := 0.0, seed_value := 42) -> void:
+		retry := 0, strainer_jump := false, cap_drift := 0.0, seed_value := 42, station_drift := 0.0) -> void:
 	var host := SeededHost.new()
 	host.run_seed = seed_value
 	host.employee.id = hero
@@ -30,14 +30,26 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 	for i in range(1,banks.size()):
 		points.append([1450+(i-1)*spacing+100,banks[i]])
 	points.append_array([[1450+7*spacing+120,330],[6900+shift,265],[7390+shift,395],[7800+shift,265]])
+	var last_gap_end := 0.0
 	for gap: Dictionary in model.course.obstacles:
 		if not gap.get("station",false): continue
+		last_gap_end = maxf(last_gap_end,float(gap.x)+float(gap.width)*0.5)
+		if float(gap.depth) >= 200:
+			jumps.append(float(gap.x)-150)
+			continue
 		var bank := 395 if gap.y <= 330 else 265
+		var turn := float(gap.x)-float(gap.width)*0.5-330
+		if gap.id == "drop-1-1":
+			bank = 330
+			turn = float(gap.x)-330
+		elif gap.id == "drop-1-2":
+			# Leave the previous short opening diagonally; do not turn into its occupied bank early.
+			turn = 12555+shift
 		if strainer_jump and gap.id == "drop-0-0":
 			bank = int(gap.y)
 			jumps.append(float(gap.x)-168)
-		points.append([float(gap.x)-330,bank])
-	points.append([13045+shift,265])
+		points.append([turn,bank])
+	points.append([last_gap_end+20,265])
 	jumps.sort()
 	var next_jump := 0
 	while next_jump < jumps.size() and jumps[next_jump] < model.position.x+model.encounter_scroll:
@@ -55,6 +67,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 			horizontal = 1.0 if int(model.clock/0.7)%2 == 0 else -1.0
 			horizontal_frames += 1
 		if x > 7000+shift and x < 8500+shift: horizontal = cap_drift
+		if x > 9600+shift and x < 13600+shift: horizontal = station_drift
 		var target := 330.0
 		var next_x: float = model.encounter_scroll+560*dt+clampf(model.position.x+horizontal*400*dt,180,650)
 		for point in points:
@@ -67,7 +80,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 		previous_scroll = model.encounter_scroll
 		if model.complete or host.health < 5: break
 	var record := {"hero":hero,"mode":mode,"anchor":anchor,"hz":hz,"offset":offset,"mixed":mixed,
-		"retry":retry,"seed":seed_value,"cap_drift":cap_drift,"strainer_jump":strainer_jump,"x":model.position.x+model.encounter_scroll,
+		"retry":retry,"station_drift":station_drift,"seed":seed_value,"cap_drift":cap_drift,"strainer_jump":strainer_jump,"x":model.position.x+model.encounter_scroll,
 		"event":model.last_event}
 	if not model.complete or host.health != 5 or host.lives != 3 or host.life_state != "alive":
 		failures.append(record)
@@ -80,6 +93,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 			record.reason = "unexpected finish timing"
 			failures.append(record)
 	routes += 1
+	if routes%100 == 0: print("ROUTE_PROGRESS ",routes," failures ",failures.size())
 	host.free()
 
 func check_demands() -> void:
@@ -136,5 +150,27 @@ func checks() -> void:
 			for hz in [30,60,120]:
 				run_route(hero,mode,650,hz,0,false,0,true)
 				for drift in [-0.1,0.1]: run_route(hero,mode,300,hz,0,false,1,false,drift)
+	check_station_drift()
 	print(JSON.stringify({"routes":routes,"failures":failures}))
 	quit(0 if failures.is_empty() else 1)
+
+func check_station_drift() -> void:
+	var variants := {}
+	for seed_value in 64:
+		var host := SeededHost.new()
+		host.run_seed = seed_value
+		var model := Model.new()
+		model.continuous = true
+		model.begin(host)
+		for gap: Dictionary in model.course.obstacles:
+			if gap.id == "drop-0-0" and not variants.has(gap.y): variants[gap.y] = seed_value
+		host.free()
+		if variants.size() == 2: break
+	for seed_value: int in variants.values():
+		for hero in ["tony","sean"]:
+			for mode in ["easy","normal","hard"]:
+				for anchor in [180.0,300.0,650.0]:
+					for hz in [30,60,120]:
+						for drift in [-0.1,0.1]:
+							for offset in [-0.025,0.0,0.025]:
+								run_route(hero,mode,anchor,hz,offset,false,2,false,0,seed_value,drift)

@@ -153,7 +153,9 @@ func configure(yield_frame := Callable()) -> void:
 	configured = true
 
 func actor_signature(obstacle: Dictionary) -> String:
-	if obstacle.get("station",false): return "station:%s:%s" % [obstacle.y,obstacle.depth]
+	if obstacle.get("station",false): return "station:%s:%s:%s:%s" % [obstacle.y,obstacle.width,obstacle.depth,obstacle.art_id]
+	if obstacle.get("id","") == "strainer-side-baffle":
+		return "baffle:%s:%s:%s:%s" % [obstacle.y,obstacle.width,obstacle.depth,obstacle.art_id]
 	var definition := obstacle.duplicate(true)
 	definition.erase("visual_started")
 	return JSON.stringify(definition)
@@ -181,6 +183,16 @@ func prepare_actors(yield_frame := Callable()) -> void:
 			var key := actor_signature(obstacle)
 			if not actor_pool.has(key): actor_pool[key] = []
 			actor_pool[key].append(make_actor(obstacle))
+			# Seed mirroring changes bank geometry independently of difficulty.
+			if obstacle.get("station",false) or obstacle.get("id","") == "strainer-side-baffle":
+				var mirrored := obstacle.duplicate(true)
+				mirrored.y = 660.0-float(obstacle.y)
+				if str(mirrored.art_id) == "valve_wall_far_v2": mirrored.art_id = "valve_wall_near_v2"
+				elif str(mirrored.art_id) == "valve_wall_near_v2": mirrored.art_id = "valve_wall_far_v2"
+				var mirror_key := actor_signature(mirrored)
+				if mirror_key != key:
+					if not actor_pool.has(mirror_key): actor_pool[mirror_key] = []
+					actor_pool[mirror_key].append(make_actor(mirrored))
 	preparation_usec = Time.get_ticks_usec()-start
 
 func warm_graphics() -> void:
@@ -272,6 +284,20 @@ func update_world() -> void:
 		# Establish the full strike/recovery frame during the warning, then hold it still.
 		focus.y += .35*framing
 		camera.size = lerpf(5.5,9.0,framing)
+	# Hold a wider, forward-looking frame through the machinery run, rather than pumping
+	# the camera separately at each basket. The far rim must precede jump commitment.
+	if riding and model.continuous:
+		var first := INF
+		var last := -INF
+		for obstacle: Dictionary in model.course.obstacles:
+			if not obstacle.get("station",false): continue
+			first = minf(first,float(obstacle.x)-float(obstacle.width)*.5)
+			last = maxf(last,float(obstacle.x)+float(obstacle.width)*.5)
+		if first < INF:
+			var progress: float = model.encounter_scroll+point.x
+			var framing := smoothstep(first-1800,first-1000,progress)*(1-smoothstep(last+200,last+1000,progress))
+			focus.x = lerpf(focus.x,8.0,framing)
+			camera.size = lerpf(camera.size,10.0,framing)
 	var angle := deg_to_rad(yaw)
 	var tilt := deg_to_rad(35)
 	focus.y -= (point.x/UNIT-focus.x)*sin(angle)*tan(tilt)
@@ -334,9 +360,11 @@ func update_actors(model: RefCounted) -> void:
 			var point: Vector2 = model.obstacle_position(obstacle)
 			actor.position = world(point)
 			var can_occlude: bool = obstacle.get("instance_id","") == "slice-slalom" or obstacle.get("station",false)
-			if can_occlude and host.life_state == "alive" and rider.position.z < actor.position.z:
+			var half_depth := float(obstacle.depth)*BANK_SCALE/200.0
+			if can_occlude and host.life_state == "alive" and rider.position.z < actor.position.z+half_depth:
 				var separation := absf(camera.basis.x.dot(rider.position-actor.position))
-				if separation < 1.4: rider_overlay.visible = true
+				var projected_half := absf(camera.basis.x.x)*float(obstacle.width)/200.0+absf(camera.basis.x.z)*half_depth
+				if separation < projected_half+.65: rider_overlay.visible = true
 			if obstacle.kind in ["gap","long_pit"]:
 				actor.get_node("opening").visible = model.obstacle_active(obstacle)
 				if model.obstacle_active(obstacle):
@@ -412,9 +440,21 @@ func build_actor(actor: Node3D, obstacle: Dictionary) -> void:
 			# The continuous approach stages its basket ahead of the target; support that whole travel path.
 			var station: bool = obstacle.get("station",false)
 			var extended := obstacle.has("instance_id") and not station
-			Props.strainer(machine,width,depth,materials,-1.0 if station else (-16.0 if extended else -8.0),1.0 if station else 8.0)
+			var rail_half := maxf(1.0,width*.5+.25)
+			Props.strainer(machine,width,depth,materials,-rail_half if station else (-16.0 if extended else -8.0),rail_half if station else 8.0)
+			if station:
+				var warning := Node3D.new()
+				warning.name = "footprint_warning"
+				actor.add_child(warning)
+				var ink := StandardMaterial3D.new()
+				ink.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+				ink.albedo_color = Color(1.0,.65,.12)
+				for z in [-depth*.5+.025,depth*.5-.025]:
+					Props.box(warning,Vector3(width,.012,.035),Vector3(0,.025,z),ink)
+				for x in [-width*.5+.025,width*.5-.025]:
+					Props.box(warning,Vector3(.035,.012,depth),Vector3(x,.025,0),ink)
 			machine.set_meta("rail_origin_x",-4.0 if extended else 0.0)
-			for offset in ([0.0] if station else ([-16.0,-8.0,8.0] if extended else [-8.0,8.0])):
+			for offset in ([-width*.35,width*.35] if station else ([-16.0,-8.0,8.0] if extended else [-8.0,8.0])):
 				var support := Node3D.new()
 				actor.add_child(support)
 				support.position.x = offset
@@ -569,9 +609,10 @@ func animate_actor(actor: Node3D, obstacle: Dictionary, model: RefCounted) -> vo
 		machine.visible = station or age >= 1.0
 		if not machine.visible: return
 		if station:
+			actor.get_node("footprint_warning").visible = age >= 1.25 and age < 3.1
 			var lift := 2.7*(1.0-smoothstep(2.75,3.1,age)+smoothstep(3.1,3.45,age))
 			machine.get_node("basket").position.y = lift
-			for chain_name in ["chain_left","chain_right"]:
+			for chain_name in ["chain_left_far","chain_left_near","chain_right_far","chain_right_near"]:
 				var chain: Node3D = machine.get_node(chain_name)
 				chain.position.y = lift+.45
 				chain.scale.y = 3.24-lift-.45
@@ -589,7 +630,7 @@ func animate_actor(actor: Node3D, obstacle: Dictionary, model: RefCounted) -> vo
 			machine.get_node("rail").position.x = -machine.position.x+float(machine.get_meta("rail_origin_x",0.0))
 			var height := clampf((model.obstacle_position(obstacle).y+float(obstacle.depth)*.5-bottom.y)/UNIT,0,1.5)
 			machine.get_node("basket").position.y = height
-			for name in ["chain_left","chain_right"]:
+			for name in ["chain_left_far","chain_left_near","chain_right_far","chain_right_near"]:
 				var links: Node3D = machine.get_node(name)
 				links.position.y = height+.45
 				links.scale.y = maxf(.01,3.24-height-.45)

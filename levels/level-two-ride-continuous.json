@@ -74,7 +74,15 @@
     {
       "id": "slice-strainer",
       "source": "2-12",
-      "translate_x": 8000
+      "translate_x": 8000,
+      "stations": [
+        {"x": 10000, "length": 160, "depth": 72, "bank_offset": -64},
+        {"x": 10490, "length": 160, "depth": 136, "bank_offset": 32},
+        {"x": 10980, "length": 140, "depth": 200, "bank_offset": 0},
+        {"x": 11950, "length": 640, "depth": 72, "bank_offset": -64},
+        {"x": 12490, "length": 160, "depth": 72, "bank_offset": -64, "opposite_baffle": true},
+        {"x": 12980, "length": 640, "depth": 136, "bank_offset": 32}
+      ]
     },
     {
       "id": "slice-exit-baffle",

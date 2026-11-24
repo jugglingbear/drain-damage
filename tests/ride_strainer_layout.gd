@@ -29,8 +29,9 @@ func checks() -> void:
 							{"y":270.0,"jump":false,"safe":true},
 							{"y":390.0,"jump":false,"safe":index == 11},
 							{"y":330.0,"jump":false,"safe":false},
-							{"y":285.9,"jump":false,"safe":true},
-							{"y":286.0,"jump":false,"safe":false},
+							# Both cuts start at y=300. A 28px-deep board reaches 65% overlap at y=304.2.
+							{"y":304.1,"jump":false,"safe":true},
+							{"y":304.3,"jump":false,"safe":false},
 							{"y":330.0,"jump":true,"safe":true,"offset":-0.05},
 							{"y":330.0,"jump":true,"safe":true,"offset":0.0},
 							{"y":330.0,"jump":true,"safe":true,"offset":0.05}]

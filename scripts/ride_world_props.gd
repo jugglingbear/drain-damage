@@ -234,11 +234,17 @@ static func strainer(parent: Node3D, w: float, d: float, m: Dictionary, rail_sta
 		box(basket,Vector3(w,.035,.035),Vector3(0,.45,z),m.copper)
 	for x in [-w*.5,w*.5]:
 		box(basket,Vector3(.035,.035,d),Vector3(x,.45,0),m.copper)
+	# Four suspension points keep broad and elongated cages supported at their corners.
 	for side in [-1,1]:
-		var links := Node3D.new()
-		links.name = "chain_left" if side < 0 else "chain_right"
-		parent.add_child(links)
-		chain(links,Vector3(side*w*.35,0,0),Vector3(side*w*.35,1,0),m.copper,.035)
+		var at_x: float = side*w*.35
+		box(parent,Vector3(.09,.09,d),Vector3(at_x,3.24,0),m.cast_iron)
+		box(basket,Vector3(.065,.065,d),Vector3(at_x,.035,0),m.copper)
+		box(parent,Vector3(.1,.16,.1),Vector3(at_x,3.2,0),m.copper)
+		for bank in [-1,1]:
+			var links := Node3D.new()
+			links.name = ("chain_left" if side < 0 else "chain_right")+("_far" if bank < 0 else "_near")
+			parent.add_child(links)
+			chain(links,Vector3(at_x,0,bank*d*.5),Vector3(at_x,1,bank*d*.5),m.copper,.035)
 
 static func tube(parent: Node3D, centers: Array[Vector3], radius: float, inside: float,
 		outer: Material, inner: Material) -> void:
