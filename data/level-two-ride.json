@@ -162,9 +162,9 @@
   },
   "movement": {
     "forward_scroll_speed": 560,
-    "within_view_x_speed": 400,
-    "bank_y_speed": 350,
-    "inputs": "Left/right shift anchor within view; up/down move toward upper/lower bank. Normalize two-axis input before multiplying x400/y350. Clamp anchor bounds after movement. Same physics for both heroes and all modes.",
+    "within_view_x_speed": 340,
+    "bank_y_speed": 297.5,
+    "inputs": "Left/right shift anchor within view; up/down move toward upper/lower bank. Normalized input sets the target velocity. Acceleration, release and reversal timing are configured in levels/level-two-ride-showcase.json. Same physics for both heroes and all modes.",
     "course_coordinate": "World x = encounter scroll + screen anchor x. Ten isolated encounters; three seconds danger-free after each clears.",
     "pause": "Pause freezes scroll, steering, jump, warnings, hazards, damage timers and audio; no catch-up.",
     "fire": "A fresh fire press triggers a cosmetic poop-board fidget every0.5 seconds: water smear, supported solid streak, or an airborne brown cloud anchored above its release point until fully offscreen. No weapon, damage or movement impulse; swimming flush does not emit."

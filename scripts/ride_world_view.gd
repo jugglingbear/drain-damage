@@ -308,7 +308,16 @@ func update_world() -> void:
 	var tangent := Vector3(cos(pitch),sin(pitch),0)
 	var projected := Vector2(camera.basis.x.dot(tangent),camera.basis.y.dot(tangent))
 	var facing := Basis(Vector3(1/cos(angle),tan(angle)*tan(tilt),0),Vector3(0,1/cos(tilt),0),Vector3.BACK)
-	rider.basis = facing*Basis(Vector3.BACK,atan2(projected.y,projected.x))*Basis.from_scale(Vector3(projected.length(),1,1))
+	var posture := Basis.IDENTITY
+	if riding and host.life_state == "alive":
+		# Combined rider/board artwork cannot articulate limbs. Displace only with height
+		# above the contact plane: its horizontal underside keeps the physical slope basis.
+		var intent: Vector2 = model.steering_input
+		var motion: Vector2 = model.steering_velocity/Vector2(maxf(model.x_speed,.001),maxf(model.bank_speed,.001))
+		var response := intent*.45+motion.clamp(Vector2(-1,-1),Vector2.ONE)*.55
+		var strength := .075 if host.employee.id == "tony" else .055
+		posture.y.x = response.x*strength-response.y*strength*.55
+	rider.basis = facing*Basis(Vector3.BACK,atan2(projected.y,projected.x))*Basis.from_scale(Vector3(projected.length(),1,1))*posture
 	if riding:
 		height += sin(model.recovery_clock/.6*PI)*.2*UNIT
 		if host.life_state != "alive" and model.events.has("fall"):

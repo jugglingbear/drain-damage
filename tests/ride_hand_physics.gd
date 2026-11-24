@@ -57,12 +57,12 @@ func checks() -> void:
 								assert(host.life_state == "dead" and host.lives == 2 and model.events.fall == 1)
 							cases += 1
 							host.free()
-	# Rightward and diagonal travel use the real clamp-aware distance, not an assumed960px/s at x650.
+	# Rightward and diagonal travel use the real clamp-aware distance, including acceleration from rest.
 	for anchor in [180.0,300.0,650.0]:
 		for direction in [Vector2.RIGHT,Vector2(1,1)]:
 			pair = setup(gap())
 			host = pair[0]; model = pair[1]
-			var displacement := minf(.6*400*direction.normalized().x,650-anchor)
+			var displacement := minf(Model.steer_axis(0,direction.normalized().x,model.x_speed,.6).x,650-anchor)
 			var takeoff := 2480-(336+displacement)*.5
 			model.position = Vector2(anchor,330)
 			model.encounter_scroll = takeoff-anchor

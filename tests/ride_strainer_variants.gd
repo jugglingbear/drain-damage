@@ -8,7 +8,7 @@ func _initialize() -> void:
 	check_patterns()
 	check_short_full_width()
 	var results := []
-	for width in [600.0,604.0,640.0]:
+	for width in [520.0,568.0,640.0]:
 		var passes := 0
 		var cases := 0
 		for hero in ["tony","sean"]:
@@ -28,7 +28,8 @@ func _initialize() -> void:
 						for frame in range(2*hz):
 							var dt: float = 1.0/hz
 							var x: float = model.position.x+model.encounter_scroll
-							var next: float = model.encounter_scroll+560*dt+minf(650,model.position.x+400*dt)
+							var next: float = model.encounter_scroll+560*dt+minf(650,model.position.x+Model.steer_axis(
+								model.steering_velocity.x,1,model.x_speed,dt).x)
 							var jump: bool = not pressed and next >= 2000+trigger
 							if jump: pressed = true
 							model.tick(host,dt,Vector2.RIGHT,jump)
@@ -38,8 +39,8 @@ func _initialize() -> void:
 						cases += 1
 						host.free()
 		results.append({"width":width,"cases":cases,"successful_forward_jumps":passes})
-		if width >= 604 and passes != 0: failures.append("Long opening can be jumped")
-		if width == 600 and passes == 0: failures.append("Positive reach control failed")
+		if width >= 568 and passes != 0: failures.append("Long opening can be jumped")
+		if width == 520 and passes == 0: failures.append("Positive reach control failed")
 	print(JSON.stringify({"reach":results,"failures":failures}))
 	quit(0 if failures.is_empty() else 1)
 
@@ -64,7 +65,7 @@ func check_patterns() -> void:
 					failures.append("Phase jitter exceeds reviewed bound")
 				if first_contact-(base_phase+0.12+1.25) < 1.5 or base_phase+0.12+3.1 > first_contact:
 					failures.append("Worst-phase warning or activation is too late")
-				if float(gap.width) > 603 and float(gap.depth) >= 200:
+				if float(gap.width) > 567 and float(gap.depth) >= 200:
 					failures.append("Long full-width opening has no alternate support")
 				if float(gap.depth) >= 200: continue
 				var safe_centers := 0

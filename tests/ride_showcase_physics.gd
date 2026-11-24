@@ -114,10 +114,11 @@ func run_checks() -> void:
 	# Fatal contact freezes the exact failed water-plane position for the wrapper's falling animation.
 	pair = setup([obstacle("edge","gap",400,100)])
 	host = pair[0]; model = pair[1]
+	model.steering_velocity = Vector2.RIGHT*model.x_speed
 	model.tick(host,.1,Vector2.RIGHT,false)
 	assert(host.life_state == "dead" and model.events.fall == 1)
 	assert(absf(model.position.x+model.encounter_scroll-363.5) < .001)
-	assert(absf(model.clock-63.5/960.0) < .00001)
+	assert(absf(model.clock-63.5/(model.scroll_speed+model.x_speed)) < .00001)
 	var frozen_position: Vector2 = model.position
 	var frozen_scroll: float = model.encounter_scroll
 	model.tick(host,1,Vector2.RIGHT,true)

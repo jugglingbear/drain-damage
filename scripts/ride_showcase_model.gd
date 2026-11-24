@@ -19,8 +19,11 @@ var encounter_started_at := 0.0
 var encounter_scroll := 0.0
 var clock := 0.0
 var scroll_speed := 560.0
-var x_speed := 400.0
-var bank_speed := 350.0
+static var steering_config: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SOURCE))
+var x_speed := float(steering_config.x_speed)
+var bank_speed := float(steering_config.bank_speed)
+var steering_input := Vector2.ZERO
+var steering_velocity := Vector2.ZERO
 var position := Vector2(300,330)
 var jump_age := -1.0
 var jump_height := 0.0
@@ -60,6 +63,8 @@ func begin(host: Node2D, index := 0) -> void:
 		definition = JSON.parse_string(FileAccess.get_file_as_string(SOURCE))
 		if continuous: definition = ContinuousCourse.build(definition,str(host.get("difficulty")),int(host.run_seed) if "run_seed" in host else 42)
 	clock = 0
+	steering_velocity = Vector2.ZERO
+	steering_input = Vector2.ZERO
 	position = Vector2(300,330)
 	jump_age = -1
 	jump_height = 0
@@ -798,6 +803,7 @@ func _launch(ramp := false) -> void:
 	active_jump_apex = 54
 	jump_age = 0
 	boosted = ramp
+	if ramp: steering_velocity.x = 0
 	ballistic = ramp
 	if ramp:
 		var x := position.x+encounter_scroll
@@ -818,8 +824,35 @@ func _launch(ramp := false) -> void:
 	ramp_active = false
 	emit_event("ramp" if ramp else "jump")
 
+# Return displacement and final velocity. Integrate each constant-rate segment, including
+# the instant a reversal crosses zero or an axis reaches its target inside this substep.
+static func steer_axis(speed: float, input: float, maximum: float, dt: float) -> Vector2:
+	var target := input*maximum
+	var distance := 0.0
+	if speed*target < 0:
+		var braking := maximum/float(steering_config.steering.reverse_brake_seconds)
+		var time := minf(dt,absf(speed)/braking)
+		var after := move_toward(speed,0,braking*time)
+		distance += (speed+after)*.5*time
+		speed = after
+		dt -= time
+	var rate := maximum/float(steering_config.steering.coast_seconds if input == 0 else steering_config.steering.acceleration_seconds)
+	var time_to_target := minf(dt,absf(target-speed)/rate)
+	var final_speed := move_toward(speed,target,rate*time_to_target)
+	distance += (speed+final_speed)*.5*time_to_target+final_speed*(dt-time_to_target)
+	return Vector2(distance,final_speed)
+
+func steer_motion(dt: float) -> Vector4:
+	var horizontal := Vector2.ZERO if boosted or ramp_active else steer_axis(steering_velocity.x,steering_input.x,x_speed,dt)
+	var bank := steer_axis(steering_velocity.y,steering_input.y,bank_speed,dt)
+	var end := (position+Vector2(horizontal.x,bank.x)).clamp(Vector2(180,260),Vector2(650,400))
+	if (end.x <= 180 and horizontal.y < 0) or (end.x >= 650 and horizontal.y > 0): horizontal.y = 0
+	if (end.y <= 260 and bank.y < 0) or (end.y >= 400 and bank.y > 0): bank.y = 0
+	return Vector4(end.x,end.y,horizontal.y,bank.y)
+
 func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 	if complete or host.paused or host.life_state != "alive" or delta <= 0: return
+	steering_input = steering.limit_length()
 	var remaining := delta
 	var pressed := jumping
 	while remaining > EPS and not complete and host.life_state == "alive":
@@ -830,8 +863,9 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 			rest_remaining = maxf(0,rest_remaining-dt)
 			host.invulnerable = maxf(0,host.invulnerable-dt)
 			# Safe rest has no collision/warning actors; movement remains responsive.
-			position += steering.limit_length()*Vector2(x_speed,bank_speed)*dt
-			position = position.clamp(Vector2(180,260),Vector2(650,400))
+			var steering_step := steer_motion(dt)
+			position = Vector2(steering_step.x,steering_step.y)
+			steering_velocity = Vector2(steering_step.z,steering_step.w)
 			if pressed and jump_age < 0 and cooldown <= 0:
 				_launch()
 			_advance_air_motion(dt)
@@ -841,6 +875,9 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool) -> void:
 			_step(host,dt,steering,pressed)
 		remaining -= dt
 		pressed = false
+	if host.life_state != "alive":
+		steering_velocity = Vector2.ZERO
+		steering_input = Vector2.ZERO
 	sync_hero(host)
 
 func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramps := true, check_decks := true) -> void:
@@ -854,9 +891,9 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 			render_height = ground_height
 			jump_height = ground_height
 			landing_material = initial_support.material
-	var input := steering.limit_length()
-	var movement := Vector2(0 if boosted or ramp_active else input.x*x_speed,input.y*bank_speed)*dt
-	var next_position := (position+movement).clamp(Vector2(180,260),Vector2(650,400))
+	# Ramp/deck transitions can recursively split this step. Only commit velocity after those splits.
+	var steering_step := steer_motion(dt)
+	var next_position := Vector2(steering_step.x,steering_step.y)
 	var b := next_position+Vector2(encounter_scroll+scroll_speed*dt,0)
 	# Losing full bank support cannot retain or reacquire the automatic ramp launch.
 	if ramp_active:
@@ -934,6 +971,7 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 				landing_material = transition.support.material
 			_step(host,dt*(1-fraction),steering,false,false,false)
 			return
+	steering_velocity = Vector2(steering_step.z,steering_step.w)
 	position = next_position
 	clock += dt
 	encounter_scroll += scroll_speed*dt

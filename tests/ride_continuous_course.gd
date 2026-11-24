@@ -10,25 +10,29 @@ var routes := 0
 
 func _initialize() -> void: call_deferred("checks")
 
-func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float, mixed: bool,
-		retry := 0, strainer_jump := false, cap_drift := 0.0, seed_value := 42, station_drift := 0.0) -> void:
-	var host := SeededHost.new()
-	host.run_seed = seed_value
-	host.employee.id = hero
-	host.difficulty = mode
-	var model := Model.new()
-	model.continuous = true
-	model.begin(host,retry)
-	model.position.x = anchor
+static func bank_input(model: RefCounted, target: float, dt: float) -> float:
+	var error := target-float(model.position.y)
+	var speed := float(model.steering_velocity.y)
+	var stopping: float = speed*absf(speed)*float(model.steering_config.steering.coast_seconds)/(2*model.bank_speed)
+	# Release before arrival instead of assuming velocity disappears on the target frame.
+	return clampf((error-stopping)/(model.bank_speed*maxf(dt,0.06)),-1,1)
+
+static func predicted_world_x(model: RefCounted, steering: Vector2, dt: float) -> float:
+	var input := steering.limit_length()
+	var horizontal := Model.steer_axis(model.steering_velocity.x,input.x,model.x_speed,dt)
+	return model.encounter_scroll+model.scroll_speed*dt+clampf(model.position.x+horizontal.x,180,650)
+
+static func route_plan(model: RefCounted, mode: String, cap_drift := 0.0, strainer_jump := false) -> Dictionary:
 	var spacing: float = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://levels/level-two-ride-continuous.json")).spacing[mode]
 	var shift := 7*(spacing-410)
 	var jumps := [1450+1.5*spacing-123,1450+4.5*spacing-159,5077.0+shift,7390.0+shift-cap_drift*200,7800.0+shift+maxf(0,cap_drift)*200,9407+shift,11342+shift]
 
 	var points := [[750,395]]
-	var banks := [375,260,260,395,280,400,400,280]
+	var banks := [395,265,265,395,265,395,395,265]
+	var turn_offsets := [0,30,100,46,30,30,100,46]
 	for i in range(1,banks.size()):
-		points.append([1450+(i-1)*spacing+100,banks[i]])
+		points.append([1450+(i-1)*spacing+turn_offsets[i],banks[i]])
 	points.append_array([[1450+7*spacing+120,330],[6900+shift,265],[7390+shift,395],[7800+shift,265]])
 	var last_gap_end := 0.0
 	for gap: Dictionary in model.course.obstacles:
@@ -54,6 +58,32 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 	var next_jump := 0
 	while next_jump < jumps.size() and jumps[next_jump] < model.position.x+model.encounter_scroll:
 		next_jump += 1
+	return {"shift":shift,"jumps":jumps,"points":points,"next_jump":next_jump}
+
+static func route_controls(model: RefCounted, plan: Dictionary, dt: float, offset := 0.0,
+		horizontal := 0.0) -> Dictionary:
+	var target := 330.0
+	var next_x: float = model.encounter_scroll+model.scroll_speed*dt+model.position.x+model.steering_velocity.x*dt
+	for point in plan.points:
+		if next_x >= float(point[0])+offset*model.scroll_speed: target = point[1]
+	var steering := Vector2(horizontal,bank_input(model,target,dt))
+	next_x = predicted_world_x(model,steering,dt)
+	var jump: bool = plan.next_jump < plan.jumps.size() and next_x >= plan.jumps[plan.next_jump]+offset*model.scroll_speed
+	if jump: plan.next_jump += 1
+	return {"steering":steering,"jump":jump}
+
+func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float, mixed: bool,
+		retry := 0, strainer_jump := false, cap_drift := 0.0, seed_value := 42, station_drift := 0.0) -> void:
+	var host := SeededHost.new()
+	host.run_seed = seed_value
+	host.employee.id = hero
+	host.difficulty = mode
+	var model := Model.new()
+	model.continuous = true
+	model.begin(host,retry)
+	model.position.x = anchor
+	var plan := route_plan(model,mode,cap_drift,strainer_jump)
+	var shift: float = plan.shift
 	var start_clock: float = model.clock
 	var initial_scroll: float = model.encounter_scroll
 	var previous_scroll: float = model.encounter_scroll
@@ -68,13 +98,8 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 			horizontal_frames += 1
 		if x > 7000+shift and x < 8500+shift: horizontal = cap_drift
 		if x > 9600+shift and x < 13600+shift: horizontal = station_drift
-		var target := 330.0
-		var next_x: float = model.encounter_scroll+560*dt+clampf(model.position.x+horizontal*400*dt,180,650)
-		for point in points:
-			if next_x >= float(point[0])+offset*560: target = point[1]
-		var jump: bool = next_jump < jumps.size() and next_x >= jumps[next_jump]+offset*560
-		if jump: next_jump += 1
-		model.tick(host,dt,Vector2(horizontal,clampf((target-model.position.y)/(350*dt),-1,1)),jump)
+		var controls := route_controls(model,plan,dt,offset,horizontal)
+		model.tick(host,dt,controls.steering,controls.jump)
 		if model.encounter_scroll < previous_scroll:
 			failures.append({"reason":"scroll reset","mode":mode})
 		previous_scroll = model.encounter_scroll
@@ -84,6 +109,7 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 		"event":model.last_event}
 	if not model.complete or host.health != 5 or host.lives != 3 or host.life_state != "alive":
 		failures.append(record)
+		print("ROUTE_FAILURE ",JSON.stringify(record))
 	elif mixed and horizontal_frames == 0:
 		record.reason = "mixed route did not exercise horizontal input"
 		failures.append(record)
