@@ -43,18 +43,34 @@ var radio := Radio.new()
 var damage_taken := 0
 var shots_fired := 0
 var input_guard := true
+var bowl_prepared := false
+var ride_prepared := false
 
-func attach(host: Node2D, yield_frame := Callable()) -> void:
+func attach(host: Node2D, yield_frame := Callable(), eager := true) -> void:
+	host.add_child(radio)
+	radio.transmission.connect(func() -> void: audio.play("radio_chirp"))
+	if eager:
+		await prepare_bowl(host,yield_frame)
+		await prepare_ride(host,yield_frame)
+
+func prepare_bowl(host: Node2D, yield_frame := Callable(), progress := Callable()) -> void:
+	if bowl_prepared: return
 	definition = JSON.parse_string(FileAccess.get_file_as_string(CONTENT))
 	gameplay_radio_offset = float(definition.story.timing.calm_prelude_seconds)
-	host.add_child(radio)
 	audio.attach(host,definition.audio.cues)
 	music.attach(host,definition.music)
-	await art.configure(definition.art,yield_frame)
-	await ride.attach(host,yield_frame)
+	await art.configure(definition.art,yield_frame,progress)
+	bowl_prepared = true
+
+func prepare_ride(host: Node2D, yield_frame := Callable(), progress := Callable()) -> void:
+	if ride_prepared: return
+	await ride.attach(host,yield_frame,progress)
 	world_view = WorldView.new()
-	await world_view.attach(host,self,yield_frame)
-	radio.transmission.connect(func() -> void: audio.play("radio_chirp"))
+	var world_progress := Callable()
+	if progress.is_valid():
+		world_progress = func(fraction: float) -> void: progress.call(lerpf(0.65,1.0,fraction))
+	await world_view.attach(host,self,yield_frame,world_progress)
+	ride_prepared = true
 
 func reset() -> void:
 	ride.audio.stop()
@@ -227,6 +243,7 @@ func sync_hero(host: Node2D) -> void:
 	host.grounded = jump_height <= 0
 
 func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing: bool) -> void:
+	if host.level_load_active(): return
 	if not active or host.paused or host.life_state != "alive" or host.won: return
 	# The caller supplies a fresh Jump edge once, not once per physics substep.
 	if _jumping and state != "ride": advance_dialogue(host)
@@ -235,7 +252,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 		_tick_step(host,delta,steering,_jumping,_firing)
 		return
 	var remaining := delta
-	while remaining > 0.000001 and active and not host.paused and host.life_state == "alive":
+	while remaining > 0.000001 and active and not host.paused and host.life_state == "alive" and not host.level_load_active():
 		var step := minf(remaining,1.0/120.0)
 		if prelude_remaining > 0: step = minf(step,prelude_remaining)
 		elif clock < 35: step = minf(step,35-clock)
@@ -297,6 +314,10 @@ func _tick_step(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _
 	if clock < 35 and clock+delta >= 35:
 		move_hero(host,delta,steering,false,true)
 		if host.life_state != "alive": return
+	# The landing renderer first appears during the final two seconds of the descent.
+	if not ride_prepared and clock+delta >= 43:
+		host.prepare_level_two_launch("ride-continuous")
+		return
 	clock = minf(45.0,clock+delta)
 	if 45.0-clock < 0.000001: clock = 45.0
 	water_clock += delta*lerpf(1.0,1.8,clampf(clock/43.0,0,1))

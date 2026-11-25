@@ -10,12 +10,14 @@ var damage_flash := 0.0
 var deflect_flash := 0.0
 var deflect_position := Vector2(700,300)
 
-func prepare() -> bool:
+func prepare(yield_frame := Callable()) -> bool:
 	definition = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
 	var gas: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(GAS_MANIFEST))
 	definition.frames.merge(gas.frames)
 	for frame: Dictionary in definition.frames.values():
-		if not textures.has(frame.path): textures[frame.path] = load("res://"+frame.path)
+		if not textures.has(frame.path):
+			if yield_frame.is_valid(): await yield_frame.call()
+			textures[frame.path] = load("res://"+frame.path)
 	return not textures.values().has(null)
 
 func reset() -> void:

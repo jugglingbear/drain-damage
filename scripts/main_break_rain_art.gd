@@ -7,22 +7,24 @@ var water: Texture2D
 var collapse: Texture2D
 var compact: Texture2D
 
-func prepare() -> void:
+func prepare(yield_frame := Callable()) -> void:
 	if not definition.is_empty(): return
 	definition = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
-	pipe = cleaned_texture(definition.pipe.texture)
+	pipe = await cleaned_texture(definition.pipe.texture,yield_frame)
 	water = load(definition.water.texture)
-	collapse = cleaned_texture(definition.collapse.texture)
+	collapse = await cleaned_texture(definition.collapse.texture,yield_frame)
 	if definition.has("collapse_compact"):
-		compact = cleaned_texture(definition.collapse_compact.texture)
+		compact = await cleaned_texture(definition.collapse_compact.texture,yield_frame)
 
-func cleaned_texture(path: String) -> Texture2D:
+func cleaned_texture(path: String, yield_frame: Callable) -> Texture2D:
 	var source: Texture2D = load(path)
 	var pixels := source.get_image()
 	pixels.convert(Image.FORMAT_RGBA8)
 	var bytes := pixels.get_data()
-	for index in range(3,bytes.size(),4):
-		if bytes[index] < 16: bytes[index] = 0
+	for offset in range(0,bytes.size(),65536):
+		if yield_frame.is_valid(): await yield_frame.call()
+		for index in range(offset+3,mini(offset+65536,bytes.size()),4):
+			if bytes[index] < 16: bytes[index] = 0
 	return ImageTexture.create_from_image(Image.create_from_data(
 		pixels.get_width(),pixels.get_height(),false,Image.FORMAT_RGBA8,bytes))
 

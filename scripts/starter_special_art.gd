@@ -49,7 +49,7 @@ func extracted(original: Image, region: Array, opaque := false) -> Texture2D:
 
 func prepare(yield_frame := Callable()) -> void:
 	if not water.is_empty(): return
-	rain.prepare()
+	await rain.prepare(yield_frame)
 	water = JSON.parse_string(FileAccess.get_file_as_string(WATER))
 	var source: Texture2D = load("res://"+water.path)
 	var original := source.get_image()

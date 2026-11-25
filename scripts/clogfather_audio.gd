@@ -33,7 +33,7 @@ var effect_is_roar := false
 var next_roar := 10.0
 var roar_cursor := 0
 
-func attach(host: Node) -> void:
+func attach(host: Node, yield_frame := Callable()) -> void:
 	assert(voices.is_empty())
 	for index in range(4):
 		var voice := AudioStreamPlayer.new()
@@ -44,6 +44,7 @@ func attach(host: Node) -> void:
 		gains[event] = []
 		for name in CUES[event]:
 			var base := ROAR_BASE if event in ["ambient_roar", "reactive_roar"] else BASE
+			if yield_frame.is_valid(): await yield_frame.call()
 			var stream: AudioStreamWAV = load(base+name+".wav").duplicate()
 			stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
 			streams[event].append(stream)
@@ -55,6 +56,7 @@ func attach(host: Node) -> void:
 		FileAccess.get_file_as_string("res://data/creature-action-audio.json"))
 	for event in action_data.creatures.clogfather:
 		var cue: Dictionary = action_data.creatures.clogfather[event]
+		if yield_frame.is_valid(): await yield_frame.call()
 		var stream: AudioStreamWAV = load("res://"+str(cue.path)).duplicate()
 		stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
 		streams[event] = [stream]
@@ -65,6 +67,7 @@ func attach(host: Node) -> void:
 		streams[pair[0]] = []
 		gains[pair[0]] = []
 		for variant in definition[pair[1]].variants:
+			if yield_frame.is_valid(): await yield_frame.call()
 			var stream: AudioStreamWAV = load("res://"+str(variant.path)).duplicate()
 			stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
 			streams[pair[0]].append(stream)

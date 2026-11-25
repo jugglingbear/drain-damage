@@ -73,11 +73,12 @@ func run_checks() -> void:
 		var deadline := Time.get_ticks_msec()+30000
 		while title.loading_in_progress and Time.get_ticks_msec() < deadline:
 			await process_frame
+		if title.card_ready: title._unhandled_input(key(KEY_B))
 		assert(title.game != null and not title.loading_in_progress)
 		assert(title.music_director.requested == "level", "Gameplay requests the level track")
 		assert(title.game.employee.id == ["tony", "sean"][index])
-		assert(title.game.health == [4, 5][index])
-		assert(title.game.employee.move_speed == [270.0, 235.0][index])
+		assert(title.game.health == title.Crew.EMPLOYEES[index].max_health)
+		assert(title.game.employee.move_speed == title.Crew.EMPLOYEES[index].move_speed)
 		title.game.health = 1
 		title.game.activate_checkpoint()
 		assert(title.game.health == 1, "Checkpoint cannot interrupt opening dialogue")
@@ -86,7 +87,7 @@ func run_checks() -> void:
 		title.game.activate_checkpoint()
 		assert(title.game.health == 1 and title.game.dispenser.active)
 		title.game.dispenser.finish(title.game,true)
-		assert(title.game.health == [4,5][index])
+		assert(title.game.health == title.Crew.EMPLOYEES[index].max_health)
 		var previous = title.game
 		title._unhandled_input(key(KEY_ENTER))
 		assert(title.game == previous)
@@ -128,6 +129,7 @@ func run_checks() -> void:
 		var deadline := Time.get_ticks_msec()+30000
 		while title.loading_in_progress and Time.get_ticks_msec() < deadline:
 			await process_frame
+		if title.card_ready: title._unhandled_input(key(KEY_B))
 		assert(title.game != null)
 		title.return_to_title()
 		await process_frame

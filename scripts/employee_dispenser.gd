@@ -60,14 +60,14 @@ func sample_impact(viewport_size: Vector2, unit := Vector2(-1,-1)) -> void:
 	if unit.x < 0: unit = Vector2(cosmetic_rng.randf(),cosmetic_rng.randf())
 	impact_point = Vector2(lerpf(low.x,high.x,unit.x),lerpf(low.y,high.y,unit.y))
 
-func _init() -> void:
+func _init(defer_preparation := false) -> void:
 	cosmetic_rng.randomize()
 	Data.load_data()
 	inspection = JSON.parse_string(FileAccess.get_file_as_string(INSPECTION_CONTRACT))
 	audio = Data.bundle.dispenser.audio
-	configure(false)
+	if not defer_preparation: configure(false)
 
-func configure(value: Variant) -> void:
+func configure(value: Variant, yield_frame := Callable()) -> void:
 	var selected := Costume.mode(value)
 	if art != null and not art.is_empty() and costume == selected: return
 	costume = selected
@@ -78,21 +78,22 @@ func configure(value: Variant) -> void:
 		art = JSON.parse_string(FileAccess.get_file_as_string("res://assets/sprites/%s-mode/dispenser-manifest-v1.json" % costume))
 		art.sleeping_heroes = JSON.parse_string(FileAccess.get_file_as_string(
 			"res://" + str(art.machine.sleeping_occupants.source_manifest)))
-	load_art(art.machine)
-	load_art(art.heroes)
-	load_art(art.sleeping_heroes)
-	load_art(inspection.get("parts",{}))
-	load_art(inspection.get("diagnosis_art",{}))
-	load_art(inspection.get("verdict_art",{}))
-	load_art(inspection.get("hero_states",{}))
+	await load_art(art.machine,yield_frame)
+	await load_art(art.heroes,yield_frame)
+	await load_art(art.sleeping_heroes,yield_frame)
+	await load_art(inspection.get("parts",{}),yield_frame)
+	await load_art(inspection.get("diagnosis_art",{}),yield_frame)
+	await load_art(inspection.get("verdict_art",{}),yield_frame)
+	await load_art(inspection.get("hero_states",{}),yield_frame)
 
-func load_art(value: Variant) -> void:
+func load_art(value: Variant, yield_frame: Callable) -> void:
 	if value is Dictionary:
-		if value.has("path") and value.has("source_rect"):
+		if value.has("path") and value.has("source_rect") and not textures.has(value.path):
+			if yield_frame.is_valid(): await yield_frame.call()
 			textures[value.path] = HardArt.texture(value.path)
-		for child: Variant in value.values(): load_art(child)
+		for child: Variant in value.values(): await load_art(child,yield_frame)
 	elif value is Array:
-		for child: Variant in value: load_art(child)
+		for child: Variant in value: await load_art(child,yield_frame)
 
 func attach(game: Node2D) -> void:
 	for cue: Dictionary in audio.cues:

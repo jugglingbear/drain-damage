@@ -3,7 +3,7 @@ extends Node2D
 const Buttons = preload("res://scripts/plumbing_buttons.gd")
 const BuildVersion = preload("res://scripts/build_version.gd")
 const PlaytestLaunch = preload("res://scripts/playtest_launch.gd")
-## Illustrated Drain Damage opening; gameplay is created only after Start.
+## Illustrated Drain Damage opening and selection-time preparation.
 
 const MusicDirector = preload("res://scripts/music_director.gd")
 var music_director: Node
@@ -22,7 +22,8 @@ const Crew = preload("res://scripts/crew.gd")
 const Portraits = preload("res://scripts/portrait_library.gd")
 const Controls = preload("res://scripts/controls_screen.gd")
 const Story = preload("res://scripts/story_dialogue.gd")
-const GAME = preload("res://scripts/integrated_first_call.gd")
+const GAME_PATH := "res://scripts/integrated_first_call.gd"
+const LoadingCard = preload("res://scripts/level_loading_card.gd")
 const MINT := Color("93ffd2")
 const GOLD := Color("ffe18d")
 var menu_index := 0
@@ -57,7 +58,17 @@ var loading_started_msec := 0
 var loading_max_frame_msec := 0
 var loading_last_frame_msec := 0
 var loading_slice_usec := 0
-var loading_valve: Texture2D
+var loading_card := LoadingCard.new()
+var card_visible := false
+var card_ready := false
+var pending_launch: Dictionary = {}
+var extra_level_progress := 0.0
+const LEVEL_TWO_INITIALIZERS := ["level-two-flush","level-two-landing","ride-continuous","ride-encounter"]
+var preparation_running := false
+var preparation_steps := 0
+const PREPARATION_STEPS := 4
+var job_script: Script
+var job_initialized := false
 
 var screenshot_mode := false
 const ScreenshotFreeze = preload("res://scripts/screenshot_freeze.gd")
@@ -69,7 +80,6 @@ var held_navigation_buttons: Dictionary = {}
 
 func _ready() -> void:
 	starting_picture = StartingPicture.for_session()
-	prepare_loading_valve()
 	var launch := PlaytestLaunch.parse(OS.get_cmdline_user_args())
 	if launch.has("error"):
 		printerr("Launch failed: "+launch.error)
@@ -127,11 +137,20 @@ func _process(delta: float) -> void:
 		if loading_last_frame_msec > 0: loading_max_frame_msec = maxi(loading_max_frame_msec,now-loading_last_frame_msec)
 		loading_last_frame_msec = now
 		loading_frames += 1
+	# Work only while the player is making selections or waiting for this job.
+	if selecting and not starting and game == null and loading_error.is_empty() and not preparation_running and not prepared_for_selection():
+		prepare_selection()
 	selection_guard = maxf(0, selection_guard - delta)
 	queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if game != null or starting: return
+	if game != null: return
+	if starting:
+		if card_ready and loading_card.accepts(event):
+			card_ready = false
+			get_viewport().set_input_as_handled()
+			reveal_game()
+		return
 	if not loading_error.is_empty(): loading_error = ""
 	if is_confirm_event(event):
 		if not event.pressed:
@@ -491,77 +510,133 @@ func request_start() -> void:
 	get_viewport().set_input_as_handled()
 	call_deferred("start_game")
 
-func prepare_loading_valve() -> void:
-	var source: Texture2D = load("res://assets/ui/job-loading-v1/valve-source-v1.png")
-	if source == null: return
-	var pixels := source.get_image().get_region(Rect2i(48,48,1152,1152))
-	pixels.convert(Image.FORMAT_RGBA8)
-	var bytes := pixels.get_data()
-	for index in range(3,bytes.size(),4):
-		if bytes[index] < 240: bytes[index] = 0
-	pixels = Image.create_from_data(1152,1152,false,Image.FORMAT_RGBA8,bytes)
-	pixels.resize(112,112,Image.INTERPOLATE_LANCZOS)
-	loading_valve = ImageTexture.create_from_image(pixels)
-
 func loading_frame() -> void:
 	if Time.get_ticks_usec()-loading_slice_usec < 4000: return
 	await get_tree().process_frame
 	loading_slice_usec = Time.get_ticks_usec()
 
 func create_job() -> Node2D:
-	return GAME.new()
+	return job_script.new()
 
 func fail_loading() -> void:
 	loading_error = "Couldn’t prepare the job. Please try again."
 	if is_instance_valid(pending_game): pending_game.queue_free()
 	pending_game = null
+	job_initialized = false
+	card_visible = false
+	card_ready = false
 	starting = false
 	confirm_blocked = true
 	queue_redraw()
+
+func prepared_for_selection() -> bool:
+	return job_initialized and pending_game.employee.id == Crew.EMPLOYEES[selected].id \
+		and pending_game.difficulty == difficulty_copy.options[difficulty_index].id
+
+func prepare_selection() -> void:
+	preparation_running = true
+	if not job_initialized:
+		preparation_steps = 0
+		loading_started_msec = Time.get_ticks_msec()
+		var prepared := await prepare_job()
+		if not prepared:
+			fail_loading()
+			preparation_running = false
+			return
+		job_initialized = true
+	# Selection can change during any yield. Recheck before publishing readiness.
+	while not prepared_for_selection():
+		var mode: String = difficulty_copy.options[difficulty_index].id
+		preparation_steps = 3
+		await pending_game.world_art.hero_aim_art.configure(mode,loading_frame)
+		await pending_game.dispenser.configure(mode,loading_frame)
+		pending_game.employee = Crew.EMPLOYEES[selected]
+		pending_game.difficulty = mode
+		pending_game.reset_game()
+	preparation_steps = PREPARATION_STEPS
+	preparation_running = false
 
 func prepare_job() -> bool:
 	loading_error = ""
 	loading_frames = 0
 	loading_max_frame_msec = 0
-	loading_last_frame_msec = Time.get_ticks_msec()
-	loading_started_msec = loading_last_frame_msec
-	queue_redraw()
-	# Let the already-requested overlay reach the renderer before starting preparation.
+	loading_last_frame_msec = loading_started_msec
 	await get_tree().process_frame
-	await get_tree().process_frame
+	if job_script == null:
+		if ResourceLoader.load_threaded_request(GAME_PATH,"Script") != OK: return false
+		while ResourceLoader.load_threaded_get_status(GAME_PATH) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			await get_tree().process_frame
+		if ResourceLoader.load_threaded_get_status(GAME_PATH) != ResourceLoader.THREAD_LOAD_LOADED: return false
+		job_script = ResourceLoader.load_threaded_get(GAME_PATH)
+	preparation_steps = 1
 	var hero_preparation = load("res://scripts/hero_aim_art.gd").new(true)
 	await hero_preparation.configure("normal",loading_frame)
-	var costume_preparation = load("res://scripts/hero_aim_art.gd").new(true)
-	await costume_preparation.configure(difficulty_copy.options[difficulty_index].id,loading_frame)
+	preparation_steps = 2
 	pending_game = create_job()
-	if pending_game == null:
-		fail_loading()
-		return false
-	await get_tree().process_frame
+	if pending_game == null: return false
 	pending_game.employee = Crew.EMPLOYEES[selected]
-	pending_game.difficulty = difficulty_copy.options[difficulty_index].id
-	pending_game.music_director = music_director
+	# Initialize a single game instance. Actual costume changes reuse it when selections change.
+	pending_game.difficulty = "normal"
+	if pending_launch.has("seed"): pending_game.seed_override = pending_launch.seed
+	pending_game.defer_level_two_loading = true
 	pending_game.startup_yield = loading_frame
 	pending_game.process_mode = Node.PROCESS_MODE_DISABLED
 	pending_game.hide()
 	add_child(pending_game)
-	while is_instance_valid(pending_game) and not pending_game.startup_complete:
-		if Time.get_ticks_msec()-loading_started_msec > loading_timeout_msec:
-			fail_loading()
-			return false
+	while not pending_game.startup_complete:
+		if Time.get_ticks_msec()-loading_started_msec > loading_timeout_msec: return false
 		await get_tree().process_frame
-	return is_instance_valid(pending_game) and pending_game.dialogue != null
+	preparation_steps = 3
+	return pending_game.dialogue != null
+
+func extra_level_loaded(progress: float) -> void:
+	extra_level_progress = progress
+
+func card_progress() -> float:
+	var progress := float(preparation_steps)/PREPARATION_STEPS
+	if pending_launch.get("target",{}).get("initializer","") in LEVEL_TWO_INITIALIZERS:
+		return .65*progress+.35*extra_level_progress
+	return progress
 
 func start_game(launch: Dictionary = {}) -> void:
-	if loading_in_progress or game != null: return
-	var staged := starting and launch.is_empty()
-	if staged:
-		loading_in_progress = true
-		var prepared := await prepare_job()
-		loading_in_progress = false
-		if not prepared:
-			fail_loading()
+	if loading_in_progress or card_ready or game != null: return
+	var initializer: String = launch.get("target",{}).get("initializer","")
+	# Automated launch verification and standalone test scenes keep their direct entry points.
+	var direct_job: bool = launch.has("target") and not launch.verify and not screenshot_mode \
+		and initializer not in ["camera-test","three-screen-trial","section-one-two"]
+	if direct_job: starting = true
+	if starting and (launch.is_empty() or direct_job):
+		pending_launch = launch
+		if not preparation_running and not prepared_for_selection(): prepare_selection()
+		# A hero-only change can finish synchronously using the prepared costume.
+		if not preparation_running and prepared_for_selection() and not direct_job:
+			reveal_game()
 			return
+		loading_in_progress = true
+		card_visible = true
+		extra_level_progress = 0
+		var art_family := "level1"
+		if initializer in LEVEL_TWO_INITIALIZERS:
+			art_family = "ride" if initializer != "level-two-flush" else "flush"
+		loading_card.begin(art_family)
+		queue_redraw()
+		while preparation_running: await get_tree().process_frame
+		if prepared_for_selection() and initializer in LEVEL_TWO_INITIALIZERS:
+			await pending_game.prepare_level_two_assets(initializer,loading_frame,extra_level_loaded)
+		loading_in_progress = false
+		if not prepared_for_selection(): return
+		card_ready = true
+		queue_redraw()
+		return
+	reveal_game(launch)
+
+func reveal_game(launch: Dictionary = {}) -> void:
+	var staged := job_initialized
+	if staged: launch = pending_launch
+	pending_launch = {}
+	card_ready = false
+	card_visible = false
+	job_initialized = false
 	navigation_voice.stop()
 	held_navigation_buttons.clear()
 	var initializer: String = launch.get("target",{}).get("initializer","")
@@ -575,7 +650,7 @@ func start_game(launch: Dictionary = {}) -> void:
 	elif initializer == "camera-test":
 		game = load("res://scenes/level_two_camera_test.tscn").instantiate()
 	else:
-		game = GAME.new()
+		game = load(GAME_PATH).new()
 	if launch.has("target"): game.seed_override = launch.seed
 	game.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	game.music_director = music_director
@@ -630,15 +705,13 @@ func caption(text: String, point: Vector2, size: int, color: Color) -> void:
 func _draw() -> void:
 	if game != null:
 		return
+	if card_visible:
+		loading_card.draw(self,card_progress(),card_ready)
+		return
 	draw_menu_content()
-	if starting or not loading_error.is_empty():
+	if not loading_error.is_empty():
 		draw_rect(Rect2(0,0,960,540),Color(0.015,0.025,0.035,0.78))
-		if starting and loading_valve != null:
-			draw_set_transform(Vector2(480,236),fmod(clock*PI,TAU))
-			draw_texture_rect(loading_valve,Rect2(-28,-28,56,56),false)
-			draw_set_transform(Vector2.ZERO)
-		var text := "Preparing the job…" if starting else loading_error
-		draw_string(ThemeDB.fallback_font,Vector2(180,300),text,HORIZONTAL_ALIGNMENT_CENTER,600,24,GOLD)
+		draw_string(ThemeDB.fallback_font,Vector2(180,300),loading_error,HORIZONTAL_ALIGNMENT_CENTER,600,24,GOLD)
 
 func draw_menu_content() -> void:
 	if game != null:

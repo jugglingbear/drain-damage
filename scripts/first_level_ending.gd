@@ -14,23 +14,27 @@ var departure: Dictionary = {}
 var textures: Dictionary = {}
 var panic_text := ""
 
-func prepare() -> bool:
+func prepare(yield_frame := Callable()) -> bool:
 	if not FileAccess.file_exists(MANIFEST): return false
 	definition = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
 	for frame: Dictionary in definition.frames:
-		if not textures.has(frame.path): textures[frame.path] = load("res://"+frame.path)
+		if not textures.has(frame.path):
+			if yield_frame.is_valid(): await yield_frame.call()
+			textures[frame.path] = load("res://"+frame.path)
 	if not FileAccess.file_exists(DEPARTURE_MANIFEST): return false
 	departure = JSON.parse_string(FileAccess.get_file_as_string(DEPARTURE_MANIFEST))
-	load_frames(departure)
+	await load_frames(departure,yield_frame)
 	return not definition.frames.is_empty() and not textures.values().has(null)
 
-func load_frames(value: Variant) -> void:
+func load_frames(value: Variant, yield_frame: Callable) -> void:
 	if value is Dictionary:
 		if value.has("path") and value.has("source_rect"):
-			if not textures.has(value.path): textures[value.path] = load("res://"+value.path)
-		for child in value.values(): load_frames(child)
+			if not textures.has(value.path):
+				if yield_frame.is_valid(): await yield_frame.call()
+				textures[value.path] = load("res://"+value.path)
+		for child in value.values(): await load_frames(child,yield_frame)
 	elif value is Array:
-		for child in value: load_frames(child)
+		for child in value: await load_frames(child,yield_frame)
 
 func reset() -> void:
 	state = "idle"

@@ -56,7 +56,7 @@ const FlushfiendGeometry = preload("res://scripts/flushfiend_geometry.gd")
 const SewerSwarm = preload("res://scripts/gnatastrophe.gd")
 var swarms := SewerSwarm.new()
 const EmployeeDispenser = preload("res://scripts/employee_dispenser.gd")
-var dispenser := EmployeeDispenser.new()
+var dispenser := EmployeeDispenser.new(true)
 const DoorAudio = preload("res://scripts/door_audio.gd")
 var door_audio := DoorAudio.new()
 const SwarmAudio = preload("res://scripts/swarm_audio.gd")
@@ -143,6 +143,7 @@ var tone_phase := 0.0
 
 func _ready() -> void:
 	Data.load_data()
+	await dispenser.configure("normal",startup_yield)
 	await special_art.prepare(startup_yield)
 	await cinematic_art.prepare(startup_yield)
 	# Never process the damage atlas on the first visible enemy during gameplay.
@@ -196,16 +197,20 @@ func _ready() -> void:
 	audio_player.play()
 	sound_playback = audio_player.get_stream_playback()
 	starter_weapon_audio.attach(self)
+	if startup_yield.is_valid(): await startup_yield.call()
 	special_audio.attach(self)
 	cinematic_audio.attach(self)
 	dialogue = Dialogue.new()
 	add_child(dialogue)
 	create_pause_menu()
 	dispenser.attach(self)
+	if startup_yield.is_valid(): await startup_yield.call()
 	door_audio.attach(self,Level.GATES.size())
 	swarm_audio.attach(self)
 	swarms.damaged.connect(_on_swarm_damaged)
-	for sound in creature_audio.values(): sound.attach(self)
+	for sound in creature_audio.values():
+		if startup_yield.is_valid(): await startup_yield.call()
+		sound.attach(self)
 	hero_death_audio.attach(self)
 	reset_game()
 

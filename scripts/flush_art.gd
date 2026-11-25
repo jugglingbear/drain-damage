@@ -5,12 +5,21 @@ var manifest: Dictionary = {}
 var textures: Dictionary = {}
 static var prepared_textures: Dictionary = {}
 
-func configure(data: Dictionary, yield_frame := Callable()) -> void:
+func configure(data: Dictionary, yield_frame := Callable(), progress := Callable()) -> void:
 	manifest = data
 	textures.clear()
-	for frame: Dictionary in manifest.frames.values(): await load_frame(frame,yield_frame)
+	var total: int = manifest.frames.size()
+	for animation: Dictionary in manifest.animations.values(): total += animation.frames.size()
+	var done := 0
+	for frame: Dictionary in manifest.frames.values():
+		await load_frame(frame,yield_frame)
+		done += 1
+		if progress.is_valid(): progress.call(float(done)/total)
 	for animation: Dictionary in manifest.animations.values():
-		for frame: Dictionary in animation.frames: await load_frame(frame,yield_frame)
+		for frame: Dictionary in animation.frames:
+			await load_frame(frame,yield_frame)
+			done += 1
+			if progress.is_valid(): progress.call(float(done)/total)
 
 func load_frame(frame: Dictionary, yield_frame := Callable()) -> void:
 	if yield_frame.is_valid(): await yield_frame.call()

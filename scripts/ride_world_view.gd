@@ -27,6 +27,7 @@ var manifest: Dictionary = {}
 var configured := false
 var rider_overlay := Node3D.new()
 var hero_key := ""
+var showing_ride_pose := false
 var animated_rider: Sprite3D
 var animated_overlay: Sprite3D
 var landing_pose_until := 0.0
@@ -41,6 +42,8 @@ var near_wall: ShaderMaterial
 var walkway: StandardMaterial3D
 var course_distance := 0.0
 var machinery_framing := 0.0
+var framing_course: Dictionary = {}
+var framing_spans: Array[Vector2] = []
 var material_loader := Proof.new()
 var helper_nodes: Array[Node] = [material_loader.camera,material_loader.rider]
 
@@ -53,7 +56,7 @@ func _exit_tree() -> void:
 		rider.free()
 		fidget_view.free()
 
-func attach(game: Node2D, model: RefCounted, yield_frame := Callable()) -> void:
+func attach(game: Node2D, model: RefCounted, yield_frame := Callable(), progress := Callable()) -> void:
 	host = game
 	flush = model
 	container = SubViewportContainer.new()
@@ -73,8 +76,11 @@ func attach(game: Node2D, model: RefCounted, yield_frame := Callable()) -> void:
 	host.add_pad_button("ride_camera_turn",JOY_BUTTON_RIGHT_SHOULDER)
 	# Prepare while the game scene is being initialized, not on the live flush/ride timeline.
 	await configure(yield_frame)
-	await prepare_actors(yield_frame)
+	if progress.is_valid(): progress.call(.1)
+	await prepare_actors(yield_frame,progress)
+	if yield_frame.is_valid(): await yield_frame.call()
 	warm_graphics()
+	if progress.is_valid(): progress.call(1.0)
 
 func _process(delta: float) -> void:
 	var showing: bool = flush.active and (flush.state == "ride" or flush.clock >= 43)
@@ -176,7 +182,7 @@ func make_actor(obstacle: Dictionary) -> Node3D:
 	actor_build_count += 1
 	return actor
 
-func prepare_actors(yield_frame := Callable()) -> void:
+func prepare_actors(yield_frame := Callable(), progress := Callable()) -> void:
 	var start := Time.get_ticks_usec()
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride-showcase.json"))
 	var prepared: Array = source.encounters.duplicate()
@@ -184,6 +190,7 @@ func prepare_actors(yield_frame := Callable()) -> void:
 		var variants := {}
 		var known := {}
 		for seed_value in range(256):
+			if yield_frame.is_valid(): await yield_frame.call()
 			var course: Dictionary = preload("res://scripts/ride_continuous_course.gd").build(source,difficulty,seed_value)
 			var count: int = course.get("elbow_followups",3)
 			if variants.has(count): continue
@@ -200,6 +207,9 @@ func prepare_actors(yield_frame := Callable()) -> void:
 				prepared.append({"obstacles":additions})
 			if variants.size() == 3: break
 		assert(variants.size() == 3,"Missing elbow follow-up prewarm variant")
+	var total := 0
+	var finished := 0
+	for encounter: Dictionary in prepared: total += encounter.obstacles.size()
 	for encounter: Dictionary in prepared:
 		for obstacle: Dictionary in encounter.obstacles:
 			if yield_frame.is_valid(): await yield_frame.call()
@@ -216,6 +226,8 @@ func prepare_actors(yield_frame := Callable()) -> void:
 				if mirror_key != key:
 					if not actor_pool.has(mirror_key): actor_pool[mirror_key] = []
 					actor_pool[mirror_key].append(make_actor(mirrored))
+			finished += 1
+			if progress.is_valid(): progress.call(lerpf(.1,.95,float(finished)/total))
 	preparation_usec = Time.get_ticks_usec()-start
 
 func warm_graphics() -> void:
@@ -233,15 +245,26 @@ func warm_graphics() -> void:
 			actor.position = Vector3(5,0,0)
 			actor.visible = true
 	rebuild_rider()
+	# Draw both rider presentations, including the translucent silhouette used at occluders.
+	# Keeping both pose sets attached also preserves their GPU resources through the landing.
+	rider.position = Vector3(5,1,3)
+	rider_overlay.visible = true
 	var effect_warmup := fidget_view.prepare_warmup()
 	# force_draw does not flush newly added Node3D transforms from the scene tree.
 	# Without this, the temporary effect quads remain occluded at their default origin.
 	camera.force_update_transform()
+	rider.force_update_transform()
+	for node in rider.get_children(): node.force_update_transform()
+	for node in rider_overlay.get_children(): node.force_update_transform()
 	for node in effect_warmup: node.force_update_transform()
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	var start := Time.get_ticks_usec()
 	RenderingServer.force_draw(false)
+	if animated_rider:
+		select_rider_pose(true)
+		rider_overlay.visible = true
 	RenderingServer.force_draw(false)
+	rider_overlay.visible = false
 	graphics_warmup_usec = Time.get_ticks_usec()-start
 	for node in effect_warmup:
 		fidget_view.remove_child(node)
@@ -264,10 +287,13 @@ func retire_actor(key: String) -> void:
 func rebuild_rider() -> void:
 	var mode: String = host.difficulty
 	var atlas_path := "res://assets/world/ride-animation-v1/%s-normal.png" % host.employee.id
-	var animated: bool = flush.state == "ride" and mode == "normal" and ResourceLoader.exists(atlas_path)
-	var key: String = host.employee.id+mode+str(animated)
-	if key == hero_key: return
+	var key: String = host.employee.id+mode
+	if key == hero_key:
+		if showing_ride_pose != (animated_rider != null and flush.state == "ride"):
+			select_rider_pose(animated_rider != null and flush.state == "ride")
+		return
 	hero_key = key
+	var animated := mode == "normal" and ResourceLoader.exists(atlas_path)
 	if rider_overlay.get_parent() == rider: rider.remove_child(rider_overlay)
 	for child in rider_overlay.get_children():
 		rider_overlay.remove_child(child)
@@ -282,6 +308,8 @@ func rebuild_rider() -> void:
 	animated_overlay = null
 	previous_airborne = false
 	landing_pose_until = 0
+	for frame: Dictionary in flush.art.manifest.landing[host.employee.id][mode].front:
+		material_loader.add_rider_frame(frame,Vector2(contact[0],contact[1]))
 	if animated:
 		animated_rider = Sprite3D.new()
 		animated_rider.texture = load(atlas_path)
@@ -294,9 +322,6 @@ func rebuild_rider() -> void:
 		animated_rider.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR
 		animated_rider.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 		rider.add_child(animated_rider)
-	else:
-		for frame: Dictionary in flush.art.manifest.landing[host.employee.id][mode].front:
-			material_loader.add_rider_frame(frame,Vector2(contact[0],contact[1]))
 
 	# An aligned translucent copy only shows through foreground machinery during a close pass.
 	for sprite: Sprite3D in rider.get_children():
@@ -307,9 +332,17 @@ func rebuild_rider() -> void:
 		overlay.render_priority = 2
 		overlay.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		rider_overlay.add_child(overlay)
-		if animated: animated_overlay = overlay
+		if sprite == animated_rider: animated_overlay = overlay
 	rider.add_child(rider_overlay)
 	rider_overlay.visible = false
+	select_rider_pose(animated and flush.state == "ride")
+
+func select_rider_pose(use_atlas: bool) -> void:
+	showing_ride_pose = use_atlas
+	for sprite in rider.get_children():
+		if sprite != rider_overlay: sprite.visible = (sprite == animated_rider) == use_atlas
+	for sprite in rider_overlay.get_children():
+		sprite.visible = (sprite == animated_overlay) == use_atlas
 
 func update_rider_pose(model: RefCounted) -> void:
 	var airborne: bool = model.jump_age >= 0
@@ -332,6 +365,25 @@ func update_rider_pose(model: RefCounted) -> void:
 	animated_rider.frame = frame
 	animated_overlay.frame = frame
 
+func cache_framing(course: Dictionary) -> void:
+	framing_course = course
+	framing_spans.clear()
+	var stations: Array[Vector2] = []
+	var ramps: Array[Vector2] = []
+	for obstacle: Dictionary in course.obstacles:
+		var start := float(obstacle.x)-float(obstacle.width)*.5
+		if obstacle.get("station",false):
+			stations.append(Vector2(start,start+float(obstacle.width)))
+		elif obstacle.kind == "ramp":
+			# Ramp release begins 1300px after launch; station release has a 200px hold.
+			ramps.append(Vector2(start,float(obstacle.get("launch_x",obstacle.x))+1100))
+	stations.sort_custom(func(a: Vector2,b: Vector2) -> bool: return a.x < b.x)
+	for span in stations:
+		if not framing_spans.is_empty() and span.x-framing_spans[-1].y <= 2400:
+			framing_spans[-1].y = maxf(framing_spans[-1].y,span.y)
+		else: framing_spans.append(span)
+	framing_spans.append_array(ramps)
+
 func update_world() -> void:
 	rebuild_rider()
 	var riding: bool = flush.state == "ride"
@@ -340,47 +392,30 @@ func update_world() -> void:
 	var height: float = model.render_height if riding else 0.0
 	var pitch: float = -model.render_pitch if riding else 0.0
 	var focus := Vector3(5.2,1.05,0)
-	camera.size = 5.5
+	var view_size := 5.5
 	# Frame the full-width fracture during its telegraph/impact, then ease back after withdrawal.
 	if riding and model.encounter_index == 10:
 		var age: float = model.encounter_clock
 		var framing := smoothstep(1.25,2.35,age)*(1-smoothstep(3.65,4.1,age))
 		# Establish the full strike/recovery frame during the warning, then hold it still.
 		focus.y += .35*framing
-		camera.size = lerpf(5.5,9.0,framing)
+		view_size = lerpf(5.5,9.0,framing)
 	# Group nearby baskets, leaving the intervening Wave 2 sections at normal scale.
 	# The approach establishes the far rim before commitment; hold framing in flight.
 	if riding and model.continuous:
-		var spans: Array[Vector2] = []
-		for obstacle: Dictionary in model.course.obstacles:
-			if not obstacle.get("station",false): continue
-			spans.append(Vector2(float(obstacle.x)-float(obstacle.width)*.5,
-				float(obstacle.x)+float(obstacle.width)*.5))
-		spans.sort_custom(func(a: Vector2,b: Vector2) -> bool: return a.x < b.x)
-		var groups: Array[Vector2] = []
-		for span in spans:
-			if not groups.is_empty() and span.x-groups[-1].y <= 2400:
-				groups[-1].y = maxf(groups[-1].y,span.y)
-			else: groups.append(span)
+		if not is_same(framing_course,model.course): cache_framing(model.course)
 		var progress: float = model.encounter_scroll+point.x
 		var desired := 0.0
-		for span in groups:
+		for span in framing_spans:
 			desired = maxf(desired,smoothstep(span.x-1800,span.x-1000,progress)
 				*(1-smoothstep(span.y+200,span.y+1000,progress)))
-		# Reveal the automatic jump's destination before the board reaches its ramp.
-		# Reuse the flight-held framing so the landing target cannot move during takeoff.
-		for obstacle: Dictionary in model.course.obstacles:
-			if obstacle.kind != "ramp": continue
-			var start := float(obstacle.x)-float(obstacle.width)*.5
-			var end := float(obstacle.get("launch_x",obstacle.x))+1300.0
-			desired = maxf(desired,smoothstep(start-1800,start-1000,progress)
-				*(1-smoothstep(end,end+800,progress)))
 		if model.jump_age < 0:
 			machinery_framing = move_toward(machinery_framing,desired,get_process_delta_time()*2.0)
 		focus.x = lerpf(focus.x,8.0,machinery_framing)
-		camera.size = lerpf(camera.size,10.0,machinery_framing)
+		view_size = lerpf(view_size,10.0,machinery_framing)
 	else:
 		machinery_framing = 0.0
+	if camera.size != view_size: camera.size = view_size
 	var angle := deg_to_rad(yaw)
 	var tilt := deg_to_rad(35)
 	focus.y -= (point.x/UNIT-focus.x)*sin(angle)*tan(tilt)
@@ -432,13 +467,17 @@ func update_actors(model: RefCounted) -> void:
 	var hatches := PackedVector4Array()
 	if model != null:
 		for obstacle: Dictionary in model.visual_obstacles:
-			live[str(obstacle.id)+":"+str(obstacle.get("visual_started",0))] = true
+			var point: Vector2 = model.obstacle_position(obstacle)
+			# The channel mesh ends at x=38m. Even the longest upstream rail adds only 16m.
+			if model.continuous and point.x-float(obstacle.width)*.5 > 54*UNIT: continue
+			var key := str(obstacle.id)+":"+str(obstacle.get("visual_started",0))
+			live[key] = obstacle
 	# Return old instances before acquiring replacements, including checkpoint retries.
 	for key: String in actors.keys():
 		if not live.has(key): retire_actor(key)
 	if model != null:
-		for obstacle: Dictionary in model.visual_obstacles:
-			var key := str(obstacle.id)+":"+str(obstacle.get("visual_started",0))
+		for key: String in live:
+			var obstacle: Dictionary = live[key]
 			if not actors.has(key):
 				var pool_key := actor_signature(obstacle)
 				var actor: Node3D

@@ -102,6 +102,7 @@ func run_checks() -> void:
 			var deadline := Time.get_ticks_msec()+30000
 			while title.loading_in_progress and Time.get_ticks_msec() < deadline:
 				await process_frame
+			if title.card_ready: title._unhandled_input(key(KEY_B))
 			assert(title.game != null and not title.loading_in_progress)
 			title.game.set_process(false)
 			title.game.set_physics_process(false)

@@ -4,19 +4,16 @@ const DIRECTORY := "res://assets/title/starting-pictures"
 const FALLBACK = preload("res://assets/title/drain-damage-v2.png")
 static var session_texture: Texture2D
 
-static func candidates(directory := DIRECTORY) -> Array[Texture2D]:
-	var result: Array[Texture2D] = []
+static func candidate_paths(directory := DIRECTORY) -> PackedStringArray:
+	var paths := PackedStringArray()
 	for filename in ResourceLoader.list_directory(directory):
-		if not filename.begins_with("start-") or not filename.ends_with(".png"): continue
-		var resource := ResourceLoader.load(directory.path_join(filename),"Texture2D")
-		if resource is Texture2D and resource.get_width() > 0 and resource.get_height() > 0:
-			result.append(resource)
-	return result
-
-static func choose(available: Array[Texture2D]) -> Texture2D:
-	return FALLBACK if available.is_empty() else available.pick_random()
+		if filename.begins_with("start-") and filename.ends_with(".png"):
+			paths.append(directory.path_join(filename))
+	return paths
 
 static func for_session() -> Texture2D:
-	# A static strong reference survives title scene replacement and returning from gameplay.
-	if session_texture == null: session_texture = choose(candidates())
+	if session_texture == null:
+		var paths := candidate_paths()
+		if not paths.is_empty(): session_texture = load(paths[randi_range(0,paths.size()-1)])
+		if session_texture == null: session_texture = FALLBACK
 	return session_texture

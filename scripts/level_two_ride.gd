@@ -22,11 +22,12 @@ var visual_obstacles: Array[Dictionary] = []
 const FALL_DURATION := 1.35
 const VIEWPORT := Rect2(0,0,960,540)
 
-func attach(host: Node2D, yield_frame := Callable()) -> void:
+func attach(host: Node2D, yield_frame := Callable(), progress := Callable()) -> void:
 	audio_definition = JSON.parse_string(FileAccess.get_file_as_string("res://data/level-two-ride.json"))
 	audio.attach(host,audio_definition.audio.cues)
 	music.attach(host,audio_definition.music)
 	await art.configure(JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-ride-v1/manifest.json")),yield_frame)
+	if progress.is_valid(): progress.call(0.2)
 	if FileAccess.file_exists(SHOWCASE_ART):
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SHOWCASE_ART))
 		var hand: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(HAND_ART))
@@ -53,7 +54,10 @@ func attach(host: Node2D, yield_frame := Callable()) -> void:
 		manifest["flow"] = water.flow
 		var clarity: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ride-surface-clarity-v1/manifest.json"))
 		manifest.frames.merge(clarity.frames,true)
-		await obstacle_art.configure(manifest,yield_frame)
+		var on_frame := Callable()
+		if progress.is_valid():
+			on_frame = func(fraction: float) -> void: progress.call(lerpf(0.2,0.65,fraction))
+		await obstacle_art.configure(manifest,yield_frame,on_frame)
 
 func begin(host: Node2D, index := -1) -> void:
 	visual_obstacles.clear()
@@ -135,7 +139,7 @@ func prune_departed_visuals() -> void:
 		# Include camera yaw/bank projection and the trolley's cleared travel before retirement.
 		var world_margin := 1100.0 if str(obstacle.art_id).begins_with("strainer_gap_") else 400.0
 		var world_right := obstacle_position(obstacle).x+float(obstacle.width)*.5+world_margin
-		if visual_bounds(obstacle).end.x+margin < 0 and world_right < 0:
+		if world_right < 0 and visual_bounds(obstacle).end.x+margin < 0:
 			visual_obstacles.remove_at(i)
 
 func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool, firing := false) -> void:

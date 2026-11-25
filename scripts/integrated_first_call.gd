@@ -8,6 +8,11 @@ const FirstLevelEnding = preload("res://scripts/first_level_ending.gd")
 var ending := FirstLevelEnding.new()
 const Flush = preload("res://scripts/level_two_flush.gd")
 var flush := Flush.new()
+const RIDE_LOAD_TARGETS := ["level-two-landing","ride-encounter","ride-continuous"]
+const LevelLoadingOverlay = preload("res://scripts/level_loading_overlay.gd")
+var level_loading_overlay: LevelLoadingOverlay
+var defer_level_two_loading := false
+signal level_prepared
 const OPENING_END := 3120.0
 var difficulty := "normal"
 var seed_override := -1
@@ -47,19 +52,23 @@ func _ready() -> void:
 	await super._ready()
 	if startup_yield.is_valid(): await startup_yield.call()
 	add_child(boss_intro)
-	await flush.attach(self,startup_yield)
+	await flush.attach(self,startup_yield,not defer_level_two_loading)
 	# These screen-space controls must never inherit the encounter world framing.
 	for overlay: CanvasItem in [boss_hud,dialogue,pause_menu]: overlay.set_as_top_level(true)
 	# Dialogue and pause controls must cover the meter when they occupy the right edge.
 	boss_hud.z_index = 10
 	await skitterling.attach(self,startup_yield)
-	clogfather.attach(self)
-	assert(ending.prepare(),"First-level portal art preparation failed")
+	await clogfather.attach(self,startup_yield)
+	if startup_yield.is_valid(): await startup_yield.call()
+	var ending_ready := await ending.prepare(startup_yield)
+	assert(ending_ready,"First-level portal art preparation failed")
 	if FileAccess.file_exists(BACKGROUND_MANIFEST):
 		var scenery: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(BACKGROUND_MANIFEST))
 		background_panels = scenery.panels
 		for panel: Dictionary in background_panels:
-			if not background_textures.has(panel.path): background_textures[panel.path] = load("res://"+panel.path)
+			if not background_textures.has(panel.path):
+				if startup_yield.is_valid(): await startup_yield.call()
+				background_textures[panel.path] = load("res://"+panel.path)
 	await campaign_art.prepare(self,startup_yield)
 	# Base _ready dispatched reset_game, so campaign geometry is already configured.
 	startup_complete = true
@@ -694,7 +703,50 @@ func _exit_tree() -> void:
 	clogfather.audio.dispose()
 	super._exit_tree()
 
+func level_load_active() -> bool:
+	return level_loading_overlay != null
+
+func prepare_level_two_launch(initializer: String) -> void:
+	var needs_ride := initializer in RIDE_LOAD_TARGETS
+	if not needs_ride and initializer != "level-two-flush": return
+	while level_load_active(): await level_prepared
+	if flush.bowl_prepared and (not needs_ride or flush.ride_prepared): return
+	var previous_mode := process_mode
+	process_mode = Node.PROCESS_MODE_DISABLED
+	level_loading_overlay = LevelLoadingOverlay.new()
+	level_loading_overlay.card.begin("ride" if needs_ride else "flush")
+	add_child(level_loading_overlay)
+	# Draw the card before the first synchronous audio or texture import.
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await prepare_level_two_assets(initializer,level_loading_overlay.yield_slice,
+		level_loading_overlay.report)
+	level_loading_overlay.progress = 1.0
+	level_loading_overlay.waiting_for_button = true
+	await level_loading_overlay.accepted
+	level_loading_overlay.hide()
+	level_loading_overlay.set_process_input(false)
+	level_loading_overlay.queue_free()
+	level_loading_overlay = null
+	flush.input_guard = true
+	process_mode = previous_mode
+	level_prepared.emit()
+
+func prepare_level_two_assets(initializer: String, yield_frame: Callable, progress: Callable) -> void:
+	var needs_ride := initializer in RIDE_LOAD_TARGETS
+	if not needs_ride and initializer != "level-two-flush": return
+	var ride_start := 0.0 if flush.bowl_prepared else 0.35
+	if not flush.bowl_prepared:
+		var bowl_end := ride_start if needs_ride else 1.0
+		await flush.prepare_bowl(self,yield_frame,
+			func(fraction: float) -> void: progress.call(fraction*bowl_end))
+	if needs_ride and not flush.ride_prepared:
+		await flush.prepare_ride(self,yield_frame,
+			func(fraction: float) -> void: progress.call(lerpf(ride_start,1.0,fraction)))
+	progress.call(1.0)
+
 func begin_level_two() -> void:
+	await prepare_level_two_launch("level-two-flush")
 	campaign.level.platforms.stop_audio()
 	devil_spiders.clear(self,"level_transition")
 	specials.cancel("level transition")

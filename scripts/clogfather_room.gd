@@ -20,10 +20,11 @@ var clock := 0.0
 var owner_host: Node2D
 var spawned_wave := -1
 
-func attach(host: Node2D) -> void:
+func attach(host: Node2D, yield_frame := Callable()) -> void:
 	owner_host = host
-	audio.attach(host)
-	assert(art.prepare(),"Clogfather art preparation failed")
+	await audio.attach(host,yield_frame)
+	var art_ready := await art.prepare(yield_frame)
+	assert(art_ready,"Clogfather art preparation failed")
 
 func reset(seed_value: int) -> void:
 	clear_reinforcements()

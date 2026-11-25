@@ -70,8 +70,11 @@ func load_trial_textures(value: Variant, yield_frame := Callable()) -> void:
 				var pixels: Image = trial_textures[value.path].get_image()
 				pixels.convert(Image.FORMAT_RGBA8)
 				var bytes := pixels.get_data()
-				for index in range(3,bytes.size(),4):
-					if bytes[index] < int(value.alpha_cutoff): bytes[index] = 0
+				var cutoff := int(value.alpha_cutoff)
+				for offset in range(0,bytes.size(),65536):
+					if yield_frame.is_valid(): await yield_frame.call()
+					for index in range(offset+3,mini(offset+65536,bytes.size()),4):
+						if bytes[index] < cutoff: bytes[index] = 0
 				trial_textures[value.path] = ImageTexture.create_from_image(Image.create_from_data(
 					pixels.get_width(),pixels.get_height(),false,Image.FORMAT_RGBA8,bytes))
 		for child in value.values(): await load_trial_textures(child,yield_frame)
