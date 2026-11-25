@@ -2,7 +2,7 @@ extends "res://tests/ride_wave_two_course.gd"
 ## The five-hop chain must preserve successive takeoffs and landings, including timing error.
 
 func run_chain(hero: String, mode: String, seed_value: int, hz: int, anchor: float,
-		offset: float, drift: float, missed_hop := -1) -> void:
+		offset: float, drift: float, missed_hop := -1, finish_x := 27000.0) -> void:
 	var host := SeededHost.new()
 	host.employee.id = hero
 	host.difficulty = mode
@@ -35,10 +35,14 @@ func run_chain(hero: String, mode: String, seed_value: int, hz: int, anchor: flo
 				landing_points.append([landing_x,model.position.y])
 				var center := 23800+480*(landings-1)+shift
 				var bank := 380 if landings%2 == 1 else 280
-				ordered_landings = ordered_landings and absf(landing_x-center) <= (195 if landings == 5 else 180) \
+				var half_width := 0.0
+				for deck: Dictionary in model.course.obstacles:
+					if deck.kind == "deck" and absf(float(deck.x)-center) < 1:
+						half_width = float(deck.width)*0.5
+				ordered_landings = ordered_landings and half_width > 0 and absf(landing_x-center) <= half_width \
 					and absf(model.position.y-bank) <= 50
-		if host.health < 5 or model.encounter_scroll+model.position.x >= 27000+shift: break
-	var failed := not ordered_landings or host.health != 5 or jumps != 5 or landings != 5 or model.encounter_scroll+model.position.x < 27000+shift
+		if host.health < 5 or model.encounter_scroll+model.position.x >= finish_x+shift: break
+	var failed := not ordered_landings or host.health != 5 or jumps != 5 or landings != 5 or model.encounter_scroll+model.position.x < finish_x+shift
 	if missed_hop >= 0: failed = host.health == 5
 	if failed:
 		var record := {"hero":hero,"mode":mode,"seed":seed_value,"hz":hz,"anchor":anchor,

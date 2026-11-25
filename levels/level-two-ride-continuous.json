@@ -99,7 +99,8 @@
       {"template": "valve-a", "x": 14700},
       {"template": "flange-front", "x": 15080},
       {"template": "valve-b", "x": 15550},
-      {"template": "valve-c", "x": 16050},
+      {"template": "flange-front", "x": 15750, "modes": ["normal", "hard"]},
+      {"template": "valve-c", "x": 16050, "offset_by_mode": {"normal": -100, "hard": -100}},
       {"template": "flange-front", "x": 16514},
       {"template": "flange-back", "x": 16586},
       {"template": "valve-a", "x": 17100},
@@ -108,8 +109,9 @@
     ],
     "brush-weave": [
       {"template": "brush_far_v2", "x": 18600},
-      {"template": "brush_near_v2", "x": 19160},
-      {"template": "brush_center_v2", "x": 19720},
+      {"template": "brush_near_v2", "x": 19160, "offset_by_mode": {"normal": -110, "hard": -110}},
+      {"template": "brush_center_v2", "x": 19720, "offset_by_mode": {"normal": -220, "hard": -220}},
+      {"template": "valve-b", "x": 20100, "modes": ["normal", "hard"]},
       {"template": "flange-front", "x": 20450},
       {"template": "valve-b", "x": 21000},
       {"template": "flange-front", "x": 21500},
@@ -117,16 +119,18 @@
     ],
     "basin-chain": [
       {"template": "flange-front", "x": 22500},
-      {"template": "basin-water-gap", "x": 24535, "width": 2610},
       {"template": "basin-entry", "x": 23320},
-      {"template": "basin-middle", "x": 23800},
+      {"template": "basin-middle", "x": 23800, "width_by_mode": {"normal": 300, "hard": 300}},
       {"template": "basin-entry", "x": 24280},
-      {"template": "basin-middle", "x": 24760},
-      {"template": "basin-entry", "x": 25240},
-      {"template": "basin-exit", "x": 25720, "y": 380, "mirror_bank": true}
+      {"template": "basin-water-gap", "x": 24535, "width": 2610},
+      {"template": "basin-middle", "x": 24760, "width_by_mode": {"normal": 300, "hard": 300}},
+      {"template": "basin-entry", "x": 25240, "width_by_mode": {"hard": 300}},
+      {"template": "basin-exit", "x": 25720, "y": 380, "mirror_bank": true},
+      {"template": "flange-front", "x": 26210, "modes": ["normal", "hard"]}
     ],
     "machine-combinations": [
       {"template": "flange-front", "x": 27750},
+      {"template": "flange-front", "x": 28680, "modes": ["normal", "hard"]},
       {"template": "valve-b", "x": 28850},
       {"template": "flange-front", "x": 29364},
       {"template": "flange-back", "x": 29436},
@@ -136,6 +140,7 @@
       {"template": "elbow", "x": 30600},
       {"template": "elbow-pit", "x": 31060},
       {"template": "elbow-pit", "x": 31900, "followup": 1, "bank_y": 394},
+      {"template": "flange-front", "x": 32150, "modes": ["hard"]},
       {"template": "elbow-pit", "x": 32500, "followup": 2, "bank_y": 266, "fallback": "valve-a"},
       {"template": "elbow-pit", "x": 33100, "followup": 3, "bank_y": 394, "fallback": "valve-b"},
       {"template": "flange-front", "x": 33700},
@@ -146,6 +151,7 @@
       {"template": "launch-ramp", "x": 35600},
       {"template": "fatal-long-pit", "x": 36015},
       {"template": "catch-basin", "x": 36517.5},
+      {"template": "flange-front", "x": 37040, "modes": ["normal", "hard"]},
       {"template": "valve-a", "x": 37100},
       {"template": "flange-front", "x": 37600},
       {"template": "valve-b", "x": 38100}
@@ -153,6 +159,7 @@
     "mixed-finish": [
       {"template": "flange-front", "x": 39350},
       {"template": "flange-front", "x": 41250},
+      {"template": "flange-front", "x": 41650, "modes": ["normal", "hard"]},
       {"template": "valve-b", "x": 41850}
     ]
   },

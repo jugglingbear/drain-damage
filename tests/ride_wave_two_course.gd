@@ -10,6 +10,12 @@ static func full_route_plan(model: RefCounted, mode: String) -> Dictionary:
 		[22700,280],[23392,380],[23872,280],[24352,380],[24832,280],[25312,380],
 		[28450,265],[29600,395],[30200,270],[32100,395],[32700,265],[33750,395],
 		[34900,330],[36780,395],[37700,265],[41400,265]]
+	if mode != "easy":
+		for point in points:
+			if point[0] == 18760: point[0] = 18670
+			if point[0] == 19860: point[1] = 265
+		for x in [15627,26087,28557,36917,41527]: plan.jumps.append(float(x)+shift)
+	if mode == "hard": plan.jumps.append(32027.0+shift)
 	for point in points: plan.points.append([float(point[0])+shift,point[1]])
 	for x in [14957,16391,17477,20327,21377,22377,23392,23872,24352,24832,25312,
 		27627,29241,33577,34477,37477,39227,41127]:

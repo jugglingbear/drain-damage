@@ -109,16 +109,19 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 			templates[piece.id].source_family = encounter.id
 	for block: String in layout.wave_two:
 		for beat: Dictionary in layout.wave_two[block]:
+			if beat.has("modes") and difficulty not in beat.modes: continue
+			var center := float(beat.x)+float(beat.get("offset_by_mode",{}).get(difficulty,0))+downstream
 			var use_fallback := int(beat.get("followup",0)) > followups
 			var template: String = beat.fallback if use_fallback else beat.template
 			var piece: Dictionary = templates[template].duplicate(true)
-			var translation := float(beat.x)+downstream-float(piece.x)
+			var translation := center-float(piece.x)
 			piece.source_id = piece.id
 			piece.instance_id = block
 			piece.id = "w2-%s-%s-%d" % [block,piece.source_id,int(beat.x)]
-			piece.x = float(beat.x)+downstream
+			piece.x = center
 			for property in ["width","y","mirror_bank"]:
 				if beat.has(property): piece[property] = beat[property]
+			if beat.get("width_by_mode",{}).has(difficulty): piece.width = beat.width_by_mode[difficulty]
 			if piece.has("launch_x"): piece.launch_x += translation
 			if str(piece.source_id).begins_with("valve-"):
 				piece.width = 80
