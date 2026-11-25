@@ -78,7 +78,7 @@ func check_patterns() -> void:
 						if body.intersects(model.obstacle_rect(obstacle)): safe = false
 					if safe: safe_centers += 1
 				if safe_centers < 20: failures.append("Insufficient full-body dodge corridor: "+str(gap.id))
-			if station_count != 6: failures.append("Expected six stations")
+			if station_count != 12: failures.append("Expected six stations in each wave")
 			for retry in [1,2]:
 				model.begin(host,retry)
 				if JSON.stringify(model.course.obstacles) != before: failures.append("Retry reshuffled pattern")

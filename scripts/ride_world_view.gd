@@ -40,6 +40,7 @@ var far_wall: ShaderMaterial
 var near_wall: ShaderMaterial
 var walkway: StandardMaterial3D
 var course_distance := 0.0
+var machinery_framing := 0.0
 var material_loader := Proof.new()
 var helper_nodes: Array[Node] = [material_loader.camera,material_loader.rider]
 
@@ -158,7 +159,7 @@ func configure(yield_frame := Callable()) -> void:
 
 func actor_signature(obstacle: Dictionary) -> String:
 	if obstacle.get("station",false): return "station:%s:%s:%s:%s" % [obstacle.y,obstacle.width,obstacle.depth,obstacle.art_id]
-	if obstacle.get("id","") == "strainer-side-baffle":
+	if str(obstacle.get("id","")).ends_with("strainer-side-baffle"):
 		return "baffle:%s:%s:%s:%s" % [obstacle.y,obstacle.width,obstacle.depth,obstacle.art_id]
 	var definition := obstacle.duplicate(true)
 	definition.erase("visual_started")
@@ -180,7 +181,25 @@ func prepare_actors(yield_frame := Callable()) -> void:
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride-showcase.json"))
 	var prepared: Array = source.encounters.duplicate()
 	for difficulty in ["easy","normal","hard"]:
-		prepared.append_array(preload("res://scripts/ride_continuous_course.gd").build(source,difficulty).encounters)
+		var variants := {}
+		var known := {}
+		for seed_value in range(256):
+			var course: Dictionary = preload("res://scripts/ride_continuous_course.gd").build(source,difficulty,seed_value)
+			var count: int = course.get("elbow_followups",3)
+			if variants.has(count): continue
+			variants[count] = true
+			for encounter: Dictionary in course.encounters:
+				var additions: Array = []
+				var counts := {}
+				for obstacle: Dictionary in encounter.obstacles:
+					var key := actor_signature(obstacle)
+					counts[key] = int(counts.get(key,0))+1
+					if int(counts[key]) <= int(known.get(key,0)): continue
+					known[key] = counts[key]
+					additions.append(obstacle)
+				prepared.append({"obstacles":additions})
+			if variants.size() == 3: break
+		assert(variants.size() == 3,"Missing elbow follow-up prewarm variant")
 	for encounter: Dictionary in prepared:
 		for obstacle: Dictionary in encounter.obstacles:
 			if yield_frame.is_valid(): await yield_frame.call()
@@ -188,7 +207,7 @@ func prepare_actors(yield_frame := Callable()) -> void:
 			if not actor_pool.has(key): actor_pool[key] = []
 			actor_pool[key].append(make_actor(obstacle))
 			# Seed mirroring changes bank geometry independently of difficulty.
-			if obstacle.get("station",false) or obstacle.get("id","") == "strainer-side-baffle":
+			if obstacle.get("station",false) or str(obstacle.get("id","")).ends_with("strainer-side-baffle"):
 				var mirrored := obstacle.duplicate(true)
 				mirrored.y = 660.0-float(obstacle.y)
 				if str(mirrored.art_id) == "valve_wall_far_v2": mirrored.art_id = "valve_wall_near_v2"
@@ -329,20 +348,39 @@ func update_world() -> void:
 		# Establish the full strike/recovery frame during the warning, then hold it still.
 		focus.y += .35*framing
 		camera.size = lerpf(5.5,9.0,framing)
-	# Hold a wider, forward-looking frame through the machinery run, rather than pumping
-	# the camera separately at each basket. The far rim must precede jump commitment.
+	# Group nearby baskets, leaving the intervening Wave 2 sections at normal scale.
+	# The approach establishes the far rim before commitment; hold framing in flight.
 	if riding and model.continuous:
-		var first := INF
-		var last := -INF
+		var spans: Array[Vector2] = []
 		for obstacle: Dictionary in model.course.obstacles:
 			if not obstacle.get("station",false): continue
-			first = minf(first,float(obstacle.x)-float(obstacle.width)*.5)
-			last = maxf(last,float(obstacle.x)+float(obstacle.width)*.5)
-		if first < INF:
-			var progress: float = model.encounter_scroll+point.x
-			var framing := smoothstep(first-1800,first-1000,progress)*(1-smoothstep(last+200,last+1000,progress))
-			focus.x = lerpf(focus.x,8.0,framing)
-			camera.size = lerpf(camera.size,10.0,framing)
+			spans.append(Vector2(float(obstacle.x)-float(obstacle.width)*.5,
+				float(obstacle.x)+float(obstacle.width)*.5))
+		spans.sort_custom(func(a: Vector2,b: Vector2) -> bool: return a.x < b.x)
+		var groups: Array[Vector2] = []
+		for span in spans:
+			if not groups.is_empty() and span.x-groups[-1].y <= 2400:
+				groups[-1].y = maxf(groups[-1].y,span.y)
+			else: groups.append(span)
+		var progress: float = model.encounter_scroll+point.x
+		var desired := 0.0
+		for span in groups:
+			desired = maxf(desired,smoothstep(span.x-1800,span.x-1000,progress)
+				*(1-smoothstep(span.y+200,span.y+1000,progress)))
+		# Reveal the automatic jump's destination before the board reaches its ramp.
+		# Reuse the flight-held framing so the landing target cannot move during takeoff.
+		for obstacle: Dictionary in model.course.obstacles:
+			if obstacle.kind != "ramp": continue
+			var start := float(obstacle.x)-float(obstacle.width)*.5
+			var end := float(obstacle.get("launch_x",obstacle.x))+1300.0
+			desired = maxf(desired,smoothstep(start-1800,start-1000,progress)
+				*(1-smoothstep(end,end+800,progress)))
+		if model.jump_age < 0:
+			machinery_framing = move_toward(machinery_framing,desired,get_process_delta_time()*2.0)
+		focus.x = lerpf(focus.x,8.0,machinery_framing)
+		camera.size = lerpf(camera.size,10.0,machinery_framing)
+	else:
+		machinery_framing = 0.0
 	var angle := deg_to_rad(yaw)
 	var tilt := deg_to_rad(35)
 	focus.y -= (point.x/UNIT-focus.x)*sin(angle)*tan(tilt)
@@ -415,7 +453,7 @@ func update_actors(model: RefCounted) -> void:
 			actor.visible = true
 			var point: Vector2 = model.obstacle_position(obstacle)
 			actor.position = world(point)
-			var can_occlude: bool = obstacle.get("instance_id","") == "slice-slalom" or obstacle.get("station",false)
+			var can_occlude: bool = str(obstacle.art_id).begins_with("valve_") or obstacle.get("station",false)
 			var half_depth := float(obstacle.depth)*BANK_SCALE/200.0
 			if can_occlude and host.life_state == "alive" and rider.position.z < actor.position.z+half_depth:
 				var separation := absf(camera.basis.x.dot(rider.position-actor.position))

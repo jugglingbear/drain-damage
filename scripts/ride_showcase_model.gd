@@ -142,6 +142,8 @@ func _deck_top_interval(deck: Dictionary, a: Vector2, b: Vector2, time: float, d
 	var start := a-motion_offset(deck,time)
 	var finish := b-motion_offset(deck,time+dt)
 	var rigid_half := Vector2(55,14)
+	if maxf(start.x,finish.x)+rigid_half.x < rect.position.x or minf(start.x,finish.x)-rigid_half.x > rect.end.x:
+		return Vector2(-1,-1)
 	if deck_surface_shape(deck) != "ellipse":
 		return overlap_interval(start,finish,rect.grow_individual(55,14,55,14))
 	# Ellipse versus rigid board rectangle, expressed as two strips and four rounded corners.
@@ -993,6 +995,10 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 		if contact_latches.has(obstacle.id):
 			if b.x-HALF.x > float(obstacle.x)+float(obstacle.width)*0.5+max_x: contact_latches.erase(obstacle.id)
 			continue
+		# Distant static openings cannot intersect this swept board. Avoid solving their overlap areas.
+		if motion.is_empty():
+			var reach := HALF.x+float(obstacle.width)*.5
+			if maxf(a.x,b.x) < float(obstacle.x)-reach or minf(a.x,b.x) > float(obstacle.x)+reach: continue
 		var interval := _relative_interval(obstacle,a,b,encounter_clock,dt)
 		if interval.x < 0: continue
 		# A destructible floor becomes unsupported at the same timestamp as its visible impact.

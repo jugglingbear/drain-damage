@@ -41,9 +41,10 @@ func checks() -> void:
 				assert(ride.contact_latches.is_empty() and ride.hit_ids.is_empty() and ride.fractured.is_empty())
 				assert(game.health == hero.max_health and game.lives == 2)
 			# Exercise each composed lethal opening through the real collision/death path, even during immunity.
-			for pit_instance in ["slice-caps","slice-strainer"]:
+			for pit_instance in ["slice-caps","slice-strainer","elbow-chain","mixed-finish"]:
 				var checkpoint := 1 if pit_instance == "slice-caps" else 2
 				ride.begin(game,checkpoint)
+				var pattern := JSON.stringify(ride.course.obstacles)
 				game.lives = 3
 				game.health = hero.max_health
 				game.life_state = "alive"
@@ -59,6 +60,7 @@ func checks() -> void:
 				assert(game.life_state != "alive" and game.lives == 2 and ride.events.has("fall"))
 				game.respawn_after_death()
 				assert(ride.checkpoint_index == 0 and game.health == hero.max_health)
+				assert(JSON.stringify(ride.course.obstacles) == pattern and ride.clock == 0)
 			# Game-over retry follows reset_game, not respawn_after_death.
 			game.lives = 0
 			game.life_state = "dead"

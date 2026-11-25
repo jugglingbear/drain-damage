@@ -8,6 +8,9 @@ class SeededHost extends Host:
 var failures: Array[Dictionary] = []
 var routes := 0
 
+# Keep the exhaustive Wave 1 matrix bounded when later waves extend the same course.
+const WAVE_ONE_FINISH := 14300.0
+
 func _initialize() -> void: call_deferred("checks")
 
 static func bank_input(model: RefCounted, target: float, dt: float) -> float:
@@ -36,7 +39,7 @@ static func route_plan(model: RefCounted, mode: String, cap_drift := 0.0, strain
 	points.append_array([[1450+7*spacing+120,330],[6900+shift,265],[7390+shift,395],[7800+shift,265]])
 	var last_gap_end := 0.0
 	for gap: Dictionary in model.course.obstacles:
-		if not gap.get("station",false): continue
+		if not gap.get("station",false) or float(gap.x) > WAVE_ONE_FINISH+shift: continue
 		last_gap_end = maxf(last_gap_end,float(gap.x)+float(gap.width)*0.5)
 		if float(gap.depth) >= 200:
 			jumps.append(float(gap.x)-150)
@@ -88,6 +91,8 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 	var initial_scroll: float = model.encounter_scroll
 	var previous_scroll: float = model.encounter_scroll
 	var horizontal_frames := 0
+	var finish_scroll := minf(WAVE_ONE_FINISH+shift,float(model.definition.world_finish))-300
+	var reached_finish := false
 	for frame in range(32*hz):
 		var dt := 1.0/hz
 		var x: float = model.position.x+model.encounter_scroll
@@ -103,18 +108,19 @@ func run_route(hero: String, mode: String, anchor: float, hz: int, offset: float
 		if model.encounter_scroll < previous_scroll:
 			failures.append({"reason":"scroll reset","mode":mode})
 		previous_scroll = model.encounter_scroll
-		if model.complete or host.health < 5: break
+		reached_finish = model.encounter_scroll >= finish_scroll
+		if reached_finish or model.complete or host.health < 5: break
 	var record := {"hero":hero,"mode":mode,"anchor":anchor,"hz":hz,"offset":offset,"mixed":mixed,
 		"retry":retry,"station_drift":station_drift,"seed":seed_value,"cap_drift":cap_drift,"strainer_jump":strainer_jump,"x":model.position.x+model.encounter_scroll,
 		"event":model.last_event}
-	if not model.complete or host.health != 5 or host.lives != 3 or host.life_state != "alive":
+	if not reached_finish or host.health != 5 or host.lives != 3 or host.life_state != "alive":
 		failures.append(record)
 		print("ROUTE_FAILURE ",JSON.stringify(record))
 	elif mixed and horizontal_frames == 0:
 		record.reason = "mixed route did not exercise horizontal input"
 		failures.append(record)
 	else:
-		var expected: float = (float(model.definition.world_finish)-300-initial_scroll)/560
+		var expected: float = (finish_scroll-initial_scroll)/model.scroll_speed
 		if absf(model.clock-start_clock-expected) > 1.0/hz+0.0001:
 			record.reason = "unexpected finish timing"
 			failures.append(record)

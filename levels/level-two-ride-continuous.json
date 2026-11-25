@@ -1,8 +1,9 @@
 {
   "id": "level-two-continuous-slice",
-  "version": 1,
+  "version": 2,
   "world_start": 300,
-  "world_finish": 14300,
+  "wave_one_finish": 14300,
+  "world_finish": 42300,
   "retry_world_x": [
     300,
     6000,
@@ -92,5 +93,75 @@
       ],
       "translate_x": 9080
     }
+  ],
+  "wave_two": {
+    "mixed-entry": [
+      {"template": "valve-a", "x": 14700},
+      {"template": "flange-front", "x": 15080},
+      {"template": "valve-b", "x": 15550},
+      {"template": "valve-c", "x": 16050},
+      {"template": "flange-front", "x": 16514},
+      {"template": "flange-back", "x": 16586},
+      {"template": "valve-a", "x": 17100},
+      {"template": "flange-front", "x": 17600},
+      {"template": "valve-b", "x": 18100}
+    ],
+    "brush-weave": [
+      {"template": "brush_far_v2", "x": 18600},
+      {"template": "brush_near_v2", "x": 19160},
+      {"template": "brush_center_v2", "x": 19720},
+      {"template": "flange-front", "x": 20450},
+      {"template": "valve-b", "x": 21000},
+      {"template": "flange-front", "x": 21500},
+      {"template": "valve-a", "x": 22000}
+    ],
+    "basin-chain": [
+      {"template": "flange-front", "x": 22500},
+      {"template": "basin-water-gap", "x": 24535, "width": 2610},
+      {"template": "basin-entry", "x": 23320},
+      {"template": "basin-middle", "x": 23800},
+      {"template": "basin-entry", "x": 24280},
+      {"template": "basin-middle", "x": 24760},
+      {"template": "basin-entry", "x": 25240},
+      {"template": "basin-exit", "x": 25720, "y": 380, "mirror_bank": true}
+    ],
+    "machine-combinations": [
+      {"template": "flange-front", "x": 27750},
+      {"template": "valve-b", "x": 28850},
+      {"template": "flange-front", "x": 29364},
+      {"template": "flange-back", "x": 29436},
+      {"template": "valve-a", "x": 30000}
+    ],
+    "elbow-chain": [
+      {"template": "elbow", "x": 30600},
+      {"template": "elbow-pit", "x": 31060},
+      {"template": "elbow-pit", "x": 31900, "followup": 1, "bank_y": 394},
+      {"template": "elbow-pit", "x": 32500, "followup": 2, "bank_y": 266, "fallback": "valve-a"},
+      {"template": "elbow-pit", "x": 33100, "followup": 3, "bank_y": 394, "fallback": "valve-b"},
+      {"template": "flange-front", "x": 33700},
+      {"template": "valve-a", "x": 34100}
+    ],
+    "flume-launch": [
+      {"template": "flange-front", "x": 34600},
+      {"template": "launch-ramp", "x": 35600},
+      {"template": "fatal-long-pit", "x": 36015},
+      {"template": "catch-basin", "x": 36517.5},
+      {"template": "valve-a", "x": 37100},
+      {"template": "flange-front", "x": 37600},
+      {"template": "valve-b", "x": 38100}
+    ],
+    "mixed-finish": [
+      {"template": "flange-front", "x": 39350},
+      {"template": "flange-front", "x": 41250},
+      {"template": "valve-b", "x": 41850}
+    ]
+  },
+  "wave_two_stations": [
+    {"x": 26650, "length": 160, "depth": 72, "bank_offset": -64},
+    {"x": 27200, "length": 160, "depth": 136, "bank_offset": 32},
+    {"x": 28300, "length": 140, "depth": 200, "bank_offset": 0},
+    {"x": 38700, "length": 640, "depth": 72, "bank_offset": -64},
+    {"x": 39900, "length": 160, "depth": 72, "bank_offset": -64, "opposite_baffle": true},
+    {"x": 40600, "length": 640, "depth": 136, "bank_offset": 32}
   ]
 }

@@ -68,10 +68,15 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 			break
 	# Mirror the whole bank sequence so each seeded pattern preserves its tested transitions.
 	var mirror := -1 if rng.randi_range(0,1) == 0 else 1
+	var wave_one_stations := stations.size()
+	stations = stations + layout.wave_two_stations
 	for index in stations.size():
 		var station: Dictionary = stations[index]
 		var gap := prototype.duplicate(true)
 		gap.id = "drop-%d-%d" % [floori(index/3.0),index%3]
+		if index >= wave_one_stations:
+			gap.id = "w2-drop-%d" % (index-wave_one_stations)
+			gap.instance_id = "machine-combinations" if index-wave_one_stations < 3 else "mixed-finish"
 		gap["station"] = true
 		gap.x = float(station.x)+downstream
 		gap.y = 330+mirror*float(station.bank_offset)
@@ -88,13 +93,43 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 				if valve.source_id == ("valve-b" if gap.y < 330 else "valve-a"):
 					baffle = valve.duplicate(true)
 					break
-			baffle.id = "strainer-side-baffle"
+			baffle.id = "strainer-side-baffle" if index < wave_one_stations else "w2-strainer-side-baffle"
+			if index >= wave_one_stations: baffle.instance_id = gap.instance_id
 			baffle.x = gap.x
 			baffle.depth = 65
 			baffle.y = 397.5 if gap.y < 330 else 262.5
 			obstacles.append(baffle)
 	for obstacle in obstacles:
 		if obstacle.instance_id == "slice-exit-baffle": obstacle.x += 1530
+	var followups := rng.randi_range(1,3)
+	var templates := {}
+	for encounter: Dictionary in showcase.encounters:
+		for piece: Dictionary in encounter.obstacles:
+			templates[piece.id] = piece.duplicate(true)
+			templates[piece.id].source_family = encounter.id
+	for block: String in layout.wave_two:
+		for beat: Dictionary in layout.wave_two[block]:
+			var use_fallback := int(beat.get("followup",0)) > followups
+			var template: String = beat.fallback if use_fallback else beat.template
+			var piece: Dictionary = templates[template].duplicate(true)
+			var translation := float(beat.x)+downstream-float(piece.x)
+			piece.source_id = piece.id
+			piece.instance_id = block
+			piece.id = "w2-%s-%s-%d" % [block,piece.source_id,int(beat.x)]
+			piece.x = float(beat.x)+downstream
+			for property in ["width","y","mirror_bank"]:
+				if beat.has(property): piece[property] = beat[property]
+			if piece.has("launch_x"): piece.launch_x += translation
+			if str(piece.source_id).begins_with("valve-"):
+				piece.width = 80
+				if piece.source_id == "valve-c": piece.depth = 55
+			if beat.has("followup") and not use_fallback:
+				piece.width = 160
+				piece.depth = 72
+				piece.y = beat.bank_y
+			obstacles.append(piece)
+	result["wave_one_finish"] = float(layout.wave_one_finish)+downstream
+	result["elbow_followups"] = followups
 	result["continuous"] = true
 	result["retry_world_x"] = [300,6000+downstream,9000+downstream]
 	result["world_finish"] = float(layout.world_finish)+downstream
