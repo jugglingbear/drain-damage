@@ -29,18 +29,20 @@ func run_chain(hero: String, mode: String, seed_value: int, hz: int, anchor: flo
 		model.tick(host,1.0/hz,controls.steering,controls.jump)
 		if x > 23100+shift and x < 26000+shift:
 			jumps += int(model.events.get("jump",0))-before_jump
-			if int(model.events.get("landed",0)) > before_land:
+			if int(model.events.get("landed",0)) > before_land and model.landing_material == "porcelain":
 				landings += 1
 				var landing_x: float = model.encounter_scroll+model.position.x
 				landing_points.append([landing_x,model.position.y])
 				var center := 23800+480*(landings-1)+shift
 				var bank := 380 if landings%2 == 1 else 280
 				var half_width := 0.0
+				var half_depth := 0.0
 				for deck: Dictionary in model.course.obstacles:
 					if deck.kind == "deck" and absf(float(deck.x)-center) < 1:
 						half_width = float(deck.width)*0.5
+						half_depth = float(deck.depth)*0.5
 				ordered_landings = ordered_landings and half_width > 0 and absf(landing_x-center) <= half_width \
-					and absf(model.position.y-bank) <= 50
+					and absf(model.position.y-bank) <= half_depth
 		if host.health < 5 or model.encounter_scroll+model.position.x >= finish_x+shift: break
 	var failed := not ordered_landings or host.health != 5 or jumps != 5 or landings != 5 or model.encounter_scroll+model.position.x < finish_x+shift
 	if missed_hop >= 0: failed = host.health == 5

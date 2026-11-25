@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "build": "Prototype 204 / 0.204.0",
-  "status": "Signed Mac build. Normal Wave 2 has 59 objects and Hard has 60, up from 53. Normal adds five jump flanges and a brush-exit valve. Hard adds an elbow-chain flange and a third narrowed basin. Brush centers are 450 pixels apart. The signed build clears all six seeded patterns with both heroes on each difficulty. Human playtesting of the new difficulty is pending.",
-  "app": "builds/Prototype-204/Drain Damage.app",
+  "build": "Prototype 206 / 0.206.0",
+  "status": "Signed Mac build with smaller Wave 2 porcelain islands and upper-right Level 2 HUD. Level-name overlays removed from flush and ride. Human difficulty feedback pending.",
+  "app": "builds/Prototype-206/Drain Damage.app",
   "elbow_breach": "One to three seeded follow-up holes. Unused slots become valves. Respawn preserves the layout.",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-203/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-205/Drain Damage.app",
   "entry": {
     "flush": "make run LEVEL=2",
     "landing": "make run LEVEL=2-landing",
@@ -1146,7 +1146,7 @@
     "presentation": "Prewarm60 actors; no runtime allocation during four captured routes. Extended existing fixed strainer rail/cantilever supports early recognition; independent Art proposed reuse and accepted corrected sampled support/flange views.",
     "pck_sha256": "e542921833aa5d430ca30c0c2e48fda2622f2ef84d3e4a733d1d48fe4ef4cb17",
     "validation": [
-      "Final isolated PCK390routes,0failures: bothheroes/allmodes/30,60,120Hz; rear,neutral,front anchors; fixed inputs±50ms, mixed inputs±25ms, retries, alternate strainerjump and±0.1cap drift.",
+      "Final isolated PCK390routes,0failures: bothheroes/allmodes/30,60,120Hz; rear,neutral,front anchors; fixed inputs\u00b150ms, mixed inputs\u00b125ms, retries, alternate strainerjump and\u00b10.1cap drift.",
       "54sampled straight/repeated-hop demand checks; conservative strainer recognition-to-frontcontact2.026785714s in allmodes. Not an exhaustive exploit proof.",
       "Final PCK actual game lifecycle6hero/modecases: pause,3checkpoint retries, bothpitfalls during immunity, gameoverretry, ordinarydamage, explicitfinish, fresh isolatedmode restoration.",
       "Existing54showcase routes702encounters pass;7Python launch tests pass; Mac export/ad-hoc strict signature and diff hygiene pass.",
@@ -1168,7 +1168,7 @@
     "warnings": "Known headless macOS CA/editor-settings/log-path warnings; final native capture has no script errors. No GitHub release/publication requested for190."
   },
   "tony_running_191": {
-    "change": "Tony move_speed337.5→310.5 (270×1.15); only running speed changed.",
+    "change": "Tony move_speed337.5\u2192310.5 (270\u00d71.15); only running speed changed.",
     "preserved": "Jump-height multiplier1.25, swim_speed270, boardphysics and all other balance unchanged.",
     "checks": "Source and isolated191PCK hero_balance:123checks0failures, actual run/jump at30/60/120Hz; existing cadence/health/special/transition expectations pass.",
     "pck_sha256": "97b5c7720f8eabc8dc7fdac685895b85f454fb013d9e715f9e85b40cebf07a3f",

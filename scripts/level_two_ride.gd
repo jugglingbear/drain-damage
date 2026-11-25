@@ -487,9 +487,8 @@ func draw_rider(host: Node2D, flush: RefCounted) -> void:
 func draw(host: Node2D, flush: RefCounted) -> void:
 	host.draw_set_transform(Vector2.ZERO)
 	host.box(0,0,960,64,Color("101d29"))
-	host.label_at("POOP-BOARD RIDE" if continuous else "RIDE OBSTACLE TEST",Vector2(24,27),22,host.MINT)
-	host.draw_vitals(Vector2(550,4),"rubber-ducks")
-	if not continuous: host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(830,52),14,host.MINT)
+	host.draw_vitals(Vector2(host.get_viewport_rect().size.x-164,4),"rubber-ducks")
+	if not continuous: host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(24,52),14,host.MINT)
 	if phase == "rest":
 		host.label_at("REST — %.1f s" % rest_remaining,Vector2(24,92),22,host.MINT)
 	elif phase == "encounter" and not continuous:

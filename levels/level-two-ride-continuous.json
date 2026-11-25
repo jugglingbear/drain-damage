@@ -119,13 +119,13 @@
     ],
     "basin-chain": [
       {"template": "flange-front", "x": 22500},
-      {"template": "basin-entry", "x": 23320},
-      {"template": "basin-middle", "x": 23800, "width_by_mode": {"normal": 300, "hard": 300}},
-      {"template": "basin-entry", "x": 24280},
+      {"template": "basin-entry", "x": 23320, "width_by_mode": {"easy": 330, "normal": 315, "hard": 300}, "depth_by_mode": {"easy": 84, "normal": 76, "hard": 68}},
+      {"template": "basin-middle", "x": 23800, "width_by_mode": {"easy": 310, "normal": 280, "hard": 260}, "depth_by_mode": {"easy": 76, "normal": 60, "hard": 50}},
+      {"template": "basin-entry", "x": 24280, "width_by_mode": {"easy": 310, "normal": 280, "hard": 260}, "depth_by_mode": {"easy": 76, "normal": 60, "hard": 50}},
       {"template": "basin-water-gap", "x": 24535, "width": 2610},
-      {"template": "basin-middle", "x": 24760, "width_by_mode": {"normal": 300, "hard": 300}},
-      {"template": "basin-entry", "x": 25240, "width_by_mode": {"hard": 300}},
-      {"template": "basin-exit", "x": 25720, "y": 380, "mirror_bank": true},
+      {"template": "basin-middle", "x": 24760, "width_by_mode": {"easy": 310, "normal": 280, "hard": 260}, "depth_by_mode": {"easy": 76, "normal": 60, "hard": 50}},
+      {"template": "basin-entry", "x": 25240, "width_by_mode": {"easy": 310, "normal": 280, "hard": 260}, "depth_by_mode": {"easy": 76, "normal": 60, "hard": 50}},
+      {"template": "basin-exit", "x": 25720, "y": 380, "mirror_bank": true, "width_by_mode": {"easy": 330, "normal": 315, "hard": 300}, "depth_by_mode": {"easy": 84, "normal": 76, "hard": 68}},
       {"template": "flange-front", "x": 26210, "modes": ["normal", "hard"]}
     ],
     "machine-combinations": [

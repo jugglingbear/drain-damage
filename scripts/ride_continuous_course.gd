@@ -121,7 +121,8 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 			piece.x = center
 			for property in ["width","y","mirror_bank"]:
 				if beat.has(property): piece[property] = beat[property]
-			if beat.get("width_by_mode",{}).has(difficulty): piece.width = beat.width_by_mode[difficulty]
+			piece.width = beat.get("width_by_mode",{}).get(difficulty,piece.width)
+			piece.depth = beat.get("depth_by_mode",{}).get(difficulty,piece.depth)
 			if piece.has("launch_x"): piece.launch_x += translation
 			if str(piece.source_id).begins_with("valve-"):
 				piece.width = 80
