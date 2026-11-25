@@ -114,17 +114,14 @@ func _draw() -> void:
 	var font := ThemeDB.fallback_font
 	draw_string(font, Vector2(680, 508), skip_hint(), HORIZONTAL_ALIGNMENT_RIGHT, 230, 16, Color("f1eee4"))
 	draw_string(font, Vector2(389, 365), ("BJ" if is_boss else "Tony" if is_tony else "Sean"), HORIZONTAL_ALIGNMENT_LEFT, -1, 23, accent)
-	var role := "4TH-GENERATION PLUMBER / EMPLOYEE" if is_tony else "APPRENTICE / PROBATIONARY HUMAN"
 	if is_boss:
-		role = "YOUR ARTIFICIALLY INTELLIGENT LORD AND MASTER"
-	if entry.get("radio", false):
-		role += " / RADIO SUPPORT"
-	draw_string(font, Vector2(390, 385), role, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("9aafb8"))
+		draw_string(font, Vector2(390, 385), "YOUR ARTIFICIALLY INTELLIGENT LORD AND MASTER",
+			HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color("9aafb8"))
 	var text := current_text().substr(0, int(revealed))
 	var paragraph := TextParagraph.new()
 	paragraph.width = TEXT_WIDTH
 	paragraph.add_string(text, font, fitted_font_size(current_text()))
-	paragraph.draw(get_canvas_item(), Vector2(390, 397), Color("f1eee4"))
+	paragraph.draw(get_canvas_item(), Vector2(390, 397 if is_boss else 377), Color("f1eee4"))
 	draw_string(font, Vector2(885, 365), "%d / %d" % [line_index + 1, lines.size()],
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 13, accent)
 

@@ -603,16 +603,7 @@ func _draw() -> void:
 		ending.draw_hero(self)
 	elif ending.state != "complete" and not dispenser.hides_hero() \
 		and (cinematic.active or life_state != "alive" or invulnerable <= 0 or int(elapsed*12)%2 == 0): draw_sean(player)
-	for shot in shots:
-		# Reuse the existing original projectile presentation.
-		draw_set_transform(shot.pos-Vector2(floorf(camera_x),0),shot.dir.angle())
-		if employee.id == "tony":
-			box(-15,-2,21,4,Color("70dfff"))
-			box(-4,-1,12,2,Color("eaffff"))
-		else:
-			box(-16,-1,16,3,Color("ad7546"))
-			box(0,-5,5,11,Color("e57356"))
-		draw_set_transform(Vector2(-floorf(camera_x),0))
+	draw_player_shots()
 	for shot in hostile_shots: draw_hostile_shot(shot)
 	for particle in particles:
 		box(particle.pos.x,particle.pos.y,4,4,particle.color)

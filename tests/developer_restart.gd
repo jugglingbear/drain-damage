@@ -49,7 +49,7 @@ func run_checks() -> void:
 	trigger(game, JOY_AXIS_TRIGGER_RIGHT, 1)
 	Input.action_press("shoot")
 	game.step_player(0)
-	assert(game.shots.is_empty())
+	assert(game.shots.size() == 1, "Both triggers allow planted fire until Start requests a restart")
 	start(game, true)
 	assert(game.kills == 0 and game.lives == 3 and not game.paused)
 	assert(game.restart_guard_device == 0)

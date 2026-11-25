@@ -69,7 +69,7 @@ static func draw(canvas: Node2D, page: int, muted: bool, health_bars := false, f
 		panel(canvas, Rect2(622, y, 306, 40), Color("1c3037"))
 		text(canvas, PRIMARY[page][index][0], Vector2(638, y + 15), 11, MINT)
 		text(canvas, PRIMARY[page][index][1], Vector2(638, y + 33), 17)
-	text(canvas, "Hold Z / V: aim up-left / up-right, stand still." if page == 0 else "Hold LB / RB: aim up-left / up-right, stand still.", Vector2(42, 363), 14, MINT)
+	text(canvas, "Hold Z / V to stand still and aim up-left / up-right.", Vector2(42, 363), 14, MINT)
 	if page == 0:
 		reference_card(canvas, 32, "DURING A JOB", ["K  Special (two uses per level)", "Hold fire for continuous shots", "Q  Title when paused / complete"])
 		reference_card(canvas, 336, "MENUS & PAGES", ["WASD / arrows  Navigate", "Enter / Space  Confirm; mouse works", "Esc  Back (quits on title)"])
@@ -102,8 +102,8 @@ static func draw_gamepad(canvas: Node2D) -> void:
 	var dest: Array = callout_data.controller.destination
 	var area := Rect2(dest[0],dest[1],dest[2],dest[3])
 	canvas.draw_texture_rect(callout_texture,area,false)
-	text(canvas,"LB / RB: stand still while aiming diagonally",Vector2(32,83),16,MINT)
-	text(canvas,"Hold fire: continuous · Special: two uses per level",Vector2(32,104),16)
+	text(canvas,"On foot, hold LT to plant. Aim with the left stick or D-pad.",Vector2(32,83),16,MINT)
+	text(canvas,"Center the stick to hold your aim. Fire with RT or X.",Vector2(32,104),16)
 	for callout: Dictionary in callout_data.callouts:
 		var position := Vector2(callout.label_position[0],callout.label_position[1])
 		var label: String = callout.label

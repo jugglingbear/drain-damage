@@ -50,6 +50,11 @@ func input_event(host: Node2D, event: InputEvent) -> void:
 		return
 	if not (event is InputEventKey or event is InputEventJoypadButton): return
 	if event.is_echo(): return
+	# Both shoulders still tear a cocoon even though neither is a weapon-aim shortcut.
+	if event is InputEventJoypadButton and event.pressed and event.button_index in [
+			JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
+		pending_press = true
+		return
 	for action in ESCAPE_ACTIONS:
 		if event.is_action_pressed(action):
 			pending_press = true

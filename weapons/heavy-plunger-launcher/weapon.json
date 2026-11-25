@@ -101,7 +101,7 @@
       "release_fire": "Keep the aimed pose while directional input remains held; never reset orientation merely because firing/recoil animation ends.",
       "release_aim": "Use existing no_direction_input horizontal-facing fallback when directional input is released; no new aim-lock behavior.",
       "alignment": "Held weapon, arm pose and projectile muzzle direction must share current aim; firing adds recoil/flash without controlling aim orientation.",
-      "restrictions": "Only straight-down aim is airborne-only. Landing preserves downward diagonal aim; grounded straight-down falls back horizontally."
+      "restrictions": "While holding LT, the stick aims freely, including straight down on the ground. During ordinary movement, straight-down aim requires being airborne and falls back horizontally on landing."
     },
     "movement_animation_requirement": "Use locomotion animation independently of held aim. Every valid aim must preserve moving legs while running and appropriate takeoff/rise/apex/fall/landing poses while jumping.",
     "direction_revision_status": "Grounded downward diagonals and locomotion audit approved; Engineering integration pending"

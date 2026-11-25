@@ -1,6 +1,8 @@
 extends Node2D
 
 const BuildVersion = preload("res://scripts/build_version.gd")
+const PLUNGER_PROJECTILE = preload("res://assets/weapons/heavy-plunger-projectile.png")
+const PLUNGER_RADIUS := 7.0
 ## Plumbing action prototype with pixel world art and illustrated dialogue.
 
 signal title_requested
@@ -172,8 +174,9 @@ func _ready() -> void:
 	add_pad_button("aim_down", JOY_BUTTON_DPAD_DOWN)
 	add_pad_button("shoot", JOY_BUTTON_X)
 	add_pad_button("special", JOY_BUTTON_B)
-	add_pad_button("aim_up_left_stationary", JOY_BUTTON_LEFT_SHOULDER)
-	add_pad_button("aim_up_right_stationary", JOY_BUTTON_RIGHT_SHOULDER)
+	add_action("plant_aim", [])
+	add_pad_axis("plant_aim", JOY_AXIS_TRIGGER_LEFT, 1.0)
+	InputMap.action_set_deadzone("plant_aim", 0.25)
 	add_pad_button("pause_game", JOY_BUTTON_START)
 	add_pad_button("dialogue_next", JOY_BUTTON_A)
 	add_pad_button("dialogue_skip", JOY_BUTTON_B)
@@ -344,8 +347,6 @@ func update_death_popup_guard(delta: float) -> void:
 		resume_button.grab_focus()
 
 func restart_inputs_held() -> bool:
-	for state: Vector2 in trigger_state.values():
-		if state.x > 0.7 and state.y > 0.7: return true
 	return restart_guard_device >= 0
 
 func handle_developer_restart(event: InputEvent) -> bool:
@@ -732,11 +733,15 @@ func step_player(delta: float) -> void:
 	if not dispenser.actions_locked and Input.is_action_just_pressed("jump"):
 		jump_buffer = 0.14
 	var stationary_aim := stationary_aim_direction()
-	var direction := 0.0 if stationary_aim != 0 else Input.get_axis("left", "right")
-	if stationary_aim != 0: facing = stationary_aim
+	var planted := planted_aim()
+	var direction := 0.0 if planted or stationary_aim != 0 else Input.get_axis("left", "right")
+	if planted:
+		var aim := aim_direction()
+		if not is_zero_approx(aim.x): facing = signf(aim.x)
+	elif stationary_aim != 0: facing = stationary_aim
 	var target_speed := specials.movement_speed(direction,float(employee.move_speed),aim_direction())
 	velocity.x = move_toward(velocity.x, target_speed, 1900.0 * delta)
-	if specials.rooted() or (stationary_aim != 0 and not specials.active): velocity.x = 0
+	if specials.rooted() or ((planted or stationary_aim != 0) and not specials.active): velocity.x = 0
 	if direction != 0:
 		facing = signf(direction)
 	if jump_buffer > 0 and coyote > 0 and not specials.rooted():
@@ -885,7 +890,7 @@ func flushfiend_projectile_rect(feet: Vector2) -> Rect2:
 func projectile_hit(start: Vector2, end: Vector2, target: Rect2, direction: Vector2) -> float:
 	# Sweep the visible projectile thickness, not an infinitely thin centerline.
 	# Rotate its cross-section with aim; use identical geometry for enemies and walls.
-	var radius := 7.0 if employee.id == "sean" else 2.0
+	var radius := PLUNGER_RADIUS if employee.id == "sean" else 2.0
 	var extent := Vector2(absf(direction.y), absf(direction.x)) * radius
 	return segment_hit(start, end, Rect2(target.position - extent, target.size + extent * 2))
 
@@ -920,7 +925,14 @@ func stationary_aim_direction() -> float:
 	if left and right: return -1.0 if facing < 0 else 1.0
 	return -1.0 if left else 1.0 if right else 0.0
 
+func planted_aim() -> bool:
+	return Input.is_action_pressed("plant_aim")
+
 func aim_direction() -> Vector2:
+	if planted_aim():
+		var stick := Input.get_vector("left","right","aim_up","aim_down",0.25)
+		if stick != Vector2.ZERO: return stick.normalized()
+		return current_aim if current_aim != Vector2.ZERO else Vector2(facing,0)
 	var x := signf(Input.get_axis("left", "right"))
 	var y := signf(Input.get_axis("aim_up", "aim_down"))
 	var stationary := stationary_aim_direction()
@@ -1087,6 +1099,20 @@ func box(x: float, y: float, width: float, height: float, color: Color) -> void:
 func label_at(text: String, position: Vector2, size: int, color: Color) -> void:
 	draw_string(ThemeDB.fallback_font, position, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
 
+func draw_player_shots() -> void:
+	if shots.is_empty(): return
+	var world_offset := Vector2(-floorf(camera_x),0)
+	for shot: Dictionary in shots:
+		draw_set_transform(shot.pos + world_offset, shot_direction(shot).angle())
+		if employee.id == "tony":
+			box(-15, -2, 21, 4, Color("70dfff"))
+			box(-4, -1, 12, 2, Color("eaffff"))
+		else:
+			# The cup rim leads at the swept contact point. Preserve the artwork's aspect ratio.
+			var size := PLUNGER_PROJECTILE.get_size()*(2*PLUNGER_RADIUS/PLUNGER_PROJECTILE.get_height())
+			draw_texture_rect(PLUNGER_PROJECTILE,Rect2(Vector2(-size.x,-PLUNGER_RADIUS),size),false)
+	draw_set_transform(world_offset)
+
 func _draw() -> void:
 	draw_set_transform(Vector2(-floorf(camera_x), 0))
 	draw_room()
@@ -1104,19 +1130,7 @@ func _draw() -> void:
 	special_art.draw_back(self)
 	if not dispenser.hides_hero() and (cinematic.active or life_state != "alive" or invulnerable <= 0 or int(elapsed * 12) % 2 == 0):
 		draw_sean(player)
-	for shot: Dictionary in shots:
-		var p: Vector2 = shot.pos
-		draw_set_transform(p - Vector2(floorf(camera_x), 0), shot_direction(shot).angle())
-		if employee.id == "tony":
-			box(-15, -2, 21, 4, Color("70dfff"))
-			box(-4, -1, 12, 2, Color("eaffff"))
-		else:
-			box(-16, -1, 16, 3, Color("ad7546"))
-			box(-16, -1, 16, 1, GOLD)
-			box(-3, -3, 6, 7, Color("a43d38"))
-			box(0, -5, 5, 11, Color("e57356"))
-			box(4, -6, 2, 13, Color("ffd09b"))
-		draw_set_transform(Vector2(-floorf(camera_x), 0))
+	draw_player_shots()
 	for particle: Dictionary in particles:
 		box(particle.pos.x, particle.pos.y, 4, 4, particle.color)
 	special_art.draw_front(self)

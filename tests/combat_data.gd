@@ -18,7 +18,7 @@ func run_checks() -> void:
 	root.add_child(game)
 	game.set_process(false)
 	game.set_physics_process(false)
-	assert(game.health == 5 and not game.show_enemy_health_bars)
+	assert(game.health == game.employee.max_health and not game.show_enemy_health_bars)
 	for x in [680,1370,2150]: game.enemies.append(Data.spawn("toilet",Vector2(x,404)))
 	game.damage_enemy(0,1,Vector2.ZERO)
 	assert(game.enemies[0].hp == 39 and game.enemies[0].flash > 0)

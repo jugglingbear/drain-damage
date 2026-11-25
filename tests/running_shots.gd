@@ -22,7 +22,8 @@ func run_checks() -> void:
 			var idle: Vector2 = game.world_art.hero_aim_art.muzzle(game)
 			for hop in [0,4,12,24,36,60,90]:
 				for distance in [80,160,250]:
-					var enemy := Rect2(Vector2(813 + facing * distance - 27,399-hop),Vector2(54,46))
+					var feet := Vector2(813 + facing * distance,game.FLOOR_Y-hop)
+					var enemy: Rect2 = game.flushfiend_projectile_rect(feet)
 					var idle_hit: float = game.projectile_hit(idle, idle + Vector2(facing*300,0), enemy, game.current_aim)
 					game.animation_state = "run"
 					for frame in range(6):

@@ -79,6 +79,59 @@ func death_frame(game: Node2D) -> Dictionary:
 	if not game.grounded: return frames[1]
 	return frames[2] if game.death_ground_time < frames[2].duration else frames[3]
 
+# Fit an authored limb between its original shoulder/hand and the new hand target.
+# Its cropped hand overlay receives the same transform as its parent arm.
+func fit_layer(layer: Dictionary, anchor: Vector2, target: Vector2, rotation: float, scale: float) -> void:
+	var pivot := backpack.vector(layer.pivot)
+	var new_pivot := target + (pivot-anchor).rotated(rotation)*scale
+	var dest := backpack.rectangle(layer.destination)
+	dest.position = new_pivot+(dest.position-pivot)*scale
+	dest.size *= scale
+	layer.destination = [dest.position.x,dest.position.y,dest.size.x,dest.size.y]
+	layer.pivot = [new_pivot.x,new_pivot.y]
+	layer.rotation_degrees += rad_to_deg(rotation)
+
+func planted_pose(game: Node2D, stance: String) -> Dictionary:
+	var local_aim: Vector2 = Vector2(game.current_aim.x*game.facing,game.current_aim.y).normalized()
+	var angle := local_aim.angle()
+	var prefix: String = game.employee.id+"-"+stance+"-"
+	var pose: Dictionary = poses[prefix+"right"].duplicate(true)
+	var grip := backpack.vector(pose.grip)
+	var support := backpack.vector(pose.support_hand)
+	var muzzle_point := backpack.vector(pose.muzzle)
+	# Blend the authored reach between registers while the bore follows the exact stick angle.
+	var vertical := "up" if local_aim.y < 0 else "down"
+	var diagonal_grip := backpack.vector(poses[prefix+vertical+"_right"].grip)
+	var vertical_grip := backpack.vector(poses[game.employee.id+"-airborne-"+vertical].grip)
+	var sector := clampf(absf(angle)/(PI*.25),0,2)
+	var new_grip := grip.lerp(diagonal_grip,sector) if sector <= 1 else diagonal_grip.lerp(vertical_grip,sector-1)
+	var muzzle_delta := (muzzle_point-grip).rotated(angle)
+	var support_delta := (support-grip).rotated(angle)
+	if backpack.enabled(game):
+		var nozzle: Dictionary = backpack.definition.parts.nozzle
+		muzzle_delta = local_aim*grip.distance_to(muzzle_point)
+		var support_ratio := backpack.vector(nozzle.grip_source).distance_to(backpack.vector(nozzle.support_source)) \
+			/ backpack.vector(nozzle.grip_source).distance_to(backpack.vector(nozzle.muzzle_source))
+		support_delta = muzzle_delta*support_ratio
+	if game.grounded and local_aim.y > 0:
+		# Leave the muzzle above the supporting floor even at the bottom of the idle cycle.
+		new_grip.y = minf(new_grip.y,ANCHOR.y-4-muzzle_delta.y)
+	var new_support := new_grip+support_delta
+	var new_muzzle := new_grip+muzzle_delta
+	for layer: Dictionary in pose.layers:
+		match layer.role:
+			"weapon":
+				fit_layer(layer,grip,new_grip,angle,1.0)
+			"back_arm","front_hand","front_arm":
+				var shoulder := backpack.vector(layer.pivot)
+				var old_reach := (grip if layer.role == "front_arm" else support)-shoulder
+				var new_reach := (new_grip if layer.role == "front_arm" else new_support)-shoulder
+				fit_layer(layer,shoulder,shoulder,old_reach.angle_to(new_reach),new_reach.length()/old_reach.length())
+	pose.grip = [new_grip.x,new_grip.y]
+	pose.support_hand = [new_support.x,new_support.y]
+	pose.muzzle = [new_muzzle.x,new_muzzle.y]
+	return pose
+
 func selected_pose(game: Node2D) -> Dictionary:
 	var aim: Vector2 = game.current_aim
 	var direction := "right"
@@ -86,7 +139,11 @@ func selected_pose(game: Node2D) -> Dictionary:
 	elif aim.y > 0 and (not game.grounded or not is_zero_approx(aim.x)):
 		direction = "down" if is_zero_approx(aim.x) else "down_right"
 	var stance := "standing" if game.grounded else "airborne"
-	var pose: Dictionary = poses[game.employee.id + "-" + stance + "-" + direction].duplicate(true)
+	var pose: Dictionary
+	if not aim.is_zero_approx() and game.has_method("planted_aim") and game.planted_aim():
+		pose = planted_pose(game,stance)
+	else:
+		pose = poses[game.employee.id + "-" + stance + "-" + direction].duplicate(true)
 	var frame := body_frame(game)
 	if frame.is_empty(): return pose
 	var offset := Vector2(frame.attachment_offset[0], frame.attachment_offset[1])
