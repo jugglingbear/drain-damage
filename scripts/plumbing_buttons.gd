@@ -34,6 +34,26 @@ static func plate(host: CanvasItem, area: Rect2, selected := false, hovered := f
 		host.draw_texture_rect_region(ART,area,Rect2(0,SOURCE_HEIGHT if state.highlight else 0,
 			SOURCE_WIDTH,SOURCE_HEIGHT),state.tint)
 
+# Extend the painted tips behind the plate. The rounded ends of those same two
+# strands supply the falling beads, including the artist's specular highlights.
+static func pause_drips(host: CanvasItem, area: Rect2, highlighted: bool, seconds: float) -> void:
+	var scale := area.size / Vector2(SOURCE_WIDTH,SOURCE_HEIGHT)
+	var row := SOURCE_HEIGHT if highlighted else 0.0
+	for side in 2:
+		var x := 150.0 if side == 0 else 1952.0
+		var end := (351.0 if highlighted else 356.0) if side == 0 else (344.0 if highlighted else 349.0)
+		var phase := fposmod(seconds / (3.8 if side == 0 else 4.7) + side * 0.41,1.0)
+		var base := area.position + Vector2(x,320) * scale
+		var tip := Rect2(x,row+320,40,end-320)
+		var stretch := 6.0 * smoothstep(0.18,0.70,phase) * (1.0-smoothstep(0.70,0.79,phase))
+		host.draw_texture_rect_region(ART,Rect2(base,tip.size*scale+Vector2(0,stretch)),tip)
+		if phase >= 0.70:
+			var fall := (phase-0.70)/0.30
+			var bead := Rect2(x,row+end-24,40,24)
+			var position := base + Vector2(0,(end-320)*scale.y+3+44*fall*fall)
+			host.draw_texture_rect_region(ART,Rect2(position,bead.size*scale),bead,
+				Color(1,1,1,1.0-smoothstep(0.78,1.0,fall)))
+
 static func label_size(value: String, area: Rect2, requested: int) -> int:
 	var available := area.size.x - CAP_WIDTH * area.size.y / SOURCE_HEIGHT * 1.2 - 4
 	var size := mini(requested, maxi(12, int(area.size.y * .55)))

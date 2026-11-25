@@ -312,11 +312,15 @@ func style_pause_buttons() -> void:
 		focus.set_border_width_all(2)
 		button.add_theme_stylebox_override("focus", focus)
 
-func draw_pause_plates() -> void:
+func draw_pause_plates(dripping := false) -> void:
 	for button: Button in [resume_button, title_button]:
 		if not button.visible: continue
 		var chosen := button.has_focus() and not button.disabled
-		Buttons.plate(self, Rect2(button.position - Vector2(20,13),Vector2(510,85)),
+		var area := Rect2(button.position - Vector2(20,13),Vector2(510,85))
+		if dripping:
+			var seconds := Time.get_ticks_msec() * 0.001
+			Buttons.pause_drips(self,area,chosen or button.is_hovered(),seconds + (0.0 if button == resume_button else 1.73))
+		Buttons.plate(self, area,
 			chosen,button.is_hovered(),button.is_pressed(),button.disabled)
 		if chosen:
 			var pointer := button.position + Vector2(20,24)
@@ -1137,7 +1141,7 @@ func draw_pause_panel() -> void:
 	var message := "BJ: Adequate. Return to work." if won else "Take your time. The toilets can wait."
 	var message_x := (960 - ThemeDB.fallback_font.get_string_size(message,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x) / 2
 	label_at(message, Vector2(message_x,229), 18, Color("fff2cf"))
-	draw_pause_plates()
+	draw_pause_plates(not won)
 
 func draw_death_popup() -> void:
 	# Art approved reuse of this menu style; all copy and expressions remain live.
