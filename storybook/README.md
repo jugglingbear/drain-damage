@@ -1,6 +1,6 @@
 # Drain Damage — In pictures
 
-Concept art and playable experiments. Gameplay captures through v0.190.0.
+Concept art and playable experiments. Gameplay captures through v0.207.0.
 
 ## Concept art
 
@@ -304,6 +304,21 @@ v0.190.0 · Archived November 13, 2026 · Isolated package, scripted review.
 A suspended strainer waits farther along the channel.
 v0.190.0 · Archived November 13, 2026 · Isolated package, scripted review.
 
+![Illustrated loading cards accompany real loading progress.][loading-207-loading-real]
+
+Illustrated loading cards accompany real loading progress.
+v0.207.0 · November 25, 2026 · Illustrated loading interface.
+
+![The ready screen waits for a button press.][loading-207-ready-real]
+
+The ready screen waits for a button press.
+v0.207.0 · November 25, 2026 · Illustrated loading interface.
+
+![A flush illustration shown in the shared loading-card renderer.][loading-207-flush-1]
+
+A flush illustration shown in the shared loading-card renderer.
+v0.207.0 · November 25, 2026 · Illustrated loading interface.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -378,3 +393,6 @@ To come. These images document development, not a finished game.
 [image-68]: 190-continuous-ride-slice/20261113-100500-archived-slalom.png
 [image-69]: 190-continuous-ride-slice/20261113-100500-archived-cap-contact.png
 [image-70]: 190-continuous-ride-slice/20261113-100500-archived-strainer.png
+[loading-207-loading-real]: 207-loading-cards/20261125-120051-archived-loading-real.png
+[loading-207-ready-real]: 207-loading-cards/20261125-120051-archived-ready-real.png
+[loading-207-flush-1]: 207-loading-cards/20261125-120051-archived-flush-1.png
