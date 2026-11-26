@@ -8,7 +8,7 @@ const FirstLevelEnding = preload("res://scripts/first_level_ending.gd")
 var ending := FirstLevelEnding.new()
 const Flush = preload("res://scripts/level_two_flush.gd")
 var flush := Flush.new()
-const RIDE_LOAD_TARGETS := ["level-two-landing","ride-encounter","ride-continuous"]
+const RIDE_LOAD_TARGETS := ["level-two-landing","ride-continuous","ride-checkpoint"]
 const LevelLoadingOverlay = preload("res://scripts/level_loading_overlay.gd")
 var level_loading_overlay: LevelLoadingOverlay
 var defer_level_two_loading := false
@@ -141,15 +141,20 @@ func restart_level_two(replay_bowl_intro: bool) -> void:
 	flush.begin(self,not replay_bowl_intro)
 	if flush.debug_ride_start >= 0:
 		flush.enter_ride(self,flush.debug_ride_start)
+		if flush.checkpoint_launch: flush.ride.checkpoint.stage(flush.ride,self)
 
 func respawn_after_death() -> void:
 	if flush.active:
 		if lives <= 0: return
 		health = employee.max_health
 		invulnerable = 3.0
+		if flush.state == "ride" and flush.ride.checkpoint.saved:
+			flush.ride.checkpoint.restore(flush.ride,self)
+			return
 		restart_level_two(flush.state in ["ride","landing","drain_death"])
 		return
 	if lives <= 0: return
+	if checkpoint_active: specials.refill_level(employee.id,"first-call")
 	respawn_origin = respawn_point.x
 	if music_director != null: music_director.play_track("level")
 	reset_observation()
@@ -170,6 +175,7 @@ func save_skitterling_checkpoint() -> void:
 	post_skitterling_checkpoint = true
 	if respawn_point.x >= Level.POST_SKITTERLING_CHECKPOINT: return
 	checkpoint_active = true
+	specials.refill_level(employee.id,"first-call")
 	checkpoint_index = maxi(checkpoint_index,0)
 	respawn_point = Vector2(Level.POST_SKITTERLING_CHECKPOINT,FLOOR_Y-PLAYER_SIZE.y)
 
@@ -367,6 +373,9 @@ func _physics_process(delta: float) -> void:
 		if flush.input_guard:
 			if restart_inputs_held() or Input.is_action_pressed("shoot") or Input.is_action_pressed("jump"): return
 			flush.input_guard = false
+		if flush.state == "bowl" and not level_load_active():
+			if Input.is_action_just_pressed("special"): flush.audio.play("button_gag")
+			elif Input.is_action_just_pressed("shoot"): flush.audio.play("button_fire")
 		var steering := Input.get_vector("left","right","aim_up","aim_down")
 		var count := maxi(1,ceili(delta*120))
 		for index in range(count):
@@ -658,8 +667,8 @@ func draw_pause_panel() -> void:
 	label_at(message,Vector2((960-width)/2,229),18,Color("fff2cf"))
 	draw_pause_plates()
 
-func hurt_player() -> void:
-	super.hurt_player()
+func hurt_player(fatal_fall := false) -> void:
+	super.hurt_player(fatal_fall)
 	if flush.active:
 		flush.sync_hero(self)
 		if life_state != "alive":
@@ -744,6 +753,7 @@ func begin_level_two() -> void:
 	special_audio.stop()
 	health = employee.max_health
 	specials.refill_level(employee.id,"level-two")
+	flush.checkpoint_launch = false
 	flush.debug_ride_start = -1
 	flush.ride.checkpoint_index = 0
 	flush.ride.continuous = false
@@ -755,6 +765,7 @@ func step_death(delta: float) -> void:
 		super.step_death(delta)
 		return
 	if paused or life_state != "dying": return
+	var previous_time := death_time
 	death_time += delta
 	if flush.state == "drain_death":
 		var progress := smoothstep(0.0,1.0,death_time)
@@ -762,16 +773,24 @@ func step_death(delta: float) -> void:
 		flush.sink_depth = progress
 		flush.sync_hero(self)
 	var duration: float = flush.ride.FALL_DURATION if flush.state == "ride" and flush.ride.events.has("fall") else 1.0
+	if flush.state == "ride" and flush.ride.obstacle_knockoff:
+		duration = flush.ride.KNOCKOFF_DURATION
+		if previous_time < flush.ride.KNOCKOFF_CONTACT and death_time >= flush.ride.KNOCKOFF_CONTACT:
+			flush.audio.play("button_gag")
 	if death_time < duration: return
 	life_state = "game_over" if lives == 0 else "death_popup"
 	death_popup_locked = true
 	death_popup_guard = 0.35
 	resume_button.disabled = true
 	title_button.disabled = true
-	if flush.debug_ride_start >= 0:
-		resume_button.text = "Restart Course" if flush.ride.continuous else "Restart Encounter"
+	if lives == 0:
+		resume_button.text = "Restart Game"
+	elif flush.state == "ride" and flush.ride.checkpoint.saved:
+		resume_button.text = "Continue at Checkpoint"
+	elif flush.debug_ride_start >= 0:
+		resume_button.text = "Restart Course"
 	else:
-		resume_button.text = "Restart Level 2" if flush.state in ["ride","landing","drain_death"] else ("Retry Flush" if lives == 0 else "Continue at Bowl")
+		resume_button.text = "Restart Level 2" if flush.state in ["ride","landing","drain_death"] else "Continue at Bowl"
 	resume_button.position = Vector2(245,326)
 	title_button.position = Vector2(245,416)
 	style_pause_buttons()

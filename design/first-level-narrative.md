@@ -4,6 +4,58 @@
 
 **Owner:** Storyboarding. Handoff to Level Design and Engineering; no runtime implementation claimed here.
 
+## Canonical character guidance — November 13, 2026
+
+**Authority:** Sean’s explicit character direction, relayed by Comic on November 13, 2026.
+This section governs characterization across the game, comic and magazine. It supersedes conflicting shorthand
+elsewhere, including any interpretation of professional conduct as proof that Sean is an experienced plumber.
+It records character facts and writing guidance; it does not authorize rewriting existing dialogue or publications.
+
+### Sean
+
+Sean is well-intentioned, big-hearted and eager to help. He is a bit dumb and becomes confused easily and quickly.
+He is also brand new to plumbing, thrown into the deep end with little forewarning or training. His confusion comes
+from both his personality and his lack of trade experience; do not reduce it to anxiety in an otherwise expert plumber.
+
+He has a background in Computer Science and engineering. Occasionally, computers, electronics, technology or IT
+bring out helpful expertise or advanced terminology, surprising colleagues who assumed he was simply uneducated
+or dumb. This competence is domain-specific and occasional. It does not make him a universal secret genius or
+instantly compensate for his lack of plumbing knowledge.
+
+Sean is tough, strong and as capable in a fight as Tony. Tony trusts him as an equal in danger.
+His plumbing inexperience does not imply cowardice or a need for coaching in basic physical actions.
+
+The supplied magazine baseline establishes that he wandered in seeking work, landed on Tony’s crew with little
+plumbing knowledge, and is enthusiastic and willing to help while Tony shows him the ropes.
+Do not invent degrees, former employers, a reason for changing careers or additional personal history.
+
+### Tony
+
+Tony has a heart of gold and genuinely cares about others. He is kind and patient, but tolerates no unnecessary BS.
+He knows plumbing intimately and knows that he knows it: a strong, confident master within his trade, not an
+omniscient authority outside it. His kindness does not require constant softness or prevent firm, practical decisions.
+
+Plumbing runs through four generations of his family. He has spent decades installing, building and maintaining
+essential systems, takes the work seriously, and patiently gives Sean a chance to learn. Difficult jobs do not deter
+him; big spiders may. His established fun, funny side remains compatible with this confidence and care.
+
+Tony teaches Sean plumbing, not how to cope with crazed emergencies. Neither has seen monster toilets before.
+Both are startled by this unprecedented threat and remain determined to get the job done; Tony's experience of
+ordinary plumbing does not make him an experienced monster fighter or Sean's protector in combat.
+
+### Conduct, expression and editorial implications
+
+The earlier comic direction that they are professionals rather than amateurs concerns respectful conduct such as
+white boot covers and safe equipment handling. Sean remains a plumbing novice; Tony can coach that conduct.
+Neither careful behavior nor Sean’s muscular build establishes experience he does not have.
+
+Let these traits emerge naturally through actions, decisions and occasional speech. They do not require expository
+biographies or a technical surprise in every scene. Use only Tony and Sean in player-facing text, without surnames.
+
+The following are editorial implications, not additional biographical facts: Sean may try to help and learn despite
+confusion; Tony may protect others, teach Sean and insist on doing the job properly. Scene-specific goals and dialogue
+still require review. Preserve existing approved wording until a particular revision is authorized.
+
 ## October 26 campaign structure decision
 
 Sean selected alternating dimensions as the campaign structure. Odd-numbered levels take place on Earth in our
@@ -45,8 +97,9 @@ Tony's kindness and patience coexist with playful, outrageous humor; he is not l
   must not appear in outgoing Storyboarding material.
 - BJ is calmly overconfident, makes mistakes, and disregards employee welfare. His eventual takeover by an
   antagonistic force is agreed; its mechanism, identity, and BJ's ultimate fate remain undecided.
-- Tony is a kind, patient, wise fourth-generation plumber with decades of broad trade expertise.
-- Sean is an incompetent but willing apprentice who gradually becomes useful. Do not prematurely complete that arc.
+- Tony is a caring, patient fourth-generation master plumber with decades of trade expertise and firm limits on BS.
+- Sean is a big-hearted, easily confused plumbing novice with occasional Computer Science/engineering expertise.
+  Follow the canonical character guidance above; do not prematurely complete his plumbing-learning arc.
 - The selected plumber enters the action; the other supports over radio or from service access points.
 - The basement contains hostile toilets and overhead acid leaks. The intended opening-level finale is the Clogfather.
 - The Clogfather is a giant living fatberg. Its precise anatomy and origin remain design proposals.

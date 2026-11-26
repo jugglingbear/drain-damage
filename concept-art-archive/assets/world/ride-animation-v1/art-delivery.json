@@ -1,0 +1,28 @@
+{
+  "status": "Normal-mode atlases integrated in Prototype 202; Art sampled native review passed for first playtest",
+  "date": "2026-11-24",
+  "tool": "image_gen",
+  "sources": {
+    "tony": "source/tony-normal-generated.png",
+    "sean": "source/sean-normal-generated.png"
+  },
+  "prompts": {
+    "tony": "Production game sprite atlas, exactly 1024x1024 pixels RGBA transparent background, four columns and four rows of equal 256x256 cells, sixteen sprites, no text/grid/labels/shadows/background/glow. Reference1 Tony study supplies approved actions; reference2 TOP LEFT normal Tony supplies game rendering/identity. Only Tony NORMAL: adult spiky dark brown hair, navy short-sleeve work shirt, teal trousers, brown work boots/toolbelt. Right-facing side/three-quarter. Each cell contains hero AND soft brown lumpy poop board as one composite, two connected boots contacting board. Board neutral length exactly180 pixels; center of underside at local pixel(128,224) in EVERY cell. All art stays in cell with transparent padding. Consistent scale/board shape across frames, no world translation. Row0 four gentle idle knee/arm balance frames that loop smoothly. Row1 directional steering four frames: bank away, bank toward camera, lean back braking, lean forward accelerating, board remains supported level at anchor. Row2 ollie1 crouch,2 rear foot pop nose rises,3 lift front foot,4 knees tuck board levels. Row3 ollie5 descend,6 contact,7 landing crouch absorption,8 recover. Rotate airborne board around fixed underside anchor without moving frame center. Strong clear distinct poses, no detached limbs, no extra feet, no wheels, no reins. Smooth coherent sprite animation poses. Preserve adult identity, consistent proportions. Crisp illustrated game outlines and shading matching reference2; no UI. Must be 1024 square and transparent.",
+    "sean": "Production game sprite atlas exactly1024x1024 RGBA transparent, 4x4 equal256x256 cells, sixteen sprites no labels/text/grid/background/glow/shadows. Ref1 ONLY approved motion study, do NOT retain its baby proportions. Ref2 photo gives Sean adult identity: bald middle-aged man, eyebrows nose jaw, chin beard with separate soulpatch, no moustache/cheek beard, no glasses. Ref3 top-right normal game Sean gives costume/material/style. Adult sturdy proportions, longer torso and normal sized adult head, not chubby child. Orange short-sleeve workshirt, blue bib overalls, brown workboots. Right-facing side/three-quarter, seated astride soft brown lumpy poop board, same scale across cells. Board neutral length180 pixels, center of underside ALWAYS at local(128,224), no world translation. All sprites stay in cells with clear margins. Composite hero+board, hips supported and hands connected. Row0 four subtle seated breathing/balance poses loop. Row1 up bankaway/downbanktoward/left leanback/right leanforward. Rows2 and3 eight jump poses:1 leanforward grip raised front end of poop BOTH hands;2 pullback front rises;3 rearup knees grip;4 airborne tucked seated;5 level board;6 descend;7 absorb seated compression;8 recover. Board rises WITH Sean around fixed anchor, hand grip on actual poop not reins, no saddle/handles/ropes/wheels. Preserve smooth connected movement and consistent board silhouette. Clean game illustration dark outlines crisp shading. Normal mode only no pacifier, bonnet or torn clothes. Transparent1024square."
+  },
+  "remaining": [
+    "Human motion and likeness playtest",
+    "Easy/Hard animated costume variants",
+    "Additional authored transitions or cadence adjustments after feedback",
+    "Separate irregular blink/fidget artwork"
+  ],
+  "scope": "16 frames per hero: idle 4, steering 4, jump 8. Separate irregular blink/fidget authoring is not included.",
+  "qa": {
+    "evidence": [
+      "previews/ride-202/native/tony-art-review.png",
+      "previews/ride-202/native/sean-art-review.png",
+      "previews/ride-202/coast/art-release-review.png"
+    ],
+    "scope": "Both heroes steering, ordinary jump, ramp takeoff/landing and release-to-idle samples; not full-route or final animation smoothness approval"
+  }
+}

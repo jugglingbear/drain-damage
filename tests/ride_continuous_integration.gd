@@ -9,6 +9,8 @@ func checks() -> void:
 	var game := Game.new()
 	root.add_child(game)
 	while not game.startup_complete: await process_frame
+	await game.flush.prepare_bowl(game)
+	await game.flush.prepare_ride(game)
 	game.set_process(false)
 	game.set_physics_process(false)
 	for hero in game.Crew.EMPLOYEES:
@@ -71,7 +73,7 @@ func checks() -> void:
 			var health: int = game.health
 			game.hurt_player()
 			assert(game.health == health-1 and game.lives == 3)
-			# Safe runout completes only at the explicit course finish.
+			# The Wave 2 finish starts the hazard-free dispenser approach.
 			ride.begin(game,2)
 			ride.encounter_scroll = float(ride.definition.world_finish)-300-10
 			ride.clock = ride.encounter_scroll/ride.scroll_speed
@@ -79,7 +81,7 @@ func checks() -> void:
 			ride.tick(game,1.0/120,Vector2.ZERO,false)
 			assert(not ride.complete)
 			ride.tick(game,1.0/30,Vector2.ZERO,false)
-			assert(ride.complete and game.won)
+			assert(ride.checkpoint.phase == "approach" and not ride.complete and not game.won)
 			print("PASS CONTINUOUS INTEGRATION ",hero.id," ",mode)
 	game.begin_level_two()
 	game.flush.enter_ride(game,0)
@@ -103,8 +105,24 @@ func checks() -> void:
 		assert(game.flush.state == "bowl" and game.flush.clock == 0 and game.flush.prelude_remaining > 0)
 		assert(game.run_seed == seed_before and not game.checkpoint_active and game.health == game.employee.max_health)
 		assert(game.lives == (3 if remaining == 0 else remaining))
-	game.flush.enter_ride(game)
-	assert(game.flush.ride.encounter_index == 0)
+	# Follow the same Level 1 portal, flush finale and landing radio as a new campaign.
+	game.flush.active = false
+	game.ending.state = "pull"
+	game.ending.step(game,game.ending.PULL_SECONDS)
+	assert(game.flush.state == "bowl" and game.flush.debug_ride_start == -1)
+	game.flush.prelude_remaining = 0
+	game.flush.input_guard = false
+	game.flush.state = "drain"
+	game.flush.clock = 44.99
+	game.flush.tick(game,0.02,Vector2.ZERO,false,false)
+	assert(game.flush.state == "landing")
+	for frame in range(3600):
+		game.flush.tick(game,1.0/60,Vector2.ZERO,false,false)
+		if game.flush.state == "ride": break
+	var campaign_ride = game.flush.ride
+	assert(game.flush.state == "ride" and campaign_ride.continuous)
+	assert(campaign_ride.encounter_scroll == 0 and campaign_ride.definition.world_finish > 40000)
+	assert(campaign_ride.course.obstacles.any(func(o): return o.instance_id == "mixed-finish"))
 	game.free()
 	await process_frame
 	print("PASS: continuous game lifecycle, six hero/mode cases")

@@ -19,11 +19,18 @@ var audio_definition: Dictionary = {}
 var mechanism_cycle := -1
 var fractured: Dictionary = {}
 var visual_obstacles: Array[Dictionary] = []
+var checkpoint_view := preload("res://scripts/ride_checkpoint_view.gd").new()
+var checkpoint := preload("res://scripts/ride_checkpoint.gd").new()
+var obstacle_knockoff := false
+const KNOCKOFF_CONTACT := 0.65
+const KNOCKOFF_FADE := 1.7
+const KNOCKOFF_DURATION := 2.4
 const FALL_DURATION := 1.35
 const VIEWPORT := Rect2(0,0,960,540)
 
 func attach(host: Node2D, yield_frame := Callable(), progress := Callable()) -> void:
 	audio_definition = JSON.parse_string(FileAccess.get_file_as_string("res://data/level-two-ride.json"))
+	checkpoint_view.prepare()
 	audio.attach(host,audio_definition.audio.cues)
 	music.attach(host,audio_definition.music)
 	await art.configure(JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/level-two-ride-v1/manifest.json")),yield_frame)
@@ -60,6 +67,8 @@ func attach(host: Node2D, yield_frame := Callable(), progress := Callable()) -> 
 		await obstacle_art.configure(manifest,yield_frame,on_frame)
 
 func begin(host: Node2D, index := -1) -> void:
+	checkpoint = preload("res://scripts/ride_checkpoint.gd").new()
+	obstacle_knockoff = false
 	visual_obstacles.clear()
 	fractured.clear()
 	fidget.reset()
@@ -144,10 +153,31 @@ func prune_departed_visuals() -> void:
 
 func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool, firing := false) -> void:
 	if host.paused or host.life_state != "alive" or complete: return
+	if checkpoint.phase == "runout":
+		var run_time := minf(delta,rest_remaining)
+		checkpoint.age += run_time
+		encounter_scroll += scroll_speed*run_time
+		super.tick(host,delta,steering,jumping)
+		if complete: checkpoint.enter_phase("finished")
+		elif fidget.step(self,firing,delta).triggered: audio.play("board_fart")
+		return
+	if checkpoint.phase != "":
+		var free_riding: bool = checkpoint.rider_controls_active()
+		if free_riding:
+			if jumping and jump_age < 0 and cooldown <= 0:
+				_launch()
+				host.play_tone(360.0,0.08)
+			_advance_air_motion(delta)
+		checkpoint.tick(self,host,delta,steering)
+		if fidget.step(self,firing,delta,free_riding).triggered: audio.play("board_fart")
+		return
 	var before := events.duplicate()
 	var previous_encounter := encounter_index
 	var previous_clock := clock
 	super.tick(host,delta,steering,jumping)
+	if continuous and complete:
+		checkpoint.stage(self,host)
+		return
 	prune_departed_visuals()
 	update_fracture_audio(previous_clock)
 	if host.life_state != "alive" or complete:
@@ -157,6 +187,9 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool, firing :
 		if int(events.get("fall",0)) > int(before.get("fall",0)):
 			host.hero_death_audio.stop()
 			audio.play("fall_panic")
+		elif host.life_state == "dying" and int(events.get("hit",0)) > int(before.get("hit",0)):
+			obstacle_knockoff = true
+			host.hero_death_audio.stop()
 		return
 	if fidget.step(self,firing,delta).triggered: audio.play("board_fart")
 	if int(events.get("jump",0)) > int(before.get("jump",0)): host.play_tone(360.0,0.08)
@@ -218,6 +251,7 @@ func process_audio(host: Node2D, delta: float) -> void:
 func sample_super(host: Node2D, pressed: bool) -> bool:
 	var fresh := pressed and not super_held
 	super_held = pressed
+	if not checkpoint.rider_controls_active(): return false
 	if not fresh or host.paused or host.life_state != "alive" or complete or host.won: return false
 	if not host.flush.active or host.flush.state != "ride" or host.flush.input_guard: return false
 	if host.specials.remaining() <= 0: return false
@@ -490,19 +524,17 @@ func draw_rider(host: Node2D, flush: RefCounted) -> void:
 
 func draw(host: Node2D, flush: RefCounted) -> void:
 	host.draw_set_transform(Vector2.ZERO)
+	checkpoint_view.draw(host,flush)
+	if checkpoint.phase == "replacement": host.dispenser.draw_overlay(host,checkpoint.throw_origin_screen,checkpoint_view.SCALE)
 	host.box(0,0,960,64,Color("101d29"))
 	host.draw_vitals(Vector2(host.get_viewport_rect().size.x-164,4),"rubber-ducks")
-	if not continuous: host.label_at("%02d / %02d" % [encounter_index+1,definition.encounters.size()],Vector2(24,52),14,host.MINT)
-	if phase == "rest":
-		host.label_at("REST — %.1f s" % rest_remaining,Vector2(24,92),22,host.MINT)
-	elif phase == "encounter" and not continuous:
-		host.label_at("%02d  %s" % [encounter_index+1,str(encounter.get("title",""))],Vector2(24,92),22,host.GOLD)
 	host.BuildVersion.draw(host)
+	if obstacle_knockoff and host.life_state == "dying":
+		host.draw_rect(host.get_viewport_rect(),Color(0,0,0,smoothstep(KNOCKOFF_FADE,KNOCKOFF_DURATION,host.death_time)))
 	if host.paused or host.won:
 		host.box(0,0,960,540,Color(0.03,0.07,0.12,0.88))
 		if host.life_state in ["death_popup","game_over"]: host.draw_death_popup()
 		elif host.won:
-			host.label_at("COURSE COMPLETE" if continuous else "OBSTACLE TEST COMPLETE",Vector2(270,195),28,host.GOLD)
-			if not continuous: host.label_at("All %d encounters finished" % definition.encounters.size(),Vector2(330,230),21,host.MINT)
+			host.label_at("COURSE COMPLETE",Vector2(270,195),28,host.GOLD)
 			host.draw_pause_plates()
 		else: host.draw_pause_panel()

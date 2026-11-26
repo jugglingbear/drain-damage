@@ -325,10 +325,10 @@ func draw_machines(game: Node2D) -> void:
 			draw_frame(game,occupant.frame,origin,1,1,occupant.clip)
 		draw_frame(game,art.machine.glass_front,origin)
 
-func held_pose(game: Node2D) -> Dictionary:
-	var origin := machine_origin(game,checkpoint)
+func held_pose(game: Node2D, origin := Vector2.INF, feet := Vector2.INF) -> Dictionary:
+	if origin == Vector2.INF: origin = machine_origin(game,checkpoint)
+	if feet == Vector2.INF: feet = game.respawn_point+Vector2(13,46)
 	var times: Dictionary = inspection.timing_seconds
-	var feet: Vector2 = game.respawn_point+Vector2(13,46)
 	var held_feet := origin+vector(inspection.held_hero_feet)
 	var position := feet.lerp(held_feet,smoothstep(times.grab_lift[0],times.grab_lift[1],elapsed))
 	if mode == "full_health":
@@ -407,7 +407,7 @@ func draw_world(game: Node2D) -> void:
 			var position: Vector2 = exit_feet.lerp(feet,clampf((local_time-0.2)/0.3,0,1))
 			draw_frame(game,states[state],position-Vector2(64,104))
 
-func draw_overlay(game: Node2D) -> void:
+func draw_overlay(game: Node2D, throw_start := Vector2.INF, initial_scale := 1.0) -> void:
 	if not overlay_visible(): return
 	game.draw_set_transform(Vector2.ZERO)
 	var states: Dictionary = art.heroes[hero].states
@@ -415,11 +415,12 @@ func draw_overlay(game: Node2D) -> void:
 	var times: Dictionary = inspection.timing_seconds
 	if elapsed < times.impact[0]:
 		var progress := clampf((elapsed-times.throw[0])/(times.impact[0]-times.throw[0]),0,1)
-		var start := machine_origin(game,checkpoint)+throw_origin_grip()-Vector2(floorf(game.camera_x),0)
+		var start := throw_start
+		if start == Vector2.INF: start = machine_origin(game,checkpoint)+throw_origin_grip()-Vector2(floorf(game.camera_x),0)
 		var frame: Dictionary = inspection.hero_states[costume][hero].compress_stage_two
 		var pivot := vector(frame.get("grip_anchor",[64,64]))
 		var ratio := rect(states.ball.destination).size.x/rect(frame.destination).size.x
-		var scale_value := lerpf(1.0,impact_scale*ratio,progress)
+		var scale_value := lerpf(initial_scale,impact_scale*ratio,progress)
 		draw_frame(game,frame,start.lerp(impact,progress)-pivot*scale_value,scale_value)
 	elif elapsed < times.slide_vend[0]:
 		draw_frame(game,states.impact,impact-Vector2(64,64)*impact_scale,impact_scale)
@@ -462,18 +463,21 @@ func elbow(start: Vector2, end: Vector2, first: float, second: float, bend: floa
 	var along := (first*first-second*second+distance*distance)/(2*distance)
 	return start+axis*along+Vector2(-axis.y,axis.x)*sqrt(maxf(0,first*first-along*along))*bend
 
+var ride_canvas := Transform2D.IDENTITY
+
 func articulated_part(game: Node2D, origin: Vector2, id: String, pivot_name: String,
 		position: Vector2, rotation := 0.0, alpha := 1.0) -> void:
 	if not inspection.get("parts",{}).has(id): return
 	var part: Dictionary = inspection.parts[id]
 	var pivot := vector(part.source_pivots[pivot_name])
 	var source := rect(part.source_rect)
-	game.draw_set_transform(origin+position-Vector2(floorf(game.camera_x),0),rotation)
+	var canvas := ride_canvas if ride_canvas != Transform2D.IDENTITY else Transform2D(0,Vector2(-floorf(game.camera_x),0))
+	game.draw_set_transform_matrix(canvas*Transform2D(rotation,origin+position))
 	game.draw_texture_rect_region(textures[part.path],Rect2(-pivot*part.scale,source.size*part.scale),
 		source,Color(1,1,1,alpha))
-	game.draw_set_transform(Vector2(-floorf(game.camera_x),0))
+	game.draw_set_transform_matrix(canvas)
 
-func draw_holding_arm(game: Node2D, origin: Vector2, grip: Vector2, front: bool, alpha := 1.0) -> void:
+func draw_holding_arm(game: Node2D, origin: Vector2, grip: Vector2, front: bool, alpha := 1.0, clasp := -1.0) -> void:
 	if inspection.get("parts",{}).is_empty(): return
 	var closing := smoothstep(0,0.2,elapsed)
 	if mode == "full_health":
@@ -486,6 +490,7 @@ func draw_holding_arm(game: Node2D, origin: Vector2, grip: Vector2, front: bool,
 			var start: float = inspection.timing_seconds[key][0]
 			if elapsed >= start and elapsed < start+.1:
 				closing *= lerpf(.82,1.0,smoothstep(start,start+.1,elapsed))
+	if clasp >= 0: closing = clasp
 	var open_part: Dictionary = inspection.parts.hand_open
 	var closed_part: Dictionary = inspection.parts.hand_grip
 	var open_offset: Vector2 = (vector(open_part.source_pivots.wrist)-vector(open_part.source_pivots.grip))*open_part.scale

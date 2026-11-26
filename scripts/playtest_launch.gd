@@ -19,7 +19,7 @@ static func parse(arguments: PackedStringArray) -> Dictionary:
 			continue
 		var parts := argument.trim_prefix("--").split("=",true,1)
 		if not argument.begins_with("--") or parts.size() != 2 \
-				or parts[0] not in ["level","miniboss","boss","hero","difficulty","seed","screenshot-mode"]:
+				or parts[0] not in ["level","miniboss","boss","hero","difficulty","seed","screenshot-mode","invincible","hp"]:
 			return {"error":"Unknown playtest argument: "+argument}
 		if values.has(parts[0]) or parts[1].is_empty(): return {"error":"Duplicate or empty option: "+parts[0]}
 		values[parts[0]] = parts[1]
@@ -32,9 +32,21 @@ static func parse(arguments: PackedStringArray) -> Dictionary:
 	var screenshot: String = values.get("screenshot-mode","0")
 	if screenshot not in ["0","1"]: return {"error":"Screenshot mode must be 0 or 1."}
 	values.erase("screenshot-mode")
+	var invincible: String = values.get("invincible","0")
+	if invincible not in ["0","1"]: return {"error":"Invincible must be 0 or 1."}
+	values.erase("invincible")
+	var hp_text: String = values.get("hp","1")
+	if not hp_text.is_valid_int() or int(hp_text) < 1 or int(hp_text) > 2147483647:
+		return {"error":"HP must be a positive integer through 2147483647."}
+	var starting_hp := int(hp_text) if values.has("hp") else 0
+	values.erase("hp")
 	if selectors.is_empty():
-		return {"error":"Choose exactly one level, miniboss or boss selector."} if not values.is_empty() \
-			or verify else ({"screenshot_mode":true} if screenshot == "1" else {})
+		if not values.is_empty() or verify: return {"error":"Choose exactly one level, miniboss or boss selector."}
+		var options := {}
+		if screenshot == "1": options.screenshot_mode = true
+		if invincible == "1": options.invincible = true
+		if starting_hp > 0: options.starting_hp = starting_hp
+		return options
 	if selectors.size() != 1: return {"error":"Choose exactly one level, miniboss or boss selector."}
 	var data := registry()
 	var target: Dictionary = {}
@@ -49,7 +61,7 @@ static func parse(arguments: PackedStringArray) -> Dictionary:
 	var seed_text: String = values.get("seed","42")
 	if not seed_text.is_valid_int() or int(seed_text) < 0 or int(seed_text) > 2147483647:
 		return {"error":"Seed must be an integer from0 through2147483647."}
-	return {"target":target,"hero":hero,"difficulty":difficulty,"seed":int(seed_text),"verify":verify,"screenshot_mode":screenshot == "1"}
+	return {"starting_hp":starting_hp,"target":target,"hero":hero,"difficulty":difficulty,"seed":int(seed_text),"verify":verify,"invincible":invincible == "1","screenshot_mode":screenshot == "1"}
 
 static func listing() -> String:
 	var lines: PackedStringArray = ["Implemented playtest targets:"]
@@ -63,16 +75,16 @@ static func initialize(game: Node2D, target: Dictionary) -> void:
 	game.dialogue.release_guard = 0
 	game.dispenser.cancel()
 	game.dispenser.just_finished = false
-	if target.initializer in ["level-two-flush","level-two-landing","ride-encounter","ride-continuous"]:
+	if target.initializer in ["level-two-flush","level-two-landing","ride-continuous","ride-checkpoint"]:
 		game.begin_level_two()
 		if target.initializer == "level-two-landing": game.flush.enter_landing(game)
-		if target.initializer == "ride-continuous":
+		if target.initializer in ["ride-continuous","ride-checkpoint"]:
 			game.flush.ride.continuous = true
 			game.flush.debug_ride_start = 0
 			game.flush.enter_ride(game,0)
-		if target.initializer == "ride-encounter":
-			game.flush.debug_ride_start = int(target.encounter_index)
-			game.flush.enter_ride(game,game.flush.debug_ride_start)
+			if target.initializer == "ride-checkpoint":
+				game.flush.checkpoint_launch = true
+				game.flush.ride.checkpoint.stage(game.flush.ride,game)
 	if target.initializer == "skitterling-approach":
 		# Rebuild checkpoint ownership before placing the hero at the real walk-in approach.
 		game.checkpoint_active = true
@@ -104,6 +116,7 @@ static func summary(game: Node2D, options: Dictionary) -> Dictionary:
 		"weapon":game.weapon.id,"health":game.health,"lives":game.lives,
 		"flush_state":game.flush.state,"flush_clock":game.flush.clock,
 		"ride_encounter":game.flush.ride.encounter_index+1,"ride_phase":game.flush.ride.phase,
+		"invincible":game.invincible,
 		"screenshot_mode":game.has_node("ScreenshotFreeze"),
 		"camera_test":game.get_script().resource_path == "res://scripts/camera_test_game.gd",
 		"landing_checkpoint":false,"dialogue":game.dialogue.active,"dispenser":game.dispenser.active}

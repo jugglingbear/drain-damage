@@ -15,8 +15,14 @@ var flush: RefCounted
 var container: SubViewportContainer
 var camera := Camera3D.new()
 var rider := Node3D.new()
+var knocked_hero := Node3D.new()
+var loose_board := Node3D.new()
+var knockoff_frames: Array[Node3D] = []
+var knockoff_start_height := 0.0
+var knockoff_active := false
 var fidget_view := FidgetView.new()
 var materials: Dictionary = {}
+var checkpoint_cabinet: Node3D
 var actors: Dictionary = {}
 var actor_pool: Dictionary = {}
 var actor_build_count := 0
@@ -62,6 +68,7 @@ func attach(game: Node2D, model: RefCounted, yield_frame := Callable(), progress
 	container = SubViewportContainer.new()
 	container.size = Vector2(960,540)
 	container.stretch = true
+	container.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	container.z_index = -1
 	container.visible = false
@@ -69,6 +76,7 @@ func attach(game: Node2D, model: RefCounted, yield_frame := Callable(), progress
 	var viewport := SubViewport.new()
 	viewport.size = Vector2i(960,540)
 	viewport.own_world_3d = true
+	viewport.msaa_3d = Viewport.MSAA_4X
 	viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
 	container.add_child(viewport)
 	viewport.add_child(self)
@@ -158,7 +166,14 @@ func configure(yield_frame := Callable()) -> void:
 	camera.far = 100
 	add_child(camera)
 	camera.current = true
+	checkpoint_cabinet = preload("res://scripts/ride_checkpoint_cabinet.gd").new()
+	add_child(checkpoint_cabinet)
+	checkpoint_cabinet.configure(host,flush.ride)
 	add_child(rider)
+	add_child(knocked_hero)
+	add_child(loose_board)
+	knocked_hero.visible = false
+	loose_board.visible = false
 	add_child(fidget_view)
 	fidget_view.configure()
 	configured = true
@@ -185,7 +200,7 @@ func make_actor(obstacle: Dictionary) -> Node3D:
 func prepare_actors(yield_frame := Callable(), progress := Callable()) -> void:
 	var start := Time.get_ticks_usec()
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://levels/level-two-ride-showcase.json"))
-	var prepared: Array = source.encounters.duplicate()
+	var prepared: Array = []
 	for difficulty in ["easy","normal","hard"]:
 		var variants := {}
 		var known := {}
@@ -293,6 +308,7 @@ func rebuild_rider() -> void:
 			select_rider_pose(animated_rider != null and flush.state == "ride")
 		return
 	hero_key = key
+	rebuild_knockoff(mode)
 	var animated := mode == "normal" and ResourceLoader.exists(atlas_path)
 	if rider_overlay.get_parent() == rider: rider.remove_child(rider_overlay)
 	for child in rider_overlay.get_children():
@@ -337,6 +353,46 @@ func rebuild_rider() -> void:
 	rider_overlay.visible = false
 	select_rider_pose(animated and flush.state == "ride")
 
+func rebuild_knockoff(mode: String) -> void:
+	for parent in [knocked_hero,loose_board]:
+		for child in parent.get_children():
+			parent.remove_child(child)
+			child.queue_free()
+	knockoff_frames.clear()
+	var animation_key: String = host.employee.id+"_"+mode
+	var animation: Dictionary = flush.art.manifest.animations[animation_key]
+	for frame: Dictionary in animation.frames:
+		var pose := Node3D.new()
+		knocked_hero.add_child(pose)
+		material_loader.rider = pose
+		material_loader.add_rider_frame(frame,Vector2.ZERO)
+		pose.visible = false
+		knockoff_frames.append(pose)
+	material_loader.rider = loose_board
+	material_loader.add_rider_frame(flush.art.manifest.frames.landing_board,Vector2.ZERO)
+	material_loader.rider = rider
+
+func update_knockoff(active: bool, point: Vector2, height: float, facing: Basis) -> void:
+	knocked_hero.visible = active
+	loose_board.visible = active
+	if not active:
+		knockoff_active = false
+		return
+	if not knockoff_active: knockoff_start_height = maxf(height,0)
+	knockoff_active = true
+	var age := maxf(0,float(host.death_time))
+	var flight := clampf(age/.65,0,1)
+	var sink := smoothstep(.65,1.55,age)
+	# Keep the buoyant board independent; the existing swim art has no board baked into it.
+	loose_board.basis = facing*Basis(Vector3.BACK,sin(age*4)*.06)
+	loose_board.position = world(point+Vector2(30*flight,0),3+sin(age*5)*2)
+	knocked_hero.basis = facing*Basis(Vector3.BACK,-sin(flight*PI)*.5)
+	knocked_hero.position = world(point+Vector2(-55*flight,0),
+		knockoff_start_height*(1-flight)+sin(flight*PI)*45-sink*140)
+	var index := int(age*10)%knockoff_frames.size()
+	for i in knockoff_frames.size(): knockoff_frames[i].visible = i == index
+	rider.visible = false
+
 func select_rider_pose(use_atlas: bool) -> void:
 	showing_ride_pose = use_atlas
 	for sprite in rider.get_children():
@@ -361,7 +417,7 @@ func update_rider_pose(model: RefCounted) -> void:
 		if absf(intent.x) > absf(intent.y): frame = 6 if intent.x < 0 else 7
 		else: frame = 4 if intent.y < 0 else 5
 	else:
-		frame = int(model.clock*4)%4
+		frame = int(model.clock/2.5)%4 if host.employee.id == "sean" else int(model.clock*4)%4
 	animated_rider.frame = frame
 	animated_overlay.frame = frame
 
@@ -448,7 +504,12 @@ func update_world() -> void:
 					smoothstep(0,.22,float(host.death_time)))
 			height -= pow(maxf(0,minf(float(host.death_time),model.FALL_DURATION)-.1),2)*460
 	rider.position = world(point,height)
+	if checkpoint_cabinet: checkpoint_cabinet.update(self,riding)
 	rider.visible = not riding or model.rider_visible(host)
+	update_knockoff(riding and host.life_state != "alive" and bool(model.get("obstacle_knockoff")),point,height,facing)
+	if riding and model.jump_age < 0 and model.checkpoint_view.body_on_board(model.checkpoint):
+		rider.visible = false
+		loose_board.visible = false
 	update_actors(model if riding else null)
 	fidget_view.update_effects(self,model if riding else null)
 	waterfall.set_shader_parameter("flow_time",model.clock if riding else flush.landing_clock)

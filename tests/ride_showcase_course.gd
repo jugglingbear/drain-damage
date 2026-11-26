@@ -11,7 +11,7 @@ class Host extends Node2D:
 	var paused := false
 	var life_state := "alive"
 	var won := false
-	func hurt_player() -> void:
+	func hurt_player(_fatal_fall := false) -> void:
 		if invulnerable > 0 or life_state != "alive": return
 		health -= 1
 		invulnerable = 1.5

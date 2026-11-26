@@ -219,10 +219,10 @@ func move_player_body(position: Vector2, motion: Vector2, size: Vector2, delta: 
 	if result.falling: pit_falling = true
 	return result
 
-func hurt_player() -> void:
+func hurt_player(fatal_fall := false) -> void:
 	var before := player
 	var previous_health := health
-	super.hurt_player()
+	super.hurt_player(fatal_fall)
 	if health < previous_health:
 		# Shared damage applies an immediate shove; sweep that displacement through trial solids.
 		var shove := Vector2(player.x-before.x,0)

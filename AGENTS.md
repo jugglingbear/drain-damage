@@ -46,6 +46,8 @@
 
 ## Art collaboration
 
+- For comic work, read [comic production requirements](docs/comic-production-requirements.md) before scripting,
+  layout, artwork or review. Apply all requirements to every issue, including the five required production practices.
 - Whenever new artwork is needed, ask the existing Bestiary / Art agent to help before creating it.
 - This includes interface illustrations and props, portraits, environments, sprites, and replacement artwork.
 - Engineering provides dimensions, layout constraints, and runtime requirements, then integrates the delivered art.

@@ -1041,7 +1041,7 @@ func _step(host: Node2D, dt: float, steering: Vector2, pressed: bool, check_ramp
 				jump_height = render_height
 				host.health = 1
 				host.invulnerable = 0
-				host.hurt_player()
+				host.hurt_player(true)
 				emit_event("fall",str(obstacle.id))
 			return
 		contact_latches[obstacle.id] = true

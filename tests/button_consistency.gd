@@ -75,14 +75,17 @@ func run_checks() -> void:
 	game.invulnerable = 0
 	game.hurt_player()
 	for frame in range(180): game.step_death(1.0/60)
-	assert(game.life_state == "game_over" and game.resume_button.text == "Retry")
+	assert(game.life_state == "game_over" and game.resume_button.text == "Restart Game")
 	var upper := Rect2(game.resume_button.position-Vector2(20,13),Vector2(510,85))
 	var lower := Rect2(game.title_button.position-Vector2(20,13),Vector2(510,85))
 	assert(not upper.intersects(lower) and lower.end.y < 510)
 	assert(Rect2(0,0,960,540).encloses(lower))
 	game.update_death_popup_guard(1)
 	game.resume_button.pressed.emit()
-	assert(game.life_state == "alive" and game.resume_button.visible and game.title_button.visible)
+	while not title.card_ready: await process_frame
+	title.reveal_game()
+	game = title.game
+	assert(game.life_state == "alive" and game.lives == 3 and game.dialogue.active)
 	assert(game.resume_button.text == "Resume" and game.resume_button.position.y == 255)
 	title.return_to_title()
 	title.queue_free()

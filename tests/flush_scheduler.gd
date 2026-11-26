@@ -19,7 +19,7 @@ class Host extends Node2D:
 	var health := 100000
 	var invulnerable := 0.0
 	var requests := 0
-	func hurt_player() -> void:
+	func hurt_player(_fatal_fall := false) -> void:
 		requests += 1
 		if invulnerable > 0: return
 		health -= 1

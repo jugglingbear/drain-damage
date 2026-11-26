@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-25",
+  "status": "Audition only; subjective selection pending; no runtime changes",
+  "brief": "Normal: trying to talk through a mouthful of water. Special: sustained gurgle-screaming through water, 3\u20135 seconds. No cough/spit montage. New recorded gargles shaped into speech-like or forceful sustained gestures; these are approximations, not recordings of the exact requested acting performance.",
+  "sources": [
+    {
+      "author": "FriendComIndustries",
+      "license": "CC0-1.0",
+      "page": "https://freesound.org/people/FriendComIndustries/sounds/784056/",
+      "path": "audio/sources/flush-button-v3/originals/784056-hq.mp3",
+      "sha256": "cdc01d7667994339295707b939a210461ab5fa49d85ed61e523214ecb1c0181e",
+      "format_note": "Public HQ MP3 preview; not the login-gated original WAV/AIFF.",
+      "retained_license_page": "audio/sources/flush-button-v3/originals/784056-source.html"
+    },
+    {
+      "author": "ftpalad",
+      "license": "CC0-1.0",
+      "page": "https://freesound.org/people/ftpalad/sounds/119915/",
+      "path": "audio/sources/flush-button-v3/originals/119915-hq.mp3",
+      "sha256": "f04af34571d3b29c071d05aa11520b7da5816c67c9c577760243f53d996fb370",
+      "format_note": "Public HQ MP3 preview; not the login-gated original WAV/AIFF.",
+      "retained_license_page": "audio/sources/flush-button-v3/originals/119915-source.html"
+    },
+    {
+      "author": "edhutschek",
+      "license": "CC0-1.0",
+      "page": "https://freesound.org/people/edhutschek/sounds/218195/",
+      "path": "audio/sources/flush-button-v3/originals/218195-hq.mp3",
+      "sha256": "db9a1878b956f472fe6843ad922d72692cb278b86268cecc116d910b7aeab9ec",
+      "format_note": "Public HQ MP3 preview; not the login-gated original WAV/AIFF.",
+      "retained_license_page": "audio/sources/flush-button-v3/originals/218195-source.html"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "DD-S0205.7",
+      "description": "G \u2014 Short bubbling attempted phrase",
+      "source_id": "784056",
+      "speed": 1.0,
+      "offset_seconds_after_leading_trim": 0.15,
+      "path": "audio/alternatives/DD-S0205/DD-S0205.7.wav",
+      "duration_seconds": 1.4,
+      "peak_dbfs": -6.0,
+      "sha256": "2c9e60dab6827cf16860279190bfcc0143c5846626ea447f3294bea253ce36a1"
+    },
+    {
+      "id": "DD-S0205.8",
+      "description": "H \u2014 Lower muffled attempted phrase",
+      "source_id": "218195",
+      "speed": 0.96,
+      "offset_seconds_after_leading_trim": 0.75,
+      "path": "audio/alternatives/DD-S0205/DD-S0205.8.wav",
+      "duration_seconds": 1.75,
+      "peak_dbfs": -6.0,
+      "sha256": "0fcdf9f39d9af9b449c1f6f8754e62120197354d841ff19962683465c0657bb4"
+    },
+    {
+      "id": "DD-S0206.7",
+      "description": "G \u2014 Rising voiced gargle",
+      "source_id": "784056",
+      "speed": 1.08,
+      "offset_seconds_after_leading_trim": 0,
+      "path": "audio/alternatives/DD-S0206/DD-S0206.7.wav",
+      "duration_seconds": 3.3,
+      "peak_dbfs": -6.0,
+      "sha256": "9412a9dafcd5581ec05e7bb0606624e0f300e369ff61d934de81a464b5e3ce9b"
+    },
+    {
+      "id": "DD-S0206.8",
+      "description": "H \u2014 Deeper underwater gurgle",
+      "source_id": "119915",
+      "speed": 0.98,
+      "offset_seconds_after_leading_trim": 0.5,
+      "path": "audio/alternatives/DD-S0206/DD-S0206.8.wav",
+      "duration_seconds": 3.8,
+      "peak_dbfs": -6.0,
+      "sha256": "e30766db76c7e6020e87b875439d4600e0fc76515d9f80fc997f84bb410767ab"
+    }
+  ],
+  "processing": [
+    {
+      "source": "784056",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=110,lowpass=f=7000",
+      "leading_trim_samples": 482
+    },
+    {
+      "source": "218195",
+      "filters": "aresample=44100,asetrate=42336,aresample=44100,highpass=f=110,lowpass=f=7000",
+      "leading_trim_samples": 12779
+    },
+    {
+      "source": "784056",
+      "filters": "aresample=44100,asetrate=47628,aresample=44100,highpass=f=110,lowpass=f=7000",
+      "leading_trim_samples": 439
+    },
+    {
+      "source": "119915",
+      "filters": "aresample=44100,asetrate=43218,aresample=44100,highpass=f=110,lowpass=f=7000",
+      "leading_trim_samples": 0
+    }
+  ],
+  "recipe": "audio/sources/flush-button-v3/render.py",
+  "limitation": "Source performances are gargles, not verified speech or screams; processing approximates intent."
+}

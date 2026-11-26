@@ -18,7 +18,7 @@ class WindowsExportTests(unittest.TestCase):
     def test_release_smoke_targets_are_current(self) -> None:
         registry = json.loads((ROOT / 'data/playtest-targets.json').read_text())
         levels = {item['id'] for item in registry['targets'] if item['kind'] == 'level'}
-        targets = ('1', '2', '2.1', '2-01', '2-12', '2-13')
+        targets = ('1', '2', '2.1', '2-course')
         self.assertTrue(set(targets).issubset(levels))
         for script in ('tools/build_windows.py', 'tools/test_windows.ps1'):
             content = (ROOT / script).read_text()

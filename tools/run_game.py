@@ -23,6 +23,16 @@ def launch_arguments(environment: dict[str, str]) -> list[str]:
     if screenshot not in ("0", "1"):
         raise ValueError("SCREENSHOT_MODE must be 0 or 1.")
     extras = ["--screenshot-mode=1"] if screenshot == "1" else []
+    invincible = environment.get("INVINCIBLE", "0") or "0"
+    if invincible not in ("0", "1"):
+        raise ValueError("INVINCIBLE must be 0 or 1.")
+    if invincible == "1":
+        extras.append("--invincible=1")
+    hp = environment.get("HP", "")
+    if hp:
+        if not hp.isascii() or not hp.isdecimal() or not 1 <= int(hp) <= 2147483647:
+            raise ValueError("HP must be a positive integer through 2147483647.")
+        extras.append(f"--hp={int(hp)}")
     selected = [key for key in SELECTORS if environment.get(key)]
     tuning = [key for key in ("HERO", "DIFFICULTY", "SEED") if environment.get(key)]
     if not selected and not tuning:

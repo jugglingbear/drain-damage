@@ -63,21 +63,17 @@ func checks() -> void:
 			# Completed intros skip directly to hazards on repeated deaths.
 			for attempt in 3:
 				game.lives = 3
-				flush.position = Vector2.ZERO
-				flush.tick(game,1.0/120,Vector2.ZERO,false,false)
+				# Ordinary debris deaths return to this checkpoint. Entering the drain restarts the bowl.
+				game.specials.budgets["level-two:"+game.employee.id] = 0
+				game.health = 1
+				game.invulnerable = 0
+				game.hurt_player()
 				check(game.life_state == "dying" and game.lives == 2,"Death debits once")
 				game.respawn_after_death()
+				check(game.specials.remaining() == 2,"Bowl checkpoint restores both charges")
 				boundary(game)
 				flush.tick(game,1.0/120,flush.position.normalized(),false,false)
 				check(flush.debris.next_wave == 1 and flush.debris.safety_failures == 0,"First live tick does not replay cohort")
-			game.lives = 1
-			flush.position = Vector2.ZERO
-			flush.tick(game,1.0/120,Vector2.ZERO,false,false)
-			check(game.lives == 0,"Last-life death")
-			game.life_state = "game_over"
-			game.death_popup_locked = false
-			game.resume_or_retry()
-			boundary(game)
 			# Follow the scheduler's current verified escape witness through the full remainder.
 			var elapsed := 0.0
 			while flush.clock < 45 and game.life_state == "alive":

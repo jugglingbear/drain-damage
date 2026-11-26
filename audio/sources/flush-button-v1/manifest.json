@@ -1,0 +1,573 @@
+{
+  "date": "2026-11-25",
+  "status": "Auditions only; awaiting Sean selection; no runtime changes",
+  "brief": "Flush-only auditions: X/keyboard fire is a panicked watery gagging cry trying to catch breath; B is comedic watery gagging/puking. Recorded human mouth gestures and water, short responsive onset, no electronic voice, no runtime integration before selection.",
+  "sources": {
+    "breath": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/breath.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "d6ecfd092c261059701fe81581957ce6e67c1737978449bbd98ec6d4f30abb7f"
+    },
+    "burble_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/burble_01.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "f4c27a1839ef9e82d29e1bb175c0ebf73c65b6839b2914108d0c219fc1f42445"
+    },
+    "burble_02": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/burble_02.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "7cc51b6cf28a5d0ac13f34e54cb18ebb8d2b66aa144281d321d0af826f56a85b"
+    },
+    "burp_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/burp_01.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "cbd6aa84cc088209e42014c563cda13ebcdd051df4e83768a9ae48554a32a163"
+    },
+    "cough_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/cough_01.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "ab4335a796373e46114e56ea9b8f2d5e3592d7f6e76c22c8b29b3aa985e8831c"
+    },
+    "cough_02": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/cough_02.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "df56e706c69183587dbf6750bf4d5df528051456cd4a838bb1171d5dbb29fcc9"
+    },
+    "cough_03": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/cough_03.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "1c307cd83cbda1f6860ed496e41ac27f105be801f168a22e6e359d3f9e563bb5"
+    },
+    "scream_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/scream_01.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "54da7bba4c4272b0b77dc3fe26a91d0a26d9280797fecb8197d716b47745eb85"
+    },
+    "scream_02": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/scream_02.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "73aedfbcc7e5b3004507d5a79e95ae53954026036bf8d6f65aa0a4ca298dd372"
+    },
+    "spit_01": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/spit_01.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "11185484afda924711008f5e565d0baa5ebb271457c028b7e19b9ed487f8c6bd"
+    },
+    "spit_02": {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/spit_02.ogg",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "aa65f01311e914d2861f1992a4e59f431c03edcf020e09961e422728562a2657"
+    },
+    "splash": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_01.ogg",
+      "source_manifest": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "8d48e8da680fbdfd3c885aa2f69d8e83ad16717bae43d178861d7af08d142849"
+    },
+    "splash2": {
+      "path": "audio/sources/starter-specials-auditions-v1/originals/splash_02.ogg",
+      "source_manifest": "audio/sources/player-death-flush-v1/manifest.json",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "e515b7da00b2a268263824dbea9b7bc0c2e972fbd189fe3c02576d2e29af3aa5"
+    }
+  },
+  "processing": [
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=46746,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 823
+    },
+    {
+      "source": "burble_01",
+      "filters": "aresample=44100,asetrate=46305,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2419
+    },
+    {
+      "source": "cough_01",
+      "filters": "aresample=44100,asetrate=46305,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1596
+    },
+    {
+      "source": "breath",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 971
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "scream_02",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 758
+    },
+    {
+      "source": "cough_02",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 224
+    },
+    {
+      "source": "cough_03",
+      "filters": "aresample=44100,asetrate=49392,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1634
+    },
+    {
+      "source": "breath",
+      "filters": "aresample=44100,asetrate=46305,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1022
+    },
+    {
+      "source": "burble_02",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1798
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=39690,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 987
+    },
+    {
+      "source": "burble_02",
+      "filters": "aresample=44100,asetrate=39690,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2219
+    },
+    {
+      "source": "cough_03",
+      "filters": "aresample=44100,asetrate=42336,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1935
+    },
+    {
+      "source": "breath",
+      "filters": "aresample=44100,asetrate=41895,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1140
+    },
+    {
+      "source": "splash2",
+      "filters": "aresample=44100,asetrate=41895,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 226
+    },
+    {
+      "source": "cough_01",
+      "filters": "aresample=44100,asetrate=42336,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1754
+    },
+    {
+      "source": "burble_01",
+      "filters": "aresample=44100,asetrate=41895,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2684
+    },
+    {
+      "source": "cough_02",
+      "filters": "aresample=44100,asetrate=44982,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 250
+    },
+    {
+      "source": "spit_01",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1966
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=44100,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 0
+    },
+    {
+      "source": "burp_01",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 834
+    },
+    {
+      "source": "cough_03",
+      "filters": "aresample=44100,asetrate=39690,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2070
+    },
+    {
+      "source": "burble_02",
+      "filters": "aresample=44100,asetrate=38808,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2271
+    },
+    {
+      "source": "spit_02",
+      "filters": "aresample=44100,asetrate=41454,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2411
+    },
+    {
+      "source": "splash2",
+      "filters": "aresample=44100,asetrate=41895,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 226
+    },
+    {
+      "source": "cough_02",
+      "filters": "aresample=44100,asetrate=50274,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 213
+    },
+    {
+      "source": "spit_01",
+      "filters": "aresample=44100,asetrate=50274,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1712
+    },
+    {
+      "source": "burble_01",
+      "filters": "aresample=44100,asetrate=50715,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2200
+    },
+    {
+      "source": "cough_01",
+      "filters": "aresample=44100,asetrate=50715,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 1448
+    },
+    {
+      "source": "spit_02",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 2046
+    },
+    {
+      "source": "splash",
+      "filters": "aresample=44100,asetrate=50715,aresample=44100,highpass=f=100,lowpass=f=9000",
+      "leading_trim_samples": 0
+    }
+  ],
+  "outputs": [
+    {
+      "id": "DD-S0205.1",
+      "action": "fire",
+      "description": "A \u2014 Choked yelp and quick breath",
+      "layers": [
+        [
+          "scream_01",
+          0,
+          0.43,
+          0,
+          1,
+          1.06
+        ],
+        [
+          "burble_01",
+          0.18,
+          0.3,
+          0,
+          0.4,
+          1.05
+        ],
+        [
+          "cough_01",
+          0.43,
+          0.24,
+          0,
+          0.8,
+          1.05
+        ],
+        [
+          "breath",
+          0.7,
+          0.37,
+          0,
+          0.7,
+          1.1
+        ],
+        [
+          "splash",
+          0.1,
+          0.25,
+          0.1,
+          0.2,
+          1.1
+        ]
+      ],
+      "path": "audio/alternatives/DD-S0205/DD-S0205.1.wav",
+      "duration_seconds": 1.1,
+      "peak_dbfs": -6.0,
+      "sha256": "81ef37f7cac6d71bba9516d29e39f856833da47fe57c98b88a9deaab6c3e9838"
+    },
+    {
+      "id": "DD-S0205.2",
+      "action": "fire",
+      "description": "B \u2014 Broken cry with two sputters",
+      "layers": [
+        [
+          "scream_02",
+          0,
+          0.48,
+          0,
+          1,
+          1.0
+        ],
+        [
+          "cough_02",
+          0.4,
+          0.22,
+          0,
+          0.9,
+          1.1
+        ],
+        [
+          "cough_03",
+          0.65,
+          0.2,
+          0,
+          0.75,
+          1.12
+        ],
+        [
+          "breath",
+          0.9,
+          0.33,
+          0.1,
+          0.65,
+          1.05
+        ],
+        [
+          "burble_02",
+          0.12,
+          0.43,
+          0.05,
+          0.35,
+          1.1
+        ]
+      ],
+      "path": "audio/alternatives/DD-S0205/DD-S0205.2.wav",
+      "duration_seconds": 1.26,
+      "peak_dbfs": -6.0,
+      "sha256": "a7bc895b03b5c4f43ba35d499e980670f6941fa3c459e95cbab1992840e8f3fb"
+    },
+    {
+      "id": "DD-S0205.3",
+      "action": "fire",
+      "description": "C \u2014 Low waterlogged cry and gasp",
+      "layers": [
+        [
+          "scream_01",
+          0,
+          0.65,
+          0.12,
+          1,
+          0.9
+        ],
+        [
+          "burble_02",
+          0.22,
+          0.45,
+          0,
+          0.5,
+          0.9
+        ],
+        [
+          "cough_03",
+          0.67,
+          0.27,
+          0,
+          0.8,
+          0.96
+        ],
+        [
+          "breath",
+          0.98,
+          0.37,
+          0.03,
+          0.8,
+          0.95
+        ],
+        [
+          "splash2",
+          0.35,
+          0.23,
+          0,
+          0.15,
+          0.95
+        ]
+      ],
+      "path": "audio/alternatives/DD-S0205/DD-S0205.3.wav",
+      "duration_seconds": 1.38,
+      "peak_dbfs": -6.0,
+      "sha256": "9825600ef6e6dd10a6e92be63ef3e56832bda006159bbfd5d4a147ba5a2c4066"
+    },
+    {
+      "id": "DD-S0206.1",
+      "action": "gag",
+      "description": "A \u2014 Quick wet double retch",
+      "layers": [
+        [
+          "cough_01",
+          0,
+          0.26,
+          0,
+          1,
+          0.96
+        ],
+        [
+          "burble_01",
+          0.16,
+          0.34,
+          0,
+          0.8,
+          0.95
+        ],
+        [
+          "cough_02",
+          0.47,
+          0.22,
+          0,
+          0.85,
+          1.02
+        ],
+        [
+          "spit_01",
+          0.64,
+          0.27,
+          0,
+          0.8,
+          1.0
+        ],
+        [
+          "splash",
+          0.65,
+          0.25,
+          0.1,
+          0.25,
+          1.0
+        ]
+      ],
+      "path": "audio/alternatives/DD-S0206/DD-S0206.1.wav",
+      "duration_seconds": 0.94,
+      "peak_dbfs": -6.0,
+      "sha256": "7982818a7f7c168944132170637b849650ca8f2cdfb4bda2218ea88270567ce4"
+    },
+    {
+      "id": "DD-S0206.2",
+      "action": "gag",
+      "description": "B \u2014 Deep rolling heave and spill",
+      "layers": [
+        [
+          "burp_01",
+          0,
+          0.39,
+          0,
+          0.7,
+          0.88
+        ],
+        [
+          "cough_03",
+          0.12,
+          0.34,
+          0,
+          1,
+          0.9
+        ],
+        [
+          "burble_02",
+          0.35,
+          0.59,
+          0,
+          1,
+          0.88
+        ],
+        [
+          "spit_02",
+          0.91,
+          0.39,
+          0,
+          0.75,
+          0.94
+        ],
+        [
+          "splash2",
+          0.9,
+          0.38,
+          0.08,
+          0.35,
+          0.95
+        ]
+      ],
+      "path": "audio/alternatives/DD-S0206/DD-S0206.2.wav",
+      "duration_seconds": 1.34,
+      "peak_dbfs": -6.0,
+      "sha256": "b4f61011a13b3006873c44e871a6ef35756f32f2b9ee89d8310410a6b96dec48"
+    },
+    {
+      "id": "DD-S0206.3",
+      "action": "gag",
+      "description": "C \u2014 Rapid spluttering spit-take",
+      "layers": [
+        [
+          "cough_02",
+          0,
+          0.22,
+          0,
+          1,
+          1.14
+        ],
+        [
+          "spit_01",
+          0.19,
+          0.2,
+          0,
+          0.8,
+          1.14
+        ],
+        [
+          "burble_01",
+          0.34,
+          0.24,
+          0.1,
+          0.8,
+          1.15
+        ],
+        [
+          "cough_01",
+          0.53,
+          0.2,
+          0,
+          0.9,
+          1.15
+        ],
+        [
+          "spit_02",
+          0.72,
+          0.27,
+          0,
+          0.8,
+          1.1
+        ],
+        [
+          "splash",
+          0.73,
+          0.25,
+          0,
+          0.25,
+          1.15
+        ]
+      ],
+      "path": "audio/alternatives/DD-S0206/DD-S0206.3.wav",
+      "duration_seconds": 1.02,
+      "peak_dbfs": -6.0,
+      "sha256": "d2a51833f590dd8a1b8cb7c44c6f9178d3a8a141a5f9e565e8356ac19a901ac6"
+    }
+  ],
+  "recipe": "audio/sources/flush-button-v1/render.py",
+  "validation": "PCM format, headroom, onset/tail and non-silence checked; subjective listening pending."
+}

@@ -1,0 +1,240 @@
+{
+  "date": "2026-11-25",
+  "status": "Art layers delivered for Engineering integration; native contact/motion acceptance pending",
+  "tool": "built-in image_gen",
+  "concept": "design/ride-checkpoint-v1/staging-concept.png",
+  "world_unit": 100,
+  "entries": {
+    "tony-ski": {
+      "path": "assets/world/ride-checkpoint-v1/tony-ski.png",
+      "source_size": [
+        1460,
+        343
+      ],
+      "source_crop": [
+        275,
+        37,
+        1460,
+        343
+      ],
+      "anchor_px": [
+        730.0,
+        343
+      ],
+      "anchor_kind": "waterline",
+      "display_width": 135,
+      "display_height": 31.716,
+      "machine_contact_px": [
+        700.8,
+        99.47
+      ],
+      "mirror_x_for_rightward": true
+    },
+    "sean-ski": {
+      "path": "assets/world/ride-checkpoint-v1/sean-ski.png",
+      "source_size": [
+        1291,
+        301
+      ],
+      "source_crop": [
+        377,
+        441,
+        1291,
+        301
+      ],
+      "anchor_px": [
+        645.5,
+        301
+      ],
+      "anchor_kind": "waterline",
+      "display_width": 125,
+      "display_height": 29.144,
+      "machine_contact_px": [
+        619.68,
+        87.28999999999999
+      ],
+      "mirror_x_for_rightward": true
+    },
+    "booster-stowed": {
+      "path": "assets/world/ride-checkpoint-v1/booster-stowed.png",
+      "source_size": [
+        289,
+        459
+      ],
+      "source_crop": [
+        115,
+        129,
+        289,
+        459
+      ],
+      "anchor_px": [
+        0,
+        183.60000000000002
+      ],
+      "anchor_kind": "mount",
+      "display_width": 23,
+      "display_height": 36.529,
+      "nozzle_px": [
+        179.18,
+        440.64
+      ]
+    },
+    "booster-deployed": {
+      "path": "assets/world/ride-checkpoint-v1/booster-deployed.png",
+      "source_size": [
+        294,
+        574
+      ],
+      "source_crop": [
+        611,
+        127,
+        294,
+        574
+      ],
+      "anchor_px": [
+        0,
+        229.60000000000002
+      ],
+      "anchor_kind": "mount",
+      "display_width": 23,
+      "display_height": 44.905,
+      "nozzle_px": [
+        182.28,
+        551.04
+      ]
+    },
+    "exhaust-short": {
+      "path": "assets/world/ride-checkpoint-v1/exhaust-short.png",
+      "source_size": [
+        145,
+        280
+      ],
+      "source_crop": [
+        217,
+        795,
+        145,
+        280
+      ],
+      "anchor_px": [
+        72.5,
+        0
+      ],
+      "anchor_kind": "top",
+      "display_width": 16,
+      "display_height": 30.897
+    },
+    "exhaust-long": {
+      "path": "assets/world/ride-checkpoint-v1/exhaust-long.png",
+      "source_size": [
+        178,
+        539
+      ],
+      "source_crop": [
+        692,
+        795,
+        178,
+        539
+      ],
+      "anchor_px": [
+        89.0,
+        0
+      ],
+      "anchor_kind": "top",
+      "display_width": 16,
+      "display_height": 48.449
+    },
+    "sean-confused": {
+      "path": "assets/world/ride-checkpoint-v1/sean-confused.png",
+      "source_size": [
+        502,
+        633
+      ],
+      "source_crop": [
+        104,
+        57,
+        502,
+        633
+      ],
+      "anchor_px": [
+        261.04,
+        462.09
+      ],
+      "anchor_kind": "seat",
+      "display_width": 66,
+      "display_height": 83.223
+    },
+    "sean-shrug": {
+      "path": "assets/world/ride-checkpoint-v1/sean-shrug.png",
+      "source_size": [
+        610,
+        637
+      ],
+      "source_crop": [
+        717,
+        53,
+        610,
+        637
+      ],
+      "anchor_px": [
+        317.2,
+        465.01
+      ],
+      "anchor_kind": "seat",
+      "display_width": 80,
+      "display_height": 83.541
+    },
+    "empty-board": {
+      "path": "assets/world/ride-checkpoint-v1/empty-board.png",
+      "source_size": [
+        628,
+        190
+      ],
+      "source_crop": [
+        1460,
+        435,
+        628,
+        190
+      ],
+      "anchor_px": [
+        314.0,
+        190
+      ],
+      "anchor_kind": "waterline",
+      "display_width": 110,
+      "display_height": 33.28,
+      "seat_surface_px": [
+        314.0,
+        38.0
+      ]
+    },
+    "blood-wake": {
+      "path": "assets/world/ride-checkpoint-v1/blood-wake.png",
+      "source_size": [
+        1957,
+        274
+      ],
+      "anchor_px": [
+        1957,
+        137.0
+      ],
+      "anchor_kind": "right_edge_at_feet",
+      "display_width": 80,
+      "display_height": 14,
+      "note": "Already trails LEFT; do not mirror. Attach right edge behind feet. Fade while stopped/sinking."
+    }
+  },
+  "reuse": {
+    "machine": "assets/world/spare-employee-dispenser/manifest-v6.json",
+    "tony_reactions": "same manifest heroes.tony look_left/look_right/shrug",
+    "screen_corpse": "Engineering existing Level1 overlay"
+  },
+  "notes": [
+    "Skis are independent normal-costume adult clones, left-facing; mount on back contact, place at distinct banks.",
+    "Sean pose anchors are anatomical seat points, not boot bottoms; tune against empty-board surface in native.",
+    "Booster source scale should be identical between states; use stowed width as base and preserve nozzle extension.",
+    "Exhaust variants separate for pulse animation; no flame baked into pods.",
+    "Do not mirror facial identity; horizontal mirroring for travel is safe.",
+    "No gameplay/difficulty changes authorized by these assets.",
+    "Sean direction November25: parallel side-by-side depth-separated skis, aligned longitudinal centers, both heads RIGHT. X eyes and separate blood wakes. No sleeping appearance."
+  ]
+}

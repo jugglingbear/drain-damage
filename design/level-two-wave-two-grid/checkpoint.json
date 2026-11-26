@@ -1,0 +1,68 @@
+{
+  "id": "level-two-post-wave-two-checkpoint",
+  "date": "2026-11-25",
+  "status": "Signed Prototype216 ready for playtest; independent sampled Art review accepted",
+  "placement": "After Wave2, before futureWave3",
+  "sequence": [
+    "Hazard-free approach after Wave2.",
+    "Existing spare employee machine enters slowly from right, surfer-balancing with arms left/right, skiing on two dead clones: oneSean,oneTony.",
+    "Machine stops at screen center and waits for hero approach.",
+    "If injured, crumple selectedhero and throw corpse toward random viewer-screen coordinate; bloody impact, downward slide, disappear.",
+    "Machine reaches inside itself and pulls a fresh selectedhero onto poopboard: Tony standing,Sean seated. Confused expression.",
+    "Machine grows rocket boosters and exits upward; deadclone skis sink and disappear.",
+    "Hero shrugs and continues; several seconds safe lead before Wave3."
+  ],
+  "full_health": "Still activate checkpoint; no replacement needed. Preserve Level1 semantics.",
+  "checkpoint_contract": [
+    "Formal checkpoint, not debug encounter retry.",
+    "Activate once; restore after completed sequence on later death, preserving run seed/layout and appropriate health/lives.",
+    "Healing replacement does not consume a life.",
+    "No hazard damage during staging/cutscene; machine waits until approached.",
+    "Wave3 not implemented by this request; reserve safe continuation."
+  ],
+  "test_start": "make run LEVEL=2-checkpoint; starts before machine approach",
+  "owners": {
+    "design": "Level Design",
+    "art": "Art",
+    "integration_and_build": "Engineering"
+  },
+  "validation": [
+    "Bothheroes,injured/fullhealth,activation/death/retry,pause,seed/lives,completed-cutscene restoration.",
+    "Actualnative motion for entry,watercontact,viewer-screen impact,placement onboard,boosterexit,sink,shrug."
+  ],
+  "deferred": "Earlier movinghazard/finalboss brainstorm remains deferred until Waves1\u20133 complete.",
+  "delivery": {
+    "version": "0.216.0",
+    "reported_by": "Engineering",
+    "packaged_lifecycle_cases_passed": 17,
+    "native_routes_completed": 4,
+    "capture_size": [
+      960,
+      540
+    ],
+    "evidence": "previews/ride-216/checkpoint.jpg",
+    "docking_tolerance": {
+      "longitudinal": 24,
+      "bank": 20
+    },
+    "dock_ease_seconds": 0.2,
+    "save_rule": "Save at end of two-second departure",
+    "safe_runout_seconds": 5,
+    "visual_details": "Two right-facing corpse skis with X eyes and distinct trailing blood wakes; wakes fade while waiting.",
+    "remaining": "Human playtest; sampled visual acceptance does not establish exhaustive motion review.",
+    "art_acceptance": "Final samples accepted at both camera angles: parallel corpse skis, X eyes and left-trailing wakes. Far clone partly obscured by cabinet but identifiable.",
+    "docking_tolerance_status": "Historical Prototype216 values; superseded by pickup_contract for218"
+  },
+  "pickup_contract": {
+    "version": "0.218.0",
+    "source": "Engineering, following Sean checkpoint playtest",
+    "screen_x_range": [
+      350,
+      600
+    ],
+    "bank_range": "Full channel",
+    "guide_to_dock_seconds": 0.65,
+    "supersedes": "Prototype216 \u00b124 longitudinal/\u00b120 bank docking tolerance",
+    "reason": "Previous docking point was too difficult to locate."
+  }
+}

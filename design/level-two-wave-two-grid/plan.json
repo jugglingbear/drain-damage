@@ -1,0 +1,521 @@
+{
+  "id": "level-two-wave-two-design-v1",
+  "date": "2026-11-24",
+  "status": "Prototype204 ready for human tuning playtest",
+  "owner": "Level Design",
+  "integration_owner": "Engineering",
+  "baseline": "Prototype 202; 200 movement plus 201 landing input",
+  "normal_extent": {
+    "start_x": 14300,
+    "finish_x": 42300,
+    "length": 28000,
+    "neutral_seconds": 50
+  },
+  "grid": {
+    "banks": [
+      "far",
+      "middle",
+      "near"
+    ],
+    "water_y": [
+      230,
+      430
+    ],
+    "cell_length": 320,
+    "columns": 88,
+    "last_column_width": 160,
+    "origin_x": 14300,
+    "semantics": "Planning footprint; exact object rectangles/timing override occupied letters. No universal H guarantee yet.",
+    "legend": {
+      "D": "dodge solid/overhead",
+      "J": "low jump barrier",
+      "H": "hole",
+      "P": "landing platform",
+      "R": "automatic-launch ramp"
+    }
+  },
+  "constraints": [
+    "Append to existing Wave1; do not shorten or rearrange Wave1 in this delivery.",
+    "No new checkpoint. Death returns to last formal checkpoint; current campaign has none. Preserve seed and all choices on retry.",
+    "No super jump. No yellow targets or new ground warning overlays.",
+    "Do not speed up scrolling or reduce 65% pit overlap. Retain current acceleration, coasting and jump controls.",
+    "Near-continuous varied input; easier single-obstacle beats replace empty rests. No automatic rest at block boundaries.",
+    "No obstacle in intended ramp ascent/flight/catch or hopscotch landing envelope; validate transition out of each.",
+    "Use normal camera toward later portion unless necessary readability correction; no surprise zoom during a committed jump.",
+    "Seed selects constrained mirrored machinery pattern and elbow follow-up count1\u20133, not arbitrary independent hazards.",
+    "Optional hole slots become alternating-bank valves at lower counts; fixed slot positions and downstream geometry remain unchanged.",
+    "Hole counts mean follow-ups after initial elbow breach, not total breach holes.",
+    "Art/native review must verify elbow and ramp geometry, overhead cues, cap/porcelain support and camera framing.",
+    "Grid generation architecture remains optional; implement explicit authored modules with stable IDs now."
+  ],
+  "geometry_starting_points": {
+    "valves": "Reuse Wave1 80px widths, far/near115px depths and center55px depth; preserve safe centers.",
+    "flanges": "24px wide, full depth200, clearance18. Pair \u00b136 around authored center.",
+    "strainers": "Reuse validated 160x72,160x136,140x200,640x72,640x136 shapes and \u00b10.12s jitter. Derive absolute timers per upstream edge.",
+    "elbow": "Translate source2-02 elbow to30600; initial breach31060 width700. Follow-up31900 near hole always. Slot32500 far hole for count>=2, otherwise far valve. Slot33100 near hole for count3, otherwise near valve. All short holes160x72. Revised transition proof pending.",
+    "basins": "Six porcelain platforms at23320/23800/24280/24760/25240/25720, alternating280/380; opening23230..25840. Five inter-platform jumps. Removed old post-basin fillers. Exact as-built widths/depths authoritative in runtime data; validation pending.",
+    "ramp": "Translate ALL x-valued fields of2-10 by33100 including launch_x: ramp35600, launch35700, pit36015, catch36517.5. Catch ends36750.",
+    "difficulty": "Keep full28000 extension on all modes; inherit Wave1 downstream shift +420 Easy/-210 Hard. Tune widths/lanes/timing within blocks only if validated; do not uniformly shrink all spacing."
+  },
+  "blocks": [
+    {
+      "id": "mixed-entry",
+      "title": "Slalom with jump joints",
+      "start_x": 14300,
+      "end_x": 18300,
+      "beats": [
+        {
+          "symbol": "D",
+          "x": 14700,
+          "column": 2,
+          "description": "far wall valve"
+        },
+        {
+          "symbol": "J",
+          "x": 15080,
+          "column": 3,
+          "description": "single full-width flange"
+        },
+        {
+          "symbol": "D",
+          "x": 15550,
+          "column": 4,
+          "description": "near wall valve"
+        },
+        {
+          "symbol": "D",
+          "x": 16050,
+          "column": 6,
+          "description": "center valve"
+        },
+        {
+          "symbol": "J",
+          "x": 16550,
+          "column": 8,
+          "description": "paired flanges, 72px center separation"
+        },
+        {
+          "symbol": "D",
+          "x": 17100,
+          "column": 9,
+          "description": "far wall valve"
+        },
+        {
+          "symbol": "J",
+          "x": 17600,
+          "column": 11,
+          "description": "single flange"
+        },
+        {
+          "symbol": "D",
+          "x": 18100,
+          "column": 12,
+          "description": "near wall valve"
+        }
+      ]
+    },
+    {
+      "id": "brush-weave",
+      "title": "Overhead dodge and grounded recovery",
+      "start_x": 18300,
+      "end_x": 22300,
+      "beats": [
+        {
+          "symbol": "D",
+          "x": 18600,
+          "column": 14,
+          "description": "far brush"
+        },
+        {
+          "symbol": "D",
+          "x": 19160,
+          "column": 16,
+          "description": "near brush"
+        },
+        {
+          "symbol": "D",
+          "x": 19720,
+          "column": 17,
+          "description": "center brush"
+        },
+        {
+          "symbol": "J",
+          "x": 20450,
+          "column": 20,
+          "description": "flange after overhead clears"
+        },
+        {
+          "symbol": "D",
+          "x": 21000,
+          "column": 21,
+          "description": "near valve"
+        },
+        {
+          "symbol": "J",
+          "x": 21500,
+          "column": 23,
+          "description": "single flange"
+        },
+        {
+          "symbol": "D",
+          "x": 22000,
+          "column": 25,
+          "description": "far valve"
+        }
+      ]
+    },
+    {
+      "id": "basin-chain",
+      "title": "Steer between porcelain landings",
+      "start_x": 22300,
+      "end_x": 26300,
+      "beats": [
+        {
+          "symbol": "J",
+          "x": 22500,
+          "column": 26,
+          "description": "approach flange"
+        },
+        {
+          "symbol": "H",
+          "x": 24535,
+          "column": 32,
+          "description": "continuous opening23230..25840, with six support platforms"
+        },
+        {
+          "symbol": "P",
+          "x": 23320,
+          "column": 29,
+          "description": "Porcelain landing 1/6 at bank y280"
+        },
+        {
+          "symbol": "P",
+          "x": 23800,
+          "column": 30,
+          "description": "Porcelain landing 2/6 at bank y380"
+        },
+        {
+          "symbol": "P",
+          "x": 24280,
+          "column": 32,
+          "description": "Porcelain landing 3/6 at bank y280"
+        },
+        {
+          "symbol": "P",
+          "x": 24760,
+          "column": 33,
+          "description": "Porcelain landing 4/6 at bank y380"
+        },
+        {
+          "symbol": "P",
+          "x": 25240,
+          "column": 35,
+          "description": "Porcelain landing 5/6 at bank y280"
+        },
+        {
+          "symbol": "P",
+          "x": 25720,
+          "column": 36,
+          "description": "Porcelain landing 6/6 at bank y380"
+        }
+      ]
+    },
+    {
+      "id": "machine-combinations",
+      "title": "Three strainers with mixed joints",
+      "start_x": 26300,
+      "end_x": 30300,
+      "beats": [
+        {
+          "symbol": "H",
+          "x": 26650,
+          "column": 39,
+          "description": "short one-bank strainer"
+        },
+        {
+          "symbol": "H",
+          "x": 27200,
+          "column": 41,
+          "description": "short two-bank strainer"
+        },
+        {
+          "symbol": "J",
+          "x": 27750,
+          "column": 43,
+          "description": "single flange"
+        },
+        {
+          "symbol": "H",
+          "x": 28300,
+          "column": 44,
+          "description": "short full-width strainer"
+        },
+        {
+          "symbol": "D",
+          "x": 28850,
+          "column": 46,
+          "description": "near valve"
+        },
+        {
+          "symbol": "J",
+          "x": 29400,
+          "column": 48,
+          "description": "paired flanges 72px apart"
+        },
+        {
+          "symbol": "D",
+          "x": 30000,
+          "column": 50,
+          "description": "far valve"
+        }
+      ]
+    },
+    {
+      "id": "elbow-chain",
+      "title": "Breach plus seeded 1\u20133 follow-up holes",
+      "start_x": 30300,
+      "end_x": 34300,
+      "beats": [
+        {
+          "symbol": "D",
+          "x": 30600,
+          "column": 51,
+          "description": "near-bank elbow"
+        },
+        {
+          "symbol": "HH",
+          "x": 31060,
+          "column": 53,
+          "description": "700px near/middle breach, far refuge"
+        },
+        {
+          "symbol": "H",
+          "x": 31900,
+          "column": 56,
+          "description": "follow-up hole 1, short near bank"
+        },
+        {
+          "symbol": "H?",
+          "x": 32500,
+          "column": 57,
+          "description": "follow-up hole 2 if count >=2"
+        },
+        {
+          "symbol": "H?",
+          "x": 33100,
+          "column": 59,
+          "description": "follow-up hole 3 if count =3"
+        },
+        {
+          "symbol": "J",
+          "x": 33700,
+          "column": 61,
+          "description": "single flange after final possible hole"
+        },
+        {
+          "symbol": "D",
+          "x": 34100,
+          "column": 62,
+          "description": "far valve"
+        }
+      ]
+    },
+    {
+      "id": "flume-launch",
+      "title": "Align and launch, then resume weaving",
+      "start_x": 34300,
+      "end_x": 38300,
+      "beats": [
+        {
+          "symbol": "J",
+          "x": 34600,
+          "column": 64,
+          "description": "single flange"
+        },
+        {
+          "symbol": "RHP",
+          "x": 35600,
+          "column": 67,
+          "description": "2-10 ramp center at x35600; preserve ramp/pit/catch geometry"
+        },
+        {
+          "symbol": "D",
+          "x": 37100,
+          "column": 72,
+          "description": "far valve after catch basin"
+        },
+        {
+          "symbol": "J",
+          "x": 37600,
+          "column": 73,
+          "description": "single flange"
+        },
+        {
+          "symbol": "D",
+          "x": 38100,
+          "column": 75,
+          "description": "near valve"
+        }
+      ]
+    },
+    {
+      "id": "mixed-finish",
+      "title": "Three strainers and final lane changes",
+      "start_x": 38300,
+      "end_x": 42300,
+      "beats": [
+        {
+          "symbol": "HH",
+          "x": 38700,
+          "column": 77,
+          "description": "640px one-bank strainer"
+        },
+        {
+          "symbol": "J",
+          "x": 39350,
+          "column": 79,
+          "description": "single flange"
+        },
+        {
+          "symbol": "H+D",
+          "x": 39900,
+          "column": 81,
+          "description": "short one-bank strainer plus opposite-bank baffle, middle passage"
+        },
+        {
+          "symbol": "HH",
+          "x": 40600,
+          "column": 83,
+          "description": "640px two-bank strainer"
+        },
+        {
+          "symbol": "J",
+          "x": 41250,
+          "column": 85,
+          "description": "single flange after long cut"
+        },
+        {
+          "symbol": "D",
+          "x": 41850,
+          "column": 87,
+          "description": "final near valve"
+        },
+        {
+          "symbol": "END",
+          "x": 42300,
+          "column": 88,
+          "description": "finish"
+        }
+      ]
+    }
+  ],
+  "acceptance": [
+    "Actual-model whole-course witnesses for both heroes and all difficulties, both machinery mirrors and all three follow-up counts.",
+    "Test Wave1-to-Wave2 handoff, every block seam, held horizontal/diagonal steering, jump landing buffer, frame-rate independence and modest input timing variation.",
+    "Demonstrate no fixed-bank trivial route through intended weave/landing sequences; long holes remain unjumpable and short required holes remain clearable.",
+    "Pause/death/respawn: one life debit, no encounter checkpoint, same seed/count/layout; completion only after Wave2 finish.",
+    "Packaged/native visual and motion acceptance, then signed build delivery. Human Normal balance remains playtest judgment."
+  ],
+  "integration_review": {
+    "date": "2026-11-24",
+    "source": "levels/level-two-ride-continuous.json",
+    "finding": "Initial authored beat centers, source templates, 28000px extension and ramp launch_x translation match the brief. No signed-build acceptance claimed.",
+    "balance_followup": "Implemented by Engineering: x32500 short far-side hole or far valve; x33100 short near-side hole or near valve. Fixed timing and exactly1\u20133 follow-up holes preserved. Revised route validation pending."
+  },
+  "hopscotch_revision": {
+    "requested_date": "2026-11-24",
+    "user_request": "Some spans of5\u201310 jumps in Wave2 or Wave3",
+    "recommendation": "Five jumps across six platforms in Wave2; eight\u2013ten futureWave3",
+    "provisional_centers": [
+      23320,
+      23800,
+      24280,
+      24760,
+      25240,
+      25720
+    ],
+    "provisional_bank_y": [
+      280,
+      380,
+      280,
+      380,
+      280,
+      380
+    ],
+    "scope": "Replace conflicting basin-block fillers; preserve28000 total extension; Engineering owns exact geometry and build revision",
+    "validation": {
+      "reported_by": "Game Mechanics",
+      "focused_cases": 108,
+      "breakdown": "54 timing/anchor/frame-rate/both-hero cases;24 Hard diagonal cases;30 omitted-hop negatives",
+      "full_courses": 12,
+      "result": "Exactly5 jumps and5 ordered landings; every omitted-hop attempt fails. No geometry changes needed.",
+      "logs": [
+        "/tmp/basin-chain-final.log",
+        "/tmp/basin-full.log"
+      ],
+      "limits": "Original324 matrix predates expansion. Art cleared sampled revised basin/ramp contact for both Normal anchor/yaw combinations; not exhaustive realtime visual approval or human difficulty acceptance.",
+      "packaged": "Engineering reports108 focused checks pass in signed package; both native Normal hero routes finish75.008s without hits or new actor allocations.",
+      "visual_evidence": [
+        "previews/ride-203/release/art-tony-review.jpg",
+        "previews/ride-203/release/art-sean-review.jpg"
+      ]
+    },
+    "integration": "Six platforms integrated at proposed centers and alternating banks; opening23230..25840. Removed25000 valve,25500 flange,26000 valve. Overall extent unchanged."
+  },
+  "difficulty_revision": {
+    "date": "2026-11-25",
+    "feedback": "Obstacles spaced far enough apart that dodging is too easy and jumps too simple.",
+    "owner": "Engineering integration, Mechanics validation, Art native review, Level Design layout direction",
+    "targets": [
+      "Preserve28000px extent and current controls; leaveWave1 unchanged.",
+      "Trial15\u201325% tighter local dodge spacing with route proof; fill reclaimed space with mixed beats.",
+      "Increase simultaneous steering and jump decisions; protect jump/landing and overhead clearance.",
+      "Trial selected interior basin platform widths300 instead of360; preserve generous entry/exit,depth and five required jumps.",
+      "Compare actual obstacle count, gaps and landing timing margins; maintain modest timing tolerance onNormal."
+    ],
+    "status": "Final signed204 passed72 timing runs and36 hero/mode/seed routes; Art cleared sampled revised exit separation; ready for human tuning playtest",
+    "candidate_204": {
+      "normal_objects_before": 53,
+      "normal_objects_after": 59,
+      "hard_objects_after": 60,
+      "easy": "Retains203 layout",
+      "brush_center_spacing": [
+        560,
+        450
+      ],
+      "entry_valve_spacing": [
+        500,
+        400
+      ],
+      "added_normal_flange_x": [
+        15750,
+        26210,
+        28680,
+        37040,
+        41650
+      ],
+      "added_near_valve_x": 20100,
+      "hard_extra_flange_x": 32150,
+      "narrowed_normal_platform_centers": [
+        23800,
+        24760
+      ],
+      "platform_width_before_after": [
+        360,
+        300
+      ],
+      "hard_additional_narrowed_center": 25240,
+      "timing_review": "Mechanics reports narrower platforms reduce early landing margin by about50ms in focused60Hz/anchor300 probes. Added exit flanges moved26150\u219226210 and36980\u219237040 to avoid consuming early jump presses during deck drop. Focused checks pass; final72 full-course\u00b150ms matrix pending."
+    },
+    "validation": {
+      "signed_whole_course_combinations": 36,
+      "timing_matrix_complete_courses": 72,
+      "timing_scope": "Both heroes,all modes,30/60/120Hz,both mirrors,\u00b150ms",
+      "chain_cases": 108,
+      "individual_margin_probes": 615,
+      "timing_log": "/tmp/harder-final2-full.log",
+      "remaining": "Human difficulty assessment",
+      "runtime_commit": "be38c17"
+    }
+  }
+}

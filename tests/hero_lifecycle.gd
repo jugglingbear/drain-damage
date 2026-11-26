@@ -52,13 +52,13 @@ func run_checks() -> void:
 				game.dispenser.tick(game,1.95)
 			else:
 				assert(game.life_state == "game_over" and game.paused and game.pause_menu.visible)
-				assert(game.resume_button.text == "Retry")
+				assert(game.resume_button.text == "Restart Game")
 				game._physics_process(10)
 				assert(game.health == 0 and game.lives == 0)
+		var requested := [false]
+		game.campaign_restart_requested.connect(func(): requested[0] = true,CONNECT_ONE_SHOT)
 		game.resume_button.pressed.emit()
-		assert(game.life_state == "alive" and game.lives == 3 and not game.paused)
-		assert(game.checkpoint_index == -1 and game.enemies.is_empty())
-		assert(game.employee.id == person.id and game.health == person.max_health)
+		assert(requested[0] and game.life_state == "game_over" and game.lives == 0)
 	game.queue_free()
 	await process_frame
 	print("PASS: both heroes, three total lives, death fall/lock, pause, persistence, game over and deliberate retry")

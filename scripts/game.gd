@@ -5,6 +5,7 @@ const PLUNGER_PROJECTILE = preload("res://assets/weapons/heavy-plunger-projectil
 const PLUNGER_RADIUS := 7.0
 ## Plumbing action prototype with pixel world art and illustrated dialogue.
 
+signal campaign_restart_requested
 signal title_requested
 var startup_yield := Callable()
 
@@ -107,6 +108,7 @@ var jump_buffer := 0.0
 var fire_timer := 0.0
 var invulnerable := 0.0
 var health := 5
+var invincible := false
 var lives := 3
 var life_state := "alive"
 var death_time := 0.0
@@ -278,7 +280,8 @@ func set_paused(value: bool) -> void:
 func resume_or_retry() -> void:
 	if death_popup_locked: return
 	if life_state == "game_over":
-		reset_game()
+		death_popup_locked = true
+		campaign_restart_requested.emit()
 	elif life_state == "death_popup":
 		respawn_after_death()
 		set_paused(false)
@@ -527,6 +530,7 @@ func activate_checkpoint(index: int = 0) -> void:
 		or lives <= 0 or dialogue.active: return
 	var kind := "injured" if health < employee.max_health else "full_health"
 	var previous_health := health
+	specials.refill_level(employee.id,"first-call")
 	checkpoint_index = index
 	checkpoint_active = true
 	respawn_point = Vector2(Level.CHECKPOINTS[index], FLOOR_Y - PLAYER_SIZE.y)
@@ -997,7 +1001,8 @@ func damage_enemy(index: int, amount: float, impact: Vector2, player_credit := t
 		if player_credit: player_kills += 1
 		if enemy.has("mission_id"): mission.register_defeat(enemy.mission_id)
 
-func hurt_player() -> void:
+func hurt_player(fatal_fall := false) -> void:
+	if invincible and not fatal_fall: return
 	if cinematic.active or cinematic_resume_frame == Engine.get_process_frames(): return
 	if dispenser.active or invulnerable > 0 or life_state != "alive":
 		return
@@ -1044,7 +1049,7 @@ func step_death(delta: float) -> void:
 	title_button.disabled = true
 	resume_button.release_focus()
 	title_button.release_focus()
-	resume_button.text = "Retry" if lives == 0 else "Continue at Checkpoint" if checkpoint_active else "Continue at Entrance"
+	resume_button.text = "Restart Game" if lives == 0 else "Continue at Checkpoint" if checkpoint_active else "Continue at Entrance"
 	style_pause_buttons()
 	resume_button.position = Vector2(245, 326)
 	title_button.position = Vector2(245, 416)

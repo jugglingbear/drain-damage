@@ -60,6 +60,14 @@ with reciprocal top navigation from the magazine; its Storybook link sits immedi
 Historical capture gaps remain labeled.
 <a href="https://jugglingbear.github.io/drain-damage/storybook/storybook.html">Browse the storybook</a>.</p>
 <main class="wrap">
+<p><strong>November 25 — Flush button audio auditions:</strong> Revised recorded-mouth and water treatments are ready
+for Sean: DD-S0205.7 is his preferred normal-button candidate. DD-S0206.9–.10 were rejected as raspy and artificial.
+DD-S0206.11–.12 use a newly sourced CC0 performance of screaming into water, with native-speed excerpts and
+simple level/fade edits (3.54 and 3.25 seconds). Sean selected DD-S0206.12 for the special, paired with DD-S0205.7
+for normal attack. Flush-only runtime integration is pending; earlier auditions remain available.
+PCM, onset, tail and headroom checks pass; in-game timing and mix await integration and listening.
+<a href="audio/drain-damage-sound-auditions.html">Listen in the audio catalog</a>.
+<a href="audio/sources/flush-button-v5/manifest.json">Source licenses and processing</a>.</p>
 <p><strong>November 12 — Prototype 188 hero balance delivered:</strong> New levels restore full health and
 both special charges while preserving remaining lives. Checkpoints, retries and sections retain spent specials.
 Sean has six maximum HP; his active ordinary firing interval changes from 0.24 to 0.32 seconds (25% fewer shots).
@@ -96,6 +104,7 @@ Engineering published the <a href="https://jugglingbear.github.io/drain-damage/c
 <a href="https://github.com/jugglingbear/drain-damage/actions/runs/43637703881">Pages deployment passed</a>;
 the public PDF matches the approved SHA256
 <code>84e80e0490b18964f25f63ab7d9861ff0f1d3d6742ff2a03e614f06ec8983fcb</code>.</p>
+<p><strong>November 14 — comic production guide consolidated:</strong> <a href="docs/comic-production-requirements.md">The single starting guide</a> now includes script-first recurring-item inventory and reference/concept art before story-panel production, identity rules, reference roles, handoff helpers and review/delivery gates. Existing reference assets are being assembled for review; complete approved character sheets and issue packs remain pending. No artwork or public comic was replaced by this documentation change.</p>
 <p><strong>November 14 — comic carrier and palette correction:</strong> Comic accepted all four story pages
 with Sean’s visible plunger carrier, consistent tool length and harmonized faded palette, preserving the angled
 chair/door staging. Engineering assembled the six-page proofreading PDF with the published cover and indicia
@@ -106,8 +115,123 @@ All six rendered pages were inspected after image-only compression. The
 The public PDF is 7,444,740 bytes and matches SHA256
 <code>5c7ed2402bc9aae80217855a7cde357b654b81ac8dfb2f393d57a1bd00876bf9</code>.
 This remains a partial proofreading edition.</p>
+<p><strong>November 23 — local Service Desk revision:</strong> Marketing moved the magazine PDF links (open and
+download), Sound auditions and GitHub to the Service Desk footer, where Journey was already available.
+The magazine reader retains page navigation and a return link to the desk. Marketing removed the redundant
+Storybook link from the reader and the Comics paragraph from the downloads page. Marketing reports passing tests
+and is completing local verification. Publication requires separate authorization.</p>
+<p id="level-two-checkpoint"><strong>November 25 — post-Wave 2 checkpoint authorized:</strong>
+Sean approved Wave 2's current feel and requested a hazard-free checkpoint before future Wave 3.
+The spare employee machine skis in on dead Tony and Sean clones, waits for approach, replaces an injured hero
+using the Level 1 routine, then rockets away as its skis sink. The restored rider shrugs and continues.
+Art owns concept and production artwork; Engineering owns checkpoint integration, validation and a direct Makefile
+test start before the encounter. The <a href="design/level-two-wave-two-grid/checkpoint.json">sequence brief</a>
+records behavior and retry requirements. Art delivered the
+<a href="design/ride-checkpoint-v1/staging-concept.png">three-view staging concept</a>; Level Design inspected it.
+Arrival, replacement and departure stay waterborne; Tony and Sean illustrate alternative selected-hero branches.
+Checkpoint logic and the <code>LEVEL=2-checkpoint</code> test start are integrated with lifecycle checks passing.
+Art delivered ten alpha layers with dimensions and anchors in
+<a href="assets/world/ride-checkpoint-v1/manifest.json">the checkpoint art manifest</a>, including clone skis,
+boosters and seated poses. Signed Prototype 216 includes the checkpoint: 17 packaged lifecycle checks pass and
+all four native routes completed. Docking accepts ±24 longitudinal and ±20 bank pixels with a 0.2-second ease;
+the checkpoint saves at the end of the two-second departure, followed by five seconds of safe runout.
+After Sean found docking difficult to locate, Prototype 218 superseded that narrow tolerance: riders are
+acknowledged at screen x350–600 across the full channel and guided to the dock over 0.65 seconds.
+Corpse skis have X eyes and separate fading blood wakes. The concept sheet now matches the parallel right-facing
+skis and Sean's chin beard and separate soul patch. Art accepted the final sampled visuals at both camera angles;
+the far clone is partly obscured by the cabinet but identifiable. Prototype 216 is ready for human playtest.
+Art subsequently corrected the concept sheet's human legs and boots, machine feet, ski length, neck support
+and cabinet occupant continuity. The latest departure panel shows fresh standing Tony between two sinking
+dead clones: Tony on the left and Sean on the right, with bubbles and underwater tint. Earlier panels are preserved.
+These are concept-only corrections, not additional runtime changes.
+Art also delivered a <a href="design/ride-checkpoint-v1/tony-normal-hair-v2.png">darker Normal Tony ride-hair candidate</a>
+to match the held and placed hero's existing dispenser hair. Runtime integration and native motion review are pending.</p>
+<p id="level-two-wave-two"><strong>November 24 — Wave 2 implementation authorized:</strong>
+Sean approved a 28,000-pixel extension, twice Wave 1's length (about 50 seconds at neutral scroll).
+The <a href="design/level-two-wave-two-grid/plan.json">seven-section design brief</a> mixes slalom and joints,
+brushes, basin landings, strainers, an elbow breach with one to three seeded follow-up holes, a ramp and a mixed finish.
+Level Design owns layout; Engineering owns integration and build delivery with Mechanics route checks and Art review.
+Exact geometry is provisional until whole-route validation. No new checkpoint, super jump or yellow targets;
+Wave 1 remains unchanged. The original layout reached signed Prototype 203 with 324 positive route checks,
+126 fixed-bank negative attempts and six replay checks before the longer-hopscotch revision.
+Sean subsequently requested longer hopscotch spans. A five-jump, six-platform Wave 2 revision is integrated
+within the existing length. The expanded chain passed 108 focused cases and 12 full-course runs;
+each route requires five ordered jumps and landings, and all omitted-hop attempts failed.
+The signed package also passed the 108 focused checks. Both native Normal hero routes finish in 75.008 seconds
+without hits or new actor allocations. Independent Art review cleared the revised sampled basin/ramp contact
+at both Normal anchor/yaw combinations; the catch deck is visible before takeoff.
+November 25 playtest: Sean finds Wave 2 fun but too easy because dodge and jump obstacles are too widely spaced.
+A denser tuning pass is underway: tighter local sequences, more combined steering/jumping and selected narrower
+interior landings, preserving the 28,000-pixel length and riding controls. Candidate 204 adds six Normal obstacles
+(53 to 59), reduces selected brush spacing from 560 to 450 pixels and valve spacing from 500 to 400 pixels,
+and narrows two interior platforms from 360 to 300 pixels. Hard adds another flange and narrower platform;
+Easy retains the 203 layout. The signed candidate passed 36 whole-course combinations, and the final timing matrix
+passed 72 complete courses across both heroes, all modes and 30/60/120 Hz with ±50 ms input offsets.
+Exit flanges at 26210 and 37040 preserve early jump input after dropping to water.
+Art cleared the sampled revised exit separation in signed Prototype 204 (commit <code>be38c17</code>).
+The build is ready for human difficulty playtesting.
+The earlier 324-case matrix covers the shorter chain.</p>
+<p><strong>November 25 — deferred Level 2 hazard ideas:</strong>
+After Waves 1–3 are complete, revisit rising valve walls, strainers that fall through the track and keep falling
+without overhead rigging, and other moving obstacle entrances. Forward/backward positioning hazards or columns
+of pits may suit the final boss; this remains tentative. Saved in <a href="design-ideas.json">the idea backlog</a>
+as <code>level-two-moving-hazards-and-position-pressure</code>. No implementation or artwork work is scheduled.</p>
+<p id="level-two-wave-one-grid"><strong>November 24 — Wave 1 mapped:</strong>
+The <a href="design/level-two-wave-one-grid/index.html">Normal three-bank map</a> records all 27 current course
+objects in each of two mirrored strainer arrangements, with exact bounds, seeded timings and 44 working columns
+of 320 pixels. Partial-cell footprints and cap-over-hole layers remain explicit; occupied letter counts do not
+guarantee jumpability. The map exposes a 3.50-second neutral-scroll geometry gap before the caps.
+Both map images were inspected and object coverage checked. Runtime geometry is unchanged; final cell calibration,
+Easy/Hard maps remain future work. Wave 2 design and implementation are underway.</p>
+<p id="level-two-grid-concepts"><strong>November 24 — Level 2 grid concept art delivered:</strong>
+Art created <a href="design/level-two-grid-concepts-v1/contact-sheet.png">five visual options</a>
+showing the proposed three-bank spatial grid from the ride camera angle, with lettered cells, interchangeable
+obstacles and larger encounter footprints. Level Design reviewed the comparison sheet for concept-level semantics;
+illustrative registration is not exact collision geometry. Sean selected
+<a href="design/level-two-grid-concepts-v1/02-workbench-kit.png">Workbench Kit (option 2)</a> on November 24.
+Later Dev Storybook inclusion remains pending.
+These illustrate a proposed design system, not an implemented generator or a validated course.</p>
+<p id="level-two-obstacle-guide"><strong>November 23 — Level 2 pictorial obstacle guide complete:</strong>
+Art created the <a href="design/level-two-obstacle-guide/obstacles-dodge-jump-both.png">Dodge / Jump / Both grid</a>
+from actual Prototype 195 and 198 render captures: 13 showcase encounters plus five course variants, 18 cards total.
+The added short full-width strainer is under Jump; long one-bank and two-bank strainers are under Dodge.
+The original 195 guide remains preserved in <code>design/level-two-obstacle-guide/prototype-195/</code>.
+Level Design inspected the refreshed image and accepted the categories. The current guide has no yellow hole targets. Captions distinguish steering AND jumping,
+dodge OR jump choices, and automatic ramp launches. Current-slice versus showcase coverage is labeled.
+Larger <a href="design/level-two-obstacle-guide/dodge-detail.png">Dodge</a>,
+<a href="design/level-two-obstacle-guide/jump-detail.png">Jump</a> and
+<a href="design/level-two-obstacle-guide/both-detail.png">Both</a> sheets are available.
+This is a pictorial inventory, not route or motion validation; no new runtime build is claimed.</p>
+<p><strong>Prototype 223.</strong> The board returns to player control when both rocket exhaust tips clear the screen.</p>
+<p><strong>Prototype 222.</strong> The S.E.D. rocket ascent takes 3.5 seconds.</p>
+<p><strong>Prototype 221.</strong> B fires the board super during the S.E.D. approach and wait. Checkpoints refill both
+special charges on activation and on checkpoint respawn. The S.E.D. rocket ascent takes 2.8 seconds.</p>
+<p><strong>Prototype 220.</strong> Level 1, flush and ride each cycle through six shuffled loading illustrations.
+Each group remembers its remaining cards between launches. Cabinet trim now follows the sides and back,
+leaving the front sign and chute visible. The ride view uses multisample antialiasing and linear scaling.
+Tony’s sixteen normal surfing poses use the dark swept hair of his inspection and return poses.
+<a href="previews/ride-220/cabinet-comparison.jpg">Cabinet before and after</a> ·
+<a href="previews/ride-220/loading-cards.jpg">All eighteen loading screens</a>.</p>
+<p><strong>Prototype 219.</strong> The S.E.D. has a solid chassis in the channel and casts a moving shadow. Jump and X work before pickup, and Sean changes his idle pose every 2.5 seconds. <a href="previews/ride-219/cabinet-shadow.jpg">Both camera angles at rest and lift-off</a>.</p>
+<p><strong>Prototype 218.</strong> The S.E.D. recognizes approaching riders across the width of the channel and guides them to the inspection position. Temporary damage protection expires during the approach. The cabinet gains textured side and top surfaces projected with the ride camera.</p>
+<p><strong>Prototype 217.</strong> The optional <code>HP</code> launch flag sets starting health for playtests. At the S.E.D., full health selects inspection and safe setdown. Missing health selects replacement.</p>
+<p><strong>Prototype 216.</strong> The signed Mac build includes the post-Wave 2 checkpoint. Both heroes completed injured and healthy arrivals in a windowed capture. Art checked the parallel skis, X eyes and left-trailing wakes at both camera angles. <a href="previews/ride-216/checkpoint.jpg">Checkpoint sequence</a>.</p>
+<p><strong>November 25 — Prototype 215.</strong> The six loading cards now show Sean’s chin beard and separate
+soul patch. Tony’s nozzle sprays water. All six packaged illustrations were checked with the progress bar and
+ready prompt. <a href="previews/loading-215/packaged-cards.jpg">Mac captures</a></p>
+<p><strong>November 25 — Prototype 214.</strong> At zero lives, Restart Game begins a fresh Level 1 campaign with
+the selected hero and difficulty, including after a direct Level 2 course launch. Remaining-life continues still use
+the current level’s respawn rules.</p>
+<p><strong>November 25 — Prototype 213.</strong> A fatal obstacle hit throws the rider off the board. The underwater
+cry plays at water contact, then the screen fades into the life-lost or game-over menu. Playtests can use
+<code>INVINCIBLE=1</code> for ordinary damage protection. The Mac pack excludes another 265 MB of production material,
+superseded music and interface art.</p>
+<p><strong>November 25 — Prototype 212.</strong> During the playable flush, either hero can make a panicked watery cry with Fire or a gag with Special. Each press plays once and the reactions share one voice.</p>
+<p><strong>November 25 — Prototype 211.</strong> Retired the thirteen numbered showcase launches, HUD and showcase-only actor preloading. Level 2 uses the two-wave course. Comic production files are excluded from the game export.</p>
+<p><strong>November 25 — Prototype 210.</strong> Finishing the campaign flush and landing conversation now starts the continuous Wave 1 and Wave 2 ride. Numbered obstacle showcases are explicit playtest entries.</p>
 <p><strong>November 25 — Prototype 209.</strong> On foot, hold LT to stand still and aim with the left stick. RT or X fires. Sean shoots an illustrated rubber plunger cup-first. Tony and Sean’s dialogue portraits show their names directly above their lines.</p>
 <p><strong>November 25 — Prototype 208.</strong> Slime on the Union Break buttons stretches and drops while gameplay is paused.</p>
+<p id="loading-card-expansion"><strong>November 25 — Loading and Game Over artwork.</strong> Six existing loading cards corrected for Sean’s separate soul patch and chin beard and Tony’s white-blue water jet; integrated and visually reviewed in Prototype 215. Delivered six loading and six Game Over concepts for each of Level 1, the flush sequence and the board ride (36 total, including six retained cards). Prototype 220 includes the twelve additional loading illustrations at concept resolution. Game Over concepts await selection and runtime preparation. Flush Game Over 1 has corrected head/torso/arm staging. <a href="design/loading-cards-v1/expanded-review/manifest.json">Inventory</a>; <a href="design/loading-cards-v1/expanded-review/loading-level1-review.jpg">Level 1 loading</a>, <a href="design/loading-cards-v1/expanded-review/loading-flush-review.jpg">flush loading</a>, <a href="design/loading-cards-v1/expanded-review/loading-ride-review.jpg">ride loading</a>; <a href="design/loading-cards-v1/expanded-review/gameover-level1-review.jpg">Level 1 defeats</a>, <a href="design/loading-cards-v1/expanded-review/gameover-flush-review.jpg">flush defeats</a>, <a href="design/loading-cards-v1/expanded-review/gameover-ride-review.jpg">ride defeats</a>.</p>
 <p><strong>November 25 — Prototype 207 loading and ride frame pacing.</strong> Level 1 preparation starts on employee
 and difficulty selection. Cold entries show level artwork, a segmented progress bar and a fresh-button prompt.
 Prepared entries and warm retries skip the card. The flush and 3D board ride prepare separately.
@@ -121,7 +245,7 @@ room to settle back onto the water before the next jump. Easy retains the Protot
 over 28,000 pixels, including five consecutive jumps across six porcelain platforms. The elbow breach has one
 to three seeded follow-up holes. At neutral scroll, the two waves take about 75 seconds on Normal. Human
 difficulty playtesting is pending. Launch with <code>make run LEVEL=2-course DIFFICULTY=normal</code>.</p>
-<p><strong>November 24 — Prototype 202 Normal ride animations.</strong> Both heroes have four balance poses, four steering poses and an eight-pose jump. Tony pops an ollie. Sean pulls up the board while seated. Easy and Hard retain their costume art. Human motion and likeness review is pending.</p>
+<p><strong>November 24 — Prototype 202 Normal ride animations.</strong> Both heroes have four balance poses, four steering poses and an eight-pose jump. Tony pops an ollie. Sean pulls up the board while seated. Easy and Hard retain their costume art. Sean playtested the build and said the animations look pretty good and the jumping and dodging feel achievable.</p>
 <p><strong>November 24 — Prototype 201 landing input.</strong> A fresh press at touchdown jumps immediately. A press within the last 75 ms of flight carries into landing.</p>
 <p><strong>November 24 — Prototype 200 board handling.</strong> Both heroes steer 15% slower at full input.
 The board reaches full speed in 150 ms, coasts for 100 ms on release and brakes in 45 ms on reversal.
@@ -221,11 +345,137 @@ traversal coverage incomplete. Full human route/motion and native Windows verifi
 <a href="design/wedding-comic-pulp-refinements-v1/manifest.json">pulp refinements</a>. Sean also selected
 <a href="design/comic-masthead-options-v1/manifest.json">#2, Burst Pressure</a> for the DRAIN DAMAGE masthead:
 orange-red lettering, pipe fittings and bursting water spray. Art delivered the
-<a href="design/wedding-comic-burst-pressure-v1/issue-01-burst-pressure-v2.png">revised Issue 01 cover v2</a>
+<a href="design/wedding-comic-burst-pressure-v1/issue-01-burst-pressure-v5.png">revised Issue 01 cover v5</a>
 with the approved subtitle “Something Borrowed, Something Spewed”, a conspicuous hair-clog threat and corrected hero
-expressions. Version 2 corrects Sean’s facial likeness against his original reference, slims his build and makes him
-visibly shorter than Tony. It supersedes v1, whose Sean likeness/build Sean rejected; v1 remains preserved.
-Art and Comic visually inspected v2; Sean’s likeness and proportion acceptance remains pending. Originals are preserved and
+expressions. Version 4 retains Sean’s approved shorter height and uncertain expression, restores his thicker muscular
+build and corrects the plunger shaft/grip. Art and Comic visually inspected the result. Sean accepted it as
+“good enough for now” in Art’s chat. At Sean’s request, v5 adds his supplied JugglingBears bear logo and JB initials
+in a lower-left publisher badge; Sean accepted the presented cover and inside-cover copy.
+Earlier versions remain preserved, including v2’s rejected scrawny build. Sean approved preparing the inside front
+cover and first four story pages as scripts and rough layouts before finished interior art. He authorized playful
+fictional publication details and stated that the project is MIT licensed; the draft keeps that license note clear.
+The <a href="design/comic-issue-01/opening-review.json">opening review draft</a> now contains the inside-cover
+memo/indicia and the reviewed four-page panel script. On November 13 Sean authorized a visual draft from the edits so far
+while Comic and Storyboarding studied stronger comic dialogue. Art delivered the inside-cover background and four
+sequential pages, with equipment, phone and unintended-spray corrections. Comic assembled the lettered
+<a href="design/comic-issue-01/review-v1/drain-damage-opening-review.pdf">six-page opening review PDF</a>
+and <a href="design/comic-issue-01/review-v1/drain-damage-opening-review.cbz">CBZ review copy</a>:
+cover, inside cover and story pages 1–4. These are illustrated review drafts, not finished publication pages.
+The <a href="design/comic-issue-01/writing-study.html">writing study</a> annotates 16 craft guides, interviews,
+transcript material and professional script excerpts, with specific critique and a scene-level revision method.
+Substantial dialogue revision, minor art continuity and final approval remain open.
+Sean rejected the draft’s loose balloon/text fit. A follow-up
+<a href="design/comic-issue-01/writing-study.html#balloon-study">visual study of twelve published page examples</a>
+records the next lettering direction: settle dialogue, then Art plans fitted balloons and panel composition around it.
+Comic’s <a href="design/comic-issue-01/opening-script-v2.json">complete four-page script revision</a>
+now develops Tony’s teaching, Sean’s concern for the wedding and the manager’s evasions across the inspection.
+It retains the silent tape discovery and page-turn reveal; Sean’s script review precedes new Art thumbnails
+and a fully lettered proof. The archived visual draft remains unchanged.
+Page 4 feedback establishes Sean and Tony as equally tough and capable in a fight. The revised attack shows shared
+surprise and coordinated action; Tony’s teaching concerns plumbing, not basic physical competence in emergencies.
+Comic’s first-pass review of pages 1–3 now grounds Sean’s confusion in job assessment, improves the manager’s evasions
+and gives Sean useful independent staging. Sean reviewed these revised pages; corrected page 4 is unchanged.
+Further script feedback adds BJ’s AI portrait pop-outs for radio appearances and establishes the manager’s pressure
+from a very high-paying wedding client; his concealed repair now carries a sickly nervous smile.
+Sean reviewed the revised opening and authorized Art’s four-page thumbnail pass with actual dialogue, fitted balloons
+and BJ pop-outs. The <a href="design/comic-issue-01/thumbnails-v2/opening-thumbnails-v2.pdf">four lettered thumbnails</a>
+are delivered for Sean’s layout review before the finished page 2 lettering/style proof. Comic inspected all four;
+equipment and doorway staging corrections are marked on the roughs. Finished composition must integrate the art
+with the balloons and shorten long tails; the framed art studies are not final panel compositions.
+Sean’s thumbnail feedback requests BJ in the matching illustrated style, tails ending above speakers’ heads,
+and revised layouts demonstrating full panel artwork with narrow gutters. Art has the revision request;
+finished page 2 remains pending revised-layout review. All 11 page 2 dialogue entries were verified present.
+Sean also requested varied and irregular panel designs during this thumbnail pass. Art’s updated brief uses
+unequal panel sizes and insets for arrival/inspection, a slanted flush interruption, and angled action panels
+with limited border-breaking debris for the monster reveal. Reading order and exact dialogue remain required.
+Panel area follows the scene’s importance, action scale, dialogue and pacing: compact detail/reaction beats,
+room for conversations, and approximately half a page for the monster’s entrance. Silence alone does not set size.
+The <a href="design/comic-issue-01/thumbnails-v3/opening-layouts-v3.pdf">revised four-page layout review</a>
+now demonstrates these compositions, illustrated BJ, above-head tails and separate phone/to-Tony beats.
+Comic inspected all four pages and the final dry-foot/flush-reading-order corrections. Sean’s review remains pending;
+this is not the finished page 2 proof or publication approval.
+An <a href="output/pdf/drain-damage-anthony-preview.pdf">Anthony preview PDF</a> assembles the existing cover,
+inside cover/indicia and all four revised story pages into a six-page, approximately 3.4 MB sharing copy.
+Page order, consistent trim dimensions and rendered output were checked; this remains a work-in-progress preview.
+Sean flagged page 4’s unclear stall-to-entrance-door transition in that preview. A revised six-panel script adds
+an explicit silent door-closing beat, keeping the creature inside the bathroom and both heroes in the corridor.
+Art’s corrected full-page sample is requested; the current preview still contains the unclear staging.
+Sean approved a hybrid workflow for subsequent art: plan the full page and sequential blocking first, generate
+individual panels against shared visual references, then assemble, letter and review continuity across the page.
+Preserve accepted artwork and finish the page 4 correction already underway before applying this to later work.
+The <a href="design/comic-issue-01/page4-continuity-v4/page-4.png">corrected page 4 continuity sample</a>
+now explicitly shows the heroes outside and the monster inside as the entrance door closes. Comic inspected it;
+Sean’s review is pending. Final proof still needs consistent plunger placement and editable lettering.
+Sean rejected v4’s arm anatomy and door/brace mechanics. The next correction uses an outward-opening bathroom
+door pushed closed from the corridor and an established nearby chair wedged beneath its handle. The plunger
+stays normal-sized and is visibly set aside. Art must block the mechanics before generating affected panels.
+Sean assigns Comic the pre-delivery visual review: inspect anatomy, physical mechanics, prop and spatial continuity,
+and causal transitions; return defects to Art and inspect corrections before accepting or showing pages to Sean.
+November 22 session audit: Comic approved the neutral lineup and ten movement poses per hero. Sean approved a cut from the cup-up back baldric to the tool in hand.
+Check tool length and empty carrier in the panel pass. Release and restow studies are closed. The tooth-height check is closed. The <a href="design/comic-issue-01/opening-review.json">issue review</a>
+tracks remaining panel corrections, reference pack completion and publication checks.
+Reception revision: vows precede the hotel call; dinner service sets the deadline. Pages 7–8: eleven pencil panels delivered; sink/towel staging and elbow corrected. Lettered pencil proofs are under Sean’s review. November 24 lettering pass joins balloon/tail outlines, adjusts head clearance, and removes the empty first-panel area. Finished art remains pending rough-page approval. November 24 revised pencil proofs address dialogue reading order, manager complaint clarity, stairwell speaker attribution and valve rotation mechanics; Tony’s pressure-drop line says “go down”; Sean recognizes an odd reading before explaining the stale timestamp. Revised proofs are ready for Sean’s review. Reusable lessons are consolidated in the comic production guide. Continuation outline revised November 24: shared supply with kitchen upstream of the blue upstairs-branch valve, residual trench flood, hair-creature encounter, real pipe repair and verification of both branches. Stale replay and duplicate-shutoff beats removed. Sean accepted the expanded Big Bad fight progression: six fight pages (13–18), with rescue, costly reversal and shared victory; provisional issue length 22 story pages. Pages 9–12 now have panel-by-panel dialogue drafts awaiting Sean’s review: kitchen recovery, leak-water route, blocked drain and creature reveal. Page 9 dialogue clarified November 25: bride’s mother identified, restored kitchen water explicit, manager grateful and available. Pages 13–22 remain outline beats. Scene/creature references and jetter supply verification are still required before later artwork; no new art commissioned.
+Finished orchestra cutaways and the catering-staff corridor correction are assembled for review. Comic checked the percussionist’s hand behind the cymbal in the source art and final page.
+Sean approved story pages 5–6 for the eight-page comic-store preview, including the final broken-teeth continuity pass.
+Current page 4 direction: Sean and Tony hold the closed entrance together. The chair sequence is retired.
+The corrected right-hand door closure passed Comic review and Sean considers page 4 acceptable for the preview. Pages 1–3 comparison reviewed; targeted prop, footwear, set and layout corrections remain before preview assembly. Sean’s free arm is lowered as he calls, and his upper lip reads clear at page size. The assembled two-person proof reads clearly through the breach. Issue continuity corrections remain open,
+including Sean’s urgency as he shuts the door. Emotional continuity is now an explicit series review requirement,
+including the nearby corridor chair disappearing between door closure and the shared hold.
+November 22 chair review: Comic withdrew approval of the
+<a href="design/comic-issue-01/chair-correction-v1/pencil-contacts-v3.png">page 4 placement pencil</a>
+after Sean flagged its stretched seat and apparent four-foot floor contact. Sean closed this revision chain.
+Its construction studies and panel 4–6 derivatives are retained as rejected work.
+The subsequent single fresh attempt was also rejected. The seat and back read as rotating in opposite directions.
+November 14 footwear QA: inconsistent cover heights require a matching low ankle-height contractor shoe-cover
+design for both heroes. Art will correct the flagged page 1 panels and audit visible footwear across the four pages
+in the same correction pass; replacement art remains pending Comic review.
+November 14 carrier correction: Sean rejected the cup-down hip carrier as physically unstable. Art must validate a
+cup-up, handle-down back carrier or practical tool-belt alternative before panel replacement; Comic owns independent
+mechanical review. The published preview still contains the rejected carrier pending correction.
+November 14 production standards: <a href="docs/comic-production-requirements.md">standing comic requirements</a>
+now preserve consistent style/color, credible geometry, independently generated panels and persistent scene continuity
+for future issues. Comic owns pre-delivery QA. Sean also approved all five production practices: issue reference packs,
+scene maps, panel continuity ledgers, early composition/mechanics checks and explicit correction boundaries.
+These are mandatory for future issues; existing accepted art is not scheduled for regeneration.
+November 14 plunger QA: Sean requested a visible carrying strap after unsupported plungers appeared on page 1.
+Art is developing a consistent shoulder-to-hip carrier and auditing held, stowed and set-down states across all four
+story pages. Comic will inspect support points and continuity before updating the published preview.
+Sean also flagged stronger saturation/contrast in replacement panels. Art must match the established faded palette,
+paper texture, ink and shading across the four-page sequence while preserving corrected geometry.
+
+November 14 follow-up QA rejects v6’s elongated chair and two-person chair handling. The next revision uses a
+compact chair positioned by Sean alone while Tony holds the door directly. Canonical actions are updated;
+Art’s new geometry/staging candidate must pass Comic review before replacing the current publication.
+
+
+Remaining finished pages and publication are not yet approved.
+November 13 character direction is preserved in the
+<a href="design/first-level-narrative.md#canonical-character-guidance--november-13-2026">canonical character guidance</a>:
+Sean is a big-hearted, easily confused plumbing novice with occasional domain-specific technology expertise;
+Tony is a caring, patient and confident master plumber who tolerates no unnecessary BS.
+Professional conduct does not imply Sean has trade experience. No comic, magazine or game dialogue rewrite is included.
+November 13: Sean selected the
+<a href="storybook/art-studies/20261113-135930-comic-opening-draft/20261113-135930-archived-story-page-04.png">early illustrated story page 4</a>
+for the making-of picturebook. Exact source and attachment preserved with
+<a href="storybook/art-studies/20261113-135930-comic-opening-draft/20261113-135930-archive-record.json">archive metadata</a>;
+this records the visual draft before the planned dialogue rewrite, not gameplay or final dialogue.
+Sean’s latest story direction replaces the gold-painted ribbon repair with a duct-taped pipe that is still leaking;
+page 3 is revised. The existing cover retains the earlier prop pending a later continuity pass.
+November 13 script review: page 3 silently implicates the sweating, guiltily grinning manager as he pockets a roll
+of duct tape. This replaces the maintenance-supervisor assurance; Tony asks him directly for the water shutoff.
+The hotel’s main domestic-water shutoff is staged in the basement mechanical room; simultaneous flushing interrupts
+the manager’s directions mid-sentence.
+Page 4 review strengthens Tony’s shouted command and the manager’s panicked reaction to the approaching wedding party.
+Sean approved 6⅝ × 10¼-inch trim. His latest instruction advances the first handful of illustrated pages now so he can
+review a concrete comic while the writing improves; the prior script-first sequence does not block this visual draft.
+The review PDF uses the approved trim, with exact text extraction and rendered-page inspection. Art independently
+reviewed lettering and staging; Comic corrected page 1 head occlusion. Further writing review is current.
+Page 1 review establishes professional conduct: white boot covers before entry, explicit equipment staging, and
+a replacement for BJ’s unclear diagnosis joke. Revised dialogue remains under review.
+Page 2 now gives Sean a worried, nearly wordless reaction to a connected power strip in the leak’s path;
+he flags it without touching it, and Tony asks the manager for breaker access. Electrical-hazard staging and the
+manager’s response remain under script review.
+These approvals do not authorize publication, and
 <a href="design/wedding-comic-burst-pressure-v1/manifest.json">delivery metadata</a> records the artwork.
 Comic coordinates delivery with Art and Storyboarding; story/page production and final cover/publication
 approval remain open. Marketing has delivered a local edition 39 review draft with coherent articles, narrower grids and less
@@ -293,13 +543,22 @@ review cover contact, readability and support. Independent real-time motion and 
 settle into Tony’s standing or Sean’s seated pose. Separate rider/board art, arrival timing, retry entry reason and control
 release are pending implementation after the active pipe correction. No new dialogue is planned.</p>
 
-<p><strong>Ride animation studies — awaiting Sean’s approval:</strong> Sixteen pose studies per hero propose idle
-balance, directional steering, Tony’s ollie and Sean’s seated pull-back jump. These are concepts only; production
-requires separate rider/board layers, consistent anchors, transition frames and costume coverage. This proposed
-animation scope is separate from the approved arrival feature, and the pipe correction remains first.
-<a href="design/ride-animation-studies-v1/manifest.json">Study manifest</a>,
-<a href="design/ride-animation-studies-v1/tony-ride-study-v1.png">Tony poses</a> and
-<a href="design/ride-animation-studies-v1/sean-ride-study-v1.png">Sean poses</a>.</p>
+<p><strong>Ride animations — approved November 24; Normal-mode first pass integrated in Prototype 202:</strong>
+Both heroes have four idle/balance poses, four directional steering poses and eight jump poses. Tony performs an
+ollie; Sean pulls the board upward while seated. Art supplied new frames and corrected Sean’s adult proportions;
+Engineering packed and integrated the atlases. Art inspected sampled native steering, jumps, ramp contact and
+release-to-idle behavior. Human motion/likeness feedback, transition refinement and Easy/Hard animated costumes
+remain pending. The original studies are preserved.
+<a href="assets/world/ride-animation-v1/art-delivery.json">Art delivery and review scope</a> and
+<a href="design/ride-animation-studies-v1/manifest.json">Approval and study manifest</a>.</p>
+<p><strong>November 24 — ride idle animation research requested:</strong> Sean requested idle behavior when steering
+stops. Art recommends subtle breathing and balance, irregular blinks, and occasional character-specific grip or weight
+adjustments. These require authored character frames and must yield immediately to gameplay input; the existing-art
+steering response is a separate interim change. Timing and gesture choices remain proposals, not delivered animation.
+Research: <a href="https://media.gdcvault.com/GDC2014/Presentations/Cartwright_Muriel_Animation_Bootcamp_Fluid.pdf">Skullgirls
+lead animator on fluid animation and responsive idle transitions</a> and
+<a href="https://ocw.mit.edu/courses/cms-611j-creating-video-games-fall-2014/0471dae99aad7621a8663b1a36aef184_SSnV-2uWG9w.pdf">MIT
+lecture discussing Sonic's expressive idle</a>.</p>
 
 
 <p><strong>November 11 — Prototype 180 pre-game navigation:</strong> Controls now reaches both footer toggles
@@ -432,7 +691,7 @@ and flush Chain/Plugs selections are unchanged. Prototype 156 is the HUD playtes
 <p><strong>November 3 — Prototype 162 starter specials and HUD A playtest candidate:</strong>
 Tony's Hydrojet Overdrive and Sean's Main Break are integrated into ordinary Level 1 and its section trials.
 K or gamepad B starts a 7.5-second attack without holding fire. Each hero gets two uses per logical level;
-death, retry, checkpoints and boss phases do not refill them. HUD A attaches a weapon icon and two charge canisters
+Prototype 221 also restores both uses at checkpoints. HUD A attaches a weapon icon and two charge canisters
 beside existing vitals in all three themes. Tony's corrected nozzle transition follows recoil and aim; sustained
 Both specials now deal 240 DPS to regular enemies and 120 DPS to vulnerable bosses, with no total boss-damage cap.
 Sean's supported main emerges, sweeps from upright to horizontal, tapers off and remains as an inert spent prop.
@@ -849,7 +1108,7 @@ pending; baseline dialogue-test failures and the shared swimming ripple are reco
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated November 25, 2026 · Current build: Prototype 209 / 0.209.0 · Primary target: Apple Silicon macOS</p>
+<p class="meta">Updated November 25, 2026 · Current build: Prototype 223 / 0.223.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
 at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
 point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;

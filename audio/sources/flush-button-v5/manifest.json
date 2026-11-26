@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-25",
+  "status": "Sean selected DD-S0206.12; paired with preferred normal DD-S0205.7; runtime integration pending.",
+  "brief": "New natural performances for the flush special: audible human screaming through water, 3\u20135 seconds. Previous layered screams were rejected as raspy/8-bit. Preserve pitch and dynamics; only excerpt, level adjustment and edge fades. DD-S0205.7 remains the preferred normal attack.",
+  "source": {
+    "id": 752733,
+    "author": "simonjeffery13",
+    "page": "https://freesound.org/people/simonjeffery13/sounds/752733/",
+    "license": "CC0-1.0",
+    "download": "https://cdn.freesound.org/previews/752/752733_1326393-hq.mp3",
+    "path": "audio/sources/flush-button-v5/originals/752733-hq.mp3",
+    "sha256": "c6a3a1264a909485c4ee2742b336d7091713b2454bcf2bb3d3faa50e87586bf2",
+    "retained_license_page": "audio/sources/flush-button-v5/originals/752733-source.html",
+    "format_note": "Public HQ MP3; original WAV requires login. WAV output does not restore lost detail.",
+    "performance": "Creator describes himself screaming into a bathtub with an underwater microphone."
+  },
+  "outputs": [
+    {
+      "id": "DD-S0206.11",
+      "description": "K \u2014 Underwater scream, two cries",
+      "path": "audio/alternatives/DD-S0206/DD-S0206.11.wav",
+      "source_windows_seconds": [
+        [
+          1.08,
+          3.48
+        ],
+        [
+          4.26,
+          5.4
+        ]
+      ],
+      "duration_seconds": 3.54,
+      "gain_linear": 0.8545193167410879,
+      "fade_seconds": 0.015,
+      "peak_dbfs": -6.000212666958634,
+      "sha256": "0bc0582e24fa1314453bc4fd2ee6dd691a7fc666cc6e6344a55676c9278ebe43"
+    },
+    {
+      "id": "DD-S0206.12",
+      "description": "L \u2014 Underwater scream, later continuous passage",
+      "path": "audio/alternatives/DD-S0206/DD-S0206.12.wav",
+      "source_windows_seconds": [
+        [
+          4.24,
+          7.49
+        ]
+      ],
+      "duration_seconds": 3.25,
+      "gain_linear": 1.0979619606387014,
+      "fade_seconds": 0.015,
+      "peak_dbfs": -6.000212666958634,
+      "sha256": "f6566e20fc024520a1ce28ea075a9130b45b98dc93762c40c00726f84dfe966d"
+    }
+  ],
+  "recipe": "audio/sources/flush-button-v5/render.py",
+  "processing": "Mono decode at48kHz; native-speed cuts;15ms edge fades; linear peak normalization to-6dBFS.",
+  "unused_research": "originals/sources.json retains two other CC0 leads; neither used in these candidates.",
+  "validation": "Technical checks only. Source description establishes performance intent, not subjective approval.",
+  "selection": {
+    "normal": "DD-S0205.7",
+    "special": "DD-S0206.12",
+    "scope": "Flush-only buttons; normal X/keyboard fire, special B. No ordinary weapon audio changes.",
+    "special_feedback": "DD-S0206.12 seems ok",
+    "runtime_status": "Pending Engineering integration; Audio files unchanged."
+  }
+}

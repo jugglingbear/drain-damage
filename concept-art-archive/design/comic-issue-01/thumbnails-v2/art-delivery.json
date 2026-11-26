@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-13",
+  "owner": "Bestiary / Art",
+  "status": "Four lettered rough layout thumbnails delivered; Comic editorial review passed for presentation. Awaiting Sean thumbnail review before finished page 2 proof.",
+  "script": "design/comic-issue-01/opening-script-v2.json",
+  "tool": "Built-in image_gen for four art roughs; ReportLab for separately editable lettering and review PDF; Poppler for PNG renders.",
+  "deliverables": [
+    "opening-thumbnails-v2.pdf",
+    "page-1.png",
+    "page-2.png",
+    "page-3.png",
+    "page-4.png"
+  ],
+  "editable_sources": [
+    "build_thumbnails.py",
+    "layout.json",
+    "lettering-measured.json",
+    "prompts.json"
+  ],
+  "raw_art": [
+    "page-01-art.png",
+    "page-02-art.png",
+    "page-03-art.png",
+    "page-04-art.png"
+  ],
+  "source_generations": [
+    "exec-09114398-eaaa-4852-8f8e-6cfbe65d393f.png",
+    "exec-11c2e97a-08aa-4ba2-9e92-eb468559d853.png",
+    "exec-6960b8b7-31db-496d-900f-01368338668d.png",
+    "exec-2ea1f661-e0c8-4827-b5de-aefea7766e4d.png"
+  ],
+  "references": [
+    "design/wedding-comic-burst-pressure-v1/issue-01-burst-pressure-v5.png",
+    "assets/portraits/bj-expressions-v2.png",
+    "design/comic-issue-01/writing-study.html#balloon-study"
+  ],
+  "validation": {
+    "visual": "All four final PNGs inspected by Art and independently by Comic.",
+    "text": "All approved dialogue and SFX verified by exact substring matching after PDF whitespace normalization; split-balloon copy rejoined and asserted equal in builder.",
+    "type": "20.5 logical units = 9.78pt at 477x738pt trim; same dialogue size across all four pages.",
+    "builder": "Compiles; changed Python lines <=120 columns; no trailing whitespace."
+  },
+  "remaining_before_finished_proof": [
+    "Await Sean thumbnail review; Comic explicitly requested this gate.",
+    "Integrate art across full panels instead of framed studies surrounded by cream layout space.",
+    "Shorten tails by planning speaker positions alongside balloons.",
+    "Keep single worn jetter in page2 panels4-5; current rough duplicates/relocates it and is annotated.",
+    "Place taped pipe in service cupboard; retain manager sickly nervous smile.",
+    "Stage page3 final beat at bathroom threshold with service kit outside.",
+    "Clearly distinguish destroyed stall door from intact entrance door used for brace."
+  ],
+  "preservation": "Existing cover and v1 pages unchanged; all new sources and rendered outputs copied to concept-art-archive/design/comic-issue-01/thumbnails-v2.",
+  "roadmap_owner": "Comic"
+}

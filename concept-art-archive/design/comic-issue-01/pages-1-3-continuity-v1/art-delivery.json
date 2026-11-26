@@ -1,0 +1,40 @@
+{
+  "status": "Comparison proof; not accepted for publication; independent Comic review requested",
+  "date": "2026-11-22",
+  "changed_panel_ids": [
+    "P1P1",
+    "P1P2",
+    "P1P3",
+    "P1P4",
+    "P1P5",
+    "P2P1",
+    "P2P2",
+    "P2P3",
+    "P2P4",
+    "P2P5-right",
+    "P3P2",
+    "P3P3",
+    "P3P4",
+    "P3P5"
+  ],
+  "retained": [
+    "BJ insets P1P1/P1P5",
+    "P2P5-left manager phone",
+    "P3P1 pipe/tape reveal",
+    "Page 4 frozen unchanged"
+  ],
+  "known_holds": [
+    "Carrier cup side differs P1 versus P2P1/P2P2; strap missing P1P3.",
+    "P2P4 Sean lacks white covers; P2P3 covers too shallow.",
+    "P3P3 tool appears shortened; reject that prop rendition.",
+    "P3P4 bathroom knob side and held nozzle conflict with frozen sequence.",
+    "P2 service door construction and floor treatments vary; P3P5 entrance swing requires review.",
+    "New standalone framing required lettering repositioning; independent reading-size check needed."
+  ],
+  "checks": [
+    "Canonical dialogue extracted from all three PDFs unchanged",
+    "Art inspected every generated panel and assembled pages",
+    "Page 4 not regenerated or modified"
+  ],
+  "method": "Built-in image_gen; one standalone prompt per candidate with approved model/pose sheets and fixed issue style. Existing art retained through PDF clipping, text editable."
+}

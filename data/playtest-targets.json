@@ -50,100 +50,15 @@
     },
     {
       "kind": "level",
-      "id": "2-01",
-      "name": "Ride encounter 01: Valve-Stem Slalom",
-      "initializer": "ride-encounter",
-      "encounter_index": 0
-    },
-    {
-      "kind": "level",
-      "id": "2-02",
-      "name": "Ride encounter 02: Elbow-Pipe Breach",
-      "initializer": "ride-encounter",
-      "encounter_index": 1
-    },
-    {
-      "kind": "level",
-      "id": "2-03",
-      "name": "Ride encounter 03: Chain-Hung Plug",
-      "initializer": "ride-encounter",
-      "encounter_index": 2
-    },
-    {
-      "kind": "level",
-      "id": "2-04",
-      "name": "Ride encounter 04: Drain-Brush Curtain",
-      "initializer": "ride-encounter",
-      "encounter_index": 3
-    },
-    {
-      "kind": "level",
-      "id": "2-05",
-      "name": "Ride encounter 05: Loose Flange Hop",
-      "initializer": "ride-encounter",
-      "encounter_index": 4
-    },
-    {
-      "kind": "level",
-      "id": "2-06",
-      "name": "Ride encounter 06: Float-Arm Sweep",
-      "initializer": "ride-encounter",
-      "encounter_index": 5
-    },
-    {
-      "kind": "level",
-      "id": "2-07",
-      "name": "Ride encounter 07: Cleanout-Cap Islands",
-      "initializer": "ride-encounter",
-      "encounter_index": 6
-    },
-    {
-      "kind": "level",
-      "id": "2-08",
-      "name": "Ride encounter 08: Broken-Basin Hopscotch",
-      "initializer": "ride-encounter",
-      "encounter_index": 7
-    },
-    {
-      "kind": "level",
-      "id": "2-09",
-      "name": "Ride encounter 09: Buckled Drain Grate",
-      "initializer": "ride-encounter",
-      "encounter_index": 8
-    },
-    {
-      "kind": "level",
-      "id": "2-10",
-      "name": "Ride encounter 10: Emergency Flume Launch",
-      "initializer": "ride-encounter",
-      "encounter_index": 9
-    },
-    {
-      "kind": "level",
-      "id": "2-11",
-      "name": "Ride encounter 11: Maintenance Hand",
-      "initializer": "ride-encounter",
-      "encounter_index": 10
-    },
-    {
-      "kind": "level",
-      "id": "2-12",
-      "name": "Ride encounter 12: Strainer: Middle Lane",
-      "initializer": "ride-encounter",
-      "encounter_index": 11
-    },
-    {
-      "kind": "level",
-      "id": "2-13",
-      "name": "Ride encounter 13: Strainer: Two Lanes",
-      "initializer": "ride-encounter",
-      "encounter_index": 12
-    },
-    {
-      "kind": "level",
       "id": "2-course",
-      "name": "Continuous ride first slice",
+      "name": "Level 2 Wave 1 and Wave 2",
       "initializer": "ride-continuous"
+    },
+    {
+      "kind": "level",
+      "id": "2-checkpoint",
+      "name": "After Wave 2, before checkpoint activation",
+      "initializer": "ride-checkpoint"
     }
   ],
   "heroes": [

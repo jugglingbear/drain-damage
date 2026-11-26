@@ -1,5 +1,5 @@
 extends RefCounted
-## Five bounded voices separate current, flush, impacts and radio; no paused or muted backlog.
+## Bounded voices separate current, flush, impacts, radio and player vocals; no paused or muted backlog.
 var voices: Dictionary = {}
 var cues: Dictionary = {}
 var starts: Dictionary = {}
@@ -10,7 +10,7 @@ var radio_after := 0.0
 var duck := 0.0
 
 func attach(host: Node, definitions: Array) -> void:
-	for id in ["current","flush","debris","radio","panic"]:
+	for id in ["current","flush","debris","radio","panic","vocal"]:
 		var voice := AudioStreamPlayer.new()
 		host.add_child(voice)
 		voices[id] = voice
@@ -21,6 +21,7 @@ func attach(host: Node, definitions: Array) -> void:
 		cues[cue.event] = {"stream":stream,"gain":float(cue.gain_db)}
 
 func channel(event: String) -> String:
+	if event in ["button_fire","button_gag"]: return "vocal"
 	if event == "suction_burble": return "panic"
 	if event == "current_loop": return "current"
 	if event == "radio_chirp": return "radio"
@@ -30,6 +31,7 @@ func channel(event: String) -> String:
 func play(event: String) -> void:
 	if frozen or not cues.has(event) or AudioServer.is_bus_mute(0): return
 	var id := channel(event)
+	if id == "vocal" and voices.vocal.playing: return
 	if id == "debris":
 		if clock < debris_after: return
 		debris_after = clock+0.12

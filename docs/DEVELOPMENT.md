@@ -182,6 +182,22 @@ material stay out of commits.
 and release procedures. Its dated gameplay claims are historical and sometimes superseded. Consult current canonical
 metadata and delivery records before relying on them.
 
+## Post-Wave 2 checkpoint
+
+Run `make run LEVEL=2-checkpoint` to start in clear water just after Wave 2, before the dispenser arrives.
+Steer toward the waiting machine to activate it. Injured riders receive a replacement and keep their remaining lives.
+After the machine departs, a remaining-life continue returns to the safe stretch beyond the checkpoint. Game Over
+still starts a fresh Level 1 campaign. The current course ends five seconds beyond the dispenser.
+
+## Playtest health
+
+Use `make run LEVEL=2-checkpoint HP=1` for the injured S.E.D. routine. Omit `HP` for the healthy inspection.
+`HP` sets the first hero’s starting health in points, capped at their maximum. Respawns use their usual health.
+
+Use `make run LEVEL=2-course DIFFICULTY=normal INVINCIBLE=1` to practice the waves with protection from ordinary hits.
+It also works from the title screen or with `LEVEL=2` for the flush. Falling into an unsupported pit or the open drain
+still costs a life. Omit the flag or set it to `0` for ordinary damage. Screenshot freeze is a separate option.
+
 ## Screenshot freeze
 
 Prototype 109 and the source launcher accept an opt-in screenshot flag; Prototype 106 does not include it.

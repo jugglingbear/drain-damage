@@ -63,13 +63,15 @@ var card_visible := false
 var card_ready := false
 var pending_launch: Dictionary = {}
 var extra_level_progress := 0.0
-const LEVEL_TWO_INITIALIZERS := ["level-two-flush","level-two-landing","ride-continuous","ride-encounter"]
+const LEVEL_TWO_INITIALIZERS := ["level-two-flush","level-two-landing","ride-continuous","ride-checkpoint"]
 var preparation_running := false
 var preparation_steps := 0
 const PREPARATION_STEPS := 4
 var job_script: Script
 var job_initialized := false
 
+var starting_hp := 0
+var invincible := false
 var screenshot_mode := false
 const ScreenshotFreeze = preload("res://scripts/screenshot_freeze.gd")
 var music: AudioStreamPlayer
@@ -89,6 +91,8 @@ func _ready() -> void:
 		print(PlaytestLaunch.listing())
 		get_tree().quit()
 		return
+	starting_hp = int(launch.get("starting_hp",0))
+	invincible = bool(launch.get("invincible",false))
 	screenshot_mode = bool(launch.get("screenshot_mode",false))
 	if not Crew.Data.load_data():
 		get_tree().quit(1)
@@ -652,11 +656,13 @@ func reveal_game(launch: Dictionary = {}) -> void:
 	else:
 		game = load(GAME_PATH).new()
 	if launch.has("target"): game.seed_override = launch.seed
+	game.invincible = invincible
 	game.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	game.music_director = music_director
 	game.employee = Crew.EMPLOYEES[selected]
 	game.difficulty = difficulty_copy.options[difficulty_index].id
 	game.show_enemy_health_bars = show_enemy_health_bars
+	game.campaign_restart_requested.connect(restart_campaign, CONNECT_DEFERRED)
 	game.title_requested.connect(return_to_title, CONNECT_DEFERRED)
 	if not game.is_inside_tree(): add_child(game)
 	if screenshot_mode:
@@ -667,6 +673,10 @@ func reveal_game(launch: Dictionary = {}) -> void:
 	# Only a fresh run enters here; retries and checkpoint respawns never replay the opening.
 	if launch.has("target"):
 		PlaytestLaunch.initialize(game,launch.target)
+	if starting_hp > 0:
+		game.health = mini(starting_hp,game.employee.max_health)
+		starting_hp = 0
+	if launch.has("target"):
 		if launch.verify:
 			print("PASS: playtest launch "+JSON.stringify(PlaytestLaunch.summary(game,launch)))
 			get_tree().quit()
@@ -680,6 +690,12 @@ func reveal_game(launch: Dictionary = {}) -> void:
 	# Hide only this node's drawing; hiding the parent would also hide the gameplay child.
 	queue_redraw()
 	starting = false
+
+func restart_campaign() -> void:
+	if game == null or game.life_state != "game_over": return
+	return_to_title()
+	starting = true
+	start_game()
 
 func return_to_title() -> void:
 	if game == null:

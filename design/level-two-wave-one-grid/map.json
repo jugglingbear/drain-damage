@@ -1,0 +1,2513 @@
+{
+  "title": "Wave 1 \u2014 current Normal spatial audit",
+  "date": "2026-11-24",
+  "baseline": "Prototype 200 movement; current source geometry",
+  "status": "Retrospective map, not generator input or a newly validated route",
+  "cell_length": 320,
+  "origin_x": 300,
+  "columns": 44,
+  "rows": [
+    [
+      "Far",
+      230,
+      296.6666666667
+    ],
+    [
+      "Middle",
+      296.6666666667,
+      363.3333333333
+    ],
+    [
+      "Near",
+      363.3333333333,
+      430
+    ]
+  ],
+  "source_sha256": {
+    "levels/level-two-ride-continuous.json": "b8a71a9b15610c2559eed36b8525680a7965804376829e47da018b64d4b598bd",
+    "levels/level-two-ride-showcase.json": "a8d3f249bd6d2fc2f3beefd2bf416bf0c1b5f83dfd4654456bf4c48f28cd778e",
+    "scripts/ride_continuous_course.gd": "1988223c2cd21edf92cf4fcfce7c8b639e881fe29e41181120bb43a14416c3b2",
+    "scripts/ride_showcase_model.gd": "1586f4912bac977c00681a1fc23ae4df18f44d85d6d8cec3621eea30173ec318"
+  },
+  "movement": {
+    "scroll_speed": 560.0,
+    "x_speed": 340.0,
+    "bank_speed": 297.5,
+    "steering": {
+      "acceleration_seconds": 0.15,
+      "coast_seconds": 0.1,
+      "reverse_brake_seconds": 0.045
+    },
+    "jump": {
+      "apex": 54.0,
+      "cooldown": 0.1,
+      "duration": 0.6
+    }
+  },
+  "variants": [
+    {
+      "seed": 1,
+      "cells": [
+        {
+          "bank": "Far",
+          "cells": [
+            {
+              "column": 1,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 2,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 3,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 4,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-0"
+              ]
+            },
+            {
+              "column": 5,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 6,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-2065"
+              ]
+            },
+            {
+              "column": 7,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 8,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-3"
+              ]
+            },
+            {
+              "column": 9,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 10,
+              "symbols": "DJ",
+              "obstacle_ids": [
+                "flange-at-3259",
+                "flange-at-3331",
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 11,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 12,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 13,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 14,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 15,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 16,
+              "symbols": "J",
+              "obstacle_ids": [
+                "slice-flange/flange-front",
+                "slice-flange/flange-back"
+              ]
+            },
+            {
+              "column": 17,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 18,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 19,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 20,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 21,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 22,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 23,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 24,
+              "symbols": "H",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 25,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 26,
+              "symbols": "P",
+              "obstacle_ids": [
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 27,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 28,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 29,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-9530"
+              ]
+            },
+            {
+              "column": 30,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 31,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-0"
+              ]
+            },
+            {
+              "column": 32,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 33,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 34,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-2"
+              ]
+            },
+            {
+              "column": 35,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-11465"
+              ]
+            },
+            {
+              "column": 36,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 37,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 38,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0",
+                "drop-1-1"
+              ]
+            },
+            {
+              "column": 39,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-1",
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 40,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 41,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 42,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 43,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 44,
+              "symbols": "",
+              "obstacle_ids": []
+            }
+          ]
+        },
+        {
+          "bank": "Middle",
+          "cells": [
+            {
+              "column": 1,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 2,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 3,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 4,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-0"
+              ]
+            },
+            {
+              "column": 5,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-1"
+              ]
+            },
+            {
+              "column": 6,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-2065"
+              ]
+            },
+            {
+              "column": 7,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-c-2"
+              ]
+            },
+            {
+              "column": 8,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-3"
+              ]
+            },
+            {
+              "column": 9,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-4"
+              ]
+            },
+            {
+              "column": 10,
+              "symbols": "DJ",
+              "obstacle_ids": [
+                "flange-at-3259",
+                "flange-at-3331",
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 11,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 12,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-c-6"
+              ]
+            },
+            {
+              "column": 13,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-7"
+              ]
+            },
+            {
+              "column": 14,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 15,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 16,
+              "symbols": "J",
+              "obstacle_ids": [
+                "slice-flange/flange-front",
+                "slice-flange/flange-back"
+              ]
+            },
+            {
+              "column": 17,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 18,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 19,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 20,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 21,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 22,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 23,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 24,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 25,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 26,
+              "symbols": "P",
+              "obstacle_ids": [
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 27,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 28,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 29,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-9530"
+              ]
+            },
+            {
+              "column": 30,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 31,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-0"
+              ]
+            },
+            {
+              "column": 32,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 33,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 34,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-2"
+              ]
+            },
+            {
+              "column": 35,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-11465"
+              ]
+            },
+            {
+              "column": 36,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 37,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 38,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0",
+                "drop-1-1"
+              ]
+            },
+            {
+              "column": 39,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-1",
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 40,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 41,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 42,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 43,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 44,
+              "symbols": "",
+              "obstacle_ids": []
+            }
+          ]
+        },
+        {
+          "bank": "Near",
+          "cells": [
+            {
+              "column": 1,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 2,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 3,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 4,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 5,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-1"
+              ]
+            },
+            {
+              "column": 6,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-2065"
+              ]
+            },
+            {
+              "column": 7,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 8,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 9,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-4"
+              ]
+            },
+            {
+              "column": 10,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-3259",
+                "flange-at-3331"
+              ]
+            },
+            {
+              "column": 11,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 12,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 13,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-7"
+              ]
+            },
+            {
+              "column": 14,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 15,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 16,
+              "symbols": "J",
+              "obstacle_ids": [
+                "slice-flange/flange-front",
+                "slice-flange/flange-back"
+              ]
+            },
+            {
+              "column": 17,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 18,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 19,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 20,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 21,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 22,
+              "symbols": "H",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 23,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 24,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 25,
+              "symbols": "H",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 26,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 27,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 28,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 29,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-9530"
+              ]
+            },
+            {
+              "column": 30,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 31,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 32,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 33,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 34,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-2"
+              ]
+            },
+            {
+              "column": 35,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-11465"
+              ]
+            },
+            {
+              "column": 36,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 37,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 38,
+              "symbols": "D",
+              "obstacle_ids": [
+                "strainer-side-baffle"
+              ]
+            },
+            {
+              "column": 39,
+              "symbols": "DH",
+              "obstacle_ids": [
+                "strainer-side-baffle",
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 40,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 41,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 42,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 43,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 44,
+              "symbols": "",
+              "obstacle_ids": []
+            }
+          ]
+        }
+      ],
+      "obstacles": [
+        {
+          "art_id": "valve_wall_far_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-a-0",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-a",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 1450.0,
+          "y": 287.5
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-b-1",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 1860.0,
+          "y": 372.5
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-2065",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 2065.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_center_v2",
+          "depth": 55,
+          "id": "slice-slalom/valve-c-2",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-c",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 2270.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_wall_far_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-a-3",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-a",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 2680.0,
+          "y": 287.5
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-b-4",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 3090.0,
+          "y": 372.5
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-3259",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 3259.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-3331",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 3331.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_wall_far_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-a-5",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-a",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 3500.0,
+          "y": 287.5
+        },
+        {
+          "art_id": "valve_center_v2",
+          "depth": 55,
+          "id": "slice-slalom/valve-c-6",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-c",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 3910.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-b-7",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 4320.0,
+          "y": 372.5
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "slice-flange/flange-front",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 5200.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "slice-flange/flange-back",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-back",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 5272.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "cleanout_deck_330",
+          "depth": 84.0,
+          "id": "slice-caps/cap-entry",
+          "instance_id": "slice-caps",
+          "kind": "deck",
+          "landing_material": "metal",
+          "source_family": "2-07",
+          "source_id": "cap-entry",
+          "timeline_origin": 8.375,
+          "width": 247.5,
+          "x": 7365.0,
+          "y": 278.0
+        },
+        {
+          "art_id": "ordinary_gap",
+          "depth": 200.0,
+          "id": "slice-caps/cap-water-gap",
+          "instance_id": "slice-caps",
+          "kind": "gap",
+          "source_family": "2-07",
+          "source_id": "cap-water-gap",
+          "timeline_origin": 8.375,
+          "width": 970.0,
+          "x": 7775.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "cleanout_deck_330",
+          "depth": 84.0,
+          "id": "slice-caps/cap-middle",
+          "instance_id": "slice-caps",
+          "kind": "deck",
+          "landing_material": "metal",
+          "source_family": "2-07",
+          "source_id": "cap-middle",
+          "timeline_origin": 8.375,
+          "width": 247.5,
+          "x": 7775.0,
+          "y": 382.0
+        },
+        {
+          "art_id": "cleanout_deck_360",
+          "depth": 84.0,
+          "id": "slice-caps/cap-exit",
+          "instance_id": "slice-caps",
+          "kind": "deck",
+          "landing_material": "metal",
+          "source_family": "2-07",
+          "source_id": "cap-exit",
+          "timeline_origin": 8.375,
+          "width": 270.0,
+          "x": 8190.0,
+          "y": 278.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-9530",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 9530.0,
+          "y": 330.0
+        },
+        {
+          "activates_at": 16.2169776389641,
+          "art_id": "strainer_gap_60",
+          "depth": 72.0,
+          "id": "drop-0-0",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 13.1169776389641,
+          "warning_at": 14.3669776389641,
+          "width": 160.0,
+          "x": 10000.0,
+          "y": 266.0
+        },
+        {
+          "activates_at": 17.194130668257,
+          "art_id": "strainer_gap_60",
+          "depth": 136.0,
+          "id": "drop-0-1",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 14.094130668257,
+          "warning_at": 15.344130668257,
+          "width": 160.0,
+          "x": 10490.0,
+          "y": 362.0
+        },
+        {
+          "activates_at": 18.1159680960434,
+          "art_id": "strainer_gap_60",
+          "depth": 200.0,
+          "id": "drop-0-2",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 15.0159680960434,
+          "warning_at": 16.2659680960434,
+          "width": 140.0,
+          "x": 10980.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-11465",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 11465.0,
+          "y": 330.0
+        },
+        {
+          "activates_at": 19.2457056765045,
+          "art_id": "strainer_gap_60",
+          "depth": 72.0,
+          "id": "drop-1-0",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 16.1457056765045,
+          "warning_at": 17.3957056765045,
+          "width": 640.0,
+          "x": 11950.0,
+          "y": 266.0
+        },
+        {
+          "activates_at": 20.6090028196573,
+          "art_id": "strainer_gap_60",
+          "depth": 72.0,
+          "id": "drop-1-1",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 17.5090028196573,
+          "warning_at": 18.7590028196573,
+          "width": 160.0,
+          "x": 12490.0,
+          "y": 266.0
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 65,
+          "id": "strainer-side-baffle",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 12490.0,
+          "y": 397.5
+        },
+        {
+          "activates_at": 21.1199146387833,
+          "art_id": "strainer_gap_60",
+          "depth": 136.0,
+          "id": "drop-1-2",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 18.0199146387833,
+          "warning_at": 19.2699146387833,
+          "width": 640.0,
+          "x": 12980.0,
+          "y": 362.0
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-exit-baffle/valve-b",
+          "instance_id": "slice-exit-baffle",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 16.2142857142857,
+          "width": 120.0,
+          "x": 13730.0,
+          "y": 372.5
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "cells": [
+        {
+          "bank": "Far",
+          "cells": [
+            {
+              "column": 1,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 2,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 3,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 4,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-0"
+              ]
+            },
+            {
+              "column": 5,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 6,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-2065"
+              ]
+            },
+            {
+              "column": 7,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 8,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-3"
+              ]
+            },
+            {
+              "column": 9,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 10,
+              "symbols": "DJ",
+              "obstacle_ids": [
+                "flange-at-3259",
+                "flange-at-3331",
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 11,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 12,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 13,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 14,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 15,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 16,
+              "symbols": "J",
+              "obstacle_ids": [
+                "slice-flange/flange-front",
+                "slice-flange/flange-back"
+              ]
+            },
+            {
+              "column": 17,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 18,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 19,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 20,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 21,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 22,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 23,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 24,
+              "symbols": "H",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 25,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 26,
+              "symbols": "P",
+              "obstacle_ids": [
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 27,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 28,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 29,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-9530"
+              ]
+            },
+            {
+              "column": 30,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 31,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 32,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 33,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 34,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-2"
+              ]
+            },
+            {
+              "column": 35,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-11465"
+              ]
+            },
+            {
+              "column": 36,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 37,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 38,
+              "symbols": "D",
+              "obstacle_ids": [
+                "strainer-side-baffle"
+              ]
+            },
+            {
+              "column": 39,
+              "symbols": "DH",
+              "obstacle_ids": [
+                "strainer-side-baffle",
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 40,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 41,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 42,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 43,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 44,
+              "symbols": "",
+              "obstacle_ids": []
+            }
+          ]
+        },
+        {
+          "bank": "Middle",
+          "cells": [
+            {
+              "column": 1,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 2,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 3,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 4,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-0"
+              ]
+            },
+            {
+              "column": 5,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-1"
+              ]
+            },
+            {
+              "column": 6,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-2065"
+              ]
+            },
+            {
+              "column": 7,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-c-2"
+              ]
+            },
+            {
+              "column": 8,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-3"
+              ]
+            },
+            {
+              "column": 9,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-4"
+              ]
+            },
+            {
+              "column": 10,
+              "symbols": "DJ",
+              "obstacle_ids": [
+                "flange-at-3259",
+                "flange-at-3331",
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 11,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-a-5"
+              ]
+            },
+            {
+              "column": 12,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-c-6"
+              ]
+            },
+            {
+              "column": 13,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-7"
+              ]
+            },
+            {
+              "column": 14,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 15,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 16,
+              "symbols": "J",
+              "obstacle_ids": [
+                "slice-flange/flange-front",
+                "slice-flange/flange-back"
+              ]
+            },
+            {
+              "column": 17,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 18,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 19,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 20,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 21,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 22,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 23,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-entry",
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 24,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 25,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 26,
+              "symbols": "P",
+              "obstacle_ids": [
+                "slice-caps/cap-exit"
+              ]
+            },
+            {
+              "column": 27,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 28,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 29,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-9530"
+              ]
+            },
+            {
+              "column": 30,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 31,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-0"
+              ]
+            },
+            {
+              "column": 32,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 33,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 34,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-2"
+              ]
+            },
+            {
+              "column": 35,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-11465"
+              ]
+            },
+            {
+              "column": 36,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 37,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 38,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0",
+                "drop-1-1"
+              ]
+            },
+            {
+              "column": 39,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-1",
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 40,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 41,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 42,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 43,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 44,
+              "symbols": "",
+              "obstacle_ids": []
+            }
+          ]
+        },
+        {
+          "bank": "Near",
+          "cells": [
+            {
+              "column": 1,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 2,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 3,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 4,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 5,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-1"
+              ]
+            },
+            {
+              "column": 6,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-2065"
+              ]
+            },
+            {
+              "column": 7,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 8,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 9,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-4"
+              ]
+            },
+            {
+              "column": 10,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-3259",
+                "flange-at-3331"
+              ]
+            },
+            {
+              "column": 11,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 12,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 13,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-slalom/valve-b-7"
+              ]
+            },
+            {
+              "column": 14,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 15,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 16,
+              "symbols": "J",
+              "obstacle_ids": [
+                "slice-flange/flange-front",
+                "slice-flange/flange-back"
+              ]
+            },
+            {
+              "column": 17,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 18,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 19,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 20,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 21,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 22,
+              "symbols": "H",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 23,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 24,
+              "symbols": "HP",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap",
+                "slice-caps/cap-middle"
+              ]
+            },
+            {
+              "column": 25,
+              "symbols": "H",
+              "obstacle_ids": [
+                "slice-caps/cap-water-gap"
+              ]
+            },
+            {
+              "column": 26,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 27,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 28,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 29,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-9530"
+              ]
+            },
+            {
+              "column": 30,
+              "symbols": "",
+              "obstacle_ids": []
+            },
+            {
+              "column": 31,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-0"
+              ]
+            },
+            {
+              "column": 32,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 33,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-1"
+              ]
+            },
+            {
+              "column": 34,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-0-2"
+              ]
+            },
+            {
+              "column": 35,
+              "symbols": "J",
+              "obstacle_ids": [
+                "flange-at-11465"
+              ]
+            },
+            {
+              "column": 36,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 37,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0"
+              ]
+            },
+            {
+              "column": 38,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-0",
+                "drop-1-1"
+              ]
+            },
+            {
+              "column": 39,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-1",
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 40,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 41,
+              "symbols": "H",
+              "obstacle_ids": [
+                "drop-1-2"
+              ]
+            },
+            {
+              "column": 42,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 43,
+              "symbols": "D",
+              "obstacle_ids": [
+                "slice-exit-baffle/valve-b"
+              ]
+            },
+            {
+              "column": 44,
+              "symbols": "",
+              "obstacle_ids": []
+            }
+          ]
+        }
+      ],
+      "obstacles": [
+        {
+          "art_id": "valve_wall_far_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-a-0",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-a",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 1450.0,
+          "y": 287.5
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-b-1",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 1860.0,
+          "y": 372.5
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-2065",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 2065.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_center_v2",
+          "depth": 55,
+          "id": "slice-slalom/valve-c-2",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-c",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 2270.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_wall_far_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-a-3",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-a",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 2680.0,
+          "y": 287.5
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-b-4",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 3090.0,
+          "y": 372.5
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-3259",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 3259.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-3331",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 3331.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_wall_far_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-a-5",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-a",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 3500.0,
+          "y": 287.5
+        },
+        {
+          "art_id": "valve_center_v2",
+          "depth": 55,
+          "id": "slice-slalom/valve-c-6",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-c",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 3910.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-slalom/valve-b-7",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 4320.0,
+          "y": 372.5
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "slice-flange/flange-front",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 5200.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "slice-flange/flange-back",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-back",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 5272.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "cleanout_deck_330",
+          "depth": 84.0,
+          "id": "slice-caps/cap-entry",
+          "instance_id": "slice-caps",
+          "kind": "deck",
+          "landing_material": "metal",
+          "source_family": "2-07",
+          "source_id": "cap-entry",
+          "timeline_origin": 8.375,
+          "width": 247.5,
+          "x": 7365.0,
+          "y": 278.0
+        },
+        {
+          "art_id": "ordinary_gap",
+          "depth": 200.0,
+          "id": "slice-caps/cap-water-gap",
+          "instance_id": "slice-caps",
+          "kind": "gap",
+          "source_family": "2-07",
+          "source_id": "cap-water-gap",
+          "timeline_origin": 8.375,
+          "width": 970.0,
+          "x": 7775.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "cleanout_deck_330",
+          "depth": 84.0,
+          "id": "slice-caps/cap-middle",
+          "instance_id": "slice-caps",
+          "kind": "deck",
+          "landing_material": "metal",
+          "source_family": "2-07",
+          "source_id": "cap-middle",
+          "timeline_origin": 8.375,
+          "width": 247.5,
+          "x": 7775.0,
+          "y": 382.0
+        },
+        {
+          "art_id": "cleanout_deck_360",
+          "depth": 84.0,
+          "id": "slice-caps/cap-exit",
+          "instance_id": "slice-caps",
+          "kind": "deck",
+          "landing_material": "metal",
+          "source_family": "2-07",
+          "source_id": "cap-exit",
+          "timeline_origin": 8.375,
+          "width": 270.0,
+          "x": 8190.0,
+          "y": 278.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-9530",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 9530.0,
+          "y": 330.0
+        },
+        {
+          "activates_at": 16.3580744358046,
+          "art_id": "strainer_gap_60",
+          "depth": 72.0,
+          "id": "drop-0-0",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 13.2580744358046,
+          "warning_at": 14.5080744358046,
+          "width": 160.0,
+          "x": 10000.0,
+          "y": 394.0
+        },
+        {
+          "activates_at": 17.038871334706,
+          "art_id": "strainer_gap_60",
+          "depth": 136.0,
+          "id": "drop-0-1",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 13.938871334706,
+          "warning_at": 15.188871334706,
+          "width": 160.0,
+          "x": 10490.0,
+          "y": 298.0
+        },
+        {
+          "activates_at": 18.053450035836,
+          "art_id": "strainer_gap_60",
+          "depth": 200.0,
+          "id": "drop-0-2",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 14.953450035836,
+          "warning_at": 16.203450035836,
+          "width": 140.0,
+          "x": 10980.0,
+          "y": 330.0
+        },
+        {
+          "art_id": "loose_flange",
+          "clearance": 18.0,
+          "depth": 200.0,
+          "id": "flange-at-11465",
+          "instance_id": "slice-flange",
+          "kind": "low_barrier",
+          "source_family": "2-05",
+          "source_id": "flange-front",
+          "timeline_origin": 4.64285714285714,
+          "width": 24.0,
+          "x": 11465.0,
+          "y": 330.0
+        },
+        {
+          "activates_at": 19.4351428498115,
+          "art_id": "strainer_gap_60",
+          "depth": 72.0,
+          "id": "drop-1-0",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 16.3351428498115,
+          "warning_at": 17.5851428498115,
+          "width": 640.0,
+          "x": 11950.0,
+          "y": 394.0
+        },
+        {
+          "activates_at": 20.6100266337395,
+          "art_id": "strainer_gap_60",
+          "depth": 72.0,
+          "id": "drop-1-1",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 17.5100266337395,
+          "warning_at": 18.7600266337395,
+          "width": 160.0,
+          "x": 12490.0,
+          "y": 394.0
+        },
+        {
+          "art_id": "valve_wall_far_v2",
+          "depth": 65,
+          "id": "strainer-side-baffle",
+          "instance_id": "slice-slalom",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-a",
+          "timeline_origin": 0.0,
+          "width": 80,
+          "x": 12490.0,
+          "y": 262.5
+        },
+        {
+          "activates_at": 21.1819370714682,
+          "art_id": "strainer_gap_60",
+          "depth": 136.0,
+          "id": "drop-1-2",
+          "instance_id": "slice-strainer",
+          "kind": "gap",
+          "source_family": "2-12",
+          "source_id": "strainer-gap-12",
+          "station": true,
+          "timeline_origin": 18.0819370714682,
+          "warning_at": 19.3319370714682,
+          "width": 640.0,
+          "x": 12980.0,
+          "y": 298.0
+        },
+        {
+          "art_id": "valve_wall_near_v2",
+          "depth": 115.0,
+          "id": "slice-exit-baffle/valve-b",
+          "instance_id": "slice-exit-baffle",
+          "kind": "support",
+          "source_family": "2-01",
+          "source_id": "valve-b",
+          "timeline_origin": 16.2142857142857,
+          "width": 120.0,
+          "x": 13730.0,
+          "y": 372.5
+        }
+      ]
+    }
+  ]
+}

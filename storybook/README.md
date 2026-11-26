@@ -24,6 +24,11 @@ Easy Mode · Bonnet and pacifier concept exploration
 
 Easy Mode · Costume source sheet, not gameplay
 
+![Issue 01, story page 4 — early illustrated comic draft, before the planned dialogue rewrite.][comic-opening-draft]
+
+Issue 01, story page 4 — early illustrated comic draft, before the planned dialogue rewrite.
+Not gameplay or final dialogue. Selected November 13, 2026.
+
 ## In-game proof of concept
 
 ![v001 · First playable basement][image-06]
@@ -304,6 +309,26 @@ v0.190.0 · Archived November 13, 2026 · Isolated package, scripted review.
 A suspended strainer waits farther along the channel.
 v0.190.0 · Archived November 13, 2026 · Isolated package, scripted review.
 
+![Sean jumps between the alternating porcelain platforms.][wave-two-1]
+
+Sean jumps between the alternating porcelain platforms.
+v0.203.0 · November 24, 2026 · Scripted package review.
+
+![An elbow breach opens into a sequence of holes.][wave-two-2]
+
+An elbow breach opens into a sequence of holes.
+v0.203.0 · November 24, 2026 · Scripted package review.
+
+![The camera frames the ramp and landing ahead.][wave-two-3]
+
+The camera frames the ramp and landing ahead.
+v0.203.0 · November 24, 2026 · Scripted package review.
+
+![The late course combines suspended hazards and obstacles.][wave-two-4]
+
+The late course combines suspended hazards and obstacles.
+v0.203.0 · November 24, 2026 · Scripted package review.
+
 ![Illustrated loading cards accompany real loading progress.][loading-207-loading-real]
 
 Illustrated loading cards accompany real loading progress.
@@ -393,6 +418,11 @@ To come. These images document development, not a finished game.
 [image-68]: 190-continuous-ride-slice/20261113-100500-archived-slalom.png
 [image-69]: 190-continuous-ride-slice/20261113-100500-archived-cap-contact.png
 [image-70]: 190-continuous-ride-slice/20261113-100500-archived-strainer.png
+[comic-opening-draft]: art-studies/20261113-135930-comic-opening-draft/20261113-135930-archived-story-page-04.png
+[wave-two-1]: 203-wave-two/20261124-210536-archived-porcelain-crossing.png
+[wave-two-2]: 203-wave-two/20261124-210536-archived-elbow-breach.png
+[wave-two-3]: 203-wave-two/20261124-210536-archived-ramp.png
+[wave-two-4]: 203-wave-two/20261124-210536-archived-mixed-finish.png
 [loading-207-loading-real]: 207-loading-cards/20261125-120051-archived-loading-real.png
 [loading-207-ready-real]: 207-loading-cards/20261125-120051-archived-ready-real.png
 [loading-207-flush-1]: 207-loading-cards/20261125-120051-archived-flush-1.png

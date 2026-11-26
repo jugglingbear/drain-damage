@@ -67,14 +67,10 @@ footer{color:#bac3c9} @media(max-width:600px){main{padding:16px 0}header,footer{
 </style></head><body>
 <header><div class="masthead"><p>DRAIN DAMAGE</p>
 <div class="header-actions">
-<a class="repo-link" href="../audio/drain-damage-sound-auditions.html">Sound auditions →</a>
-<a class="repo-link" href="../storybook/storybook.html">Storybook →</a>
-<a class="repo-link" href="https://github.com/jugglingbear/drain-damage"
-aria-label="Drain Damage repository on GitHub">GitHub ↗</a></div></div><h1>__TITLE__</h1>
+<a class="repo-link" href="../">Service Desk →</a></div></div><h1>__TITLE__</h1>
 <p>The magazine for plumbing's least ordinary working day.</p>
-<p><a href="../magazine.pdf">Open the original PDF</a> · <a href="../magazine.pdf" download>Download magazine</a></p>
 <nav aria-label="Magazine pages">__LINKS__</nav></header><main aria-label="Magazine">__FIGURES__</main>
-<footer>Pages reproduce the original PDF layout. Open the PDF for selectable text and full-resolution zoom.</footer>
+<footer>Pages reproduce the original PDF layout. The Service Desk has the PDF for selectable text and full-resolution zoom.</footer>
 </body></html>
 '''
     (destination / 'index.html').write_text(document.replace('__TITLE__', title).replace('__LINKS__', links)
@@ -108,6 +104,10 @@ def assemble_landings(destination: Path) -> None:
     for name in ('index.html', 'landing.js'):
         path = destination / name
         content = path.read_text()
+        if name == 'index.html':
+            content = content.replace('../../marketing/magazine/current.pdf', 'magazine.pdf')
+            content = content.replace('../../audio/drain-damage-sound-auditions.html',
+                                      'audio/drain-damage-sound-auditions.html')
         for preview, production in routes.items():
             if preview not in content:
                 raise ValueError(f'Missing expected preview route in {name}: {preview}')

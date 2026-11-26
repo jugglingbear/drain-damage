@@ -1,33 +1,22 @@
 {
   "schema_version": 1,
-  "build": "Prototype 209 / 0.209.0",
-  "status": "Signed Mac build with planted controller aiming, illustrated Heavy Plunger shots, animated pause slime and simplified hero dialogue portraits.",
-  "app": "builds/Prototype-209/Drain Damage.app",
+  "build": "Prototype 223 / 0.223.0",
+  "status": "Signed Mac build. Steering resumes on the first sampled tick after the S.E.D. exhaust clears the viewport. Both heroes and inspection branches tested at 24 Hz.",
+  "app": "builds/Prototype-223/Drain Damage.app",
   "elbow_breach": "One to three seeded follow-up holes. Unused slots become valves. Respawn preserves the layout.",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-208/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-222/Drain Damage.app",
   "entry": {
+    "campaign": "make run LEVEL=1",
     "flush": "make run LEVEL=2",
-    "landing": "make run LEVEL=2-landing",
-    "direct": "make run LEVEL=2-01 (through 2-13)",
+    "landing": "make run LEVEL=2.1",
+    "continuous": "make run LEVEL=2-course",
+    "camera_test": "make run LEVEL=camera-test",
+    "section_1_1": "make run LEVEL=1.1",
+    "section_1_2": "make run LEVEL=1.2",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
-    "screenshot_source": "make run LEVEL=2-landing SCREENSHOT_MODE=1",
-    "screenshot_export": "make run LEVEL=2-07 SCREENSHOT_MODE=1 APP=\"builds/Prototype-138/Drain Damage.app\"",
-    "slalom": "make run LEVEL=2-01",
-    "breach": "make run LEVEL=2-02",
-    "float_sweep": "make run LEVEL=2-06",
-    "maintenance_hand": "make run LEVEL=2-11 APP=\"builds/Prototype-138/Drain Damage.app\"",
-    "cap_islands": "make run LEVEL=2-07 HERO=sean APP=\"builds/Prototype-138/Drain Damage.app\"",
-    "brushes": "make run LEVEL=2-04",
-    "strainers": "make run LEVEL=2-12 (or2-13) APP=\"builds/Prototype-138/Drain Damage.app\"",
-    "basins": "make run LEVEL=2-08 APP=\"builds/Prototype-138/Drain Damage.app\"",
-    "camera_test": "make run LEVEL=2.1 HERO=sean APP=\"builds/Prototype-138/Drain Damage.app\"",
-    "section_1_1": "make run LEVEL=1.1 APP=\"builds/Prototype-165/Drain Damage.app\"",
-    "section_1_2": "make run LEVEL=1.2 APP=\"builds/Prototype-165/Drain Damage.app\"",
-    "ride": "make run LEVEL=2.1",
-    "campaign": "make run LEVEL=1 APP=\"builds/Prototype-166/Drain Damage.app\"",
-    "continuous": "make run LEVEL=2-course APP=\"builds/Prototype-190/Drain Damage.app\""
+    "ride_checkpoint": "make run LEVEL=2-checkpoint"
   },
   "ui_and_retry_137": {
     "build": "Prototype 137 / 0.137.0",
@@ -169,7 +158,7 @@
   "source_commit_at_build": "07fad0d0cb810b772f913b1bc9ea82cce652fb08",
   "changes": [
     "80 finite authored campaign opportunities replace legacy opening/waves/density/additive swarms; all living arrivals and ordinary swarms share caps",
-    "Normal two purple shooters/two flyers, seeded 1\u20133 bolt volleys and 2.2-second recovery",
+    "Normal two purple shooters/two flyers, seeded 1–3 bolt volleys and 2.2-second recovery",
     "Varied continuous entrances, replacement supported traversal and two 65%-overlap pits; independent trials unchanged",
     "Checkpoint-owned retry and boss transitions/adds preserved",
     "Angel return, devil aimed silk line, flame/scream/ash and three persistent doll heads",
@@ -359,7 +348,7 @@
       "late_route": "12284 checks,0 failures; both heroes60/120Hz; /tmp/166-package-late.log",
       "launch": "Normal Tony Level1 initialized at85/394; /tmp/166-package-launch.log",
       "build": "make build and codesign verify exit0; /tmp/166-build.log",
-      "boss_transition": "/tmp/platform166-clogfather_integration.log:6 mode/hero cases pass through actual portal\u2192flush",
+      "boss_transition": "/tmp/platform166-clogfather_integration.log:6 mode/hero cases pass through actual portal→flush",
       "boss_pressure": "/tmp/platform166-clogfather_pressure_integration.log:6 mode/hero lifecycle/no-refill cases pass",
       "ending_input": "/tmp/platform166-ending_input.log:both heroes pass canonical dialogue/debounce/release",
       "forward_reverse": "/tmp/platform166-clogfather_route_traversal.log:12 mode/hero/Hz cases pass",
@@ -393,7 +382,7 @@
       "difficulty_traversal": "18 E/N/H hero/seed runs through Skitterling at60/120Hz",
       "reverse_route": "12 forward/reverse E/N/H hero/Hz cases",
       "retry": "All four origins and Skitterling checkpoint ownership",
-      "boss_exit": "All six mode/hero cases: actual Clogfather defeat,aftermath and portal\u2192flush",
+      "boss_exit": "All six mode/hero cases: actual Clogfather defeat,aftermath and portal→flush",
       "other": "Pressure reinforcement lifecycle,canonical ending input and first-level ending pass;45 Python tests;117 sound slots current"
     },
     "test_migrations": [
@@ -736,7 +725,7 @@
       "Backpack runtime delivery pending"
     ],
     "warnings": [
-      "Some headless menu/audio suites report4\u20135ObjectDB instances and1resource at shutdown",
+      "Some headless menu/audio suites report4–5ObjectDB instances and1resource at shutdown",
       "Sandbox editor-settings save denied; build/signature succeeded"
     ],
     "previous_build_preserved": "builds/Prototype-179/Drain Damage.app",
@@ -856,7 +845,7 @@
     "checks": [
       "Existing boss HUD feedback/death/retry/phase suite passes",
       "147 actual Tony/Skitterling encounter-and-HUD checks pass",
-      "Native live capture shows active effect HP1440\u21921320at1s\u2192960at4s and visible trail catchup duringcontact",
+      "Native live capture shows active effect HP1440→1320at1s→960at4s and visible trail catchup duringcontact",
       "macOS export and strict signature verification pass",
       "Exact184PCK actual Tony/Skitterling147checks pass",
       "Independent Art bounded static PASS: meter visibly decreases between1s and4s withbeamactive"
@@ -896,7 +885,7 @@
     ],
     "visual_review": [
       "Art accepted54 living sourcecaptures and24 revised death endpoints",
-      "Art accepted bounded death-transition samples18\u201320 and25\u201330, not real-time playback",
+      "Art accepted bounded death-transition samples18–20 and25–30, not real-time playback",
       "Initial prop captures rejected: unsafepitplacement, narrowbraces, sparsewreckID and misleadingtallwreck",
       "Replacement terminal rubble accepted for all three props; transition from tall damaged vessel rejected as abrupt. Art and Mechanics correcting with registered rigid fragments.",
       "Rigid fragments accepted by independent Art review: both heroes, all three props, 36 sampled release/fall/settled views; pieces remain visible and grounded.",
@@ -1146,7 +1135,7 @@
     "presentation": "Prewarm60 actors; no runtime allocation during four captured routes. Extended existing fixed strainer rail/cantilever supports early recognition; independent Art proposed reuse and accepted corrected sampled support/flange views.",
     "pck_sha256": "e542921833aa5d430ca30c0c2e48fda2622f2ef84d3e4a733d1d48fe4ef4cb17",
     "validation": [
-      "Final isolated PCK390routes,0failures: bothheroes/allmodes/30,60,120Hz; rear,neutral,front anchors; fixed inputs\u00b150ms, mixed inputs\u00b125ms, retries, alternate strainerjump and\u00b10.1cap drift.",
+      "Final isolated PCK390routes,0failures: bothheroes/allmodes/30,60,120Hz; rear,neutral,front anchors; fixed inputs±50ms, mixed inputs±25ms, retries, alternate strainerjump and±0.1cap drift.",
       "54sampled straight/repeated-hop demand checks; conservative strainer recognition-to-frontcontact2.026785714s in allmodes. Not an exhaustive exploit proof.",
       "Final PCK actual game lifecycle6hero/modecases: pause,3checkpoint retries, bothpitfalls during immunity, gameoverretry, ordinarydamage, explicitfinish, fresh isolatedmode restoration.",
       "Existing54showcase routes702encounters pass;7Python launch tests pass; Mac export/ad-hoc strict signature and diff hygiene pass.",
@@ -1168,7 +1157,7 @@
     "warnings": "Known headless macOS CA/editor-settings/log-path warnings; final native capture has no script errors. No GitHub release/publication requested for190."
   },
   "tony_running_191": {
-    "change": "Tony move_speed337.5\u2192310.5 (270\u00d71.15); only running speed changed.",
+    "change": "Tony move_speed337.5→310.5 (270×1.15); only running speed changed.",
     "preserved": "Jump-height multiplier1.25, swim_speed270, boardphysics and all other balance unchanged.",
     "checks": "Source and isolated191PCK hero_balance:123checks0failures, actual run/jump at30/60/120Hz; existing cadence/health/special/transition expectations pass.",
     "pck_sha256": "97b5c7720f8eabc8dc7fdac685895b85f454fb013d9e715f9e85b40cebf07a3f",
@@ -1197,5 +1186,59 @@
     ],
     "gaps": "Human playtesting and native Windows verification remain open. Automated shutdown reports ObjectDB leak warnings; source runs also report local log/certificate access warnings.",
     "visual": "Engineering inspected native captures at approximately 3.5 seconds during cocoon haul and 6.5 seconds after release: rain remains visible and framing intact. Independent Art static PASS: rain visible in both states, readable cocoon/tether/spider and release platform contact, HUD clear. Fixed-step captures do not establish real-time motion or audio acceptance."
+  },
+  "export_audit_213": {
+    "previous_mac_pack_bytes": 754779968,
+    "mac_pack_bytes": 489349868,
+    "exclusions": "Design and handoff files, duplicate title illustrations, superseded music and controller art. Sources retained in repository.",
+    "coverage": "PCK index and resource remaps, source and manifest references, runtime discovery and packaged smoke checks. Unresolved dynamic paths retained.",
+    "previous_entries": 2114,
+    "current_entries": 1600,
+    "removed_entries": 514,
+    "removed_payload_bytes_by_category": {
+      "Development handoffs": 6051198,
+      "Design, review and provenance files": 220241072,
+      "Duplicate title illustrations": 10194726,
+      "Controller concept studies": 10395116,
+      "Superseded music": 2324131,
+      "Superseded title music": 2792720,
+      "Superseded controller diagrams": 8593906,
+      "Superseded title and selection images": 4773464
+    }
+  },
+  "ride_death_213": {
+    "course_life_stock": "Packaged 212 and 213, direct 2-course Normal with screenshot mode: 3 → 2 → 1 → Game Over at zero. Fresh stock only after selecting restart on Game Over.",
+    "protection": "INVINCIBLE=1 ignores ordinary HP damage; unsupported pits and open drain still cost a life. Default off.",
+    "test": "tests/ride_life_stock.gd",
+    "capture": "previews/ride-213/knockoff.jpg",
+    "windows_native": "Untested",
+    "visual_review": "Both Normal heroes: board separation, water contact, submersion and fade reviewed in signed Mac captures. Reused swim art includes a small airborne splash accent."
+  },
+  "game_over_214": {
+    "action": "Restart Game starts a new campaign with the selected hero and difficulty, full health, three lives and the opening dialogue.",
+    "verification": "Packaged direct Level 1 and direct Level 2 course; the first two course deaths retained the seed and restarted at the course entrance. Restart after zero lives opened Level 1."
+  },
+  "loading_cards_215": {
+    "runtime": "assets/ui/loading-cards/",
+    "captures": "previews/loading-215/packaged-cards.jpg",
+    "verification": "Both cards in each of three families appeared at 1600×900 through the production selector. All twelve staged loading and ready states were captured."
+  },
+  "post_wave_two_checkpoint_216": {
+    "capture": "previews/ride-216/checkpoint.jpg",
+    "regression": "tests/ride_formal_checkpoint.gd",
+    "native": "Both Normal heroes, injured and healthy, opposite camera angles, 960x540 window.",
+    "limitations": "Headless Godot reports retained objects on shutdown. Native Windows untested."
+  },
+  "checkpoint_playtest_218": {
+    "pickup": "x350–600 across the channel, with 0.65 seconds of assisted docking",
+    "tests": "17 packaged lifecycle checks and four Normal native sequences",
+    "views": "previews/ride-218/checkpoint.jpg"
+  },
+  "checkpoint_219": {
+    "graphics": "Solid lit 3D chassis, world-space cabinet face, balance arms and skis, shadow on water and walls.",
+    "controls": "Jump and X available while approaching or waiting. Pickup begins on water contact.",
+    "idle": "Sean holds each neutral board pose for 2.5 seconds.",
+    "evidence": "previews/ride-219/cabinet-shadow.jpg",
+    "limitations": "No physical gamepad feel test. Headless test reported retained ObjectDB instances at exit."
   }
 }

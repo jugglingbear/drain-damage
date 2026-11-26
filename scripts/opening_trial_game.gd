@@ -132,9 +132,9 @@ func player_shot_solids() -> Array[Rect2]:
 	solids.append(Rect2(0,440,6000,100))
 	return solids
 
-func hurt_player() -> void:
+func hurt_player(fatal_fall := false) -> void:
 	var before := health
-	super.hurt_player()
+	super.hurt_player(fatal_fall)
 	if health < before: trial_state.record_damage(before-health)
 	if life_state != "alive": devil_spiders.clear(self,"hero_death")
 

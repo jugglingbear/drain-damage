@@ -43,6 +43,7 @@ var radio := Radio.new()
 var damage_taken := 0
 var shots_fired := 0
 var input_guard := true
+var checkpoint_launch := false
 var bowl_prepared := false
 var ride_prepared := false
 
@@ -73,6 +74,7 @@ func prepare_ride(host: Node2D, yield_frame := Callable(), progress := Callable(
 	ride_prepared = true
 
 func reset() -> void:
+	checkpoint_launch = false
 	ride.audio.stop()
 	ride.music.stop()
 	ride.checkpoint_index = 0
@@ -186,6 +188,7 @@ func begin(host: Node2D, retry := false) -> void:
 	host.transform = Transform2D.IDENTITY
 	if host.music_director != null: host.music_director.stop_music()
 	if skip_intro:
+		host.specials.refill_level(host.employee.id,"level-two")
 		# Restore the authored hazard boundary, rather than simulating skipped intro time.
 		# A fresh scheduler receives exactly its first cohort, with the full warning duration.
 		clock = float(definition.layout.difficulty[host.difficulty].waves[0].at)
@@ -227,6 +230,8 @@ func enter_landing(host: Node2D) -> void:
 	sync_hero(host)
 
 func enter_ride(host: Node2D, encounter_index := -1) -> void:
+	if encounter_index < 0:
+		ride.continuous = true
 	state = "ride"
 	radio.clear()
 	audio.stop()
@@ -261,6 +266,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, _jumping: bool, _firing
 
 func finish_intro(host: Node2D) -> void:
 	intro_complete = true
+	host.specials.refill_level(host.employee.id,"level-two")
 	prelude_remaining = 0
 	clock = float(definition.layout.difficulty[host.difficulty].waves[0].at)
 	debris.advance(self,host,0)
@@ -373,7 +379,7 @@ func enter_drain_death(host: Node2D) -> void:
 	hazards.clear()
 	host.health = 1
 	host.invulnerable = 0
-	host.hurt_player()
+	host.hurt_player(true)
 	sync_hero(host)
 
 func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool, capture_boundary := false) -> void:
@@ -407,6 +413,8 @@ func move_hero(host: Node2D, delta: float, steering: Vector2, _jumping: bool, ca
 func process_audio(host: Node2D, delta: float) -> void:
 	if state == "ride":
 		ride.process_audio(host,delta)
+		if ride.obstacle_knockoff:
+			audio.advance(delta,host.paused and host.life_state == "dying",false,false)
 		return
 	audio.advance(delta,host.paused or input_guard or host.life_state != "alive",active and clock < 43 and host.life_state == "alive",
 		not radio.current.is_empty(),clampf(clock/35.0,0,1))

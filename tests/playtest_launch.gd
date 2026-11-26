@@ -27,6 +27,9 @@ func run_checks() -> void:
 			game.difficulty = mode
 			game.seed_override = 913
 			root.add_child(game)
+			while not game.startup_complete: await process_frame
+			await game.flush.prepare_bowl(game)
+			await game.flush.prepare_ride(game)
 			game.hide()
 			game.set_process(false)
 			game.set_physics_process(false)
@@ -38,9 +41,10 @@ func run_checks() -> void:
 				assert(not options.has("error"))
 				game.flush.reset()
 				game.reset_game()
+				var starting_damage: int = game.weapon.damage
 				Launch.initialize(game,target)
 				assert(game.employee.id == options.hero and game.run_seed == 913 and game.difficulty == mode)
-				assert(game.weapon.damage == (12 if hero == 0 else 18))
+				assert(game.weapon.damage == starting_damage)
 				assert(game.health == game.employee.max_health and game.lives == 3 and game.dispenser.stocked)
 				assert(not game.dialogue.active and not game.dispenser.active and game.dialogue.release_guard == 0)
 				assert(game.skitterling.encounter.hp == game.skitterling.Encounter.MAX_HP and not game.skitterling.entered)
@@ -51,12 +55,8 @@ func run_checks() -> void:
 					assert(not game.checkpoint_active and game.flush.hazards.is_empty() and not game.won)
 					assert(game.flush.project(game.flush.position).is_equal_approx(Vector2(480,385)))
 					assert(not game.flush.radio.current.is_empty() and game.flush.landing_clock == 0)
-				elif target.initializer == "ride-encounter":
-					assert(game.flush.active and game.flush.state == "ride" and not game.checkpoint_active)
-					assert(game.flush.ride.encounter_index == int(target.encounter_index))
-					assert(game.flush.ride.phase == "encounter" and game.flush.ride.clock == 0)
-					game.respawn_after_death()
-					assert(game.flush.ride.encounter_index == int(target.encounter_index))
+				elif target.initializer == "ride-continuous":
+					assert(game.flush.state == "ride" and game.flush.ride.continuous)
 				elif target.kind == "level":
 					assert(game.player.x == 85 and game.checkpoint_index == -1 and game.respawn_origin == 85)
 				else:

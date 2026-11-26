@@ -1,0 +1,208 @@
+{
+  "date": "2026-11-25",
+  "status": "Special revisions awaiting listening; normal .7 preferred; no runtime changes",
+  "brief": "Keep DD-S0206.8 underwater texture; make screaming louder, more panicked and present throughout. DD-S0205.7 is preferred for normal. No runtime integration until final selection. Layer retained human cries with overlapping phrases and water-driven amplitude variation, no cough montage.",
+  "sources": [
+    {
+      "path": "audio/alternatives/DD-S0206/DD-S0206.8.wav",
+      "sha256": "e30766db76c7e6020e87b875439d4600e0fc76515d9f80fc997f84bb410767ab",
+      "source_manifest": "audio/sources/flush-button-v3/manifest.json"
+    },
+    {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/scream_01.ogg",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "54da7bba4c4272b0b77dc3fe26a91d0a26d9280797fecb8197d716b47745eb85",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json"
+    },
+    {
+      "path": "audio/sources/recorded-creatures-cc0-v1/rubberduck/scream_02.ogg",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "sha256": "73aedfbcc7e5b3004507d5a79e95ae53954026036bf8d6f65aa0a4ca298dd372",
+      "source_manifest": "audio/sources/recorded-creatures-cc0-v1/manifest.json"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "DD-S0206.9",
+      "description": "I \u2014 Continuous panicked voice through water",
+      "vocal_gain": 0.95,
+      "events": [
+        {
+          "source": "scream_01",
+          "at": 0,
+          "speed": 1.02,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_02",
+          "at": 0.52,
+          "speed": 1.055,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_01",
+          "at": 1.04,
+          "speed": 1.0050000000000001,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_02",
+          "at": 1.56,
+          "speed": 1.07,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_01",
+          "at": 2.08,
+          "speed": 1.02,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_02",
+          "at": 2.6,
+          "speed": 1.055,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_01",
+          "at": 3.12,
+          "speed": 1.0050000000000001,
+          "duration": 0.77
+        }
+      ],
+      "path": "audio/alternatives/DD-S0206/DD-S0206.9.wav",
+      "duration_seconds": 3.8,
+      "peak_dbfs": -6.0,
+      "sha256": "cfa15f04f97ccd0d0a2fea396f2ab360b2666bb48a0b8101d3d1dfff8c7fd77b"
+    },
+    {
+      "id": "DD-S0206.10",
+      "description": "J \u2014 More urgent, voice-forward gurgle scream",
+      "vocal_gain": 1.35,
+      "events": [
+        {
+          "source": "scream_01",
+          "at": 0,
+          "speed": 1.1,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_02",
+          "at": 0.52,
+          "speed": 1.135,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_01",
+          "at": 1.04,
+          "speed": 1.0850000000000002,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_02",
+          "at": 1.56,
+          "speed": 1.1500000000000001,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_01",
+          "at": 2.08,
+          "speed": 1.1,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_02",
+          "at": 2.6,
+          "speed": 1.135,
+          "duration": 0.77
+        },
+        {
+          "source": "scream_01",
+          "at": 3.12,
+          "speed": 1.0850000000000002,
+          "duration": 0.77
+        }
+      ],
+      "path": "audio/alternatives/DD-S0206/DD-S0206.10.wav",
+      "duration_seconds": 3.8,
+      "peak_dbfs": -6.0,
+      "sha256": "72a8b6baf4079240fe23758d288e8c9c7ef9f375159265b36b44ef49128ebebe"
+    }
+  ],
+  "processing": [
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=44982,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 861
+    },
+    {
+      "source": "scream_02",
+      "filters": "aresample=44100,asetrate=46526,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 728
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=44321,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 875
+    },
+    {
+      "source": "scream_02",
+      "filters": "aresample=44100,asetrate=47187,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 716
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=44982,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 861
+    },
+    {
+      "source": "scream_02",
+      "filters": "aresample=44100,asetrate=46526,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 728
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=44321,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 875
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 792
+    },
+    {
+      "source": "scream_02",
+      "filters": "aresample=44100,asetrate=50054,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 670
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=47849,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 804
+    },
+    {
+      "source": "scream_02",
+      "filters": "aresample=44100,asetrate=50715,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 660
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=48510,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 792
+    },
+    {
+      "source": "scream_02",
+      "filters": "aresample=44100,asetrate=50054,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 670
+    },
+    {
+      "source": "scream_01",
+      "filters": "aresample=44100,asetrate=47849,aresample=44100,highpass=f=160,lowpass=f=3400",
+      "leading_trim_samples": 804
+    }
+  ],
+  "recipe": "audio/sources/flush-button-v4/render.py",
+  "listening": "Designed layered approximations. Technical validation is not subjective acceptance."
+}

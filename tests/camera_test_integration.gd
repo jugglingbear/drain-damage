@@ -7,7 +7,7 @@ func _initialize() -> void: call_deferred("checks")
 func checks() -> void:
 	var options := Launch.parse(["--level=camera-test","--hero=sean"])
 	assert(options.target.initializer == "camera-test")
-	assert(Launch.parse(["--level=2-08"]).target.initializer == "ride-encounter")
+	assert(Launch.parse(["--level=2-08"]).has("error"))
 	for setup in [[0,"normal"],[0,"hard"],[0,"easy"],[1,"normal"],[1,"hard"],[1,"easy"]]:
 		var game = CameraGame.new()
 		game.employee = game.Crew.EMPLOYEES[setup[0]]

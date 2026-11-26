@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-13",
+  "owner": "Bestiary / Art",
+  "status": "Four revised full-panel lettered layout pages accepted by Comic for Sean review; finished page 2 proof and publication remain on hold.",
+  "script": "design/comic-issue-01/opening-script-v2.json",
+  "supersedes_for_review": "design/comic-issue-01/thumbnails-v2/opening-thumbnails-v2.pdf",
+  "deliverables": [
+    "opening-layouts-v3.pdf",
+    "page-1.png",
+    "page-2.png",
+    "page-3.png",
+    "page-4.png"
+  ],
+  "current_art": {
+    "page-01-varied.png": "exec-226bd8fc-c9b9-4e8c-8a81-36c0a2ba5cf4.png",
+    "page-02-final-art.png": "exec-c0deebeb-a603-41f4-b6d9-08d312326a3a.png",
+    "page-03-varied-revised.png": "exec-ed5924eb-4d2d-4419-9c61-174a3d1182e3.png",
+    "page-04-varied.png": "exec-5473bbe2-cab6-4bcb-ac4f-b1c2e3910509.png"
+  },
+  "editable_sources": [
+    "build_pages.py",
+    "layout.json",
+    "lettering-measured.json",
+    "prompts.json"
+  ],
+  "changes": [
+    "Full-panel artwork with narrow gutters and modest outer margin; no floating art studies.",
+    "Scene-weighted varied panel sizes: unequal arrival pair, asymmetrical inspection, reaction inset, diagonal interruption/action, near-half-page monster reveal.",
+    "BJ redrawn in matching illustrated ink/color style; remote radio captions have no face-directed tails.",
+    "All speech tails terminate above heads; continued Tony speech linked.",
+    "Page2 phone call and lowered-phone reply to Tony now occupy separate visual panels; every approved word retained.",
+    "Single worn jetter throughout inspection, clearly dry feet at electrical hazard.",
+    "Pipe reveal in service cupboard; kit outside bathroom threshold; intact entrance distinct from broken stall door.",
+    "Flush SFX moved before response balloons."
+  ],
+  "validation": {
+    "dialogue_counts": [
+      6,
+      11,
+      4,
+      3
+    ],
+    "text": "All approved dialogue and SFX matched against extracted PDF text; builder also asserts reconstructed panel dialogue exactly matches canonical script.",
+    "type": "Consistent 20.5 logical unit dialogue, approximately 9.78pt at 477x738pt trim; no shrink-to-fit.",
+    "tails": "21 configured endpoints above recorded head tops; Art visually inspected all final page renders.",
+    "code": "Builder compiles; changed Python <=120 columns and no trailing whitespace.",
+    "independent_review": "Comic inspected all four v3 pages, including final P2 dry-foot/phone sequence and P3 SFX order; accepted for Sean layout review only."
+  },
+  "remaining": [
+    "Sean review of revised layouts.",
+    "Finished fully lettered page2 style proof after feedback; no authorization inferred to publish or finish remaining pages."
+  ],
+  "archive": "concept-art-archive/design/comic-issue-01/thumbnails-v3",
+  "preservation": "V1, V2 and accepted cover untouched. Intermediate generated art retained alongside current art; current_art identifies selected files.",
+  "roadmap_owner": "Comic; roadmap already updated to v3 review pending."
+}

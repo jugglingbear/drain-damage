@@ -1,0 +1,1 @@
+Draft character and Issue 1 reference packs. Open the PDF. Sources are copied unchanged for reuse with their roles and limitations in source-manifest.json. Do not treat provisional or rejected details as approved canon. No production art was changed.

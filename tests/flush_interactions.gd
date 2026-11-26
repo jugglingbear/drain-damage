@@ -35,7 +35,7 @@ func checks() -> void:
 	assert(game.health == health-2,"Damage ends when automatic descent removes control")
 	assert(flush.hazards.size() == 1 and item.pos.length() < 250,"Final drain retains and pulls floating objects")
 	flush.audio.advance(0.1,false,true,true)
-	assert(flush.audio.voices.size() == 5 and flush.audio.voices.current.playing)
+	assert(flush.audio.voices.size() == 6 and flush.audio.voices.current.playing)
 	var audio_clock: float = flush.audio.clock
 	flush.audio.advance(1,true,true,true)
 	assert(flush.audio.clock == audio_clock and flush.audio.voices.current.stream_paused)

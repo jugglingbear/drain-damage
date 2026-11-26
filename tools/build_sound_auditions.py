@@ -95,6 +95,13 @@ def discover() -> dict[str, dict[str, Any]]:
     for cue in flush_audio["cues"]:
         if cue["event"] == "debris_break":
             continue  # Swimming has no breakable props; retain the old slot and audition as retired.
+        if cue["event"] in ("button_fire", "button_gag"):
+            action = cue["event"].removeprefix("button_")
+            key = f"proposed-flush-button/{action}"
+            name = "Fire — panicked watery cry" if action == "fire" else "Special — watery gag"
+            add(key, "Level 2", name, [cue["path"]], "data/level-two-flush.json#/audio")
+            slots[key]["group"] = "Flush button sounds"
+            continue
         add(f"level-two-flush/{cue['event']}", "Level 2", f"The Flush — {cue['event'].replace('_', ' ')}",
             [cue["path"]], "data/level-two-flush.json#/audio")
     flush = json.loads((ROOT / "data/level-two-flush.json").read_text())

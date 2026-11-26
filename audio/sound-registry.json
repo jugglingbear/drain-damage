@@ -6258,6 +6258,213 @@
           "provenance": "Original rain-like texture layered from retained rubberduck CC0 water/splash recordings."
         }
       ]
+    },
+    {
+      "id": "DD-S0205",
+      "uuid": "5bea7ead-f119-48ea-a5a3-b74b74ecf5d3",
+      "key": "proposed-flush-button/fire",
+      "section": "Level 2",
+      "group": "Flush button sounds",
+      "name": "Fire \u2014 panicked watery cry",
+      "status": "current",
+      "paths": [
+        "assets/audio/sfx/flush-buttons-v1/DD-S0205.7.wav"
+      ],
+      "source": "data/level-two-flush.json#/audio",
+      "alternatives": [
+        {
+          "id": "DD-S0205.1",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.1.wav",
+          "name": "A \u2014 Choked yelp and quick breath \u00b7 1.10s",
+          "source_manifest": "audio/sources/flush-button-v1/manifest.json",
+          "generation_prompt": "Flush-only auditions: X/keyboard fire is a panicked watery gagging cry trying to catch breath; B is comedic watery gagging/puking. Recorded human mouth gestures and water, short responsive onset, no electronic voice, no runtime integration before selection.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0205.2",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.2.wav",
+          "name": "B \u2014 Broken cry with two sputters \u00b7 1.26s",
+          "source_manifest": "audio/sources/flush-button-v1/manifest.json",
+          "generation_prompt": "Flush-only auditions: X/keyboard fire is a panicked watery gagging cry trying to catch breath; B is comedic watery gagging/puking. Recorded human mouth gestures and water, short responsive onset, no electronic voice, no runtime integration before selection.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0205.3",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.3.wav",
+          "name": "C \u2014 Low waterlogged cry and gasp \u00b7 1.38s",
+          "source_manifest": "audio/sources/flush-button-v1/manifest.json",
+          "generation_prompt": "Flush-only auditions: X/keyboard fire is a panicked watery gagging cry trying to catch breath; B is comedic watery gagging/puking. Recorded human mouth gestures and water, short responsive onset, no electronic voice, no runtime integration before selection.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0205.4",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.4.wav",
+          "name": "D \u2014 Cry swallowed by water, then gasp \u00b7 1.85s",
+          "source_manifest": "audio/sources/flush-button-v2/manifest.json",
+          "generation_prompt": "Unexpectedly thrown into a gigantic flushing toilet, swimming desperately toward safety while debris falls. Normal button: frightened human cries breaking into swallowed-water gurgles and gasps, not a monster. Special button: 3\u20135 seconds of coughing, gagging and puking, with irregular effort and recovery breath. DD-S0206.1 is only a relative preference, not approved. Preserve all prior candidates. Auditions only.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0205.5",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.5.wav",
+          "name": "E \u2014 Frantic cry, choke, second cry \u00b7 2.32s",
+          "source_manifest": "audio/sources/flush-button-v2/manifest.json",
+          "generation_prompt": "Unexpectedly thrown into a gigantic flushing toilet, swimming desperately toward safety while debris falls. Normal button: frightened human cries breaking into swallowed-water gurgles and gasps, not a monster. Special button: 3\u20135 seconds of coughing, gagging and puking, with irregular effort and recovery breath. DD-S0206.1 is only a relative preference, not approved. Preserve all prior candidates. Auditions only.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0205.6",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.6.wav",
+          "name": "F \u2014 Strangled cry through a mouthful of water \u00b7 2.08s",
+          "source_manifest": "audio/sources/flush-button-v2/manifest.json",
+          "generation_prompt": "Unexpectedly thrown into a gigantic flushing toilet, swimming desperately toward safety while debris falls. Normal button: frightened human cries breaking into swallowed-water gurgles and gasps, not a monster. Special button: 3\u20135 seconds of coughing, gagging and puking, with irregular effort and recovery breath. DD-S0206.1 is only a relative preference, not approved. Preserve all prior candidates. Auditions only.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0205.7",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.7.wav",
+          "name": "G \u2014 Short bubbling attempted phrase",
+          "source_manifest": "audio/sources/flush-button-v3/manifest.json",
+          "generation_prompt": "Normal: trying to talk through a mouthful of water. Special: sustained gurgle-screaming through water, 3\u20135 seconds. No cough/spit montage. New recorded gargles shaped into speech-like or forceful sustained gestures; these are approximations, not recordings of the exact requested acting performance.",
+          "provenance": "New CC0 recorded gargling; public HQ preview, edited and filtered.",
+          "review_status": "Sean preferred normal-button candidate; paired with selected special DD-S0206.12 for integration."
+        },
+        {
+          "id": "DD-S0205.8",
+          "path": "audio/alternatives/DD-S0205/DD-S0205.8.wav",
+          "name": "H \u2014 Lower muffled attempted phrase",
+          "source_manifest": "audio/sources/flush-button-v3/manifest.json",
+          "generation_prompt": "Normal: trying to talk through a mouthful of water. Special: sustained gurgle-screaming through water, 3\u20135 seconds. No cough/spit montage. New recorded gargles shaped into speech-like or forceful sustained gestures; these are approximations, not recordings of the exact requested acting performance.",
+          "provenance": "New CC0 recorded gargling; public HQ preview, edited and filtered."
+        }
+      ]
+    },
+    {
+      "id": "DD-S0206",
+      "uuid": "2b6fd22a-580e-443c-8b12-807c1fd2e085",
+      "key": "proposed-flush-button/gag",
+      "section": "Level 2",
+      "group": "Flush button sounds",
+      "name": "Special \u2014 watery gag",
+      "status": "current",
+      "paths": [
+        "assets/audio/sfx/flush-buttons-v1/DD-S0206.12.wav"
+      ],
+      "source": "data/level-two-flush.json#/audio",
+      "alternatives": [
+        {
+          "id": "DD-S0206.1",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.1.wav",
+          "name": "A \u2014 Quick wet double retch \u00b7 0.94s",
+          "source_manifest": "audio/sources/flush-button-v1/manifest.json",
+          "generation_prompt": "Flush-only auditions: X/keyboard fire is a panicked watery gagging cry trying to catch breath; B is comedic watery gagging/puking. Recorded human mouth gestures and water, short responsive onset, no electronic voice, no runtime integration before selection.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0206.2",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.2.wav",
+          "name": "B \u2014 Deep rolling heave and spill \u00b7 1.34s",
+          "source_manifest": "audio/sources/flush-button-v1/manifest.json",
+          "generation_prompt": "Flush-only auditions: X/keyboard fire is a panicked watery gagging cry trying to catch breath; B is comedic watery gagging/puking. Recorded human mouth gestures and water, short responsive onset, no electronic voice, no runtime integration before selection.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0206.3",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.3.wav",
+          "name": "C \u2014 Rapid spluttering spit-take \u00b7 1.02s",
+          "source_manifest": "audio/sources/flush-button-v1/manifest.json",
+          "generation_prompt": "Flush-only auditions: X/keyboard fire is a panicked watery gagging cry trying to catch breath; B is comedic watery gagging/puking. Recorded human mouth gestures and water, short responsive onset, no electronic voice, no runtime integration before selection.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0206.4",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.4.wav",
+          "name": "D \u2014 Double choke, wet heave, recovery breath \u00b7 3.65s",
+          "source_manifest": "audio/sources/flush-button-v2/manifest.json",
+          "generation_prompt": "Unexpectedly thrown into a gigantic flushing toilet, swimming desperately toward safety while debris falls. Normal button: frightened human cries breaking into swallowed-water gurgles and gasps, not a monster. Special button: 3\u20135 seconds of coughing, gagging and puking, with irregular effort and recovery breath. DD-S0206.1 is only a relative preference, not approved. Preserve all prior candidates. Auditions only.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0206.5",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.5.wav",
+          "name": "E \u2014 Repeated desperate coughs and long watery retch \u00b7 4.35s",
+          "source_manifest": "audio/sources/flush-button-v2/manifest.json",
+          "generation_prompt": "Unexpectedly thrown into a gigantic flushing toilet, swimming desperately toward safety while debris falls. Normal button: frightened human cries breaking into swallowed-water gurgles and gasps, not a monster. Special button: 3\u20135 seconds of coughing, gagging and puking, with irregular effort and recovery breath. DD-S0206.1 is only a relative preference, not approved. Preserve all prior candidates. Auditions only.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0206.6",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.6.wav",
+          "name": "F \u2014 Fast sputtering fit with two wet heaves \u00b7 3.25s",
+          "source_manifest": "audio/sources/flush-button-v2/manifest.json",
+          "generation_prompt": "Unexpectedly thrown into a gigantic flushing toilet, swimming desperately toward safety while debris falls. Normal button: frightened human cries breaking into swallowed-water gurgles and gasps, not a monster. Special button: 3\u20135 seconds of coughing, gagging and puking, with irregular effort and recovery breath. DD-S0206.1 is only a relative preference, not approved. Preserve all prior candidates. Auditions only.",
+          "provenance": "Layered retained rubberduck CC0 mouth and water recordings.",
+          "review_status": "Not selected; Sean rejected the direction. Retained for reference."
+        },
+        {
+          "id": "DD-S0206.7",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.7.wav",
+          "name": "G \u2014 Rising voiced gargle",
+          "source_manifest": "audio/sources/flush-button-v3/manifest.json",
+          "generation_prompt": "Normal: trying to talk through a mouthful of water. Special: sustained gurgle-screaming through water, 3\u20135 seconds. No cough/spit montage. New recorded gargles shaped into speech-like or forceful sustained gestures; these are approximations, not recordings of the exact requested acting performance.",
+          "provenance": "New CC0 recorded gargling; public HQ preview, edited and filtered."
+        },
+        {
+          "id": "DD-S0206.8",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.8.wav",
+          "name": "H \u2014 Deeper underwater gurgle",
+          "source_manifest": "audio/sources/flush-button-v3/manifest.json",
+          "generation_prompt": "Normal: trying to talk through a mouthful of water. Special: sustained gurgle-screaming through water, 3\u20135 seconds. No cough/spit montage. New recorded gargles shaped into speech-like or forceful sustained gestures; these are approximations, not recordings of the exact requested acting performance.",
+          "provenance": "New CC0 recorded gargling; public HQ preview, edited and filtered.",
+          "review_status": "Promising direction; revise with louder panicked screaming throughout, not just murmur at end."
+        },
+        {
+          "id": "DD-S0206.9",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.9.wav",
+          "name": "I \u2014 Continuous panicked voice through water",
+          "source_manifest": "audio/sources/flush-button-v4/manifest.json",
+          "generation_prompt": "Keep DD-S0206.8 underwater texture; make screaming louder, more panicked and present throughout. DD-S0205.7 is preferred for normal. No runtime integration until final selection. Layer retained human cries with overlapping phrases and water-driven amplitude variation, no cough montage.",
+          "provenance": "Preferred ftpalad underwater gargle plus rubberduck CC0 human cries.",
+          "review_status": "Rejected by Sean: raspy and 8-bit sounding. Preserved only as reference."
+        },
+        {
+          "id": "DD-S0206.10",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.10.wav",
+          "name": "J \u2014 More urgent, voice-forward gurgle scream",
+          "source_manifest": "audio/sources/flush-button-v4/manifest.json",
+          "generation_prompt": "Keep DD-S0206.8 underwater texture; make screaming louder, more panicked and present throughout. DD-S0205.7 is preferred for normal. No runtime integration until final selection. Layer retained human cries with overlapping phrases and water-driven amplitude variation, no cough montage.",
+          "provenance": "Preferred ftpalad underwater gargle plus rubberduck CC0 human cries.",
+          "review_status": "Rejected by Sean: raspy and 8-bit sounding. Preserved only as reference."
+        },
+        {
+          "id": "DD-S0206.11",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.11.wav",
+          "name": "K \u2014 Underwater scream, two cries",
+          "source_manifest": "audio/sources/flush-button-v5/manifest.json",
+          "generation_prompt": "New natural performances for the flush special: audible human screaming through water, 3\u20135 seconds. Previous layered screams were rejected as raspy/8-bit. Preserve pitch and dynamics; only excerpt, level adjustment and edge fades. DD-S0205.7 remains the preferred normal attack.",
+          "provenance": "simonjeffery13 CC0 actual underwater scream; public HQ MP3 source."
+        },
+        {
+          "id": "DD-S0206.12",
+          "path": "audio/alternatives/DD-S0206/DD-S0206.12.wav",
+          "name": "L \u2014 Underwater scream, later continuous passage",
+          "source_manifest": "audio/sources/flush-button-v5/manifest.json",
+          "generation_prompt": "New natural performances for the flush special: audible human screaming through water, 3\u20135 seconds. Previous layered screams were rejected as raspy/8-bit. Preserve pitch and dynamics; only excerpt, level adjustment and edge fades. DD-S0205.7 remains the preferred normal attack.",
+          "provenance": "simonjeffery13 CC0 actual underwater scream; public HQ MP3 source.",
+          "review_status": "Selected by Sean for flush special button: seems ok. Awaiting runtime integration."
+        }
+      ]
     }
   ]
 }
