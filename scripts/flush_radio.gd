@@ -10,6 +10,7 @@ var hard_mode := false
 var costume := "normal"
 var transmissions := 0
 var last_event := ""
+var advance_hint: Callable
 var dialogue_font: Font
 signal transmission
 
@@ -56,10 +57,13 @@ func clear() -> void:
 	queue_redraw()
 
 func advance_bottom(clock: float) -> float:
-	if current.is_empty() or float(presentation().progress) < 1.0: return clock
+	if not can_advance(): return clock
 	var next_clock := maxf(clock,float(current.at)+float(current.get("duration",4.0)))
 	advance(next_clock,next_clock-clock,false)
 	return next_clock
+
+func can_advance() -> bool:
+	return not current.is_empty() and float(presentation().progress) >= 1.0
 
 func presentation() -> Dictionary:
 	return line_presentation(current,line_clock)
@@ -109,7 +113,10 @@ func draw_view(view: Dictionary) -> void:
 	var speaker := str(view.who).capitalize()
 	draw_string(ThemeDB.fallback_font,destination+Vector2(90,23),speaker,HORIZONTAL_ALIGNMENT_LEFT,-1,17,
 		Color("ffcf7e"))
+	if view.progress >= 1.0 and advance_hint.is_valid():
+		draw_string(ThemeDB.fallback_font,destination+Vector2(510,75),advance_hint.call(),
+			HORIZONTAL_ALIGNMENT_RIGHT,216,16,Color("f1eee4"))
 	var text := str(view.text)
 	if hard_mode: text = text.to_upper()
 	draw_multiline_string(text_font(),destination+Vector2(90,45),text,
-		HORIZONTAL_ALIGNMENT_LEFT,630,17,2,Color("edf2f5"))
+		HORIZONTAL_ALIGNMENT_LEFT,555,17,2,Color("edf2f5"))

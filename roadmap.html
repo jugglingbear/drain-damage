@@ -172,11 +172,64 @@ Exit flanges at 26210 and 37040 preserve early jump input after dropping to wate
 Art cleared the sampled revised exit separation in signed Prototype 204 (commit <code>be38c17</code>).
 The build is ready for human difficulty playtesting.
 The earlier 324-case matrix covers the shorter chain.</p>
-<p><strong>November 25 — deferred Level 2 hazard ideas:</strong>
-After Waves 1–3 are complete, revisit rising valve walls, strainers that fall through the track and keep falling
-without overhead rigging, and other moving obstacle entrances. Forward/backward positioning hazards or columns
+<p id="level-two-wave-three"><strong>November 25 — 50% extension authorized:</strong>
+Sean approved Prototype 234's stress level. Extend Wave 3 from 25,200 to 37,800 px (45 to 67.5 seconds
+at neutral speed), preserving that balance. Added weaving, a six-hop chain with middle landings and a mixed finish
+are implemented with frozen extent x300–38100: 119 planning columns of 320 px, last column 40 px.
+All Prototype 234 authored obstacles are preserved. The six added compound gates are at
+26400/28200/29400/34500/36300/37300; the final flange at 36850 and hole at 37700 permit grounded, full-board-clear
+completion at rear anchors. Mechanics passed 1,013 cases: 162 full ±50 ms routes, 576 extension proofs,
+272 middle/timing cases and three pacing audits. Six added hops are required; two middle landings reject tested
+±35 px offsets while accepting ±30 px. No new idle gap exceeds 0.8 seconds. Engineering reports actual checkpoint
+retries through extended completion. Signed Prototype 235 passed all 1,013 packaged mechanics cases,
+19 formal checkpoint cases and two actual saved retries. Independent Art cleared sampled Normal full routes for
+both heroes at opposite yaws: both survived with a stable 441-actor pool, including the old finish seam,
+new middle gates/landings and grounded finish. Sean played and approved the extended Wave 3 in Prototype 235. This locks the course at its current pacing. Difficulty coverage beyond Sean’s playtest remains unverified. Prior Prototype 234 evidence below covers only the shorter wave. <strong>November 25 — Wave 3 difficulty revision underway:</strong>
+Sean found the first full wave too easy. The revised brief adds middle-only dodge corridors, required dodge-and-jump
+combinations, four middle-bank hopscotch landings and tighter transitions with minimal idle coasting.
+Revised geometry is frozen after 1,375 passing Mechanics cases: 162 full routes with ±50 ms offsets,
+351 chain/entry cases, 315 gate proofs, 420 middle-alignment cases, 124 timing probes and three pacing audits.
+All seven middle gates require jumps. Four middle decks have depth 60; tested commanded offsets ±30 px succeed
+and ±35 px fail at 5 px sampling. Added pacing flanges are at 1750/8550/15450/20000/21500.
+No audited inactive interval exceeds 0.9 seconds; four 0.82–0.88-second exceptions preserve reaction, safe passage
+and committed ramp landing. Signed Prototype 234 matches the frozen geometry and passes all 1,375 packaged physics cases,
+19 host cases and six translated-ramp routes. Independent Art review cleared packaged Normal runs for both heroes
+at opposite yaws: all seven compound gates and four middle landings were inspected, both routes survived,
+and the actor pool stayed at 386. No blocking visibility/contact issue was found in that scope.
+Prototype 234 is ready for human difficulty playtesting; all-mode human balance remains open.
+The results below describe the prior Prototype 233 layout.
+
+The <a href="design/level-two-wave-three/plan.json">full-wave layout</a> spans approximately 45 seconds:
+mixed slalom, hole weaving, nine consecutive porcelain-platform jumps, the mandatory lane-changing ramp,
+and a mixed finale. Normal has 56 pieces. The first valve is at 1100; all ten chain decks have depth 80,
+removing the middle-bank rim shortcut while retaining platform centers, widths and the existing pit threshold.
+Mechanics passed 162 complete routes with ±50 ms input offsets and 351 focused cases, including nine ordered
+jumps and landings, omitted-hop failures and tested fixed-bank failures. Engineering reports packaged full routes
+for both heroes. Packaged checkpoint and retry checks passed. Native captures confirm both heroes crossed the revised platform
+chain, with the destination visible at both ramp camera angles. Art cleared sampled signed Prototype 233 Normal
+runs for both heroes at opposite yaws, including the final depth-80 chain with a stable 367-actor pool.
+Earlier depth-100 chain captures are superseded. Human balance testing and all-mode visual coverage remain open. Existing waves and the formal checkpoint remain intact.</p>
+<p><strong>November 25 — Wave 3 ramp and falling strainers authorized:</strong>
+The <a href="design/level-two-wave-three/plan.json">new design record</a> requires a ramp landing in a different
+bank from takeoff, with the other two landing banks left as holes. Engineering and Mechanics will validate the
+required airborne lane change. Sean also activated the falling-strainer idea now: remove strainer shadows and
+overhead rigs; baskets fall visibly, smash through the track and continue downward without retracting.
+Signed Prototype 224 shows falling baskets with aligned impact and continued submergence without retraction.
+Source checks passed 216 strainer transitions and 802 poses. For representative continuous-course widths
+140/160/640, anchors 180/650 and both yaws with a sampled seed, the first projected basket patch of at least
+16×12 pixels appears 1.08–1.63 seconds before impact and 1.73–2.74 seconds before first longitudinal board contact.
+Isolated showcase visibility remains shorter, around 0.3 seconds before impact; these are sampled measurements.
+The <code>2-wave3-ramp</code> module uses a middle-bank launch and fixed far-bank catch, with side approach holes
+preventing a shortcut and a full-width opening beneath the landing region. Mechanics reports 1,584 model cases
+and 19 host lifecycle cases passing; wrong-bank centers fall. The module follows the saved checkpoint's five-second
+runout. Signed 224 native captures show the settled approach destination and correct/fatal routes for both heroes.
+Prototype 224 shipped the isolated ramp and falling strainers. Prototype 233 adds the full course.
+A reported pre-existing uncovered-pit regression is tracked separately from these passing module checks.</p>
+<p><strong>November 25 — remaining deferred Level 2 hazard ideas:</strong>
+After Waves 1–3 are complete, revisit rising valve walls and other moving obstacle entrances.
+Forward/backward positioning hazards or columns
 of pits may suit the final boss; this remains tentative. Saved in <a href="design-ideas.json">the idea backlog</a>
-as <code>level-two-moving-hazards-and-position-pressure</code>. No implementation or artwork work is scheduled.</p>
+as <code>level-two-moving-hazards-and-position-pressure</code>. Only the falling-strainer portion is now authorized.</p>
 <p id="level-two-wave-one-grid"><strong>November 24 — Wave 1 mapped:</strong>
 The <a href="design/level-two-wave-one-grid/index.html">Normal three-bank map</a> records all 27 current course
 objects in each of two mirrored strainer arrangements, with exact bounds, seeded timings and 44 working columns
@@ -1109,7 +1162,17 @@ pending; baseline dialogue-test failures and the shared swimming ripple are reco
 <p><a href="design/game-design-glossary.html">Game design glossary</a> — our shared terms for enemy roles, fair combat, level flow and balance.</p>
 <p class="intro">A solo plumbing action game starring Sean and Tony.
 Bright retro pixels. Adult humor. Forgiving action. One playable milestone at a time.</p>
-<p class="meta">Updated November 25, 2026 · Current build: Prototype 223 / 0.223.0 · Primary target: Apple Silicon macOS</p>
+<p>Prototype 235 extends Wave 3 by 22.5 seconds with six more middle gates and a second platform chain. Launch it with <code>make run LEVEL=2-wave3</code>.</p>
+<p>Prototype 234 adds seven middle gates that require steering and jumping, plus four middle landings in the nine-jump chain.</p>
+<p>Prototype 233 makes <code>make run LEVEL=2-wave3</code> start the full 45-second course, including nine platform jumps and the airborne lane change. The S.E.D. checkpoint also leads into this course.</p>
+<p>Start Wave 2 directly with <code>make run LEVEL=2-wave2</code>.</p>
+<p>Prototype 231 shares wall geometry across hostile volleys and checks exact impacts only for walls along each shot’s path.</p>
+<p>Prototype 230 crosses out lost lives from left to right and limits cosmetic fidget surface checks to the area under each mark.</p>
+<p>Prototype 229 chooses independently from all six loading illustrations for each level on every appearance.</p>
+<p>Prototype 228 keeps both S.E.D. blood trails visible through waiting and inspection, fading as the skis submerge.</p>
+<p>Prototype 227 animates Life Lost and Game Over with dripping menu plates and a red cross drawn over the latest lost life.</p>
+<p>Prototype 226 shows SPACE or B at the bottom right of skippable dialogue according to the last input device. Direct Level 2.1 runs return to the landing after a lost life.</p>
+<p class="meta">Updated November 25, 2026 · Current build: Prototype 235 / 0.235.0 · Primary target: Apple Silicon macOS</p>
 <p><strong>Prototype 135 — faster fidget and smoother ride transitions:</strong> Fresh fidget presses work
 at half-second intervals, including audio retriggers. Jumping fidgets leave a brown cloud anchored above its release
 point until fully offscreen. Encounter graphics are prepared and rendered offscreen during startup, then reused;

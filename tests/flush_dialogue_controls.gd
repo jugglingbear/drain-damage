@@ -12,7 +12,7 @@ func jump_input(pressed: bool, controller: bool) -> void:
 	var event: InputEvent
 	if controller:
 		var button := InputEventJoypadButton.new()
-		button.button_index = JOY_BUTTON_A
+		button.button_index = JOY_BUTTON_B
 		button.pressed = pressed
 		event = button
 	else:
@@ -56,6 +56,7 @@ func run() -> void:
 		check(flush.radio.current.at == 9,"Sliding window ignores Jump")
 		for frame in range(2*120):
 			flush.tick(game,1.0/120,flush.position.normalized(),false,false)
+		check(flush.radio.advance_hint.call() == ("B" if hero.id == "sean" else "SPACE"),"Prompt follows last input device")
 		check(flush.radio.presentation().progress == 1,"Reply reached bottom")
 		jump_input(true,hero.id == "sean")
 		game._physics_process(1.0/120)
@@ -88,8 +89,10 @@ func run() -> void:
 			check(absf(item.impact_at-flush.clock-item.duration) < 0.02,"Accelerated onset retains full warning")
 		for attempt in range(2):
 			game.lives = 3
-			flush.position = Vector2.ZERO
-			flush.tick(game,1.0/120,Vector2.ZERO,false,false)
+			# Ordinary damage preserves a completed intro. The drain intentionally replays it.
+			game.health = 1
+			game.invulnerable = 0
+			game.hurt_player()
 			game.respawn_after_death()
 			check(flush.intro_complete and flush.prelude_remaining == 0,"Completed retry skips dialogue")
 			check(flush.clock == onset and flush.radio.current.is_empty(),"Completed retry starts at first hazard")
@@ -99,6 +102,18 @@ func run() -> void:
 		game.restart_guard_device = -1
 		await fresh_jump(game)
 		check(flush.state == "ride","Bottom landing dialogue also advances immediately")
+		var launch = preload("res://scripts/playtest_launch.gd")
+		var options = launch.parse(PackedStringArray(["--level=2.1","--screenshot-mode=1"]))
+		check(options.screenshot_mode,"Direct selector accepts screenshot mode")
+		launch.initialize(game,options.target)
+		flush.enter_ride(game)
+		game.lives = 3
+		game.health = 1
+		game.invulnerable = 0
+		game.hurt_player()
+		game.respawn_after_death()
+		check(game.lives == 2 and game.life_state == "alive","Direct landing retry consumes one life")
+		check(flush.state == "landing" and flush.landing_clock == 0,"Direct ride death retries Level 2.1")
 		flush.reset()
 		check(not flush.intro_complete,"New run resets conversation completion")
 	game.free()

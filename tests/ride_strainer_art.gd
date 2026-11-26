@@ -24,13 +24,13 @@ func checks() -> void:
 			for part: Dictionary in assembly.parts:
 				var box: Rect2 = ride.frame_bounds(frames[part.id],part.transform)
 				assert(bounds.grow(.001).encloses(box))
-				if ride.clock >= 3.25: assert(box.end.y <= 110.001,"Hoisted assembly clears Tony's highest hop")
-				if part.id == "strainer_chain":
-					assert((part.transform*Vector2.ZERO).is_equal_approx(part.start))
-					assert((part.transform*Vector2(0,100)).is_equal_approx(part.end))
-				else: assert(is_equal_approx(part.transform.determinant(),1),"Authored basket poses stay rigid")
+				assert(part.id == ride.obstacle_art.manifest.strainer_parts.basket)
+				var surface: Vector2 = ride.obstacle_position(obstacle)+Vector2(0,obstacle.depth*.5)
+				assert(is_equal_approx(box.get_center().x,surface.x))
+				if ride.clock > 3.1: assert(box.end.y > surface.y,"Basket must continue below the opening")
+				assert(is_equal_approx(part.transform.determinant(),1),"Basket stays rigid")
 			count += 1
 	game.queue_free()
 	await process_frame
-	print("PASS: ",count," integrated strainer poses, chain endpoints, culling, simultaneous pit activation and complete hoist clearance")
+	print("PASS: ",count," integrated strainer poses, fixed registration, culling, timed pit activation and downward exit")
 	quit()

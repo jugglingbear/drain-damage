@@ -1,0 +1,810 @@
+{
+  "id": "level-two-wave-three",
+  "date": "2026-11-25",
+  "status": "Sean playtested and approved Prototype 235. The extended Wave 3 layout and pacing are locked.",
+  "approved_ramp": {
+    "requirement": "Only safe landing bank differs from takeoff bank; remaining two banks are holes. Player must steer airborne into landing bank.",
+    "starting_proposal": "Middle-bank takeoff to far or near bank. Exact geometry pending Mechanics proof.",
+    "constraints": [
+      "Ordinary automatic ramp launch; no super ability.",
+      "Landing visibly identifiable before commitment.",
+      "Wrong banks genuinely unsupported at landing, retaining65% pit-overlap and correct platform-support rules.",
+      "Validate correct-bank success and wrong-bank failure for bothheroes,allmodes,frame rates and launchanchors."
+    ],
+    "as_built": {
+      "bank_policy": "Fixed far bank in every mode",
+      "ramp": {
+        "center": [
+          2500,
+          330
+        ],
+        "size": [
+          200,
+          100
+        ],
+        "rise": 40,
+        "launch_x": 2600
+      },
+      "approach_holes": {
+        "x": [
+          2100,
+          2645
+        ],
+        "y_bands": [
+          [
+            230,
+            310
+          ],
+          [
+            350,
+            430
+          ]
+        ]
+      },
+      "landing_hole": {
+        "x": [
+          2645,
+          3650
+        ],
+        "y": [
+          230,
+          430
+        ]
+      },
+      "catch": {
+        "x": [
+          3185,
+          3705
+        ],
+        "y": [
+          230,
+          310
+        ],
+        "center": [
+          3445,
+          270
+        ],
+        "size": [
+          520,
+          80
+        ],
+        "overlap_with_intact_exit": 55
+      },
+      "automatic_flight_seconds": 1.25,
+      "support": "Full rigid110x28 board supported at intended touchdown; existing65% uncovered-area fall rule retains rim tolerance. Wrong-bank centers330/390 die.",
+      "selector": "2-wave3-ramp",
+      "campaign": "Starts once after formal checkpoint and five-second runout; death restores saved checkpoint/origin/seed.",
+      "validation": {
+        "model_cases": 1584,
+        "route_negative_delay_cases": 324,
+        "ordinary_jump_bypass_attempts": 1260,
+        "host_lifecycle_cases": 19,
+        "remaining": "Human playtest; full Wave3 still unimplemented",
+        "separate_issue": "Mechanics reports a pre-existing uncovered-pit regression; not resolved or attributed to this module by these results.",
+        "signed_native": "Prototype224: settled approach destination and correct/fatal routes shown for both heroes",
+        "evidence": "previews/ride-224/ramp.jpg"
+      }
+    }
+  },
+  "approved_strainer_revision": {
+    "scope": "Current Level2 strainers and future Wave3",
+    "sequence": "Fall visibly from above, smash through channel to create existing hole footprint, continue downward offscreen. No retraction.",
+    "remove": [
+      "Overhead rigs and mechanisms",
+      "Strainer shadows",
+      "Yellow target markers remain absent"
+    ],
+    "preserve": [
+      "Seeded layouts and retry stability",
+      "Currentmovement and formalcheckpoint",
+      "Fixed committed footprint, no lastmoment retargeting"
+    ],
+    "validation": "Measure visible cue and hazard arrival timing; inspect continuous native fall,impact,belowfloor exit at bothangles; ensure no ghostsupport/collision.",
+    "progress": {
+      "status": "Signed Prototype224 native evidence and source transition/pose checks complete in sampled scope",
+      "transition_cases": 216,
+      "pose_cases": 802,
+      "evidence": "previews/ride-224/strainers.jpg",
+      "visibility_measurement": {
+        "scope": "Continuous course; representative widths140/160/640; fixed-input anchors180/650; both yaws; sampled seed",
+        "criterion": "First projected basket patch at least16x12 pixels",
+        "before_impact_seconds": [
+          1.08,
+          1.63
+        ],
+        "before_first_longitudinal_board_contact_seconds": [
+          1.73,
+          2.74
+        ]
+      },
+      "limits": "Isolated showcases have shorter visibility around0.3s before impact. Sampled geometry/seed evidence is not exhaustive human reaction or balance approval."
+    }
+  },
+  "unapproved_wave_draft": {
+    "duration_seconds": [
+      40,
+      50
+    ],
+    "sections": [
+      "Mixedslalom",
+      "Combinedholes/jumps",
+      "Eight–ten hop gauntlet",
+      "Lane-changing ramp",
+      "Mixed finale"
+    ],
+    "status": "Superseded by full_wave implementation brief; prior stage retained for history"
+  },
+  "still_deferred": [
+    "Risingvalvewalls",
+    "Finalboss forward/backposition hazards"
+  ],
+  "owners": {
+    "design": "Level Design",
+    "integration": "Engineering",
+    "geometry_validation": "Game Mechanics",
+    "art_and_visual_review": "Art"
+  },
+  "full_wave": {
+    "authorized_date": "2026-11-25",
+    "coordinates": "Wave-local x; origin300. Engineering maps checkpoint continuation to this origin once.",
+    "start_x": 300,
+    "finish_x": 25500,
+    "length": 25200,
+    "neutral_seconds": 45,
+    "grid": {
+      "banks": [
+        "far",
+        "middle",
+        "near"
+      ],
+      "cell_length": 320,
+      "columns": 79,
+      "last_column_width": 240,
+      "rule": "Planning only; exact object footprints/timers override letter occupancy.",
+      "scope": "Prototype 234 baseline: wave-local x300..25500, 79 planning columns; not the extended course."
+    },
+    "blocks": [
+      {
+        "id": "w3-opening",
+        "bounds": [
+          300,
+          5300
+        ],
+        "purpose": "Immediate mixed pressure after existing five-second checkpoint runout",
+        "beats": [
+          [
+            "D",
+            1100,
+            "far valve"
+          ],
+          [
+            "J",
+            1150,
+            "flange"
+          ],
+          [
+            "D",
+            1550,
+            "near valve"
+          ],
+          [
+            "D",
+            1950,
+            "center valve"
+          ],
+          [
+            "J",
+            2300,
+            "pairedflanges±36"
+          ],
+          [
+            "D",
+            2750,
+            "far valve"
+          ],
+          [
+            "J",
+            3100,
+            "flange"
+          ],
+          [
+            "D",
+            3500,
+            "near valve"
+          ],
+          [
+            "J",
+            3850,
+            "flange"
+          ],
+          [
+            "D",
+            4250,
+            "center valve"
+          ],
+          [
+            "J",
+            4650,
+            "flange"
+          ],
+          [
+            "D",
+            5050,
+            "far valve"
+          ]
+        ]
+      },
+      {
+        "id": "w3-hole-weave",
+        "bounds": [
+          5300,
+          9800
+        ],
+        "beats": [
+          [
+            "H",
+            5500,
+            "160x72 far strainer"
+          ],
+          [
+            "J",
+            6000,
+            "flange"
+          ],
+          [
+            "H",
+            6500,
+            "160x136 near/middle strainer"
+          ],
+          [
+            "D",
+            7000,
+            "near valve"
+          ],
+          [
+            "H",
+            7500,
+            "140x200 strainer"
+          ],
+          [
+            "J",
+            8050,
+            "flange"
+          ],
+          [
+            "HH",
+            8650,
+            "640x72 far strainer"
+          ],
+          [
+            "D",
+            9250,
+            "near valve"
+          ],
+          [
+            "J",
+            9650,
+            "flange"
+          ]
+        ]
+      },
+      {
+        "id": "w3-porcelain",
+        "bounds": [
+          9800,
+          15200
+        ],
+        "jump_count": 9,
+        "platform_centers": [
+          10500,
+          10980,
+          11460,
+          11940,
+          12420,
+          12900,
+          13380,
+          13860,
+          14340,
+          14820
+        ],
+        "bank_y": [
+          280,
+          380,
+          280,
+          380,
+          280,
+          380,
+          280,
+          380,
+          280,
+          380
+        ],
+        "widths": [
+          360,
+          300,
+          300,
+          360,
+          300,
+          300,
+          360,
+          300,
+          300,
+          390
+        ],
+        "depth": 80,
+        "underlying_gap_x": [
+          10410,
+          14940
+        ],
+        "purpose": "Nine consecutive jumps; wider platforms4and7 offer correction without ending chain. Keep alternatebanks until validated; do not add enemies/overhead to landings."
+      },
+      {
+        "id": "w3-offset-launch",
+        "bounds": [
+          15200,
+          19000
+        ],
+        "beats": [
+          [
+            "D",
+            15450,
+            "far valve"
+          ],
+          [
+            "J",
+            15900,
+            "flange"
+          ],
+          [
+            "D",
+            16350,
+            "near valve; must clear before middle alignment"
+          ]
+        ],
+        "ramp_translation": 14800,
+        "ramp_center": 17300,
+        "launch_x": 17400,
+        "approach_holes_x": [
+          16900,
+          17445
+        ],
+        "landing_hole_x": [
+          17445,
+          18450
+        ],
+        "catch_x": [
+          17985,
+          18505
+        ],
+        "catch_y": [
+          230,
+          310
+        ],
+        "purpose": "Reuse verified middle-to-far module; translate all xfields and camera lookahead. No hazards until catch clears."
+      },
+      {
+        "id": "w3-finale",
+        "bounds": [
+          19000,
+          25500
+        ],
+        "beats": [
+          [
+            "J",
+            19100,
+            "flange after landing recovery"
+          ],
+          [
+            "D",
+            19500,
+            "near valve"
+          ],
+          [
+            "H",
+            20000,
+            "160x72 far strainer plus opposite65depth baffle"
+          ],
+          [
+            "J",
+            20500,
+            "flange"
+          ],
+          [
+            "D",
+            20900,
+            "far valve"
+          ],
+          [
+            "HH",
+            21500,
+            "640x136 near/middle strainer"
+          ],
+          [
+            "J",
+            22100,
+            "flange"
+          ],
+          [
+            "D",
+            22500,
+            "near valve"
+          ],
+          [
+            "H",
+            23000,
+            "140x200 strainer"
+          ],
+          [
+            "D",
+            23550,
+            "far valve"
+          ],
+          [
+            "J",
+            23950,
+            "pairedflanges±36"
+          ],
+          [
+            "D",
+            24400,
+            "near valve"
+          ],
+          [
+            "H",
+            24900,
+            "140x200 static final gap"
+          ],
+          [
+            "END",
+            25500,
+            "generous intact-water finish, no surprise hazard"
+          ]
+        ]
+      }
+    ],
+    "difficulty_policy": "Normal uses proposed geometry after proof. Easy retains all families but wider interiorplatforms and simpler overlap/reversal combinations. Hard increases compoundbeats selectively. Do not raise scrollspeed or alter current controls/pit thresholds.",
+    "seed_policy": "Same runseed throughout checkpoint/retry; initially fixed authored wave acceptable. If machine banks mirrored, mirror coherent subsection with validated seams, not individualhazards. Ramp fixedfar inallmodes.",
+    "constraints": [
+      "Existing checkpoint afterWave2 remains only newformalcheckpoint. No checkpoint insideWave3.",
+      "PreserveWave1/2 and checkpoint healing/seed/life semantics.",
+      "Use new fallingstrainermotion, no rigs, shadows, or groundtarget warnings.",
+      "Do not implement deferredrisingwalls or finalbossposition mechanics.",
+      "No superjump, no blind landing, no lanehazard appearing on committed landing.",
+      "Fullwave completion only at finalend; standalone rampselector remains regression test.",
+      "Keep roughly45sec extent; adjust draft beatcenters/widths where actualmodel proves necessary, record differences."
+    ],
+    "acceptance": [
+      "Bothheroes/allmodes/fullroutes with modest inputtimingvariation, frame-rate andanchor coverage.",
+      "Exactlynine actualjumps and orderedlandings; omittedjump andfixedbank negative tests.",
+      "Mandatory ramp airlanechange correct/wrongbank tests plus seams intoandoutofmodule.",
+      "Fall/drop warning-to-contact budgets and nativecaptured motion atbothangles.",
+      "Checkpointretry restoreswaveorigin,health/lives/seed correctly without replayingreplacement; pause andcompletion checks.",
+      "Signedpackage and independentArtreview beforeplaytest delivery; humanoverallbalance remains open."
+    ],
+    "validation": {
+      "status": "Geometry frozen after Mechanics validation",
+      "full_routes": 162,
+      "full_route_input_offsets_ms": [
+        -50,
+        50
+      ],
+      "focused_cases": 351,
+      "result": "All passed with zero script errors. Nine ordered jumps and landings; every omitted hop and all tested fixed-bank routes fail.",
+      "normal_piece_count": 56,
+      "geometry_corrections": [
+        "First valve moved from 800 to 1100 to allow reaction from forward anchor 650.",
+        "All ten chain decks narrowed in depth from 100 to 80; centers, banks, widths and finish unchanged. This removes the middle-bank rim shortcut under the unchanged 65% rule."
+      ],
+      "packaged_routes": "Engineering reports both heroes complete packaged full routes.",
+      "remaining": [
+        "Human difficulty playtest and all-mode visual coverage."
+      ],
+      "native_art_review": {
+        "build": 233,
+        "scope": "Both Normal heroes at opposite camera yaws; final depth-80 chain sampled with stable pool of 367 actors. No visible blocking contact or support issue found.",
+        "final_chain_evidence": "/tmp/dd233-art/final-chain/",
+        "unchanged_blocks_evidence": "/tmp/dd233-art/packaged/",
+        "exclusion": "Earlier packaged depth-100 chain captures are superseded.",
+        "limitations": "Sampled visual acceptance only; human balance and all-mode visual coverage remain open."
+      },
+      "packaged_lifecycle": "Packaged checkpoint and retry checks passed, as recorded in the current roadmap."
+    }
+  },
+  "difficulty_revision": {
+    "status": "Prototype 234 packaged checks and independent sampled Normal visual review passed; ready for human difficulty playtest.",
+    "request_date": "2026-11-25",
+    "grid_semantics": {
+      "occupancy": "Existing map exporter can store multiple symbols per cell; occupancy alone does not prove required actions.",
+      "compound": "Use D+J with required_actions [steer, jump] and target_bank. D+J means BOTH, not alternatives. Maintain separate obstacle footprints; do not put an impassable solid in the intended jumping corridor."
+    },
+    "middle_gates": {
+      "proposal_centers": [
+        2750,
+        5050,
+        7000,
+        9250,
+        19500,
+        22500,
+        24400
+      ],
+      "construction": "Paired outer-bank solid blockers leave a middle corridor centered at 330. Start with 70–80 px clear corridor; validate full-board support/contact and reaction time. Add a low jumpable flange through the corridor at at least five of these gates. Adjust existing neighboring beats to avoid redundant impossible jump cadence.",
+      "requirements": "Entering and staying at either outside bank must fail; grounded middle transit must fail at compound gates; steered jump must succeed."
+    },
+    "hopscotch": {
+      "proposed_bank_y": [
+        280,
+        330,
+        380,
+        330,
+        280,
+        380,
+        330,
+        280,
+        330,
+        380
+      ],
+      "centers_and_widths": "Keep current longitudinal centers and widths initially.",
+      "depth": "Start middle decks at 60 and outside decks at 80; tune from actual support proof.",
+      "required_proof": "Nine required jumps and ordered landings, four middle landings with measurable alignment windows, no fixed-bank or off-center rim shortcut."
+    },
+    "pacing": {
+      "intent": "Remove idle coasting between multi-encounters; steering, launch preparation and airborne alignment count as active demands.",
+      "target": "Audit actual route action gaps, not only object spacing. Target no unforced idle interval above roughly 0.8 seconds during the wave; document unavoidable exceptions instead of stacking hazards on committed landings.",
+      "priority_seams": [
+        "Hole weave to hopscotch entry",
+        "Hopscotch exit to ramp approach",
+        "Ramp catch exit to finale"
+      ],
+      "preserve": "Checkpoint cinematic/runout, readable ramp commitment, movement tuning, existing pit threshold, seed/retry semantics and Waves 1/2."
+    },
+    "owners": "Engineering owns runtime/build and coordinates Mechanics tests and Art native review. Level Design owns this brief and its roadmap paragraph.",
+    "validation": {
+      "total_cases": 1375,
+      "result": "All pass; zero script errors, reported by Mechanics.",
+      "full_routes": 162,
+      "full_route_offsets_ms": [
+        -50,
+        50
+      ],
+      "chain_entry_cases": 351,
+      "gate_cases": 315,
+      "middle_window_cases": 420,
+      "single_hop_timing_probes": 124,
+      "pacing_modes": 3,
+      "middle_alignment": "All four middle decks accept commanded y330 ±30 at sampled 5 px resolution; ±35 and farther fail. Old outside banks 280/380 fail. These are tested commands, not an exhaustive continuous tolerance guarantee.",
+      "pacing": "Audit across three modes reports no inactive interval above 0.9 seconds.",
+      "exceptions_above_0_8_seconds": [
+        {
+          "x": 533,
+          "seconds": 0.87,
+          "reason": "Entry reaction"
+        },
+        {
+          "x": 4061,
+          "seconds": 0.82,
+          "reason": "Outside hold past center valve at 4250"
+        },
+        {
+          "x": 5377,
+          "seconds": 0.88,
+          "reason": "Safe bank beside hole at 5500 before jump at 6000"
+        },
+        {
+          "x": 18080,
+          "seconds": 0.87,
+          "reason": "Committed catch-deck exit"
+        }
+      ],
+      "remaining": [
+        "Human difficulty playtest across modes"
+      ],
+      "packaged": {
+        "build": 234,
+        "physics_cases": 1375,
+        "host_cases": 19,
+        "translated_ramp_route_cases": 6,
+        "result": "All pass; Engineering confirms packaged geometry matches frozen source."
+      },
+      "native_art_review": {
+        "build": 234,
+        "scope": "Complete Normal runs for Tony at +18 yaw/300 anchor and Sean at -18 yaw/650 anchor; seven compound gate passages and four middle landings inspected.",
+        "result": "Both alive; stable 386 actors; no blocking visibility or contact issue found. No renderer edits.",
+        "evidence": "/tmp/dd234-art/",
+        "limitations": "Bounded Normal-mode visual acceptance, not all-mode human balance approval."
+      }
+    },
+    "as_built": {
+      "compound_gate_count": 7,
+      "outer_blocker_centers_y": [
+        260,
+        400
+      ],
+      "outer_blocker_depth": 60,
+      "middle_clear_width": 80,
+      "jump_requirement": "All seven gates include a centered jump flange and require steering plus jumping.",
+      "hopscotch_bank_y": [
+        280,
+        330,
+        380,
+        330,
+        280,
+        380,
+        330,
+        280,
+        330,
+        380
+      ],
+      "middle_platform_depth": 60,
+      "outside_platform_depth": 80,
+      "added_pacing_flange_x": [
+        1750,
+        8550,
+        15450,
+        20000,
+        21500
+      ]
+    },
+    "human_feedback": "Sean: much better, just the right amount of stress. Preserve this difficulty while extending length."
+  },
+  "length_extension": {
+    "status": "Sean playtested and approved Prototype 235. The extended Wave 3 layout and pacing are locked.",
+    "date": "2026-11-25",
+    "baseline_build": 234,
+    "start_x": 300,
+    "previous_finish_x": 25500,
+    "new_finish_x": 38100,
+    "added_length": 12600,
+    "total_length": 37800,
+    "neutral_seconds": 67.5,
+    "policy": "Continue the approved stress level; do not globally increase speed, narrow the approved platforms or retune the existing wave. Replace the old finish with a flowing continuation.",
+    "sections": [
+      {
+        "id": "w3-extension-weave",
+        "bounds": [
+          25500,
+          29700
+        ],
+        "intent": "Three-bank weaving with middle D+J gates and short/long falling holes. Use proven gate clearance and jump cadence; alternate middle and outside targets rather than repeating one refuge.",
+        "suggested_middle_gate_centers": [
+          26400,
+          28200,
+          29400
+        ]
+      },
+      {
+        "id": "w3-extension-hopscotch",
+        "bounds": [
+          29700,
+          33900
+        ],
+        "intent": "Six additional required hops across seven decks, including two middle landings. Reuse proven dimensions and spacing.",
+        "platform_centers": [
+          30300,
+          30780,
+          31260,
+          31740,
+          32220,
+          32700,
+          33180
+        ],
+        "bank_y": [
+          380,
+          330,
+          280,
+          380,
+          330,
+          280,
+          380
+        ],
+        "depths": [
+          80,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80
+        ],
+        "widths": [
+          360,
+          300,
+          300,
+          360,
+          300,
+          300,
+          390
+        ],
+        "gap_x": [
+          30210,
+          33300
+        ],
+        "transition": "Keep approach alignment active and put the next beat only after supported exit; no new ramp required."
+      },
+      {
+        "id": "w3-extension-finish",
+        "bounds": [
+          33900,
+          38100
+        ],
+        "intent": "Mixed compound gates, falling holes and jumps at approved cadence; final challenge followed by short intact-water finish.",
+        "suggested_middle_gate_centers": [
+          34500,
+          36300,
+          37500
+        ]
+      }
+    ],
+    "pacing": "Maintain the validated near-continuous action cadence, targeting no inactive interval above 0.9 seconds except a specifically justified safe transition. Populate remaining intervals with compatible proven beats, not empty travel.",
+    "grid": "Extend the existing 320 px planning grid to 119 columns (last 40 px). Retain explicit D+J required actions and target bank.",
+    "acceptance": [
+      "Preserve the approved first 45 seconds except the former finish seam.",
+      "Validate complete extended routes, both heroes and difficulty modes, timing margins and checkpoint retries.",
+      "Prove six additional required hops, middle alignment and compound gate requirements; test shortcuts.",
+      "Inspect final packaged native transitions and finish with Art; report final build and remaining gaps."
+    ],
+    "ownership": "Engineering owns integration and delivery; coordinates Mechanics and Art. Level Design owns brief and roadmap.",
+    "planning_grid": {
+      "status": "Frozen as-built extent; planning occupancy does not replace exact collision geometry",
+      "origin_x": 300,
+      "finish_x": 38100,
+      "cell_length": 320,
+      "columns": 119,
+      "last_column_width": 40,
+      "compound_gate_centers": [
+        26400,
+        28200,
+        29400,
+        34500,
+        36300,
+        37300
+      ]
+    },
+    "as_built": {
+      "origin_x": 300,
+      "finish_x": 38100,
+      "length": 37800,
+      "neutral_seconds": 67.5,
+      "compound_gate_centers": [
+        26400,
+        28200,
+        29400,
+        34500,
+        36300,
+        37300
+      ],
+      "tail_flange_x": 36850,
+      "final_hole_x": 37700,
+      "reason_for_tail_shift": "Grounded completion with the full 110 px board clear of the last opening, including rear anchors.",
+      "baseline_preservation": "All Prototype 234 authored obstacle definitions unchanged through its prior final hazard, across modes.",
+      "chain": "Seven decks and six additional required jumps as proposed; two middle landings."
+    },
+    "validation": {
+      "total_mechanics_cases": 1013,
+      "full_routes_with_50ms_offsets": 162,
+      "extension_negative_drift_gate_cases": 576,
+      "middle_window_timing_cases": 272,
+      "pacing_modes": 3,
+      "result": "All pass, as reported by Mechanics. Six additional ordered jumps/landings required; tested omitted-hop and fixed-bank attempts fail.",
+      "middle_alignment": "Two middle decks accept commanded y330 ±30 at sampled 5 px resolution; ±35 and farther fail.",
+      "pacing": "No new extension idle interval above 0.8 seconds; original four 0.82–0.88-second exceptions retained.",
+      "checkpoint": "Engineering reports actual SED checkpoint retries for both heroes through the old finish seam to extended completion.",
+      "remaining": [
+        "Sean approved the course as played. Human balance across all modes remains unverified."
+      ],
+      "packaged": {
+        "build": 235,
+        "mechanics_cases": 1013,
+        "formal_checkpoint_cases": 19,
+        "actual_saved_retries": 2,
+        "result": "All pass; saved retries reach the new finish.",
+        "pck_sha256": "1c667f149b160e30980b6cd169b3d0fbc57bf57ec5a758c92f6bd5c3763b88ba"
+      },
+      "native_art_review": {
+        "evidence": "/tmp/dd235-art/",
+        "scope": "Normal Tony anchor300 yaw+18 and Sean anchor650 yaw-18, fixed60 capture with PNG every six frames. Old finish seam, six new gates, six-hop chain with middle contacts, final gate/hole and grounded finish inspected.",
+        "result": "Both complete alive, stable 441 actors, process exit0; no new visual blockers or renderer edits.",
+        "limits": "Two Normal routes and sampled motion/readability; not all-mode balance approval."
+      }
+    }
+  }
+}

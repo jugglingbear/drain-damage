@@ -53,7 +53,7 @@ func attach(host: Node2D, yield_frame := Callable(), progress := Callable()) -> 
 				manifest["strainer_parts"] = extra.strainer_parts
 				manifest["strainer_timeline"] = extra.timeline
 		var water: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/world/ride-water-break-v1/manifest.json"))
-		for id in ["surface_ripples","surface_swirl","inflow_foam","strainer_rail","strainer_rail_left","strainer_rail_right"]:
+		for id in ["surface_ripples","surface_swirl","inflow_foam"]:
 			water.frames[id]["alpha_cutoff"] = 179.0/255
 			if id.begins_with("surface_"): water.frames[id]["edge_feather"] = 12.0
 		for key in ["frames","animations","obstacle_overlays"]:
@@ -67,6 +67,7 @@ func attach(host: Node2D, yield_frame := Callable(), progress := Callable()) -> 
 		await obstacle_art.configure(manifest,yield_frame,on_frame)
 
 func begin(host: Node2D, index := -1) -> void:
+	wave_three = false
 	checkpoint = preload("res://scripts/ride_checkpoint.gd").new()
 	obstacle_knockoff = false
 	visual_obstacles.clear()
@@ -77,6 +78,43 @@ func begin(host: Node2D, index := -1) -> void:
 	audio.stop()
 	music.stop()
 	mechanism_cycle = -1
+
+func start_wave_three(host: Node2D, origin := 0.0, preserve_motion := false, full := false) -> void:
+	var carried_clock := clock
+	var carried_position := position
+	var carried_velocity := steering_velocity
+	var air := [jump_age,jump_height,ground_height,launch_height,launch_velocity,launch_gravity,
+		active_jump_duration,active_jump_apex,ballistic,boosted,render_height,render_pitch,
+		cooldown,landing_input_remaining,launch_pitch]
+	wave_three = true
+	full_wave_three = full
+	wave_three_origin = origin
+	continuous = true
+	visual_obstacles.clear()
+	fractured.clear()
+	super.begin(host)
+	checkpoint.enter_phase("")
+	if preserve_motion:
+		clock = carried_clock
+		position = carried_position
+		steering_velocity = carried_velocity
+		jump_age = air[0]
+		jump_height = air[1]
+		ground_height = air[2]
+		launch_height = air[3]
+		launch_velocity = air[4]
+		launch_gravity = air[5]
+		active_jump_duration = air[6]
+		active_jump_apex = air[7]
+		ballistic = air[8]
+		boosted = air[9]
+		render_height = air[10]
+		render_pitch = air[11]
+		cooldown = air[12]
+		landing_input_remaining = air[13]
+		launch_pitch = air[14]
+	for visual in visual_obstacles: visual.visual_started = clock-encounter_scroll/scroll_speed
+	sync_hero(host)
 
 func _start_encounter(index: int) -> void:
 	super._start_encounter(index)
@@ -158,7 +196,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool, firing :
 		checkpoint.age += run_time
 		encounter_scroll += scroll_speed*run_time
 		super.tick(host,delta,steering,jumping)
-		if complete: checkpoint.enter_phase("finished")
+		if complete: start_wave_three(host,encounter_scroll,true,true)
 		elif fidget.step(self,firing,delta).triggered: audio.play("board_fart")
 		return
 	if checkpoint.phase != "":
@@ -175,7 +213,7 @@ func tick(host: Node2D, delta: float, steering: Vector2, jumping: bool, firing :
 	var previous_encounter := encounter_index
 	var previous_clock := clock
 	super.tick(host,delta,steering,jumping)
-	if continuous and complete:
+	if continuous and complete and not wave_three:
 		checkpoint.stage(self,host)
 		return
 	prune_departed_visuals()

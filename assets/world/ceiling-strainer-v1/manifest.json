@@ -674,49 +674,11 @@
   },
   "strainer_parts": {
     "basket": "strainer_basket",
-    "clear_basket": "strainer_basket_clear",
-    "winch": "strainer_winch",
-    "chain": "strainer_chain",
-    "winch_world_y": 70,
-    "pulley_offsets": [
-      [
-        -43,
-        0
-      ],
-      [
-        43,
-        0
-      ]
-    ],
-    "impact_basket_bottom": "obstacle.y + obstacle.depth/2",
-    "impact_eye_offsets": [
-      [
-        -61,
-        -84
-      ],
-      [
-        61,
-        -84
-      ]
-    ],
-    "clear_basket_bottom_world_y": 110,
-    "clear_eye_offsets": [
-      [
-        -30.5,
-        -36.5
-      ],
-      [
-        30.5,
-        -36.5
-      ]
-    ],
-    "render": "Keep chains connected from fixed pulley to basket eyes while basket drops/hoists. Clear frame recedes in depth, bottom118 by3.05. No cage collider."
+    "render": "A single rigid basket descends at the committed footprint, crosses the surface at impact and continues into the shaft."
   },
   "timeline": {
-    "warning": 1.25,
     "impact": 3.1,
-    "clear": 3.25,
-    "rule": "Visible traveller recognition1.25\u20132.15, windup2.15\u20132.75, drop2.75\u20133.10; impact opens pit; clear3.25."
+    "rule": "Impact opens the hole. Basket height decreases continuously before and after impact."
   },
   "prompts": "assets/world/ceiling-strainer-v1/prompts.json",
   "notes": [

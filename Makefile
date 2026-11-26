@@ -76,7 +76,7 @@ build-windows: check combat-data ## Export and package Windows x86_64 (no Window
 	@printf '📦 Exporting and packaging Windows x86_64…\n'
 	@python3 -m tools.build_windows
 
-run: combat-data ## Play; LEVEL=2-checkpoint starts after Wave 2; SCREENSHOT_MODE=1 freezes on Y; HP=N sets starting health; INVINCIBLE=1 protects HP
+run: combat-data ## Play; LEVEL=2-wave1, 2-wave2 or 2-wave3 selects a wave; LEVEL=2-wave3-ramp tests the lane-change ramp; SCREENSHOT_MODE=1 freezes on Y; HP=N sets starting health; INVINCIBLE=1 protects HP
 	@python3 tools/run_game.py
 
 run-preview: combat-data ## Play in a small agent-test window; accepts the same selectors as run

@@ -59,6 +59,30 @@
       "id": "2-checkpoint",
       "name": "After Wave 2, before checkpoint activation",
       "initializer": "ride-checkpoint"
+    },
+    {
+      "kind": "level",
+      "id": "2-wave3-ramp",
+      "name": "Wave 3 airborne lane-change ramp module",
+      "initializer": "ride-wave-three"
+    },
+    {
+      "kind": "level",
+      "id": "2-wave1",
+      "name": "Level 2 Wave 1: Course opening",
+      "initializer": "ride-continuous"
+    },
+    {
+      "kind": "level",
+      "id": "2-wave2",
+      "name": "Level 2 Wave 2: Mixed entry",
+      "initializer": "ride-wave-two"
+    },
+    {
+      "kind": "level",
+      "id": "2-wave3",
+      "name": "Level 2 Wave 3: Full course",
+      "initializer": "ride-wave-three-full"
     }
   ],
   "heroes": [

@@ -43,11 +43,14 @@ var radio := Radio.new()
 var damage_taken := 0
 var shots_fired := 0
 var input_guard := true
+var landing_launch := false
 var checkpoint_launch := false
+var wave_three_launch := ""
 var bowl_prepared := false
 var ride_prepared := false
 
 func attach(host: Node2D, yield_frame := Callable(), eager := true) -> void:
+	radio.advance_hint = host.dialogue.skip_hint
 	host.add_child(radio)
 	radio.transmission.connect(func() -> void: audio.play("radio_chirp"))
 	if eager:
@@ -74,6 +77,8 @@ func prepare_ride(host: Node2D, yield_frame := Callable(), progress := Callable(
 	ride_prepared = true
 
 func reset() -> void:
+	landing_launch = false
+	wave_three_launch = ""
 	checkpoint_launch = false
 	ride.audio.stop()
 	ride.music.stop()
@@ -283,7 +288,7 @@ func advance_dialogue(host: Node2D) -> void:
 		landing_clock = radio.advance_bottom(landing_clock)
 	else:
 		# Later hazard reactions can be dismissed without advancing the hazard simulation.
-		if not radio.current.is_empty() and float(radio.presentation().progress) >= 1.0:
+		if radio.can_advance():
 			radio.current = {}
 			radio.queue_redraw()
 

@@ -60,7 +60,7 @@ static func build(parent: Node3D, o: Dictionary, m: Dictionary, bank_scale := 1.
 	var id := str(o.art_id)
 	var structural: Material = m.get("support_iron",m.cast_iron)
 	if id.begins_with("valve_"):
-		if id == "valve_center_v2" and o.get("instance_id","") == "slice-slalom":
+		if id == "valve_center_v2" and o.get("instance_id","") in ["slice-slalom","wave-three"]:
 			box(parent,Vector3(w,1.1,d),Vector3(0,-.25,0),structural)
 			for x in [-w*.35,w*.35]:
 				for z in [-d*.35,d*.35]:
@@ -213,10 +213,7 @@ static func torn_grate_tooth(parent: Node3D, at: Vector3, width: float, height: 
 	surface.generate_normals()
 	mesh(parent,surface.commit(),at,material)
 
-static func strainer(parent: Node3D, w: float, d: float, m: Dictionary, rail_start := -8.0, rail_end := 8.0) -> void:
-	box(parent,Vector3(rail_end-rail_start,.12,.16),Vector3((rail_end+rail_start)*.5,3.3,0),m.cast_iron,"rail")
-	var winch := cylinder(parent,.16,.32,Vector3(0,3.08,0),m.copper)
-	winch.rotation.x = PI*.5
+static func strainer(parent: Node3D, w: float, d: float, m: Dictionary) -> void:
 	var basket := Node3D.new()
 	basket.name = "basket"
 	parent.add_child(basket)
@@ -234,17 +231,12 @@ static func strainer(parent: Node3D, w: float, d: float, m: Dictionary, rail_sta
 		box(basket,Vector3(w,.035,.035),Vector3(0,.45,z),m.copper)
 	for x in [-w*.5,w*.5]:
 		box(basket,Vector3(.035,.035,d),Vector3(x,.45,0),m.copper)
-	# Four suspension points keep broad and elongated cages supported at their corners.
+	# Falling cages are their own warning: no rigging or projected target shadow.
 	for side in [-1,1]:
-		var at_x: float = side*w*.35
-		box(parent,Vector3(.09,.09,d),Vector3(at_x,3.24,0),m.cast_iron)
-		box(basket,Vector3(.065,.065,d),Vector3(at_x,.035,0),m.copper)
-		box(parent,Vector3(.1,.16,.1),Vector3(at_x,3.2,0),m.copper)
-		for bank in [-1,1]:
-			var links := Node3D.new()
-			links.name = ("chain_left" if side < 0 else "chain_right")+("_far" if bank < 0 else "_near")
-			parent.add_child(links)
-			chain(links,Vector3(at_x,0,bank*d*.5),Vector3(at_x,1,bank*d*.5),m.copper,.035)
+		box(basket,Vector3(.065,.065,d),Vector3(side*w*.35,.035,0),m.copper)
+	for mesh: Node in basket.get_children():
+		if mesh is GeometryInstance3D:
+			mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 static func tube(parent: Node3D, centers: Array[Vector3], radius: float, inside: float,
 		outer: Material, inner: Material) -> void:

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "build": "Prototype 223 / 0.223.0",
-  "status": "Signed Mac build. Steering resumes on the first sampled tick after the S.E.D. exhaust clears the viewport. Both heroes and inspection branches tested at 24 Hz.",
-  "app": "builds/Prototype-223/Drain Damage.app",
+  "build": "Prototype 235 / 0.235.0",
+  "status": "Signed Mac build extending Wave 3 to 67.5 seconds.",
+  "app": "builds/Prototype-235/Drain Damage.app",
   "elbow_breach": "One to three seeded follow-up holes. Unused slots become valves. Respawn preserves the layout.",
   "release_records": null,
   "native_windows_tested": false,
-  "previous_build_preserved": "builds/Prototype-222/Drain Damage.app",
+  "previous_build_preserved": "builds/Prototype-234/Drain Damage.app",
   "entry": {
     "campaign": "make run LEVEL=1",
     "flush": "make run LEVEL=2",
@@ -16,7 +16,16 @@
     "section_1_1": "make run LEVEL=1.1",
     "section_1_2": "make run LEVEL=1.2",
     "selectors": "HERO=tony|sean DIFFICULTY=easy|normal|hard",
-    "ride_checkpoint": "make run LEVEL=2-checkpoint"
+    "wave_three_ramp": "make run LEVEL=2-wave3-ramp",
+    "ride_checkpoint": "make run LEVEL=2-checkpoint",
+    "wave_1": "make run LEVEL=2-wave1",
+    "wave_2": "make run LEVEL=2-wave2",
+    "wave_3": "make run LEVEL=2-wave3"
+  },
+  "ramp_and_strainers_224": {
+    "captures": "storybook/224-ramp-and-falling-strainers/captures.json",
+    "scope": "Single ramp module. Full Wave 3 remains in design.",
+    "validation": "Both heroes cleared the far bank and fell on the middle bank in the signed Mac build."
   },
   "ui_and_retry_137": {
     "build": "Prototype 137 / 0.137.0",
@@ -234,7 +243,7 @@
       "Native Windows, Intel execution, controllers, full uninterrupted survival and subjective audio mix unverified"
     ]
   },
-  "pck_sha256": "ee6cfcfa45feab3cfdb503291589fb71bfdd955d0078e0b205ea80db23205efb",
+  "pck_sha256": "1c667f149b160e30980b6cd169b3d0fbc57bf57ec5a758c92f6bd5c3763b88ba",
   "followup_164": {
     "build": "Prototype 164 / 0.164.0",
     "status": "Signed candidate preserved; source spider death stills partially reviewed; packaged visual acceptance incomplete. Campaign conversion and Sean DPS parity follow in a later build.",
@@ -1240,5 +1249,27 @@
     "idle": "Sean holds each neutral board pose for 2.5 seconds.",
     "evidence": "previews/ride-219/cabinet-shadow.jpg",
     "limitations": "No physical gamepad feel test. Headless test reported retained ObjectDB instances at exit."
+  },
+  "wave_three_233": {
+    "layout": "levels/level-two-wave-three.json",
+    "course_checks": "tests/ride_wave_three_course.gd",
+    "lifecycle_checks": "tests/ride_formal_checkpoint.gd",
+    "coverage": "162 complete routes and 351 focused cases. Both heroes, three difficulties, three horizontal starting positions, and 30/60/120 Hz.",
+    "limits": "Human difficulty assessment pending. A front-anchor Wave 1 automation crosses into Wave 2 and hits its first valve in both builds 232 and 233."
+  },
+  "wave_three_234": {
+    "layout": "levels/level-two-wave-three.json",
+    "proof": "tests/ride_wave_three_course.gd",
+    "checks": "1,375 packaged cases across full routes, gates, platform alignment, timing, entry and pacing. 19 checkpoint lifecycle cases passed.",
+    "pacing": "Normal 60 Hz witness longest grounded low-input stretch: 0.88 s, previously 1.20 s. Human difficulty evaluation pending.",
+    "visual": "Both heroes finished the signed Normal course alive at opposite camera angles, with 386 obstacle actors throughout. The seven gates and four middle landings were reviewed."
+  },
+  "wave_three_235": {
+    "layout": "levels/level-two-wave-three.json",
+    "length": "37,800 px at 560 px/s. Six new middle gates and six new platform jumps.",
+    "preservation": "Original 234 obstacle definitions match the signed baseline across all difficulties. Final hole at x37700 leaves a grounded finish.",
+    "checkpoint": "Both heroes completed the extended course after dying and replaying from the saved checkpoint.",
+    "visual": "Signed Normal full courses at opposite camera angles completed alive, with all 441 actors allocated before traversal. Sean playtested and approved the extension for release.",
+    "validation": "Signed package: 162 complete routes, 576 extension checks, 272 middle landing cases, three pacing cases, 19 formal checkpoint cases and two actual saved retries through the new finish. Grounded completion and full-board clearance verified at all three tested horizontal positions."
   }
 }

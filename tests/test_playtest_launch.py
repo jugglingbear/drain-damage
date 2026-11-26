@@ -31,8 +31,9 @@ class PlaytestLaunchTests(unittest.TestCase):
                          ["--miniboss=skitterling", "--hero=sean", "--difficulty=hard", "--seed=913"])
 
     def test_distinct_flush_and_landing_entries(self) -> None:
-        for target in ("2", "2.1", *(f"2-{number:02d}" for number in range(1, 14))):
-            self.assertEqual(launch.launch_arguments({"LEVEL": target, "HERO": "sean", "DIFFICULTY": "hard"}),
+        for target in ("2", "2.1", "2-course", "2-checkpoint", "2-wave1", "2-wave2", "2-wave3", "2-wave3-ramp"):
+            options = {"LEVEL": target, "HERO": "sean", "DIFFICULTY": "hard", "SEED": "42"}
+            self.assertEqual(launch.launch_arguments(options),
                              [f"--level={target}", "--hero=sean", "--difficulty=hard", "--seed=42"])
 
     def test_numbered_level_one_sections(self) -> None:
@@ -42,7 +43,7 @@ class PlaytestLaunchTests(unittest.TestCase):
                                  [f"--level={target}", "--hero=tony", "--difficulty=normal", "--seed=42"])
 
     def test_invalid_unimplemented_and_conflicting_selectors(self) -> None:
-        for values in [{"LEVEL": "3"}, {"BOSS": "clogfather"}, {"MINIBOSS": "unknown"},
+        for values in [{"LEVEL": "2-01"}, {"LEVEL": "3"}, {"BOSS": "clogfather"}, {"MINIBOSS": "unknown"},
                        {"LEVEL": "1", "MINIBOSS": "skitterling"}, {"HERO": "sean"},
                        {"LEVEL": "1", "HERO": "someone"}, {"LEVEL": "1", "DIFFICULTY": "extreme"},
                        {"LEVEL": "1", "SEED": "-1"}, {"LEVEL": "1", "SEED": "2147483648"},

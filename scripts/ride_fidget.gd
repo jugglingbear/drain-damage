@@ -46,10 +46,10 @@ func contains(obstacle: Dictionary, local: Vector2) -> bool:
 		return (local/half).length_squared() <= 1
 	return true
 
-func sample_surface(model: RefCounted, point: Vector2) -> Dictionary:
+func sample_surface(model: RefCounted, point: Vector2, candidates: Array) -> Dictionary:
 	var best: Dictionary = {}
 	var opening := false
-	for obstacle: Dictionary in surfaces(model):
+	for obstacle: Dictionary in candidates:
 		var local := point-pose(model,obstacle)
 		if not contains(obstacle,local): continue
 		var kind := str(obstacle.kind)
@@ -71,8 +71,8 @@ func sample_surface(model: RefCounted, point: Vector2) -> Dictionary:
 	if opening or point.y < 230 or point.y > 430: return {}
 	return {"height":0.0,"normal":Vector3.UP,"material":"water","surface_id":"water","obstacle":{},"kind":"water"}
 
-func water_cell_clear(model: RefCounted, bounds: Rect2) -> bool:
-	for obstacle: Dictionary in surfaces(model):
+func water_cell_clear(model: RefCounted, bounds: Rect2, candidates: Array) -> bool:
+	for obstacle: Dictionary in candidates:
 		if obstacle.kind not in ["gap","long_pit"]: continue
 		var birth := float(obstacle.get("visual_started",model.clock-model.encounter_clock))
 		if model.clock-birth < float(obstacle.get("activates_at",0)): continue
@@ -85,19 +85,26 @@ func mesh_at(model: RefCounted, center: Vector2, surface_id: String, length_scal
 	var normals: Array[Vector3] = []
 	var uv: Array[Vector2] = []
 	var indices: Array[int] = []
+	var cell_length := CELL_LENGTH*length_scale
+	var half_width := HALF_WIDTH*width_scale
+	var bounds := Rect2(center-Vector2(45+12*cell_length,half_width),Vector2(12*cell_length,2*half_width))
+	var candidates: Array[Dictionary] = []
+	for obstacle: Dictionary in surfaces(model):
+		if obstacle.kind not in ["deck","ramp","gap","long_pit"]: continue
+		var size := Vector2(obstacle.width,obstacle.depth)
+		if bounds.intersects(Rect2(pose(model,obstacle)-size*0.5,size),true):
+			candidates.append(obstacle)
 	for cell in range(12):
-		var cell_length := CELL_LENGTH*length_scale
-		var half_width := HALF_WIDTH*width_scale
 		var left := center.x-45-60*length_scale+cell*cell_length
 		var corners: Array[Vector2] = [Vector2(left,center.y-half_width),Vector2(left+cell_length,center.y-half_width),
 			Vector2(left+cell_length,center.y+half_width),Vector2(left,center.y+half_width)]
 		var samples: Array[Dictionary] = []
 		for point in corners:
-			var surface := sample_surface(model,point)
+			var surface := sample_surface(model,point,candidates)
 			if surface.is_empty() or str(surface.surface_id) != surface_id: break
 			samples.append(surface)
 		if samples.size() != 4: continue
-		if surface_id == "water" and not water_cell_clear(model,Rect2(corners[0],Vector2(cell_length,half_width*2))): continue
+		if surface_id == "water" and not water_cell_clear(model,Rect2(corners[0],Vector2(cell_length,half_width*2)),candidates): continue
 		var start := vertices.size()
 		for i in 4:
 			vertices.append(Vector3(corners[i].x,samples[i].height,corners[i].y))
@@ -165,7 +172,7 @@ func step(model: RefCounted, held_fire: bool, delta: float, enabled := true, pau
 		triggered = true
 	elif edge and cooldown <= .00000001 and not model.complete:
 		var center: Vector2 = model.position+Vector2(model.clock*model.scroll_speed,0)
-		var surface := sample_surface(model,center)
+		var surface := sample_surface(model,center,surfaces(model))
 		if not surface.is_empty() and (model.ramp_active and surface.kind == "ramp" or not model.ramp_active and absf(float(surface.height)-model.ground_height) < .1):
 			var mesh := mesh_at(model,center,surface.surface_id)
 			if not mesh.indices.is_empty():

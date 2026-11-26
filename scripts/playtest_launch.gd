@@ -75,13 +75,18 @@ static func initialize(game: Node2D, target: Dictionary) -> void:
 	game.dialogue.release_guard = 0
 	game.dispenser.cancel()
 	game.dispenser.just_finished = false
-	if target.initializer in ["level-two-flush","level-two-landing","ride-continuous","ride-checkpoint"]:
+	if target.initializer in ["level-two-flush","level-two-landing","ride-continuous","ride-wave-two","ride-checkpoint","ride-wave-three","ride-wave-three-full"]:
 		game.begin_level_two()
-		if target.initializer == "level-two-landing": game.flush.enter_landing(game)
-		if target.initializer in ["ride-continuous","ride-checkpoint"]:
+		if target.initializer == "level-two-landing":
+			game.flush.landing_launch = true
+			game.flush.enter_landing(game)
+		if target.initializer in ["ride-continuous","ride-wave-two","ride-checkpoint","ride-wave-three","ride-wave-three-full"]:
 			game.flush.ride.continuous = true
-			game.flush.debug_ride_start = 0
-			game.flush.enter_ride(game,0)
+			game.flush.debug_ride_start = preload("res://scripts/ride_continuous_course.gd").WAVE_TWO_ENTRY if target.initializer == "ride-wave-two" else 0
+			game.flush.enter_ride(game,game.flush.debug_ride_start)
+			if target.initializer in ["ride-wave-three","ride-wave-three-full"]:
+				game.flush.wave_three_launch = target.initializer
+				game.flush.ride.start_wave_three(game,0,false,target.initializer == "ride-wave-three-full")
 			if target.initializer == "ride-checkpoint":
 				game.flush.checkpoint_launch = true
 				game.flush.ride.checkpoint.stage(game.flush.ride,game)

@@ -2,6 +2,8 @@ extends RefCounted
 ## Compose immutable showcase geometry into a fixed course; only simple reversal spacing changes by mode.
 const SOURCE := "res://levels/level-two-ride-continuous.json"
 
+const WAVE_TWO_ENTRY := 3
+
 static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> Dictionary:
 	var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SOURCE))
 	var result := showcase.duplicate(true)
@@ -135,7 +137,7 @@ static func build(showcase: Dictionary, difficulty: String, run_seed := 42) -> D
 	result["wave_one_finish"] = float(layout.wave_one_finish)+downstream
 	result["elbow_followups"] = followups
 	result["continuous"] = true
-	result["retry_world_x"] = [300,6000+downstream,9000+downstream]
+	result["retry_world_x"] = [300,6000+downstream,9000+downstream,result.wave_one_finish]
 	result["world_finish"] = float(layout.world_finish)+downstream
 	result["modules"] = modules
 	result.encounters = [{"id":layout.id,"title":"Service Channel","obstacles":obstacles,

@@ -28,9 +28,9 @@ func run_checks() -> void:
 			game._physics_process(0.5)
 			assert(game.player == position and game.enemies == enemies and game.elapsed == 0)
 			game.dialogue.using_controller = false
-			assert(game.dialogue.skip_hint() == "Tab · SKIP")
+			assert(game.dialogue.skip_hint() == "SPACE")
 			game.dialogue.using_controller = true
-			assert(game.dialogue.skip_hint() == "B · SKIP")
+			assert(game.dialogue.skip_hint() == "B")
 			if skip:
 				Input.action_press("dialogue_skip")
 				game.dialogue.tick(0.5, false)

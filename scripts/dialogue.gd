@@ -112,7 +112,7 @@ func _draw() -> void:
 	draw_rect(Rect2(22, 519, 916, 3), Color("3c5967"))
 	draw_texture_rect(portrait, Rect2(15, 155, 365, 365), false)
 	var font := ThemeDB.fallback_font
-	draw_string(font, Vector2(680, 508), skip_hint(), HORIZONTAL_ALIGNMENT_RIGHT, 230, 16, Color("f1eee4"))
+	if release_guard <= 0: draw_string(font, Vector2(680, 508), skip_hint(), HORIZONTAL_ALIGNMENT_RIGHT, 230, 16, Color("f1eee4"))
 	draw_string(font, Vector2(389, 365), ("BJ" if is_boss else "Tony" if is_tony else "Sean"), HORIZONTAL_ALIGNMENT_LEFT, -1, 23, accent)
 	if is_boss:
 		draw_string(font, Vector2(390, 385), "YOUR ARTIFICIALLY INTELLIGENT LORD AND MASTER",
@@ -126,10 +126,4 @@ func _draw() -> void:
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 13, accent)
 
 func skip_hint() -> String:
-	for event in InputMap.action_get_events("dialogue_skip"):
-		if using_controller and event is InputEventJoypadButton:
-			var buttons := {JOY_BUTTON_A: "A", JOY_BUTTON_B: "B", JOY_BUTTON_X: "X", JOY_BUTTON_Y: "Y"}
-			return str(buttons.get(event.button_index, "Button %d" % event.button_index)) + " · SKIP"
-		if not using_controller and event is InputEventKey:
-			return OS.get_keycode_string(event.physical_keycode if event.physical_keycode else event.keycode) + " · SKIP"
-	return "SKIP"
+	return "B" if using_controller else "SPACE"

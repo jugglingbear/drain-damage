@@ -2,6 +2,10 @@ extends RefCounted
 ## Deterministic showcase physics. Rendering/audio remain in the ride wrapper.
 const ContinuousCourse = preload("res://scripts/ride_continuous_course.gd")
 var continuous := false
+var wave_three := false
+var full_wave_three := false
+var wave_three_origin := 0.0
+const WaveThree = preload("res://scripts/ride_wave_three.gd")
 const SOURCE := "res://levels/level-two-ride-showcase.json"
 const STEP := 1.0/120.0
 const HALF := Vector2(45,14)
@@ -61,7 +65,9 @@ func emit_event(name: String, id := "") -> void:
 	last_event = {"event":name,"obstacle_id":id,"clock":clock,"encounter":encounter_index}
 
 func begin(host: Node2D, index := 0) -> void:
-	if definition.is_empty() or continuous or definition.get("continuous",false):
+	if wave_three:
+		definition = WaveThree.build(JSON.parse_string(FileAccess.get_file_as_string(SOURCE)),wave_three_origin,full_wave_three,str(host.get("difficulty")))
+	elif definition.is_empty() or continuous or definition.get("continuous",false):
 		definition = JSON.parse_string(FileAccess.get_file_as_string(SOURCE))
 		if continuous: definition = ContinuousCourse.build(definition,str(host.get("difficulty")),int(host.run_seed) if "run_seed" in host else 42)
 	clock = 0

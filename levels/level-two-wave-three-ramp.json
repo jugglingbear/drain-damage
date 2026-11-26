@@ -1,0 +1,57 @@
+{
+  "id": "wave-three-ramp",
+  "world_finish": 4100,
+  "landing_bank": 270,
+  "obstacles": [
+    {
+      "id": "wave3-far-approach",
+      "kind": "gap",
+      "x": 2372.5,
+      "y": 270,
+      "width": 545,
+      "depth": 80,
+      "art_id": "ordinary_gap"
+    },
+    {
+      "id": "wave3-near-approach",
+      "kind": "gap",
+      "x": 2372.5,
+      "y": 390,
+      "width": 545,
+      "depth": 80,
+      "art_id": "ordinary_gap"
+    },
+    {
+      "id": "wave3-ramp",
+      "kind": "ramp",
+      "x": 2500,
+      "y": 330,
+      "width": 200,
+      "depth": 100,
+      "art_id": "launch_ramp",
+      "rise": 40,
+      "launch_x": 2600,
+      "surface_profile": "quadratic",
+      "run": 200
+    },
+    {
+      "id": "wave3-landing-hole",
+      "kind": "long_pit",
+      "x": 3147.5,
+      "y": 330,
+      "width": 1005,
+      "depth": 200,
+      "art_id": "long_pit"
+    },
+    {
+      "id": "wave3-catch",
+      "kind": "deck",
+      "x": 3445,
+      "y": 270,
+      "width": 520,
+      "depth": 80,
+      "art_id": "catch_basin",
+      "minimum_support_fraction": 1.0
+    }
+  ]
+}

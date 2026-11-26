@@ -83,6 +83,32 @@ func fitted(texture: Texture2D, bounds: Rect2) -> Rect2:
 	size *= minf(bounds.size.x/size.x,bounds.size.y/size.y)
 	return Rect2(bounds.position+(bounds.size-size)*0.5,size)
 
+func head_portrait(game: Node2D, center: Vector2, extent: float) -> Dictionary:
+	var renderer = game.world_art.hero_aim_art
+	var icon: Dictionary = renderer.animations.heroes[game.employee.id].head_icon
+	var r: Array = icon.source_rect
+	var source := Rect2(r[0],r[1],r[2],r[3])
+	var size := source.size*(extent/maxf(source.size.x,source.size.y))
+	return {"kind":"portrait","hero":game.employee.id,"texture":renderer.textures[icon.path],
+		"source":source,"rect":Rect2(center-size*0.5,size)}
+
+func draw_life_slots(game: Node2D, remaining: int, total: int, age: float) -> void:
+	var lost := total-remaining
+	for index in total:
+		var center := Vector2(480+(index-(total-1)*0.5)*52,505)
+		var head := head_portrait(game,center,34)
+		var tint := Color.WHITE if index >= lost else Color(0.58,0.58,0.58)
+		game.draw_texture_rect_region(head.texture,head.rect,head.source,tint)
+		if index >= lost: continue
+		var progress := clampf(age/0.32,0,1) if index == lost-1 else 1.0
+		for stroke in 2:
+			var fraction := clampf(progress*2-stroke,0,1)
+			if fraction <= 0: continue
+			var start := center+Vector2(-16,-16 if stroke == 0 else 16)
+			var end := start.lerp(center*2-start,fraction)
+			game.draw_line(start,end,Color("29141b"),7,true)
+			game.draw_line(start,end,Color("ff4545"),4,true)
+
 func commands(game: Node2D, origin: Vector2, theme := "dispenser") -> Array[Dictionary]:
 	var art := components(theme)
 	var output: Array[Dictionary] = []
@@ -94,15 +120,9 @@ func commands(game: Node2D, origin: Vector2, theme := "dispenser") -> Array[Dict
 		var texture: Texture2D = art.health_active if filled else art.health_depleted
 		output.append({"kind":"health","filled":filled,"texture":texture,
 			"rect":fitted(texture,Rect2(origin+Vector2(34+health_spacing*index,8),Vector2(16,16)))})
-	var renderer = game.world_art.hero_aim_art
-	var icon: Dictionary = renderer.animations.heroes[game.employee.id].head_icon
-	var r: Array = icon.source_rect
-	var source := Rect2(r[0],r[1],r[2],r[3])
 	for index in range(game.lives):
 		var socket := Rect2(origin+Vector2(38+28*index,25),Vector2(26,26))
-		var portrait_size: Vector2 = source.size*(16.0/maxf(source.size.x,source.size.y))
-		output.append({"kind":"portrait","hero":game.employee.id,"texture":renderer.textures[icon.path],
-			"source":source,"rect":Rect2(socket.get_center()-portrait_size*0.5,portrait_size)})
+		output.append(head_portrait(game,socket.get_center(),16))
 		output.append({"kind":"socket","texture":art.portrait_socket,
 			"rect":fitted(art.portrait_socket,socket)})
 	return output

@@ -28,7 +28,7 @@ func checks() -> void:
 	ride._start_encounter(12)
 	assert(Water.surface_rows(manifest,ride.clock,0) == phase,"Zero-rest transition cannot reset flow")
 	var cache_size: int = ride.obstacle_art.prepared_textures.size()
-	for id in ["surface_ripples","surface_swirl","inflow_foam","strainer_rail"]:
+	for id in ["surface_ripples","surface_swirl","inflow_foam"]:
 		var frame: Dictionary = manifest.frames[id]
 		var texture: Texture2D = ride.obstacle_art.textures[frame.runtime_texture_key]
 		var image := texture.get_image()

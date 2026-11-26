@@ -11,6 +11,7 @@ const DISPENSER_ID := 200
 var phase := ""
 var age := 0.0
 var saved := false
+var course_finish := 0.0
 var injured := false
 var restored := false
 var rocket_cleared := false
@@ -22,13 +23,15 @@ func enter_phase(next: String) -> void:
 	age = 0
 
 func stage(ride: RefCounted, host: Node2D) -> void:
+	if course_finish == 0: course_finish = float(ride.definition.world_finish)
+	ride.wave_three = false
 	if not saved: host.dispenser.spent_checkpoints.erase(DISPENSER_ID)
 	rocket_cleared = false
 	ride.complete = false
 	host.won = false
 	ride.course = {"obstacles":[]}
 	ride.visual_obstacles.clear()
-	ride.encounter_scroll = float(ride.definition.world_finish)-300
+	ride.encounter_scroll = course_finish-300
 	ride.encounter_clock = ride.encounter_scroll/ride.scroll_speed
 	ride.clock = ride.encounter_clock
 	ride.jump_age = -1

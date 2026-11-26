@@ -7,28 +7,10 @@ const BRASS := Color("f3bd63")
 const PIPE := Color("243638")
 const FILL := Color("75d5ad")
 
-static var history := ConfigFile.new()
-static var history_loaded := false
-const HISTORY_PATH := "user://loading_cards.cfg"
-
 var illustration: Texture2D
 
 func begin(level: String) -> void:
-	# Persist each family's shuffle bag so direct launches also see the full rotation.
-	if not history_loaded:
-		if FileAccess.file_exists(HISTORY_PATH):
-			history.load(HISTORY_PATH)
-		history_loaded = true
-	var remaining: Array = history.get_value(level,"remaining",[])
-	if remaining.is_empty():
-		remaining = [1,2,3,4,5,6]
-		remaining.shuffle()
-		if remaining.back() == history.get_value(level,"last",0):
-			remaining.push_front(remaining.pop_back())
-	var choice := int(remaining.pop_back())
-	history.set_value(level,"remaining",remaining)
-	history.set_value(level,"last",choice)
-	history.save(HISTORY_PATH)
+	var choice := randi_range(1,6)
 	var path := ART_ROOT+level+"-"+str(choice)+".webp"
 	illustration = load(path) if ResourceLoader.exists(path) else null
 

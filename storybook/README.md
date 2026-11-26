@@ -1,6 +1,6 @@
 # Drain Damage — In pictures
 
-Concept art and playable experiments. Gameplay captures through v0.207.0.
+Concept art and playable experiments. Gameplay captures through v0.235.0.
 
 ## Concept art
 
@@ -344,6 +344,71 @@ v0.207.0 · November 25, 2026 · Illustrated loading interface.
 A flush illustration shown in the shared loading-card renderer.
 v0.207.0 · November 25, 2026 · Illustrated loading interface.
 
+![Tony approaches the Wave 3 ramp module.][milestone-224-ramp]
+
+Tony approaches the Wave 3 ramp module.
+v0.224.0 · November 25, 2026 · Native module review; full Wave 3 remains draft.
+
+![The ramp launches Tony toward raised porcelain footing.][milestone-224-flight]
+
+The ramp launches Tony toward raised porcelain footing.
+v0.224.0 · November 25, 2026 · Native module review; full Wave 3 remains draft.
+
+![Sean reaches the raised landing.][milestone-224-landing]
+
+Sean reaches the raised landing.
+v0.224.0 · November 25, 2026 · Native module review; full Wave 3 remains draft.
+
+![The revised falling-strainer sequence leaves an opening.][milestone-224-strainer-opening]
+
+The revised falling-strainer sequence leaves an opening.
+v0.224.0 · November 25, 2026 · Native module review; full Wave 3 remains draft.
+
+![Wave 3 extends the porcelain platform chain.][wave-three-chain]
+
+Wave 3 extends the porcelain platform chain.
+v0.233.0 · November 25, 2026 · Scripted native review.
+
+![Sean approaches a strainer and valve obstacle.][wave-three-hazards]
+
+Sean approaches a strainer and valve obstacle.
+v0.233.0 · November 25, 2026 · Scripted native review.
+
+![The ramp module joins the full Wave 3 course.][wave-three-ramp]
+
+The ramp module joins the full Wave 3 course.
+v0.233.0 · November 25, 2026 · Scripted native review.
+
+![The later course combines valves, openings and strainers.][wave-three-late-course]
+
+The later course combines valves, openings and strainers.
+v0.233.0 · November 25, 2026 · Scripted native review.
+
+![Revised compound gates combine a narrow passage with a low obstacle.][wave-three-234-compound-gate]
+
+Revised compound gates combine a narrow passage with a low obstacle.
+v0.234.0 · November 25, 2026 · Final-package scripted review.
+
+![Four narrower middle landings change the platform route.][wave-three-234-middle-landing]
+
+Four narrower middle landings change the platform route.
+v0.234.0 · November 25, 2026 · Final-package scripted review.
+
+![Wave 3 continues beyond its old finish with new compound gates.][wave-three-235-extension-gate]
+
+Wave 3 continues beyond its old finish with new compound gates.
+v0.235.0 · November 25, 2026 · Final-package scripted review.
+
+![Seven more decks create a six-hop extension.][wave-three-235-extension-landing]
+
+Seven more decks create a six-hop extension.
+v0.235.0 · November 25, 2026 · Final-package scripted review.
+
+![One last opening precedes the grounded finish.][wave-three-235-final-jump]
+
+One last opening precedes the grounded finish.
+v0.235.0 · November 25, 2026 · Final-package scripted review.
+
 ## Final game images
 
 To come. These images document development, not a finished game.
@@ -426,3 +491,16 @@ To come. These images document development, not a finished game.
 [loading-207-loading-real]: 207-loading-cards/20261125-120051-archived-loading-real.png
 [loading-207-ready-real]: 207-loading-cards/20261125-120051-archived-ready-real.png
 [loading-207-flush-1]: 207-loading-cards/20261125-120051-archived-flush-1.png
+[milestone-224-ramp]: 224-ramp-and-falling-strainers/20261125-190211-archived-ramp.png
+[milestone-224-flight]: 224-ramp-and-falling-strainers/20261125-190211-archived-flight.png
+[milestone-224-landing]: 224-ramp-and-falling-strainers/20261125-190211-archived-landing.png
+[milestone-224-strainer-opening]: 224-ramp-and-falling-strainers/20261125-190211-archived-strainer-opening.png
+[wave-three-chain]: 233-full-wave-three/20261125-205511-archived-chain.png
+[wave-three-hazards]: 233-full-wave-three/20261125-205511-archived-hazards.png
+[wave-three-ramp]: 233-full-wave-three/20261125-205511-archived-ramp.png
+[wave-three-late-course]: 233-full-wave-three/20261125-205511-archived-late-course.png
+[wave-three-234-compound-gate]: 233-full-wave-three/20261125-211641-234-archived-compound-gate.png
+[wave-three-234-middle-landing]: 233-full-wave-three/20261125-211641-234-archived-middle-landing.png
+[wave-three-235-extension-gate]: 233-full-wave-three/20261125-213402-235-archived-extension-gate.png
+[wave-three-235-extension-landing]: 233-full-wave-three/20261125-213402-235-archived-extension-landing.png
+[wave-three-235-final-jump]: 233-full-wave-three/20261125-213402-235-archived-final-jump.png

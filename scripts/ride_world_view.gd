@@ -6,6 +6,7 @@ const Proof = preload("res://scripts/camera_test_view.gd")
 const Geometry = preload("res://scripts/camera_test_geometry.gd")
 const Hand = preload("res://scripts/ride_world_hand.gd")
 const Props = preload("res://scripts/ride_world_props.gd")
+const FallingStrainer = preload("res://scripts/ride_ceiling_strainer.gd")
 const UNIT := 100.0
 # Preserve the simulation coordinates while matching the proof's four-metre waterway.
 const BANK_SCALE := 2.0
@@ -184,6 +185,10 @@ func actor_signature(obstacle: Dictionary) -> String:
 		return "baffle:%s:%s:%s:%s" % [obstacle.y,obstacle.width,obstacle.depth,obstacle.art_id]
 	var definition := obstacle.duplicate(true)
 	definition.erase("visual_started")
+	if str(obstacle.get("instance_id","")) in ["wave-three","wave-three-ramp"]:
+		# Checkpoint continuation translates the course, but does not change its meshes.
+		for field in ["x","launch_x","timeline_origin","warning_at","activates_at"]:
+			if definition.has(field): definition[field] = 0
 	return JSON.stringify(definition)
 
 func make_actor(obstacle: Dictionary) -> Node3D:
@@ -222,6 +227,19 @@ func prepare_actors(yield_frame := Callable(), progress := Callable()) -> void:
 				prepared.append({"obstacles":additions})
 			if variants.size() == 3: break
 		assert(variants.size() == 3,"Missing elbow follow-up prewarm variant")
+	var wave_known := {}
+	for difficulty in ["easy","normal","hard"]:
+		for full in [false,true]:
+			var course: Dictionary = preload("res://scripts/ride_wave_three.gd").build(source,0,full,difficulty)
+			var additions: Array = []
+			var counts := {}
+			for obstacle: Dictionary in course.encounters[0].obstacles:
+				var key := actor_signature(obstacle)
+				counts[key] = int(counts.get(key,0))+1
+				if int(counts[key]) <= int(wave_known.get(key,0)): continue
+				wave_known[key] = counts[key]
+				additions.append(obstacle)
+			prepared.append({"obstacles":additions})
 	var total := 0
 	var finished := 0
 	for encounter: Dictionary in prepared: total += encounter.obstacles.size()
@@ -631,17 +649,7 @@ func build_actor(actor: Node3D, obstacle: Dictionary) -> void:
 			var machine := Node3D.new()
 			machine.name = "machine"
 			actor.add_child(machine)
-			# The continuous approach stages its basket ahead of the target; support that whole travel path.
-			var station: bool = obstacle.get("station",false)
-			var extended := obstacle.has("instance_id") and not station
-			var rail_half := maxf(1.0,width*.5+.25)
-			Props.strainer(machine,width,depth,materials,-rail_half if station else (-16.0 if extended else -8.0),rail_half if station else 8.0)
-			machine.set_meta("rail_origin_x",-4.0 if extended else 0.0)
-			for offset in ([-width*.35,width*.35] if station else ([-16.0,-8.0,8.0] if extended else [-8.0,8.0])):
-				var support := Node3D.new()
-				actor.add_child(support)
-				support.position.x = offset
-				gantry(support,obstacle)
+			Props.strainer(machine,width,depth,materials)
 	elif obstacle.kind == "deck":
 		var top_height := float(obstacle.get("surface_height",12.0))/UNIT
 		var metal: bool = str(obstacle.get("landing_material","porcelain")) == "metal"
@@ -788,32 +796,7 @@ func animate_actor(actor: Node3D, obstacle: Dictionary, model: RefCounted) -> vo
 	if str(obstacle.art_id).begins_with("strainer_gap_"):
 		var machine: Node3D = actor.get_node("machine")
 		var age: float = model.mechanism_age(obstacle)
-		var station: bool = obstacle.get("station",false)
-		machine.visible = station or age >= 1.0
-		if not machine.visible: return
-		if station:
-			var lift := 2.7*(1.0-smoothstep(2.75,3.1,age)+smoothstep(3.1,3.45,age))
-			machine.get_node("basket").position.y = lift
-			for chain_name in ["chain_left_far","chain_left_near","chain_right_far","chain_right_near"]:
-				var chain: Node3D = machine.get_node(chain_name)
-				chain.position.y = lift+.45
-				chain.scale.y = 3.24-lift-.45
-			return
-		var assembly: Dictionary = model.hazard_assembly(obstacle)
-		var source: Dictionary = model.obstacle_art.manifest
-		for part: Dictionary in assembly.parts:
-			if part.id not in [source.strainer_parts.basket,source.strainer_parts.clear_basket]: continue
-			var bottom: Vector2 = part.transform.origin
-			machine.position.x = bottom.x/UNIT-actor.position.x
-			# Withdraw the cleared cage along its rail so its silhouette and shadow cannot hide the rider.
-			var clear := float(source.strainer_timeline.clear)
-			machine.position.x += 6.0*smoothstep(clear,clear+.45,age)
-			# The basket travels beneath a fixed supported rail; the rail never follows the trolley.
-			machine.get_node("rail").position.x = -machine.position.x+float(machine.get_meta("rail_origin_x",0.0))
-			var height := clampf((model.obstacle_position(obstacle).y+float(obstacle.depth)*.5-bottom.y)/UNIT,0,1.5)
-			machine.get_node("basket").position.y = height
-			for name in ["chain_left_far","chain_left_near","chain_right_far","chain_right_near"]:
-				var links: Node3D = machine.get_node(name)
-				links.position.y = height+.45
-				links.scale.y = maxf(.01,3.24-height-.45)
-			break
+		# Keep the committed footprint fixed while the basket falls through it.
+		var height := FallingStrainer.height(age,3.1)/UNIT
+		machine.visible = height < FallingStrainer.START_HEIGHT/UNIT and height > -6.5
+		machine.get_node("basket").position.y = height

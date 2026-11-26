@@ -109,7 +109,9 @@ var fire_timer := 0.0
 var invulnerable := 0.0
 var health := 5
 var invincible := false
-var lives := 3
+const STARTING_LIVES := 3
+var lives := STARTING_LIVES
+var death_popup_age := 0.0
 var life_state := "alive"
 var death_time := 0.0
 var death_ground_time := 0.0
@@ -335,6 +337,10 @@ func draw_pause_plates(dripping := false) -> void:
 			]), MINT)
 
 func update_death_popup_guard(delta: float) -> void:
+	if life_state in ["death_popup","game_over"]:
+		death_popup_age += delta
+	else:
+		death_popup_age = 0
 	if not death_popup_locked: return
 	var held := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	for action in ["shoot", "special", "jump", "dialogue_next", "dialogue_skip", "pause_game", "return_title"]:
@@ -499,7 +505,7 @@ func reset_game() -> void:
 	fire_timer = 0.0
 	current_aim = Vector2(facing, 0)
 	health = employee.max_health
-	lives = 3
+	lives = STARTING_LIVES
 	life_state = "alive"
 	death_time = 0
 	death_ground_time = 0
@@ -1173,8 +1179,8 @@ func draw_death_popup() -> void:
 	paragraph.width = 425
 	paragraph.add_string(death_message.text, ThemeDB.fallback_font, 21)
 	paragraph.draw(get_canvas_item(), Vector2(350, 175), Color("f1eee4"))
-	label_at("%d %s remaining" % [lives, "life" if lives == 1 else "lives"], Vector2(245, 510), 14, MINT)
-	draw_pause_plates()
+	draw_pause_plates(true)
+	vitals_hud.draw_life_slots(self,lives,STARTING_LIVES,death_popup_age)
 
 func draw_ellipse_shadow(feet: Vector2, size: Vector2) -> void:
 	draw_set_transform(feet - Vector2(floorf(camera_x), 0), 0, size)

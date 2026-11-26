@@ -78,6 +78,9 @@ func configure(host: Node2D, ride: RefCounted) -> void:
 		sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR
 		if key == "blood-wake":
 			sprite.rotation.x = -PI/2
+			sprite.render_priority = 1
+			sprite.shaded = false
+			sprite.scale.y = 1.8
 			sprite.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			trails.append(sprite)
 		else:
@@ -120,10 +123,12 @@ func update(view: Node3D, active: bool) -> void:
 		var z := -.04 if i==0 else .28
 		skis[i].position = Vector3(x,spec_size.y*.42-sink*.8,z)
 		skis[i].visible = sink < .95
-		var alpha := 1.0 if cp.phase == "approach" else 1.0-smoothstep(0,1.2,cp.age) if cp.phase == "waiting" else 0.0
-		trails[i].position = Vector3(x-spec_size.x*.5-.51,.012,z)
-		trails[i].modulate.a = alpha
-		trails[i].visible = alpha > 0
+		var trail := trails[i]
+		trail.scale.x = 1.0+0.07*sin(model.clock*3.0+float(i)*PI)
+		var length := trail.texture.get_width()*trail.pixel_size*trail.scale.x
+		trail.position = Vector3(x-spec_size.x*0.5-length*0.5+0.05,0.012,z)
+		trail.modulate.a = 1.0-smoothstep(0.65,0.95,sink)
+		trail.visible = skis[i].visible
 	var base: Vector3 = chassis.global_position+Vector3(0,0,.012)
 	var origin: Vector2 = view.camera.unproject_position(base)
 	var x_axis: Vector2 = view.camera.unproject_position(base+Vector3(PIXEL,0,0))-origin

@@ -8,7 +8,7 @@ const FirstLevelEnding = preload("res://scripts/first_level_ending.gd")
 var ending := FirstLevelEnding.new()
 const Flush = preload("res://scripts/level_two_flush.gd")
 var flush := Flush.new()
-const RIDE_LOAD_TARGETS := ["level-two-landing","ride-continuous","ride-checkpoint"]
+const RIDE_LOAD_TARGETS := ["level-two-landing","ride-continuous","ride-wave-two","ride-checkpoint","ride-wave-three","ride-wave-three-full"]
 const LevelLoadingOverlay = preload("res://scripts/level_loading_overlay.gd")
 var level_loading_overlay: LevelLoadingOverlay
 var defer_level_two_loading := false
@@ -137,11 +137,15 @@ func reset_observation() -> void:
 	gate_progress.fill(1)
 
 func restart_level_two(replay_bowl_intro: bool) -> void:
-	# Level 2 has no formal checkpoint. A direct ride launch restarts its selected test entry.
+	# Unsaved direct launches restart their selected entry; formal checkpoint recovery is handled below.
 	flush.begin(self,not replay_bowl_intro)
-	if flush.debug_ride_start >= 0:
+	if flush.landing_launch:
+		flush.enter_landing(self)
+	elif flush.debug_ride_start >= 0:
 		flush.enter_ride(self,flush.debug_ride_start)
 		if flush.checkpoint_launch: flush.ride.checkpoint.stage(flush.ride,self)
+		elif not flush.wave_three_launch.is_empty():
+			flush.ride.start_wave_three(self,0,false,flush.wave_three_launch == "ride-wave-three-full")
 
 func respawn_after_death() -> void:
 	if flush.active:
@@ -373,7 +377,10 @@ func _physics_process(delta: float) -> void:
 		if flush.input_guard:
 			if restart_inputs_held() or Input.is_action_pressed("shoot") or Input.is_action_pressed("jump"): return
 			flush.input_guard = false
-		if flush.state == "bowl" and not level_load_active():
+		var dismiss_radio := flush.state != "ride" and flush.radio.can_advance() and Input.is_action_just_pressed("dialogue_skip")
+		if dismiss_radio and not level_load_active() and not Input.is_action_just_pressed("jump"):
+			flush.advance_dialogue(self)
+		if flush.state == "bowl" and not level_load_active() and not dismiss_radio:
 			if Input.is_action_just_pressed("special"): flush.audio.play("button_gag")
 			elif Input.is_action_just_pressed("shoot"): flush.audio.play("button_fire")
 		var steering := Input.get_vector("left","right","aim_up","aim_down")
@@ -753,7 +760,9 @@ func begin_level_two() -> void:
 	special_audio.stop()
 	health = employee.max_health
 	specials.refill_level(employee.id,"level-two")
+	flush.landing_launch = false
 	flush.checkpoint_launch = false
+	flush.wave_three_launch = ""
 	flush.debug_ride_start = -1
 	flush.ride.checkpoint_index = 0
 	flush.ride.continuous = false
@@ -1096,15 +1105,21 @@ func emit_trial_shot(actor: Dictionary) -> void:
 
 
 func step_hostile_projectiles(delta: float) -> void:
+	if hostile_shots.is_empty(): return
+	var walls := player_shot_solids()
+	for i in walls.size(): walls[i] = walls[i].grow(BULLET_RADIUS)
+	var travel := BULLET_SPEED * float(tuning.speed_multiplier) * delta
 	for index in range(hostile_shots.size()-1,-1,-1):
 		var shot: Dictionary = hostile_shots[index]
-		var travel := BULLET_SPEED * float(tuning.speed_multiplier) * delta
 		var end: Vector2 = shot.pos + shot.dir * travel
 		shot.distance += travel
 		var hit := segment_hit(shot.pos,end,Rect2(player,PLAYER_SIZE).grow(BULLET_RADIUS))
 		var wall := 2.0
-		for solid in player_shot_solids():
-			var fraction := segment_hit(shot.pos,end,solid.grow(BULLET_RADIUS))
+		var sweep := Rect2(shot.pos,Vector2.ZERO).expand(end)
+		for solid in walls:
+			# Include touching borders so grazing and endpoint hits still get the exact sweep test.
+			if not sweep.intersects(solid,true): continue
+			var fraction := segment_hit(shot.pos,end,solid)
 			if fraction >= 0: wall = minf(wall,fraction)
 		shot.age += delta
 		if hit >= 0 or wall <= 1:

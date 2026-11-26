@@ -116,7 +116,22 @@ func exercise_arrival(game: Node2D, target: Dictionary, injured: bool, hz: int) 
 	for frame in hz*4+int(hz*0.9): advance(game,1.0/hz,Vector2(-1,1))
 	require(not ride.complete,"Restored runout finished before five seconds")
 	for frame in ceili(hz*0.2): advance(game,1.0/hz,Vector2.ONE)
-	require(ride.complete and game.won and game.health == game.employee.max_health,"Five-second exit did not finish safely")
+	require(ride.full_wave_three and ride.wave_three and not ride.complete and not game.won and game.health == game.employee.max_health,
+		"Five-second safe exit did not enter Wave 3")
+	var module_origin: float = ride.wave_three_origin
+	game.health = 1
+	game.invulnerable = 0
+	game.hurt_player()
+	game.respawn_after_death()
+	require(not ride.wave_three and ride.checkpoint.phase == "runout" and game.lives == lives-2,
+		"Wave 3 death did not restore formal checkpoint")
+	require(absf(ride.encounter_scroll-(ride.checkpoint.course_finish-300)) < 0.01,
+		"Wave 3 retry used module finish instead of checkpoint location")
+	for frame in hz*5+1: advance(game,1.0/hz)
+	require(ride.full_wave_three and ride.wave_three and absf(ride.wave_three_origin-module_origin) < 0.01 and game.run_seed == seed_value,
+		"Checkpoint replay changed module origin or seed")
+	require(is_equal_approx(ride.definition.world_finish-module_origin,38100.0),
+		"Saved checkpoint replay lost the Wave 3 extension")
 	cases += 1
 
 func exercise_unsaved(game: Node2D, target: Dictionary) -> void:
@@ -150,6 +165,32 @@ func exercise_unsaved(game: Node2D, target: Dictionary) -> void:
 		else:
 			require(game.flush.state == "bowl","Unsaved campaign retry skipped bowl")
 		cases += 1
+
+func exercise_direct_module(game: Node2D) -> void:
+	game.flush.active = false
+	game.reset_game()
+	var options := Launch.parse(PackedStringArray(["--level=2-wave3-ramp"]))
+	Launch.initialize(game,options.target)
+	var ride: RefCounted = game.flush.ride
+	require(not ride.full_wave_three and ride.wave_three and not ride.checkpoint.saved,"Ramp selector did not enter independent module")
+	var seed_value: int = game.run_seed
+	check_paused(game)
+	for frame in 600:
+		var bank := 270.0 if ride.events.has("ramp") else 330.0
+		var input := -1.0 if ride.events.has("ramp") and ride.position.y > bank else 0.0
+		advance(game,1.0/60,Vector2(0,input))
+		if ride.complete or game.life_state != "alive": break
+	require(ride.complete and game.won and game.health == game.employee.max_health,
+		"Actual ramp wrapper did not complete approved module safely")
+	require(ride.checkpoint.phase == "","Module completion incorrectly opened another checkpoint")
+	game.won = false
+	game.health = 1
+	game.invulnerable = 0
+	game.hurt_player()
+	game.respawn_after_death()
+	require(ride.wave_three and not ride.complete and ride.clock == 0 and game.lives == 2 and game.run_seed == seed_value,
+		"Direct ramp retry did not preserve selector, life stock and seed")
+	cases += 1
 
 func check_game_over(game: Node2D, title: Node2D) -> void:
 	print("CHECKPOINT_GAME_OVER_BEGIN")
@@ -217,6 +258,7 @@ func checks() -> void:
 	game.run_seed = 17
 	for hero in game.Crew.EMPLOYEES:
 		game.employee = hero
+		exercise_direct_module(game)
 		exercise_unsaved(game,options.target)
 		for injured in [false,true]:
 			for hz in [30,60,120]: exercise_arrival(game,options.target,injured,hz)

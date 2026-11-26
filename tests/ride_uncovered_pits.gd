@@ -89,8 +89,11 @@ func checks() -> void:
 		for frame in range(hz):
 			pair[1].tick(pair[0],1.0/hz,Vector2.RIGHT,false)
 			if pair[0].life_state == "dead": break
+		# From rest, the acceleration interval covers half the distance of cruising for that interval.
+		var cruise_time: float = (298.5-250.0)/pair[1].x_speed
+		var expected_time: float = cruise_time + float(pair[1].steering_config.steering.acceleration_seconds)*0.5
 		if not require(pair[0].life_state == "dead" and absf(pair[1].position.x-298.5) < .001
-			and absf(pair[1].clock-.12125) < .00001,"Swept union threshold and death time are FPS independent"): return
+			and absf(pair[1].clock-expected_time) < .00001,"Swept union threshold and death time are FPS independent"): return
 		pair[0].free()
 		pair = setup(banks)
 		pair[1].position.x = 250
